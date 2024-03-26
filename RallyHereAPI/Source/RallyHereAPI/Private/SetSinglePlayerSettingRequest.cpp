@@ -21,27 +21,27 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_SetSinglePlayerSettingRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("v"));
-    RallyHereAPI::WriteJsonValue(Writer, V);
-    Writer->WriteIdentifierPrefix(TEXT("value"));
-    RallyHereAPI::WriteJsonValue(Writer, Value);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("v"));
+	RallyHereAPI::WriteJsonValue(Writer, V);
+	Writer->WriteIdentifierPrefix(TEXT("value"));
+	RallyHereAPI::WriteJsonValue(Writer, Value);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_SetSinglePlayerSettingRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonVField = (*Object)->TryGetField(TEXT("v"));
-    ParseSuccess &= JsonVField.IsValid() && !JsonVField->IsNull() && TryGetJsonValue(JsonVField, V);
-    const TSharedPtr<FJsonValue> JsonValueField = (*Object)->TryGetField(TEXT("value"));
-    ParseSuccess &= JsonValueField.IsValid() && !JsonValueField->IsNull() && TryGetJsonValue(JsonValueField, Value);
+	const TSharedPtr<FJsonValue> JsonVField = (*Object)->TryGetField(TEXT("v"));
+	ParseSuccess &= JsonVField.IsValid() && !JsonVField->IsNull() && TryGetJsonValue(JsonVField, V);
+	const TSharedPtr<FJsonValue> JsonValueField = (*Object)->TryGetField(TEXT("value"));
+	ParseSuccess &= JsonValueField.IsValid() && !JsonValueField->IsNull() && TryGetJsonValue(JsonValueField, Value);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

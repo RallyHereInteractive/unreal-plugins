@@ -21,23 +21,23 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_SessionInviteResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("players"));
-    RallyHereAPI::WriteJsonValue(Writer, Players);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("players"));
+	RallyHereAPI::WriteJsonValue(Writer, Players);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_SessionInviteResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonPlayersField = (*Object)->TryGetField(TEXT("players"));
-    ParseSuccess &= JsonPlayersField.IsValid() && !JsonPlayersField->IsNull() && TryGetJsonValue(JsonPlayersField, Players);
+	const TSharedPtr<FJsonValue> JsonPlayersField = (*Object)->TryGetField(TEXT("players"));
+	ParseSuccess &= JsonPlayersField.IsValid() && !JsonPlayersField->IsNull() && TryGetJsonValue(JsonPlayersField, Players);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

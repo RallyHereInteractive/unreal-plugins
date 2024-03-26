@@ -21,27 +21,27 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_HTTPAuthorizationCredentials::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("scheme"));
-    RallyHereAPI::WriteJsonValue(Writer, Scheme);
-    Writer->WriteIdentifierPrefix(TEXT("credentials"));
-    RallyHereAPI::WriteJsonValue(Writer, Credentials);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("scheme"));
+	RallyHereAPI::WriteJsonValue(Writer, Scheme);
+	Writer->WriteIdentifierPrefix(TEXT("credentials"));
+	RallyHereAPI::WriteJsonValue(Writer, Credentials);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_HTTPAuthorizationCredentials::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonSchemeField = (*Object)->TryGetField(TEXT("scheme"));
-    ParseSuccess &= JsonSchemeField.IsValid() && !JsonSchemeField->IsNull() && TryGetJsonValue(JsonSchemeField, Scheme);
-    const TSharedPtr<FJsonValue> JsonCredentialsField = (*Object)->TryGetField(TEXT("credentials"));
-    ParseSuccess &= JsonCredentialsField.IsValid() && !JsonCredentialsField->IsNull() && TryGetJsonValue(JsonCredentialsField, Credentials);
+	const TSharedPtr<FJsonValue> JsonSchemeField = (*Object)->TryGetField(TEXT("scheme"));
+	ParseSuccess &= JsonSchemeField.IsValid() && !JsonSchemeField->IsNull() && TryGetJsonValue(JsonSchemeField, Scheme);
+	const TSharedPtr<FJsonValue> JsonCredentialsField = (*Object)->TryGetField(TEXT("credentials"));
+	ParseSuccess &= JsonCredentialsField.IsValid() && !JsonCredentialsField->IsNull() && TryGetJsonValue(JsonCredentialsField, Credentials);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

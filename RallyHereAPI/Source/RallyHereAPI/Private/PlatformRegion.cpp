@@ -20,52 +20,52 @@ using RallyHereAPI::TryGetJsonValue;
 // Implementation for ERHAPI_PlatformRegion
 FString EnumToString(const ERHAPI_PlatformRegion& Value)
 {
-    switch (Value)
-    {
-    case ERHAPI_PlatformRegion::Unknown:
-        return TEXT("Unknown");
-    case ERHAPI_PlatformRegion::Na:
-        return TEXT("NA");
-    case ERHAPI_PlatformRegion::Eu:
-        return TEXT("EU");
-    }
+	switch (Value)
+	{
+	case ERHAPI_PlatformRegion::Unknown:
+		return TEXT("Unknown");
+	case ERHAPI_PlatformRegion::Na:
+		return TEXT("NA");
+	case ERHAPI_PlatformRegion::Eu:
+		return TEXT("EU");
+	}
 
-    UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_PlatformRegion::Values Value (%d)"), (int)Value);
-    return TEXT("");
+	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_PlatformRegion::Values Value (%d)"), (int)Value);
+	return TEXT("");
 }
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_PlatformRegion& Value)
 {
-    static TMap<FString, ERHAPI_PlatformRegion> StringToEnum = { 
-        { TEXT("Unknown"), ERHAPI_PlatformRegion::Unknown },
-        { TEXT("NA"), ERHAPI_PlatformRegion::Na },
-        { TEXT("EU"), ERHAPI_PlatformRegion::Eu },    };
+	static TMap<FString, ERHAPI_PlatformRegion> StringToEnum = { 
+		{ TEXT("Unknown"), ERHAPI_PlatformRegion::Unknown },
+		{ TEXT("NA"), ERHAPI_PlatformRegion::Na },
+		{ TEXT("EU"), ERHAPI_PlatformRegion::Eu },	};
 
-    const auto Found = StringToEnum.Find(EnumAsString);
-    if(Found)
-        Value = *Found;
-    return Found != nullptr;
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
+	return Found != nullptr;
 }
 
 FStringFormatArg ToStringFormatArg(const ERHAPI_PlatformRegion& Value)
 {
-    return FStringFormatArg(EnumToString(Value));
+	return FStringFormatArg(EnumToString(Value));
 }
 
 void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const ERHAPI_PlatformRegion& Value)
 {
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
 }
 
 bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, ERHAPI_PlatformRegion& Value)
 {
-    FString TmpValue;
-    if (JsonValue->TryGetString(TmpValue))
-    {
-        if (EnumFromString(TmpValue, Value))
-            return true;
-    }
-    return false;
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if (EnumFromString(TmpValue, Value))
+			return true;
+	}
+	return false;
 }
 
 

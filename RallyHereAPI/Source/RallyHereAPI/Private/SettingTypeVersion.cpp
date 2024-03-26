@@ -21,56 +21,56 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_SettingTypeVersion::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (AllowUpdate_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("allow_update"));
-        RallyHereAPI::WriteJsonValue(Writer, AllowUpdate_Optional);
-    }
-    if (KeyRegex_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("key_regex"));
-        RallyHereAPI::WriteJsonValue(Writer, KeyRegex_Optional);
-    }
-    Writer->WriteIdentifierPrefix(TEXT("value_jsonschema"));
-    RallyHereAPI::WriteJsonValue(Writer, ValueJsonschema);
-    if (CustomData_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("custom_data"));
-        RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (AllowUpdate_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("allow_update"));
+		RallyHereAPI::WriteJsonValue(Writer, AllowUpdate_Optional);
+	}
+	if (KeyRegex_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("key_regex"));
+		RallyHereAPI::WriteJsonValue(Writer, KeyRegex_Optional);
+	}
+	Writer->WriteIdentifierPrefix(TEXT("value_jsonschema"));
+	RallyHereAPI::WriteJsonValue(Writer, ValueJsonschema);
+	if (CustomData_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("custom_data"));
+		RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_SettingTypeVersion::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonAllowUpdateField = (*Object)->TryGetField(TEXT("allow_update"));
-    if (JsonAllowUpdateField.IsValid() && !JsonAllowUpdateField->IsNull())
-    {
-        AllowUpdate_IsSet = TryGetJsonValue(JsonAllowUpdateField, AllowUpdate_Optional);
-        ParseSuccess &= AllowUpdate_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonKeyRegexField = (*Object)->TryGetField(TEXT("key_regex"));
-    if (JsonKeyRegexField.IsValid() && !JsonKeyRegexField->IsNull())
-    {
-        KeyRegex_IsSet = TryGetJsonValue(JsonKeyRegexField, KeyRegex_Optional);
-        ParseSuccess &= KeyRegex_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonValueJsonschemaField = (*Object)->TryGetField(TEXT("value_jsonschema"));
-    ParseSuccess &= JsonValueJsonschemaField.IsValid() && !JsonValueJsonschemaField->IsNull() && TryGetJsonValue(JsonValueJsonschemaField, ValueJsonschema);
-    const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-    if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
-    {
-        CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
-        ParseSuccess &= CustomData_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonAllowUpdateField = (*Object)->TryGetField(TEXT("allow_update"));
+	if (JsonAllowUpdateField.IsValid() && !JsonAllowUpdateField->IsNull())
+	{
+		AllowUpdate_IsSet = TryGetJsonValue(JsonAllowUpdateField, AllowUpdate_Optional);
+		ParseSuccess &= AllowUpdate_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonKeyRegexField = (*Object)->TryGetField(TEXT("key_regex"));
+	if (JsonKeyRegexField.IsValid() && !JsonKeyRegexField->IsNull())
+	{
+		KeyRegex_IsSet = TryGetJsonValue(JsonKeyRegexField, KeyRegex_Optional);
+		ParseSuccess &= KeyRegex_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonValueJsonschemaField = (*Object)->TryGetField(TEXT("value_jsonschema"));
+	ParseSuccess &= JsonValueJsonschemaField.IsValid() && !JsonValueJsonschemaField->IsNull() && TryGetJsonValue(JsonValueJsonschemaField, ValueJsonschema);
+	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
+	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	{
+		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
+		ParseSuccess &= CustomData_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

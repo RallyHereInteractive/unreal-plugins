@@ -22,47 +22,47 @@
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_BrowserResponse : public FRHAPI_Model
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    /**
-    * @brief Fills this object with data from the passed in JSON
-    *
-    * @param [in] JsonValue Data from the API call.
-    *
-    * @return true if parsing of the JSON data was successful.
-    */
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	/**
+	* @brief Fills this object with data from the passed in JSON
+	*
+	* @param [in] JsonValue Data from the API call.
+	*
+	* @return true if parsing of the JSON data was successful.
+	*/
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
-    /**
-    * @brief Writes the data from this object into the specified JSON Writer stream
-    *
-    * @param [in] Writer JSON Writer stream to push .
-    */
-    void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	/**
+	* @brief Writes the data from this object into the specified JSON Writer stream
+	*
+	* @param [in] Writer JSON Writer stream to push .
+	*/
+	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief Cursor to continue iterating through browser sessions. 0 means we have returned the last entry */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    int32 Cursor{ 0 };
-    /** @brief Gets the value of Cursor */
-    int32& GetCursor() { return Cursor; }
-    /** @brief Gets the value of Cursor */
-    const int32& GetCursor() const { return Cursor; }
-    /** @brief Sets the value of Cursor */
-    void SetCursor(int32 NewValue) { Cursor = NewValue;  }
-    /** @brief Returns true if Cursor matches the default value */
-    bool IsCursorDefaultValue() const { return Cursor == 0; }
-    /** @brief Sets the value of Cursor to its default  */
-    void SetCursorToDefault() { Cursor = 0;  }
+	/** @brief Cursor to continue iterating through browser sessions. 0 means we have returned the last entry */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Cursor{ 0 };
+	/** @brief Gets the value of Cursor */
+	int32& GetCursor() { return Cursor; }
+	/** @brief Gets the value of Cursor */
+	const int32& GetCursor() const { return Cursor; }
+	/** @brief Sets the value of Cursor */
+	void SetCursor(int32 NewValue) { Cursor = NewValue;  }
+	/** @brief Returns true if Cursor matches the default value */
+	bool IsCursorDefaultValue() const { return Cursor == 0; }
+	/** @brief Sets the value of Cursor to its default  */
+	void SetCursorToDefault() { Cursor = 0;  }
 
-    /** @brief List of sessions in the browser */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    TArray<FRHAPI_BrowserSessionInfo> BrowserSessions{  };
-    /** @brief Gets the value of BrowserSessions */
-    TArray<FRHAPI_BrowserSessionInfo>& GetBrowserSessions() { return BrowserSessions; }
-    /** @brief Gets the value of BrowserSessions */
-    const TArray<FRHAPI_BrowserSessionInfo>& GetBrowserSessions() const { return BrowserSessions; }
-    /** @brief Sets the value of BrowserSessions */
-    void SetBrowserSessions(TArray<FRHAPI_BrowserSessionInfo> NewValue) { BrowserSessions = NewValue;  }
+	/** @brief List of sessions in the browser */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TArray<FRHAPI_BrowserSessionInfo> BrowserSessions{  };
+	/** @brief Gets the value of BrowserSessions */
+	TArray<FRHAPI_BrowserSessionInfo>& GetBrowserSessions() { return BrowserSessions; }
+	/** @brief Gets the value of BrowserSessions */
+	const TArray<FRHAPI_BrowserSessionInfo>& GetBrowserSessions() const { return BrowserSessions; }
+	/** @brief Sets the value of BrowserSessions */
+	void SetBrowserSessions(TArray<FRHAPI_BrowserSessionInfo> NewValue) { BrowserSessions = NewValue;  }
 };
 
 /** @} */

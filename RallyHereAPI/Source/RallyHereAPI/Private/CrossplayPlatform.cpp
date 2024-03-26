@@ -20,52 +20,52 @@ using RallyHereAPI::TryGetJsonValue;
 // Implementation for ERHAPI_CrossplayPlatform
 FString EnumToString(const ERHAPI_CrossplayPlatform& Value)
 {
-    switch (Value)
-    {
-    case ERHAPI_CrossplayPlatform::Any:
-        return TEXT("desired_platforms_any");
-    case ERHAPI_CrossplayPlatform::Xbox:
-        return TEXT("desired_platforms_xboxlike");
-    case ERHAPI_CrossplayPlatform::Playstation:
-        return TEXT("desired_platforms_playstationlike");
-    }
+	switch (Value)
+	{
+	case ERHAPI_CrossplayPlatform::Any:
+		return TEXT("desired_platforms_any");
+	case ERHAPI_CrossplayPlatform::Xbox:
+		return TEXT("desired_platforms_xboxlike");
+	case ERHAPI_CrossplayPlatform::Playstation:
+		return TEXT("desired_platforms_playstationlike");
+	}
 
-    UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_CrossplayPlatform::Values Value (%d)"), (int)Value);
-    return TEXT("");
+	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_CrossplayPlatform::Values Value (%d)"), (int)Value);
+	return TEXT("");
 }
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_CrossplayPlatform& Value)
 {
-    static TMap<FString, ERHAPI_CrossplayPlatform> StringToEnum = { 
-        { TEXT("desired_platforms_any"), ERHAPI_CrossplayPlatform::Any },
-        { TEXT("desired_platforms_xboxlike"), ERHAPI_CrossplayPlatform::Xbox },
-        { TEXT("desired_platforms_playstationlike"), ERHAPI_CrossplayPlatform::Playstation },    };
+	static TMap<FString, ERHAPI_CrossplayPlatform> StringToEnum = { 
+		{ TEXT("desired_platforms_any"), ERHAPI_CrossplayPlatform::Any },
+		{ TEXT("desired_platforms_xboxlike"), ERHAPI_CrossplayPlatform::Xbox },
+		{ TEXT("desired_platforms_playstationlike"), ERHAPI_CrossplayPlatform::Playstation },	};
 
-    const auto Found = StringToEnum.Find(EnumAsString);
-    if(Found)
-        Value = *Found;
-    return Found != nullptr;
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
+	return Found != nullptr;
 }
 
 FStringFormatArg ToStringFormatArg(const ERHAPI_CrossplayPlatform& Value)
 {
-    return FStringFormatArg(EnumToString(Value));
+	return FStringFormatArg(EnumToString(Value));
 }
 
 void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const ERHAPI_CrossplayPlatform& Value)
 {
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
 }
 
 bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, ERHAPI_CrossplayPlatform& Value)
 {
-    FString TmpValue;
-    if (JsonValue->TryGetString(TmpValue))
-    {
-        if (EnumFromString(TmpValue, Value))
-            return true;
-    }
-    return false;
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if (EnumFromString(TmpValue, Value))
+			return true;
+	}
+	return false;
 }
 
 

@@ -18,10 +18,10 @@
 UENUM(BlueprintType)
 enum class ERHAPI_MMRGroupingMethod : uint8
 {
-    Worst UMETA(ToolTip="Use the lowest MMR of any player in the linking"),
-    Best UMETA(ToolTip="Use the highest MMR of any player in the linking"),
-    AverageByVariance UMETA(ToolTip="Use the arithmetic mean of the players&#39; skill multiplied by their variance. This is the sum of each player&#39;s skill times variance divided by the number of players"),
-    Average UMETA(ToolTip="Use the arithmetic mean of the players&#39; skill. This is the sum of each player&#39;s skill divided by the number of players"),
+	Worst UMETA(ToolTip="Use the lowest MMR of any player in the linking"),
+	Best UMETA(ToolTip="Use the highest MMR of any player in the linking"),
+	AverageByVariance UMETA(ToolTip="Use the arithmetic mean of the players&#39; skill multiplied by their variance. This is the sum of each player&#39;s skill times variance divided by the number of players"),
+	Average UMETA(ToolTip="Use the arithmetic mean of the players&#39; skill. This is the sum of each player&#39;s skill divided by the number of players"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_MMRGroupingMethod& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_MMRGroupingMethod& EnumValue);

@@ -21,23 +21,23 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_MatchAllocation::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("allocation_id"));
-    RallyHereAPI::WriteJsonValue(Writer, AllocationId);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("allocation_id"));
+	RallyHereAPI::WriteJsonValue(Writer, AllocationId);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_MatchAllocation::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonAllocationIdField = (*Object)->TryGetField(TEXT("allocation_id"));
-    ParseSuccess &= JsonAllocationIdField.IsValid() && !JsonAllocationIdField->IsNull() && TryGetJsonValue(JsonAllocationIdField, AllocationId);
+	const TSharedPtr<FJsonValue> JsonAllocationIdField = (*Object)->TryGetField(TEXT("allocation_id"));
+	ParseSuccess &= JsonAllocationIdField.IsValid() && !JsonAllocationIdField->IsNull() && TryGetJsonValue(JsonAllocationIdField, AllocationId);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

@@ -23,66 +23,66 @@
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_MatchMakingTemplateGroupV2 : public FRHAPI_Model
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    /**
-    * @brief Fills this object with data from the passed in JSON
-    *
-    * @param [in] JsonValue Data from the API call.
-    *
-    * @return true if parsing of the JSON data was successful.
-    */
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	/**
+	* @brief Fills this object with data from the passed in JSON
+	*
+	* @param [in] JsonValue Data from the API call.
+	*
+	* @return true if parsing of the JSON data was successful.
+	*/
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
-    /**
-    * @brief Writes the data from this object into the specified JSON Writer stream
-    *
-    * @param [in] Writer JSON Writer stream to push .
-    */
-    void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	/**
+	* @brief Writes the data from this object into the specified JSON Writer stream
+	*
+	* @param [in] Writer JSON Writer stream to push .
+	*/
+	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief ID for this set of potential matchmaking templates */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FGuid MatchMakingTemplateGroupId{  };
-    /** @brief Gets the value of MatchMakingTemplateGroupId */
-    FGuid& GetMatchMakingTemplateGroupId() { return MatchMakingTemplateGroupId; }
-    /** @brief Gets the value of MatchMakingTemplateGroupId */
-    const FGuid& GetMatchMakingTemplateGroupId() const { return MatchMakingTemplateGroupId; }
-    /** @brief Sets the value of MatchMakingTemplateGroupId */
-    void SetMatchMakingTemplateGroupId(FGuid NewValue) { MatchMakingTemplateGroupId = NewValue;  }
+	/** @brief ID for this set of potential matchmaking templates */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FGuid MatchMakingTemplateGroupId{  };
+	/** @brief Gets the value of MatchMakingTemplateGroupId */
+	FGuid& GetMatchMakingTemplateGroupId() { return MatchMakingTemplateGroupId; }
+	/** @brief Gets the value of MatchMakingTemplateGroupId */
+	const FGuid& GetMatchMakingTemplateGroupId() const { return MatchMakingTemplateGroupId; }
+	/** @brief Sets the value of MatchMakingTemplateGroupId */
+	void SetMatchMakingTemplateGroupId(FGuid NewValue) { MatchMakingTemplateGroupId = NewValue;  }
 
-    /** @brief List of the different matchmaking templates that could be used. The config is chosen based on a set of rules in each MatchMakingTemplate object. If there are no rules, it's the default template */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    TArray<FRHAPI_MatchMakingTemplateV2> TemplateOptions{  };
-    /** @brief Gets the value of TemplateOptions */
-    TArray<FRHAPI_MatchMakingTemplateV2>& GetTemplateOptions() { return TemplateOptions; }
-    /** @brief Gets the value of TemplateOptions */
-    const TArray<FRHAPI_MatchMakingTemplateV2>& GetTemplateOptions() const { return TemplateOptions; }
-    /** @brief Sets the value of TemplateOptions */
-    void SetTemplateOptions(TArray<FRHAPI_MatchMakingTemplateV2> NewValue) { TemplateOptions = NewValue;  }
+	/** @brief List of the different matchmaking templates that could be used. The config is chosen based on a set of rules in each MatchMakingTemplate object. If there are no rules, it's the default template */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TArray<FRHAPI_MatchMakingTemplateV2> TemplateOptions{  };
+	/** @brief Gets the value of TemplateOptions */
+	TArray<FRHAPI_MatchMakingTemplateV2>& GetTemplateOptions() { return TemplateOptions; }
+	/** @brief Gets the value of TemplateOptions */
+	const TArray<FRHAPI_MatchMakingTemplateV2>& GetTemplateOptions() const { return TemplateOptions; }
+	/** @brief Sets the value of TemplateOptions */
+	void SetTemplateOptions(TArray<FRHAPI_MatchMakingTemplateV2> NewValue) { TemplateOptions = NewValue;  }
 
-    /** @brief Set of all the item ids that are required to validate every rule contained in this template group */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    TSet<int32> RequiredItemIds_Optional{  };
-    /** @brief true if RequiredItemIds_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool RequiredItemIds_IsSet{ false };
-    /** @brief Gets the value of RequiredItemIds_Optional, regardless of it having been set */
-    TSet<int32>& GetRequiredItemIds() { return RequiredItemIds_Optional; }
-    /** @brief Gets the value of RequiredItemIds_Optional, regardless of it having been set */
-    const TSet<int32>& GetRequiredItemIds() const { return RequiredItemIds_Optional; }
-    /** @brief Gets the value of RequiredItemIds_Optional, if it has been set, otherwise it returns DefaultValue */
-    const TSet<int32>& GetRequiredItemIds(const TSet<int32>& DefaultValue) const { if (RequiredItemIds_IsSet) return RequiredItemIds_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of RequiredItemIds_Optional and returns true if it has been set, otherwise returns false */
-    bool GetRequiredItemIds(TSet<int32>& OutValue) const { if (RequiredItemIds_IsSet) OutValue = RequiredItemIds_Optional; return RequiredItemIds_IsSet; }
-    /** @brief Returns a pointer to RequiredItemIds_Optional, if it has been set, otherwise returns nullptr */
-    TSet<int32>* GetRequiredItemIdsOrNull() { if (RequiredItemIds_IsSet) return &RequiredItemIds_Optional; return nullptr; }
-    /** @brief Returns a pointer to RequiredItemIds_Optional, if it has been set, otherwise returns nullptr */
-    const TSet<int32>* GetRequiredItemIdsOrNull() const { if (RequiredItemIds_IsSet) return &RequiredItemIds_Optional; return nullptr; }
-    /** @brief Sets the value of RequiredItemIds_Optional and also sets RequiredItemIds_IsSet to true */
-    void SetRequiredItemIds(TSet<int32> NewValue) { RequiredItemIds_Optional = NewValue; RequiredItemIds_IsSet = true; }
-     /** @brief Clears the value of RequiredItemIds_Optional and sets RequiredItemIds_IsSet to false */
-    void ClearRequiredItemIds() { RequiredItemIds_IsSet = false; }
+	/** @brief Set of all the item ids that are required to validate every rule contained in this template group */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TSet<int32> RequiredItemIds_Optional{  };
+	/** @brief true if RequiredItemIds_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool RequiredItemIds_IsSet{ false };
+	/** @brief Gets the value of RequiredItemIds_Optional, regardless of it having been set */
+	TSet<int32>& GetRequiredItemIds() { return RequiredItemIds_Optional; }
+	/** @brief Gets the value of RequiredItemIds_Optional, regardless of it having been set */
+	const TSet<int32>& GetRequiredItemIds() const { return RequiredItemIds_Optional; }
+	/** @brief Gets the value of RequiredItemIds_Optional, if it has been set, otherwise it returns DefaultValue */
+	const TSet<int32>& GetRequiredItemIds(const TSet<int32>& DefaultValue) const { if (RequiredItemIds_IsSet) return RequiredItemIds_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of RequiredItemIds_Optional and returns true if it has been set, otherwise returns false */
+	bool GetRequiredItemIds(TSet<int32>& OutValue) const { if (RequiredItemIds_IsSet) OutValue = RequiredItemIds_Optional; return RequiredItemIds_IsSet; }
+	/** @brief Returns a pointer to RequiredItemIds_Optional, if it has been set, otherwise returns nullptr */
+	TSet<int32>* GetRequiredItemIdsOrNull() { if (RequiredItemIds_IsSet) return &RequiredItemIds_Optional; return nullptr; }
+	/** @brief Returns a pointer to RequiredItemIds_Optional, if it has been set, otherwise returns nullptr */
+	const TSet<int32>* GetRequiredItemIdsOrNull() const { if (RequiredItemIds_IsSet) return &RequiredItemIds_Optional; return nullptr; }
+	/** @brief Sets the value of RequiredItemIds_Optional and also sets RequiredItemIds_IsSet to true */
+	void SetRequiredItemIds(TSet<int32> NewValue) { RequiredItemIds_Optional = NewValue; RequiredItemIds_IsSet = true; }
+	 /** @brief Clears the value of RequiredItemIds_Optional and sets RequiredItemIds_IsSet to false */
+	void ClearRequiredItemIds() { RequiredItemIds_IsSet = false; }
 };
 
 /** @} */

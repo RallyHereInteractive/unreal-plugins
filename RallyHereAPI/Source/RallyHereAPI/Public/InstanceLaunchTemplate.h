@@ -23,76 +23,76 @@
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_InstanceLaunchTemplate : public FRHAPI_Model
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    /**
-    * @brief Fills this object with data from the passed in JSON
-    *
-    * @param [in] JsonValue Data from the API call.
-    *
-    * @return true if parsing of the JSON data was successful.
-    */
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	/**
+	* @brief Fills this object with data from the passed in JSON
+	*
+	* @param [in] JsonValue Data from the API call.
+	*
+	* @return true if parsing of the JSON data was successful.
+	*/
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
-    /**
-    * @brief Writes the data from this object into the specified JSON Writer stream
-    *
-    * @param [in] Writer JSON Writer stream to push .
-    */
-    void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	/**
+	* @brief Writes the data from this object into the specified JSON Writer stream
+	*
+	* @param [in] Writer JSON Writer stream to push .
+	*/
+	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief ID to uniquely identify this instance launch template */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FGuid InstanceLaunchTemplateId{  };
-    /** @brief Gets the value of InstanceLaunchTemplateId */
-    FGuid& GetInstanceLaunchTemplateId() { return InstanceLaunchTemplateId; }
-    /** @brief Gets the value of InstanceLaunchTemplateId */
-    const FGuid& GetInstanceLaunchTemplateId() const { return InstanceLaunchTemplateId; }
-    /** @brief Sets the value of InstanceLaunchTemplateId */
-    void SetInstanceLaunchTemplateId(FGuid NewValue) { InstanceLaunchTemplateId = NewValue;  }
+	/** @brief ID to uniquely identify this instance launch template */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FGuid InstanceLaunchTemplateId{  };
+	/** @brief Gets the value of InstanceLaunchTemplateId */
+	FGuid& GetInstanceLaunchTemplateId() { return InstanceLaunchTemplateId; }
+	/** @brief Gets the value of InstanceLaunchTemplateId */
+	const FGuid& GetInstanceLaunchTemplateId() const { return InstanceLaunchTemplateId; }
+	/** @brief Sets the value of InstanceLaunchTemplateId */
+	void SetInstanceLaunchTemplateId(FGuid NewValue) { InstanceLaunchTemplateId = NewValue;  }
 
-    /** @brief A selection list of maps that can be chosen to launch into */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FRHAPI_MapSelectionList MapSelectionList{  };
-    /** @brief Gets the value of MapSelectionList */
-    FRHAPI_MapSelectionList& GetMapSelectionList() { return MapSelectionList; }
-    /** @brief Gets the value of MapSelectionList */
-    const FRHAPI_MapSelectionList& GetMapSelectionList() const { return MapSelectionList; }
-    /** @brief Sets the value of MapSelectionList */
-    void SetMapSelectionList(FRHAPI_MapSelectionList NewValue) { MapSelectionList = NewValue;  }
+	/** @brief A selection list of maps that can be chosen to launch into */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FRHAPI_MapSelectionList MapSelectionList{  };
+	/** @brief Gets the value of MapSelectionList */
+	FRHAPI_MapSelectionList& GetMapSelectionList() { return MapSelectionList; }
+	/** @brief Gets the value of MapSelectionList */
+	const FRHAPI_MapSelectionList& GetMapSelectionList() const { return MapSelectionList; }
+	/** @brief Sets the value of MapSelectionList */
+	void SetMapSelectionList(FRHAPI_MapSelectionList NewValue) { MapSelectionList = NewValue;  }
 
-    /** @brief Default host type for this template. Can be overriden in instance requests */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    ERHAPI_HostType DefaultHostType{  };
-    /** @brief Gets the value of DefaultHostType */
-    ERHAPI_HostType& GetDefaultHostType() { return DefaultHostType; }
-    /** @brief Gets the value of DefaultHostType */
-    const ERHAPI_HostType& GetDefaultHostType() const { return DefaultHostType; }
-    /** @brief Sets the value of DefaultHostType */
-    void SetDefaultHostType(ERHAPI_HostType NewValue) { DefaultHostType = NewValue;  }
+	/** @brief Default host type for this template. Can be overriden in instance requests */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	ERHAPI_HostType DefaultHostType{  };
+	/** @brief Gets the value of DefaultHostType */
+	ERHAPI_HostType& GetDefaultHostType() { return DefaultHostType; }
+	/** @brief Gets the value of DefaultHostType */
+	const ERHAPI_HostType& GetDefaultHostType() const { return DefaultHostType; }
+	/** @brief Sets the value of DefaultHostType */
+	void SetDefaultHostType(ERHAPI_HostType NewValue) { DefaultHostType = NewValue;  }
 
-    /** @brief Custom data that will be passed to the session during the instance launch request */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    TMap<FString, FString> CustomData_Optional{  };
-    /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool CustomData_IsSet{ false };
-    /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-    TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
-    /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-    const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
-    /** @brief Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue */
-    const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
-    bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
-    /** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-    TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
-    /** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-    const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
-    /** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-    void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
-     /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
-    void ClearCustomData() { CustomData_IsSet = false; }
+	/** @brief Custom data that will be passed to the session during the instance launch request */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TMap<FString, FString> CustomData_Optional{  };
+	/** @brief true if CustomData_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool CustomData_IsSet{ false };
+	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
+	TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
+	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
+	const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
+	/** @brief Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue */
+	const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
+	bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
+	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
+	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
+	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
+	void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	void ClearCustomData() { CustomData_IsSet = false; }
 };
 
 /** @} */

@@ -21,34 +21,34 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_LoginLootReward::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (LootId_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("loot_id"));
-        RallyHereAPI::WriteJsonValue(Writer, LootId_Optional);
-    }
-    Writer->WriteIdentifierPrefix(TEXT("legacy_loot_id"));
-    RallyHereAPI::WriteJsonValue(Writer, LegacyLootId);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (LootId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("loot_id"));
+		RallyHereAPI::WriteJsonValue(Writer, LootId_Optional);
+	}
+	Writer->WriteIdentifierPrefix(TEXT("legacy_loot_id"));
+	RallyHereAPI::WriteJsonValue(Writer, LegacyLootId);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_LoginLootReward::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonLootIdField = (*Object)->TryGetField(TEXT("loot_id"));
-    if (JsonLootIdField.IsValid() && !JsonLootIdField->IsNull())
-    {
-        LootId_IsSet = TryGetJsonValue(JsonLootIdField, LootId_Optional);
-        ParseSuccess &= LootId_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonLegacyLootIdField = (*Object)->TryGetField(TEXT("legacy_loot_id"));
-    ParseSuccess &= JsonLegacyLootIdField.IsValid() && !JsonLegacyLootIdField->IsNull() && TryGetJsonValue(JsonLegacyLootIdField, LegacyLootId);
+	const TSharedPtr<FJsonValue> JsonLootIdField = (*Object)->TryGetField(TEXT("loot_id"));
+	if (JsonLootIdField.IsValid() && !JsonLootIdField->IsNull())
+	{
+		LootId_IsSet = TryGetJsonValue(JsonLootIdField, LootId_Optional);
+		ParseSuccess &= LootId_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonLegacyLootIdField = (*Object)->TryGetField(TEXT("legacy_loot_id"));
+	ParseSuccess &= JsonLegacyLootIdField.IsValid() && !JsonLegacyLootIdField->IsNull() && TryGetJsonValue(JsonLegacyLootIdField, LegacyLootId);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

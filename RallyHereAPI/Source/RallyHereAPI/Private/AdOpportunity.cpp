@@ -21,31 +21,31 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_AdOpportunity::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("ad_url"));
-    RallyHereAPI::WriteJsonValue(Writer, AdUrl);
-    Writer->WriteIdentifierPrefix(TEXT("seconds"));
-    RallyHereAPI::WriteJsonValue(Writer, Seconds);
-    Writer->WriteIdentifierPrefix(TEXT("opportunity_id"));
-    RallyHereAPI::WriteJsonValue(Writer, OpportunityId);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("ad_url"));
+	RallyHereAPI::WriteJsonValue(Writer, AdUrl);
+	Writer->WriteIdentifierPrefix(TEXT("seconds"));
+	RallyHereAPI::WriteJsonValue(Writer, Seconds);
+	Writer->WriteIdentifierPrefix(TEXT("opportunity_id"));
+	RallyHereAPI::WriteJsonValue(Writer, OpportunityId);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_AdOpportunity::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonAdUrlField = (*Object)->TryGetField(TEXT("ad_url"));
-    ParseSuccess &= JsonAdUrlField.IsValid() && !JsonAdUrlField->IsNull() && TryGetJsonValue(JsonAdUrlField, AdUrl);
-    const TSharedPtr<FJsonValue> JsonSecondsField = (*Object)->TryGetField(TEXT("seconds"));
-    ParseSuccess &= JsonSecondsField.IsValid() && !JsonSecondsField->IsNull() && TryGetJsonValue(JsonSecondsField, Seconds);
-    const TSharedPtr<FJsonValue> JsonOpportunityIdField = (*Object)->TryGetField(TEXT("opportunity_id"));
-    ParseSuccess &= JsonOpportunityIdField.IsValid() && !JsonOpportunityIdField->IsNull() && TryGetJsonValue(JsonOpportunityIdField, OpportunityId);
+	const TSharedPtr<FJsonValue> JsonAdUrlField = (*Object)->TryGetField(TEXT("ad_url"));
+	ParseSuccess &= JsonAdUrlField.IsValid() && !JsonAdUrlField->IsNull() && TryGetJsonValue(JsonAdUrlField, AdUrl);
+	const TSharedPtr<FJsonValue> JsonSecondsField = (*Object)->TryGetField(TEXT("seconds"));
+	ParseSuccess &= JsonSecondsField.IsValid() && !JsonSecondsField->IsNull() && TryGetJsonValue(JsonSecondsField, Seconds);
+	const TSharedPtr<FJsonValue> JsonOpportunityIdField = (*Object)->TryGetField(TEXT("opportunity_id"));
+	ParseSuccess &= JsonOpportunityIdField.IsValid() && !JsonOpportunityIdField->IsNull() && TryGetJsonValue(JsonOpportunityIdField, OpportunityId);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

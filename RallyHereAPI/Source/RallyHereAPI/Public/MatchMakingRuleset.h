@@ -23,43 +23,43 @@
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_MatchMakingRuleset : public FRHAPI_Model
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    /**
-    * @brief Fills this object with data from the passed in JSON
-    *
-    * @param [in] JsonValue Data from the API call.
-    *
-    * @return true if parsing of the JSON data was successful.
-    */
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	/**
+	* @brief Fills this object with data from the passed in JSON
+	*
+	* @param [in] JsonValue Data from the API call.
+	*
+	* @return true if parsing of the JSON data was successful.
+	*/
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
-    /**
-    * @brief Writes the data from this object into the specified JSON Writer stream
-    *
-    * @param [in] Writer JSON Writer stream to push .
-    */
-    void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	/**
+	* @brief Writes the data from this object into the specified JSON Writer stream
+	*
+	* @param [in] Writer JSON Writer stream to push .
+	*/
+	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief A list of the rules to be checked for this ruleset */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    TArray<FRHAPI_Rule> Rules{  };
-    /** @brief Gets the value of Rules */
-    TArray<FRHAPI_Rule>& GetRules() { return Rules; }
-    /** @brief Gets the value of Rules */
-    const TArray<FRHAPI_Rule>& GetRules() const { return Rules; }
-    /** @brief Sets the value of Rules */
-    void SetRules(TArray<FRHAPI_Rule> NewValue) { Rules = NewValue;  }
+	/** @brief A list of the rules to be checked for this ruleset */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TArray<FRHAPI_Rule> Rules{  };
+	/** @brief Gets the value of Rules */
+	TArray<FRHAPI_Rule>& GetRules() { return Rules; }
+	/** @brief Gets the value of Rules */
+	const TArray<FRHAPI_Rule>& GetRules() const { return Rules; }
+	/** @brief Sets the value of Rules */
+	void SetRules(TArray<FRHAPI_Rule> NewValue) { Rules = NewValue;  }
 
-    /** @brief Determiner of how many rules must be satisfied in this rulest (all, any, one, none) */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    ERHAPI_Determiner Determiner{  };
-    /** @brief Gets the value of Determiner */
-    ERHAPI_Determiner& GetDeterminer() { return Determiner; }
-    /** @brief Gets the value of Determiner */
-    const ERHAPI_Determiner& GetDeterminer() const { return Determiner; }
-    /** @brief Sets the value of Determiner */
-    void SetDeterminer(ERHAPI_Determiner NewValue) { Determiner = NewValue;  }
+	/** @brief Determiner of how many rules must be satisfied in this rulest (all, any, one, none) */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	ERHAPI_Determiner Determiner{  };
+	/** @brief Gets the value of Determiner */
+	ERHAPI_Determiner& GetDeterminer() { return Determiner; }
+	/** @brief Gets the value of Determiner */
+	const ERHAPI_Determiner& GetDeterminer() const { return Determiner; }
+	/** @brief Sets the value of Determiner */
+	void SetDeterminer(ERHAPI_Determiner NewValue) { Determiner = NewValue;  }
 };
 
 /** @} */

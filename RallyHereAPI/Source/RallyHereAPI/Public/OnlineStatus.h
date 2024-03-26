@@ -18,10 +18,10 @@
 UENUM(BlueprintType)
 enum class ERHAPI_OnlineStatus : uint8
 {
-    Online UMETA(ToolTip="Player is current online"),
-    Away UMETA(ToolTip="Player is current online, but away.  Functionally identical to online"),
-    Invisible UMETA(ToolTip="Player will appear offline to other players"),
-    Offline UMETA(ToolTip="Player is offline"),
+	Online UMETA(ToolTip="Player is current online"),
+	Away UMETA(ToolTip="Player is current online, but away.  Functionally identical to online"),
+	Invisible UMETA(ToolTip="Player will appear offline to other players"),
+	Offline UMETA(ToolTip="Player is offline"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_OnlineStatus& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_OnlineStatus& EnumValue);

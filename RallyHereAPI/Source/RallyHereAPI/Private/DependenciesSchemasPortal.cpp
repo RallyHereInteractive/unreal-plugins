@@ -20,82 +20,82 @@ using RallyHereAPI::TryGetJsonValue;
 // Implementation for ERHAPI_DependenciesSchemasPortal
 FString EnumToString(const ERHAPI_DependenciesSchemasPortal& Value)
 {
-    switch (Value)
-    {
-    case ERHAPI_DependenciesSchemasPortal::Anon:
-        return TEXT("2");
-    case ERHAPI_DependenciesSchemasPortal::Amazon:
-        return TEXT("4");
-    case ERHAPI_DependenciesSchemasPortal::Steam:
-        return TEXT("5");
-    case ERHAPI_DependenciesSchemasPortal::Psn:
-        return TEXT("9");
-    case ERHAPI_DependenciesSchemasPortal::Xboxlive:
-        return TEXT("10");
-    case ERHAPI_DependenciesSchemasPortal::Basic:
-        return TEXT("11");
-    case ERHAPI_DependenciesSchemasPortal::Google:
-        return TEXT("13");
-    case ERHAPI_DependenciesSchemasPortal::Twitch:
-        return TEXT("16");
-    case ERHAPI_DependenciesSchemasPortal::NintendoSwitch:
-        return TEXT("22");
-    case ERHAPI_DependenciesSchemasPortal::Apple:
-        return TEXT("24");
-    case ERHAPI_DependenciesSchemasPortal::Nintendo:
-        return TEXT("26");
-    case ERHAPI_DependenciesSchemasPortal::Epic:
-        return TEXT("28");
-    case ERHAPI_DependenciesSchemasPortal::NintendoPpid:
-        return TEXT("33");
-    }
+	switch (Value)
+	{
+	case ERHAPI_DependenciesSchemasPortal::Anon:
+		return TEXT("2");
+	case ERHAPI_DependenciesSchemasPortal::Amazon:
+		return TEXT("4");
+	case ERHAPI_DependenciesSchemasPortal::Steam:
+		return TEXT("5");
+	case ERHAPI_DependenciesSchemasPortal::Psn:
+		return TEXT("9");
+	case ERHAPI_DependenciesSchemasPortal::Xboxlive:
+		return TEXT("10");
+	case ERHAPI_DependenciesSchemasPortal::Basic:
+		return TEXT("11");
+	case ERHAPI_DependenciesSchemasPortal::Google:
+		return TEXT("13");
+	case ERHAPI_DependenciesSchemasPortal::Twitch:
+		return TEXT("16");
+	case ERHAPI_DependenciesSchemasPortal::NintendoSwitch:
+		return TEXT("22");
+	case ERHAPI_DependenciesSchemasPortal::Apple:
+		return TEXT("24");
+	case ERHAPI_DependenciesSchemasPortal::Nintendo:
+		return TEXT("26");
+	case ERHAPI_DependenciesSchemasPortal::Epic:
+		return TEXT("28");
+	case ERHAPI_DependenciesSchemasPortal::NintendoPpid:
+		return TEXT("33");
+	}
 
-    UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_DependenciesSchemasPortal::Values Value (%d)"), (int)Value);
-    return TEXT("");
+	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_DependenciesSchemasPortal::Values Value (%d)"), (int)Value);
+	return TEXT("");
 }
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_DependenciesSchemasPortal& Value)
 {
-    static TMap<FString, ERHAPI_DependenciesSchemasPortal> StringToEnum = { 
-        { TEXT("2"), ERHAPI_DependenciesSchemasPortal::Anon },
-        { TEXT("4"), ERHAPI_DependenciesSchemasPortal::Amazon },
-        { TEXT("5"), ERHAPI_DependenciesSchemasPortal::Steam },
-        { TEXT("9"), ERHAPI_DependenciesSchemasPortal::Psn },
-        { TEXT("10"), ERHAPI_DependenciesSchemasPortal::Xboxlive },
-        { TEXT("11"), ERHAPI_DependenciesSchemasPortal::Basic },
-        { TEXT("13"), ERHAPI_DependenciesSchemasPortal::Google },
-        { TEXT("16"), ERHAPI_DependenciesSchemasPortal::Twitch },
-        { TEXT("22"), ERHAPI_DependenciesSchemasPortal::NintendoSwitch },
-        { TEXT("24"), ERHAPI_DependenciesSchemasPortal::Apple },
-        { TEXT("26"), ERHAPI_DependenciesSchemasPortal::Nintendo },
-        { TEXT("28"), ERHAPI_DependenciesSchemasPortal::Epic },
-        { TEXT("33"), ERHAPI_DependenciesSchemasPortal::NintendoPpid },    };
+	static TMap<FString, ERHAPI_DependenciesSchemasPortal> StringToEnum = { 
+		{ TEXT("2"), ERHAPI_DependenciesSchemasPortal::Anon },
+		{ TEXT("4"), ERHAPI_DependenciesSchemasPortal::Amazon },
+		{ TEXT("5"), ERHAPI_DependenciesSchemasPortal::Steam },
+		{ TEXT("9"), ERHAPI_DependenciesSchemasPortal::Psn },
+		{ TEXT("10"), ERHAPI_DependenciesSchemasPortal::Xboxlive },
+		{ TEXT("11"), ERHAPI_DependenciesSchemasPortal::Basic },
+		{ TEXT("13"), ERHAPI_DependenciesSchemasPortal::Google },
+		{ TEXT("16"), ERHAPI_DependenciesSchemasPortal::Twitch },
+		{ TEXT("22"), ERHAPI_DependenciesSchemasPortal::NintendoSwitch },
+		{ TEXT("24"), ERHAPI_DependenciesSchemasPortal::Apple },
+		{ TEXT("26"), ERHAPI_DependenciesSchemasPortal::Nintendo },
+		{ TEXT("28"), ERHAPI_DependenciesSchemasPortal::Epic },
+		{ TEXT("33"), ERHAPI_DependenciesSchemasPortal::NintendoPpid },	};
 
-    const auto Found = StringToEnum.Find(EnumAsString);
-    if(Found)
-        Value = *Found;
-    return Found != nullptr;
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
+	return Found != nullptr;
 }
 
 FStringFormatArg ToStringFormatArg(const ERHAPI_DependenciesSchemasPortal& Value)
 {
-    return FStringFormatArg(EnumToString(Value));
+	return FStringFormatArg(EnumToString(Value));
 }
 
 void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const ERHAPI_DependenciesSchemasPortal& Value)
 {
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
 }
 
 bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, ERHAPI_DependenciesSchemasPortal& Value)
 {
-    FString TmpValue;
-    if (JsonValue->TryGetString(TmpValue))
-    {
-        if (EnumFromString(TmpValue, Value))
-            return true;
-    }
-    return false;
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if (EnumFromString(TmpValue, Value))
+			return true;
+	}
+	return false;
 }
 
 

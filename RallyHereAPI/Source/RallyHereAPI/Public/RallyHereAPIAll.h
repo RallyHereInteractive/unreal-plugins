@@ -48,139 +48,139 @@ namespace RallyHereAPI
 struct RALLYHEREAPI_API FRallyHereAPIAll
 {
 public:
-    FRallyHereAPIAll();
+	FRallyHereAPIAll();
 
-    TArray<FAPI*> GetAllAPIs() const;
+	TArray<FAPI*> GetAllAPIs() const;
 
-    FAdAPI& GetAd();
-    const FAdAPI& GetAd() const;
+	FAdAPI& GetAd();
+	const FAdAPI& GetAd() const;
 
-    FAuthAPI& GetAuth();
-    const FAuthAPI& GetAuth() const;
+	FAuthAPI& GetAuth();
+	const FAuthAPI& GetAuth() const;
 
-    FBlockedV1API& GetBlockedV1();
-    const FBlockedV1API& GetBlockedV1() const;
+	FBlockedV1API& GetBlockedV1();
+	const FBlockedV1API& GetBlockedV1() const;
 
-    FBlockedV2API& GetBlockedV2();
-    const FBlockedV2API& GetBlockedV2() const;
+	FBlockedV2API& GetBlockedV2();
+	const FBlockedV2API& GetBlockedV2() const;
 
-    FCatalogAPI& GetCatalog();
-    const FCatalogAPI& GetCatalog() const;
+	FCatalogAPI& GetCatalog();
+	const FCatalogAPI& GetCatalog() const;
 
-    FConfigAPI& GetConfig();
-    const FConfigAPI& GetConfig() const;
+	FConfigAPI& GetConfig();
+	const FConfigAPI& GetConfig() const;
 
-    FConfigurationV1API& GetConfigurationV1();
-    const FConfigurationV1API& GetConfigurationV1() const;
+	FConfigurationV1API& GetConfigurationV1();
+	const FConfigurationV1API& GetConfigurationV1() const;
 
-    FCustomAPI& GetCustom();
-    const FCustomAPI& GetCustom() const;
+	FCustomAPI& GetCustom();
+	const FCustomAPI& GetCustom() const;
 
-    FEntitlementsAPI& GetEntitlements();
-    const FEntitlementsAPI& GetEntitlements() const;
+	FEntitlementsAPI& GetEntitlements();
+	const FEntitlementsAPI& GetEntitlements() const;
 
-    FEnvironmentAPI& GetEnvironment();
-    const FEnvironmentAPI& GetEnvironment() const;
+	FEnvironmentAPI& GetEnvironment();
+	const FEnvironmentAPI& GetEnvironment() const;
 
-    FEventsAPI& GetEvents();
-    const FEventsAPI& GetEvents() const;
+	FEventsAPI& GetEvents();
+	const FEventsAPI& GetEvents() const;
 
-    FFriendsV1API& GetFriendsV1();
-    const FFriendsV1API& GetFriendsV1() const;
+	FFriendsV1API& GetFriendsV1();
+	const FFriendsV1API& GetFriendsV1() const;
 
-    FFriendsV2API& GetFriendsV2();
-    const FFriendsV2API& GetFriendsV2() const;
+	FFriendsV2API& GetFriendsV2();
+	const FFriendsV2API& GetFriendsV2() const;
 
-    FInstanceNotificationAPI& GetInstanceNotification();
-    const FInstanceNotificationAPI& GetInstanceNotification() const;
+	FInstanceNotificationAPI& GetInstanceNotification();
+	const FInstanceNotificationAPI& GetInstanceNotification() const;
 
-    FInventoryAPI& GetInventory();
-    const FInventoryAPI& GetInventory() const;
+	FInventoryAPI& GetInventory();
+	const FInventoryAPI& GetInventory() const;
 
-    FKeyClaimsAPI& GetKeyClaims();
-    const FKeyClaimsAPI& GetKeyClaims() const;
+	FKeyClaimsAPI& GetKeyClaims();
+	const FKeyClaimsAPI& GetKeyClaims() const;
 
-    FKeyEntitlementsAPI& GetKeyEntitlements();
-    const FKeyEntitlementsAPI& GetKeyEntitlements() const;
+	FKeyEntitlementsAPI& GetKeyEntitlements();
+	const FKeyEntitlementsAPI& GetKeyEntitlements() const;
 
-    FMarketingAPI& GetMarketing();
-    const FMarketingAPI& GetMarketing() const;
+	FMarketingAPI& GetMarketing();
+	const FMarketingAPI& GetMarketing() const;
 
-    FMatchAPI& GetMatch();
-    const FMatchAPI& GetMatch() const;
+	FMatchAPI& GetMatch();
+	const FMatchAPI& GetMatch() const;
 
-    FPlayerIdNotificationAPI& GetPlayerIdNotification();
-    const FPlayerIdNotificationAPI& GetPlayerIdNotification() const;
+	FPlayerIdNotificationAPI& GetPlayerIdNotification();
+	const FPlayerIdNotificationAPI& GetPlayerIdNotification() const;
 
-    FPlayerNotificationAPI& GetPlayerNotification();
-    const FPlayerNotificationAPI& GetPlayerNotification() const;
+	FPlayerNotificationAPI& GetPlayerNotification();
+	const FPlayerNotificationAPI& GetPlayerNotification() const;
 
-    FPresenceAPI& GetPresence();
-    const FPresenceAPI& GetPresence() const;
+	FPresenceAPI& GetPresence();
+	const FPresenceAPI& GetPresence() const;
 
-    FPresenceAdminAPI& GetPresenceAdmin();
-    const FPresenceAdminAPI& GetPresenceAdmin() const;
+	FPresenceAdminAPI& GetPresenceAdmin();
+	const FPresenceAdminAPI& GetPresenceAdmin() const;
 
-    FQueuesAPI& GetQueues();
-    const FQueuesAPI& GetQueues() const;
+	FQueuesAPI& GetQueues();
+	const FQueuesAPI& GetQueues() const;
 
-    FRankAPI& GetRank();
-    const FRankAPI& GetRank() const;
+	FRankAPI& GetRank();
+	const FRankAPI& GetRank() const;
 
-    FRegionsAPI& GetRegions();
-    const FRegionsAPI& GetRegions() const;
+	FRegionsAPI& GetRegions();
+	const FRegionsAPI& GetRegions() const;
 
-    FReportsAPI& GetReports();
-    const FReportsAPI& GetReports() const;
+	FReportsAPI& GetReports();
+	const FReportsAPI& GetReports() const;
 
-    FSessionAuditAPI& GetSessionAudit();
-    const FSessionAuditAPI& GetSessionAudit() const;
+	FSessionAuditAPI& GetSessionAudit();
+	const FSessionAuditAPI& GetSessionAudit() const;
 
-    FSessionsAPI& GetSessions();
-    const FSessionsAPI& GetSessions() const;
+	FSessionsAPI& GetSessions();
+	const FSessionsAPI& GetSessions() const;
 
-    FSettingsAPI& GetSettings();
-    const FSettingsAPI& GetSettings() const;
+	FSettingsAPI& GetSettings();
+	const FSettingsAPI& GetSettings() const;
 
-    FTimeAPI& GetTime();
-    const FTimeAPI& GetTime() const;
+	FTimeAPI& GetTime();
+	const FTimeAPI& GetTime() const;
 
-    FUsersAPI& GetUsers();
-    const FUsersAPI& GetUsers() const;
+	FUsersAPI& GetUsers();
+	const FUsersAPI& GetUsers() const;
 
 private:
-    TArray<FAPI*> AllAPIs;
-    FAdAPI Ad;
-    FAuthAPI Auth;
-    FBlockedV1API BlockedV1;
-    FBlockedV2API BlockedV2;
-    FCatalogAPI Catalog;
-    FConfigAPI Config;
-    FConfigurationV1API ConfigurationV1;
-    FCustomAPI Custom;
-    FEntitlementsAPI Entitlements;
-    FEnvironmentAPI Environment;
-    FEventsAPI Events;
-    FFriendsV1API FriendsV1;
-    FFriendsV2API FriendsV2;
-    FInstanceNotificationAPI InstanceNotification;
-    FInventoryAPI Inventory;
-    FKeyClaimsAPI KeyClaims;
-    FKeyEntitlementsAPI KeyEntitlements;
-    FMarketingAPI Marketing;
-    FMatchAPI Match;
-    FPlayerIdNotificationAPI PlayerIdNotification;
-    FPlayerNotificationAPI PlayerNotification;
-    FPresenceAPI Presence;
-    FPresenceAdminAPI PresenceAdmin;
-    FQueuesAPI Queues;
-    FRankAPI Rank;
-    FRegionsAPI Regions;
-    FReportsAPI Reports;
-    FSessionAuditAPI SessionAudit;
-    FSessionsAPI Sessions;
-    FSettingsAPI Settings;
-    FTimeAPI Time;
-    FUsersAPI Users;
+	TArray<FAPI*> AllAPIs;
+	FAdAPI Ad;
+	FAuthAPI Auth;
+	FBlockedV1API BlockedV1;
+	FBlockedV2API BlockedV2;
+	FCatalogAPI Catalog;
+	FConfigAPI Config;
+	FConfigurationV1API ConfigurationV1;
+	FCustomAPI Custom;
+	FEntitlementsAPI Entitlements;
+	FEnvironmentAPI Environment;
+	FEventsAPI Events;
+	FFriendsV1API FriendsV1;
+	FFriendsV2API FriendsV2;
+	FInstanceNotificationAPI InstanceNotification;
+	FInventoryAPI Inventory;
+	FKeyClaimsAPI KeyClaims;
+	FKeyEntitlementsAPI KeyEntitlements;
+	FMarketingAPI Marketing;
+	FMatchAPI Match;
+	FPlayerIdNotificationAPI PlayerIdNotification;
+	FPlayerNotificationAPI PlayerNotification;
+	FPresenceAPI Presence;
+	FPresenceAdminAPI PresenceAdmin;
+	FQueuesAPI Queues;
+	FRankAPI Rank;
+	FRegionsAPI Regions;
+	FReportsAPI Reports;
+	FSessionAuditAPI SessionAudit;
+	FSessionsAPI Sessions;
+	FSettingsAPI Settings;
+	FTimeAPI Time;
+	FUsersAPI Users;
 };
 }

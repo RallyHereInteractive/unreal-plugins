@@ -21,31 +21,31 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_PageMeta::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("page"));
-    RallyHereAPI::WriteJsonValue(Writer, Page);
-    Writer->WriteIdentifierPrefix(TEXT("limit"));
-    RallyHereAPI::WriteJsonValue(Writer, Limit);
-    Writer->WriteIdentifierPrefix(TEXT("total"));
-    RallyHereAPI::WriteJsonValue(Writer, Total);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("page"));
+	RallyHereAPI::WriteJsonValue(Writer, Page);
+	Writer->WriteIdentifierPrefix(TEXT("limit"));
+	RallyHereAPI::WriteJsonValue(Writer, Limit);
+	Writer->WriteIdentifierPrefix(TEXT("total"));
+	RallyHereAPI::WriteJsonValue(Writer, Total);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_PageMeta::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonPageField = (*Object)->TryGetField(TEXT("page"));
-    ParseSuccess &= JsonPageField.IsValid() && !JsonPageField->IsNull() && TryGetJsonValue(JsonPageField, Page);
-    const TSharedPtr<FJsonValue> JsonLimitField = (*Object)->TryGetField(TEXT("limit"));
-    ParseSuccess &= JsonLimitField.IsValid() && !JsonLimitField->IsNull() && TryGetJsonValue(JsonLimitField, Limit);
-    const TSharedPtr<FJsonValue> JsonTotalField = (*Object)->TryGetField(TEXT("total"));
-    ParseSuccess &= JsonTotalField.IsValid() && !JsonTotalField->IsNull() && TryGetJsonValue(JsonTotalField, Total);
+	const TSharedPtr<FJsonValue> JsonPageField = (*Object)->TryGetField(TEXT("page"));
+	ParseSuccess &= JsonPageField.IsValid() && !JsonPageField->IsNull() && TryGetJsonValue(JsonPageField, Page);
+	const TSharedPtr<FJsonValue> JsonLimitField = (*Object)->TryGetField(TEXT("limit"));
+	ParseSuccess &= JsonLimitField.IsValid() && !JsonLimitField->IsNull() && TryGetJsonValue(JsonLimitField, Limit);
+	const TSharedPtr<FJsonValue> JsonTotalField = (*Object)->TryGetField(TEXT("total"));
+	ParseSuccess &= JsonTotalField.IsValid() && !JsonTotalField->IsNull() && TryGetJsonValue(JsonTotalField, Total);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

@@ -21,45 +21,45 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_Restriction::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("type"));
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(Type));
-    if (Reason_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("reason"));
-        RallyHereAPI::WriteJsonValue(Writer, Reason_Optional);
-    }
-    if (Expiration_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("expiration"));
-        RallyHereAPI::WriteJsonValue(Writer, Expiration_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("type"));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Type));
+	if (Reason_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("reason"));
+		RallyHereAPI::WriteJsonValue(Writer, Reason_Optional);
+	}
+	if (Expiration_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("expiration"));
+		RallyHereAPI::WriteJsonValue(Writer, Expiration_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_Restriction::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
-    ParseSuccess &= JsonTypeField.IsValid() && !JsonTypeField->IsNull() && TryGetJsonValue(JsonTypeField, Type);
-    const TSharedPtr<FJsonValue> JsonReasonField = (*Object)->TryGetField(TEXT("reason"));
-    if (JsonReasonField.IsValid() && !JsonReasonField->IsNull())
-    {
-        Reason_IsSet = TryGetJsonValue(JsonReasonField, Reason_Optional);
-        ParseSuccess &= Reason_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonExpirationField = (*Object)->TryGetField(TEXT("expiration"));
-    if (JsonExpirationField.IsValid() && !JsonExpirationField->IsNull())
-    {
-        Expiration_IsSet = TryGetJsonValue(JsonExpirationField, Expiration_Optional);
-        ParseSuccess &= Expiration_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
+	ParseSuccess &= JsonTypeField.IsValid() && !JsonTypeField->IsNull() && TryGetJsonValue(JsonTypeField, Type);
+	const TSharedPtr<FJsonValue> JsonReasonField = (*Object)->TryGetField(TEXT("reason"));
+	if (JsonReasonField.IsValid() && !JsonReasonField->IsNull())
+	{
+		Reason_IsSet = TryGetJsonValue(JsonReasonField, Reason_Optional);
+		ParseSuccess &= Reason_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonExpirationField = (*Object)->TryGetField(TEXT("expiration"));
+	if (JsonExpirationField.IsValid() && !JsonExpirationField->IsNull())
+	{
+		Expiration_IsSet = TryGetJsonValue(JsonExpirationField, Expiration_Optional);
+		ParseSuccess &= Expiration_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

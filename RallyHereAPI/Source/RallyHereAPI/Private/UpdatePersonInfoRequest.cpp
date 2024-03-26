@@ -21,23 +21,23 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_UpdatePersonInfoRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("email"));
-    RallyHereAPI::WriteJsonValue(Writer, Email);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("email"));
+	RallyHereAPI::WriteJsonValue(Writer, Email);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_UpdatePersonInfoRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonEmailField = (*Object)->TryGetField(TEXT("email"));
-    ParseSuccess &= JsonEmailField.IsValid() && !JsonEmailField->IsNull() && TryGetJsonValue(JsonEmailField, Email);
+	const TSharedPtr<FJsonValue> JsonEmailField = (*Object)->TryGetField(TEXT("email"));
+	ParseSuccess &= JsonEmailField.IsValid() && !JsonEmailField->IsNull() && TryGetJsonValue(JsonEmailField, Email);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

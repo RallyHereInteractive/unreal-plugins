@@ -21,27 +21,27 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_ExternalKeyEntitlement::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("external_key_campaign_id"));
-    RallyHereAPI::WriteJsonValue(Writer, ExternalKeyCampaignId);
-    Writer->WriteIdentifierPrefix(TEXT("quantity"));
-    RallyHereAPI::WriteJsonValue(Writer, Quantity);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("external_key_campaign_id"));
+	RallyHereAPI::WriteJsonValue(Writer, ExternalKeyCampaignId);
+	Writer->WriteIdentifierPrefix(TEXT("quantity"));
+	RallyHereAPI::WriteJsonValue(Writer, Quantity);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_ExternalKeyEntitlement::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonExternalKeyCampaignIdField = (*Object)->TryGetField(TEXT("external_key_campaign_id"));
-    ParseSuccess &= JsonExternalKeyCampaignIdField.IsValid() && !JsonExternalKeyCampaignIdField->IsNull() && TryGetJsonValue(JsonExternalKeyCampaignIdField, ExternalKeyCampaignId);
-    const TSharedPtr<FJsonValue> JsonQuantityField = (*Object)->TryGetField(TEXT("quantity"));
-    ParseSuccess &= JsonQuantityField.IsValid() && !JsonQuantityField->IsNull() && TryGetJsonValue(JsonQuantityField, Quantity);
+	const TSharedPtr<FJsonValue> JsonExternalKeyCampaignIdField = (*Object)->TryGetField(TEXT("external_key_campaign_id"));
+	ParseSuccess &= JsonExternalKeyCampaignIdField.IsValid() && !JsonExternalKeyCampaignIdField->IsNull() && TryGetJsonValue(JsonExternalKeyCampaignIdField, ExternalKeyCampaignId);
+	const TSharedPtr<FJsonValue> JsonQuantityField = (*Object)->TryGetField(TEXT("quantity"));
+	ParseSuccess &= JsonQuantityField.IsValid() && !JsonQuantityField->IsNull() && TryGetJsonValue(JsonQuantityField, Quantity);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

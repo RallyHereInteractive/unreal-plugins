@@ -21,41 +21,41 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_FriendsApiConfig::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (FriendLimit_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("friend_limit"));
-        RallyHereAPI::WriteJsonValue(Writer, FriendLimit_Optional);
-    }
-    if (BlockLimit_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("block_limit"));
-        RallyHereAPI::WriteJsonValue(Writer, BlockLimit_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (FriendLimit_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("friend_limit"));
+		RallyHereAPI::WriteJsonValue(Writer, FriendLimit_Optional);
+	}
+	if (BlockLimit_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("block_limit"));
+		RallyHereAPI::WriteJsonValue(Writer, BlockLimit_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_FriendsApiConfig::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonFriendLimitField = (*Object)->TryGetField(TEXT("friend_limit"));
-    if (JsonFriendLimitField.IsValid() && !JsonFriendLimitField->IsNull())
-    {
-        FriendLimit_IsSet = TryGetJsonValue(JsonFriendLimitField, FriendLimit_Optional);
-        ParseSuccess &= FriendLimit_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonBlockLimitField = (*Object)->TryGetField(TEXT("block_limit"));
-    if (JsonBlockLimitField.IsValid() && !JsonBlockLimitField->IsNull())
-    {
-        BlockLimit_IsSet = TryGetJsonValue(JsonBlockLimitField, BlockLimit_Optional);
-        ParseSuccess &= BlockLimit_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonFriendLimitField = (*Object)->TryGetField(TEXT("friend_limit"));
+	if (JsonFriendLimitField.IsValid() && !JsonFriendLimitField->IsNull())
+	{
+		FriendLimit_IsSet = TryGetJsonValue(JsonFriendLimitField, FriendLimit_Optional);
+		ParseSuccess &= FriendLimit_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonBlockLimitField = (*Object)->TryGetField(TEXT("block_limit"));
+	if (JsonBlockLimitField.IsValid() && !JsonBlockLimitField->IsNull())
+	{
+		BlockLimit_IsSet = TryGetJsonValue(JsonBlockLimitField, BlockLimit_Optional);
+		ParseSuccess &= BlockLimit_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

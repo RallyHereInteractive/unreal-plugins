@@ -18,10 +18,10 @@
 UENUM(BlueprintType)
 enum class ERHAPI_XpQuantityTransform : uint8
 {
-    None UMETA(ToolTip="Quantity will be treated as XP and will not be transformed."),
-    FromCurrentXpToTargetAdditionalLevelMinXp UMETA(ToolTip="Quantity will be treated as level to fulfill and will be transformed to the amount of XP required to reach the min xp of the fulfilled levels."),
-    FromCurrentLevelMinXpToTargetAdditionalLevelMinXp UMETA(ToolTip="Quantity will be treated as levels to fulfill and will be transformed to the amount of XP required to reach the min xp of the fulfilled levels from the min xp of the current level."),
-    FromZeroToTargetExactLevelMinXp UMETA(ToolTip="Quantity will be treated as levels to fulfill and will be transformed to the amount of XP required to reach the min xp of the fulfilled levels from zero xp."),
+	None UMETA(ToolTip="Quantity will be treated as XP and will not be transformed."),
+	FromCurrentXpToTargetAdditionalLevelMinXp UMETA(ToolTip="Quantity will be treated as level to fulfill and will be transformed to the amount of XP required to reach the min xp of the fulfilled levels."),
+	FromCurrentLevelMinXpToTargetAdditionalLevelMinXp UMETA(ToolTip="Quantity will be treated as levels to fulfill and will be transformed to the amount of XP required to reach the min xp of the fulfilled levels from the min xp of the current level."),
+	FromZeroToTargetExactLevelMinXp UMETA(ToolTip="Quantity will be treated as levels to fulfill and will be transformed to the amount of XP required to reach the min xp of the fulfilled levels from zero xp."),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_XpQuantityTransform& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_XpQuantityTransform& EnumValue);

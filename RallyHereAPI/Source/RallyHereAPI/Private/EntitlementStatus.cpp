@@ -20,58 +20,58 @@ using RallyHereAPI::TryGetJsonValue;
 // Implementation for ERHAPI_EntitlementStatus
 FString EnumToString(const ERHAPI_EntitlementStatus& Value)
 {
-    switch (Value)
-    {
-    case ERHAPI_EntitlementStatus::Unknown:
-        return TEXT("UNKNOWN");
-    case ERHAPI_EntitlementStatus::Submitted:
-        return TEXT("SUBMITTED");
-    case ERHAPI_EntitlementStatus::Fulfilled:
-        return TEXT("FULFILLED");
-    case ERHAPI_EntitlementStatus::Failed:
-        return TEXT("FAILED");
-    case ERHAPI_EntitlementStatus::PreviouslyApplied:
-        return TEXT("PREVIOUSLY_APPLIED");
-    }
+	switch (Value)
+	{
+	case ERHAPI_EntitlementStatus::Unknown:
+		return TEXT("UNKNOWN");
+	case ERHAPI_EntitlementStatus::Submitted:
+		return TEXT("SUBMITTED");
+	case ERHAPI_EntitlementStatus::Fulfilled:
+		return TEXT("FULFILLED");
+	case ERHAPI_EntitlementStatus::Failed:
+		return TEXT("FAILED");
+	case ERHAPI_EntitlementStatus::PreviouslyApplied:
+		return TEXT("PREVIOUSLY_APPLIED");
+	}
 
-    UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_EntitlementStatus::Values Value (%d)"), (int)Value);
-    return TEXT("");
+	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_EntitlementStatus::Values Value (%d)"), (int)Value);
+	return TEXT("");
 }
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_EntitlementStatus& Value)
 {
-    static TMap<FString, ERHAPI_EntitlementStatus> StringToEnum = { 
-        { TEXT("UNKNOWN"), ERHAPI_EntitlementStatus::Unknown },
-        { TEXT("SUBMITTED"), ERHAPI_EntitlementStatus::Submitted },
-        { TEXT("FULFILLED"), ERHAPI_EntitlementStatus::Fulfilled },
-        { TEXT("FAILED"), ERHAPI_EntitlementStatus::Failed },
-        { TEXT("PREVIOUSLY_APPLIED"), ERHAPI_EntitlementStatus::PreviouslyApplied },    };
+	static TMap<FString, ERHAPI_EntitlementStatus> StringToEnum = { 
+		{ TEXT("UNKNOWN"), ERHAPI_EntitlementStatus::Unknown },
+		{ TEXT("SUBMITTED"), ERHAPI_EntitlementStatus::Submitted },
+		{ TEXT("FULFILLED"), ERHAPI_EntitlementStatus::Fulfilled },
+		{ TEXT("FAILED"), ERHAPI_EntitlementStatus::Failed },
+		{ TEXT("PREVIOUSLY_APPLIED"), ERHAPI_EntitlementStatus::PreviouslyApplied },	};
 
-    const auto Found = StringToEnum.Find(EnumAsString);
-    if(Found)
-        Value = *Found;
-    return Found != nullptr;
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
+	return Found != nullptr;
 }
 
 FStringFormatArg ToStringFormatArg(const ERHAPI_EntitlementStatus& Value)
 {
-    return FStringFormatArg(EnumToString(Value));
+	return FStringFormatArg(EnumToString(Value));
 }
 
 void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const ERHAPI_EntitlementStatus& Value)
 {
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
 }
 
 bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, ERHAPI_EntitlementStatus& Value)
 {
-    FString TmpValue;
-    if (JsonValue->TryGetString(TmpValue))
-    {
-        if (EnumFromString(TmpValue, Value))
-            return true;
-    }
-    return false;
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if (EnumFromString(TmpValue, Value))
+			return true;
+	}
+	return false;
 }
 
 

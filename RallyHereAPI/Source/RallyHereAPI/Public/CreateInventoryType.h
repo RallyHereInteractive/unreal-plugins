@@ -18,8 +18,8 @@
 UENUM(BlueprintType)
 enum class ERHAPI_CreateInventoryType : uint8
 {
-    Persistent UMETA(ToolTip="Inventory that persists between Inventory Sessions."),
-    Transient UMETA(ToolTip="Inventory that does not persist between Inventory Sessions."),
+	Persistent UMETA(ToolTip="Inventory that persists between Inventory Sessions."),
+	Transient UMETA(ToolTip="Inventory that does not persist between Inventory Sessions."),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_CreateInventoryType& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_CreateInventoryType& EnumValue);

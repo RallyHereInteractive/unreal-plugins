@@ -18,9 +18,9 @@
 UENUM(BlueprintType)
 enum class ERHAPI_EntitlementType : uint8
 {
-    Consumable UMETA(ToolTip="Consumable entitlements are removed from the platform&#39;s record keeping system when used."),
-    Durable UMETA(ToolTip="Durable entitlements stay in the platform&#39;s recorded keeping system and is granted to the Player each time entitlements are granted."),
-    DurableSingleUse UMETA(ToolTip="Durable single use entitlements stay in the platform&#39;s recorded keeping system and is granted to the Player only once."),
+	Consumable UMETA(ToolTip="Consumable entitlements are removed from the platform&#39;s record keeping system when used."),
+	Durable UMETA(ToolTip="Durable entitlements stay in the platform&#39;s recorded keeping system and is granted to the Player each time entitlements are granted."),
+	DurableSingleUse UMETA(ToolTip="Durable single use entitlements stay in the platform&#39;s recorded keeping system and is granted to the Player only once."),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_EntitlementType& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_EntitlementType& EnumValue);

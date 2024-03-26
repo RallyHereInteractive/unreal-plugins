@@ -20,46 +20,46 @@ using RallyHereAPI::TryGetJsonValue;
 // Implementation for ERHAPI_OAuthGrantType
 FString EnumToString(const ERHAPI_OAuthGrantType& Value)
 {
-    switch (Value)
-    {
-    case ERHAPI_OAuthGrantType::ClientCredentials:
-        return TEXT("client_credentials");
-    }
+	switch (Value)
+	{
+	case ERHAPI_OAuthGrantType::ClientCredentials:
+		return TEXT("client_credentials");
+	}
 
-    UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_OAuthGrantType::Values Value (%d)"), (int)Value);
-    return TEXT("");
+	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_OAuthGrantType::Values Value (%d)"), (int)Value);
+	return TEXT("");
 }
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_OAuthGrantType& Value)
 {
-    static TMap<FString, ERHAPI_OAuthGrantType> StringToEnum = { 
-        { TEXT("client_credentials"), ERHAPI_OAuthGrantType::ClientCredentials },    };
+	static TMap<FString, ERHAPI_OAuthGrantType> StringToEnum = { 
+		{ TEXT("client_credentials"), ERHAPI_OAuthGrantType::ClientCredentials },	};
 
-    const auto Found = StringToEnum.Find(EnumAsString);
-    if(Found)
-        Value = *Found;
-    return Found != nullptr;
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
+	return Found != nullptr;
 }
 
 FStringFormatArg ToStringFormatArg(const ERHAPI_OAuthGrantType& Value)
 {
-    return FStringFormatArg(EnumToString(Value));
+	return FStringFormatArg(EnumToString(Value));
 }
 
 void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const ERHAPI_OAuthGrantType& Value)
 {
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
 }
 
 bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, ERHAPI_OAuthGrantType& Value)
 {
-    FString TmpValue;
-    if (JsonValue->TryGetString(TmpValue))
-    {
-        if (EnumFromString(TmpValue, Value))
-            return true;
-    }
-    return false;
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if (EnumFromString(TmpValue, Value))
+			return true;
+	}
+	return false;
 }
 
 

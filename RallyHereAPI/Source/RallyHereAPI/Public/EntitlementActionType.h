@@ -18,10 +18,10 @@
 UENUM(BlueprintType)
 enum class ERHAPI_EntitlementActionType : uint8
 {
-    Grant UMETA(ToolTip="Event for granting an Entitlement to the user"),
-    Refund UMETA(ToolTip="Event for refunding an Entitlement to the user"),
-    Chargeback UMETA(ToolTip="Event for refunding an Entitlement to the user due to a chargeback to the original payment"),
-    ChargebackReversal UMETA(ToolTip="Event for re-granting an Entitlement to the user after a chargeback was reversed"),
+	Grant UMETA(ToolTip="Event for granting an Entitlement to the user"),
+	Refund UMETA(ToolTip="Event for refunding an Entitlement to the user"),
+	Chargeback UMETA(ToolTip="Event for refunding an Entitlement to the user due to a chargeback to the original payment"),
+	ChargebackReversal UMETA(ToolTip="Event for re-granting an Entitlement to the user after a chargeback was reversed"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_EntitlementActionType& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_EntitlementActionType& EnumValue);

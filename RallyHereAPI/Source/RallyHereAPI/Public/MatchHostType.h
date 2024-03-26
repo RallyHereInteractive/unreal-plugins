@@ -18,8 +18,8 @@
 UENUM(BlueprintType)
 enum class ERHAPI_MatchHostType : uint8
 {
-    Dedicated UMETA(ToolTip=""),
-    Player UMETA(ToolTip=""),
+	Dedicated UMETA(ToolTip=""),
+	Player UMETA(ToolTip=""),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_MatchHostType& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_MatchHostType& EnumValue);

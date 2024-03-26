@@ -101,49 +101,49 @@ DECLARE_DELEGATE_OneParam(FDelegate_GetCatalogXpTable, const FResponse_GetCatalo
 class RALLYHEREAPI_API FCatalogAPI : public FAPI
 {
 public:
-    FCatalogAPI();
-    virtual ~FCatalogAPI();
+	FCatalogAPI();
+	virtual ~FCatalogAPI();
 
-    FHttpRequestPtr GetCatalogAll(const FRequest_GetCatalogAll& Request, const FDelegate_GetCatalogAll& Delegate = FDelegate_GetCatalogAll(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetCatalogEntitlementSku(const FRequest_GetCatalogEntitlementSku& Request, const FDelegate_GetCatalogEntitlementSku& Delegate = FDelegate_GetCatalogEntitlementSku(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetCatalogEntitlementSkuAll(const FRequest_GetCatalogEntitlementSkuAll& Request, const FDelegate_GetCatalogEntitlementSkuAll& Delegate = FDelegate_GetCatalogEntitlementSkuAll(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetCatalogInventoryBucketUseRuleSet(const FRequest_GetCatalogInventoryBucketUseRuleSet& Request, const FDelegate_GetCatalogInventoryBucketUseRuleSet& Delegate = FDelegate_GetCatalogInventoryBucketUseRuleSet(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetCatalogInventoryBucketUseRuleSetsAll(const FRequest_GetCatalogInventoryBucketUseRuleSetsAll& Request, const FDelegate_GetCatalogInventoryBucketUseRuleSetsAll& Delegate = FDelegate_GetCatalogInventoryBucketUseRuleSetsAll(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetCatalogItem(const FRequest_GetCatalogItem& Request, const FDelegate_GetCatalogItem& Delegate = FDelegate_GetCatalogItem(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetCatalogItemsAll(const FRequest_GetCatalogItemsAll& Request, const FDelegate_GetCatalogItemsAll& Delegate = FDelegate_GetCatalogItemsAll(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetCatalogLoot(const FRequest_GetCatalogLoot& Request, const FDelegate_GetCatalogLoot& Delegate = FDelegate_GetCatalogLoot(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetCatalogLootsAll(const FRequest_GetCatalogLootsAll& Request, const FDelegate_GetCatalogLootsAll& Delegate = FDelegate_GetCatalogLootsAll(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetCatalogPortalUseRuleset(const FRequest_GetCatalogPortalUseRuleset& Request, const FDelegate_GetCatalogPortalUseRuleset& Delegate = FDelegate_GetCatalogPortalUseRuleset(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetCatalogPortalUseRulesetsAll(const FRequest_GetCatalogPortalUseRulesetsAll& Request, const FDelegate_GetCatalogPortalUseRulesetsAll& Delegate = FDelegate_GetCatalogPortalUseRulesetsAll(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetCatalogPricePoint(const FRequest_GetCatalogPricePoint& Request, const FDelegate_GetCatalogPricePoint& Delegate = FDelegate_GetCatalogPricePoint(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetCatalogPricePointsAll(const FRequest_GetCatalogPricePointsAll& Request, const FDelegate_GetCatalogPricePointsAll& Delegate = FDelegate_GetCatalogPricePointsAll(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetCatalogTimeFrame(const FRequest_GetCatalogTimeFrame& Request, const FDelegate_GetCatalogTimeFrame& Delegate = FDelegate_GetCatalogTimeFrame(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetCatalogTimeFramesAll(const FRequest_GetCatalogTimeFramesAll& Request, const FDelegate_GetCatalogTimeFramesAll& Delegate = FDelegate_GetCatalogTimeFramesAll(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetCatalogVendor(const FRequest_GetCatalogVendor& Request, const FDelegate_GetCatalogVendor& Delegate = FDelegate_GetCatalogVendor(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetCatalogVendorsAll(const FRequest_GetCatalogVendorsAll& Request, const FDelegate_GetCatalogVendorsAll& Delegate = FDelegate_GetCatalogVendorsAll(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetCatalogXpAll(const FRequest_GetCatalogXpAll& Request, const FDelegate_GetCatalogXpAll& Delegate = FDelegate_GetCatalogXpAll(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetCatalogXpTable(const FRequest_GetCatalogXpTable& Request, const FDelegate_GetCatalogXpTable& Delegate = FDelegate_GetCatalogXpTable(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetCatalogAll(const FRequest_GetCatalogAll& Request, const FDelegate_GetCatalogAll& Delegate = FDelegate_GetCatalogAll(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetCatalogEntitlementSku(const FRequest_GetCatalogEntitlementSku& Request, const FDelegate_GetCatalogEntitlementSku& Delegate = FDelegate_GetCatalogEntitlementSku(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetCatalogEntitlementSkuAll(const FRequest_GetCatalogEntitlementSkuAll& Request, const FDelegate_GetCatalogEntitlementSkuAll& Delegate = FDelegate_GetCatalogEntitlementSkuAll(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetCatalogInventoryBucketUseRuleSet(const FRequest_GetCatalogInventoryBucketUseRuleSet& Request, const FDelegate_GetCatalogInventoryBucketUseRuleSet& Delegate = FDelegate_GetCatalogInventoryBucketUseRuleSet(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetCatalogInventoryBucketUseRuleSetsAll(const FRequest_GetCatalogInventoryBucketUseRuleSetsAll& Request, const FDelegate_GetCatalogInventoryBucketUseRuleSetsAll& Delegate = FDelegate_GetCatalogInventoryBucketUseRuleSetsAll(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetCatalogItem(const FRequest_GetCatalogItem& Request, const FDelegate_GetCatalogItem& Delegate = FDelegate_GetCatalogItem(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetCatalogItemsAll(const FRequest_GetCatalogItemsAll& Request, const FDelegate_GetCatalogItemsAll& Delegate = FDelegate_GetCatalogItemsAll(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetCatalogLoot(const FRequest_GetCatalogLoot& Request, const FDelegate_GetCatalogLoot& Delegate = FDelegate_GetCatalogLoot(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetCatalogLootsAll(const FRequest_GetCatalogLootsAll& Request, const FDelegate_GetCatalogLootsAll& Delegate = FDelegate_GetCatalogLootsAll(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetCatalogPortalUseRuleset(const FRequest_GetCatalogPortalUseRuleset& Request, const FDelegate_GetCatalogPortalUseRuleset& Delegate = FDelegate_GetCatalogPortalUseRuleset(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetCatalogPortalUseRulesetsAll(const FRequest_GetCatalogPortalUseRulesetsAll& Request, const FDelegate_GetCatalogPortalUseRulesetsAll& Delegate = FDelegate_GetCatalogPortalUseRulesetsAll(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetCatalogPricePoint(const FRequest_GetCatalogPricePoint& Request, const FDelegate_GetCatalogPricePoint& Delegate = FDelegate_GetCatalogPricePoint(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetCatalogPricePointsAll(const FRequest_GetCatalogPricePointsAll& Request, const FDelegate_GetCatalogPricePointsAll& Delegate = FDelegate_GetCatalogPricePointsAll(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetCatalogTimeFrame(const FRequest_GetCatalogTimeFrame& Request, const FDelegate_GetCatalogTimeFrame& Delegate = FDelegate_GetCatalogTimeFrame(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetCatalogTimeFramesAll(const FRequest_GetCatalogTimeFramesAll& Request, const FDelegate_GetCatalogTimeFramesAll& Delegate = FDelegate_GetCatalogTimeFramesAll(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetCatalogVendor(const FRequest_GetCatalogVendor& Request, const FDelegate_GetCatalogVendor& Delegate = FDelegate_GetCatalogVendor(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetCatalogVendorsAll(const FRequest_GetCatalogVendorsAll& Request, const FDelegate_GetCatalogVendorsAll& Delegate = FDelegate_GetCatalogVendorsAll(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetCatalogXpAll(const FRequest_GetCatalogXpAll& Request, const FDelegate_GetCatalogXpAll& Delegate = FDelegate_GetCatalogXpAll(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetCatalogXpTable(const FRequest_GetCatalogXpTable& Request, const FDelegate_GetCatalogXpTable& Delegate = FDelegate_GetCatalogXpTable(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
-    void OnGetCatalogAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetCatalogEntitlementSkuResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogEntitlementSku Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetCatalogEntitlementSkuAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogEntitlementSkuAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetCatalogInventoryBucketUseRuleSetResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogInventoryBucketUseRuleSet Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetCatalogInventoryBucketUseRuleSetsAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogInventoryBucketUseRuleSetsAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetCatalogItemResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogItem Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetCatalogItemsAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogItemsAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetCatalogLootResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogLoot Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetCatalogLootsAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogLootsAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetCatalogPortalUseRulesetResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogPortalUseRuleset Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetCatalogPortalUseRulesetsAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogPortalUseRulesetsAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetCatalogPricePointResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogPricePoint Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetCatalogPricePointsAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogPricePointsAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetCatalogTimeFrameResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogTimeFrame Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetCatalogTimeFramesAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogTimeFramesAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetCatalogVendorResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogVendor Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetCatalogVendorsAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogVendorsAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetCatalogXpAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogXpAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetCatalogXpTableResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogXpTable Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetCatalogAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetCatalogEntitlementSkuResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogEntitlementSku Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetCatalogEntitlementSkuAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogEntitlementSkuAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetCatalogInventoryBucketUseRuleSetResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogInventoryBucketUseRuleSet Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetCatalogInventoryBucketUseRuleSetsAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogInventoryBucketUseRuleSetsAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetCatalogItemResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogItem Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetCatalogItemsAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogItemsAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetCatalogLootResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogLoot Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetCatalogLootsAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogLootsAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetCatalogPortalUseRulesetResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogPortalUseRuleset Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetCatalogPortalUseRulesetsAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogPortalUseRulesetsAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetCatalogPricePointResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogPricePoint Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetCatalogPricePointsAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogPricePointsAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetCatalogTimeFrameResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogTimeFrame Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetCatalogTimeFramesAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogTimeFramesAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetCatalogVendorResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogVendor Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetCatalogVendorsAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogVendorsAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetCatalogXpAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogXpAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetCatalogXpTableResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogXpTable Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
@@ -153,69 +153,69 @@ private:
 */
 struct RALLYHEREAPI_API FRequest_GetCatalogAll : public FRequest
 {
-    FRequest_GetCatalogAll();
-    virtual ~FRequest_GetCatalogAll() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetCatalogAll();
+	virtual ~FRequest_GetCatalogAll() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    /* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetCatalogAll : public FResponse
 {
-    FResponse_GetCatalogAll(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetCatalogAll() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetCatalogAll(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetCatalogAll() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_Catalog Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_Catalog Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_Catalog& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_Catalog& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 304
-    Content still has the same etag and has not changed
-    */
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Not Found
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetCatalogAll
 {
-    typedef FRequest_GetCatalogAll Request;
-    typedef FResponse_GetCatalogAll Response;
-    typedef FDelegate_GetCatalogAll Delegate;
-    typedef FCatalogAPI API;
-    static FString Name;
+	typedef FRequest_GetCatalogAll Request;
+	typedef FResponse_GetCatalogAll Response;
+	typedef FDelegate_GetCatalogAll Delegate;
+	typedef FCatalogAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogAll(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogAll(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Entitlement Sku
@@ -224,71 +224,71 @@ struct RALLYHEREAPI_API Traits_GetCatalogAll
 */
 struct RALLYHEREAPI_API FRequest_GetCatalogEntitlementSku : public FRequest
 {
-    FRequest_GetCatalogEntitlementSku();
-    virtual ~FRequest_GetCatalogEntitlementSku() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetCatalogEntitlementSku();
+	virtual ~FRequest_GetCatalogEntitlementSku() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    ERHAPI_Platform Platform;
-    FString Sku;
-    /* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	ERHAPI_Platform Platform;
+	FString Sku;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetCatalogEntitlementSku : public FResponse
 {
-    FResponse_GetCatalogEntitlementSku(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetCatalogEntitlementSku() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetCatalogEntitlementSku(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetCatalogEntitlementSku() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PlatformSKU Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_PlatformSKU Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PlatformSKU& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlatformSKU& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 304
-    Content still has the same etag and has not changed
-    */
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Not Found
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetCatalogEntitlementSku
 {
-    typedef FRequest_GetCatalogEntitlementSku Request;
-    typedef FResponse_GetCatalogEntitlementSku Response;
-    typedef FDelegate_GetCatalogEntitlementSku Delegate;
-    typedef FCatalogAPI API;
-    static FString Name;
+	typedef FRequest_GetCatalogEntitlementSku Request;
+	typedef FResponse_GetCatalogEntitlementSku Response;
+	typedef FDelegate_GetCatalogEntitlementSku Delegate;
+	typedef FCatalogAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogEntitlementSku(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogEntitlementSku(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Entitlement Sku All
@@ -297,69 +297,69 @@ struct RALLYHEREAPI_API Traits_GetCatalogEntitlementSku
 */
 struct RALLYHEREAPI_API FRequest_GetCatalogEntitlementSkuAll : public FRequest
 {
-    FRequest_GetCatalogEntitlementSkuAll();
-    virtual ~FRequest_GetCatalogEntitlementSkuAll() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetCatalogEntitlementSkuAll();
+	virtual ~FRequest_GetCatalogEntitlementSkuAll() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    /* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetCatalogEntitlementSkuAll : public FResponse
 {
-    FResponse_GetCatalogEntitlementSkuAll(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetCatalogEntitlementSkuAll() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetCatalogEntitlementSkuAll(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetCatalogEntitlementSkuAll() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PlatformSKUs Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_PlatformSKUs Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PlatformSKUs& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlatformSKUs& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 304
-    Content still has the same etag and has not changed
-    */
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Not Found
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetCatalogEntitlementSkuAll
 {
-    typedef FRequest_GetCatalogEntitlementSkuAll Request;
-    typedef FResponse_GetCatalogEntitlementSkuAll Response;
-    typedef FDelegate_GetCatalogEntitlementSkuAll Delegate;
-    typedef FCatalogAPI API;
-    static FString Name;
+	typedef FRequest_GetCatalogEntitlementSkuAll Request;
+	typedef FResponse_GetCatalogEntitlementSkuAll Response;
+	typedef FDelegate_GetCatalogEntitlementSkuAll Delegate;
+	typedef FCatalogAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogEntitlementSkuAll(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogEntitlementSkuAll(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Inventory Bucket Use Rule Set
@@ -368,70 +368,70 @@ struct RALLYHEREAPI_API Traits_GetCatalogEntitlementSkuAll
 */
 struct RALLYHEREAPI_API FRequest_GetCatalogInventoryBucketUseRuleSet : public FRequest
 {
-    FRequest_GetCatalogInventoryBucketUseRuleSet();
-    virtual ~FRequest_GetCatalogInventoryBucketUseRuleSet() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetCatalogInventoryBucketUseRuleSet();
+	virtual ~FRequest_GetCatalogInventoryBucketUseRuleSet() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString InventoryBucketUseRulesetId;
-    /* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString InventoryBucketUseRulesetId;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetCatalogInventoryBucketUseRuleSet : public FResponse
 {
-    FResponse_GetCatalogInventoryBucketUseRuleSet(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetCatalogInventoryBucketUseRuleSet() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetCatalogInventoryBucketUseRuleSet(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetCatalogInventoryBucketUseRuleSet() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_InventoryBucketUseRuleSet Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_InventoryBucketUseRuleSet Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_InventoryBucketUseRuleSet& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_InventoryBucketUseRuleSet& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 304
-    Content still has the same etag and has not changed
-    */
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Not Found
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetCatalogInventoryBucketUseRuleSet
 {
-    typedef FRequest_GetCatalogInventoryBucketUseRuleSet Request;
-    typedef FResponse_GetCatalogInventoryBucketUseRuleSet Response;
-    typedef FDelegate_GetCatalogInventoryBucketUseRuleSet Delegate;
-    typedef FCatalogAPI API;
-    static FString Name;
+	typedef FRequest_GetCatalogInventoryBucketUseRuleSet Request;
+	typedef FResponse_GetCatalogInventoryBucketUseRuleSet Response;
+	typedef FDelegate_GetCatalogInventoryBucketUseRuleSet Delegate;
+	typedef FCatalogAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogInventoryBucketUseRuleSet(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogInventoryBucketUseRuleSet(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Inventory Bucket Use Rule Sets All
@@ -440,69 +440,69 @@ struct RALLYHEREAPI_API Traits_GetCatalogInventoryBucketUseRuleSet
 */
 struct RALLYHEREAPI_API FRequest_GetCatalogInventoryBucketUseRuleSetsAll : public FRequest
 {
-    FRequest_GetCatalogInventoryBucketUseRuleSetsAll();
-    virtual ~FRequest_GetCatalogInventoryBucketUseRuleSetsAll() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetCatalogInventoryBucketUseRuleSetsAll();
+	virtual ~FRequest_GetCatalogInventoryBucketUseRuleSetsAll() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    /* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetCatalogInventoryBucketUseRuleSetsAll : public FResponse
 {
-    FResponse_GetCatalogInventoryBucketUseRuleSetsAll(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetCatalogInventoryBucketUseRuleSetsAll() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetCatalogInventoryBucketUseRuleSetsAll(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetCatalogInventoryBucketUseRuleSetsAll() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_InventoryBucketUseRuleSets Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_InventoryBucketUseRuleSets Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_InventoryBucketUseRuleSets& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_InventoryBucketUseRuleSets& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 304
-    Content still has the same etag and has not changed
-    */
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Not Found
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetCatalogInventoryBucketUseRuleSetsAll
 {
-    typedef FRequest_GetCatalogInventoryBucketUseRuleSetsAll Request;
-    typedef FResponse_GetCatalogInventoryBucketUseRuleSetsAll Response;
-    typedef FDelegate_GetCatalogInventoryBucketUseRuleSetsAll Delegate;
-    typedef FCatalogAPI API;
-    static FString Name;
+	typedef FRequest_GetCatalogInventoryBucketUseRuleSetsAll Request;
+	typedef FResponse_GetCatalogInventoryBucketUseRuleSetsAll Response;
+	typedef FDelegate_GetCatalogInventoryBucketUseRuleSetsAll Delegate;
+	typedef FCatalogAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogInventoryBucketUseRuleSetsAll(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogInventoryBucketUseRuleSetsAll(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Item
@@ -511,70 +511,70 @@ struct RALLYHEREAPI_API Traits_GetCatalogInventoryBucketUseRuleSetsAll
 */
 struct RALLYHEREAPI_API FRequest_GetCatalogItem : public FRequest
 {
-    FRequest_GetCatalogItem();
-    virtual ~FRequest_GetCatalogItem() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetCatalogItem();
+	virtual ~FRequest_GetCatalogItem() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    int32 ItemId = 0;
-    /* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	int32 ItemId = 0;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetCatalogItem : public FResponse
 {
-    FResponse_GetCatalogItem(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetCatalogItem() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetCatalogItem(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetCatalogItem() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_Item Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_Item Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_Item& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_Item& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 304
-    Content still has the same etag and has not changed
-    */
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Not Found
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetCatalogItem
 {
-    typedef FRequest_GetCatalogItem Request;
-    typedef FResponse_GetCatalogItem Response;
-    typedef FDelegate_GetCatalogItem Delegate;
-    typedef FCatalogAPI API;
-    static FString Name;
+	typedef FRequest_GetCatalogItem Request;
+	typedef FResponse_GetCatalogItem Response;
+	typedef FDelegate_GetCatalogItem Delegate;
+	typedef FCatalogAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogItem(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogItem(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Items All
@@ -583,69 +583,69 @@ struct RALLYHEREAPI_API Traits_GetCatalogItem
 */
 struct RALLYHEREAPI_API FRequest_GetCatalogItemsAll : public FRequest
 {
-    FRequest_GetCatalogItemsAll();
-    virtual ~FRequest_GetCatalogItemsAll() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetCatalogItemsAll();
+	virtual ~FRequest_GetCatalogItemsAll() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    /* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetCatalogItemsAll : public FResponse
 {
-    FResponse_GetCatalogItemsAll(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetCatalogItemsAll() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetCatalogItemsAll(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetCatalogItemsAll() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_Items Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_Items Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_Items& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_Items& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 304
-    Content still has the same etag and has not changed
-    */
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Not Found
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetCatalogItemsAll
 {
-    typedef FRequest_GetCatalogItemsAll Request;
-    typedef FResponse_GetCatalogItemsAll Response;
-    typedef FDelegate_GetCatalogItemsAll Delegate;
-    typedef FCatalogAPI API;
-    static FString Name;
+	typedef FRequest_GetCatalogItemsAll Request;
+	typedef FResponse_GetCatalogItemsAll Response;
+	typedef FDelegate_GetCatalogItemsAll Delegate;
+	typedef FCatalogAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogItemsAll(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogItemsAll(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Loot
@@ -654,70 +654,70 @@ struct RALLYHEREAPI_API Traits_GetCatalogItemsAll
 */
 struct RALLYHEREAPI_API FRequest_GetCatalogLoot : public FRequest
 {
-    FRequest_GetCatalogLoot();
-    virtual ~FRequest_GetCatalogLoot() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetCatalogLoot();
+	virtual ~FRequest_GetCatalogLoot() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    int32 LootId = 0;
-    /* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	int32 LootId = 0;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetCatalogLoot : public FResponse
 {
-    FResponse_GetCatalogLoot(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetCatalogLoot() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetCatalogLoot(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetCatalogLoot() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_Loot Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_Loot Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_Loot& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_Loot& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 304
-    Content still has the same etag and has not changed
-    */
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Not Found
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetCatalogLoot
 {
-    typedef FRequest_GetCatalogLoot Request;
-    typedef FResponse_GetCatalogLoot Response;
-    typedef FDelegate_GetCatalogLoot Delegate;
-    typedef FCatalogAPI API;
-    static FString Name;
+	typedef FRequest_GetCatalogLoot Request;
+	typedef FResponse_GetCatalogLoot Response;
+	typedef FDelegate_GetCatalogLoot Delegate;
+	typedef FCatalogAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogLoot(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogLoot(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Loots All
@@ -726,69 +726,69 @@ struct RALLYHEREAPI_API Traits_GetCatalogLoot
 */
 struct RALLYHEREAPI_API FRequest_GetCatalogLootsAll : public FRequest
 {
-    FRequest_GetCatalogLootsAll();
-    virtual ~FRequest_GetCatalogLootsAll() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetCatalogLootsAll();
+	virtual ~FRequest_GetCatalogLootsAll() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    /* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetCatalogLootsAll : public FResponse
 {
-    FResponse_GetCatalogLootsAll(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetCatalogLootsAll() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetCatalogLootsAll(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetCatalogLootsAll() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_Loots Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_Loots Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_Loots& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_Loots& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 304
-    Content still has the same etag and has not changed
-    */
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Not Found
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetCatalogLootsAll
 {
-    typedef FRequest_GetCatalogLootsAll Request;
-    typedef FResponse_GetCatalogLootsAll Response;
-    typedef FDelegate_GetCatalogLootsAll Delegate;
-    typedef FCatalogAPI API;
-    static FString Name;
+	typedef FRequest_GetCatalogLootsAll Request;
+	typedef FResponse_GetCatalogLootsAll Response;
+	typedef FDelegate_GetCatalogLootsAll Delegate;
+	typedef FCatalogAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogLootsAll(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogLootsAll(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Portal Use Ruleset
@@ -797,70 +797,70 @@ struct RALLYHEREAPI_API Traits_GetCatalogLootsAll
 */
 struct RALLYHEREAPI_API FRequest_GetCatalogPortalUseRuleset : public FRequest
 {
-    FRequest_GetCatalogPortalUseRuleset();
-    virtual ~FRequest_GetCatalogPortalUseRuleset() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetCatalogPortalUseRuleset();
+	virtual ~FRequest_GetCatalogPortalUseRuleset() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    int32 PortalUseRulesetId = 0;
-    /* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	int32 PortalUseRulesetId = 0;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetCatalogPortalUseRuleset : public FResponse
 {
-    FResponse_GetCatalogPortalUseRuleset(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetCatalogPortalUseRuleset() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetCatalogPortalUseRuleset(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetCatalogPortalUseRuleset() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PortalUseRuleset Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_PortalUseRuleset Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PortalUseRuleset& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PortalUseRuleset& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 304
-    Content still has the same etag and has not changed
-    */
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Not Found
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetCatalogPortalUseRuleset
 {
-    typedef FRequest_GetCatalogPortalUseRuleset Request;
-    typedef FResponse_GetCatalogPortalUseRuleset Response;
-    typedef FDelegate_GetCatalogPortalUseRuleset Delegate;
-    typedef FCatalogAPI API;
-    static FString Name;
+	typedef FRequest_GetCatalogPortalUseRuleset Request;
+	typedef FResponse_GetCatalogPortalUseRuleset Response;
+	typedef FDelegate_GetCatalogPortalUseRuleset Delegate;
+	typedef FCatalogAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogPortalUseRuleset(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogPortalUseRuleset(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Portal Use Rulesets All
@@ -869,69 +869,69 @@ struct RALLYHEREAPI_API Traits_GetCatalogPortalUseRuleset
 */
 struct RALLYHEREAPI_API FRequest_GetCatalogPortalUseRulesetsAll : public FRequest
 {
-    FRequest_GetCatalogPortalUseRulesetsAll();
-    virtual ~FRequest_GetCatalogPortalUseRulesetsAll() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetCatalogPortalUseRulesetsAll();
+	virtual ~FRequest_GetCatalogPortalUseRulesetsAll() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    /* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetCatalogPortalUseRulesetsAll : public FResponse
 {
-    FResponse_GetCatalogPortalUseRulesetsAll(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetCatalogPortalUseRulesetsAll() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetCatalogPortalUseRulesetsAll(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetCatalogPortalUseRulesetsAll() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PortalUseRulesets Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_PortalUseRulesets Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PortalUseRulesets& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PortalUseRulesets& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 304
-    Content still has the same etag and has not changed
-    */
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Not Found
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetCatalogPortalUseRulesetsAll
 {
-    typedef FRequest_GetCatalogPortalUseRulesetsAll Request;
-    typedef FResponse_GetCatalogPortalUseRulesetsAll Response;
-    typedef FDelegate_GetCatalogPortalUseRulesetsAll Delegate;
-    typedef FCatalogAPI API;
-    static FString Name;
+	typedef FRequest_GetCatalogPortalUseRulesetsAll Request;
+	typedef FResponse_GetCatalogPortalUseRulesetsAll Response;
+	typedef FDelegate_GetCatalogPortalUseRulesetsAll Delegate;
+	typedef FCatalogAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogPortalUseRulesetsAll(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogPortalUseRulesetsAll(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Price Point
@@ -940,70 +940,70 @@ struct RALLYHEREAPI_API Traits_GetCatalogPortalUseRulesetsAll
 */
 struct RALLYHEREAPI_API FRequest_GetCatalogPricePoint : public FRequest
 {
-    FRequest_GetCatalogPricePoint();
-    virtual ~FRequest_GetCatalogPricePoint() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetCatalogPricePoint();
+	virtual ~FRequest_GetCatalogPricePoint() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString PricePointId;
-    /* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString PricePointId;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetCatalogPricePoint : public FResponse
 {
-    FResponse_GetCatalogPricePoint(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetCatalogPricePoint() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetCatalogPricePoint(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetCatalogPricePoint() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PricePoint Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_PricePoint Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PricePoint& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PricePoint& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 304
-    Content still has the same etag and has not changed
-    */
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Not Found
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetCatalogPricePoint
 {
-    typedef FRequest_GetCatalogPricePoint Request;
-    typedef FResponse_GetCatalogPricePoint Response;
-    typedef FDelegate_GetCatalogPricePoint Delegate;
-    typedef FCatalogAPI API;
-    static FString Name;
+	typedef FRequest_GetCatalogPricePoint Request;
+	typedef FResponse_GetCatalogPricePoint Response;
+	typedef FDelegate_GetCatalogPricePoint Delegate;
+	typedef FCatalogAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogPricePoint(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogPricePoint(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Price Points All
@@ -1012,69 +1012,69 @@ struct RALLYHEREAPI_API Traits_GetCatalogPricePoint
 */
 struct RALLYHEREAPI_API FRequest_GetCatalogPricePointsAll : public FRequest
 {
-    FRequest_GetCatalogPricePointsAll();
-    virtual ~FRequest_GetCatalogPricePointsAll() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetCatalogPricePointsAll();
+	virtual ~FRequest_GetCatalogPricePointsAll() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    /* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetCatalogPricePointsAll : public FResponse
 {
-    FResponse_GetCatalogPricePointsAll(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetCatalogPricePointsAll() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetCatalogPricePointsAll(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetCatalogPricePointsAll() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PricePoints Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_PricePoints Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PricePoints& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PricePoints& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 304
-    Content still has the same etag and has not changed
-    */
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Not Found
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetCatalogPricePointsAll
 {
-    typedef FRequest_GetCatalogPricePointsAll Request;
-    typedef FResponse_GetCatalogPricePointsAll Response;
-    typedef FDelegate_GetCatalogPricePointsAll Delegate;
-    typedef FCatalogAPI API;
-    static FString Name;
+	typedef FRequest_GetCatalogPricePointsAll Request;
+	typedef FResponse_GetCatalogPricePointsAll Response;
+	typedef FDelegate_GetCatalogPricePointsAll Delegate;
+	typedef FCatalogAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogPricePointsAll(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogPricePointsAll(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Time Frame
@@ -1083,70 +1083,70 @@ struct RALLYHEREAPI_API Traits_GetCatalogPricePointsAll
 */
 struct RALLYHEREAPI_API FRequest_GetCatalogTimeFrame : public FRequest
 {
-    FRequest_GetCatalogTimeFrame();
-    virtual ~FRequest_GetCatalogTimeFrame() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetCatalogTimeFrame();
+	virtual ~FRequest_GetCatalogTimeFrame() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    int32 TimeFrameId = 0;
-    /* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	int32 TimeFrameId = 0;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetCatalogTimeFrame : public FResponse
 {
-    FResponse_GetCatalogTimeFrame(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetCatalogTimeFrame() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetCatalogTimeFrame(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetCatalogTimeFrame() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_TimeFrame Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_TimeFrame Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_TimeFrame& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_TimeFrame& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 304
-    Content still has the same etag and has not changed
-    */
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Not Found
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetCatalogTimeFrame
 {
-    typedef FRequest_GetCatalogTimeFrame Request;
-    typedef FResponse_GetCatalogTimeFrame Response;
-    typedef FDelegate_GetCatalogTimeFrame Delegate;
-    typedef FCatalogAPI API;
-    static FString Name;
+	typedef FRequest_GetCatalogTimeFrame Request;
+	typedef FResponse_GetCatalogTimeFrame Response;
+	typedef FDelegate_GetCatalogTimeFrame Delegate;
+	typedef FCatalogAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogTimeFrame(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogTimeFrame(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Time Frames All
@@ -1155,69 +1155,69 @@ struct RALLYHEREAPI_API Traits_GetCatalogTimeFrame
 */
 struct RALLYHEREAPI_API FRequest_GetCatalogTimeFramesAll : public FRequest
 {
-    FRequest_GetCatalogTimeFramesAll();
-    virtual ~FRequest_GetCatalogTimeFramesAll() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetCatalogTimeFramesAll();
+	virtual ~FRequest_GetCatalogTimeFramesAll() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    /* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetCatalogTimeFramesAll : public FResponse
 {
-    FResponse_GetCatalogTimeFramesAll(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetCatalogTimeFramesAll() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetCatalogTimeFramesAll(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetCatalogTimeFramesAll() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_TimeFrames Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_TimeFrames Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_TimeFrames& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_TimeFrames& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 304
-    Content still has the same etag and has not changed
-    */
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Not Found
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetCatalogTimeFramesAll
 {
-    typedef FRequest_GetCatalogTimeFramesAll Request;
-    typedef FResponse_GetCatalogTimeFramesAll Response;
-    typedef FDelegate_GetCatalogTimeFramesAll Delegate;
-    typedef FCatalogAPI API;
-    static FString Name;
+	typedef FRequest_GetCatalogTimeFramesAll Request;
+	typedef FResponse_GetCatalogTimeFramesAll Response;
+	typedef FDelegate_GetCatalogTimeFramesAll Delegate;
+	typedef FCatalogAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogTimeFramesAll(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogTimeFramesAll(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Vendor
@@ -1226,70 +1226,70 @@ struct RALLYHEREAPI_API Traits_GetCatalogTimeFramesAll
 */
 struct RALLYHEREAPI_API FRequest_GetCatalogVendor : public FRequest
 {
-    FRequest_GetCatalogVendor();
-    virtual ~FRequest_GetCatalogVendor() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetCatalogVendor();
+	virtual ~FRequest_GetCatalogVendor() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    int32 VendorId = 0;
-    /* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	int32 VendorId = 0;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetCatalogVendor : public FResponse
 {
-    FResponse_GetCatalogVendor(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetCatalogVendor() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetCatalogVendor(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetCatalogVendor() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_Vendor Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_Vendor Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_Vendor& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_Vendor& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 304
-    Content still has the same etag and has not changed
-    */
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Not Found
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetCatalogVendor
 {
-    typedef FRequest_GetCatalogVendor Request;
-    typedef FResponse_GetCatalogVendor Response;
-    typedef FDelegate_GetCatalogVendor Delegate;
-    typedef FCatalogAPI API;
-    static FString Name;
+	typedef FRequest_GetCatalogVendor Request;
+	typedef FResponse_GetCatalogVendor Response;
+	typedef FDelegate_GetCatalogVendor Delegate;
+	typedef FCatalogAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogVendor(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogVendor(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Vendors All
@@ -1298,69 +1298,69 @@ struct RALLYHEREAPI_API Traits_GetCatalogVendor
 */
 struct RALLYHEREAPI_API FRequest_GetCatalogVendorsAll : public FRequest
 {
-    FRequest_GetCatalogVendorsAll();
-    virtual ~FRequest_GetCatalogVendorsAll() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetCatalogVendorsAll();
+	virtual ~FRequest_GetCatalogVendorsAll() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    /* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetCatalogVendorsAll : public FResponse
 {
-    FResponse_GetCatalogVendorsAll(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetCatalogVendorsAll() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetCatalogVendorsAll(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetCatalogVendorsAll() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_Vendors Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_Vendors Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_Vendors& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_Vendors& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 304
-    Content still has the same etag and has not changed
-    */
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Not Found
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetCatalogVendorsAll
 {
-    typedef FRequest_GetCatalogVendorsAll Request;
-    typedef FResponse_GetCatalogVendorsAll Response;
-    typedef FDelegate_GetCatalogVendorsAll Delegate;
-    typedef FCatalogAPI API;
-    static FString Name;
+	typedef FRequest_GetCatalogVendorsAll Request;
+	typedef FResponse_GetCatalogVendorsAll Response;
+	typedef FDelegate_GetCatalogVendorsAll Delegate;
+	typedef FCatalogAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogVendorsAll(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogVendorsAll(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Xp All
@@ -1369,69 +1369,69 @@ struct RALLYHEREAPI_API Traits_GetCatalogVendorsAll
 */
 struct RALLYHEREAPI_API FRequest_GetCatalogXpAll : public FRequest
 {
-    FRequest_GetCatalogXpAll();
-    virtual ~FRequest_GetCatalogXpAll() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetCatalogXpAll();
+	virtual ~FRequest_GetCatalogXpAll() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    /* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetCatalogXpAll : public FResponse
 {
-    FResponse_GetCatalogXpAll(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetCatalogXpAll() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetCatalogXpAll(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetCatalogXpAll() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_XpTables Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_XpTables Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_XpTables& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_XpTables& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 304
-    Content still has the same etag and has not changed
-    */
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Not Found
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetCatalogXpAll
 {
-    typedef FRequest_GetCatalogXpAll Request;
-    typedef FResponse_GetCatalogXpAll Response;
-    typedef FDelegate_GetCatalogXpAll Delegate;
-    typedef FCatalogAPI API;
-    static FString Name;
+	typedef FRequest_GetCatalogXpAll Request;
+	typedef FResponse_GetCatalogXpAll Response;
+	typedef FDelegate_GetCatalogXpAll Delegate;
+	typedef FCatalogAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogXpAll(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogXpAll(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Xp Table
@@ -1440,70 +1440,70 @@ struct RALLYHEREAPI_API Traits_GetCatalogXpAll
 */
 struct RALLYHEREAPI_API FRequest_GetCatalogXpTable : public FRequest
 {
-    FRequest_GetCatalogXpTable();
-    virtual ~FRequest_GetCatalogXpTable() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetCatalogXpTable();
+	virtual ~FRequest_GetCatalogXpTable() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    int32 XpTableId = 0;
-    /* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	int32 XpTableId = 0;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetCatalogXpTable : public FResponse
 {
-    FResponse_GetCatalogXpTable(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetCatalogXpTable() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetCatalogXpTable(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetCatalogXpTable() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_XpTable Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_XpTable Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_XpTable& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_XpTable& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 304
-    Content still has the same etag and has not changed
-    */
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Not Found
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetCatalogXpTable
 {
-    typedef FRequest_GetCatalogXpTable Request;
-    typedef FResponse_GetCatalogXpTable Response;
-    typedef FDelegate_GetCatalogXpTable Delegate;
-    typedef FCatalogAPI API;
-    static FString Name;
+	typedef FRequest_GetCatalogXpTable Request;
+	typedef FResponse_GetCatalogXpTable Response;
+	typedef FDelegate_GetCatalogXpTable Delegate;
+	typedef FCatalogAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogXpTable(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogXpTable(InRequest, InDelegate, Priority); }
 };
 
 

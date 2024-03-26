@@ -18,7 +18,7 @@
 UENUM(BlueprintType)
 enum class ERHAPI_OAuthTokenEchangeGrantType : uint8
 {
-    AuthorizationCode UMETA(ToolTip="Authorization code grant type for OAuth token exchange."),
+	AuthorizationCode UMETA(ToolTip="Authorization code grant type for OAuth token exchange."),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_OAuthTokenEchangeGrantType& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_OAuthTokenEchangeGrantType& EnumValue);

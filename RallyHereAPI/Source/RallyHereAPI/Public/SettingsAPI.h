@@ -82,47 +82,47 @@ DECLARE_DELEGATE_OneParam(FDelegate_SetSinglePlayerUuidSettingSelf, const FRespo
 class RALLYHEREAPI_API FSettingsAPI : public FAPI
 {
 public:
-    FSettingsAPI();
-    virtual ~FSettingsAPI();
+	FSettingsAPI();
+	virtual ~FSettingsAPI();
 
-    FHttpRequestPtr DeleteAllPlayerIdSettingsForSettingType(const FRequest_DeleteAllPlayerIdSettingsForSettingType& Request, const FDelegate_DeleteAllPlayerIdSettingsForSettingType& Delegate = FDelegate_DeleteAllPlayerIdSettingsForSettingType(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr DeleteAllPlayerUuidSettingsForSettingType(const FRequest_DeleteAllPlayerUuidSettingsForSettingType& Request, const FDelegate_DeleteAllPlayerUuidSettingsForSettingType& Delegate = FDelegate_DeleteAllPlayerUuidSettingsForSettingType(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr DeleteAllPlayerUuidSettingsForSettingTypeSelf(const FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf& Request, const FDelegate_DeleteAllPlayerUuidSettingsForSettingTypeSelf& Delegate = FDelegate_DeleteAllPlayerUuidSettingsForSettingTypeSelf(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr DeleteSinglePlayerIdSetting(const FRequest_DeleteSinglePlayerIdSetting& Request, const FDelegate_DeleteSinglePlayerIdSetting& Delegate = FDelegate_DeleteSinglePlayerIdSetting(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr DeleteSinglePlayerUuidSetting(const FRequest_DeleteSinglePlayerUuidSetting& Request, const FDelegate_DeleteSinglePlayerUuidSetting& Delegate = FDelegate_DeleteSinglePlayerUuidSetting(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr DeleteSinglePlayerUuidSettingSelf(const FRequest_DeleteSinglePlayerUuidSettingSelf& Request, const FDelegate_DeleteSinglePlayerUuidSettingSelf& Delegate = FDelegate_DeleteSinglePlayerUuidSettingSelf(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetAllPlayerIdSettingsForSettingType(const FRequest_GetAllPlayerIdSettingsForSettingType& Request, const FDelegate_GetAllPlayerIdSettingsForSettingType& Delegate = FDelegate_GetAllPlayerIdSettingsForSettingType(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetAllPlayerUuidSettingsForSettingType(const FRequest_GetAllPlayerUuidSettingsForSettingType& Request, const FDelegate_GetAllPlayerUuidSettingsForSettingType& Delegate = FDelegate_GetAllPlayerUuidSettingsForSettingType(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetAllPlayerUuidSettingsForSettingTypeSelf(const FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf& Request, const FDelegate_GetAllPlayerUuidSettingsForSettingTypeSelf& Delegate = FDelegate_GetAllPlayerUuidSettingsForSettingTypeSelf(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetConfigForAllSettingTypes(const FRequest_GetConfigForAllSettingTypes& Request, const FDelegate_GetConfigForAllSettingTypes& Delegate = FDelegate_GetConfigForAllSettingTypes(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetConfigForSingleSettingTypeAllVersions(const FRequest_GetConfigForSingleSettingTypeAllVersions& Request, const FDelegate_GetConfigForSingleSettingTypeAllVersions& Delegate = FDelegate_GetConfigForSingleSettingTypeAllVersions(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetConfigForSingleSettingTypeAndVersion(const FRequest_GetConfigForSingleSettingTypeAndVersion& Request, const FDelegate_GetConfigForSingleSettingTypeAndVersion& Delegate = FDelegate_GetConfigForSingleSettingTypeAndVersion(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetSinglePlayerIdSetting(const FRequest_GetSinglePlayerIdSetting& Request, const FDelegate_GetSinglePlayerIdSetting& Delegate = FDelegate_GetSinglePlayerIdSetting(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetSinglePlayerUuidSetting(const FRequest_GetSinglePlayerUuidSetting& Request, const FDelegate_GetSinglePlayerUuidSetting& Delegate = FDelegate_GetSinglePlayerUuidSetting(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetSinglePlayerUuidSettingSelf(const FRequest_GetSinglePlayerUuidSettingSelf& Request, const FDelegate_GetSinglePlayerUuidSettingSelf& Delegate = FDelegate_GetSinglePlayerUuidSettingSelf(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr SetSinglePlayerIdSetting(const FRequest_SetSinglePlayerIdSetting& Request, const FDelegate_SetSinglePlayerIdSetting& Delegate = FDelegate_SetSinglePlayerIdSetting(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr SetSinglePlayerUuidSetting(const FRequest_SetSinglePlayerUuidSetting& Request, const FDelegate_SetSinglePlayerUuidSetting& Delegate = FDelegate_SetSinglePlayerUuidSetting(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr SetSinglePlayerUuidSettingSelf(const FRequest_SetSinglePlayerUuidSettingSelf& Request, const FDelegate_SetSinglePlayerUuidSettingSelf& Delegate = FDelegate_SetSinglePlayerUuidSettingSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr DeleteAllPlayerIdSettingsForSettingType(const FRequest_DeleteAllPlayerIdSettingsForSettingType& Request, const FDelegate_DeleteAllPlayerIdSettingsForSettingType& Delegate = FDelegate_DeleteAllPlayerIdSettingsForSettingType(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr DeleteAllPlayerUuidSettingsForSettingType(const FRequest_DeleteAllPlayerUuidSettingsForSettingType& Request, const FDelegate_DeleteAllPlayerUuidSettingsForSettingType& Delegate = FDelegate_DeleteAllPlayerUuidSettingsForSettingType(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr DeleteAllPlayerUuidSettingsForSettingTypeSelf(const FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf& Request, const FDelegate_DeleteAllPlayerUuidSettingsForSettingTypeSelf& Delegate = FDelegate_DeleteAllPlayerUuidSettingsForSettingTypeSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr DeleteSinglePlayerIdSetting(const FRequest_DeleteSinglePlayerIdSetting& Request, const FDelegate_DeleteSinglePlayerIdSetting& Delegate = FDelegate_DeleteSinglePlayerIdSetting(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr DeleteSinglePlayerUuidSetting(const FRequest_DeleteSinglePlayerUuidSetting& Request, const FDelegate_DeleteSinglePlayerUuidSetting& Delegate = FDelegate_DeleteSinglePlayerUuidSetting(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr DeleteSinglePlayerUuidSettingSelf(const FRequest_DeleteSinglePlayerUuidSettingSelf& Request, const FDelegate_DeleteSinglePlayerUuidSettingSelf& Delegate = FDelegate_DeleteSinglePlayerUuidSettingSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetAllPlayerIdSettingsForSettingType(const FRequest_GetAllPlayerIdSettingsForSettingType& Request, const FDelegate_GetAllPlayerIdSettingsForSettingType& Delegate = FDelegate_GetAllPlayerIdSettingsForSettingType(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetAllPlayerUuidSettingsForSettingType(const FRequest_GetAllPlayerUuidSettingsForSettingType& Request, const FDelegate_GetAllPlayerUuidSettingsForSettingType& Delegate = FDelegate_GetAllPlayerUuidSettingsForSettingType(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetAllPlayerUuidSettingsForSettingTypeSelf(const FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf& Request, const FDelegate_GetAllPlayerUuidSettingsForSettingTypeSelf& Delegate = FDelegate_GetAllPlayerUuidSettingsForSettingTypeSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetConfigForAllSettingTypes(const FRequest_GetConfigForAllSettingTypes& Request, const FDelegate_GetConfigForAllSettingTypes& Delegate = FDelegate_GetConfigForAllSettingTypes(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetConfigForSingleSettingTypeAllVersions(const FRequest_GetConfigForSingleSettingTypeAllVersions& Request, const FDelegate_GetConfigForSingleSettingTypeAllVersions& Delegate = FDelegate_GetConfigForSingleSettingTypeAllVersions(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetConfigForSingleSettingTypeAndVersion(const FRequest_GetConfigForSingleSettingTypeAndVersion& Request, const FDelegate_GetConfigForSingleSettingTypeAndVersion& Delegate = FDelegate_GetConfigForSingleSettingTypeAndVersion(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetSinglePlayerIdSetting(const FRequest_GetSinglePlayerIdSetting& Request, const FDelegate_GetSinglePlayerIdSetting& Delegate = FDelegate_GetSinglePlayerIdSetting(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetSinglePlayerUuidSetting(const FRequest_GetSinglePlayerUuidSetting& Request, const FDelegate_GetSinglePlayerUuidSetting& Delegate = FDelegate_GetSinglePlayerUuidSetting(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetSinglePlayerUuidSettingSelf(const FRequest_GetSinglePlayerUuidSettingSelf& Request, const FDelegate_GetSinglePlayerUuidSettingSelf& Delegate = FDelegate_GetSinglePlayerUuidSettingSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr SetSinglePlayerIdSetting(const FRequest_SetSinglePlayerIdSetting& Request, const FDelegate_SetSinglePlayerIdSetting& Delegate = FDelegate_SetSinglePlayerIdSetting(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr SetSinglePlayerUuidSetting(const FRequest_SetSinglePlayerUuidSetting& Request, const FDelegate_SetSinglePlayerUuidSetting& Delegate = FDelegate_SetSinglePlayerUuidSetting(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr SetSinglePlayerUuidSettingSelf(const FRequest_SetSinglePlayerUuidSettingSelf& Request, const FDelegate_SetSinglePlayerUuidSettingSelf& Delegate = FDelegate_SetSinglePlayerUuidSettingSelf(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
-    void OnDeleteAllPlayerIdSettingsForSettingTypeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteAllPlayerIdSettingsForSettingType Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnDeleteAllPlayerUuidSettingsForSettingTypeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteAllPlayerUuidSettingsForSettingType Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnDeleteAllPlayerUuidSettingsForSettingTypeSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteAllPlayerUuidSettingsForSettingTypeSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnDeleteSinglePlayerIdSettingResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteSinglePlayerIdSetting Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnDeleteSinglePlayerUuidSettingResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteSinglePlayerUuidSetting Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnDeleteSinglePlayerUuidSettingSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteSinglePlayerUuidSettingSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetAllPlayerIdSettingsForSettingTypeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPlayerIdSettingsForSettingType Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetAllPlayerUuidSettingsForSettingTypeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPlayerUuidSettingsForSettingType Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetAllPlayerUuidSettingsForSettingTypeSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPlayerUuidSettingsForSettingTypeSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetConfigForAllSettingTypesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetConfigForAllSettingTypes Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetConfigForSingleSettingTypeAllVersionsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetConfigForSingleSettingTypeAllVersions Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetConfigForSingleSettingTypeAndVersionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetConfigForSingleSettingTypeAndVersion Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetSinglePlayerIdSettingResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetSinglePlayerIdSetting Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetSinglePlayerUuidSettingResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetSinglePlayerUuidSetting Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetSinglePlayerUuidSettingSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetSinglePlayerUuidSettingSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnSetSinglePlayerIdSettingResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SetSinglePlayerIdSetting Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnSetSinglePlayerUuidSettingResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SetSinglePlayerUuidSetting Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnSetSinglePlayerUuidSettingSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SetSinglePlayerUuidSettingSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnDeleteAllPlayerIdSettingsForSettingTypeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteAllPlayerIdSettingsForSettingType Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnDeleteAllPlayerUuidSettingsForSettingTypeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteAllPlayerUuidSettingsForSettingType Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnDeleteAllPlayerUuidSettingsForSettingTypeSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteAllPlayerUuidSettingsForSettingTypeSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnDeleteSinglePlayerIdSettingResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteSinglePlayerIdSetting Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnDeleteSinglePlayerUuidSettingResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteSinglePlayerUuidSetting Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnDeleteSinglePlayerUuidSettingSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteSinglePlayerUuidSettingSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetAllPlayerIdSettingsForSettingTypeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPlayerIdSettingsForSettingType Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetAllPlayerUuidSettingsForSettingTypeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPlayerUuidSettingsForSettingType Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetAllPlayerUuidSettingsForSettingTypeSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPlayerUuidSettingsForSettingTypeSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetConfigForAllSettingTypesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetConfigForAllSettingTypes Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetConfigForSingleSettingTypeAllVersionsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetConfigForSingleSettingTypeAllVersions Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetConfigForSingleSettingTypeAndVersionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetConfigForSingleSettingTypeAndVersion Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetSinglePlayerIdSettingResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetSinglePlayerIdSetting Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetSinglePlayerUuidSettingResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetSinglePlayerUuidSetting Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetSinglePlayerUuidSettingSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetSinglePlayerUuidSettingSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnSetSinglePlayerIdSettingResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SetSinglePlayerIdSetting Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnSetSinglePlayerUuidSettingResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SetSinglePlayerUuidSetting Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnSetSinglePlayerUuidSettingSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SetSinglePlayerUuidSettingSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
@@ -136,65 +136,65 @@ private:
 */
 struct RALLYHEREAPI_API FRequest_DeleteAllPlayerIdSettingsForSettingType : public FRequest
 {
-    FRequest_DeleteAllPlayerIdSettingsForSettingType();
-    virtual ~FRequest_DeleteAllPlayerIdSettingsForSettingType() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_DeleteAllPlayerIdSettingsForSettingType();
+	virtual ~FRequest_DeleteAllPlayerIdSettingsForSettingType() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    int32 PlayerId = 0;
-    FString SettingTypeId;
+	TSharedPtr<FAuthContext> AuthContext;
+	int32 PlayerId = 0;
+	FString SettingTypeId;
 };
 
 struct RALLYHEREAPI_API FResponse_DeleteAllPlayerIdSettingsForSettingType : public FResponse
 {
-    FResponse_DeleteAllPlayerIdSettingsForSettingType(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_DeleteAllPlayerIdSettingsForSettingType() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_DeleteAllPlayerIdSettingsForSettingType(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_DeleteAllPlayerIdSettingsForSettingType() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+	FRHAPI_JsonValue Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 
-    /* Response 400
-     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
-    */
-    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 400
+	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist         
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist         
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_DeleteAllPlayerIdSettingsForSettingType
 {
-    typedef FRequest_DeleteAllPlayerIdSettingsForSettingType Request;
-    typedef FResponse_DeleteAllPlayerIdSettingsForSettingType Response;
-    typedef FDelegate_DeleteAllPlayerIdSettingsForSettingType Delegate;
-    typedef FSettingsAPI API;
-    static FString Name;
+	typedef FRequest_DeleteAllPlayerIdSettingsForSettingType Request;
+	typedef FResponse_DeleteAllPlayerIdSettingsForSettingType Response;
+	typedef FDelegate_DeleteAllPlayerIdSettingsForSettingType Delegate;
+	typedef FSettingsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteAllPlayerIdSettingsForSettingType(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteAllPlayerIdSettingsForSettingType(InRequest, InDelegate, Priority); }
 };
 
 /* Delete All Player Uuid Settings For Setting Type
@@ -205,67 +205,67 @@ struct RALLYHEREAPI_API Traits_DeleteAllPlayerIdSettingsForSettingType
 */
 struct RALLYHEREAPI_API FRequest_DeleteAllPlayerUuidSettingsForSettingType : public FRequest
 {
-    FRequest_DeleteAllPlayerUuidSettingsForSettingType();
-    virtual ~FRequest_DeleteAllPlayerUuidSettingsForSettingType() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_DeleteAllPlayerUuidSettingsForSettingType();
+	virtual ~FRequest_DeleteAllPlayerUuidSettingsForSettingType() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Player to delete setting for */
-    FGuid PlayerUuid;
-    /* Setting Type to delete settings for.  Must be one of the known setting types */
-    FString SettingTypeId;
+	TSharedPtr<FAuthContext> AuthContext;
+	/* Player to delete setting for */
+	FGuid PlayerUuid;
+	/* Setting Type to delete settings for.  Must be one of the known setting types */
+	FString SettingTypeId;
 };
 
 struct RALLYHEREAPI_API FResponse_DeleteAllPlayerUuidSettingsForSettingType : public FResponse
 {
-    FResponse_DeleteAllPlayerUuidSettingsForSettingType(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_DeleteAllPlayerUuidSettingsForSettingType() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_DeleteAllPlayerUuidSettingsForSettingType(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_DeleteAllPlayerUuidSettingsForSettingType() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+	FRHAPI_JsonValue Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 
-    /* Response 400
-     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
-    */
-    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 400
+	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist         
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist         
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_DeleteAllPlayerUuidSettingsForSettingType
 {
-    typedef FRequest_DeleteAllPlayerUuidSettingsForSettingType Request;
-    typedef FResponse_DeleteAllPlayerUuidSettingsForSettingType Response;
-    typedef FDelegate_DeleteAllPlayerUuidSettingsForSettingType Delegate;
-    typedef FSettingsAPI API;
-    static FString Name;
+	typedef FRequest_DeleteAllPlayerUuidSettingsForSettingType Request;
+	typedef FResponse_DeleteAllPlayerUuidSettingsForSettingType Response;
+	typedef FDelegate_DeleteAllPlayerUuidSettingsForSettingType Delegate;
+	typedef FSettingsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteAllPlayerUuidSettingsForSettingType(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteAllPlayerUuidSettingsForSettingType(InRequest, InDelegate, Priority); }
 };
 
 /* Delete All Player Uuid Settings For Setting Type Self
@@ -276,65 +276,65 @@ struct RALLYHEREAPI_API Traits_DeleteAllPlayerUuidSettingsForSettingType
 */
 struct RALLYHEREAPI_API FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf : public FRequest
 {
-    FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf();
-    virtual ~FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf();
+	virtual ~FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Setting Type to delete settings for.  Must be one of the known setting types */
-    FString SettingTypeId;
+	TSharedPtr<FAuthContext> AuthContext;
+	/* Setting Type to delete settings for.  Must be one of the known setting types */
+	FString SettingTypeId;
 };
 
 struct RALLYHEREAPI_API FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf : public FResponse
 {
-    FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+	FRHAPI_JsonValue Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 
-    /* Response 400
-     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
-    */
-    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 400
+	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist         
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist         
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_DeleteAllPlayerUuidSettingsForSettingTypeSelf
 {
-    typedef FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf Request;
-    typedef FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf Response;
-    typedef FDelegate_DeleteAllPlayerUuidSettingsForSettingTypeSelf Delegate;
-    typedef FSettingsAPI API;
-    static FString Name;
+	typedef FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf Request;
+	typedef FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf Response;
+	typedef FDelegate_DeleteAllPlayerUuidSettingsForSettingTypeSelf Delegate;
+	typedef FSettingsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteAllPlayerUuidSettingsForSettingTypeSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteAllPlayerUuidSettingsForSettingTypeSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Delete Single Player Id Setting
@@ -347,69 +347,69 @@ struct RALLYHEREAPI_API Traits_DeleteAllPlayerUuidSettingsForSettingTypeSelf
 */
 struct RALLYHEREAPI_API FRequest_DeleteSinglePlayerIdSetting : public FRequest
 {
-    FRequest_DeleteSinglePlayerIdSetting();
-    virtual ~FRequest_DeleteSinglePlayerIdSetting() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_DeleteSinglePlayerIdSetting();
+	virtual ~FRequest_DeleteSinglePlayerIdSetting() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Player to delete setting for */
-    int32 PlayerId = 0;
-    /* Setting Type to delete settings for.  Must be one of the known setting types */
-    FString SettingTypeId;
-    /* Setting Key to delete setting for */
-    FString Key;
+	TSharedPtr<FAuthContext> AuthContext;
+	/* Player to delete setting for */
+	int32 PlayerId = 0;
+	/* Setting Type to delete settings for.  Must be one of the known setting types */
+	FString SettingTypeId;
+	/* Setting Key to delete setting for */
+	FString Key;
 };
 
 struct RALLYHEREAPI_API FResponse_DeleteSinglePlayerIdSetting : public FResponse
 {
-    FResponse_DeleteSinglePlayerIdSetting(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_DeleteSinglePlayerIdSetting() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_DeleteSinglePlayerIdSetting(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_DeleteSinglePlayerIdSetting() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+	FRHAPI_JsonValue Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 
-    /* Response 400
-     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
-    */
-    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 400
+	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist         
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist         
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_DeleteSinglePlayerIdSetting
 {
-    typedef FRequest_DeleteSinglePlayerIdSetting Request;
-    typedef FResponse_DeleteSinglePlayerIdSetting Response;
-    typedef FDelegate_DeleteSinglePlayerIdSetting Delegate;
-    typedef FSettingsAPI API;
-    static FString Name;
+	typedef FRequest_DeleteSinglePlayerIdSetting Request;
+	typedef FResponse_DeleteSinglePlayerIdSetting Response;
+	typedef FDelegate_DeleteSinglePlayerIdSetting Delegate;
+	typedef FSettingsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteSinglePlayerIdSetting(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteSinglePlayerIdSetting(InRequest, InDelegate, Priority); }
 };
 
 /* Delete Single Player Uuid Setting
@@ -420,69 +420,69 @@ struct RALLYHEREAPI_API Traits_DeleteSinglePlayerIdSetting
 */
 struct RALLYHEREAPI_API FRequest_DeleteSinglePlayerUuidSetting : public FRequest
 {
-    FRequest_DeleteSinglePlayerUuidSetting();
-    virtual ~FRequest_DeleteSinglePlayerUuidSetting() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_DeleteSinglePlayerUuidSetting();
+	virtual ~FRequest_DeleteSinglePlayerUuidSetting() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Player to delete setting for */
-    FGuid PlayerUuid;
-    /* Setting Type to delete settings for.  Must be one of the known setting types */
-    FString SettingTypeId;
-    /* Setting Key to delete setting for */
-    FString Key;
+	TSharedPtr<FAuthContext> AuthContext;
+	/* Player to delete setting for */
+	FGuid PlayerUuid;
+	/* Setting Type to delete settings for.  Must be one of the known setting types */
+	FString SettingTypeId;
+	/* Setting Key to delete setting for */
+	FString Key;
 };
 
 struct RALLYHEREAPI_API FResponse_DeleteSinglePlayerUuidSetting : public FResponse
 {
-    FResponse_DeleteSinglePlayerUuidSetting(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_DeleteSinglePlayerUuidSetting() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_DeleteSinglePlayerUuidSetting(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_DeleteSinglePlayerUuidSetting() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+	FRHAPI_JsonValue Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 
-    /* Response 400
-     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
-    */
-    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 400
+	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist         
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist         
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_DeleteSinglePlayerUuidSetting
 {
-    typedef FRequest_DeleteSinglePlayerUuidSetting Request;
-    typedef FResponse_DeleteSinglePlayerUuidSetting Response;
-    typedef FDelegate_DeleteSinglePlayerUuidSetting Delegate;
-    typedef FSettingsAPI API;
-    static FString Name;
+	typedef FRequest_DeleteSinglePlayerUuidSetting Request;
+	typedef FResponse_DeleteSinglePlayerUuidSetting Response;
+	typedef FDelegate_DeleteSinglePlayerUuidSetting Delegate;
+	typedef FSettingsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteSinglePlayerUuidSetting(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteSinglePlayerUuidSetting(InRequest, InDelegate, Priority); }
 };
 
 /* Delete Single Player Uuid Setting Self
@@ -493,67 +493,67 @@ struct RALLYHEREAPI_API Traits_DeleteSinglePlayerUuidSetting
 */
 struct RALLYHEREAPI_API FRequest_DeleteSinglePlayerUuidSettingSelf : public FRequest
 {
-    FRequest_DeleteSinglePlayerUuidSettingSelf();
-    virtual ~FRequest_DeleteSinglePlayerUuidSettingSelf() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_DeleteSinglePlayerUuidSettingSelf();
+	virtual ~FRequest_DeleteSinglePlayerUuidSettingSelf() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Setting Type to delete settings for.  Must be one of the known setting types */
-    FString SettingTypeId;
-    /* Setting Key to delete setting for */
-    FString Key;
+	TSharedPtr<FAuthContext> AuthContext;
+	/* Setting Type to delete settings for.  Must be one of the known setting types */
+	FString SettingTypeId;
+	/* Setting Key to delete setting for */
+	FString Key;
 };
 
 struct RALLYHEREAPI_API FResponse_DeleteSinglePlayerUuidSettingSelf : public FResponse
 {
-    FResponse_DeleteSinglePlayerUuidSettingSelf(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_DeleteSinglePlayerUuidSettingSelf() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_DeleteSinglePlayerUuidSettingSelf(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_DeleteSinglePlayerUuidSettingSelf() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+	FRHAPI_JsonValue Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 
-    /* Response 400
-     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
-    */
-    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 400
+	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist         
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist         
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_DeleteSinglePlayerUuidSettingSelf
 {
-    typedef FRequest_DeleteSinglePlayerUuidSettingSelf Request;
-    typedef FResponse_DeleteSinglePlayerUuidSettingSelf Response;
-    typedef FDelegate_DeleteSinglePlayerUuidSettingSelf Delegate;
-    typedef FSettingsAPI API;
-    static FString Name;
+	typedef FRequest_DeleteSinglePlayerUuidSettingSelf Request;
+	typedef FResponse_DeleteSinglePlayerUuidSettingSelf Response;
+	typedef FDelegate_DeleteSinglePlayerUuidSettingSelf Delegate;
+	typedef FSettingsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteSinglePlayerUuidSettingSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteSinglePlayerUuidSettingSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get All Player Id Settings For Setting Type
@@ -566,69 +566,69 @@ struct RALLYHEREAPI_API Traits_DeleteSinglePlayerUuidSettingSelf
 */
 struct RALLYHEREAPI_API FRequest_GetAllPlayerIdSettingsForSettingType : public FRequest
 {
-    FRequest_GetAllPlayerIdSettingsForSettingType();
-    virtual ~FRequest_GetAllPlayerIdSettingsForSettingType() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetAllPlayerIdSettingsForSettingType();
+	virtual ~FRequest_GetAllPlayerIdSettingsForSettingType() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Player to get settings for */
-    int32 PlayerId = 0;
-    /* Setting Type to get settings for. Must be one of the known setting types */
-    FString SettingTypeId;
-    /* Setting Key to get settings for. If not specified, all settings for the setting type will be returned */
-    TOptional<TArray<FString>> Key;
+	TSharedPtr<FAuthContext> AuthContext;
+	/* Player to get settings for */
+	int32 PlayerId = 0;
+	/* Setting Type to get settings for. Must be one of the known setting types */
+	FString SettingTypeId;
+	/* Setting Key to get settings for. If not specified, all settings for the setting type will be returned */
+	TOptional<TArray<FString>> Key;
 };
 
 struct RALLYHEREAPI_API FResponse_GetAllPlayerIdSettingsForSettingType : public FResponse
 {
-    FResponse_GetAllPlayerIdSettingsForSettingType(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetAllPlayerIdSettingsForSettingType() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetAllPlayerIdSettingsForSettingType(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetAllPlayerIdSettingsForSettingType() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    TMap<FString, FRHAPI_SettingData> Content;
+	TMap<FString, FRHAPI_SettingData> Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
 
-    /* Response 400
-     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
-    */
-    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 400
+	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found         
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found         
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetAllPlayerIdSettingsForSettingType
 {
-    typedef FRequest_GetAllPlayerIdSettingsForSettingType Request;
-    typedef FResponse_GetAllPlayerIdSettingsForSettingType Response;
-    typedef FDelegate_GetAllPlayerIdSettingsForSettingType Delegate;
-    typedef FSettingsAPI API;
-    static FString Name;
+	typedef FRequest_GetAllPlayerIdSettingsForSettingType Request;
+	typedef FResponse_GetAllPlayerIdSettingsForSettingType Response;
+	typedef FDelegate_GetAllPlayerIdSettingsForSettingType Delegate;
+	typedef FSettingsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllPlayerIdSettingsForSettingType(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllPlayerIdSettingsForSettingType(InRequest, InDelegate, Priority); }
 };
 
 /* Get All Player Uuid Settings For Setting Type
@@ -639,69 +639,69 @@ struct RALLYHEREAPI_API Traits_GetAllPlayerIdSettingsForSettingType
 */
 struct RALLYHEREAPI_API FRequest_GetAllPlayerUuidSettingsForSettingType : public FRequest
 {
-    FRequest_GetAllPlayerUuidSettingsForSettingType();
-    virtual ~FRequest_GetAllPlayerUuidSettingsForSettingType() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetAllPlayerUuidSettingsForSettingType();
+	virtual ~FRequest_GetAllPlayerUuidSettingsForSettingType() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Player to get settings for */
-    FGuid PlayerUuid;
-    /* Setting Type to get settings for. Must be one of the known setting types */
-    FString SettingTypeId;
-    /* Setting Key to get settings for. If not specified, all settings for the setting type will be returned */
-    TOptional<TArray<FString>> Key;
+	TSharedPtr<FAuthContext> AuthContext;
+	/* Player to get settings for */
+	FGuid PlayerUuid;
+	/* Setting Type to get settings for. Must be one of the known setting types */
+	FString SettingTypeId;
+	/* Setting Key to get settings for. If not specified, all settings for the setting type will be returned */
+	TOptional<TArray<FString>> Key;
 };
 
 struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidSettingsForSettingType : public FResponse
 {
-    FResponse_GetAllPlayerUuidSettingsForSettingType(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetAllPlayerUuidSettingsForSettingType() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetAllPlayerUuidSettingsForSettingType(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetAllPlayerUuidSettingsForSettingType() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    TMap<FString, FRHAPI_SettingData> Content;
+	TMap<FString, FRHAPI_SettingData> Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
 
-    /* Response 400
-     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
-    */
-    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 400
+	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found         
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found         
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetAllPlayerUuidSettingsForSettingType
 {
-    typedef FRequest_GetAllPlayerUuidSettingsForSettingType Request;
-    typedef FResponse_GetAllPlayerUuidSettingsForSettingType Response;
-    typedef FDelegate_GetAllPlayerUuidSettingsForSettingType Delegate;
-    typedef FSettingsAPI API;
-    static FString Name;
+	typedef FRequest_GetAllPlayerUuidSettingsForSettingType Request;
+	typedef FResponse_GetAllPlayerUuidSettingsForSettingType Response;
+	typedef FDelegate_GetAllPlayerUuidSettingsForSettingType Delegate;
+	typedef FSettingsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllPlayerUuidSettingsForSettingType(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllPlayerUuidSettingsForSettingType(InRequest, InDelegate, Priority); }
 };
 
 /* Get All Player Uuid Settings For Setting Type Self
@@ -712,67 +712,67 @@ struct RALLYHEREAPI_API Traits_GetAllPlayerUuidSettingsForSettingType
 */
 struct RALLYHEREAPI_API FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf : public FRequest
 {
-    FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf();
-    virtual ~FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf();
+	virtual ~FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Setting Type to get settings for. Must be one of the known setting types */
-    FString SettingTypeId;
-    /* Setting Key to get settings for. If not specified, all settings for the setting type will be returned */
-    TOptional<TArray<FString>> Key;
+	TSharedPtr<FAuthContext> AuthContext;
+	/* Setting Type to get settings for. Must be one of the known setting types */
+	FString SettingTypeId;
+	/* Setting Key to get settings for. If not specified, all settings for the setting type will be returned */
+	TOptional<TArray<FString>> Key;
 };
 
 struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf : public FResponse
 {
-    FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    TMap<FString, FRHAPI_SettingData> Content;
+	TMap<FString, FRHAPI_SettingData> Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
 
-    /* Response 400
-     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
-    */
-    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 400
+	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found         
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found         
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetAllPlayerUuidSettingsForSettingTypeSelf
 {
-    typedef FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf Request;
-    typedef FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf Response;
-    typedef FDelegate_GetAllPlayerUuidSettingsForSettingTypeSelf Delegate;
-    typedef FSettingsAPI API;
-    static FString Name;
+	typedef FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf Request;
+	typedef FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf Response;
+	typedef FDelegate_GetAllPlayerUuidSettingsForSettingTypeSelf Delegate;
+	typedef FSettingsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllPlayerUuidSettingsForSettingTypeSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllPlayerUuidSettingsForSettingTypeSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Config For All Setting Types
@@ -783,43 +783,43 @@ struct RALLYHEREAPI_API Traits_GetAllPlayerUuidSettingsForSettingTypeSelf
 */
 struct RALLYHEREAPI_API FRequest_GetConfigForAllSettingTypes : public FRequest
 {
-    FRequest_GetConfigForAllSettingTypes();
-    virtual ~FRequest_GetConfigForAllSettingTypes() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetConfigForAllSettingTypes();
+	virtual ~FRequest_GetConfigForAllSettingTypes() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
+	TSharedPtr<FAuthContext> AuthContext;
 };
 
 struct RALLYHEREAPI_API FResponse_GetConfigForAllSettingTypes : public FResponse
 {
-    FResponse_GetConfigForAllSettingTypes(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetConfigForAllSettingTypes() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetConfigForAllSettingTypes(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetConfigForAllSettingTypes() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    TMap<FString, FRHAPI_SettingType> Content;
+	TMap<FString, FRHAPI_SettingType> Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(TMap<FString, FRHAPI_SettingType>& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(TMap<FString, FRHAPI_SettingType>& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetConfigForAllSettingTypes
 {
-    typedef FRequest_GetConfigForAllSettingTypes Request;
-    typedef FResponse_GetConfigForAllSettingTypes Response;
-    typedef FDelegate_GetConfigForAllSettingTypes Delegate;
-    typedef FSettingsAPI API;
-    static FString Name;
+	typedef FRequest_GetConfigForAllSettingTypes Request;
+	typedef FResponse_GetConfigForAllSettingTypes Response;
+	typedef FDelegate_GetConfigForAllSettingTypes Delegate;
+	typedef FSettingsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetConfigForAllSettingTypes(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetConfigForAllSettingTypes(InRequest, InDelegate, Priority); }
 };
 
 /* Get Config For Single Setting Type All Versions
@@ -830,59 +830,59 @@ struct RALLYHEREAPI_API Traits_GetConfigForAllSettingTypes
 */
 struct RALLYHEREAPI_API FRequest_GetConfigForSingleSettingTypeAllVersions : public FRequest
 {
-    FRequest_GetConfigForSingleSettingTypeAllVersions();
-    virtual ~FRequest_GetConfigForSingleSettingTypeAllVersions() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetConfigForSingleSettingTypeAllVersions();
+	virtual ~FRequest_GetConfigForSingleSettingTypeAllVersions() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString SettingTypeId;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString SettingTypeId;
 };
 
 struct RALLYHEREAPI_API FResponse_GetConfigForSingleSettingTypeAllVersions : public FResponse
 {
-    FResponse_GetConfigForSingleSettingTypeAllVersions(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetConfigForSingleSettingTypeAllVersions() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetConfigForSingleSettingTypeAllVersions(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetConfigForSingleSettingTypeAllVersions() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    TMap<FString, FRHAPI_SettingTypeVersion> Content;
+	TMap<FString, FRHAPI_SettingTypeVersion> Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(TMap<FString, FRHAPI_SettingTypeVersion>& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(TMap<FString, FRHAPI_SettingTypeVersion>& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found         
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found         
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetConfigForSingleSettingTypeAllVersions
 {
-    typedef FRequest_GetConfigForSingleSettingTypeAllVersions Request;
-    typedef FResponse_GetConfigForSingleSettingTypeAllVersions Response;
-    typedef FDelegate_GetConfigForSingleSettingTypeAllVersions Delegate;
-    typedef FSettingsAPI API;
-    static FString Name;
+	typedef FRequest_GetConfigForSingleSettingTypeAllVersions Request;
+	typedef FResponse_GetConfigForSingleSettingTypeAllVersions Response;
+	typedef FDelegate_GetConfigForSingleSettingTypeAllVersions Delegate;
+	typedef FSettingsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetConfigForSingleSettingTypeAllVersions(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetConfigForSingleSettingTypeAllVersions(InRequest, InDelegate, Priority); }
 };
 
 /* Get Config For Single Setting Type And Version
@@ -891,60 +891,60 @@ struct RALLYHEREAPI_API Traits_GetConfigForSingleSettingTypeAllVersions
 */
 struct RALLYHEREAPI_API FRequest_GetConfigForSingleSettingTypeAndVersion : public FRequest
 {
-    FRequest_GetConfigForSingleSettingTypeAndVersion();
-    virtual ~FRequest_GetConfigForSingleSettingTypeAndVersion() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetConfigForSingleSettingTypeAndVersion();
+	virtual ~FRequest_GetConfigForSingleSettingTypeAndVersion() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString SettingTypeId;
-    int32 SettingVersionId = 0;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString SettingTypeId;
+	int32 SettingVersionId = 0;
 };
 
 struct RALLYHEREAPI_API FResponse_GetConfigForSingleSettingTypeAndVersion : public FResponse
 {
-    FResponse_GetConfigForSingleSettingTypeAndVersion(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetConfigForSingleSettingTypeAndVersion() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetConfigForSingleSettingTypeAndVersion(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetConfigForSingleSettingTypeAndVersion() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_SettingTypeVersion Content;
+	FRHAPI_SettingTypeVersion Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_SettingTypeVersion& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_SettingTypeVersion& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `setting_version_id_not_found` - The setting Version was not found for that type         
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `setting_version_id_not_found` - The setting Version was not found for that type         
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetConfigForSingleSettingTypeAndVersion
 {
-    typedef FRequest_GetConfigForSingleSettingTypeAndVersion Request;
-    typedef FResponse_GetConfigForSingleSettingTypeAndVersion Response;
-    typedef FDelegate_GetConfigForSingleSettingTypeAndVersion Delegate;
-    typedef FSettingsAPI API;
-    static FString Name;
+	typedef FRequest_GetConfigForSingleSettingTypeAndVersion Request;
+	typedef FResponse_GetConfigForSingleSettingTypeAndVersion Response;
+	typedef FDelegate_GetConfigForSingleSettingTypeAndVersion Delegate;
+	typedef FSettingsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetConfigForSingleSettingTypeAndVersion(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetConfigForSingleSettingTypeAndVersion(InRequest, InDelegate, Priority); }
 };
 
 /* Get Single Player Id Setting
@@ -957,69 +957,69 @@ struct RALLYHEREAPI_API Traits_GetConfigForSingleSettingTypeAndVersion
 */
 struct RALLYHEREAPI_API FRequest_GetSinglePlayerIdSetting : public FRequest
 {
-    FRequest_GetSinglePlayerIdSetting();
-    virtual ~FRequest_GetSinglePlayerIdSetting() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetSinglePlayerIdSetting();
+	virtual ~FRequest_GetSinglePlayerIdSetting() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Player to get settings for */
-    int32 PlayerId = 0;
-    /* Setting Type to get settings for. Must be one of the known setting types */
-    FString SettingTypeId;
-    /* Setting Key to get settings for */
-    FString Key;
+	TSharedPtr<FAuthContext> AuthContext;
+	/* Player to get settings for */
+	int32 PlayerId = 0;
+	/* Setting Type to get settings for. Must be one of the known setting types */
+	FString SettingTypeId;
+	/* Setting Key to get settings for */
+	FString Key;
 };
 
 struct RALLYHEREAPI_API FResponse_GetSinglePlayerIdSetting : public FResponse
 {
-    FResponse_GetSinglePlayerIdSetting(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetSinglePlayerIdSetting() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetSinglePlayerIdSetting(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetSinglePlayerIdSetting() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_SettingData Content;
+	FRHAPI_SettingData Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_SettingData& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_SettingData& OutContent) const;
 
-    /* Response 400
-     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
-    */
-    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 400
+	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `not_found` - The setting key was not found         
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `not_found` - The setting key was not found         
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetSinglePlayerIdSetting
 {
-    typedef FRequest_GetSinglePlayerIdSetting Request;
-    typedef FResponse_GetSinglePlayerIdSetting Response;
-    typedef FDelegate_GetSinglePlayerIdSetting Delegate;
-    typedef FSettingsAPI API;
-    static FString Name;
+	typedef FRequest_GetSinglePlayerIdSetting Request;
+	typedef FResponse_GetSinglePlayerIdSetting Response;
+	typedef FDelegate_GetSinglePlayerIdSetting Delegate;
+	typedef FSettingsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetSinglePlayerIdSetting(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetSinglePlayerIdSetting(InRequest, InDelegate, Priority); }
 };
 
 /* Get Single Player Uuid Setting
@@ -1030,69 +1030,69 @@ struct RALLYHEREAPI_API Traits_GetSinglePlayerIdSetting
 */
 struct RALLYHEREAPI_API FRequest_GetSinglePlayerUuidSetting : public FRequest
 {
-    FRequest_GetSinglePlayerUuidSetting();
-    virtual ~FRequest_GetSinglePlayerUuidSetting() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetSinglePlayerUuidSetting();
+	virtual ~FRequest_GetSinglePlayerUuidSetting() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Player to get settings for */
-    FGuid PlayerUuid;
-    /* Setting Type to get settings for. Must be one of the known setting types */
-    FString SettingTypeId;
-    /* Setting Key to get settings for */
-    FString Key;
+	TSharedPtr<FAuthContext> AuthContext;
+	/* Player to get settings for */
+	FGuid PlayerUuid;
+	/* Setting Type to get settings for. Must be one of the known setting types */
+	FString SettingTypeId;
+	/* Setting Key to get settings for */
+	FString Key;
 };
 
 struct RALLYHEREAPI_API FResponse_GetSinglePlayerUuidSetting : public FResponse
 {
-    FResponse_GetSinglePlayerUuidSetting(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetSinglePlayerUuidSetting() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetSinglePlayerUuidSetting(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetSinglePlayerUuidSetting() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_SettingData Content;
+	FRHAPI_SettingData Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_SettingData& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_SettingData& OutContent) const;
 
-    /* Response 400
-     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
-    */
-    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 400
+	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `not_found` - The setting key was not found         
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `not_found` - The setting key was not found         
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetSinglePlayerUuidSetting
 {
-    typedef FRequest_GetSinglePlayerUuidSetting Request;
-    typedef FResponse_GetSinglePlayerUuidSetting Response;
-    typedef FDelegate_GetSinglePlayerUuidSetting Delegate;
-    typedef FSettingsAPI API;
-    static FString Name;
+	typedef FRequest_GetSinglePlayerUuidSetting Request;
+	typedef FResponse_GetSinglePlayerUuidSetting Response;
+	typedef FDelegate_GetSinglePlayerUuidSetting Delegate;
+	typedef FSettingsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetSinglePlayerUuidSetting(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetSinglePlayerUuidSetting(InRequest, InDelegate, Priority); }
 };
 
 /* Get Single Player Uuid Setting Self
@@ -1103,67 +1103,67 @@ struct RALLYHEREAPI_API Traits_GetSinglePlayerUuidSetting
 */
 struct RALLYHEREAPI_API FRequest_GetSinglePlayerUuidSettingSelf : public FRequest
 {
-    FRequest_GetSinglePlayerUuidSettingSelf();
-    virtual ~FRequest_GetSinglePlayerUuidSettingSelf() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetSinglePlayerUuidSettingSelf();
+	virtual ~FRequest_GetSinglePlayerUuidSettingSelf() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Setting Type to get settings for. Must be one of the known setting types */
-    FString SettingTypeId;
-    /* Setting Key to get settings for */
-    FString Key;
+	TSharedPtr<FAuthContext> AuthContext;
+	/* Setting Type to get settings for. Must be one of the known setting types */
+	FString SettingTypeId;
+	/* Setting Key to get settings for */
+	FString Key;
 };
 
 struct RALLYHEREAPI_API FResponse_GetSinglePlayerUuidSettingSelf : public FResponse
 {
-    FResponse_GetSinglePlayerUuidSettingSelf(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetSinglePlayerUuidSettingSelf() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetSinglePlayerUuidSettingSelf(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetSinglePlayerUuidSettingSelf() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_SettingData Content;
+	FRHAPI_SettingData Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_SettingData& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_SettingData& OutContent) const;
 
-    /* Response 400
-     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
-    */
-    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 400
+	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `not_found` - The setting key was not found         
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `not_found` - The setting key was not found         
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetSinglePlayerUuidSettingSelf
 {
-    typedef FRequest_GetSinglePlayerUuidSettingSelf Request;
-    typedef FResponse_GetSinglePlayerUuidSettingSelf Response;
-    typedef FDelegate_GetSinglePlayerUuidSettingSelf Delegate;
-    typedef FSettingsAPI API;
-    static FString Name;
+	typedef FRequest_GetSinglePlayerUuidSettingSelf Request;
+	typedef FResponse_GetSinglePlayerUuidSettingSelf Response;
+	typedef FDelegate_GetSinglePlayerUuidSettingSelf Delegate;
+	typedef FSettingsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetSinglePlayerUuidSettingSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetSinglePlayerUuidSettingSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Set Single Player Id Setting
@@ -1182,75 +1182,75 @@ struct RALLYHEREAPI_API Traits_GetSinglePlayerUuidSettingSelf
 */
 struct RALLYHEREAPI_API FRequest_SetSinglePlayerIdSetting : public FRequest
 {
-    FRequest_SetSinglePlayerIdSetting();
-    virtual ~FRequest_SetSinglePlayerIdSetting() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_SetSinglePlayerIdSetting();
+	virtual ~FRequest_SetSinglePlayerIdSetting() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Player to update setting for */
-    int32 PlayerId = 0;
-    /* Setting Type to update settings for. Must be one of the known setting types */
-    FString SettingTypeId;
-    /* Setting Key to update setting for.  Must conform to the setting type key format */
-    FString Key;
-    FRHAPI_SetSinglePlayerSettingRequest SetSinglePlayerSettingRequest;
+	TSharedPtr<FAuthContext> AuthContext;
+	/* Player to update setting for */
+	int32 PlayerId = 0;
+	/* Setting Type to update settings for. Must be one of the known setting types */
+	FString SettingTypeId;
+	/* Setting Key to update setting for.  Must conform to the setting type key format */
+	FString Key;
+	FRHAPI_SetSinglePlayerSettingRequest SetSinglePlayerSettingRequest;
 };
 
 struct RALLYHEREAPI_API FResponse_SetSinglePlayerIdSetting : public FResponse
 {
-    FResponse_SetSinglePlayerIdSetting(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_SetSinglePlayerIdSetting() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_SetSinglePlayerIdSetting(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_SetSinglePlayerIdSetting() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    TMap<FString, FRHAPI_SettingData> Content;
+	TMap<FString, FRHAPI_SettingData> Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
 
-    /* Response 400
-     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator - `setting_version_invalid` - Setting Version is not valid for the provided type - `update_not_enabled` - Setting Type Version has updates disabled - `setting_key_invalid` - Setting Key does not meet requirements for that type/version - `setting_value_invalid` - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details 
-    */
-    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 400
+	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator - `setting_version_invalid` - Setting Version is not valid for the provided type - `update_not_enabled` - Setting Type Version has updates disabled - `setting_key_invalid` - Setting Key does not meet requirements for that type/version - `setting_value_invalid` - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist - This will only occur for legacy setting types.         
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist - This will only occur for legacy setting types.         
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
-    /* Response 500
-     Error Codes: - `setting_type_version_schema_invalid` - Setting type/version jsonschema is invalid and could not be used to validate the setting value.  See response description for more details.         
-    */
-    bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 500
+	 Error Codes: - `setting_type_version_schema_invalid` - Setting type/version jsonschema is invalid and could not be used to validate the setting value.  See response description for more details.         
+	*/
+	bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_SetSinglePlayerIdSetting
 {
-    typedef FRequest_SetSinglePlayerIdSetting Request;
-    typedef FResponse_SetSinglePlayerIdSetting Response;
-    typedef FDelegate_SetSinglePlayerIdSetting Delegate;
-    typedef FSettingsAPI API;
-    static FString Name;
+	typedef FRequest_SetSinglePlayerIdSetting Request;
+	typedef FResponse_SetSinglePlayerIdSetting Response;
+	typedef FDelegate_SetSinglePlayerIdSetting Delegate;
+	typedef FSettingsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.SetSinglePlayerIdSetting(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.SetSinglePlayerIdSetting(InRequest, InDelegate, Priority); }
 };
 
 /* Set Single Player Uuid Setting
@@ -1267,75 +1267,75 @@ struct RALLYHEREAPI_API Traits_SetSinglePlayerIdSetting
 */
 struct RALLYHEREAPI_API FRequest_SetSinglePlayerUuidSetting : public FRequest
 {
-    FRequest_SetSinglePlayerUuidSetting();
-    virtual ~FRequest_SetSinglePlayerUuidSetting() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_SetSinglePlayerUuidSetting();
+	virtual ~FRequest_SetSinglePlayerUuidSetting() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Player to update setting for */
-    FGuid PlayerUuid;
-    /* Setting Type to update settings for. Must be one of the known setting types */
-    FString SettingTypeId;
-    /* Setting Key to update setting for.  Must conform to the setting type key format */
-    FString Key;
-    FRHAPI_SetSinglePlayerSettingRequest SetSinglePlayerSettingRequest;
+	TSharedPtr<FAuthContext> AuthContext;
+	/* Player to update setting for */
+	FGuid PlayerUuid;
+	/* Setting Type to update settings for. Must be one of the known setting types */
+	FString SettingTypeId;
+	/* Setting Key to update setting for.  Must conform to the setting type key format */
+	FString Key;
+	FRHAPI_SetSinglePlayerSettingRequest SetSinglePlayerSettingRequest;
 };
 
 struct RALLYHEREAPI_API FResponse_SetSinglePlayerUuidSetting : public FResponse
 {
-    FResponse_SetSinglePlayerUuidSetting(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_SetSinglePlayerUuidSetting() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_SetSinglePlayerUuidSetting(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_SetSinglePlayerUuidSetting() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    TMap<FString, FRHAPI_SettingData> Content;
+	TMap<FString, FRHAPI_SettingData> Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
 
-    /* Response 400
-     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator - `setting_version_invalid` - Setting Version is not valid for the provided type - `update_not_enabled` - Setting Type Version has updates disabled - `setting_key_invalid` - Setting Key does not meet requirements for that type/version - `setting_value_invalid` - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details 
-    */
-    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 400
+	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator - `setting_version_invalid` - Setting Version is not valid for the provided type - `update_not_enabled` - Setting Type Version has updates disabled - `setting_key_invalid` - Setting Key does not meet requirements for that type/version - `setting_value_invalid` - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist - This will only occur for legacy setting types.         
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist - This will only occur for legacy setting types.         
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
-    /* Response 500
-     Error Codes: - `setting_type_version_schema_invalid` - Setting type/version jsonschema is invalid and could not be used to validate the setting value.  See response description for more details.         
-    */
-    bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 500
+	 Error Codes: - `setting_type_version_schema_invalid` - Setting type/version jsonschema is invalid and could not be used to validate the setting value.  See response description for more details.         
+	*/
+	bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_SetSinglePlayerUuidSetting
 {
-    typedef FRequest_SetSinglePlayerUuidSetting Request;
-    typedef FResponse_SetSinglePlayerUuidSetting Response;
-    typedef FDelegate_SetSinglePlayerUuidSetting Delegate;
-    typedef FSettingsAPI API;
-    static FString Name;
+	typedef FRequest_SetSinglePlayerUuidSetting Request;
+	typedef FResponse_SetSinglePlayerUuidSetting Response;
+	typedef FDelegate_SetSinglePlayerUuidSetting Delegate;
+	typedef FSettingsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.SetSinglePlayerUuidSetting(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.SetSinglePlayerUuidSetting(InRequest, InDelegate, Priority); }
 };
 
 /* Set Single Player Uuid Setting Self
@@ -1352,73 +1352,73 @@ struct RALLYHEREAPI_API Traits_SetSinglePlayerUuidSetting
 */
 struct RALLYHEREAPI_API FRequest_SetSinglePlayerUuidSettingSelf : public FRequest
 {
-    FRequest_SetSinglePlayerUuidSettingSelf();
-    virtual ~FRequest_SetSinglePlayerUuidSettingSelf() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_SetSinglePlayerUuidSettingSelf();
+	virtual ~FRequest_SetSinglePlayerUuidSettingSelf() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Setting Type to update settings for. Must be one of the known setting types */
-    FString SettingTypeId;
-    /* Setting Key to update setting for.  Must conform to the setting type key format */
-    FString Key;
-    FRHAPI_SetSinglePlayerSettingRequest SetSinglePlayerSettingRequest;
+	TSharedPtr<FAuthContext> AuthContext;
+	/* Setting Type to update settings for. Must be one of the known setting types */
+	FString SettingTypeId;
+	/* Setting Key to update setting for.  Must conform to the setting type key format */
+	FString Key;
+	FRHAPI_SetSinglePlayerSettingRequest SetSinglePlayerSettingRequest;
 };
 
 struct RALLYHEREAPI_API FResponse_SetSinglePlayerUuidSettingSelf : public FResponse
 {
-    FResponse_SetSinglePlayerUuidSettingSelf(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_SetSinglePlayerUuidSettingSelf() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_SetSinglePlayerUuidSettingSelf(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_SetSinglePlayerUuidSettingSelf() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    TMap<FString, FRHAPI_SettingData> Content;
+	TMap<FString, FRHAPI_SettingData> Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
 
-    /* Response 400
-     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator - `setting_version_invalid` - Setting Version is not valid for the provided type - `update_not_enabled` - Setting Type Version has updates disabled - `setting_key_invalid` - Setting Key does not meet requirements for that type/version - `setting_value_invalid` - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details 
-    */
-    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 400
+	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator - `setting_version_invalid` - Setting Version is not valid for the provided type - `update_not_enabled` - Setting Type Version has updates disabled - `setting_key_invalid` - Setting Key does not meet requirements for that type/version - `setting_value_invalid` - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist - This will only occur for legacy setting types.         
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist - This will only occur for legacy setting types.         
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
-    /* Response 500
-     Error Codes: - `setting_type_version_schema_invalid` - Setting type/version jsonschema is invalid and could not be used to validate the setting value.  See response description for more details.         
-    */
-    bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 500
+	 Error Codes: - `setting_type_version_schema_invalid` - Setting type/version jsonschema is invalid and could not be used to validate the setting value.  See response description for more details.         
+	*/
+	bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_SetSinglePlayerUuidSettingSelf
 {
-    typedef FRequest_SetSinglePlayerUuidSettingSelf Request;
-    typedef FResponse_SetSinglePlayerUuidSettingSelf Response;
-    typedef FDelegate_SetSinglePlayerUuidSettingSelf Delegate;
-    typedef FSettingsAPI API;
-    static FString Name;
+	typedef FRequest_SetSinglePlayerUuidSettingSelf Request;
+	typedef FResponse_SetSinglePlayerUuidSettingSelf Response;
+	typedef FDelegate_SetSinglePlayerUuidSettingSelf Delegate;
+	typedef FSettingsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.SetSinglePlayerUuidSettingSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.SetSinglePlayerUuidSettingSelf(InRequest, InDelegate, Priority); }
 };
 
 

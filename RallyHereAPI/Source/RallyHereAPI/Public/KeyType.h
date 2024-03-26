@@ -21,33 +21,33 @@
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_KeyType : public FRHAPI_Model
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    /**
-    * @brief Fills this object with data from the passed in JSON
-    *
-    * @param [in] JsonValue Data from the API call.
-    *
-    * @return true if parsing of the JSON data was successful.
-    */
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	/**
+	* @brief Fills this object with data from the passed in JSON
+	*
+	* @param [in] JsonValue Data from the API call.
+	*
+	* @return true if parsing of the JSON data was successful.
+	*/
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
-    /**
-    * @brief Writes the data from this object into the specified JSON Writer stream
-    *
-    * @param [in] Writer JSON Writer stream to push .
-    */
-    void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	/**
+	* @brief Writes the data from this object into the specified JSON Writer stream
+	*
+	* @param [in] Writer JSON Writer stream to push .
+	*/
+	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief The type of key */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FString Type{  };
-    /** @brief Gets the value of Type */
-    FString& GetType() { return Type; }
-    /** @brief Gets the value of Type */
-    const FString& GetType() const { return Type; }
-    /** @brief Sets the value of Type */
-    void SetType(FString NewValue) { Type = NewValue;  }
+	/** @brief The type of key */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Type{  };
+	/** @brief Gets the value of Type */
+	FString& GetType() { return Type; }
+	/** @brief Gets the value of Type */
+	const FString& GetType() const { return Type; }
+	/** @brief Sets the value of Type */
+	void SetType(FString NewValue) { Type = NewValue;  }
 };
 
 /** @} */

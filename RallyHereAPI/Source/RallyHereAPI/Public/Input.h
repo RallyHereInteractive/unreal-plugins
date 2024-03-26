@@ -18,9 +18,9 @@
 UENUM(BlueprintType)
 enum class ERHAPI_Input : uint8
 {
-    Kbm UMETA(ToolTip="Input for players using a keyboard and mouse"),
-    Gamepad UMETA(ToolTip="Input for players using a gamepad/controller"),
-    Touch UMETA(ToolTip="Input for players using a touch screen"),
+	Kbm UMETA(ToolTip="Input for players using a keyboard and mouse"),
+	Gamepad UMETA(ToolTip="Input for players using a gamepad/controller"),
+	Touch UMETA(ToolTip="Input for players using a touch screen"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_Input& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_Input& EnumValue);

@@ -21,23 +21,23 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_InstanceHealthStatusResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("updated_instance_health"));
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(UpdatedInstanceHealth));
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("updated_instance_health"));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(UpdatedInstanceHealth));
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_InstanceHealthStatusResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonUpdatedInstanceHealthField = (*Object)->TryGetField(TEXT("updated_instance_health"));
-    ParseSuccess &= JsonUpdatedInstanceHealthField.IsValid() && !JsonUpdatedInstanceHealthField->IsNull() && TryGetJsonValue(JsonUpdatedInstanceHealthField, UpdatedInstanceHealth);
+	const TSharedPtr<FJsonValue> JsonUpdatedInstanceHealthField = (*Object)->TryGetField(TEXT("updated_instance_health"));
+	ParseSuccess &= JsonUpdatedInstanceHealthField.IsValid() && !JsonUpdatedInstanceHealthField->IsNull() && TryGetJsonValue(JsonUpdatedInstanceHealthField, UpdatedInstanceHealth);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

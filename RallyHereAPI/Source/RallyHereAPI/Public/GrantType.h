@@ -18,20 +18,20 @@
 UENUM(BlueprintType)
 enum class ERHAPI_GrantType : uint8
 {
-    Anon UMETA(ToolTip="Anonymous authentication"),
-    Google UMETA(ToolTip="Google authentication"),
-    Apple UMETA(ToolTip="Apple authentication"),
-    Refresh UMETA(ToolTip="Refresh Token authentication"),
-    Epic UMETA(ToolTip="Epic Online Services authentication"),
-    Xboxlive UMETA(ToolTip="Xbox Live authentication"),
-    PS4V1 UMETA(ToolTip="Playstation Network v1 authentication using the configured PS4 credentials"),
-    PS4V3 UMETA(ToolTip="Playstation Network v3 authentication using the configured PS5 credentials"),
-    PS5V3 UMETA(ToolTip="Playstation Network v3 authentication using the configured PS5 credentials"),
-    Nintendo UMETA(ToolTip="Nintendo Account authentication"),
-    NintendoSwitch UMETA(ToolTip="Nintendo Service Account (for Nintendo Switch) authentication"),
-    Steam UMETA(ToolTip="Steam authentication"),
-    Basic UMETA(ToolTip="Basic Username/Password authentication"),
-    ClientCredentials UMETA(ToolTip="Authentication that doesn&#39;t require user credentials, only a Client ID/Secret in the Authorization header."),
+	Anon UMETA(ToolTip="Anonymous authentication"),
+	Google UMETA(ToolTip="Google authentication"),
+	Apple UMETA(ToolTip="Apple authentication"),
+	Refresh UMETA(ToolTip="Refresh Token authentication"),
+	Epic UMETA(ToolTip="Epic Online Services authentication"),
+	Xboxlive UMETA(ToolTip="Xbox Live authentication"),
+	PS4V1 UMETA(ToolTip="Playstation Network v1 authentication using the configured PS4 credentials"),
+	PS4V3 UMETA(ToolTip="Playstation Network v3 authentication using the configured PS5 credentials"),
+	PS5V3 UMETA(ToolTip="Playstation Network v3 authentication using the configured PS5 credentials"),
+	Nintendo UMETA(ToolTip="Nintendo Account authentication"),
+	NintendoSwitch UMETA(ToolTip="Nintendo Service Account (for Nintendo Switch) authentication"),
+	Steam UMETA(ToolTip="Steam authentication"),
+	Basic UMETA(ToolTip="Basic Username/Password authentication"),
+	ClientCredentials UMETA(ToolTip="Authentication that doesn&#39;t require user credentials, only a Client ID/Secret in the Authorization header."),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_GrantType& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_GrantType& EnumValue);

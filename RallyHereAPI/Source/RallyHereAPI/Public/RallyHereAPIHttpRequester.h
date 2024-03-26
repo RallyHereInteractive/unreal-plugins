@@ -21,28 +21,28 @@ class FRallyHereAPIHttpRequester;
 struct FRallyHereAPIHttpRequestData
 {
 public:
-    FRallyHereAPIHttpRequestData(const FHttpRequestRef& InHttpRequest, FAPI& InAPI, int32 InPriority) :
-      HttpRequest(InHttpRequest),
-      API(InAPI),
-      Priority(InPriority)
-    {
-    }
+	FRallyHereAPIHttpRequestData(const FHttpRequestRef& InHttpRequest, FAPI& InAPI, int32 InPriority) :
+	  HttpRequest(InHttpRequest),
+	  API(InAPI),
+	  Priority(InPriority)
+	{
+	}
 
-    void SetMetadata(const FRequestMetadata& InMetadata)
-    {
-        Metadata = InMetadata;
-    }
+	void SetMetadata(const FRequestMetadata& InMetadata)
+	{
+		Metadata = InMetadata;
+	}
 
-    void SetDelegate(const FHttpRequestCompleteDelegate& InDelegate)
-    {
-        ResponseDelegate = InDelegate;
-    }
+	void SetDelegate(const FHttpRequestCompleteDelegate& InDelegate)
+	{
+		ResponseDelegate = InDelegate;
+	}
 
-    FHttpRequestRef HttpRequest;
-    FRequestMetadata Metadata;
-    FAPI& API;
-    int32 Priority;
-    FHttpRequestCompleteDelegate ResponseDelegate;
+	FHttpRequestRef HttpRequest;
+	FRequestMetadata Metadata;
+	FAPI& API;
+	int32 Priority;
+	FHttpRequestCompleteDelegate ResponseDelegate;
 };
 
 typedef TMap<int32, TArray<TSharedPtr<struct FRallyHereAPIHttpRequestData>, TInlineAllocator<10>>> HttpRequestMap;
@@ -50,56 +50,56 @@ typedef TMap<int32, TArray<TSharedPtr<struct FRallyHereAPIHttpRequestData>, TInl
 class RALLYHEREAPI_API FRallyHereAPIHttpRequester : public TSharedFromThis<FRallyHereAPIHttpRequester>
 {
 public:
-    FRallyHereAPIHttpRequester();
-    virtual ~FRallyHereAPIHttpRequester() = default;
+	FRallyHereAPIHttpRequester();
+	virtual ~FRallyHereAPIHttpRequester() = default;
 
-    static void Initialize()
-    {
-        if (!Singleton.IsValid())
-        {
-            Singleton = MakeShared<FRallyHereAPIHttpRequester>();
-        }
-    }
+	static void Initialize()
+	{
+		if (!Singleton.IsValid())
+		{
+			Singleton = MakeShared<FRallyHereAPIHttpRequester>();
+		}
+	}
 
-    static void Uninitialize()
-    {
-        if (Singleton.IsValid())
-        {
-            Singleton->FlushRequestQueue();
-            Singleton.Reset();
-        }
-    }
+	static void Uninitialize()
+	{
+		if (Singleton.IsValid())
+		{
+			Singleton->FlushRequestQueue();
+			Singleton.Reset();
+		}
+	}
 
-    static FRallyHereAPIHttpRequester* Get()
-    {
-        return Singleton.Get();
-    }
+	static FRallyHereAPIHttpRequester* Get()
+	{
+		return Singleton.Get();
+	}
 
-    static TSharedPtr<FRallyHereAPIHttpRequester> GetShared()
-    {
-        return Singleton;
-    }
+	static TSharedPtr<FRallyHereAPIHttpRequester> GetShared()
+	{
+		return Singleton;
+	}
 
-    void SetMaxSimultaneousRequests(int32 InNum) { MaxSimultaneousRequests = InNum; }
+	void SetMaxSimultaneousRequests(int32 InNum) { MaxSimultaneousRequests = InNum; }
 
-    void EnqueueHttpRequest(TSharedPtr<struct FRallyHereAPIHttpRequestData> RequestData);
+	void EnqueueHttpRequest(TSharedPtr<struct FRallyHereAPIHttpRequestData> RequestData);
 
-    void OnResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FHttpRequestCompleteDelegate ResponseDelegate);
+	void OnResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FHttpRequestCompleteDelegate ResponseDelegate);
 
-    // Immediately flushes all requests in the queue (useful in cases where the http system may be shutting down soon)
-    void FlushRequestQueue();
+	// Immediately flushes all requests in the queue (useful in cases where the http system may be shutting down soon)
+	void FlushRequestQueue();
 
 private:
-    void QueueNextRequestCall();
-    void TryExecuteNextRequest();
-    bool CanExecuteRequest() const { return HttpRequestQueue.Num() > 0 && (MaxSimultaneousRequests == 0 || PendingRequestCount < MaxSimultaneousRequests); }
+	void QueueNextRequestCall();
+	void TryExecuteNextRequest();
+	bool CanExecuteRequest() const { return HttpRequestQueue.Num() > 0 && (MaxSimultaneousRequests == 0 || PendingRequestCount < MaxSimultaneousRequests); }
 
-    static TSharedPtr<FRallyHereAPIHttpRequester> Singleton;
+	static TSharedPtr<FRallyHereAPIHttpRequester> Singleton;
 
-    HttpRequestMap HttpRequestQueue;
+	HttpRequestMap HttpRequestQueue;
 
-    int32 MaxSimultaneousRequests;
-    int32 PendingRequestCount;
+	int32 MaxSimultaneousRequests;
+	int32 PendingRequestCount;
 };
 
 }

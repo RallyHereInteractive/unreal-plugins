@@ -25,13 +25,13 @@ constexpr int32 DefaultRallyHereAPIPriority = 1000000;
 UENUM(BlueprintType)
 enum class ERHAPI_JsonValueType : uint8
 {
-    None,
-    Null,
-    String,
-    Number,
-    Boolean,
-    Array,
-    Object
+	None,
+	Null,
+	String,
+	Number,
+	Boolean,
+	Array,
+	Object
 };
 
 // forward declare both json types since they can reference each other
@@ -41,16 +41,16 @@ struct FRHAPI_JsonValue;
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_JsonObject
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 public:
 	FRHAPI_JsonObject() { SetObject(MakeShareable(new FJsonObject())); }
 	FRHAPI_JsonObject(TSharedPtr<FJsonObject> InObj){ SetObject(InObj); }
 	
 	static FRHAPI_JsonObject CreateFromUnrealObject(TSharedPtr<FJsonObject> NewObj) { return FRHAPI_JsonObject(NewObj); }
 
-    FRHAPI_JsonValue TryGetValue(const FString& FieldName) const;
+	FRHAPI_JsonValue TryGetValue(const FString& FieldName) const;
 
-    bool HasField(const FString& FieldName) const;
+	bool HasField(const FString& FieldName) const;
 	void SetField(const FString& FieldName, const FRHAPI_JsonValue& Value) const;
 	void RemoveField(const FString& FieldName) const;
 
@@ -75,42 +75,42 @@ public:
 	void SetStringField(const FString& FieldName, const FString& StringValue) const;
 
 	bool GetBoolField(const FString& FieldName) const;
-    bool TryGetBoolField(const FString& FieldName, bool& OutBool) const;
+	bool TryGetBoolField(const FString& FieldName, bool& OutBool) const;
 	void SetBoolField(const FString& FieldName, bool InValue) const;
 
 	TArray<FRHAPI_JsonValue> GetArrayField(const FString& FieldName) const;
 	bool TryGetArrayField(const FString& FieldName, TArray<FRHAPI_JsonValue>& OutArray) const;
 	void SetArrayField(const FString& FieldName, const TArray<FRHAPI_JsonValue>& Array) const;
 
-    FRHAPI_JsonObject GetObjectField(const FString& FieldName) const;
+	FRHAPI_JsonObject GetObjectField(const FString& FieldName) const;
 	bool TryGetObjectField(const FString& FieldName, FRHAPI_JsonObject& OutObject) const;
 	void SetObjectField(const FString& FieldName, const FRHAPI_JsonObject& JsonObject) const;
 
-    void SetObject(const TSharedPtr<FJsonObject> NewObj) { Obj = NewObj; }
-    TSharedPtr<FJsonObject> GetObject() const { return Obj; }
+	void SetObject(const TSharedPtr<FJsonObject> NewObj) { Obj = NewObj; }
+	TSharedPtr<FJsonObject> GetObject() const { return Obj; }
 
 private:
-    TSharedPtr<FJsonObject> Obj;
+	TSharedPtr<FJsonObject> Obj;
 };
 
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_JsonValue
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 public:
 	FRHAPI_JsonValue() { SetValue(MakeShareable(new FJsonValueNull())); }
 	FRHAPI_JsonValue(TSharedPtr<FJsonValue> InValue) { SetValue(InValue); }
 
-    static FRHAPI_JsonValue CreateFromUnrealValue(TSharedPtr<FJsonValue> NewVal) { return FRHAPI_JsonValue(NewVal); }
+	static FRHAPI_JsonValue CreateFromUnrealValue(TSharedPtr<FJsonValue> NewVal) { return FRHAPI_JsonValue(NewVal); }
 
-    float AsNumber() const;
-    FString AsString() const;
-    bool AsBool() const;
-    bool IsNull() const;
-    TArray<FRHAPI_JsonValue> AsArray() const;
-    FRHAPI_JsonObject AsObject() const;
+	float AsNumber() const;
+	FString AsString() const;
+	bool AsBool() const;
+	bool IsNull() const;
+	TArray<FRHAPI_JsonValue> AsArray() const;
+	FRHAPI_JsonObject AsObject() const;
 
-    ERHAPI_JsonValueType GetType() const;
+	ERHAPI_JsonValueType GetType() const;
 
 	bool TryGetNumber(float& OutNumber) const;
 	bool TryGetInteger(int32& OutNumber) const;
@@ -127,20 +127,20 @@ public:
 	bool TryGetArray(TArray<FRHAPI_JsonValue>& OutArray) const;
 	bool TryGetObject(FRHAPI_JsonObject& OutObject) const;
 
-    void SetValue(const TSharedPtr<FJsonValue> NewValue) { Value = NewValue; }
-    TSharedPtr<FJsonValue> GetValue() const { return Value; }
+	void SetValue(const TSharedPtr<FJsonValue> NewValue) { Value = NewValue; }
+	TSharedPtr<FJsonValue> GetValue() const { return Value; }
 
-    bool CompareEqual(const FRHAPI_JsonValue& Other) const;
+	bool CompareEqual(const FRHAPI_JsonValue& Other) const;
 
 private:
-    TSharedPtr<FJsonValue> Value;
+	TSharedPtr<FJsonValue> Value;
 };
 
 
 UCLASS()
 class RALLYHEREAPI_API URHAPI_JsonObjectBlueprintLibrary : public UBlueprintFunctionLibrary
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 public:
 	UFUNCTION(BlueprintCallable, Category="RallyHere|Json")
 	static bool FRHAPI_JsonObjectToString(const FRHAPI_JsonObject& InObject, FString& OutString);
@@ -205,7 +205,7 @@ public:
 UCLASS()
 class RALLYHEREAPI_API URHAPI_JsonValueBlueprintLibrary : public UBlueprintFunctionLibrary
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 public:
 	
 	UFUNCTION(BlueprintCallable, Category="RallyHere|Json")
@@ -283,11 +283,11 @@ public:
 	explicit FHttpFileInput(const FString& InFilePath);
 
 	// This will automatically set the content type if not already set
-    void SetFilePath(const TCHAR* InFilePath);
+	void SetFilePath(const TCHAR* InFilePath);
 	void SetFilePath(const FString& InFilePath);
 
-    // Optional if it can be deduced from the FilePath
-    void SetContentType(const TCHAR* ContentType);
+	// Optional if it can be deduced from the FilePath
+	void SetContentType(const TCHAR* ContentType);
 
 	FHttpFileInput& operator=(const FHttpFileInput& Other) = default;
 	FHttpFileInput& operator=(const FString& InFilePath) { SetFilePath(*InFilePath); return*this; }
@@ -300,8 +300,8 @@ public:
 	FString GetFilename() const;
 
 private:
-    FString FilePath;
-    FString ContentType;
+	FString FilePath;
+	FString ContentType;
 };
 
 //////////////////////////////////////////////////////////////////////////
@@ -414,7 +414,7 @@ inline FString ToString(const TArray<uint8>& Value)
 inline FString ToString(const FRHAPI_Model& Value)
 {
 	FString String;
-    TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&String);
+	TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&String);
 	Value.WriteJson(Writer);
 	Writer->Close();
 	return String;

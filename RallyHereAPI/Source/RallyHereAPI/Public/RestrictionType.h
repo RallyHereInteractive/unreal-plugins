@@ -18,10 +18,10 @@
 UENUM(BlueprintType)
 enum class ERHAPI_RestrictionType : uint8
 {
-    AccountBan UMETA(ToolTip="Account is banned"),
-    AccountLockout UMETA(ToolTip="Account is locked out"),
-    AccountPendingDeletion UMETA(ToolTip="Account is pending deletion and will be deleted in the future"),
-    AccountDenyAuth UMETA(ToolTip="Account has been banned from authentication"),
+	AccountBan UMETA(ToolTip="Account is banned"),
+	AccountLockout UMETA(ToolTip="Account is locked out"),
+	AccountPendingDeletion UMETA(ToolTip="Account is pending deletion and will be deleted in the future"),
+	AccountDenyAuth UMETA(ToolTip="Account has been banned from authentication"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_RestrictionType& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_RestrictionType& EnumValue);

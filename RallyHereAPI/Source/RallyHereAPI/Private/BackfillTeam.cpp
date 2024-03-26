@@ -21,27 +21,27 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_BackfillTeam::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("players_required"));
-    RallyHereAPI::WriteJsonValue(Writer, PlayersRequired);
-    Writer->WriteIdentifierPrefix(TEXT("team_id"));
-    RallyHereAPI::WriteJsonValue(Writer, TeamId);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("players_required"));
+	RallyHereAPI::WriteJsonValue(Writer, PlayersRequired);
+	Writer->WriteIdentifierPrefix(TEXT("team_id"));
+	RallyHereAPI::WriteJsonValue(Writer, TeamId);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_BackfillTeam::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonPlayersRequiredField = (*Object)->TryGetField(TEXT("players_required"));
-    ParseSuccess &= JsonPlayersRequiredField.IsValid() && !JsonPlayersRequiredField->IsNull() && TryGetJsonValue(JsonPlayersRequiredField, PlayersRequired);
-    const TSharedPtr<FJsonValue> JsonTeamIdField = (*Object)->TryGetField(TEXT("team_id"));
-    ParseSuccess &= JsonTeamIdField.IsValid() && !JsonTeamIdField->IsNull() && TryGetJsonValue(JsonTeamIdField, TeamId);
+	const TSharedPtr<FJsonValue> JsonPlayersRequiredField = (*Object)->TryGetField(TEXT("players_required"));
+	ParseSuccess &= JsonPlayersRequiredField.IsValid() && !JsonPlayersRequiredField->IsNull() && TryGetJsonValue(JsonPlayersRequiredField, PlayersRequired);
+	const TSharedPtr<FJsonValue> JsonTeamIdField = (*Object)->TryGetField(TEXT("team_id"));
+	ParseSuccess &= JsonTeamIdField.IsValid() && !JsonTeamIdField->IsNull() && TryGetJsonValue(JsonTeamIdField, TeamId);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

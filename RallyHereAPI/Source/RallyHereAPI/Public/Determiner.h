@@ -18,10 +18,10 @@
 UENUM(BlueprintType)
 enum class ERHAPI_Determiner : uint8
 {
-    All UMETA(ToolTip="All rules must be satisfied"),
-    Any UMETA(ToolTip="At least one rule must be satisfied"),
-    One UMETA(ToolTip="Exactly one rule must be satisfied"),
-    None UMETA(ToolTip="All rules must not be satisfied"),
+	All UMETA(ToolTip="All rules must be satisfied"),
+	Any UMETA(ToolTip="At least one rule must be satisfied"),
+	One UMETA(ToolTip="Exactly one rule must be satisfied"),
+	None UMETA(ToolTip="All rules must not be satisfied"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_Determiner& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_Determiner& EnumValue);

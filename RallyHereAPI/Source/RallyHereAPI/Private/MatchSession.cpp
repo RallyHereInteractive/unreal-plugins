@@ -21,34 +21,34 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_MatchSession::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("session_id"));
-    RallyHereAPI::WriteJsonValue(Writer, SessionId);
-    if (MatchmakingProfileId_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("matchmaking_profile_id"));
-        RallyHereAPI::WriteJsonValue(Writer, MatchmakingProfileId_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("session_id"));
+	RallyHereAPI::WriteJsonValue(Writer, SessionId);
+	if (MatchmakingProfileId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("matchmaking_profile_id"));
+		RallyHereAPI::WriteJsonValue(Writer, MatchmakingProfileId_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_MatchSession::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonSessionIdField = (*Object)->TryGetField(TEXT("session_id"));
-    ParseSuccess &= JsonSessionIdField.IsValid() && !JsonSessionIdField->IsNull() && TryGetJsonValue(JsonSessionIdField, SessionId);
-    const TSharedPtr<FJsonValue> JsonMatchmakingProfileIdField = (*Object)->TryGetField(TEXT("matchmaking_profile_id"));
-    if (JsonMatchmakingProfileIdField.IsValid() && !JsonMatchmakingProfileIdField->IsNull())
-    {
-        MatchmakingProfileId_IsSet = TryGetJsonValue(JsonMatchmakingProfileIdField, MatchmakingProfileId_Optional);
-        ParseSuccess &= MatchmakingProfileId_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonSessionIdField = (*Object)->TryGetField(TEXT("session_id"));
+	ParseSuccess &= JsonSessionIdField.IsValid() && !JsonSessionIdField->IsNull() && TryGetJsonValue(JsonSessionIdField, SessionId);
+	const TSharedPtr<FJsonValue> JsonMatchmakingProfileIdField = (*Object)->TryGetField(TEXT("matchmaking_profile_id"));
+	if (JsonMatchmakingProfileIdField.IsValid() && !JsonMatchmakingProfileIdField->IsNull())
+	{
+		MatchmakingProfileId_IsSet = TryGetJsonValue(JsonMatchmakingProfileIdField, MatchmakingProfileId_Optional);
+		ParseSuccess &= MatchmakingProfileId_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

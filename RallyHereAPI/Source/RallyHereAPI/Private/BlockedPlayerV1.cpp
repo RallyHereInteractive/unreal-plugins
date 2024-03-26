@@ -21,38 +21,38 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_BlockedPlayerV1::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (BlockedPlayerId_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("blocked_player_id"));
-        RallyHereAPI::WriteJsonValue(Writer, BlockedPlayerId_Optional);
-    }
-    Writer->WriteIdentifierPrefix(TEXT("blocked_player_uuid"));
-    RallyHereAPI::WriteJsonValue(Writer, BlockedPlayerUuid);
-    Writer->WriteIdentifierPrefix(TEXT("last_modified_on"));
-    RallyHereAPI::WriteJsonValue(Writer, LastModifiedOn);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (BlockedPlayerId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("blocked_player_id"));
+		RallyHereAPI::WriteJsonValue(Writer, BlockedPlayerId_Optional);
+	}
+	Writer->WriteIdentifierPrefix(TEXT("blocked_player_uuid"));
+	RallyHereAPI::WriteJsonValue(Writer, BlockedPlayerUuid);
+	Writer->WriteIdentifierPrefix(TEXT("last_modified_on"));
+	RallyHereAPI::WriteJsonValue(Writer, LastModifiedOn);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_BlockedPlayerV1::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonBlockedPlayerIdField = (*Object)->TryGetField(TEXT("blocked_player_id"));
-    if (JsonBlockedPlayerIdField.IsValid() && !JsonBlockedPlayerIdField->IsNull())
-    {
-        BlockedPlayerId_IsSet = TryGetJsonValue(JsonBlockedPlayerIdField, BlockedPlayerId_Optional);
-        ParseSuccess &= BlockedPlayerId_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonBlockedPlayerUuidField = (*Object)->TryGetField(TEXT("blocked_player_uuid"));
-    ParseSuccess &= JsonBlockedPlayerUuidField.IsValid() && !JsonBlockedPlayerUuidField->IsNull() && TryGetJsonValue(JsonBlockedPlayerUuidField, BlockedPlayerUuid);
-    const TSharedPtr<FJsonValue> JsonLastModifiedOnField = (*Object)->TryGetField(TEXT("last_modified_on"));
-    ParseSuccess &= JsonLastModifiedOnField.IsValid() && !JsonLastModifiedOnField->IsNull() && TryGetJsonValue(JsonLastModifiedOnField, LastModifiedOn);
+	const TSharedPtr<FJsonValue> JsonBlockedPlayerIdField = (*Object)->TryGetField(TEXT("blocked_player_id"));
+	if (JsonBlockedPlayerIdField.IsValid() && !JsonBlockedPlayerIdField->IsNull())
+	{
+		BlockedPlayerId_IsSet = TryGetJsonValue(JsonBlockedPlayerIdField, BlockedPlayerId_Optional);
+		ParseSuccess &= BlockedPlayerId_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonBlockedPlayerUuidField = (*Object)->TryGetField(TEXT("blocked_player_uuid"));
+	ParseSuccess &= JsonBlockedPlayerUuidField.IsValid() && !JsonBlockedPlayerUuidField->IsNull() && TryGetJsonValue(JsonBlockedPlayerUuidField, BlockedPlayerUuid);
+	const TSharedPtr<FJsonValue> JsonLastModifiedOnField = (*Object)->TryGetField(TEXT("last_modified_on"));
+	ParseSuccess &= JsonLastModifiedOnField.IsValid() && !JsonLastModifiedOnField->IsNull() && TryGetJsonValue(JsonLastModifiedOnField, LastModifiedOn);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

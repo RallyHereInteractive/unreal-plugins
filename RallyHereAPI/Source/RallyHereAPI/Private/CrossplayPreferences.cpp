@@ -21,27 +21,27 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_CrossplayPreferences::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("permitted_platform"));
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(PermittedPlatform));
-    Writer->WriteIdentifierPrefix(TEXT("permitted_input"));
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(PermittedInput));
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("permitted_platform"));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(PermittedPlatform));
+	Writer->WriteIdentifierPrefix(TEXT("permitted_input"));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(PermittedInput));
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_CrossplayPreferences::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonPermittedPlatformField = (*Object)->TryGetField(TEXT("permitted_platform"));
-    ParseSuccess &= JsonPermittedPlatformField.IsValid() && !JsonPermittedPlatformField->IsNull() && TryGetJsonValue(JsonPermittedPlatformField, PermittedPlatform);
-    const TSharedPtr<FJsonValue> JsonPermittedInputField = (*Object)->TryGetField(TEXT("permitted_input"));
-    ParseSuccess &= JsonPermittedInputField.IsValid() && !JsonPermittedInputField->IsNull() && TryGetJsonValue(JsonPermittedInputField, PermittedInput);
+	const TSharedPtr<FJsonValue> JsonPermittedPlatformField = (*Object)->TryGetField(TEXT("permitted_platform"));
+	ParseSuccess &= JsonPermittedPlatformField.IsValid() && !JsonPermittedPlatformField->IsNull() && TryGetJsonValue(JsonPermittedPlatformField, PermittedPlatform);
+	const TSharedPtr<FJsonValue> JsonPermittedInputField = (*Object)->TryGetField(TEXT("permitted_input"));
+	ParseSuccess &= JsonPermittedInputField.IsValid() && !JsonPermittedInputField->IsNull() && TryGetJsonValue(JsonPermittedInputField, PermittedInput);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

@@ -21,33 +21,33 @@
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_EventParamsSchemaResponse : public FRHAPI_Model
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    /**
-    * @brief Fills this object with data from the passed in JSON
-    *
-    * @param [in] JsonValue Data from the API call.
-    *
-    * @return true if parsing of the JSON data was successful.
-    */
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	/**
+	* @brief Fills this object with data from the passed in JSON
+	*
+	* @param [in] JsonValue Data from the API call.
+	*
+	* @return true if parsing of the JSON data was successful.
+	*/
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
-    /**
-    * @brief Writes the data from this object into the specified JSON Writer stream
-    *
-    * @param [in] Writer JSON Writer stream to push .
-    */
-    void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	/**
+	* @brief Writes the data from this object into the specified JSON Writer stream
+	*
+	* @param [in] Writer JSON Writer stream to push .
+	*/
+	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief Dictionary contains event name and Json schema definition for its event_params parameter */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FRHAPI_JsonObject EventParamSchemas{  };
-    /** @brief Gets the value of EventParamSchemas */
-    FRHAPI_JsonObject& GetEventParamSchemas() { return EventParamSchemas; }
-    /** @brief Gets the value of EventParamSchemas */
-    const FRHAPI_JsonObject& GetEventParamSchemas() const { return EventParamSchemas; }
-    /** @brief Sets the value of EventParamSchemas */
-    void SetEventParamSchemas(FRHAPI_JsonObject NewValue) { EventParamSchemas = NewValue;  }
+	/** @brief Dictionary contains event name and Json schema definition for its event_params parameter */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FRHAPI_JsonObject EventParamSchemas{  };
+	/** @brief Gets the value of EventParamSchemas */
+	FRHAPI_JsonObject& GetEventParamSchemas() { return EventParamSchemas; }
+	/** @brief Gets the value of EventParamSchemas */
+	const FRHAPI_JsonObject& GetEventParamSchemas() const { return EventParamSchemas; }
+	/** @brief Sets the value of EventParamSchemas */
+	void SetEventParamSchemas(FRHAPI_JsonObject NewValue) { EventParamSchemas = NewValue;  }
 };
 
 /** @} */

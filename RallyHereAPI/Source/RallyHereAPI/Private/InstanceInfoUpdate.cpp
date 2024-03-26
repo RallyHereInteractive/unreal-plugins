@@ -21,74 +21,74 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_InstanceInfoUpdate::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (AllocationId_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("allocation_id"));
-        RallyHereAPI::WriteJsonValue(Writer, AllocationId_Optional);
-    }
-    if (JoinStatus_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("join_status"));
-        RallyHereAPI::WriteJsonValue(Writer, EnumToString(JoinStatus_Optional));
-    }
-    if (JoinParams_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("join_params"));
-        RallyHereAPI::WriteJsonValue(Writer, JoinParams_Optional);
-    }
-    if (Version_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("version"));
-        RallyHereAPI::WriteJsonValue(Writer, Version_Optional);
-    }
-    if (CustomData_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("custom_data"));
-        RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (AllocationId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("allocation_id"));
+		RallyHereAPI::WriteJsonValue(Writer, AllocationId_Optional);
+	}
+	if (JoinStatus_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("join_status"));
+		RallyHereAPI::WriteJsonValue(Writer, EnumToString(JoinStatus_Optional));
+	}
+	if (JoinParams_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("join_params"));
+		RallyHereAPI::WriteJsonValue(Writer, JoinParams_Optional);
+	}
+	if (Version_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("version"));
+		RallyHereAPI::WriteJsonValue(Writer, Version_Optional);
+	}
+	if (CustomData_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("custom_data"));
+		RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_InstanceInfoUpdate::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonAllocationIdField = (*Object)->TryGetField(TEXT("allocation_id"));
-    if (JsonAllocationIdField.IsValid() && !JsonAllocationIdField->IsNull())
-    {
-        AllocationId_IsSet = TryGetJsonValue(JsonAllocationIdField, AllocationId_Optional);
-        ParseSuccess &= AllocationId_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonJoinStatusField = (*Object)->TryGetField(TEXT("join_status"));
-    if (JsonJoinStatusField.IsValid() && !JsonJoinStatusField->IsNull())
-    {
-        JoinStatus_IsSet = TryGetJsonValue(JsonJoinStatusField, JoinStatus_Optional);
-        ParseSuccess &= JoinStatus_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonJoinParamsField = (*Object)->TryGetField(TEXT("join_params"));
-    if (JsonJoinParamsField.IsValid() && !JsonJoinParamsField->IsNull())
-    {
-        JoinParams_IsSet = TryGetJsonValue(JsonJoinParamsField, JoinParams_Optional);
-        ParseSuccess &= JoinParams_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonVersionField = (*Object)->TryGetField(TEXT("version"));
-    if (JsonVersionField.IsValid() && !JsonVersionField->IsNull())
-    {
-        Version_IsSet = TryGetJsonValue(JsonVersionField, Version_Optional);
-        ParseSuccess &= Version_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-    if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
-    {
-        CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
-        ParseSuccess &= CustomData_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonAllocationIdField = (*Object)->TryGetField(TEXT("allocation_id"));
+	if (JsonAllocationIdField.IsValid() && !JsonAllocationIdField->IsNull())
+	{
+		AllocationId_IsSet = TryGetJsonValue(JsonAllocationIdField, AllocationId_Optional);
+		ParseSuccess &= AllocationId_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonJoinStatusField = (*Object)->TryGetField(TEXT("join_status"));
+	if (JsonJoinStatusField.IsValid() && !JsonJoinStatusField->IsNull())
+	{
+		JoinStatus_IsSet = TryGetJsonValue(JsonJoinStatusField, JoinStatus_Optional);
+		ParseSuccess &= JoinStatus_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonJoinParamsField = (*Object)->TryGetField(TEXT("join_params"));
+	if (JsonJoinParamsField.IsValid() && !JsonJoinParamsField->IsNull())
+	{
+		JoinParams_IsSet = TryGetJsonValue(JsonJoinParamsField, JoinParams_Optional);
+		ParseSuccess &= JoinParams_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonVersionField = (*Object)->TryGetField(TEXT("version"));
+	if (JsonVersionField.IsValid() && !JsonVersionField->IsNull())
+	{
+		Version_IsSet = TryGetJsonValue(JsonVersionField, Version_Optional);
+		ParseSuccess &= Version_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
+	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	{
+		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
+		ParseSuccess &= CustomData_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

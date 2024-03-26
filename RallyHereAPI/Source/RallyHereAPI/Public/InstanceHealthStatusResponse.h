@@ -22,33 +22,33 @@
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_InstanceHealthStatusResponse : public FRHAPI_Model
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    /**
-    * @brief Fills this object with data from the passed in JSON
-    *
-    * @param [in] JsonValue Data from the API call.
-    *
-    * @return true if parsing of the JSON data was successful.
-    */
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	/**
+	* @brief Fills this object with data from the passed in JSON
+	*
+	* @param [in] JsonValue Data from the API call.
+	*
+	* @return true if parsing of the JSON data was successful.
+	*/
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
-    /**
-    * @brief Writes the data from this object into the specified JSON Writer stream
-    *
-    * @param [in] Writer JSON Writer stream to push .
-    */
-    void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	/**
+	* @brief Writes the data from this object into the specified JSON Writer stream
+	*
+	* @param [in] Writer JSON Writer stream to push .
+	*/
+	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief The new health status of the instance. It may not match the status sent up if too few health checks are being recieved */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    ERHAPI_InstanceHealthStatus UpdatedInstanceHealth{  };
-    /** @brief Gets the value of UpdatedInstanceHealth */
-    ERHAPI_InstanceHealthStatus& GetUpdatedInstanceHealth() { return UpdatedInstanceHealth; }
-    /** @brief Gets the value of UpdatedInstanceHealth */
-    const ERHAPI_InstanceHealthStatus& GetUpdatedInstanceHealth() const { return UpdatedInstanceHealth; }
-    /** @brief Sets the value of UpdatedInstanceHealth */
-    void SetUpdatedInstanceHealth(ERHAPI_InstanceHealthStatus NewValue) { UpdatedInstanceHealth = NewValue;  }
+	/** @brief The new health status of the instance. It may not match the status sent up if too few health checks are being recieved */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	ERHAPI_InstanceHealthStatus UpdatedInstanceHealth{  };
+	/** @brief Gets the value of UpdatedInstanceHealth */
+	ERHAPI_InstanceHealthStatus& GetUpdatedInstanceHealth() { return UpdatedInstanceHealth; }
+	/** @brief Gets the value of UpdatedInstanceHealth */
+	const ERHAPI_InstanceHealthStatus& GetUpdatedInstanceHealth() const { return UpdatedInstanceHealth; }
+	/** @brief Sets the value of UpdatedInstanceHealth */
+	void SetUpdatedInstanceHealth(ERHAPI_InstanceHealthStatus NewValue) { UpdatedInstanceHealth = NewValue;  }
 };
 
 /** @} */

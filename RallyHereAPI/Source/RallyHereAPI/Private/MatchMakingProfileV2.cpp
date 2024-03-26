@@ -21,93 +21,93 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_MatchMakingProfileV2::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("match_making_profile_id"));
-    RallyHereAPI::WriteJsonValue(Writer, MatchMakingProfileId);
-    if (JoinMode_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("join_mode"));
-        RallyHereAPI::WriteJsonValue(Writer, EnumToString(JoinMode_Optional));
-    }
-    Writer->WriteIdentifierPrefix(TEXT("instance_request_template_id"));
-    RallyHereAPI::WriteJsonValue(Writer, InstanceRequestTemplateId);
-    if (RankId_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("rank_id"));
-        RallyHereAPI::WriteJsonValue(Writer, RankId_Optional);
-    }
-    if (NumSides_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("num_sides"));
-        RallyHereAPI::WriteJsonValue(Writer, NumSides_Optional);
-    }
-    if (MaxPlayersPerSide_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("max_players_per_side"));
-        RallyHereAPI::WriteJsonValue(Writer, MaxPlayersPerSide_Optional);
-    }
-    if (MinPlayersPerSide_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("min_players_per_side"));
-        RallyHereAPI::WriteJsonValue(Writer, MinPlayersPerSide_Optional);
-    }
-    if (LegacyConfig_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("legacy_config"));
-        RallyHereAPI::WriteJsonValue(Writer, LegacyConfig_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("match_making_profile_id"));
+	RallyHereAPI::WriteJsonValue(Writer, MatchMakingProfileId);
+	if (JoinMode_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("join_mode"));
+		RallyHereAPI::WriteJsonValue(Writer, EnumToString(JoinMode_Optional));
+	}
+	Writer->WriteIdentifierPrefix(TEXT("instance_request_template_id"));
+	RallyHereAPI::WriteJsonValue(Writer, InstanceRequestTemplateId);
+	if (RankId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("rank_id"));
+		RallyHereAPI::WriteJsonValue(Writer, RankId_Optional);
+	}
+	if (NumSides_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("num_sides"));
+		RallyHereAPI::WriteJsonValue(Writer, NumSides_Optional);
+	}
+	if (MaxPlayersPerSide_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("max_players_per_side"));
+		RallyHereAPI::WriteJsonValue(Writer, MaxPlayersPerSide_Optional);
+	}
+	if (MinPlayersPerSide_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("min_players_per_side"));
+		RallyHereAPI::WriteJsonValue(Writer, MinPlayersPerSide_Optional);
+	}
+	if (LegacyConfig_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("legacy_config"));
+		RallyHereAPI::WriteJsonValue(Writer, LegacyConfig_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_MatchMakingProfileV2::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonMatchMakingProfileIdField = (*Object)->TryGetField(TEXT("match_making_profile_id"));
-    ParseSuccess &= JsonMatchMakingProfileIdField.IsValid() && !JsonMatchMakingProfileIdField->IsNull() && TryGetJsonValue(JsonMatchMakingProfileIdField, MatchMakingProfileId);
-    const TSharedPtr<FJsonValue> JsonJoinModeField = (*Object)->TryGetField(TEXT("join_mode"));
-    if (JsonJoinModeField.IsValid() && !JsonJoinModeField->IsNull())
-    {
-        JoinMode_IsSet = TryGetJsonValue(JsonJoinModeField, JoinMode_Optional);
-        ParseSuccess &= JoinMode_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonInstanceRequestTemplateIdField = (*Object)->TryGetField(TEXT("instance_request_template_id"));
-    ParseSuccess &= JsonInstanceRequestTemplateIdField.IsValid() && !JsonInstanceRequestTemplateIdField->IsNull() && TryGetJsonValue(JsonInstanceRequestTemplateIdField, InstanceRequestTemplateId);
-    const TSharedPtr<FJsonValue> JsonRankIdField = (*Object)->TryGetField(TEXT("rank_id"));
-    if (JsonRankIdField.IsValid() && !JsonRankIdField->IsNull())
-    {
-        RankId_IsSet = TryGetJsonValue(JsonRankIdField, RankId_Optional);
-        ParseSuccess &= RankId_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonNumSidesField = (*Object)->TryGetField(TEXT("num_sides"));
-    if (JsonNumSidesField.IsValid() && !JsonNumSidesField->IsNull())
-    {
-        NumSides_IsSet = TryGetJsonValue(JsonNumSidesField, NumSides_Optional);
-        ParseSuccess &= NumSides_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonMaxPlayersPerSideField = (*Object)->TryGetField(TEXT("max_players_per_side"));
-    if (JsonMaxPlayersPerSideField.IsValid() && !JsonMaxPlayersPerSideField->IsNull())
-    {
-        MaxPlayersPerSide_IsSet = TryGetJsonValue(JsonMaxPlayersPerSideField, MaxPlayersPerSide_Optional);
-        ParseSuccess &= MaxPlayersPerSide_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonMinPlayersPerSideField = (*Object)->TryGetField(TEXT("min_players_per_side"));
-    if (JsonMinPlayersPerSideField.IsValid() && !JsonMinPlayersPerSideField->IsNull())
-    {
-        MinPlayersPerSide_IsSet = TryGetJsonValue(JsonMinPlayersPerSideField, MinPlayersPerSide_Optional);
-        ParseSuccess &= MinPlayersPerSide_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonLegacyConfigField = (*Object)->TryGetField(TEXT("legacy_config"));
-    if (JsonLegacyConfigField.IsValid() && !JsonLegacyConfigField->IsNull())
-    {
-        LegacyConfig_IsSet = TryGetJsonValue(JsonLegacyConfigField, LegacyConfig_Optional);
-        ParseSuccess &= LegacyConfig_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonMatchMakingProfileIdField = (*Object)->TryGetField(TEXT("match_making_profile_id"));
+	ParseSuccess &= JsonMatchMakingProfileIdField.IsValid() && !JsonMatchMakingProfileIdField->IsNull() && TryGetJsonValue(JsonMatchMakingProfileIdField, MatchMakingProfileId);
+	const TSharedPtr<FJsonValue> JsonJoinModeField = (*Object)->TryGetField(TEXT("join_mode"));
+	if (JsonJoinModeField.IsValid() && !JsonJoinModeField->IsNull())
+	{
+		JoinMode_IsSet = TryGetJsonValue(JsonJoinModeField, JoinMode_Optional);
+		ParseSuccess &= JoinMode_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInstanceRequestTemplateIdField = (*Object)->TryGetField(TEXT("instance_request_template_id"));
+	ParseSuccess &= JsonInstanceRequestTemplateIdField.IsValid() && !JsonInstanceRequestTemplateIdField->IsNull() && TryGetJsonValue(JsonInstanceRequestTemplateIdField, InstanceRequestTemplateId);
+	const TSharedPtr<FJsonValue> JsonRankIdField = (*Object)->TryGetField(TEXT("rank_id"));
+	if (JsonRankIdField.IsValid() && !JsonRankIdField->IsNull())
+	{
+		RankId_IsSet = TryGetJsonValue(JsonRankIdField, RankId_Optional);
+		ParseSuccess &= RankId_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonNumSidesField = (*Object)->TryGetField(TEXT("num_sides"));
+	if (JsonNumSidesField.IsValid() && !JsonNumSidesField->IsNull())
+	{
+		NumSides_IsSet = TryGetJsonValue(JsonNumSidesField, NumSides_Optional);
+		ParseSuccess &= NumSides_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonMaxPlayersPerSideField = (*Object)->TryGetField(TEXT("max_players_per_side"));
+	if (JsonMaxPlayersPerSideField.IsValid() && !JsonMaxPlayersPerSideField->IsNull())
+	{
+		MaxPlayersPerSide_IsSet = TryGetJsonValue(JsonMaxPlayersPerSideField, MaxPlayersPerSide_Optional);
+		ParseSuccess &= MaxPlayersPerSide_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonMinPlayersPerSideField = (*Object)->TryGetField(TEXT("min_players_per_side"));
+	if (JsonMinPlayersPerSideField.IsValid() && !JsonMinPlayersPerSideField->IsNull())
+	{
+		MinPlayersPerSide_IsSet = TryGetJsonValue(JsonMinPlayersPerSideField, MinPlayersPerSide_Optional);
+		ParseSuccess &= MinPlayersPerSide_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonLegacyConfigField = (*Object)->TryGetField(TEXT("legacy_config"));
+	if (JsonLegacyConfigField.IsValid() && !JsonLegacyConfigField->IsNull())
+	{
+		LegacyConfig_IsSet = TryGetJsonValue(JsonLegacyConfigField, LegacyConfig_Optional);
+		ParseSuccess &= LegacyConfig_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

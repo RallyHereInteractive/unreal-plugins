@@ -21,34 +21,34 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_PlayerOrdersResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (Data_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("data"));
-        RallyHereAPI::WriteJsonValue(Writer, Data_Optional);
-    }
-    Writer->WriteIdentifierPrefix(TEXT("page"));
-    RallyHereAPI::WriteJsonValue(Writer, Page);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (Data_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("data"));
+		RallyHereAPI::WriteJsonValue(Writer, Data_Optional);
+	}
+	Writer->WriteIdentifierPrefix(TEXT("page"));
+	RallyHereAPI::WriteJsonValue(Writer, Page);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_PlayerOrdersResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonDataField = (*Object)->TryGetField(TEXT("data"));
-    if (JsonDataField.IsValid() && !JsonDataField->IsNull())
-    {
-        Data_IsSet = TryGetJsonValue(JsonDataField, Data_Optional);
-        ParseSuccess &= Data_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonPageField = (*Object)->TryGetField(TEXT("page"));
-    ParseSuccess &= JsonPageField.IsValid() && !JsonPageField->IsNull() && TryGetJsonValue(JsonPageField, Page);
+	const TSharedPtr<FJsonValue> JsonDataField = (*Object)->TryGetField(TEXT("data"));
+	if (JsonDataField.IsValid() && !JsonDataField->IsNull())
+	{
+		Data_IsSet = TryGetJsonValue(JsonDataField, Data_Optional);
+		ParseSuccess &= Data_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonPageField = (*Object)->TryGetField(TEXT("page"));
+	ParseSuccess &= JsonPageField.IsValid() && !JsonPageField->IsNull() && TryGetJsonValue(JsonPageField, Page);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

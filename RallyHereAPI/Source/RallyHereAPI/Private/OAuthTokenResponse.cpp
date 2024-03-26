@@ -21,96 +21,96 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_OAuthTokenResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (AccessToken_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("access_token"));
-        RallyHereAPI::WriteJsonValue(Writer, AccessToken_Optional);
-    }
-    if (RefreshToken_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("refresh_token"));
-        RallyHereAPI::WriteJsonValue(Writer, RefreshToken_Optional);
-    }
-    if (NeedsEula_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("needs_eula"));
-        RallyHereAPI::WriteJsonValue(Writer, NeedsEula_Optional);
-    }
-    if (NeedsTos_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("needs_tos"));
-        RallyHereAPI::WriteJsonValue(Writer, NeedsTos_Optional);
-    }
-    if (NeedsPrivacyPolicy_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("needs_privacy_policy"));
-        RallyHereAPI::WriteJsonValue(Writer, NeedsPrivacyPolicy_Optional);
-    }
-    if (RegeneratedCode_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("regenerated_code"));
-        RallyHereAPI::WriteJsonValue(Writer, RegeneratedCode_Optional);
-    }
-    if (ErrorMessage_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("error_message"));
-        RallyHereAPI::WriteJsonValue(Writer, ErrorMessage_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (AccessToken_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("access_token"));
+		RallyHereAPI::WriteJsonValue(Writer, AccessToken_Optional);
+	}
+	if (RefreshToken_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("refresh_token"));
+		RallyHereAPI::WriteJsonValue(Writer, RefreshToken_Optional);
+	}
+	if (NeedsEula_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("needs_eula"));
+		RallyHereAPI::WriteJsonValue(Writer, NeedsEula_Optional);
+	}
+	if (NeedsTos_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("needs_tos"));
+		RallyHereAPI::WriteJsonValue(Writer, NeedsTos_Optional);
+	}
+	if (NeedsPrivacyPolicy_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("needs_privacy_policy"));
+		RallyHereAPI::WriteJsonValue(Writer, NeedsPrivacyPolicy_Optional);
+	}
+	if (RegeneratedCode_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("regenerated_code"));
+		RallyHereAPI::WriteJsonValue(Writer, RegeneratedCode_Optional);
+	}
+	if (ErrorMessage_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("error_message"));
+		RallyHereAPI::WriteJsonValue(Writer, ErrorMessage_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_OAuthTokenResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonAccessTokenField = (*Object)->TryGetField(TEXT("access_token"));
-    if (JsonAccessTokenField.IsValid() && !JsonAccessTokenField->IsNull())
-    {
-        AccessToken_IsSet = TryGetJsonValue(JsonAccessTokenField, AccessToken_Optional);
-        ParseSuccess &= AccessToken_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonRefreshTokenField = (*Object)->TryGetField(TEXT("refresh_token"));
-    if (JsonRefreshTokenField.IsValid() && !JsonRefreshTokenField->IsNull())
-    {
-        RefreshToken_IsSet = TryGetJsonValue(JsonRefreshTokenField, RefreshToken_Optional);
-        ParseSuccess &= RefreshToken_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonNeedsEulaField = (*Object)->TryGetField(TEXT("needs_eula"));
-    if (JsonNeedsEulaField.IsValid() && !JsonNeedsEulaField->IsNull())
-    {
-        NeedsEula_IsSet = TryGetJsonValue(JsonNeedsEulaField, NeedsEula_Optional);
-        ParseSuccess &= NeedsEula_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonNeedsTosField = (*Object)->TryGetField(TEXT("needs_tos"));
-    if (JsonNeedsTosField.IsValid() && !JsonNeedsTosField->IsNull())
-    {
-        NeedsTos_IsSet = TryGetJsonValue(JsonNeedsTosField, NeedsTos_Optional);
-        ParseSuccess &= NeedsTos_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonNeedsPrivacyPolicyField = (*Object)->TryGetField(TEXT("needs_privacy_policy"));
-    if (JsonNeedsPrivacyPolicyField.IsValid() && !JsonNeedsPrivacyPolicyField->IsNull())
-    {
-        NeedsPrivacyPolicy_IsSet = TryGetJsonValue(JsonNeedsPrivacyPolicyField, NeedsPrivacyPolicy_Optional);
-        ParseSuccess &= NeedsPrivacyPolicy_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonRegeneratedCodeField = (*Object)->TryGetField(TEXT("regenerated_code"));
-    if (JsonRegeneratedCodeField.IsValid() && !JsonRegeneratedCodeField->IsNull())
-    {
-        RegeneratedCode_IsSet = TryGetJsonValue(JsonRegeneratedCodeField, RegeneratedCode_Optional);
-        ParseSuccess &= RegeneratedCode_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonErrorMessageField = (*Object)->TryGetField(TEXT("error_message"));
-    if (JsonErrorMessageField.IsValid() && !JsonErrorMessageField->IsNull())
-    {
-        ErrorMessage_IsSet = TryGetJsonValue(JsonErrorMessageField, ErrorMessage_Optional);
-        ParseSuccess &= ErrorMessage_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonAccessTokenField = (*Object)->TryGetField(TEXT("access_token"));
+	if (JsonAccessTokenField.IsValid() && !JsonAccessTokenField->IsNull())
+	{
+		AccessToken_IsSet = TryGetJsonValue(JsonAccessTokenField, AccessToken_Optional);
+		ParseSuccess &= AccessToken_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonRefreshTokenField = (*Object)->TryGetField(TEXT("refresh_token"));
+	if (JsonRefreshTokenField.IsValid() && !JsonRefreshTokenField->IsNull())
+	{
+		RefreshToken_IsSet = TryGetJsonValue(JsonRefreshTokenField, RefreshToken_Optional);
+		ParseSuccess &= RefreshToken_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonNeedsEulaField = (*Object)->TryGetField(TEXT("needs_eula"));
+	if (JsonNeedsEulaField.IsValid() && !JsonNeedsEulaField->IsNull())
+	{
+		NeedsEula_IsSet = TryGetJsonValue(JsonNeedsEulaField, NeedsEula_Optional);
+		ParseSuccess &= NeedsEula_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonNeedsTosField = (*Object)->TryGetField(TEXT("needs_tos"));
+	if (JsonNeedsTosField.IsValid() && !JsonNeedsTosField->IsNull())
+	{
+		NeedsTos_IsSet = TryGetJsonValue(JsonNeedsTosField, NeedsTos_Optional);
+		ParseSuccess &= NeedsTos_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonNeedsPrivacyPolicyField = (*Object)->TryGetField(TEXT("needs_privacy_policy"));
+	if (JsonNeedsPrivacyPolicyField.IsValid() && !JsonNeedsPrivacyPolicyField->IsNull())
+	{
+		NeedsPrivacyPolicy_IsSet = TryGetJsonValue(JsonNeedsPrivacyPolicyField, NeedsPrivacyPolicy_Optional);
+		ParseSuccess &= NeedsPrivacyPolicy_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonRegeneratedCodeField = (*Object)->TryGetField(TEXT("regenerated_code"));
+	if (JsonRegeneratedCodeField.IsValid() && !JsonRegeneratedCodeField->IsNull())
+	{
+		RegeneratedCode_IsSet = TryGetJsonValue(JsonRegeneratedCodeField, RegeneratedCode_Optional);
+		ParseSuccess &= RegeneratedCode_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonErrorMessageField = (*Object)->TryGetField(TEXT("error_message"));
+	if (JsonErrorMessageField.IsValid() && !JsonErrorMessageField->IsNull())
+	{
+		ErrorMessage_IsSet = TryGetJsonValue(JsonErrorMessageField, ErrorMessage_Optional);
+		ParseSuccess &= ErrorMessage_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

@@ -18,16 +18,16 @@
 UENUM(BlueprintType)
 enum class ERHAPI_ReportReason : uint8
 {
-    Cheating UMETA(ToolTip=""),
-    HateSpeech UMETA(ToolTip=""),
-    Harassment UMETA(ToolTip=""),
-    RealLifeThreat UMETA(ToolTip=""),
-    Teaming UMETA(ToolTip=""),
-    IntentionalFeeding UMETA(ToolTip=""),
-    StreamSniping UMETA(ToolTip=""),
-    Afk UMETA(ToolTip=""),
-    DidntPlayAssignedRole UMETA(ToolTip=""),
-    Other UMETA(ToolTip=""),
+	Cheating UMETA(ToolTip=""),
+	HateSpeech UMETA(ToolTip=""),
+	Harassment UMETA(ToolTip=""),
+	RealLifeThreat UMETA(ToolTip=""),
+	Teaming UMETA(ToolTip=""),
+	IntentionalFeeding UMETA(ToolTip=""),
+	StreamSniping UMETA(ToolTip=""),
+	Afk UMETA(ToolTip=""),
+	DidntPlayAssignedRole UMETA(ToolTip=""),
+	Other UMETA(ToolTip=""),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_ReportReason& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_ReportReason& EnumValue);

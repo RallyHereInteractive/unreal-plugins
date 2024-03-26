@@ -21,34 +21,34 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_BodyBeginNewSession::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("country_code"));
-    RallyHereAPI::WriteJsonValue(Writer, CountryCode);
-    if (DeviceId_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("device_id"));
-        RallyHereAPI::WriteJsonValue(Writer, DeviceId_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("country_code"));
+	RallyHereAPI::WriteJsonValue(Writer, CountryCode);
+	if (DeviceId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("device_id"));
+		RallyHereAPI::WriteJsonValue(Writer, DeviceId_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_BodyBeginNewSession::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonCountryCodeField = (*Object)->TryGetField(TEXT("country_code"));
-    ParseSuccess &= JsonCountryCodeField.IsValid() && !JsonCountryCodeField->IsNull() && TryGetJsonValue(JsonCountryCodeField, CountryCode);
-    const TSharedPtr<FJsonValue> JsonDeviceIdField = (*Object)->TryGetField(TEXT("device_id"));
-    if (JsonDeviceIdField.IsValid() && !JsonDeviceIdField->IsNull())
-    {
-        DeviceId_IsSet = TryGetJsonValue(JsonDeviceIdField, DeviceId_Optional);
-        ParseSuccess &= DeviceId_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonCountryCodeField = (*Object)->TryGetField(TEXT("country_code"));
+	ParseSuccess &= JsonCountryCodeField.IsValid() && !JsonCountryCodeField->IsNull() && TryGetJsonValue(JsonCountryCodeField, CountryCode);
+	const TSharedPtr<FJsonValue> JsonDeviceIdField = (*Object)->TryGetField(TEXT("device_id"));
+	if (JsonDeviceIdField.IsValid() && !JsonDeviceIdField->IsNull())
+	{
+		DeviceId_IsSet = TryGetJsonValue(JsonDeviceIdField, DeviceId_Optional);
+		ParseSuccess &= DeviceId_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

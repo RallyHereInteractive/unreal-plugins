@@ -56,27 +56,27 @@ DECLARE_DELEGATE_OneParam(FDelegate_GetMatchMakingTemplatesV2, const FResponse_G
 class RALLYHEREAPI_API FQueuesAPI : public FAPI
 {
 public:
-    FQueuesAPI();
-    virtual ~FQueuesAPI();
+	FQueuesAPI();
+	virtual ~FQueuesAPI();
 
-    FHttpRequestPtr GetAllMapGameInfo(const FRequest_GetAllMapGameInfo& Request, const FDelegate_GetAllMapGameInfo& Delegate = FDelegate_GetAllMapGameInfo(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetAllQueueInfo(const FRequest_GetAllQueueInfo& Request, const FDelegate_GetAllQueueInfo& Delegate = FDelegate_GetAllQueueInfo(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetAllQueueInfoV2(const FRequest_GetAllQueueInfoV2& Request, const FDelegate_GetAllQueueInfoV2& Delegate = FDelegate_GetAllQueueInfoV2(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetInstanceRequestTemplate(const FRequest_GetInstanceRequestTemplate& Request, const FDelegate_GetInstanceRequestTemplate& Delegate = FDelegate_GetInstanceRequestTemplate(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetMatchMakingProfile(const FRequest_GetMatchMakingProfile& Request, const FDelegate_GetMatchMakingProfile& Delegate = FDelegate_GetMatchMakingProfile(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetMatchMakingProfileV2(const FRequest_GetMatchMakingProfileV2& Request, const FDelegate_GetMatchMakingProfileV2& Delegate = FDelegate_GetMatchMakingProfileV2(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetMatchMakingTemplates(const FRequest_GetMatchMakingTemplates& Request, const FDelegate_GetMatchMakingTemplates& Delegate = FDelegate_GetMatchMakingTemplates(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetMatchMakingTemplatesV2(const FRequest_GetMatchMakingTemplatesV2& Request, const FDelegate_GetMatchMakingTemplatesV2& Delegate = FDelegate_GetMatchMakingTemplatesV2(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetAllMapGameInfo(const FRequest_GetAllMapGameInfo& Request, const FDelegate_GetAllMapGameInfo& Delegate = FDelegate_GetAllMapGameInfo(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetAllQueueInfo(const FRequest_GetAllQueueInfo& Request, const FDelegate_GetAllQueueInfo& Delegate = FDelegate_GetAllQueueInfo(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetAllQueueInfoV2(const FRequest_GetAllQueueInfoV2& Request, const FDelegate_GetAllQueueInfoV2& Delegate = FDelegate_GetAllQueueInfoV2(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetInstanceRequestTemplate(const FRequest_GetInstanceRequestTemplate& Request, const FDelegate_GetInstanceRequestTemplate& Delegate = FDelegate_GetInstanceRequestTemplate(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetMatchMakingProfile(const FRequest_GetMatchMakingProfile& Request, const FDelegate_GetMatchMakingProfile& Delegate = FDelegate_GetMatchMakingProfile(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetMatchMakingProfileV2(const FRequest_GetMatchMakingProfileV2& Request, const FDelegate_GetMatchMakingProfileV2& Delegate = FDelegate_GetMatchMakingProfileV2(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetMatchMakingTemplates(const FRequest_GetMatchMakingTemplates& Request, const FDelegate_GetMatchMakingTemplates& Delegate = FDelegate_GetMatchMakingTemplates(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetMatchMakingTemplatesV2(const FRequest_GetMatchMakingTemplatesV2& Request, const FDelegate_GetMatchMakingTemplatesV2& Delegate = FDelegate_GetMatchMakingTemplatesV2(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
-    void OnGetAllMapGameInfoResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllMapGameInfo Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetAllQueueInfoResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllQueueInfo Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetAllQueueInfoV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllQueueInfoV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetInstanceRequestTemplateResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetInstanceRequestTemplate Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetMatchMakingProfileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMatchMakingProfile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetMatchMakingProfileV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMatchMakingProfileV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetMatchMakingTemplatesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMatchMakingTemplates Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetMatchMakingTemplatesV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMatchMakingTemplatesV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetAllMapGameInfoResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllMapGameInfo Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetAllQueueInfoResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllQueueInfo Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetAllQueueInfoV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllQueueInfoV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetInstanceRequestTemplateResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetInstanceRequestTemplate Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetMatchMakingProfileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMatchMakingProfile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetMatchMakingProfileV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMatchMakingProfileV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetMatchMakingTemplatesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMatchMakingTemplates Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetMatchMakingTemplatesV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMatchMakingTemplatesV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
@@ -96,61 +96,61 @@ private:
 */
 struct RALLYHEREAPI_API FRequest_GetAllMapGameInfo : public FRequest
 {
-    FRequest_GetAllMapGameInfo();
-    virtual ~FRequest_GetAllMapGameInfo() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetAllMapGameInfo();
+	virtual ~FRequest_GetAllMapGameInfo() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid InstanceLaunchTemplateId;
-    /* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	FGuid InstanceLaunchTemplateId;
+	/* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetAllMapGameInfo : public FResponse
 {
-    FResponse_GetAllMapGameInfo(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetAllMapGameInfo() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetAllMapGameInfo(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetAllMapGameInfo() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_InstanceLaunchTemplate Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_InstanceLaunchTemplate Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_InstanceLaunchTemplate& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_InstanceLaunchTemplate& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetAllMapGameInfo
 {
-    typedef FRequest_GetAllMapGameInfo Request;
-    typedef FResponse_GetAllMapGameInfo Response;
-    typedef FDelegate_GetAllMapGameInfo Delegate;
-    typedef FQueuesAPI API;
-    static FString Name;
+	typedef FRequest_GetAllMapGameInfo Request;
+	typedef FResponse_GetAllMapGameInfo Response;
+	typedef FDelegate_GetAllMapGameInfo Delegate;
+	typedef FQueuesAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllMapGameInfo(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllMapGameInfo(InRequest, InDelegate, Priority); }
 };
 
 /* Get All Queue Info
@@ -168,62 +168,62 @@ struct RALLYHEREAPI_API Traits_GetAllMapGameInfo
 */
 struct RALLYHEREAPI_API FRequest_GetAllQueueInfo : public FRequest
 {
-    FRequest_GetAllQueueInfo();
-    virtual ~FRequest_GetAllQueueInfo() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetAllQueueInfo();
+	virtual ~FRequest_GetAllQueueInfo() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    TOptional<int32> Cursor;
-    TOptional<int32> PageSize;
-    /* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	TOptional<int32> Cursor;
+	TOptional<int32> PageSize;
+	/* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetAllQueueInfo : public FResponse
 {
-    FResponse_GetAllQueueInfo(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetAllQueueInfo() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetAllQueueInfo(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetAllQueueInfo() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_QueuesResponse Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_QueuesResponse Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_QueuesResponse& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_QueuesResponse& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetAllQueueInfo
 {
-    typedef FRequest_GetAllQueueInfo Request;
-    typedef FResponse_GetAllQueueInfo Response;
-    typedef FDelegate_GetAllQueueInfo Delegate;
-    typedef FQueuesAPI API;
-    static FString Name;
+	typedef FRequest_GetAllQueueInfo Request;
+	typedef FResponse_GetAllQueueInfo Response;
+	typedef FDelegate_GetAllQueueInfo Delegate;
+	typedef FQueuesAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllQueueInfo(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllQueueInfo(InRequest, InDelegate, Priority); }
 };
 
 /* Get All Queue Info V2
@@ -240,62 +240,62 @@ struct RALLYHEREAPI_API Traits_GetAllQueueInfo
 */
 struct RALLYHEREAPI_API FRequest_GetAllQueueInfoV2 : public FRequest
 {
-    FRequest_GetAllQueueInfoV2();
-    virtual ~FRequest_GetAllQueueInfoV2() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetAllQueueInfoV2();
+	virtual ~FRequest_GetAllQueueInfoV2() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    TOptional<int32> Cursor;
-    TOptional<int32> PageSize;
-    /* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	TOptional<int32> Cursor;
+	TOptional<int32> PageSize;
+	/* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetAllQueueInfoV2 : public FResponse
 {
-    FResponse_GetAllQueueInfoV2(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetAllQueueInfoV2() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetAllQueueInfoV2(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetAllQueueInfoV2() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_QueuesResponseV2 Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_QueuesResponseV2 Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_QueuesResponseV2& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_QueuesResponseV2& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetAllQueueInfoV2
 {
-    typedef FRequest_GetAllQueueInfoV2 Request;
-    typedef FResponse_GetAllQueueInfoV2 Response;
-    typedef FDelegate_GetAllQueueInfoV2 Delegate;
-    typedef FQueuesAPI API;
-    static FString Name;
+	typedef FRequest_GetAllQueueInfoV2 Request;
+	typedef FResponse_GetAllQueueInfoV2 Response;
+	typedef FDelegate_GetAllQueueInfoV2 Delegate;
+	typedef FQueuesAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllQueueInfoV2(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllQueueInfoV2(InRequest, InDelegate, Priority); }
 };
 
 /* Get Instance Request Template
@@ -313,61 +313,61 @@ struct RALLYHEREAPI_API Traits_GetAllQueueInfoV2
 */
 struct RALLYHEREAPI_API FRequest_GetInstanceRequestTemplate : public FRequest
 {
-    FRequest_GetInstanceRequestTemplate();
-    virtual ~FRequest_GetInstanceRequestTemplate() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetInstanceRequestTemplate();
+	virtual ~FRequest_GetInstanceRequestTemplate() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid InstanceRequestTemplateId;
-    /* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	FGuid InstanceRequestTemplateId;
+	/* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetInstanceRequestTemplate : public FResponse
 {
-    FResponse_GetInstanceRequestTemplate(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetInstanceRequestTemplate() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetInstanceRequestTemplate(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetInstanceRequestTemplate() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_InstanceRequestTemplate Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_InstanceRequestTemplate Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_InstanceRequestTemplate& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_InstanceRequestTemplate& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetInstanceRequestTemplate
 {
-    typedef FRequest_GetInstanceRequestTemplate Request;
-    typedef FResponse_GetInstanceRequestTemplate Response;
-    typedef FDelegate_GetInstanceRequestTemplate Delegate;
-    typedef FQueuesAPI API;
-    static FString Name;
+	typedef FRequest_GetInstanceRequestTemplate Request;
+	typedef FResponse_GetInstanceRequestTemplate Response;
+	typedef FDelegate_GetInstanceRequestTemplate Delegate;
+	typedef FQueuesAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetInstanceRequestTemplate(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetInstanceRequestTemplate(InRequest, InDelegate, Priority); }
 };
 
 /* Get Match Making Profile
@@ -385,61 +385,61 @@ struct RALLYHEREAPI_API Traits_GetInstanceRequestTemplate
 */
 struct RALLYHEREAPI_API FRequest_GetMatchMakingProfile : public FRequest
 {
-    FRequest_GetMatchMakingProfile();
-    virtual ~FRequest_GetMatchMakingProfile() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetMatchMakingProfile();
+	virtual ~FRequest_GetMatchMakingProfile() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString MatchMakingProfileId;
-    /* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString MatchMakingProfileId;
+	/* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetMatchMakingProfile : public FResponse
 {
-    FResponse_GetMatchMakingProfile(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetMatchMakingProfile() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetMatchMakingProfile(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetMatchMakingProfile() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_MatchMakingProfile Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_MatchMakingProfile Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_MatchMakingProfile& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_MatchMakingProfile& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetMatchMakingProfile
 {
-    typedef FRequest_GetMatchMakingProfile Request;
-    typedef FResponse_GetMatchMakingProfile Response;
-    typedef FDelegate_GetMatchMakingProfile Delegate;
-    typedef FQueuesAPI API;
-    static FString Name;
+	typedef FRequest_GetMatchMakingProfile Request;
+	typedef FResponse_GetMatchMakingProfile Response;
+	typedef FDelegate_GetMatchMakingProfile Delegate;
+	typedef FQueuesAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetMatchMakingProfile(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetMatchMakingProfile(InRequest, InDelegate, Priority); }
 };
 
 /* Get Match Making Profile V2
@@ -456,61 +456,61 @@ struct RALLYHEREAPI_API Traits_GetMatchMakingProfile
 */
 struct RALLYHEREAPI_API FRequest_GetMatchMakingProfileV2 : public FRequest
 {
-    FRequest_GetMatchMakingProfileV2();
-    virtual ~FRequest_GetMatchMakingProfileV2() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetMatchMakingProfileV2();
+	virtual ~FRequest_GetMatchMakingProfileV2() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString MatchMakingProfileId;
-    /* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString MatchMakingProfileId;
+	/* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetMatchMakingProfileV2 : public FResponse
 {
-    FResponse_GetMatchMakingProfileV2(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetMatchMakingProfileV2() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetMatchMakingProfileV2(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetMatchMakingProfileV2() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_MatchMakingProfileV2 Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_MatchMakingProfileV2 Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_MatchMakingProfileV2& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_MatchMakingProfileV2& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetMatchMakingProfileV2
 {
-    typedef FRequest_GetMatchMakingProfileV2 Request;
-    typedef FResponse_GetMatchMakingProfileV2 Response;
-    typedef FDelegate_GetMatchMakingProfileV2 Delegate;
-    typedef FQueuesAPI API;
-    static FString Name;
+	typedef FRequest_GetMatchMakingProfileV2 Request;
+	typedef FResponse_GetMatchMakingProfileV2 Response;
+	typedef FDelegate_GetMatchMakingProfileV2 Delegate;
+	typedef FQueuesAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetMatchMakingProfileV2(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetMatchMakingProfileV2(InRequest, InDelegate, Priority); }
 };
 
 /* Get Match Making Templates
@@ -529,61 +529,61 @@ struct RALLYHEREAPI_API Traits_GetMatchMakingProfileV2
 */
 struct RALLYHEREAPI_API FRequest_GetMatchMakingTemplates : public FRequest
 {
-    FRequest_GetMatchMakingTemplates();
-    virtual ~FRequest_GetMatchMakingTemplates() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetMatchMakingTemplates();
+	virtual ~FRequest_GetMatchMakingTemplates() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid TemplateGroupId;
-    /* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	FGuid TemplateGroupId;
+	/* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetMatchMakingTemplates : public FResponse
 {
-    FResponse_GetMatchMakingTemplates(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetMatchMakingTemplates() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetMatchMakingTemplates(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetMatchMakingTemplates() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_MatchMakingTemplateGroup Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_MatchMakingTemplateGroup Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_MatchMakingTemplateGroup& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_MatchMakingTemplateGroup& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetMatchMakingTemplates
 {
-    typedef FRequest_GetMatchMakingTemplates Request;
-    typedef FResponse_GetMatchMakingTemplates Response;
-    typedef FDelegate_GetMatchMakingTemplates Delegate;
-    typedef FQueuesAPI API;
-    static FString Name;
+	typedef FRequest_GetMatchMakingTemplates Request;
+	typedef FResponse_GetMatchMakingTemplates Response;
+	typedef FDelegate_GetMatchMakingTemplates Delegate;
+	typedef FQueuesAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetMatchMakingTemplates(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetMatchMakingTemplates(InRequest, InDelegate, Priority); }
 };
 
 /* Get Match Making Templates V2
@@ -602,61 +602,61 @@ struct RALLYHEREAPI_API Traits_GetMatchMakingTemplates
 */
 struct RALLYHEREAPI_API FRequest_GetMatchMakingTemplatesV2 : public FRequest
 {
-    FRequest_GetMatchMakingTemplatesV2();
-    virtual ~FRequest_GetMatchMakingTemplatesV2() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetMatchMakingTemplatesV2();
+	virtual ~FRequest_GetMatchMakingTemplatesV2() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid TemplateGroupId;
-    /* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	FGuid TemplateGroupId;
+	/* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetMatchMakingTemplatesV2 : public FResponse
 {
-    FResponse_GetMatchMakingTemplatesV2(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetMatchMakingTemplatesV2() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetMatchMakingTemplatesV2(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetMatchMakingTemplatesV2() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_MatchMakingTemplateGroupV2 Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_MatchMakingTemplateGroupV2 Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_MatchMakingTemplateGroupV2& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_MatchMakingTemplateGroupV2& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetMatchMakingTemplatesV2
 {
-    typedef FRequest_GetMatchMakingTemplatesV2 Request;
-    typedef FResponse_GetMatchMakingTemplatesV2 Response;
-    typedef FDelegate_GetMatchMakingTemplatesV2 Delegate;
-    typedef FQueuesAPI API;
-    static FString Name;
+	typedef FRequest_GetMatchMakingTemplatesV2 Request;
+	typedef FResponse_GetMatchMakingTemplatesV2 Response;
+	typedef FDelegate_GetMatchMakingTemplatesV2 Delegate;
+	typedef FQueuesAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetMatchMakingTemplatesV2(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetMatchMakingTemplatesV2(InRequest, InDelegate, Priority); }
 };
 
 

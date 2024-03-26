@@ -15,352 +15,352 @@
 
 FRHAPI_JsonValue FRHAPI_JsonObject::TryGetValue(const FString& FieldName) const
 {
-    if (!Obj)
-    {
-        return FRHAPI_JsonValue();
-    }
+	if (!Obj)
+	{
+		return FRHAPI_JsonValue();
+	}
 
-    const TSharedPtr<FJsonValue> Field = Obj->TryGetField(FieldName);
-    if (!Field)
-    {
-        return FRHAPI_JsonValue();
-    }
+	const TSharedPtr<FJsonValue> Field = Obj->TryGetField(FieldName);
+	if (!Field)
+	{
+		return FRHAPI_JsonValue();
+	}
 
-    return FRHAPI_JsonValue(Field);
+	return FRHAPI_JsonValue(Field);
 }
 
 bool FRHAPI_JsonObject::HasField(const FString& FieldName) const
 {
-    return Obj && Obj->HasField(FieldName);
+	return Obj && Obj->HasField(FieldName);
 }
 
 void FRHAPI_JsonObject::SetField(const FString& FieldName, const FRHAPI_JsonValue& Value) const
 {
-    if (Obj)
-    {
-        Obj->SetField(FieldName, Value.GetValue());
-    }
+	if (Obj)
+	{
+		Obj->SetField(FieldName, Value.GetValue());
+	}
 }
 
 void FRHAPI_JsonObject::RemoveField(const FString& FieldName) const
 {
-    if (Obj)
-    {
-        Obj->RemoveField(FieldName);
-    }
+	if (Obj)
+	{
+		Obj->RemoveField(FieldName);
+	}
 }
 
 float FRHAPI_JsonObject::GetNumberField(const FString& FieldName) const
 {
-    return Obj ? Obj->GetNumberField(FieldName) : float{};
+	return Obj ? Obj->GetNumberField(FieldName) : float{};
 }
 
 bool FRHAPI_JsonObject::TryGetNumberField(const FString& FieldName, float& OutNumber) const
 {
-    if (Obj)
-    {
-        double Num;
-        if (Obj->TryGetNumberField(FieldName, Num))
-        {
-            OutNumber = static_cast<float>(Num);
-            return true;
-        }
-    }
-    return false;
+	if (Obj)
+	{
+		double Num;
+		if (Obj->TryGetNumberField(FieldName, Num))
+		{
+			OutNumber = static_cast<float>(Num);
+			return true;
+		}
+	}
+	return false;
 }
 
 void FRHAPI_JsonObject::SetNumberField(const FString& FieldName, float Number) const
 {
-    if (Obj)
-    {
-        Obj->SetNumberField(FieldName, static_cast<double>(Number));
-    }
+	if (Obj)
+	{
+		Obj->SetNumberField(FieldName, static_cast<double>(Number));
+	}
 }
 
 bool FRHAPI_JsonObject::TryGetIntegerField(const FString& FieldName, int32& OutNumber) const
 {
-    return Obj && Obj->TryGetNumberField(FieldName, OutNumber);
+	return Obj && Obj->TryGetNumberField(FieldName, OutNumber);
 }
 
 bool FRHAPI_JsonObject::TryGetInteger64Field(const FString& FieldName, int64& OutNumber) const
 {
-    return Obj && Obj->TryGetNumberField(FieldName, OutNumber);
+	return Obj && Obj->TryGetNumberField(FieldName, OutNumber);
 }
 
 FString FRHAPI_JsonObject::GetStringField(const FString& FieldName) const
 {
-    return Obj ? Obj->GetStringField(FieldName) : FString{};
+	return Obj ? Obj->GetStringField(FieldName) : FString{};
 }
 
 bool FRHAPI_JsonObject::TryGetStringField(const FString& FieldName, FString& OutString) const
 {
-    return Obj && Obj->TryGetStringField(FieldName, OutString);
+	return Obj && Obj->TryGetStringField(FieldName, OutString);
 }
 
 bool FRHAPI_JsonObject::TryGetStringArrayField(const FString& FieldName, TArray<FString>& OutArray) const
 {
-    return Obj && Obj->TryGetStringArrayField(FieldName, OutArray);
+	return Obj && Obj->TryGetStringArrayField(FieldName, OutArray);
 }
 
 void FRHAPI_JsonObject::SetStringField(const FString& FieldName, const FString& StringValue) const
 {
-    if (Obj)
-    {
-        Obj->SetStringField(FieldName, StringValue);
-    }
+	if (Obj)
+	{
+		Obj->SetStringField(FieldName, StringValue);
+	}
 }
 
 bool FRHAPI_JsonObject::GetBoolField(const FString& FieldName) const
 {
-    return Obj && Obj->GetBoolField(FieldName);
+	return Obj && Obj->GetBoolField(FieldName);
 }
 
 bool FRHAPI_JsonObject::TryGetBoolField(const FString& FieldName, bool& OutBool) const
 {
-    return Obj && Obj->TryGetBoolField(FieldName, OutBool);
+	return Obj && Obj->TryGetBoolField(FieldName, OutBool);
 }
 
 void FRHAPI_JsonObject::SetBoolField(const FString& FieldName, bool InValue) const
 {
-    if (Obj)
-    {
-        Obj->SetBoolField(FieldName, InValue);
-    }
+	if (Obj)
+	{
+		Obj->SetBoolField(FieldName, InValue);
+	}
 }
 
 TArray<FRHAPI_JsonValue> FRHAPI_JsonObject::GetArrayField(const FString& FieldName) const
 {
-    TArray<FRHAPI_JsonValue> Arr;
-    TryGetArrayField(FieldName, Arr);
-    return Arr;
+	TArray<FRHAPI_JsonValue> Arr;
+	TryGetArrayField(FieldName, Arr);
+	return Arr;
 }
 
 bool FRHAPI_JsonObject::TryGetArrayField(const FString& FieldName, TArray<FRHAPI_JsonValue>& OutArray) const
 {
-    if (!Obj)
-    {
-        return false;
-    }
+	if (!Obj)
+	{
+		return false;
+	}
 
-    const TArray< TSharedPtr<FJsonValue> >* Arr{};
-    if (!Obj->TryGetArrayField(FieldName, Arr) || !Arr)
-    {
-        return false;
-    }
+	const TArray< TSharedPtr<FJsonValue> >* Arr{};
+	if (!Obj->TryGetArrayField(FieldName, Arr) || !Arr)
+	{
+		return false;
+	}
 
-    for (const TSharedPtr<FJsonValue>& Val : *Arr)
-    {
-        OutArray.Add(FRHAPI_JsonValue(Val));
-    }
-    return true;
+	for (const TSharedPtr<FJsonValue>& Val : *Arr)
+	{
+		OutArray.Add(FRHAPI_JsonValue(Val));
+	}
+	return true;
 }
 
 void FRHAPI_JsonObject::SetArrayField(const FString& FieldName, const TArray<FRHAPI_JsonValue>& Array) const
 {
-    if (!Obj)
-    {
-        return;
-    }
+	if (!Obj)
+	{
+		return;
+	}
 
-    TArray< TSharedPtr<FJsonValue> > UnrealArr;
-    for (const FRHAPI_JsonValue& Val : Array)
-    {
-        if (TSharedPtr<FJsonValue> UnrealVal = Val.GetValue())
-        {
-            UnrealArr.Add(UnrealVal);
-        }
-    }
-    Obj->SetArrayField(FieldName, UnrealArr);
+	TArray< TSharedPtr<FJsonValue> > UnrealArr;
+	for (const FRHAPI_JsonValue& Val : Array)
+	{
+		if (TSharedPtr<FJsonValue> UnrealVal = Val.GetValue())
+		{
+			UnrealArr.Add(UnrealVal);
+		}
+	}
+	Obj->SetArrayField(FieldName, UnrealArr);
 }
 
 FRHAPI_JsonObject FRHAPI_JsonObject::GetObjectField(const FString& FieldName) const
 {
-    FRHAPI_JsonObject OutObj;
-    TryGetObjectField(FieldName, OutObj);
-    return OutObj;
+	FRHAPI_JsonObject OutObj;
+	TryGetObjectField(FieldName, OutObj);
+	return OutObj;
 }
 
 bool FRHAPI_JsonObject::TryGetObjectField(const FString& FieldName, FRHAPI_JsonObject& OutObject) const
 {
-    if (!Obj)
-    {
-        return false;
-    }
+	if (!Obj)
+	{
+		return false;
+	}
 
-    const TSharedPtr<FJsonObject>* UnrealObj{};
-    if (!Obj->TryGetObjectField(FieldName, UnrealObj) || !UnrealObj)
-    {
-        return false;
-    }
+	const TSharedPtr<FJsonObject>* UnrealObj{};
+	if (!Obj->TryGetObjectField(FieldName, UnrealObj) || !UnrealObj)
+	{
+		return false;
+	}
 
-    OutObject.SetObject(Obj);
-    return true;
+	OutObject.SetObject(Obj);
+	return true;
 }
 
 void FRHAPI_JsonObject::SetObjectField(const FString& FieldName, const FRHAPI_JsonObject& JsonObject) const
 {
-    if (Obj)
-    {
-        Obj->SetObjectField(FieldName, JsonObject.GetObject());
-    }
+	if (Obj)
+	{
+		Obj->SetObjectField(FieldName, JsonObject.GetObject());
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////
 
 float FRHAPI_JsonValue::AsNumber() const
 {
-    if (!Value)
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("Unset Json Value used as a Number."));
-        return {};
+	if (!Value)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("Unset Json Value used as a Number."));
+		return {};
 	}
-    return Value->AsNumber();
+	return Value->AsNumber();
 }
 
 FString FRHAPI_JsonValue::AsString() const
 {
-    if (!Value)
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("Unset Json Value used as a String."));
-        return {};
+	if (!Value)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("Unset Json Value used as a String."));
+		return {};
 	}
-    return Value->AsString();
+	return Value->AsString();
 }
 
 bool FRHAPI_JsonValue::AsBool() const
 {
-    if (!Value)
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("Unset Json Value used as a Bool."));
-        return {};
+	if (!Value)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("Unset Json Value used as a Bool."));
+		return {};
 	}
-    return Value->AsBool();
+	return Value->AsBool();
 }
 
 bool FRHAPI_JsonValue::IsNull() const
 {
-    return !Value || Value->IsNull();
+	return !Value || Value->IsNull();
 }
 
 TArray<FRHAPI_JsonValue> FRHAPI_JsonValue::AsArray() const
 {
-    TArray<FRHAPI_JsonValue> Result;
-    if (Value)
-    {
-        for (TSharedPtr<FJsonValue> Val : Value->AsArray())
-        {
-            Result.Add(FRHAPI_JsonValue(Val));
-        }
-    }
-    else
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("Unset Json Value used as a Array."));
+	TArray<FRHAPI_JsonValue> Result;
+	if (Value)
+	{
+		for (TSharedPtr<FJsonValue> Val : Value->AsArray())
+		{
+			Result.Add(FRHAPI_JsonValue(Val));
+		}
 	}
-    return Result;
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("Unset Json Value used as a Array."));
+	}
+	return Result;
 }
 
 FRHAPI_JsonObject FRHAPI_JsonValue::AsObject() const
 {
-    if (Value)
-    {
-        if (const TSharedPtr<FJsonObject>& Obj = Value->AsObject())
-        {
-            FRHAPI_JsonObject Result;
-            Result.SetObject(Obj);
-            return Result;
-        }
-    }
-    else
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("Unset Json Value used as a Object."));
+	if (Value)
+	{
+		if (const TSharedPtr<FJsonObject>& Obj = Value->AsObject())
+		{
+			FRHAPI_JsonObject Result;
+			Result.SetObject(Obj);
+			return Result;
+		}
 	}
-    return FRHAPI_JsonObject();
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("Unset Json Value used as a Object."));
+	}
+	return FRHAPI_JsonObject();
 }
 
 ERHAPI_JsonValueType FRHAPI_JsonValue::GetType() const
 {
-    if (Value)
-    {
-        switch (Value->Type)
-        {
-        case EJson::None:
-            return ERHAPI_JsonValueType::None;
-        case EJson::Null:
-            return ERHAPI_JsonValueType::Null;
-        case EJson::String:
-            return ERHAPI_JsonValueType::String;
-        case EJson::Number:
-            return ERHAPI_JsonValueType::Number;
-        case EJson::Boolean:
-            return ERHAPI_JsonValueType::Boolean;
-        case EJson::Array:
-            return ERHAPI_JsonValueType::Array;
-        case EJson::Object:
-            return ERHAPI_JsonValueType::Object;
-        }
-    }
-    return ERHAPI_JsonValueType::None;
+	if (Value)
+	{
+		switch (Value->Type)
+		{
+		case EJson::None:
+			return ERHAPI_JsonValueType::None;
+		case EJson::Null:
+			return ERHAPI_JsonValueType::Null;
+		case EJson::String:
+			return ERHAPI_JsonValueType::String;
+		case EJson::Number:
+			return ERHAPI_JsonValueType::Number;
+		case EJson::Boolean:
+			return ERHAPI_JsonValueType::Boolean;
+		case EJson::Array:
+			return ERHAPI_JsonValueType::Array;
+		case EJson::Object:
+			return ERHAPI_JsonValueType::Object;
+		}
+	}
+	return ERHAPI_JsonValueType::None;
 }
 
 bool FRHAPI_JsonValue::TryGetNumber(float& OutNumber) const
 {
-    return Value && Value->TryGetNumber(OutNumber);
+	return Value && Value->TryGetNumber(OutNumber);
 }
 
 bool FRHAPI_JsonValue::TryGetInteger(int32& OutInteger) const
 {
-    return Value && Value->TryGetNumber(OutInteger);
+	return Value && Value->TryGetNumber(OutInteger);
 }
 
 bool FRHAPI_JsonValue::TryGetInteger64(int64& OutInteger64) const
 {
-    return Value && Value->TryGetNumber(OutInteger64);
+	return Value && Value->TryGetNumber(OutInteger64);
 }
 
 bool FRHAPI_JsonValue::TryGetString(FString& OutString) const
 {
-    return Value && Value->TryGetString(OutString);
+	return Value && Value->TryGetString(OutString);
 }
 
 bool FRHAPI_JsonValue::TryGetBool(bool& OutBool) const
 {
-    return Value && Value->TryGetBool(OutBool);
+	return Value && Value->TryGetBool(OutBool);
 }
 
 bool FRHAPI_JsonValue::TryGetArray(TArray<FRHAPI_JsonValue>& OutArray) const
 {
-    const TArray< TSharedPtr<FJsonValue> >* JsonArr{};
-    if (!Value || !Value->TryGetArray(JsonArr) || !JsonArr)
-    {
-        return false;
-    }
+	const TArray< TSharedPtr<FJsonValue> >* JsonArr{};
+	if (!Value || !Value->TryGetArray(JsonArr) || !JsonArr)
+	{
+		return false;
+	}
 
-    for (const TSharedPtr<FJsonValue>& Val : *JsonArr)
-    {
-        OutArray.Add(FRHAPI_JsonValue(Val));
-    }
-    return true;
+	for (const TSharedPtr<FJsonValue>& Val : *JsonArr)
+	{
+		OutArray.Add(FRHAPI_JsonValue(Val));
+	}
+	return true;
 }
 
 bool FRHAPI_JsonValue::TryGetObject(FRHAPI_JsonObject& OutObject) const
 {
-    const TSharedPtr<FJsonObject>* JsonObj{};
-    if (!Value || !Value->TryGetObject(JsonObj) || !JsonObj)
-    {
-        return false;
-    }
+	const TSharedPtr<FJsonObject>* JsonObj{};
+	if (!Value || !Value->TryGetObject(JsonObj) || !JsonObj)
+	{
+		return false;
+	}
 
-    OutObject.SetObject(*JsonObj);
-    return true;
+	OutObject.SetObject(*JsonObj);
+	return true;
 }
 
 bool FRHAPI_JsonValue::CompareEqual(const FRHAPI_JsonValue& Other) const
 {
-    if (!Value && !Other.Value)
-        return true;
-    if (!Value || !Other.Value)
-        return false;
-    return FJsonValue::CompareEqual(*Value, *Other.Value);
+	if (!Value && !Other.Value)
+		return true;
+	if (!Value || !Other.Value)
+		return false;
+	return FJsonValue::CompareEqual(*Value, *Other.Value);
 }
 
 //////////////////////////////////////////////////////////////////////////

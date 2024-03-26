@@ -21,45 +21,45 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_InventorySession::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("session_id"));
-    RallyHereAPI::WriteJsonValue(Writer, SessionId);
-    if (SessionPlatform_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("session_platform"));
-        RallyHereAPI::WriteJsonValue(Writer, EnumToString(SessionPlatform_Optional));
-    }
-    if (AppliedDurableLoot_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("applied_durable_loot"));
-        RallyHereAPI::WriteJsonValue(Writer, AppliedDurableLoot_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("session_id"));
+	RallyHereAPI::WriteJsonValue(Writer, SessionId);
+	if (SessionPlatform_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("session_platform"));
+		RallyHereAPI::WriteJsonValue(Writer, EnumToString(SessionPlatform_Optional));
+	}
+	if (AppliedDurableLoot_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("applied_durable_loot"));
+		RallyHereAPI::WriteJsonValue(Writer, AppliedDurableLoot_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_InventorySession::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonSessionIdField = (*Object)->TryGetField(TEXT("session_id"));
-    ParseSuccess &= JsonSessionIdField.IsValid() && !JsonSessionIdField->IsNull() && TryGetJsonValue(JsonSessionIdField, SessionId);
-    const TSharedPtr<FJsonValue> JsonSessionPlatformField = (*Object)->TryGetField(TEXT("session_platform"));
-    if (JsonSessionPlatformField.IsValid() && !JsonSessionPlatformField->IsNull())
-    {
-        SessionPlatform_IsSet = TryGetJsonValue(JsonSessionPlatformField, SessionPlatform_Optional);
-        ParseSuccess &= SessionPlatform_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonAppliedDurableLootField = (*Object)->TryGetField(TEXT("applied_durable_loot"));
-    if (JsonAppliedDurableLootField.IsValid() && !JsonAppliedDurableLootField->IsNull())
-    {
-        AppliedDurableLoot_IsSet = TryGetJsonValue(JsonAppliedDurableLootField, AppliedDurableLoot_Optional);
-        ParseSuccess &= AppliedDurableLoot_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonSessionIdField = (*Object)->TryGetField(TEXT("session_id"));
+	ParseSuccess &= JsonSessionIdField.IsValid() && !JsonSessionIdField->IsNull() && TryGetJsonValue(JsonSessionIdField, SessionId);
+	const TSharedPtr<FJsonValue> JsonSessionPlatformField = (*Object)->TryGetField(TEXT("session_platform"));
+	if (JsonSessionPlatformField.IsValid() && !JsonSessionPlatformField->IsNull())
+	{
+		SessionPlatform_IsSet = TryGetJsonValue(JsonSessionPlatformField, SessionPlatform_Optional);
+		ParseSuccess &= SessionPlatform_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonAppliedDurableLootField = (*Object)->TryGetField(TEXT("applied_durable_loot"));
+	if (JsonAppliedDurableLootField.IsValid() && !JsonAppliedDurableLootField->IsNull())
+	{
+		AppliedDurableLoot_IsSet = TryGetJsonValue(JsonAppliedDurableLootField, AppliedDurableLoot_Optional);
+		ParseSuccess &= AppliedDurableLoot_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

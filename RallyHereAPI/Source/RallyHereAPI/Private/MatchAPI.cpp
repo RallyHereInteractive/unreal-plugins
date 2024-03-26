@@ -17,175 +17,175 @@ namespace RallyHereAPI
 
 FMatchAPI::FMatchAPI() : FAPI()
 {
-    Url = TEXT("http://localhost");
-    Name = FName(TEXT("Match"));
+	Url = TEXT("http://localhost");
+	Name = FName(TEXT("Match"));
 }
 
 FMatchAPI::~FMatchAPI() {}
 
 FHttpRequestPtr FMatchAPI::CreateMatch(const FRequest_CreateMatch& Request, const FDelegate_CreateMatch& Delegate /*= FDelegate_CreateMatch()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
-    if (!IsValid())
-        return nullptr;
+	if (!IsValid())
+		return nullptr;
 
-    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
 
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
 
-    RequestData->SetMetadata(Request.GetRequestMetadata());
+	RequestData->SetMetadata(Request.GetRequestMetadata());
 
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMatchAPI::OnCreateMatchResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindRaw(this, &FMatchAPI::OnCreateMatchResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
 
-    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
 }
 
 void FMatchAPI::OnCreateMatchResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateMatch Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
-    FHttpRequestCompleteDelegate ResponseDelegate;
+	FHttpRequestCompleteDelegate ResponseDelegate;
 
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMatchAPI::OnCreateMatchResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindRaw(this, &FMatchAPI::OnCreateMatchResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
 
-    FResponse_CreateMatch Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+	FResponse_CreateMatch Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
 
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 FRequest_CreateMatch::FRequest_CreateMatch()
 {
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
+	RequestMetadata.Identifier = FGuid::NewGuid();
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_CreateMatch::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/match/v1/match"));
-    return Path;
+	static FName Path = FName(TEXT("/match/v1/match"));
+	return Path;
 }
 
 FString FRequest_CreateMatch::ComputePath() const
 {
-    FString Path = GetSimplifiedPath().ToString();
-    return Path;
+	FString Path = GetSimplifiedPath().ToString();
+	return Path;
 }
 
 bool FRequest_CreateMatch::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-    static const TArray<FString> Consumes = { TEXT("application/json") };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
+	static const TArray<FString> Consumes = { TEXT("application/json") };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
 
-    HttpRequest->SetVerb(TEXT("POST"));
+	HttpRequest->SetVerb(TEXT("POST"));
 
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateMatch - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateMatch - failed to add bearer token"));
-        return false;
-    }
+	if (!AuthContext)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateMatch - missing auth context"));
+		return false;
+	}
+	if (!AuthContext->AddBearerToken(HttpRequest))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateMatch - failed to add bearer token"));
+		return false;
+	}
 
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-        // Body parameters
-        FString JsonBody;
-        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+		// Body parameters
+		FString JsonBody;
+		TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
 
-        WriteJsonValue(Writer, MatchRequest);
-        Writer->Close();
+		WriteJsonValue(Writer, MatchRequest);
+		Writer->Close();
 
-        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
-        HttpRequest->SetContentAsString(JsonBody);
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateMatch - Body parameter (FRHAPI_MatchRequest) was ignored, not supported in multipart form"));
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateMatch - Body parameter (FRHAPI_MatchRequest) was ignored, not supported in urlencoded requests"));
-    }
-    else
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateMatch - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
+		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
+		HttpRequest->SetContentAsString(JsonBody);
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateMatch - Body parameter (FRHAPI_MatchRequest) was ignored, not supported in multipart form"));
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateMatch - Body parameter (FRHAPI_MatchRequest) was ignored, not supported in urlencoded requests"));
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateMatch - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
 
-    return true;
+	return true;
 }
 
 void FResponse_CreateMatch::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 403:
-        SetResponseString(TEXT("Forbidden"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
+	FResponse::SetHttpResponseCode(InHttpResponseCode);
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		SetResponseString(TEXT("Successful Response"));
+		break;
+	case 403:
+		SetResponseString(TEXT("Forbidden"));
+		break;
+	case 422:
+		SetResponseString(TEXT("Validation Error"));
+		break;
+	}
 }
 
 bool FResponse_CreateMatch::TryGetContentFor200(FRHAPI_MatchWithPlayers& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_CreateMatch::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_CreateMatch::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_CreateMatch::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    return TryGetJsonValue(JsonValue, Content);
+	return TryGetJsonValue(JsonValue, Content);
 }
 
 FResponse_CreateMatch::FResponse_CreateMatch(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
+	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -193,173 +193,173 @@ FString Traits_CreateMatch::Name = TEXT("CreateMatch");
 
 FHttpRequestPtr FMatchAPI::CreateMatchPlayer(const FRequest_CreateMatchPlayer& Request, const FDelegate_CreateMatchPlayer& Delegate /*= FDelegate_CreateMatchPlayer()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
-    if (!IsValid())
-        return nullptr;
+	if (!IsValid())
+		return nullptr;
 
-    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
 
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
 
-    RequestData->SetMetadata(Request.GetRequestMetadata());
+	RequestData->SetMetadata(Request.GetRequestMetadata());
 
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMatchAPI::OnCreateMatchPlayerResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindRaw(this, &FMatchAPI::OnCreateMatchPlayerResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
 
-    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
 }
 
 void FMatchAPI::OnCreateMatchPlayerResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateMatchPlayer Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
-    FHttpRequestCompleteDelegate ResponseDelegate;
+	FHttpRequestCompleteDelegate ResponseDelegate;
 
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMatchAPI::OnCreateMatchPlayerResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindRaw(this, &FMatchAPI::OnCreateMatchPlayerResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
 
-    FResponse_CreateMatchPlayer Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+	FResponse_CreateMatchPlayer Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
 
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 FRequest_CreateMatchPlayer::FRequest_CreateMatchPlayer()
 {
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
+	RequestMetadata.Identifier = FGuid::NewGuid();
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_CreateMatchPlayer::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/match/v1/player/{player_uuid}/match/{match_id}"));
-    return Path;
+	static FName Path = FName(TEXT("/match/v1/player/{player_uuid}/match/{match_id}"));
+	return Path;
 }
 
 FString FRequest_CreateMatchPlayer::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
-        { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
-        { TEXT("match_id"), ToStringFormatArg(MatchId) }
-    };
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
+		{ TEXT("match_id"), ToStringFormatArg(MatchId) }
+	};
 
-    FString Path = FString::Format(TEXT("/match/v1/player/{player_uuid}/match/{match_id}"), PathParams);
+	FString Path = FString::Format(TEXT("/match/v1/player/{player_uuid}/match/{match_id}"), PathParams);
 
-    return Path;
+	return Path;
 }
 
 bool FRequest_CreateMatchPlayer::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-    static const TArray<FString> Consumes = { TEXT("application/json") };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
+	static const TArray<FString> Consumes = { TEXT("application/json") };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
 
-    HttpRequest->SetVerb(TEXT("POST"));
+	HttpRequest->SetVerb(TEXT("POST"));
 
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateMatchPlayer - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateMatchPlayer - failed to add bearer token"));
-        return false;
-    }
+	if (!AuthContext)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateMatchPlayer - missing auth context"));
+		return false;
+	}
+	if (!AuthContext->AddBearerToken(HttpRequest))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateMatchPlayer - failed to add bearer token"));
+		return false;
+	}
 
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-        // Body parameters
-        FString JsonBody;
-        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+		// Body parameters
+		FString JsonBody;
+		TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
 
-        WriteJsonValue(Writer, MatchPlayerRequest);
-        Writer->Close();
+		WriteJsonValue(Writer, MatchPlayerRequest);
+		Writer->Close();
 
-        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
-        HttpRequest->SetContentAsString(JsonBody);
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateMatchPlayer - Body parameter (FRHAPI_MatchPlayerRequest) was ignored, not supported in multipart form"));
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateMatchPlayer - Body parameter (FRHAPI_MatchPlayerRequest) was ignored, not supported in urlencoded requests"));
-    }
-    else
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateMatchPlayer - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
+		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
+		HttpRequest->SetContentAsString(JsonBody);
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateMatchPlayer - Body parameter (FRHAPI_MatchPlayerRequest) was ignored, not supported in multipart form"));
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateMatchPlayer - Body parameter (FRHAPI_MatchPlayerRequest) was ignored, not supported in urlencoded requests"));
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateMatchPlayer - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
 
-    return true;
+	return true;
 }
 
 void FResponse_CreateMatchPlayer::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 403:
-        SetResponseString(TEXT("Forbidden"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
+	FResponse::SetHttpResponseCode(InHttpResponseCode);
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		SetResponseString(TEXT("Successful Response"));
+		break;
+	case 403:
+		SetResponseString(TEXT("Forbidden"));
+		break;
+	case 422:
+		SetResponseString(TEXT("Validation Error"));
+		break;
+	}
 }
 
 bool FResponse_CreateMatchPlayer::TryGetContentFor200(FRHAPI_MatchPlayerWithMatch& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_CreateMatchPlayer::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_CreateMatchPlayer::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_CreateMatchPlayer::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    return TryGetJsonValue(JsonValue, Content);
+	return TryGetJsonValue(JsonValue, Content);
 }
 
 FResponse_CreateMatchPlayer::FResponse_CreateMatchPlayer(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
+	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -367,156 +367,156 @@ FString Traits_CreateMatchPlayer::Name = TEXT("CreateMatchPlayer");
 
 FHttpRequestPtr FMatchAPI::DeleteMatch(const FRequest_DeleteMatch& Request, const FDelegate_DeleteMatch& Delegate /*= FDelegate_DeleteMatch()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
-    if (!IsValid())
-        return nullptr;
+	if (!IsValid())
+		return nullptr;
 
-    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
 
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
 
-    RequestData->SetMetadata(Request.GetRequestMetadata());
+	RequestData->SetMetadata(Request.GetRequestMetadata());
 
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMatchAPI::OnDeleteMatchResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindRaw(this, &FMatchAPI::OnDeleteMatchResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
 
-    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
 }
 
 void FMatchAPI::OnDeleteMatchResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteMatch Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
-    FHttpRequestCompleteDelegate ResponseDelegate;
+	FHttpRequestCompleteDelegate ResponseDelegate;
 
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMatchAPI::OnDeleteMatchResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindRaw(this, &FMatchAPI::OnDeleteMatchResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
 
-    FResponse_DeleteMatch Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+	FResponse_DeleteMatch Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
 
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 FRequest_DeleteMatch::FRequest_DeleteMatch()
 {
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
+	RequestMetadata.Identifier = FGuid::NewGuid();
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_DeleteMatch::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/match/v1/match/{match_id}"));
-    return Path;
+	static FName Path = FName(TEXT("/match/v1/match/{match_id}"));
+	return Path;
 }
 
 FString FRequest_DeleteMatch::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
-        { TEXT("match_id"), ToStringFormatArg(MatchId) }
-    };
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("match_id"), ToStringFormatArg(MatchId) }
+	};
 
-    FString Path = FString::Format(TEXT("/match/v1/match/{match_id}"), PathParams);
+	FString Path = FString::Format(TEXT("/match/v1/match/{match_id}"), PathParams);
 
-    return Path;
+	return Path;
 }
 
 bool FRequest_DeleteMatch::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
+	static const TArray<FString> Consumes = {  };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
 
-    HttpRequest->SetVerb(TEXT("DELETE"));
+	HttpRequest->SetVerb(TEXT("DELETE"));
 
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteMatch - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteMatch - failed to add bearer token"));
-        return false;
-    }
+	if (!AuthContext)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteMatch - missing auth context"));
+		return false;
+	}
+	if (!AuthContext->AddBearerToken(HttpRequest))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteMatch - failed to add bearer token"));
+		return false;
+	}
 
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteMatch - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteMatch - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
 
-    return true;
+	return true;
 }
 
 void FResponse_DeleteMatch::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 403:
-        SetResponseString(TEXT("Forbidden"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
+	FResponse::SetHttpResponseCode(InHttpResponseCode);
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		SetResponseString(TEXT("Successful Response"));
+		break;
+	case 403:
+		SetResponseString(TEXT("Forbidden"));
+		break;
+	case 422:
+		SetResponseString(TEXT("Validation Error"));
+		break;
+	}
 }
 
 bool FResponse_DeleteMatch::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteMatch::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteMatch::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    return true;
+	return true;
 }
 
 FResponse_DeleteMatch::FResponse_DeleteMatch(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
+	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -524,157 +524,157 @@ FString Traits_DeleteMatch::Name = TEXT("DeleteMatch");
 
 FHttpRequestPtr FMatchAPI::DeleteMatchPlayer(const FRequest_DeleteMatchPlayer& Request, const FDelegate_DeleteMatchPlayer& Delegate /*= FDelegate_DeleteMatchPlayer()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
-    if (!IsValid())
-        return nullptr;
+	if (!IsValid())
+		return nullptr;
 
-    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
 
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
 
-    RequestData->SetMetadata(Request.GetRequestMetadata());
+	RequestData->SetMetadata(Request.GetRequestMetadata());
 
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMatchAPI::OnDeleteMatchPlayerResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindRaw(this, &FMatchAPI::OnDeleteMatchPlayerResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
 
-    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
 }
 
 void FMatchAPI::OnDeleteMatchPlayerResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteMatchPlayer Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
-    FHttpRequestCompleteDelegate ResponseDelegate;
+	FHttpRequestCompleteDelegate ResponseDelegate;
 
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMatchAPI::OnDeleteMatchPlayerResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindRaw(this, &FMatchAPI::OnDeleteMatchPlayerResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
 
-    FResponse_DeleteMatchPlayer Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+	FResponse_DeleteMatchPlayer Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
 
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 FRequest_DeleteMatchPlayer::FRequest_DeleteMatchPlayer()
 {
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
+	RequestMetadata.Identifier = FGuid::NewGuid();
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_DeleteMatchPlayer::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/match/v1/player/{player_uuid}/match/{match_id}"));
-    return Path;
+	static FName Path = FName(TEXT("/match/v1/player/{player_uuid}/match/{match_id}"));
+	return Path;
 }
 
 FString FRequest_DeleteMatchPlayer::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
-        { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
-        { TEXT("match_id"), ToStringFormatArg(MatchId) }
-    };
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
+		{ TEXT("match_id"), ToStringFormatArg(MatchId) }
+	};
 
-    FString Path = FString::Format(TEXT("/match/v1/player/{player_uuid}/match/{match_id}"), PathParams);
+	FString Path = FString::Format(TEXT("/match/v1/player/{player_uuid}/match/{match_id}"), PathParams);
 
-    return Path;
+	return Path;
 }
 
 bool FRequest_DeleteMatchPlayer::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
+	static const TArray<FString> Consumes = {  };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
 
-    HttpRequest->SetVerb(TEXT("DELETE"));
+	HttpRequest->SetVerb(TEXT("DELETE"));
 
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteMatchPlayer - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteMatchPlayer - failed to add bearer token"));
-        return false;
-    }
+	if (!AuthContext)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteMatchPlayer - missing auth context"));
+		return false;
+	}
+	if (!AuthContext->AddBearerToken(HttpRequest))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteMatchPlayer - failed to add bearer token"));
+		return false;
+	}
 
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteMatchPlayer - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteMatchPlayer - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
 
-    return true;
+	return true;
 }
 
 void FResponse_DeleteMatchPlayer::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 403:
-        SetResponseString(TEXT("Forbidden"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
+	FResponse::SetHttpResponseCode(InHttpResponseCode);
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		SetResponseString(TEXT("Successful Response"));
+		break;
+	case 403:
+		SetResponseString(TEXT("Forbidden"));
+		break;
+	case 422:
+		SetResponseString(TEXT("Validation Error"));
+		break;
+	}
 }
 
 bool FResponse_DeleteMatchPlayer::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteMatchPlayer::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteMatchPlayer::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    return true;
+	return true;
 }
 
 FResponse_DeleteMatchPlayer::FResponse_DeleteMatchPlayer(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
+	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -682,169 +682,169 @@ FString Traits_DeleteMatchPlayer::Name = TEXT("DeleteMatchPlayer");
 
 FHttpRequestPtr FMatchAPI::GetMatch(const FRequest_GetMatch& Request, const FDelegate_GetMatch& Delegate /*= FDelegate_GetMatch()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
-    if (!IsValid())
-        return nullptr;
+	if (!IsValid())
+		return nullptr;
 
-    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
 
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
 
-    RequestData->SetMetadata(Request.GetRequestMetadata());
+	RequestData->SetMetadata(Request.GetRequestMetadata());
 
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMatchAPI::OnGetMatchResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindRaw(this, &FMatchAPI::OnGetMatchResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
 
-    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
 }
 
 void FMatchAPI::OnGetMatchResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMatch Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
-    FHttpRequestCompleteDelegate ResponseDelegate;
+	FHttpRequestCompleteDelegate ResponseDelegate;
 
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMatchAPI::OnGetMatchResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindRaw(this, &FMatchAPI::OnGetMatchResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
 
-    FResponse_GetMatch Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+	FResponse_GetMatch Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
 
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 FRequest_GetMatch::FRequest_GetMatch()
 {
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
+	RequestMetadata.Identifier = FGuid::NewGuid();
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetMatch::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/match/v1/match/{match_id}"));
-    return Path;
+	static FName Path = FName(TEXT("/match/v1/match/{match_id}"));
+	return Path;
 }
 
 FString FRequest_GetMatch::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
-        { TEXT("match_id"), ToStringFormatArg(MatchId) }
-    };
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("match_id"), ToStringFormatArg(MatchId) }
+	};
 
-    FString Path = FString::Format(TEXT("/match/v1/match/{match_id}"), PathParams);
+	FString Path = FString::Format(TEXT("/match/v1/match/{match_id}"), PathParams);
 
-    return Path;
+	return Path;
 }
 
 bool FRequest_GetMatch::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
+	static const TArray<FString> Consumes = {  };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
 
-    HttpRequest->SetVerb(TEXT("GET"));
+	HttpRequest->SetVerb(TEXT("GET"));
 
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetMatch - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetMatch - failed to add bearer token"));
-        return false;
-    }
+	if (!AuthContext)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetMatch - missing auth context"));
+		return false;
+	}
+	if (!AuthContext->AddBearerToken(HttpRequest))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetMatch - failed to add bearer token"));
+		return false;
+	}
 
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetMatch - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetMatch - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
 
-    return true;
+	return true;
 }
 
 void FResponse_GetMatch::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 403:
-        SetResponseString(TEXT("Forbidden"));
-        break;
-    case 404:
-        SetResponseString(TEXT("Not Found"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
+	FResponse::SetHttpResponseCode(InHttpResponseCode);
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		SetResponseString(TEXT("Successful Response"));
+		break;
+	case 403:
+		SetResponseString(TEXT("Forbidden"));
+		break;
+	case 404:
+		SetResponseString(TEXT("Not Found"));
+		break;
+	case 422:
+		SetResponseString(TEXT("Validation Error"));
+		break;
+	}
 }
 
 bool FResponse_GetMatch::TryGetContentFor200(FRHAPI_MatchWithPlayers& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetMatch::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetMatch::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetMatch::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetMatch::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    return TryGetJsonValue(JsonValue, Content);
+	return TryGetJsonValue(JsonValue, Content);
 }
 
 FResponse_GetMatch::FResponse_GetMatch(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
+	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -852,162 +852,162 @@ FString Traits_GetMatch::Name = TEXT("GetMatch");
 
 FHttpRequestPtr FMatchAPI::GetMatchPlayer(const FRequest_GetMatchPlayer& Request, const FDelegate_GetMatchPlayer& Delegate /*= FDelegate_GetMatchPlayer()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
-    if (!IsValid())
-        return nullptr;
+	if (!IsValid())
+		return nullptr;
 
-    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
 
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
 
-    RequestData->SetMetadata(Request.GetRequestMetadata());
+	RequestData->SetMetadata(Request.GetRequestMetadata());
 
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMatchAPI::OnGetMatchPlayerResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindRaw(this, &FMatchAPI::OnGetMatchPlayerResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
 
-    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
 }
 
 void FMatchAPI::OnGetMatchPlayerResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMatchPlayer Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
-    FHttpRequestCompleteDelegate ResponseDelegate;
+	FHttpRequestCompleteDelegate ResponseDelegate;
 
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMatchAPI::OnGetMatchPlayerResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindRaw(this, &FMatchAPI::OnGetMatchPlayerResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
 
-    FResponse_GetMatchPlayer Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+	FResponse_GetMatchPlayer Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
 
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 FRequest_GetMatchPlayer::FRequest_GetMatchPlayer()
 {
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
+	RequestMetadata.Identifier = FGuid::NewGuid();
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetMatchPlayer::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/match/v1/player/{player_uuid}/match/{match_id}"));
-    return Path;
+	static FName Path = FName(TEXT("/match/v1/player/{player_uuid}/match/{match_id}"));
+	return Path;
 }
 
 FString FRequest_GetMatchPlayer::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
-        { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
-        { TEXT("match_id"), ToStringFormatArg(MatchId) }
-    };
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
+		{ TEXT("match_id"), ToStringFormatArg(MatchId) }
+	};
 
-    FString Path = FString::Format(TEXT("/match/v1/player/{player_uuid}/match/{match_id}"), PathParams);
+	FString Path = FString::Format(TEXT("/match/v1/player/{player_uuid}/match/{match_id}"), PathParams);
 
-    return Path;
+	return Path;
 }
 
 bool FRequest_GetMatchPlayer::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
+	static const TArray<FString> Consumes = {  };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
 
-    HttpRequest->SetVerb(TEXT("GET"));
+	HttpRequest->SetVerb(TEXT("GET"));
 
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetMatchPlayer - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetMatchPlayer - failed to add bearer token"));
-        return false;
-    }
+	if (!AuthContext)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetMatchPlayer - missing auth context"));
+		return false;
+	}
+	if (!AuthContext->AddBearerToken(HttpRequest))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetMatchPlayer - failed to add bearer token"));
+		return false;
+	}
 
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetMatchPlayer - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetMatchPlayer - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
 
-    return true;
+	return true;
 }
 
 void FResponse_GetMatchPlayer::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 403:
-        SetResponseString(TEXT("Forbidden"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
+	FResponse::SetHttpResponseCode(InHttpResponseCode);
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		SetResponseString(TEXT("Successful Response"));
+		break;
+	case 403:
+		SetResponseString(TEXT("Forbidden"));
+		break;
+	case 422:
+		SetResponseString(TEXT("Validation Error"));
+		break;
+	}
 }
 
 bool FResponse_GetMatchPlayer::TryGetContentFor200(FRHAPI_MatchPlayerWithMatch& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetMatchPlayer::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetMatchPlayer::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetMatchPlayer::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    return TryGetJsonValue(JsonValue, Content);
+	return TryGetJsonValue(JsonValue, Content);
 }
 
 FResponse_GetMatchPlayer::FResponse_GetMatchPlayer(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
+	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -1015,192 +1015,192 @@ FString Traits_GetMatchPlayer::Name = TEXT("GetMatchPlayer");
 
 FHttpRequestPtr FMatchAPI::GetMatches(const FRequest_GetMatches& Request, const FDelegate_GetMatches& Delegate /*= FDelegate_GetMatches()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
-    if (!IsValid())
-        return nullptr;
+	if (!IsValid())
+		return nullptr;
 
-    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
 
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
 
-    RequestData->SetMetadata(Request.GetRequestMetadata());
+	RequestData->SetMetadata(Request.GetRequestMetadata());
 
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMatchAPI::OnGetMatchesResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindRaw(this, &FMatchAPI::OnGetMatchesResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
 
-    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
 }
 
 void FMatchAPI::OnGetMatchesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMatches Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
-    FHttpRequestCompleteDelegate ResponseDelegate;
+	FHttpRequestCompleteDelegate ResponseDelegate;
 
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMatchAPI::OnGetMatchesResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindRaw(this, &FMatchAPI::OnGetMatchesResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
 
-    FResponse_GetMatches Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+	FResponse_GetMatches Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
 
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 FRequest_GetMatches::FRequest_GetMatches()
 {
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
+	RequestMetadata.Identifier = FGuid::NewGuid();
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetMatches::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/match/v1/match"));
-    return Path;
+	static FName Path = FName(TEXT("/match/v1/match"));
+	return Path;
 }
 
 FString FRequest_GetMatches::ComputePath() const
 {
-    FString Path = GetSimplifiedPath().ToString();
-    TArray<FString> QueryParams;
-    if(Cursor.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("cursor=")) + ToUrlString(Cursor.GetValue()));
-    }
-    if(PageSize.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("page_size=")) + ToUrlString(PageSize.GetValue()));
-    }
-    if(InstanceId.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("instance_id=")) + ToUrlString(InstanceId.GetValue()));
-    }
-    if(AllocationId.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("allocation_id=")) + ToUrlString(AllocationId.GetValue()));
-    }
-    if(SessionId.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("session_id=")) + ToUrlString(SessionId.GetValue()));
-    }
-    if(HostPlayerUuid.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("host_player_uuid=")) + ToUrlString(HostPlayerUuid.GetValue()));
-    }
-    if(RegionId.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("region_id=")) + ToUrlString(RegionId.GetValue()));
-    }
-    if(PlayerUuid.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("player_uuid=")) + ToUrlString(PlayerUuid.GetValue()));
-    }
-    Path += TCHAR('?');
-    Path += FString::Join(QueryParams, TEXT("&"));
+	FString Path = GetSimplifiedPath().ToString();
+	TArray<FString> QueryParams;
+	if(Cursor.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("cursor=")) + ToUrlString(Cursor.GetValue()));
+	}
+	if(PageSize.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("page_size=")) + ToUrlString(PageSize.GetValue()));
+	}
+	if(InstanceId.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("instance_id=")) + ToUrlString(InstanceId.GetValue()));
+	}
+	if(AllocationId.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("allocation_id=")) + ToUrlString(AllocationId.GetValue()));
+	}
+	if(SessionId.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("session_id=")) + ToUrlString(SessionId.GetValue()));
+	}
+	if(HostPlayerUuid.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("host_player_uuid=")) + ToUrlString(HostPlayerUuid.GetValue()));
+	}
+	if(RegionId.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("region_id=")) + ToUrlString(RegionId.GetValue()));
+	}
+	if(PlayerUuid.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("player_uuid=")) + ToUrlString(PlayerUuid.GetValue()));
+	}
+	Path += TCHAR('?');
+	Path += FString::Join(QueryParams, TEXT("&"));
 
-    return Path;
+	return Path;
 }
 
 bool FRequest_GetMatches::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
+	static const TArray<FString> Consumes = {  };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
 
-    HttpRequest->SetVerb(TEXT("GET"));
+	HttpRequest->SetVerb(TEXT("GET"));
 
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetMatches - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetMatches - failed to add bearer token"));
-        return false;
-    }
+	if (!AuthContext)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetMatches - missing auth context"));
+		return false;
+	}
+	if (!AuthContext->AddBearerToken(HttpRequest))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetMatches - failed to add bearer token"));
+		return false;
+	}
 
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetMatches - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetMatches - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
 
-    return true;
+	return true;
 }
 
 void FResponse_GetMatches::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 403:
-        SetResponseString(TEXT("Forbidden"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
+	FResponse::SetHttpResponseCode(InHttpResponseCode);
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		SetResponseString(TEXT("Successful Response"));
+		break;
+	case 403:
+		SetResponseString(TEXT("Forbidden"));
+		break;
+	case 422:
+		SetResponseString(TEXT("Validation Error"));
+		break;
+	}
 }
 
 bool FResponse_GetMatches::TryGetContentFor200(FRHAPI_PagedMatchResponse& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetMatches::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetMatches::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetMatches::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    return TryGetJsonValue(JsonValue, Content);
+	return TryGetJsonValue(JsonValue, Content);
 }
 
 FResponse_GetMatches::FResponse_GetMatches(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
+	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -1208,168 +1208,168 @@ FString Traits_GetMatches::Name = TEXT("GetMatches");
 
 FHttpRequestPtr FMatchAPI::GetPlayerMatchesSelf(const FRequest_GetPlayerMatchesSelf& Request, const FDelegate_GetPlayerMatchesSelf& Delegate /*= FDelegate_GetPlayerMatchesSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
-    if (!IsValid())
-        return nullptr;
+	if (!IsValid())
+		return nullptr;
 
-    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
 
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
 
-    RequestData->SetMetadata(Request.GetRequestMetadata());
+	RequestData->SetMetadata(Request.GetRequestMetadata());
 
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMatchAPI::OnGetPlayerMatchesSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindRaw(this, &FMatchAPI::OnGetPlayerMatchesSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
 
-    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
 }
 
 void FMatchAPI::OnGetPlayerMatchesSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerMatchesSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
-    FHttpRequestCompleteDelegate ResponseDelegate;
+	FHttpRequestCompleteDelegate ResponseDelegate;
 
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMatchAPI::OnGetPlayerMatchesSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindRaw(this, &FMatchAPI::OnGetPlayerMatchesSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
 
-    FResponse_GetPlayerMatchesSelf Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+	FResponse_GetPlayerMatchesSelf Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
 
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 FRequest_GetPlayerMatchesSelf::FRequest_GetPlayerMatchesSelf()
 {
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
+	RequestMetadata.Identifier = FGuid::NewGuid();
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetPlayerMatchesSelf::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/match/v1/player/me/match"));
-    return Path;
+	static FName Path = FName(TEXT("/match/v1/player/me/match"));
+	return Path;
 }
 
 FString FRequest_GetPlayerMatchesSelf::ComputePath() const
 {
-    FString Path = GetSimplifiedPath().ToString();
-    TArray<FString> QueryParams;
-    if(Cursor.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("cursor=")) + ToUrlString(Cursor.GetValue()));
-    }
-    if(PageSize.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("page_size=")) + ToUrlString(PageSize.GetValue()));
-    }
-    Path += TCHAR('?');
-    Path += FString::Join(QueryParams, TEXT("&"));
+	FString Path = GetSimplifiedPath().ToString();
+	TArray<FString> QueryParams;
+	if(Cursor.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("cursor=")) + ToUrlString(Cursor.GetValue()));
+	}
+	if(PageSize.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("page_size=")) + ToUrlString(PageSize.GetValue()));
+	}
+	Path += TCHAR('?');
+	Path += FString::Join(QueryParams, TEXT("&"));
 
-    return Path;
+	return Path;
 }
 
 bool FRequest_GetPlayerMatchesSelf::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
+	static const TArray<FString> Consumes = {  };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
 
-    HttpRequest->SetVerb(TEXT("GET"));
+	HttpRequest->SetVerb(TEXT("GET"));
 
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPlayerMatchesSelf - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPlayerMatchesSelf - failed to add bearer token"));
-        return false;
-    }
+	if (!AuthContext)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPlayerMatchesSelf - missing auth context"));
+		return false;
+	}
+	if (!AuthContext->AddBearerToken(HttpRequest))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPlayerMatchesSelf - failed to add bearer token"));
+		return false;
+	}
 
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPlayerMatchesSelf - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPlayerMatchesSelf - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
 
-    return true;
+	return true;
 }
 
 void FResponse_GetPlayerMatchesSelf::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 403:
-        SetResponseString(TEXT("Forbidden"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
+	FResponse::SetHttpResponseCode(InHttpResponseCode);
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		SetResponseString(TEXT("Successful Response"));
+		break;
+	case 403:
+		SetResponseString(TEXT("Forbidden"));
+		break;
+	case 422:
+		SetResponseString(TEXT("Validation Error"));
+		break;
+	}
 }
 
 bool FResponse_GetPlayerMatchesSelf::TryGetContentFor200(FRHAPI_PagedPlayerMatchResponse& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetPlayerMatchesSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetPlayerMatchesSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetPlayerMatchesSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    return TryGetJsonValue(JsonValue, Content);
+	return TryGetJsonValue(JsonValue, Content);
 }
 
 FResponse_GetPlayerMatchesSelf::FResponse_GetPlayerMatchesSelf(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
+	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -1377,173 +1377,173 @@ FString Traits_GetPlayerMatchesSelf::Name = TEXT("GetPlayerMatchesSelf");
 
 FHttpRequestPtr FMatchAPI::GetPlayersMatches(const FRequest_GetPlayersMatches& Request, const FDelegate_GetPlayersMatches& Delegate /*= FDelegate_GetPlayersMatches()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
-    if (!IsValid())
-        return nullptr;
+	if (!IsValid())
+		return nullptr;
 
-    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
 
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
 
-    RequestData->SetMetadata(Request.GetRequestMetadata());
+	RequestData->SetMetadata(Request.GetRequestMetadata());
 
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMatchAPI::OnGetPlayersMatchesResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindRaw(this, &FMatchAPI::OnGetPlayersMatchesResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
 
-    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
 }
 
 void FMatchAPI::OnGetPlayersMatchesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayersMatches Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
-    FHttpRequestCompleteDelegate ResponseDelegate;
+	FHttpRequestCompleteDelegate ResponseDelegate;
 
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMatchAPI::OnGetPlayersMatchesResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindRaw(this, &FMatchAPI::OnGetPlayersMatchesResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
 
-    FResponse_GetPlayersMatches Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+	FResponse_GetPlayersMatches Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
 
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 FRequest_GetPlayersMatches::FRequest_GetPlayersMatches()
 {
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
+	RequestMetadata.Identifier = FGuid::NewGuid();
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetPlayersMatches::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/match/v1/player/{player_uuid}/match"));
-    return Path;
+	static FName Path = FName(TEXT("/match/v1/player/{player_uuid}/match"));
+	return Path;
 }
 
 FString FRequest_GetPlayersMatches::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
-        { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
-    };
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
+	};
 
-    FString Path = FString::Format(TEXT("/match/v1/player/{player_uuid}/match"), PathParams);
+	FString Path = FString::Format(TEXT("/match/v1/player/{player_uuid}/match"), PathParams);
 
-    TArray<FString> QueryParams;
-    if(Cursor.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("cursor=")) + ToUrlString(Cursor.GetValue()));
-    }
-    if(PageSize.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("page_size=")) + ToUrlString(PageSize.GetValue()));
-    }
-    Path += TCHAR('?');
-    Path += FString::Join(QueryParams, TEXT("&"));
+	TArray<FString> QueryParams;
+	if(Cursor.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("cursor=")) + ToUrlString(Cursor.GetValue()));
+	}
+	if(PageSize.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("page_size=")) + ToUrlString(PageSize.GetValue()));
+	}
+	Path += TCHAR('?');
+	Path += FString::Join(QueryParams, TEXT("&"));
 
-    return Path;
+	return Path;
 }
 
 bool FRequest_GetPlayersMatches::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
+	static const TArray<FString> Consumes = {  };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
 
-    HttpRequest->SetVerb(TEXT("GET"));
+	HttpRequest->SetVerb(TEXT("GET"));
 
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPlayersMatches - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPlayersMatches - failed to add bearer token"));
-        return false;
-    }
+	if (!AuthContext)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPlayersMatches - missing auth context"));
+		return false;
+	}
+	if (!AuthContext->AddBearerToken(HttpRequest))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPlayersMatches - failed to add bearer token"));
+		return false;
+	}
 
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPlayersMatches - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPlayersMatches - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
 
-    return true;
+	return true;
 }
 
 void FResponse_GetPlayersMatches::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 403:
-        SetResponseString(TEXT("Forbidden"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
+	FResponse::SetHttpResponseCode(InHttpResponseCode);
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		SetResponseString(TEXT("Successful Response"));
+		break;
+	case 403:
+		SetResponseString(TEXT("Forbidden"));
+		break;
+	case 422:
+		SetResponseString(TEXT("Validation Error"));
+		break;
+	}
 }
 
 bool FResponse_GetPlayersMatches::TryGetContentFor200(FRHAPI_PagedPlayerMatchResponse& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetPlayersMatches::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetPlayersMatches::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetPlayersMatches::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    return TryGetJsonValue(JsonValue, Content);
+	return TryGetJsonValue(JsonValue, Content);
 }
 
 FResponse_GetPlayersMatches::FResponse_GetPlayersMatches(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
+	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -1551,172 +1551,172 @@ FString Traits_GetPlayersMatches::Name = TEXT("GetPlayersMatches");
 
 FHttpRequestPtr FMatchAPI::PatchMatch(const FRequest_PatchMatch& Request, const FDelegate_PatchMatch& Delegate /*= FDelegate_PatchMatch()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
-    if (!IsValid())
-        return nullptr;
+	if (!IsValid())
+		return nullptr;
 
-    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
 
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
 
-    RequestData->SetMetadata(Request.GetRequestMetadata());
+	RequestData->SetMetadata(Request.GetRequestMetadata());
 
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMatchAPI::OnPatchMatchResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindRaw(this, &FMatchAPI::OnPatchMatchResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
 
-    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
 }
 
 void FMatchAPI::OnPatchMatchResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PatchMatch Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
-    FHttpRequestCompleteDelegate ResponseDelegate;
+	FHttpRequestCompleteDelegate ResponseDelegate;
 
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMatchAPI::OnPatchMatchResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindRaw(this, &FMatchAPI::OnPatchMatchResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
 
-    FResponse_PatchMatch Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+	FResponse_PatchMatch Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
 
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 FRequest_PatchMatch::FRequest_PatchMatch()
 {
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
+	RequestMetadata.Identifier = FGuid::NewGuid();
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_PatchMatch::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/match/v1/match/{match_id}"));
-    return Path;
+	static FName Path = FName(TEXT("/match/v1/match/{match_id}"));
+	return Path;
 }
 
 FString FRequest_PatchMatch::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
-        { TEXT("match_id"), ToStringFormatArg(MatchId) }
-    };
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("match_id"), ToStringFormatArg(MatchId) }
+	};
 
-    FString Path = FString::Format(TEXT("/match/v1/match/{match_id}"), PathParams);
+	FString Path = FString::Format(TEXT("/match/v1/match/{match_id}"), PathParams);
 
-    return Path;
+	return Path;
 }
 
 bool FRequest_PatchMatch::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-    static const TArray<FString> Consumes = { TEXT("application/json") };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
+	static const TArray<FString> Consumes = { TEXT("application/json") };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
 
-    HttpRequest->SetVerb(TEXT("PATCH"));
+	HttpRequest->SetVerb(TEXT("PATCH"));
 
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PatchMatch - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PatchMatch - failed to add bearer token"));
-        return false;
-    }
+	if (!AuthContext)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PatchMatch - missing auth context"));
+		return false;
+	}
+	if (!AuthContext->AddBearerToken(HttpRequest))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PatchMatch - failed to add bearer token"));
+		return false;
+	}
 
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-        // Body parameters
-        FString JsonBody;
-        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+		// Body parameters
+		FString JsonBody;
+		TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
 
-        WriteJsonValue(Writer, MatchRequest);
-        Writer->Close();
+		WriteJsonValue(Writer, MatchRequest);
+		Writer->Close();
 
-        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
-        HttpRequest->SetContentAsString(JsonBody);
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PatchMatch - Body parameter (FRHAPI_MatchRequest) was ignored, not supported in multipart form"));
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PatchMatch - Body parameter (FRHAPI_MatchRequest) was ignored, not supported in urlencoded requests"));
-    }
-    else
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PatchMatch - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
+		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
+		HttpRequest->SetContentAsString(JsonBody);
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PatchMatch - Body parameter (FRHAPI_MatchRequest) was ignored, not supported in multipart form"));
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PatchMatch - Body parameter (FRHAPI_MatchRequest) was ignored, not supported in urlencoded requests"));
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PatchMatch - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
 
-    return true;
+	return true;
 }
 
 void FResponse_PatchMatch::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 403:
-        SetResponseString(TEXT("Forbidden"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
+	FResponse::SetHttpResponseCode(InHttpResponseCode);
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		SetResponseString(TEXT("Successful Response"));
+		break;
+	case 403:
+		SetResponseString(TEXT("Forbidden"));
+		break;
+	case 422:
+		SetResponseString(TEXT("Validation Error"));
+		break;
+	}
 }
 
 bool FResponse_PatchMatch::TryGetContentFor200(FRHAPI_MatchWithPlayers& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_PatchMatch::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_PatchMatch::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_PatchMatch::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    return TryGetJsonValue(JsonValue, Content);
+	return TryGetJsonValue(JsonValue, Content);
 }
 
 FResponse_PatchMatch::FResponse_PatchMatch(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
+	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -1724,173 +1724,173 @@ FString Traits_PatchMatch::Name = TEXT("PatchMatch");
 
 FHttpRequestPtr FMatchAPI::PatchMatchPlayer(const FRequest_PatchMatchPlayer& Request, const FDelegate_PatchMatchPlayer& Delegate /*= FDelegate_PatchMatchPlayer()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
-    if (!IsValid())
-        return nullptr;
+	if (!IsValid())
+		return nullptr;
 
-    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
 
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
 
-    RequestData->SetMetadata(Request.GetRequestMetadata());
+	RequestData->SetMetadata(Request.GetRequestMetadata());
 
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMatchAPI::OnPatchMatchPlayerResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindRaw(this, &FMatchAPI::OnPatchMatchPlayerResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
 
-    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
 }
 
 void FMatchAPI::OnPatchMatchPlayerResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PatchMatchPlayer Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
-    FHttpRequestCompleteDelegate ResponseDelegate;
+	FHttpRequestCompleteDelegate ResponseDelegate;
 
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMatchAPI::OnPatchMatchPlayerResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindRaw(this, &FMatchAPI::OnPatchMatchPlayerResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
 
-    FResponse_PatchMatchPlayer Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+	FResponse_PatchMatchPlayer Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
 
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 FRequest_PatchMatchPlayer::FRequest_PatchMatchPlayer()
 {
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
+	RequestMetadata.Identifier = FGuid::NewGuid();
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_PatchMatchPlayer::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/match/v1/player/{player_uuid}/match/{match_id}"));
-    return Path;
+	static FName Path = FName(TEXT("/match/v1/player/{player_uuid}/match/{match_id}"));
+	return Path;
 }
 
 FString FRequest_PatchMatchPlayer::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
-        { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
-        { TEXT("match_id"), ToStringFormatArg(MatchId) }
-    };
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
+		{ TEXT("match_id"), ToStringFormatArg(MatchId) }
+	};
 
-    FString Path = FString::Format(TEXT("/match/v1/player/{player_uuid}/match/{match_id}"), PathParams);
+	FString Path = FString::Format(TEXT("/match/v1/player/{player_uuid}/match/{match_id}"), PathParams);
 
-    return Path;
+	return Path;
 }
 
 bool FRequest_PatchMatchPlayer::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-    static const TArray<FString> Consumes = { TEXT("application/json") };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
+	static const TArray<FString> Consumes = { TEXT("application/json") };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
 
-    HttpRequest->SetVerb(TEXT("PATCH"));
+	HttpRequest->SetVerb(TEXT("PATCH"));
 
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PatchMatchPlayer - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PatchMatchPlayer - failed to add bearer token"));
-        return false;
-    }
+	if (!AuthContext)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PatchMatchPlayer - missing auth context"));
+		return false;
+	}
+	if (!AuthContext->AddBearerToken(HttpRequest))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PatchMatchPlayer - failed to add bearer token"));
+		return false;
+	}
 
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-        // Body parameters
-        FString JsonBody;
-        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+		// Body parameters
+		FString JsonBody;
+		TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
 
-        WriteJsonValue(Writer, MatchPlayerRequest);
-        Writer->Close();
+		WriteJsonValue(Writer, MatchPlayerRequest);
+		Writer->Close();
 
-        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
-        HttpRequest->SetContentAsString(JsonBody);
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PatchMatchPlayer - Body parameter (FRHAPI_MatchPlayerRequest) was ignored, not supported in multipart form"));
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PatchMatchPlayer - Body parameter (FRHAPI_MatchPlayerRequest) was ignored, not supported in urlencoded requests"));
-    }
-    else
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PatchMatchPlayer - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
+		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
+		HttpRequest->SetContentAsString(JsonBody);
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PatchMatchPlayer - Body parameter (FRHAPI_MatchPlayerRequest) was ignored, not supported in multipart form"));
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PatchMatchPlayer - Body parameter (FRHAPI_MatchPlayerRequest) was ignored, not supported in urlencoded requests"));
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PatchMatchPlayer - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
 
-    return true;
+	return true;
 }
 
 void FResponse_PatchMatchPlayer::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 403:
-        SetResponseString(TEXT("Forbidden"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
+	FResponse::SetHttpResponseCode(InHttpResponseCode);
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		SetResponseString(TEXT("Successful Response"));
+		break;
+	case 403:
+		SetResponseString(TEXT("Forbidden"));
+		break;
+	case 422:
+		SetResponseString(TEXT("Validation Error"));
+		break;
+	}
 }
 
 bool FResponse_PatchMatchPlayer::TryGetContentFor200(FRHAPI_MatchPlayerWithMatch& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_PatchMatchPlayer::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_PatchMatchPlayer::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_PatchMatchPlayer::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    return TryGetJsonValue(JsonValue, Content);
+	return TryGetJsonValue(JsonValue, Content);
 }
 
 FResponse_PatchMatchPlayer::FResponse_PatchMatchPlayer(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
+	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -1898,172 +1898,172 @@ FString Traits_PatchMatchPlayer::Name = TEXT("PatchMatchPlayer");
 
 FHttpRequestPtr FMatchAPI::UpdateMatch(const FRequest_UpdateMatch& Request, const FDelegate_UpdateMatch& Delegate /*= FDelegate_UpdateMatch()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
-    if (!IsValid())
-        return nullptr;
+	if (!IsValid())
+		return nullptr;
 
-    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
 
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
 
-    RequestData->SetMetadata(Request.GetRequestMetadata());
+	RequestData->SetMetadata(Request.GetRequestMetadata());
 
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMatchAPI::OnUpdateMatchResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindRaw(this, &FMatchAPI::OnUpdateMatchResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
 
-    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
 }
 
 void FMatchAPI::OnUpdateMatchResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateMatch Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
-    FHttpRequestCompleteDelegate ResponseDelegate;
+	FHttpRequestCompleteDelegate ResponseDelegate;
 
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMatchAPI::OnUpdateMatchResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindRaw(this, &FMatchAPI::OnUpdateMatchResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
 
-    FResponse_UpdateMatch Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+	FResponse_UpdateMatch Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
 
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 FRequest_UpdateMatch::FRequest_UpdateMatch()
 {
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
+	RequestMetadata.Identifier = FGuid::NewGuid();
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_UpdateMatch::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/match/v1/match/{match_id}"));
-    return Path;
+	static FName Path = FName(TEXT("/match/v1/match/{match_id}"));
+	return Path;
 }
 
 FString FRequest_UpdateMatch::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
-        { TEXT("match_id"), ToStringFormatArg(MatchId) }
-    };
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("match_id"), ToStringFormatArg(MatchId) }
+	};
 
-    FString Path = FString::Format(TEXT("/match/v1/match/{match_id}"), PathParams);
+	FString Path = FString::Format(TEXT("/match/v1/match/{match_id}"), PathParams);
 
-    return Path;
+	return Path;
 }
 
 bool FRequest_UpdateMatch::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-    static const TArray<FString> Consumes = { TEXT("application/json") };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
+	static const TArray<FString> Consumes = { TEXT("application/json") };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
 
-    HttpRequest->SetVerb(TEXT("PUT"));
+	HttpRequest->SetVerb(TEXT("PUT"));
 
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdateMatch - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdateMatch - failed to add bearer token"));
-        return false;
-    }
+	if (!AuthContext)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdateMatch - missing auth context"));
+		return false;
+	}
+	if (!AuthContext->AddBearerToken(HttpRequest))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdateMatch - failed to add bearer token"));
+		return false;
+	}
 
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-        // Body parameters
-        FString JsonBody;
-        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+		// Body parameters
+		FString JsonBody;
+		TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
 
-        WriteJsonValue(Writer, MatchRequest);
-        Writer->Close();
+		WriteJsonValue(Writer, MatchRequest);
+		Writer->Close();
 
-        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
-        HttpRequest->SetContentAsString(JsonBody);
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdateMatch - Body parameter (FRHAPI_MatchRequest) was ignored, not supported in multipart form"));
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdateMatch - Body parameter (FRHAPI_MatchRequest) was ignored, not supported in urlencoded requests"));
-    }
-    else
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdateMatch - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
+		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
+		HttpRequest->SetContentAsString(JsonBody);
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdateMatch - Body parameter (FRHAPI_MatchRequest) was ignored, not supported in multipart form"));
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdateMatch - Body parameter (FRHAPI_MatchRequest) was ignored, not supported in urlencoded requests"));
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdateMatch - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
 
-    return true;
+	return true;
 }
 
 void FResponse_UpdateMatch::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 403:
-        SetResponseString(TEXT("Forbidden"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
+	FResponse::SetHttpResponseCode(InHttpResponseCode);
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		SetResponseString(TEXT("Successful Response"));
+		break;
+	case 403:
+		SetResponseString(TEXT("Forbidden"));
+		break;
+	case 422:
+		SetResponseString(TEXT("Validation Error"));
+		break;
+	}
 }
 
 bool FResponse_UpdateMatch::TryGetContentFor200(FRHAPI_MatchWithPlayers& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_UpdateMatch::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_UpdateMatch::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_UpdateMatch::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    return TryGetJsonValue(JsonValue, Content);
+	return TryGetJsonValue(JsonValue, Content);
 }
 
 FResponse_UpdateMatch::FResponse_UpdateMatch(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
+	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -2071,173 +2071,173 @@ FString Traits_UpdateMatch::Name = TEXT("UpdateMatch");
 
 FHttpRequestPtr FMatchAPI::UpdateMatchPlayer(const FRequest_UpdateMatchPlayer& Request, const FDelegate_UpdateMatchPlayer& Delegate /*= FDelegate_UpdateMatchPlayer()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
-    if (!IsValid())
-        return nullptr;
+	if (!IsValid())
+		return nullptr;
 
-    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
 
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
 
-    RequestData->SetMetadata(Request.GetRequestMetadata());
+	RequestData->SetMetadata(Request.GetRequestMetadata());
 
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMatchAPI::OnUpdateMatchPlayerResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindRaw(this, &FMatchAPI::OnUpdateMatchPlayerResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
 
-    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
 }
 
 void FMatchAPI::OnUpdateMatchPlayerResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateMatchPlayer Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
-    FHttpRequestCompleteDelegate ResponseDelegate;
+	FHttpRequestCompleteDelegate ResponseDelegate;
 
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMatchAPI::OnUpdateMatchPlayerResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindRaw(this, &FMatchAPI::OnUpdateMatchPlayerResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
 
-    FResponse_UpdateMatchPlayer Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+	FResponse_UpdateMatchPlayer Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
 
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 FRequest_UpdateMatchPlayer::FRequest_UpdateMatchPlayer()
 {
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
+	RequestMetadata.Identifier = FGuid::NewGuid();
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_UpdateMatchPlayer::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/match/v1/player/{player_uuid}/match/{match_id}"));
-    return Path;
+	static FName Path = FName(TEXT("/match/v1/player/{player_uuid}/match/{match_id}"));
+	return Path;
 }
 
 FString FRequest_UpdateMatchPlayer::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
-        { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
-        { TEXT("match_id"), ToStringFormatArg(MatchId) }
-    };
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
+		{ TEXT("match_id"), ToStringFormatArg(MatchId) }
+	};
 
-    FString Path = FString::Format(TEXT("/match/v1/player/{player_uuid}/match/{match_id}"), PathParams);
+	FString Path = FString::Format(TEXT("/match/v1/player/{player_uuid}/match/{match_id}"), PathParams);
 
-    return Path;
+	return Path;
 }
 
 bool FRequest_UpdateMatchPlayer::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-    static const TArray<FString> Consumes = { TEXT("application/json") };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
+	static const TArray<FString> Consumes = { TEXT("application/json") };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
 
-    HttpRequest->SetVerb(TEXT("PUT"));
+	HttpRequest->SetVerb(TEXT("PUT"));
 
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdateMatchPlayer - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdateMatchPlayer - failed to add bearer token"));
-        return false;
-    }
+	if (!AuthContext)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdateMatchPlayer - missing auth context"));
+		return false;
+	}
+	if (!AuthContext->AddBearerToken(HttpRequest))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdateMatchPlayer - failed to add bearer token"));
+		return false;
+	}
 
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-        // Body parameters
-        FString JsonBody;
-        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+		// Body parameters
+		FString JsonBody;
+		TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
 
-        WriteJsonValue(Writer, MatchPlayerRequest);
-        Writer->Close();
+		WriteJsonValue(Writer, MatchPlayerRequest);
+		Writer->Close();
 
-        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
-        HttpRequest->SetContentAsString(JsonBody);
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdateMatchPlayer - Body parameter (FRHAPI_MatchPlayerRequest) was ignored, not supported in multipart form"));
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdateMatchPlayer - Body parameter (FRHAPI_MatchPlayerRequest) was ignored, not supported in urlencoded requests"));
-    }
-    else
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdateMatchPlayer - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
+		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
+		HttpRequest->SetContentAsString(JsonBody);
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdateMatchPlayer - Body parameter (FRHAPI_MatchPlayerRequest) was ignored, not supported in multipart form"));
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdateMatchPlayer - Body parameter (FRHAPI_MatchPlayerRequest) was ignored, not supported in urlencoded requests"));
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdateMatchPlayer - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
 
-    return true;
+	return true;
 }
 
 void FResponse_UpdateMatchPlayer::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 403:
-        SetResponseString(TEXT("Forbidden"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
+	FResponse::SetHttpResponseCode(InHttpResponseCode);
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		SetResponseString(TEXT("Successful Response"));
+		break;
+	case 403:
+		SetResponseString(TEXT("Forbidden"));
+		break;
+	case 422:
+		SetResponseString(TEXT("Validation Error"));
+		break;
+	}
 }
 
 bool FResponse_UpdateMatchPlayer::TryGetContentFor200(FRHAPI_MatchPlayerWithMatch& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_UpdateMatchPlayer::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_UpdateMatchPlayer::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_UpdateMatchPlayer::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    return TryGetJsonValue(JsonValue, Content);
+	return TryGetJsonValue(JsonValue, Content);
 }
 
 FResponse_UpdateMatchPlayer::FResponse_UpdateMatchPlayer(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
+	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 

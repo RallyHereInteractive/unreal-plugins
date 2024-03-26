@@ -21,31 +21,31 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_PriceBreakpoint::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("price_item_id"));
-    RallyHereAPI::WriteJsonValue(Writer, PriceItemId);
-    Writer->WriteIdentifierPrefix(TEXT("quantity"));
-    RallyHereAPI::WriteJsonValue(Writer, Quantity);
-    Writer->WriteIdentifierPrefix(TEXT("price"));
-    RallyHereAPI::WriteJsonValue(Writer, Price);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("price_item_id"));
+	RallyHereAPI::WriteJsonValue(Writer, PriceItemId);
+	Writer->WriteIdentifierPrefix(TEXT("quantity"));
+	RallyHereAPI::WriteJsonValue(Writer, Quantity);
+	Writer->WriteIdentifierPrefix(TEXT("price"));
+	RallyHereAPI::WriteJsonValue(Writer, Price);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_PriceBreakpoint::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonPriceItemIdField = (*Object)->TryGetField(TEXT("price_item_id"));
-    ParseSuccess &= JsonPriceItemIdField.IsValid() && !JsonPriceItemIdField->IsNull() && TryGetJsonValue(JsonPriceItemIdField, PriceItemId);
-    const TSharedPtr<FJsonValue> JsonQuantityField = (*Object)->TryGetField(TEXT("quantity"));
-    ParseSuccess &= JsonQuantityField.IsValid() && !JsonQuantityField->IsNull() && TryGetJsonValue(JsonQuantityField, Quantity);
-    const TSharedPtr<FJsonValue> JsonPriceField = (*Object)->TryGetField(TEXT("price"));
-    ParseSuccess &= JsonPriceField.IsValid() && !JsonPriceField->IsNull() && TryGetJsonValue(JsonPriceField, Price);
+	const TSharedPtr<FJsonValue> JsonPriceItemIdField = (*Object)->TryGetField(TEXT("price_item_id"));
+	ParseSuccess &= JsonPriceItemIdField.IsValid() && !JsonPriceItemIdField->IsNull() && TryGetJsonValue(JsonPriceItemIdField, PriceItemId);
+	const TSharedPtr<FJsonValue> JsonQuantityField = (*Object)->TryGetField(TEXT("quantity"));
+	ParseSuccess &= JsonQuantityField.IsValid() && !JsonQuantityField->IsNull() && TryGetJsonValue(JsonQuantityField, Quantity);
+	const TSharedPtr<FJsonValue> JsonPriceField = (*Object)->TryGetField(TEXT("price"));
+	ParseSuccess &= JsonPriceField.IsValid() && !JsonPriceField->IsNull() && TryGetJsonValue(JsonPriceField, Price);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

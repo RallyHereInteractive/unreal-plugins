@@ -22,56 +22,56 @@
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_EntitlementEventList : public FRHAPI_Model
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    /**
-    * @brief Fills this object with data from the passed in JSON
-    *
-    * @param [in] JsonValue Data from the API call.
-    *
-    * @return true if parsing of the JSON data was successful.
-    */
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	/**
+	* @brief Fills this object with data from the passed in JSON
+	*
+	* @param [in] JsonValue Data from the API call.
+	*
+	* @return true if parsing of the JSON data was successful.
+	*/
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
-    /**
-    * @brief Writes the data from this object into the specified JSON Writer stream
-    *
-    * @param [in] Writer JSON Writer stream to push .
-    */
-    void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	/**
+	* @brief Writes the data from this object into the specified JSON Writer stream
+	*
+	* @param [in] Writer JSON Writer stream to push .
+	*/
+	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief The list of events */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    TArray<FRHAPI_EntitlementEvent> Events{  };
-    /** @brief Gets the value of Events */
-    TArray<FRHAPI_EntitlementEvent>& GetEvents() { return Events; }
-    /** @brief Gets the value of Events */
-    const TArray<FRHAPI_EntitlementEvent>& GetEvents() const { return Events; }
-    /** @brief Sets the value of Events */
-    void SetEvents(TArray<FRHAPI_EntitlementEvent> NewValue) { Events = NewValue;  }
+	/** @brief The list of events */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TArray<FRHAPI_EntitlementEvent> Events{  };
+	/** @brief Gets the value of Events */
+	TArray<FRHAPI_EntitlementEvent>& GetEvents() { return Events; }
+	/** @brief Gets the value of Events */
+	const TArray<FRHAPI_EntitlementEvent>& GetEvents() const { return Events; }
+	/** @brief Sets the value of Events */
+	void SetEvents(TArray<FRHAPI_EntitlementEvent> NewValue) { Events = NewValue;  }
 
-    /** @brief The cursor for the next page of events */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FString Cursor_Optional{  };
-    /** @brief true if Cursor_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool Cursor_IsSet{ false };
-    /** @brief Gets the value of Cursor_Optional, regardless of it having been set */
-    FString& GetCursor() { return Cursor_Optional; }
-    /** @brief Gets the value of Cursor_Optional, regardless of it having been set */
-    const FString& GetCursor() const { return Cursor_Optional; }
-    /** @brief Gets the value of Cursor_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FString& GetCursor(const FString& DefaultValue) const { if (Cursor_IsSet) return Cursor_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of Cursor_Optional and returns true if it has been set, otherwise returns false */
-    bool GetCursor(FString& OutValue) const { if (Cursor_IsSet) OutValue = Cursor_Optional; return Cursor_IsSet; }
-    /** @brief Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr */
-    FString* GetCursorOrNull() { if (Cursor_IsSet) return &Cursor_Optional; return nullptr; }
-    /** @brief Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr */
-    const FString* GetCursorOrNull() const { if (Cursor_IsSet) return &Cursor_Optional; return nullptr; }
-    /** @brief Sets the value of Cursor_Optional and also sets Cursor_IsSet to true */
-    void SetCursor(FString NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true; }
-     /** @brief Clears the value of Cursor_Optional and sets Cursor_IsSet to false */
-    void ClearCursor() { Cursor_IsSet = false; }
+	/** @brief The cursor for the next page of events */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Cursor_Optional{  };
+	/** @brief true if Cursor_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Cursor_IsSet{ false };
+	/** @brief Gets the value of Cursor_Optional, regardless of it having been set */
+	FString& GetCursor() { return Cursor_Optional; }
+	/** @brief Gets the value of Cursor_Optional, regardless of it having been set */
+	const FString& GetCursor() const { return Cursor_Optional; }
+	/** @brief Gets the value of Cursor_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetCursor(const FString& DefaultValue) const { if (Cursor_IsSet) return Cursor_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Cursor_Optional and returns true if it has been set, otherwise returns false */
+	bool GetCursor(FString& OutValue) const { if (Cursor_IsSet) OutValue = Cursor_Optional; return Cursor_IsSet; }
+	/** @brief Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetCursorOrNull() { if (Cursor_IsSet) return &Cursor_Optional; return nullptr; }
+	/** @brief Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetCursorOrNull() const { if (Cursor_IsSet) return &Cursor_Optional; return nullptr; }
+	/** @brief Sets the value of Cursor_Optional and also sets Cursor_IsSet to true */
+	void SetCursor(FString NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true; }
+	 /** @brief Clears the value of Cursor_Optional and sets Cursor_IsSet to false */
+	void ClearCursor() { Cursor_IsSet = false; }
 };
 
 /** @} */

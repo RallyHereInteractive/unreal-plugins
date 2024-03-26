@@ -100,57 +100,57 @@ DECLARE_DELEGATE_OneParam(FDelegate_AdminUpdatePlayerLastSeenId, const FResponse
 class RALLYHEREAPI_API FPresenceAdminAPI : public FAPI
 {
 public:
-    FPresenceAdminAPI();
-    virtual ~FPresenceAdminAPI();
+	FPresenceAdminAPI();
+	virtual ~FPresenceAdminAPI();
 
-    FHttpRequestPtr AdminGetKnownPlatforms(const FRequest_AdminGetKnownPlatforms& Request, const FDelegate_AdminGetKnownPlatforms& Delegate = FDelegate_AdminGetKnownPlatforms(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr AdminGetPlayerPresence(const FRequest_AdminGetPlayerPresence& Request, const FDelegate_AdminGetPlayerPresence& Delegate = FDelegate_AdminGetPlayerPresence(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr AdminGetPlayerPresenceId(const FRequest_AdminGetPlayerPresenceId& Request, const FDelegate_AdminGetPlayerPresenceId& Delegate = FDelegate_AdminGetPlayerPresenceId(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr AdminGetRequestingCcu(const FRequest_AdminGetRequestingCcu& Request, const FDelegate_AdminGetRequestingCcu& Delegate = FDelegate_AdminGetRequestingCcu(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr AdminGetRequestingCcuAllPlatformCombined(const FRequest_AdminGetRequestingCcuAllPlatformCombined& Request, const FDelegate_AdminGetRequestingCcuAllPlatformCombined& Delegate = FDelegate_AdminGetRequestingCcuAllPlatformCombined(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr AdminGetRequestingCcuAllPlatformIndividual(const FRequest_AdminGetRequestingCcuAllPlatformIndividual& Request, const FDelegate_AdminGetRequestingCcuAllPlatformIndividual& Delegate = FDelegate_AdminGetRequestingCcuAllPlatformIndividual(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr AdminGetRequestingCcuIndividual(const FRequest_AdminGetRequestingCcuIndividual& Request, const FDelegate_AdminGetRequestingCcuIndividual& Delegate = FDelegate_AdminGetRequestingCcuIndividual(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr AdminGetRequestingCcuPlatformCombined(const FRequest_AdminGetRequestingCcuPlatformCombined& Request, const FDelegate_AdminGetRequestingCcuPlatformCombined& Delegate = FDelegate_AdminGetRequestingCcuPlatformCombined(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr AdminGetRequestingCcuPlatformIndividual(const FRequest_AdminGetRequestingCcuPlatformIndividual& Request, const FDelegate_AdminGetRequestingCcuPlatformIndividual& Delegate = FDelegate_AdminGetRequestingCcuPlatformIndividual(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr AdminGetTotalCcu(const FRequest_AdminGetTotalCcu& Request, const FDelegate_AdminGetTotalCcu& Delegate = FDelegate_AdminGetTotalCcu(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr AdminGetTotalCcuAllPlatformCombined(const FRequest_AdminGetTotalCcuAllPlatformCombined& Request, const FDelegate_AdminGetTotalCcuAllPlatformCombined& Delegate = FDelegate_AdminGetTotalCcuAllPlatformCombined(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr AdminGetTotalCcuAllPlatformIndividual(const FRequest_AdminGetTotalCcuAllPlatformIndividual& Request, const FDelegate_AdminGetTotalCcuAllPlatformIndividual& Delegate = FDelegate_AdminGetTotalCcuAllPlatformIndividual(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr AdminGetTotalCcuIndividual(const FRequest_AdminGetTotalCcuIndividual& Request, const FDelegate_AdminGetTotalCcuIndividual& Delegate = FDelegate_AdminGetTotalCcuIndividual(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr AdminGetTotalCcuPlatformCombined(const FRequest_AdminGetTotalCcuPlatformCombined& Request, const FDelegate_AdminGetTotalCcuPlatformCombined& Delegate = FDelegate_AdminGetTotalCcuPlatformCombined(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr AdminGetTotalCcuPlatformIndividual(const FRequest_AdminGetTotalCcuPlatformIndividual& Request, const FDelegate_AdminGetTotalCcuPlatformIndividual& Delegate = FDelegate_AdminGetTotalCcuPlatformIndividual(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr AdminGetUpdatingCcu(const FRequest_AdminGetUpdatingCcu& Request, const FDelegate_AdminGetUpdatingCcu& Delegate = FDelegate_AdminGetUpdatingCcu(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr AdminGetUpdatingCcuAllPlatformCombined(const FRequest_AdminGetUpdatingCcuAllPlatformCombined& Request, const FDelegate_AdminGetUpdatingCcuAllPlatformCombined& Delegate = FDelegate_AdminGetUpdatingCcuAllPlatformCombined(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr AdminGetUpdatingCcuAllPlatformIndividual(const FRequest_AdminGetUpdatingCcuAllPlatformIndividual& Request, const FDelegate_AdminGetUpdatingCcuAllPlatformIndividual& Delegate = FDelegate_AdminGetUpdatingCcuAllPlatformIndividual(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr AdminGetUpdatingCcuIndividual(const FRequest_AdminGetUpdatingCcuIndividual& Request, const FDelegate_AdminGetUpdatingCcuIndividual& Delegate = FDelegate_AdminGetUpdatingCcuIndividual(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr AdminGetUpdatingCcuPlatformCombined(const FRequest_AdminGetUpdatingCcuPlatformCombined& Request, const FDelegate_AdminGetUpdatingCcuPlatformCombined& Delegate = FDelegate_AdminGetUpdatingCcuPlatformCombined(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr AdminGetUpdatingCcuPlatformIndividual(const FRequest_AdminGetUpdatingCcuPlatformIndividual& Request, const FDelegate_AdminGetUpdatingCcuPlatformIndividual& Delegate = FDelegate_AdminGetUpdatingCcuPlatformIndividual(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr AdminUpdatePlayerLastSeen(const FRequest_AdminUpdatePlayerLastSeen& Request, const FDelegate_AdminUpdatePlayerLastSeen& Delegate = FDelegate_AdminUpdatePlayerLastSeen(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr AdminUpdatePlayerLastSeenId(const FRequest_AdminUpdatePlayerLastSeenId& Request, const FDelegate_AdminUpdatePlayerLastSeenId& Delegate = FDelegate_AdminUpdatePlayerLastSeenId(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr AdminGetKnownPlatforms(const FRequest_AdminGetKnownPlatforms& Request, const FDelegate_AdminGetKnownPlatforms& Delegate = FDelegate_AdminGetKnownPlatforms(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr AdminGetPlayerPresence(const FRequest_AdminGetPlayerPresence& Request, const FDelegate_AdminGetPlayerPresence& Delegate = FDelegate_AdminGetPlayerPresence(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr AdminGetPlayerPresenceId(const FRequest_AdminGetPlayerPresenceId& Request, const FDelegate_AdminGetPlayerPresenceId& Delegate = FDelegate_AdminGetPlayerPresenceId(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr AdminGetRequestingCcu(const FRequest_AdminGetRequestingCcu& Request, const FDelegate_AdminGetRequestingCcu& Delegate = FDelegate_AdminGetRequestingCcu(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr AdminGetRequestingCcuAllPlatformCombined(const FRequest_AdminGetRequestingCcuAllPlatformCombined& Request, const FDelegate_AdminGetRequestingCcuAllPlatformCombined& Delegate = FDelegate_AdminGetRequestingCcuAllPlatformCombined(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr AdminGetRequestingCcuAllPlatformIndividual(const FRequest_AdminGetRequestingCcuAllPlatformIndividual& Request, const FDelegate_AdminGetRequestingCcuAllPlatformIndividual& Delegate = FDelegate_AdminGetRequestingCcuAllPlatformIndividual(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr AdminGetRequestingCcuIndividual(const FRequest_AdminGetRequestingCcuIndividual& Request, const FDelegate_AdminGetRequestingCcuIndividual& Delegate = FDelegate_AdminGetRequestingCcuIndividual(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr AdminGetRequestingCcuPlatformCombined(const FRequest_AdminGetRequestingCcuPlatformCombined& Request, const FDelegate_AdminGetRequestingCcuPlatformCombined& Delegate = FDelegate_AdminGetRequestingCcuPlatformCombined(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr AdminGetRequestingCcuPlatformIndividual(const FRequest_AdminGetRequestingCcuPlatformIndividual& Request, const FDelegate_AdminGetRequestingCcuPlatformIndividual& Delegate = FDelegate_AdminGetRequestingCcuPlatformIndividual(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr AdminGetTotalCcu(const FRequest_AdminGetTotalCcu& Request, const FDelegate_AdminGetTotalCcu& Delegate = FDelegate_AdminGetTotalCcu(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr AdminGetTotalCcuAllPlatformCombined(const FRequest_AdminGetTotalCcuAllPlatformCombined& Request, const FDelegate_AdminGetTotalCcuAllPlatformCombined& Delegate = FDelegate_AdminGetTotalCcuAllPlatformCombined(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr AdminGetTotalCcuAllPlatformIndividual(const FRequest_AdminGetTotalCcuAllPlatformIndividual& Request, const FDelegate_AdminGetTotalCcuAllPlatformIndividual& Delegate = FDelegate_AdminGetTotalCcuAllPlatformIndividual(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr AdminGetTotalCcuIndividual(const FRequest_AdminGetTotalCcuIndividual& Request, const FDelegate_AdminGetTotalCcuIndividual& Delegate = FDelegate_AdminGetTotalCcuIndividual(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr AdminGetTotalCcuPlatformCombined(const FRequest_AdminGetTotalCcuPlatformCombined& Request, const FDelegate_AdminGetTotalCcuPlatformCombined& Delegate = FDelegate_AdminGetTotalCcuPlatformCombined(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr AdminGetTotalCcuPlatformIndividual(const FRequest_AdminGetTotalCcuPlatformIndividual& Request, const FDelegate_AdminGetTotalCcuPlatformIndividual& Delegate = FDelegate_AdminGetTotalCcuPlatformIndividual(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr AdminGetUpdatingCcu(const FRequest_AdminGetUpdatingCcu& Request, const FDelegate_AdminGetUpdatingCcu& Delegate = FDelegate_AdminGetUpdatingCcu(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr AdminGetUpdatingCcuAllPlatformCombined(const FRequest_AdminGetUpdatingCcuAllPlatformCombined& Request, const FDelegate_AdminGetUpdatingCcuAllPlatformCombined& Delegate = FDelegate_AdminGetUpdatingCcuAllPlatformCombined(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr AdminGetUpdatingCcuAllPlatformIndividual(const FRequest_AdminGetUpdatingCcuAllPlatformIndividual& Request, const FDelegate_AdminGetUpdatingCcuAllPlatformIndividual& Delegate = FDelegate_AdminGetUpdatingCcuAllPlatformIndividual(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr AdminGetUpdatingCcuIndividual(const FRequest_AdminGetUpdatingCcuIndividual& Request, const FDelegate_AdminGetUpdatingCcuIndividual& Delegate = FDelegate_AdminGetUpdatingCcuIndividual(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr AdminGetUpdatingCcuPlatformCombined(const FRequest_AdminGetUpdatingCcuPlatformCombined& Request, const FDelegate_AdminGetUpdatingCcuPlatformCombined& Delegate = FDelegate_AdminGetUpdatingCcuPlatformCombined(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr AdminGetUpdatingCcuPlatformIndividual(const FRequest_AdminGetUpdatingCcuPlatformIndividual& Request, const FDelegate_AdminGetUpdatingCcuPlatformIndividual& Delegate = FDelegate_AdminGetUpdatingCcuPlatformIndividual(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr AdminUpdatePlayerLastSeen(const FRequest_AdminUpdatePlayerLastSeen& Request, const FDelegate_AdminUpdatePlayerLastSeen& Delegate = FDelegate_AdminUpdatePlayerLastSeen(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr AdminUpdatePlayerLastSeenId(const FRequest_AdminUpdatePlayerLastSeenId& Request, const FDelegate_AdminUpdatePlayerLastSeenId& Delegate = FDelegate_AdminUpdatePlayerLastSeenId(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
-    void OnAdminGetKnownPlatformsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetKnownPlatforms Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnAdminGetPlayerPresenceResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetPlayerPresence Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnAdminGetPlayerPresenceIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetPlayerPresenceId Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnAdminGetRequestingCcuResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetRequestingCcu Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnAdminGetRequestingCcuAllPlatformCombinedResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetRequestingCcuAllPlatformCombined Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnAdminGetRequestingCcuAllPlatformIndividualResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetRequestingCcuAllPlatformIndividual Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnAdminGetRequestingCcuIndividualResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetRequestingCcuIndividual Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnAdminGetRequestingCcuPlatformCombinedResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetRequestingCcuPlatformCombined Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnAdminGetRequestingCcuPlatformIndividualResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetRequestingCcuPlatformIndividual Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnAdminGetTotalCcuResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetTotalCcu Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnAdminGetTotalCcuAllPlatformCombinedResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetTotalCcuAllPlatformCombined Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnAdminGetTotalCcuAllPlatformIndividualResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetTotalCcuAllPlatformIndividual Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnAdminGetTotalCcuIndividualResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetTotalCcuIndividual Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnAdminGetTotalCcuPlatformCombinedResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetTotalCcuPlatformCombined Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnAdminGetTotalCcuPlatformIndividualResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetTotalCcuPlatformIndividual Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnAdminGetUpdatingCcuResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetUpdatingCcu Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnAdminGetUpdatingCcuAllPlatformCombinedResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetUpdatingCcuAllPlatformCombined Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnAdminGetUpdatingCcuAllPlatformIndividualResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetUpdatingCcuAllPlatformIndividual Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnAdminGetUpdatingCcuIndividualResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetUpdatingCcuIndividual Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnAdminGetUpdatingCcuPlatformCombinedResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetUpdatingCcuPlatformCombined Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnAdminGetUpdatingCcuPlatformIndividualResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetUpdatingCcuPlatformIndividual Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnAdminUpdatePlayerLastSeenResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminUpdatePlayerLastSeen Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnAdminUpdatePlayerLastSeenIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminUpdatePlayerLastSeenId Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnAdminGetKnownPlatformsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetKnownPlatforms Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnAdminGetPlayerPresenceResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetPlayerPresence Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnAdminGetPlayerPresenceIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetPlayerPresenceId Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnAdminGetRequestingCcuResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetRequestingCcu Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnAdminGetRequestingCcuAllPlatformCombinedResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetRequestingCcuAllPlatformCombined Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnAdminGetRequestingCcuAllPlatformIndividualResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetRequestingCcuAllPlatformIndividual Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnAdminGetRequestingCcuIndividualResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetRequestingCcuIndividual Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnAdminGetRequestingCcuPlatformCombinedResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetRequestingCcuPlatformCombined Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnAdminGetRequestingCcuPlatformIndividualResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetRequestingCcuPlatformIndividual Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnAdminGetTotalCcuResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetTotalCcu Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnAdminGetTotalCcuAllPlatformCombinedResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetTotalCcuAllPlatformCombined Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnAdminGetTotalCcuAllPlatformIndividualResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetTotalCcuAllPlatformIndividual Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnAdminGetTotalCcuIndividualResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetTotalCcuIndividual Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnAdminGetTotalCcuPlatformCombinedResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetTotalCcuPlatformCombined Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnAdminGetTotalCcuPlatformIndividualResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetTotalCcuPlatformIndividual Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnAdminGetUpdatingCcuResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetUpdatingCcu Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnAdminGetUpdatingCcuAllPlatformCombinedResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetUpdatingCcuAllPlatformCombined Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnAdminGetUpdatingCcuAllPlatformIndividualResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetUpdatingCcuAllPlatformIndividual Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnAdminGetUpdatingCcuIndividualResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetUpdatingCcuIndividual Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnAdminGetUpdatingCcuPlatformCombinedResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetUpdatingCcuPlatformCombined Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnAdminGetUpdatingCcuPlatformIndividualResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminGetUpdatingCcuPlatformIndividual Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnAdminUpdatePlayerLastSeenResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminUpdatePlayerLastSeen Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnAdminUpdatePlayerLastSeenIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AdminUpdatePlayerLastSeenId Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
@@ -160,54 +160,54 @@ private:
 */
 struct RALLYHEREAPI_API FRequest_AdminGetKnownPlatforms : public FRequest
 {
-    FRequest_AdminGetKnownPlatforms();
-    virtual ~FRequest_AdminGetKnownPlatforms() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_AdminGetKnownPlatforms();
+	virtual ~FRequest_AdminGetKnownPlatforms() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    TOptional<bool> UseCache;
+	TSharedPtr<FAuthContext> AuthContext;
+	TOptional<bool> UseCache;
 };
 
 struct RALLYHEREAPI_API FResponse_AdminGetKnownPlatforms : public FResponse
 {
-    FResponse_AdminGetKnownPlatforms(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_AdminGetKnownPlatforms() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_AdminGetKnownPlatforms(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_AdminGetKnownPlatforms() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_Platforms Content;
+	FRHAPI_Platforms Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_Platforms& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_Platforms& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetKnownPlatforms
 {
-    typedef FRequest_AdminGetKnownPlatforms Request;
-    typedef FResponse_AdminGetKnownPlatforms Response;
-    typedef FDelegate_AdminGetKnownPlatforms Delegate;
-    typedef FPresenceAdminAPI API;
-    static FString Name;
+	typedef FRequest_AdminGetKnownPlatforms Request;
+	typedef FResponse_AdminGetKnownPlatforms Response;
+	typedef FDelegate_AdminGetKnownPlatforms Delegate;
+	typedef FPresenceAdminAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetKnownPlatforms(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetKnownPlatforms(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Player Presence
@@ -217,61 +217,61 @@ struct RALLYHEREAPI_API Traits_AdminGetKnownPlatforms
 */
 struct RALLYHEREAPI_API FRequest_AdminGetPlayerPresence : public FRequest
 {
-    FRequest_AdminGetPlayerPresence();
-    virtual ~FRequest_AdminGetPlayerPresence() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_AdminGetPlayerPresence();
+	virtual ~FRequest_AdminGetPlayerPresence() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    /* A valid UUID identifying a player. Rejects integer player identification. */
-    FGuid PlayerUuid;
-    TOptional<bool> UseCache;
+	TSharedPtr<FAuthContext> AuthContext;
+	/* A valid UUID identifying a player. Rejects integer player identification. */
+	FGuid PlayerUuid;
+	TOptional<bool> UseCache;
 };
 
 struct RALLYHEREAPI_API FResponse_AdminGetPlayerPresence : public FResponse
 {
-    FResponse_AdminGetPlayerPresence(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_AdminGetPlayerPresence() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_AdminGetPlayerPresence(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_AdminGetPlayerPresence() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PlayerPresence Content;
+	FRHAPI_PlayerPresence Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PlayerPresence& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlayerPresence& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Not Found
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetPlayerPresence
 {
-    typedef FRequest_AdminGetPlayerPresence Request;
-    typedef FResponse_AdminGetPlayerPresence Response;
-    typedef FDelegate_AdminGetPlayerPresence Delegate;
-    typedef FPresenceAdminAPI API;
-    static FString Name;
+	typedef FRequest_AdminGetPlayerPresence Request;
+	typedef FResponse_AdminGetPlayerPresence Response;
+	typedef FDelegate_AdminGetPlayerPresence Delegate;
+	typedef FPresenceAdminAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetPlayerPresence(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetPlayerPresence(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Player Presence Id
@@ -281,61 +281,61 @@ struct RALLYHEREAPI_API Traits_AdminGetPlayerPresence
 */
 struct RALLYHEREAPI_API FRequest_AdminGetPlayerPresenceId : public FRequest
 {
-    FRequest_AdminGetPlayerPresenceId();
-    virtual ~FRequest_AdminGetPlayerPresenceId() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_AdminGetPlayerPresenceId();
+	virtual ~FRequest_AdminGetPlayerPresenceId() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    /* A valid integer identifying a player. Rejects UUID player identification. */
-    int32 PlayerId = 0;
-    TOptional<bool> UseCache;
+	TSharedPtr<FAuthContext> AuthContext;
+	/* A valid integer identifying a player. Rejects UUID player identification. */
+	int32 PlayerId = 0;
+	TOptional<bool> UseCache;
 };
 
 struct RALLYHEREAPI_API FResponse_AdminGetPlayerPresenceId : public FResponse
 {
-    FResponse_AdminGetPlayerPresenceId(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_AdminGetPlayerPresenceId() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_AdminGetPlayerPresenceId(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_AdminGetPlayerPresenceId() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PlayerPresence Content;
+	FRHAPI_PlayerPresence Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PlayerPresence& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlayerPresence& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Not Found
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetPlayerPresenceId
 {
-    typedef FRequest_AdminGetPlayerPresenceId Request;
-    typedef FResponse_AdminGetPlayerPresenceId Response;
-    typedef FDelegate_AdminGetPlayerPresenceId Delegate;
-    typedef FPresenceAdminAPI API;
-    static FString Name;
+	typedef FRequest_AdminGetPlayerPresenceId Request;
+	typedef FResponse_AdminGetPlayerPresenceId Response;
+	typedef FDelegate_AdminGetPlayerPresenceId Delegate;
+	typedef FPresenceAdminAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetPlayerPresenceId(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetPlayerPresenceId(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Requesting Ccu
@@ -348,168 +348,168 @@ struct RALLYHEREAPI_API Traits_AdminGetPlayerPresenceId
 */
 struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcu : public FRequest
 {
-    FRequest_AdminGetRequestingCcu();
-    virtual ~FRequest_AdminGetRequestingCcu() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_AdminGetRequestingCcu();
+	virtual ~FRequest_AdminGetRequestingCcu() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FDateTime Begin;
-    FDateTime End;
-    TOptional<bool> UseCache;
+	TSharedPtr<FAuthContext> AuthContext;
+	FDateTime Begin;
+	FDateTime End;
+	TOptional<bool> UseCache;
 };
 
 struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcu : public FResponse
 {
-    FResponse_AdminGetRequestingCcu(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_AdminGetRequestingCcu() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_AdminGetRequestingCcu(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_AdminGetRequestingCcu() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_UnionCCU Content;
+	FRHAPI_UnionCCU Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_UnionCCU& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_UnionCCU& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetRequestingCcu
 {
-    typedef FRequest_AdminGetRequestingCcu Request;
-    typedef FResponse_AdminGetRequestingCcu Response;
-    typedef FDelegate_AdminGetRequestingCcu Delegate;
-    typedef FPresenceAdminAPI API;
-    static FString Name;
+	typedef FRequest_AdminGetRequestingCcu Request;
+	typedef FResponse_AdminGetRequestingCcu Response;
+	typedef FDelegate_AdminGetRequestingCcu Delegate;
+	typedef FPresenceAdminAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetRequestingCcu(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetRequestingCcu(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Requesting Ccu All Platform Combined
 */
 struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcuAllPlatformCombined : public FRequest
 {
-    FRequest_AdminGetRequestingCcuAllPlatformCombined();
-    virtual ~FRequest_AdminGetRequestingCcuAllPlatformCombined() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_AdminGetRequestingCcuAllPlatformCombined();
+	virtual ~FRequest_AdminGetRequestingCcuAllPlatformCombined() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FDateTime Begin;
-    FDateTime End;
-    TOptional<bool> UseCache;
+	TSharedPtr<FAuthContext> AuthContext;
+	FDateTime Begin;
+	FDateTime End;
+	TOptional<bool> UseCache;
 };
 
 struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuAllPlatformCombined : public FResponse
 {
-    FResponse_AdminGetRequestingCcuAllPlatformCombined(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_AdminGetRequestingCcuAllPlatformCombined() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_AdminGetRequestingCcuAllPlatformCombined(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_AdminGetRequestingCcuAllPlatformCombined() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PlatformUnionCCUs Content;
+	FRHAPI_PlatformUnionCCUs Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PlatformUnionCCUs& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlatformUnionCCUs& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetRequestingCcuAllPlatformCombined
 {
-    typedef FRequest_AdminGetRequestingCcuAllPlatformCombined Request;
-    typedef FResponse_AdminGetRequestingCcuAllPlatformCombined Response;
-    typedef FDelegate_AdminGetRequestingCcuAllPlatformCombined Delegate;
-    typedef FPresenceAdminAPI API;
-    static FString Name;
+	typedef FRequest_AdminGetRequestingCcuAllPlatformCombined Request;
+	typedef FResponse_AdminGetRequestingCcuAllPlatformCombined Response;
+	typedef FDelegate_AdminGetRequestingCcuAllPlatformCombined Delegate;
+	typedef FPresenceAdminAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetRequestingCcuAllPlatformCombined(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetRequestingCcuAllPlatformCombined(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Requesting Ccu All Platform Individual
 */
 struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcuAllPlatformIndividual : public FRequest
 {
-    FRequest_AdminGetRequestingCcuAllPlatformIndividual();
-    virtual ~FRequest_AdminGetRequestingCcuAllPlatformIndividual() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_AdminGetRequestingCcuAllPlatformIndividual();
+	virtual ~FRequest_AdminGetRequestingCcuAllPlatformIndividual() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FDateTime Begin;
-    FDateTime End;
-    TOptional<bool> UseCache;
+	TSharedPtr<FAuthContext> AuthContext;
+	FDateTime Begin;
+	FDateTime End;
+	TOptional<bool> UseCache;
 };
 
 struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuAllPlatformIndividual : public FResponse
 {
-    FResponse_AdminGetRequestingCcuAllPlatformIndividual(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_AdminGetRequestingCcuAllPlatformIndividual() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_AdminGetRequestingCcuAllPlatformIndividual(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_AdminGetRequestingCcuAllPlatformIndividual() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PlatformIndividualCCUs Content;
+	FRHAPI_PlatformIndividualCCUs Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PlatformIndividualCCUs& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlatformIndividualCCUs& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetRequestingCcuAllPlatformIndividual
 {
-    typedef FRequest_AdminGetRequestingCcuAllPlatformIndividual Request;
-    typedef FResponse_AdminGetRequestingCcuAllPlatformIndividual Response;
-    typedef FDelegate_AdminGetRequestingCcuAllPlatformIndividual Delegate;
-    typedef FPresenceAdminAPI API;
-    static FString Name;
+	typedef FRequest_AdminGetRequestingCcuAllPlatformIndividual Request;
+	typedef FResponse_AdminGetRequestingCcuAllPlatformIndividual Response;
+	typedef FDelegate_AdminGetRequestingCcuAllPlatformIndividual Delegate;
+	typedef FPresenceAdminAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetRequestingCcuAllPlatformIndividual(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetRequestingCcuAllPlatformIndividual(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Requesting Ccu Individual
@@ -520,170 +520,170 @@ struct RALLYHEREAPI_API Traits_AdminGetRequestingCcuAllPlatformIndividual
 */
 struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcuIndividual : public FRequest
 {
-    FRequest_AdminGetRequestingCcuIndividual();
-    virtual ~FRequest_AdminGetRequestingCcuIndividual() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_AdminGetRequestingCcuIndividual();
+	virtual ~FRequest_AdminGetRequestingCcuIndividual() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FDateTime Begin;
-    FDateTime End;
-    TOptional<bool> UseCache;
+	TSharedPtr<FAuthContext> AuthContext;
+	FDateTime Begin;
+	FDateTime End;
+	TOptional<bool> UseCache;
 };
 
 struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuIndividual : public FResponse
 {
-    FResponse_AdminGetRequestingCcuIndividual(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_AdminGetRequestingCcuIndividual() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_AdminGetRequestingCcuIndividual(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_AdminGetRequestingCcuIndividual() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_IndividualCCUs Content;
+	FRHAPI_IndividualCCUs Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_IndividualCCUs& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_IndividualCCUs& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetRequestingCcuIndividual
 {
-    typedef FRequest_AdminGetRequestingCcuIndividual Request;
-    typedef FResponse_AdminGetRequestingCcuIndividual Response;
-    typedef FDelegate_AdminGetRequestingCcuIndividual Delegate;
-    typedef FPresenceAdminAPI API;
-    static FString Name;
+	typedef FRequest_AdminGetRequestingCcuIndividual Request;
+	typedef FResponse_AdminGetRequestingCcuIndividual Response;
+	typedef FDelegate_AdminGetRequestingCcuIndividual Delegate;
+	typedef FPresenceAdminAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetRequestingCcuIndividual(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetRequestingCcuIndividual(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Requesting Ccu Platform Combined
 */
 struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcuPlatformCombined : public FRequest
 {
-    FRequest_AdminGetRequestingCcuPlatformCombined();
-    virtual ~FRequest_AdminGetRequestingCcuPlatformCombined() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_AdminGetRequestingCcuPlatformCombined();
+	virtual ~FRequest_AdminGetRequestingCcuPlatformCombined() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString Platform;
-    FDateTime Begin;
-    FDateTime End;
-    TOptional<bool> UseCache;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString Platform;
+	FDateTime Begin;
+	FDateTime End;
+	TOptional<bool> UseCache;
 };
 
 struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuPlatformCombined : public FResponse
 {
-    FResponse_AdminGetRequestingCcuPlatformCombined(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_AdminGetRequestingCcuPlatformCombined() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_AdminGetRequestingCcuPlatformCombined(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_AdminGetRequestingCcuPlatformCombined() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PlatformUnionCCUs Content;
+	FRHAPI_PlatformUnionCCUs Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PlatformUnionCCUs& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlatformUnionCCUs& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetRequestingCcuPlatformCombined
 {
-    typedef FRequest_AdminGetRequestingCcuPlatformCombined Request;
-    typedef FResponse_AdminGetRequestingCcuPlatformCombined Response;
-    typedef FDelegate_AdminGetRequestingCcuPlatformCombined Delegate;
-    typedef FPresenceAdminAPI API;
-    static FString Name;
+	typedef FRequest_AdminGetRequestingCcuPlatformCombined Request;
+	typedef FResponse_AdminGetRequestingCcuPlatformCombined Response;
+	typedef FDelegate_AdminGetRequestingCcuPlatformCombined Delegate;
+	typedef FPresenceAdminAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetRequestingCcuPlatformCombined(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetRequestingCcuPlatformCombined(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Requesting Ccu Platform Individual
 */
 struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcuPlatformIndividual : public FRequest
 {
-    FRequest_AdminGetRequestingCcuPlatformIndividual();
-    virtual ~FRequest_AdminGetRequestingCcuPlatformIndividual() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_AdminGetRequestingCcuPlatformIndividual();
+	virtual ~FRequest_AdminGetRequestingCcuPlatformIndividual() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString Platform;
-    FDateTime Begin;
-    FDateTime End;
-    TOptional<bool> UseCache;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString Platform;
+	FDateTime Begin;
+	FDateTime End;
+	TOptional<bool> UseCache;
 };
 
 struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuPlatformIndividual : public FResponse
 {
-    FResponse_AdminGetRequestingCcuPlatformIndividual(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_AdminGetRequestingCcuPlatformIndividual() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_AdminGetRequestingCcuPlatformIndividual(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_AdminGetRequestingCcuPlatformIndividual() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PlatformIndividualCCUs Content;
+	FRHAPI_PlatformIndividualCCUs Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PlatformIndividualCCUs& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlatformIndividualCCUs& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetRequestingCcuPlatformIndividual
 {
-    typedef FRequest_AdminGetRequestingCcuPlatformIndividual Request;
-    typedef FResponse_AdminGetRequestingCcuPlatformIndividual Response;
-    typedef FDelegate_AdminGetRequestingCcuPlatformIndividual Delegate;
-    typedef FPresenceAdminAPI API;
-    static FString Name;
+	typedef FRequest_AdminGetRequestingCcuPlatformIndividual Request;
+	typedef FResponse_AdminGetRequestingCcuPlatformIndividual Response;
+	typedef FDelegate_AdminGetRequestingCcuPlatformIndividual Delegate;
+	typedef FPresenceAdminAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetRequestingCcuPlatformIndividual(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetRequestingCcuPlatformIndividual(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Total Ccu
@@ -696,168 +696,168 @@ struct RALLYHEREAPI_API Traits_AdminGetRequestingCcuPlatformIndividual
 */
 struct RALLYHEREAPI_API FRequest_AdminGetTotalCcu : public FRequest
 {
-    FRequest_AdminGetTotalCcu();
-    virtual ~FRequest_AdminGetTotalCcu() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_AdminGetTotalCcu();
+	virtual ~FRequest_AdminGetTotalCcu() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FDateTime Begin;
-    FDateTime End;
-    TOptional<bool> UseCache;
+	TSharedPtr<FAuthContext> AuthContext;
+	FDateTime Begin;
+	FDateTime End;
+	TOptional<bool> UseCache;
 };
 
 struct RALLYHEREAPI_API FResponse_AdminGetTotalCcu : public FResponse
 {
-    FResponse_AdminGetTotalCcu(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_AdminGetTotalCcu() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_AdminGetTotalCcu(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_AdminGetTotalCcu() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_UnionCCU Content;
+	FRHAPI_UnionCCU Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_UnionCCU& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_UnionCCU& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetTotalCcu
 {
-    typedef FRequest_AdminGetTotalCcu Request;
-    typedef FResponse_AdminGetTotalCcu Response;
-    typedef FDelegate_AdminGetTotalCcu Delegate;
-    typedef FPresenceAdminAPI API;
-    static FString Name;
+	typedef FRequest_AdminGetTotalCcu Request;
+	typedef FResponse_AdminGetTotalCcu Response;
+	typedef FDelegate_AdminGetTotalCcu Delegate;
+	typedef FPresenceAdminAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetTotalCcu(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetTotalCcu(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Total Ccu All Platform Combined
 */
 struct RALLYHEREAPI_API FRequest_AdminGetTotalCcuAllPlatformCombined : public FRequest
 {
-    FRequest_AdminGetTotalCcuAllPlatformCombined();
-    virtual ~FRequest_AdminGetTotalCcuAllPlatformCombined() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_AdminGetTotalCcuAllPlatformCombined();
+	virtual ~FRequest_AdminGetTotalCcuAllPlatformCombined() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FDateTime Begin;
-    FDateTime End;
-    TOptional<bool> UseCache;
+	TSharedPtr<FAuthContext> AuthContext;
+	FDateTime Begin;
+	FDateTime End;
+	TOptional<bool> UseCache;
 };
 
 struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuAllPlatformCombined : public FResponse
 {
-    FResponse_AdminGetTotalCcuAllPlatformCombined(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_AdminGetTotalCcuAllPlatformCombined() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_AdminGetTotalCcuAllPlatformCombined(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_AdminGetTotalCcuAllPlatformCombined() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PlatformUnionCCUs Content;
+	FRHAPI_PlatformUnionCCUs Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PlatformUnionCCUs& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlatformUnionCCUs& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetTotalCcuAllPlatformCombined
 {
-    typedef FRequest_AdminGetTotalCcuAllPlatformCombined Request;
-    typedef FResponse_AdminGetTotalCcuAllPlatformCombined Response;
-    typedef FDelegate_AdminGetTotalCcuAllPlatformCombined Delegate;
-    typedef FPresenceAdminAPI API;
-    static FString Name;
+	typedef FRequest_AdminGetTotalCcuAllPlatformCombined Request;
+	typedef FResponse_AdminGetTotalCcuAllPlatformCombined Response;
+	typedef FDelegate_AdminGetTotalCcuAllPlatformCombined Delegate;
+	typedef FPresenceAdminAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetTotalCcuAllPlatformCombined(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetTotalCcuAllPlatformCombined(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Total Ccu All Platform Individual
 */
 struct RALLYHEREAPI_API FRequest_AdminGetTotalCcuAllPlatformIndividual : public FRequest
 {
-    FRequest_AdminGetTotalCcuAllPlatformIndividual();
-    virtual ~FRequest_AdminGetTotalCcuAllPlatformIndividual() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_AdminGetTotalCcuAllPlatformIndividual();
+	virtual ~FRequest_AdminGetTotalCcuAllPlatformIndividual() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FDateTime Begin;
-    FDateTime End;
-    TOptional<bool> UseCache;
+	TSharedPtr<FAuthContext> AuthContext;
+	FDateTime Begin;
+	FDateTime End;
+	TOptional<bool> UseCache;
 };
 
 struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuAllPlatformIndividual : public FResponse
 {
-    FResponse_AdminGetTotalCcuAllPlatformIndividual(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_AdminGetTotalCcuAllPlatformIndividual() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_AdminGetTotalCcuAllPlatformIndividual(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_AdminGetTotalCcuAllPlatformIndividual() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PlatformIndividualCCUs Content;
+	FRHAPI_PlatformIndividualCCUs Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PlatformIndividualCCUs& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlatformIndividualCCUs& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetTotalCcuAllPlatformIndividual
 {
-    typedef FRequest_AdminGetTotalCcuAllPlatformIndividual Request;
-    typedef FResponse_AdminGetTotalCcuAllPlatformIndividual Response;
-    typedef FDelegate_AdminGetTotalCcuAllPlatformIndividual Delegate;
-    typedef FPresenceAdminAPI API;
-    static FString Name;
+	typedef FRequest_AdminGetTotalCcuAllPlatformIndividual Request;
+	typedef FResponse_AdminGetTotalCcuAllPlatformIndividual Response;
+	typedef FDelegate_AdminGetTotalCcuAllPlatformIndividual Delegate;
+	typedef FPresenceAdminAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetTotalCcuAllPlatformIndividual(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetTotalCcuAllPlatformIndividual(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Total Ccu Individual
@@ -868,170 +868,170 @@ struct RALLYHEREAPI_API Traits_AdminGetTotalCcuAllPlatformIndividual
 */
 struct RALLYHEREAPI_API FRequest_AdminGetTotalCcuIndividual : public FRequest
 {
-    FRequest_AdminGetTotalCcuIndividual();
-    virtual ~FRequest_AdminGetTotalCcuIndividual() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_AdminGetTotalCcuIndividual();
+	virtual ~FRequest_AdminGetTotalCcuIndividual() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FDateTime Begin;
-    FDateTime End;
-    TOptional<bool> UseCache;
+	TSharedPtr<FAuthContext> AuthContext;
+	FDateTime Begin;
+	FDateTime End;
+	TOptional<bool> UseCache;
 };
 
 struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuIndividual : public FResponse
 {
-    FResponse_AdminGetTotalCcuIndividual(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_AdminGetTotalCcuIndividual() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_AdminGetTotalCcuIndividual(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_AdminGetTotalCcuIndividual() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_IndividualCCUs Content;
+	FRHAPI_IndividualCCUs Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_IndividualCCUs& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_IndividualCCUs& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetTotalCcuIndividual
 {
-    typedef FRequest_AdminGetTotalCcuIndividual Request;
-    typedef FResponse_AdminGetTotalCcuIndividual Response;
-    typedef FDelegate_AdminGetTotalCcuIndividual Delegate;
-    typedef FPresenceAdminAPI API;
-    static FString Name;
+	typedef FRequest_AdminGetTotalCcuIndividual Request;
+	typedef FResponse_AdminGetTotalCcuIndividual Response;
+	typedef FDelegate_AdminGetTotalCcuIndividual Delegate;
+	typedef FPresenceAdminAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetTotalCcuIndividual(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetTotalCcuIndividual(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Total Ccu Platform Combined
 */
 struct RALLYHEREAPI_API FRequest_AdminGetTotalCcuPlatformCombined : public FRequest
 {
-    FRequest_AdminGetTotalCcuPlatformCombined();
-    virtual ~FRequest_AdminGetTotalCcuPlatformCombined() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_AdminGetTotalCcuPlatformCombined();
+	virtual ~FRequest_AdminGetTotalCcuPlatformCombined() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString Platform;
-    FDateTime Begin;
-    FDateTime End;
-    TOptional<bool> UseCache;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString Platform;
+	FDateTime Begin;
+	FDateTime End;
+	TOptional<bool> UseCache;
 };
 
 struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuPlatformCombined : public FResponse
 {
-    FResponse_AdminGetTotalCcuPlatformCombined(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_AdminGetTotalCcuPlatformCombined() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_AdminGetTotalCcuPlatformCombined(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_AdminGetTotalCcuPlatformCombined() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PlatformUnionCCUs Content;
+	FRHAPI_PlatformUnionCCUs Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PlatformUnionCCUs& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlatformUnionCCUs& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetTotalCcuPlatformCombined
 {
-    typedef FRequest_AdminGetTotalCcuPlatformCombined Request;
-    typedef FResponse_AdminGetTotalCcuPlatformCombined Response;
-    typedef FDelegate_AdminGetTotalCcuPlatformCombined Delegate;
-    typedef FPresenceAdminAPI API;
-    static FString Name;
+	typedef FRequest_AdminGetTotalCcuPlatformCombined Request;
+	typedef FResponse_AdminGetTotalCcuPlatformCombined Response;
+	typedef FDelegate_AdminGetTotalCcuPlatformCombined Delegate;
+	typedef FPresenceAdminAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetTotalCcuPlatformCombined(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetTotalCcuPlatformCombined(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Total Ccu Platform Individual
 */
 struct RALLYHEREAPI_API FRequest_AdminGetTotalCcuPlatformIndividual : public FRequest
 {
-    FRequest_AdminGetTotalCcuPlatformIndividual();
-    virtual ~FRequest_AdminGetTotalCcuPlatformIndividual() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_AdminGetTotalCcuPlatformIndividual();
+	virtual ~FRequest_AdminGetTotalCcuPlatformIndividual() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString Platform;
-    FDateTime Begin;
-    FDateTime End;
-    TOptional<bool> UseCache;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString Platform;
+	FDateTime Begin;
+	FDateTime End;
+	TOptional<bool> UseCache;
 };
 
 struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuPlatformIndividual : public FResponse
 {
-    FResponse_AdminGetTotalCcuPlatformIndividual(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_AdminGetTotalCcuPlatformIndividual() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_AdminGetTotalCcuPlatformIndividual(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_AdminGetTotalCcuPlatformIndividual() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PlatformIndividualCCUs Content;
+	FRHAPI_PlatformIndividualCCUs Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PlatformIndividualCCUs& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlatformIndividualCCUs& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetTotalCcuPlatformIndividual
 {
-    typedef FRequest_AdminGetTotalCcuPlatformIndividual Request;
-    typedef FResponse_AdminGetTotalCcuPlatformIndividual Response;
-    typedef FDelegate_AdminGetTotalCcuPlatformIndividual Delegate;
-    typedef FPresenceAdminAPI API;
-    static FString Name;
+	typedef FRequest_AdminGetTotalCcuPlatformIndividual Request;
+	typedef FResponse_AdminGetTotalCcuPlatformIndividual Response;
+	typedef FDelegate_AdminGetTotalCcuPlatformIndividual Delegate;
+	typedef FPresenceAdminAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetTotalCcuPlatformIndividual(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetTotalCcuPlatformIndividual(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Updating Ccu
@@ -1044,168 +1044,168 @@ struct RALLYHEREAPI_API Traits_AdminGetTotalCcuPlatformIndividual
 */
 struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcu : public FRequest
 {
-    FRequest_AdminGetUpdatingCcu();
-    virtual ~FRequest_AdminGetUpdatingCcu() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_AdminGetUpdatingCcu();
+	virtual ~FRequest_AdminGetUpdatingCcu() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FDateTime Begin;
-    FDateTime End;
-    TOptional<bool> UseCache;
+	TSharedPtr<FAuthContext> AuthContext;
+	FDateTime Begin;
+	FDateTime End;
+	TOptional<bool> UseCache;
 };
 
 struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcu : public FResponse
 {
-    FResponse_AdminGetUpdatingCcu(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_AdminGetUpdatingCcu() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_AdminGetUpdatingCcu(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_AdminGetUpdatingCcu() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_UnionCCU Content;
+	FRHAPI_UnionCCU Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_UnionCCU& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_UnionCCU& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetUpdatingCcu
 {
-    typedef FRequest_AdminGetUpdatingCcu Request;
-    typedef FResponse_AdminGetUpdatingCcu Response;
-    typedef FDelegate_AdminGetUpdatingCcu Delegate;
-    typedef FPresenceAdminAPI API;
-    static FString Name;
+	typedef FRequest_AdminGetUpdatingCcu Request;
+	typedef FResponse_AdminGetUpdatingCcu Response;
+	typedef FDelegate_AdminGetUpdatingCcu Delegate;
+	typedef FPresenceAdminAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetUpdatingCcu(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetUpdatingCcu(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Updating Ccu All Platform Combined
 */
 struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcuAllPlatformCombined : public FRequest
 {
-    FRequest_AdminGetUpdatingCcuAllPlatformCombined();
-    virtual ~FRequest_AdminGetUpdatingCcuAllPlatformCombined() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_AdminGetUpdatingCcuAllPlatformCombined();
+	virtual ~FRequest_AdminGetUpdatingCcuAllPlatformCombined() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FDateTime Begin;
-    FDateTime End;
-    TOptional<bool> UseCache;
+	TSharedPtr<FAuthContext> AuthContext;
+	FDateTime Begin;
+	FDateTime End;
+	TOptional<bool> UseCache;
 };
 
 struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuAllPlatformCombined : public FResponse
 {
-    FResponse_AdminGetUpdatingCcuAllPlatformCombined(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_AdminGetUpdatingCcuAllPlatformCombined() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_AdminGetUpdatingCcuAllPlatformCombined(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_AdminGetUpdatingCcuAllPlatformCombined() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PlatformUnionCCUs Content;
+	FRHAPI_PlatformUnionCCUs Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PlatformUnionCCUs& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlatformUnionCCUs& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetUpdatingCcuAllPlatformCombined
 {
-    typedef FRequest_AdminGetUpdatingCcuAllPlatformCombined Request;
-    typedef FResponse_AdminGetUpdatingCcuAllPlatformCombined Response;
-    typedef FDelegate_AdminGetUpdatingCcuAllPlatformCombined Delegate;
-    typedef FPresenceAdminAPI API;
-    static FString Name;
+	typedef FRequest_AdminGetUpdatingCcuAllPlatformCombined Request;
+	typedef FResponse_AdminGetUpdatingCcuAllPlatformCombined Response;
+	typedef FDelegate_AdminGetUpdatingCcuAllPlatformCombined Delegate;
+	typedef FPresenceAdminAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetUpdatingCcuAllPlatformCombined(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetUpdatingCcuAllPlatformCombined(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Updating Ccu All Platform Individual
 */
 struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcuAllPlatformIndividual : public FRequest
 {
-    FRequest_AdminGetUpdatingCcuAllPlatformIndividual();
-    virtual ~FRequest_AdminGetUpdatingCcuAllPlatformIndividual() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_AdminGetUpdatingCcuAllPlatformIndividual();
+	virtual ~FRequest_AdminGetUpdatingCcuAllPlatformIndividual() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FDateTime Begin;
-    FDateTime End;
-    TOptional<bool> UseCache;
+	TSharedPtr<FAuthContext> AuthContext;
+	FDateTime Begin;
+	FDateTime End;
+	TOptional<bool> UseCache;
 };
 
 struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuAllPlatformIndividual : public FResponse
 {
-    FResponse_AdminGetUpdatingCcuAllPlatformIndividual(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_AdminGetUpdatingCcuAllPlatformIndividual() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_AdminGetUpdatingCcuAllPlatformIndividual(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_AdminGetUpdatingCcuAllPlatformIndividual() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PlatformIndividualCCUs Content;
+	FRHAPI_PlatformIndividualCCUs Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PlatformIndividualCCUs& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlatformIndividualCCUs& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetUpdatingCcuAllPlatformIndividual
 {
-    typedef FRequest_AdminGetUpdatingCcuAllPlatformIndividual Request;
-    typedef FResponse_AdminGetUpdatingCcuAllPlatformIndividual Response;
-    typedef FDelegate_AdminGetUpdatingCcuAllPlatformIndividual Delegate;
-    typedef FPresenceAdminAPI API;
-    static FString Name;
+	typedef FRequest_AdminGetUpdatingCcuAllPlatformIndividual Request;
+	typedef FResponse_AdminGetUpdatingCcuAllPlatformIndividual Response;
+	typedef FDelegate_AdminGetUpdatingCcuAllPlatformIndividual Delegate;
+	typedef FPresenceAdminAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetUpdatingCcuAllPlatformIndividual(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetUpdatingCcuAllPlatformIndividual(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Updating Ccu Individual
@@ -1216,170 +1216,170 @@ struct RALLYHEREAPI_API Traits_AdminGetUpdatingCcuAllPlatformIndividual
 */
 struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcuIndividual : public FRequest
 {
-    FRequest_AdminGetUpdatingCcuIndividual();
-    virtual ~FRequest_AdminGetUpdatingCcuIndividual() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_AdminGetUpdatingCcuIndividual();
+	virtual ~FRequest_AdminGetUpdatingCcuIndividual() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FDateTime Begin;
-    FDateTime End;
-    TOptional<bool> UseCache;
+	TSharedPtr<FAuthContext> AuthContext;
+	FDateTime Begin;
+	FDateTime End;
+	TOptional<bool> UseCache;
 };
 
 struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuIndividual : public FResponse
 {
-    FResponse_AdminGetUpdatingCcuIndividual(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_AdminGetUpdatingCcuIndividual() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_AdminGetUpdatingCcuIndividual(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_AdminGetUpdatingCcuIndividual() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_IndividualCCUs Content;
+	FRHAPI_IndividualCCUs Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_IndividualCCUs& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_IndividualCCUs& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetUpdatingCcuIndividual
 {
-    typedef FRequest_AdminGetUpdatingCcuIndividual Request;
-    typedef FResponse_AdminGetUpdatingCcuIndividual Response;
-    typedef FDelegate_AdminGetUpdatingCcuIndividual Delegate;
-    typedef FPresenceAdminAPI API;
-    static FString Name;
+	typedef FRequest_AdminGetUpdatingCcuIndividual Request;
+	typedef FResponse_AdminGetUpdatingCcuIndividual Response;
+	typedef FDelegate_AdminGetUpdatingCcuIndividual Delegate;
+	typedef FPresenceAdminAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetUpdatingCcuIndividual(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetUpdatingCcuIndividual(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Updating Ccu Platform Combined
 */
 struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcuPlatformCombined : public FRequest
 {
-    FRequest_AdminGetUpdatingCcuPlatformCombined();
-    virtual ~FRequest_AdminGetUpdatingCcuPlatformCombined() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_AdminGetUpdatingCcuPlatformCombined();
+	virtual ~FRequest_AdminGetUpdatingCcuPlatformCombined() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString Platform;
-    FDateTime Begin;
-    FDateTime End;
-    TOptional<bool> UseCache;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString Platform;
+	FDateTime Begin;
+	FDateTime End;
+	TOptional<bool> UseCache;
 };
 
 struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuPlatformCombined : public FResponse
 {
-    FResponse_AdminGetUpdatingCcuPlatformCombined(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_AdminGetUpdatingCcuPlatformCombined() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_AdminGetUpdatingCcuPlatformCombined(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_AdminGetUpdatingCcuPlatformCombined() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PlatformUnionCCUs Content;
+	FRHAPI_PlatformUnionCCUs Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PlatformUnionCCUs& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlatformUnionCCUs& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetUpdatingCcuPlatformCombined
 {
-    typedef FRequest_AdminGetUpdatingCcuPlatformCombined Request;
-    typedef FResponse_AdminGetUpdatingCcuPlatformCombined Response;
-    typedef FDelegate_AdminGetUpdatingCcuPlatformCombined Delegate;
-    typedef FPresenceAdminAPI API;
-    static FString Name;
+	typedef FRequest_AdminGetUpdatingCcuPlatformCombined Request;
+	typedef FResponse_AdminGetUpdatingCcuPlatformCombined Response;
+	typedef FDelegate_AdminGetUpdatingCcuPlatformCombined Delegate;
+	typedef FPresenceAdminAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetUpdatingCcuPlatformCombined(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetUpdatingCcuPlatformCombined(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Updating Ccu Platform Individual
 */
 struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcuPlatformIndividual : public FRequest
 {
-    FRequest_AdminGetUpdatingCcuPlatformIndividual();
-    virtual ~FRequest_AdminGetUpdatingCcuPlatformIndividual() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_AdminGetUpdatingCcuPlatformIndividual();
+	virtual ~FRequest_AdminGetUpdatingCcuPlatformIndividual() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString Platform;
-    FDateTime Begin;
-    FDateTime End;
-    TOptional<bool> UseCache;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString Platform;
+	FDateTime Begin;
+	FDateTime End;
+	TOptional<bool> UseCache;
 };
 
 struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuPlatformIndividual : public FResponse
 {
-    FResponse_AdminGetUpdatingCcuPlatformIndividual(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_AdminGetUpdatingCcuPlatformIndividual() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_AdminGetUpdatingCcuPlatformIndividual(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_AdminGetUpdatingCcuPlatformIndividual() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PlatformIndividualCCUs Content;
+	FRHAPI_PlatformIndividualCCUs Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PlatformIndividualCCUs& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlatformIndividualCCUs& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetUpdatingCcuPlatformIndividual
 {
-    typedef FRequest_AdminGetUpdatingCcuPlatformIndividual Request;
-    typedef FResponse_AdminGetUpdatingCcuPlatformIndividual Response;
-    typedef FDelegate_AdminGetUpdatingCcuPlatformIndividual Delegate;
-    typedef FPresenceAdminAPI API;
-    static FString Name;
+	typedef FRequest_AdminGetUpdatingCcuPlatformIndividual Request;
+	typedef FResponse_AdminGetUpdatingCcuPlatformIndividual Response;
+	typedef FDelegate_AdminGetUpdatingCcuPlatformIndividual Delegate;
+	typedef FPresenceAdminAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetUpdatingCcuPlatformIndividual(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetUpdatingCcuPlatformIndividual(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Update Player Last Seen
@@ -1389,66 +1389,66 @@ struct RALLYHEREAPI_API Traits_AdminGetUpdatingCcuPlatformIndividual
 */
 struct RALLYHEREAPI_API FRequest_AdminUpdatePlayerLastSeen : public FRequest
 {
-    FRequest_AdminUpdatePlayerLastSeen();
-    virtual ~FRequest_AdminUpdatePlayerLastSeen() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_AdminUpdatePlayerLastSeen();
+	virtual ~FRequest_AdminUpdatePlayerLastSeen() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    /* A valid UUID identifying a player. Rejects integer player identification. */
-    FGuid PlayerUuid;
-    FRHAPI_PlayerLastSeenUpdate PlayerLastSeenUpdate;
-    TOptional<bool> UseCache;
+	TSharedPtr<FAuthContext> AuthContext;
+	/* A valid UUID identifying a player. Rejects integer player identification. */
+	FGuid PlayerUuid;
+	FRHAPI_PlayerLastSeenUpdate PlayerLastSeenUpdate;
+	TOptional<bool> UseCache;
 };
 
 struct RALLYHEREAPI_API FResponse_AdminUpdatePlayerLastSeen : public FResponse
 {
-    FResponse_AdminUpdatePlayerLastSeen(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_AdminUpdatePlayerLastSeen() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_AdminUpdatePlayerLastSeen(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_AdminUpdatePlayerLastSeen() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
-    /* Response 500
-    Internal Server Error
-    */
-    bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 500
+	Internal Server Error
+	*/
+	bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_AdminUpdatePlayerLastSeen
 {
-    typedef FRequest_AdminUpdatePlayerLastSeen Request;
-    typedef FResponse_AdminUpdatePlayerLastSeen Response;
-    typedef FDelegate_AdminUpdatePlayerLastSeen Delegate;
-    typedef FPresenceAdminAPI API;
-    static FString Name;
+	typedef FRequest_AdminUpdatePlayerLastSeen Request;
+	typedef FResponse_AdminUpdatePlayerLastSeen Response;
+	typedef FDelegate_AdminUpdatePlayerLastSeen Delegate;
+	typedef FPresenceAdminAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminUpdatePlayerLastSeen(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminUpdatePlayerLastSeen(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Update Player Last Seen Id
@@ -1458,66 +1458,66 @@ struct RALLYHEREAPI_API Traits_AdminUpdatePlayerLastSeen
 */
 struct RALLYHEREAPI_API FRequest_AdminUpdatePlayerLastSeenId : public FRequest
 {
-    FRequest_AdminUpdatePlayerLastSeenId();
-    virtual ~FRequest_AdminUpdatePlayerLastSeenId() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_AdminUpdatePlayerLastSeenId();
+	virtual ~FRequest_AdminUpdatePlayerLastSeenId() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    /* A valid integer identifying a player. Rejects UUID player identification. */
-    int32 PlayerId = 0;
-    FRHAPI_PlayerLastSeenUpdate PlayerLastSeenUpdate;
-    TOptional<bool> UseCache;
+	TSharedPtr<FAuthContext> AuthContext;
+	/* A valid integer identifying a player. Rejects UUID player identification. */
+	int32 PlayerId = 0;
+	FRHAPI_PlayerLastSeenUpdate PlayerLastSeenUpdate;
+	TOptional<bool> UseCache;
 };
 
 struct RALLYHEREAPI_API FResponse_AdminUpdatePlayerLastSeenId : public FResponse
 {
-    FResponse_AdminUpdatePlayerLastSeenId(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_AdminUpdatePlayerLastSeenId() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_AdminUpdatePlayerLastSeenId(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_AdminUpdatePlayerLastSeenId() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
-    /* Response 500
-    Internal Server Error
-    */
-    bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 500
+	Internal Server Error
+	*/
+	bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_AdminUpdatePlayerLastSeenId
 {
-    typedef FRequest_AdminUpdatePlayerLastSeenId Request;
-    typedef FResponse_AdminUpdatePlayerLastSeenId Response;
-    typedef FDelegate_AdminUpdatePlayerLastSeenId Delegate;
-    typedef FPresenceAdminAPI API;
-    static FString Name;
+	typedef FRequest_AdminUpdatePlayerLastSeenId Request;
+	typedef FResponse_AdminUpdatePlayerLastSeenId Response;
+	typedef FDelegate_AdminUpdatePlayerLastSeenId Delegate;
+	typedef FPresenceAdminAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminUpdatePlayerLastSeenId(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminUpdatePlayerLastSeenId(InRequest, InDelegate, Priority); }
 };
 
 

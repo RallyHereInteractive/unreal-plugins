@@ -142,77 +142,77 @@ DECLARE_DELEGATE_OneParam(FDelegate_UpsertContact, const FResponse_UpsertContact
 class RALLYHEREAPI_API FUsersAPI : public FAPI
 {
 public:
-    FUsersAPI();
-    virtual ~FUsersAPI();
+	FUsersAPI();
+	virtual ~FUsersAPI();
 
-    FHttpRequestPtr CreatePlatformUserById(const FRequest_CreatePlatformUserById& Request, const FDelegate_CreatePlatformUserById& Delegate = FDelegate_CreatePlatformUserById(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr DequeueMeForPurge(const FRequest_DequeueMeForPurge& Request, const FDelegate_DequeueMeForPurge& Delegate = FDelegate_DequeueMeForPurge(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr DequeuePersonForPurge(const FRequest_DequeuePersonForPurge& Request, const FDelegate_DequeuePersonForPurge& Delegate = FDelegate_DequeuePersonForPurge(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr DisableCrossProgression(const FRequest_DisableCrossProgression& Request, const FDelegate_DisableCrossProgression& Delegate = FDelegate_DisableCrossProgression(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr EnableCrossProgression(const FRequest_EnableCrossProgression& Request, const FDelegate_EnableCrossProgression& Delegate = FDelegate_EnableCrossProgression(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr FindPlatformUserById(const FRequest_FindPlatformUserById& Request, const FDelegate_FindPlatformUserById& Delegate = FDelegate_FindPlatformUserById(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetAllRoles(const FRequest_GetAllRoles& Request, const FDelegate_GetAllRoles& Delegate = FDelegate_GetAllRoles(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetPerson(const FRequest_GetPerson& Request, const FDelegate_GetPerson& Delegate = FDelegate_GetPerson(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetPersonEmailList(const FRequest_GetPersonEmailList& Request, const FDelegate_GetPersonEmailList& Delegate = FDelegate_GetPersonEmailList(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetPersonEmailListForSelf(const FRequest_GetPersonEmailListForSelf& Request, const FDelegate_GetPersonEmailListForSelf& Delegate = FDelegate_GetPersonEmailListForSelf(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetPersonForSelf(const FRequest_GetPersonForSelf& Request, const FDelegate_GetPersonForSelf& Delegate = FDelegate_GetPersonForSelf(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetPlayerIdFromPlayerUuid(const FRequest_GetPlayerIdFromPlayerUuid& Request, const FDelegate_GetPlayerIdFromPlayerUuid& Delegate = FDelegate_GetPlayerIdFromPlayerUuid(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetPlayerIdFromPlayerUuidForSelf(const FRequest_GetPlayerIdFromPlayerUuidForSelf& Request, const FDelegate_GetPlayerIdFromPlayerUuidForSelf& Delegate = FDelegate_GetPlayerIdFromPlayerUuidForSelf(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetPlayerLinkedPortals(const FRequest_GetPlayerLinkedPortals& Request, const FDelegate_GetPlayerLinkedPortals& Delegate = FDelegate_GetPlayerLinkedPortals(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetPlayerLinks(const FRequest_GetPlayerLinks& Request, const FDelegate_GetPlayerLinks& Delegate = FDelegate_GetPlayerLinks(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetPlayerLinksForSelf(const FRequest_GetPlayerLinksForSelf& Request, const FDelegate_GetPlayerLinksForSelf& Delegate = FDelegate_GetPlayerLinksForSelf(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetPlayerUuidFromPlayerId(const FRequest_GetPlayerUuidFromPlayerId& Request, const FDelegate_GetPlayerUuidFromPlayerId& Delegate = FDelegate_GetPlayerUuidFromPlayerId(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetPlayerUuidFromPlayerIdForSelf(const FRequest_GetPlayerUuidFromPlayerIdForSelf& Request, const FDelegate_GetPlayerUuidFromPlayerIdForSelf& Delegate = FDelegate_GetPlayerUuidFromPlayerIdForSelf(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetPlayerUuidFromPlayerIdForSelfV2(const FRequest_GetPlayerUuidFromPlayerIdForSelfV2& Request, const FDelegate_GetPlayerUuidFromPlayerIdForSelfV2& Delegate = FDelegate_GetPlayerUuidFromPlayerIdForSelfV2(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetPlayerUuidFromPlayerIdV2(const FRequest_GetPlayerUuidFromPlayerIdV2& Request, const FDelegate_GetPlayerUuidFromPlayerIdV2& Delegate = FDelegate_GetPlayerUuidFromPlayerIdV2(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetPlayersPaged(const FRequest_GetPlayersPaged& Request, const FDelegate_GetPlayersPaged& Delegate = FDelegate_GetPlayersPaged(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetQueuePurgeStatusForMe(const FRequest_GetQueuePurgeStatusForMe& Request, const FDelegate_GetQueuePurgeStatusForMe& Delegate = FDelegate_GetQueuePurgeStatusForMe(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetQueuePurgeStatusForPerson(const FRequest_GetQueuePurgeStatusForPerson& Request, const FDelegate_GetQueuePurgeStatusForPerson& Delegate = FDelegate_GetQueuePurgeStatusForPerson(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr Link(const FRequest_Link& Request, const FDelegate_Link& Delegate = FDelegate_Link(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr LookupPlayerByPortal(const FRequest_LookupPlayerByPortal& Request, const FDelegate_LookupPlayerByPortal& Delegate = FDelegate_LookupPlayerByPortal(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr QueueMeForPurge(const FRequest_QueueMeForPurge& Request, const FDelegate_QueueMeForPurge& Delegate = FDelegate_QueueMeForPurge(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr QueuePersonForPurge(const FRequest_QueuePersonForPurge& Request, const FDelegate_QueuePersonForPurge& Delegate = FDelegate_QueuePersonForPurge(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr Unlink(const FRequest_Unlink& Request, const FDelegate_Unlink& Delegate = FDelegate_Unlink(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr UpdatePerson(const FRequest_UpdatePerson& Request, const FDelegate_UpdatePerson& Delegate = FDelegate_UpdatePerson(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr UpdatePersonEmailList(const FRequest_UpdatePersonEmailList& Request, const FDelegate_UpdatePersonEmailList& Delegate = FDelegate_UpdatePersonEmailList(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr UpdatePersonEmailListForSelf(const FRequest_UpdatePersonEmailListForSelf& Request, const FDelegate_UpdatePersonEmailListForSelf& Delegate = FDelegate_UpdatePersonEmailListForSelf(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr UpdatePersonForSelf(const FRequest_UpdatePersonForSelf& Request, const FDelegate_UpdatePersonForSelf& Delegate = FDelegate_UpdatePersonForSelf(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr UpsertContact(const FRequest_UpsertContact& Request, const FDelegate_UpsertContact& Delegate = FDelegate_UpsertContact(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr CreatePlatformUserById(const FRequest_CreatePlatformUserById& Request, const FDelegate_CreatePlatformUserById& Delegate = FDelegate_CreatePlatformUserById(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr DequeueMeForPurge(const FRequest_DequeueMeForPurge& Request, const FDelegate_DequeueMeForPurge& Delegate = FDelegate_DequeueMeForPurge(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr DequeuePersonForPurge(const FRequest_DequeuePersonForPurge& Request, const FDelegate_DequeuePersonForPurge& Delegate = FDelegate_DequeuePersonForPurge(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr DisableCrossProgression(const FRequest_DisableCrossProgression& Request, const FDelegate_DisableCrossProgression& Delegate = FDelegate_DisableCrossProgression(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr EnableCrossProgression(const FRequest_EnableCrossProgression& Request, const FDelegate_EnableCrossProgression& Delegate = FDelegate_EnableCrossProgression(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr FindPlatformUserById(const FRequest_FindPlatformUserById& Request, const FDelegate_FindPlatformUserById& Delegate = FDelegate_FindPlatformUserById(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetAllRoles(const FRequest_GetAllRoles& Request, const FDelegate_GetAllRoles& Delegate = FDelegate_GetAllRoles(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetPerson(const FRequest_GetPerson& Request, const FDelegate_GetPerson& Delegate = FDelegate_GetPerson(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetPersonEmailList(const FRequest_GetPersonEmailList& Request, const FDelegate_GetPersonEmailList& Delegate = FDelegate_GetPersonEmailList(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetPersonEmailListForSelf(const FRequest_GetPersonEmailListForSelf& Request, const FDelegate_GetPersonEmailListForSelf& Delegate = FDelegate_GetPersonEmailListForSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetPersonForSelf(const FRequest_GetPersonForSelf& Request, const FDelegate_GetPersonForSelf& Delegate = FDelegate_GetPersonForSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetPlayerIdFromPlayerUuid(const FRequest_GetPlayerIdFromPlayerUuid& Request, const FDelegate_GetPlayerIdFromPlayerUuid& Delegate = FDelegate_GetPlayerIdFromPlayerUuid(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetPlayerIdFromPlayerUuidForSelf(const FRequest_GetPlayerIdFromPlayerUuidForSelf& Request, const FDelegate_GetPlayerIdFromPlayerUuidForSelf& Delegate = FDelegate_GetPlayerIdFromPlayerUuidForSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetPlayerLinkedPortals(const FRequest_GetPlayerLinkedPortals& Request, const FDelegate_GetPlayerLinkedPortals& Delegate = FDelegate_GetPlayerLinkedPortals(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetPlayerLinks(const FRequest_GetPlayerLinks& Request, const FDelegate_GetPlayerLinks& Delegate = FDelegate_GetPlayerLinks(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetPlayerLinksForSelf(const FRequest_GetPlayerLinksForSelf& Request, const FDelegate_GetPlayerLinksForSelf& Delegate = FDelegate_GetPlayerLinksForSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetPlayerUuidFromPlayerId(const FRequest_GetPlayerUuidFromPlayerId& Request, const FDelegate_GetPlayerUuidFromPlayerId& Delegate = FDelegate_GetPlayerUuidFromPlayerId(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetPlayerUuidFromPlayerIdForSelf(const FRequest_GetPlayerUuidFromPlayerIdForSelf& Request, const FDelegate_GetPlayerUuidFromPlayerIdForSelf& Delegate = FDelegate_GetPlayerUuidFromPlayerIdForSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetPlayerUuidFromPlayerIdForSelfV2(const FRequest_GetPlayerUuidFromPlayerIdForSelfV2& Request, const FDelegate_GetPlayerUuidFromPlayerIdForSelfV2& Delegate = FDelegate_GetPlayerUuidFromPlayerIdForSelfV2(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetPlayerUuidFromPlayerIdV2(const FRequest_GetPlayerUuidFromPlayerIdV2& Request, const FDelegate_GetPlayerUuidFromPlayerIdV2& Delegate = FDelegate_GetPlayerUuidFromPlayerIdV2(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetPlayersPaged(const FRequest_GetPlayersPaged& Request, const FDelegate_GetPlayersPaged& Delegate = FDelegate_GetPlayersPaged(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetQueuePurgeStatusForMe(const FRequest_GetQueuePurgeStatusForMe& Request, const FDelegate_GetQueuePurgeStatusForMe& Delegate = FDelegate_GetQueuePurgeStatusForMe(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetQueuePurgeStatusForPerson(const FRequest_GetQueuePurgeStatusForPerson& Request, const FDelegate_GetQueuePurgeStatusForPerson& Delegate = FDelegate_GetQueuePurgeStatusForPerson(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr Link(const FRequest_Link& Request, const FDelegate_Link& Delegate = FDelegate_Link(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr LookupPlayerByPortal(const FRequest_LookupPlayerByPortal& Request, const FDelegate_LookupPlayerByPortal& Delegate = FDelegate_LookupPlayerByPortal(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr QueueMeForPurge(const FRequest_QueueMeForPurge& Request, const FDelegate_QueueMeForPurge& Delegate = FDelegate_QueueMeForPurge(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr QueuePersonForPurge(const FRequest_QueuePersonForPurge& Request, const FDelegate_QueuePersonForPurge& Delegate = FDelegate_QueuePersonForPurge(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr Unlink(const FRequest_Unlink& Request, const FDelegate_Unlink& Delegate = FDelegate_Unlink(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr UpdatePerson(const FRequest_UpdatePerson& Request, const FDelegate_UpdatePerson& Delegate = FDelegate_UpdatePerson(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr UpdatePersonEmailList(const FRequest_UpdatePersonEmailList& Request, const FDelegate_UpdatePersonEmailList& Delegate = FDelegate_UpdatePersonEmailList(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr UpdatePersonEmailListForSelf(const FRequest_UpdatePersonEmailListForSelf& Request, const FDelegate_UpdatePersonEmailListForSelf& Delegate = FDelegate_UpdatePersonEmailListForSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr UpdatePersonForSelf(const FRequest_UpdatePersonForSelf& Request, const FDelegate_UpdatePersonForSelf& Delegate = FDelegate_UpdatePersonForSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr UpsertContact(const FRequest_UpsertContact& Request, const FDelegate_UpsertContact& Delegate = FDelegate_UpsertContact(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
-    void OnCreatePlatformUserByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreatePlatformUserById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnDequeueMeForPurgeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DequeueMeForPurge Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnDequeuePersonForPurgeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DequeuePersonForPurge Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnDisableCrossProgressionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DisableCrossProgression Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnEnableCrossProgressionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_EnableCrossProgression Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnFindPlatformUserByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_FindPlatformUserById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetAllRolesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllRoles Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetPersonResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPerson Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetPersonEmailListResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPersonEmailList Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetPersonEmailListForSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPersonEmailListForSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetPersonForSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPersonForSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetPlayerIdFromPlayerUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerIdFromPlayerUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetPlayerIdFromPlayerUuidForSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerIdFromPlayerUuidForSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetPlayerLinkedPortalsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerLinkedPortals Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetPlayerLinksResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerLinks Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetPlayerLinksForSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerLinksForSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetPlayerUuidFromPlayerIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerUuidFromPlayerId Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetPlayerUuidFromPlayerIdForSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerUuidFromPlayerIdForSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetPlayerUuidFromPlayerIdForSelfV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerUuidFromPlayerIdForSelfV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetPlayerUuidFromPlayerIdV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerUuidFromPlayerIdV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetPlayersPagedResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayersPaged Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetQueuePurgeStatusForMeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetQueuePurgeStatusForMe Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetQueuePurgeStatusForPersonResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetQueuePurgeStatusForPerson Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnLinkResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Link Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnLookupPlayerByPortalResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_LookupPlayerByPortal Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnQueueMeForPurgeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_QueueMeForPurge Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnQueuePersonForPurgeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_QueuePersonForPurge Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnUnlinkResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Unlink Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnUpdatePersonResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdatePerson Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnUpdatePersonEmailListResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdatePersonEmailList Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnUpdatePersonEmailListForSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdatePersonEmailListForSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnUpdatePersonForSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdatePersonForSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnUpsertContactResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpsertContact Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnCreatePlatformUserByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreatePlatformUserById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnDequeueMeForPurgeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DequeueMeForPurge Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnDequeuePersonForPurgeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DequeuePersonForPurge Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnDisableCrossProgressionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DisableCrossProgression Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnEnableCrossProgressionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_EnableCrossProgression Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnFindPlatformUserByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_FindPlatformUserById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetAllRolesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllRoles Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetPersonResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPerson Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetPersonEmailListResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPersonEmailList Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetPersonEmailListForSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPersonEmailListForSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetPersonForSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPersonForSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetPlayerIdFromPlayerUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerIdFromPlayerUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetPlayerIdFromPlayerUuidForSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerIdFromPlayerUuidForSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetPlayerLinkedPortalsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerLinkedPortals Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetPlayerLinksResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerLinks Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetPlayerLinksForSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerLinksForSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetPlayerUuidFromPlayerIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerUuidFromPlayerId Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetPlayerUuidFromPlayerIdForSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerUuidFromPlayerIdForSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetPlayerUuidFromPlayerIdForSelfV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerUuidFromPlayerIdForSelfV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetPlayerUuidFromPlayerIdV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerUuidFromPlayerIdV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetPlayersPagedResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayersPaged Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetQueuePurgeStatusForMeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetQueuePurgeStatusForMe Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetQueuePurgeStatusForPersonResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetQueuePurgeStatusForPerson Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnLinkResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Link Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnLookupPlayerByPortalResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_LookupPlayerByPortal Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnQueueMeForPurgeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_QueueMeForPurge Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnQueuePersonForPurgeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_QueuePersonForPurge Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnUnlinkResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Unlink Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnUpdatePersonResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdatePerson Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnUpdatePersonEmailListResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdatePersonEmailList Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnUpdatePersonEmailListForSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdatePersonEmailListForSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnUpdatePersonForSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdatePersonForSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnUpsertContactResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpsertContact Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
@@ -227,59 +227,59 @@ private:
 */
 struct RALLYHEREAPI_API FRequest_CreatePlatformUserById : public FRequest
 {
-    FRequest_CreatePlatformUserById();
-    virtual ~FRequest_CreatePlatformUserById() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_CreatePlatformUserById();
+	virtual ~FRequest_CreatePlatformUserById() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FRHAPI_CreatePlatformUserRequest CreatePlatformUserRequest;
+	TSharedPtr<FAuthContext> AuthContext;
+	FRHAPI_CreatePlatformUserRequest CreatePlatformUserRequest;
 };
 
 struct RALLYHEREAPI_API FResponse_CreatePlatformUserById : public FResponse
 {
-    FResponse_CreatePlatformUserById(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_CreatePlatformUserById() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_CreatePlatformUserById(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_CreatePlatformUserById() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PlatformUserResponse Content;
+	FRHAPI_PlatformUserResponse Content;
 
 
-    // Manual Response Helpers
-    /* Response 201
-    Platform user was created successfully
-    */
-    bool TryGetContentFor201(FRHAPI_PlatformUserResponse& OutContent) const;
+	// Manual Response Helpers
+	/* Response 201
+	Platform user was created successfully
+	*/
+	bool TryGetContentFor201(FRHAPI_PlatformUserResponse& OutContent) const;
 
-    /* Response 403
-     Error Codes: - insufficient_permissions - Insufficient Permissions - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization - auth_invalid_version - Invalid Authorization - version - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} 
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	 Error Codes: - insufficient_permissions - Insufficient Permissions - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization - auth_invalid_version - Invalid Authorization - version - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 409
-    Failed to create platform user.  See error code and description for further details.   Error Codes: - user_already_exists - User already exists  
-    */
-    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 409
+	Failed to create platform user.  See error code and description for further details.   Error Codes: - user_already_exists - User already exists  
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_CreatePlatformUserById
 {
-    typedef FRequest_CreatePlatformUserById Request;
-    typedef FResponse_CreatePlatformUserById Response;
-    typedef FDelegate_CreatePlatformUserById Delegate;
-    typedef FUsersAPI API;
-    static FString Name;
+	typedef FRequest_CreatePlatformUserById Request;
+	typedef FResponse_CreatePlatformUserById Response;
+	typedef FDelegate_CreatePlatformUserById Delegate;
+	typedef FUsersAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreatePlatformUserById(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreatePlatformUserById(InRequest, InDelegate, Priority); }
 };
 
 /* Dequeue Me For Purge
@@ -288,52 +288,52 @@ struct RALLYHEREAPI_API Traits_CreatePlatformUserById
 */
 struct RALLYHEREAPI_API FRequest_DequeueMeForPurge : public FRequest
 {
-    FRequest_DequeueMeForPurge();
-    virtual ~FRequest_DequeueMeForPurge() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_DequeueMeForPurge();
+	virtual ~FRequest_DequeueMeForPurge() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
+	TSharedPtr<FAuthContext> AuthContext;
 };
 
 struct RALLYHEREAPI_API FResponse_DequeueMeForPurge : public FResponse
 {
-    FResponse_DequeueMeForPurge(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_DequeueMeForPurge() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_DequeueMeForPurge(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_DequeueMeForPurge() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
+	
 
 
-    // Manual Response Helpers
-    /* Response 204
-    Successful Response
-    */
+	// Manual Response Helpers
+	/* Response 204
+	Successful Response
+	*/
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
 
-    /* Response 500
-    Internal Server Error
-    */
-    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 500
+	Internal Server Error
+	*/
+	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_DequeueMeForPurge
 {
-    typedef FRequest_DequeueMeForPurge Request;
-    typedef FResponse_DequeueMeForPurge Response;
-    typedef FDelegate_DequeueMeForPurge Delegate;
-    typedef FUsersAPI API;
-    static FString Name;
+	typedef FRequest_DequeueMeForPurge Request;
+	typedef FResponse_DequeueMeForPurge Response;
+	typedef FDelegate_DequeueMeForPurge Delegate;
+	typedef FUsersAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DequeueMeForPurge(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DequeueMeForPurge(InRequest, InDelegate, Priority); }
 };
 
 /* Dequeue Person For Purge
@@ -342,152 +342,152 @@ struct RALLYHEREAPI_API Traits_DequeueMeForPurge
 */
 struct RALLYHEREAPI_API FRequest_DequeuePersonForPurge : public FRequest
 {
-    FRequest_DequeuePersonForPurge();
-    virtual ~FRequest_DequeuePersonForPurge() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_DequeuePersonForPurge();
+	virtual ~FRequest_DequeuePersonForPurge() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid PersonId;
+	TSharedPtr<FAuthContext> AuthContext;
+	FGuid PersonId;
 };
 
 struct RALLYHEREAPI_API FResponse_DequeuePersonForPurge : public FResponse
 {
-    FResponse_DequeuePersonForPurge(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_DequeuePersonForPurge() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_DequeuePersonForPurge(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_DequeuePersonForPurge() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
+	
 
 
-    // Manual Response Helpers
-    /* Response 204
-    Successful Response
-    */
+	// Manual Response Helpers
+	/* Response 204
+	Successful Response
+	*/
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
-    /* Response 500
-    Internal Server Error
-    */
-    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 500
+	Internal Server Error
+	*/
+	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_DequeuePersonForPurge
 {
-    typedef FRequest_DequeuePersonForPurge Request;
-    typedef FResponse_DequeuePersonForPurge Response;
-    typedef FDelegate_DequeuePersonForPurge Delegate;
-    typedef FUsersAPI API;
-    static FString Name;
+	typedef FRequest_DequeuePersonForPurge Request;
+	typedef FResponse_DequeuePersonForPurge Response;
+	typedef FDelegate_DequeuePersonForPurge Delegate;
+	typedef FUsersAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DequeuePersonForPurge(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DequeuePersonForPurge(InRequest, InDelegate, Priority); }
 };
 
 /* Disable Cross Progression
 */
 struct RALLYHEREAPI_API FRequest_DisableCrossProgression : public FRequest
 {
-    FRequest_DisableCrossProgression();
-    virtual ~FRequest_DisableCrossProgression() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_DisableCrossProgression();
+	virtual ~FRequest_DisableCrossProgression() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
+	TSharedPtr<FAuthContext> AuthContext;
 };
 
 struct RALLYHEREAPI_API FResponse_DisableCrossProgression : public FResponse
 {
-    FResponse_DisableCrossProgression(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_DisableCrossProgression() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_DisableCrossProgression(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_DisableCrossProgression() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+	FRHAPI_JsonValue Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
+	/* Response 403
+	Forbidden
+	*/
 
 };
 
 struct RALLYHEREAPI_API Traits_DisableCrossProgression
 {
-    typedef FRequest_DisableCrossProgression Request;
-    typedef FResponse_DisableCrossProgression Response;
-    typedef FDelegate_DisableCrossProgression Delegate;
-    typedef FUsersAPI API;
-    static FString Name;
+	typedef FRequest_DisableCrossProgression Request;
+	typedef FResponse_DisableCrossProgression Response;
+	typedef FDelegate_DisableCrossProgression Delegate;
+	typedef FUsersAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DisableCrossProgression(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DisableCrossProgression(InRequest, InDelegate, Priority); }
 };
 
 /* Enable Cross Progression
 */
 struct RALLYHEREAPI_API FRequest_EnableCrossProgression : public FRequest
 {
-    FRequest_EnableCrossProgression();
-    virtual ~FRequest_EnableCrossProgression() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_EnableCrossProgression();
+	virtual ~FRequest_EnableCrossProgression() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
+	TSharedPtr<FAuthContext> AuthContext;
 };
 
 struct RALLYHEREAPI_API FResponse_EnableCrossProgression : public FResponse
 {
-    FResponse_EnableCrossProgression(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_EnableCrossProgression() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_EnableCrossProgression(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_EnableCrossProgression() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+	FRHAPI_JsonValue Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
+	/* Response 403
+	Forbidden
+	*/
 
 };
 
 struct RALLYHEREAPI_API Traits_EnableCrossProgression
 {
-    typedef FRequest_EnableCrossProgression Request;
-    typedef FResponse_EnableCrossProgression Response;
-    typedef FDelegate_EnableCrossProgression Delegate;
-    typedef FUsersAPI API;
-    static FString Name;
+	typedef FRequest_EnableCrossProgression Request;
+	typedef FResponse_EnableCrossProgression Response;
+	typedef FDelegate_EnableCrossProgression Delegate;
+	typedef FUsersAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.EnableCrossProgression(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.EnableCrossProgression(InRequest, InDelegate, Priority); }
 };
 
 /* Find Platform User By Id
@@ -499,62 +499,62 @@ struct RALLYHEREAPI_API Traits_EnableCrossProgression
 */
 struct RALLYHEREAPI_API FRequest_FindPlatformUserById : public FRequest
 {
-    FRequest_FindPlatformUserById();
-    virtual ~FRequest_FindPlatformUserById() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_FindPlatformUserById();
+	virtual ~FRequest_FindPlatformUserById() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Platform to search */
-    ERHAPI_Platform Platform;
-    /* Platform user ID to search for */
-    FString PlatformUserId;
+	TSharedPtr<FAuthContext> AuthContext;
+	/* Platform to search */
+	ERHAPI_Platform Platform;
+	/* Platform user ID to search for */
+	FString PlatformUserId;
 };
 
 struct RALLYHEREAPI_API FResponse_FindPlatformUserById : public FResponse
 {
-    FResponse_FindPlatformUserById(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_FindPlatformUserById() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_FindPlatformUserById(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_FindPlatformUserById() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PlatformUserResponse Content;
+	FRHAPI_PlatformUserResponse Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Platform user was found successfully
-    */
-    bool TryGetContentFor200(FRHAPI_PlatformUserResponse& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Platform user was found successfully
+	*/
+	bool TryGetContentFor200(FRHAPI_PlatformUserResponse& OutContent) const;
 
-    /* Response 403
-     Error Codes: - insufficient_permissions - Insufficient Permissions - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization - auth_invalid_version - Invalid Authorization - version - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} 
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	 Error Codes: - insufficient_permissions - Insufficient Permissions - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization - auth_invalid_version - Invalid Authorization - version - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Failed to find platform user.  See error code and description for further details.   Error Codes: - user_not_found - User not found  
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Failed to find platform user.  See error code and description for further details.   Error Codes: - user_not_found - User not found  
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_FindPlatformUserById
 {
-    typedef FRequest_FindPlatformUserById Request;
-    typedef FResponse_FindPlatformUserById Response;
-    typedef FDelegate_FindPlatformUserById Delegate;
-    typedef FUsersAPI API;
-    static FString Name;
+	typedef FRequest_FindPlatformUserById Request;
+	typedef FResponse_FindPlatformUserById Response;
+	typedef FDelegate_FindPlatformUserById Delegate;
+	typedef FUsersAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.FindPlatformUserById(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.FindPlatformUserById(InRequest, InDelegate, Priority); }
 };
 
 /* Get All Roles
@@ -563,53 +563,53 @@ struct RALLYHEREAPI_API Traits_FindPlatformUserById
 */
 struct RALLYHEREAPI_API FRequest_GetAllRoles : public FRequest
 {
-    FRequest_GetAllRoles();
-    virtual ~FRequest_GetAllRoles() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetAllRoles();
+	virtual ~FRequest_GetAllRoles() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
+	TSharedPtr<FAuthContext> AuthContext;
 };
 
 struct RALLYHEREAPI_API FResponse_GetAllRoles : public FResponse
 {
-    FResponse_GetAllRoles(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetAllRoles() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetAllRoles(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetAllRoles() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    TArray<FRHAPI_Role> Content;
+	TArray<FRHAPI_Role> Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(TArray<FRHAPI_Role>& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(TArray<FRHAPI_Role>& OutContent) const;
 
-    /* Response 400
-    Bad Request
-    */
-    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 400
+	Bad Request
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetAllRoles
 {
-    typedef FRequest_GetAllRoles Request;
-    typedef FResponse_GetAllRoles Response;
-    typedef FDelegate_GetAllRoles Delegate;
-    typedef FUsersAPI API;
-    static FString Name;
+	typedef FRequest_GetAllRoles Request;
+	typedef FResponse_GetAllRoles Response;
+	typedef FDelegate_GetAllRoles Delegate;
+	typedef FUsersAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllRoles(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllRoles(InRequest, InDelegate, Priority); }
 };
 
 /* Get Person
@@ -618,59 +618,59 @@ struct RALLYHEREAPI_API Traits_GetAllRoles
 */
 struct RALLYHEREAPI_API FRequest_GetPerson : public FRequest
 {
-    FRequest_GetPerson();
-    virtual ~FRequest_GetPerson() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetPerson();
+	virtual ~FRequest_GetPerson() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid PersonId;
+	TSharedPtr<FAuthContext> AuthContext;
+	FGuid PersonId;
 };
 
 struct RALLYHEREAPI_API FResponse_GetPerson : public FResponse
 {
-    FResponse_GetPerson(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetPerson() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetPerson(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetPerson() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PersonInfoResponse Content;
+	FRHAPI_PersonInfoResponse Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PersonInfoResponse& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PersonInfoResponse& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
-    /* Response 500
-    Internal Server Error
-    */
-    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 500
+	Internal Server Error
+	*/
+	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetPerson
 {
-    typedef FRequest_GetPerson Request;
-    typedef FResponse_GetPerson Response;
-    typedef FDelegate_GetPerson Delegate;
-    typedef FUsersAPI API;
-    static FString Name;
+	typedef FRequest_GetPerson Request;
+	typedef FResponse_GetPerson Response;
+	typedef FDelegate_GetPerson Delegate;
+	typedef FUsersAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPerson(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPerson(InRequest, InDelegate, Priority); }
 };
 
 /* Get Person Email List
@@ -679,59 +679,59 @@ struct RALLYHEREAPI_API Traits_GetPerson
 */
 struct RALLYHEREAPI_API FRequest_GetPersonEmailList : public FRequest
 {
-    FRequest_GetPersonEmailList();
-    virtual ~FRequest_GetPersonEmailList() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetPersonEmailList();
+	virtual ~FRequest_GetPersonEmailList() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid PersonId;
+	TSharedPtr<FAuthContext> AuthContext;
+	FGuid PersonId;
 };
 
 struct RALLYHEREAPI_API FResponse_GetPersonEmailList : public FResponse
 {
-    FResponse_GetPersonEmailList(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetPersonEmailList() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetPersonEmailList(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetPersonEmailList() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PersonEmailListResponse Content;
+	FRHAPI_PersonEmailListResponse Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PersonEmailListResponse& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PersonEmailListResponse& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
-    /* Response 500
-    Internal Server Error
-    */
-    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 500
+	Internal Server Error
+	*/
+	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetPersonEmailList
 {
-    typedef FRequest_GetPersonEmailList Request;
-    typedef FResponse_GetPersonEmailList Response;
-    typedef FDelegate_GetPersonEmailList Delegate;
-    typedef FUsersAPI API;
-    static FString Name;
+	typedef FRequest_GetPersonEmailList Request;
+	typedef FResponse_GetPersonEmailList Response;
+	typedef FDelegate_GetPersonEmailList Delegate;
+	typedef FUsersAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPersonEmailList(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPersonEmailList(InRequest, InDelegate, Priority); }
 };
 
 /* Get Person Email List For Self
@@ -740,53 +740,53 @@ struct RALLYHEREAPI_API Traits_GetPersonEmailList
 */
 struct RALLYHEREAPI_API FRequest_GetPersonEmailListForSelf : public FRequest
 {
-    FRequest_GetPersonEmailListForSelf();
-    virtual ~FRequest_GetPersonEmailListForSelf() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetPersonEmailListForSelf();
+	virtual ~FRequest_GetPersonEmailListForSelf() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
+	TSharedPtr<FAuthContext> AuthContext;
 };
 
 struct RALLYHEREAPI_API FResponse_GetPersonEmailListForSelf : public FResponse
 {
-    FResponse_GetPersonEmailListForSelf(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetPersonEmailListForSelf() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetPersonEmailListForSelf(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetPersonEmailListForSelf() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PersonEmailListResponse Content;
+	FRHAPI_PersonEmailListResponse Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PersonEmailListResponse& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PersonEmailListResponse& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
 
-    /* Response 500
-    Internal Server Error
-    */
-    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 500
+	Internal Server Error
+	*/
+	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetPersonEmailListForSelf
 {
-    typedef FRequest_GetPersonEmailListForSelf Request;
-    typedef FResponse_GetPersonEmailListForSelf Response;
-    typedef FDelegate_GetPersonEmailListForSelf Delegate;
-    typedef FUsersAPI API;
-    static FString Name;
+	typedef FRequest_GetPersonEmailListForSelf Request;
+	typedef FResponse_GetPersonEmailListForSelf Response;
+	typedef FDelegate_GetPersonEmailListForSelf Delegate;
+	typedef FUsersAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPersonEmailListForSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPersonEmailListForSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Person For Self
@@ -795,53 +795,53 @@ struct RALLYHEREAPI_API Traits_GetPersonEmailListForSelf
 */
 struct RALLYHEREAPI_API FRequest_GetPersonForSelf : public FRequest
 {
-    FRequest_GetPersonForSelf();
-    virtual ~FRequest_GetPersonForSelf() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetPersonForSelf();
+	virtual ~FRequest_GetPersonForSelf() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
+	TSharedPtr<FAuthContext> AuthContext;
 };
 
 struct RALLYHEREAPI_API FResponse_GetPersonForSelf : public FResponse
 {
-    FResponse_GetPersonForSelf(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetPersonForSelf() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetPersonForSelf(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetPersonForSelf() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PersonInfoResponse Content;
+	FRHAPI_PersonInfoResponse Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PersonInfoResponse& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PersonInfoResponse& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
 
-    /* Response 500
-    Internal Server Error
-    */
-    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 500
+	Internal Server Error
+	*/
+	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetPersonForSelf
 {
-    typedef FRequest_GetPersonForSelf Request;
-    typedef FResponse_GetPersonForSelf Response;
-    typedef FDelegate_GetPersonForSelf Delegate;
-    typedef FUsersAPI API;
-    static FString Name;
+	typedef FRequest_GetPersonForSelf Request;
+	typedef FResponse_GetPersonForSelf Response;
+	typedef FDelegate_GetPersonForSelf Delegate;
+	typedef FUsersAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPersonForSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPersonForSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Id From Player Uuid
@@ -850,69 +850,69 @@ struct RALLYHEREAPI_API Traits_GetPersonForSelf
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerIdFromPlayerUuid : public FRequest
 {
-    FRequest_GetPlayerIdFromPlayerUuid();
-    virtual ~FRequest_GetPlayerIdFromPlayerUuid() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetPlayerIdFromPlayerUuid();
+	virtual ~FRequest_GetPlayerIdFromPlayerUuid() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid PlayerUuid;
+	TSharedPtr<FAuthContext> AuthContext;
+	FGuid PlayerUuid;
 };
 
 struct RALLYHEREAPI_API FResponse_GetPlayerIdFromPlayerUuid : public FResponse
 {
-    FResponse_GetPlayerIdFromPlayerUuid(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetPlayerIdFromPlayerUuid() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetPlayerIdFromPlayerUuid(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetPlayerIdFromPlayerUuid() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PlayerIdWrapper Content;
+	FRHAPI_PlayerIdWrapper Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PlayerIdWrapper& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlayerIdWrapper& OutContent) const;
 
-    /* Response 400
-    Bad Request
-    */
-    bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 400
+	Bad Request
+	*/
+	bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
 
-    /* Response 404
-    Not Found
-    */
-    bool TryGetContentFor404(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_MessageOnly& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
-    /* Response 500
-    Internal Server Error
-    */
-    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 500
+	Internal Server Error
+	*/
+	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerIdFromPlayerUuid
 {
-    typedef FRequest_GetPlayerIdFromPlayerUuid Request;
-    typedef FResponse_GetPlayerIdFromPlayerUuid Response;
-    typedef FDelegate_GetPlayerIdFromPlayerUuid Delegate;
-    typedef FUsersAPI API;
-    static FString Name;
+	typedef FRequest_GetPlayerIdFromPlayerUuid Request;
+	typedef FResponse_GetPlayerIdFromPlayerUuid Response;
+	typedef FDelegate_GetPlayerIdFromPlayerUuid Delegate;
+	typedef FUsersAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerIdFromPlayerUuid(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerIdFromPlayerUuid(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Id From Player Uuid For Self
@@ -921,63 +921,63 @@ struct RALLYHEREAPI_API Traits_GetPlayerIdFromPlayerUuid
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerIdFromPlayerUuidForSelf : public FRequest
 {
-    FRequest_GetPlayerIdFromPlayerUuidForSelf();
-    virtual ~FRequest_GetPlayerIdFromPlayerUuidForSelf() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetPlayerIdFromPlayerUuidForSelf();
+	virtual ~FRequest_GetPlayerIdFromPlayerUuidForSelf() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
+	TSharedPtr<FAuthContext> AuthContext;
 };
 
 struct RALLYHEREAPI_API FResponse_GetPlayerIdFromPlayerUuidForSelf : public FResponse
 {
-    FResponse_GetPlayerIdFromPlayerUuidForSelf(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetPlayerIdFromPlayerUuidForSelf() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetPlayerIdFromPlayerUuidForSelf(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetPlayerIdFromPlayerUuidForSelf() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PlayerIdWrapper Content;
+	FRHAPI_PlayerIdWrapper Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PlayerIdWrapper& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlayerIdWrapper& OutContent) const;
 
-    /* Response 400
-    Bad Request
-    */
-    bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 400
+	Bad Request
+	*/
+	bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
 
-    /* Response 404
-    Not Found
-    */
-    bool TryGetContentFor404(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_MessageOnly& OutContent) const;
 
-    /* Response 500
-    Internal Server Error
-    */
-    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 500
+	Internal Server Error
+	*/
+	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerIdFromPlayerUuidForSelf
 {
-    typedef FRequest_GetPlayerIdFromPlayerUuidForSelf Request;
-    typedef FResponse_GetPlayerIdFromPlayerUuidForSelf Response;
-    typedef FDelegate_GetPlayerIdFromPlayerUuidForSelf Delegate;
-    typedef FUsersAPI API;
-    static FString Name;
+	typedef FRequest_GetPlayerIdFromPlayerUuidForSelf Request;
+	typedef FResponse_GetPlayerIdFromPlayerUuidForSelf Response;
+	typedef FDelegate_GetPlayerIdFromPlayerUuidForSelf Delegate;
+	typedef FUsersAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerIdFromPlayerUuidForSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerIdFromPlayerUuidForSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Linked Portals
@@ -986,64 +986,64 @@ struct RALLYHEREAPI_API Traits_GetPlayerIdFromPlayerUuidForSelf
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerLinkedPortals : public FRequest
 {
-    FRequest_GetPlayerLinkedPortals();
-    virtual ~FRequest_GetPlayerLinkedPortals() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetPlayerLinkedPortals();
+	virtual ~FRequest_GetPlayerLinkedPortals() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    int32 PlayerId = 0;
+	TSharedPtr<FAuthContext> AuthContext;
+	int32 PlayerId = 0;
 };
 
 struct RALLYHEREAPI_API FResponse_GetPlayerLinkedPortals : public FResponse
 {
-    FResponse_GetPlayerLinkedPortals(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetPlayerLinkedPortals() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetPlayerLinkedPortals(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetPlayerLinkedPortals() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PlayerLinkedPortalsResponse Content;
+	FRHAPI_PlayerLinkedPortalsResponse Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PlayerLinkedPortalsResponse& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlayerLinkedPortalsResponse& OutContent) const;
 
-    /* Response 400
-    Bad Request
-    */
-    bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 400
+	Bad Request
+	*/
+	bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
-    /* Response 500
-    Internal Server Error
-    */
-    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 500
+	Internal Server Error
+	*/
+	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerLinkedPortals
 {
-    typedef FRequest_GetPlayerLinkedPortals Request;
-    typedef FResponse_GetPlayerLinkedPortals Response;
-    typedef FDelegate_GetPlayerLinkedPortals Delegate;
-    typedef FUsersAPI API;
-    static FString Name;
+	typedef FRequest_GetPlayerLinkedPortals Request;
+	typedef FResponse_GetPlayerLinkedPortals Response;
+	typedef FDelegate_GetPlayerLinkedPortals Delegate;
+	typedef FUsersAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerLinkedPortals(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerLinkedPortals(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Links
@@ -1052,64 +1052,64 @@ struct RALLYHEREAPI_API Traits_GetPlayerLinkedPortals
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerLinks : public FRequest
 {
-    FRequest_GetPlayerLinks();
-    virtual ~FRequest_GetPlayerLinks() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetPlayerLinks();
+	virtual ~FRequest_GetPlayerLinks() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid PlayerUuid;
+	TSharedPtr<FAuthContext> AuthContext;
+	FGuid PlayerUuid;
 };
 
 struct RALLYHEREAPI_API FResponse_GetPlayerLinks : public FResponse
 {
-    FResponse_GetPlayerLinks(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetPlayerLinks() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetPlayerLinks(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetPlayerLinks() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PlayerLinkedPortalsResponse Content;
+	FRHAPI_PlayerLinkedPortalsResponse Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PlayerLinkedPortalsResponse& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlayerLinkedPortalsResponse& OutContent) const;
 
-    /* Response 400
-    Bad Request
-    */
-    bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 400
+	Bad Request
+	*/
+	bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
-    /* Response 500
-    Internal Server Error
-    */
-    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 500
+	Internal Server Error
+	*/
+	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerLinks
 {
-    typedef FRequest_GetPlayerLinks Request;
-    typedef FResponse_GetPlayerLinks Response;
-    typedef FDelegate_GetPlayerLinks Delegate;
-    typedef FUsersAPI API;
-    static FString Name;
+	typedef FRequest_GetPlayerLinks Request;
+	typedef FResponse_GetPlayerLinks Response;
+	typedef FDelegate_GetPlayerLinks Delegate;
+	typedef FUsersAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerLinks(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerLinks(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Links For Self
@@ -1118,58 +1118,58 @@ struct RALLYHEREAPI_API Traits_GetPlayerLinks
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerLinksForSelf : public FRequest
 {
-    FRequest_GetPlayerLinksForSelf();
-    virtual ~FRequest_GetPlayerLinksForSelf() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetPlayerLinksForSelf();
+	virtual ~FRequest_GetPlayerLinksForSelf() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
+	TSharedPtr<FAuthContext> AuthContext;
 };
 
 struct RALLYHEREAPI_API FResponse_GetPlayerLinksForSelf : public FResponse
 {
-    FResponse_GetPlayerLinksForSelf(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetPlayerLinksForSelf() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetPlayerLinksForSelf(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetPlayerLinksForSelf() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PlayerLinkedPortalsResponse Content;
+	FRHAPI_PlayerLinkedPortalsResponse Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PlayerLinkedPortalsResponse& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlayerLinkedPortalsResponse& OutContent) const;
 
-    /* Response 400
-    Bad Request
-    */
-    bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 400
+	Bad Request
+	*/
+	bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
 
-    /* Response 500
-    Internal Server Error
-    */
-    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 500
+	Internal Server Error
+	*/
+	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerLinksForSelf
 {
-    typedef FRequest_GetPlayerLinksForSelf Request;
-    typedef FResponse_GetPlayerLinksForSelf Response;
-    typedef FDelegate_GetPlayerLinksForSelf Delegate;
-    typedef FUsersAPI API;
-    static FString Name;
+	typedef FRequest_GetPlayerLinksForSelf Request;
+	typedef FResponse_GetPlayerLinksForSelf Response;
+	typedef FDelegate_GetPlayerLinksForSelf Delegate;
+	typedef FUsersAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerLinksForSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerLinksForSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Uuid From Player Id
@@ -1178,64 +1178,64 @@ struct RALLYHEREAPI_API Traits_GetPlayerLinksForSelf
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerUuidFromPlayerId : public FRequest
 {
-    FRequest_GetPlayerUuidFromPlayerId();
-    virtual ~FRequest_GetPlayerUuidFromPlayerId() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetPlayerUuidFromPlayerId();
+	virtual ~FRequest_GetPlayerUuidFromPlayerId() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    int32 PlayerId = 0;
+	TSharedPtr<FAuthContext> AuthContext;
+	int32 PlayerId = 0;
 };
 
 struct RALLYHEREAPI_API FResponse_GetPlayerUuidFromPlayerId : public FResponse
 {
-    FResponse_GetPlayerUuidFromPlayerId(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetPlayerUuidFromPlayerId() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetPlayerUuidFromPlayerId(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetPlayerUuidFromPlayerId() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FGuid Content;
+	FGuid Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FGuid& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FGuid& OutContent) const;
 
-    /* Response 400
-    Bad Request
-    */
-    bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 400
+	Bad Request
+	*/
+	bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
-    /* Response 500
-    Internal Server Error
-    */
-    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 500
+	Internal Server Error
+	*/
+	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerUuidFromPlayerId
 {
-    typedef FRequest_GetPlayerUuidFromPlayerId Request;
-    typedef FResponse_GetPlayerUuidFromPlayerId Response;
-    typedef FDelegate_GetPlayerUuidFromPlayerId Delegate;
-    typedef FUsersAPI API;
-    static FString Name;
+	typedef FRequest_GetPlayerUuidFromPlayerId Request;
+	typedef FResponse_GetPlayerUuidFromPlayerId Response;
+	typedef FDelegate_GetPlayerUuidFromPlayerId Delegate;
+	typedef FUsersAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidFromPlayerId(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidFromPlayerId(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Uuid From Player Id For Self
@@ -1244,58 +1244,58 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidFromPlayerId
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerUuidFromPlayerIdForSelf : public FRequest
 {
-    FRequest_GetPlayerUuidFromPlayerIdForSelf();
-    virtual ~FRequest_GetPlayerUuidFromPlayerIdForSelf() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetPlayerUuidFromPlayerIdForSelf();
+	virtual ~FRequest_GetPlayerUuidFromPlayerIdForSelf() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
+	TSharedPtr<FAuthContext> AuthContext;
 };
 
 struct RALLYHEREAPI_API FResponse_GetPlayerUuidFromPlayerIdForSelf : public FResponse
 {
-    FResponse_GetPlayerUuidFromPlayerIdForSelf(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetPlayerUuidFromPlayerIdForSelf() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetPlayerUuidFromPlayerIdForSelf(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetPlayerUuidFromPlayerIdForSelf() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FGuid Content;
+	FGuid Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FGuid& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FGuid& OutContent) const;
 
-    /* Response 400
-    Bad Request
-    */
-    bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 400
+	Bad Request
+	*/
+	bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
 
-    /* Response 500
-    Internal Server Error
-    */
-    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 500
+	Internal Server Error
+	*/
+	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerUuidFromPlayerIdForSelf
 {
-    typedef FRequest_GetPlayerUuidFromPlayerIdForSelf Request;
-    typedef FResponse_GetPlayerUuidFromPlayerIdForSelf Response;
-    typedef FDelegate_GetPlayerUuidFromPlayerIdForSelf Delegate;
-    typedef FUsersAPI API;
-    static FString Name;
+	typedef FRequest_GetPlayerUuidFromPlayerIdForSelf Request;
+	typedef FResponse_GetPlayerUuidFromPlayerIdForSelf Response;
+	typedef FDelegate_GetPlayerUuidFromPlayerIdForSelf Delegate;
+	typedef FUsersAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidFromPlayerIdForSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidFromPlayerIdForSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Uuid From Player Id For Self V2
@@ -1304,58 +1304,58 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidFromPlayerIdForSelf
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerUuidFromPlayerIdForSelfV2 : public FRequest
 {
-    FRequest_GetPlayerUuidFromPlayerIdForSelfV2();
-    virtual ~FRequest_GetPlayerUuidFromPlayerIdForSelfV2() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetPlayerUuidFromPlayerIdForSelfV2();
+	virtual ~FRequest_GetPlayerUuidFromPlayerIdForSelfV2() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
+	TSharedPtr<FAuthContext> AuthContext;
 };
 
 struct RALLYHEREAPI_API FResponse_GetPlayerUuidFromPlayerIdForSelfV2 : public FResponse
 {
-    FResponse_GetPlayerUuidFromPlayerIdForSelfV2(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetPlayerUuidFromPlayerIdForSelfV2() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetPlayerUuidFromPlayerIdForSelfV2(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetPlayerUuidFromPlayerIdForSelfV2() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PlayerUuidFromId Content;
+	FRHAPI_PlayerUuidFromId Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PlayerUuidFromId& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlayerUuidFromId& OutContent) const;
 
-    /* Response 400
-    Bad Request
-    */
-    bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 400
+	Bad Request
+	*/
+	bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
 
-    /* Response 500
-    Internal Server Error
-    */
-    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 500
+	Internal Server Error
+	*/
+	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerUuidFromPlayerIdForSelfV2
 {
-    typedef FRequest_GetPlayerUuidFromPlayerIdForSelfV2 Request;
-    typedef FResponse_GetPlayerUuidFromPlayerIdForSelfV2 Response;
-    typedef FDelegate_GetPlayerUuidFromPlayerIdForSelfV2 Delegate;
-    typedef FUsersAPI API;
-    static FString Name;
+	typedef FRequest_GetPlayerUuidFromPlayerIdForSelfV2 Request;
+	typedef FResponse_GetPlayerUuidFromPlayerIdForSelfV2 Response;
+	typedef FDelegate_GetPlayerUuidFromPlayerIdForSelfV2 Delegate;
+	typedef FUsersAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidFromPlayerIdForSelfV2(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidFromPlayerIdForSelfV2(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Uuid From Player Id V2
@@ -1364,64 +1364,64 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidFromPlayerIdForSelfV2
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerUuidFromPlayerIdV2 : public FRequest
 {
-    FRequest_GetPlayerUuidFromPlayerIdV2();
-    virtual ~FRequest_GetPlayerUuidFromPlayerIdV2() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetPlayerUuidFromPlayerIdV2();
+	virtual ~FRequest_GetPlayerUuidFromPlayerIdV2() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    int32 PlayerId = 0;
+	TSharedPtr<FAuthContext> AuthContext;
+	int32 PlayerId = 0;
 };
 
 struct RALLYHEREAPI_API FResponse_GetPlayerUuidFromPlayerIdV2 : public FResponse
 {
-    FResponse_GetPlayerUuidFromPlayerIdV2(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetPlayerUuidFromPlayerIdV2() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetPlayerUuidFromPlayerIdV2(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetPlayerUuidFromPlayerIdV2() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PlayerUuidFromId Content;
+	FRHAPI_PlayerUuidFromId Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PlayerUuidFromId& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlayerUuidFromId& OutContent) const;
 
-    /* Response 400
-    Bad Request
-    */
-    bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 400
+	Bad Request
+	*/
+	bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
-    /* Response 500
-    Internal Server Error
-    */
-    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 500
+	Internal Server Error
+	*/
+	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerUuidFromPlayerIdV2
 {
-    typedef FRequest_GetPlayerUuidFromPlayerIdV2 Request;
-    typedef FResponse_GetPlayerUuidFromPlayerIdV2 Response;
-    typedef FDelegate_GetPlayerUuidFromPlayerIdV2 Delegate;
-    typedef FUsersAPI API;
-    static FString Name;
+	typedef FRequest_GetPlayerUuidFromPlayerIdV2 Request;
+	typedef FResponse_GetPlayerUuidFromPlayerIdV2 Response;
+	typedef FDelegate_GetPlayerUuidFromPlayerIdV2 Delegate;
+	typedef FUsersAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidFromPlayerIdV2(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidFromPlayerIdV2(InRequest, InDelegate, Priority); }
 };
 
 /* Get Players Paged
@@ -1431,67 +1431,67 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidFromPlayerIdV2
 */
 struct RALLYHEREAPI_API FRequest_GetPlayersPaged : public FRequest
 {
-    FRequest_GetPlayersPaged();
-    virtual ~FRequest_GetPlayersPaged() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetPlayersPaged();
+	virtual ~FRequest_GetPlayersPaged() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    /* cursor to continue iteration.  Leaving this empty will begin a new query */
-    TOptional<FString> Cursor;
-    /* number of players to return */
-    TOptional<int32> PageSize;
+	TSharedPtr<FAuthContext> AuthContext;
+	/* cursor to continue iteration.  Leaving this empty will begin a new query */
+	TOptional<FString> Cursor;
+	/* number of players to return */
+	TOptional<int32> PageSize;
 };
 
 struct RALLYHEREAPI_API FResponse_GetPlayersPaged : public FResponse
 {
-    FResponse_GetPlayersPaged(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetPlayersPaged() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetPlayersPaged(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetPlayersPaged() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PlayerIterateResponse Content;
+	FRHAPI_PlayerIterateResponse Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PlayerIterateResponse& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlayerIterateResponse& OutContent) const;
 
-    /* Response 400
-    Bad Request
-    */
-    bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 400
+	Bad Request
+	*/
+	bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
-    /* Response 500
-    Internal Server Error
-    */
-    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 500
+	Internal Server Error
+	*/
+	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayersPaged
 {
-    typedef FRequest_GetPlayersPaged Request;
-    typedef FResponse_GetPlayersPaged Response;
-    typedef FDelegate_GetPlayersPaged Delegate;
-    typedef FUsersAPI API;
-    static FString Name;
+	typedef FRequest_GetPlayersPaged Request;
+	typedef FResponse_GetPlayersPaged Response;
+	typedef FDelegate_GetPlayersPaged Delegate;
+	typedef FUsersAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayersPaged(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayersPaged(InRequest, InDelegate, Priority); }
 };
 
 /* Get Queue Purge Status For Me
@@ -1500,58 +1500,58 @@ struct RALLYHEREAPI_API Traits_GetPlayersPaged
 */
 struct RALLYHEREAPI_API FRequest_GetQueuePurgeStatusForMe : public FRequest
 {
-    FRequest_GetQueuePurgeStatusForMe();
-    virtual ~FRequest_GetQueuePurgeStatusForMe() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetQueuePurgeStatusForMe();
+	virtual ~FRequest_GetQueuePurgeStatusForMe() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
+	TSharedPtr<FAuthContext> AuthContext;
 };
 
 struct RALLYHEREAPI_API FResponse_GetQueuePurgeStatusForMe : public FResponse
 {
-    FResponse_GetQueuePurgeStatusForMe(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetQueuePurgeStatusForMe() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetQueuePurgeStatusForMe(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetQueuePurgeStatusForMe() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PurgeResponse Content;
+	FRHAPI_PurgeResponse Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PurgeResponse& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PurgeResponse& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
 
-    /* Response 404
-    Not Found
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 500
-    Internal Server Error
-    */
-    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 500
+	Internal Server Error
+	*/
+	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetQueuePurgeStatusForMe
 {
-    typedef FRequest_GetQueuePurgeStatusForMe Request;
-    typedef FResponse_GetQueuePurgeStatusForMe Response;
-    typedef FDelegate_GetQueuePurgeStatusForMe Delegate;
-    typedef FUsersAPI API;
-    static FString Name;
+	typedef FRequest_GetQueuePurgeStatusForMe Request;
+	typedef FResponse_GetQueuePurgeStatusForMe Response;
+	typedef FDelegate_GetQueuePurgeStatusForMe Delegate;
+	typedef FUsersAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetQueuePurgeStatusForMe(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetQueuePurgeStatusForMe(InRequest, InDelegate, Priority); }
 };
 
 /* Get Queue Purge Status For Person
@@ -1560,117 +1560,117 @@ struct RALLYHEREAPI_API Traits_GetQueuePurgeStatusForMe
 */
 struct RALLYHEREAPI_API FRequest_GetQueuePurgeStatusForPerson : public FRequest
 {
-    FRequest_GetQueuePurgeStatusForPerson();
-    virtual ~FRequest_GetQueuePurgeStatusForPerson() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetQueuePurgeStatusForPerson();
+	virtual ~FRequest_GetQueuePurgeStatusForPerson() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid PersonId;
+	TSharedPtr<FAuthContext> AuthContext;
+	FGuid PersonId;
 };
 
 struct RALLYHEREAPI_API FResponse_GetQueuePurgeStatusForPerson : public FResponse
 {
-    FResponse_GetQueuePurgeStatusForPerson(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetQueuePurgeStatusForPerson() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetQueuePurgeStatusForPerson(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetQueuePurgeStatusForPerson() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PurgeResponse Content;
+	FRHAPI_PurgeResponse Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PurgeResponse& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PurgeResponse& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
 
-    /* Response 404
-    Not Found
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
-    /* Response 500
-    Internal Server Error
-    */
-    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 500
+	Internal Server Error
+	*/
+	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetQueuePurgeStatusForPerson
 {
-    typedef FRequest_GetQueuePurgeStatusForPerson Request;
-    typedef FResponse_GetQueuePurgeStatusForPerson Response;
-    typedef FDelegate_GetQueuePurgeStatusForPerson Delegate;
-    typedef FUsersAPI API;
-    static FString Name;
+	typedef FRequest_GetQueuePurgeStatusForPerson Request;
+	typedef FResponse_GetQueuePurgeStatusForPerson Response;
+	typedef FDelegate_GetQueuePurgeStatusForPerson Delegate;
+	typedef FUsersAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetQueuePurgeStatusForPerson(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetQueuePurgeStatusForPerson(InRequest, InDelegate, Priority); }
 };
 
 /* Link
 */
 struct RALLYHEREAPI_API FRequest_Link : public FRequest
 {
-    FRequest_Link();
-    virtual ~FRequest_Link() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_Link();
+	virtual ~FRequest_Link() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FRHAPI_HTTPAuthorizationCredentials HTTPAuthorizationCredentials;
+	TSharedPtr<FAuthContext> AuthContext;
+	FRHAPI_HTTPAuthorizationCredentials HTTPAuthorizationCredentials;
 };
 
 struct RALLYHEREAPI_API FResponse_Link : public FResponse
 {
-    FResponse_Link(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_Link() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_Link(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_Link() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+	FRHAPI_JsonValue Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
+	/* Response 403
+	Forbidden
+	*/
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_Link
 {
-    typedef FRequest_Link Request;
-    typedef FResponse_Link Response;
-    typedef FDelegate_Link Delegate;
-    typedef FUsersAPI API;
-    static FString Name;
+	typedef FRequest_Link Request;
+	typedef FResponse_Link Response;
+	typedef FDelegate_Link Delegate;
+	typedef FUsersAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.Link(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.Link(InRequest, InDelegate, Priority); }
 };
 
 /* Lookup Player By Portal
@@ -1679,66 +1679,66 @@ struct RALLYHEREAPI_API Traits_Link
 */
 struct RALLYHEREAPI_API FRequest_LookupPlayerByPortal : public FRequest
 {
-    FRequest_LookupPlayerByPortal();
-    virtual ~FRequest_LookupPlayerByPortal() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_LookupPlayerByPortal();
+	virtual ~FRequest_LookupPlayerByPortal() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Lookup players by display names */
-    TOptional<TArray<FString>> DisplayName;
-    /* Lookup players by their portal identity for this platform */
-    TOptional<ERHAPI_FastapicommonPlatformsPortal> IdentityPlatform;
-    /* Lookup players by their platform identity. Will override identity_platform if set. */
-    TOptional<ERHAPI_Platform> Platform;
-    /* Lookup players by their Portal Identity */
-    TOptional<TArray<FString>> Identities;
+	TSharedPtr<FAuthContext> AuthContext;
+	/* Lookup players by display names */
+	TOptional<TArray<FString>> DisplayName;
+	/* Lookup players by their portal identity for this platform */
+	TOptional<ERHAPI_FastapicommonPlatformsPortal> IdentityPlatform;
+	/* Lookup players by their platform identity. Will override identity_platform if set. */
+	TOptional<ERHAPI_Platform> Platform;
+	/* Lookup players by their Portal Identity */
+	TOptional<TArray<FString>> Identities;
 };
 
 struct RALLYHEREAPI_API FResponse_LookupPlayerByPortal : public FResponse
 {
-    FResponse_LookupPlayerByPortal(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_LookupPlayerByPortal() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_LookupPlayerByPortal(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_LookupPlayerByPortal() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_LookupResults Content;
+	FRHAPI_LookupResults Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_LookupResults& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_LookupResults& OutContent) const;
 
-    /* Response 400
-    Bad Request
-    */
-    bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 400
+	Bad Request
+	*/
+	bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_LookupPlayerByPortal
 {
-    typedef FRequest_LookupPlayerByPortal Request;
-    typedef FResponse_LookupPlayerByPortal Response;
-    typedef FDelegate_LookupPlayerByPortal Delegate;
-    typedef FUsersAPI API;
-    static FString Name;
+	typedef FRequest_LookupPlayerByPortal Request;
+	typedef FResponse_LookupPlayerByPortal Response;
+	typedef FDelegate_LookupPlayerByPortal Delegate;
+	typedef FUsersAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.LookupPlayerByPortal(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.LookupPlayerByPortal(InRequest, InDelegate, Priority); }
 };
 
 /* Queue Me For Purge
@@ -1747,64 +1747,64 @@ struct RALLYHEREAPI_API Traits_LookupPlayerByPortal
 */
 struct RALLYHEREAPI_API FRequest_QueueMeForPurge : public FRequest
 {
-    FRequest_QueueMeForPurge();
-    virtual ~FRequest_QueueMeForPurge() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_QueueMeForPurge();
+	virtual ~FRequest_QueueMeForPurge() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FRHAPI_PurgeRequest PurgeRequest;
+	TSharedPtr<FAuthContext> AuthContext;
+	FRHAPI_PurgeRequest PurgeRequest;
 };
 
 struct RALLYHEREAPI_API FResponse_QueueMeForPurge : public FResponse
 {
-    FResponse_QueueMeForPurge(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_QueueMeForPurge() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_QueueMeForPurge(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_QueueMeForPurge() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PurgeResponse Content;
+	FRHAPI_PurgeResponse Content;
 
 
-    // Manual Response Helpers
-    /* Response 202
-    Successful Response
-    */
-    bool TryGetContentFor202(FRHAPI_PurgeResponse& OutContent) const;
+	// Manual Response Helpers
+	/* Response 202
+	Successful Response
+	*/
+	bool TryGetContentFor202(FRHAPI_PurgeResponse& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
 
-    /* Response 409
-    Conflict
-    */
-    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 409
+	Conflict
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
-    /* Response 500
-    Internal Server Error
-    */
-    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 500
+	Internal Server Error
+	*/
+	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_QueueMeForPurge
 {
-    typedef FRequest_QueueMeForPurge Request;
-    typedef FResponse_QueueMeForPurge Response;
-    typedef FDelegate_QueueMeForPurge Delegate;
-    typedef FUsersAPI API;
-    static FString Name;
+	typedef FRequest_QueueMeForPurge Request;
+	typedef FResponse_QueueMeForPurge Response;
+	typedef FDelegate_QueueMeForPurge Delegate;
+	typedef FUsersAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.QueueMeForPurge(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.QueueMeForPurge(InRequest, InDelegate, Priority); }
 };
 
 /* Queue Person For Purge
@@ -1813,107 +1813,107 @@ struct RALLYHEREAPI_API Traits_QueueMeForPurge
 */
 struct RALLYHEREAPI_API FRequest_QueuePersonForPurge : public FRequest
 {
-    FRequest_QueuePersonForPurge();
-    virtual ~FRequest_QueuePersonForPurge() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_QueuePersonForPurge();
+	virtual ~FRequest_QueuePersonForPurge() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid PersonId;
-    FRHAPI_PurgeRequest PurgeRequest;
+	TSharedPtr<FAuthContext> AuthContext;
+	FGuid PersonId;
+	FRHAPI_PurgeRequest PurgeRequest;
 };
 
 struct RALLYHEREAPI_API FResponse_QueuePersonForPurge : public FResponse
 {
-    FResponse_QueuePersonForPurge(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_QueuePersonForPurge() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_QueuePersonForPurge(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_QueuePersonForPurge() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PurgeResponse Content;
+	FRHAPI_PurgeResponse Content;
 
 
-    // Manual Response Helpers
-    /* Response 202
-    Successful Response
-    */
-    bool TryGetContentFor202(FRHAPI_PurgeResponse& OutContent) const;
+	// Manual Response Helpers
+	/* Response 202
+	Successful Response
+	*/
+	bool TryGetContentFor202(FRHAPI_PurgeResponse& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
-    /* Response 500
-    Internal Server Error
-    */
-    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 500
+	Internal Server Error
+	*/
+	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_QueuePersonForPurge
 {
-    typedef FRequest_QueuePersonForPurge Request;
-    typedef FResponse_QueuePersonForPurge Response;
-    typedef FDelegate_QueuePersonForPurge Delegate;
-    typedef FUsersAPI API;
-    static FString Name;
+	typedef FRequest_QueuePersonForPurge Request;
+	typedef FResponse_QueuePersonForPurge Response;
+	typedef FDelegate_QueuePersonForPurge Delegate;
+	typedef FUsersAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.QueuePersonForPurge(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.QueuePersonForPurge(InRequest, InDelegate, Priority); }
 };
 
 /* Unlink
 */
 struct RALLYHEREAPI_API FRequest_Unlink : public FRequest
 {
-    FRequest_Unlink();
-    virtual ~FRequest_Unlink() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_Unlink();
+	virtual ~FRequest_Unlink() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
+	TSharedPtr<FAuthContext> AuthContext;
 };
 
 struct RALLYHEREAPI_API FResponse_Unlink : public FResponse
 {
-    FResponse_Unlink(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_Unlink() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_Unlink(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_Unlink() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+	FRHAPI_JsonValue Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
+	/* Response 403
+	Forbidden
+	*/
 
 };
 
 struct RALLYHEREAPI_API Traits_Unlink
 {
-    typedef FRequest_Unlink Request;
-    typedef FResponse_Unlink Response;
-    typedef FDelegate_Unlink Delegate;
-    typedef FUsersAPI API;
-    static FString Name;
+	typedef FRequest_Unlink Request;
+	typedef FResponse_Unlink Response;
+	typedef FDelegate_Unlink Delegate;
+	typedef FUsersAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.Unlink(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.Unlink(InRequest, InDelegate, Priority); }
 };
 
 /* Update Person
@@ -1922,60 +1922,60 @@ struct RALLYHEREAPI_API Traits_Unlink
 */
 struct RALLYHEREAPI_API FRequest_UpdatePerson : public FRequest
 {
-    FRequest_UpdatePerson();
-    virtual ~FRequest_UpdatePerson() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_UpdatePerson();
+	virtual ~FRequest_UpdatePerson() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid PersonId;
-    FRHAPI_UpdatePersonInfoRequest UpdatePersonInfoRequest;
+	TSharedPtr<FAuthContext> AuthContext;
+	FGuid PersonId;
+	FRHAPI_UpdatePersonInfoRequest UpdatePersonInfoRequest;
 };
 
 struct RALLYHEREAPI_API FResponse_UpdatePerson : public FResponse
 {
-    FResponse_UpdatePerson(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_UpdatePerson() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_UpdatePerson(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_UpdatePerson() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+	FRHAPI_JsonValue Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
-    /* Response 500
-    Internal Server Error
-    */
-    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 500
+	Internal Server Error
+	*/
+	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_UpdatePerson
 {
-    typedef FRequest_UpdatePerson Request;
-    typedef FResponse_UpdatePerson Response;
-    typedef FDelegate_UpdatePerson Delegate;
-    typedef FUsersAPI API;
-    static FString Name;
+	typedef FRequest_UpdatePerson Request;
+	typedef FResponse_UpdatePerson Response;
+	typedef FDelegate_UpdatePerson Delegate;
+	typedef FUsersAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdatePerson(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdatePerson(InRequest, InDelegate, Priority); }
 };
 
 /* Update Person Email List
@@ -1984,60 +1984,60 @@ struct RALLYHEREAPI_API Traits_UpdatePerson
 */
 struct RALLYHEREAPI_API FRequest_UpdatePersonEmailList : public FRequest
 {
-    FRequest_UpdatePersonEmailList();
-    virtual ~FRequest_UpdatePersonEmailList() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_UpdatePersonEmailList();
+	virtual ~FRequest_UpdatePersonEmailList() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid PersonId;
-    FRHAPI_PersonEmailListRequest PersonEmailListRequest;
+	TSharedPtr<FAuthContext> AuthContext;
+	FGuid PersonId;
+	FRHAPI_PersonEmailListRequest PersonEmailListRequest;
 };
 
 struct RALLYHEREAPI_API FResponse_UpdatePersonEmailList : public FResponse
 {
-    FResponse_UpdatePersonEmailList(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_UpdatePersonEmailList() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_UpdatePersonEmailList(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_UpdatePersonEmailList() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+	FRHAPI_JsonValue Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
-    /* Response 500
-    Internal Server Error
-    */
-    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 500
+	Internal Server Error
+	*/
+	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_UpdatePersonEmailList
 {
-    typedef FRequest_UpdatePersonEmailList Request;
-    typedef FResponse_UpdatePersonEmailList Response;
-    typedef FDelegate_UpdatePersonEmailList Delegate;
-    typedef FUsersAPI API;
-    static FString Name;
+	typedef FRequest_UpdatePersonEmailList Request;
+	typedef FResponse_UpdatePersonEmailList Response;
+	typedef FDelegate_UpdatePersonEmailList Delegate;
+	typedef FUsersAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdatePersonEmailList(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdatePersonEmailList(InRequest, InDelegate, Priority); }
 };
 
 /* Update Person Email List For Self
@@ -2046,59 +2046,59 @@ struct RALLYHEREAPI_API Traits_UpdatePersonEmailList
 */
 struct RALLYHEREAPI_API FRequest_UpdatePersonEmailListForSelf : public FRequest
 {
-    FRequest_UpdatePersonEmailListForSelf();
-    virtual ~FRequest_UpdatePersonEmailListForSelf() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_UpdatePersonEmailListForSelf();
+	virtual ~FRequest_UpdatePersonEmailListForSelf() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FRHAPI_PersonEmailListRequest PersonEmailListRequest;
+	TSharedPtr<FAuthContext> AuthContext;
+	FRHAPI_PersonEmailListRequest PersonEmailListRequest;
 };
 
 struct RALLYHEREAPI_API FResponse_UpdatePersonEmailListForSelf : public FResponse
 {
-    FResponse_UpdatePersonEmailListForSelf(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_UpdatePersonEmailListForSelf() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_UpdatePersonEmailListForSelf(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_UpdatePersonEmailListForSelf() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+	FRHAPI_JsonValue Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
-    /* Response 500
-    Internal Server Error
-    */
-    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 500
+	Internal Server Error
+	*/
+	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_UpdatePersonEmailListForSelf
 {
-    typedef FRequest_UpdatePersonEmailListForSelf Request;
-    typedef FResponse_UpdatePersonEmailListForSelf Response;
-    typedef FDelegate_UpdatePersonEmailListForSelf Delegate;
-    typedef FUsersAPI API;
-    static FString Name;
+	typedef FRequest_UpdatePersonEmailListForSelf Request;
+	typedef FResponse_UpdatePersonEmailListForSelf Response;
+	typedef FDelegate_UpdatePersonEmailListForSelf Delegate;
+	typedef FUsersAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdatePersonEmailListForSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdatePersonEmailListForSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Update Person For Self
@@ -2107,59 +2107,59 @@ struct RALLYHEREAPI_API Traits_UpdatePersonEmailListForSelf
 */
 struct RALLYHEREAPI_API FRequest_UpdatePersonForSelf : public FRequest
 {
-    FRequest_UpdatePersonForSelf();
-    virtual ~FRequest_UpdatePersonForSelf() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_UpdatePersonForSelf();
+	virtual ~FRequest_UpdatePersonForSelf() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FRHAPI_UpdatePersonInfoRequest UpdatePersonInfoRequest;
+	TSharedPtr<FAuthContext> AuthContext;
+	FRHAPI_UpdatePersonInfoRequest UpdatePersonInfoRequest;
 };
 
 struct RALLYHEREAPI_API FResponse_UpdatePersonForSelf : public FResponse
 {
-    FResponse_UpdatePersonForSelf(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_UpdatePersonForSelf() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_UpdatePersonForSelf(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_UpdatePersonForSelf() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+	FRHAPI_JsonValue Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
-    /* Response 500
-    Internal Server Error
-    */
-    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 500
+	Internal Server Error
+	*/
+	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_UpdatePersonForSelf
 {
-    typedef FRequest_UpdatePersonForSelf Request;
-    typedef FResponse_UpdatePersonForSelf Response;
-    typedef FDelegate_UpdatePersonForSelf Delegate;
-    typedef FUsersAPI API;
-    static FString Name;
+	typedef FRequest_UpdatePersonForSelf Request;
+	typedef FResponse_UpdatePersonForSelf Response;
+	typedef FDelegate_UpdatePersonForSelf Delegate;
+	typedef FUsersAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdatePersonForSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdatePersonForSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Upsert Contact
@@ -2168,59 +2168,59 @@ struct RALLYHEREAPI_API Traits_UpdatePersonForSelf
 */
 struct RALLYHEREAPI_API FRequest_UpsertContact : public FRequest
 {
-    FRequest_UpsertContact();
-    virtual ~FRequest_UpsertContact() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_UpsertContact();
+	virtual ~FRequest_UpsertContact() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FRHAPI_SendInBlueContact SendInBlueContact;
+	TSharedPtr<FAuthContext> AuthContext;
+	FRHAPI_SendInBlueContact SendInBlueContact;
 };
 
 struct RALLYHEREAPI_API FResponse_UpsertContact : public FResponse
 {
-    FResponse_UpsertContact(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_UpsertContact() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_UpsertContact(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_UpsertContact() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+	FRHAPI_JsonValue Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
-    /* Response 500
-    Internal Server Error
-    */
-    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+	/* Response 500
+	Internal Server Error
+	*/
+	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_UpsertContact
 {
-    typedef FRequest_UpsertContact Request;
-    typedef FResponse_UpsertContact Response;
-    typedef FDelegate_UpsertContact Delegate;
-    typedef FUsersAPI API;
-    static FString Name;
+	typedef FRequest_UpsertContact Request;
+	typedef FResponse_UpsertContact Response;
+	typedef FDelegate_UpsertContact Delegate;
+	typedef FUsersAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpsertContact(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpsertContact(InRequest, InDelegate, Priority); }
 };
 
 

@@ -21,47 +21,47 @@
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_SetSinglePlayerSettingRequest : public FRHAPI_Model
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    /**
-    * @brief Fills this object with data from the passed in JSON
-    *
-    * @param [in] JsonValue Data from the API call.
-    *
-    * @return true if parsing of the JSON data was successful.
-    */
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	/**
+	* @brief Fills this object with data from the passed in JSON
+	*
+	* @param [in] JsonValue Data from the API call.
+	*
+	* @return true if parsing of the JSON data was successful.
+	*/
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
-    /**
-    * @brief Writes the data from this object into the specified JSON Writer stream
-    *
-    * @param [in] Writer JSON Writer stream to push .
-    */
-    void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	/**
+	* @brief Writes the data from this object into the specified JSON Writer stream
+	*
+	* @param [in] Writer JSON Writer stream to push .
+	*/
+	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief Setting Type Version to update setting for.  Must be a valid version for the setting type */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    int32 V{ 0 };
-    /** @brief Gets the value of V */
-    int32& GetV() { return V; }
-    /** @brief Gets the value of V */
-    const int32& GetV() const { return V; }
-    /** @brief Sets the value of V */
-    void SetV(int32 NewValue) { V = NewValue;  }
-    /** @brief Returns true if V matches the default value */
-    bool IsVDefaultValue() const { return V == 0; }
-    /** @brief Sets the value of V to its default  */
-    void SetVToDefault() { V = 0;  }
+	/** @brief Setting Type Version to update setting for.  Must be a valid version for the setting type */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 V{ 0 };
+	/** @brief Gets the value of V */
+	int32& GetV() { return V; }
+	/** @brief Gets the value of V */
+	const int32& GetV() const { return V; }
+	/** @brief Sets the value of V */
+	void SetV(int32 NewValue) { V = NewValue;  }
+	/** @brief Returns true if V matches the default value */
+	bool IsVDefaultValue() const { return V == 0; }
+	/** @brief Sets the value of V to its default  */
+	void SetVToDefault() { V = 0;  }
 
-    /** @brief New value for the setting.  Must conform to the jsonschema defined for the setting type+version */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FRHAPI_JsonValue Value{  };
-    /** @brief Gets the value of Value */
-    FRHAPI_JsonValue& GetValue() { return Value; }
-    /** @brief Gets the value of Value */
-    const FRHAPI_JsonValue& GetValue() const { return Value; }
-    /** @brief Sets the value of Value */
-    void SetValue(FRHAPI_JsonValue NewValue) { Value = NewValue;  }
+	/** @brief New value for the setting.  Must conform to the jsonschema defined for the setting type+version */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FRHAPI_JsonValue Value{  };
+	/** @brief Gets the value of Value */
+	FRHAPI_JsonValue& GetValue() { return Value; }
+	/** @brief Gets the value of Value */
+	const FRHAPI_JsonValue& GetValue() const { return Value; }
+	/** @brief Sets the value of Value */
+	void SetValue(FRHAPI_JsonValue NewValue) { Value = NewValue;  }
 };
 
 /** @} */

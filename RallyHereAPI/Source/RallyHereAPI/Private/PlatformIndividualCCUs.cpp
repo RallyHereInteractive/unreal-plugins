@@ -21,23 +21,23 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_PlatformIndividualCCUs::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("platform_ccus"));
-    RallyHereAPI::WriteJsonValue(Writer, PlatformCcus);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("platform_ccus"));
+	RallyHereAPI::WriteJsonValue(Writer, PlatformCcus);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_PlatformIndividualCCUs::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonPlatformCcusField = (*Object)->TryGetField(TEXT("platform_ccus"));
-    ParseSuccess &= JsonPlatformCcusField.IsValid() && !JsonPlatformCcusField->IsNull() && TryGetJsonValue(JsonPlatformCcusField, PlatformCcus);
+	const TSharedPtr<FJsonValue> JsonPlatformCcusField = (*Object)->TryGetField(TEXT("platform_ccus"));
+	ParseSuccess &= JsonPlatformCcusField.IsValid() && !JsonPlatformCcusField->IsNull() && TryGetJsonValue(JsonPlatformCcusField, PlatformCcus);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

@@ -21,23 +21,23 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_KeyClaims::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("claims"));
-    RallyHereAPI::WriteJsonValue(Writer, Claims);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("claims"));
+	RallyHereAPI::WriteJsonValue(Writer, Claims);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_KeyClaims::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonClaimsField = (*Object)->TryGetField(TEXT("claims"));
-    ParseSuccess &= JsonClaimsField.IsValid() && !JsonClaimsField->IsNull() && TryGetJsonValue(JsonClaimsField, Claims);
+	const TSharedPtr<FJsonValue> JsonClaimsField = (*Object)->TryGetField(TEXT("claims"));
+	ParseSuccess &= JsonClaimsField.IsValid() && !JsonClaimsField->IsNull() && TryGetJsonValue(JsonClaimsField, Claims);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

@@ -17,188 +17,188 @@ namespace RallyHereAPI
 
 FSessionAuditAPI::FSessionAuditAPI() : FAPI()
 {
-    Url = TEXT("http://localhost");
-    Name = FName(TEXT("SessionAudit"));
+	Url = TEXT("http://localhost");
+	Name = FName(TEXT("SessionAudit"));
 }
 
 FSessionAuditAPI::~FSessionAuditAPI() {}
 
 FHttpRequestPtr FSessionAuditAPI::CreateSessionAudit(const FRequest_CreateSessionAudit& Request, const FDelegate_CreateSessionAudit& Delegate /*= FDelegate_CreateSessionAudit()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
-    if (!IsValid())
-        return nullptr;
+	if (!IsValid())
+		return nullptr;
 
-    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
 
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
 
-    RequestData->SetMetadata(Request.GetRequestMetadata());
+	RequestData->SetMetadata(Request.GetRequestMetadata());
 
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FSessionAuditAPI::OnCreateSessionAuditResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindRaw(this, &FSessionAuditAPI::OnCreateSessionAuditResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
 
-    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
 }
 
 void FSessionAuditAPI::OnCreateSessionAuditResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateSessionAudit Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
-    FHttpRequestCompleteDelegate ResponseDelegate;
+	FHttpRequestCompleteDelegate ResponseDelegate;
 
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FSessionAuditAPI::OnCreateSessionAuditResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindRaw(this, &FSessionAuditAPI::OnCreateSessionAuditResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
 
-    FResponse_CreateSessionAudit Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+	FResponse_CreateSessionAudit Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
 
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 FRequest_CreateSessionAudit::FRequest_CreateSessionAudit()
 {
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
+	RequestMetadata.Identifier = FGuid::NewGuid();
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_CreateSessionAudit::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/session/v1/audit"));
-    return Path;
+	static FName Path = FName(TEXT("/session/v1/audit"));
+	return Path;
 }
 
 FString FRequest_CreateSessionAudit::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
-        { TEXT("session_id"), ToStringFormatArg(SessionId) }
-    };
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("session_id"), ToStringFormatArg(SessionId) }
+	};
 
-    FString Path = FString::Format(TEXT("/session/v1/audit"), PathParams);
+	FString Path = FString::Format(TEXT("/session/v1/audit"), PathParams);
 
-    return Path;
+	return Path;
 }
 
 bool FRequest_CreateSessionAudit::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-    static const TArray<FString> Consumes = { TEXT("application/json") };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
+	static const TArray<FString> Consumes = { TEXT("application/json") };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
 
-    HttpRequest->SetVerb(TEXT("POST"));
+	HttpRequest->SetVerb(TEXT("POST"));
 
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateSessionAudit - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateSessionAudit - failed to add bearer token"));
-        return false;
-    }
+	if (!AuthContext)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateSessionAudit - missing auth context"));
+		return false;
+	}
+	if (!AuthContext->AddBearerToken(HttpRequest))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateSessionAudit - failed to add bearer token"));
+		return false;
+	}
 
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-        // Body parameters
-        FString JsonBody;
-        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+		// Body parameters
+		FString JsonBody;
+		TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
 
-        WriteJsonValue(Writer, SessionEventCreateRequest);
-        Writer->Close();
+		WriteJsonValue(Writer, SessionEventCreateRequest);
+		Writer->Close();
 
-        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
-        HttpRequest->SetContentAsString(JsonBody);
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateSessionAudit - Body parameter (FRHAPI_SessionEventCreateRequest) was ignored, not supported in multipart form"));
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateSessionAudit - Body parameter (FRHAPI_SessionEventCreateRequest) was ignored, not supported in urlencoded requests"));
-    }
-    else
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateSessionAudit - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
+		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
+		HttpRequest->SetContentAsString(JsonBody);
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateSessionAudit - Body parameter (FRHAPI_SessionEventCreateRequest) was ignored, not supported in multipart form"));
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateSessionAudit - Body parameter (FRHAPI_SessionEventCreateRequest) was ignored, not supported in urlencoded requests"));
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateSessionAudit - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
 
-    return true;
+	return true;
 }
 
 void FResponse_CreateSessionAudit::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 403:
-        SetResponseString(TEXT("Forbidden"));
-        break;
-    case 404:
-        SetResponseString(TEXT("Session doesn&#39;t exist.  See error code for more info"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
+	FResponse::SetHttpResponseCode(InHttpResponseCode);
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		SetResponseString(TEXT("Successful Response"));
+		break;
+	case 403:
+		SetResponseString(TEXT("Forbidden"));
+		break;
+	case 404:
+		SetResponseString(TEXT("Session doesn&#39;t exist.  See error code for more info"));
+		break;
+	case 422:
+		SetResponseString(TEXT("Validation Error"));
+		break;
+	}
 }
 
 bool FResponse_CreateSessionAudit::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_CreateSessionAudit::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_CreateSessionAudit::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_CreateSessionAudit::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_CreateSessionAudit::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    return TryGetJsonValue(JsonValue, Content);
+	return TryGetJsonValue(JsonValue, Content);
 }
 
 FResponse_CreateSessionAudit::FResponse_CreateSessionAudit(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
+	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -206,176 +206,176 @@ FString Traits_CreateSessionAudit::Name = TEXT("CreateSessionAudit");
 
 FHttpRequestPtr FSessionAuditAPI::GetSessionAudit(const FRequest_GetSessionAudit& Request, const FDelegate_GetSessionAudit& Delegate /*= FDelegate_GetSessionAudit()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
-    if (!IsValid())
-        return nullptr;
+	if (!IsValid())
+		return nullptr;
 
-    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
 
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
 
-    RequestData->SetMetadata(Request.GetRequestMetadata());
+	RequestData->SetMetadata(Request.GetRequestMetadata());
 
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FSessionAuditAPI::OnGetSessionAuditResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindRaw(this, &FSessionAuditAPI::OnGetSessionAuditResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
 
-    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
 }
 
 void FSessionAuditAPI::OnGetSessionAuditResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetSessionAudit Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
-    FHttpRequestCompleteDelegate ResponseDelegate;
+	FHttpRequestCompleteDelegate ResponseDelegate;
 
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FSessionAuditAPI::OnGetSessionAuditResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindRaw(this, &FSessionAuditAPI::OnGetSessionAuditResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
 
-    FResponse_GetSessionAudit Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+	FResponse_GetSessionAudit Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
 
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 FRequest_GetSessionAudit::FRequest_GetSessionAudit()
 {
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
+	RequestMetadata.Identifier = FGuid::NewGuid();
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetSessionAudit::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/session/v1/audit"));
-    return Path;
+	static FName Path = FName(TEXT("/session/v1/audit"));
+	return Path;
 }
 
 FString FRequest_GetSessionAudit::ComputePath() const
 {
-    FString Path = GetSimplifiedPath().ToString();
-    TArray<FString> QueryParams;
-    if(SessionId.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("session_id=")) + ToUrlString(SessionId.GetValue()));
-    }
-    if(PlayerUuid.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("player_uuid=")) + ToUrlString(PlayerUuid.GetValue()));
-    }
-    if(PageNum.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("page_num=")) + ToUrlString(PageNum.GetValue()));
-    }
-    if(PageSize.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("page_size=")) + ToUrlString(PageSize.GetValue()));
-    }
-    Path += TCHAR('?');
-    Path += FString::Join(QueryParams, TEXT("&"));
+	FString Path = GetSimplifiedPath().ToString();
+	TArray<FString> QueryParams;
+	if(SessionId.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("session_id=")) + ToUrlString(SessionId.GetValue()));
+	}
+	if(PlayerUuid.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("player_uuid=")) + ToUrlString(PlayerUuid.GetValue()));
+	}
+	if(PageNum.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("page_num=")) + ToUrlString(PageNum.GetValue()));
+	}
+	if(PageSize.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("page_size=")) + ToUrlString(PageSize.GetValue()));
+	}
+	Path += TCHAR('?');
+	Path += FString::Join(QueryParams, TEXT("&"));
 
-    return Path;
+	return Path;
 }
 
 bool FRequest_GetSessionAudit::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
+	static const TArray<FString> Consumes = {  };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
 
-    HttpRequest->SetVerb(TEXT("GET"));
+	HttpRequest->SetVerb(TEXT("GET"));
 
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetSessionAudit - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetSessionAudit - failed to add bearer token"));
-        return false;
-    }
+	if (!AuthContext)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetSessionAudit - missing auth context"));
+		return false;
+	}
+	if (!AuthContext->AddBearerToken(HttpRequest))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetSessionAudit - failed to add bearer token"));
+		return false;
+	}
 
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetSessionAudit - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetSessionAudit - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
 
-    return true;
+	return true;
 }
 
 void FResponse_GetSessionAudit::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 403:
-        SetResponseString(TEXT("Forbidden"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
+	FResponse::SetHttpResponseCode(InHttpResponseCode);
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		SetResponseString(TEXT("Successful Response"));
+		break;
+	case 403:
+		SetResponseString(TEXT("Forbidden"));
+		break;
+	case 422:
+		SetResponseString(TEXT("Validation Error"));
+		break;
+	}
 }
 
 bool FResponse_GetSessionAudit::TryGetContentFor200(FRHAPI_AuditResponse& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetSessionAudit::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetSessionAudit::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetSessionAudit::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    return TryGetJsonValue(JsonValue, Content);
+	return TryGetJsonValue(JsonValue, Content);
 }
 
 FResponse_GetSessionAudit::FResponse_GetSessionAudit(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
+	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 

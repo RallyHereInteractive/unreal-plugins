@@ -22,33 +22,33 @@
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_SettingType : public FRHAPI_Model
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    /**
-    * @brief Fills this object with data from the passed in JSON
-    *
-    * @param [in] JsonValue Data from the API call.
-    *
-    * @return true if parsing of the JSON data was successful.
-    */
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	/**
+	* @brief Fills this object with data from the passed in JSON
+	*
+	* @param [in] JsonValue Data from the API call.
+	*
+	* @return true if parsing of the JSON data was successful.
+	*/
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
-    /**
-    * @brief Writes the data from this object into the specified JSON Writer stream
-    *
-    * @param [in] Writer JSON Writer stream to push .
-    */
-    void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	/**
+	* @brief Writes the data from this object into the specified JSON Writer stream
+	*
+	* @param [in] Writer JSON Writer stream to push .
+	*/
+	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief Map of setting type version ids to the version */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    TMap<FString, FRHAPI_SettingTypeVersion> Versions{  };
-    /** @brief Gets the value of Versions */
-    TMap<FString, FRHAPI_SettingTypeVersion>& GetVersions() { return Versions; }
-    /** @brief Gets the value of Versions */
-    const TMap<FString, FRHAPI_SettingTypeVersion>& GetVersions() const { return Versions; }
-    /** @brief Sets the value of Versions */
-    void SetVersions(TMap<FString, FRHAPI_SettingTypeVersion> NewValue) { Versions = NewValue;  }
+	/** @brief Map of setting type version ids to the version */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TMap<FString, FRHAPI_SettingTypeVersion> Versions{  };
+	/** @brief Gets the value of Versions */
+	TMap<FString, FRHAPI_SettingTypeVersion>& GetVersions() { return Versions; }
+	/** @brief Gets the value of Versions */
+	const TMap<FString, FRHAPI_SettingTypeVersion>& GetVersions() const { return Versions; }
+	/** @brief Sets the value of Versions */
+	void SetVersions(TMap<FString, FRHAPI_SettingTypeVersion> NewValue) { Versions = NewValue;  }
 };
 
 /** @} */

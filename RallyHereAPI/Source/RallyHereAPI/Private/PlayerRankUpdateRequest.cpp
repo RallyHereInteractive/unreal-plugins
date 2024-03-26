@@ -21,34 +21,34 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_PlayerRankUpdateRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (InstanceId_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("instance_id"));
-        RallyHereAPI::WriteJsonValue(Writer, InstanceId_Optional);
-    }
-    Writer->WriteIdentifierPrefix(TEXT("rank"));
-    RallyHereAPI::WriteJsonValue(Writer, Rank);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (InstanceId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("instance_id"));
+		RallyHereAPI::WriteJsonValue(Writer, InstanceId_Optional);
+	}
+	Writer->WriteIdentifierPrefix(TEXT("rank"));
+	RallyHereAPI::WriteJsonValue(Writer, Rank);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_PlayerRankUpdateRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonInstanceIdField = (*Object)->TryGetField(TEXT("instance_id"));
-    if (JsonInstanceIdField.IsValid() && !JsonInstanceIdField->IsNull())
-    {
-        InstanceId_IsSet = TryGetJsonValue(JsonInstanceIdField, InstanceId_Optional);
-        ParseSuccess &= InstanceId_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonRankField = (*Object)->TryGetField(TEXT("rank"));
-    ParseSuccess &= JsonRankField.IsValid() && !JsonRankField->IsNull() && TryGetJsonValue(JsonRankField, Rank);
+	const TSharedPtr<FJsonValue> JsonInstanceIdField = (*Object)->TryGetField(TEXT("instance_id"));
+	if (JsonInstanceIdField.IsValid() && !JsonInstanceIdField->IsNull())
+	{
+		InstanceId_IsSet = TryGetJsonValue(JsonInstanceIdField, InstanceId_Optional);
+		ParseSuccess &= InstanceId_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonRankField = (*Object)->TryGetField(TEXT("rank"));
+	ParseSuccess &= JsonRankField.IsValid() && !JsonRankField->IsNull() && TryGetJsonValue(JsonRankField, Rank);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

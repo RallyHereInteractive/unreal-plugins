@@ -21,34 +21,34 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_PlayerSessionInvite::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("session_id"));
-    RallyHereAPI::WriteJsonValue(Writer, SessionId);
-    if (InvitingPlayerUuid_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("inviting_player_uuid"));
-        RallyHereAPI::WriteJsonValue(Writer, InvitingPlayerUuid_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("session_id"));
+	RallyHereAPI::WriteJsonValue(Writer, SessionId);
+	if (InvitingPlayerUuid_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("inviting_player_uuid"));
+		RallyHereAPI::WriteJsonValue(Writer, InvitingPlayerUuid_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_PlayerSessionInvite::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonSessionIdField = (*Object)->TryGetField(TEXT("session_id"));
-    ParseSuccess &= JsonSessionIdField.IsValid() && !JsonSessionIdField->IsNull() && TryGetJsonValue(JsonSessionIdField, SessionId);
-    const TSharedPtr<FJsonValue> JsonInvitingPlayerUuidField = (*Object)->TryGetField(TEXT("inviting_player_uuid"));
-    if (JsonInvitingPlayerUuidField.IsValid() && !JsonInvitingPlayerUuidField->IsNull())
-    {
-        InvitingPlayerUuid_IsSet = TryGetJsonValue(JsonInvitingPlayerUuidField, InvitingPlayerUuid_Optional);
-        ParseSuccess &= InvitingPlayerUuid_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonSessionIdField = (*Object)->TryGetField(TEXT("session_id"));
+	ParseSuccess &= JsonSessionIdField.IsValid() && !JsonSessionIdField->IsNull() && TryGetJsonValue(JsonSessionIdField, SessionId);
+	const TSharedPtr<FJsonValue> JsonInvitingPlayerUuidField = (*Object)->TryGetField(TEXT("inviting_player_uuid"));
+	if (JsonInvitingPlayerUuidField.IsValid() && !JsonInvitingPlayerUuidField->IsNull())
+	{
+		InvitingPlayerUuid_IsSet = TryGetJsonValue(JsonInvitingPlayerUuidField, InvitingPlayerUuid_Optional);
+		ParseSuccess &= InvitingPlayerUuid_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

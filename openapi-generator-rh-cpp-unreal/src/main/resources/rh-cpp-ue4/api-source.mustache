@@ -6,7 +6,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-    https://www.apache.org/licenses/LICENSE-2.0
+	https://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -29,8 +29,8 @@ namespace {{this}}
 
 {{classname}}::{{classname}}() : FAPI()
 {
-    Url = TEXT("{{basePath}}");
-    Name = FName(TEXT("{{baseName}}"));
+	Url = TEXT("{{basePath}}");
+	Name = FName(TEXT("{{baseName}}"));
 }
 
 {{classname}}::~{{classname}}() {}
@@ -39,397 +39,397 @@ namespace {{this}}
 {{#operation}}
 FHttpRequestPtr {{classname}}::{{operationIdCamelCase}}(const FRequest_{{operationIdCamelCase}}& Request, const FDelegate_{{operationIdCamelCase}}& Delegate /*= FDelegate_{{operationIdCamelCase}}()*/, int32 Priority /*= Default{{unrealModuleName}}Priority*/)
 {
-    if (!IsValid())
-        return nullptr;
+	if (!IsValid())
+		return nullptr;
 
-    TSharedPtr<F{{unrealModuleName}}HttpRequestData> RequestData = MakeShared<F{{unrealModuleName}}HttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+	TSharedPtr<F{{unrealModuleName}}HttpRequestData> RequestData = MakeShared<F{{unrealModuleName}}HttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
 
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
 
-    RequestData->SetMetadata(Request.GetRequestMetadata());
+	RequestData->SetMetadata(Request.GetRequestMetadata());
 
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &{{classname}}::On{{operationIdCamelCase}}Response, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindRaw(this, &{{classname}}::On{{operationIdCamelCase}}Response, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
 
-    auto* HttpRequester = F{{unrealModuleName}}HttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
+	auto* HttpRequester = F{{unrealModuleName}}HttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
 }
 
 void {{classname}}::On{{operationIdCamelCase}}Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_{{operationIdCamelCase}} Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
-    FHttpRequestCompleteDelegate ResponseDelegate;
+	FHttpRequestCompleteDelegate ResponseDelegate;
 
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &{{classname}}::On{{operationIdCamelCase}}Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindRaw(this, &{{classname}}::On{{operationIdCamelCase}}Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
 
-    FResponse_{{operationIdCamelCase}} Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+	FResponse_{{operationIdCamelCase}} Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
 
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 {{#allParams}}
 {{#isEnum}}
 inline FString ToString(const FRequest_{{operationIdCamelCase}}::{{{enumName}}}& Value)
 {
-    {{#allowableValues}}
-    switch (Value)
-    {
-    {{#enumVars}}
-    case FRequest_{{operationIdCamelCase}}::{{{enumName}}}::{{name}}:
-        return TEXT("{{{value}}}");
-    {{/enumVars}}
-    }
-    {{/allowableValues}}
+	{{#allowableValues}}
+	switch (Value)
+	{
+	{{#enumVars}}
+	case FRequest_{{operationIdCamelCase}}::{{{enumName}}}::{{name}}:
+		return TEXT("{{{value}}}");
+	{{/enumVars}}
+	}
+	{{/allowableValues}}
 
-    UE_LOG(Log{{unrealModuleName}}, Error, TEXT("Invalid FRequest_{{operationIdCamelCase}}::{{{enumName}}} Value (%d)"), (int)Value);
-    return TEXT("");
+	UE_LOG(Log{{unrealModuleName}}, Error, TEXT("Invalid FRequest_{{operationIdCamelCase}}::{{{enumName}}} Value (%d)"), (int)Value);
+	return TEXT("");
 }
 
 FString FRequest_{{operationIdCamelCase}}::EnumToString(const FRequest_{{operationIdCamelCase}}::{{{enumName}}}& EnumValue)
 {
-    return ToString(EnumValue);
+	return ToString(EnumValue);
 }
 
 inline bool FromString(const FString& EnumAsString, FRequest_{{operationIdCamelCase}}::{{{enumName}}}& Value)
 {
-    static TMap<FString, FRequest_{{operationIdCamelCase}}::E{{{enumName}}}> StringToEnum = { {{#allowableValues}}{{#enumVars}}
-        { TEXT("{{{value}}}"), FRequest_{{operationIdCamelCase}}::{{{enumName}}}::{{name}} },{{/enumVars}}{{/allowableValues}} };
+	static TMap<FString, FRequest_{{operationIdCamelCase}}::E{{{enumName}}}> StringToEnum = { {{#allowableValues}}{{#enumVars}}
+		{ TEXT("{{{value}}}"), FRequest_{{operationIdCamelCase}}::{{{enumName}}}::{{name}} },{{/enumVars}}{{/allowableValues}} };
 
-    const auto Found = StringToEnum.Find(EnumAsString);
-    if(Found)
-        Value = *Found;
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
 
-    return Found != nullptr;
+	return Found != nullptr;
 }
 
 bool FRequest_{{operationIdCamelCase}}::EnumFromString(const FString& EnumAsString, FRequest_{{operationIdCamelCase}}::{{{enumName}}}& EnumValue)
 {
-    return FromString(EnumAsString, EnumValue);
+	return FromString(EnumAsString, EnumValue);
 }
 
 inline FStringFormatArg ToStringFormatArg(const FRequest_{{operationIdCamelCase}}::{{{enumName}}}& Value)
 {
-    return FStringFormatArg(ToString(Value));
+	return FStringFormatArg(ToString(Value));
 }
 
 inline void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const FRequest_{{operationIdCamelCase}}::{{{enumName}}}& Value)
 {
-    WriteJsonValue(Writer, ToString(Value));
+	WriteJsonValue(Writer, ToString(Value));
 }
 
 inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, FRequest_{{operationIdCamelCase}}::{{{enumName}}}& Value)
 {
-    {{#allowableValues}}
-    FString TmpValue;
-    if (JsonValue->TryGetString(TmpValue))
-    {
-        if(FromString(TmpValue, Value))
-            return true;
-    }
-    {{/allowableValues}}
-    return false;
+	{{#allowableValues}}
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if(FromString(TmpValue, Value))
+			return true;
+	}
+	{{/allowableValues}}
+	return false;
 }
 
 {{/isEnum}}
 {{/allParams}}
 FRequest_{{operationIdCamelCase}}::FRequest_{{operationIdCamelCase}}()
 {
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
+	RequestMetadata.Identifier = FGuid::NewGuid();
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_{{operationIdCamelCase}}::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("{{{path}}}"));
-    return Path;
+	static FName Path = FName(TEXT("{{{path}}}"));
+	return Path;
 }
 
 FString FRequest_{{operationIdCamelCase}}::ComputePath() const
 {
-    {{^pathParams.0}}
-    FString Path = GetSimplifiedPath().ToString();
-    {{/pathParams.0}}
-    {{#pathParams.0}}
-    TMap<FString, FStringFormatArg> PathParams = { {{#pathParams}}
-        { TEXT("{{baseName}}"), ToStringFormatArg({{paramName}}) }{{^-last}},{{/-last}}{{/pathParams}}
-    };
+	{{^pathParams.0}}
+	FString Path = GetSimplifiedPath().ToString();
+	{{/pathParams.0}}
+	{{#pathParams.0}}
+	TMap<FString, FStringFormatArg> PathParams = { {{#pathParams}}
+		{ TEXT("{{baseName}}"), ToStringFormatArg({{paramName}}) }{{^-last}},{{/-last}}{{/pathParams}}
+	};
 
-    FString Path = FString::Format(TEXT("{{{path}}}"), PathParams);
+	FString Path = FString::Format(TEXT("{{{path}}}"), PathParams);
 
-    {{/pathParams.0}}
-    {{#queryParams.0}}
-    TArray<FString> QueryParams;
-    {{#queryParams}}
-    {{#required}}
-    {{^collectionFormat}}
-    QueryParams.Add(FString(TEXT("{{baseName}}=")) + ToUrlString({{paramName}}));
-    {{/collectionFormat}}
-    {{#collectionFormat}}
-    QueryParams.Add(FString(TEXT("{{baseName}}=")) + CollectionToUrlString_{{collectionFormat}}({{paramName}}, TEXT("{{baseName}}")));
-    {{/collectionFormat}}
-    {{/required}}
-    {{^required}}
-    {{^collectionFormat}}
-    if({{paramName}}.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("{{baseName}}=")) + ToUrlString({{paramName}}.GetValue()));
-    }
-    {{/collectionFormat}}
-    {{#collectionFormat}}
-    if({{paramName}}.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("{{baseName}}=")) + CollectionToUrlString_{{collectionFormat}}({{paramName}}.GetValue(), TEXT("{{baseName}}")));
-    }
-    {{/collectionFormat}}
-    {{/required}}
-    {{/queryParams}}
-    Path += TCHAR('?');
-    Path += FString::Join(QueryParams, TEXT("&"));
+	{{/pathParams.0}}
+	{{#queryParams.0}}
+	TArray<FString> QueryParams;
+	{{#queryParams}}
+	{{#required}}
+	{{^collectionFormat}}
+	QueryParams.Add(FString(TEXT("{{baseName}}=")) + ToUrlString({{paramName}}));
+	{{/collectionFormat}}
+	{{#collectionFormat}}
+	QueryParams.Add(FString(TEXT("{{baseName}}=")) + CollectionToUrlString_{{collectionFormat}}({{paramName}}, TEXT("{{baseName}}")));
+	{{/collectionFormat}}
+	{{/required}}
+	{{^required}}
+	{{^collectionFormat}}
+	if({{paramName}}.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("{{baseName}}=")) + ToUrlString({{paramName}}.GetValue()));
+	}
+	{{/collectionFormat}}
+	{{#collectionFormat}}
+	if({{paramName}}.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("{{baseName}}=")) + CollectionToUrlString_{{collectionFormat}}({{paramName}}.GetValue(), TEXT("{{baseName}}")));
+	}
+	{{/collectionFormat}}
+	{{/required}}
+	{{/queryParams}}
+	Path += TCHAR('?');
+	Path += FString::Join(QueryParams, TEXT("&"));
 
-    {{/queryParams.0}}
-    return Path;
+	{{/queryParams.0}}
+	return Path;
 }
 
 bool FRequest_{{operationIdCamelCase}}::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-    static const TArray<FString> Consumes = { {{#consumes}}TEXT("{{{mediaType}}}"){{^-last}}, {{/-last}}{{/consumes}} };
-    //static const TArray<FString> Produces = { {{#produces}}TEXT("{{{mediaType}}}"){{^-last}}, {{/-last}}{{/produces}} };
+	static const TArray<FString> Consumes = { {{#consumes}}TEXT("{{{mediaType}}}"){{^-last}}, {{/-last}}{{/consumes}} };
+	//static const TArray<FString> Produces = { {{#produces}}TEXT("{{{mediaType}}}"){{^-last}}, {{/-last}}{{/produces}} };
 
-    HttpRequest->SetVerb(TEXT("{{httpMethod}}"));
-    {{#headerParams.0}}
+	HttpRequest->SetVerb(TEXT("{{httpMethod}}"));
+	{{#headerParams.0}}
 
-    // Header parameters
-    {{#headerParams}}
-    {{#required}}
-    HttpRequest->SetHeader(TEXT("{{baseName}}"), {{paramName}});
-    {{/required}}
-    {{^required}}
-    if ({{paramName}}.IsSet())
-    {
-        HttpRequest->SetHeader(TEXT("{{baseName}}"), {{paramName}}.GetValue());
-    }
-    {{/required}}
-    {{/headerParams}}
-    {{/headerParams.0}}
-    {{#authMethods.0}}
+	// Header parameters
+	{{#headerParams}}
+	{{#required}}
+	HttpRequest->SetHeader(TEXT("{{baseName}}"), {{paramName}});
+	{{/required}}
+	{{^required}}
+	if ({{paramName}}.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("{{baseName}}"), {{paramName}}.GetValue());
+	}
+	{{/required}}
+	{{/headerParams}}
+	{{/headerParams.0}}
+	{{#authMethods.0}}
 
-    if (!AuthContext)
-    {
-        UE_LOG(Log{{unrealModuleName}}, Error, TEXT("FRequest_{{operationIdCamelCase}} - missing auth context"));
-        return false;
-    }
-    {{#isBasicBasic}}
-    if (!AuthContext->AddClientCredentials(HttpRequest))
-    {
-        UE_LOG(Log{{unrealModuleName}}, Error, TEXT("FRequest_{{operationIdCamelCase}} - failed to add client credentials"));
-        return false;
-    }
-    {{/isBasicBasic}}
-    {{#isBasicBearer}}
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(Log{{unrealModuleName}}, Error, TEXT("FRequest_{{operationIdCamelCase}} - failed to add bearer token"));
-        return false;
-    }
-    {{/isBasicBearer}}
-    {{/authMethods.0}}
+	if (!AuthContext)
+	{
+		UE_LOG(Log{{unrealModuleName}}, Error, TEXT("FRequest_{{operationIdCamelCase}} - missing auth context"));
+		return false;
+	}
+	{{#isBasicBasic}}
+	if (!AuthContext->AddClientCredentials(HttpRequest))
+	{
+		UE_LOG(Log{{unrealModuleName}}, Error, TEXT("FRequest_{{operationIdCamelCase}} - failed to add client credentials"));
+		return false;
+	}
+	{{/isBasicBasic}}
+	{{#isBasicBearer}}
+	if (!AuthContext->AddBearerToken(HttpRequest))
+	{
+		UE_LOG(Log{{unrealModuleName}}, Error, TEXT("FRequest_{{operationIdCamelCase}} - failed to add bearer token"));
+		return false;
+	}
+	{{/isBasicBearer}}
+	{{/authMethods.0}}
 
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-        {{#bodyParams.0}}
-        // Body parameters
-        FString JsonBody;
-        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+		{{#bodyParams.0}}
+		// Body parameters
+		FString JsonBody;
+		TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
 
-        {{#bodyParams}}
-        {{#required}}
-        WriteJsonValue(Writer, {{paramName}});
-        {{/required}}
-        {{^required}}
-        if ({{paramName}}.IsSet())
-        {
-            WriteJsonValue(Writer, {{paramName}}.GetValue());
-        }
-        {{/required}}
-        {{/bodyParams}}
-        Writer->Close();
+		{{#bodyParams}}
+		{{#required}}
+		WriteJsonValue(Writer, {{paramName}});
+		{{/required}}
+		{{^required}}
+		if ({{paramName}}.IsSet())
+		{
+			WriteJsonValue(Writer, {{paramName}}.GetValue());
+		}
+		{{/required}}
+		{{/bodyParams}}
+		Writer->Close();
 
-        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
-        HttpRequest->SetContentAsString(JsonBody);
-        {{/bodyParams.0}}
-        {{#formParams.0}}
-        {{#formParams}}
-        UE_LOG(Log{{unrealModuleName}}, Error, TEXT("FRequest_{{operationIdCamelCase}} - Form parameter ({{baseName}}) was ignored, not supported in json"));
-        {{/formParams}}
-        {{/formParams.0}}
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-        {{#formParams.0}}
-        FHttpMultipartFormData FormData;
-        {{#formParams}}
-        {{#isContainer}}
-        UE_LOG(Log{{unrealModuleName}}, Error, TEXT("FRequest_{{operationIdCamelCase}} - Form parameter ({{baseName}}) was ignored, Collections are not supported in multipart form"));
-        {{/isContainer}}
-        {{^isContainer}}
-        {{#required}}
-        {{#isFile}}
-        FormData.AddFilePart(TEXT("{{baseName}}"), {{paramName}});
-        {{/isFile}}
-        {{^isFile}}
-        {{#isBinary}}
-        FormData.AddBinaryPart(TEXT("{{baseName}}"), {{paramName}});
-        {{/isBinary}}
-        {{^isBinary}}
-        FormData.AddStringPart(TEXT("{{baseName}}"), *ToUrlString({{paramName}}));
-        {{/isBinary}}
-        {{/isFile}}
-        {{/required}}
-        {{^required}}
-        if({{paramName}}.IsSet())
-        {
-            {{#isFile}}
-            FormData.AddFilePart(TEXT("{{baseName}}"), {{paramName}}.GetValue());
-            {{/isFile}}
-            {{^isFile}}
-            {{#isBinary}}
-            FormData.AddBinaryPart(TEXT("{{baseName}}"), {{paramName}}.GetValue());
-            {{/isBinary}}
-            {{^isBinary}}
-            FormData.AddStringPart(TEXT("{{baseName}}"), *ToUrlString({{paramName}}.GetValue()));
-            {{/isBinary}}
-            {{/isFile}}
-        }
-        {{/required}}
-        {{/isContainer}}
-        {{/formParams}}
+		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
+		HttpRequest->SetContentAsString(JsonBody);
+		{{/bodyParams.0}}
+		{{#formParams.0}}
+		{{#formParams}}
+		UE_LOG(Log{{unrealModuleName}}, Error, TEXT("FRequest_{{operationIdCamelCase}} - Form parameter ({{baseName}}) was ignored, not supported in json"));
+		{{/formParams}}
+		{{/formParams.0}}
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+		{{#formParams.0}}
+		FHttpMultipartFormData FormData;
+		{{#formParams}}
+		{{#isContainer}}
+		UE_LOG(Log{{unrealModuleName}}, Error, TEXT("FRequest_{{operationIdCamelCase}} - Form parameter ({{baseName}}) was ignored, Collections are not supported in multipart form"));
+		{{/isContainer}}
+		{{^isContainer}}
+		{{#required}}
+		{{#isFile}}
+		FormData.AddFilePart(TEXT("{{baseName}}"), {{paramName}});
+		{{/isFile}}
+		{{^isFile}}
+		{{#isBinary}}
+		FormData.AddBinaryPart(TEXT("{{baseName}}"), {{paramName}});
+		{{/isBinary}}
+		{{^isBinary}}
+		FormData.AddStringPart(TEXT("{{baseName}}"), *ToUrlString({{paramName}}));
+		{{/isBinary}}
+		{{/isFile}}
+		{{/required}}
+		{{^required}}
+		if({{paramName}}.IsSet())
+		{
+			{{#isFile}}
+			FormData.AddFilePart(TEXT("{{baseName}}"), {{paramName}}.GetValue());
+			{{/isFile}}
+			{{^isFile}}
+			{{#isBinary}}
+			FormData.AddBinaryPart(TEXT("{{baseName}}"), {{paramName}}.GetValue());
+			{{/isBinary}}
+			{{^isBinary}}
+			FormData.AddStringPart(TEXT("{{baseName}}"), *ToUrlString({{paramName}}.GetValue()));
+			{{/isBinary}}
+			{{/isFile}}
+		}
+		{{/required}}
+		{{/isContainer}}
+		{{/formParams}}
 
-        FormData.SetupHttpRequest(HttpRequest);
-        {{/formParams.0}}
-        {{#bodyParams.0}}
-        {{#bodyParams}}
-        UE_LOG(Log{{unrealModuleName}}, Error, TEXT("FRequest_{{operationIdCamelCase}} - Body parameter ({{baseName}}) was ignored, not supported in multipart form"));
-        {{/bodyParams}}
-        {{/bodyParams.0}}
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-        {{#formParams.0}}
-        TArray<FString> FormParams;
-        {{#formParams}}
-        {{#isContainer}}
-        UE_LOG(Log{{unrealModuleName}}, Error, TEXT("FRequest_{{operationIdCamelCase}} - Form parameter ({{baseName}}) was ignored, Collections are not supported in urlencoded requests"));
-        {{/isContainer}}
-        {{#isFile}}
-        UE_LOG(Log{{unrealModuleName}}, Error, TEXT("FRequest_{{operationIdCamelCase}} - Form parameter ({{baseName}}) was ignored, Files are not supported in urlencoded requests"));
-        {{/isFile}}
-        {{^isFile}}
-        {{^isContainer}}
-        {{#required}}
-        FormParams.Add(FString(TEXT("{{baseName}}=")) + ToUrlString({{paramName}}));
-        {{/required}}
-        {{^required}}
-        if({{paramName}}.IsSet())
-        {
-            FormParams.Add(FString(TEXT("{{baseName}}=")) + ToUrlString({{paramName}}.GetValue()));
-        }
-        {{/required}}
-        {{/isContainer}}
-        {{/isFile}}
-        {{/formParams}}
+		FormData.SetupHttpRequest(HttpRequest);
+		{{/formParams.0}}
+		{{#bodyParams.0}}
+		{{#bodyParams}}
+		UE_LOG(Log{{unrealModuleName}}, Error, TEXT("FRequest_{{operationIdCamelCase}} - Body parameter ({{baseName}}) was ignored, not supported in multipart form"));
+		{{/bodyParams}}
+		{{/bodyParams.0}}
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+		{{#formParams.0}}
+		TArray<FString> FormParams;
+		{{#formParams}}
+		{{#isContainer}}
+		UE_LOG(Log{{unrealModuleName}}, Error, TEXT("FRequest_{{operationIdCamelCase}} - Form parameter ({{baseName}}) was ignored, Collections are not supported in urlencoded requests"));
+		{{/isContainer}}
+		{{#isFile}}
+		UE_LOG(Log{{unrealModuleName}}, Error, TEXT("FRequest_{{operationIdCamelCase}} - Form parameter ({{baseName}}) was ignored, Files are not supported in urlencoded requests"));
+		{{/isFile}}
+		{{^isFile}}
+		{{^isContainer}}
+		{{#required}}
+		FormParams.Add(FString(TEXT("{{baseName}}=")) + ToUrlString({{paramName}}));
+		{{/required}}
+		{{^required}}
+		if({{paramName}}.IsSet())
+		{
+			FormParams.Add(FString(TEXT("{{baseName}}=")) + ToUrlString({{paramName}}.GetValue()));
+		}
+		{{/required}}
+		{{/isContainer}}
+		{{/isFile}}
+		{{/formParams}}
 
-        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/x-www-form-urlencoded; charset=utf-8"));
-        HttpRequest->SetContentAsString(FString::Join(FormParams, TEXT("&")));
-        {{/formParams.0}}
-        {{#bodyParams.0}}
-        {{#bodyParams}}
-        UE_LOG(Log{{unrealModuleName}}, Error, TEXT("FRequest_{{operationIdCamelCase}} - Body parameter ({{baseName}}) was ignored, not supported in urlencoded requests"));
-        {{/bodyParams}}
-        {{/bodyParams.0}}
-    }
-    else
-    {
-        UE_LOG(Log{{unrealModuleName}}, Error, TEXT("FRequest_{{operationIdCamelCase}} - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
+		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/x-www-form-urlencoded; charset=utf-8"));
+		HttpRequest->SetContentAsString(FString::Join(FormParams, TEXT("&")));
+		{{/formParams.0}}
+		{{#bodyParams.0}}
+		{{#bodyParams}}
+		UE_LOG(Log{{unrealModuleName}}, Error, TEXT("FRequest_{{operationIdCamelCase}} - Body parameter ({{baseName}}) was ignored, not supported in urlencoded requests"));
+		{{/bodyParams}}
+		{{/bodyParams.0}}
+	}
+	else
+	{
+		UE_LOG(Log{{unrealModuleName}}, Error, TEXT("FRequest_{{operationIdCamelCase}} - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
 
-    return true;
+	return true;
 }
 
 {{#responses.0}}
 void FResponse_{{operationIdCamelCase}}::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    {{#responses}}
-    case {{code}}:
-    {{#isDefault}}
-    default:
-    {{/isDefault}}
-        SetResponseString({{#lambdaSplitString}}{{message}}{{/lambdaSplitString}});
-        break;
-    {{/responses}}
-    }
+	FResponse::SetHttpResponseCode(InHttpResponseCode);
+	switch ((int)InHttpResponseCode)
+	{
+	{{#responses}}
+	case {{code}}:
+	{{#isDefault}}
+	default:
+	{{/isDefault}}
+		SetResponseString({{#lambdaSplitString}}{{message}}{{/lambdaSplitString}});
+		break;
+	{{/responses}}
+	}
 }
 
 {{#headers.0}}
 bool FResponse_{{operationIdCamelCase}}::ParseHeaders()
 {
-    // The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-    TMap<FString, FString> HeadersMap;
-    for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
-    {
-        int32 index;
-        if (HeaderStr.FindChar(TEXT(':'), index))
-        {
-            // if there is a space after the colon, skip it
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-        }
-    }
-    bool bParsedAllRequiredHeaders = true;
-    {{#headers}}
-    if (const FString* Val = HeadersMap.Find(TEXT("{{baseName}}")))
-    {
-        {{name}} = *Val;
-    }
-    {{#required}}
-    else
-    {
-        bParsedAllRequiredHeaders = false;
-    }
-    {{/required}}
-    {{/headers}}
-    return bParsedAllRequiredHeaders;
+	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
+	TMap<FString, FString> HeadersMap;
+	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	{
+		int32 index;
+		if (HeaderStr.FindChar(TEXT(':'), index))
+		{
+			// if there is a space after the colon, skip it
+			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
+		}
+	}
+	bool bParsedAllRequiredHeaders = true;
+	{{#headers}}
+	if (const FString* Val = HeadersMap.Find(TEXT("{{baseName}}")))
+	{
+		{{name}} = *Val;
+	}
+	{{#required}}
+	else
+	{
+		bParsedAllRequiredHeaders = false;
+	}
+	{{/required}}
+	{{/headers}}
+	return bParsedAllRequiredHeaders;
 }
 
 {{/headers.0}}
@@ -438,7 +438,7 @@ bool FResponse_{{operationIdCamelCase}}::ParseHeaders()
 {{#dataType}}
 bool FResponse_{{operationIdCamelCase}}::TryGetContentFor{{{code}}}({{{.}}}& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 {{/dataType}}
@@ -446,41 +446,41 @@ bool FResponse_{{operationIdCamelCase}}::TryGetContentFor{{{code}}}({{{.}}}& Out
 {{#description}}/* {{{.}}} */
 {{/description}}{{^required}}TOptional<{{/required}}{{{dataType}}}{{^required}}>{{/required}} FResponse_{{operationIdCamelCase}}::GetHeader{{code}}_{{name}}() const
 {
-    if (HttpResponse)
-    {
-        FString HeaderVal = HttpResponse->GetHeader(TEXT("{{baseName}}"));
-        if (!HeaderVal.IsEmpty())
-        {
-            return FromHeaderString<{{{dataType}}}>(HeaderVal);
-        }
-    }
-    {{#defaultValue}}
-    return {{{.}}};
-    {{/defaultValue}}
-    {{^defaultValue}}
-    {{#required}}
-    return {};
-    {{/required}}
-    {{^required}}
-    return TOptional<{{{dataType}}}>{};
-    {{/required}}
-    {{/defaultValue}}
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("{{baseName}}"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<{{{dataType}}}>(HeaderVal);
+		}
+	}
+	{{#defaultValue}}
+	return {{{.}}};
+	{{/defaultValue}}
+	{{^defaultValue}}
+	{{#required}}
+	return {};
+	{{/required}}
+	{{^required}}
+	return TOptional<{{{dataType}}}>{};
+	{{/required}}
+	{{/defaultValue}}
 }
 
 {{/headers}}
 {{/responses}}
 bool FResponse_{{operationIdCamelCase}}::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    {{#returnType}}
-    return TryGetJsonValue(JsonValue, Content);
-    {{/returnType}}
-    {{^returnType}}
-    return true;
-    {{/returnType}}
+	{{#returnType}}
+	return TryGetJsonValue(JsonValue, Content);
+	{{/returnType}}
+	{{^returnType}}
+	return true;
+	{{/returnType}}
 }
 
 FResponse_{{operationIdCamelCase}}::FResponse_{{operationIdCamelCase}}(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
+	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 

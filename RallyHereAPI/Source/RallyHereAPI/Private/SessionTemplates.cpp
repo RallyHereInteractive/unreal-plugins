@@ -21,30 +21,30 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_SessionTemplates::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (Templates_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("templates"));
-        RallyHereAPI::WriteJsonValue(Writer, Templates_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (Templates_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("templates"));
+		RallyHereAPI::WriteJsonValue(Writer, Templates_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_SessionTemplates::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonTemplatesField = (*Object)->TryGetField(TEXT("templates"));
-    if (JsonTemplatesField.IsValid() && !JsonTemplatesField->IsNull())
-    {
-        Templates_IsSet = TryGetJsonValue(JsonTemplatesField, Templates_Optional);
-        ParseSuccess &= Templates_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonTemplatesField = (*Object)->TryGetField(TEXT("templates"));
+	if (JsonTemplatesField.IsValid() && !JsonTemplatesField->IsNull())
+	{
+		Templates_IsSet = TryGetJsonValue(JsonTemplatesField, Templates_Optional);
+		ParseSuccess &= Templates_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

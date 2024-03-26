@@ -22,97 +22,97 @@
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_SessionTeam : public FRHAPI_Model
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    /**
-    * @brief Fills this object with data from the passed in JSON
-    *
-    * @param [in] JsonValue Data from the API call.
-    *
-    * @return true if parsing of the JSON data was successful.
-    */
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	/**
+	* @brief Fills this object with data from the passed in JSON
+	*
+	* @param [in] JsonValue Data from the API call.
+	*
+	* @return true if parsing of the JSON data was successful.
+	*/
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
-    /**
-    * @brief Writes the data from this object into the specified JSON Writer stream
-    *
-    * @param [in] Writer JSON Writer stream to push .
-    */
-    void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	/**
+	* @brief Writes the data from this object into the specified JSON Writer stream
+	*
+	* @param [in] Writer JSON Writer stream to push .
+	*/
+	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief Players currently on this team */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    TArray<FRHAPI_SessionPlayer> Players{  };
-    /** @brief Gets the value of Players */
-    TArray<FRHAPI_SessionPlayer>& GetPlayers() { return Players; }
-    /** @brief Gets the value of Players */
-    const TArray<FRHAPI_SessionPlayer>& GetPlayers() const { return Players; }
-    /** @brief Sets the value of Players */
-    void SetPlayers(TArray<FRHAPI_SessionPlayer> NewValue) { Players = NewValue;  }
+	/** @brief Players currently on this team */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TArray<FRHAPI_SessionPlayer> Players{  };
+	/** @brief Gets the value of Players */
+	TArray<FRHAPI_SessionPlayer>& GetPlayers() { return Players; }
+	/** @brief Gets the value of Players */
+	const TArray<FRHAPI_SessionPlayer>& GetPlayers() const { return Players; }
+	/** @brief Sets the value of Players */
+	void SetPlayers(TArray<FRHAPI_SessionPlayer> NewValue) { Players = NewValue;  }
 
-    /** @brief Maximum number of players allowed on this team */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    int32 MaxSize{ 0 };
-    /** @brief Gets the value of MaxSize */
-    int32& GetMaxSize() { return MaxSize; }
-    /** @brief Gets the value of MaxSize */
-    const int32& GetMaxSize() const { return MaxSize; }
-    /** @brief Sets the value of MaxSize */
-    void SetMaxSize(int32 NewValue) { MaxSize = NewValue;  }
-    /** @brief Returns true if MaxSize matches the default value */
-    bool IsMaxSizeDefaultValue() const { return MaxSize == 0; }
-    /** @brief Sets the value of MaxSize to its default  */
-    void SetMaxSizeToDefault() { MaxSize = 0;  }
+	/** @brief Maximum number of players allowed on this team */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 MaxSize{ 0 };
+	/** @brief Gets the value of MaxSize */
+	int32& GetMaxSize() { return MaxSize; }
+	/** @brief Gets the value of MaxSize */
+	const int32& GetMaxSize() const { return MaxSize; }
+	/** @brief Sets the value of MaxSize */
+	void SetMaxSize(int32 NewValue) { MaxSize = NewValue;  }
+	/** @brief Returns true if MaxSize matches the default value */
+	bool IsMaxSizeDefaultValue() const { return MaxSize == 0; }
+	/** @brief Sets the value of MaxSize to its default  */
+	void SetMaxSizeToDefault() { MaxSize = 0;  }
 
-    /** @brief Which team this is */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    int32 TeamId_Optional{  };
-    /** @brief true if TeamId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool TeamId_IsSet{ false };
-    /** @brief Gets the value of TeamId_Optional, regardless of it having been set */
-    int32& GetTeamId() { return TeamId_Optional; }
-    /** @brief Gets the value of TeamId_Optional, regardless of it having been set */
-    const int32& GetTeamId() const { return TeamId_Optional; }
-    /** @brief Gets the value of TeamId_Optional, if it has been set, otherwise it returns DefaultValue */
-    const int32& GetTeamId(const int32& DefaultValue) const { if (TeamId_IsSet) return TeamId_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of TeamId_Optional and returns true if it has been set, otherwise returns false */
-    bool GetTeamId(int32& OutValue) const { if (TeamId_IsSet) OutValue = TeamId_Optional; return TeamId_IsSet; }
-    /** @brief Returns a pointer to TeamId_Optional, if it has been set, otherwise returns nullptr */
-    int32* GetTeamIdOrNull() { if (TeamId_IsSet) return &TeamId_Optional; return nullptr; }
-    /** @brief Returns a pointer to TeamId_Optional, if it has been set, otherwise returns nullptr */
-    const int32* GetTeamIdOrNull() const { if (TeamId_IsSet) return &TeamId_Optional; return nullptr; }
-    /** @brief Sets the value of TeamId_Optional and also sets TeamId_IsSet to true */
-    void SetTeamId(int32 NewValue) { TeamId_Optional = NewValue; TeamId_IsSet = true; }
-     /** @brief Clears the value of TeamId_Optional and sets TeamId_IsSet to false */
-    void ClearTeamId() { TeamId_Optional = 0; TeamId_IsSet = false; }
-    /** @brief Returns true if TeamId_Optional is set and matches the default value */
-    bool IsTeamIdDefaultValue() const { return TeamId_IsSet && TeamId_Optional == 0; }
-    /** @brief Sets the value of TeamId_Optional to its default and also sets TeamId_IsSet to true */
-    void SetTeamIdToDefault() { TeamId_Optional = 0; TeamId_IsSet = true; }
+	/** @brief Which team this is */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 TeamId_Optional{  };
+	/** @brief true if TeamId_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool TeamId_IsSet{ false };
+	/** @brief Gets the value of TeamId_Optional, regardless of it having been set */
+	int32& GetTeamId() { return TeamId_Optional; }
+	/** @brief Gets the value of TeamId_Optional, regardless of it having been set */
+	const int32& GetTeamId() const { return TeamId_Optional; }
+	/** @brief Gets the value of TeamId_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetTeamId(const int32& DefaultValue) const { if (TeamId_IsSet) return TeamId_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of TeamId_Optional and returns true if it has been set, otherwise returns false */
+	bool GetTeamId(int32& OutValue) const { if (TeamId_IsSet) OutValue = TeamId_Optional; return TeamId_IsSet; }
+	/** @brief Returns a pointer to TeamId_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetTeamIdOrNull() { if (TeamId_IsSet) return &TeamId_Optional; return nullptr; }
+	/** @brief Returns a pointer to TeamId_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetTeamIdOrNull() const { if (TeamId_IsSet) return &TeamId_Optional; return nullptr; }
+	/** @brief Sets the value of TeamId_Optional and also sets TeamId_IsSet to true */
+	void SetTeamId(int32 NewValue) { TeamId_Optional = NewValue; TeamId_IsSet = true; }
+	 /** @brief Clears the value of TeamId_Optional and sets TeamId_IsSet to false */
+	void ClearTeamId() { TeamId_Optional = 0; TeamId_IsSet = false; }
+	/** @brief Returns true if TeamId_Optional is set and matches the default value */
+	bool IsTeamIdDefaultValue() const { return TeamId_IsSet && TeamId_Optional == 0; }
+	/** @brief Sets the value of TeamId_Optional to its default and also sets TeamId_IsSet to true */
+	void SetTeamIdToDefault() { TeamId_Optional = 0; TeamId_IsSet = true; }
 
-    /** @brief Matchmaking tickets that were assigned to this team */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    TArray<FString> TicketIds_Optional{  };
-    /** @brief true if TicketIds_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool TicketIds_IsSet{ false };
-    /** @brief Gets the value of TicketIds_Optional, regardless of it having been set */
-    TArray<FString>& GetTicketIds() { return TicketIds_Optional; }
-    /** @brief Gets the value of TicketIds_Optional, regardless of it having been set */
-    const TArray<FString>& GetTicketIds() const { return TicketIds_Optional; }
-    /** @brief Gets the value of TicketIds_Optional, if it has been set, otherwise it returns DefaultValue */
-    const TArray<FString>& GetTicketIds(const TArray<FString>& DefaultValue) const { if (TicketIds_IsSet) return TicketIds_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of TicketIds_Optional and returns true if it has been set, otherwise returns false */
-    bool GetTicketIds(TArray<FString>& OutValue) const { if (TicketIds_IsSet) OutValue = TicketIds_Optional; return TicketIds_IsSet; }
-    /** @brief Returns a pointer to TicketIds_Optional, if it has been set, otherwise returns nullptr */
-    TArray<FString>* GetTicketIdsOrNull() { if (TicketIds_IsSet) return &TicketIds_Optional; return nullptr; }
-    /** @brief Returns a pointer to TicketIds_Optional, if it has been set, otherwise returns nullptr */
-    const TArray<FString>* GetTicketIdsOrNull() const { if (TicketIds_IsSet) return &TicketIds_Optional; return nullptr; }
-    /** @brief Sets the value of TicketIds_Optional and also sets TicketIds_IsSet to true */
-    void SetTicketIds(TArray<FString> NewValue) { TicketIds_Optional = NewValue; TicketIds_IsSet = true; }
-     /** @brief Clears the value of TicketIds_Optional and sets TicketIds_IsSet to false */
-    void ClearTicketIds() { TicketIds_IsSet = false; }
+	/** @brief Matchmaking tickets that were assigned to this team */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TArray<FString> TicketIds_Optional{  };
+	/** @brief true if TicketIds_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool TicketIds_IsSet{ false };
+	/** @brief Gets the value of TicketIds_Optional, regardless of it having been set */
+	TArray<FString>& GetTicketIds() { return TicketIds_Optional; }
+	/** @brief Gets the value of TicketIds_Optional, regardless of it having been set */
+	const TArray<FString>& GetTicketIds() const { return TicketIds_Optional; }
+	/** @brief Gets the value of TicketIds_Optional, if it has been set, otherwise it returns DefaultValue */
+	const TArray<FString>& GetTicketIds(const TArray<FString>& DefaultValue) const { if (TicketIds_IsSet) return TicketIds_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of TicketIds_Optional and returns true if it has been set, otherwise returns false */
+	bool GetTicketIds(TArray<FString>& OutValue) const { if (TicketIds_IsSet) OutValue = TicketIds_Optional; return TicketIds_IsSet; }
+	/** @brief Returns a pointer to TicketIds_Optional, if it has been set, otherwise returns nullptr */
+	TArray<FString>* GetTicketIdsOrNull() { if (TicketIds_IsSet) return &TicketIds_Optional; return nullptr; }
+	/** @brief Returns a pointer to TicketIds_Optional, if it has been set, otherwise returns nullptr */
+	const TArray<FString>* GetTicketIdsOrNull() const { if (TicketIds_IsSet) return &TicketIds_Optional; return nullptr; }
+	/** @brief Sets the value of TicketIds_Optional and also sets TicketIds_IsSet to true */
+	void SetTicketIds(TArray<FString> NewValue) { TicketIds_Optional = NewValue; TicketIds_IsSet = true; }
+	 /** @brief Clears the value of TicketIds_Optional and sets TicketIds_IsSet to false */
+	void ClearTicketIds() { TicketIds_IsSet = false; }
 };
 
 /** @} */

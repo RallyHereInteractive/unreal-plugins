@@ -21,31 +21,31 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_ValidationError::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("loc"));
-    RallyHereAPI::WriteJsonValue(Writer, Loc);
-    Writer->WriteIdentifierPrefix(TEXT("msg"));
-    RallyHereAPI::WriteJsonValue(Writer, Msg);
-    Writer->WriteIdentifierPrefix(TEXT("type"));
-    RallyHereAPI::WriteJsonValue(Writer, Type);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("loc"));
+	RallyHereAPI::WriteJsonValue(Writer, Loc);
+	Writer->WriteIdentifierPrefix(TEXT("msg"));
+	RallyHereAPI::WriteJsonValue(Writer, Msg);
+	Writer->WriteIdentifierPrefix(TEXT("type"));
+	RallyHereAPI::WriteJsonValue(Writer, Type);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_ValidationError::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonLocField = (*Object)->TryGetField(TEXT("loc"));
-    ParseSuccess &= JsonLocField.IsValid() && !JsonLocField->IsNull() && TryGetJsonValue(JsonLocField, Loc);
-    const TSharedPtr<FJsonValue> JsonMsgField = (*Object)->TryGetField(TEXT("msg"));
-    ParseSuccess &= JsonMsgField.IsValid() && !JsonMsgField->IsNull() && TryGetJsonValue(JsonMsgField, Msg);
-    const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
-    ParseSuccess &= JsonTypeField.IsValid() && !JsonTypeField->IsNull() && TryGetJsonValue(JsonTypeField, Type);
+	const TSharedPtr<FJsonValue> JsonLocField = (*Object)->TryGetField(TEXT("loc"));
+	ParseSuccess &= JsonLocField.IsValid() && !JsonLocField->IsNull() && TryGetJsonValue(JsonLocField, Loc);
+	const TSharedPtr<FJsonValue> JsonMsgField = (*Object)->TryGetField(TEXT("msg"));
+	ParseSuccess &= JsonMsgField.IsValid() && !JsonMsgField->IsNull() && TryGetJsonValue(JsonMsgField, Msg);
+	const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
+	ParseSuccess &= JsonTypeField.IsValid() && !JsonTypeField->IsNull() && TryGetJsonValue(JsonTypeField, Type);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

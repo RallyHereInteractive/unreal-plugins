@@ -20,52 +20,52 @@ using RallyHereAPI::TryGetJsonValue;
 // Implementation for ERHAPI_DeleteTicketReason
 FString EnumToString(const ERHAPI_DeleteTicketReason& Value)
 {
-    switch (Value)
-    {
-    case ERHAPI_DeleteTicketReason::Assigned:
-        return TEXT("assigned");
-    case ERHAPI_DeleteTicketReason::LeftQueue:
-        return TEXT("left_queue");
-    case ERHAPI_DeleteTicketReason::Timeout:
-        return TEXT("timeout");
-    }
+	switch (Value)
+	{
+	case ERHAPI_DeleteTicketReason::Assigned:
+		return TEXT("assigned");
+	case ERHAPI_DeleteTicketReason::LeftQueue:
+		return TEXT("left_queue");
+	case ERHAPI_DeleteTicketReason::Timeout:
+		return TEXT("timeout");
+	}
 
-    UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_DeleteTicketReason::Values Value (%d)"), (int)Value);
-    return TEXT("");
+	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_DeleteTicketReason::Values Value (%d)"), (int)Value);
+	return TEXT("");
 }
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_DeleteTicketReason& Value)
 {
-    static TMap<FString, ERHAPI_DeleteTicketReason> StringToEnum = { 
-        { TEXT("assigned"), ERHAPI_DeleteTicketReason::Assigned },
-        { TEXT("left_queue"), ERHAPI_DeleteTicketReason::LeftQueue },
-        { TEXT("timeout"), ERHAPI_DeleteTicketReason::Timeout },    };
+	static TMap<FString, ERHAPI_DeleteTicketReason> StringToEnum = { 
+		{ TEXT("assigned"), ERHAPI_DeleteTicketReason::Assigned },
+		{ TEXT("left_queue"), ERHAPI_DeleteTicketReason::LeftQueue },
+		{ TEXT("timeout"), ERHAPI_DeleteTicketReason::Timeout },	};
 
-    const auto Found = StringToEnum.Find(EnumAsString);
-    if(Found)
-        Value = *Found;
-    return Found != nullptr;
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
+	return Found != nullptr;
 }
 
 FStringFormatArg ToStringFormatArg(const ERHAPI_DeleteTicketReason& Value)
 {
-    return FStringFormatArg(EnumToString(Value));
+	return FStringFormatArg(EnumToString(Value));
 }
 
 void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const ERHAPI_DeleteTicketReason& Value)
 {
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
 }
 
 bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, ERHAPI_DeleteTicketReason& Value)
 {
-    FString TmpValue;
-    if (JsonValue->TryGetString(TmpValue))
-    {
-        if (EnumFromString(TmpValue, Value))
-            return true;
-    }
-    return false;
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if (EnumFromString(TmpValue, Value))
+			return true;
+	}
+	return false;
 }
 
 

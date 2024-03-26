@@ -20,61 +20,61 @@ using RallyHereAPI::TryGetJsonValue;
 // Implementation for ERHAPI_InventorySelector
 FString EnumToString(const ERHAPI_InventorySelector& Value)
 {
-    switch (Value)
-    {
-    case ERHAPI_InventorySelector::Invalid:
-        return TEXT("invalid");
-    case ERHAPI_InventorySelector::Own:
-        return TEXT("own");
-    case ERHAPI_InventorySelector::Rent:
-        return TEXT("rent");
-    case ERHAPI_InventorySelector::RentTimeframeLocked:
-        return TEXT("rent_timeframe_locked");
-    case ERHAPI_InventorySelector::OwnTransient:
-        return TEXT("own_transient");
-    case ERHAPI_InventorySelector::InheritEntitlementInventory:
-        return TEXT("inherit_entitlement_inventory");
-    }
+	switch (Value)
+	{
+	case ERHAPI_InventorySelector::Invalid:
+		return TEXT("invalid");
+	case ERHAPI_InventorySelector::Own:
+		return TEXT("own");
+	case ERHAPI_InventorySelector::Rent:
+		return TEXT("rent");
+	case ERHAPI_InventorySelector::RentTimeframeLocked:
+		return TEXT("rent_timeframe_locked");
+	case ERHAPI_InventorySelector::OwnTransient:
+		return TEXT("own_transient");
+	case ERHAPI_InventorySelector::InheritEntitlementInventory:
+		return TEXT("inherit_entitlement_inventory");
+	}
 
-    UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_InventorySelector::Values Value (%d)"), (int)Value);
-    return TEXT("");
+	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_InventorySelector::Values Value (%d)"), (int)Value);
+	return TEXT("");
 }
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_InventorySelector& Value)
 {
-    static TMap<FString, ERHAPI_InventorySelector> StringToEnum = { 
-        { TEXT("invalid"), ERHAPI_InventorySelector::Invalid },
-        { TEXT("own"), ERHAPI_InventorySelector::Own },
-        { TEXT("rent"), ERHAPI_InventorySelector::Rent },
-        { TEXT("rent_timeframe_locked"), ERHAPI_InventorySelector::RentTimeframeLocked },
-        { TEXT("own_transient"), ERHAPI_InventorySelector::OwnTransient },
-        { TEXT("inherit_entitlement_inventory"), ERHAPI_InventorySelector::InheritEntitlementInventory },    };
+	static TMap<FString, ERHAPI_InventorySelector> StringToEnum = { 
+		{ TEXT("invalid"), ERHAPI_InventorySelector::Invalid },
+		{ TEXT("own"), ERHAPI_InventorySelector::Own },
+		{ TEXT("rent"), ERHAPI_InventorySelector::Rent },
+		{ TEXT("rent_timeframe_locked"), ERHAPI_InventorySelector::RentTimeframeLocked },
+		{ TEXT("own_transient"), ERHAPI_InventorySelector::OwnTransient },
+		{ TEXT("inherit_entitlement_inventory"), ERHAPI_InventorySelector::InheritEntitlementInventory },	};
 
-    const auto Found = StringToEnum.Find(EnumAsString);
-    if(Found)
-        Value = *Found;
-    return Found != nullptr;
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
+	return Found != nullptr;
 }
 
 FStringFormatArg ToStringFormatArg(const ERHAPI_InventorySelector& Value)
 {
-    return FStringFormatArg(EnumToString(Value));
+	return FStringFormatArg(EnumToString(Value));
 }
 
 void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const ERHAPI_InventorySelector& Value)
 {
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
 }
 
 bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, ERHAPI_InventorySelector& Value)
 {
-    FString TmpValue;
-    if (JsonValue->TryGetString(TmpValue))
-    {
-        if (EnumFromString(TmpValue, Value))
-            return true;
-    }
-    return false;
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if (EnumFromString(TmpValue, Value))
+			return true;
+	}
+	return false;
 }
 
 

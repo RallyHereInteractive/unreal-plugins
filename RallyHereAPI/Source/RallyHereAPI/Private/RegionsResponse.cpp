@@ -21,27 +21,27 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_RegionsResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("regions"));
-    RallyHereAPI::WriteJsonValue(Writer, Regions);
-    Writer->WriteIdentifierPrefix(TEXT("cursor"));
-    RallyHereAPI::WriteJsonValue(Writer, Cursor);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("regions"));
+	RallyHereAPI::WriteJsonValue(Writer, Regions);
+	Writer->WriteIdentifierPrefix(TEXT("cursor"));
+	RallyHereAPI::WriteJsonValue(Writer, Cursor);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_RegionsResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonRegionsField = (*Object)->TryGetField(TEXT("regions"));
-    ParseSuccess &= JsonRegionsField.IsValid() && !JsonRegionsField->IsNull() && TryGetJsonValue(JsonRegionsField, Regions);
-    const TSharedPtr<FJsonValue> JsonCursorField = (*Object)->TryGetField(TEXT("cursor"));
-    ParseSuccess &= JsonCursorField.IsValid() && !JsonCursorField->IsNull() && TryGetJsonValue(JsonCursorField, Cursor);
+	const TSharedPtr<FJsonValue> JsonRegionsField = (*Object)->TryGetField(TEXT("regions"));
+	ParseSuccess &= JsonRegionsField.IsValid() && !JsonRegionsField->IsNull() && TryGetJsonValue(JsonRegionsField, Regions);
+	const TSharedPtr<FJsonValue> JsonCursorField = (*Object)->TryGetField(TEXT("cursor"));
+	ParseSuccess &= JsonCursorField.IsValid() && !JsonCursorField->IsNull() && TryGetJsonValue(JsonCursorField, Cursor);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

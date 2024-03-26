@@ -21,23 +21,23 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_AdOpportunities::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("opportunities"));
-    RallyHereAPI::WriteJsonValue(Writer, Opportunities);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("opportunities"));
+	RallyHereAPI::WriteJsonValue(Writer, Opportunities);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_AdOpportunities::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonOpportunitiesField = (*Object)->TryGetField(TEXT("opportunities"));
-    ParseSuccess &= JsonOpportunitiesField.IsValid() && !JsonOpportunitiesField->IsNull() && TryGetJsonValue(JsonOpportunitiesField, Opportunities);
+	const TSharedPtr<FJsonValue> JsonOpportunitiesField = (*Object)->TryGetField(TEXT("opportunities"));
+	ParseSuccess &= JsonOpportunitiesField.IsValid() && !JsonOpportunitiesField->IsNull() && TryGetJsonValue(JsonOpportunitiesField, Opportunities);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

@@ -17,186 +17,186 @@ namespace RallyHereAPI
 
 FSettingsAPI::FSettingsAPI() : FAPI()
 {
-    Url = TEXT("http://localhost");
-    Name = FName(TEXT("Settings"));
+	Url = TEXT("http://localhost");
+	Name = FName(TEXT("Settings"));
 }
 
 FSettingsAPI::~FSettingsAPI() {}
 
 FHttpRequestPtr FSettingsAPI::DeleteAllPlayerIdSettingsForSettingType(const FRequest_DeleteAllPlayerIdSettingsForSettingType& Request, const FDelegate_DeleteAllPlayerIdSettingsForSettingType& Delegate /*= FDelegate_DeleteAllPlayerIdSettingsForSettingType()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
-    if (!IsValid())
-        return nullptr;
+	if (!IsValid())
+		return nullptr;
 
-    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
 
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
 
-    RequestData->SetMetadata(Request.GetRequestMetadata());
+	RequestData->SetMetadata(Request.GetRequestMetadata());
 
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FSettingsAPI::OnDeleteAllPlayerIdSettingsForSettingTypeResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindRaw(this, &FSettingsAPI::OnDeleteAllPlayerIdSettingsForSettingTypeResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
 
-    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
 }
 
 void FSettingsAPI::OnDeleteAllPlayerIdSettingsForSettingTypeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteAllPlayerIdSettingsForSettingType Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
-    FHttpRequestCompleteDelegate ResponseDelegate;
+	FHttpRequestCompleteDelegate ResponseDelegate;
 
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FSettingsAPI::OnDeleteAllPlayerIdSettingsForSettingTypeResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindRaw(this, &FSettingsAPI::OnDeleteAllPlayerIdSettingsForSettingTypeResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
 
-    FResponse_DeleteAllPlayerIdSettingsForSettingType Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+	FResponse_DeleteAllPlayerIdSettingsForSettingType Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
 
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 FRequest_DeleteAllPlayerIdSettingsForSettingType::FRequest_DeleteAllPlayerIdSettingsForSettingType()
 {
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
+	RequestMetadata.Identifier = FGuid::NewGuid();
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_DeleteAllPlayerIdSettingsForSettingType::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/settings/v1/player/{player_id}/setting_type/{setting_type_id}/key"));
-    return Path;
+	static FName Path = FName(TEXT("/settings/v1/player/{player_id}/setting_type/{setting_type_id}/key"));
+	return Path;
 }
 
 FString FRequest_DeleteAllPlayerIdSettingsForSettingType::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
-        { TEXT("player_id"), ToStringFormatArg(PlayerId) },
-        { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) }
-    };
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("player_id"), ToStringFormatArg(PlayerId) },
+		{ TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) }
+	};
 
-    FString Path = FString::Format(TEXT("/settings/v1/player/{player_id}/setting_type/{setting_type_id}/key"), PathParams);
+	FString Path = FString::Format(TEXT("/settings/v1/player/{player_id}/setting_type/{setting_type_id}/key"), PathParams);
 
-    return Path;
+	return Path;
 }
 
 bool FRequest_DeleteAllPlayerIdSettingsForSettingType::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
+	static const TArray<FString> Consumes = {  };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
 
-    HttpRequest->SetVerb(TEXT("DELETE"));
+	HttpRequest->SetVerb(TEXT("DELETE"));
 
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteAllPlayerIdSettingsForSettingType - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteAllPlayerIdSettingsForSettingType - failed to add bearer token"));
-        return false;
-    }
+	if (!AuthContext)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteAllPlayerIdSettingsForSettingType - missing auth context"));
+		return false;
+	}
+	if (!AuthContext->AddBearerToken(HttpRequest))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteAllPlayerIdSettingsForSettingType - failed to add bearer token"));
+		return false;
+	}
 
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteAllPlayerIdSettingsForSettingType - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteAllPlayerIdSettingsForSettingType - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
 
-    return true;
+	return true;
 }
 
 void FResponse_DeleteAllPlayerIdSettingsForSettingType::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 400:
-        SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator "));
-        break;
-    case 403:
-        SetResponseString(TEXT("Forbidden"));
-        break;
-    case 404:
-        SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist         "));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
+	FResponse::SetHttpResponseCode(InHttpResponseCode);
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		SetResponseString(TEXT("Successful Response"));
+		break;
+	case 400:
+		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator "));
+		break;
+	case 403:
+		SetResponseString(TEXT("Forbidden"));
+		break;
+	case 404:
+		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist         "));
+		break;
+	case 422:
+		SetResponseString(TEXT("Validation Error"));
+		break;
+	}
 }
 
 bool FResponse_DeleteAllPlayerIdSettingsForSettingType::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteAllPlayerIdSettingsForSettingType::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteAllPlayerIdSettingsForSettingType::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteAllPlayerIdSettingsForSettingType::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteAllPlayerIdSettingsForSettingType::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteAllPlayerIdSettingsForSettingType::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    return TryGetJsonValue(JsonValue, Content);
+	return TryGetJsonValue(JsonValue, Content);
 }
 
 FResponse_DeleteAllPlayerIdSettingsForSettingType::FResponse_DeleteAllPlayerIdSettingsForSettingType(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
+	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -204,178 +204,178 @@ FString Traits_DeleteAllPlayerIdSettingsForSettingType::Name = TEXT("DeleteAllPl
 
 FHttpRequestPtr FSettingsAPI::DeleteAllPlayerUuidSettingsForSettingType(const FRequest_DeleteAllPlayerUuidSettingsForSettingType& Request, const FDelegate_DeleteAllPlayerUuidSettingsForSettingType& Delegate /*= FDelegate_DeleteAllPlayerUuidSettingsForSettingType()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
-    if (!IsValid())
-        return nullptr;
+	if (!IsValid())
+		return nullptr;
 
-    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
 
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
 
-    RequestData->SetMetadata(Request.GetRequestMetadata());
+	RequestData->SetMetadata(Request.GetRequestMetadata());
 
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FSettingsAPI::OnDeleteAllPlayerUuidSettingsForSettingTypeResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindRaw(this, &FSettingsAPI::OnDeleteAllPlayerUuidSettingsForSettingTypeResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
 
-    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
 }
 
 void FSettingsAPI::OnDeleteAllPlayerUuidSettingsForSettingTypeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteAllPlayerUuidSettingsForSettingType Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
-    FHttpRequestCompleteDelegate ResponseDelegate;
+	FHttpRequestCompleteDelegate ResponseDelegate;
 
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FSettingsAPI::OnDeleteAllPlayerUuidSettingsForSettingTypeResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindRaw(this, &FSettingsAPI::OnDeleteAllPlayerUuidSettingsForSettingTypeResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
 
-    FResponse_DeleteAllPlayerUuidSettingsForSettingType Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+	FResponse_DeleteAllPlayerUuidSettingsForSettingType Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
 
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 FRequest_DeleteAllPlayerUuidSettingsForSettingType::FRequest_DeleteAllPlayerUuidSettingsForSettingType()
 {
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
+	RequestMetadata.Identifier = FGuid::NewGuid();
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_DeleteAllPlayerUuidSettingsForSettingType::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key"));
-    return Path;
+	static FName Path = FName(TEXT("/settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key"));
+	return Path;
 }
 
 FString FRequest_DeleteAllPlayerUuidSettingsForSettingType::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
-        { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
-        { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) }
-    };
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
+		{ TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) }
+	};
 
-    FString Path = FString::Format(TEXT("/settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key"), PathParams);
+	FString Path = FString::Format(TEXT("/settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key"), PathParams);
 
-    return Path;
+	return Path;
 }
 
 bool FRequest_DeleteAllPlayerUuidSettingsForSettingType::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
+	static const TArray<FString> Consumes = {  };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
 
-    HttpRequest->SetVerb(TEXT("DELETE"));
+	HttpRequest->SetVerb(TEXT("DELETE"));
 
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteAllPlayerUuidSettingsForSettingType - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteAllPlayerUuidSettingsForSettingType - failed to add bearer token"));
-        return false;
-    }
+	if (!AuthContext)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteAllPlayerUuidSettingsForSettingType - missing auth context"));
+		return false;
+	}
+	if (!AuthContext->AddBearerToken(HttpRequest))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteAllPlayerUuidSettingsForSettingType - failed to add bearer token"));
+		return false;
+	}
 
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteAllPlayerUuidSettingsForSettingType - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteAllPlayerUuidSettingsForSettingType - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
 
-    return true;
+	return true;
 }
 
 void FResponse_DeleteAllPlayerUuidSettingsForSettingType::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 400:
-        SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator "));
-        break;
-    case 403:
-        SetResponseString(TEXT("Forbidden"));
-        break;
-    case 404:
-        SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist         "));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
+	FResponse::SetHttpResponseCode(InHttpResponseCode);
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		SetResponseString(TEXT("Successful Response"));
+		break;
+	case 400:
+		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator "));
+		break;
+	case 403:
+		SetResponseString(TEXT("Forbidden"));
+		break;
+	case 404:
+		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist         "));
+		break;
+	case 422:
+		SetResponseString(TEXT("Validation Error"));
+		break;
+	}
 }
 
 bool FResponse_DeleteAllPlayerUuidSettingsForSettingType::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteAllPlayerUuidSettingsForSettingType::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteAllPlayerUuidSettingsForSettingType::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteAllPlayerUuidSettingsForSettingType::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteAllPlayerUuidSettingsForSettingType::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteAllPlayerUuidSettingsForSettingType::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    return TryGetJsonValue(JsonValue, Content);
+	return TryGetJsonValue(JsonValue, Content);
 }
 
 FResponse_DeleteAllPlayerUuidSettingsForSettingType::FResponse_DeleteAllPlayerUuidSettingsForSettingType(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
+	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -383,177 +383,177 @@ FString Traits_DeleteAllPlayerUuidSettingsForSettingType::Name = TEXT("DeleteAll
 
 FHttpRequestPtr FSettingsAPI::DeleteAllPlayerUuidSettingsForSettingTypeSelf(const FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf& Request, const FDelegate_DeleteAllPlayerUuidSettingsForSettingTypeSelf& Delegate /*= FDelegate_DeleteAllPlayerUuidSettingsForSettingTypeSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
-    if (!IsValid())
-        return nullptr;
+	if (!IsValid())
+		return nullptr;
 
-    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
 
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
 
-    RequestData->SetMetadata(Request.GetRequestMetadata());
+	RequestData->SetMetadata(Request.GetRequestMetadata());
 
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FSettingsAPI::OnDeleteAllPlayerUuidSettingsForSettingTypeSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindRaw(this, &FSettingsAPI::OnDeleteAllPlayerUuidSettingsForSettingTypeSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
 
-    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
 }
 
 void FSettingsAPI::OnDeleteAllPlayerUuidSettingsForSettingTypeSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteAllPlayerUuidSettingsForSettingTypeSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
-    FHttpRequestCompleteDelegate ResponseDelegate;
+	FHttpRequestCompleteDelegate ResponseDelegate;
 
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FSettingsAPI::OnDeleteAllPlayerUuidSettingsForSettingTypeSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindRaw(this, &FSettingsAPI::OnDeleteAllPlayerUuidSettingsForSettingTypeSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
 
-    FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+	FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
 
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf::FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf()
 {
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
+	RequestMetadata.Identifier = FGuid::NewGuid();
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/settings/v2/player/me/setting_type/{setting_type_id}/key"));
-    return Path;
+	static FName Path = FName(TEXT("/settings/v2/player/me/setting_type/{setting_type_id}/key"));
+	return Path;
 }
 
 FString FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
-        { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) }
-    };
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) }
+	};
 
-    FString Path = FString::Format(TEXT("/settings/v2/player/me/setting_type/{setting_type_id}/key"), PathParams);
+	FString Path = FString::Format(TEXT("/settings/v2/player/me/setting_type/{setting_type_id}/key"), PathParams);
 
-    return Path;
+	return Path;
 }
 
 bool FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
+	static const TArray<FString> Consumes = {  };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
 
-    HttpRequest->SetVerb(TEXT("DELETE"));
+	HttpRequest->SetVerb(TEXT("DELETE"));
 
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf - failed to add bearer token"));
-        return false;
-    }
+	if (!AuthContext)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf - missing auth context"));
+		return false;
+	}
+	if (!AuthContext->AddBearerToken(HttpRequest))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf - failed to add bearer token"));
+		return false;
+	}
 
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
 
-    return true;
+	return true;
 }
 
 void FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 400:
-        SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator "));
-        break;
-    case 403:
-        SetResponseString(TEXT("Forbidden"));
-        break;
-    case 404:
-        SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist         "));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
+	FResponse::SetHttpResponseCode(InHttpResponseCode);
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		SetResponseString(TEXT("Successful Response"));
+		break;
+	case 400:
+		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator "));
+		break;
+	case 403:
+		SetResponseString(TEXT("Forbidden"));
+		break;
+	case 404:
+		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist         "));
+		break;
+	case 422:
+		SetResponseString(TEXT("Validation Error"));
+		break;
+	}
 }
 
 bool FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    return TryGetJsonValue(JsonValue, Content);
+	return TryGetJsonValue(JsonValue, Content);
 }
 
 FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf::FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
+	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -561,179 +561,179 @@ FString Traits_DeleteAllPlayerUuidSettingsForSettingTypeSelf::Name = TEXT("Delet
 
 FHttpRequestPtr FSettingsAPI::DeleteSinglePlayerIdSetting(const FRequest_DeleteSinglePlayerIdSetting& Request, const FDelegate_DeleteSinglePlayerIdSetting& Delegate /*= FDelegate_DeleteSinglePlayerIdSetting()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
-    if (!IsValid())
-        return nullptr;
+	if (!IsValid())
+		return nullptr;
 
-    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
 
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
 
-    RequestData->SetMetadata(Request.GetRequestMetadata());
+	RequestData->SetMetadata(Request.GetRequestMetadata());
 
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FSettingsAPI::OnDeleteSinglePlayerIdSettingResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindRaw(this, &FSettingsAPI::OnDeleteSinglePlayerIdSettingResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
 
-    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
 }
 
 void FSettingsAPI::OnDeleteSinglePlayerIdSettingResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteSinglePlayerIdSetting Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
-    FHttpRequestCompleteDelegate ResponseDelegate;
+	FHttpRequestCompleteDelegate ResponseDelegate;
 
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FSettingsAPI::OnDeleteSinglePlayerIdSettingResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindRaw(this, &FSettingsAPI::OnDeleteSinglePlayerIdSettingResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
 
-    FResponse_DeleteSinglePlayerIdSetting Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+	FResponse_DeleteSinglePlayerIdSetting Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
 
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 FRequest_DeleteSinglePlayerIdSetting::FRequest_DeleteSinglePlayerIdSetting()
 {
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
+	RequestMetadata.Identifier = FGuid::NewGuid();
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_DeleteSinglePlayerIdSetting::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/settings/v1/player/{player_id}/setting_type/{setting_type_id}/key/{key}"));
-    return Path;
+	static FName Path = FName(TEXT("/settings/v1/player/{player_id}/setting_type/{setting_type_id}/key/{key}"));
+	return Path;
 }
 
 FString FRequest_DeleteSinglePlayerIdSetting::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
-        { TEXT("player_id"), ToStringFormatArg(PlayerId) },
-        { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) },
-        { TEXT("key"), ToStringFormatArg(Key) }
-    };
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("player_id"), ToStringFormatArg(PlayerId) },
+		{ TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) },
+		{ TEXT("key"), ToStringFormatArg(Key) }
+	};
 
-    FString Path = FString::Format(TEXT("/settings/v1/player/{player_id}/setting_type/{setting_type_id}/key/{key}"), PathParams);
+	FString Path = FString::Format(TEXT("/settings/v1/player/{player_id}/setting_type/{setting_type_id}/key/{key}"), PathParams);
 
-    return Path;
+	return Path;
 }
 
 bool FRequest_DeleteSinglePlayerIdSetting::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
+	static const TArray<FString> Consumes = {  };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
 
-    HttpRequest->SetVerb(TEXT("DELETE"));
+	HttpRequest->SetVerb(TEXT("DELETE"));
 
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteSinglePlayerIdSetting - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteSinglePlayerIdSetting - failed to add bearer token"));
-        return false;
-    }
+	if (!AuthContext)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteSinglePlayerIdSetting - missing auth context"));
+		return false;
+	}
+	if (!AuthContext->AddBearerToken(HttpRequest))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteSinglePlayerIdSetting - failed to add bearer token"));
+		return false;
+	}
 
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteSinglePlayerIdSetting - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteSinglePlayerIdSetting - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
 
-    return true;
+	return true;
 }
 
 void FResponse_DeleteSinglePlayerIdSetting::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 400:
-        SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator "));
-        break;
-    case 403:
-        SetResponseString(TEXT("Forbidden"));
-        break;
-    case 404:
-        SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist         "));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
+	FResponse::SetHttpResponseCode(InHttpResponseCode);
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		SetResponseString(TEXT("Successful Response"));
+		break;
+	case 400:
+		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator "));
+		break;
+	case 403:
+		SetResponseString(TEXT("Forbidden"));
+		break;
+	case 404:
+		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist         "));
+		break;
+	case 422:
+		SetResponseString(TEXT("Validation Error"));
+		break;
+	}
 }
 
 bool FResponse_DeleteSinglePlayerIdSetting::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteSinglePlayerIdSetting::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteSinglePlayerIdSetting::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteSinglePlayerIdSetting::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteSinglePlayerIdSetting::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteSinglePlayerIdSetting::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    return TryGetJsonValue(JsonValue, Content);
+	return TryGetJsonValue(JsonValue, Content);
 }
 
 FResponse_DeleteSinglePlayerIdSetting::FResponse_DeleteSinglePlayerIdSetting(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
+	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -741,179 +741,179 @@ FString Traits_DeleteSinglePlayerIdSetting::Name = TEXT("DeleteSinglePlayerIdSet
 
 FHttpRequestPtr FSettingsAPI::DeleteSinglePlayerUuidSetting(const FRequest_DeleteSinglePlayerUuidSetting& Request, const FDelegate_DeleteSinglePlayerUuidSetting& Delegate /*= FDelegate_DeleteSinglePlayerUuidSetting()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
-    if (!IsValid())
-        return nullptr;
+	if (!IsValid())
+		return nullptr;
 
-    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
 
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
 
-    RequestData->SetMetadata(Request.GetRequestMetadata());
+	RequestData->SetMetadata(Request.GetRequestMetadata());
 
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FSettingsAPI::OnDeleteSinglePlayerUuidSettingResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindRaw(this, &FSettingsAPI::OnDeleteSinglePlayerUuidSettingResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
 
-    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
 }
 
 void FSettingsAPI::OnDeleteSinglePlayerUuidSettingResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteSinglePlayerUuidSetting Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
-    FHttpRequestCompleteDelegate ResponseDelegate;
+	FHttpRequestCompleteDelegate ResponseDelegate;
 
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FSettingsAPI::OnDeleteSinglePlayerUuidSettingResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindRaw(this, &FSettingsAPI::OnDeleteSinglePlayerUuidSettingResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
 
-    FResponse_DeleteSinglePlayerUuidSetting Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+	FResponse_DeleteSinglePlayerUuidSetting Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
 
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 FRequest_DeleteSinglePlayerUuidSetting::FRequest_DeleteSinglePlayerUuidSetting()
 {
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
+	RequestMetadata.Identifier = FGuid::NewGuid();
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_DeleteSinglePlayerUuidSetting::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key/{key}"));
-    return Path;
+	static FName Path = FName(TEXT("/settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key/{key}"));
+	return Path;
 }
 
 FString FRequest_DeleteSinglePlayerUuidSetting::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
-        { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
-        { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) },
-        { TEXT("key"), ToStringFormatArg(Key) }
-    };
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
+		{ TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) },
+		{ TEXT("key"), ToStringFormatArg(Key) }
+	};
 
-    FString Path = FString::Format(TEXT("/settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key/{key}"), PathParams);
+	FString Path = FString::Format(TEXT("/settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key/{key}"), PathParams);
 
-    return Path;
+	return Path;
 }
 
 bool FRequest_DeleteSinglePlayerUuidSetting::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
+	static const TArray<FString> Consumes = {  };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
 
-    HttpRequest->SetVerb(TEXT("DELETE"));
+	HttpRequest->SetVerb(TEXT("DELETE"));
 
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteSinglePlayerUuidSetting - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteSinglePlayerUuidSetting - failed to add bearer token"));
-        return false;
-    }
+	if (!AuthContext)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteSinglePlayerUuidSetting - missing auth context"));
+		return false;
+	}
+	if (!AuthContext->AddBearerToken(HttpRequest))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteSinglePlayerUuidSetting - failed to add bearer token"));
+		return false;
+	}
 
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteSinglePlayerUuidSetting - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteSinglePlayerUuidSetting - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
 
-    return true;
+	return true;
 }
 
 void FResponse_DeleteSinglePlayerUuidSetting::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 400:
-        SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator "));
-        break;
-    case 403:
-        SetResponseString(TEXT("Forbidden"));
-        break;
-    case 404:
-        SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist         "));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
+	FResponse::SetHttpResponseCode(InHttpResponseCode);
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		SetResponseString(TEXT("Successful Response"));
+		break;
+	case 400:
+		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator "));
+		break;
+	case 403:
+		SetResponseString(TEXT("Forbidden"));
+		break;
+	case 404:
+		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist         "));
+		break;
+	case 422:
+		SetResponseString(TEXT("Validation Error"));
+		break;
+	}
 }
 
 bool FResponse_DeleteSinglePlayerUuidSetting::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteSinglePlayerUuidSetting::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteSinglePlayerUuidSetting::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteSinglePlayerUuidSetting::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteSinglePlayerUuidSetting::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteSinglePlayerUuidSetting::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    return TryGetJsonValue(JsonValue, Content);
+	return TryGetJsonValue(JsonValue, Content);
 }
 
 FResponse_DeleteSinglePlayerUuidSetting::FResponse_DeleteSinglePlayerUuidSetting(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
+	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -921,178 +921,178 @@ FString Traits_DeleteSinglePlayerUuidSetting::Name = TEXT("DeleteSinglePlayerUui
 
 FHttpRequestPtr FSettingsAPI::DeleteSinglePlayerUuidSettingSelf(const FRequest_DeleteSinglePlayerUuidSettingSelf& Request, const FDelegate_DeleteSinglePlayerUuidSettingSelf& Delegate /*= FDelegate_DeleteSinglePlayerUuidSettingSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
-    if (!IsValid())
-        return nullptr;
+	if (!IsValid())
+		return nullptr;
 
-    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
 
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
 
-    RequestData->SetMetadata(Request.GetRequestMetadata());
+	RequestData->SetMetadata(Request.GetRequestMetadata());
 
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FSettingsAPI::OnDeleteSinglePlayerUuidSettingSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindRaw(this, &FSettingsAPI::OnDeleteSinglePlayerUuidSettingSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
 
-    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
 }
 
 void FSettingsAPI::OnDeleteSinglePlayerUuidSettingSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteSinglePlayerUuidSettingSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
-    FHttpRequestCompleteDelegate ResponseDelegate;
+	FHttpRequestCompleteDelegate ResponseDelegate;
 
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FSettingsAPI::OnDeleteSinglePlayerUuidSettingSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindRaw(this, &FSettingsAPI::OnDeleteSinglePlayerUuidSettingSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
 
-    FResponse_DeleteSinglePlayerUuidSettingSelf Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+	FResponse_DeleteSinglePlayerUuidSettingSelf Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
 
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 FRequest_DeleteSinglePlayerUuidSettingSelf::FRequest_DeleteSinglePlayerUuidSettingSelf()
 {
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
+	RequestMetadata.Identifier = FGuid::NewGuid();
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_DeleteSinglePlayerUuidSettingSelf::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/settings/v2/player/me/setting_type/{setting_type_id}/key/{key}"));
-    return Path;
+	static FName Path = FName(TEXT("/settings/v2/player/me/setting_type/{setting_type_id}/key/{key}"));
+	return Path;
 }
 
 FString FRequest_DeleteSinglePlayerUuidSettingSelf::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
-        { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) },
-        { TEXT("key"), ToStringFormatArg(Key) }
-    };
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) },
+		{ TEXT("key"), ToStringFormatArg(Key) }
+	};
 
-    FString Path = FString::Format(TEXT("/settings/v2/player/me/setting_type/{setting_type_id}/key/{key}"), PathParams);
+	FString Path = FString::Format(TEXT("/settings/v2/player/me/setting_type/{setting_type_id}/key/{key}"), PathParams);
 
-    return Path;
+	return Path;
 }
 
 bool FRequest_DeleteSinglePlayerUuidSettingSelf::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
+	static const TArray<FString> Consumes = {  };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
 
-    HttpRequest->SetVerb(TEXT("DELETE"));
+	HttpRequest->SetVerb(TEXT("DELETE"));
 
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteSinglePlayerUuidSettingSelf - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteSinglePlayerUuidSettingSelf - failed to add bearer token"));
-        return false;
-    }
+	if (!AuthContext)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteSinglePlayerUuidSettingSelf - missing auth context"));
+		return false;
+	}
+	if (!AuthContext->AddBearerToken(HttpRequest))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteSinglePlayerUuidSettingSelf - failed to add bearer token"));
+		return false;
+	}
 
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteSinglePlayerUuidSettingSelf - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteSinglePlayerUuidSettingSelf - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
 
-    return true;
+	return true;
 }
 
 void FResponse_DeleteSinglePlayerUuidSettingSelf::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 400:
-        SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator "));
-        break;
-    case 403:
-        SetResponseString(TEXT("Forbidden"));
-        break;
-    case 404:
-        SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist         "));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
+	FResponse::SetHttpResponseCode(InHttpResponseCode);
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		SetResponseString(TEXT("Successful Response"));
+		break;
+	case 400:
+		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator "));
+		break;
+	case 403:
+		SetResponseString(TEXT("Forbidden"));
+		break;
+	case 404:
+		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist         "));
+		break;
+	case 422:
+		SetResponseString(TEXT("Validation Error"));
+		break;
+	}
 }
 
 bool FResponse_DeleteSinglePlayerUuidSettingSelf::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteSinglePlayerUuidSettingSelf::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteSinglePlayerUuidSettingSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteSinglePlayerUuidSettingSelf::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteSinglePlayerUuidSettingSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteSinglePlayerUuidSettingSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    return TryGetJsonValue(JsonValue, Content);
+	return TryGetJsonValue(JsonValue, Content);
 }
 
 FResponse_DeleteSinglePlayerUuidSettingSelf::FResponse_DeleteSinglePlayerUuidSettingSelf(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
+	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -1100,186 +1100,186 @@ FString Traits_DeleteSinglePlayerUuidSettingSelf::Name = TEXT("DeleteSinglePlaye
 
 FHttpRequestPtr FSettingsAPI::GetAllPlayerIdSettingsForSettingType(const FRequest_GetAllPlayerIdSettingsForSettingType& Request, const FDelegate_GetAllPlayerIdSettingsForSettingType& Delegate /*= FDelegate_GetAllPlayerIdSettingsForSettingType()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
-    if (!IsValid())
-        return nullptr;
+	if (!IsValid())
+		return nullptr;
 
-    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
 
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
 
-    RequestData->SetMetadata(Request.GetRequestMetadata());
+	RequestData->SetMetadata(Request.GetRequestMetadata());
 
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FSettingsAPI::OnGetAllPlayerIdSettingsForSettingTypeResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindRaw(this, &FSettingsAPI::OnGetAllPlayerIdSettingsForSettingTypeResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
 
-    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
 }
 
 void FSettingsAPI::OnGetAllPlayerIdSettingsForSettingTypeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPlayerIdSettingsForSettingType Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
-    FHttpRequestCompleteDelegate ResponseDelegate;
+	FHttpRequestCompleteDelegate ResponseDelegate;
 
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FSettingsAPI::OnGetAllPlayerIdSettingsForSettingTypeResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindRaw(this, &FSettingsAPI::OnGetAllPlayerIdSettingsForSettingTypeResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
 
-    FResponse_GetAllPlayerIdSettingsForSettingType Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+	FResponse_GetAllPlayerIdSettingsForSettingType Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
 
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 FRequest_GetAllPlayerIdSettingsForSettingType::FRequest_GetAllPlayerIdSettingsForSettingType()
 {
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
+	RequestMetadata.Identifier = FGuid::NewGuid();
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetAllPlayerIdSettingsForSettingType::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/settings/v1/player/{player_id}/setting_type/{setting_type_id}/key"));
-    return Path;
+	static FName Path = FName(TEXT("/settings/v1/player/{player_id}/setting_type/{setting_type_id}/key"));
+	return Path;
 }
 
 FString FRequest_GetAllPlayerIdSettingsForSettingType::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
-        { TEXT("player_id"), ToStringFormatArg(PlayerId) },
-        { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) }
-    };
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("player_id"), ToStringFormatArg(PlayerId) },
+		{ TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) }
+	};
 
-    FString Path = FString::Format(TEXT("/settings/v1/player/{player_id}/setting_type/{setting_type_id}/key"), PathParams);
+	FString Path = FString::Format(TEXT("/settings/v1/player/{player_id}/setting_type/{setting_type_id}/key"), PathParams);
 
-    TArray<FString> QueryParams;
-    if(Key.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("key=")) + CollectionToUrlString_multi(Key.GetValue(), TEXT("key")));
-    }
-    Path += TCHAR('?');
-    Path += FString::Join(QueryParams, TEXT("&"));
+	TArray<FString> QueryParams;
+	if(Key.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("key=")) + CollectionToUrlString_multi(Key.GetValue(), TEXT("key")));
+	}
+	Path += TCHAR('?');
+	Path += FString::Join(QueryParams, TEXT("&"));
 
-    return Path;
+	return Path;
 }
 
 bool FRequest_GetAllPlayerIdSettingsForSettingType::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
+	static const TArray<FString> Consumes = {  };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
 
-    HttpRequest->SetVerb(TEXT("GET"));
+	HttpRequest->SetVerb(TEXT("GET"));
 
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetAllPlayerIdSettingsForSettingType - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetAllPlayerIdSettingsForSettingType - failed to add bearer token"));
-        return false;
-    }
+	if (!AuthContext)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetAllPlayerIdSettingsForSettingType - missing auth context"));
+		return false;
+	}
+	if (!AuthContext->AddBearerToken(HttpRequest))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetAllPlayerIdSettingsForSettingType - failed to add bearer token"));
+		return false;
+	}
 
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetAllPlayerIdSettingsForSettingType - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetAllPlayerIdSettingsForSettingType - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
 
-    return true;
+	return true;
 }
 
 void FResponse_GetAllPlayerIdSettingsForSettingType::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 400:
-        SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator "));
-        break;
-    case 403:
-        SetResponseString(TEXT("Forbidden"));
-        break;
-    case 404:
-        SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found         "));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
+	FResponse::SetHttpResponseCode(InHttpResponseCode);
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		SetResponseString(TEXT("Successful Response"));
+		break;
+	case 400:
+		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator "));
+		break;
+	case 403:
+		SetResponseString(TEXT("Forbidden"));
+		break;
+	case 404:
+		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found         "));
+		break;
+	case 422:
+		SetResponseString(TEXT("Validation Error"));
+		break;
+	}
 }
 
 bool FResponse_GetAllPlayerIdSettingsForSettingType::TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetAllPlayerIdSettingsForSettingType::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetAllPlayerIdSettingsForSettingType::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetAllPlayerIdSettingsForSettingType::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetAllPlayerIdSettingsForSettingType::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetAllPlayerIdSettingsForSettingType::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    return TryGetJsonValue(JsonValue, Content);
+	return TryGetJsonValue(JsonValue, Content);
 }
 
 FResponse_GetAllPlayerIdSettingsForSettingType::FResponse_GetAllPlayerIdSettingsForSettingType(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
+	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -1287,186 +1287,186 @@ FString Traits_GetAllPlayerIdSettingsForSettingType::Name = TEXT("GetAllPlayerId
 
 FHttpRequestPtr FSettingsAPI::GetAllPlayerUuidSettingsForSettingType(const FRequest_GetAllPlayerUuidSettingsForSettingType& Request, const FDelegate_GetAllPlayerUuidSettingsForSettingType& Delegate /*= FDelegate_GetAllPlayerUuidSettingsForSettingType()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
-    if (!IsValid())
-        return nullptr;
+	if (!IsValid())
+		return nullptr;
 
-    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
 
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
 
-    RequestData->SetMetadata(Request.GetRequestMetadata());
+	RequestData->SetMetadata(Request.GetRequestMetadata());
 
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FSettingsAPI::OnGetAllPlayerUuidSettingsForSettingTypeResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindRaw(this, &FSettingsAPI::OnGetAllPlayerUuidSettingsForSettingTypeResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
 
-    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
 }
 
 void FSettingsAPI::OnGetAllPlayerUuidSettingsForSettingTypeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPlayerUuidSettingsForSettingType Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
-    FHttpRequestCompleteDelegate ResponseDelegate;
+	FHttpRequestCompleteDelegate ResponseDelegate;
 
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FSettingsAPI::OnGetAllPlayerUuidSettingsForSettingTypeResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindRaw(this, &FSettingsAPI::OnGetAllPlayerUuidSettingsForSettingTypeResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
 
-    FResponse_GetAllPlayerUuidSettingsForSettingType Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+	FResponse_GetAllPlayerUuidSettingsForSettingType Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
 
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 FRequest_GetAllPlayerUuidSettingsForSettingType::FRequest_GetAllPlayerUuidSettingsForSettingType()
 {
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
+	RequestMetadata.Identifier = FGuid::NewGuid();
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetAllPlayerUuidSettingsForSettingType::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key"));
-    return Path;
+	static FName Path = FName(TEXT("/settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key"));
+	return Path;
 }
 
 FString FRequest_GetAllPlayerUuidSettingsForSettingType::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
-        { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
-        { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) }
-    };
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
+		{ TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) }
+	};
 
-    FString Path = FString::Format(TEXT("/settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key"), PathParams);
+	FString Path = FString::Format(TEXT("/settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key"), PathParams);
 
-    TArray<FString> QueryParams;
-    if(Key.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("key=")) + CollectionToUrlString_multi(Key.GetValue(), TEXT("key")));
-    }
-    Path += TCHAR('?');
-    Path += FString::Join(QueryParams, TEXT("&"));
+	TArray<FString> QueryParams;
+	if(Key.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("key=")) + CollectionToUrlString_multi(Key.GetValue(), TEXT("key")));
+	}
+	Path += TCHAR('?');
+	Path += FString::Join(QueryParams, TEXT("&"));
 
-    return Path;
+	return Path;
 }
 
 bool FRequest_GetAllPlayerUuidSettingsForSettingType::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
+	static const TArray<FString> Consumes = {  };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
 
-    HttpRequest->SetVerb(TEXT("GET"));
+	HttpRequest->SetVerb(TEXT("GET"));
 
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetAllPlayerUuidSettingsForSettingType - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetAllPlayerUuidSettingsForSettingType - failed to add bearer token"));
-        return false;
-    }
+	if (!AuthContext)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetAllPlayerUuidSettingsForSettingType - missing auth context"));
+		return false;
+	}
+	if (!AuthContext->AddBearerToken(HttpRequest))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetAllPlayerUuidSettingsForSettingType - failed to add bearer token"));
+		return false;
+	}
 
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetAllPlayerUuidSettingsForSettingType - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetAllPlayerUuidSettingsForSettingType - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
 
-    return true;
+	return true;
 }
 
 void FResponse_GetAllPlayerUuidSettingsForSettingType::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 400:
-        SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator "));
-        break;
-    case 403:
-        SetResponseString(TEXT("Forbidden"));
-        break;
-    case 404:
-        SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found         "));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
+	FResponse::SetHttpResponseCode(InHttpResponseCode);
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		SetResponseString(TEXT("Successful Response"));
+		break;
+	case 400:
+		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator "));
+		break;
+	case 403:
+		SetResponseString(TEXT("Forbidden"));
+		break;
+	case 404:
+		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found         "));
+		break;
+	case 422:
+		SetResponseString(TEXT("Validation Error"));
+		break;
+	}
 }
 
 bool FResponse_GetAllPlayerUuidSettingsForSettingType::TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetAllPlayerUuidSettingsForSettingType::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetAllPlayerUuidSettingsForSettingType::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetAllPlayerUuidSettingsForSettingType::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetAllPlayerUuidSettingsForSettingType::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetAllPlayerUuidSettingsForSettingType::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    return TryGetJsonValue(JsonValue, Content);
+	return TryGetJsonValue(JsonValue, Content);
 }
 
 FResponse_GetAllPlayerUuidSettingsForSettingType::FResponse_GetAllPlayerUuidSettingsForSettingType(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
+	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -1474,185 +1474,185 @@ FString Traits_GetAllPlayerUuidSettingsForSettingType::Name = TEXT("GetAllPlayer
 
 FHttpRequestPtr FSettingsAPI::GetAllPlayerUuidSettingsForSettingTypeSelf(const FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf& Request, const FDelegate_GetAllPlayerUuidSettingsForSettingTypeSelf& Delegate /*= FDelegate_GetAllPlayerUuidSettingsForSettingTypeSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
-    if (!IsValid())
-        return nullptr;
+	if (!IsValid())
+		return nullptr;
 
-    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
 
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
 
-    RequestData->SetMetadata(Request.GetRequestMetadata());
+	RequestData->SetMetadata(Request.GetRequestMetadata());
 
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FSettingsAPI::OnGetAllPlayerUuidSettingsForSettingTypeSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindRaw(this, &FSettingsAPI::OnGetAllPlayerUuidSettingsForSettingTypeSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
 
-    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
 }
 
 void FSettingsAPI::OnGetAllPlayerUuidSettingsForSettingTypeSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPlayerUuidSettingsForSettingTypeSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
-    FHttpRequestCompleteDelegate ResponseDelegate;
+	FHttpRequestCompleteDelegate ResponseDelegate;
 
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FSettingsAPI::OnGetAllPlayerUuidSettingsForSettingTypeSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindRaw(this, &FSettingsAPI::OnGetAllPlayerUuidSettingsForSettingTypeSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
 
-    FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+	FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
 
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf::FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf()
 {
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
+	RequestMetadata.Identifier = FGuid::NewGuid();
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/settings/v2/player/me/setting_type/{setting_type_id}/key"));
-    return Path;
+	static FName Path = FName(TEXT("/settings/v2/player/me/setting_type/{setting_type_id}/key"));
+	return Path;
 }
 
 FString FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
-        { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) }
-    };
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) }
+	};
 
-    FString Path = FString::Format(TEXT("/settings/v2/player/me/setting_type/{setting_type_id}/key"), PathParams);
+	FString Path = FString::Format(TEXT("/settings/v2/player/me/setting_type/{setting_type_id}/key"), PathParams);
 
-    TArray<FString> QueryParams;
-    if(Key.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("key=")) + CollectionToUrlString_multi(Key.GetValue(), TEXT("key")));
-    }
-    Path += TCHAR('?');
-    Path += FString::Join(QueryParams, TEXT("&"));
+	TArray<FString> QueryParams;
+	if(Key.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("key=")) + CollectionToUrlString_multi(Key.GetValue(), TEXT("key")));
+	}
+	Path += TCHAR('?');
+	Path += FString::Join(QueryParams, TEXT("&"));
 
-    return Path;
+	return Path;
 }
 
 bool FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
+	static const TArray<FString> Consumes = {  };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
 
-    HttpRequest->SetVerb(TEXT("GET"));
+	HttpRequest->SetVerb(TEXT("GET"));
 
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf - failed to add bearer token"));
-        return false;
-    }
+	if (!AuthContext)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf - missing auth context"));
+		return false;
+	}
+	if (!AuthContext->AddBearerToken(HttpRequest))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf - failed to add bearer token"));
+		return false;
+	}
 
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
 
-    return true;
+	return true;
 }
 
 void FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 400:
-        SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator "));
-        break;
-    case 403:
-        SetResponseString(TEXT("Forbidden"));
-        break;
-    case 404:
-        SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found         "));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
+	FResponse::SetHttpResponseCode(InHttpResponseCode);
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		SetResponseString(TEXT("Successful Response"));
+		break;
+	case 400:
+		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator "));
+		break;
+	case 403:
+		SetResponseString(TEXT("Forbidden"));
+		break;
+	case 404:
+		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found         "));
+		break;
+	case 422:
+		SetResponseString(TEXT("Validation Error"));
+		break;
+	}
 }
 
 bool FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf::TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    return TryGetJsonValue(JsonValue, Content);
+	return TryGetJsonValue(JsonValue, Content);
 }
 
 FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf::FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
+	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -1660,140 +1660,140 @@ FString Traits_GetAllPlayerUuidSettingsForSettingTypeSelf::Name = TEXT("GetAllPl
 
 FHttpRequestPtr FSettingsAPI::GetConfigForAllSettingTypes(const FRequest_GetConfigForAllSettingTypes& Request, const FDelegate_GetConfigForAllSettingTypes& Delegate /*= FDelegate_GetConfigForAllSettingTypes()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
-    if (!IsValid())
-        return nullptr;
+	if (!IsValid())
+		return nullptr;
 
-    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
 
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
 
-    RequestData->SetMetadata(Request.GetRequestMetadata());
+	RequestData->SetMetadata(Request.GetRequestMetadata());
 
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FSettingsAPI::OnGetConfigForAllSettingTypesResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindRaw(this, &FSettingsAPI::OnGetConfigForAllSettingTypesResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
 
-    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
 }
 
 void FSettingsAPI::OnGetConfigForAllSettingTypesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetConfigForAllSettingTypes Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
-    FHttpRequestCompleteDelegate ResponseDelegate;
+	FHttpRequestCompleteDelegate ResponseDelegate;
 
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FSettingsAPI::OnGetConfigForAllSettingTypesResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindRaw(this, &FSettingsAPI::OnGetConfigForAllSettingTypesResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
 
-    FResponse_GetConfigForAllSettingTypes Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+	FResponse_GetConfigForAllSettingTypes Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
 
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 FRequest_GetConfigForAllSettingTypes::FRequest_GetConfigForAllSettingTypes()
 {
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
+	RequestMetadata.Identifier = FGuid::NewGuid();
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetConfigForAllSettingTypes::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/settings/v1/setting_type"));
-    return Path;
+	static FName Path = FName(TEXT("/settings/v1/setting_type"));
+	return Path;
 }
 
 FString FRequest_GetConfigForAllSettingTypes::ComputePath() const
 {
-    FString Path = GetSimplifiedPath().ToString();
-    return Path;
+	FString Path = GetSimplifiedPath().ToString();
+	return Path;
 }
 
 bool FRequest_GetConfigForAllSettingTypes::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
+	static const TArray<FString> Consumes = {  };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
 
-    HttpRequest->SetVerb(TEXT("GET"));
+	HttpRequest->SetVerb(TEXT("GET"));
 
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetConfigForAllSettingTypes - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetConfigForAllSettingTypes - failed to add bearer token"));
-        return false;
-    }
+	if (!AuthContext)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetConfigForAllSettingTypes - missing auth context"));
+		return false;
+	}
+	if (!AuthContext->AddBearerToken(HttpRequest))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetConfigForAllSettingTypes - failed to add bearer token"));
+		return false;
+	}
 
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetConfigForAllSettingTypes - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetConfigForAllSettingTypes - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
 
-    return true;
+	return true;
 }
 
 void FResponse_GetConfigForAllSettingTypes::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    }
+	FResponse::SetHttpResponseCode(InHttpResponseCode);
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		SetResponseString(TEXT("Successful Response"));
+		break;
+	}
 }
 
 bool FResponse_GetConfigForAllSettingTypes::TryGetContentFor200(TMap<FString, FRHAPI_SettingType>& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetConfigForAllSettingTypes::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    return TryGetJsonValue(JsonValue, Content);
+	return TryGetJsonValue(JsonValue, Content);
 }
 
 FResponse_GetConfigForAllSettingTypes::FResponse_GetConfigForAllSettingTypes(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
+	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -1801,169 +1801,169 @@ FString Traits_GetConfigForAllSettingTypes::Name = TEXT("GetConfigForAllSettingT
 
 FHttpRequestPtr FSettingsAPI::GetConfigForSingleSettingTypeAllVersions(const FRequest_GetConfigForSingleSettingTypeAllVersions& Request, const FDelegate_GetConfigForSingleSettingTypeAllVersions& Delegate /*= FDelegate_GetConfigForSingleSettingTypeAllVersions()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
-    if (!IsValid())
-        return nullptr;
+	if (!IsValid())
+		return nullptr;
 
-    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
 
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
 
-    RequestData->SetMetadata(Request.GetRequestMetadata());
+	RequestData->SetMetadata(Request.GetRequestMetadata());
 
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FSettingsAPI::OnGetConfigForSingleSettingTypeAllVersionsResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindRaw(this, &FSettingsAPI::OnGetConfigForSingleSettingTypeAllVersionsResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
 
-    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
 }
 
 void FSettingsAPI::OnGetConfigForSingleSettingTypeAllVersionsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetConfigForSingleSettingTypeAllVersions Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
-    FHttpRequestCompleteDelegate ResponseDelegate;
+	FHttpRequestCompleteDelegate ResponseDelegate;
 
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FSettingsAPI::OnGetConfigForSingleSettingTypeAllVersionsResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindRaw(this, &FSettingsAPI::OnGetConfigForSingleSettingTypeAllVersionsResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
 
-    FResponse_GetConfigForSingleSettingTypeAllVersions Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+	FResponse_GetConfigForSingleSettingTypeAllVersions Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
 
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 FRequest_GetConfigForSingleSettingTypeAllVersions::FRequest_GetConfigForSingleSettingTypeAllVersions()
 {
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
+	RequestMetadata.Identifier = FGuid::NewGuid();
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetConfigForSingleSettingTypeAllVersions::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/settings/v1/setting_type/{setting_type_id}/v"));
-    return Path;
+	static FName Path = FName(TEXT("/settings/v1/setting_type/{setting_type_id}/v"));
+	return Path;
 }
 
 FString FRequest_GetConfigForSingleSettingTypeAllVersions::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
-        { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) }
-    };
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) }
+	};
 
-    FString Path = FString::Format(TEXT("/settings/v1/setting_type/{setting_type_id}/v"), PathParams);
+	FString Path = FString::Format(TEXT("/settings/v1/setting_type/{setting_type_id}/v"), PathParams);
 
-    return Path;
+	return Path;
 }
 
 bool FRequest_GetConfigForSingleSettingTypeAllVersions::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
+	static const TArray<FString> Consumes = {  };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
 
-    HttpRequest->SetVerb(TEXT("GET"));
+	HttpRequest->SetVerb(TEXT("GET"));
 
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetConfigForSingleSettingTypeAllVersions - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetConfigForSingleSettingTypeAllVersions - failed to add bearer token"));
-        return false;
-    }
+	if (!AuthContext)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetConfigForSingleSettingTypeAllVersions - missing auth context"));
+		return false;
+	}
+	if (!AuthContext->AddBearerToken(HttpRequest))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetConfigForSingleSettingTypeAllVersions - failed to add bearer token"));
+		return false;
+	}
 
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetConfigForSingleSettingTypeAllVersions - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetConfigForSingleSettingTypeAllVersions - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
 
-    return true;
+	return true;
 }
 
 void FResponse_GetConfigForSingleSettingTypeAllVersions::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 403:
-        SetResponseString(TEXT("Forbidden"));
-        break;
-    case 404:
-        SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found         "));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
+	FResponse::SetHttpResponseCode(InHttpResponseCode);
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		SetResponseString(TEXT("Successful Response"));
+		break;
+	case 403:
+		SetResponseString(TEXT("Forbidden"));
+		break;
+	case 404:
+		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found         "));
+		break;
+	case 422:
+		SetResponseString(TEXT("Validation Error"));
+		break;
+	}
 }
 
 bool FResponse_GetConfigForSingleSettingTypeAllVersions::TryGetContentFor200(TMap<FString, FRHAPI_SettingTypeVersion>& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetConfigForSingleSettingTypeAllVersions::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetConfigForSingleSettingTypeAllVersions::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetConfigForSingleSettingTypeAllVersions::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetConfigForSingleSettingTypeAllVersions::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    return TryGetJsonValue(JsonValue, Content);
+	return TryGetJsonValue(JsonValue, Content);
 }
 
 FResponse_GetConfigForSingleSettingTypeAllVersions::FResponse_GetConfigForSingleSettingTypeAllVersions(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
+	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -1971,170 +1971,170 @@ FString Traits_GetConfigForSingleSettingTypeAllVersions::Name = TEXT("GetConfigF
 
 FHttpRequestPtr FSettingsAPI::GetConfigForSingleSettingTypeAndVersion(const FRequest_GetConfigForSingleSettingTypeAndVersion& Request, const FDelegate_GetConfigForSingleSettingTypeAndVersion& Delegate /*= FDelegate_GetConfigForSingleSettingTypeAndVersion()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
-    if (!IsValid())
-        return nullptr;
+	if (!IsValid())
+		return nullptr;
 
-    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
 
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
 
-    RequestData->SetMetadata(Request.GetRequestMetadata());
+	RequestData->SetMetadata(Request.GetRequestMetadata());
 
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FSettingsAPI::OnGetConfigForSingleSettingTypeAndVersionResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindRaw(this, &FSettingsAPI::OnGetConfigForSingleSettingTypeAndVersionResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
 
-    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
 }
 
 void FSettingsAPI::OnGetConfigForSingleSettingTypeAndVersionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetConfigForSingleSettingTypeAndVersion Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
-    FHttpRequestCompleteDelegate ResponseDelegate;
+	FHttpRequestCompleteDelegate ResponseDelegate;
 
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FSettingsAPI::OnGetConfigForSingleSettingTypeAndVersionResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindRaw(this, &FSettingsAPI::OnGetConfigForSingleSettingTypeAndVersionResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
 
-    FResponse_GetConfigForSingleSettingTypeAndVersion Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+	FResponse_GetConfigForSingleSettingTypeAndVersion Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
 
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 FRequest_GetConfigForSingleSettingTypeAndVersion::FRequest_GetConfigForSingleSettingTypeAndVersion()
 {
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
+	RequestMetadata.Identifier = FGuid::NewGuid();
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetConfigForSingleSettingTypeAndVersion::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/settings/v1/setting_type/{setting_type_id}/v/{setting_version_id}"));
-    return Path;
+	static FName Path = FName(TEXT("/settings/v1/setting_type/{setting_type_id}/v/{setting_version_id}"));
+	return Path;
 }
 
 FString FRequest_GetConfigForSingleSettingTypeAndVersion::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
-        { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) },
-        { TEXT("setting_version_id"), ToStringFormatArg(SettingVersionId) }
-    };
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) },
+		{ TEXT("setting_version_id"), ToStringFormatArg(SettingVersionId) }
+	};
 
-    FString Path = FString::Format(TEXT("/settings/v1/setting_type/{setting_type_id}/v/{setting_version_id}"), PathParams);
+	FString Path = FString::Format(TEXT("/settings/v1/setting_type/{setting_type_id}/v/{setting_version_id}"), PathParams);
 
-    return Path;
+	return Path;
 }
 
 bool FRequest_GetConfigForSingleSettingTypeAndVersion::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
+	static const TArray<FString> Consumes = {  };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
 
-    HttpRequest->SetVerb(TEXT("GET"));
+	HttpRequest->SetVerb(TEXT("GET"));
 
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetConfigForSingleSettingTypeAndVersion - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetConfigForSingleSettingTypeAndVersion - failed to add bearer token"));
-        return false;
-    }
+	if (!AuthContext)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetConfigForSingleSettingTypeAndVersion - missing auth context"));
+		return false;
+	}
+	if (!AuthContext->AddBearerToken(HttpRequest))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetConfigForSingleSettingTypeAndVersion - failed to add bearer token"));
+		return false;
+	}
 
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetConfigForSingleSettingTypeAndVersion - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetConfigForSingleSettingTypeAndVersion - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
 
-    return true;
+	return true;
 }
 
 void FResponse_GetConfigForSingleSettingTypeAndVersion::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 403:
-        SetResponseString(TEXT("Forbidden"));
-        break;
-    case 404:
-        SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;setting_version_id_not_found&#x60; - The setting Version was not found for that type         "));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
+	FResponse::SetHttpResponseCode(InHttpResponseCode);
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		SetResponseString(TEXT("Successful Response"));
+		break;
+	case 403:
+		SetResponseString(TEXT("Forbidden"));
+		break;
+	case 404:
+		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;setting_version_id_not_found&#x60; - The setting Version was not found for that type         "));
+		break;
+	case 422:
+		SetResponseString(TEXT("Validation Error"));
+		break;
+	}
 }
 
 bool FResponse_GetConfigForSingleSettingTypeAndVersion::TryGetContentFor200(FRHAPI_SettingTypeVersion& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetConfigForSingleSettingTypeAndVersion::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetConfigForSingleSettingTypeAndVersion::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetConfigForSingleSettingTypeAndVersion::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetConfigForSingleSettingTypeAndVersion::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    return TryGetJsonValue(JsonValue, Content);
+	return TryGetJsonValue(JsonValue, Content);
 }
 
 FResponse_GetConfigForSingleSettingTypeAndVersion::FResponse_GetConfigForSingleSettingTypeAndVersion(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
+	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -2142,179 +2142,179 @@ FString Traits_GetConfigForSingleSettingTypeAndVersion::Name = TEXT("GetConfigFo
 
 FHttpRequestPtr FSettingsAPI::GetSinglePlayerIdSetting(const FRequest_GetSinglePlayerIdSetting& Request, const FDelegate_GetSinglePlayerIdSetting& Delegate /*= FDelegate_GetSinglePlayerIdSetting()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
-    if (!IsValid())
-        return nullptr;
+	if (!IsValid())
+		return nullptr;
 
-    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
 
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
 
-    RequestData->SetMetadata(Request.GetRequestMetadata());
+	RequestData->SetMetadata(Request.GetRequestMetadata());
 
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FSettingsAPI::OnGetSinglePlayerIdSettingResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindRaw(this, &FSettingsAPI::OnGetSinglePlayerIdSettingResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
 
-    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
 }
 
 void FSettingsAPI::OnGetSinglePlayerIdSettingResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetSinglePlayerIdSetting Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
-    FHttpRequestCompleteDelegate ResponseDelegate;
+	FHttpRequestCompleteDelegate ResponseDelegate;
 
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FSettingsAPI::OnGetSinglePlayerIdSettingResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindRaw(this, &FSettingsAPI::OnGetSinglePlayerIdSettingResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
 
-    FResponse_GetSinglePlayerIdSetting Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+	FResponse_GetSinglePlayerIdSetting Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
 
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 FRequest_GetSinglePlayerIdSetting::FRequest_GetSinglePlayerIdSetting()
 {
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
+	RequestMetadata.Identifier = FGuid::NewGuid();
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetSinglePlayerIdSetting::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/settings/v1/player/{player_id}/setting_type/{setting_type_id}/key/{key}"));
-    return Path;
+	static FName Path = FName(TEXT("/settings/v1/player/{player_id}/setting_type/{setting_type_id}/key/{key}"));
+	return Path;
 }
 
 FString FRequest_GetSinglePlayerIdSetting::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
-        { TEXT("player_id"), ToStringFormatArg(PlayerId) },
-        { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) },
-        { TEXT("key"), ToStringFormatArg(Key) }
-    };
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("player_id"), ToStringFormatArg(PlayerId) },
+		{ TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) },
+		{ TEXT("key"), ToStringFormatArg(Key) }
+	};
 
-    FString Path = FString::Format(TEXT("/settings/v1/player/{player_id}/setting_type/{setting_type_id}/key/{key}"), PathParams);
+	FString Path = FString::Format(TEXT("/settings/v1/player/{player_id}/setting_type/{setting_type_id}/key/{key}"), PathParams);
 
-    return Path;
+	return Path;
 }
 
 bool FRequest_GetSinglePlayerIdSetting::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
+	static const TArray<FString> Consumes = {  };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
 
-    HttpRequest->SetVerb(TEXT("GET"));
+	HttpRequest->SetVerb(TEXT("GET"));
 
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetSinglePlayerIdSetting - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetSinglePlayerIdSetting - failed to add bearer token"));
-        return false;
-    }
+	if (!AuthContext)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetSinglePlayerIdSetting - missing auth context"));
+		return false;
+	}
+	if (!AuthContext->AddBearerToken(HttpRequest))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetSinglePlayerIdSetting - failed to add bearer token"));
+		return false;
+	}
 
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetSinglePlayerIdSetting - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetSinglePlayerIdSetting - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
 
-    return true;
+	return true;
 }
 
 void FResponse_GetSinglePlayerIdSetting::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 400:
-        SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator "));
-        break;
-    case 403:
-        SetResponseString(TEXT("Forbidden"));
-        break;
-    case 404:
-        SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;not_found&#x60; - The setting key was not found         "));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
+	FResponse::SetHttpResponseCode(InHttpResponseCode);
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		SetResponseString(TEXT("Successful Response"));
+		break;
+	case 400:
+		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator "));
+		break;
+	case 403:
+		SetResponseString(TEXT("Forbidden"));
+		break;
+	case 404:
+		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;not_found&#x60; - The setting key was not found         "));
+		break;
+	case 422:
+		SetResponseString(TEXT("Validation Error"));
+		break;
+	}
 }
 
 bool FResponse_GetSinglePlayerIdSetting::TryGetContentFor200(FRHAPI_SettingData& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetSinglePlayerIdSetting::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetSinglePlayerIdSetting::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetSinglePlayerIdSetting::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetSinglePlayerIdSetting::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetSinglePlayerIdSetting::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    return TryGetJsonValue(JsonValue, Content);
+	return TryGetJsonValue(JsonValue, Content);
 }
 
 FResponse_GetSinglePlayerIdSetting::FResponse_GetSinglePlayerIdSetting(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
+	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -2322,179 +2322,179 @@ FString Traits_GetSinglePlayerIdSetting::Name = TEXT("GetSinglePlayerIdSetting")
 
 FHttpRequestPtr FSettingsAPI::GetSinglePlayerUuidSetting(const FRequest_GetSinglePlayerUuidSetting& Request, const FDelegate_GetSinglePlayerUuidSetting& Delegate /*= FDelegate_GetSinglePlayerUuidSetting()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
-    if (!IsValid())
-        return nullptr;
+	if (!IsValid())
+		return nullptr;
 
-    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
 
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
 
-    RequestData->SetMetadata(Request.GetRequestMetadata());
+	RequestData->SetMetadata(Request.GetRequestMetadata());
 
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FSettingsAPI::OnGetSinglePlayerUuidSettingResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindRaw(this, &FSettingsAPI::OnGetSinglePlayerUuidSettingResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
 
-    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
 }
 
 void FSettingsAPI::OnGetSinglePlayerUuidSettingResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetSinglePlayerUuidSetting Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
-    FHttpRequestCompleteDelegate ResponseDelegate;
+	FHttpRequestCompleteDelegate ResponseDelegate;
 
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FSettingsAPI::OnGetSinglePlayerUuidSettingResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindRaw(this, &FSettingsAPI::OnGetSinglePlayerUuidSettingResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
 
-    FResponse_GetSinglePlayerUuidSetting Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+	FResponse_GetSinglePlayerUuidSetting Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
 
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 FRequest_GetSinglePlayerUuidSetting::FRequest_GetSinglePlayerUuidSetting()
 {
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
+	RequestMetadata.Identifier = FGuid::NewGuid();
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetSinglePlayerUuidSetting::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key/{key}"));
-    return Path;
+	static FName Path = FName(TEXT("/settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key/{key}"));
+	return Path;
 }
 
 FString FRequest_GetSinglePlayerUuidSetting::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
-        { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
-        { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) },
-        { TEXT("key"), ToStringFormatArg(Key) }
-    };
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
+		{ TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) },
+		{ TEXT("key"), ToStringFormatArg(Key) }
+	};
 
-    FString Path = FString::Format(TEXT("/settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key/{key}"), PathParams);
+	FString Path = FString::Format(TEXT("/settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key/{key}"), PathParams);
 
-    return Path;
+	return Path;
 }
 
 bool FRequest_GetSinglePlayerUuidSetting::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
+	static const TArray<FString> Consumes = {  };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
 
-    HttpRequest->SetVerb(TEXT("GET"));
+	HttpRequest->SetVerb(TEXT("GET"));
 
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetSinglePlayerUuidSetting - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetSinglePlayerUuidSetting - failed to add bearer token"));
-        return false;
-    }
+	if (!AuthContext)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetSinglePlayerUuidSetting - missing auth context"));
+		return false;
+	}
+	if (!AuthContext->AddBearerToken(HttpRequest))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetSinglePlayerUuidSetting - failed to add bearer token"));
+		return false;
+	}
 
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetSinglePlayerUuidSetting - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetSinglePlayerUuidSetting - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
 
-    return true;
+	return true;
 }
 
 void FResponse_GetSinglePlayerUuidSetting::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 400:
-        SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator "));
-        break;
-    case 403:
-        SetResponseString(TEXT("Forbidden"));
-        break;
-    case 404:
-        SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;not_found&#x60; - The setting key was not found         "));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
+	FResponse::SetHttpResponseCode(InHttpResponseCode);
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		SetResponseString(TEXT("Successful Response"));
+		break;
+	case 400:
+		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator "));
+		break;
+	case 403:
+		SetResponseString(TEXT("Forbidden"));
+		break;
+	case 404:
+		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;not_found&#x60; - The setting key was not found         "));
+		break;
+	case 422:
+		SetResponseString(TEXT("Validation Error"));
+		break;
+	}
 }
 
 bool FResponse_GetSinglePlayerUuidSetting::TryGetContentFor200(FRHAPI_SettingData& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetSinglePlayerUuidSetting::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetSinglePlayerUuidSetting::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetSinglePlayerUuidSetting::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetSinglePlayerUuidSetting::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetSinglePlayerUuidSetting::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    return TryGetJsonValue(JsonValue, Content);
+	return TryGetJsonValue(JsonValue, Content);
 }
 
 FResponse_GetSinglePlayerUuidSetting::FResponse_GetSinglePlayerUuidSetting(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
+	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -2502,178 +2502,178 @@ FString Traits_GetSinglePlayerUuidSetting::Name = TEXT("GetSinglePlayerUuidSetti
 
 FHttpRequestPtr FSettingsAPI::GetSinglePlayerUuidSettingSelf(const FRequest_GetSinglePlayerUuidSettingSelf& Request, const FDelegate_GetSinglePlayerUuidSettingSelf& Delegate /*= FDelegate_GetSinglePlayerUuidSettingSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
-    if (!IsValid())
-        return nullptr;
+	if (!IsValid())
+		return nullptr;
 
-    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
 
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
 
-    RequestData->SetMetadata(Request.GetRequestMetadata());
+	RequestData->SetMetadata(Request.GetRequestMetadata());
 
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FSettingsAPI::OnGetSinglePlayerUuidSettingSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindRaw(this, &FSettingsAPI::OnGetSinglePlayerUuidSettingSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
 
-    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
 }
 
 void FSettingsAPI::OnGetSinglePlayerUuidSettingSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetSinglePlayerUuidSettingSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
-    FHttpRequestCompleteDelegate ResponseDelegate;
+	FHttpRequestCompleteDelegate ResponseDelegate;
 
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FSettingsAPI::OnGetSinglePlayerUuidSettingSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindRaw(this, &FSettingsAPI::OnGetSinglePlayerUuidSettingSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
 
-    FResponse_GetSinglePlayerUuidSettingSelf Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+	FResponse_GetSinglePlayerUuidSettingSelf Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
 
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 FRequest_GetSinglePlayerUuidSettingSelf::FRequest_GetSinglePlayerUuidSettingSelf()
 {
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
+	RequestMetadata.Identifier = FGuid::NewGuid();
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetSinglePlayerUuidSettingSelf::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/settings/v2/player/me/setting_type/{setting_type_id}/key/{key}"));
-    return Path;
+	static FName Path = FName(TEXT("/settings/v2/player/me/setting_type/{setting_type_id}/key/{key}"));
+	return Path;
 }
 
 FString FRequest_GetSinglePlayerUuidSettingSelf::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
-        { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) },
-        { TEXT("key"), ToStringFormatArg(Key) }
-    };
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) },
+		{ TEXT("key"), ToStringFormatArg(Key) }
+	};
 
-    FString Path = FString::Format(TEXT("/settings/v2/player/me/setting_type/{setting_type_id}/key/{key}"), PathParams);
+	FString Path = FString::Format(TEXT("/settings/v2/player/me/setting_type/{setting_type_id}/key/{key}"), PathParams);
 
-    return Path;
+	return Path;
 }
 
 bool FRequest_GetSinglePlayerUuidSettingSelf::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
+	static const TArray<FString> Consumes = {  };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
 
-    HttpRequest->SetVerb(TEXT("GET"));
+	HttpRequest->SetVerb(TEXT("GET"));
 
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetSinglePlayerUuidSettingSelf - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetSinglePlayerUuidSettingSelf - failed to add bearer token"));
-        return false;
-    }
+	if (!AuthContext)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetSinglePlayerUuidSettingSelf - missing auth context"));
+		return false;
+	}
+	if (!AuthContext->AddBearerToken(HttpRequest))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetSinglePlayerUuidSettingSelf - failed to add bearer token"));
+		return false;
+	}
 
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetSinglePlayerUuidSettingSelf - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetSinglePlayerUuidSettingSelf - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
 
-    return true;
+	return true;
 }
 
 void FResponse_GetSinglePlayerUuidSettingSelf::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 400:
-        SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator "));
-        break;
-    case 403:
-        SetResponseString(TEXT("Forbidden"));
-        break;
-    case 404:
-        SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;not_found&#x60; - The setting key was not found         "));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
+	FResponse::SetHttpResponseCode(InHttpResponseCode);
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		SetResponseString(TEXT("Successful Response"));
+		break;
+	case 400:
+		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator "));
+		break;
+	case 403:
+		SetResponseString(TEXT("Forbidden"));
+		break;
+	case 404:
+		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;not_found&#x60; - The setting key was not found         "));
+		break;
+	case 422:
+		SetResponseString(TEXT("Validation Error"));
+		break;
+	}
 }
 
 bool FResponse_GetSinglePlayerUuidSettingSelf::TryGetContentFor200(FRHAPI_SettingData& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetSinglePlayerUuidSettingSelf::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetSinglePlayerUuidSettingSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetSinglePlayerUuidSettingSelf::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetSinglePlayerUuidSettingSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetSinglePlayerUuidSettingSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    return TryGetJsonValue(JsonValue, Content);
+	return TryGetJsonValue(JsonValue, Content);
 }
 
 FResponse_GetSinglePlayerUuidSettingSelf::FResponse_GetSinglePlayerUuidSettingSelf(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
+	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -2681,198 +2681,198 @@ FString Traits_GetSinglePlayerUuidSettingSelf::Name = TEXT("GetSinglePlayerUuidS
 
 FHttpRequestPtr FSettingsAPI::SetSinglePlayerIdSetting(const FRequest_SetSinglePlayerIdSetting& Request, const FDelegate_SetSinglePlayerIdSetting& Delegate /*= FDelegate_SetSinglePlayerIdSetting()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
-    if (!IsValid())
-        return nullptr;
+	if (!IsValid())
+		return nullptr;
 
-    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
 
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
 
-    RequestData->SetMetadata(Request.GetRequestMetadata());
+	RequestData->SetMetadata(Request.GetRequestMetadata());
 
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FSettingsAPI::OnSetSinglePlayerIdSettingResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindRaw(this, &FSettingsAPI::OnSetSinglePlayerIdSettingResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
 
-    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
 }
 
 void FSettingsAPI::OnSetSinglePlayerIdSettingResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SetSinglePlayerIdSetting Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
-    FHttpRequestCompleteDelegate ResponseDelegate;
+	FHttpRequestCompleteDelegate ResponseDelegate;
 
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FSettingsAPI::OnSetSinglePlayerIdSettingResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindRaw(this, &FSettingsAPI::OnSetSinglePlayerIdSettingResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
 
-    FResponse_SetSinglePlayerIdSetting Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+	FResponse_SetSinglePlayerIdSetting Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
 
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 FRequest_SetSinglePlayerIdSetting::FRequest_SetSinglePlayerIdSetting()
 {
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
+	RequestMetadata.Identifier = FGuid::NewGuid();
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_SetSinglePlayerIdSetting::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/settings/v1/player/{player_id}/setting_type/{setting_type_id}/key/{key}"));
-    return Path;
+	static FName Path = FName(TEXT("/settings/v1/player/{player_id}/setting_type/{setting_type_id}/key/{key}"));
+	return Path;
 }
 
 FString FRequest_SetSinglePlayerIdSetting::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
-        { TEXT("player_id"), ToStringFormatArg(PlayerId) },
-        { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) },
-        { TEXT("key"), ToStringFormatArg(Key) }
-    };
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("player_id"), ToStringFormatArg(PlayerId) },
+		{ TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) },
+		{ TEXT("key"), ToStringFormatArg(Key) }
+	};
 
-    FString Path = FString::Format(TEXT("/settings/v1/player/{player_id}/setting_type/{setting_type_id}/key/{key}"), PathParams);
+	FString Path = FString::Format(TEXT("/settings/v1/player/{player_id}/setting_type/{setting_type_id}/key/{key}"), PathParams);
 
-    return Path;
+	return Path;
 }
 
 bool FRequest_SetSinglePlayerIdSetting::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-    static const TArray<FString> Consumes = { TEXT("application/json") };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
+	static const TArray<FString> Consumes = { TEXT("application/json") };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
 
-    HttpRequest->SetVerb(TEXT("PUT"));
+	HttpRequest->SetVerb(TEXT("PUT"));
 
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_SetSinglePlayerIdSetting - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_SetSinglePlayerIdSetting - failed to add bearer token"));
-        return false;
-    }
+	if (!AuthContext)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_SetSinglePlayerIdSetting - missing auth context"));
+		return false;
+	}
+	if (!AuthContext->AddBearerToken(HttpRequest))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_SetSinglePlayerIdSetting - failed to add bearer token"));
+		return false;
+	}
 
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-        // Body parameters
-        FString JsonBody;
-        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+		// Body parameters
+		FString JsonBody;
+		TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
 
-        WriteJsonValue(Writer, SetSinglePlayerSettingRequest);
-        Writer->Close();
+		WriteJsonValue(Writer, SetSinglePlayerSettingRequest);
+		Writer->Close();
 
-        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
-        HttpRequest->SetContentAsString(JsonBody);
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_SetSinglePlayerIdSetting - Body parameter (FRHAPI_SetSinglePlayerSettingRequest) was ignored, not supported in multipart form"));
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_SetSinglePlayerIdSetting - Body parameter (FRHAPI_SetSinglePlayerSettingRequest) was ignored, not supported in urlencoded requests"));
-    }
-    else
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_SetSinglePlayerIdSetting - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
+		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
+		HttpRequest->SetContentAsString(JsonBody);
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_SetSinglePlayerIdSetting - Body parameter (FRHAPI_SetSinglePlayerSettingRequest) was ignored, not supported in multipart form"));
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_SetSinglePlayerIdSetting - Body parameter (FRHAPI_SetSinglePlayerSettingRequest) was ignored, not supported in urlencoded requests"));
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_SetSinglePlayerIdSetting - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
 
-    return true;
+	return true;
 }
 
 void FResponse_SetSinglePlayerIdSetting::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 400:
-        SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator - &#x60;setting_version_invalid&#x60; - Setting Version is not valid for the provided type - &#x60;update_not_enabled&#x60; - Setting Type Version has updates disabled - &#x60;setting_key_invalid&#x60; - Setting Key does not meet requirements for that type/version - &#x60;setting_value_invalid&#x60; - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details "));
-        break;
-    case 403:
-        SetResponseString(TEXT("Forbidden"));
-        break;
-    case 404:
-        SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist - This will only occur for legacy setting types.         "));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    case 500:
-        SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_version_schema_invalid&#x60; - Setting type/version jsonschema is invalid and could not be used to validate the setting value.  See response description for more details.         "));
-        break;
-    }
+	FResponse::SetHttpResponseCode(InHttpResponseCode);
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		SetResponseString(TEXT("Successful Response"));
+		break;
+	case 400:
+		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator - &#x60;setting_version_invalid&#x60; - Setting Version is not valid for the provided type - &#x60;update_not_enabled&#x60; - Setting Type Version has updates disabled - &#x60;setting_key_invalid&#x60; - Setting Key does not meet requirements for that type/version - &#x60;setting_value_invalid&#x60; - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details "));
+		break;
+	case 403:
+		SetResponseString(TEXT("Forbidden"));
+		break;
+	case 404:
+		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist - This will only occur for legacy setting types.         "));
+		break;
+	case 422:
+		SetResponseString(TEXT("Validation Error"));
+		break;
+	case 500:
+		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_version_schema_invalid&#x60; - Setting type/version jsonschema is invalid and could not be used to validate the setting value.  See response description for more details.         "));
+		break;
+	}
 }
 
 bool FResponse_SetSinglePlayerIdSetting::TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SetSinglePlayerIdSetting::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SetSinglePlayerIdSetting::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SetSinglePlayerIdSetting::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SetSinglePlayerIdSetting::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SetSinglePlayerIdSetting::TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SetSinglePlayerIdSetting::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    return TryGetJsonValue(JsonValue, Content);
+	return TryGetJsonValue(JsonValue, Content);
 }
 
 FResponse_SetSinglePlayerIdSetting::FResponse_SetSinglePlayerIdSetting(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
+	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -2880,198 +2880,198 @@ FString Traits_SetSinglePlayerIdSetting::Name = TEXT("SetSinglePlayerIdSetting")
 
 FHttpRequestPtr FSettingsAPI::SetSinglePlayerUuidSetting(const FRequest_SetSinglePlayerUuidSetting& Request, const FDelegate_SetSinglePlayerUuidSetting& Delegate /*= FDelegate_SetSinglePlayerUuidSetting()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
-    if (!IsValid())
-        return nullptr;
+	if (!IsValid())
+		return nullptr;
 
-    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
 
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
 
-    RequestData->SetMetadata(Request.GetRequestMetadata());
+	RequestData->SetMetadata(Request.GetRequestMetadata());
 
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FSettingsAPI::OnSetSinglePlayerUuidSettingResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindRaw(this, &FSettingsAPI::OnSetSinglePlayerUuidSettingResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
 
-    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
 }
 
 void FSettingsAPI::OnSetSinglePlayerUuidSettingResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SetSinglePlayerUuidSetting Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
-    FHttpRequestCompleteDelegate ResponseDelegate;
+	FHttpRequestCompleteDelegate ResponseDelegate;
 
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FSettingsAPI::OnSetSinglePlayerUuidSettingResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindRaw(this, &FSettingsAPI::OnSetSinglePlayerUuidSettingResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
 
-    FResponse_SetSinglePlayerUuidSetting Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+	FResponse_SetSinglePlayerUuidSetting Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
 
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 FRequest_SetSinglePlayerUuidSetting::FRequest_SetSinglePlayerUuidSetting()
 {
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
+	RequestMetadata.Identifier = FGuid::NewGuid();
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_SetSinglePlayerUuidSetting::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key/{key}"));
-    return Path;
+	static FName Path = FName(TEXT("/settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key/{key}"));
+	return Path;
 }
 
 FString FRequest_SetSinglePlayerUuidSetting::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
-        { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
-        { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) },
-        { TEXT("key"), ToStringFormatArg(Key) }
-    };
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
+		{ TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) },
+		{ TEXT("key"), ToStringFormatArg(Key) }
+	};
 
-    FString Path = FString::Format(TEXT("/settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key/{key}"), PathParams);
+	FString Path = FString::Format(TEXT("/settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key/{key}"), PathParams);
 
-    return Path;
+	return Path;
 }
 
 bool FRequest_SetSinglePlayerUuidSetting::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-    static const TArray<FString> Consumes = { TEXT("application/json") };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
+	static const TArray<FString> Consumes = { TEXT("application/json") };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
 
-    HttpRequest->SetVerb(TEXT("PUT"));
+	HttpRequest->SetVerb(TEXT("PUT"));
 
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_SetSinglePlayerUuidSetting - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_SetSinglePlayerUuidSetting - failed to add bearer token"));
-        return false;
-    }
+	if (!AuthContext)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_SetSinglePlayerUuidSetting - missing auth context"));
+		return false;
+	}
+	if (!AuthContext->AddBearerToken(HttpRequest))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_SetSinglePlayerUuidSetting - failed to add bearer token"));
+		return false;
+	}
 
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-        // Body parameters
-        FString JsonBody;
-        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+		// Body parameters
+		FString JsonBody;
+		TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
 
-        WriteJsonValue(Writer, SetSinglePlayerSettingRequest);
-        Writer->Close();
+		WriteJsonValue(Writer, SetSinglePlayerSettingRequest);
+		Writer->Close();
 
-        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
-        HttpRequest->SetContentAsString(JsonBody);
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_SetSinglePlayerUuidSetting - Body parameter (FRHAPI_SetSinglePlayerSettingRequest) was ignored, not supported in multipart form"));
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_SetSinglePlayerUuidSetting - Body parameter (FRHAPI_SetSinglePlayerSettingRequest) was ignored, not supported in urlencoded requests"));
-    }
-    else
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_SetSinglePlayerUuidSetting - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
+		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
+		HttpRequest->SetContentAsString(JsonBody);
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_SetSinglePlayerUuidSetting - Body parameter (FRHAPI_SetSinglePlayerSettingRequest) was ignored, not supported in multipart form"));
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_SetSinglePlayerUuidSetting - Body parameter (FRHAPI_SetSinglePlayerSettingRequest) was ignored, not supported in urlencoded requests"));
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_SetSinglePlayerUuidSetting - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
 
-    return true;
+	return true;
 }
 
 void FResponse_SetSinglePlayerUuidSetting::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 400:
-        SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator - &#x60;setting_version_invalid&#x60; - Setting Version is not valid for the provided type - &#x60;update_not_enabled&#x60; - Setting Type Version has updates disabled - &#x60;setting_key_invalid&#x60; - Setting Key does not meet requirements for that type/version - &#x60;setting_value_invalid&#x60; - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details "));
-        break;
-    case 403:
-        SetResponseString(TEXT("Forbidden"));
-        break;
-    case 404:
-        SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist - This will only occur for legacy setting types.         "));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    case 500:
-        SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_version_schema_invalid&#x60; - Setting type/version jsonschema is invalid and could not be used to validate the setting value.  See response description for more details.         "));
-        break;
-    }
+	FResponse::SetHttpResponseCode(InHttpResponseCode);
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		SetResponseString(TEXT("Successful Response"));
+		break;
+	case 400:
+		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator - &#x60;setting_version_invalid&#x60; - Setting Version is not valid for the provided type - &#x60;update_not_enabled&#x60; - Setting Type Version has updates disabled - &#x60;setting_key_invalid&#x60; - Setting Key does not meet requirements for that type/version - &#x60;setting_value_invalid&#x60; - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details "));
+		break;
+	case 403:
+		SetResponseString(TEXT("Forbidden"));
+		break;
+	case 404:
+		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist - This will only occur for legacy setting types.         "));
+		break;
+	case 422:
+		SetResponseString(TEXT("Validation Error"));
+		break;
+	case 500:
+		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_version_schema_invalid&#x60; - Setting type/version jsonschema is invalid and could not be used to validate the setting value.  See response description for more details.         "));
+		break;
+	}
 }
 
 bool FResponse_SetSinglePlayerUuidSetting::TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SetSinglePlayerUuidSetting::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SetSinglePlayerUuidSetting::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SetSinglePlayerUuidSetting::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SetSinglePlayerUuidSetting::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SetSinglePlayerUuidSetting::TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SetSinglePlayerUuidSetting::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    return TryGetJsonValue(JsonValue, Content);
+	return TryGetJsonValue(JsonValue, Content);
 }
 
 FResponse_SetSinglePlayerUuidSetting::FResponse_SetSinglePlayerUuidSetting(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
+	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -3079,197 +3079,197 @@ FString Traits_SetSinglePlayerUuidSetting::Name = TEXT("SetSinglePlayerUuidSetti
 
 FHttpRequestPtr FSettingsAPI::SetSinglePlayerUuidSettingSelf(const FRequest_SetSinglePlayerUuidSettingSelf& Request, const FDelegate_SetSinglePlayerUuidSettingSelf& Delegate /*= FDelegate_SetSinglePlayerUuidSettingSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
-    if (!IsValid())
-        return nullptr;
+	if (!IsValid())
+		return nullptr;
 
-    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
 
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
 
-    RequestData->SetMetadata(Request.GetRequestMetadata());
+	RequestData->SetMetadata(Request.GetRequestMetadata());
 
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FSettingsAPI::OnSetSinglePlayerUuidSettingSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindRaw(this, &FSettingsAPI::OnSetSinglePlayerUuidSettingSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
 
-    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
 }
 
 void FSettingsAPI::OnSetSinglePlayerUuidSettingSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SetSinglePlayerUuidSettingSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
-    FHttpRequestCompleteDelegate ResponseDelegate;
+	FHttpRequestCompleteDelegate ResponseDelegate;
 
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FSettingsAPI::OnSetSinglePlayerUuidSettingSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindRaw(this, &FSettingsAPI::OnSetSinglePlayerUuidSettingSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
 
-    FResponse_SetSinglePlayerUuidSettingSelf Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+	FResponse_SetSinglePlayerUuidSettingSelf Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
 
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 FRequest_SetSinglePlayerUuidSettingSelf::FRequest_SetSinglePlayerUuidSettingSelf()
 {
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
+	RequestMetadata.Identifier = FGuid::NewGuid();
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_SetSinglePlayerUuidSettingSelf::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/settings/v2/player/me/setting_type/{setting_type_id}/key/{key}"));
-    return Path;
+	static FName Path = FName(TEXT("/settings/v2/player/me/setting_type/{setting_type_id}/key/{key}"));
+	return Path;
 }
 
 FString FRequest_SetSinglePlayerUuidSettingSelf::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
-        { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) },
-        { TEXT("key"), ToStringFormatArg(Key) }
-    };
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) },
+		{ TEXT("key"), ToStringFormatArg(Key) }
+	};
 
-    FString Path = FString::Format(TEXT("/settings/v2/player/me/setting_type/{setting_type_id}/key/{key}"), PathParams);
+	FString Path = FString::Format(TEXT("/settings/v2/player/me/setting_type/{setting_type_id}/key/{key}"), PathParams);
 
-    return Path;
+	return Path;
 }
 
 bool FRequest_SetSinglePlayerUuidSettingSelf::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-    static const TArray<FString> Consumes = { TEXT("application/json") };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
+	static const TArray<FString> Consumes = { TEXT("application/json") };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
 
-    HttpRequest->SetVerb(TEXT("PUT"));
+	HttpRequest->SetVerb(TEXT("PUT"));
 
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_SetSinglePlayerUuidSettingSelf - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_SetSinglePlayerUuidSettingSelf - failed to add bearer token"));
-        return false;
-    }
+	if (!AuthContext)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_SetSinglePlayerUuidSettingSelf - missing auth context"));
+		return false;
+	}
+	if (!AuthContext->AddBearerToken(HttpRequest))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_SetSinglePlayerUuidSettingSelf - failed to add bearer token"));
+		return false;
+	}
 
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-        // Body parameters
-        FString JsonBody;
-        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+		// Body parameters
+		FString JsonBody;
+		TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
 
-        WriteJsonValue(Writer, SetSinglePlayerSettingRequest);
-        Writer->Close();
+		WriteJsonValue(Writer, SetSinglePlayerSettingRequest);
+		Writer->Close();
 
-        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
-        HttpRequest->SetContentAsString(JsonBody);
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_SetSinglePlayerUuidSettingSelf - Body parameter (FRHAPI_SetSinglePlayerSettingRequest) was ignored, not supported in multipart form"));
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_SetSinglePlayerUuidSettingSelf - Body parameter (FRHAPI_SetSinglePlayerSettingRequest) was ignored, not supported in urlencoded requests"));
-    }
-    else
-    {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_SetSinglePlayerUuidSettingSelf - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
+		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
+		HttpRequest->SetContentAsString(JsonBody);
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_SetSinglePlayerUuidSettingSelf - Body parameter (FRHAPI_SetSinglePlayerSettingRequest) was ignored, not supported in multipart form"));
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_SetSinglePlayerUuidSettingSelf - Body parameter (FRHAPI_SetSinglePlayerSettingRequest) was ignored, not supported in urlencoded requests"));
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_SetSinglePlayerUuidSettingSelf - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
 
-    return true;
+	return true;
 }
 
 void FResponse_SetSinglePlayerUuidSettingSelf::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 400:
-        SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator - &#x60;setting_version_invalid&#x60; - Setting Version is not valid for the provided type - &#x60;update_not_enabled&#x60; - Setting Type Version has updates disabled - &#x60;setting_key_invalid&#x60; - Setting Key does not meet requirements for that type/version - &#x60;setting_value_invalid&#x60; - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details "));
-        break;
-    case 403:
-        SetResponseString(TEXT("Forbidden"));
-        break;
-    case 404:
-        SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist - This will only occur for legacy setting types.         "));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    case 500:
-        SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_version_schema_invalid&#x60; - Setting type/version jsonschema is invalid and could not be used to validate the setting value.  See response description for more details.         "));
-        break;
-    }
+	FResponse::SetHttpResponseCode(InHttpResponseCode);
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		SetResponseString(TEXT("Successful Response"));
+		break;
+	case 400:
+		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator - &#x60;setting_version_invalid&#x60; - Setting Version is not valid for the provided type - &#x60;update_not_enabled&#x60; - Setting Type Version has updates disabled - &#x60;setting_key_invalid&#x60; - Setting Key does not meet requirements for that type/version - &#x60;setting_value_invalid&#x60; - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details "));
+		break;
+	case 403:
+		SetResponseString(TEXT("Forbidden"));
+		break;
+	case 404:
+		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist - This will only occur for legacy setting types.         "));
+		break;
+	case 422:
+		SetResponseString(TEXT("Validation Error"));
+		break;
+	case 500:
+		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_version_schema_invalid&#x60; - Setting type/version jsonschema is invalid and could not be used to validate the setting value.  See response description for more details.         "));
+		break;
+	}
 }
 
 bool FResponse_SetSinglePlayerUuidSettingSelf::TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SetSinglePlayerUuidSettingSelf::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SetSinglePlayerUuidSettingSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SetSinglePlayerUuidSettingSelf::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SetSinglePlayerUuidSettingSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SetSinglePlayerUuidSettingSelf::TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const
 {
-    return TryGetJsonValue(ResponseJson, OutContent);
+	return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SetSinglePlayerUuidSettingSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    return TryGetJsonValue(JsonValue, Content);
+	return TryGetJsonValue(JsonValue, Content);
 }
 
 FResponse_SetSinglePlayerUuidSettingSelf::FResponse_SetSinglePlayerUuidSettingSelf(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
+	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 

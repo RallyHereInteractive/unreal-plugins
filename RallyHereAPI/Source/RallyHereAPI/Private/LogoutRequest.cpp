@@ -21,23 +21,23 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_LogoutRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("refresh_token"));
-    RallyHereAPI::WriteJsonValue(Writer, RefreshToken);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("refresh_token"));
+	RallyHereAPI::WriteJsonValue(Writer, RefreshToken);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_LogoutRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonRefreshTokenField = (*Object)->TryGetField(TEXT("refresh_token"));
-    ParseSuccess &= JsonRefreshTokenField.IsValid() && !JsonRefreshTokenField->IsNull() && TryGetJsonValue(JsonRefreshTokenField, RefreshToken);
+	const TSharedPtr<FJsonValue> JsonRefreshTokenField = (*Object)->TryGetField(TEXT("refresh_token"));
+	ParseSuccess &= JsonRefreshTokenField.IsValid() && !JsonRefreshTokenField->IsNull() && TryGetJsonValue(JsonRefreshTokenField, RefreshToken);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

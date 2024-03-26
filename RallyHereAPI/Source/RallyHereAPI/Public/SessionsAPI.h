@@ -184,97 +184,97 @@ DECLARE_DELEGATE_OneParam(FDelegate_UpdateSessionPlayerByUuidV2, const FResponse
 class RALLYHEREAPI_API FSessionsAPI : public FAPI
 {
 public:
-    FSessionsAPI();
-    virtual ~FSessionsAPI();
+	FSessionsAPI();
+	virtual ~FSessionsAPI();
 
-    FHttpRequestPtr AcknowledgeBackfillRequest(const FRequest_AcknowledgeBackfillRequest& Request, const FDelegate_AcknowledgeBackfillRequest& Delegate = FDelegate_AcknowledgeBackfillRequest(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr AddPlatformSessionToRallyHereSession(const FRequest_AddPlatformSessionToRallyHereSession& Request, const FDelegate_AddPlatformSessionToRallyHereSession& Delegate = FDelegate_AddPlatformSessionToRallyHereSession(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr BackfillConfig(const FRequest_BackfillConfig& Request, const FDelegate_BackfillConfig& Delegate = FDelegate_BackfillConfig(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr CreateInstanceRequest(const FRequest_CreateInstanceRequest& Request, const FDelegate_CreateInstanceRequest& Delegate = FDelegate_CreateInstanceRequest(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr CreateOrJoinSession(const FRequest_CreateOrJoinSession& Request, const FDelegate_CreateOrJoinSession& Delegate = FDelegate_CreateOrJoinSession(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr DeleteBackfillRequest(const FRequest_DeleteBackfillRequest& Request, const FDelegate_DeleteBackfillRequest& Delegate = FDelegate_DeleteBackfillRequest(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr DeleteBrowserInfo(const FRequest_DeleteBrowserInfo& Request, const FDelegate_DeleteBrowserInfo& Delegate = FDelegate_DeleteBrowserInfo(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr DeletePlatformSessionFromRallyHereSession(const FRequest_DeletePlatformSessionFromRallyHereSession& Request, const FDelegate_DeletePlatformSessionFromRallyHereSession& Delegate = FDelegate_DeletePlatformSessionFromRallyHereSession(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr EndInstance(const FRequest_EndInstance& Request, const FDelegate_EndInstance& Delegate = FDelegate_EndInstance(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetAllSessionTemplates(const FRequest_GetAllSessionTemplates& Request, const FDelegate_GetAllSessionTemplates& Delegate = FDelegate_GetAllSessionTemplates(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetBrowserSessionsByType(const FRequest_GetBrowserSessionsByType& Request, const FDelegate_GetBrowserSessionsByType& Delegate = FDelegate_GetBrowserSessionsByType(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetConnectionInfoSelf(const FRequest_GetConnectionInfoSelf& Request, const FDelegate_GetConnectionInfoSelf& Delegate = FDelegate_GetConnectionInfoSelf(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetPlatformSessionInfo(const FRequest_GetPlatformSessionInfo& Request, const FDelegate_GetPlatformSessionInfo& Delegate = FDelegate_GetPlatformSessionInfo(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetPlayerSessions(const FRequest_GetPlayerSessions& Request, const FDelegate_GetPlayerSessions& Delegate = FDelegate_GetPlayerSessions(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetPlayerSessionsByUuid(const FRequest_GetPlayerSessionsByUuid& Request, const FDelegate_GetPlayerSessionsByUuid& Delegate = FDelegate_GetPlayerSessionsByUuid(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetPlayerSessionsByUuidV2(const FRequest_GetPlayerSessionsByUuidV2& Request, const FDelegate_GetPlayerSessionsByUuidV2& Delegate = FDelegate_GetPlayerSessionsByUuidV2(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetPlayerSessionsSelf(const FRequest_GetPlayerSessionsSelf& Request, const FDelegate_GetPlayerSessionsSelf& Delegate = FDelegate_GetPlayerSessionsSelf(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetSessionByAllocationId(const FRequest_GetSessionByAllocationId& Request, const FDelegate_GetSessionByAllocationId& Delegate = FDelegate_GetSessionByAllocationId(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetSessionById(const FRequest_GetSessionById& Request, const FDelegate_GetSessionById& Delegate = FDelegate_GetSessionById(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetSessionTemplateByType(const FRequest_GetSessionTemplateByType& Request, const FDelegate_GetSessionTemplateByType& Delegate = FDelegate_GetSessionTemplateByType(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr InstanceHealthCheck(const FRequest_InstanceHealthCheck& Request, const FDelegate_InstanceHealthCheck& Delegate = FDelegate_InstanceHealthCheck(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr InstanceHealthConfig(const FRequest_InstanceHealthConfig& Request, const FDelegate_InstanceHealthConfig& Delegate = FDelegate_InstanceHealthConfig(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr InviteSessionToSession(const FRequest_InviteSessionToSession& Request, const FDelegate_InviteSessionToSession& Delegate = FDelegate_InviteSessionToSession(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr JoinQueue(const FRequest_JoinQueue& Request, const FDelegate_JoinQueue& Delegate = FDelegate_JoinQueue(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr JoinSessionByIdSelf(const FRequest_JoinSessionByIdSelf& Request, const FDelegate_JoinSessionByIdSelf& Delegate = FDelegate_JoinSessionByIdSelf(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr JoinSessionByPlatformSessionByUuid(const FRequest_JoinSessionByPlatformSessionByUuid& Request, const FDelegate_JoinSessionByPlatformSessionByUuid& Delegate = FDelegate_JoinSessionByPlatformSessionByUuid(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr JoinSessionByPlatformSessionIdSelf(const FRequest_JoinSessionByPlatformSessionIdSelf& Request, const FDelegate_JoinSessionByPlatformSessionIdSelf& Delegate = FDelegate_JoinSessionByPlatformSessionIdSelf(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr KickPlayerFromSessionById(const FRequest_KickPlayerFromSessionById& Request, const FDelegate_KickPlayerFromSessionById& Delegate = FDelegate_KickPlayerFromSessionById(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr KickPlayerFromSessionByUuid(const FRequest_KickPlayerFromSessionByUuid& Request, const FDelegate_KickPlayerFromSessionByUuid& Delegate = FDelegate_KickPlayerFromSessionByUuid(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr KickPlayerFromSessionByUuidV2(const FRequest_KickPlayerFromSessionByUuidV2& Request, const FDelegate_KickPlayerFromSessionByUuidV2& Delegate = FDelegate_KickPlayerFromSessionByUuidV2(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr KickSessionFromSession(const FRequest_KickSessionFromSession& Request, const FDelegate_KickSessionFromSession& Delegate = FDelegate_KickSessionFromSession(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr LeaveQueue(const FRequest_LeaveQueue& Request, const FDelegate_LeaveQueue& Delegate = FDelegate_LeaveQueue(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr LeaveSessionByIdSelf(const FRequest_LeaveSessionByIdSelf& Request, const FDelegate_LeaveSessionByIdSelf& Delegate = FDelegate_LeaveSessionByIdSelf(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr LeaveSessionByPlatformSessionByUuid(const FRequest_LeaveSessionByPlatformSessionByUuid& Request, const FDelegate_LeaveSessionByPlatformSessionByUuid& Delegate = FDelegate_LeaveSessionByPlatformSessionByUuid(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr LeaveSessionByPlatformSessionSelf(const FRequest_LeaveSessionByPlatformSessionSelf& Request, const FDelegate_LeaveSessionByPlatformSessionSelf& Delegate = FDelegate_LeaveSessionByPlatformSessionSelf(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr PostBrowserInfo(const FRequest_PostBrowserInfo& Request, const FDelegate_PostBrowserInfo& Delegate = FDelegate_PostBrowserInfo(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr UpdateBackfillRequest(const FRequest_UpdateBackfillRequest& Request, const FDelegate_UpdateBackfillRequest& Delegate = FDelegate_UpdateBackfillRequest(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr UpdateBrowserInfo(const FRequest_UpdateBrowserInfo& Request, const FDelegate_UpdateBrowserInfo& Delegate = FDelegate_UpdateBrowserInfo(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr UpdateInstanceInfo(const FRequest_UpdateInstanceInfo& Request, const FDelegate_UpdateInstanceInfo& Delegate = FDelegate_UpdateInstanceInfo(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr UpdateSessionById(const FRequest_UpdateSessionById& Request, const FDelegate_UpdateSessionById& Delegate = FDelegate_UpdateSessionById(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr UpdateSessionPlayerById(const FRequest_UpdateSessionPlayerById& Request, const FDelegate_UpdateSessionPlayerById& Delegate = FDelegate_UpdateSessionPlayerById(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr UpdateSessionPlayerByUuid(const FRequest_UpdateSessionPlayerByUuid& Request, const FDelegate_UpdateSessionPlayerByUuid& Delegate = FDelegate_UpdateSessionPlayerByUuid(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr UpdateSessionPlayerByUuidV2(const FRequest_UpdateSessionPlayerByUuidV2& Request, const FDelegate_UpdateSessionPlayerByUuidV2& Delegate = FDelegate_UpdateSessionPlayerByUuidV2(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr AcknowledgeBackfillRequest(const FRequest_AcknowledgeBackfillRequest& Request, const FDelegate_AcknowledgeBackfillRequest& Delegate = FDelegate_AcknowledgeBackfillRequest(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr AddPlatformSessionToRallyHereSession(const FRequest_AddPlatformSessionToRallyHereSession& Request, const FDelegate_AddPlatformSessionToRallyHereSession& Delegate = FDelegate_AddPlatformSessionToRallyHereSession(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr BackfillConfig(const FRequest_BackfillConfig& Request, const FDelegate_BackfillConfig& Delegate = FDelegate_BackfillConfig(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr CreateInstanceRequest(const FRequest_CreateInstanceRequest& Request, const FDelegate_CreateInstanceRequest& Delegate = FDelegate_CreateInstanceRequest(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr CreateOrJoinSession(const FRequest_CreateOrJoinSession& Request, const FDelegate_CreateOrJoinSession& Delegate = FDelegate_CreateOrJoinSession(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr DeleteBackfillRequest(const FRequest_DeleteBackfillRequest& Request, const FDelegate_DeleteBackfillRequest& Delegate = FDelegate_DeleteBackfillRequest(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr DeleteBrowserInfo(const FRequest_DeleteBrowserInfo& Request, const FDelegate_DeleteBrowserInfo& Delegate = FDelegate_DeleteBrowserInfo(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr DeletePlatformSessionFromRallyHereSession(const FRequest_DeletePlatformSessionFromRallyHereSession& Request, const FDelegate_DeletePlatformSessionFromRallyHereSession& Delegate = FDelegate_DeletePlatformSessionFromRallyHereSession(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr EndInstance(const FRequest_EndInstance& Request, const FDelegate_EndInstance& Delegate = FDelegate_EndInstance(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetAllSessionTemplates(const FRequest_GetAllSessionTemplates& Request, const FDelegate_GetAllSessionTemplates& Delegate = FDelegate_GetAllSessionTemplates(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetBrowserSessionsByType(const FRequest_GetBrowserSessionsByType& Request, const FDelegate_GetBrowserSessionsByType& Delegate = FDelegate_GetBrowserSessionsByType(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetConnectionInfoSelf(const FRequest_GetConnectionInfoSelf& Request, const FDelegate_GetConnectionInfoSelf& Delegate = FDelegate_GetConnectionInfoSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetPlatformSessionInfo(const FRequest_GetPlatformSessionInfo& Request, const FDelegate_GetPlatformSessionInfo& Delegate = FDelegate_GetPlatformSessionInfo(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetPlayerSessions(const FRequest_GetPlayerSessions& Request, const FDelegate_GetPlayerSessions& Delegate = FDelegate_GetPlayerSessions(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetPlayerSessionsByUuid(const FRequest_GetPlayerSessionsByUuid& Request, const FDelegate_GetPlayerSessionsByUuid& Delegate = FDelegate_GetPlayerSessionsByUuid(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetPlayerSessionsByUuidV2(const FRequest_GetPlayerSessionsByUuidV2& Request, const FDelegate_GetPlayerSessionsByUuidV2& Delegate = FDelegate_GetPlayerSessionsByUuidV2(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetPlayerSessionsSelf(const FRequest_GetPlayerSessionsSelf& Request, const FDelegate_GetPlayerSessionsSelf& Delegate = FDelegate_GetPlayerSessionsSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetSessionByAllocationId(const FRequest_GetSessionByAllocationId& Request, const FDelegate_GetSessionByAllocationId& Delegate = FDelegate_GetSessionByAllocationId(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetSessionById(const FRequest_GetSessionById& Request, const FDelegate_GetSessionById& Delegate = FDelegate_GetSessionById(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetSessionTemplateByType(const FRequest_GetSessionTemplateByType& Request, const FDelegate_GetSessionTemplateByType& Delegate = FDelegate_GetSessionTemplateByType(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr InstanceHealthCheck(const FRequest_InstanceHealthCheck& Request, const FDelegate_InstanceHealthCheck& Delegate = FDelegate_InstanceHealthCheck(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr InstanceHealthConfig(const FRequest_InstanceHealthConfig& Request, const FDelegate_InstanceHealthConfig& Delegate = FDelegate_InstanceHealthConfig(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr InviteSessionToSession(const FRequest_InviteSessionToSession& Request, const FDelegate_InviteSessionToSession& Delegate = FDelegate_InviteSessionToSession(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr JoinQueue(const FRequest_JoinQueue& Request, const FDelegate_JoinQueue& Delegate = FDelegate_JoinQueue(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr JoinSessionByIdSelf(const FRequest_JoinSessionByIdSelf& Request, const FDelegate_JoinSessionByIdSelf& Delegate = FDelegate_JoinSessionByIdSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr JoinSessionByPlatformSessionByUuid(const FRequest_JoinSessionByPlatformSessionByUuid& Request, const FDelegate_JoinSessionByPlatformSessionByUuid& Delegate = FDelegate_JoinSessionByPlatformSessionByUuid(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr JoinSessionByPlatformSessionIdSelf(const FRequest_JoinSessionByPlatformSessionIdSelf& Request, const FDelegate_JoinSessionByPlatformSessionIdSelf& Delegate = FDelegate_JoinSessionByPlatformSessionIdSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr KickPlayerFromSessionById(const FRequest_KickPlayerFromSessionById& Request, const FDelegate_KickPlayerFromSessionById& Delegate = FDelegate_KickPlayerFromSessionById(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr KickPlayerFromSessionByUuid(const FRequest_KickPlayerFromSessionByUuid& Request, const FDelegate_KickPlayerFromSessionByUuid& Delegate = FDelegate_KickPlayerFromSessionByUuid(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr KickPlayerFromSessionByUuidV2(const FRequest_KickPlayerFromSessionByUuidV2& Request, const FDelegate_KickPlayerFromSessionByUuidV2& Delegate = FDelegate_KickPlayerFromSessionByUuidV2(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr KickSessionFromSession(const FRequest_KickSessionFromSession& Request, const FDelegate_KickSessionFromSession& Delegate = FDelegate_KickSessionFromSession(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr LeaveQueue(const FRequest_LeaveQueue& Request, const FDelegate_LeaveQueue& Delegate = FDelegate_LeaveQueue(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr LeaveSessionByIdSelf(const FRequest_LeaveSessionByIdSelf& Request, const FDelegate_LeaveSessionByIdSelf& Delegate = FDelegate_LeaveSessionByIdSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr LeaveSessionByPlatformSessionByUuid(const FRequest_LeaveSessionByPlatformSessionByUuid& Request, const FDelegate_LeaveSessionByPlatformSessionByUuid& Delegate = FDelegate_LeaveSessionByPlatformSessionByUuid(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr LeaveSessionByPlatformSessionSelf(const FRequest_LeaveSessionByPlatformSessionSelf& Request, const FDelegate_LeaveSessionByPlatformSessionSelf& Delegate = FDelegate_LeaveSessionByPlatformSessionSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr PostBrowserInfo(const FRequest_PostBrowserInfo& Request, const FDelegate_PostBrowserInfo& Delegate = FDelegate_PostBrowserInfo(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr UpdateBackfillRequest(const FRequest_UpdateBackfillRequest& Request, const FDelegate_UpdateBackfillRequest& Delegate = FDelegate_UpdateBackfillRequest(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr UpdateBrowserInfo(const FRequest_UpdateBrowserInfo& Request, const FDelegate_UpdateBrowserInfo& Delegate = FDelegate_UpdateBrowserInfo(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr UpdateInstanceInfo(const FRequest_UpdateInstanceInfo& Request, const FDelegate_UpdateInstanceInfo& Delegate = FDelegate_UpdateInstanceInfo(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr UpdateSessionById(const FRequest_UpdateSessionById& Request, const FDelegate_UpdateSessionById& Delegate = FDelegate_UpdateSessionById(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr UpdateSessionPlayerById(const FRequest_UpdateSessionPlayerById& Request, const FDelegate_UpdateSessionPlayerById& Delegate = FDelegate_UpdateSessionPlayerById(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr UpdateSessionPlayerByUuid(const FRequest_UpdateSessionPlayerByUuid& Request, const FDelegate_UpdateSessionPlayerByUuid& Delegate = FDelegate_UpdateSessionPlayerByUuid(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr UpdateSessionPlayerByUuidV2(const FRequest_UpdateSessionPlayerByUuidV2& Request, const FDelegate_UpdateSessionPlayerByUuidV2& Delegate = FDelegate_UpdateSessionPlayerByUuidV2(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
-    void OnAcknowledgeBackfillRequestResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AcknowledgeBackfillRequest Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnAddPlatformSessionToRallyHereSessionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AddPlatformSessionToRallyHereSession Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnBackfillConfigResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_BackfillConfig Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnCreateInstanceRequestResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateInstanceRequest Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnCreateOrJoinSessionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateOrJoinSession Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnDeleteBackfillRequestResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteBackfillRequest Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnDeleteBrowserInfoResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteBrowserInfo Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnDeletePlatformSessionFromRallyHereSessionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeletePlatformSessionFromRallyHereSession Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnEndInstanceResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_EndInstance Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetAllSessionTemplatesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllSessionTemplates Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetBrowserSessionsByTypeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetBrowserSessionsByType Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetConnectionInfoSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetConnectionInfoSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetPlatformSessionInfoResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlatformSessionInfo Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetPlayerSessionsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerSessions Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetPlayerSessionsByUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerSessionsByUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetPlayerSessionsByUuidV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerSessionsByUuidV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetPlayerSessionsSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerSessionsSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetSessionByAllocationIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetSessionByAllocationId Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetSessionByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetSessionById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetSessionTemplateByTypeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetSessionTemplateByType Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnInstanceHealthCheckResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_InstanceHealthCheck Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnInstanceHealthConfigResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_InstanceHealthConfig Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnInviteSessionToSessionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_InviteSessionToSession Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnJoinQueueResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_JoinQueue Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnJoinSessionByIdSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_JoinSessionByIdSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnJoinSessionByPlatformSessionByUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_JoinSessionByPlatformSessionByUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnJoinSessionByPlatformSessionIdSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_JoinSessionByPlatformSessionIdSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnKickPlayerFromSessionByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_KickPlayerFromSessionById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnKickPlayerFromSessionByUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_KickPlayerFromSessionByUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnKickPlayerFromSessionByUuidV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_KickPlayerFromSessionByUuidV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnKickSessionFromSessionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_KickSessionFromSession Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnLeaveQueueResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_LeaveQueue Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnLeaveSessionByIdSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_LeaveSessionByIdSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnLeaveSessionByPlatformSessionByUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_LeaveSessionByPlatformSessionByUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnLeaveSessionByPlatformSessionSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_LeaveSessionByPlatformSessionSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnPostBrowserInfoResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PostBrowserInfo Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnUpdateBackfillRequestResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateBackfillRequest Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnUpdateBrowserInfoResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateBrowserInfo Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnUpdateInstanceInfoResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateInstanceInfo Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnUpdateSessionByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateSessionById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnUpdateSessionPlayerByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateSessionPlayerById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnUpdateSessionPlayerByUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateSessionPlayerByUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnUpdateSessionPlayerByUuidV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateSessionPlayerByUuidV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnAcknowledgeBackfillRequestResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AcknowledgeBackfillRequest Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnAddPlatformSessionToRallyHereSessionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AddPlatformSessionToRallyHereSession Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnBackfillConfigResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_BackfillConfig Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnCreateInstanceRequestResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateInstanceRequest Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnCreateOrJoinSessionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateOrJoinSession Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnDeleteBackfillRequestResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteBackfillRequest Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnDeleteBrowserInfoResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteBrowserInfo Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnDeletePlatformSessionFromRallyHereSessionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeletePlatformSessionFromRallyHereSession Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnEndInstanceResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_EndInstance Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetAllSessionTemplatesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllSessionTemplates Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetBrowserSessionsByTypeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetBrowserSessionsByType Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetConnectionInfoSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetConnectionInfoSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetPlatformSessionInfoResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlatformSessionInfo Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetPlayerSessionsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerSessions Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetPlayerSessionsByUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerSessionsByUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetPlayerSessionsByUuidV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerSessionsByUuidV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetPlayerSessionsSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerSessionsSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetSessionByAllocationIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetSessionByAllocationId Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetSessionByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetSessionById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetSessionTemplateByTypeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetSessionTemplateByType Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnInstanceHealthCheckResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_InstanceHealthCheck Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnInstanceHealthConfigResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_InstanceHealthConfig Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnInviteSessionToSessionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_InviteSessionToSession Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnJoinQueueResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_JoinQueue Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnJoinSessionByIdSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_JoinSessionByIdSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnJoinSessionByPlatformSessionByUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_JoinSessionByPlatformSessionByUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnJoinSessionByPlatformSessionIdSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_JoinSessionByPlatformSessionIdSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnKickPlayerFromSessionByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_KickPlayerFromSessionById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnKickPlayerFromSessionByUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_KickPlayerFromSessionByUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnKickPlayerFromSessionByUuidV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_KickPlayerFromSessionByUuidV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnKickSessionFromSessionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_KickSessionFromSession Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnLeaveQueueResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_LeaveQueue Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnLeaveSessionByIdSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_LeaveSessionByIdSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnLeaveSessionByPlatformSessionByUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_LeaveSessionByPlatformSessionByUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnLeaveSessionByPlatformSessionSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_LeaveSessionByPlatformSessionSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnPostBrowserInfoResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PostBrowserInfo Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnUpdateBackfillRequestResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateBackfillRequest Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnUpdateBrowserInfoResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateBrowserInfo Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnUpdateInstanceInfoResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateInstanceInfo Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnUpdateSessionByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateSessionById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnUpdateSessionPlayerByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateSessionPlayerById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnUpdateSessionPlayerByUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateSessionPlayerByUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnUpdateSessionPlayerByUuidV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateSessionPlayerByUuidV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
@@ -284,61 +284,61 @@ private:
 */
 struct RALLYHEREAPI_API FRequest_AcknowledgeBackfillRequest : public FRequest
 {
-    FRequest_AcknowledgeBackfillRequest();
-    virtual ~FRequest_AcknowledgeBackfillRequest() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_AcknowledgeBackfillRequest();
+	virtual ~FRequest_AcknowledgeBackfillRequest() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString SessionId;
-    FRHAPI_AcknowledgeBackfillRequest AcknowledgeBackfillRequest;
-    TOptional<bool> RefreshTtl;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString SessionId;
+	FRHAPI_AcknowledgeBackfillRequest AcknowledgeBackfillRequest;
+	TOptional<bool> RefreshTtl;
 };
 
 struct RALLYHEREAPI_API FResponse_AcknowledgeBackfillRequest : public FResponse
 {
-    FResponse_AcknowledgeBackfillRequest(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_AcknowledgeBackfillRequest() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_AcknowledgeBackfillRequest(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_AcknowledgeBackfillRequest() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_AcknowledgeBackfillResponse Content;
+	FRHAPI_AcknowledgeBackfillResponse Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_AcknowledgeBackfillResponse& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_AcknowledgeBackfillResponse& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Backfill resource could not be found on the session, or in the open-match system
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Backfill resource could not be found on the session, or in the open-match system
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_AcknowledgeBackfillRequest
 {
-    typedef FRequest_AcknowledgeBackfillRequest Request;
-    typedef FResponse_AcknowledgeBackfillRequest Response;
-    typedef FDelegate_AcknowledgeBackfillRequest Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_AcknowledgeBackfillRequest Request;
+	typedef FResponse_AcknowledgeBackfillRequest Response;
+	typedef FDelegate_AcknowledgeBackfillRequest Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AcknowledgeBackfillRequest(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AcknowledgeBackfillRequest(InRequest, InDelegate, Priority); }
 };
 
 /* Add Platform Session To Rally Here Session
@@ -355,74 +355,74 @@ struct RALLYHEREAPI_API Traits_AcknowledgeBackfillRequest
 */
 struct RALLYHEREAPI_API FRequest_AddPlatformSessionToRallyHereSession : public FRequest
 {
-    FRequest_AddPlatformSessionToRallyHereSession();
-    virtual ~FRequest_AddPlatformSessionToRallyHereSession() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_AddPlatformSessionToRallyHereSession();
+	virtual ~FRequest_AddPlatformSessionToRallyHereSession() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    ERHAPI_Platform Platform;
-    FString PlatformSessionIdBase64;
-    FString SessionId;
-    TOptional<bool> RefreshTtl;
+	TSharedPtr<FAuthContext> AuthContext;
+	ERHAPI_Platform Platform;
+	FString PlatformSessionIdBase64;
+	FString SessionId;
+	TOptional<bool> RefreshTtl;
 };
 
 struct RALLYHEREAPI_API FResponse_AddPlatformSessionToRallyHereSession : public FResponse
 {
-    FResponse_AddPlatformSessionToRallyHereSession(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_AddPlatformSessionToRallyHereSession() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_AddPlatformSessionToRallyHereSession(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_AddPlatformSessionToRallyHereSession() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PlatformSession Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_PlatformSession Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PlatformSession& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlatformSession& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 403
-    User is not authenticated, or does not have sufficient role access to perform request
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	User is not authenticated, or does not have sufficient role access to perform request
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Platform Session or Platform Player doesn't exist.  See error code for more info
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Platform Session or Platform Player doesn't exist.  See error code for more info
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 409
-    Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
-    */
-    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
-    /* Number of seconds after which to retry the request, when the server should have the resource available */
-    TOptional<int32> GetHeader409_RetryAfter() const;
+	/* Response 409
+	Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Number of seconds after which to retry the request, when the server should have the resource available */
+	TOptional<int32> GetHeader409_RetryAfter() const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_AddPlatformSessionToRallyHereSession
 {
-    typedef FRequest_AddPlatformSessionToRallyHereSession Request;
-    typedef FResponse_AddPlatformSessionToRallyHereSession Response;
-    typedef FDelegate_AddPlatformSessionToRallyHereSession Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_AddPlatformSessionToRallyHereSession Request;
+	typedef FResponse_AddPlatformSessionToRallyHereSession Response;
+	typedef FDelegate_AddPlatformSessionToRallyHereSession Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AddPlatformSessionToRallyHereSession(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AddPlatformSessionToRallyHereSession(InRequest, InDelegate, Priority); }
 };
 
 /* Backfill Config
@@ -435,48 +435,48 @@ struct RALLYHEREAPI_API Traits_AddPlatformSessionToRallyHereSession
 */
 struct RALLYHEREAPI_API FRequest_BackfillConfig : public FRequest
 {
-    FRequest_BackfillConfig();
-    virtual ~FRequest_BackfillConfig() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_BackfillConfig();
+	virtual ~FRequest_BackfillConfig() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
+	TSharedPtr<FAuthContext> AuthContext;
 };
 
 struct RALLYHEREAPI_API FResponse_BackfillConfig : public FResponse
 {
-    FResponse_BackfillConfig(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_BackfillConfig() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_BackfillConfig(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_BackfillConfig() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_BackfillSettingsResponse Content;
+	FRHAPI_BackfillSettingsResponse Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_BackfillSettingsResponse& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_BackfillSettingsResponse& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_BackfillConfig
 {
-    typedef FRequest_BackfillConfig Request;
-    typedef FResponse_BackfillConfig Response;
-    typedef FDelegate_BackfillConfig Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_BackfillConfig Request;
+	typedef FResponse_BackfillConfig Response;
+	typedef FDelegate_BackfillConfig Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.BackfillConfig(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.BackfillConfig(InRequest, InDelegate, Priority); }
 };
 
 /* Create Instance Request
@@ -493,55 +493,55 @@ struct RALLYHEREAPI_API Traits_BackfillConfig
 */
 struct RALLYHEREAPI_API FRequest_CreateInstanceRequest : public FRequest
 {
-    FRequest_CreateInstanceRequest();
-    virtual ~FRequest_CreateInstanceRequest() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_CreateInstanceRequest();
+	virtual ~FRequest_CreateInstanceRequest() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString SessionId;
-    FRHAPI_InstanceRequest InstanceRequest;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString SessionId;
+	FRHAPI_InstanceRequest InstanceRequest;
 };
 
 struct RALLYHEREAPI_API FResponse_CreateInstanceRequest : public FResponse
 {
-    FResponse_CreateInstanceRequest(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_CreateInstanceRequest() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_CreateInstanceRequest(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_CreateInstanceRequest() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_InstanceInfo Content;
+	FRHAPI_InstanceInfo Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_InstanceInfo& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_InstanceInfo& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_CreateInstanceRequest
 {
-    typedef FRequest_CreateInstanceRequest Request;
-    typedef FResponse_CreateInstanceRequest Response;
-    typedef FDelegate_CreateInstanceRequest Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_CreateInstanceRequest Request;
+	typedef FResponse_CreateInstanceRequest Response;
+	typedef FDelegate_CreateInstanceRequest Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateInstanceRequest(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateInstanceRequest(InRequest, InDelegate, Priority); }
 };
 
 /* Create Or Join Session
@@ -559,54 +559,54 @@ struct RALLYHEREAPI_API Traits_CreateInstanceRequest
 */
 struct RALLYHEREAPI_API FRequest_CreateOrJoinSession : public FRequest
 {
-    FRequest_CreateOrJoinSession();
-    virtual ~FRequest_CreateOrJoinSession() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_CreateOrJoinSession();
+	virtual ~FRequest_CreateOrJoinSession() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FRHAPI_CreateOrJoinRequest CreateOrJoinRequest;
+	TSharedPtr<FAuthContext> AuthContext;
+	FRHAPI_CreateOrJoinRequest CreateOrJoinRequest;
 };
 
 struct RALLYHEREAPI_API FResponse_CreateOrJoinSession : public FResponse
 {
-    FResponse_CreateOrJoinSession(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_CreateOrJoinSession() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_CreateOrJoinSession(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_CreateOrJoinSession() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_SessionJoinResponse Content;
+	FRHAPI_SessionJoinResponse Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_SessionJoinResponse& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_SessionJoinResponse& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_CreateOrJoinSession
 {
-    typedef FRequest_CreateOrJoinSession Request;
-    typedef FResponse_CreateOrJoinSession Response;
-    typedef FDelegate_CreateOrJoinSession Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_CreateOrJoinSession Request;
+	typedef FResponse_CreateOrJoinSession Response;
+	typedef FDelegate_CreateOrJoinSession Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateOrJoinSession(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateOrJoinSession(InRequest, InDelegate, Priority); }
 };
 
 /* Delete Backfill Request
@@ -615,60 +615,60 @@ struct RALLYHEREAPI_API Traits_CreateOrJoinSession
 */
 struct RALLYHEREAPI_API FRequest_DeleteBackfillRequest : public FRequest
 {
-    FRequest_DeleteBackfillRequest();
-    virtual ~FRequest_DeleteBackfillRequest() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_DeleteBackfillRequest();
+	virtual ~FRequest_DeleteBackfillRequest() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString SessionId;
-    FRHAPI_BaseBackfillRequest BaseBackfillRequest;
-    TOptional<bool> RefreshTtl;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString SessionId;
+	FRHAPI_BaseBackfillRequest BaseBackfillRequest;
+	TOptional<bool> RefreshTtl;
 };
 
 struct RALLYHEREAPI_API FResponse_DeleteBackfillRequest : public FResponse
 {
-    FResponse_DeleteBackfillRequest(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_DeleteBackfillRequest() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_DeleteBackfillRequest(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_DeleteBackfillRequest() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
+	
 
 
-    // Manual Response Helpers
-    /* Response 204
-    Successful Response
-    */
+	// Manual Response Helpers
+	/* Response 204
+	Successful Response
+	*/
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Backfill resource could not be found on the session, or in the open-match system
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Backfill resource could not be found on the session, or in the open-match system
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_DeleteBackfillRequest
 {
-    typedef FRequest_DeleteBackfillRequest Request;
-    typedef FResponse_DeleteBackfillRequest Response;
-    typedef FDelegate_DeleteBackfillRequest Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_DeleteBackfillRequest Request;
+	typedef FResponse_DeleteBackfillRequest Response;
+	typedef FDelegate_DeleteBackfillRequest Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteBackfillRequest(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteBackfillRequest(InRequest, InDelegate, Priority); }
 };
 
 /* Delete Browser Info
@@ -685,53 +685,53 @@ struct RALLYHEREAPI_API Traits_DeleteBackfillRequest
 */
 struct RALLYHEREAPI_API FRequest_DeleteBrowserInfo : public FRequest
 {
-    FRequest_DeleteBrowserInfo();
-    virtual ~FRequest_DeleteBrowserInfo() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_DeleteBrowserInfo();
+	virtual ~FRequest_DeleteBrowserInfo() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString SessionId;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString SessionId;
 };
 
 struct RALLYHEREAPI_API FResponse_DeleteBrowserInfo : public FResponse
 {
-    FResponse_DeleteBrowserInfo(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_DeleteBrowserInfo() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_DeleteBrowserInfo(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_DeleteBrowserInfo() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
+	
 
 
-    // Manual Response Helpers
-    /* Response 204
-    Successful Response
-    */
+	// Manual Response Helpers
+	/* Response 204
+	Successful Response
+	*/
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_DeleteBrowserInfo
 {
-    typedef FRequest_DeleteBrowserInfo Request;
-    typedef FResponse_DeleteBrowserInfo Response;
-    typedef FDelegate_DeleteBrowserInfo Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_DeleteBrowserInfo Request;
+	typedef FResponse_DeleteBrowserInfo Response;
+	typedef FDelegate_DeleteBrowserInfo Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteBrowserInfo(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteBrowserInfo(InRequest, InDelegate, Priority); }
 };
 
 /* Delete Platform Session From Rally Here Session
@@ -748,68 +748,68 @@ struct RALLYHEREAPI_API Traits_DeleteBrowserInfo
 */
 struct RALLYHEREAPI_API FRequest_DeletePlatformSessionFromRallyHereSession : public FRequest
 {
-    FRequest_DeletePlatformSessionFromRallyHereSession();
-    virtual ~FRequest_DeletePlatformSessionFromRallyHereSession() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_DeletePlatformSessionFromRallyHereSession();
+	virtual ~FRequest_DeletePlatformSessionFromRallyHereSession() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    ERHAPI_Platform Platform;
-    FString PlatformSessionIdBase64;
-    FString SessionId;
-    TOptional<bool> RefreshTtl;
+	TSharedPtr<FAuthContext> AuthContext;
+	ERHAPI_Platform Platform;
+	FString PlatformSessionIdBase64;
+	FString SessionId;
+	TOptional<bool> RefreshTtl;
 };
 
 struct RALLYHEREAPI_API FResponse_DeletePlatformSessionFromRallyHereSession : public FResponse
 {
-    FResponse_DeletePlatformSessionFromRallyHereSession(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_DeletePlatformSessionFromRallyHereSession() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_DeletePlatformSessionFromRallyHereSession(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_DeletePlatformSessionFromRallyHereSession() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
+	
 
 
-    // Manual Response Helpers
-    /* Response 204
-    Successful Response
-    */
+	// Manual Response Helpers
+	/* Response 204
+	Successful Response
+	*/
 
-    /* Response 403
-    User is not authenticated, or does not have sufficient role access to perform request
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	User is not authenticated, or does not have sufficient role access to perform request
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Platform Session or Platform Player doesn't exist.  See error code for more info
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Platform Session or Platform Player doesn't exist.  See error code for more info
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 409
-    Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
-    */
-    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
-    /* Number of seconds after which to retry the request, when the server should have the resource available */
-    TOptional<int32> GetHeader409_RetryAfter() const;
+	/* Response 409
+	Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Number of seconds after which to retry the request, when the server should have the resource available */
+	TOptional<int32> GetHeader409_RetryAfter() const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_DeletePlatformSessionFromRallyHereSession
 {
-    typedef FRequest_DeletePlatformSessionFromRallyHereSession Request;
-    typedef FResponse_DeletePlatformSessionFromRallyHereSession Response;
-    typedef FDelegate_DeletePlatformSessionFromRallyHereSession Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_DeletePlatformSessionFromRallyHereSession Request;
+	typedef FResponse_DeletePlatformSessionFromRallyHereSession Response;
+	typedef FDelegate_DeletePlatformSessionFromRallyHereSession Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeletePlatformSessionFromRallyHereSession(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeletePlatformSessionFromRallyHereSession(InRequest, InDelegate, Priority); }
 };
 
 /* End Instance
@@ -826,58 +826,58 @@ struct RALLYHEREAPI_API Traits_DeletePlatformSessionFromRallyHereSession
 */
 struct RALLYHEREAPI_API FRequest_EndInstance : public FRequest
 {
-    FRequest_EndInstance();
-    virtual ~FRequest_EndInstance() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_EndInstance();
+	virtual ~FRequest_EndInstance() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString SessionId;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString SessionId;
 };
 
 struct RALLYHEREAPI_API FResponse_EndInstance : public FResponse
 {
-    FResponse_EndInstance(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_EndInstance() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_EndInstance(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_EndInstance() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 204
-    Successful Response
-    */
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader204_ETag() const;
+	// Manual Response Helpers
+	/* Response 204
+	Successful Response
+	*/
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader204_ETag() const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_EndInstance
 {
-    typedef FRequest_EndInstance Request;
-    typedef FResponse_EndInstance Response;
-    typedef FDelegate_EndInstance Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_EndInstance Request;
+	typedef FResponse_EndInstance Response;
+	typedef FDelegate_EndInstance Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.EndInstance(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.EndInstance(InRequest, InDelegate, Priority); }
 };
 
 /* Get All Session Templates
@@ -894,60 +894,60 @@ struct RALLYHEREAPI_API Traits_EndInstance
 */
 struct RALLYHEREAPI_API FRequest_GetAllSessionTemplates : public FRequest
 {
-    FRequest_GetAllSessionTemplates();
-    virtual ~FRequest_GetAllSessionTemplates() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetAllSessionTemplates();
+	virtual ~FRequest_GetAllSessionTemplates() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    /* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	/* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetAllSessionTemplates : public FResponse
 {
-    FResponse_GetAllSessionTemplates(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetAllSessionTemplates() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetAllSessionTemplates(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetAllSessionTemplates() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_SessionTemplates Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_SessionTemplates Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_SessionTemplates& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_SessionTemplates& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetAllSessionTemplates
 {
-    typedef FRequest_GetAllSessionTemplates Request;
-    typedef FResponse_GetAllSessionTemplates Response;
-    typedef FDelegate_GetAllSessionTemplates Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_GetAllSessionTemplates Request;
+	typedef FResponse_GetAllSessionTemplates Response;
+	typedef FDelegate_GetAllSessionTemplates Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllSessionTemplates(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllSessionTemplates(InRequest, InDelegate, Priority); }
 };
 
 /* Get Browser Sessions By Type
@@ -964,62 +964,62 @@ struct RALLYHEREAPI_API Traits_GetAllSessionTemplates
 */
 struct RALLYHEREAPI_API FRequest_GetBrowserSessionsByType : public FRequest
 {
-    FRequest_GetBrowserSessionsByType();
-    virtual ~FRequest_GetBrowserSessionsByType() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetBrowserSessionsByType();
+	virtual ~FRequest_GetBrowserSessionsByType() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString SessionType;
-    TOptional<int32> Cursor;
-    TOptional<int32> PageSize;
-    TOptional<FString> RegionId;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString SessionType;
+	TOptional<int32> Cursor;
+	TOptional<int32> PageSize;
+	TOptional<FString> RegionId;
 };
 
 struct RALLYHEREAPI_API FResponse_GetBrowserSessionsByType : public FResponse
 {
-    FResponse_GetBrowserSessionsByType(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetBrowserSessionsByType() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetBrowserSessionsByType(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetBrowserSessionsByType() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_BrowserResponse Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_BrowserResponse Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_BrowserResponse& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_BrowserResponse& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetBrowserSessionsByType
 {
-    typedef FRequest_GetBrowserSessionsByType Request;
-    typedef FResponse_GetBrowserSessionsByType Response;
-    typedef FDelegate_GetBrowserSessionsByType Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_GetBrowserSessionsByType Request;
+	typedef FResponse_GetBrowserSessionsByType Response;
+	typedef FDelegate_GetBrowserSessionsByType Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetBrowserSessionsByType(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetBrowserSessionsByType(InRequest, InDelegate, Priority); }
 };
 
 /* Get Connection Info Self
@@ -1036,54 +1036,54 @@ struct RALLYHEREAPI_API Traits_GetBrowserSessionsByType
 */
 struct RALLYHEREAPI_API FRequest_GetConnectionInfoSelf : public FRequest
 {
-    FRequest_GetConnectionInfoSelf();
-    virtual ~FRequest_GetConnectionInfoSelf() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetConnectionInfoSelf();
+	virtual ~FRequest_GetConnectionInfoSelf() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    TOptional<FString> XForwardedFor;
+	TSharedPtr<FAuthContext> AuthContext;
+	TOptional<FString> XForwardedFor;
 };
 
 struct RALLYHEREAPI_API FResponse_GetConnectionInfoSelf : public FResponse
 {
-    FResponse_GetConnectionInfoSelf(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetConnectionInfoSelf() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetConnectionInfoSelf(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetConnectionInfoSelf() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_ConnectionInfo Content;
+	FRHAPI_ConnectionInfo Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_ConnectionInfo& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_ConnectionInfo& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetConnectionInfoSelf
 {
-    typedef FRequest_GetConnectionInfoSelf Request;
-    typedef FResponse_GetConnectionInfoSelf Response;
-    typedef FDelegate_GetConnectionInfoSelf Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_GetConnectionInfoSelf Request;
+	typedef FResponse_GetConnectionInfoSelf Response;
+	typedef FDelegate_GetConnectionInfoSelf Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetConnectionInfoSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetConnectionInfoSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Platform Session Info
@@ -1100,67 +1100,67 @@ struct RALLYHEREAPI_API Traits_GetConnectionInfoSelf
 */
 struct RALLYHEREAPI_API FRequest_GetPlatformSessionInfo : public FRequest
 {
-    FRequest_GetPlatformSessionInfo();
-    virtual ~FRequest_GetPlatformSessionInfo() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetPlatformSessionInfo();
+	virtual ~FRequest_GetPlatformSessionInfo() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    ERHAPI_Platform Platform;
-    FString PlatformSessionIdBase64;
-    /* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	ERHAPI_Platform Platform;
+	FString PlatformSessionIdBase64;
+	/* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetPlatformSessionInfo : public FResponse
 {
-    FResponse_GetPlatformSessionInfo(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetPlatformSessionInfo() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetPlatformSessionInfo(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetPlatformSessionInfo() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PlatformSession Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_PlatformSession Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PlatformSession& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlatformSession& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 403
-    User is not authenticated, or does not have sufficient role access to perform request
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	User is not authenticated, or does not have sufficient role access to perform request
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Platform Session or Platform Player doesn't exist.  See error code for more info
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Platform Session or Platform Player doesn't exist.  See error code for more info
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetPlatformSessionInfo
 {
-    typedef FRequest_GetPlatformSessionInfo Request;
-    typedef FResponse_GetPlatformSessionInfo Response;
-    typedef FDelegate_GetPlatformSessionInfo Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_GetPlatformSessionInfo Request;
+	typedef FResponse_GetPlatformSessionInfo Response;
+	typedef FDelegate_GetPlatformSessionInfo Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlatformSessionInfo(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlatformSessionInfo(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Sessions
@@ -1179,54 +1179,54 @@ struct RALLYHEREAPI_API Traits_GetPlatformSessionInfo
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerSessions : public FRequest
 {
-    FRequest_GetPlayerSessions();
-    virtual ~FRequest_GetPlayerSessions() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetPlayerSessions();
+	virtual ~FRequest_GetPlayerSessions() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    int32 PlayerId = 0;
+	TSharedPtr<FAuthContext> AuthContext;
+	int32 PlayerId = 0;
 };
 
 struct RALLYHEREAPI_API FResponse_GetPlayerSessions : public FResponse
 {
-    FResponse_GetPlayerSessions(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetPlayerSessions() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetPlayerSessions(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetPlayerSessions() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PlayerSessions Content;
+	FRHAPI_PlayerSessions Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PlayerSessions& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlayerSessions& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerSessions
 {
-    typedef FRequest_GetPlayerSessions Request;
-    typedef FResponse_GetPlayerSessions Response;
-    typedef FDelegate_GetPlayerSessions Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_GetPlayerSessions Request;
+	typedef FResponse_GetPlayerSessions Response;
+	typedef FDelegate_GetPlayerSessions Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerSessions(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerSessions(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Sessions By Uuid
@@ -1244,61 +1244,61 @@ struct RALLYHEREAPI_API Traits_GetPlayerSessions
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerSessionsByUuid : public FRequest
 {
-    FRequest_GetPlayerSessionsByUuid();
-    virtual ~FRequest_GetPlayerSessionsByUuid() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetPlayerSessionsByUuid();
+	virtual ~FRequest_GetPlayerSessionsByUuid() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid PlayerUuid;
-    /* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	FGuid PlayerUuid;
+	/* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetPlayerSessionsByUuid : public FResponse
 {
-    FResponse_GetPlayerSessionsByUuid(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetPlayerSessionsByUuid() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetPlayerSessionsByUuid(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetPlayerSessionsByUuid() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PlayerSessions Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_PlayerSessions Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PlayerSessions& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlayerSessions& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerSessionsByUuid
 {
-    typedef FRequest_GetPlayerSessionsByUuid Request;
-    typedef FResponse_GetPlayerSessionsByUuid Response;
-    typedef FDelegate_GetPlayerSessionsByUuid Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_GetPlayerSessionsByUuid Request;
+	typedef FResponse_GetPlayerSessionsByUuid Response;
+	typedef FDelegate_GetPlayerSessionsByUuid Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerSessionsByUuid(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerSessionsByUuid(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Sessions By Uuid V2
@@ -1315,61 +1315,61 @@ struct RALLYHEREAPI_API Traits_GetPlayerSessionsByUuid
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerSessionsByUuidV2 : public FRequest
 {
-    FRequest_GetPlayerSessionsByUuidV2();
-    virtual ~FRequest_GetPlayerSessionsByUuidV2() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetPlayerSessionsByUuidV2();
+	virtual ~FRequest_GetPlayerSessionsByUuidV2() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid PlayerUuid;
-    /* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	FGuid PlayerUuid;
+	/* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetPlayerSessionsByUuidV2 : public FResponse
 {
-    FResponse_GetPlayerSessionsByUuidV2(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetPlayerSessionsByUuidV2() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetPlayerSessionsByUuidV2(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetPlayerSessionsByUuidV2() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PlayerSessions Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_PlayerSessions Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PlayerSessions& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlayerSessions& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerSessionsByUuidV2
 {
-    typedef FRequest_GetPlayerSessionsByUuidV2 Request;
-    typedef FResponse_GetPlayerSessionsByUuidV2 Response;
-    typedef FDelegate_GetPlayerSessionsByUuidV2 Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_GetPlayerSessionsByUuidV2 Request;
+	typedef FResponse_GetPlayerSessionsByUuidV2 Response;
+	typedef FDelegate_GetPlayerSessionsByUuidV2 Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerSessionsByUuidV2(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerSessionsByUuidV2(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Sessions Self
@@ -1382,60 +1382,60 @@ struct RALLYHEREAPI_API Traits_GetPlayerSessionsByUuidV2
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerSessionsSelf : public FRequest
 {
-    FRequest_GetPlayerSessionsSelf();
-    virtual ~FRequest_GetPlayerSessionsSelf() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetPlayerSessionsSelf();
+	virtual ~FRequest_GetPlayerSessionsSelf() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    /* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	/* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetPlayerSessionsSelf : public FResponse
 {
-    FResponse_GetPlayerSessionsSelf(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetPlayerSessionsSelf() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetPlayerSessionsSelf(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetPlayerSessionsSelf() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PlayerSessions Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_PlayerSessions Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PlayerSessions& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlayerSessions& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerSessionsSelf
 {
-    typedef FRequest_GetPlayerSessionsSelf Request;
-    typedef FResponse_GetPlayerSessionsSelf Response;
-    typedef FDelegate_GetPlayerSessionsSelf Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_GetPlayerSessionsSelf Request;
+	typedef FResponse_GetPlayerSessionsSelf Response;
+	typedef FDelegate_GetPlayerSessionsSelf Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerSessionsSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerSessionsSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Session By Allocation Id
@@ -1452,61 +1452,61 @@ struct RALLYHEREAPI_API Traits_GetPlayerSessionsSelf
 */
 struct RALLYHEREAPI_API FRequest_GetSessionByAllocationId : public FRequest
 {
-    FRequest_GetSessionByAllocationId();
-    virtual ~FRequest_GetSessionByAllocationId() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetSessionByAllocationId();
+	virtual ~FRequest_GetSessionByAllocationId() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString AllocationId;
-    /* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString AllocationId;
+	/* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetSessionByAllocationId : public FResponse
 {
-    FResponse_GetSessionByAllocationId(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetSessionByAllocationId() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetSessionByAllocationId(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetSessionByAllocationId() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_Session Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_Session Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_Session& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_Session& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetSessionByAllocationId
 {
-    typedef FRequest_GetSessionByAllocationId Request;
-    typedef FResponse_GetSessionByAllocationId Response;
-    typedef FDelegate_GetSessionByAllocationId Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_GetSessionByAllocationId Request;
+	typedef FResponse_GetSessionByAllocationId Response;
+	typedef FDelegate_GetSessionByAllocationId Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetSessionByAllocationId(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetSessionByAllocationId(InRequest, InDelegate, Priority); }
 };
 
 /* Get Session By Id
@@ -1524,62 +1524,62 @@ struct RALLYHEREAPI_API Traits_GetSessionByAllocationId
 */
 struct RALLYHEREAPI_API FRequest_GetSessionById : public FRequest
 {
-    FRequest_GetSessionById();
-    virtual ~FRequest_GetSessionById() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetSessionById();
+	virtual ~FRequest_GetSessionById() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString SessionId;
-    TOptional<bool> RefreshTtl;
-    /* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString SessionId;
+	TOptional<bool> RefreshTtl;
+	/* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetSessionById : public FResponse
 {
-    FResponse_GetSessionById(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetSessionById() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetSessionById(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetSessionById() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_Session Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_Session Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_Session& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_Session& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetSessionById
 {
-    typedef FRequest_GetSessionById Request;
-    typedef FResponse_GetSessionById Response;
-    typedef FDelegate_GetSessionById Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_GetSessionById Request;
+	typedef FResponse_GetSessionById Response;
+	typedef FDelegate_GetSessionById Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetSessionById(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetSessionById(InRequest, InDelegate, Priority); }
 };
 
 /* Get Session Template By Type
@@ -1596,61 +1596,61 @@ struct RALLYHEREAPI_API Traits_GetSessionById
 */
 struct RALLYHEREAPI_API FRequest_GetSessionTemplateByType : public FRequest
 {
-    FRequest_GetSessionTemplateByType();
-    virtual ~FRequest_GetSessionTemplateByType() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetSessionTemplateByType();
+	virtual ~FRequest_GetSessionTemplateByType() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString SessionType;
-    /* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString SessionType;
+	/* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetSessionTemplateByType : public FResponse
 {
-    FResponse_GetSessionTemplateByType(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetSessionTemplateByType() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetSessionTemplateByType(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetSessionTemplateByType() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_SessionTemplate Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_SessionTemplate Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_SessionTemplate& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_SessionTemplate& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetSessionTemplateByType
 {
-    typedef FRequest_GetSessionTemplateByType Request;
-    typedef FResponse_GetSessionTemplateByType Response;
-    typedef FDelegate_GetSessionTemplateByType Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_GetSessionTemplateByType Request;
+	typedef FResponse_GetSessionTemplateByType Response;
+	typedef FDelegate_GetSessionTemplateByType Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetSessionTemplateByType(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetSessionTemplateByType(InRequest, InDelegate, Priority); }
 };
 
 /* Instance Health Check
@@ -1667,55 +1667,55 @@ struct RALLYHEREAPI_API Traits_GetSessionTemplateByType
 */
 struct RALLYHEREAPI_API FRequest_InstanceHealthCheck : public FRequest
 {
-    FRequest_InstanceHealthCheck();
-    virtual ~FRequest_InstanceHealthCheck() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_InstanceHealthCheck();
+	virtual ~FRequest_InstanceHealthCheck() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString SessionId;
-    FRHAPI_InstanceHealthStatusUpdate InstanceHealthStatusUpdate;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString SessionId;
+	FRHAPI_InstanceHealthStatusUpdate InstanceHealthStatusUpdate;
 };
 
 struct RALLYHEREAPI_API FResponse_InstanceHealthCheck : public FResponse
 {
-    FResponse_InstanceHealthCheck(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_InstanceHealthCheck() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_InstanceHealthCheck(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_InstanceHealthCheck() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_InstanceHealthStatusResponse Content;
+	FRHAPI_InstanceHealthStatusResponse Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_InstanceHealthStatusResponse& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_InstanceHealthStatusResponse& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_InstanceHealthCheck
 {
-    typedef FRequest_InstanceHealthCheck Request;
-    typedef FResponse_InstanceHealthCheck Response;
-    typedef FDelegate_InstanceHealthCheck Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_InstanceHealthCheck Request;
+	typedef FResponse_InstanceHealthCheck Response;
+	typedef FDelegate_InstanceHealthCheck Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.InstanceHealthCheck(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.InstanceHealthCheck(InRequest, InDelegate, Priority); }
 };
 
 /* Instance Health Config
@@ -1728,48 +1728,48 @@ struct RALLYHEREAPI_API Traits_InstanceHealthCheck
 */
 struct RALLYHEREAPI_API FRequest_InstanceHealthConfig : public FRequest
 {
-    FRequest_InstanceHealthConfig();
-    virtual ~FRequest_InstanceHealthConfig() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_InstanceHealthConfig();
+	virtual ~FRequest_InstanceHealthConfig() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
+	TSharedPtr<FAuthContext> AuthContext;
 };
 
 struct RALLYHEREAPI_API FResponse_InstanceHealthConfig : public FResponse
 {
-    FResponse_InstanceHealthConfig(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_InstanceHealthConfig() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_InstanceHealthConfig(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_InstanceHealthConfig() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_InstanceHealthSettingsResponse Content;
+	FRHAPI_InstanceHealthSettingsResponse Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_InstanceHealthSettingsResponse& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_InstanceHealthSettingsResponse& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_InstanceHealthConfig
 {
-    typedef FRequest_InstanceHealthConfig Request;
-    typedef FResponse_InstanceHealthConfig Response;
-    typedef FDelegate_InstanceHealthConfig Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_InstanceHealthConfig Request;
+	typedef FResponse_InstanceHealthConfig Response;
+	typedef FDelegate_InstanceHealthConfig Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.InstanceHealthConfig(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.InstanceHealthConfig(InRequest, InDelegate, Priority); }
 };
 
 /* Invite Session To Session
@@ -1792,66 +1792,66 @@ struct RALLYHEREAPI_API Traits_InstanceHealthConfig
 */
 struct RALLYHEREAPI_API FRequest_InviteSessionToSession : public FRequest
 {
-    FRequest_InviteSessionToSession();
-    virtual ~FRequest_InviteSessionToSession() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_InviteSessionToSession();
+	virtual ~FRequest_InviteSessionToSession() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString SessionId;
-    FString InvitedSessionId;
-    FRHAPI_SessionInviteRequest SessionInviteRequest;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString SessionId;
+	FString InvitedSessionId;
+	FRHAPI_SessionInviteRequest SessionInviteRequest;
 };
 
 struct RALLYHEREAPI_API FResponse_InviteSessionToSession : public FResponse
 {
-    FResponse_InviteSessionToSession(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_InviteSessionToSession() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_InviteSessionToSession(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_InviteSessionToSession() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_SessionInviteResponse Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_SessionInviteResponse Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_SessionInviteResponse& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_SessionInviteResponse& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Session doesn't exist or Player is not a member of the session.  See error code for more info
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Session doesn't exist or Player is not a member of the session.  See error code for more info
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_InviteSessionToSession
 {
-    typedef FRequest_InviteSessionToSession Request;
-    typedef FResponse_InviteSessionToSession Response;
-    typedef FDelegate_InviteSessionToSession Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_InviteSessionToSession Request;
+	typedef FResponse_InviteSessionToSession Response;
+	typedef FDelegate_InviteSessionToSession Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.InviteSessionToSession(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.InviteSessionToSession(InRequest, InDelegate, Priority); }
 };
 
 /* Join Queue
@@ -1868,55 +1868,55 @@ struct RALLYHEREAPI_API Traits_InviteSessionToSession
 */
 struct RALLYHEREAPI_API FRequest_JoinQueue : public FRequest
 {
-    FRequest_JoinQueue();
-    virtual ~FRequest_JoinQueue() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_JoinQueue();
+	virtual ~FRequest_JoinQueue() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString SessionId;
-    FRHAPI_QueueJoinRequest QueueJoinRequest;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString SessionId;
+	FRHAPI_QueueJoinRequest QueueJoinRequest;
 };
 
 struct RALLYHEREAPI_API FResponse_JoinQueue : public FResponse
 {
-    FResponse_JoinQueue(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_JoinQueue() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_JoinQueue(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_JoinQueue() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_QueueJoinResponse Content;
+	FRHAPI_QueueJoinResponse Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_QueueJoinResponse& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_QueueJoinResponse& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_JoinQueue
 {
-    typedef FRequest_JoinQueue Request;
-    typedef FResponse_JoinQueue Response;
-    typedef FDelegate_JoinQueue Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_JoinQueue Request;
+	typedef FResponse_JoinQueue Response;
+	typedef FDelegate_JoinQueue Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.JoinQueue(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.JoinQueue(InRequest, InDelegate, Priority); }
 };
 
 /* Join Session By Id Self
@@ -1933,65 +1933,65 @@ struct RALLYHEREAPI_API Traits_JoinQueue
 */
 struct RALLYHEREAPI_API FRequest_JoinSessionByIdSelf : public FRequest
 {
-    FRequest_JoinSessionByIdSelf();
-    virtual ~FRequest_JoinSessionByIdSelf() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_JoinSessionByIdSelf();
+	virtual ~FRequest_JoinSessionByIdSelf() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString SessionId;
-    FRHAPI_SelfSessionPlayerUpdateRequest SelfSessionPlayerUpdateRequest;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString SessionId;
+	FRHAPI_SelfSessionPlayerUpdateRequest SelfSessionPlayerUpdateRequest;
 };
 
 struct RALLYHEREAPI_API FResponse_JoinSessionByIdSelf : public FResponse
 {
-    FResponse_JoinSessionByIdSelf(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_JoinSessionByIdSelf() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_JoinSessionByIdSelf(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_JoinSessionByIdSelf() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_SessionPlayerUpdateResponse Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_SessionPlayerUpdateResponse Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_SessionPlayerUpdateResponse& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_SessionPlayerUpdateResponse& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Session doesn't exist or Player is not a member of the session.  See error code for more info
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Session doesn't exist or Player is not a member of the session.  See error code for more info
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_JoinSessionByIdSelf
 {
-    typedef FRequest_JoinSessionByIdSelf Request;
-    typedef FResponse_JoinSessionByIdSelf Response;
-    typedef FDelegate_JoinSessionByIdSelf Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_JoinSessionByIdSelf Request;
+	typedef FResponse_JoinSessionByIdSelf Response;
+	typedef FDelegate_JoinSessionByIdSelf Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.JoinSessionByIdSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.JoinSessionByIdSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Join Session By Platform Session By Uuid
@@ -2008,75 +2008,75 @@ struct RALLYHEREAPI_API Traits_JoinSessionByIdSelf
 */
 struct RALLYHEREAPI_API FRequest_JoinSessionByPlatformSessionByUuid : public FRequest
 {
-    FRequest_JoinSessionByPlatformSessionByUuid();
-    virtual ~FRequest_JoinSessionByPlatformSessionByUuid() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_JoinSessionByPlatformSessionByUuid();
+	virtual ~FRequest_JoinSessionByPlatformSessionByUuid() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString PlatformSessionIdBase64;
-    FGuid PlayerUuid;
-    ERHAPI_Platform Platform;
-    FRHAPI_SelfSessionPlayerUpdateRequest SelfSessionPlayerUpdateRequest;
-    TOptional<int32> PlayerId;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString PlatformSessionIdBase64;
+	FGuid PlayerUuid;
+	ERHAPI_Platform Platform;
+	FRHAPI_SelfSessionPlayerUpdateRequest SelfSessionPlayerUpdateRequest;
+	TOptional<int32> PlayerId;
 };
 
 struct RALLYHEREAPI_API FResponse_JoinSessionByPlatformSessionByUuid : public FResponse
 {
-    FResponse_JoinSessionByPlatformSessionByUuid(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_JoinSessionByPlatformSessionByUuid() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_JoinSessionByPlatformSessionByUuid(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_JoinSessionByPlatformSessionByUuid() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_Session Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_Session Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_Session& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_Session& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 403
-    User is not authenticated, or does not have sufficient role access to perform request
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	User is not authenticated, or does not have sufficient role access to perform request
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Platform Session or Platform Player doesn't exist.  See error code for more info
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Platform Session or Platform Player doesn't exist.  See error code for more info
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 409
-    Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
-    */
-    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
-    /* Number of seconds after which to retry the request, when the server should have the resource available */
-    TOptional<int32> GetHeader409_RetryAfter() const;
+	/* Response 409
+	Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Number of seconds after which to retry the request, when the server should have the resource available */
+	TOptional<int32> GetHeader409_RetryAfter() const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_JoinSessionByPlatformSessionByUuid
 {
-    typedef FRequest_JoinSessionByPlatformSessionByUuid Request;
-    typedef FResponse_JoinSessionByPlatformSessionByUuid Response;
-    typedef FDelegate_JoinSessionByPlatformSessionByUuid Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_JoinSessionByPlatformSessionByUuid Request;
+	typedef FResponse_JoinSessionByPlatformSessionByUuid Response;
+	typedef FDelegate_JoinSessionByPlatformSessionByUuid Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.JoinSessionByPlatformSessionByUuid(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.JoinSessionByPlatformSessionByUuid(InRequest, InDelegate, Priority); }
 };
 
 /* Join Session By Platform Session Id Self
@@ -2093,73 +2093,73 @@ struct RALLYHEREAPI_API Traits_JoinSessionByPlatformSessionByUuid
 */
 struct RALLYHEREAPI_API FRequest_JoinSessionByPlatformSessionIdSelf : public FRequest
 {
-    FRequest_JoinSessionByPlatformSessionIdSelf();
-    virtual ~FRequest_JoinSessionByPlatformSessionIdSelf() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_JoinSessionByPlatformSessionIdSelf();
+	virtual ~FRequest_JoinSessionByPlatformSessionIdSelf() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString PlatformSessionIdBase64;
-    ERHAPI_Platform Platform;
-    FRHAPI_SelfSessionPlayerUpdateRequest SelfSessionPlayerUpdateRequest;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString PlatformSessionIdBase64;
+	ERHAPI_Platform Platform;
+	FRHAPI_SelfSessionPlayerUpdateRequest SelfSessionPlayerUpdateRequest;
 };
 
 struct RALLYHEREAPI_API FResponse_JoinSessionByPlatformSessionIdSelf : public FResponse
 {
-    FResponse_JoinSessionByPlatformSessionIdSelf(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_JoinSessionByPlatformSessionIdSelf() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_JoinSessionByPlatformSessionIdSelf(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_JoinSessionByPlatformSessionIdSelf() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_Session Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_Session Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_Session& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_Session& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 403
-    User is not authenticated, or does not have sufficient role access to perform request
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	User is not authenticated, or does not have sufficient role access to perform request
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Platform Session or Platform Player doesn't exist.  See error code for more info
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Platform Session or Platform Player doesn't exist.  See error code for more info
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 409
-    Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
-    */
-    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
-    /* Number of seconds after which to retry the request, when the server should have the resource available */
-    TOptional<int32> GetHeader409_RetryAfter() const;
+	/* Response 409
+	Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Number of seconds after which to retry the request, when the server should have the resource available */
+	TOptional<int32> GetHeader409_RetryAfter() const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_JoinSessionByPlatformSessionIdSelf
 {
-    typedef FRequest_JoinSessionByPlatformSessionIdSelf Request;
-    typedef FResponse_JoinSessionByPlatformSessionIdSelf Response;
-    typedef FDelegate_JoinSessionByPlatformSessionIdSelf Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_JoinSessionByPlatformSessionIdSelf Request;
+	typedef FResponse_JoinSessionByPlatformSessionIdSelf Response;
+	typedef FDelegate_JoinSessionByPlatformSessionIdSelf Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.JoinSessionByPlatformSessionIdSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.JoinSessionByPlatformSessionIdSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Kick Player From Session By Id
@@ -2179,59 +2179,59 @@ struct RALLYHEREAPI_API Traits_JoinSessionByPlatformSessionIdSelf
 */
 struct RALLYHEREAPI_API FRequest_KickPlayerFromSessionById : public FRequest
 {
-    FRequest_KickPlayerFromSessionById();
-    virtual ~FRequest_KickPlayerFromSessionById() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_KickPlayerFromSessionById();
+	virtual ~FRequest_KickPlayerFromSessionById() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString SessionId;
-    int32 PlayerId = 0;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString SessionId;
+	int32 PlayerId = 0;
 };
 
 struct RALLYHEREAPI_API FResponse_KickPlayerFromSessionById : public FResponse
 {
-    FResponse_KickPlayerFromSessionById(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_KickPlayerFromSessionById() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_KickPlayerFromSessionById(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_KickPlayerFromSessionById() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
+	
 
 
-    // Manual Response Helpers
-    /* Response 204
-    Successful Response
-    */
+	// Manual Response Helpers
+	/* Response 204
+	Successful Response
+	*/
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Session doesn't exist or Player is not a member of the session.  See error code for more info
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Session doesn't exist or Player is not a member of the session.  See error code for more info
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_KickPlayerFromSessionById
 {
-    typedef FRequest_KickPlayerFromSessionById Request;
-    typedef FResponse_KickPlayerFromSessionById Response;
-    typedef FDelegate_KickPlayerFromSessionById Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_KickPlayerFromSessionById Request;
+	typedef FResponse_KickPlayerFromSessionById Response;
+	typedef FDelegate_KickPlayerFromSessionById Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.KickPlayerFromSessionById(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.KickPlayerFromSessionById(InRequest, InDelegate, Priority); }
 };
 
 /* Kick Player From Session By Uuid
@@ -2250,64 +2250,64 @@ struct RALLYHEREAPI_API Traits_KickPlayerFromSessionById
 */
 struct RALLYHEREAPI_API FRequest_KickPlayerFromSessionByUuid : public FRequest
 {
-    FRequest_KickPlayerFromSessionByUuid();
-    virtual ~FRequest_KickPlayerFromSessionByUuid() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_KickPlayerFromSessionByUuid();
+	virtual ~FRequest_KickPlayerFromSessionByUuid() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString SessionId;
-    FGuid PlayerUuid;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString SessionId;
+	FGuid PlayerUuid;
 };
 
 struct RALLYHEREAPI_API FResponse_KickPlayerFromSessionByUuid : public FResponse
 {
-    FResponse_KickPlayerFromSessionByUuid(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_KickPlayerFromSessionByUuid() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_KickPlayerFromSessionByUuid(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_KickPlayerFromSessionByUuid() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 204
-    Successful Response
-    */
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader204_ETag() const;
+	// Manual Response Helpers
+	/* Response 204
+	Successful Response
+	*/
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader204_ETag() const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Session doesn't exist or Player is not a member of the session.  See error code for more info
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Session doesn't exist or Player is not a member of the session.  See error code for more info
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_KickPlayerFromSessionByUuid
 {
-    typedef FRequest_KickPlayerFromSessionByUuid Request;
-    typedef FResponse_KickPlayerFromSessionByUuid Response;
-    typedef FDelegate_KickPlayerFromSessionByUuid Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_KickPlayerFromSessionByUuid Request;
+	typedef FResponse_KickPlayerFromSessionByUuid Response;
+	typedef FDelegate_KickPlayerFromSessionByUuid Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.KickPlayerFromSessionByUuid(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.KickPlayerFromSessionByUuid(InRequest, InDelegate, Priority); }
 };
 
 /* Kick Player From Session By Uuid V2
@@ -2325,64 +2325,64 @@ struct RALLYHEREAPI_API Traits_KickPlayerFromSessionByUuid
 */
 struct RALLYHEREAPI_API FRequest_KickPlayerFromSessionByUuidV2 : public FRequest
 {
-    FRequest_KickPlayerFromSessionByUuidV2();
-    virtual ~FRequest_KickPlayerFromSessionByUuidV2() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_KickPlayerFromSessionByUuidV2();
+	virtual ~FRequest_KickPlayerFromSessionByUuidV2() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString SessionId;
-    FGuid PlayerUuid;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString SessionId;
+	FGuid PlayerUuid;
 };
 
 struct RALLYHEREAPI_API FResponse_KickPlayerFromSessionByUuidV2 : public FResponse
 {
-    FResponse_KickPlayerFromSessionByUuidV2(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_KickPlayerFromSessionByUuidV2() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_KickPlayerFromSessionByUuidV2(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_KickPlayerFromSessionByUuidV2() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 204
-    Successful Response
-    */
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader204_ETag() const;
+	// Manual Response Helpers
+	/* Response 204
+	Successful Response
+	*/
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader204_ETag() const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Session doesn't exist or Player is not a member of the session.  See error code for more info
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Session doesn't exist or Player is not a member of the session.  See error code for more info
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_KickPlayerFromSessionByUuidV2
 {
-    typedef FRequest_KickPlayerFromSessionByUuidV2 Request;
-    typedef FResponse_KickPlayerFromSessionByUuidV2 Response;
-    typedef FDelegate_KickPlayerFromSessionByUuidV2 Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_KickPlayerFromSessionByUuidV2 Request;
+	typedef FResponse_KickPlayerFromSessionByUuidV2 Response;
+	typedef FDelegate_KickPlayerFromSessionByUuidV2 Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.KickPlayerFromSessionByUuidV2(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.KickPlayerFromSessionByUuidV2(InRequest, InDelegate, Priority); }
 };
 
 /* Kick Session From Session
@@ -2405,59 +2405,59 @@ struct RALLYHEREAPI_API Traits_KickPlayerFromSessionByUuidV2
 */
 struct RALLYHEREAPI_API FRequest_KickSessionFromSession : public FRequest
 {
-    FRequest_KickSessionFromSession();
-    virtual ~FRequest_KickSessionFromSession() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_KickSessionFromSession();
+	virtual ~FRequest_KickSessionFromSession() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString SessionId;
-    FString KickedSessionId;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString SessionId;
+	FString KickedSessionId;
 };
 
 struct RALLYHEREAPI_API FResponse_KickSessionFromSession : public FResponse
 {
-    FResponse_KickSessionFromSession(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_KickSessionFromSession() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_KickSessionFromSession(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_KickSessionFromSession() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
+	
 
 
-    // Manual Response Helpers
-    /* Response 204
-    Successful Response
-    */
+	// Manual Response Helpers
+	/* Response 204
+	Successful Response
+	*/
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Session doesn't exist or Player is not a member of the session.  See error code for more info
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Session doesn't exist or Player is not a member of the session.  See error code for more info
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_KickSessionFromSession
 {
-    typedef FRequest_KickSessionFromSession Request;
-    typedef FResponse_KickSessionFromSession Response;
-    typedef FDelegate_KickSessionFromSession Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_KickSessionFromSession Request;
+	typedef FResponse_KickSessionFromSession Response;
+	typedef FDelegate_KickSessionFromSession Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.KickSessionFromSession(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.KickSessionFromSession(InRequest, InDelegate, Priority); }
 };
 
 /* Leave Queue
@@ -2474,59 +2474,59 @@ struct RALLYHEREAPI_API Traits_KickSessionFromSession
 */
 struct RALLYHEREAPI_API FRequest_LeaveQueue : public FRequest
 {
-    FRequest_LeaveQueue();
-    virtual ~FRequest_LeaveQueue() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_LeaveQueue();
+	virtual ~FRequest_LeaveQueue() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString SessionId;
-    TOptional<ERHAPI_DeleteTicketReason> Reason;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString SessionId;
+	TOptional<ERHAPI_DeleteTicketReason> Reason;
 };
 
 struct RALLYHEREAPI_API FResponse_LeaveQueue : public FResponse
 {
-    FResponse_LeaveQueue(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_LeaveQueue() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_LeaveQueue(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_LeaveQueue() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
+	
 
 
-    // Manual Response Helpers
-    /* Response 204
-    Successful Response
-    */
+	// Manual Response Helpers
+	/* Response 204
+	Successful Response
+	*/
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Session doesn't exist or Player is not a member of the session.  See error code for more info
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Session doesn't exist or Player is not a member of the session.  See error code for more info
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_LeaveQueue
 {
-    typedef FRequest_LeaveQueue Request;
-    typedef FResponse_LeaveQueue Response;
-    typedef FDelegate_LeaveQueue Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_LeaveQueue Request;
+	typedef FResponse_LeaveQueue Response;
+	typedef FDelegate_LeaveQueue Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.LeaveQueue(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.LeaveQueue(InRequest, InDelegate, Priority); }
 };
 
 /* Leave Session By Id Self
@@ -2543,58 +2543,58 @@ struct RALLYHEREAPI_API Traits_LeaveQueue
 */
 struct RALLYHEREAPI_API FRequest_LeaveSessionByIdSelf : public FRequest
 {
-    FRequest_LeaveSessionByIdSelf();
-    virtual ~FRequest_LeaveSessionByIdSelf() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_LeaveSessionByIdSelf();
+	virtual ~FRequest_LeaveSessionByIdSelf() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString SessionId;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString SessionId;
 };
 
 struct RALLYHEREAPI_API FResponse_LeaveSessionByIdSelf : public FResponse
 {
-    FResponse_LeaveSessionByIdSelf(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_LeaveSessionByIdSelf() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_LeaveSessionByIdSelf(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_LeaveSessionByIdSelf() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
+	
 
 
-    // Manual Response Helpers
-    /* Response 204
-    Successful Response
-    */
+	// Manual Response Helpers
+	/* Response 204
+	Successful Response
+	*/
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Session doesn't exist or Player is not a member of the session.  See error code for more info
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Session doesn't exist or Player is not a member of the session.  See error code for more info
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_LeaveSessionByIdSelf
 {
-    typedef FRequest_LeaveSessionByIdSelf Request;
-    typedef FResponse_LeaveSessionByIdSelf Response;
-    typedef FDelegate_LeaveSessionByIdSelf Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_LeaveSessionByIdSelf Request;
+	typedef FResponse_LeaveSessionByIdSelf Response;
+	typedef FDelegate_LeaveSessionByIdSelf Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.LeaveSessionByIdSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.LeaveSessionByIdSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Leave Session By Platform Session By Uuid
@@ -2611,67 +2611,67 @@ struct RALLYHEREAPI_API Traits_LeaveSessionByIdSelf
 */
 struct RALLYHEREAPI_API FRequest_LeaveSessionByPlatformSessionByUuid : public FRequest
 {
-    FRequest_LeaveSessionByPlatformSessionByUuid();
-    virtual ~FRequest_LeaveSessionByPlatformSessionByUuid() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_LeaveSessionByPlatformSessionByUuid();
+	virtual ~FRequest_LeaveSessionByPlatformSessionByUuid() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString PlatformSessionIdBase64;
-    ERHAPI_Platform Platform;
-    FGuid PlayerUuid;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString PlatformSessionIdBase64;
+	ERHAPI_Platform Platform;
+	FGuid PlayerUuid;
 };
 
 struct RALLYHEREAPI_API FResponse_LeaveSessionByPlatformSessionByUuid : public FResponse
 {
-    FResponse_LeaveSessionByPlatformSessionByUuid(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_LeaveSessionByPlatformSessionByUuid() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_LeaveSessionByPlatformSessionByUuid(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_LeaveSessionByPlatformSessionByUuid() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
+	
 
 
-    // Manual Response Helpers
-    /* Response 204
-    Successful Response
-    */
+	// Manual Response Helpers
+	/* Response 204
+	Successful Response
+	*/
 
-    /* Response 403
-    User is not authenticated, or does not have sufficient role access to perform request
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	User is not authenticated, or does not have sufficient role access to perform request
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Platform Session or Platform Player doesn't exist.  See error code for more info
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Platform Session or Platform Player doesn't exist.  See error code for more info
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 409
-    Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
-    */
-    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
-    /* Number of seconds after which to retry the request, when the server should have the resource available */
-    TOptional<int32> GetHeader409_RetryAfter() const;
+	/* Response 409
+	Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Number of seconds after which to retry the request, when the server should have the resource available */
+	TOptional<int32> GetHeader409_RetryAfter() const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_LeaveSessionByPlatformSessionByUuid
 {
-    typedef FRequest_LeaveSessionByPlatformSessionByUuid Request;
-    typedef FResponse_LeaveSessionByPlatformSessionByUuid Response;
-    typedef FDelegate_LeaveSessionByPlatformSessionByUuid Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_LeaveSessionByPlatformSessionByUuid Request;
+	typedef FResponse_LeaveSessionByPlatformSessionByUuid Response;
+	typedef FDelegate_LeaveSessionByPlatformSessionByUuid Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.LeaveSessionByPlatformSessionByUuid(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.LeaveSessionByPlatformSessionByUuid(InRequest, InDelegate, Priority); }
 };
 
 /* Leave Session By Platform Session Self
@@ -2688,66 +2688,66 @@ struct RALLYHEREAPI_API Traits_LeaveSessionByPlatformSessionByUuid
 */
 struct RALLYHEREAPI_API FRequest_LeaveSessionByPlatformSessionSelf : public FRequest
 {
-    FRequest_LeaveSessionByPlatformSessionSelf();
-    virtual ~FRequest_LeaveSessionByPlatformSessionSelf() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_LeaveSessionByPlatformSessionSelf();
+	virtual ~FRequest_LeaveSessionByPlatformSessionSelf() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString PlatformSessionIdBase64;
-    ERHAPI_Platform Platform;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString PlatformSessionIdBase64;
+	ERHAPI_Platform Platform;
 };
 
 struct RALLYHEREAPI_API FResponse_LeaveSessionByPlatformSessionSelf : public FResponse
 {
-    FResponse_LeaveSessionByPlatformSessionSelf(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_LeaveSessionByPlatformSessionSelf() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_LeaveSessionByPlatformSessionSelf(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_LeaveSessionByPlatformSessionSelf() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
+	
 
 
-    // Manual Response Helpers
-    /* Response 204
-    Successful Response
-    */
+	// Manual Response Helpers
+	/* Response 204
+	Successful Response
+	*/
 
-    /* Response 403
-    User is not authenticated, or does not have sufficient role access to perform request
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	User is not authenticated, or does not have sufficient role access to perform request
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Platform Session or Platform Player doesn't exist.  See error code for more info
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Platform Session or Platform Player doesn't exist.  See error code for more info
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 409
-    Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
-    */
-    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
-    /* Number of seconds after which to retry the request, when the server should have the resource available */
-    TOptional<int32> GetHeader409_RetryAfter() const;
+	/* Response 409
+	Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Number of seconds after which to retry the request, when the server should have the resource available */
+	TOptional<int32> GetHeader409_RetryAfter() const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_LeaveSessionByPlatformSessionSelf
 {
-    typedef FRequest_LeaveSessionByPlatformSessionSelf Request;
-    typedef FResponse_LeaveSessionByPlatformSessionSelf Response;
-    typedef FDelegate_LeaveSessionByPlatformSessionSelf Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_LeaveSessionByPlatformSessionSelf Request;
+	typedef FResponse_LeaveSessionByPlatformSessionSelf Response;
+	typedef FDelegate_LeaveSessionByPlatformSessionSelf Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.LeaveSessionByPlatformSessionSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.LeaveSessionByPlatformSessionSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Post Browser Info
@@ -2764,56 +2764,56 @@ struct RALLYHEREAPI_API Traits_LeaveSessionByPlatformSessionSelf
 */
 struct RALLYHEREAPI_API FRequest_PostBrowserInfo : public FRequest
 {
-    FRequest_PostBrowserInfo();
-    virtual ~FRequest_PostBrowserInfo() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_PostBrowserInfo();
+	virtual ~FRequest_PostBrowserInfo() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString SessionId;
-    FRHAPI_BrowserInfo BrowserInfo;
-    TOptional<bool> RefreshTtl;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString SessionId;
+	FRHAPI_BrowserInfo BrowserInfo;
+	TOptional<bool> RefreshTtl;
 };
 
 struct RALLYHEREAPI_API FResponse_PostBrowserInfo : public FResponse
 {
-    FResponse_PostBrowserInfo(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_PostBrowserInfo() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_PostBrowserInfo(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_PostBrowserInfo() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_BrowserInfo Content;
+	FRHAPI_BrowserInfo Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_BrowserInfo& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_BrowserInfo& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_PostBrowserInfo
 {
-    typedef FRequest_PostBrowserInfo Request;
-    typedef FResponse_PostBrowserInfo Response;
-    typedef FDelegate_PostBrowserInfo Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_PostBrowserInfo Request;
+	typedef FResponse_PostBrowserInfo Response;
+	typedef FDelegate_PostBrowserInfo Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PostBrowserInfo(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PostBrowserInfo(InRequest, InDelegate, Priority); }
 };
 
 /* Update Backfill Request
@@ -2822,60 +2822,60 @@ struct RALLYHEREAPI_API Traits_PostBrowserInfo
 */
 struct RALLYHEREAPI_API FRequest_UpdateBackfillRequest : public FRequest
 {
-    FRequest_UpdateBackfillRequest();
-    virtual ~FRequest_UpdateBackfillRequest() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_UpdateBackfillRequest();
+	virtual ~FRequest_UpdateBackfillRequest() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString SessionId;
-    FRHAPI_UpdateBackfillRequest UpdateBackfillRequest;
-    TOptional<bool> RefreshTtl;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString SessionId;
+	FRHAPI_UpdateBackfillRequest UpdateBackfillRequest;
+	TOptional<bool> RefreshTtl;
 };
 
 struct RALLYHEREAPI_API FResponse_UpdateBackfillRequest : public FResponse
 {
-    FResponse_UpdateBackfillRequest(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_UpdateBackfillRequest() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_UpdateBackfillRequest(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_UpdateBackfillRequest() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
+	
 
 
-    // Manual Response Helpers
-    /* Response 204
-    Successful Response
-    */
+	// Manual Response Helpers
+	/* Response 204
+	Successful Response
+	*/
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Backfill resource could not be found on the session, or in the open-match system
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Backfill resource could not be found on the session, or in the open-match system
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_UpdateBackfillRequest
 {
-    typedef FRequest_UpdateBackfillRequest Request;
-    typedef FResponse_UpdateBackfillRequest Response;
-    typedef FDelegate_UpdateBackfillRequest Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_UpdateBackfillRequest Request;
+	typedef FResponse_UpdateBackfillRequest Response;
+	typedef FDelegate_UpdateBackfillRequest Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateBackfillRequest(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateBackfillRequest(InRequest, InDelegate, Priority); }
 };
 
 /* Update Browser Info
@@ -2892,55 +2892,55 @@ struct RALLYHEREAPI_API Traits_UpdateBackfillRequest
 */
 struct RALLYHEREAPI_API FRequest_UpdateBrowserInfo : public FRequest
 {
-    FRequest_UpdateBrowserInfo();
-    virtual ~FRequest_UpdateBrowserInfo() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_UpdateBrowserInfo();
+	virtual ~FRequest_UpdateBrowserInfo() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString SessionId;
-    FRHAPI_BrowserInfo BrowserInfo;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString SessionId;
+	FRHAPI_BrowserInfo BrowserInfo;
 };
 
 struct RALLYHEREAPI_API FResponse_UpdateBrowserInfo : public FResponse
 {
-    FResponse_UpdateBrowserInfo(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_UpdateBrowserInfo() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_UpdateBrowserInfo(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_UpdateBrowserInfo() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_BrowserInfo Content;
+	FRHAPI_BrowserInfo Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_BrowserInfo& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_BrowserInfo& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_UpdateBrowserInfo
 {
-    typedef FRequest_UpdateBrowserInfo Request;
-    typedef FResponse_UpdateBrowserInfo Response;
-    typedef FDelegate_UpdateBrowserInfo Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_UpdateBrowserInfo Request;
+	typedef FResponse_UpdateBrowserInfo Response;
+	typedef FDelegate_UpdateBrowserInfo Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateBrowserInfo(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateBrowserInfo(InRequest, InDelegate, Priority); }
 };
 
 /* Update Instance Info
@@ -2958,55 +2958,55 @@ struct RALLYHEREAPI_API Traits_UpdateBrowserInfo
 */
 struct RALLYHEREAPI_API FRequest_UpdateInstanceInfo : public FRequest
 {
-    FRequest_UpdateInstanceInfo();
-    virtual ~FRequest_UpdateInstanceInfo() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_UpdateInstanceInfo();
+	virtual ~FRequest_UpdateInstanceInfo() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString SessionId;
-    FRHAPI_InstanceInfoUpdate InstanceInfoUpdate;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString SessionId;
+	FRHAPI_InstanceInfoUpdate InstanceInfoUpdate;
 };
 
 struct RALLYHEREAPI_API FResponse_UpdateInstanceInfo : public FResponse
 {
-    FResponse_UpdateInstanceInfo(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_UpdateInstanceInfo() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_UpdateInstanceInfo(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_UpdateInstanceInfo() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_InstanceInfo Content;
+	FRHAPI_InstanceInfo Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_InstanceInfo& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_InstanceInfo& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_UpdateInstanceInfo
 {
-    typedef FRequest_UpdateInstanceInfo Request;
-    typedef FResponse_UpdateInstanceInfo Response;
-    typedef FDelegate_UpdateInstanceInfo Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_UpdateInstanceInfo Request;
+	typedef FResponse_UpdateInstanceInfo Response;
+	typedef FDelegate_UpdateInstanceInfo Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateInstanceInfo(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateInstanceInfo(InRequest, InDelegate, Priority); }
 };
 
 /* Update Session By Id
@@ -3023,60 +3023,60 @@ struct RALLYHEREAPI_API Traits_UpdateInstanceInfo
 */
 struct RALLYHEREAPI_API FRequest_UpdateSessionById : public FRequest
 {
-    FRequest_UpdateSessionById();
-    virtual ~FRequest_UpdateSessionById() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_UpdateSessionById();
+	virtual ~FRequest_UpdateSessionById() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString SessionId;
-    FRHAPI_SessionUpdate SessionUpdate;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString SessionId;
+	FRHAPI_SessionUpdate SessionUpdate;
 };
 
 struct RALLYHEREAPI_API FResponse_UpdateSessionById : public FResponse
 {
-    FResponse_UpdateSessionById(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_UpdateSessionById() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_UpdateSessionById(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_UpdateSessionById() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_Session Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_Session Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_Session& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_Session& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_UpdateSessionById
 {
-    typedef FRequest_UpdateSessionById Request;
-    typedef FResponse_UpdateSessionById Response;
-    typedef FDelegate_UpdateSessionById Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_UpdateSessionById Request;
+	typedef FResponse_UpdateSessionById Response;
+	typedef FDelegate_UpdateSessionById Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateSessionById(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateSessionById(InRequest, InDelegate, Priority); }
 };
 
 /* Update Session Player By Id
@@ -3096,61 +3096,61 @@ struct RALLYHEREAPI_API Traits_UpdateSessionById
 */
 struct RALLYHEREAPI_API FRequest_UpdateSessionPlayerById : public FRequest
 {
-    FRequest_UpdateSessionPlayerById();
-    virtual ~FRequest_UpdateSessionPlayerById() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_UpdateSessionPlayerById();
+	virtual ~FRequest_UpdateSessionPlayerById() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString SessionId;
-    int32 PlayerId = 0;
-    FRHAPI_SessionPlayerUpdateRequest SessionPlayerUpdateRequest;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString SessionId;
+	int32 PlayerId = 0;
+	FRHAPI_SessionPlayerUpdateRequest SessionPlayerUpdateRequest;
 };
 
 struct RALLYHEREAPI_API FResponse_UpdateSessionPlayerById : public FResponse
 {
-    FResponse_UpdateSessionPlayerById(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_UpdateSessionPlayerById() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_UpdateSessionPlayerById(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_UpdateSessionPlayerById() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_SessionPlayerUpdateResponse Content;
+	FRHAPI_SessionPlayerUpdateResponse Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_SessionPlayerUpdateResponse& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_SessionPlayerUpdateResponse& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Session doesn't exist or Player is not a member of the session.  See error code for more info
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Session doesn't exist or Player is not a member of the session.  See error code for more info
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_UpdateSessionPlayerById
 {
-    typedef FRequest_UpdateSessionPlayerById Request;
-    typedef FResponse_UpdateSessionPlayerById Response;
-    typedef FDelegate_UpdateSessionPlayerById Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_UpdateSessionPlayerById Request;
+	typedef FResponse_UpdateSessionPlayerById Response;
+	typedef FDelegate_UpdateSessionPlayerById Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateSessionPlayerById(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateSessionPlayerById(InRequest, InDelegate, Priority); }
 };
 
 /* Update Session Player By Uuid
@@ -3169,66 +3169,66 @@ struct RALLYHEREAPI_API Traits_UpdateSessionPlayerById
 */
 struct RALLYHEREAPI_API FRequest_UpdateSessionPlayerByUuid : public FRequest
 {
-    FRequest_UpdateSessionPlayerByUuid();
-    virtual ~FRequest_UpdateSessionPlayerByUuid() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_UpdateSessionPlayerByUuid();
+	virtual ~FRequest_UpdateSessionPlayerByUuid() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString SessionId;
-    FGuid PlayerUuid;
-    FRHAPI_SessionPlayerUpdateRequest SessionPlayerUpdateRequest;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString SessionId;
+	FGuid PlayerUuid;
+	FRHAPI_SessionPlayerUpdateRequest SessionPlayerUpdateRequest;
 };
 
 struct RALLYHEREAPI_API FResponse_UpdateSessionPlayerByUuid : public FResponse
 {
-    FResponse_UpdateSessionPlayerByUuid(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_UpdateSessionPlayerByUuid() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_UpdateSessionPlayerByUuid(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_UpdateSessionPlayerByUuid() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_SessionPlayerUpdateResponse Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_SessionPlayerUpdateResponse Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_SessionPlayerUpdateResponse& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_SessionPlayerUpdateResponse& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Session doesn't exist or Player is not a member of the session.  See error code for more info
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Session doesn't exist or Player is not a member of the session.  See error code for more info
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_UpdateSessionPlayerByUuid
 {
-    typedef FRequest_UpdateSessionPlayerByUuid Request;
-    typedef FResponse_UpdateSessionPlayerByUuid Response;
-    typedef FDelegate_UpdateSessionPlayerByUuid Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_UpdateSessionPlayerByUuid Request;
+	typedef FResponse_UpdateSessionPlayerByUuid Response;
+	typedef FDelegate_UpdateSessionPlayerByUuid Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateSessionPlayerByUuid(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateSessionPlayerByUuid(InRequest, InDelegate, Priority); }
 };
 
 /* Update Session Player By Uuid V2
@@ -3246,66 +3246,66 @@ struct RALLYHEREAPI_API Traits_UpdateSessionPlayerByUuid
 */
 struct RALLYHEREAPI_API FRequest_UpdateSessionPlayerByUuidV2 : public FRequest
 {
-    FRequest_UpdateSessionPlayerByUuidV2();
-    virtual ~FRequest_UpdateSessionPlayerByUuidV2() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_UpdateSessionPlayerByUuidV2();
+	virtual ~FRequest_UpdateSessionPlayerByUuidV2() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString SessionId;
-    FGuid PlayerUuid;
-    FRHAPI_SessionPlayerUpdateRequest SessionPlayerUpdateRequest;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString SessionId;
+	FGuid PlayerUuid;
+	FRHAPI_SessionPlayerUpdateRequest SessionPlayerUpdateRequest;
 };
 
 struct RALLYHEREAPI_API FResponse_UpdateSessionPlayerByUuidV2 : public FResponse
 {
-    FResponse_UpdateSessionPlayerByUuidV2(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_UpdateSessionPlayerByUuidV2() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_UpdateSessionPlayerByUuidV2(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_UpdateSessionPlayerByUuidV2() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_SessionPlayerUpdateResponse Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_SessionPlayerUpdateResponse Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_SessionPlayerUpdateResponse& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_SessionPlayerUpdateResponse& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Session doesn't exist or Player is not a member of the session.  See error code for more info
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Session doesn't exist or Player is not a member of the session.  See error code for more info
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_UpdateSessionPlayerByUuidV2
 {
-    typedef FRequest_UpdateSessionPlayerByUuidV2 Request;
-    typedef FResponse_UpdateSessionPlayerByUuidV2 Response;
-    typedef FDelegate_UpdateSessionPlayerByUuidV2 Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
+	typedef FRequest_UpdateSessionPlayerByUuidV2 Request;
+	typedef FResponse_UpdateSessionPlayerByUuidV2 Response;
+	typedef FDelegate_UpdateSessionPlayerByUuidV2 Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateSessionPlayerByUuidV2(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateSessionPlayerByUuidV2(InRequest, InDelegate, Priority); }
 };
 
 

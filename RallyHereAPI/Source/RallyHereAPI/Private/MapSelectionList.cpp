@@ -21,27 +21,27 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_MapSelectionList::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("map_selection_list_id"));
-    RallyHereAPI::WriteJsonValue(Writer, MapSelectionListId);
-    Writer->WriteIdentifierPrefix(TEXT("maps"));
-    RallyHereAPI::WriteJsonValue(Writer, Maps);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("map_selection_list_id"));
+	RallyHereAPI::WriteJsonValue(Writer, MapSelectionListId);
+	Writer->WriteIdentifierPrefix(TEXT("maps"));
+	RallyHereAPI::WriteJsonValue(Writer, Maps);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_MapSelectionList::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonMapSelectionListIdField = (*Object)->TryGetField(TEXT("map_selection_list_id"));
-    ParseSuccess &= JsonMapSelectionListIdField.IsValid() && !JsonMapSelectionListIdField->IsNull() && TryGetJsonValue(JsonMapSelectionListIdField, MapSelectionListId);
-    const TSharedPtr<FJsonValue> JsonMapsField = (*Object)->TryGetField(TEXT("maps"));
-    ParseSuccess &= JsonMapsField.IsValid() && !JsonMapsField->IsNull() && TryGetJsonValue(JsonMapsField, Maps);
+	const TSharedPtr<FJsonValue> JsonMapSelectionListIdField = (*Object)->TryGetField(TEXT("map_selection_list_id"));
+	ParseSuccess &= JsonMapSelectionListIdField.IsValid() && !JsonMapSelectionListIdField->IsNull() && TryGetJsonValue(JsonMapSelectionListIdField, MapSelectionListId);
+	const TSharedPtr<FJsonValue> JsonMapsField = (*Object)->TryGetField(TEXT("maps"));
+	ParseSuccess &= JsonMapsField.IsValid() && !JsonMapsField->IsNull() && TryGetJsonValue(JsonMapsField, Maps);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

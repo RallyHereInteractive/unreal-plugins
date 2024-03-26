@@ -18,9 +18,9 @@
 UENUM(BlueprintType)
 enum class ERHAPI_CrossplayPlatform : uint8
 {
-    Any UMETA(ToolTip="No crossplay platform preferences. Can play with players any platforms"),
-    Xbox UMETA(ToolTip="Can only play with players on xbox-like platforms (xbox-one, xsx etc.)"),
-    Playstation UMETA(ToolTip="Can only play with players on playstation-like platform (ps4, ps5 etc.)"),
+	Any UMETA(ToolTip="No crossplay platform preferences. Can play with players any platforms"),
+	Xbox UMETA(ToolTip="Can only play with players on xbox-like platforms (xbox-one, xsx etc.)"),
+	Playstation UMETA(ToolTip="Can only play with players on playstation-like platform (ps4, ps5 etc.)"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_CrossplayPlatform& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_CrossplayPlatform& EnumValue);

@@ -21,126 +21,126 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_SessionPlayer::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (PlayerId_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("player_id"));
-        RallyHereAPI::WriteJsonValue(Writer, PlayerId_Optional);
-    }
-    Writer->WriteIdentifierPrefix(TEXT("player_uuid"));
-    RallyHereAPI::WriteJsonValue(Writer, PlayerUuid);
-    Writer->WriteIdentifierPrefix(TEXT("status"));
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(Status));
-    if (InvitingPlayerUuid_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("inviting_player_uuid"));
-        RallyHereAPI::WriteJsonValue(Writer, InvitingPlayerUuid_Optional);
-    }
-    if (SourceSessionId_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("source_session_id"));
-        RallyHereAPI::WriteJsonValue(Writer, SourceSessionId_Optional);
-    }
-    if (CustomData_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("custom_data"));
-        RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
-    }
-    if (Version_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("version"));
-        RallyHereAPI::WriteJsonValue(Writer, Version_Optional);
-    }
-    if (ClientSettings_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("client_settings"));
-        RallyHereAPI::WriteJsonValue(Writer, ClientSettings_Optional);
-    }
-    if (CrossplayPreferences_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("crossplay_preferences"));
-        RallyHereAPI::WriteJsonValue(Writer, CrossplayPreferences_Optional);
-    }
-    if (Invited_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("invited"));
-        RallyHereAPI::WriteJsonValue(Writer, Invited_Optional);
-    }
-    if (Joined_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("joined"));
-        RallyHereAPI::WriteJsonValue(Writer, Joined_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (PlayerId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("player_id"));
+		RallyHereAPI::WriteJsonValue(Writer, PlayerId_Optional);
+	}
+	Writer->WriteIdentifierPrefix(TEXT("player_uuid"));
+	RallyHereAPI::WriteJsonValue(Writer, PlayerUuid);
+	Writer->WriteIdentifierPrefix(TEXT("status"));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Status));
+	if (InvitingPlayerUuid_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("inviting_player_uuid"));
+		RallyHereAPI::WriteJsonValue(Writer, InvitingPlayerUuid_Optional);
+	}
+	if (SourceSessionId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("source_session_id"));
+		RallyHereAPI::WriteJsonValue(Writer, SourceSessionId_Optional);
+	}
+	if (CustomData_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("custom_data"));
+		RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
+	}
+	if (Version_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("version"));
+		RallyHereAPI::WriteJsonValue(Writer, Version_Optional);
+	}
+	if (ClientSettings_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("client_settings"));
+		RallyHereAPI::WriteJsonValue(Writer, ClientSettings_Optional);
+	}
+	if (CrossplayPreferences_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("crossplay_preferences"));
+		RallyHereAPI::WriteJsonValue(Writer, CrossplayPreferences_Optional);
+	}
+	if (Invited_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("invited"));
+		RallyHereAPI::WriteJsonValue(Writer, Invited_Optional);
+	}
+	if (Joined_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("joined"));
+		RallyHereAPI::WriteJsonValue(Writer, Joined_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_SessionPlayer::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonPlayerIdField = (*Object)->TryGetField(TEXT("player_id"));
-    if (JsonPlayerIdField.IsValid() && !JsonPlayerIdField->IsNull())
-    {
-        PlayerId_IsSet = TryGetJsonValue(JsonPlayerIdField, PlayerId_Optional);
-        ParseSuccess &= PlayerId_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonPlayerUuidField = (*Object)->TryGetField(TEXT("player_uuid"));
-    ParseSuccess &= JsonPlayerUuidField.IsValid() && !JsonPlayerUuidField->IsNull() && TryGetJsonValue(JsonPlayerUuidField, PlayerUuid);
-    const TSharedPtr<FJsonValue> JsonStatusField = (*Object)->TryGetField(TEXT("status"));
-    ParseSuccess &= JsonStatusField.IsValid() && !JsonStatusField->IsNull() && TryGetJsonValue(JsonStatusField, Status);
-    const TSharedPtr<FJsonValue> JsonInvitingPlayerUuidField = (*Object)->TryGetField(TEXT("inviting_player_uuid"));
-    if (JsonInvitingPlayerUuidField.IsValid() && !JsonInvitingPlayerUuidField->IsNull())
-    {
-        InvitingPlayerUuid_IsSet = TryGetJsonValue(JsonInvitingPlayerUuidField, InvitingPlayerUuid_Optional);
-        ParseSuccess &= InvitingPlayerUuid_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonSourceSessionIdField = (*Object)->TryGetField(TEXT("source_session_id"));
-    if (JsonSourceSessionIdField.IsValid() && !JsonSourceSessionIdField->IsNull())
-    {
-        SourceSessionId_IsSet = TryGetJsonValue(JsonSourceSessionIdField, SourceSessionId_Optional);
-        ParseSuccess &= SourceSessionId_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-    if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
-    {
-        CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
-        ParseSuccess &= CustomData_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonVersionField = (*Object)->TryGetField(TEXT("version"));
-    if (JsonVersionField.IsValid() && !JsonVersionField->IsNull())
-    {
-        Version_IsSet = TryGetJsonValue(JsonVersionField, Version_Optional);
-        ParseSuccess &= Version_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonClientSettingsField = (*Object)->TryGetField(TEXT("client_settings"));
-    if (JsonClientSettingsField.IsValid() && !JsonClientSettingsField->IsNull())
-    {
-        ClientSettings_IsSet = TryGetJsonValue(JsonClientSettingsField, ClientSettings_Optional);
-        ParseSuccess &= ClientSettings_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonCrossplayPreferencesField = (*Object)->TryGetField(TEXT("crossplay_preferences"));
-    if (JsonCrossplayPreferencesField.IsValid() && !JsonCrossplayPreferencesField->IsNull())
-    {
-        CrossplayPreferences_IsSet = TryGetJsonValue(JsonCrossplayPreferencesField, CrossplayPreferences_Optional);
-        ParseSuccess &= CrossplayPreferences_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonInvitedField = (*Object)->TryGetField(TEXT("invited"));
-    if (JsonInvitedField.IsValid() && !JsonInvitedField->IsNull())
-    {
-        Invited_IsSet = TryGetJsonValue(JsonInvitedField, Invited_Optional);
-        ParseSuccess &= Invited_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonJoinedField = (*Object)->TryGetField(TEXT("joined"));
-    if (JsonJoinedField.IsValid() && !JsonJoinedField->IsNull())
-    {
-        Joined_IsSet = TryGetJsonValue(JsonJoinedField, Joined_Optional);
-        ParseSuccess &= Joined_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonPlayerIdField = (*Object)->TryGetField(TEXT("player_id"));
+	if (JsonPlayerIdField.IsValid() && !JsonPlayerIdField->IsNull())
+	{
+		PlayerId_IsSet = TryGetJsonValue(JsonPlayerIdField, PlayerId_Optional);
+		ParseSuccess &= PlayerId_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonPlayerUuidField = (*Object)->TryGetField(TEXT("player_uuid"));
+	ParseSuccess &= JsonPlayerUuidField.IsValid() && !JsonPlayerUuidField->IsNull() && TryGetJsonValue(JsonPlayerUuidField, PlayerUuid);
+	const TSharedPtr<FJsonValue> JsonStatusField = (*Object)->TryGetField(TEXT("status"));
+	ParseSuccess &= JsonStatusField.IsValid() && !JsonStatusField->IsNull() && TryGetJsonValue(JsonStatusField, Status);
+	const TSharedPtr<FJsonValue> JsonInvitingPlayerUuidField = (*Object)->TryGetField(TEXT("inviting_player_uuid"));
+	if (JsonInvitingPlayerUuidField.IsValid() && !JsonInvitingPlayerUuidField->IsNull())
+	{
+		InvitingPlayerUuid_IsSet = TryGetJsonValue(JsonInvitingPlayerUuidField, InvitingPlayerUuid_Optional);
+		ParseSuccess &= InvitingPlayerUuid_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonSourceSessionIdField = (*Object)->TryGetField(TEXT("source_session_id"));
+	if (JsonSourceSessionIdField.IsValid() && !JsonSourceSessionIdField->IsNull())
+	{
+		SourceSessionId_IsSet = TryGetJsonValue(JsonSourceSessionIdField, SourceSessionId_Optional);
+		ParseSuccess &= SourceSessionId_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
+	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	{
+		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
+		ParseSuccess &= CustomData_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonVersionField = (*Object)->TryGetField(TEXT("version"));
+	if (JsonVersionField.IsValid() && !JsonVersionField->IsNull())
+	{
+		Version_IsSet = TryGetJsonValue(JsonVersionField, Version_Optional);
+		ParseSuccess &= Version_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonClientSettingsField = (*Object)->TryGetField(TEXT("client_settings"));
+	if (JsonClientSettingsField.IsValid() && !JsonClientSettingsField->IsNull())
+	{
+		ClientSettings_IsSet = TryGetJsonValue(JsonClientSettingsField, ClientSettings_Optional);
+		ParseSuccess &= ClientSettings_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonCrossplayPreferencesField = (*Object)->TryGetField(TEXT("crossplay_preferences"));
+	if (JsonCrossplayPreferencesField.IsValid() && !JsonCrossplayPreferencesField->IsNull())
+	{
+		CrossplayPreferences_IsSet = TryGetJsonValue(JsonCrossplayPreferencesField, CrossplayPreferences_Optional);
+		ParseSuccess &= CrossplayPreferences_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInvitedField = (*Object)->TryGetField(TEXT("invited"));
+	if (JsonInvitedField.IsValid() && !JsonInvitedField->IsNull())
+	{
+		Invited_IsSet = TryGetJsonValue(JsonInvitedField, Invited_Optional);
+		ParseSuccess &= Invited_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonJoinedField = (*Object)->TryGetField(TEXT("joined"));
+	if (JsonJoinedField.IsValid() && !JsonJoinedField->IsNull())
+	{
+		Joined_IsSet = TryGetJsonValue(JsonJoinedField, Joined_Optional);
+		ParseSuccess &= Joined_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

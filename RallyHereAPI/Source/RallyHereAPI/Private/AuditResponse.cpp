@@ -21,30 +21,30 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_AuditResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (Events_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("events"));
-        RallyHereAPI::WriteJsonValue(Writer, Events_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (Events_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("events"));
+		RallyHereAPI::WriteJsonValue(Writer, Events_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_AuditResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonEventsField = (*Object)->TryGetField(TEXT("events"));
-    if (JsonEventsField.IsValid() && !JsonEventsField->IsNull())
-    {
-        Events_IsSet = TryGetJsonValue(JsonEventsField, Events_Optional);
-        ParseSuccess &= Events_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonEventsField = (*Object)->TryGetField(TEXT("events"));
+	if (JsonEventsField.IsValid() && !JsonEventsField->IsNull())
+	{
+		Events_IsSet = TryGetJsonValue(JsonEventsField, Events_Optional);
+		ParseSuccess &= Events_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

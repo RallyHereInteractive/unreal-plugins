@@ -21,19 +21,19 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_LocationInner::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_LocationInner::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

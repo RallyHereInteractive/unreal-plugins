@@ -21,93 +21,93 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_TimeFrame::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (Name_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("name"));
-        RallyHereAPI::WriteJsonValue(Writer, Name_Optional);
-    }
-    if (Active_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("active"));
-        RallyHereAPI::WriteJsonValue(Writer, Active_Optional);
-    }
-    if (Episode_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("episode"));
-        RallyHereAPI::WriteJsonValue(Writer, Episode_Optional);
-    }
-    if (EpisodeType_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("episode_type"));
-        RallyHereAPI::WriteJsonValue(Writer, EpisodeType_Optional);
-    }
-    if (HourInterval_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("hour_interval"));
-        RallyHereAPI::WriteJsonValue(Writer, HourInterval_Optional);
-    }
-    Writer->WriteIdentifierPrefix(TEXT("start"));
-    RallyHereAPI::WriteJsonValue(Writer, Start);
-    Writer->WriteIdentifierPrefix(TEXT("end"));
-    RallyHereAPI::WriteJsonValue(Writer, End);
-    if (CacheInfo_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("cache_info"));
-        RallyHereAPI::WriteJsonValue(Writer, CacheInfo_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (Name_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("name"));
+		RallyHereAPI::WriteJsonValue(Writer, Name_Optional);
+	}
+	if (Active_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("active"));
+		RallyHereAPI::WriteJsonValue(Writer, Active_Optional);
+	}
+	if (Episode_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("episode"));
+		RallyHereAPI::WriteJsonValue(Writer, Episode_Optional);
+	}
+	if (EpisodeType_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("episode_type"));
+		RallyHereAPI::WriteJsonValue(Writer, EpisodeType_Optional);
+	}
+	if (HourInterval_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("hour_interval"));
+		RallyHereAPI::WriteJsonValue(Writer, HourInterval_Optional);
+	}
+	Writer->WriteIdentifierPrefix(TEXT("start"));
+	RallyHereAPI::WriteJsonValue(Writer, Start);
+	Writer->WriteIdentifierPrefix(TEXT("end"));
+	RallyHereAPI::WriteJsonValue(Writer, End);
+	if (CacheInfo_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("cache_info"));
+		RallyHereAPI::WriteJsonValue(Writer, CacheInfo_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_TimeFrame::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonNameField = (*Object)->TryGetField(TEXT("name"));
-    if (JsonNameField.IsValid() && !JsonNameField->IsNull())
-    {
-        Name_IsSet = TryGetJsonValue(JsonNameField, Name_Optional);
-        ParseSuccess &= Name_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonActiveField = (*Object)->TryGetField(TEXT("active"));
-    if (JsonActiveField.IsValid() && !JsonActiveField->IsNull())
-    {
-        Active_IsSet = TryGetJsonValue(JsonActiveField, Active_Optional);
-        ParseSuccess &= Active_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonEpisodeField = (*Object)->TryGetField(TEXT("episode"));
-    if (JsonEpisodeField.IsValid() && !JsonEpisodeField->IsNull())
-    {
-        Episode_IsSet = TryGetJsonValue(JsonEpisodeField, Episode_Optional);
-        ParseSuccess &= Episode_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonEpisodeTypeField = (*Object)->TryGetField(TEXT("episode_type"));
-    if (JsonEpisodeTypeField.IsValid() && !JsonEpisodeTypeField->IsNull())
-    {
-        EpisodeType_IsSet = TryGetJsonValue(JsonEpisodeTypeField, EpisodeType_Optional);
-        ParseSuccess &= EpisodeType_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonHourIntervalField = (*Object)->TryGetField(TEXT("hour_interval"));
-    if (JsonHourIntervalField.IsValid() && !JsonHourIntervalField->IsNull())
-    {
-        HourInterval_IsSet = TryGetJsonValue(JsonHourIntervalField, HourInterval_Optional);
-        ParseSuccess &= HourInterval_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonStartField = (*Object)->TryGetField(TEXT("start"));
-    ParseSuccess &= JsonStartField.IsValid() && !JsonStartField->IsNull() && TryGetJsonValue(JsonStartField, Start);
-    const TSharedPtr<FJsonValue> JsonEndField = (*Object)->TryGetField(TEXT("end"));
-    ParseSuccess &= JsonEndField.IsValid() && !JsonEndField->IsNull() && TryGetJsonValue(JsonEndField, End);
-    const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
-    if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
-    {
-        CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
-        ParseSuccess &= CacheInfo_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonNameField = (*Object)->TryGetField(TEXT("name"));
+	if (JsonNameField.IsValid() && !JsonNameField->IsNull())
+	{
+		Name_IsSet = TryGetJsonValue(JsonNameField, Name_Optional);
+		ParseSuccess &= Name_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonActiveField = (*Object)->TryGetField(TEXT("active"));
+	if (JsonActiveField.IsValid() && !JsonActiveField->IsNull())
+	{
+		Active_IsSet = TryGetJsonValue(JsonActiveField, Active_Optional);
+		ParseSuccess &= Active_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonEpisodeField = (*Object)->TryGetField(TEXT("episode"));
+	if (JsonEpisodeField.IsValid() && !JsonEpisodeField->IsNull())
+	{
+		Episode_IsSet = TryGetJsonValue(JsonEpisodeField, Episode_Optional);
+		ParseSuccess &= Episode_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonEpisodeTypeField = (*Object)->TryGetField(TEXT("episode_type"));
+	if (JsonEpisodeTypeField.IsValid() && !JsonEpisodeTypeField->IsNull())
+	{
+		EpisodeType_IsSet = TryGetJsonValue(JsonEpisodeTypeField, EpisodeType_Optional);
+		ParseSuccess &= EpisodeType_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonHourIntervalField = (*Object)->TryGetField(TEXT("hour_interval"));
+	if (JsonHourIntervalField.IsValid() && !JsonHourIntervalField->IsNull())
+	{
+		HourInterval_IsSet = TryGetJsonValue(JsonHourIntervalField, HourInterval_Optional);
+		ParseSuccess &= HourInterval_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonStartField = (*Object)->TryGetField(TEXT("start"));
+	ParseSuccess &= JsonStartField.IsValid() && !JsonStartField->IsNull() && TryGetJsonValue(JsonStartField, Start);
+	const TSharedPtr<FJsonValue> JsonEndField = (*Object)->TryGetField(TEXT("end"));
+	ParseSuccess &= JsonEndField.IsValid() && !JsonEndField->IsNull() && TryGetJsonValue(JsonEndField, End);
+	const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
+	if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
+	{
+		CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
+		ParseSuccess &= CacheInfo_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

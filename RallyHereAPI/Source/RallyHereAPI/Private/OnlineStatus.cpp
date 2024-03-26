@@ -20,55 +20,55 @@ using RallyHereAPI::TryGetJsonValue;
 // Implementation for ERHAPI_OnlineStatus
 FString EnumToString(const ERHAPI_OnlineStatus& Value)
 {
-    switch (Value)
-    {
-    case ERHAPI_OnlineStatus::Online:
-        return TEXT("online");
-    case ERHAPI_OnlineStatus::Away:
-        return TEXT("away");
-    case ERHAPI_OnlineStatus::Invisible:
-        return TEXT("invisible");
-    case ERHAPI_OnlineStatus::Offline:
-        return TEXT("offline");
-    }
+	switch (Value)
+	{
+	case ERHAPI_OnlineStatus::Online:
+		return TEXT("online");
+	case ERHAPI_OnlineStatus::Away:
+		return TEXT("away");
+	case ERHAPI_OnlineStatus::Invisible:
+		return TEXT("invisible");
+	case ERHAPI_OnlineStatus::Offline:
+		return TEXT("offline");
+	}
 
-    UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_OnlineStatus::Values Value (%d)"), (int)Value);
-    return TEXT("");
+	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_OnlineStatus::Values Value (%d)"), (int)Value);
+	return TEXT("");
 }
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_OnlineStatus& Value)
 {
-    static TMap<FString, ERHAPI_OnlineStatus> StringToEnum = { 
-        { TEXT("online"), ERHAPI_OnlineStatus::Online },
-        { TEXT("away"), ERHAPI_OnlineStatus::Away },
-        { TEXT("invisible"), ERHAPI_OnlineStatus::Invisible },
-        { TEXT("offline"), ERHAPI_OnlineStatus::Offline },    };
+	static TMap<FString, ERHAPI_OnlineStatus> StringToEnum = { 
+		{ TEXT("online"), ERHAPI_OnlineStatus::Online },
+		{ TEXT("away"), ERHAPI_OnlineStatus::Away },
+		{ TEXT("invisible"), ERHAPI_OnlineStatus::Invisible },
+		{ TEXT("offline"), ERHAPI_OnlineStatus::Offline },	};
 
-    const auto Found = StringToEnum.Find(EnumAsString);
-    if(Found)
-        Value = *Found;
-    return Found != nullptr;
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
+	return Found != nullptr;
 }
 
 FStringFormatArg ToStringFormatArg(const ERHAPI_OnlineStatus& Value)
 {
-    return FStringFormatArg(EnumToString(Value));
+	return FStringFormatArg(EnumToString(Value));
 }
 
 void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const ERHAPI_OnlineStatus& Value)
 {
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
 }
 
 bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, ERHAPI_OnlineStatus& Value)
 {
-    FString TmpValue;
-    if (JsonValue->TryGetString(TmpValue))
-    {
-        if (EnumFromString(TmpValue, Value))
-            return true;
-    }
-    return false;
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if (EnumFromString(TmpValue, Value))
+			return true;
+	}
+	return false;
 }
 
 

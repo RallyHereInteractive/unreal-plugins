@@ -21,41 +21,41 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_PagedMatchResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (Matches_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("matches"));
-        RallyHereAPI::WriteJsonValue(Writer, Matches_Optional);
-    }
-    if (Cursor_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("cursor"));
-        RallyHereAPI::WriteJsonValue(Writer, Cursor_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (Matches_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("matches"));
+		RallyHereAPI::WriteJsonValue(Writer, Matches_Optional);
+	}
+	if (Cursor_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("cursor"));
+		RallyHereAPI::WriteJsonValue(Writer, Cursor_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_PagedMatchResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonMatchesField = (*Object)->TryGetField(TEXT("matches"));
-    if (JsonMatchesField.IsValid() && !JsonMatchesField->IsNull())
-    {
-        Matches_IsSet = TryGetJsonValue(JsonMatchesField, Matches_Optional);
-        ParseSuccess &= Matches_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonCursorField = (*Object)->TryGetField(TEXT("cursor"));
-    if (JsonCursorField.IsValid() && !JsonCursorField->IsNull())
-    {
-        Cursor_IsSet = TryGetJsonValue(JsonCursorField, Cursor_Optional);
-        ParseSuccess &= Cursor_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonMatchesField = (*Object)->TryGetField(TEXT("matches"));
+	if (JsonMatchesField.IsValid() && !JsonMatchesField->IsNull())
+	{
+		Matches_IsSet = TryGetJsonValue(JsonMatchesField, Matches_Optional);
+		ParseSuccess &= Matches_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonCursorField = (*Object)->TryGetField(TEXT("cursor"));
+	if (JsonCursorField.IsValid() && !JsonCursorField->IsNull())
+	{
+		Cursor_IsSet = TryGetJsonValue(JsonCursorField, Cursor_Optional);
+		ParseSuccess &= Cursor_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

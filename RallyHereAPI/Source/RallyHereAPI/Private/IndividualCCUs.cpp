@@ -21,23 +21,23 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_IndividualCCUs::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("ccus"));
-    RallyHereAPI::WriteJsonValue(Writer, Ccus);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("ccus"));
+	RallyHereAPI::WriteJsonValue(Writer, Ccus);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_IndividualCCUs::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonCcusField = (*Object)->TryGetField(TEXT("ccus"));
-    ParseSuccess &= JsonCcusField.IsValid() && !JsonCcusField->IsNull() && TryGetJsonValue(JsonCcusField, Ccus);
+	const TSharedPtr<FJsonValue> JsonCcusField = (*Object)->TryGetField(TEXT("ccus"));
+	ParseSuccess &= JsonCcusField.IsValid() && !JsonCcusField->IsNull() && TryGetJsonValue(JsonCcusField, Ccus);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

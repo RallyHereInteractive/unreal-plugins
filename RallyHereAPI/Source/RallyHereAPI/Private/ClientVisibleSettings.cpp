@@ -21,41 +21,41 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_ClientVisibleSettings::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (SelfPingIntervalSeconds_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("self_ping_interval_seconds"));
-        RallyHereAPI::WriteJsonValue(Writer, SelfPingIntervalSeconds_Optional);
-    }
-    if (LastSeenAgeConsideredOfflineSeconds_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("last_seen_age_considered_offline_seconds"));
-        RallyHereAPI::WriteJsonValue(Writer, LastSeenAgeConsideredOfflineSeconds_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (SelfPingIntervalSeconds_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("self_ping_interval_seconds"));
+		RallyHereAPI::WriteJsonValue(Writer, SelfPingIntervalSeconds_Optional);
+	}
+	if (LastSeenAgeConsideredOfflineSeconds_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("last_seen_age_considered_offline_seconds"));
+		RallyHereAPI::WriteJsonValue(Writer, LastSeenAgeConsideredOfflineSeconds_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_ClientVisibleSettings::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonSelfPingIntervalSecondsField = (*Object)->TryGetField(TEXT("self_ping_interval_seconds"));
-    if (JsonSelfPingIntervalSecondsField.IsValid() && !JsonSelfPingIntervalSecondsField->IsNull())
-    {
-        SelfPingIntervalSeconds_IsSet = TryGetJsonValue(JsonSelfPingIntervalSecondsField, SelfPingIntervalSeconds_Optional);
-        ParseSuccess &= SelfPingIntervalSeconds_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonLastSeenAgeConsideredOfflineSecondsField = (*Object)->TryGetField(TEXT("last_seen_age_considered_offline_seconds"));
-    if (JsonLastSeenAgeConsideredOfflineSecondsField.IsValid() && !JsonLastSeenAgeConsideredOfflineSecondsField->IsNull())
-    {
-        LastSeenAgeConsideredOfflineSeconds_IsSet = TryGetJsonValue(JsonLastSeenAgeConsideredOfflineSecondsField, LastSeenAgeConsideredOfflineSeconds_Optional);
-        ParseSuccess &= LastSeenAgeConsideredOfflineSeconds_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonSelfPingIntervalSecondsField = (*Object)->TryGetField(TEXT("self_ping_interval_seconds"));
+	if (JsonSelfPingIntervalSecondsField.IsValid() && !JsonSelfPingIntervalSecondsField->IsNull())
+	{
+		SelfPingIntervalSeconds_IsSet = TryGetJsonValue(JsonSelfPingIntervalSecondsField, SelfPingIntervalSeconds_Optional);
+		ParseSuccess &= SelfPingIntervalSeconds_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonLastSeenAgeConsideredOfflineSecondsField = (*Object)->TryGetField(TEXT("last_seen_age_considered_offline_seconds"));
+	if (JsonLastSeenAgeConsideredOfflineSecondsField.IsValid() && !JsonLastSeenAgeConsideredOfflineSecondsField->IsNull())
+	{
+		LastSeenAgeConsideredOfflineSeconds_IsSet = TryGetJsonValue(JsonLastSeenAgeConsideredOfflineSecondsField, LastSeenAgeConsideredOfflineSeconds_Optional);
+		ParseSuccess &= LastSeenAgeConsideredOfflineSeconds_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

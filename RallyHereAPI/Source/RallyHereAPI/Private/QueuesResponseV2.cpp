@@ -21,23 +21,23 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_QueuesResponseV2::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("queues"));
-    RallyHereAPI::WriteJsonValue(Writer, Queues);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("queues"));
+	RallyHereAPI::WriteJsonValue(Writer, Queues);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_QueuesResponseV2::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonQueuesField = (*Object)->TryGetField(TEXT("queues"));
-    ParseSuccess &= JsonQueuesField.IsValid() && !JsonQueuesField->IsNull() && TryGetJsonValue(JsonQueuesField, Queues);
+	const TSharedPtr<FJsonValue> JsonQueuesField = (*Object)->TryGetField(TEXT("queues"));
+	ParseSuccess &= JsonQueuesField.IsValid() && !JsonQueuesField->IsNull() && TryGetJsonValue(JsonQueuesField, Queues);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

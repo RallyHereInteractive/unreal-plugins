@@ -21,23 +21,23 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_ConnectionInfo::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("ip"));
-    RallyHereAPI::WriteJsonValue(Writer, Ip);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("ip"));
+	RallyHereAPI::WriteJsonValue(Writer, Ip);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_ConnectionInfo::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonIpField = (*Object)->TryGetField(TEXT("ip"));
-    ParseSuccess &= JsonIpField.IsValid() && !JsonIpField->IsNull() && TryGetJsonValue(JsonIpField, Ip);
+	const TSharedPtr<FJsonValue> JsonIpField = (*Object)->TryGetField(TEXT("ip"));
+	ParseSuccess &= JsonIpField.IsValid() && !JsonIpField->IsNull() && TryGetJsonValue(JsonIpField, Ip);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

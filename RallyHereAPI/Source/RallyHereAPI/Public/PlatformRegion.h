@@ -18,9 +18,9 @@
 UENUM(BlueprintType)
 enum class ERHAPI_PlatformRegion : uint8
 {
-    Unknown UMETA(ToolTip="Unknown region"),
-    Na UMETA(ToolTip="North America region"),
-    Eu UMETA(ToolTip="Europe Union region"),
+	Unknown UMETA(ToolTip="Unknown region"),
+	Na UMETA(ToolTip="North America region"),
+	Eu UMETA(ToolTip="Europe Union region"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_PlatformRegion& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_PlatformRegion& EnumValue);

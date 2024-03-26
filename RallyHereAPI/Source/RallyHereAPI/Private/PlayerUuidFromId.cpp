@@ -21,23 +21,23 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_PlayerUuidFromId::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("uuid"));
-    RallyHereAPI::WriteJsonValue(Writer, Uuid);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("uuid"));
+	RallyHereAPI::WriteJsonValue(Writer, Uuid);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_PlayerUuidFromId::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonUuidField = (*Object)->TryGetField(TEXT("uuid"));
-    ParseSuccess &= JsonUuidField.IsValid() && !JsonUuidField->IsNull() && TryGetJsonValue(JsonUuidField, Uuid);
+	const TSharedPtr<FJsonValue> JsonUuidField = (*Object)->TryGetField(TEXT("uuid"));
+	ParseSuccess &= JsonUuidField.IsValid() && !JsonUuidField->IsNull() && TryGetJsonValue(JsonUuidField, Uuid);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

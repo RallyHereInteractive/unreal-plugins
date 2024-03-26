@@ -21,47 +21,47 @@
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_ExternalKeyEntitlement : public FRHAPI_Model
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    /**
-    * @brief Fills this object with data from the passed in JSON
-    *
-    * @param [in] JsonValue Data from the API call.
-    *
-    * @return true if parsing of the JSON data was successful.
-    */
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	/**
+	* @brief Fills this object with data from the passed in JSON
+	*
+	* @param [in] JsonValue Data from the API call.
+	*
+	* @return true if parsing of the JSON data was successful.
+	*/
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
-    /**
-    * @brief Writes the data from this object into the specified JSON Writer stream
-    *
-    * @param [in] Writer JSON Writer stream to push .
-    */
-    void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	/**
+	* @brief Writes the data from this object into the specified JSON Writer stream
+	*
+	* @param [in] Writer JSON Writer stream to push .
+	*/
+	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief The External Key Campaign ID */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FGuid ExternalKeyCampaignId{  };
-    /** @brief Gets the value of ExternalKeyCampaignId */
-    FGuid& GetExternalKeyCampaignId() { return ExternalKeyCampaignId; }
-    /** @brief Gets the value of ExternalKeyCampaignId */
-    const FGuid& GetExternalKeyCampaignId() const { return ExternalKeyCampaignId; }
-    /** @brief Sets the value of ExternalKeyCampaignId */
-    void SetExternalKeyCampaignId(FGuid NewValue) { ExternalKeyCampaignId = NewValue;  }
+	/** @brief The External Key Campaign ID */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FGuid ExternalKeyCampaignId{  };
+	/** @brief Gets the value of ExternalKeyCampaignId */
+	FGuid& GetExternalKeyCampaignId() { return ExternalKeyCampaignId; }
+	/** @brief Gets the value of ExternalKeyCampaignId */
+	const FGuid& GetExternalKeyCampaignId() const { return ExternalKeyCampaignId; }
+	/** @brief Sets the value of ExternalKeyCampaignId */
+	void SetExternalKeyCampaignId(FGuid NewValue) { ExternalKeyCampaignId = NewValue;  }
 
-    /** @brief The quantity of the External Key Entitlement */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    int32 Quantity{ 0 };
-    /** @brief Gets the value of Quantity */
-    int32& GetQuantity() { return Quantity; }
-    /** @brief Gets the value of Quantity */
-    const int32& GetQuantity() const { return Quantity; }
-    /** @brief Sets the value of Quantity */
-    void SetQuantity(int32 NewValue) { Quantity = NewValue;  }
-    /** @brief Returns true if Quantity matches the default value */
-    bool IsQuantityDefaultValue() const { return Quantity == 0; }
-    /** @brief Sets the value of Quantity to its default  */
-    void SetQuantityToDefault() { Quantity = 0;  }
+	/** @brief The quantity of the External Key Entitlement */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Quantity{ 0 };
+	/** @brief Gets the value of Quantity */
+	int32& GetQuantity() { return Quantity; }
+	/** @brief Gets the value of Quantity */
+	const int32& GetQuantity() const { return Quantity; }
+	/** @brief Sets the value of Quantity */
+	void SetQuantity(int32 NewValue) { Quantity = NewValue;  }
+	/** @brief Returns true if Quantity matches the default value */
+	bool IsQuantityDefaultValue() const { return Quantity == 0; }
+	/** @brief Sets the value of Quantity to its default  */
+	void SetQuantityToDefault() { Quantity = 0;  }
 };
 
 /** @} */

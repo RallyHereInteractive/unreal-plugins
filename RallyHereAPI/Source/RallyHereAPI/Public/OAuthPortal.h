@@ -18,15 +18,15 @@
 UENUM(BlueprintType)
 enum class ERHAPI_OAuthPortal : uint8
 {
-    Google UMETA(ToolTip="Google OAuth Portal"),
-    Apple UMETA(ToolTip="Apple OAuth Portal"),
-    Epic UMETA(ToolTip="Epic OAuth Portal"),
-    Xbox UMETA(ToolTip="Xbox OAuth Portal"),
-    Psn UMETA(ToolTip="Playstation Network OAuth Portal"),
-    Nintendo UMETA(ToolTip="Nintendo OAuth Portal"),
-    Steam UMETA(ToolTip="Steam OAuth Portal"),
-    Amazon UMETA(ToolTip="Amazon OAuth Portal"),
-    Twitch UMETA(ToolTip="Twitch OAuth Portal"),
+	Google UMETA(ToolTip="Google OAuth Portal"),
+	Apple UMETA(ToolTip="Apple OAuth Portal"),
+	Epic UMETA(ToolTip="Epic OAuth Portal"),
+	Xbox UMETA(ToolTip="Xbox OAuth Portal"),
+	Psn UMETA(ToolTip="Playstation Network OAuth Portal"),
+	Nintendo UMETA(ToolTip="Nintendo OAuth Portal"),
+	Steam UMETA(ToolTip="Steam OAuth Portal"),
+	Amazon UMETA(ToolTip="Amazon OAuth Portal"),
+	Twitch UMETA(ToolTip="Twitch OAuth Portal"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_OAuthPortal& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_OAuthPortal& EnumValue);

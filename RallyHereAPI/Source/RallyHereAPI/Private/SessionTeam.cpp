@@ -21,49 +21,49 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_SessionTeam::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("players"));
-    RallyHereAPI::WriteJsonValue(Writer, Players);
-    Writer->WriteIdentifierPrefix(TEXT("max_size"));
-    RallyHereAPI::WriteJsonValue(Writer, MaxSize);
-    if (TeamId_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("team_id"));
-        RallyHereAPI::WriteJsonValue(Writer, TeamId_Optional);
-    }
-    if (TicketIds_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("ticket_ids"));
-        RallyHereAPI::WriteJsonValue(Writer, TicketIds_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("players"));
+	RallyHereAPI::WriteJsonValue(Writer, Players);
+	Writer->WriteIdentifierPrefix(TEXT("max_size"));
+	RallyHereAPI::WriteJsonValue(Writer, MaxSize);
+	if (TeamId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("team_id"));
+		RallyHereAPI::WriteJsonValue(Writer, TeamId_Optional);
+	}
+	if (TicketIds_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("ticket_ids"));
+		RallyHereAPI::WriteJsonValue(Writer, TicketIds_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_SessionTeam::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonPlayersField = (*Object)->TryGetField(TEXT("players"));
-    ParseSuccess &= JsonPlayersField.IsValid() && !JsonPlayersField->IsNull() && TryGetJsonValue(JsonPlayersField, Players);
-    const TSharedPtr<FJsonValue> JsonMaxSizeField = (*Object)->TryGetField(TEXT("max_size"));
-    ParseSuccess &= JsonMaxSizeField.IsValid() && !JsonMaxSizeField->IsNull() && TryGetJsonValue(JsonMaxSizeField, MaxSize);
-    const TSharedPtr<FJsonValue> JsonTeamIdField = (*Object)->TryGetField(TEXT("team_id"));
-    if (JsonTeamIdField.IsValid() && !JsonTeamIdField->IsNull())
-    {
-        TeamId_IsSet = TryGetJsonValue(JsonTeamIdField, TeamId_Optional);
-        ParseSuccess &= TeamId_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonTicketIdsField = (*Object)->TryGetField(TEXT("ticket_ids"));
-    if (JsonTicketIdsField.IsValid() && !JsonTicketIdsField->IsNull())
-    {
-        TicketIds_IsSet = TryGetJsonValue(JsonTicketIdsField, TicketIds_Optional);
-        ParseSuccess &= TicketIds_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonPlayersField = (*Object)->TryGetField(TEXT("players"));
+	ParseSuccess &= JsonPlayersField.IsValid() && !JsonPlayersField->IsNull() && TryGetJsonValue(JsonPlayersField, Players);
+	const TSharedPtr<FJsonValue> JsonMaxSizeField = (*Object)->TryGetField(TEXT("max_size"));
+	ParseSuccess &= JsonMaxSizeField.IsValid() && !JsonMaxSizeField->IsNull() && TryGetJsonValue(JsonMaxSizeField, MaxSize);
+	const TSharedPtr<FJsonValue> JsonTeamIdField = (*Object)->TryGetField(TEXT("team_id"));
+	if (JsonTeamIdField.IsValid() && !JsonTeamIdField->IsNull())
+	{
+		TeamId_IsSet = TryGetJsonValue(JsonTeamIdField, TeamId_Optional);
+		ParseSuccess &= TeamId_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonTicketIdsField = (*Object)->TryGetField(TEXT("ticket_ids"));
+	if (JsonTicketIdsField.IsValid() && !JsonTicketIdsField->IsNull())
+	{
+		TicketIds_IsSet = TryGetJsonValue(JsonTicketIdsField, TicketIds_Optional);
+		ParseSuccess &= TicketIds_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

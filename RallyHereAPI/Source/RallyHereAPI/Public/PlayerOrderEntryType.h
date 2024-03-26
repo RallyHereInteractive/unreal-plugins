@@ -18,17 +18,17 @@
 UENUM(BlueprintType)
 enum class ERHAPI_PlayerOrderEntryType : uint8
 {
-    FillLoot UMETA(ToolTip="Fill a loot item."),
-    PurchaseLoot UMETA(ToolTip="Purchase a loot item."),
-    PurchaseDynamicBundle UMETA(ToolTip="Purchase a dynamic bundle."),
-    PromotionCode UMETA(ToolTip="Claim a promotion code."),
-    FillLootSingleTransient UMETA(ToolTip="Fill a transient loot item."),
-    FillEntitledLoot UMETA(ToolTip="Fill an loot entitlement."),
-    CreateNewPersistentInventory UMETA(ToolTip="Create persistent Inventory."),
-    UpdateExistingPersistentInventory UMETA(ToolTip="Deprecated. Use update_inventory instead."),
-    CreateNewTransientInventory UMETA(ToolTip="Create transient Inventory."),
-    UpdateExistingTransientInventory UMETA(ToolTip="Deprecated. Use update_inventory instead."),
-    UpdateInventory UMETA(ToolTip="Update existing Inventory."),
+	FillLoot UMETA(ToolTip="Fill a loot item."),
+	PurchaseLoot UMETA(ToolTip="Purchase a loot item."),
+	PurchaseDynamicBundle UMETA(ToolTip="Purchase a dynamic bundle."),
+	PromotionCode UMETA(ToolTip="Claim a promotion code."),
+	FillLootSingleTransient UMETA(ToolTip="Fill a transient loot item."),
+	FillEntitledLoot UMETA(ToolTip="Fill an loot entitlement."),
+	CreateNewPersistentInventory UMETA(ToolTip="Create persistent Inventory."),
+	UpdateExistingPersistentInventory UMETA(ToolTip="Deprecated. Use update_inventory instead."),
+	CreateNewTransientInventory UMETA(ToolTip="Create transient Inventory."),
+	UpdateExistingTransientInventory UMETA(ToolTip="Deprecated. Use update_inventory instead."),
+	UpdateInventory UMETA(ToolTip="Update existing Inventory."),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_PlayerOrderEntryType& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_PlayerOrderEntryType& EnumValue);

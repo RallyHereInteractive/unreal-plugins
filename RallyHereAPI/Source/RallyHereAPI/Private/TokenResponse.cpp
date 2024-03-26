@@ -21,42 +21,42 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_TokenResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("access_token"));
-    RallyHereAPI::WriteJsonValue(Writer, AccessToken);
-    Writer->WriteIdentifierPrefix(TEXT("token_type"));
-    RallyHereAPI::WriteJsonValue(Writer, TokenType);
-    if (RefreshToken_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("refresh_token"));
-        RallyHereAPI::WriteJsonValue(Writer, RefreshToken_Optional);
-    }
-    Writer->WriteIdentifierPrefix(TEXT("expires_in"));
-    RallyHereAPI::WriteJsonValue(Writer, ExpiresIn);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("access_token"));
+	RallyHereAPI::WriteJsonValue(Writer, AccessToken);
+	Writer->WriteIdentifierPrefix(TEXT("token_type"));
+	RallyHereAPI::WriteJsonValue(Writer, TokenType);
+	if (RefreshToken_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("refresh_token"));
+		RallyHereAPI::WriteJsonValue(Writer, RefreshToken_Optional);
+	}
+	Writer->WriteIdentifierPrefix(TEXT("expires_in"));
+	RallyHereAPI::WriteJsonValue(Writer, ExpiresIn);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_TokenResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonAccessTokenField = (*Object)->TryGetField(TEXT("access_token"));
-    ParseSuccess &= JsonAccessTokenField.IsValid() && !JsonAccessTokenField->IsNull() && TryGetJsonValue(JsonAccessTokenField, AccessToken);
-    const TSharedPtr<FJsonValue> JsonTokenTypeField = (*Object)->TryGetField(TEXT("token_type"));
-    ParseSuccess &= JsonTokenTypeField.IsValid() && !JsonTokenTypeField->IsNull() && TryGetJsonValue(JsonTokenTypeField, TokenType);
-    const TSharedPtr<FJsonValue> JsonRefreshTokenField = (*Object)->TryGetField(TEXT("refresh_token"));
-    if (JsonRefreshTokenField.IsValid() && !JsonRefreshTokenField->IsNull())
-    {
-        RefreshToken_IsSet = TryGetJsonValue(JsonRefreshTokenField, RefreshToken_Optional);
-        ParseSuccess &= RefreshToken_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonExpiresInField = (*Object)->TryGetField(TEXT("expires_in"));
-    ParseSuccess &= JsonExpiresInField.IsValid() && !JsonExpiresInField->IsNull() && TryGetJsonValue(JsonExpiresInField, ExpiresIn);
+	const TSharedPtr<FJsonValue> JsonAccessTokenField = (*Object)->TryGetField(TEXT("access_token"));
+	ParseSuccess &= JsonAccessTokenField.IsValid() && !JsonAccessTokenField->IsNull() && TryGetJsonValue(JsonAccessTokenField, AccessToken);
+	const TSharedPtr<FJsonValue> JsonTokenTypeField = (*Object)->TryGetField(TEXT("token_type"));
+	ParseSuccess &= JsonTokenTypeField.IsValid() && !JsonTokenTypeField->IsNull() && TryGetJsonValue(JsonTokenTypeField, TokenType);
+	const TSharedPtr<FJsonValue> JsonRefreshTokenField = (*Object)->TryGetField(TEXT("refresh_token"));
+	if (JsonRefreshTokenField.IsValid() && !JsonRefreshTokenField->IsNull())
+	{
+		RefreshToken_IsSet = TryGetJsonValue(JsonRefreshTokenField, RefreshToken_Optional);
+		ParseSuccess &= RefreshToken_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonExpiresInField = (*Object)->TryGetField(TEXT("expires_in"));
+	ParseSuccess &= JsonExpiresInField.IsValid() && !JsonExpiresInField->IsNull() && TryGetJsonValue(JsonExpiresInField, ExpiresIn);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

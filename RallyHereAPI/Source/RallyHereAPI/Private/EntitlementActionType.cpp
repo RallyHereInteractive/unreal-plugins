@@ -20,55 +20,55 @@ using RallyHereAPI::TryGetJsonValue;
 // Implementation for ERHAPI_EntitlementActionType
 FString EnumToString(const ERHAPI_EntitlementActionType& Value)
 {
-    switch (Value)
-    {
-    case ERHAPI_EntitlementActionType::Grant:
-        return TEXT("grant");
-    case ERHAPI_EntitlementActionType::Refund:
-        return TEXT("refund");
-    case ERHAPI_EntitlementActionType::Chargeback:
-        return TEXT("chargeback");
-    case ERHAPI_EntitlementActionType::ChargebackReversal:
-        return TEXT("chargeback_reversal");
-    }
+	switch (Value)
+	{
+	case ERHAPI_EntitlementActionType::Grant:
+		return TEXT("grant");
+	case ERHAPI_EntitlementActionType::Refund:
+		return TEXT("refund");
+	case ERHAPI_EntitlementActionType::Chargeback:
+		return TEXT("chargeback");
+	case ERHAPI_EntitlementActionType::ChargebackReversal:
+		return TEXT("chargeback_reversal");
+	}
 
-    UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_EntitlementActionType::Values Value (%d)"), (int)Value);
-    return TEXT("");
+	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_EntitlementActionType::Values Value (%d)"), (int)Value);
+	return TEXT("");
 }
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_EntitlementActionType& Value)
 {
-    static TMap<FString, ERHAPI_EntitlementActionType> StringToEnum = { 
-        { TEXT("grant"), ERHAPI_EntitlementActionType::Grant },
-        { TEXT("refund"), ERHAPI_EntitlementActionType::Refund },
-        { TEXT("chargeback"), ERHAPI_EntitlementActionType::Chargeback },
-        { TEXT("chargeback_reversal"), ERHAPI_EntitlementActionType::ChargebackReversal },    };
+	static TMap<FString, ERHAPI_EntitlementActionType> StringToEnum = { 
+		{ TEXT("grant"), ERHAPI_EntitlementActionType::Grant },
+		{ TEXT("refund"), ERHAPI_EntitlementActionType::Refund },
+		{ TEXT("chargeback"), ERHAPI_EntitlementActionType::Chargeback },
+		{ TEXT("chargeback_reversal"), ERHAPI_EntitlementActionType::ChargebackReversal },	};
 
-    const auto Found = StringToEnum.Find(EnumAsString);
-    if(Found)
-        Value = *Found;
-    return Found != nullptr;
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
+	return Found != nullptr;
 }
 
 FStringFormatArg ToStringFormatArg(const ERHAPI_EntitlementActionType& Value)
 {
-    return FStringFormatArg(EnumToString(Value));
+	return FStringFormatArg(EnumToString(Value));
 }
 
 void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const ERHAPI_EntitlementActionType& Value)
 {
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
 }
 
 bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, ERHAPI_EntitlementActionType& Value)
 {
-    FString TmpValue;
-    if (JsonValue->TryGetString(TmpValue))
-    {
-        if (EnumFromString(TmpValue, Value))
-            return true;
-    }
-    return false;
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if (EnumFromString(TmpValue, Value))
+			return true;
+	}
+	return false;
 }
 
 

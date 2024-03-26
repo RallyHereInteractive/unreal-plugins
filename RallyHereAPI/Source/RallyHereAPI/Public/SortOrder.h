@@ -18,8 +18,8 @@
 UENUM(BlueprintType)
 enum class ERHAPI_SortOrder : uint8
 {
-    Ascending UMETA(ToolTip="Sort in ascending order"),
-    Descending UMETA(ToolTip="Sort in descending order"),
+	Ascending UMETA(ToolTip="Sort in ascending order"),
+	Descending UMETA(ToolTip="Sort in descending order"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_SortOrder& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_SortOrder& EnumValue);

@@ -20,49 +20,49 @@ using RallyHereAPI::TryGetJsonValue;
 // Implementation for ERHAPI_MatchHostType
 FString EnumToString(const ERHAPI_MatchHostType& Value)
 {
-    switch (Value)
-    {
-    case ERHAPI_MatchHostType::Dedicated:
-        return TEXT("dedicated");
-    case ERHAPI_MatchHostType::Player:
-        return TEXT("player");
-    }
+	switch (Value)
+	{
+	case ERHAPI_MatchHostType::Dedicated:
+		return TEXT("dedicated");
+	case ERHAPI_MatchHostType::Player:
+		return TEXT("player");
+	}
 
-    UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_MatchHostType::Values Value (%d)"), (int)Value);
-    return TEXT("");
+	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_MatchHostType::Values Value (%d)"), (int)Value);
+	return TEXT("");
 }
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_MatchHostType& Value)
 {
-    static TMap<FString, ERHAPI_MatchHostType> StringToEnum = { 
-        { TEXT("dedicated"), ERHAPI_MatchHostType::Dedicated },
-        { TEXT("player"), ERHAPI_MatchHostType::Player },    };
+	static TMap<FString, ERHAPI_MatchHostType> StringToEnum = { 
+		{ TEXT("dedicated"), ERHAPI_MatchHostType::Dedicated },
+		{ TEXT("player"), ERHAPI_MatchHostType::Player },	};
 
-    const auto Found = StringToEnum.Find(EnumAsString);
-    if(Found)
-        Value = *Found;
-    return Found != nullptr;
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
+	return Found != nullptr;
 }
 
 FStringFormatArg ToStringFormatArg(const ERHAPI_MatchHostType& Value)
 {
-    return FStringFormatArg(EnumToString(Value));
+	return FStringFormatArg(EnumToString(Value));
 }
 
 void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const ERHAPI_MatchHostType& Value)
 {
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
 }
 
 bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, ERHAPI_MatchHostType& Value)
 {
-    FString TmpValue;
-    if (JsonValue->TryGetString(TmpValue))
-    {
-        if (EnumFromString(TmpValue, Value))
-            return true;
-    }
-    return false;
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if (EnumFromString(TmpValue, Value))
+			return true;
+	}
+	return false;
 }
 
 

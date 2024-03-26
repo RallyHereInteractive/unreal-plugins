@@ -21,30 +21,30 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_ClaimKeyRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (ExternalKeyType_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("external_key_type"));
-        RallyHereAPI::WriteJsonValue(Writer, ExternalKeyType_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (ExternalKeyType_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("external_key_type"));
+		RallyHereAPI::WriteJsonValue(Writer, ExternalKeyType_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_ClaimKeyRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonExternalKeyTypeField = (*Object)->TryGetField(TEXT("external_key_type"));
-    if (JsonExternalKeyTypeField.IsValid() && !JsonExternalKeyTypeField->IsNull())
-    {
-        ExternalKeyType_IsSet = TryGetJsonValue(JsonExternalKeyTypeField, ExternalKeyType_Optional);
-        ParseSuccess &= ExternalKeyType_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonExternalKeyTypeField = (*Object)->TryGetField(TEXT("external_key_type"));
+	if (JsonExternalKeyTypeField.IsValid() && !JsonExternalKeyTypeField->IsNull())
+	{
+		ExternalKeyType_IsSet = TryGetJsonValue(JsonExternalKeyTypeField, ExternalKeyType_Optional);
+		ParseSuccess &= ExternalKeyType_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

@@ -22,66 +22,66 @@
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_CreatePlatformUserRequest : public FRHAPI_Model
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    /**
-    * @brief Fills this object with data from the passed in JSON
-    *
-    * @param [in] JsonValue Data from the API call.
-    *
-    * @return true if parsing of the JSON data was successful.
-    */
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	/**
+	* @brief Fills this object with data from the passed in JSON
+	*
+	* @param [in] JsonValue Data from the API call.
+	*
+	* @return true if parsing of the JSON data was successful.
+	*/
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
-    /**
-    * @brief Writes the data from this object into the specified JSON Writer stream
-    *
-    * @param [in] Writer JSON Writer stream to push .
-    */
-    void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	/**
+	* @brief Writes the data from this object into the specified JSON Writer stream
+	*
+	* @param [in] Writer JSON Writer stream to push .
+	*/
+	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief Platform to create with */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    ERHAPI_Platform Platform{  };
-    /** @brief Gets the value of Platform */
-    ERHAPI_Platform& GetPlatform() { return Platform; }
-    /** @brief Gets the value of Platform */
-    const ERHAPI_Platform& GetPlatform() const { return Platform; }
-    /** @brief Sets the value of Platform */
-    void SetPlatform(ERHAPI_Platform NewValue) { Platform = NewValue;  }
+	/** @brief Platform to create with */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	ERHAPI_Platform Platform{  };
+	/** @brief Gets the value of Platform */
+	ERHAPI_Platform& GetPlatform() { return Platform; }
+	/** @brief Gets the value of Platform */
+	const ERHAPI_Platform& GetPlatform() const { return Platform; }
+	/** @brief Sets the value of Platform */
+	void SetPlatform(ERHAPI_Platform NewValue) { Platform = NewValue;  }
 
-    /** @brief Platform user ID to create with */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FString PlatformUserId{  };
-    /** @brief Gets the value of PlatformUserId */
-    FString& GetPlatformUserId() { return PlatformUserId; }
-    /** @brief Gets the value of PlatformUserId */
-    const FString& GetPlatformUserId() const { return PlatformUserId; }
-    /** @brief Sets the value of PlatformUserId */
-    void SetPlatformUserId(FString NewValue) { PlatformUserId = NewValue;  }
+	/** @brief Platform user ID to create with */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString PlatformUserId{  };
+	/** @brief Gets the value of PlatformUserId */
+	FString& GetPlatformUserId() { return PlatformUserId; }
+	/** @brief Gets the value of PlatformUserId */
+	const FString& GetPlatformUserId() const { return PlatformUserId; }
+	/** @brief Sets the value of PlatformUserId */
+	void SetPlatformUserId(FString NewValue) { PlatformUserId = NewValue;  }
 
-    /** @brief Display name used when creating a new player */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FString DisplayName_Optional{  };
-    /** @brief true if DisplayName_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool DisplayName_IsSet{ false };
-    /** @brief Gets the value of DisplayName_Optional, regardless of it having been set */
-    FString& GetDisplayName() { return DisplayName_Optional; }
-    /** @brief Gets the value of DisplayName_Optional, regardless of it having been set */
-    const FString& GetDisplayName() const { return DisplayName_Optional; }
-    /** @brief Gets the value of DisplayName_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FString& GetDisplayName(const FString& DefaultValue) const { if (DisplayName_IsSet) return DisplayName_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of DisplayName_Optional and returns true if it has been set, otherwise returns false */
-    bool GetDisplayName(FString& OutValue) const { if (DisplayName_IsSet) OutValue = DisplayName_Optional; return DisplayName_IsSet; }
-    /** @brief Returns a pointer to DisplayName_Optional, if it has been set, otherwise returns nullptr */
-    FString* GetDisplayNameOrNull() { if (DisplayName_IsSet) return &DisplayName_Optional; return nullptr; }
-    /** @brief Returns a pointer to DisplayName_Optional, if it has been set, otherwise returns nullptr */
-    const FString* GetDisplayNameOrNull() const { if (DisplayName_IsSet) return &DisplayName_Optional; return nullptr; }
-    /** @brief Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true */
-    void SetDisplayName(FString NewValue) { DisplayName_Optional = NewValue; DisplayName_IsSet = true; }
-     /** @brief Clears the value of DisplayName_Optional and sets DisplayName_IsSet to false */
-    void ClearDisplayName() { DisplayName_IsSet = false; }
+	/** @brief Display name used when creating a new player */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString DisplayName_Optional{  };
+	/** @brief true if DisplayName_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool DisplayName_IsSet{ false };
+	/** @brief Gets the value of DisplayName_Optional, regardless of it having been set */
+	FString& GetDisplayName() { return DisplayName_Optional; }
+	/** @brief Gets the value of DisplayName_Optional, regardless of it having been set */
+	const FString& GetDisplayName() const { return DisplayName_Optional; }
+	/** @brief Gets the value of DisplayName_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetDisplayName(const FString& DefaultValue) const { if (DisplayName_IsSet) return DisplayName_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of DisplayName_Optional and returns true if it has been set, otherwise returns false */
+	bool GetDisplayName(FString& OutValue) const { if (DisplayName_IsSet) OutValue = DisplayName_Optional; return DisplayName_IsSet; }
+	/** @brief Returns a pointer to DisplayName_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetDisplayNameOrNull() { if (DisplayName_IsSet) return &DisplayName_Optional; return nullptr; }
+	/** @brief Returns a pointer to DisplayName_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetDisplayNameOrNull() const { if (DisplayName_IsSet) return &DisplayName_Optional; return nullptr; }
+	/** @brief Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true */
+	void SetDisplayName(FString NewValue) { DisplayName_Optional = NewValue; DisplayName_IsSet = true; }
+	 /** @brief Clears the value of DisplayName_Optional and sets DisplayName_IsSet to false */
+	void ClearDisplayName() { DisplayName_IsSet = false; }
 };
 
 /** @} */

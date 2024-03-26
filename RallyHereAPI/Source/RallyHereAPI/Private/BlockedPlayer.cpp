@@ -21,27 +21,27 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_BlockedPlayer::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("blocked_player_uuid"));
-    RallyHereAPI::WriteJsonValue(Writer, BlockedPlayerUuid);
-    Writer->WriteIdentifierPrefix(TEXT("last_modified_on"));
-    RallyHereAPI::WriteJsonValue(Writer, LastModifiedOn);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("blocked_player_uuid"));
+	RallyHereAPI::WriteJsonValue(Writer, BlockedPlayerUuid);
+	Writer->WriteIdentifierPrefix(TEXT("last_modified_on"));
+	RallyHereAPI::WriteJsonValue(Writer, LastModifiedOn);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_BlockedPlayer::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonBlockedPlayerUuidField = (*Object)->TryGetField(TEXT("blocked_player_uuid"));
-    ParseSuccess &= JsonBlockedPlayerUuidField.IsValid() && !JsonBlockedPlayerUuidField->IsNull() && TryGetJsonValue(JsonBlockedPlayerUuidField, BlockedPlayerUuid);
-    const TSharedPtr<FJsonValue> JsonLastModifiedOnField = (*Object)->TryGetField(TEXT("last_modified_on"));
-    ParseSuccess &= JsonLastModifiedOnField.IsValid() && !JsonLastModifiedOnField->IsNull() && TryGetJsonValue(JsonLastModifiedOnField, LastModifiedOn);
+	const TSharedPtr<FJsonValue> JsonBlockedPlayerUuidField = (*Object)->TryGetField(TEXT("blocked_player_uuid"));
+	ParseSuccess &= JsonBlockedPlayerUuidField.IsValid() && !JsonBlockedPlayerUuidField->IsNull() && TryGetJsonValue(JsonBlockedPlayerUuidField, BlockedPlayerUuid);
+	const TSharedPtr<FJsonValue> JsonLastModifiedOnField = (*Object)->TryGetField(TEXT("last_modified_on"));
+	ParseSuccess &= JsonLastModifiedOnField.IsValid() && !JsonLastModifiedOnField->IsNull() && TryGetJsonValue(JsonLastModifiedOnField, LastModifiedOn);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

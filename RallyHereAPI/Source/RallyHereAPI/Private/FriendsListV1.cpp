@@ -21,35 +21,35 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_FriendsListV1::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("player_uuid"));
-    RallyHereAPI::WriteJsonValue(Writer, PlayerUuid);
-    Writer->WriteIdentifierPrefix(TEXT("player_id"));
-    RallyHereAPI::WriteJsonValue(Writer, PlayerId);
-    Writer->WriteIdentifierPrefix(TEXT("friends"));
-    RallyHereAPI::WriteJsonValue(Writer, Friends);
-    Writer->WriteIdentifierPrefix(TEXT("page"));
-    RallyHereAPI::WriteJsonValue(Writer, Page);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("player_uuid"));
+	RallyHereAPI::WriteJsonValue(Writer, PlayerUuid);
+	Writer->WriteIdentifierPrefix(TEXT("player_id"));
+	RallyHereAPI::WriteJsonValue(Writer, PlayerId);
+	Writer->WriteIdentifierPrefix(TEXT("friends"));
+	RallyHereAPI::WriteJsonValue(Writer, Friends);
+	Writer->WriteIdentifierPrefix(TEXT("page"));
+	RallyHereAPI::WriteJsonValue(Writer, Page);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_FriendsListV1::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonPlayerUuidField = (*Object)->TryGetField(TEXT("player_uuid"));
-    ParseSuccess &= JsonPlayerUuidField.IsValid() && !JsonPlayerUuidField->IsNull() && TryGetJsonValue(JsonPlayerUuidField, PlayerUuid);
-    const TSharedPtr<FJsonValue> JsonPlayerIdField = (*Object)->TryGetField(TEXT("player_id"));
-    ParseSuccess &= JsonPlayerIdField.IsValid() && !JsonPlayerIdField->IsNull() && TryGetJsonValue(JsonPlayerIdField, PlayerId);
-    const TSharedPtr<FJsonValue> JsonFriendsField = (*Object)->TryGetField(TEXT("friends"));
-    ParseSuccess &= JsonFriendsField.IsValid() && !JsonFriendsField->IsNull() && TryGetJsonValue(JsonFriendsField, Friends);
-    const TSharedPtr<FJsonValue> JsonPageField = (*Object)->TryGetField(TEXT("page"));
-    ParseSuccess &= JsonPageField.IsValid() && !JsonPageField->IsNull() && TryGetJsonValue(JsonPageField, Page);
+	const TSharedPtr<FJsonValue> JsonPlayerUuidField = (*Object)->TryGetField(TEXT("player_uuid"));
+	ParseSuccess &= JsonPlayerUuidField.IsValid() && !JsonPlayerUuidField->IsNull() && TryGetJsonValue(JsonPlayerUuidField, PlayerUuid);
+	const TSharedPtr<FJsonValue> JsonPlayerIdField = (*Object)->TryGetField(TEXT("player_id"));
+	ParseSuccess &= JsonPlayerIdField.IsValid() && !JsonPlayerIdField->IsNull() && TryGetJsonValue(JsonPlayerIdField, PlayerId);
+	const TSharedPtr<FJsonValue> JsonFriendsField = (*Object)->TryGetField(TEXT("friends"));
+	ParseSuccess &= JsonFriendsField.IsValid() && !JsonFriendsField->IsNull() && TryGetJsonValue(JsonFriendsField, Friends);
+	const TSharedPtr<FJsonValue> JsonPageField = (*Object)->TryGetField(TEXT("page"));
+	ParseSuccess &= JsonPageField.IsValid() && !JsonPageField->IsNull() && TryGetJsonValue(JsonPageField, Page);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

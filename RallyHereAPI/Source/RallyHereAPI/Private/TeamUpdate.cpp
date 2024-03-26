@@ -21,23 +21,23 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_TeamUpdate::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("max_size"));
-    RallyHereAPI::WriteJsonValue(Writer, MaxSize);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("max_size"));
+	RallyHereAPI::WriteJsonValue(Writer, MaxSize);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_TeamUpdate::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonMaxSizeField = (*Object)->TryGetField(TEXT("max_size"));
-    ParseSuccess &= JsonMaxSizeField.IsValid() && !JsonMaxSizeField->IsNull() && TryGetJsonValue(JsonMaxSizeField, MaxSize);
+	const TSharedPtr<FJsonValue> JsonMaxSizeField = (*Object)->TryGetField(TEXT("max_size"));
+	ParseSuccess &= JsonMaxSizeField.IsValid() && !JsonMaxSizeField->IsNull() && TryGetJsonValue(JsonMaxSizeField, MaxSize);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

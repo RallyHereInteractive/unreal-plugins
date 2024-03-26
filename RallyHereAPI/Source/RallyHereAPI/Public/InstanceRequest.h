@@ -23,125 +23,125 @@
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_InstanceRequest : public FRHAPI_Model
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    /**
-    * @brief Fills this object with data from the passed in JSON
-    *
-    * @param [in] JsonValue Data from the API call.
-    *
-    * @return true if parsing of the JSON data was successful.
-    */
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	/**
+	* @brief Fills this object with data from the passed in JSON
+	*
+	* @param [in] JsonValue Data from the API call.
+	*
+	* @return true if parsing of the JSON data was successful.
+	*/
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
-    /**
-    * @brief Writes the data from this object into the specified JSON Writer stream
-    *
-    * @param [in] Writer JSON Writer stream to push .
-    */
-    void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	/**
+	* @brief Writes the data from this object into the specified JSON Writer stream
+	*
+	* @param [in] Writer JSON Writer stream to push .
+	*/
+	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief Unique ID for the instance, a new one will be generated if not provided */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FString InstanceId_Optional{  };
-    /** @brief true if InstanceId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool InstanceId_IsSet{ false };
-    /** @brief Gets the value of InstanceId_Optional, regardless of it having been set */
-    FString& GetInstanceId() { return InstanceId_Optional; }
-    /** @brief Gets the value of InstanceId_Optional, regardless of it having been set */
-    const FString& GetInstanceId() const { return InstanceId_Optional; }
-    /** @brief Gets the value of InstanceId_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FString& GetInstanceId(const FString& DefaultValue) const { if (InstanceId_IsSet) return InstanceId_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of InstanceId_Optional and returns true if it has been set, otherwise returns false */
-    bool GetInstanceId(FString& OutValue) const { if (InstanceId_IsSet) OutValue = InstanceId_Optional; return InstanceId_IsSet; }
-    /** @brief Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr */
-    FString* GetInstanceIdOrNull() { if (InstanceId_IsSet) return &InstanceId_Optional; return nullptr; }
-    /** @brief Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr */
-    const FString* GetInstanceIdOrNull() const { if (InstanceId_IsSet) return &InstanceId_Optional; return nullptr; }
-    /** @brief Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true */
-    void SetInstanceId(FString NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true; }
-     /** @brief Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false */
-    void ClearInstanceId() { InstanceId_IsSet = false; }
+	/** @brief Unique ID for the instance, a new one will be generated if not provided */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString InstanceId_Optional{  };
+	/** @brief true if InstanceId_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool InstanceId_IsSet{ false };
+	/** @brief Gets the value of InstanceId_Optional, regardless of it having been set */
+	FString& GetInstanceId() { return InstanceId_Optional; }
+	/** @brief Gets the value of InstanceId_Optional, regardless of it having been set */
+	const FString& GetInstanceId() const { return InstanceId_Optional; }
+	/** @brief Gets the value of InstanceId_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetInstanceId(const FString& DefaultValue) const { if (InstanceId_IsSet) return InstanceId_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of InstanceId_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInstanceId(FString& OutValue) const { if (InstanceId_IsSet) OutValue = InstanceId_Optional; return InstanceId_IsSet; }
+	/** @brief Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetInstanceIdOrNull() { if (InstanceId_IsSet) return &InstanceId_Optional; return nullptr; }
+	/** @brief Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetInstanceIdOrNull() const { if (InstanceId_IsSet) return &InstanceId_Optional; return nullptr; }
+	/** @brief Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true */
+	void SetInstanceId(FString NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true; }
+	 /** @brief Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false */
+	void ClearInstanceId() { InstanceId_IsSet = false; }
 
-    /** @brief Parameters used by the host to startup. For UE5 this will contain the map and gamemode */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FRHAPI_InstanceStartupParams InstanceStartupParams_Optional{  };
-    /** @brief true if InstanceStartupParams_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool InstanceStartupParams_IsSet{ false };
-    /** @brief Gets the value of InstanceStartupParams_Optional, regardless of it having been set */
-    FRHAPI_InstanceStartupParams& GetInstanceStartupParams() { return InstanceStartupParams_Optional; }
-    /** @brief Gets the value of InstanceStartupParams_Optional, regardless of it having been set */
-    const FRHAPI_InstanceStartupParams& GetInstanceStartupParams() const { return InstanceStartupParams_Optional; }
-    /** @brief Gets the value of InstanceStartupParams_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FRHAPI_InstanceStartupParams& GetInstanceStartupParams(const FRHAPI_InstanceStartupParams& DefaultValue) const { if (InstanceStartupParams_IsSet) return InstanceStartupParams_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of InstanceStartupParams_Optional and returns true if it has been set, otherwise returns false */
-    bool GetInstanceStartupParams(FRHAPI_InstanceStartupParams& OutValue) const { if (InstanceStartupParams_IsSet) OutValue = InstanceStartupParams_Optional; return InstanceStartupParams_IsSet; }
-    /** @brief Returns a pointer to InstanceStartupParams_Optional, if it has been set, otherwise returns nullptr */
-    FRHAPI_InstanceStartupParams* GetInstanceStartupParamsOrNull() { if (InstanceStartupParams_IsSet) return &InstanceStartupParams_Optional; return nullptr; }
-    /** @brief Returns a pointer to InstanceStartupParams_Optional, if it has been set, otherwise returns nullptr */
-    const FRHAPI_InstanceStartupParams* GetInstanceStartupParamsOrNull() const { if (InstanceStartupParams_IsSet) return &InstanceStartupParams_Optional; return nullptr; }
-    /** @brief Sets the value of InstanceStartupParams_Optional and also sets InstanceStartupParams_IsSet to true */
-    void SetInstanceStartupParams(FRHAPI_InstanceStartupParams NewValue) { InstanceStartupParams_Optional = NewValue; InstanceStartupParams_IsSet = true; }
-     /** @brief Clears the value of InstanceStartupParams_Optional and sets InstanceStartupParams_IsSet to false */
-    void ClearInstanceStartupParams() { InstanceStartupParams_IsSet = false; }
+	/** @brief Parameters used by the host to startup. For UE5 this will contain the map and gamemode */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FRHAPI_InstanceStartupParams InstanceStartupParams_Optional{  };
+	/** @brief true if InstanceStartupParams_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool InstanceStartupParams_IsSet{ false };
+	/** @brief Gets the value of InstanceStartupParams_Optional, regardless of it having been set */
+	FRHAPI_InstanceStartupParams& GetInstanceStartupParams() { return InstanceStartupParams_Optional; }
+	/** @brief Gets the value of InstanceStartupParams_Optional, regardless of it having been set */
+	const FRHAPI_InstanceStartupParams& GetInstanceStartupParams() const { return InstanceStartupParams_Optional; }
+	/** @brief Gets the value of InstanceStartupParams_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FRHAPI_InstanceStartupParams& GetInstanceStartupParams(const FRHAPI_InstanceStartupParams& DefaultValue) const { if (InstanceStartupParams_IsSet) return InstanceStartupParams_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of InstanceStartupParams_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInstanceStartupParams(FRHAPI_InstanceStartupParams& OutValue) const { if (InstanceStartupParams_IsSet) OutValue = InstanceStartupParams_Optional; return InstanceStartupParams_IsSet; }
+	/** @brief Returns a pointer to InstanceStartupParams_Optional, if it has been set, otherwise returns nullptr */
+	FRHAPI_InstanceStartupParams* GetInstanceStartupParamsOrNull() { if (InstanceStartupParams_IsSet) return &InstanceStartupParams_Optional; return nullptr; }
+	/** @brief Returns a pointer to InstanceStartupParams_Optional, if it has been set, otherwise returns nullptr */
+	const FRHAPI_InstanceStartupParams* GetInstanceStartupParamsOrNull() const { if (InstanceStartupParams_IsSet) return &InstanceStartupParams_Optional; return nullptr; }
+	/** @brief Sets the value of InstanceStartupParams_Optional and also sets InstanceStartupParams_IsSet to true */
+	void SetInstanceStartupParams(FRHAPI_InstanceStartupParams NewValue) { InstanceStartupParams_Optional = NewValue; InstanceStartupParams_IsSet = true; }
+	 /** @brief Clears the value of InstanceStartupParams_Optional and sets InstanceStartupParams_IsSet to false */
+	void ClearInstanceStartupParams() { InstanceStartupParams_IsSet = false; }
 
-    /** @brief Type of the host */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    ERHAPI_HostType HostType{  };
-    /** @brief Gets the value of HostType */
-    ERHAPI_HostType& GetHostType() { return HostType; }
-    /** @brief Gets the value of HostType */
-    const ERHAPI_HostType& GetHostType() const { return HostType; }
-    /** @brief Sets the value of HostType */
-    void SetHostType(ERHAPI_HostType NewValue) { HostType = NewValue;  }
+	/** @brief Type of the host */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	ERHAPI_HostType HostType{  };
+	/** @brief Gets the value of HostType */
+	ERHAPI_HostType& GetHostType() { return HostType; }
+	/** @brief Gets the value of HostType */
+	const ERHAPI_HostType& GetHostType() const { return HostType; }
+	/** @brief Sets the value of HostType */
+	void SetHostType(ERHAPI_HostType NewValue) { HostType = NewValue;  }
 
-    /** @brief Player UUID of the host, if the host type is player */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FGuid HostPlayerUuid_Optional{  };
-    /** @brief true if HostPlayerUuid_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool HostPlayerUuid_IsSet{ false };
-    /** @brief Gets the value of HostPlayerUuid_Optional, regardless of it having been set */
-    FGuid& GetHostPlayerUuid() { return HostPlayerUuid_Optional; }
-    /** @brief Gets the value of HostPlayerUuid_Optional, regardless of it having been set */
-    const FGuid& GetHostPlayerUuid() const { return HostPlayerUuid_Optional; }
-    /** @brief Gets the value of HostPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FGuid& GetHostPlayerUuid(const FGuid& DefaultValue) const { if (HostPlayerUuid_IsSet) return HostPlayerUuid_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of HostPlayerUuid_Optional and returns true if it has been set, otherwise returns false */
-    bool GetHostPlayerUuid(FGuid& OutValue) const { if (HostPlayerUuid_IsSet) OutValue = HostPlayerUuid_Optional; return HostPlayerUuid_IsSet; }
-    /** @brief Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr */
-    FGuid* GetHostPlayerUuidOrNull() { if (HostPlayerUuid_IsSet) return &HostPlayerUuid_Optional; return nullptr; }
-    /** @brief Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr */
-    const FGuid* GetHostPlayerUuidOrNull() const { if (HostPlayerUuid_IsSet) return &HostPlayerUuid_Optional; return nullptr; }
-    /** @brief Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true */
-    void SetHostPlayerUuid(FGuid NewValue) { HostPlayerUuid_Optional = NewValue; HostPlayerUuid_IsSet = true; }
-     /** @brief Clears the value of HostPlayerUuid_Optional and sets HostPlayerUuid_IsSet to false */
-    void ClearHostPlayerUuid() { HostPlayerUuid_IsSet = false; }
+	/** @brief Player UUID of the host, if the host type is player */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FGuid HostPlayerUuid_Optional{  };
+	/** @brief true if HostPlayerUuid_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool HostPlayerUuid_IsSet{ false };
+	/** @brief Gets the value of HostPlayerUuid_Optional, regardless of it having been set */
+	FGuid& GetHostPlayerUuid() { return HostPlayerUuid_Optional; }
+	/** @brief Gets the value of HostPlayerUuid_Optional, regardless of it having been set */
+	const FGuid& GetHostPlayerUuid() const { return HostPlayerUuid_Optional; }
+	/** @brief Gets the value of HostPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FGuid& GetHostPlayerUuid(const FGuid& DefaultValue) const { if (HostPlayerUuid_IsSet) return HostPlayerUuid_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of HostPlayerUuid_Optional and returns true if it has been set, otherwise returns false */
+	bool GetHostPlayerUuid(FGuid& OutValue) const { if (HostPlayerUuid_IsSet) OutValue = HostPlayerUuid_Optional; return HostPlayerUuid_IsSet; }
+	/** @brief Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr */
+	FGuid* GetHostPlayerUuidOrNull() { if (HostPlayerUuid_IsSet) return &HostPlayerUuid_Optional; return nullptr; }
+	/** @brief Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr */
+	const FGuid* GetHostPlayerUuidOrNull() const { if (HostPlayerUuid_IsSet) return &HostPlayerUuid_Optional; return nullptr; }
+	/** @brief Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true */
+	void SetHostPlayerUuid(FGuid NewValue) { HostPlayerUuid_Optional = NewValue; HostPlayerUuid_IsSet = true; }
+	 /** @brief Clears the value of HostPlayerUuid_Optional and sets HostPlayerUuid_IsSet to false */
+	void ClearHostPlayerUuid() { HostPlayerUuid_IsSet = false; }
 
-    /** @brief instance-defined custom data */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    TMap<FString, FString> CustomData_Optional{  };
-    /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool CustomData_IsSet{ false };
-    /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-    TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
-    /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-    const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
-    /** @brief Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue */
-    const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
-    bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
-    /** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-    TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
-    /** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-    const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
-    /** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-    void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
-     /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
-    void ClearCustomData() { CustomData_IsSet = false; }
+	/** @brief instance-defined custom data */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TMap<FString, FString> CustomData_Optional{  };
+	/** @brief true if CustomData_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool CustomData_IsSet{ false };
+	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
+	TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
+	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
+	const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
+	/** @brief Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue */
+	const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
+	bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
+	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
+	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
+	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
+	void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	void ClearCustomData() { CustomData_IsSet = false; }
 };
 
 /** @} */

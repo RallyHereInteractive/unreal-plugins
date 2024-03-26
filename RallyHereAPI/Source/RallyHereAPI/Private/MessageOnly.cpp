@@ -21,23 +21,23 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_MessageOnly::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("message"));
-    RallyHereAPI::WriteJsonValue(Writer, Message);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("message"));
+	RallyHereAPI::WriteJsonValue(Writer, Message);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_MessageOnly::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonMessageField = (*Object)->TryGetField(TEXT("message"));
-    ParseSuccess &= JsonMessageField.IsValid() && !JsonMessageField->IsNull() && TryGetJsonValue(JsonMessageField, Message);
+	const TSharedPtr<FJsonValue> JsonMessageField = (*Object)->TryGetField(TEXT("message"));
+	ParseSuccess &= JsonMessageField.IsValid() && !JsonMessageField->IsNull() && TryGetJsonValue(JsonMessageField, Message);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

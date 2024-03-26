@@ -21,45 +21,45 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_PlayerSession::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("type"));
-    RallyHereAPI::WriteJsonValue(Writer, Type);
-    if (SessionIds_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("session_ids"));
-        RallyHereAPI::WriteJsonValue(Writer, SessionIds_Optional);
-    }
-    if (PendingInvites_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("pending_invites"));
-        RallyHereAPI::WriteJsonValue(Writer, PendingInvites_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("type"));
+	RallyHereAPI::WriteJsonValue(Writer, Type);
+	if (SessionIds_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("session_ids"));
+		RallyHereAPI::WriteJsonValue(Writer, SessionIds_Optional);
+	}
+	if (PendingInvites_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("pending_invites"));
+		RallyHereAPI::WriteJsonValue(Writer, PendingInvites_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_PlayerSession::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
-    ParseSuccess &= JsonTypeField.IsValid() && !JsonTypeField->IsNull() && TryGetJsonValue(JsonTypeField, Type);
-    const TSharedPtr<FJsonValue> JsonSessionIdsField = (*Object)->TryGetField(TEXT("session_ids"));
-    if (JsonSessionIdsField.IsValid() && !JsonSessionIdsField->IsNull())
-    {
-        SessionIds_IsSet = TryGetJsonValue(JsonSessionIdsField, SessionIds_Optional);
-        ParseSuccess &= SessionIds_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonPendingInvitesField = (*Object)->TryGetField(TEXT("pending_invites"));
-    if (JsonPendingInvitesField.IsValid() && !JsonPendingInvitesField->IsNull())
-    {
-        PendingInvites_IsSet = TryGetJsonValue(JsonPendingInvitesField, PendingInvites_Optional);
-        ParseSuccess &= PendingInvites_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
+	ParseSuccess &= JsonTypeField.IsValid() && !JsonTypeField->IsNull() && TryGetJsonValue(JsonTypeField, Type);
+	const TSharedPtr<FJsonValue> JsonSessionIdsField = (*Object)->TryGetField(TEXT("session_ids"));
+	if (JsonSessionIdsField.IsValid() && !JsonSessionIdsField->IsNull())
+	{
+		SessionIds_IsSet = TryGetJsonValue(JsonSessionIdsField, SessionIds_Optional);
+		ParseSuccess &= SessionIds_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonPendingInvitesField = (*Object)->TryGetField(TEXT("pending_invites"));
+	if (JsonPendingInvitesField.IsValid() && !JsonPendingInvitesField->IsNull())
+	{
+		PendingInvites_IsSet = TryGetJsonValue(JsonPendingInvitesField, PendingInvites_Optional);
+		ParseSuccess &= PendingInvites_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

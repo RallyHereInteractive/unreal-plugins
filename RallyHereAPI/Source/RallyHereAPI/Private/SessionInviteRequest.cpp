@@ -21,52 +21,52 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_SessionInviteRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (TeamId_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("team_id"));
-        RallyHereAPI::WriteJsonValue(Writer, TeamId_Optional);
-    }
-    if (OverflowAction_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("overflow_action"));
-        RallyHereAPI::WriteJsonValue(Writer, EnumToString(OverflowAction_Optional));
-    }
-    if (CustomData_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("custom_data"));
-        RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (TeamId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("team_id"));
+		RallyHereAPI::WriteJsonValue(Writer, TeamId_Optional);
+	}
+	if (OverflowAction_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("overflow_action"));
+		RallyHereAPI::WriteJsonValue(Writer, EnumToString(OverflowAction_Optional));
+	}
+	if (CustomData_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("custom_data"));
+		RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_SessionInviteRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonTeamIdField = (*Object)->TryGetField(TEXT("team_id"));
-    if (JsonTeamIdField.IsValid() && !JsonTeamIdField->IsNull())
-    {
-        TeamId_IsSet = TryGetJsonValue(JsonTeamIdField, TeamId_Optional);
-        ParseSuccess &= TeamId_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonOverflowActionField = (*Object)->TryGetField(TEXT("overflow_action"));
-    if (JsonOverflowActionField.IsValid() && !JsonOverflowActionField->IsNull())
-    {
-        OverflowAction_IsSet = TryGetJsonValue(JsonOverflowActionField, OverflowAction_Optional);
-        ParseSuccess &= OverflowAction_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-    if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
-    {
-        CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
-        ParseSuccess &= CustomData_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonTeamIdField = (*Object)->TryGetField(TEXT("team_id"));
+	if (JsonTeamIdField.IsValid() && !JsonTeamIdField->IsNull())
+	{
+		TeamId_IsSet = TryGetJsonValue(JsonTeamIdField, TeamId_Optional);
+		ParseSuccess &= TeamId_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonOverflowActionField = (*Object)->TryGetField(TEXT("overflow_action"));
+	if (JsonOverflowActionField.IsValid() && !JsonOverflowActionField->IsNull())
+	{
+		OverflowAction_IsSet = TryGetJsonValue(JsonOverflowActionField, OverflowAction_Optional);
+		ParseSuccess &= OverflowAction_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
+	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	{
+		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
+		ParseSuccess &= CustomData_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

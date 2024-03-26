@@ -21,23 +21,23 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_FriendsV1::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("friends"));
-    RallyHereAPI::WriteJsonValue(Writer, Friends);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("friends"));
+	RallyHereAPI::WriteJsonValue(Writer, Friends);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_FriendsV1::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonFriendsField = (*Object)->TryGetField(TEXT("friends"));
-    ParseSuccess &= JsonFriendsField.IsValid() && !JsonFriendsField->IsNull() && TryGetJsonValue(JsonFriendsField, Friends);
+	const TSharedPtr<FJsonValue> JsonFriendsField = (*Object)->TryGetField(TEXT("friends"));
+	ParseSuccess &= JsonFriendsField.IsValid() && !JsonFriendsField->IsNull() && TryGetJsonValue(JsonFriendsField, Friends);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

@@ -21,23 +21,23 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_NotificationCreates::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("notifications"));
-    RallyHereAPI::WriteJsonValue(Writer, Notifications);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("notifications"));
+	RallyHereAPI::WriteJsonValue(Writer, Notifications);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_NotificationCreates::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonNotificationsField = (*Object)->TryGetField(TEXT("notifications"));
-    ParseSuccess &= JsonNotificationsField.IsValid() && !JsonNotificationsField->IsNull() && TryGetJsonValue(JsonNotificationsField, Notifications);
+	const TSharedPtr<FJsonValue> JsonNotificationsField = (*Object)->TryGetField(TEXT("notifications"));
+	ParseSuccess &= JsonNotificationsField.IsValid() && !JsonNotificationsField->IsNull() && TryGetJsonValue(JsonNotificationsField, Notifications);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

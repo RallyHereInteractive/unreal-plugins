@@ -21,32 +21,32 @@
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_Platforms : public FRHAPI_Model
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    /**
-    * @brief Fills this object with data from the passed in JSON
-    *
-    * @param [in] JsonValue Data from the API call.
-    *
-    * @return true if parsing of the JSON data was successful.
-    */
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	/**
+	* @brief Fills this object with data from the passed in JSON
+	*
+	* @param [in] JsonValue Data from the API call.
+	*
+	* @return true if parsing of the JSON data was successful.
+	*/
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
-    /**
-    * @brief Writes the data from this object into the specified JSON Writer stream
-    *
-    * @param [in] Writer JSON Writer stream to push .
-    */
-    void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	/**
+	* @brief Writes the data from this object into the specified JSON Writer stream
+	*
+	* @param [in] Writer JSON Writer stream to push .
+	*/
+	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    TArray<FString> Platforms{  };
-    /** @brief Gets the value of Platforms */
-    TArray<FString>& GetPlatforms() { return Platforms; }
-    /** @brief Gets the value of Platforms */
-    const TArray<FString>& GetPlatforms() const { return Platforms; }
-    /** @brief Sets the value of Platforms */
-    void SetPlatforms(TArray<FString> NewValue) { Platforms = NewValue;  }
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TArray<FString> Platforms{  };
+	/** @brief Gets the value of Platforms */
+	TArray<FString>& GetPlatforms() { return Platforms; }
+	/** @brief Gets the value of Platforms */
+	const TArray<FString>& GetPlatforms() const { return Platforms; }
+	/** @brief Sets the value of Platforms */
+	void SetPlatforms(TArray<FString> NewValue) { Platforms = NewValue;  }
 };
 
 /** @} */

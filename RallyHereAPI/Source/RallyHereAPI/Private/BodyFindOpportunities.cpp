@@ -21,60 +21,60 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_BodyFindOpportunities::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (ScreenPixelWidth_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("screen_pixel_width"));
-        RallyHereAPI::WriteJsonValue(Writer, ScreenPixelWidth_Optional);
-    }
-    if (ScreenPixelHeight_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("screen_pixel_height"));
-        RallyHereAPI::WriteJsonValue(Writer, ScreenPixelHeight_Optional);
-    }
-    Writer->WriteIdentifierPrefix(TEXT("country_code"));
-    RallyHereAPI::WriteJsonValue(Writer, CountryCode);
-    Writer->WriteIdentifierPrefix(TEXT("language_code"));
-    RallyHereAPI::WriteJsonValue(Writer, LanguageCode);
-    if (DeviceId_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("device_id"));
-        RallyHereAPI::WriteJsonValue(Writer, DeviceId_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (ScreenPixelWidth_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("screen_pixel_width"));
+		RallyHereAPI::WriteJsonValue(Writer, ScreenPixelWidth_Optional);
+	}
+	if (ScreenPixelHeight_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("screen_pixel_height"));
+		RallyHereAPI::WriteJsonValue(Writer, ScreenPixelHeight_Optional);
+	}
+	Writer->WriteIdentifierPrefix(TEXT("country_code"));
+	RallyHereAPI::WriteJsonValue(Writer, CountryCode);
+	Writer->WriteIdentifierPrefix(TEXT("language_code"));
+	RallyHereAPI::WriteJsonValue(Writer, LanguageCode);
+	if (DeviceId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("device_id"));
+		RallyHereAPI::WriteJsonValue(Writer, DeviceId_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_BodyFindOpportunities::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonScreenPixelWidthField = (*Object)->TryGetField(TEXT("screen_pixel_width"));
-    if (JsonScreenPixelWidthField.IsValid() && !JsonScreenPixelWidthField->IsNull())
-    {
-        ScreenPixelWidth_IsSet = TryGetJsonValue(JsonScreenPixelWidthField, ScreenPixelWidth_Optional);
-        ParseSuccess &= ScreenPixelWidth_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonScreenPixelHeightField = (*Object)->TryGetField(TEXT("screen_pixel_height"));
-    if (JsonScreenPixelHeightField.IsValid() && !JsonScreenPixelHeightField->IsNull())
-    {
-        ScreenPixelHeight_IsSet = TryGetJsonValue(JsonScreenPixelHeightField, ScreenPixelHeight_Optional);
-        ParseSuccess &= ScreenPixelHeight_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonCountryCodeField = (*Object)->TryGetField(TEXT("country_code"));
-    ParseSuccess &= JsonCountryCodeField.IsValid() && !JsonCountryCodeField->IsNull() && TryGetJsonValue(JsonCountryCodeField, CountryCode);
-    const TSharedPtr<FJsonValue> JsonLanguageCodeField = (*Object)->TryGetField(TEXT("language_code"));
-    ParseSuccess &= JsonLanguageCodeField.IsValid() && !JsonLanguageCodeField->IsNull() && TryGetJsonValue(JsonLanguageCodeField, LanguageCode);
-    const TSharedPtr<FJsonValue> JsonDeviceIdField = (*Object)->TryGetField(TEXT("device_id"));
-    if (JsonDeviceIdField.IsValid() && !JsonDeviceIdField->IsNull())
-    {
-        DeviceId_IsSet = TryGetJsonValue(JsonDeviceIdField, DeviceId_Optional);
-        ParseSuccess &= DeviceId_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonScreenPixelWidthField = (*Object)->TryGetField(TEXT("screen_pixel_width"));
+	if (JsonScreenPixelWidthField.IsValid() && !JsonScreenPixelWidthField->IsNull())
+	{
+		ScreenPixelWidth_IsSet = TryGetJsonValue(JsonScreenPixelWidthField, ScreenPixelWidth_Optional);
+		ParseSuccess &= ScreenPixelWidth_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonScreenPixelHeightField = (*Object)->TryGetField(TEXT("screen_pixel_height"));
+	if (JsonScreenPixelHeightField.IsValid() && !JsonScreenPixelHeightField->IsNull())
+	{
+		ScreenPixelHeight_IsSet = TryGetJsonValue(JsonScreenPixelHeightField, ScreenPixelHeight_Optional);
+		ParseSuccess &= ScreenPixelHeight_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonCountryCodeField = (*Object)->TryGetField(TEXT("country_code"));
+	ParseSuccess &= JsonCountryCodeField.IsValid() && !JsonCountryCodeField->IsNull() && TryGetJsonValue(JsonCountryCodeField, CountryCode);
+	const TSharedPtr<FJsonValue> JsonLanguageCodeField = (*Object)->TryGetField(TEXT("language_code"));
+	ParseSuccess &= JsonLanguageCodeField.IsValid() && !JsonLanguageCodeField->IsNull() && TryGetJsonValue(JsonLanguageCodeField, LanguageCode);
+	const TSharedPtr<FJsonValue> JsonDeviceIdField = (*Object)->TryGetField(TEXT("device_id"));
+	if (JsonDeviceIdField.IsValid() && !JsonDeviceIdField->IsNull())
+	{
+		DeviceId_IsSet = TryGetJsonValue(JsonDeviceIdField, DeviceId_Optional);
+		ParseSuccess &= DeviceId_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

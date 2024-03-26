@@ -21,41 +21,41 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_XpTables::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (XpTables_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("xp_tables"));
-        RallyHereAPI::WriteJsonValue(Writer, XpTables_Optional);
-    }
-    if (CacheInfo_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("cache_info"));
-        RallyHereAPI::WriteJsonValue(Writer, CacheInfo_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (XpTables_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("xp_tables"));
+		RallyHereAPI::WriteJsonValue(Writer, XpTables_Optional);
+	}
+	if (CacheInfo_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("cache_info"));
+		RallyHereAPI::WriteJsonValue(Writer, CacheInfo_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_XpTables::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonXpTablesField = (*Object)->TryGetField(TEXT("xp_tables"));
-    if (JsonXpTablesField.IsValid() && !JsonXpTablesField->IsNull())
-    {
-        XpTables_IsSet = TryGetJsonValue(JsonXpTablesField, XpTables_Optional);
-        ParseSuccess &= XpTables_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
-    if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
-    {
-        CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
-        ParseSuccess &= CacheInfo_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonXpTablesField = (*Object)->TryGetField(TEXT("xp_tables"));
+	if (JsonXpTablesField.IsValid() && !JsonXpTablesField->IsNull())
+	{
+		XpTables_IsSet = TryGetJsonValue(JsonXpTablesField, XpTables_Optional);
+		ParseSuccess &= XpTables_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
+	if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
+	{
+		CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
+		ParseSuccess &= CacheInfo_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

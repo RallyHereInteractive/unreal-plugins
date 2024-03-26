@@ -20,58 +20,58 @@ using RallyHereAPI::TryGetJsonValue;
 // Implementation for ERHAPI_TeamOverflowAction
 FString EnumToString(const ERHAPI_TeamOverflowAction& Value)
 {
-    switch (Value)
-    {
-    case ERHAPI_TeamOverflowAction::Fail:
-        return TEXT("fail");
-    case ERHAPI_TeamOverflowAction::AllowOverflow:
-        return TEXT("allow_overflow");
-    case ERHAPI_TeamOverflowAction::PartialWithOverflow:
-        return TEXT("partial_with_overflow");
-    case ERHAPI_TeamOverflowAction::PartialWithoutOverflow:
-        return TEXT("partial_without_overflow");
-    case ERHAPI_TeamOverflowAction::Overfill:
-        return TEXT("overfill");
-    }
+	switch (Value)
+	{
+	case ERHAPI_TeamOverflowAction::Fail:
+		return TEXT("fail");
+	case ERHAPI_TeamOverflowAction::AllowOverflow:
+		return TEXT("allow_overflow");
+	case ERHAPI_TeamOverflowAction::PartialWithOverflow:
+		return TEXT("partial_with_overflow");
+	case ERHAPI_TeamOverflowAction::PartialWithoutOverflow:
+		return TEXT("partial_without_overflow");
+	case ERHAPI_TeamOverflowAction::Overfill:
+		return TEXT("overfill");
+	}
 
-    UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_TeamOverflowAction::Values Value (%d)"), (int)Value);
-    return TEXT("");
+	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_TeamOverflowAction::Values Value (%d)"), (int)Value);
+	return TEXT("");
 }
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_TeamOverflowAction& Value)
 {
-    static TMap<FString, ERHAPI_TeamOverflowAction> StringToEnum = { 
-        { TEXT("fail"), ERHAPI_TeamOverflowAction::Fail },
-        { TEXT("allow_overflow"), ERHAPI_TeamOverflowAction::AllowOverflow },
-        { TEXT("partial_with_overflow"), ERHAPI_TeamOverflowAction::PartialWithOverflow },
-        { TEXT("partial_without_overflow"), ERHAPI_TeamOverflowAction::PartialWithoutOverflow },
-        { TEXT("overfill"), ERHAPI_TeamOverflowAction::Overfill },    };
+	static TMap<FString, ERHAPI_TeamOverflowAction> StringToEnum = { 
+		{ TEXT("fail"), ERHAPI_TeamOverflowAction::Fail },
+		{ TEXT("allow_overflow"), ERHAPI_TeamOverflowAction::AllowOverflow },
+		{ TEXT("partial_with_overflow"), ERHAPI_TeamOverflowAction::PartialWithOverflow },
+		{ TEXT("partial_without_overflow"), ERHAPI_TeamOverflowAction::PartialWithoutOverflow },
+		{ TEXT("overfill"), ERHAPI_TeamOverflowAction::Overfill },	};
 
-    const auto Found = StringToEnum.Find(EnumAsString);
-    if(Found)
-        Value = *Found;
-    return Found != nullptr;
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
+	return Found != nullptr;
 }
 
 FStringFormatArg ToStringFormatArg(const ERHAPI_TeamOverflowAction& Value)
 {
-    return FStringFormatArg(EnumToString(Value));
+	return FStringFormatArg(EnumToString(Value));
 }
 
 void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const ERHAPI_TeamOverflowAction& Value)
 {
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
 }
 
 bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, ERHAPI_TeamOverflowAction& Value)
 {
-    FString TmpValue;
-    if (JsonValue->TryGetString(TmpValue))
-    {
-        if (EnumFromString(TmpValue, Value))
-            return true;
-    }
-    return false;
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if (EnumFromString(TmpValue, Value))
+			return true;
+	}
+	return false;
 }
 
 

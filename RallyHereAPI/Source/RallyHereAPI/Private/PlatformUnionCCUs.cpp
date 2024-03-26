@@ -21,23 +21,23 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_PlatformUnionCCUs::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("platform_counts"));
-    RallyHereAPI::WriteJsonValue(Writer, PlatformCounts);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("platform_counts"));
+	RallyHereAPI::WriteJsonValue(Writer, PlatformCounts);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_PlatformUnionCCUs::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonPlatformCountsField = (*Object)->TryGetField(TEXT("platform_counts"));
-    ParseSuccess &= JsonPlatformCountsField.IsValid() && !JsonPlatformCountsField->IsNull() && TryGetJsonValue(JsonPlatformCountsField, PlatformCounts);
+	const TSharedPtr<FJsonValue> JsonPlatformCountsField = (*Object)->TryGetField(TEXT("platform_counts"));
+	ParseSuccess &= JsonPlatformCountsField.IsValid() && !JsonPlatformCountsField->IsNull() && TryGetJsonValue(JsonPlatformCountsField, PlatformCounts);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

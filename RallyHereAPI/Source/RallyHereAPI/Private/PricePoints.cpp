@@ -21,41 +21,41 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_PricePoints::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (PricePoints_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("price_points"));
-        RallyHereAPI::WriteJsonValue(Writer, PricePoints_Optional);
-    }
-    if (CacheInfo_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("cache_info"));
-        RallyHereAPI::WriteJsonValue(Writer, CacheInfo_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (PricePoints_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("price_points"));
+		RallyHereAPI::WriteJsonValue(Writer, PricePoints_Optional);
+	}
+	if (CacheInfo_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("cache_info"));
+		RallyHereAPI::WriteJsonValue(Writer, CacheInfo_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_PricePoints::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonPricePointsField = (*Object)->TryGetField(TEXT("price_points"));
-    if (JsonPricePointsField.IsValid() && !JsonPricePointsField->IsNull())
-    {
-        PricePoints_IsSet = TryGetJsonValue(JsonPricePointsField, PricePoints_Optional);
-        ParseSuccess &= PricePoints_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
-    if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
-    {
-        CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
-        ParseSuccess &= CacheInfo_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonPricePointsField = (*Object)->TryGetField(TEXT("price_points"));
+	if (JsonPricePointsField.IsValid() && !JsonPricePointsField->IsNull())
+	{
+		PricePoints_IsSet = TryGetJsonValue(JsonPricePointsField, PricePoints_Optional);
+		ParseSuccess &= PricePoints_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
+	if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
+	{
+		CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
+		ParseSuccess &= CacheInfo_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

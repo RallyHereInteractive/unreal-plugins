@@ -21,71 +21,71 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_PlatformEntitlement::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("platform_sku"));
-    RallyHereAPI::WriteJsonValue(Writer, PlatformSku);
-    Writer->WriteIdentifierPrefix(TEXT("platform_entitlement_id"));
-    RallyHereAPI::WriteJsonValue(Writer, PlatformEntitlementId);
-    if (Quantity_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("quantity"));
-        RallyHereAPI::WriteJsonValue(Writer, Quantity_Optional);
-    }
-    if (Status_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("status"));
-        RallyHereAPI::WriteJsonValue(Writer, EnumToString(Status_Optional));
-    }
-    if (ErrorCode_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("error_code"));
-        RallyHereAPI::WriteJsonValue(Writer, EnumToString(ErrorCode_Optional));
-    }
-    if (OrderId_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("order_id"));
-        RallyHereAPI::WriteJsonValue(Writer, OrderId_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("platform_sku"));
+	RallyHereAPI::WriteJsonValue(Writer, PlatformSku);
+	Writer->WriteIdentifierPrefix(TEXT("platform_entitlement_id"));
+	RallyHereAPI::WriteJsonValue(Writer, PlatformEntitlementId);
+	if (Quantity_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("quantity"));
+		RallyHereAPI::WriteJsonValue(Writer, Quantity_Optional);
+	}
+	if (Status_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("status"));
+		RallyHereAPI::WriteJsonValue(Writer, EnumToString(Status_Optional));
+	}
+	if (ErrorCode_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("error_code"));
+		RallyHereAPI::WriteJsonValue(Writer, EnumToString(ErrorCode_Optional));
+	}
+	if (OrderId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("order_id"));
+		RallyHereAPI::WriteJsonValue(Writer, OrderId_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_PlatformEntitlement::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonPlatformSkuField = (*Object)->TryGetField(TEXT("platform_sku"));
-    ParseSuccess &= JsonPlatformSkuField.IsValid() && !JsonPlatformSkuField->IsNull() && TryGetJsonValue(JsonPlatformSkuField, PlatformSku);
-    const TSharedPtr<FJsonValue> JsonPlatformEntitlementIdField = (*Object)->TryGetField(TEXT("platform_entitlement_id"));
-    ParseSuccess &= JsonPlatformEntitlementIdField.IsValid() && !JsonPlatformEntitlementIdField->IsNull() && TryGetJsonValue(JsonPlatformEntitlementIdField, PlatformEntitlementId);
-    const TSharedPtr<FJsonValue> JsonQuantityField = (*Object)->TryGetField(TEXT("quantity"));
-    if (JsonQuantityField.IsValid() && !JsonQuantityField->IsNull())
-    {
-        Quantity_IsSet = TryGetJsonValue(JsonQuantityField, Quantity_Optional);
-        ParseSuccess &= Quantity_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonStatusField = (*Object)->TryGetField(TEXT("status"));
-    if (JsonStatusField.IsValid() && !JsonStatusField->IsNull())
-    {
-        Status_IsSet = TryGetJsonValue(JsonStatusField, Status_Optional);
-        ParseSuccess &= Status_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonErrorCodeField = (*Object)->TryGetField(TEXT("error_code"));
-    if (JsonErrorCodeField.IsValid() && !JsonErrorCodeField->IsNull())
-    {
-        ErrorCode_IsSet = TryGetJsonValue(JsonErrorCodeField, ErrorCode_Optional);
-        ParseSuccess &= ErrorCode_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonOrderIdField = (*Object)->TryGetField(TEXT("order_id"));
-    if (JsonOrderIdField.IsValid() && !JsonOrderIdField->IsNull())
-    {
-        OrderId_IsSet = TryGetJsonValue(JsonOrderIdField, OrderId_Optional);
-        ParseSuccess &= OrderId_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonPlatformSkuField = (*Object)->TryGetField(TEXT("platform_sku"));
+	ParseSuccess &= JsonPlatformSkuField.IsValid() && !JsonPlatformSkuField->IsNull() && TryGetJsonValue(JsonPlatformSkuField, PlatformSku);
+	const TSharedPtr<FJsonValue> JsonPlatformEntitlementIdField = (*Object)->TryGetField(TEXT("platform_entitlement_id"));
+	ParseSuccess &= JsonPlatformEntitlementIdField.IsValid() && !JsonPlatformEntitlementIdField->IsNull() && TryGetJsonValue(JsonPlatformEntitlementIdField, PlatformEntitlementId);
+	const TSharedPtr<FJsonValue> JsonQuantityField = (*Object)->TryGetField(TEXT("quantity"));
+	if (JsonQuantityField.IsValid() && !JsonQuantityField->IsNull())
+	{
+		Quantity_IsSet = TryGetJsonValue(JsonQuantityField, Quantity_Optional);
+		ParseSuccess &= Quantity_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonStatusField = (*Object)->TryGetField(TEXT("status"));
+	if (JsonStatusField.IsValid() && !JsonStatusField->IsNull())
+	{
+		Status_IsSet = TryGetJsonValue(JsonStatusField, Status_Optional);
+		ParseSuccess &= Status_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonErrorCodeField = (*Object)->TryGetField(TEXT("error_code"));
+	if (JsonErrorCodeField.IsValid() && !JsonErrorCodeField->IsNull())
+	{
+		ErrorCode_IsSet = TryGetJsonValue(JsonErrorCodeField, ErrorCode_Optional);
+		ParseSuccess &= ErrorCode_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonOrderIdField = (*Object)->TryGetField(TEXT("order_id"));
+	if (JsonOrderIdField.IsValid() && !JsonOrderIdField->IsNull())
+	{
+		OrderId_IsSet = TryGetJsonValue(JsonOrderIdField, OrderId_Optional);
+		ParseSuccess &= OrderId_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

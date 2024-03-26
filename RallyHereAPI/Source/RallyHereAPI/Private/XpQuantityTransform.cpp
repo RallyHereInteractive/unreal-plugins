@@ -20,55 +20,55 @@ using RallyHereAPI::TryGetJsonValue;
 // Implementation for ERHAPI_XpQuantityTransform
 FString EnumToString(const ERHAPI_XpQuantityTransform& Value)
 {
-    switch (Value)
-    {
-    case ERHAPI_XpQuantityTransform::None:
-        return TEXT("none");
-    case ERHAPI_XpQuantityTransform::FromCurrentXpToTargetAdditionalLevelMinXp:
-        return TEXT("from_current_xp_to_target_additional_level_min_xp");
-    case ERHAPI_XpQuantityTransform::FromCurrentLevelMinXpToTargetAdditionalLevelMinXp:
-        return TEXT("from_current_level_min_xp_to_target_additional_level_min_xp");
-    case ERHAPI_XpQuantityTransform::FromZeroToTargetExactLevelMinXp:
-        return TEXT("from_zero_to_target_exact_level_min_xp");
-    }
+	switch (Value)
+	{
+	case ERHAPI_XpQuantityTransform::None:
+		return TEXT("none");
+	case ERHAPI_XpQuantityTransform::FromCurrentXpToTargetAdditionalLevelMinXp:
+		return TEXT("from_current_xp_to_target_additional_level_min_xp");
+	case ERHAPI_XpQuantityTransform::FromCurrentLevelMinXpToTargetAdditionalLevelMinXp:
+		return TEXT("from_current_level_min_xp_to_target_additional_level_min_xp");
+	case ERHAPI_XpQuantityTransform::FromZeroToTargetExactLevelMinXp:
+		return TEXT("from_zero_to_target_exact_level_min_xp");
+	}
 
-    UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_XpQuantityTransform::Values Value (%d)"), (int)Value);
-    return TEXT("");
+	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_XpQuantityTransform::Values Value (%d)"), (int)Value);
+	return TEXT("");
 }
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_XpQuantityTransform& Value)
 {
-    static TMap<FString, ERHAPI_XpQuantityTransform> StringToEnum = { 
-        { TEXT("none"), ERHAPI_XpQuantityTransform::None },
-        { TEXT("from_current_xp_to_target_additional_level_min_xp"), ERHAPI_XpQuantityTransform::FromCurrentXpToTargetAdditionalLevelMinXp },
-        { TEXT("from_current_level_min_xp_to_target_additional_level_min_xp"), ERHAPI_XpQuantityTransform::FromCurrentLevelMinXpToTargetAdditionalLevelMinXp },
-        { TEXT("from_zero_to_target_exact_level_min_xp"), ERHAPI_XpQuantityTransform::FromZeroToTargetExactLevelMinXp },    };
+	static TMap<FString, ERHAPI_XpQuantityTransform> StringToEnum = { 
+		{ TEXT("none"), ERHAPI_XpQuantityTransform::None },
+		{ TEXT("from_current_xp_to_target_additional_level_min_xp"), ERHAPI_XpQuantityTransform::FromCurrentXpToTargetAdditionalLevelMinXp },
+		{ TEXT("from_current_level_min_xp_to_target_additional_level_min_xp"), ERHAPI_XpQuantityTransform::FromCurrentLevelMinXpToTargetAdditionalLevelMinXp },
+		{ TEXT("from_zero_to_target_exact_level_min_xp"), ERHAPI_XpQuantityTransform::FromZeroToTargetExactLevelMinXp },	};
 
-    const auto Found = StringToEnum.Find(EnumAsString);
-    if(Found)
-        Value = *Found;
-    return Found != nullptr;
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
+	return Found != nullptr;
 }
 
 FStringFormatArg ToStringFormatArg(const ERHAPI_XpQuantityTransform& Value)
 {
-    return FStringFormatArg(EnumToString(Value));
+	return FStringFormatArg(EnumToString(Value));
 }
 
 void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const ERHAPI_XpQuantityTransform& Value)
 {
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
 }
 
 bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, ERHAPI_XpQuantityTransform& Value)
 {
-    FString TmpValue;
-    if (JsonValue->TryGetString(TmpValue))
-    {
-        if (EnumFromString(TmpValue, Value))
-            return true;
-    }
-    return false;
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if (EnumFromString(TmpValue, Value))
+			return true;
+	}
+	return false;
 }
 
 

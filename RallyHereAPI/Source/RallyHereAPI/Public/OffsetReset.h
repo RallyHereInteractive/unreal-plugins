@@ -18,8 +18,8 @@
 UENUM(BlueprintType)
 enum class ERHAPI_OffsetReset : uint8
 {
-    Latest UMETA(ToolTip="An enumeration."),
-    Earliest UMETA(ToolTip="An enumeration."),
+	Latest UMETA(ToolTip="An enumeration."),
+	Earliest UMETA(ToolTip="An enumeration."),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_OffsetReset& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_OffsetReset& EnumValue);

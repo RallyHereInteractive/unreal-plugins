@@ -20,49 +20,49 @@ using RallyHereAPI::TryGetJsonValue;
 // Implementation for ERHAPI_OpportunityAbortReason
 FString EnumToString(const ERHAPI_OpportunityAbortReason& Value)
 {
-    switch (Value)
-    {
-    case ERHAPI_OpportunityAbortReason::Cancel:
-        return TEXT("cancel");
-    case ERHAPI_OpportunityAbortReason::Other:
-        return TEXT("other");
-    }
+	switch (Value)
+	{
+	case ERHAPI_OpportunityAbortReason::Cancel:
+		return TEXT("cancel");
+	case ERHAPI_OpportunityAbortReason::Other:
+		return TEXT("other");
+	}
 
-    UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_OpportunityAbortReason::Values Value (%d)"), (int)Value);
-    return TEXT("");
+	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_OpportunityAbortReason::Values Value (%d)"), (int)Value);
+	return TEXT("");
 }
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_OpportunityAbortReason& Value)
 {
-    static TMap<FString, ERHAPI_OpportunityAbortReason> StringToEnum = { 
-        { TEXT("cancel"), ERHAPI_OpportunityAbortReason::Cancel },
-        { TEXT("other"), ERHAPI_OpportunityAbortReason::Other },    };
+	static TMap<FString, ERHAPI_OpportunityAbortReason> StringToEnum = { 
+		{ TEXT("cancel"), ERHAPI_OpportunityAbortReason::Cancel },
+		{ TEXT("other"), ERHAPI_OpportunityAbortReason::Other },	};
 
-    const auto Found = StringToEnum.Find(EnumAsString);
-    if(Found)
-        Value = *Found;
-    return Found != nullptr;
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
+	return Found != nullptr;
 }
 
 FStringFormatArg ToStringFormatArg(const ERHAPI_OpportunityAbortReason& Value)
 {
-    return FStringFormatArg(EnumToString(Value));
+	return FStringFormatArg(EnumToString(Value));
 }
 
 void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const ERHAPI_OpportunityAbortReason& Value)
 {
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
 }
 
 bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, ERHAPI_OpportunityAbortReason& Value)
 {
-    FString TmpValue;
-    if (JsonValue->TryGetString(TmpValue))
-    {
-        if (EnumFromString(TmpValue, Value))
-            return true;
-    }
-    return false;
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if (EnumFromString(TmpValue, Value))
+			return true;
+	}
+	return false;
 }
 
 

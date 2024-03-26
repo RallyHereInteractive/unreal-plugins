@@ -21,27 +21,27 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_BrowserResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("cursor"));
-    RallyHereAPI::WriteJsonValue(Writer, Cursor);
-    Writer->WriteIdentifierPrefix(TEXT("browser_sessions"));
-    RallyHereAPI::WriteJsonValue(Writer, BrowserSessions);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("cursor"));
+	RallyHereAPI::WriteJsonValue(Writer, Cursor);
+	Writer->WriteIdentifierPrefix(TEXT("browser_sessions"));
+	RallyHereAPI::WriteJsonValue(Writer, BrowserSessions);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_BrowserResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonCursorField = (*Object)->TryGetField(TEXT("cursor"));
-    ParseSuccess &= JsonCursorField.IsValid() && !JsonCursorField->IsNull() && TryGetJsonValue(JsonCursorField, Cursor);
-    const TSharedPtr<FJsonValue> JsonBrowserSessionsField = (*Object)->TryGetField(TEXT("browser_sessions"));
-    ParseSuccess &= JsonBrowserSessionsField.IsValid() && !JsonBrowserSessionsField->IsNull() && TryGetJsonValue(JsonBrowserSessionsField, BrowserSessions);
+	const TSharedPtr<FJsonValue> JsonCursorField = (*Object)->TryGetField(TEXT("cursor"));
+	ParseSuccess &= JsonCursorField.IsValid() && !JsonCursorField->IsNull() && TryGetJsonValue(JsonCursorField, Cursor);
+	const TSharedPtr<FJsonValue> JsonBrowserSessionsField = (*Object)->TryGetField(TEXT("browser_sessions"));
+	ParseSuccess &= JsonBrowserSessionsField.IsValid() && !JsonBrowserSessionsField->IsNull() && TryGetJsonValue(JsonBrowserSessionsField, BrowserSessions);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

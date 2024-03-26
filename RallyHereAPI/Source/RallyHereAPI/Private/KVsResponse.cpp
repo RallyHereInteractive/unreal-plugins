@@ -21,41 +21,41 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_KVsResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (Kvs_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("kvs"));
-        RallyHereAPI::WriteJsonValue(Writer, Kvs_Optional);
-    }
-    if (SecretKvs_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("secret_kvs"));
-        RallyHereAPI::WriteJsonValue(Writer, SecretKvs_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (Kvs_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("kvs"));
+		RallyHereAPI::WriteJsonValue(Writer, Kvs_Optional);
+	}
+	if (SecretKvs_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("secret_kvs"));
+		RallyHereAPI::WriteJsonValue(Writer, SecretKvs_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_KVsResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonKvsField = (*Object)->TryGetField(TEXT("kvs"));
-    if (JsonKvsField.IsValid() && !JsonKvsField->IsNull())
-    {
-        Kvs_IsSet = TryGetJsonValue(JsonKvsField, Kvs_Optional);
-        ParseSuccess &= Kvs_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonSecretKvsField = (*Object)->TryGetField(TEXT("secret_kvs"));
-    if (JsonSecretKvsField.IsValid() && !JsonSecretKvsField->IsNull())
-    {
-        SecretKvs_IsSet = TryGetJsonValue(JsonSecretKvsField, SecretKvs_Optional);
-        ParseSuccess &= SecretKvs_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonKvsField = (*Object)->TryGetField(TEXT("kvs"));
+	if (JsonKvsField.IsValid() && !JsonKvsField->IsNull())
+	{
+		Kvs_IsSet = TryGetJsonValue(JsonKvsField, Kvs_Optional);
+		ParseSuccess &= Kvs_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonSecretKvsField = (*Object)->TryGetField(TEXT("secret_kvs"));
+	if (JsonSecretKvsField.IsValid() && !JsonSecretKvsField->IsNull())
+	{
+		SecretKvs_IsSet = TryGetJsonValue(JsonSecretKvsField, SecretKvs_Optional);
+		ParseSuccess &= SecretKvs_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

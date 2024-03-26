@@ -22,156 +22,156 @@
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_UpdateInventoryRequestById : public FRHAPI_Model
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    /**
-    * @brief Fills this object with data from the passed in JSON
-    *
-    * @param [in] JsonValue Data from the API call.
-    *
-    * @return true if parsing of the JSON data was successful.
-    */
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	/**
+	* @brief Fills this object with data from the passed in JSON
+	*
+	* @param [in] JsonValue Data from the API call.
+	*
+	* @return true if parsing of the JSON data was successful.
+	*/
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
-    /**
-    * @brief Writes the data from this object into the specified JSON Writer stream
-    *
-    * @param [in] Writer JSON Writer stream to push .
-    */
-    void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	/**
+	* @brief Writes the data from this object into the specified JSON Writer stream
+	*
+	* @param [in] Writer JSON Writer stream to push .
+	*/
+	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief Inventory Bucket for this Inventory Operation. */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    ERHAPI_InventoryBucket Bucket_Optional{  };
-    /** @brief true if Bucket_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool Bucket_IsSet{ false };
-    /** @brief Gets the value of Bucket_Optional, regardless of it having been set */
-    ERHAPI_InventoryBucket& GetBucket() { return Bucket_Optional; }
-    /** @brief Gets the value of Bucket_Optional, regardless of it having been set */
-    const ERHAPI_InventoryBucket& GetBucket() const { return Bucket_Optional; }
-    /** @brief Gets the value of Bucket_Optional, if it has been set, otherwise it returns DefaultValue */
-    const ERHAPI_InventoryBucket& GetBucket(const ERHAPI_InventoryBucket& DefaultValue) const { if (Bucket_IsSet) return Bucket_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of Bucket_Optional and returns true if it has been set, otherwise returns false */
-    bool GetBucket(ERHAPI_InventoryBucket& OutValue) const { if (Bucket_IsSet) OutValue = Bucket_Optional; return Bucket_IsSet; }
-    /** @brief Returns a pointer to Bucket_Optional, if it has been set, otherwise returns nullptr */
-    ERHAPI_InventoryBucket* GetBucketOrNull() { if (Bucket_IsSet) return &Bucket_Optional; return nullptr; }
-    /** @brief Returns a pointer to Bucket_Optional, if it has been set, otherwise returns nullptr */
-    const ERHAPI_InventoryBucket* GetBucketOrNull() const { if (Bucket_IsSet) return &Bucket_Optional; return nullptr; }
-    /** @brief Sets the value of Bucket_Optional and also sets Bucket_IsSet to true */
-    void SetBucket(ERHAPI_InventoryBucket NewValue) { Bucket_Optional = NewValue; Bucket_IsSet = true; }
-     /** @brief Clears the value of Bucket_Optional and sets Bucket_IsSet to false */
-    void ClearBucket() { Bucket_IsSet = false; }
+	/** @brief Inventory Bucket for this Inventory Operation. */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	ERHAPI_InventoryBucket Bucket_Optional{  };
+	/** @brief true if Bucket_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Bucket_IsSet{ false };
+	/** @brief Gets the value of Bucket_Optional, regardless of it having been set */
+	ERHAPI_InventoryBucket& GetBucket() { return Bucket_Optional; }
+	/** @brief Gets the value of Bucket_Optional, regardless of it having been set */
+	const ERHAPI_InventoryBucket& GetBucket() const { return Bucket_Optional; }
+	/** @brief Gets the value of Bucket_Optional, if it has been set, otherwise it returns DefaultValue */
+	const ERHAPI_InventoryBucket& GetBucket(const ERHAPI_InventoryBucket& DefaultValue) const { if (Bucket_IsSet) return Bucket_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Bucket_Optional and returns true if it has been set, otherwise returns false */
+	bool GetBucket(ERHAPI_InventoryBucket& OutValue) const { if (Bucket_IsSet) OutValue = Bucket_Optional; return Bucket_IsSet; }
+	/** @brief Returns a pointer to Bucket_Optional, if it has been set, otherwise returns nullptr */
+	ERHAPI_InventoryBucket* GetBucketOrNull() { if (Bucket_IsSet) return &Bucket_Optional; return nullptr; }
+	/** @brief Returns a pointer to Bucket_Optional, if it has been set, otherwise returns nullptr */
+	const ERHAPI_InventoryBucket* GetBucketOrNull() const { if (Bucket_IsSet) return &Bucket_Optional; return nullptr; }
+	/** @brief Sets the value of Bucket_Optional and also sets Bucket_IsSet to true */
+	void SetBucket(ERHAPI_InventoryBucket NewValue) { Bucket_Optional = NewValue; Bucket_IsSet = true; }
+	 /** @brief Clears the value of Bucket_Optional and sets Bucket_IsSet to false */
+	void ClearBucket() { Bucket_IsSet = false; }
 
-    /** @brief Count for this Inventory Operation. */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    int32 Count_Optional{  };
-    /** @brief true if Count_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool Count_IsSet{ false };
-    /** @brief Gets the value of Count_Optional, regardless of it having been set */
-    int32& GetCount() { return Count_Optional; }
-    /** @brief Gets the value of Count_Optional, regardless of it having been set */
-    const int32& GetCount() const { return Count_Optional; }
-    /** @brief Gets the value of Count_Optional, if it has been set, otherwise it returns DefaultValue */
-    const int32& GetCount(const int32& DefaultValue) const { if (Count_IsSet) return Count_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of Count_Optional and returns true if it has been set, otherwise returns false */
-    bool GetCount(int32& OutValue) const { if (Count_IsSet) OutValue = Count_Optional; return Count_IsSet; }
-    /** @brief Returns a pointer to Count_Optional, if it has been set, otherwise returns nullptr */
-    int32* GetCountOrNull() { if (Count_IsSet) return &Count_Optional; return nullptr; }
-    /** @brief Returns a pointer to Count_Optional, if it has been set, otherwise returns nullptr */
-    const int32* GetCountOrNull() const { if (Count_IsSet) return &Count_Optional; return nullptr; }
-    /** @brief Sets the value of Count_Optional and also sets Count_IsSet to true */
-    void SetCount(int32 NewValue) { Count_Optional = NewValue; Count_IsSet = true; }
-     /** @brief Clears the value of Count_Optional and sets Count_IsSet to false */
-    void ClearCount() { Count_Optional = 1; Count_IsSet = false; }
-    /** @brief Returns true if Count_Optional is set and matches the default value */
-    bool IsCountDefaultValue() const { return Count_IsSet && Count_Optional == 1; }
-    /** @brief Sets the value of Count_Optional to its default and also sets Count_IsSet to true */
-    void SetCountToDefault() { Count_Optional = 1; Count_IsSet = true; }
+	/** @brief Count for this Inventory Operation. */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Count_Optional{  };
+	/** @brief true if Count_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Count_IsSet{ false };
+	/** @brief Gets the value of Count_Optional, regardless of it having been set */
+	int32& GetCount() { return Count_Optional; }
+	/** @brief Gets the value of Count_Optional, regardless of it having been set */
+	const int32& GetCount() const { return Count_Optional; }
+	/** @brief Gets the value of Count_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetCount(const int32& DefaultValue) const { if (Count_IsSet) return Count_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Count_Optional and returns true if it has been set, otherwise returns false */
+	bool GetCount(int32& OutValue) const { if (Count_IsSet) OutValue = Count_Optional; return Count_IsSet; }
+	/** @brief Returns a pointer to Count_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetCountOrNull() { if (Count_IsSet) return &Count_Optional; return nullptr; }
+	/** @brief Returns a pointer to Count_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetCountOrNull() const { if (Count_IsSet) return &Count_Optional; return nullptr; }
+	/** @brief Sets the value of Count_Optional and also sets Count_IsSet to true */
+	void SetCount(int32 NewValue) { Count_Optional = NewValue; Count_IsSet = true; }
+	 /** @brief Clears the value of Count_Optional and sets Count_IsSet to false */
+	void ClearCount() { Count_Optional = 1; Count_IsSet = false; }
+	/** @brief Returns true if Count_Optional is set and matches the default value */
+	bool IsCountDefaultValue() const { return Count_IsSet && Count_Optional == 1; }
+	/** @brief Sets the value of Count_Optional to its default and also sets Count_IsSet to true */
+	void SetCountToDefault() { Count_Optional = 1; Count_IsSet = true; }
 
-    /** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FDateTime Expires_Optional{  };
-    /** @brief true if Expires_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool Expires_IsSet{ false };
-    /** @brief Gets the value of Expires_Optional, regardless of it having been set */
-    FDateTime& GetExpires() { return Expires_Optional; }
-    /** @brief Gets the value of Expires_Optional, regardless of it having been set */
-    const FDateTime& GetExpires() const { return Expires_Optional; }
-    /** @brief Gets the value of Expires_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FDateTime& GetExpires(const FDateTime& DefaultValue) const { if (Expires_IsSet) return Expires_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of Expires_Optional and returns true if it has been set, otherwise returns false */
-    bool GetExpires(FDateTime& OutValue) const { if (Expires_IsSet) OutValue = Expires_Optional; return Expires_IsSet; }
-    /** @brief Returns a pointer to Expires_Optional, if it has been set, otherwise returns nullptr */
-    FDateTime* GetExpiresOrNull() { if (Expires_IsSet) return &Expires_Optional; return nullptr; }
-    /** @brief Returns a pointer to Expires_Optional, if it has been set, otherwise returns nullptr */
-    const FDateTime* GetExpiresOrNull() const { if (Expires_IsSet) return &Expires_Optional; return nullptr; }
-    /** @brief Sets the value of Expires_Optional and also sets Expires_IsSet to true */
-    void SetExpires(FDateTime NewValue) { Expires_Optional = NewValue; Expires_IsSet = true; }
-     /** @brief Clears the value of Expires_Optional and sets Expires_IsSet to false */
-    void ClearExpires() { Expires_IsSet = false; }
+	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FDateTime Expires_Optional{  };
+	/** @brief true if Expires_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Expires_IsSet{ false };
+	/** @brief Gets the value of Expires_Optional, regardless of it having been set */
+	FDateTime& GetExpires() { return Expires_Optional; }
+	/** @brief Gets the value of Expires_Optional, regardless of it having been set */
+	const FDateTime& GetExpires() const { return Expires_Optional; }
+	/** @brief Gets the value of Expires_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FDateTime& GetExpires(const FDateTime& DefaultValue) const { if (Expires_IsSet) return Expires_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Expires_Optional and returns true if it has been set, otherwise returns false */
+	bool GetExpires(FDateTime& OutValue) const { if (Expires_IsSet) OutValue = Expires_Optional; return Expires_IsSet; }
+	/** @brief Returns a pointer to Expires_Optional, if it has been set, otherwise returns nullptr */
+	FDateTime* GetExpiresOrNull() { if (Expires_IsSet) return &Expires_Optional; return nullptr; }
+	/** @brief Returns a pointer to Expires_Optional, if it has been set, otherwise returns nullptr */
+	const FDateTime* GetExpiresOrNull() const { if (Expires_IsSet) return &Expires_Optional; return nullptr; }
+	/** @brief Sets the value of Expires_Optional and also sets Expires_IsSet to true */
+	void SetExpires(FDateTime NewValue) { Expires_Optional = NewValue; Expires_IsSet = true; }
+	 /** @brief Clears the value of Expires_Optional and sets Expires_IsSet to false */
+	void ClearExpires() { Expires_IsSet = false; }
 
-    /** @brief Arbitrary data map that can be set to add additional data to Inventory. */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    TMap<FString, FString> CustomData_Optional{  };
-    /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool CustomData_IsSet{ false };
-    /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-    TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
-    /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-    const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
-    /** @brief Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue */
-    const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
-    bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
-    /** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-    TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
-    /** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-    const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
-    /** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-    void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
-     /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
-    void ClearCustomData() { CustomData_IsSet = false; }
+	/** @brief Arbitrary data map that can be set to add additional data to Inventory. */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TMap<FString, FString> CustomData_Optional{  };
+	/** @brief true if CustomData_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool CustomData_IsSet{ false };
+	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
+	TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
+	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
+	const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
+	/** @brief Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue */
+	const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
+	bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
+	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
+	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
+	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
+	void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	void ClearCustomData() { CustomData_IsSet = false; }
 
-    /** @brief Item ID for this Inventory Operation. If the Item ID is not set during an Update Inventory Request, then the Item ID will not be modified on the existing Inventory Record. */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    int32 ItemId_Optional{  };
-    /** @brief true if ItemId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool ItemId_IsSet{ false };
-    /** @brief Gets the value of ItemId_Optional, regardless of it having been set */
-    int32& GetItemId() { return ItemId_Optional; }
-    /** @brief Gets the value of ItemId_Optional, regardless of it having been set */
-    const int32& GetItemId() const { return ItemId_Optional; }
-    /** @brief Gets the value of ItemId_Optional, if it has been set, otherwise it returns DefaultValue */
-    const int32& GetItemId(const int32& DefaultValue) const { if (ItemId_IsSet) return ItemId_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of ItemId_Optional and returns true if it has been set, otherwise returns false */
-    bool GetItemId(int32& OutValue) const { if (ItemId_IsSet) OutValue = ItemId_Optional; return ItemId_IsSet; }
-    /** @brief Returns a pointer to ItemId_Optional, if it has been set, otherwise returns nullptr */
-    int32* GetItemIdOrNull() { if (ItemId_IsSet) return &ItemId_Optional; return nullptr; }
-    /** @brief Returns a pointer to ItemId_Optional, if it has been set, otherwise returns nullptr */
-    const int32* GetItemIdOrNull() const { if (ItemId_IsSet) return &ItemId_Optional; return nullptr; }
-    /** @brief Sets the value of ItemId_Optional and also sets ItemId_IsSet to true */
-    void SetItemId(int32 NewValue) { ItemId_Optional = NewValue; ItemId_IsSet = true; }
-     /** @brief Clears the value of ItemId_Optional and sets ItemId_IsSet to false */
-    void ClearItemId() { ItemId_Optional = 0; ItemId_IsSet = false; }
-    /** @brief Returns true if ItemId_Optional is set and matches the default value */
-    bool IsItemIdDefaultValue() const { return ItemId_IsSet && ItemId_Optional == 0; }
-    /** @brief Sets the value of ItemId_Optional to its default and also sets ItemId_IsSet to true */
-    void SetItemIdToDefault() { ItemId_Optional = 0; ItemId_IsSet = true; }
+	/** @brief Item ID for this Inventory Operation. If the Item ID is not set during an Update Inventory Request, then the Item ID will not be modified on the existing Inventory Record. */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 ItemId_Optional{  };
+	/** @brief true if ItemId_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool ItemId_IsSet{ false };
+	/** @brief Gets the value of ItemId_Optional, regardless of it having been set */
+	int32& GetItemId() { return ItemId_Optional; }
+	/** @brief Gets the value of ItemId_Optional, regardless of it having been set */
+	const int32& GetItemId() const { return ItemId_Optional; }
+	/** @brief Gets the value of ItemId_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetItemId(const int32& DefaultValue) const { if (ItemId_IsSet) return ItemId_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of ItemId_Optional and returns true if it has been set, otherwise returns false */
+	bool GetItemId(int32& OutValue) const { if (ItemId_IsSet) OutValue = ItemId_Optional; return ItemId_IsSet; }
+	/** @brief Returns a pointer to ItemId_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetItemIdOrNull() { if (ItemId_IsSet) return &ItemId_Optional; return nullptr; }
+	/** @brief Returns a pointer to ItemId_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetItemIdOrNull() const { if (ItemId_IsSet) return &ItemId_Optional; return nullptr; }
+	/** @brief Sets the value of ItemId_Optional and also sets ItemId_IsSet to true */
+	void SetItemId(int32 NewValue) { ItemId_Optional = NewValue; ItemId_IsSet = true; }
+	 /** @brief Clears the value of ItemId_Optional and sets ItemId_IsSet to false */
+	void ClearItemId() { ItemId_Optional = 0; ItemId_IsSet = false; }
+	/** @brief Returns true if ItemId_Optional is set and matches the default value */
+	bool IsItemIdDefaultValue() const { return ItemId_IsSet && ItemId_Optional == 0; }
+	/** @brief Sets the value of ItemId_Optional to its default and also sets ItemId_IsSet to true */
+	void SetItemIdToDefault() { ItemId_Optional = 0; ItemId_IsSet = true; }
 
-    /** @brief Inventory ID for this Inventory Operation. */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FGuid InventoryId{  };
-    /** @brief Gets the value of InventoryId */
-    FGuid& GetInventoryId() { return InventoryId; }
-    /** @brief Gets the value of InventoryId */
-    const FGuid& GetInventoryId() const { return InventoryId; }
-    /** @brief Sets the value of InventoryId */
-    void SetInventoryId(FGuid NewValue) { InventoryId = NewValue;  }
+	/** @brief Inventory ID for this Inventory Operation. */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FGuid InventoryId{  };
+	/** @brief Gets the value of InventoryId */
+	FGuid& GetInventoryId() { return InventoryId; }
+	/** @brief Gets the value of InventoryId */
+	const FGuid& GetInventoryId() const { return InventoryId; }
+	/** @brief Sets the value of InventoryId */
+	void SetInventoryId(FGuid NewValue) { InventoryId = NewValue;  }
 };
 
 /** @} */

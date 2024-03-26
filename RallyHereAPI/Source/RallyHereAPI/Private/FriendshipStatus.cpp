@@ -20,58 +20,58 @@ using RallyHereAPI::TryGetJsonValue;
 // Implementation for ERHAPI_FriendshipStatus
 FString EnumToString(const ERHAPI_FriendshipStatus& Value)
 {
-    switch (Value)
-    {
-    case ERHAPI_FriendshipStatus::None:
-        return TEXT("NONE");
-    case ERHAPI_FriendshipStatus::Friends:
-        return TEXT("FRIENDS");
-    case ERHAPI_FriendshipStatus::FriendRequestSent:
-        return TEXT("FRIEND_REQUEST_SENT");
-    case ERHAPI_FriendshipStatus::FriendRequestPending:
-        return TEXT("FRIEND_REQUEST_PENDING");
-    case ERHAPI_FriendshipStatus::FriendRequestDeclinedByOther:
-        return TEXT("FRIEND_REQUEST_DECLINED_BY_OTHER");
-    }
+	switch (Value)
+	{
+	case ERHAPI_FriendshipStatus::None:
+		return TEXT("NONE");
+	case ERHAPI_FriendshipStatus::Friends:
+		return TEXT("FRIENDS");
+	case ERHAPI_FriendshipStatus::FriendRequestSent:
+		return TEXT("FRIEND_REQUEST_SENT");
+	case ERHAPI_FriendshipStatus::FriendRequestPending:
+		return TEXT("FRIEND_REQUEST_PENDING");
+	case ERHAPI_FriendshipStatus::FriendRequestDeclinedByOther:
+		return TEXT("FRIEND_REQUEST_DECLINED_BY_OTHER");
+	}
 
-    UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_FriendshipStatus::Values Value (%d)"), (int)Value);
-    return TEXT("");
+	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_FriendshipStatus::Values Value (%d)"), (int)Value);
+	return TEXT("");
 }
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_FriendshipStatus& Value)
 {
-    static TMap<FString, ERHAPI_FriendshipStatus> StringToEnum = { 
-        { TEXT("NONE"), ERHAPI_FriendshipStatus::None },
-        { TEXT("FRIENDS"), ERHAPI_FriendshipStatus::Friends },
-        { TEXT("FRIEND_REQUEST_SENT"), ERHAPI_FriendshipStatus::FriendRequestSent },
-        { TEXT("FRIEND_REQUEST_PENDING"), ERHAPI_FriendshipStatus::FriendRequestPending },
-        { TEXT("FRIEND_REQUEST_DECLINED_BY_OTHER"), ERHAPI_FriendshipStatus::FriendRequestDeclinedByOther },    };
+	static TMap<FString, ERHAPI_FriendshipStatus> StringToEnum = { 
+		{ TEXT("NONE"), ERHAPI_FriendshipStatus::None },
+		{ TEXT("FRIENDS"), ERHAPI_FriendshipStatus::Friends },
+		{ TEXT("FRIEND_REQUEST_SENT"), ERHAPI_FriendshipStatus::FriendRequestSent },
+		{ TEXT("FRIEND_REQUEST_PENDING"), ERHAPI_FriendshipStatus::FriendRequestPending },
+		{ TEXT("FRIEND_REQUEST_DECLINED_BY_OTHER"), ERHAPI_FriendshipStatus::FriendRequestDeclinedByOther },	};
 
-    const auto Found = StringToEnum.Find(EnumAsString);
-    if(Found)
-        Value = *Found;
-    return Found != nullptr;
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
+	return Found != nullptr;
 }
 
 FStringFormatArg ToStringFormatArg(const ERHAPI_FriendshipStatus& Value)
 {
-    return FStringFormatArg(EnumToString(Value));
+	return FStringFormatArg(EnumToString(Value));
 }
 
 void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const ERHAPI_FriendshipStatus& Value)
 {
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
 }
 
 bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, ERHAPI_FriendshipStatus& Value)
 {
-    FString TmpValue;
-    if (JsonValue->TryGetString(TmpValue))
-    {
-        if (EnumFromString(TmpValue, Value))
-            return true;
-    }
-    return false;
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if (EnumFromString(TmpValue, Value))
+			return true;
+	}
+	return false;
 }
 
 

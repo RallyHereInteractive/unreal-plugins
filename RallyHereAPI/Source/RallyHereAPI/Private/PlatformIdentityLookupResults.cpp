@@ -21,30 +21,30 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_PlatformIdentityLookupResults::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (Identity_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("identity"));
-        RallyHereAPI::WriteJsonValue(Writer, Identity_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (Identity_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("identity"));
+		RallyHereAPI::WriteJsonValue(Writer, Identity_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_PlatformIdentityLookupResults::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonIdentityField = (*Object)->TryGetField(TEXT("identity"));
-    if (JsonIdentityField.IsValid() && !JsonIdentityField->IsNull())
-    {
-        Identity_IsSet = TryGetJsonValue(JsonIdentityField, Identity_Optional);
-        ParseSuccess &= Identity_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonIdentityField = (*Object)->TryGetField(TEXT("identity"));
+	if (JsonIdentityField.IsValid() && !JsonIdentityField->IsNull())
+	{
+		Identity_IsSet = TryGetJsonValue(JsonIdentityField, Identity_Optional);
+		ParseSuccess &= Identity_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

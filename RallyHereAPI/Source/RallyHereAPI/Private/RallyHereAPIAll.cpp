@@ -6,362 +6,362 @@ namespace RallyHereAPI
 
 FRallyHereAPIAll::FRallyHereAPIAll()
 {
-    AllAPIs.Add(&Ad);
-    AllAPIs.Add(&Auth);
-    AllAPIs.Add(&BlockedV1);
-    AllAPIs.Add(&BlockedV2);
-    AllAPIs.Add(&Catalog);
-    AllAPIs.Add(&Config);
-    AllAPIs.Add(&ConfigurationV1);
-    AllAPIs.Add(&Custom);
-    AllAPIs.Add(&Entitlements);
-    AllAPIs.Add(&Environment);
-    AllAPIs.Add(&Events);
-    AllAPIs.Add(&FriendsV1);
-    AllAPIs.Add(&FriendsV2);
-    AllAPIs.Add(&InstanceNotification);
-    AllAPIs.Add(&Inventory);
-    AllAPIs.Add(&KeyClaims);
-    AllAPIs.Add(&KeyEntitlements);
-    AllAPIs.Add(&Marketing);
-    AllAPIs.Add(&Match);
-    AllAPIs.Add(&PlayerIdNotification);
-    AllAPIs.Add(&PlayerNotification);
-    AllAPIs.Add(&Presence);
-    AllAPIs.Add(&PresenceAdmin);
-    AllAPIs.Add(&Queues);
-    AllAPIs.Add(&Rank);
-    AllAPIs.Add(&Regions);
-    AllAPIs.Add(&Reports);
-    AllAPIs.Add(&SessionAudit);
-    AllAPIs.Add(&Sessions);
-    AllAPIs.Add(&Settings);
-    AllAPIs.Add(&Time);
-    AllAPIs.Add(&Users);
+	AllAPIs.Add(&Ad);
+	AllAPIs.Add(&Auth);
+	AllAPIs.Add(&BlockedV1);
+	AllAPIs.Add(&BlockedV2);
+	AllAPIs.Add(&Catalog);
+	AllAPIs.Add(&Config);
+	AllAPIs.Add(&ConfigurationV1);
+	AllAPIs.Add(&Custom);
+	AllAPIs.Add(&Entitlements);
+	AllAPIs.Add(&Environment);
+	AllAPIs.Add(&Events);
+	AllAPIs.Add(&FriendsV1);
+	AllAPIs.Add(&FriendsV2);
+	AllAPIs.Add(&InstanceNotification);
+	AllAPIs.Add(&Inventory);
+	AllAPIs.Add(&KeyClaims);
+	AllAPIs.Add(&KeyEntitlements);
+	AllAPIs.Add(&Marketing);
+	AllAPIs.Add(&Match);
+	AllAPIs.Add(&PlayerIdNotification);
+	AllAPIs.Add(&PlayerNotification);
+	AllAPIs.Add(&Presence);
+	AllAPIs.Add(&PresenceAdmin);
+	AllAPIs.Add(&Queues);
+	AllAPIs.Add(&Rank);
+	AllAPIs.Add(&Regions);
+	AllAPIs.Add(&Reports);
+	AllAPIs.Add(&SessionAudit);
+	AllAPIs.Add(&Sessions);
+	AllAPIs.Add(&Settings);
+	AllAPIs.Add(&Time);
+	AllAPIs.Add(&Users);
 }
 
 TArray<FAPI*> FRallyHereAPIAll::GetAllAPIs() const
 {
-    return AllAPIs;
+	return AllAPIs;
 }
 
 FAdAPI& FRallyHereAPIAll::GetAd()
 {
-    return Ad;
+	return Ad;
 }
 
 const FAdAPI& FRallyHereAPIAll::GetAd() const
 {
-    return Ad;
+	return Ad;
 }
 
 FAuthAPI& FRallyHereAPIAll::GetAuth()
 {
-    return Auth;
+	return Auth;
 }
 
 const FAuthAPI& FRallyHereAPIAll::GetAuth() const
 {
-    return Auth;
+	return Auth;
 }
 
 FBlockedV1API& FRallyHereAPIAll::GetBlockedV1()
 {
-    return BlockedV1;
+	return BlockedV1;
 }
 
 const FBlockedV1API& FRallyHereAPIAll::GetBlockedV1() const
 {
-    return BlockedV1;
+	return BlockedV1;
 }
 
 FBlockedV2API& FRallyHereAPIAll::GetBlockedV2()
 {
-    return BlockedV2;
+	return BlockedV2;
 }
 
 const FBlockedV2API& FRallyHereAPIAll::GetBlockedV2() const
 {
-    return BlockedV2;
+	return BlockedV2;
 }
 
 FCatalogAPI& FRallyHereAPIAll::GetCatalog()
 {
-    return Catalog;
+	return Catalog;
 }
 
 const FCatalogAPI& FRallyHereAPIAll::GetCatalog() const
 {
-    return Catalog;
+	return Catalog;
 }
 
 FConfigAPI& FRallyHereAPIAll::GetConfig()
 {
-    return Config;
+	return Config;
 }
 
 const FConfigAPI& FRallyHereAPIAll::GetConfig() const
 {
-    return Config;
+	return Config;
 }
 
 FConfigurationV1API& FRallyHereAPIAll::GetConfigurationV1()
 {
-    return ConfigurationV1;
+	return ConfigurationV1;
 }
 
 const FConfigurationV1API& FRallyHereAPIAll::GetConfigurationV1() const
 {
-    return ConfigurationV1;
+	return ConfigurationV1;
 }
 
 FCustomAPI& FRallyHereAPIAll::GetCustom()
 {
-    return Custom;
+	return Custom;
 }
 
 const FCustomAPI& FRallyHereAPIAll::GetCustom() const
 {
-    return Custom;
+	return Custom;
 }
 
 FEntitlementsAPI& FRallyHereAPIAll::GetEntitlements()
 {
-    return Entitlements;
+	return Entitlements;
 }
 
 const FEntitlementsAPI& FRallyHereAPIAll::GetEntitlements() const
 {
-    return Entitlements;
+	return Entitlements;
 }
 
 FEnvironmentAPI& FRallyHereAPIAll::GetEnvironment()
 {
-    return Environment;
+	return Environment;
 }
 
 const FEnvironmentAPI& FRallyHereAPIAll::GetEnvironment() const
 {
-    return Environment;
+	return Environment;
 }
 
 FEventsAPI& FRallyHereAPIAll::GetEvents()
 {
-    return Events;
+	return Events;
 }
 
 const FEventsAPI& FRallyHereAPIAll::GetEvents() const
 {
-    return Events;
+	return Events;
 }
 
 FFriendsV1API& FRallyHereAPIAll::GetFriendsV1()
 {
-    return FriendsV1;
+	return FriendsV1;
 }
 
 const FFriendsV1API& FRallyHereAPIAll::GetFriendsV1() const
 {
-    return FriendsV1;
+	return FriendsV1;
 }
 
 FFriendsV2API& FRallyHereAPIAll::GetFriendsV2()
 {
-    return FriendsV2;
+	return FriendsV2;
 }
 
 const FFriendsV2API& FRallyHereAPIAll::GetFriendsV2() const
 {
-    return FriendsV2;
+	return FriendsV2;
 }
 
 FInstanceNotificationAPI& FRallyHereAPIAll::GetInstanceNotification()
 {
-    return InstanceNotification;
+	return InstanceNotification;
 }
 
 const FInstanceNotificationAPI& FRallyHereAPIAll::GetInstanceNotification() const
 {
-    return InstanceNotification;
+	return InstanceNotification;
 }
 
 FInventoryAPI& FRallyHereAPIAll::GetInventory()
 {
-    return Inventory;
+	return Inventory;
 }
 
 const FInventoryAPI& FRallyHereAPIAll::GetInventory() const
 {
-    return Inventory;
+	return Inventory;
 }
 
 FKeyClaimsAPI& FRallyHereAPIAll::GetKeyClaims()
 {
-    return KeyClaims;
+	return KeyClaims;
 }
 
 const FKeyClaimsAPI& FRallyHereAPIAll::GetKeyClaims() const
 {
-    return KeyClaims;
+	return KeyClaims;
 }
 
 FKeyEntitlementsAPI& FRallyHereAPIAll::GetKeyEntitlements()
 {
-    return KeyEntitlements;
+	return KeyEntitlements;
 }
 
 const FKeyEntitlementsAPI& FRallyHereAPIAll::GetKeyEntitlements() const
 {
-    return KeyEntitlements;
+	return KeyEntitlements;
 }
 
 FMarketingAPI& FRallyHereAPIAll::GetMarketing()
 {
-    return Marketing;
+	return Marketing;
 }
 
 const FMarketingAPI& FRallyHereAPIAll::GetMarketing() const
 {
-    return Marketing;
+	return Marketing;
 }
 
 FMatchAPI& FRallyHereAPIAll::GetMatch()
 {
-    return Match;
+	return Match;
 }
 
 const FMatchAPI& FRallyHereAPIAll::GetMatch() const
 {
-    return Match;
+	return Match;
 }
 
 FPlayerIdNotificationAPI& FRallyHereAPIAll::GetPlayerIdNotification()
 {
-    return PlayerIdNotification;
+	return PlayerIdNotification;
 }
 
 const FPlayerIdNotificationAPI& FRallyHereAPIAll::GetPlayerIdNotification() const
 {
-    return PlayerIdNotification;
+	return PlayerIdNotification;
 }
 
 FPlayerNotificationAPI& FRallyHereAPIAll::GetPlayerNotification()
 {
-    return PlayerNotification;
+	return PlayerNotification;
 }
 
 const FPlayerNotificationAPI& FRallyHereAPIAll::GetPlayerNotification() const
 {
-    return PlayerNotification;
+	return PlayerNotification;
 }
 
 FPresenceAPI& FRallyHereAPIAll::GetPresence()
 {
-    return Presence;
+	return Presence;
 }
 
 const FPresenceAPI& FRallyHereAPIAll::GetPresence() const
 {
-    return Presence;
+	return Presence;
 }
 
 FPresenceAdminAPI& FRallyHereAPIAll::GetPresenceAdmin()
 {
-    return PresenceAdmin;
+	return PresenceAdmin;
 }
 
 const FPresenceAdminAPI& FRallyHereAPIAll::GetPresenceAdmin() const
 {
-    return PresenceAdmin;
+	return PresenceAdmin;
 }
 
 FQueuesAPI& FRallyHereAPIAll::GetQueues()
 {
-    return Queues;
+	return Queues;
 }
 
 const FQueuesAPI& FRallyHereAPIAll::GetQueues() const
 {
-    return Queues;
+	return Queues;
 }
 
 FRankAPI& FRallyHereAPIAll::GetRank()
 {
-    return Rank;
+	return Rank;
 }
 
 const FRankAPI& FRallyHereAPIAll::GetRank() const
 {
-    return Rank;
+	return Rank;
 }
 
 FRegionsAPI& FRallyHereAPIAll::GetRegions()
 {
-    return Regions;
+	return Regions;
 }
 
 const FRegionsAPI& FRallyHereAPIAll::GetRegions() const
 {
-    return Regions;
+	return Regions;
 }
 
 FReportsAPI& FRallyHereAPIAll::GetReports()
 {
-    return Reports;
+	return Reports;
 }
 
 const FReportsAPI& FRallyHereAPIAll::GetReports() const
 {
-    return Reports;
+	return Reports;
 }
 
 FSessionAuditAPI& FRallyHereAPIAll::GetSessionAudit()
 {
-    return SessionAudit;
+	return SessionAudit;
 }
 
 const FSessionAuditAPI& FRallyHereAPIAll::GetSessionAudit() const
 {
-    return SessionAudit;
+	return SessionAudit;
 }
 
 FSessionsAPI& FRallyHereAPIAll::GetSessions()
 {
-    return Sessions;
+	return Sessions;
 }
 
 const FSessionsAPI& FRallyHereAPIAll::GetSessions() const
 {
-    return Sessions;
+	return Sessions;
 }
 
 FSettingsAPI& FRallyHereAPIAll::GetSettings()
 {
-    return Settings;
+	return Settings;
 }
 
 const FSettingsAPI& FRallyHereAPIAll::GetSettings() const
 {
-    return Settings;
+	return Settings;
 }
 
 FTimeAPI& FRallyHereAPIAll::GetTime()
 {
-    return Time;
+	return Time;
 }
 
 const FTimeAPI& FRallyHereAPIAll::GetTime() const
 {
-    return Time;
+	return Time;
 }
 
 FUsersAPI& FRallyHereAPIAll::GetUsers()
 {
-    return Users;
+	return Users;
 }
 
 const FUsersAPI& FRallyHereAPIAll::GetUsers() const
 {
-    return Users;
+	return Users;
 }
 }
