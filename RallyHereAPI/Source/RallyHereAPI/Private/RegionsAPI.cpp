@@ -167,17 +167,32 @@ void FResponse_GetAllRegions::SetHttpResponseCode(EHttpResponseCodes::Type InHtt
 
 bool FResponse_GetAllRegions::TryGetContentFor200(FRHAPI_RegionsResponse& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAllRegions::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAllRegions::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAllRegions::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

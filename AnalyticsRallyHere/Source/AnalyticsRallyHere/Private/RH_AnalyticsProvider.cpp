@@ -400,7 +400,8 @@ void FRH_AnalyticsProvider::SetEventCallback(const OnEventRecorded& Callback)
 void FRH_AnalyticsProvider::EventRequestComplete(const RallyHereAPI::FResponse_ReceiveEventsV1& Response)
 {
 	// process responses
-	UE_LOG(LogAnalyticsRallyHere, VeryVerbose, TEXT("GETS response: Code: %d. Payload: %s"), Response.GetHttpResponseCode(), *Response.GetResponseString());
+	FRH_ErrorInfo ErrorInfo(Response);
+	UE_LOG(LogAnalyticsRallyHere, VeryVerbose, TEXT("GETS response: Code: %d. Payload: %s"), ErrorInfo.ResponseCode, *ErrorInfo.ResponseContent);
 }
 
 void FRH_AnalyticsProvider::BlockUntilFlushed(float InTimeoutSec)

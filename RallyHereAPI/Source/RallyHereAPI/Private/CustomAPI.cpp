@@ -183,22 +183,42 @@ void FResponse_CustomEndpointSend::SetHttpResponseCode(EHttpResponseCodes::Type 
 
 bool FResponse_CustomEndpointSend::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_CustomEndpointSend::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_CustomEndpointSend::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_CustomEndpointSend::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_CustomEndpointSend::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

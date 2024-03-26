@@ -438,7 +438,12 @@ bool FResponse_{{operationIdCamelCase}}::ParseHeaders()
 {{#dataType}}
 bool FResponse_{{operationIdCamelCase}}::TryGetContentFor{{{code}}}({{{.}}}& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 {{/dataType}}

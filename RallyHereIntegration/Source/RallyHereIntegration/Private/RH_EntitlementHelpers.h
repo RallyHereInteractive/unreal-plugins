@@ -318,7 +318,8 @@ protected:
 		{
 			ProcessEntitlementResult.SetStatus("FAILED");
 			EntitlementSubsystem->GetEntitlementResults()->Emplace(TaskId, ProcessEntitlementResult);
-			Failed(FString::Printf(TEXT("RallyHere Process Platform Entitlement Request failed with %s"), *Resp.GetResponseString()));
+			FRH_ErrorInfo ErrorInfo(Resp);
+			Failed(FString::Printf(TEXT("RallyHere Process Platform Entitlement Request failed with %s"), *ErrorInfo.ResponseContent));
 		}
 	}
 	/**

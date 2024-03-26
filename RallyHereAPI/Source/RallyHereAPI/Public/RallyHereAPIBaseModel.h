@@ -16,6 +16,7 @@
 #include "Containers/Ticker.h"
 #include "Runtime/Launch/Resources/Version.h"
 #include "Misc/Guid.h"
+#include "Misc/TVariant.h"
 #include "RallyHereAPIBaseModel.generated.h"
 
 /** @defgroup RHAPI_BaseModel RallyHere API Base Model
@@ -143,6 +144,12 @@ protected:
 class RALLYHEREAPI_API FResponse
 {
 public:
+	typedef nullptr_t EmptyPayloadType;
+	typedef FString StringPayloadType;
+	typedef TSharedPtr<FJsonValue> JsonPayloadType;
+	typedef TArray<uint8> BinaryPayloadType;
+	typedef TVariant<EmptyPayloadType, StringPayloadType, JsonPayloadType, BinaryPayloadType> PayloadVariantType;
+
 	FResponse(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse() = default;
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) = 0;
@@ -166,24 +173,38 @@ public:
 	virtual void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode);
 	EHttpResponseCodes::Type GetHttpResponseCode() const { return ResponseCode; }
 
-	void SetResponseString(const FString& InResponseString) { ResponseString = InResponseString; }
-	const FString& GetResponseString() const { return ResponseString; }
-
 	void SetHttpResponse(const FHttpResponsePtr& InHttpResponse) { HttpResponse = InHttpResponse; }
 	const FHttpResponsePtr& GetHttpResponse() const { return HttpResponse; }
 
 	const FRequestMetadata GetRequestMetadata() const { return RequestMetadata; }
 
-	void SetJsonResponse(const TSharedPtr<FJsonValue>& InJsonValue) { ResponseJson = InJsonValue; }
-	const TSharedPtr<FJsonValue>& GetJsonResponse() const { return ResponseJson; }
+	template<typename T>
+	void SetPayload(const T& InPayload) { Payload.Set<T>(InPayload); }
+	void SetPayload(const PayloadVariantType& InPayload) { Payload = InPayload; }
+	const PayloadVariantType& GetPayload() const { return Payload; }
+	template<typename T>
+	const T GetPayloadOrDefault() const { return Payload.IsType<T>() ? Payload.Get<T>() : T(); }
+	template<typename T>
+	const T* TryGetPayload() const { return Payload.TryGet<T>(); }
+
+	void ClearPayload() { return Payload.Set<EmptyPayloadType>(nullptr); }
+
+	void SetResponseString(const StringPayloadType& InValue) { SetPayload<StringPayloadType>(InValue); }
+	const StringPayloadType* GetResponseString() const { return TryGetPayload<StringPayloadType>(); }
+
+	void SetJsonResponse(const JsonPayloadType& InValue) { SetPayload<JsonPayloadType>(InValue); }
+	const JsonPayloadType* GetJsonResponse() const { return TryGetPayload<JsonPayloadType>(); }
+
+	void SetBinaryResponse(const BinaryPayloadType& InValue) { SetPayload<BinaryPayloadType>(InValue); }
+	const BinaryPayloadType* GetBinaryResponse() const { return TryGetPayload<BinaryPayloadType>(); }
 
 protected:
 	bool Successful;
 	EHttpResponseCodes::Type ResponseCode;
-	FString ResponseString;
 	FHttpResponsePtr HttpResponse;
 	FRequestMetadata RequestMetadata;
-	TSharedPtr<FJsonValue> ResponseJson;
+	
+	PayloadVariantType Payload;
 	
 	virtual bool ParseTypelessContent(bool& bNeedsReauth);
 	virtual bool ParseTextTypeContent(bool& bNeedsReauth);

@@ -182,22 +182,42 @@ void FResponse_AcknowledgeBackfillRequest::SetHttpResponseCode(EHttpResponseCode
 
 bool FResponse_AcknowledgeBackfillRequest::TryGetContentFor200(FRHAPI_AcknowledgeBackfillResponse& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AcknowledgeBackfillRequest::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AcknowledgeBackfillRequest::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AcknowledgeBackfillRequest::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AcknowledgeBackfillRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -386,7 +406,12 @@ bool FResponse_AddPlatformSessionToRallyHereSession::ParseHeaders()
 
 bool FResponse_AddPlatformSessionToRallyHereSession::TryGetContentFor200(FRHAPI_PlatformSession& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -405,17 +430,32 @@ TOptional<FString> FResponse_AddPlatformSessionToRallyHereSession::GetHeader200_
 
 bool FResponse_AddPlatformSessionToRallyHereSession::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AddPlatformSessionToRallyHereSession::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AddPlatformSessionToRallyHereSession::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Number of seconds after which to retry the request, when the server should have the resource available */
@@ -434,7 +474,12 @@ TOptional<int32> FResponse_AddPlatformSessionToRallyHereSession::GetHeader409_Re
 
 bool FResponse_AddPlatformSessionToRallyHereSession::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AddPlatformSessionToRallyHereSession::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -578,12 +623,22 @@ void FResponse_BackfillConfig::SetHttpResponseCode(EHttpResponseCodes::Type InHt
 
 bool FResponse_BackfillConfig::TryGetContentFor200(FRHAPI_BackfillSettingsResponse& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_BackfillConfig::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_BackfillConfig::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -746,17 +801,32 @@ void FResponse_CreateInstanceRequest::SetHttpResponseCode(EHttpResponseCodes::Ty
 
 bool FResponse_CreateInstanceRequest::TryGetContentFor200(FRHAPI_InstanceInfo& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_CreateInstanceRequest::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_CreateInstanceRequest::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_CreateInstanceRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -914,17 +984,32 @@ void FResponse_CreateOrJoinSession::SetHttpResponseCode(EHttpResponseCodes::Type
 
 bool FResponse_CreateOrJoinSession::TryGetContentFor200(FRHAPI_SessionJoinResponse& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_CreateOrJoinSession::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_CreateOrJoinSession::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_CreateOrJoinSession::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1098,17 +1183,32 @@ void FResponse_DeleteBackfillRequest::SetHttpResponseCode(EHttpResponseCodes::Ty
 
 bool FResponse_DeleteBackfillRequest::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteBackfillRequest::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteBackfillRequest::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteBackfillRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1260,12 +1360,22 @@ void FResponse_DeleteBrowserInfo::SetHttpResponseCode(EHttpResponseCodes::Type I
 
 bool FResponse_DeleteBrowserInfo::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteBrowserInfo::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteBrowserInfo::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1433,17 +1543,32 @@ void FResponse_DeletePlatformSessionFromRallyHereSession::SetHttpResponseCode(EH
 
 bool FResponse_DeletePlatformSessionFromRallyHereSession::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeletePlatformSessionFromRallyHereSession::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeletePlatformSessionFromRallyHereSession::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Number of seconds after which to retry the request, when the server should have the resource available */
@@ -1462,7 +1587,12 @@ TOptional<int32> FResponse_DeletePlatformSessionFromRallyHereSession::GetHeader4
 
 bool FResponse_DeletePlatformSessionFromRallyHereSession::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeletePlatformSessionFromRallyHereSession::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1649,12 +1779,22 @@ TOptional<FString> FResponse_EndInstance::GetHeader204_ETag() const
 
 bool FResponse_EndInstance::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_EndInstance::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_EndInstance::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1828,7 +1968,12 @@ bool FResponse_GetAllSessionTemplates::ParseHeaders()
 
 bool FResponse_GetAllSessionTemplates::TryGetContentFor200(FRHAPI_SessionTemplates& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -1847,12 +1992,22 @@ TOptional<FString> FResponse_GetAllSessionTemplates::GetHeader200_ETag() const
 
 bool FResponse_GetAllSessionTemplates::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAllSessionTemplates::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAllSessionTemplates::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2037,7 +2192,12 @@ bool FResponse_GetBrowserSessionsByType::ParseHeaders()
 
 bool FResponse_GetBrowserSessionsByType::TryGetContentFor200(FRHAPI_BrowserResponse& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -2056,12 +2216,22 @@ TOptional<FString> FResponse_GetBrowserSessionsByType::GetHeader200_ETag() const
 
 bool FResponse_GetBrowserSessionsByType::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetBrowserSessionsByType::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetBrowserSessionsByType::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2214,17 +2384,32 @@ void FResponse_GetConnectionInfoSelf::SetHttpResponseCode(EHttpResponseCodes::Ty
 
 bool FResponse_GetConnectionInfoSelf::TryGetContentFor200(FRHAPI_ConnectionInfo& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetConnectionInfoSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetConnectionInfoSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetConnectionInfoSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2407,7 +2592,12 @@ bool FResponse_GetPlatformSessionInfo::ParseHeaders()
 
 bool FResponse_GetPlatformSessionInfo::TryGetContentFor200(FRHAPI_PlatformSession& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -2426,17 +2616,32 @@ TOptional<FString> FResponse_GetPlatformSessionInfo::GetHeader200_ETag() const
 
 bool FResponse_GetPlatformSessionInfo::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlatformSessionInfo::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlatformSessionInfo::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlatformSessionInfo::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2588,17 +2793,32 @@ void FResponse_GetPlayerSessions::SetHttpResponseCode(EHttpResponseCodes::Type I
 
 bool FResponse_GetPlayerSessions::TryGetContentFor200(FRHAPI_PlayerSessions& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerSessions::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerSessions::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerSessions::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2777,7 +2997,12 @@ bool FResponse_GetPlayerSessionsByUuid::ParseHeaders()
 
 bool FResponse_GetPlayerSessionsByUuid::TryGetContentFor200(FRHAPI_PlayerSessions& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -2796,12 +3021,22 @@ TOptional<FString> FResponse_GetPlayerSessionsByUuid::GetHeader200_ETag() const
 
 bool FResponse_GetPlayerSessionsByUuid::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerSessionsByUuid::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerSessionsByUuid::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2980,7 +3215,12 @@ bool FResponse_GetPlayerSessionsByUuidV2::ParseHeaders()
 
 bool FResponse_GetPlayerSessionsByUuidV2::TryGetContentFor200(FRHAPI_PlayerSessions& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -2999,12 +3239,22 @@ TOptional<FString> FResponse_GetPlayerSessionsByUuidV2::GetHeader200_ETag() cons
 
 bool FResponse_GetPlayerSessionsByUuidV2::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerSessionsByUuidV2::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerSessionsByUuidV2::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3178,7 +3428,12 @@ bool FResponse_GetPlayerSessionsSelf::ParseHeaders()
 
 bool FResponse_GetPlayerSessionsSelf::TryGetContentFor200(FRHAPI_PlayerSessions& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -3197,12 +3452,22 @@ TOptional<FString> FResponse_GetPlayerSessionsSelf::GetHeader200_ETag() const
 
 bool FResponse_GetPlayerSessionsSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerSessionsSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerSessionsSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3381,7 +3646,12 @@ bool FResponse_GetSessionByAllocationId::ParseHeaders()
 
 bool FResponse_GetSessionByAllocationId::TryGetContentFor200(FRHAPI_Session& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -3400,12 +3670,22 @@ TOptional<FString> FResponse_GetSessionByAllocationId::GetHeader200_ETag() const
 
 bool FResponse_GetSessionByAllocationId::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetSessionByAllocationId::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetSessionByAllocationId::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3592,7 +3872,12 @@ bool FResponse_GetSessionById::ParseHeaders()
 
 bool FResponse_GetSessionById::TryGetContentFor200(FRHAPI_Session& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -3611,12 +3896,22 @@ TOptional<FString> FResponse_GetSessionById::GetHeader200_ETag() const
 
 bool FResponse_GetSessionById::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetSessionById::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetSessionById::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3795,7 +4090,12 @@ bool FResponse_GetSessionTemplateByType::ParseHeaders()
 
 bool FResponse_GetSessionTemplateByType::TryGetContentFor200(FRHAPI_SessionTemplate& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -3814,12 +4114,22 @@ TOptional<FString> FResponse_GetSessionTemplateByType::GetHeader200_ETag() const
 
 bool FResponse_GetSessionTemplateByType::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetSessionTemplateByType::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetSessionTemplateByType::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3982,17 +4292,32 @@ void FResponse_InstanceHealthCheck::SetHttpResponseCode(EHttpResponseCodes::Type
 
 bool FResponse_InstanceHealthCheck::TryGetContentFor200(FRHAPI_InstanceHealthStatusResponse& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_InstanceHealthCheck::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_InstanceHealthCheck::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_InstanceHealthCheck::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -4136,12 +4461,22 @@ void FResponse_InstanceHealthConfig::SetHttpResponseCode(EHttpResponseCodes::Typ
 
 bool FResponse_InstanceHealthConfig::TryGetContentFor200(FRHAPI_InstanceHealthSettingsResponse& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_InstanceHealthConfig::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_InstanceHealthConfig::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -4329,7 +4664,12 @@ bool FResponse_InviteSessionToSession::ParseHeaders()
 
 bool FResponse_InviteSessionToSession::TryGetContentFor200(FRHAPI_SessionInviteResponse& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -4348,17 +4688,32 @@ TOptional<FString> FResponse_InviteSessionToSession::GetHeader200_ETag() const
 
 bool FResponse_InviteSessionToSession::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_InviteSessionToSession::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_InviteSessionToSession::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_InviteSessionToSession::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -4521,17 +4876,32 @@ void FResponse_JoinQueue::SetHttpResponseCode(EHttpResponseCodes::Type InHttpRes
 
 bool FResponse_JoinQueue::TryGetContentFor200(FRHAPI_QueueJoinResponse& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_JoinQueue::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_JoinQueue::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_JoinQueue::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -4718,7 +5088,12 @@ bool FResponse_JoinSessionByIdSelf::ParseHeaders()
 
 bool FResponse_JoinSessionByIdSelf::TryGetContentFor200(FRHAPI_SessionPlayerUpdateResponse& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -4737,17 +5112,32 @@ TOptional<FString> FResponse_JoinSessionByIdSelf::GetHeader200_ETag() const
 
 bool FResponse_JoinSessionByIdSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_JoinSessionByIdSelf::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_JoinSessionByIdSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_JoinSessionByIdSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -4947,7 +5337,12 @@ bool FResponse_JoinSessionByPlatformSessionByUuid::ParseHeaders()
 
 bool FResponse_JoinSessionByPlatformSessionByUuid::TryGetContentFor200(FRHAPI_Session& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -4966,17 +5361,32 @@ TOptional<FString> FResponse_JoinSessionByPlatformSessionByUuid::GetHeader200_ET
 
 bool FResponse_JoinSessionByPlatformSessionByUuid::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_JoinSessionByPlatformSessionByUuid::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_JoinSessionByPlatformSessionByUuid::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Number of seconds after which to retry the request, when the server should have the resource available */
@@ -4995,7 +5405,12 @@ TOptional<int32> FResponse_JoinSessionByPlatformSessionByUuid::GetHeader409_Retr
 
 bool FResponse_JoinSessionByPlatformSessionByUuid::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_JoinSessionByPlatformSessionByUuid::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -5186,7 +5601,12 @@ bool FResponse_JoinSessionByPlatformSessionIdSelf::ParseHeaders()
 
 bool FResponse_JoinSessionByPlatformSessionIdSelf::TryGetContentFor200(FRHAPI_Session& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -5205,17 +5625,32 @@ TOptional<FString> FResponse_JoinSessionByPlatformSessionIdSelf::GetHeader200_ET
 
 bool FResponse_JoinSessionByPlatformSessionIdSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_JoinSessionByPlatformSessionIdSelf::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_JoinSessionByPlatformSessionIdSelf::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Number of seconds after which to retry the request, when the server should have the resource available */
@@ -5234,7 +5669,12 @@ TOptional<int32> FResponse_JoinSessionByPlatformSessionIdSelf::GetHeader409_Retr
 
 bool FResponse_JoinSessionByPlatformSessionIdSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_JoinSessionByPlatformSessionIdSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -5390,17 +5830,32 @@ void FResponse_KickPlayerFromSessionById::SetHttpResponseCode(EHttpResponseCodes
 
 bool FResponse_KickPlayerFromSessionById::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_KickPlayerFromSessionById::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_KickPlayerFromSessionById::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_KickPlayerFromSessionById::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -5591,17 +6046,32 @@ TOptional<FString> FResponse_KickPlayerFromSessionByUuid::GetHeader204_ETag() co
 
 bool FResponse_KickPlayerFromSessionByUuid::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_KickPlayerFromSessionByUuid::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_KickPlayerFromSessionByUuid::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_KickPlayerFromSessionByUuid::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -5792,17 +6262,32 @@ TOptional<FString> FResponse_KickPlayerFromSessionByUuidV2::GetHeader204_ETag() 
 
 bool FResponse_KickPlayerFromSessionByUuidV2::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_KickPlayerFromSessionByUuidV2::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_KickPlayerFromSessionByUuidV2::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_KickPlayerFromSessionByUuidV2::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -5958,17 +6443,32 @@ void FResponse_KickSessionFromSession::SetHttpResponseCode(EHttpResponseCodes::T
 
 bool FResponse_KickSessionFromSession::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_KickSessionFromSession::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_KickSessionFromSession::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_KickSessionFromSession::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -6131,17 +6631,32 @@ void FResponse_LeaveQueue::SetHttpResponseCode(EHttpResponseCodes::Type InHttpRe
 
 bool FResponse_LeaveQueue::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_LeaveQueue::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_LeaveQueue::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_LeaveQueue::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -6296,17 +6811,32 @@ void FResponse_LeaveSessionByIdSelf::SetHttpResponseCode(EHttpResponseCodes::Typ
 
 bool FResponse_LeaveSessionByIdSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_LeaveSessionByIdSelf::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_LeaveSessionByIdSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_LeaveSessionByIdSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -6466,17 +6996,32 @@ void FResponse_LeaveSessionByPlatformSessionByUuid::SetHttpResponseCode(EHttpRes
 
 bool FResponse_LeaveSessionByPlatformSessionByUuid::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_LeaveSessionByPlatformSessionByUuid::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_LeaveSessionByPlatformSessionByUuid::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Number of seconds after which to retry the request, when the server should have the resource available */
@@ -6495,7 +7040,12 @@ TOptional<int32> FResponse_LeaveSessionByPlatformSessionByUuid::GetHeader409_Ret
 
 bool FResponse_LeaveSessionByPlatformSessionByUuid::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_LeaveSessionByPlatformSessionByUuid::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -6654,17 +7204,32 @@ void FResponse_LeaveSessionByPlatformSessionSelf::SetHttpResponseCode(EHttpRespo
 
 bool FResponse_LeaveSessionByPlatformSessionSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_LeaveSessionByPlatformSessionSelf::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_LeaveSessionByPlatformSessionSelf::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Number of seconds after which to retry the request, when the server should have the resource available */
@@ -6683,7 +7248,12 @@ TOptional<int32> FResponse_LeaveSessionByPlatformSessionSelf::GetHeader409_Retry
 
 bool FResponse_LeaveSessionByPlatformSessionSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_LeaveSessionByPlatformSessionSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -6854,17 +7424,32 @@ void FResponse_PostBrowserInfo::SetHttpResponseCode(EHttpResponseCodes::Type InH
 
 bool FResponse_PostBrowserInfo::TryGetContentFor200(FRHAPI_BrowserInfo& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_PostBrowserInfo::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_PostBrowserInfo::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_PostBrowserInfo::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -7038,17 +7623,32 @@ void FResponse_UpdateBackfillRequest::SetHttpResponseCode(EHttpResponseCodes::Ty
 
 bool FResponse_UpdateBackfillRequest::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdateBackfillRequest::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdateBackfillRequest::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdateBackfillRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -7211,17 +7811,32 @@ void FResponse_UpdateBrowserInfo::SetHttpResponseCode(EHttpResponseCodes::Type I
 
 bool FResponse_UpdateBrowserInfo::TryGetContentFor200(FRHAPI_BrowserInfo& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdateBrowserInfo::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdateBrowserInfo::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdateBrowserInfo::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -7384,17 +7999,32 @@ void FResponse_UpdateInstanceInfo::SetHttpResponseCode(EHttpResponseCodes::Type 
 
 bool FResponse_UpdateInstanceInfo::TryGetContentFor200(FRHAPI_InstanceInfo& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdateInstanceInfo::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdateInstanceInfo::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdateInstanceInfo::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -7578,7 +8208,12 @@ bool FResponse_UpdateSessionById::ParseHeaders()
 
 bool FResponse_UpdateSessionById::TryGetContentFor200(FRHAPI_Session& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -7597,12 +8232,22 @@ TOptional<FString> FResponse_UpdateSessionById::GetHeader200_ETag() const
 
 bool FResponse_UpdateSessionById::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdateSessionById::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdateSessionById::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -7769,22 +8414,42 @@ void FResponse_UpdateSessionPlayerById::SetHttpResponseCode(EHttpResponseCodes::
 
 bool FResponse_UpdateSessionPlayerById::TryGetContentFor200(FRHAPI_SessionPlayerUpdateResponse& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdateSessionPlayerById::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdateSessionPlayerById::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdateSessionPlayerById::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdateSessionPlayerById::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -7972,7 +8637,12 @@ bool FResponse_UpdateSessionPlayerByUuid::ParseHeaders()
 
 bool FResponse_UpdateSessionPlayerByUuid::TryGetContentFor200(FRHAPI_SessionPlayerUpdateResponse& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -7991,17 +8661,32 @@ TOptional<FString> FResponse_UpdateSessionPlayerByUuid::GetHeader200_ETag() cons
 
 bool FResponse_UpdateSessionPlayerByUuid::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdateSessionPlayerByUuid::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdateSessionPlayerByUuid::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdateSessionPlayerByUuid::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -8189,7 +8874,12 @@ bool FResponse_UpdateSessionPlayerByUuidV2::ParseHeaders()
 
 bool FResponse_UpdateSessionPlayerByUuidV2::TryGetContentFor200(FRHAPI_SessionPlayerUpdateResponse& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -8208,17 +8898,32 @@ TOptional<FString> FResponse_UpdateSessionPlayerByUuidV2::GetHeader200_ETag() co
 
 bool FResponse_UpdateSessionPlayerByUuidV2::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdateSessionPlayerByUuidV2::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdateSessionPlayerByUuidV2::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdateSessionPlayerByUuidV2::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

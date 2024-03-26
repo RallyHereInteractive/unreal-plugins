@@ -190,7 +190,12 @@ bool FResponse_GetAppSettingsAll::ParseHeaders()
 
 bool FResponse_GetAppSettingsAll::TryGetContentFor200(FRHAPI_KVsResponse& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -209,7 +214,12 @@ TOptional<FString> FResponse_GetAppSettingsAll::GetHeader200_ETag() const
 
 bool FResponse_GetAppSettingsAll::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAppSettingsAll::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -372,7 +382,12 @@ bool FResponse_GetAppSettingsClient::ParseHeaders()
 
 bool FResponse_GetAppSettingsClient::TryGetContentFor200(TArray<FRHAPI_AppSetting>& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -391,7 +406,12 @@ TOptional<FString> FResponse_GetAppSettingsClient::GetHeader200_ETag() const
 
 bool FResponse_GetAppSettingsClient::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAppSettingsClient::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -568,7 +588,12 @@ bool FResponse_GetAppSettingsServer::ParseHeaders()
 
 bool FResponse_GetAppSettingsServer::TryGetContentFor200(TArray<FRHAPI_AppSetting>& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -587,12 +612,22 @@ TOptional<FString> FResponse_GetAppSettingsServer::GetHeader200_ETag() const
 
 bool FResponse_GetAppSettingsServer::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAppSettingsServer::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAppSettingsServer::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

@@ -39,7 +39,6 @@ FHttpRetryParams::FHttpRetryParams(const FRetryLimitCountSetting& InRetryLimitCo
 FResponse::FResponse(FRequestMetadata InRequestMetadata) :
 	Successful{},
 	ResponseCode{ EHttpResponseCodes::Type::Unknown },
-	ResponseString{ TEXT("Unset") },
 	HttpResponse{},
 	RequestMetadata{ MoveTemp(InRequestMetadata) }
 {
@@ -87,6 +86,8 @@ bool FResponse::ParseTypelessContent(bool& bOutNeedsReauth)
 
 	bOutNeedsReauth = false;
 
+	ClearPayload();
+
 	return true; // Successfully parsed
 }
 
@@ -106,16 +107,17 @@ bool FResponse::ParseJsonTypeContent(bool& bOutNeedsReauth)
 
 	bOutNeedsReauth = false;
 
-	SetResponseString(HttpResponse->GetContentAsString());
+	ClearPayload();
 
 	TSharedPtr<FJsonValue> JsonValue;
-	auto Reader = TJsonReaderFactory<>::Create(GetResponseString());
+	const FString ContentAsString = HttpResponse->GetContentAsString();
+	auto Reader = TJsonReaderFactory<>::Create(ContentAsString);
 
 	if (!FJsonSerializer::Deserialize(Reader, JsonValue))
 	{
 		if (Reader->GetErrorMessage().StartsWith(TEXT("Open Curly or Square Brace token expected, but not found")))
 		{
-			FString ContentArrayWrapper = TEXT("[") + GetResponseString() + TEXT("]");
+			FString ContentArrayWrapper = TEXT("[") + ContentAsString + TEXT("]");
 			Reader = TJsonReaderFactory<>::Create(ContentArrayWrapper);
 			if (FJsonSerializer::Deserialize(Reader, JsonValue) && JsonValue.IsValid())
 			{
@@ -155,14 +157,14 @@ bool FResponse::ParseJsonTypeContent(bool& bOutNeedsReauth)
 		else
 		{
 			// Report the parse error but do not mark the request as unsuccessful. Data could be partial or malformed, but the request succeeded.
-			UE_LOG(LogRallyHereAPI, Warning, TEXT("Parsed JSON successfully, but failed to ingest into API structures (note: failure may be partial):\n%s"), *GetResponseString());
+			UE_LOG(LogRallyHereAPI, Warning, TEXT("Parsed JSON successfully, but failed to ingest into API structures (note: failure may be partial):\n%s"), *ContentAsString);
 			return true;
 		}
 	}
 	else
 	{
 		// Report the parse error, as this was supposed to be json but could not be serialized as such
-		UE_LOG(LogRallyHereAPI, Error, TEXT("Failed to deserialize JSON content in Http response:\n%s"), *GetResponseString());
+		UE_LOG(LogRallyHereAPI, Error, TEXT("Failed to deserialize JSON content in Http response:\n%s"), *ContentAsString);
 		return false;
 	}
 }

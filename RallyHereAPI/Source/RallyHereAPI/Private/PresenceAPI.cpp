@@ -198,7 +198,12 @@ bool FResponse_GetPlayerPresencePublicById::ParseHeaders()
 
 bool FResponse_GetPlayerPresencePublicById::TryGetContentFor200(FRHAPI_PlayerPresence& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -217,17 +222,32 @@ TOptional<FString> FResponse_GetPlayerPresencePublicById::GetHeader200_ETag() co
 
 bool FResponse_GetPlayerPresencePublicById::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerPresencePublicById::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerPresencePublicById::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerPresencePublicById::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -417,7 +437,12 @@ bool FResponse_GetPlayerPresencePublicByUuid::ParseHeaders()
 
 bool FResponse_GetPlayerPresencePublicByUuid::TryGetContentFor200(FRHAPI_PlayerPresence& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -436,17 +461,32 @@ TOptional<FString> FResponse_GetPlayerPresencePublicByUuid::GetHeader200_ETag() 
 
 bool FResponse_GetPlayerPresencePublicByUuid::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerPresencePublicByUuid::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerPresencePublicByUuid::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerPresencePublicByUuid::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -622,7 +662,12 @@ bool FResponse_GetPlayerPresenceSelf::ParseHeaders()
 
 bool FResponse_GetPlayerPresenceSelf::TryGetContentFor200(FRHAPI_PlayerPresence& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -641,12 +686,22 @@ TOptional<FString> FResponse_GetPlayerPresenceSelf::GetHeader200_ETag() const
 
 bool FResponse_GetPlayerPresenceSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerPresenceSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerPresenceSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -776,7 +831,12 @@ void FResponse_GetPresenceSettings::SetHttpResponseCode(EHttpResponseCodes::Type
 
 bool FResponse_GetPresenceSettings::TryGetContentFor200(FRHAPI_ClientVisibleSettings& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPresenceSettings::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -980,17 +1040,32 @@ TOptional<FString> FResponse_UpdatePlayerPresenceSelf::GetHeader200_ETag() const
 
 bool FResponse_UpdatePlayerPresenceSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdatePlayerPresenceSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdatePlayerPresenceSelf::TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdatePlayerPresenceSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

@@ -138,7 +138,12 @@ void FResponse_GetEnvironmentId::SetHttpResponseCode(EHttpResponseCodes::Type In
 
 bool FResponse_GetEnvironmentId::TryGetContentFor200(FRHAPI_EnvironmentConfig& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetEnvironmentId::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

@@ -138,7 +138,12 @@ void FResponse_GetUtcTime::SetHttpResponseCode(EHttpResponseCodes::Type InHttpRe
 
 bool FResponse_GetUtcTime::TryGetContentFor200(FDateTime& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetUtcTime::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

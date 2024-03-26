@@ -187,7 +187,12 @@ bool FResponse_GetAllMapGameInfo::ParseHeaders()
 
 bool FResponse_GetAllMapGameInfo::TryGetContentFor200(FRHAPI_InstanceLaunchTemplate& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -206,12 +211,22 @@ TOptional<FString> FResponse_GetAllMapGameInfo::GetHeader200_ETag() const
 
 bool FResponse_GetAllMapGameInfo::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAllMapGameInfo::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAllMapGameInfo::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -397,7 +412,12 @@ bool FResponse_GetAllQueueInfo::ParseHeaders()
 
 bool FResponse_GetAllQueueInfo::TryGetContentFor200(FRHAPI_QueuesResponse& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -416,12 +436,22 @@ TOptional<FString> FResponse_GetAllQueueInfo::GetHeader200_ETag() const
 
 bool FResponse_GetAllQueueInfo::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAllQueueInfo::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAllQueueInfo::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -607,7 +637,12 @@ bool FResponse_GetAllQueueInfoV2::ParseHeaders()
 
 bool FResponse_GetAllQueueInfoV2::TryGetContentFor200(FRHAPI_QueuesResponseV2& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -626,12 +661,22 @@ TOptional<FString> FResponse_GetAllQueueInfoV2::GetHeader200_ETag() const
 
 bool FResponse_GetAllQueueInfoV2::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAllQueueInfoV2::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAllQueueInfoV2::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -810,7 +855,12 @@ bool FResponse_GetInstanceRequestTemplate::ParseHeaders()
 
 bool FResponse_GetInstanceRequestTemplate::TryGetContentFor200(FRHAPI_InstanceRequestTemplate& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -829,12 +879,22 @@ TOptional<FString> FResponse_GetInstanceRequestTemplate::GetHeader200_ETag() con
 
 bool FResponse_GetInstanceRequestTemplate::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetInstanceRequestTemplate::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetInstanceRequestTemplate::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1013,7 +1073,12 @@ bool FResponse_GetMatchMakingProfile::ParseHeaders()
 
 bool FResponse_GetMatchMakingProfile::TryGetContentFor200(FRHAPI_MatchMakingProfile& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -1032,12 +1097,22 @@ TOptional<FString> FResponse_GetMatchMakingProfile::GetHeader200_ETag() const
 
 bool FResponse_GetMatchMakingProfile::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetMatchMakingProfile::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetMatchMakingProfile::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1216,7 +1291,12 @@ bool FResponse_GetMatchMakingProfileV2::ParseHeaders()
 
 bool FResponse_GetMatchMakingProfileV2::TryGetContentFor200(FRHAPI_MatchMakingProfileV2& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -1235,12 +1315,22 @@ TOptional<FString> FResponse_GetMatchMakingProfileV2::GetHeader200_ETag() const
 
 bool FResponse_GetMatchMakingProfileV2::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetMatchMakingProfileV2::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetMatchMakingProfileV2::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1419,7 +1509,12 @@ bool FResponse_GetMatchMakingTemplates::ParseHeaders()
 
 bool FResponse_GetMatchMakingTemplates::TryGetContentFor200(FRHAPI_MatchMakingTemplateGroup& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -1438,12 +1533,22 @@ TOptional<FString> FResponse_GetMatchMakingTemplates::GetHeader200_ETag() const
 
 bool FResponse_GetMatchMakingTemplates::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetMatchMakingTemplates::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetMatchMakingTemplates::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1622,7 +1727,12 @@ bool FResponse_GetMatchMakingTemplatesV2::ParseHeaders()
 
 bool FResponse_GetMatchMakingTemplatesV2::TryGetContentFor200(FRHAPI_MatchMakingTemplateGroupV2& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -1641,12 +1751,22 @@ TOptional<FString> FResponse_GetMatchMakingTemplatesV2::GetHeader200_ETag() cons
 
 bool FResponse_GetMatchMakingTemplatesV2::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetMatchMakingTemplatesV2::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetMatchMakingTemplatesV2::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

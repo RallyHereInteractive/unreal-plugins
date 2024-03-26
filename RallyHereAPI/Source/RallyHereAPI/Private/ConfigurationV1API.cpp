@@ -152,12 +152,22 @@ void FResponse_GetFriendsAndBlockLimits::SetHttpResponseCode(EHttpResponseCodes:
 
 bool FResponse_GetFriendsAndBlockLimits::TryGetContentFor200(FRHAPI_FriendsApiConfig& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetFriendsAndBlockLimits::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetFriendsAndBlockLimits::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

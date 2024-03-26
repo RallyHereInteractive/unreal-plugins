@@ -196,7 +196,12 @@ bool FResponse_BeginNewSession::ParseHeaders()
 
 bool FResponse_BeginNewSession::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
@@ -215,12 +220,22 @@ TOptional<FString> FResponse_BeginNewSession::GetHeader200_XHzAdApiToken() const
 
 bool FResponse_BeginNewSession::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_BeginNewSession::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
@@ -422,7 +437,12 @@ bool FResponse_FindOpportunities::ParseHeaders()
 
 bool FResponse_FindOpportunities::TryGetContentFor200(FRHAPI_AdOpportunities& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
@@ -441,12 +461,22 @@ TOptional<FString> FResponse_FindOpportunities::GetHeader200_XHzAdApiToken() con
 
 bool FResponse_FindOpportunities::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_FindOpportunities::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
@@ -601,12 +631,22 @@ void FResponse_UnityAdWatched::SetHttpResponseCode(EHttpResponseCodes::Type InHt
 
 bool FResponse_UnityAdWatched::TryGetContentFor200(FString& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UnityAdWatched::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UnityAdWatched::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -748,12 +788,22 @@ void FResponse_UnityMediationAdWatched::SetHttpResponseCode(EHttpResponseCodes::
 
 bool FResponse_UnityMediationAdWatched::TryGetContentFor200(FString& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UnityMediationAdWatched::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UnityMediationAdWatched::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -946,7 +996,12 @@ bool FResponse_UpdateOpportunityById::ParseHeaders()
 
 bool FResponse_UpdateOpportunityById::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
@@ -965,12 +1020,22 @@ TOptional<FString> FResponse_UpdateOpportunityById::GetHeader200_XHzAdApiToken()
 
 bool FResponse_UpdateOpportunityById::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdateOpportunityById::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */

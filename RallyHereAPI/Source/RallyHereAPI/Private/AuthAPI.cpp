@@ -138,7 +138,12 @@ void FResponse_GenerateKey::SetHttpResponseCode(EHttpResponseCodes::Type InHttpR
 
 bool FResponse_GenerateKey::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GenerateKey::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -268,7 +273,12 @@ void FResponse_GetAllPublicKeys::SetHttpResponseCode(EHttpResponseCodes::Type In
 
 bool FResponse_GetAllPublicKeys::TryGetContentFor200(FRHAPI_PublicKeyList& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAllPublicKeys::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -425,17 +435,32 @@ TEXT("ccess token for XSTS token with Xbox - &#x60;xbox_xtoken_exchange_failed&#
 
 bool FResponse_GetPortalTokenDetails::TryGetContentFor200(TMap<FString, FString>& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPortalTokenDetails::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPortalTokenDetails::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPortalTokenDetails::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -576,12 +601,22 @@ void FResponse_GetPublicKeyById::SetHttpResponseCode(EHttpResponseCodes::Type In
 
 bool FResponse_GetPublicKeyById::TryGetContentFor200(FRHAPI_PublicKey& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPublicKeyById::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPublicKeyById::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -759,17 +794,32 @@ TEXT("en from Xbox - &#x60;xbox_xsts_token_exchange_failed&#x60; - Problem excha
 
 bool FResponse_Login::TryGetContentFor200(FRHAPI_LoginResult& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_Login::TryGetContentFor403(FRHAPI_AgreementMessage& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_Login::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_Login::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -913,12 +963,22 @@ void FResponse_Logout::SetHttpResponseCode(EHttpResponseCodes::Type InHttpRespon
 
 bool FResponse_Logout::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_Logout::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_Logout::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1113,7 +1173,12 @@ TOptional<FString> FResponse_OauthLogin::GetHeader307_Location() const
 
 bool FResponse_OauthLogin::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_OauthLogin::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1308,7 +1373,12 @@ TOptional<FString> FResponse_OauthResponse::GetHeader307_Location() const
 
 bool FResponse_OauthResponse::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_OauthResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1465,17 +1535,32 @@ void FResponse_OauthTokenExchange::SetHttpResponseCode(EHttpResponseCodes::Type 
 
 bool FResponse_OauthTokenExchange::TryGetContentFor200(FRHAPI_OAuthTokenResponse& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_OauthTokenExchange::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_OauthTokenExchange::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_OauthTokenExchange::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1640,12 +1725,22 @@ void FResponse_Token::SetHttpResponseCode(EHttpResponseCodes::Type InHttpRespons
 
 bool FResponse_Token::TryGetContentFor200(FRHAPI_TokenResponse& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_Token::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_Token::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1789,12 +1884,22 @@ void FResponse_Verify::SetHttpResponseCode(EHttpResponseCodes::Type InHttpRespon
 
 bool FResponse_Verify::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_Verify::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = GetJsonResponse();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_Verify::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

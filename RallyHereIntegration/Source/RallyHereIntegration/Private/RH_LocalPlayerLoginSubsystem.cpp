@@ -991,10 +991,12 @@ void URH_LocalPlayerLoginSubsystem::RallyHereLoginComplete(const RallyHereAPI::F
     }
     else
     {
-        UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] Unknown error (%s) with content: %s"),
+		FRH_ErrorInfo ErrorInfo(Resp);
+
+        UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] Unknown error (%d) with content: %s"),
                ANSI_TO_TCHAR(__FUNCTION__),
-               *Resp.GetResponseString(),
-               Resp.GetHttpResponse() ? *Resp.GetHttpResponse()->GetContentAsString() : TEXT(""));
+               ErrorInfo.ResponseCode,
+               *ErrorInfo.ResponseContent);
         PostResults(Req, Req.CreateResult(ERHAPI_LoginResult::Fail_RHUnknown));
     }
 }
