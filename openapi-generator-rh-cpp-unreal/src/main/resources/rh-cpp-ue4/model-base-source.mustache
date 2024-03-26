@@ -159,103 +159,119 @@ bool FAPI::HandleResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResp
 			return false;
 		}
 
-		FString ContentType = HttpResponse->GetContentType();
-		ContentType.TrimStartAndEndInline();
-		FString Content;
-
-		if (ContentType.IsEmpty())
-		{
-			return false; // Nothing to parse
-		}
-		else if (ContentType.StartsWith(TEXT("application/json")) || ContentType.StartsWith("text/json"))
-		{
-			Content = HttpResponse->GetContentAsString();
-
-			TSharedPtr<FJsonValue> JsonValue;
-			auto Reader = TJsonReaderFactory<>::Create(Content);
-
-			if (!FJsonSerializer::Deserialize(Reader, JsonValue))
+		auto ParseContent = [this, HttpResponse](FResponse& InOutResponse, bool bOutNeedsReauth) -> bool
 			{
-				if (Reader->GetErrorMessage().StartsWith(TEXT("Open Curly or Square Brace token expected, but not found")))
+				FString ContentType = HttpResponse->GetContentType();
+				ContentType.TrimStartAndEndInline();
+				FString Content;
+
+				if (ContentType.IsEmpty())
 				{
-					FString ContentArrayWrapper = TEXT("[") + Content + TEXT("]");
-					Reader = TJsonReaderFactory<>::Create(ContentArrayWrapper);
-					if (FJsonSerializer::Deserialize(Reader, JsonValue) && JsonValue.IsValid())
-					{
-#if !(ENGINE_MAJOR_VERSION < (5) || (ENGINE_MAJOR_VERSION == (5) && ENGINE_MINOR_VERSION < (0)))
-						TArray<TSharedPtr<FJsonValue>>* OutArray;
-						if (JsonValue->TryGetArray(OutArray) && OutArray != nullptr && OutArray->Num() > 0)
-						{
-							JsonValue = (*OutArray).Last();
-						}
-#else
-						auto OutArray = JsonValue->AsArray();
-						if (OutArray.Num() > 0)
-						{
-							JsonValue = OutArray.Last();
-						}
-#endif
-					}
+					// Nothing to parse
+					return true;
 				}
-			}
-
-			if (JsonValue.IsValid())
-			{
-				InOutResponse.SetJsonResponse(JsonValue);
-
-				if (AuthContext)
+				else if (ContentType.StartsWith(TEXT("application/json")) || ContentType.StartsWith("text/json"))
 				{
-					TOptional<bool> bAuthIsValid;
-					const TSharedPtr<FJsonObject>* JsonObject;
-					switch (HttpResponse->GetResponseCode())
+					Content = HttpResponse->GetContentAsString();
+
+					TSharedPtr<FJsonValue> JsonValue;
+					auto Reader = TJsonReaderFactory<>::Create(Content);
+
+					if (!FJsonSerializer::Deserialize(Reader, JsonValue))
 					{
-					case 403: // XDK clients screwed this one up for us
-					case 401:
-						if (JsonValue->TryGetObject(JsonObject) && JsonObject && JsonObject->IsValid() && TryGetJsonValue(*JsonObject, FString(TEXT("auth_success")), bAuthIsValid) && bAuthIsValid.IsSet() && !bAuthIsValid.GetValue())
+						if (Reader->GetErrorMessage().StartsWith(TEXT("Open Curly or Square Brace token expected, but not found")))
 						{
-							auto Retry = MakeShared<FRequestPendingAuthRetry>();
-							Retry->HttpRequest = HttpRequest;
-							Retry->AuthContext = AuthContext;
-							Retry->Handle = AuthContext->OnLoginComplete().AddRaw(this, &FAPI::RetryRequestAfterAuth, Retry, ResponseDelegate, RequestMetadata, Priority);
-							if (AuthContext->Refresh())
+							FString ContentArrayWrapper = TEXT("[") + Content + TEXT("]");
+							Reader = TJsonReaderFactory<>::Create(ContentArrayWrapper);
+							if (FJsonSerializer::Deserialize(Reader, JsonValue) && JsonValue.IsValid())
 							{
-								return true; // Don't submit the response for this request, we are going to retry it.
-							}
-							else // unable to refresh the token, so cancel the request and go with what we have
-							{
-								AuthContext->OnLoginComplete().Remove(Retry->Handle);
+								TArray<TSharedPtr<FJsonValue>>* OutArray;
+								if (JsonValue->TryGetArray(OutArray) && OutArray != nullptr && OutArray->Num() > 0)
+								{
+									JsonValue = (*OutArray).Last();
+								}
 							}
 						}
-						break;
+					}
+
+					if (JsonValue.IsValid())
+					{
+						InOutResponse.SetJsonResponse(JsonValue);
+
+						TOptional<bool> bAuthIsValid;
+						const TSharedPtr<FJsonObject>* JsonObject;
+						switch (HttpResponse->GetResponseCode())
+						{
+						case 403: // XDK clients screwed this one up for us
+						case 401:
+							if (JsonValue->TryGetObject(JsonObject) && JsonObject && JsonObject->IsValid() && TryGetJsonValue(*JsonObject, FString(TEXT("auth_success")), bAuthIsValid) && bAuthIsValid.IsSet() && !bAuthIsValid.GetValue())
+							{
+								UE_LOG(Log{{unrealModuleName}}, Warning, TEXT("Parsed JSON successfully, but detected authorization error, marking to reauth and retry"));
+								bOutNeedsReauth = true;
+								return true;
+							}
+							break;
+						}
+
+						if (InOutResponse.FromJson(JsonValue))
+						{
+							// Successfully parsed
+							return true;
+						}
+						else
+						{
+							// Report the parse error but do not mark the request as unsuccessful. Data could be partial or malformed, but the request succeeded.
+							UE_LOG(Log{{unrealModuleName}}, Warning, TEXT("Parsed JSON successfully, but failed to ingest into API structures (note: failure may be partial) (type:%s):\n%s"), *ContentType, *Content);
+							return true;
+						}
+					}
+					else
+					{
+						// Report the parse error, as this was supposed to be json but could not be serialized as such
+						UE_LOG(Log{{unrealModuleName}}, Error, TEXT("Failed to deserialize JSON content in Http response (type:%s):\n%s"), *ContentType, *Content);
+						return false;
 					}
 				}
-				if (InOutResponse.FromJson(JsonValue))
+				else if (ContentType.StartsWith(TEXT("text/plain")))
 				{
-					return false; // Successfully parsed
+					Content = HttpResponse->GetContentAsString();
+					InOutResponse.SetResponseString(Content);
+					return true; // Successfully parsed
 				}
-				else
-				{
-					// Report the parse error but do not mark the request as unsuccessful. Data could be partial or malformed, but the request succeeded.
-					UE_LOG(Log{{unrealModuleName}}, Warning, TEXT("Parsed JSON successfully, but failed to ingest into API structures (note: failure may be partial) (type:%s):\n%s"), *ContentType, *Content);
-					return false;
-				}
-			}
-			else
-			{
+
 				// Report the parse error but do not mark the request as unsuccessful. Data could be partial or malformed, but the request succeeded.
-				UE_LOG(Log{{unrealModuleName}}, Error, TEXT("Failed to deserialize JSON content in Http response (type:%s):\n%s"), *ContentType, *Content);
-				return false;
-			}
-		}
-		else if(ContentType.StartsWith(TEXT("text/plain")))
+				UE_LOG(Log{{unrealModuleName}}, Error, TEXT("Failed to deserialize Http response content (type:%s):\n%s"), *ContentType, *Content);
+				return true;
+			};
+
+		bool bNeedsReauth = false;
+		bool bParsedContent = ParseContent(InOutResponse, bNeedsReauth);
+
+		if (bNeedsReauth)
 		{
-			Content = HttpResponse->GetContentAsString();
-			InOutResponse.SetResponseString(Content);
-			return false; // Successfully parsed
+			auto Retry = MakeShared<FRequestPendingAuthRetry>();
+			Retry->HttpRequest = HttpRequest;
+			Retry->AuthContext = AuthContext;
+			Retry->Handle = AuthContext->OnLoginComplete().AddRaw(this, &FAPI::RetryRequestAfterAuth, Retry, ResponseDelegate, RequestMetadata, Priority);
+			if (AuthContext->Refresh())
+			{
+				return true; // Don't submit the response for this request, we are going to retry it.
+			}
+			else // unable to refresh the token, so cancel the request and go with what we have
+			{
+				AuthContext->OnLoginComplete().Remove(Retry->Handle);
+			}
+			return false;
 		}
 
-		// Report the parse error but do not mark the request as unsuccessful. Data could be partial or malformed, but the request succeeded.
-		UE_LOG(Log{{unrealModuleName}}, Error, TEXT("Failed to deserialize Http response content (type:%s):\n%s"), *ContentType, *Content);
+		if (!bParsedContent)
+		{
+			// Report the parse error but do not mark the request as unsuccessful. Data could be partial or malformed, but the request succeeded.
+			UE_LOG(Log{{unrealModuleName}}, Warning, TEXT("Failed to parse Http response content"));
+			return false;
+		}
+
+		// successfully parsed content
 		return false;
 	}
 
