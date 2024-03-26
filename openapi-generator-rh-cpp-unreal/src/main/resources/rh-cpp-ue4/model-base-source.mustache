@@ -148,7 +148,7 @@ bool FResponse::ParseJsonTypeContent(bool& bOutNeedsReauth)
 		const TSharedPtr<FJsonObject>* JsonObject;
 		switch (HttpResponse->GetResponseCode())
 		{
-		case 403: // XDK clients screwed this one up for us
+		case 403: // some consoles forcibly retry 401 errors with a modified body, which can generate 403 errors
 		case 401:
 			if (JsonValue->TryGetObject(JsonObject) && JsonObject && JsonObject->IsValid() && TryGetJsonValue(*JsonObject, FString(TEXT("auth_success")), bAuthIsValid) && bAuthIsValid.IsSet() && !bAuthIsValid.GetValue())
 			{
