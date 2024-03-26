@@ -75,7 +75,11 @@ bool FResponse::ParseContent(bool& bOutNeedsReauth)
 	}
 	else if (ContentType.StartsWith(TEXT("text/plain")))
 	{
-		return ParseTextTypeContent(bOutNeedsReauth);
+		return ParseStringTypeContent(bOutNeedsReauth);
+	}
+	else if (ContentType.StartsWith(TEXT("application/octet-stream")))
+	{
+		return ParseBinaryTypeContent(bOutNeedsReauth);
 	}
 	else
 	{
@@ -95,7 +99,7 @@ bool FResponse::ParseTypelessContent(bool& bOutNeedsReauth)
 	return true; // Successfully parsed
 }
 
-bool FResponse::ParseTextTypeContent(bool& bOutNeedsReauth)
+bool FResponse::ParseStringTypeContent(bool& bOutNeedsReauth)
 {
 	check(HttpResponse != nullptr);
 
@@ -171,6 +175,16 @@ bool FResponse::ParseJsonTypeContent(bool& bOutNeedsReauth)
 		UE_LOG(LogRallyHereAPI, Error, TEXT("Failed to deserialize JSON content in Http response:\n%s"), *ContentAsString);
 		return false;
 	}
+}
+
+bool FResponse::ParseBinaryTypeContent(bool& bOutNeedsReauth)
+{
+	check(HttpResponse != nullptr);
+
+	bOutNeedsReauth = false;
+	
+	SetPayload<BinaryPayloadType>(MakeArrayView(HttpResponse->GetContent()));
+	return true; // Successfully parsed
 }
 
 bool FResponse::ParseUnknownTypeContent(bool& bOutNeedsReauth)

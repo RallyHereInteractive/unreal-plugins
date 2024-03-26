@@ -275,7 +275,9 @@ void FRH_WebRequests::OnWebRequestStarted_Track(const RallyHereAPI::FRequestMeta
 	Request->Verb = HttpRequest->GetVerb();
 	Request->URL = HttpRequest->GetURL();
 
+	// Requests do not allow GetContentAsString(), so parse it out manually
 	FString TempContent;
+	TempContent.Reserve(HttpRequest->GetContent().Num());
 	for (auto b : HttpRequest->GetContent())
 	{
 		TempContent.AppendChar(static_cast<char>(b));
@@ -365,7 +367,15 @@ void FRH_WebRequests::OnWebRequestCompleted_Track(const RallyHereAPI::FResponse&
 	TrackedResponse.ReceivedTime = FDateTime::Now();
 	if (HttpResponse)
 	{
-		TrackedResponse.Content = SanitizeContent(HttpResponse->GetContentAsString(), GetSensitiveFieldsForResponse(Response.GetRequestMetadata()));
+		if (Response.GetPayload().IsType<RallyHereAPI::FResponse::BinaryPayloadType>())
+		{
+			auto BinaryPayload = Response.GetPayload().Get<RallyHereAPI::FResponse::BinaryPayloadType>();
+			TrackedResponse.Content = FBase64::Encode(BinaryPayload.GetData(), BinaryPayload.Num());
+		}
+		else
+		{
+			TrackedResponse.Content = SanitizeContent(HttpResponse->GetContentAsString(), GetSensitiveFieldsForResponse(Response.GetRequestMetadata()));
+		}
 		TArray<FString> Headers = SanitizeHeaders(HttpResponse->GetAllHeaders(), GetSensitiveHeadersForResponse(Response.GetRequestMetadata()));
 		for (const auto& headerStr : Headers)
 		{
