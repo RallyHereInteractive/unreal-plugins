@@ -125,20 +125,20 @@ bool FRequest_GetUtcTime::SetupHttpRequest(const FHttpRequestRef& HttpRequest) c
 	return true;
 }
 
-void FResponse_GetUtcTime::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetUtcTime::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetUtcTime::TryGetContentFor200(FDateTime& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);

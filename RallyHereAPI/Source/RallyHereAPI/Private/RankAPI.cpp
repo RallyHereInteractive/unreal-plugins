@@ -147,26 +147,24 @@ bool FRequest_CalculateV2Ranks::SetupHttpRequest(const FHttpRequestRef& HttpRequ
 	return true;
 }
 
-void FResponse_CalculateV2Ranks::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_CalculateV2Ranks::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_CalculateV2Ranks::TryGetContentFor200(FRHAPI_PlayerRankUpdateResponseV2& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -176,7 +174,7 @@ bool FResponse_CalculateV2Ranks::TryGetContentFor200(FRHAPI_PlayerRankUpdateResp
 
 bool FResponse_CalculateV2Ranks::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -186,7 +184,7 @@ bool FResponse_CalculateV2Ranks::TryGetContentFor403(FRHAPI_HzApiErrorModel& Out
 
 bool FResponse_CalculateV2Ranks::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -324,26 +322,24 @@ bool FRequest_GetAllPlayerUuidRanks::SetupHttpRequest(const FHttpRequestRef& Htt
 	return true;
 }
 
-void FResponse_GetAllPlayerUuidRanks::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetAllPlayerUuidRanks::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetAllPlayerUuidRanks::TryGetContentFor200(FRHAPI_PlayerRankRequestResponse& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -353,7 +349,7 @@ bool FResponse_GetAllPlayerUuidRanks::TryGetContentFor200(FRHAPI_PlayerRankReque
 
 bool FResponse_GetAllPlayerUuidRanks::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -363,7 +359,7 @@ bool FResponse_GetAllPlayerUuidRanks::TryGetContentFor403(FRHAPI_HzApiErrorModel
 
 bool FResponse_GetAllPlayerUuidRanks::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -496,23 +492,22 @@ bool FRequest_GetAllPlayerUuidRanksSelf::SetupHttpRequest(const FHttpRequestRef&
 	return true;
 }
 
-void FResponse_GetAllPlayerUuidRanksSelf::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetAllPlayerUuidRanksSelf::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetAllPlayerUuidRanksSelf::TryGetContentFor200(FRHAPI_PlayerRankRequestResponse& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -522,7 +517,7 @@ bool FResponse_GetAllPlayerUuidRanksSelf::TryGetContentFor200(FRHAPI_PlayerRankR
 
 bool FResponse_GetAllPlayerUuidRanksSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -655,23 +650,22 @@ bool FRequest_GetAllPlayerUuidRanksSelfV2::SetupHttpRequest(const FHttpRequestRe
 	return true;
 }
 
-void FResponse_GetAllPlayerUuidRanksSelfV2::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetAllPlayerUuidRanksSelfV2::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetAllPlayerUuidRanksSelfV2::TryGetContentFor200(FRHAPI_PlayerRankRequestResponseV2& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -681,7 +675,7 @@ bool FResponse_GetAllPlayerUuidRanksSelfV2::TryGetContentFor200(FRHAPI_PlayerRan
 
 bool FResponse_GetAllPlayerUuidRanksSelfV2::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -819,26 +813,24 @@ bool FRequest_GetAllPlayerUuidRanksV2::SetupHttpRequest(const FHttpRequestRef& H
 	return true;
 }
 
-void FResponse_GetAllPlayerUuidRanksV2::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetAllPlayerUuidRanksV2::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetAllPlayerUuidRanksV2::TryGetContentFor200(FRHAPI_PlayerRankRequestResponseV2& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -848,7 +840,7 @@ bool FResponse_GetAllPlayerUuidRanksV2::TryGetContentFor200(FRHAPI_PlayerRankReq
 
 bool FResponse_GetAllPlayerUuidRanksV2::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -858,7 +850,7 @@ bool FResponse_GetAllPlayerUuidRanksV2::TryGetContentFor403(FRHAPI_HzApiErrorMod
 
 bool FResponse_GetAllPlayerUuidRanksV2::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -991,23 +983,22 @@ bool FRequest_GetAllRankConfig::SetupHttpRequest(const FHttpRequestRef& HttpRequ
 	return true;
 }
 
-void FResponse_GetAllRankConfig::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetAllRankConfig::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetAllRankConfig::TryGetContentFor200(FRHAPI_RankConfigRequestResponse& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -1017,7 +1008,7 @@ bool FResponse_GetAllRankConfig::TryGetContentFor200(FRHAPI_RankConfigRequestRes
 
 bool FResponse_GetAllRankConfig::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -1150,23 +1141,22 @@ bool FRequest_GetAllRankConfigV2::SetupHttpRequest(const FHttpRequestRef& HttpRe
 	return true;
 }
 
-void FResponse_GetAllRankConfigV2::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetAllRankConfigV2::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetAllRankConfigV2::TryGetContentFor200(FRHAPI_RankConfigRequestResponseV2& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -1176,7 +1166,7 @@ bool FResponse_GetAllRankConfigV2::TryGetContentFor200(FRHAPI_RankConfigRequestR
 
 bool FResponse_GetAllRankConfigV2::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -1315,26 +1305,24 @@ bool FRequest_GetPlayerUuidRank::SetupHttpRequest(const FHttpRequestRef& HttpReq
 	return true;
 }
 
-void FResponse_GetPlayerUuidRank::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetPlayerUuidRank::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetPlayerUuidRank::TryGetContentFor200(FRHAPI_PlayerRankRequestResponse& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -1344,7 +1332,7 @@ bool FResponse_GetPlayerUuidRank::TryGetContentFor200(FRHAPI_PlayerRankRequestRe
 
 bool FResponse_GetPlayerUuidRank::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -1354,7 +1342,7 @@ bool FResponse_GetPlayerUuidRank::TryGetContentFor403(FRHAPI_HzApiErrorModel& Ou
 
 bool FResponse_GetPlayerUuidRank::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -1492,26 +1480,24 @@ bool FRequest_GetPlayerUuidRankSelf::SetupHttpRequest(const FHttpRequestRef& Htt
 	return true;
 }
 
-void FResponse_GetPlayerUuidRankSelf::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetPlayerUuidRankSelf::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetPlayerUuidRankSelf::TryGetContentFor200(FRHAPI_PlayerRankRequestResponse& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -1521,7 +1507,7 @@ bool FResponse_GetPlayerUuidRankSelf::TryGetContentFor200(FRHAPI_PlayerRankReque
 
 bool FResponse_GetPlayerUuidRankSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -1531,7 +1517,7 @@ bool FResponse_GetPlayerUuidRankSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel
 
 bool FResponse_GetPlayerUuidRankSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -1669,26 +1655,24 @@ bool FRequest_GetPlayerUuidRankSelfV2::SetupHttpRequest(const FHttpRequestRef& H
 	return true;
 }
 
-void FResponse_GetPlayerUuidRankSelfV2::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetPlayerUuidRankSelfV2::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetPlayerUuidRankSelfV2::TryGetContentFor200(FRHAPI_PlayerRankRequestResponseV2& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -1698,7 +1682,7 @@ bool FResponse_GetPlayerUuidRankSelfV2::TryGetContentFor200(FRHAPI_PlayerRankReq
 
 bool FResponse_GetPlayerUuidRankSelfV2::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -1708,7 +1692,7 @@ bool FResponse_GetPlayerUuidRankSelfV2::TryGetContentFor403(FRHAPI_HzApiErrorMod
 
 bool FResponse_GetPlayerUuidRankSelfV2::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -1847,26 +1831,24 @@ bool FRequest_GetPlayerUuidRankV2::SetupHttpRequest(const FHttpRequestRef& HttpR
 	return true;
 }
 
-void FResponse_GetPlayerUuidRankV2::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetPlayerUuidRankV2::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetPlayerUuidRankV2::TryGetContentFor200(FRHAPI_PlayerRankRequestResponseV2& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -1876,7 +1858,7 @@ bool FResponse_GetPlayerUuidRankV2::TryGetContentFor200(FRHAPI_PlayerRankRequest
 
 bool FResponse_GetPlayerUuidRankV2::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -1886,7 +1868,7 @@ bool FResponse_GetPlayerUuidRankV2::TryGetContentFor403(FRHAPI_HzApiErrorModel& 
 
 bool FResponse_GetPlayerUuidRankV2::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -2024,26 +2006,24 @@ bool FRequest_GetRankConfig::SetupHttpRequest(const FHttpRequestRef& HttpRequest
 	return true;
 }
 
-void FResponse_GetRankConfig::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetRankConfig::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetRankConfig::TryGetContentFor200(FRHAPI_RankConfigRequestResponse& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -2053,7 +2033,7 @@ bool FResponse_GetRankConfig::TryGetContentFor200(FRHAPI_RankConfigRequestRespon
 
 bool FResponse_GetRankConfig::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -2063,7 +2043,7 @@ bool FResponse_GetRankConfig::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutCon
 
 bool FResponse_GetRankConfig::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -2201,26 +2181,24 @@ bool FRequest_GetRankConfigV2::SetupHttpRequest(const FHttpRequestRef& HttpReque
 	return true;
 }
 
-void FResponse_GetRankConfigV2::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetRankConfigV2::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetRankConfigV2::TryGetContentFor200(FRHAPI_RankConfigRequestResponseV2& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -2230,7 +2208,7 @@ bool FResponse_GetRankConfigV2::TryGetContentFor200(FRHAPI_RankConfigRequestResp
 
 bool FResponse_GetRankConfigV2::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -2240,7 +2218,7 @@ bool FResponse_GetRankConfigV2::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutC
 
 bool FResponse_GetRankConfigV2::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -2390,26 +2368,24 @@ bool FRequest_UpdatePlayerUuidRank::SetupHttpRequest(const FHttpRequestRef& Http
 	return true;
 }
 
-void FResponse_UpdatePlayerUuidRank::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_UpdatePlayerUuidRank::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_UpdatePlayerUuidRank::TryGetContentFor200(FRHAPI_PlayerRankUpdateResponse& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -2419,7 +2395,7 @@ bool FResponse_UpdatePlayerUuidRank::TryGetContentFor200(FRHAPI_PlayerRankUpdate
 
 bool FResponse_UpdatePlayerUuidRank::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -2429,7 +2405,7 @@ bool FResponse_UpdatePlayerUuidRank::TryGetContentFor403(FRHAPI_HzApiErrorModel&
 
 bool FResponse_UpdatePlayerUuidRank::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -2578,26 +2554,24 @@ bool FRequest_UpdatePlayerUuidRankSelf::SetupHttpRequest(const FHttpRequestRef& 
 	return true;
 }
 
-void FResponse_UpdatePlayerUuidRankSelf::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_UpdatePlayerUuidRankSelf::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_UpdatePlayerUuidRankSelf::TryGetContentFor200(FRHAPI_PlayerRankUpdateResponse& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -2607,7 +2581,7 @@ bool FResponse_UpdatePlayerUuidRankSelf::TryGetContentFor200(FRHAPI_PlayerRankUp
 
 bool FResponse_UpdatePlayerUuidRankSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -2617,7 +2591,7 @@ bool FResponse_UpdatePlayerUuidRankSelf::TryGetContentFor403(FRHAPI_HzApiErrorMo
 
 bool FResponse_UpdatePlayerUuidRankSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -2766,26 +2740,24 @@ bool FRequest_UpdatePlayerUuidRankSelfV2::SetupHttpRequest(const FHttpRequestRef
 	return true;
 }
 
-void FResponse_UpdatePlayerUuidRankSelfV2::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_UpdatePlayerUuidRankSelfV2::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_UpdatePlayerUuidRankSelfV2::TryGetContentFor200(FRHAPI_PlayerRankUpdateResponseV2& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -2795,7 +2767,7 @@ bool FResponse_UpdatePlayerUuidRankSelfV2::TryGetContentFor200(FRHAPI_PlayerRank
 
 bool FResponse_UpdatePlayerUuidRankSelfV2::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -2805,7 +2777,7 @@ bool FResponse_UpdatePlayerUuidRankSelfV2::TryGetContentFor403(FRHAPI_HzApiError
 
 bool FResponse_UpdatePlayerUuidRankSelfV2::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -2955,26 +2927,24 @@ bool FRequest_UpdatePlayerUuidRankV2::SetupHttpRequest(const FHttpRequestRef& Ht
 	return true;
 }
 
-void FResponse_UpdatePlayerUuidRankV2::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_UpdatePlayerUuidRankV2::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_UpdatePlayerUuidRankV2::TryGetContentFor200(FRHAPI_PlayerRankUpdateResponseV2& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -2984,7 +2954,7 @@ bool FResponse_UpdatePlayerUuidRankV2::TryGetContentFor200(FRHAPI_PlayerRankUpda
 
 bool FResponse_UpdatePlayerUuidRankV2::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -2994,7 +2964,7 @@ bool FResponse_UpdatePlayerUuidRankV2::TryGetContentFor403(FRHAPI_HzApiErrorMode
 
 bool FResponse_UpdatePlayerUuidRankV2::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -3138,26 +3108,24 @@ bool FRequest_UpdateRankingsV1::SetupHttpRequest(const FHttpRequestRef& HttpRequ
 	return true;
 }
 
-void FResponse_UpdateRankingsV1::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_UpdateRankingsV1::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_UpdateRankingsV1::TryGetContentFor200(FRHAPI_PlayerRankUpdateResponse& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -3167,7 +3135,7 @@ bool FResponse_UpdateRankingsV1::TryGetContentFor200(FRHAPI_PlayerRankUpdateResp
 
 bool FResponse_UpdateRankingsV1::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -3177,7 +3145,7 @@ bool FResponse_UpdateRankingsV1::TryGetContentFor403(FRHAPI_HzApiErrorModel& Out
 
 bool FResponse_UpdateRankingsV1::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);

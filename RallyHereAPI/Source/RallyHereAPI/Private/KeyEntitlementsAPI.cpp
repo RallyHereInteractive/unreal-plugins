@@ -142,29 +142,26 @@ bool FRequest_ProcessKeyEntitlements::SetupHttpRequest(const FHttpRequestRef& Ht
 	return true;
 }
 
-void FResponse_ProcessKeyEntitlements::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_ProcessKeyEntitlements::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 202:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 409:
-		SetResponseString(TEXT("Conflict"));
-		break;
+		return TEXT("Conflict");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_ProcessKeyEntitlements::TryGetContentFor202(FRHAPI_JsonValue& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -174,7 +171,7 @@ bool FResponse_ProcessKeyEntitlements::TryGetContentFor202(FRHAPI_JsonValue& Out
 
 bool FResponse_ProcessKeyEntitlements::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -184,7 +181,7 @@ bool FResponse_ProcessKeyEntitlements::TryGetContentFor403(FRHAPI_HzApiErrorMode
 
 bool FResponse_ProcessKeyEntitlements::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -194,7 +191,7 @@ bool FResponse_ProcessKeyEntitlements::TryGetContentFor409(FRHAPI_HzApiErrorMode
 
 bool FResponse_ProcessKeyEntitlements::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -333,29 +330,26 @@ bool FRequest_ProcessKeyEntitlementsPlayerUuid::SetupHttpRequest(const FHttpRequ
 	return true;
 }
 
-void FResponse_ProcessKeyEntitlementsPlayerUuid::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_ProcessKeyEntitlementsPlayerUuid::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 202:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 409:
-		SetResponseString(TEXT("Conflict"));
-		break;
+		return TEXT("Conflict");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_ProcessKeyEntitlementsPlayerUuid::TryGetContentFor202(FRHAPI_JsonValue& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -365,7 +359,7 @@ bool FResponse_ProcessKeyEntitlementsPlayerUuid::TryGetContentFor202(FRHAPI_Json
 
 bool FResponse_ProcessKeyEntitlementsPlayerUuid::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -375,7 +369,7 @@ bool FResponse_ProcessKeyEntitlementsPlayerUuid::TryGetContentFor403(FRHAPI_HzAp
 
 bool FResponse_ProcessKeyEntitlementsPlayerUuid::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -385,7 +379,7 @@ bool FResponse_ProcessKeyEntitlementsPlayerUuid::TryGetContentFor409(FRHAPI_HzAp
 
 bool FResponse_ProcessKeyEntitlementsPlayerUuid::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -523,29 +517,26 @@ bool FRequest_ProcessKeyEntitlementsSelf::SetupHttpRequest(const FHttpRequestRef
 	return true;
 }
 
-void FResponse_ProcessKeyEntitlementsSelf::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_ProcessKeyEntitlementsSelf::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 202:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 409:
-		SetResponseString(TEXT("Conflict"));
-		break;
+		return TEXT("Conflict");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_ProcessKeyEntitlementsSelf::TryGetContentFor202(FRHAPI_JsonValue& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -555,7 +546,7 @@ bool FResponse_ProcessKeyEntitlementsSelf::TryGetContentFor202(FRHAPI_JsonValue&
 
 bool FResponse_ProcessKeyEntitlementsSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -565,7 +556,7 @@ bool FResponse_ProcessKeyEntitlementsSelf::TryGetContentFor403(FRHAPI_HzApiError
 
 bool FResponse_ProcessKeyEntitlementsSelf::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -575,7 +566,7 @@ bool FResponse_ProcessKeyEntitlementsSelf::TryGetContentFor409(FRHAPI_HzApiError
 
 bool FResponse_ProcessKeyEntitlementsSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -713,29 +704,26 @@ bool FRequest_ProcessPlayerUuidEntitlementsSelf::SetupHttpRequest(const FHttpReq
 	return true;
 }
 
-void FResponse_ProcessPlayerUuidEntitlementsSelf::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_ProcessPlayerUuidEntitlementsSelf::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 202:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 409:
-		SetResponseString(TEXT("Conflict"));
-		break;
+		return TEXT("Conflict");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_ProcessPlayerUuidEntitlementsSelf::TryGetContentFor202(FRHAPI_JsonValue& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -745,7 +733,7 @@ bool FResponse_ProcessPlayerUuidEntitlementsSelf::TryGetContentFor202(FRHAPI_Jso
 
 bool FResponse_ProcessPlayerUuidEntitlementsSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -755,7 +743,7 @@ bool FResponse_ProcessPlayerUuidEntitlementsSelf::TryGetContentFor403(FRHAPI_HzA
 
 bool FResponse_ProcessPlayerUuidEntitlementsSelf::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -765,7 +753,7 @@ bool FResponse_ProcessPlayerUuidEntitlementsSelf::TryGetContentFor409(FRHAPI_HzA
 
 bool FResponse_ProcessPlayerUuidEntitlementsSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);

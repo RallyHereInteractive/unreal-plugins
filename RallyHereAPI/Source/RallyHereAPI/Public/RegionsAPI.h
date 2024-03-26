@@ -69,7 +69,7 @@ struct RALLYHEREAPI_API FResponse_GetAllRegions : public FResponse
 	FResponse_GetAllRegions(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetAllRegions() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_RegionsResponse Content;
 

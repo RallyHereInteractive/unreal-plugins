@@ -171,7 +171,7 @@ struct RALLYHEREAPI_API FResponse_GetCatalogAll : public FResponse
 	virtual ~FResponse_GetCatalogAll() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_Catalog Content;
 	// Headers
@@ -244,7 +244,7 @@ struct RALLYHEREAPI_API FResponse_GetCatalogEntitlementSku : public FResponse
 	virtual ~FResponse_GetCatalogEntitlementSku() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlatformSKU Content;
 	// Headers
@@ -315,7 +315,7 @@ struct RALLYHEREAPI_API FResponse_GetCatalogEntitlementSkuAll : public FResponse
 	virtual ~FResponse_GetCatalogEntitlementSkuAll() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlatformSKUs Content;
 	// Headers
@@ -387,7 +387,7 @@ struct RALLYHEREAPI_API FResponse_GetCatalogInventoryBucketUseRuleSet : public F
 	virtual ~FResponse_GetCatalogInventoryBucketUseRuleSet() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_InventoryBucketUseRuleSet Content;
 	// Headers
@@ -458,7 +458,7 @@ struct RALLYHEREAPI_API FResponse_GetCatalogInventoryBucketUseRuleSetsAll : publ
 	virtual ~FResponse_GetCatalogInventoryBucketUseRuleSetsAll() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_InventoryBucketUseRuleSets Content;
 	// Headers
@@ -530,7 +530,7 @@ struct RALLYHEREAPI_API FResponse_GetCatalogItem : public FResponse
 	virtual ~FResponse_GetCatalogItem() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_Item Content;
 	// Headers
@@ -601,7 +601,7 @@ struct RALLYHEREAPI_API FResponse_GetCatalogItemsAll : public FResponse
 	virtual ~FResponse_GetCatalogItemsAll() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_Items Content;
 	// Headers
@@ -673,7 +673,7 @@ struct RALLYHEREAPI_API FResponse_GetCatalogLoot : public FResponse
 	virtual ~FResponse_GetCatalogLoot() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_Loot Content;
 	// Headers
@@ -744,7 +744,7 @@ struct RALLYHEREAPI_API FResponse_GetCatalogLootsAll : public FResponse
 	virtual ~FResponse_GetCatalogLootsAll() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_Loots Content;
 	// Headers
@@ -816,7 +816,7 @@ struct RALLYHEREAPI_API FResponse_GetCatalogPortalUseRuleset : public FResponse
 	virtual ~FResponse_GetCatalogPortalUseRuleset() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PortalUseRuleset Content;
 	// Headers
@@ -887,7 +887,7 @@ struct RALLYHEREAPI_API FResponse_GetCatalogPortalUseRulesetsAll : public FRespo
 	virtual ~FResponse_GetCatalogPortalUseRulesetsAll() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PortalUseRulesets Content;
 	// Headers
@@ -959,7 +959,7 @@ struct RALLYHEREAPI_API FResponse_GetCatalogPricePoint : public FResponse
 	virtual ~FResponse_GetCatalogPricePoint() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PricePoint Content;
 	// Headers
@@ -1030,7 +1030,7 @@ struct RALLYHEREAPI_API FResponse_GetCatalogPricePointsAll : public FResponse
 	virtual ~FResponse_GetCatalogPricePointsAll() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PricePoints Content;
 	// Headers
@@ -1102,7 +1102,7 @@ struct RALLYHEREAPI_API FResponse_GetCatalogTimeFrame : public FResponse
 	virtual ~FResponse_GetCatalogTimeFrame() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_TimeFrame Content;
 	// Headers
@@ -1173,7 +1173,7 @@ struct RALLYHEREAPI_API FResponse_GetCatalogTimeFramesAll : public FResponse
 	virtual ~FResponse_GetCatalogTimeFramesAll() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_TimeFrames Content;
 	// Headers
@@ -1245,7 +1245,7 @@ struct RALLYHEREAPI_API FResponse_GetCatalogVendor : public FResponse
 	virtual ~FResponse_GetCatalogVendor() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_Vendor Content;
 	// Headers
@@ -1316,7 +1316,7 @@ struct RALLYHEREAPI_API FResponse_GetCatalogVendorsAll : public FResponse
 	virtual ~FResponse_GetCatalogVendorsAll() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_Vendors Content;
 	// Headers
@@ -1387,7 +1387,7 @@ struct RALLYHEREAPI_API FResponse_GetCatalogXpAll : public FResponse
 	virtual ~FResponse_GetCatalogXpAll() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_XpTables Content;
 	// Headers
@@ -1459,7 +1459,7 @@ struct RALLYHEREAPI_API FResponse_GetCatalogXpTable : public FResponse
 	virtual ~FResponse_GetCatalogXpTable() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_XpTable Content;
 	// Headers

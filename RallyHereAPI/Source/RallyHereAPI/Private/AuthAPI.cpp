@@ -125,20 +125,20 @@ bool FRequest_GenerateKey::SetupHttpRequest(const FHttpRequestRef& HttpRequest) 
 	return true;
 }
 
-void FResponse_GenerateKey::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GenerateKey::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GenerateKey::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -260,20 +260,20 @@ bool FRequest_GetAllPublicKeys::SetupHttpRequest(const FHttpRequestRef& HttpRequ
 	return true;
 }
 
-void FResponse_GetAllPublicKeys::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetAllPublicKeys::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetAllPublicKeys::TryGetContentFor200(FRHAPI_PublicKeyList& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -406,16 +406,14 @@ bool FRequest_GetPortalTokenDetails::SetupHttpRequest(const FHttpRequestRef& Htt
 	return true;
 }
 
-void FResponse_GetPortalTokenDetails::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetPortalTokenDetails::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT(" Error Codes: - &#x60;internal_error&#x60; - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator. - &#x60;no_redirects_configured&#x60; - No redirect urls setup for oauth. - &#x60;redirect_uri_does_not_match&#x60; - Redirect URI does not match a configured value. - &#x60;error_occurred_during_exchange&#x60; - An error occurred while exchanging a code for token. - &#x60;failed_to_verify_state&#x60; - Failed to verify the state associated with the request. - &#x60;failed_to_save_state&#x60; - Error occurred saving the state. - &#x60;failed_to_save_tokens&#x60; - Problem saving tokens.  Contact an administrator - &#x60;too_many_users&#x60; - Account has too many users associated with it.  Contact an administrator - &#x60;user_auth_restricted&#x60; - Authentication for this user has been restricted - &#x60;user_needs_agreements&#x60; - User has not accepted all required agreements.  See response for list of agreements required - &#x60;error_re")
+		return TEXT(" Error Codes: - &#x60;internal_error&#x60; - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator. - &#x60;no_redirects_configured&#x60; - No redirect urls setup for oauth. - &#x60;redirect_uri_does_not_match&#x60; - Redirect URI does not match a configured value. - &#x60;error_occurred_during_exchange&#x60; - An error occurred while exchanging a code for token. - &#x60;failed_to_verify_state&#x60; - Failed to verify the state associated with the request. - &#x60;failed_to_save_state&#x60; - Error occurred saving the state. - &#x60;failed_to_save_tokens&#x60; - Problem saving tokens.  Contact an administrator - &#x60;too_many_users&#x60; - Account has too many users associated with it.  Contact an administrator - &#x60;user_auth_restricted&#x60; - Authentication for this user has been restricted - &#x60;user_needs_agreements&#x60; - User has not accepted all required agreements.  See response for list of agreements required - &#x60;error_re")
 TEXT("trieving_player_results&#x60; - Error retrieving player results - &#x60;failed_to_retrieve_roles&#x60; - Failed to retrieve roles - &#x60;client_credentials_invalid&#x60; - Client Credentials provided to authentication attempt were invalid - &#x60;authentication_limited&#x60; - Authentication is currently limited to accounts that are already logged in.  Please try again later - &#x60;authentication_locked&#x60; - Authentication is currently locked.  Please try again later - &#x60;amazon_disabled&#x60; - Amazon authentication is currently disabled - &#x60;amazon_token_empty&#x60; - Amazon access token is empty - &#x60;amazon_invalid_access_token&#x60; - Amazon access token is invalid - &#x60;amazon_token_exchange_failed&#x60; - Problem exchanging code for token with Amazon - &#x60;anon_disabled&#x60; - Anon authentication is currently disabled - &#x60;anon_token_empty&#x60; - Anon access token is empty - &#x60;apple_disabled&#x60; - Apple authentication is currently disabled - &#x60;app")
 TEXT("le_token_empty&#x60; - Apple access token is empty - &#x60;apple_failed_key_lookup&#x60; - Failed to retrieve keys from Apple - &#x60;apple_token_exchange_failed&#x60; - Problem exchanging code for token with Apple - &#x60;apple_token_key_not_valid&#x60; - public key not found - &#x60;apple_token_not_valid&#x60; - Apple access token is not valid - &#x60;authorization_code_not_found&#x60; - Authorization code not found or expired - &#x60;basic_disabled&#x60; - Basic authentication is currently disabled - &#x60;basic_token_empty&#x60; - Basic access token is empty - &#x60;basic_auth_incorrect_format&#x60; - Basic auth should be formatted like &#x60;USERNAME:PASSWORD&#x60; - &#x60;basic_auth_credentials_not_found&#x60; - Basic auth credentials not found - &#x60;epic_disabled&#x60; - Epic authentication is currently disabled - &#x60;epic_token_empty&#x60; - Epic access token is empty - &#x60;epic_v1_token_key_id_invalid&#x60; - Epic v1 token contains an invalid key id - &#x60;epic_v1_token")
 TEXT("_invalid&#x60; - Epic v1 token is invalid - &#x60;epic_v2_keys_not_available&#x60; - Epic v2 keys are not available.  Please contact an administrator - &#x60;epic_v2_token_invalid&#x60; - Epic v2 token is invalid - &#x60;epic_oauth_token_exchange_failed&#x60; - Problem exchanging code for token with Epic - &#x60;google_disabled&#x60; - Google authentication is currently disabled - &#x60;google_token_empty&#x60; - Google access token is empty - &#x60;google_keys_not_available&#x60; - Google keys are not available.  Please contact an administrator - &#x60;google_token_not_valid&#x60; - Google access token is not valid - &#x60;google_token_exchange_failed&#x60; - Problem exchanging code for token with Google - &#x60;nintendo_disabled&#x60; - Nintendo authentication is currently disabled - &#x60;nintendo_token_empty&#x60; - Nintendo access token is empty - &#x60;nintendo_env_credentials_not_found&#x60; - Nintendo environment credentials not found - &#x60;nintendo_access_token_not_valid&#x6")
@@ -425,17 +423,17 @@ TEXT("st_failed&#x60; - Problem requesting token details from PS4 - &#x60;ps4_v3
 TEXT("nt&#x60; or &#x60;prod-qa&#x60; if the environment is not whitelisted to access the PSN environment. - &#x60;refresh_disabled&#x60; - Refresh authentication is currently disabled - &#x60;refresh_token_empty&#x60; - Refresh token is empty - &#x60;refresh_token_not_found&#x60; - Refresh token was not found or has expired - &#x60;refresh_token_invalid_user&#x60; - Refresh token refrences invalid user - &#x60;refresh_token_client_id_mismatch&#x60; - Client ID for new token request did not match original token - &#x60;steam_disabled&#x60; - Steam authentication is currently disabled - &#x60;steam_token_empty&#x60; - Steam code (Ticket) is empty - &#x60;steam_token_exchange_failed&#x60; - Problem exchanging code (ticket) for token with Steam - &#x60;steam_user_vacbanned&#x60; - User is VAC banned - &#x60;steam_user_publisherbanned&#x60; - User is publisher banned - &#x60;steam_user_offline&#x60; - User is reporting offline to Steam, causing all Steam tickets to invalidate - &#x60;steam_token")
 TEXT("_invalid&#x60; - Steam code (Ticket) was reported as invalid by Steam - &#x60;steam_token_for_wrong_app&#x60; - Steam code (Ticket) is for a different Steam Application - &#x60;twitch_disabled&#x60; - Twitch authentication is currently disabled - &#x60;twitch_token_empty&#x60; - Twitch access token is empty - &#x60;twitch_token_invalid&#x60; - Twitch access token is not valid - &#x60;twitch_keys_not_available&#x60; - Twitch keys are not available.  Please contact an administrator - &#x60;twitch_token_exchange_failed&#x60; - Problem exchanging code for token with Twitch - &#x60;xbox_disabled&#x60; - Xbox authentication is currently disabled - &#x60;xbox_xsts_token_empty&#x60; - Xbox XSTS token is empty - &#x60;xbox_xsts_token_invalid&#x60; - Xbox XSTS token is not valid - &#x60;xbox_xtoken_invalid&#x60; - Xbox XToken is not valid - &#x60;xbox_access_token_request_failed&#x60; - Problem requesting access token from Xbox - &#x60;xbox_xsts_token_exchange_failed&#x60; - Problem exchanging a")
 TEXT("ccess token for XSTS token with Xbox - &#x60;xbox_xtoken_exchange_failed&#x60; - Problem exchanging XSTS token for XToken with Xbox  ")
-);
-		break;
+;
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetPortalTokenDetails::TryGetContentFor200(TMap<FString, FString>& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -445,7 +443,7 @@ bool FResponse_GetPortalTokenDetails::TryGetContentFor200(TMap<FString, FString>
 
 bool FResponse_GetPortalTokenDetails::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -455,7 +453,7 @@ bool FResponse_GetPortalTokenDetails::TryGetContentFor403(FRHAPI_HzApiErrorModel
 
 bool FResponse_GetPortalTokenDetails::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -582,26 +580,24 @@ bool FRequest_GetPublicKeyById::SetupHttpRequest(const FHttpRequestRef& HttpRequ
 	return true;
 }
 
-void FResponse_GetPublicKeyById::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetPublicKeyById::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 404:
-		SetResponseString(TEXT("Not Found"));
-		break;
+		return TEXT("Not Found");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetPublicKeyById::TryGetContentFor200(FRHAPI_PublicKey& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -611,7 +607,7 @@ bool FResponse_GetPublicKeyById::TryGetContentFor200(FRHAPI_PublicKey& OutConten
 
 bool FResponse_GetPublicKeyById::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -765,16 +761,14 @@ bool FRequest_Login::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 	return true;
 }
 
-void FResponse_Login::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_Login::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("User authentication failed.  See error code and description for further details.  Error Codes: - &#x60;internal_error&#x60; - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator. - &#x60;no_redirects_configured&#x60; - No redirect urls setup for oauth. - &#x60;redirect_uri_does_not_match&#x60; - Redirect URI does not match a configured value. - &#x60;error_occurred_during_exchange&#x60; - An error occurred while exchanging a code for token. - &#x60;failed_to_verify_state&#x60; - Failed to verify the state associated with the request. - &#x60;failed_to_save_state&#x60; - Error occurred saving the state. - &#x60;failed_to_save_tokens&#x60; - Problem saving tokens.  Contact an administrator - &#x60;too_many_users&#x60; - Account has too many users associated with it.  Contact an administrator - &#x60;user_auth_restricted&#x60; - Authentication for this user has been restricted - &#x60;user_needs_agreements&#x60; - User has not accepted all re")
+		return TEXT("User authentication failed.  See error code and description for further details.  Error Codes: - &#x60;internal_error&#x60; - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator. - &#x60;no_redirects_configured&#x60; - No redirect urls setup for oauth. - &#x60;redirect_uri_does_not_match&#x60; - Redirect URI does not match a configured value. - &#x60;error_occurred_during_exchange&#x60; - An error occurred while exchanging a code for token. - &#x60;failed_to_verify_state&#x60; - Failed to verify the state associated with the request. - &#x60;failed_to_save_state&#x60; - Error occurred saving the state. - &#x60;failed_to_save_tokens&#x60; - Problem saving tokens.  Contact an administrator - &#x60;too_many_users&#x60; - Account has too many users associated with it.  Contact an administrator - &#x60;user_auth_restricted&#x60; - Authentication for this user has been restricted - &#x60;user_needs_agreements&#x60; - User has not accepted all re")
 TEXT("quired agreements.  See response for list of agreements required - &#x60;error_retrieving_player_results&#x60; - Error retrieving player results - &#x60;failed_to_retrieve_roles&#x60; - Failed to retrieve roles - &#x60;client_credentials_invalid&#x60; - Client Credentials provided to authentication attempt were invalid - &#x60;authentication_limited&#x60; - Authentication is currently limited to accounts that are already logged in.  Please try again later - &#x60;authentication_locked&#x60; - Authentication is currently locked.  Please try again later - &#x60;amazon_disabled&#x60; - Amazon authentication is currently disabled - &#x60;amazon_token_empty&#x60; - Amazon access token is empty - &#x60;amazon_invalid_access_token&#x60; - Amazon access token is invalid - &#x60;amazon_token_exchange_failed&#x60; - Problem exchanging code for token with Amazon - &#x60;anon_disabled&#x60; - Anon authentication is currently disabled - &#x60;anon_token_empty&#x60; - Anon access token is empty - &#")
 TEXT("x60;apple_disabled&#x60; - Apple authentication is currently disabled - &#x60;apple_token_empty&#x60; - Apple access token is empty - &#x60;apple_failed_key_lookup&#x60; - Failed to retrieve keys from Apple - &#x60;apple_token_exchange_failed&#x60; - Problem exchanging code for token with Apple - &#x60;apple_token_key_not_valid&#x60; - public key not found - &#x60;apple_token_not_valid&#x60; - Apple access token is not valid - &#x60;authorization_code_not_found&#x60; - Authorization code not found or expired - &#x60;basic_disabled&#x60; - Basic authentication is currently disabled - &#x60;basic_token_empty&#x60; - Basic access token is empty - &#x60;basic_auth_incorrect_format&#x60; - Basic auth should be formatted like &#x60;USERNAME:PASSWORD&#x60; - &#x60;basic_auth_credentials_not_found&#x60; - Basic auth credentials not found - &#x60;epic_disabled&#x60; - Epic authentication is currently disabled - &#x60;epic_token_empty&#x60; - Epic access token is empty - &#x60;epic_v1_token_key_")
 TEXT("id_invalid&#x60; - Epic v1 token contains an invalid key id - &#x60;epic_v1_token_invalid&#x60; - Epic v1 token is invalid - &#x60;epic_v2_keys_not_available&#x60; - Epic v2 keys are not available.  Please contact an administrator - &#x60;epic_v2_token_invalid&#x60; - Epic v2 token is invalid - &#x60;epic_oauth_token_exchange_failed&#x60; - Problem exchanging code for token with Epic - &#x60;google_disabled&#x60; - Google authentication is currently disabled - &#x60;google_token_empty&#x60; - Google access token is empty - &#x60;google_keys_not_available&#x60; - Google keys are not available.  Please contact an administrator - &#x60;google_token_not_valid&#x60; - Google access token is not valid - &#x60;google_token_exchange_failed&#x60; - Problem exchanging code for token with Google - &#x60;nintendo_disabled&#x60; - Nintendo authentication is currently disabled - &#x60;nintendo_token_empty&#x60; - Nintendo access token is empty - &#x60;nintendo_env_credentials_not_found&#x60; - Ninte")
@@ -784,17 +778,17 @@ TEXT("bled&#x60; - PS4 v1 token details are disabled - &#x60;ps4_v1_token_detail
 TEXT("that the Client ID/Secret do not match.  This error can also occur for &#x60;sp-int&#x60; or &#x60;prod-qa&#x60; if the environment is not whitelisted to access the PSN environment. - &#x60;refresh_disabled&#x60; - Refresh authentication is currently disabled - &#x60;refresh_token_empty&#x60; - Refresh token is empty - &#x60;refresh_token_not_found&#x60; - Refresh token was not found or has expired - &#x60;refresh_token_invalid_user&#x60; - Refresh token refrences invalid user - &#x60;refresh_token_client_id_mismatch&#x60; - Client ID for new token request did not match original token - &#x60;steam_disabled&#x60; - Steam authentication is currently disabled - &#x60;steam_token_empty&#x60; - Steam code (Ticket) is empty - &#x60;steam_token_exchange_failed&#x60; - Problem exchanging code (ticket) for token with Steam - &#x60;steam_user_vacbanned&#x60; - User is VAC banned - &#x60;steam_user_publisherbanned&#x60; - User is publisher banned - &#x60;steam_user_offline&#x60; - User is report")
 TEXT("ing offline to Steam, causing all Steam tickets to invalidate - &#x60;steam_token_invalid&#x60; - Steam code (Ticket) was reported as invalid by Steam - &#x60;steam_token_for_wrong_app&#x60; - Steam code (Ticket) is for a different Steam Application - &#x60;twitch_disabled&#x60; - Twitch authentication is currently disabled - &#x60;twitch_token_empty&#x60; - Twitch access token is empty - &#x60;twitch_token_invalid&#x60; - Twitch access token is not valid - &#x60;twitch_keys_not_available&#x60; - Twitch keys are not available.  Please contact an administrator - &#x60;twitch_token_exchange_failed&#x60; - Problem exchanging code for token with Twitch - &#x60;xbox_disabled&#x60; - Xbox authentication is currently disabled - &#x60;xbox_xsts_token_empty&#x60; - Xbox XSTS token is empty - &#x60;xbox_xsts_token_invalid&#x60; - Xbox XSTS token is not valid - &#x60;xbox_xtoken_invalid&#x60; - Xbox XToken is not valid - &#x60;xbox_access_token_request_failed&#x60; - Problem requesting access tok")
 TEXT("en from Xbox - &#x60;xbox_xsts_token_exchange_failed&#x60; - Problem exchanging access token for XSTS token with Xbox - &#x60;xbox_xtoken_exchange_failed&#x60; - Problem exchanging XSTS token for XToken with Xbox  ")
-);
-		break;
+;
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_Login::TryGetContentFor200(FRHAPI_LoginResult& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -804,7 +798,7 @@ bool FResponse_Login::TryGetContentFor200(FRHAPI_LoginResult& OutContent) const
 
 bool FResponse_Login::TryGetContentFor403(FRHAPI_AgreementMessage& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -814,7 +808,7 @@ bool FResponse_Login::TryGetContentFor403(FRHAPI_AgreementMessage& OutContent) c
 
 bool FResponse_Login::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -947,23 +941,22 @@ bool FRequest_Logout::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 	return true;
 }
 
-void FResponse_Logout::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_Logout::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_Logout::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -973,7 +966,7 @@ bool FResponse_Logout::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 
 bool FResponse_Logout::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -1122,18 +1115,17 @@ bool FRequest_OauthLogin::SetupHttpRequest(const FHttpRequestRef& HttpRequest) c
 	return true;
 }
 
-void FResponse_OauthLogin::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_OauthLogin::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 307:
-		SetResponseString(TEXT("Redirect to next step in OAuth flow"));
-		break;
+		return TEXT("Redirect to next step in OAuth flow");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_OauthLogin::ParseHeaders()
@@ -1173,7 +1165,7 @@ TOptional<FString> FResponse_OauthLogin::GetHeader307_Location() const
 
 bool FResponse_OauthLogin::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -1322,18 +1314,17 @@ bool FRequest_OauthResponse::SetupHttpRequest(const FHttpRequestRef& HttpRequest
 	return true;
 }
 
-void FResponse_OauthResponse::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_OauthResponse::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 307:
-		SetResponseString(TEXT("Redirect to next step in OAuth flow"));
-		break;
+		return TEXT("Redirect to next step in OAuth flow");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_OauthResponse::ParseHeaders()
@@ -1373,7 +1364,7 @@ TOptional<FString> FResponse_OauthResponse::GetHeader307_Location() const
 
 bool FResponse_OauthResponse::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -1516,26 +1507,24 @@ bool FRequest_OauthTokenExchange::SetupHttpRequest(const FHttpRequestRef& HttpRe
 	return true;
 }
 
-void FResponse_OauthTokenExchange::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_OauthTokenExchange::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT(" Error Codes: - &#x60;authorization_code_not_found&#x60;: Authorization code not found or expired "));
-		break;
+		return TEXT(" Error Codes: - &#x60;authorization_code_not_found&#x60;: Authorization code not found or expired ");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_OauthTokenExchange::TryGetContentFor200(FRHAPI_OAuthTokenResponse& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -1545,7 +1534,7 @@ bool FResponse_OauthTokenExchange::TryGetContentFor200(FRHAPI_OAuthTokenResponse
 
 bool FResponse_OauthTokenExchange::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -1555,7 +1544,7 @@ bool FResponse_OauthTokenExchange::TryGetContentFor403(FRHAPI_HzApiErrorModel& O
 
 bool FResponse_OauthTokenExchange::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -1709,23 +1698,22 @@ bool FRequest_Token::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 	return true;
 }
 
-void FResponse_Token::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_Token::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_Token::TryGetContentFor200(FRHAPI_TokenResponse& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -1735,7 +1723,7 @@ bool FResponse_Token::TryGetContentFor200(FRHAPI_TokenResponse& OutContent) cons
 
 bool FResponse_Token::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -1868,23 +1856,22 @@ bool FRequest_Verify::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 	return true;
 }
 
-void FResponse_Verify::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_Verify::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_Verify::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);
@@ -1894,7 +1881,7 @@ bool FResponse_Verify::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 
 bool FResponse_Verify::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);

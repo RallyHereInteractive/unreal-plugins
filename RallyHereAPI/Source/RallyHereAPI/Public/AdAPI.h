@@ -86,7 +86,7 @@ struct RALLYHEREAPI_API FResponse_BeginNewSession : public FResponse
 	virtual ~FResponse_BeginNewSession() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_JsonValue Content;
 	// Headers
@@ -155,7 +155,7 @@ struct RALLYHEREAPI_API FResponse_FindOpportunities : public FResponse
 	virtual ~FResponse_FindOpportunities() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_AdOpportunities Content;
 	// Headers
@@ -226,7 +226,7 @@ struct RALLYHEREAPI_API FResponse_UnityAdWatched : public FResponse
 	FResponse_UnityAdWatched(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_UnityAdWatched() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FString Content;
 
@@ -284,7 +284,7 @@ struct RALLYHEREAPI_API FResponse_UnityMediationAdWatched : public FResponse
 	FResponse_UnityMediationAdWatched(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_UnityMediationAdWatched() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FString Content;
 
@@ -339,7 +339,7 @@ struct RALLYHEREAPI_API FResponse_UpdateOpportunityById : public FResponse
 	virtual ~FResponse_UpdateOpportunityById() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_JsonValue Content;
 	// Headers

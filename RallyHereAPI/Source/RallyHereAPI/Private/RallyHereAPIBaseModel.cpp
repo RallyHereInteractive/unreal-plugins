@@ -36,6 +36,9 @@ FHttpRetryParams::FHttpRetryParams(const FRetryLimitCountSetting& InRetryLimitCo
 {
 }
 
+FResponse::JsonPayloadType FResponse::DefaultJsonPayload = FResponse::JsonPayloadType();
+FResponse::StringPayloadType FResponse::DefaultStringPayload = FResponse::StringPayloadType();
+
 FResponse::FResponse(FRequestMetadata InRequestMetadata) :
 	Successful{},
 	ResponseCode{ EHttpResponseCodes::Type::Unknown },
@@ -48,10 +51,11 @@ void FResponse::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
 	ResponseCode = InHttpResponseCode;
 	SetSuccessful(EHttpResponseCodes::IsOk(InHttpResponseCode));
-	if(InHttpResponseCode == EHttpResponseCodes::RequestTimeout)
-	{
-		SetResponseString(TEXT("Request Timeout"));
-	}
+}
+
+FString FResponse::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
+{
+	return EHttpResponseCodes::GetDescription(InHttpResponseCode).ToString();
 }
 
 bool FResponse::ParseContent(bool& bOutNeedsReauth)
@@ -97,7 +101,7 @@ bool FResponse::ParseTextTypeContent(bool& bOutNeedsReauth)
 
 	bOutNeedsReauth = false;
 	
-	SetResponseString(HttpResponse->GetContentAsString());
+	SetPayload<StringPayloadType>(HttpResponse->GetContentAsString());
 	return true; // Successfully parsed
 }
 
@@ -132,7 +136,7 @@ bool FResponse::ParseJsonTypeContent(bool& bOutNeedsReauth)
 
 	if (JsonValue.IsValid())
 	{
-		SetJsonResponse(JsonValue);
+		SetPayload<JsonPayloadType>(JsonValue);
 
 		TOptional<bool> bAuthIsValid;
 		const TSharedPtr<FJsonObject>* JsonObject;
@@ -174,6 +178,8 @@ bool FResponse::ParseUnknownTypeContent(bool& bOutNeedsReauth)
 	check(HttpResponse != nullptr);
 
 	bOutNeedsReauth = false;
+	
+	ClearPayload();
 
 	return false; // could not parse unknown type
 }

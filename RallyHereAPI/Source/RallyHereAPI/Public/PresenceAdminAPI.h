@@ -176,7 +176,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetKnownPlatforms : public FResponse
 	FResponse_AdminGetKnownPlatforms(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_AdminGetKnownPlatforms() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_Platforms Content;
 
@@ -235,7 +235,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetPlayerPresence : public FResponse
 	FResponse_AdminGetPlayerPresence(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_AdminGetPlayerPresence() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlayerPresence Content;
 
@@ -299,7 +299,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetPlayerPresenceId : public FResponse
 	FResponse_AdminGetPlayerPresenceId(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_AdminGetPlayerPresenceId() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlayerPresence Content;
 
@@ -366,7 +366,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcu : public FResponse
 	FResponse_AdminGetRequestingCcu(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_AdminGetRequestingCcu() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_UnionCCU Content;
 
@@ -422,7 +422,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuAllPlatformCombined : pub
 	FResponse_AdminGetRequestingCcuAllPlatformCombined(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_AdminGetRequestingCcuAllPlatformCombined() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlatformUnionCCUs Content;
 
@@ -478,7 +478,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuAllPlatformIndividual : p
 	FResponse_AdminGetRequestingCcuAllPlatformIndividual(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_AdminGetRequestingCcuAllPlatformIndividual() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlatformIndividualCCUs Content;
 
@@ -538,7 +538,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuIndividual : public FResp
 	FResponse_AdminGetRequestingCcuIndividual(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_AdminGetRequestingCcuIndividual() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_IndividualCCUs Content;
 
@@ -595,7 +595,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuPlatformCombined : public
 	FResponse_AdminGetRequestingCcuPlatformCombined(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_AdminGetRequestingCcuPlatformCombined() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlatformUnionCCUs Content;
 
@@ -652,7 +652,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuPlatformIndividual : publ
 	FResponse_AdminGetRequestingCcuPlatformIndividual(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_AdminGetRequestingCcuPlatformIndividual() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlatformIndividualCCUs Content;
 
@@ -714,7 +714,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetTotalCcu : public FResponse
 	FResponse_AdminGetTotalCcu(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_AdminGetTotalCcu() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_UnionCCU Content;
 
@@ -770,7 +770,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuAllPlatformCombined : public F
 	FResponse_AdminGetTotalCcuAllPlatformCombined(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_AdminGetTotalCcuAllPlatformCombined() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlatformUnionCCUs Content;
 
@@ -826,7 +826,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuAllPlatformIndividual : public
 	FResponse_AdminGetTotalCcuAllPlatformIndividual(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_AdminGetTotalCcuAllPlatformIndividual() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlatformIndividualCCUs Content;
 
@@ -886,7 +886,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuIndividual : public FResponse
 	FResponse_AdminGetTotalCcuIndividual(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_AdminGetTotalCcuIndividual() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_IndividualCCUs Content;
 
@@ -943,7 +943,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuPlatformCombined : public FRes
 	FResponse_AdminGetTotalCcuPlatformCombined(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_AdminGetTotalCcuPlatformCombined() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlatformUnionCCUs Content;
 
@@ -1000,7 +1000,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuPlatformIndividual : public FR
 	FResponse_AdminGetTotalCcuPlatformIndividual(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_AdminGetTotalCcuPlatformIndividual() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlatformIndividualCCUs Content;
 
@@ -1062,7 +1062,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcu : public FResponse
 	FResponse_AdminGetUpdatingCcu(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_AdminGetUpdatingCcu() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_UnionCCU Content;
 
@@ -1118,7 +1118,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuAllPlatformCombined : publi
 	FResponse_AdminGetUpdatingCcuAllPlatformCombined(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_AdminGetUpdatingCcuAllPlatformCombined() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlatformUnionCCUs Content;
 
@@ -1174,7 +1174,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuAllPlatformIndividual : pub
 	FResponse_AdminGetUpdatingCcuAllPlatformIndividual(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_AdminGetUpdatingCcuAllPlatformIndividual() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlatformIndividualCCUs Content;
 
@@ -1234,7 +1234,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuIndividual : public FRespon
 	FResponse_AdminGetUpdatingCcuIndividual(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_AdminGetUpdatingCcuIndividual() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_IndividualCCUs Content;
 
@@ -1291,7 +1291,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuPlatformCombined : public F
 	FResponse_AdminGetUpdatingCcuPlatformCombined(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_AdminGetUpdatingCcuPlatformCombined() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlatformUnionCCUs Content;
 
@@ -1348,7 +1348,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuPlatformIndividual : public
 	FResponse_AdminGetUpdatingCcuPlatformIndividual(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_AdminGetUpdatingCcuPlatformIndividual() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlatformIndividualCCUs Content;
 
@@ -1409,7 +1409,7 @@ struct RALLYHEREAPI_API FResponse_AdminUpdatePlayerLastSeen : public FResponse
 	virtual ~FResponse_AdminUpdatePlayerLastSeen() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	
 	// Headers
@@ -1478,7 +1478,7 @@ struct RALLYHEREAPI_API FResponse_AdminUpdatePlayerLastSeenId : public FResponse
 	virtual ~FResponse_AdminUpdatePlayerLastSeenId() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	
 	// Headers

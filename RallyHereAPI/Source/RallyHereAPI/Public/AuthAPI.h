@@ -120,7 +120,7 @@ struct RALLYHEREAPI_API FResponse_GenerateKey : public FResponse
 	FResponse_GenerateKey(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GenerateKey() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_JsonValue Content;
 
@@ -165,7 +165,7 @@ struct RALLYHEREAPI_API FResponse_GetAllPublicKeys : public FResponse
 	FResponse_GetAllPublicKeys(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetAllPublicKeys() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PublicKeyList Content;
 
@@ -207,7 +207,7 @@ struct RALLYHEREAPI_API FResponse_GetPortalTokenDetails : public FResponse
 	FResponse_GetPortalTokenDetails(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetPortalTokenDetails() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	TMap<FString, FString> Content;
 
@@ -259,7 +259,7 @@ struct RALLYHEREAPI_API FResponse_GetPublicKeyById : public FResponse
 	FResponse_GetPublicKeyById(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetPublicKeyById() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PublicKey Content;
 
@@ -318,7 +318,7 @@ struct RALLYHEREAPI_API FResponse_Login : public FResponse
 	FResponse_Login(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_Login() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_LoginResult Content;
 
@@ -370,7 +370,7 @@ struct RALLYHEREAPI_API FResponse_Logout : public FResponse
 	FResponse_Logout(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_Logout() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_JsonValue Content;
 
@@ -432,7 +432,7 @@ struct RALLYHEREAPI_API FResponse_OauthLogin : public FResponse
 	virtual ~FResponse_OauthLogin() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	
 	// Headers
@@ -492,7 +492,7 @@ struct RALLYHEREAPI_API FResponse_OauthResponse : public FResponse
 	virtual ~FResponse_OauthResponse() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	
 	// Headers
@@ -546,7 +546,7 @@ struct RALLYHEREAPI_API FResponse_OauthTokenExchange : public FResponse
 	FResponse_OauthTokenExchange(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_OauthTokenExchange() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_OAuthTokenResponse Content;
 
@@ -604,7 +604,7 @@ struct RALLYHEREAPI_API FResponse_Token : public FResponse
 	FResponse_Token(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_Token() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_TokenResponse Content;
 
@@ -652,7 +652,7 @@ struct RALLYHEREAPI_API FResponse_Verify : public FResponse
 	FResponse_Verify(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_Verify() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_JsonValue Content;
 

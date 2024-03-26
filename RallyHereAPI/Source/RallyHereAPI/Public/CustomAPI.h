@@ -62,7 +62,7 @@ struct RALLYHEREAPI_API FResponse_CustomEndpointSend : public FResponse
 	FResponse_CustomEndpointSend(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_CustomEndpointSend() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_JsonValue Content;
 

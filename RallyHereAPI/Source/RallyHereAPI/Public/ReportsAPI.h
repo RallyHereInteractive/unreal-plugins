@@ -86,7 +86,7 @@ struct RALLYHEREAPI_API FResponse_CreateReportForTargetPlayerUuid : public FResp
 	FResponse_CreateReportForTargetPlayerUuid(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_CreateReportForTargetPlayerUuid() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlayerReport Content;
 
@@ -166,7 +166,7 @@ struct RALLYHEREAPI_API FResponse_GetReportsForTargetPlayerUuid : public FRespon
 	FResponse_GetReportsForTargetPlayerUuid(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetReportsForTargetPlayerUuid() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlayerReportList Content;
 
@@ -240,7 +240,7 @@ struct RALLYHEREAPI_API FResponse_GetReportsForTargetPlayerUuidSelf : public FRe
 	FResponse_GetReportsForTargetPlayerUuidSelf(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetReportsForTargetPlayerUuidSelf() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlayerReportList Content;
 
@@ -309,7 +309,7 @@ struct RALLYHEREAPI_API FResponse_GetReportsFromSourcePlayerUuid : public FRespo
 	FResponse_GetReportsFromSourcePlayerUuid(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetReportsFromSourcePlayerUuid() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlayerReportList Content;
 
@@ -377,7 +377,7 @@ struct RALLYHEREAPI_API FResponse_GetReportsFromSourcePlayerUuidSelf : public FR
 	FResponse_GetReportsFromSourcePlayerUuidSelf(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetReportsFromSourcePlayerUuidSelf() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlayerReportList Content;
 

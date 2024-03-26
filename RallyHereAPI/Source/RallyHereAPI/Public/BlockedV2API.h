@@ -79,7 +79,7 @@ struct RALLYHEREAPI_API FResponse_BlockV2 : public FResponse
 	FResponse_BlockV2(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_BlockV2() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_BlockedPlayer Content;
 
@@ -153,7 +153,7 @@ struct RALLYHEREAPI_API FResponse_GetBlockedListForPlayerV2 : public FResponse
 	virtual ~FResponse_GetBlockedListForPlayerV2() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_BlockedList Content;
 	// Headers
@@ -228,7 +228,7 @@ struct RALLYHEREAPI_API FResponse_GetBlockedV2 : public FResponse
 	FResponse_GetBlockedV2(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetBlockedV2() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_BlockedPlayer Content;
 
@@ -295,7 +295,7 @@ struct RALLYHEREAPI_API FResponse_UnblockV2 : public FResponse
 	FResponse_UnblockV2(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_UnblockV2() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	
 

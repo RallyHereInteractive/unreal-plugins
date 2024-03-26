@@ -156,7 +156,7 @@ struct RALLYHEREAPI_API FResponse_CalculateV2Ranks : public FResponse
 	FResponse_CalculateV2Ranks(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_CalculateV2Ranks() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlayerRankUpdateResponseV2 Content;
 
@@ -216,7 +216,7 @@ struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidRanks : public FResponse
 	FResponse_GetAllPlayerUuidRanks(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetAllPlayerUuidRanks() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlayerRankRequestResponse Content;
 
@@ -274,7 +274,7 @@ struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidRanksSelf : public FResponse
 	FResponse_GetAllPlayerUuidRanksSelf(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetAllPlayerUuidRanksSelf() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlayerRankRequestResponse Content;
 
@@ -326,7 +326,7 @@ struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidRanksSelfV2 : public FResponse
 	FResponse_GetAllPlayerUuidRanksSelfV2(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetAllPlayerUuidRanksSelfV2() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlayerRankRequestResponseV2 Content;
 
@@ -380,7 +380,7 @@ struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidRanksV2 : public FResponse
 	FResponse_GetAllPlayerUuidRanksV2(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetAllPlayerUuidRanksV2() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlayerRankRequestResponseV2 Content;
 
@@ -438,7 +438,7 @@ struct RALLYHEREAPI_API FResponse_GetAllRankConfig : public FResponse
 	FResponse_GetAllRankConfig(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetAllRankConfig() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_RankConfigRequestResponse Content;
 
@@ -490,7 +490,7 @@ struct RALLYHEREAPI_API FResponse_GetAllRankConfigV2 : public FResponse
 	FResponse_GetAllRankConfigV2(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetAllRankConfigV2() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_RankConfigRequestResponseV2 Content;
 
@@ -546,7 +546,7 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidRank : public FResponse
 	FResponse_GetPlayerUuidRank(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetPlayerUuidRank() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlayerRankRequestResponse Content;
 
@@ -605,7 +605,7 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidRankSelf : public FResponse
 	FResponse_GetPlayerUuidRankSelf(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetPlayerUuidRankSelf() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlayerRankRequestResponse Content;
 
@@ -663,7 +663,7 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidRankSelfV2 : public FResponse
 	FResponse_GetPlayerUuidRankSelfV2(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetPlayerUuidRankSelfV2() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlayerRankRequestResponseV2 Content;
 
@@ -723,7 +723,7 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidRankV2 : public FResponse
 	FResponse_GetPlayerUuidRankV2(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetPlayerUuidRankV2() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlayerRankRequestResponseV2 Content;
 
@@ -782,7 +782,7 @@ struct RALLYHEREAPI_API FResponse_GetRankConfig : public FResponse
 	FResponse_GetRankConfig(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetRankConfig() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_RankConfigRequestResponse Content;
 
@@ -840,7 +840,7 @@ struct RALLYHEREAPI_API FResponse_GetRankConfigV2 : public FResponse
 	FResponse_GetRankConfigV2(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetRankConfigV2() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_RankConfigRequestResponseV2 Content;
 
@@ -902,7 +902,7 @@ struct RALLYHEREAPI_API FResponse_UpdatePlayerUuidRank : public FResponse
 	FResponse_UpdatePlayerUuidRank(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_UpdatePlayerUuidRank() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlayerRankUpdateResponse Content;
 
@@ -962,7 +962,7 @@ struct RALLYHEREAPI_API FResponse_UpdatePlayerUuidRankSelf : public FResponse
 	FResponse_UpdatePlayerUuidRankSelf(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_UpdatePlayerUuidRankSelf() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlayerRankUpdateResponse Content;
 
@@ -1021,7 +1021,7 @@ struct RALLYHEREAPI_API FResponse_UpdatePlayerUuidRankSelfV2 : public FResponse
 	FResponse_UpdatePlayerUuidRankSelfV2(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_UpdatePlayerUuidRankSelfV2() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlayerRankUpdateResponseV2 Content;
 
@@ -1082,7 +1082,7 @@ struct RALLYHEREAPI_API FResponse_UpdatePlayerUuidRankV2 : public FResponse
 	FResponse_UpdatePlayerUuidRankV2(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_UpdatePlayerUuidRankV2() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlayerRankUpdateResponseV2 Content;
 
@@ -1142,7 +1142,7 @@ struct RALLYHEREAPI_API FResponse_UpdateRankingsV1 : public FResponse
 	FResponse_UpdateRankingsV1(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_UpdateRankingsV1() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlayerRankUpdateResponse Content;
 

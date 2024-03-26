@@ -386,9 +386,8 @@ bool FRequest_{{operationIdCamelCase}}::SetupHttpRequest(const FHttpRequestRef& 
 }
 
 {{#responses.0}}
-void FResponse_{{operationIdCamelCase}}::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_{{operationIdCamelCase}}::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	{{#responses}}
@@ -396,10 +395,11 @@ void FResponse_{{operationIdCamelCase}}::SetHttpResponseCode(EHttpResponseCodes:
 	{{#isDefault}}
 	default:
 	{{/isDefault}}
-		SetResponseString({{#lambdaSplitString}}{{message}}{{/lambdaSplitString}});
-		break;
+		return {{#lambdaSplitString}}{{message}}{{/lambdaSplitString}};
 	{{/responses}}
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 {{#headers.0}}
@@ -438,7 +438,7 @@ bool FResponse_{{operationIdCamelCase}}::ParseHeaders()
 {{#dataType}}
 bool FResponse_{{operationIdCamelCase}}::TryGetContentFor{{{code}}}({{{.}}}& OutContent) const
 {
-	const auto* JsonResponse = GetJsonResponse();
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
 	{
 		return TryGetJsonValue(*JsonResponse, OutContent);

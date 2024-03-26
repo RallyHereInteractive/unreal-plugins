@@ -55,7 +55,7 @@ struct RALLYHEREAPI_API FResponse_GetEnvironmentId : public FResponse
 	FResponse_GetEnvironmentId(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetEnvironmentId() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_EnvironmentConfig Content;
 
