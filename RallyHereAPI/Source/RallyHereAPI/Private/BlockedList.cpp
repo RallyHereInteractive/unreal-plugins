@@ -21,31 +21,31 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_BlockedList::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("player_uuid"));
-    RallyHereAPI::WriteJsonValue(Writer, PlayerUuid);
-    Writer->WriteIdentifierPrefix(TEXT("blocked"));
-    RallyHereAPI::WriteJsonValue(Writer, Blocked);
-    Writer->WriteIdentifierPrefix(TEXT("page"));
-    RallyHereAPI::WriteJsonValue(Writer, Page);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("player_uuid"));
+	RallyHereAPI::WriteJsonValue(Writer, PlayerUuid);
+	Writer->WriteIdentifierPrefix(TEXT("blocked"));
+	RallyHereAPI::WriteJsonValue(Writer, Blocked);
+	Writer->WriteIdentifierPrefix(TEXT("page"));
+	RallyHereAPI::WriteJsonValue(Writer, Page);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_BlockedList::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonPlayerUuidField = (*Object)->TryGetField(TEXT("player_uuid"));
-    ParseSuccess &= JsonPlayerUuidField.IsValid() && !JsonPlayerUuidField->IsNull() && TryGetJsonValue(JsonPlayerUuidField, PlayerUuid);
-    const TSharedPtr<FJsonValue> JsonBlockedField = (*Object)->TryGetField(TEXT("blocked"));
-    ParseSuccess &= JsonBlockedField.IsValid() && !JsonBlockedField->IsNull() && TryGetJsonValue(JsonBlockedField, Blocked);
-    const TSharedPtr<FJsonValue> JsonPageField = (*Object)->TryGetField(TEXT("page"));
-    ParseSuccess &= JsonPageField.IsValid() && !JsonPageField->IsNull() && TryGetJsonValue(JsonPageField, Page);
+	const TSharedPtr<FJsonValue> JsonPlayerUuidField = (*Object)->TryGetField(TEXT("player_uuid"));
+	ParseSuccess &= JsonPlayerUuidField.IsValid() && !JsonPlayerUuidField->IsNull() && TryGetJsonValue(JsonPlayerUuidField, PlayerUuid);
+	const TSharedPtr<FJsonValue> JsonBlockedField = (*Object)->TryGetField(TEXT("blocked"));
+	ParseSuccess &= JsonBlockedField.IsValid() && !JsonBlockedField->IsNull() && TryGetJsonValue(JsonBlockedField, Blocked);
+	const TSharedPtr<FJsonValue> JsonPageField = (*Object)->TryGetField(TEXT("page"));
+	ParseSuccess &= JsonPageField.IsValid() && !JsonPageField->IsNull() && TryGetJsonValue(JsonPageField, Page);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

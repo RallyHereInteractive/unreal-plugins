@@ -21,53 +21,53 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_FriendRelationshipV1::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("friends_player_uuid"));
-    RallyHereAPI::WriteJsonValue(Writer, FriendsPlayerUuid);
-    if (FriendsPlayerId_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("friends_player_id"));
-        RallyHereAPI::WriteJsonValue(Writer, FriendsPlayerId_Optional);
-    }
-    Writer->WriteIdentifierPrefix(TEXT("status"));
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(Status));
-    if (Notes_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("notes"));
-        RallyHereAPI::WriteJsonValue(Writer, Notes_Optional);
-    }
-    Writer->WriteIdentifierPrefix(TEXT("last_modified_on"));
-    RallyHereAPI::WriteJsonValue(Writer, LastModifiedOn);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("friends_player_uuid"));
+	RallyHereAPI::WriteJsonValue(Writer, FriendsPlayerUuid);
+	if (FriendsPlayerId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("friends_player_id"));
+		RallyHereAPI::WriteJsonValue(Writer, FriendsPlayerId_Optional);
+	}
+	Writer->WriteIdentifierPrefix(TEXT("status"));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Status));
+	if (Notes_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("notes"));
+		RallyHereAPI::WriteJsonValue(Writer, Notes_Optional);
+	}
+	Writer->WriteIdentifierPrefix(TEXT("last_modified_on"));
+	RallyHereAPI::WriteJsonValue(Writer, LastModifiedOn);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_FriendRelationshipV1::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonFriendsPlayerUuidField = (*Object)->TryGetField(TEXT("friends_player_uuid"));
-    ParseSuccess &= JsonFriendsPlayerUuidField.IsValid() && !JsonFriendsPlayerUuidField->IsNull() && TryGetJsonValue(JsonFriendsPlayerUuidField, FriendsPlayerUuid);
-    const TSharedPtr<FJsonValue> JsonFriendsPlayerIdField = (*Object)->TryGetField(TEXT("friends_player_id"));
-    if (JsonFriendsPlayerIdField.IsValid() && !JsonFriendsPlayerIdField->IsNull())
-    {
-        FriendsPlayerId_IsSet = TryGetJsonValue(JsonFriendsPlayerIdField, FriendsPlayerId_Optional);
-        ParseSuccess &= FriendsPlayerId_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonStatusField = (*Object)->TryGetField(TEXT("status"));
-    ParseSuccess &= JsonStatusField.IsValid() && !JsonStatusField->IsNull() && TryGetJsonValue(JsonStatusField, Status);
-    const TSharedPtr<FJsonValue> JsonNotesField = (*Object)->TryGetField(TEXT("notes"));
-    if (JsonNotesField.IsValid() && !JsonNotesField->IsNull())
-    {
-        Notes_IsSet = TryGetJsonValue(JsonNotesField, Notes_Optional);
-        ParseSuccess &= Notes_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonLastModifiedOnField = (*Object)->TryGetField(TEXT("last_modified_on"));
-    ParseSuccess &= JsonLastModifiedOnField.IsValid() && !JsonLastModifiedOnField->IsNull() && TryGetJsonValue(JsonLastModifiedOnField, LastModifiedOn);
+	const TSharedPtr<FJsonValue> JsonFriendsPlayerUuidField = (*Object)->TryGetField(TEXT("friends_player_uuid"));
+	ParseSuccess &= JsonFriendsPlayerUuidField.IsValid() && !JsonFriendsPlayerUuidField->IsNull() && TryGetJsonValue(JsonFriendsPlayerUuidField, FriendsPlayerUuid);
+	const TSharedPtr<FJsonValue> JsonFriendsPlayerIdField = (*Object)->TryGetField(TEXT("friends_player_id"));
+	if (JsonFriendsPlayerIdField.IsValid() && !JsonFriendsPlayerIdField->IsNull())
+	{
+		FriendsPlayerId_IsSet = TryGetJsonValue(JsonFriendsPlayerIdField, FriendsPlayerId_Optional);
+		ParseSuccess &= FriendsPlayerId_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonStatusField = (*Object)->TryGetField(TEXT("status"));
+	ParseSuccess &= JsonStatusField.IsValid() && !JsonStatusField->IsNull() && TryGetJsonValue(JsonStatusField, Status);
+	const TSharedPtr<FJsonValue> JsonNotesField = (*Object)->TryGetField(TEXT("notes"));
+	if (JsonNotesField.IsValid() && !JsonNotesField->IsNull())
+	{
+		Notes_IsSet = TryGetJsonValue(JsonNotesField, Notes_Optional);
+		ParseSuccess &= Notes_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonLastModifiedOnField = (*Object)->TryGetField(TEXT("last_modified_on"));
+	ParseSuccess &= JsonLastModifiedOnField.IsValid() && !JsonLastModifiedOnField->IsNull() && TryGetJsonValue(JsonLastModifiedOnField, LastModifiedOn);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

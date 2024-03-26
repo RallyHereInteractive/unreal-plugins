@@ -21,49 +21,49 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_SessionEventCreateRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("event_code"));
-    RallyHereAPI::WriteJsonValue(Writer, EventCode);
-    if (Description_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("description"));
-        RallyHereAPI::WriteJsonValue(Writer, Description_Optional);
-    }
-    if (CustomData_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("custom_data"));
-        RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
-    }
-    Writer->WriteIdentifierPrefix(TEXT("timestamp"));
-    RallyHereAPI::WriteJsonValue(Writer, Timestamp);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("event_code"));
+	RallyHereAPI::WriteJsonValue(Writer, EventCode);
+	if (Description_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("description"));
+		RallyHereAPI::WriteJsonValue(Writer, Description_Optional);
+	}
+	if (CustomData_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("custom_data"));
+		RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
+	}
+	Writer->WriteIdentifierPrefix(TEXT("timestamp"));
+	RallyHereAPI::WriteJsonValue(Writer, Timestamp);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_SessionEventCreateRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonEventCodeField = (*Object)->TryGetField(TEXT("event_code"));
-    ParseSuccess &= JsonEventCodeField.IsValid() && !JsonEventCodeField->IsNull() && TryGetJsonValue(JsonEventCodeField, EventCode);
-    const TSharedPtr<FJsonValue> JsonDescriptionField = (*Object)->TryGetField(TEXT("description"));
-    if (JsonDescriptionField.IsValid() && !JsonDescriptionField->IsNull())
-    {
-        Description_IsSet = TryGetJsonValue(JsonDescriptionField, Description_Optional);
-        ParseSuccess &= Description_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-    if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
-    {
-        CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
-        ParseSuccess &= CustomData_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonTimestampField = (*Object)->TryGetField(TEXT("timestamp"));
-    ParseSuccess &= JsonTimestampField.IsValid() && !JsonTimestampField->IsNull() && TryGetJsonValue(JsonTimestampField, Timestamp);
+	const TSharedPtr<FJsonValue> JsonEventCodeField = (*Object)->TryGetField(TEXT("event_code"));
+	ParseSuccess &= JsonEventCodeField.IsValid() && !JsonEventCodeField->IsNull() && TryGetJsonValue(JsonEventCodeField, EventCode);
+	const TSharedPtr<FJsonValue> JsonDescriptionField = (*Object)->TryGetField(TEXT("description"));
+	if (JsonDescriptionField.IsValid() && !JsonDescriptionField->IsNull())
+	{
+		Description_IsSet = TryGetJsonValue(JsonDescriptionField, Description_Optional);
+		ParseSuccess &= Description_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
+	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	{
+		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
+		ParseSuccess &= CustomData_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonTimestampField = (*Object)->TryGetField(TEXT("timestamp"));
+	ParseSuccess &= JsonTimestampField.IsValid() && !JsonTimestampField->IsNull() && TryGetJsonValue(JsonTimestampField, Timestamp);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

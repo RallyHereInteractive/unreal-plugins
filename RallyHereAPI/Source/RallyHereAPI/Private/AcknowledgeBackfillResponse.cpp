@@ -21,30 +21,30 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_AcknowledgeBackfillResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (BackfilledPlayers_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("backfilled_players"));
-        RallyHereAPI::WriteJsonValue(Writer, BackfilledPlayers_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (BackfilledPlayers_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("backfilled_players"));
+		RallyHereAPI::WriteJsonValue(Writer, BackfilledPlayers_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_AcknowledgeBackfillResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonBackfilledPlayersField = (*Object)->TryGetField(TEXT("backfilled_players"));
-    if (JsonBackfilledPlayersField.IsValid() && !JsonBackfilledPlayersField->IsNull())
-    {
-        BackfilledPlayers_IsSet = TryGetJsonValue(JsonBackfilledPlayersField, BackfilledPlayers_Optional);
-        ParseSuccess &= BackfilledPlayers_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonBackfilledPlayersField = (*Object)->TryGetField(TEXT("backfilled_players"));
+	if (JsonBackfilledPlayersField.IsValid() && !JsonBackfilledPlayersField->IsNull())
+	{
+		BackfilledPlayers_IsSet = TryGetJsonValue(JsonBackfilledPlayersField, BackfilledPlayers_Optional);
+		ParseSuccess &= BackfilledPlayers_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

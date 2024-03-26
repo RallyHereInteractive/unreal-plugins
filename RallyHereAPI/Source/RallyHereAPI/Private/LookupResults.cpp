@@ -21,52 +21,52 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_LookupResults::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (DisplayNames_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("display_names"));
-        RallyHereAPI::WriteJsonValue(Writer, DisplayNames_Optional);
-    }
-    if (IdentityPlatforms_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("identity_platforms"));
-        RallyHereAPI::WriteJsonValue(Writer, IdentityPlatforms_Optional);
-    }
-    if (IdentityPlatformsByPlatform_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("identity_platforms_by_platform"));
-        RallyHereAPI::WriteJsonValue(Writer, IdentityPlatformsByPlatform_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (DisplayNames_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("display_names"));
+		RallyHereAPI::WriteJsonValue(Writer, DisplayNames_Optional);
+	}
+	if (IdentityPlatforms_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("identity_platforms"));
+		RallyHereAPI::WriteJsonValue(Writer, IdentityPlatforms_Optional);
+	}
+	if (IdentityPlatformsByPlatform_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("identity_platforms_by_platform"));
+		RallyHereAPI::WriteJsonValue(Writer, IdentityPlatformsByPlatform_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_LookupResults::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonDisplayNamesField = (*Object)->TryGetField(TEXT("display_names"));
-    if (JsonDisplayNamesField.IsValid() && !JsonDisplayNamesField->IsNull())
-    {
-        DisplayNames_IsSet = TryGetJsonValue(JsonDisplayNamesField, DisplayNames_Optional);
-        ParseSuccess &= DisplayNames_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonIdentityPlatformsField = (*Object)->TryGetField(TEXT("identity_platforms"));
-    if (JsonIdentityPlatformsField.IsValid() && !JsonIdentityPlatformsField->IsNull())
-    {
-        IdentityPlatforms_IsSet = TryGetJsonValue(JsonIdentityPlatformsField, IdentityPlatforms_Optional);
-        ParseSuccess &= IdentityPlatforms_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonIdentityPlatformsByPlatformField = (*Object)->TryGetField(TEXT("identity_platforms_by_platform"));
-    if (JsonIdentityPlatformsByPlatformField.IsValid() && !JsonIdentityPlatformsByPlatformField->IsNull())
-    {
-        IdentityPlatformsByPlatform_IsSet = TryGetJsonValue(JsonIdentityPlatformsByPlatformField, IdentityPlatformsByPlatform_Optional);
-        ParseSuccess &= IdentityPlatformsByPlatform_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonDisplayNamesField = (*Object)->TryGetField(TEXT("display_names"));
+	if (JsonDisplayNamesField.IsValid() && !JsonDisplayNamesField->IsNull())
+	{
+		DisplayNames_IsSet = TryGetJsonValue(JsonDisplayNamesField, DisplayNames_Optional);
+		ParseSuccess &= DisplayNames_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonIdentityPlatformsField = (*Object)->TryGetField(TEXT("identity_platforms"));
+	if (JsonIdentityPlatformsField.IsValid() && !JsonIdentityPlatformsField->IsNull())
+	{
+		IdentityPlatforms_IsSet = TryGetJsonValue(JsonIdentityPlatformsField, IdentityPlatforms_Optional);
+		ParseSuccess &= IdentityPlatforms_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonIdentityPlatformsByPlatformField = (*Object)->TryGetField(TEXT("identity_platforms_by_platform"));
+	if (JsonIdentityPlatformsByPlatformField.IsValid() && !JsonIdentityPlatformsByPlatformField->IsNull())
+	{
+		IdentityPlatformsByPlatform_IsSet = TryGetJsonValue(JsonIdentityPlatformsByPlatformField, IdentityPlatformsByPlatform_Optional);
+		ParseSuccess &= IdentityPlatformsByPlatform_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

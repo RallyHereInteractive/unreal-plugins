@@ -20,52 +20,52 @@ using RallyHereAPI::TryGetJsonValue;
 // Implementation for ERHAPI_RoleAuthBypass
 FString EnumToString(const ERHAPI_RoleAuthBypass& Value)
 {
-    switch (Value)
-    {
-    case ERHAPI_RoleAuthBypass::None:
-        return TEXT("none");
-    case ERHAPI_RoleAuthBypass::Limited:
-        return TEXT("limited");
-    case ERHAPI_RoleAuthBypass::Locked:
-        return TEXT("locked");
-    }
+	switch (Value)
+	{
+	case ERHAPI_RoleAuthBypass::None:
+		return TEXT("none");
+	case ERHAPI_RoleAuthBypass::Limited:
+		return TEXT("limited");
+	case ERHAPI_RoleAuthBypass::Locked:
+		return TEXT("locked");
+	}
 
-    UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_RoleAuthBypass::Values Value (%d)"), (int)Value);
-    return TEXT("");
+	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_RoleAuthBypass::Values Value (%d)"), (int)Value);
+	return TEXT("");
 }
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_RoleAuthBypass& Value)
 {
-    static TMap<FString, ERHAPI_RoleAuthBypass> StringToEnum = { 
-        { TEXT("none"), ERHAPI_RoleAuthBypass::None },
-        { TEXT("limited"), ERHAPI_RoleAuthBypass::Limited },
-        { TEXT("locked"), ERHAPI_RoleAuthBypass::Locked },    };
+	static TMap<FString, ERHAPI_RoleAuthBypass> StringToEnum = { 
+		{ TEXT("none"), ERHAPI_RoleAuthBypass::None },
+		{ TEXT("limited"), ERHAPI_RoleAuthBypass::Limited },
+		{ TEXT("locked"), ERHAPI_RoleAuthBypass::Locked },	};
 
-    const auto Found = StringToEnum.Find(EnumAsString);
-    if(Found)
-        Value = *Found;
-    return Found != nullptr;
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
+	return Found != nullptr;
 }
 
 FStringFormatArg ToStringFormatArg(const ERHAPI_RoleAuthBypass& Value)
 {
-    return FStringFormatArg(EnumToString(Value));
+	return FStringFormatArg(EnumToString(Value));
 }
 
 void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const ERHAPI_RoleAuthBypass& Value)
 {
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
 }
 
 bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, ERHAPI_RoleAuthBypass& Value)
 {
-    FString TmpValue;
-    if (JsonValue->TryGetString(TmpValue))
-    {
-        if (EnumFromString(TmpValue, Value))
-            return true;
-    }
-    return false;
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if (EnumFromString(TmpValue, Value))
+			return true;
+	}
+	return false;
 }
 
 

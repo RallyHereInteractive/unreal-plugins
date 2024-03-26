@@ -21,30 +21,30 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_InventorySessionCreateRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (SessionPlatform_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("session_platform"));
-        RallyHereAPI::WriteJsonValue(Writer, EnumToString(SessionPlatform_Optional));
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (SessionPlatform_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("session_platform"));
+		RallyHereAPI::WriteJsonValue(Writer, EnumToString(SessionPlatform_Optional));
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_InventorySessionCreateRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonSessionPlatformField = (*Object)->TryGetField(TEXT("session_platform"));
-    if (JsonSessionPlatformField.IsValid() && !JsonSessionPlatformField->IsNull())
-    {
-        SessionPlatform_IsSet = TryGetJsonValue(JsonSessionPlatformField, SessionPlatform_Optional);
-        ParseSuccess &= SessionPlatform_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonSessionPlatformField = (*Object)->TryGetField(TEXT("session_platform"));
+	if (JsonSessionPlatformField.IsValid() && !JsonSessionPlatformField->IsNull())
+	{
+		SessionPlatform_IsSet = TryGetJsonValue(JsonSessionPlatformField, SessionPlatform_Optional);
+		ParseSuccess &= SessionPlatform_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

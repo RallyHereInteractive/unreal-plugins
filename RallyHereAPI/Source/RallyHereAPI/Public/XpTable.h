@@ -22,113 +22,113 @@
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_XpTable : public FRHAPI_Model
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    /**
-    * @brief Fills this object with data from the passed in JSON
-    *
-    * @param [in] JsonValue Data from the API call.
-    *
-    * @return true if parsing of the JSON data was successful.
-    */
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	/**
+	* @brief Fills this object with data from the passed in JSON
+	*
+	* @param [in] JsonValue Data from the API call.
+	*
+	* @return true if parsing of the JSON data was successful.
+	*/
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
-    /**
-    * @brief Writes the data from this object into the specified JSON Writer stream
-    *
-    * @param [in] Writer JSON Writer stream to push .
-    */
-    void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	/**
+	* @brief Writes the data from this object into the specified JSON Writer stream
+	*
+	* @param [in] Writer JSON Writer stream to push .
+	*/
+	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief Custom data associated with the resource */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    TMap<FString, FString> CustomData_Optional{  };
-    /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool CustomData_IsSet{ false };
-    /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-    TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
-    /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-    const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
-    /** @brief Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue */
-    const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
-    bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
-    /** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-    TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
-    /** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-    const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
-    /** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-    void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
-     /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
-    void ClearCustomData() { CustomData_IsSet = false; }
+	/** @brief Custom data associated with the resource */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TMap<FString, FString> CustomData_Optional{  };
+	/** @brief true if CustomData_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool CustomData_IsSet{ false };
+	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
+	TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
+	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
+	const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
+	/** @brief Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue */
+	const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
+	bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
+	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
+	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
+	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
+	void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	void ClearCustomData() { CustomData_IsSet = false; }
 
-    /** @brief The XP Table UUID */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FGuid XpUuid_Optional{  };
-    /** @brief true if XpUuid_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool XpUuid_IsSet{ false };
-    /** @brief Gets the value of XpUuid_Optional, regardless of it having been set */
-    FGuid& GetXpUuid() { return XpUuid_Optional; }
-    /** @brief Gets the value of XpUuid_Optional, regardless of it having been set */
-    const FGuid& GetXpUuid() const { return XpUuid_Optional; }
-    /** @brief Gets the value of XpUuid_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FGuid& GetXpUuid(const FGuid& DefaultValue) const { if (XpUuid_IsSet) return XpUuid_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of XpUuid_Optional and returns true if it has been set, otherwise returns false */
-    bool GetXpUuid(FGuid& OutValue) const { if (XpUuid_IsSet) OutValue = XpUuid_Optional; return XpUuid_IsSet; }
-    /** @brief Returns a pointer to XpUuid_Optional, if it has been set, otherwise returns nullptr */
-    FGuid* GetXpUuidOrNull() { if (XpUuid_IsSet) return &XpUuid_Optional; return nullptr; }
-    /** @brief Returns a pointer to XpUuid_Optional, if it has been set, otherwise returns nullptr */
-    const FGuid* GetXpUuidOrNull() const { if (XpUuid_IsSet) return &XpUuid_Optional; return nullptr; }
-    /** @brief Sets the value of XpUuid_Optional and also sets XpUuid_IsSet to true */
-    void SetXpUuid(FGuid NewValue) { XpUuid_Optional = NewValue; XpUuid_IsSet = true; }
-     /** @brief Clears the value of XpUuid_Optional and sets XpUuid_IsSet to false */
-    void ClearXpUuid() { XpUuid_IsSet = false; }
+	/** @brief The XP Table UUID */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FGuid XpUuid_Optional{  };
+	/** @brief true if XpUuid_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool XpUuid_IsSet{ false };
+	/** @brief Gets the value of XpUuid_Optional, regardless of it having been set */
+	FGuid& GetXpUuid() { return XpUuid_Optional; }
+	/** @brief Gets the value of XpUuid_Optional, regardless of it having been set */
+	const FGuid& GetXpUuid() const { return XpUuid_Optional; }
+	/** @brief Gets the value of XpUuid_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FGuid& GetXpUuid(const FGuid& DefaultValue) const { if (XpUuid_IsSet) return XpUuid_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of XpUuid_Optional and returns true if it has been set, otherwise returns false */
+	bool GetXpUuid(FGuid& OutValue) const { if (XpUuid_IsSet) OutValue = XpUuid_Optional; return XpUuid_IsSet; }
+	/** @brief Returns a pointer to XpUuid_Optional, if it has been set, otherwise returns nullptr */
+	FGuid* GetXpUuidOrNull() { if (XpUuid_IsSet) return &XpUuid_Optional; return nullptr; }
+	/** @brief Returns a pointer to XpUuid_Optional, if it has been set, otherwise returns nullptr */
+	const FGuid* GetXpUuidOrNull() const { if (XpUuid_IsSet) return &XpUuid_Optional; return nullptr; }
+	/** @brief Sets the value of XpUuid_Optional and also sets XpUuid_IsSet to true */
+	void SetXpUuid(FGuid NewValue) { XpUuid_Optional = NewValue; XpUuid_IsSet = true; }
+	 /** @brief Clears the value of XpUuid_Optional and sets XpUuid_IsSet to false */
+	void ClearXpUuid() { XpUuid_IsSet = false; }
 
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    TMap<FString, int32> XpEntries_Optional{  };
-    /** @brief true if XpEntries_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool XpEntries_IsSet{ false };
-    /** @brief Gets the value of XpEntries_Optional, regardless of it having been set */
-    TMap<FString, int32>& GetXpEntries() { return XpEntries_Optional; }
-    /** @brief Gets the value of XpEntries_Optional, regardless of it having been set */
-    const TMap<FString, int32>& GetXpEntries() const { return XpEntries_Optional; }
-    /** @brief Gets the value of XpEntries_Optional, if it has been set, otherwise it returns DefaultValue */
-    const TMap<FString, int32>& GetXpEntries(const TMap<FString, int32>& DefaultValue) const { if (XpEntries_IsSet) return XpEntries_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of XpEntries_Optional and returns true if it has been set, otherwise returns false */
-    bool GetXpEntries(TMap<FString, int32>& OutValue) const { if (XpEntries_IsSet) OutValue = XpEntries_Optional; return XpEntries_IsSet; }
-    /** @brief Returns a pointer to XpEntries_Optional, if it has been set, otherwise returns nullptr */
-    TMap<FString, int32>* GetXpEntriesOrNull() { if (XpEntries_IsSet) return &XpEntries_Optional; return nullptr; }
-    /** @brief Returns a pointer to XpEntries_Optional, if it has been set, otherwise returns nullptr */
-    const TMap<FString, int32>* GetXpEntriesOrNull() const { if (XpEntries_IsSet) return &XpEntries_Optional; return nullptr; }
-    /** @brief Sets the value of XpEntries_Optional and also sets XpEntries_IsSet to true */
-    void SetXpEntries(TMap<FString, int32> NewValue) { XpEntries_Optional = NewValue; XpEntries_IsSet = true; }
-     /** @brief Clears the value of XpEntries_Optional and sets XpEntries_IsSet to false */
-    void ClearXpEntries() { XpEntries_IsSet = false; }
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TMap<FString, int32> XpEntries_Optional{  };
+	/** @brief true if XpEntries_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool XpEntries_IsSet{ false };
+	/** @brief Gets the value of XpEntries_Optional, regardless of it having been set */
+	TMap<FString, int32>& GetXpEntries() { return XpEntries_Optional; }
+	/** @brief Gets the value of XpEntries_Optional, regardless of it having been set */
+	const TMap<FString, int32>& GetXpEntries() const { return XpEntries_Optional; }
+	/** @brief Gets the value of XpEntries_Optional, if it has been set, otherwise it returns DefaultValue */
+	const TMap<FString, int32>& GetXpEntries(const TMap<FString, int32>& DefaultValue) const { if (XpEntries_IsSet) return XpEntries_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of XpEntries_Optional and returns true if it has been set, otherwise returns false */
+	bool GetXpEntries(TMap<FString, int32>& OutValue) const { if (XpEntries_IsSet) OutValue = XpEntries_Optional; return XpEntries_IsSet; }
+	/** @brief Returns a pointer to XpEntries_Optional, if it has been set, otherwise returns nullptr */
+	TMap<FString, int32>* GetXpEntriesOrNull() { if (XpEntries_IsSet) return &XpEntries_Optional; return nullptr; }
+	/** @brief Returns a pointer to XpEntries_Optional, if it has been set, otherwise returns nullptr */
+	const TMap<FString, int32>* GetXpEntriesOrNull() const { if (XpEntries_IsSet) return &XpEntries_Optional; return nullptr; }
+	/** @brief Sets the value of XpEntries_Optional and also sets XpEntries_IsSet to true */
+	void SetXpEntries(TMap<FString, int32> NewValue) { XpEntries_Optional = NewValue; XpEntries_IsSet = true; }
+	 /** @brief Clears the value of XpEntries_Optional and sets XpEntries_IsSet to false */
+	void ClearXpEntries() { XpEntries_IsSet = false; }
 
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FRHAPI_CacheInfo CacheInfo_Optional{  };
-    /** @brief true if CacheInfo_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool CacheInfo_IsSet{ false };
-    /** @brief Gets the value of CacheInfo_Optional, regardless of it having been set */
-    FRHAPI_CacheInfo& GetCacheInfo() { return CacheInfo_Optional; }
-    /** @brief Gets the value of CacheInfo_Optional, regardless of it having been set */
-    const FRHAPI_CacheInfo& GetCacheInfo() const { return CacheInfo_Optional; }
-    /** @brief Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FRHAPI_CacheInfo& GetCacheInfo(const FRHAPI_CacheInfo& DefaultValue) const { if (CacheInfo_IsSet) return CacheInfo_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false */
-    bool GetCacheInfo(FRHAPI_CacheInfo& OutValue) const { if (CacheInfo_IsSet) OutValue = CacheInfo_Optional; return CacheInfo_IsSet; }
-    /** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
-    FRHAPI_CacheInfo* GetCacheInfoOrNull() { if (CacheInfo_IsSet) return &CacheInfo_Optional; return nullptr; }
-    /** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
-    const FRHAPI_CacheInfo* GetCacheInfoOrNull() const { if (CacheInfo_IsSet) return &CacheInfo_Optional; return nullptr; }
-    /** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true */
-    void SetCacheInfo(FRHAPI_CacheInfo NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
-     /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
-    void ClearCacheInfo() { CacheInfo_IsSet = false; }
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FRHAPI_CacheInfo CacheInfo_Optional{  };
+	/** @brief true if CacheInfo_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool CacheInfo_IsSet{ false };
+	/** @brief Gets the value of CacheInfo_Optional, regardless of it having been set */
+	FRHAPI_CacheInfo& GetCacheInfo() { return CacheInfo_Optional; }
+	/** @brief Gets the value of CacheInfo_Optional, regardless of it having been set */
+	const FRHAPI_CacheInfo& GetCacheInfo() const { return CacheInfo_Optional; }
+	/** @brief Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FRHAPI_CacheInfo& GetCacheInfo(const FRHAPI_CacheInfo& DefaultValue) const { if (CacheInfo_IsSet) return CacheInfo_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false */
+	bool GetCacheInfo(FRHAPI_CacheInfo& OutValue) const { if (CacheInfo_IsSet) OutValue = CacheInfo_Optional; return CacheInfo_IsSet; }
+	/** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
+	FRHAPI_CacheInfo* GetCacheInfoOrNull() { if (CacheInfo_IsSet) return &CacheInfo_Optional; return nullptr; }
+	/** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
+	const FRHAPI_CacheInfo* GetCacheInfoOrNull() const { if (CacheInfo_IsSet) return &CacheInfo_Optional; return nullptr; }
+	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true */
+	void SetCacheInfo(FRHAPI_CacheInfo NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
+	 /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
+	void ClearCacheInfo() { CacheInfo_IsSet = false; }
 };
 
 /** @} */

@@ -21,55 +21,55 @@
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_MatchSession : public FRHAPI_Model
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    /**
-    * @brief Fills this object with data from the passed in JSON
-    *
-    * @param [in] JsonValue Data from the API call.
-    *
-    * @return true if parsing of the JSON data was successful.
-    */
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	/**
+	* @brief Fills this object with data from the passed in JSON
+	*
+	* @param [in] JsonValue Data from the API call.
+	*
+	* @return true if parsing of the JSON data was successful.
+	*/
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
-    /**
-    * @brief Writes the data from this object into the specified JSON Writer stream
-    *
-    * @param [in] Writer JSON Writer stream to push .
-    */
-    void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	/**
+	* @brief Writes the data from this object into the specified JSON Writer stream
+	*
+	* @param [in] Writer JSON Writer stream to push .
+	*/
+	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief Session ID */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FString SessionId{  };
-    /** @brief Gets the value of SessionId */
-    FString& GetSessionId() { return SessionId; }
-    /** @brief Gets the value of SessionId */
-    const FString& GetSessionId() const { return SessionId; }
-    /** @brief Sets the value of SessionId */
-    void SetSessionId(FString NewValue) { SessionId = NewValue;  }
+	/** @brief Session ID */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString SessionId{  };
+	/** @brief Gets the value of SessionId */
+	FString& GetSessionId() { return SessionId; }
+	/** @brief Gets the value of SessionId */
+	const FString& GetSessionId() const { return SessionId; }
+	/** @brief Sets the value of SessionId */
+	void SetSessionId(FString NewValue) { SessionId = NewValue;  }
 
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FString MatchmakingProfileId_Optional{  };
-    /** @brief true if MatchmakingProfileId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool MatchmakingProfileId_IsSet{ false };
-    /** @brief Gets the value of MatchmakingProfileId_Optional, regardless of it having been set */
-    FString& GetMatchmakingProfileId() { return MatchmakingProfileId_Optional; }
-    /** @brief Gets the value of MatchmakingProfileId_Optional, regardless of it having been set */
-    const FString& GetMatchmakingProfileId() const { return MatchmakingProfileId_Optional; }
-    /** @brief Gets the value of MatchmakingProfileId_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FString& GetMatchmakingProfileId(const FString& DefaultValue) const { if (MatchmakingProfileId_IsSet) return MatchmakingProfileId_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of MatchmakingProfileId_Optional and returns true if it has been set, otherwise returns false */
-    bool GetMatchmakingProfileId(FString& OutValue) const { if (MatchmakingProfileId_IsSet) OutValue = MatchmakingProfileId_Optional; return MatchmakingProfileId_IsSet; }
-    /** @brief Returns a pointer to MatchmakingProfileId_Optional, if it has been set, otherwise returns nullptr */
-    FString* GetMatchmakingProfileIdOrNull() { if (MatchmakingProfileId_IsSet) return &MatchmakingProfileId_Optional; return nullptr; }
-    /** @brief Returns a pointer to MatchmakingProfileId_Optional, if it has been set, otherwise returns nullptr */
-    const FString* GetMatchmakingProfileIdOrNull() const { if (MatchmakingProfileId_IsSet) return &MatchmakingProfileId_Optional; return nullptr; }
-    /** @brief Sets the value of MatchmakingProfileId_Optional and also sets MatchmakingProfileId_IsSet to true */
-    void SetMatchmakingProfileId(FString NewValue) { MatchmakingProfileId_Optional = NewValue; MatchmakingProfileId_IsSet = true; }
-     /** @brief Clears the value of MatchmakingProfileId_Optional and sets MatchmakingProfileId_IsSet to false */
-    void ClearMatchmakingProfileId() { MatchmakingProfileId_IsSet = false; }
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString MatchmakingProfileId_Optional{  };
+	/** @brief true if MatchmakingProfileId_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool MatchmakingProfileId_IsSet{ false };
+	/** @brief Gets the value of MatchmakingProfileId_Optional, regardless of it having been set */
+	FString& GetMatchmakingProfileId() { return MatchmakingProfileId_Optional; }
+	/** @brief Gets the value of MatchmakingProfileId_Optional, regardless of it having been set */
+	const FString& GetMatchmakingProfileId() const { return MatchmakingProfileId_Optional; }
+	/** @brief Gets the value of MatchmakingProfileId_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetMatchmakingProfileId(const FString& DefaultValue) const { if (MatchmakingProfileId_IsSet) return MatchmakingProfileId_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of MatchmakingProfileId_Optional and returns true if it has been set, otherwise returns false */
+	bool GetMatchmakingProfileId(FString& OutValue) const { if (MatchmakingProfileId_IsSet) OutValue = MatchmakingProfileId_Optional; return MatchmakingProfileId_IsSet; }
+	/** @brief Returns a pointer to MatchmakingProfileId_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetMatchmakingProfileIdOrNull() { if (MatchmakingProfileId_IsSet) return &MatchmakingProfileId_Optional; return nullptr; }
+	/** @brief Returns a pointer to MatchmakingProfileId_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetMatchmakingProfileIdOrNull() const { if (MatchmakingProfileId_IsSet) return &MatchmakingProfileId_Optional; return nullptr; }
+	/** @brief Sets the value of MatchmakingProfileId_Optional and also sets MatchmakingProfileId_IsSet to true */
+	void SetMatchmakingProfileId(FString NewValue) { MatchmakingProfileId_Optional = NewValue; MatchmakingProfileId_IsSet = true; }
+	 /** @brief Clears the value of MatchmakingProfileId_Optional and sets MatchmakingProfileId_IsSet to false */
+	void ClearMatchmakingProfileId() { MatchmakingProfileId_IsSet = false; }
 };
 
 /** @} */

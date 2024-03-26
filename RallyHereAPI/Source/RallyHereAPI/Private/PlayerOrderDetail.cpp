@@ -21,56 +21,56 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_PlayerOrderDetail::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("type"));
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(Type));
-    if (LootId_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("loot_id"));
-        RallyHereAPI::WriteJsonValue(Writer, LootId_Optional);
-    }
-    if (InvChange_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("inv_change"));
-        RallyHereAPI::WriteJsonValue(Writer, InvChange_Optional);
-    }
-    if (Order_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("order"));
-        RallyHereAPI::WriteJsonValue(Writer, Order_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("type"));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Type));
+	if (LootId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("loot_id"));
+		RallyHereAPI::WriteJsonValue(Writer, LootId_Optional);
+	}
+	if (InvChange_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("inv_change"));
+		RallyHereAPI::WriteJsonValue(Writer, InvChange_Optional);
+	}
+	if (Order_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("order"));
+		RallyHereAPI::WriteJsonValue(Writer, Order_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_PlayerOrderDetail::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
-    ParseSuccess &= JsonTypeField.IsValid() && !JsonTypeField->IsNull() && TryGetJsonValue(JsonTypeField, Type);
-    const TSharedPtr<FJsonValue> JsonLootIdField = (*Object)->TryGetField(TEXT("loot_id"));
-    if (JsonLootIdField.IsValid() && !JsonLootIdField->IsNull())
-    {
-        LootId_IsSet = TryGetJsonValue(JsonLootIdField, LootId_Optional);
-        ParseSuccess &= LootId_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonInvChangeField = (*Object)->TryGetField(TEXT("inv_change"));
-    if (JsonInvChangeField.IsValid() && !JsonInvChangeField->IsNull())
-    {
-        InvChange_IsSet = TryGetJsonValue(JsonInvChangeField, InvChange_Optional);
-        ParseSuccess &= InvChange_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonOrderField = (*Object)->TryGetField(TEXT("order"));
-    if (JsonOrderField.IsValid() && !JsonOrderField->IsNull())
-    {
-        Order_IsSet = TryGetJsonValue(JsonOrderField, Order_Optional);
-        ParseSuccess &= Order_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
+	ParseSuccess &= JsonTypeField.IsValid() && !JsonTypeField->IsNull() && TryGetJsonValue(JsonTypeField, Type);
+	const TSharedPtr<FJsonValue> JsonLootIdField = (*Object)->TryGetField(TEXT("loot_id"));
+	if (JsonLootIdField.IsValid() && !JsonLootIdField->IsNull())
+	{
+		LootId_IsSet = TryGetJsonValue(JsonLootIdField, LootId_Optional);
+		ParseSuccess &= LootId_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInvChangeField = (*Object)->TryGetField(TEXT("inv_change"));
+	if (JsonInvChangeField.IsValid() && !JsonInvChangeField->IsNull())
+	{
+		InvChange_IsSet = TryGetJsonValue(JsonInvChangeField, InvChange_Optional);
+		ParseSuccess &= InvChange_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonOrderField = (*Object)->TryGetField(TEXT("order"));
+	if (JsonOrderField.IsValid() && !JsonOrderField->IsNull())
+	{
+		Order_IsSet = TryGetJsonValue(JsonOrderField, Order_Optional);
+		ParseSuccess &= Order_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

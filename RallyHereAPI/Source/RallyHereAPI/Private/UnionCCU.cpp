@@ -21,27 +21,27 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_UnionCCU::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("count"));
-    RallyHereAPI::WriteJsonValue(Writer, Count);
-    Writer->WriteIdentifierPrefix(TEXT("timestamps"));
-    RallyHereAPI::WriteJsonValue(Writer, Timestamps);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("count"));
+	RallyHereAPI::WriteJsonValue(Writer, Count);
+	Writer->WriteIdentifierPrefix(TEXT("timestamps"));
+	RallyHereAPI::WriteJsonValue(Writer, Timestamps);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_UnionCCU::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonCountField = (*Object)->TryGetField(TEXT("count"));
-    ParseSuccess &= JsonCountField.IsValid() && !JsonCountField->IsNull() && TryGetJsonValue(JsonCountField, Count);
-    const TSharedPtr<FJsonValue> JsonTimestampsField = (*Object)->TryGetField(TEXT("timestamps"));
-    ParseSuccess &= JsonTimestampsField.IsValid() && !JsonTimestampsField->IsNull() && TryGetJsonValue(JsonTimestampsField, Timestamps);
+	const TSharedPtr<FJsonValue> JsonCountField = (*Object)->TryGetField(TEXT("count"));
+	ParseSuccess &= JsonCountField.IsValid() && !JsonCountField->IsNull() && TryGetJsonValue(JsonCountField, Count);
+	const TSharedPtr<FJsonValue> JsonTimestampsField = (*Object)->TryGetField(TEXT("timestamps"));
+	ParseSuccess &= JsonTimestampsField.IsValid() && !JsonTimestampsField->IsNull() && TryGetJsonValue(JsonTimestampsField, Timestamps);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

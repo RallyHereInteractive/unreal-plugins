@@ -13,10 +13,10 @@ DEFINE_LOG_CATEGORY(LogRallyHereAPI);
 
 void FRallyHereAPIModule::StartupModule()
 {
-    RallyHereAPI::FRallyHereAPIHttpRequester::Initialize();
+	RallyHereAPI::FRallyHereAPIHttpRequester::Initialize();
 }
 
 void FRallyHereAPIModule::ShutdownModule()
 {
-    RallyHereAPI::FRallyHereAPIHttpRequester::Uninitialize();
+	RallyHereAPI::FRallyHereAPIHttpRequester::Uninitialize();
 }

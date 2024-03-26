@@ -21,60 +21,60 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_OAuthTokenExchange::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("grant_type"));
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(GrantType));
-    Writer->WriteIdentifierPrefix(TEXT("code"));
-    RallyHereAPI::WriteJsonValue(Writer, Code);
-    if (AcceptedEula_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("accepted_eula"));
-        RallyHereAPI::WriteJsonValue(Writer, AcceptedEula_Optional);
-    }
-    if (AcceptedTos_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("accepted_tos"));
-        RallyHereAPI::WriteJsonValue(Writer, AcceptedTos_Optional);
-    }
-    if (AcceptedPrivacyPolicy_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("accepted_privacy_policy"));
-        RallyHereAPI::WriteJsonValue(Writer, AcceptedPrivacyPolicy_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("grant_type"));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(GrantType));
+	Writer->WriteIdentifierPrefix(TEXT("code"));
+	RallyHereAPI::WriteJsonValue(Writer, Code);
+	if (AcceptedEula_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("accepted_eula"));
+		RallyHereAPI::WriteJsonValue(Writer, AcceptedEula_Optional);
+	}
+	if (AcceptedTos_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("accepted_tos"));
+		RallyHereAPI::WriteJsonValue(Writer, AcceptedTos_Optional);
+	}
+	if (AcceptedPrivacyPolicy_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("accepted_privacy_policy"));
+		RallyHereAPI::WriteJsonValue(Writer, AcceptedPrivacyPolicy_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_OAuthTokenExchange::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonGrantTypeField = (*Object)->TryGetField(TEXT("grant_type"));
-    ParseSuccess &= JsonGrantTypeField.IsValid() && !JsonGrantTypeField->IsNull() && TryGetJsonValue(JsonGrantTypeField, GrantType);
-    const TSharedPtr<FJsonValue> JsonCodeField = (*Object)->TryGetField(TEXT("code"));
-    ParseSuccess &= JsonCodeField.IsValid() && !JsonCodeField->IsNull() && TryGetJsonValue(JsonCodeField, Code);
-    const TSharedPtr<FJsonValue> JsonAcceptedEulaField = (*Object)->TryGetField(TEXT("accepted_eula"));
-    if (JsonAcceptedEulaField.IsValid() && !JsonAcceptedEulaField->IsNull())
-    {
-        AcceptedEula_IsSet = TryGetJsonValue(JsonAcceptedEulaField, AcceptedEula_Optional);
-        ParseSuccess &= AcceptedEula_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonAcceptedTosField = (*Object)->TryGetField(TEXT("accepted_tos"));
-    if (JsonAcceptedTosField.IsValid() && !JsonAcceptedTosField->IsNull())
-    {
-        AcceptedTos_IsSet = TryGetJsonValue(JsonAcceptedTosField, AcceptedTos_Optional);
-        ParseSuccess &= AcceptedTos_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonAcceptedPrivacyPolicyField = (*Object)->TryGetField(TEXT("accepted_privacy_policy"));
-    if (JsonAcceptedPrivacyPolicyField.IsValid() && !JsonAcceptedPrivacyPolicyField->IsNull())
-    {
-        AcceptedPrivacyPolicy_IsSet = TryGetJsonValue(JsonAcceptedPrivacyPolicyField, AcceptedPrivacyPolicy_Optional);
-        ParseSuccess &= AcceptedPrivacyPolicy_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonGrantTypeField = (*Object)->TryGetField(TEXT("grant_type"));
+	ParseSuccess &= JsonGrantTypeField.IsValid() && !JsonGrantTypeField->IsNull() && TryGetJsonValue(JsonGrantTypeField, GrantType);
+	const TSharedPtr<FJsonValue> JsonCodeField = (*Object)->TryGetField(TEXT("code"));
+	ParseSuccess &= JsonCodeField.IsValid() && !JsonCodeField->IsNull() && TryGetJsonValue(JsonCodeField, Code);
+	const TSharedPtr<FJsonValue> JsonAcceptedEulaField = (*Object)->TryGetField(TEXT("accepted_eula"));
+	if (JsonAcceptedEulaField.IsValid() && !JsonAcceptedEulaField->IsNull())
+	{
+		AcceptedEula_IsSet = TryGetJsonValue(JsonAcceptedEulaField, AcceptedEula_Optional);
+		ParseSuccess &= AcceptedEula_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonAcceptedTosField = (*Object)->TryGetField(TEXT("accepted_tos"));
+	if (JsonAcceptedTosField.IsValid() && !JsonAcceptedTosField->IsNull())
+	{
+		AcceptedTos_IsSet = TryGetJsonValue(JsonAcceptedTosField, AcceptedTos_Optional);
+		ParseSuccess &= AcceptedTos_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonAcceptedPrivacyPolicyField = (*Object)->TryGetField(TEXT("accepted_privacy_policy"));
+	if (JsonAcceptedPrivacyPolicyField.IsValid() && !JsonAcceptedPrivacyPolicyField->IsNull())
+	{
+		AcceptedPrivacyPolicy_IsSet = TryGetJsonValue(JsonAcceptedPrivacyPolicyField, AcceptedPrivacyPolicy_Optional);
+		ParseSuccess &= AcceptedPrivacyPolicy_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

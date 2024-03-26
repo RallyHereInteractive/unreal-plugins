@@ -21,42 +21,42 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_RankUpdateRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (InstanceId_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("instance_id"));
-        RallyHereAPI::WriteJsonValue(Writer, InstanceId_Optional);
-    }
-    Writer->WriteIdentifierPrefix(TEXT("rank_id"));
-    RallyHereAPI::WriteJsonValue(Writer, RankId);
-    Writer->WriteIdentifierPrefix(TEXT("match_length_seconds"));
-    RallyHereAPI::WriteJsonValue(Writer, MatchLengthSeconds);
-    Writer->WriteIdentifierPrefix(TEXT("teams"));
-    RallyHereAPI::WriteJsonValue(Writer, Teams);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (InstanceId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("instance_id"));
+		RallyHereAPI::WriteJsonValue(Writer, InstanceId_Optional);
+	}
+	Writer->WriteIdentifierPrefix(TEXT("rank_id"));
+	RallyHereAPI::WriteJsonValue(Writer, RankId);
+	Writer->WriteIdentifierPrefix(TEXT("match_length_seconds"));
+	RallyHereAPI::WriteJsonValue(Writer, MatchLengthSeconds);
+	Writer->WriteIdentifierPrefix(TEXT("teams"));
+	RallyHereAPI::WriteJsonValue(Writer, Teams);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_RankUpdateRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonInstanceIdField = (*Object)->TryGetField(TEXT("instance_id"));
-    if (JsonInstanceIdField.IsValid() && !JsonInstanceIdField->IsNull())
-    {
-        InstanceId_IsSet = TryGetJsonValue(JsonInstanceIdField, InstanceId_Optional);
-        ParseSuccess &= InstanceId_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonRankIdField = (*Object)->TryGetField(TEXT("rank_id"));
-    ParseSuccess &= JsonRankIdField.IsValid() && !JsonRankIdField->IsNull() && TryGetJsonValue(JsonRankIdField, RankId);
-    const TSharedPtr<FJsonValue> JsonMatchLengthSecondsField = (*Object)->TryGetField(TEXT("match_length_seconds"));
-    ParseSuccess &= JsonMatchLengthSecondsField.IsValid() && !JsonMatchLengthSecondsField->IsNull() && TryGetJsonValue(JsonMatchLengthSecondsField, MatchLengthSeconds);
-    const TSharedPtr<FJsonValue> JsonTeamsField = (*Object)->TryGetField(TEXT("teams"));
-    ParseSuccess &= JsonTeamsField.IsValid() && !JsonTeamsField->IsNull() && TryGetJsonValue(JsonTeamsField, Teams);
+	const TSharedPtr<FJsonValue> JsonInstanceIdField = (*Object)->TryGetField(TEXT("instance_id"));
+	if (JsonInstanceIdField.IsValid() && !JsonInstanceIdField->IsNull())
+	{
+		InstanceId_IsSet = TryGetJsonValue(JsonInstanceIdField, InstanceId_Optional);
+		ParseSuccess &= InstanceId_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonRankIdField = (*Object)->TryGetField(TEXT("rank_id"));
+	ParseSuccess &= JsonRankIdField.IsValid() && !JsonRankIdField->IsNull() && TryGetJsonValue(JsonRankIdField, RankId);
+	const TSharedPtr<FJsonValue> JsonMatchLengthSecondsField = (*Object)->TryGetField(TEXT("match_length_seconds"));
+	ParseSuccess &= JsonMatchLengthSecondsField.IsValid() && !JsonMatchLengthSecondsField->IsNull() && TryGetJsonValue(JsonMatchLengthSecondsField, MatchLengthSeconds);
+	const TSharedPtr<FJsonValue> JsonTeamsField = (*Object)->TryGetField(TEXT("teams"));
+	ParseSuccess &= JsonTeamsField.IsValid() && !JsonTeamsField->IsNull() && TryGetJsonValue(JsonTeamsField, Teams);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

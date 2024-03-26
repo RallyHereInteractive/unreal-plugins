@@ -18,20 +18,20 @@
 UENUM(BlueprintType)
 enum class ERHAPI_EntitlementErrorCode : uint8
 {
-    None UMETA(ToolTip="No error occured"),
-    AuthTokenFailure UMETA(ToolTip="Failed to find or validate the auth token"),
-    MissingInformation UMETA(ToolTip="Missing information in the request"),
-    FailedToConsume UMETA(ToolTip="Failed to consume the entitlement"),
-    NoSkuFound UMETA(ToolTip="No SKU found for this entitlement on the backend"),
-    WrongSkuTypeProvided UMETA(ToolTip="Entitlement is defined with a different SKU type than the one provided"),
-    DurableAuthorityTypeNotValid UMETA(ToolTip="Durable entitlements are not allowed by this platform"),
-    DurableSingleUseAuthorityTypeNotValid UMETA(ToolTip="Durable single use entitlements are not allowed by this platform"),
-    ConsumableAuthorityTypeNotValid UMETA(ToolTip="Consumable entitlements are not allowed by this platform"),
-    UnknownSkuTypeProvided UMETA(ToolTip="Unknown SKU type provided"),
-    FailedToSubmitOrder UMETA(ToolTip="Failed to submit the order to the backend"),
-    AlreadyAppliedDurableSingleUse UMETA(ToolTip="Durable single use entitlement has already been applied"),
-    QuantityZero UMETA(ToolTip="Quantity was zero, nothing to apply"),
-    PreviouslyApplied UMETA(ToolTip="Entitlement was previously applied"),
+	None UMETA(ToolTip="No error occured"),
+	AuthTokenFailure UMETA(ToolTip="Failed to find or validate the auth token"),
+	MissingInformation UMETA(ToolTip="Missing information in the request"),
+	FailedToConsume UMETA(ToolTip="Failed to consume the entitlement"),
+	NoSkuFound UMETA(ToolTip="No SKU found for this entitlement on the backend"),
+	WrongSkuTypeProvided UMETA(ToolTip="Entitlement is defined with a different SKU type than the one provided"),
+	DurableAuthorityTypeNotValid UMETA(ToolTip="Durable entitlements are not allowed by this platform"),
+	DurableSingleUseAuthorityTypeNotValid UMETA(ToolTip="Durable single use entitlements are not allowed by this platform"),
+	ConsumableAuthorityTypeNotValid UMETA(ToolTip="Consumable entitlements are not allowed by this platform"),
+	UnknownSkuTypeProvided UMETA(ToolTip="Unknown SKU type provided"),
+	FailedToSubmitOrder UMETA(ToolTip="Failed to submit the order to the backend"),
+	AlreadyAppliedDurableSingleUse UMETA(ToolTip="Durable single use entitlement has already been applied"),
+	QuantityZero UMETA(ToolTip="Quantity was zero, nothing to apply"),
+	PreviouslyApplied UMETA(ToolTip="Entitlement was previously applied"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_EntitlementErrorCode& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_EntitlementErrorCode& EnumValue);

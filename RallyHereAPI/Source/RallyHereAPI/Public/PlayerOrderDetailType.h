@@ -18,12 +18,12 @@
 UENUM(BlueprintType)
 enum class ERHAPI_PlayerOrderDetailType : uint8
 {
-    Unknown UMETA(ToolTip="Unknown."),
-    InventoryChange UMETA(ToolTip="Inventory change."),
-    DynamicBundleLti UMETA(ToolTip="Dynamic Bundle LTI."),
-    ClaimPromoCode UMETA(ToolTip="Claim Promo Code."),
-    ReturnPromoCode UMETA(ToolTip="Return Promo Code."),
-    NewOrder UMETA(ToolTip="New Order."),
+	Unknown UMETA(ToolTip="Unknown."),
+	InventoryChange UMETA(ToolTip="Inventory change."),
+	DynamicBundleLti UMETA(ToolTip="Dynamic Bundle LTI."),
+	ClaimPromoCode UMETA(ToolTip="Claim Promo Code."),
+	ReturnPromoCode UMETA(ToolTip="Return Promo Code."),
+	NewOrder UMETA(ToolTip="New Order."),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_PlayerOrderDetailType& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_PlayerOrderDetailType& EnumValue);

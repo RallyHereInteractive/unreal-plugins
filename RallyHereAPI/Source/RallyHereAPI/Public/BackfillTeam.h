@@ -21,51 +21,51 @@
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_BackfillTeam : public FRHAPI_Model
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    /**
-    * @brief Fills this object with data from the passed in JSON
-    *
-    * @param [in] JsonValue Data from the API call.
-    *
-    * @return true if parsing of the JSON data was successful.
-    */
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	/**
+	* @brief Fills this object with data from the passed in JSON
+	*
+	* @param [in] JsonValue Data from the API call.
+	*
+	* @return true if parsing of the JSON data was successful.
+	*/
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
-    /**
-    * @brief Writes the data from this object into the specified JSON Writer stream
-    *
-    * @param [in] Writer JSON Writer stream to push .
-    */
-    void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	/**
+	* @brief Writes the data from this object into the specified JSON Writer stream
+	*
+	* @param [in] Writer JSON Writer stream to push .
+	*/
+	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief The number of players we want to backfill */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    int32 PlayersRequired{ 0 };
-    /** @brief Gets the value of PlayersRequired */
-    int32& GetPlayersRequired() { return PlayersRequired; }
-    /** @brief Gets the value of PlayersRequired */
-    const int32& GetPlayersRequired() const { return PlayersRequired; }
-    /** @brief Sets the value of PlayersRequired */
-    void SetPlayersRequired(int32 NewValue) { PlayersRequired = NewValue;  }
-    /** @brief Returns true if PlayersRequired matches the default value */
-    bool IsPlayersRequiredDefaultValue() const { return PlayersRequired == 0; }
-    /** @brief Sets the value of PlayersRequired to its default  */
-    void SetPlayersRequiredToDefault() { PlayersRequired = 0;  }
+	/** @brief The number of players we want to backfill */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 PlayersRequired{ 0 };
+	/** @brief Gets the value of PlayersRequired */
+	int32& GetPlayersRequired() { return PlayersRequired; }
+	/** @brief Gets the value of PlayersRequired */
+	const int32& GetPlayersRequired() const { return PlayersRequired; }
+	/** @brief Sets the value of PlayersRequired */
+	void SetPlayersRequired(int32 NewValue) { PlayersRequired = NewValue;  }
+	/** @brief Returns true if PlayersRequired matches the default value */
+	bool IsPlayersRequiredDefaultValue() const { return PlayersRequired == 0; }
+	/** @brief Sets the value of PlayersRequired to its default  */
+	void SetPlayersRequiredToDefault() { PlayersRequired = 0;  }
 
-    /** @brief Id for the team that requires backfilled players */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    int32 TeamId{ 0 };
-    /** @brief Gets the value of TeamId */
-    int32& GetTeamId() { return TeamId; }
-    /** @brief Gets the value of TeamId */
-    const int32& GetTeamId() const { return TeamId; }
-    /** @brief Sets the value of TeamId */
-    void SetTeamId(int32 NewValue) { TeamId = NewValue;  }
-    /** @brief Returns true if TeamId matches the default value */
-    bool IsTeamIdDefaultValue() const { return TeamId == 0; }
-    /** @brief Sets the value of TeamId to its default  */
-    void SetTeamIdToDefault() { TeamId = 0;  }
+	/** @brief Id for the team that requires backfilled players */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 TeamId{ 0 };
+	/** @brief Gets the value of TeamId */
+	int32& GetTeamId() { return TeamId; }
+	/** @brief Gets the value of TeamId */
+	const int32& GetTeamId() const { return TeamId; }
+	/** @brief Sets the value of TeamId */
+	void SetTeamId(int32 NewValue) { TeamId = NewValue;  }
+	/** @brief Returns true if TeamId matches the default value */
+	bool IsTeamIdDefaultValue() const { return TeamId == 0; }
+	/** @brief Sets the value of TeamId to its default  */
+	void SetTeamIdToDefault() { TeamId = 0;  }
 };
 
 /** @} */

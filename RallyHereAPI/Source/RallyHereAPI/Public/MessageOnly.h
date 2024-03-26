@@ -21,33 +21,33 @@
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_MessageOnly : public FRHAPI_Model
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    /**
-    * @brief Fills this object with data from the passed in JSON
-    *
-    * @param [in] JsonValue Data from the API call.
-    *
-    * @return true if parsing of the JSON data was successful.
-    */
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	/**
+	* @brief Fills this object with data from the passed in JSON
+	*
+	* @param [in] JsonValue Data from the API call.
+	*
+	* @return true if parsing of the JSON data was successful.
+	*/
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
-    /**
-    * @brief Writes the data from this object into the specified JSON Writer stream
-    *
-    * @param [in] Writer JSON Writer stream to push .
-    */
-    void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	/**
+	* @brief Writes the data from this object into the specified JSON Writer stream
+	*
+	* @param [in] Writer JSON Writer stream to push .
+	*/
+	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief Message */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FString Message{  };
-    /** @brief Gets the value of Message */
-    FString& GetMessage() { return Message; }
-    /** @brief Gets the value of Message */
-    const FString& GetMessage() const { return Message; }
-    /** @brief Sets the value of Message */
-    void SetMessage(FString NewValue) { Message = NewValue;  }
+	/** @brief Message */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Message{  };
+	/** @brief Gets the value of Message */
+	FString& GetMessage() { return Message; }
+	/** @brief Gets the value of Message */
+	const FString& GetMessage() const { return Message; }
+	/** @brief Sets the value of Message */
+	void SetMessage(FString NewValue) { Message = NewValue;  }
 };
 
 /** @} */

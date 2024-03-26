@@ -21,41 +21,41 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_TimeFrames::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (TimeFrames_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("time_frames"));
-        RallyHereAPI::WriteJsonValue(Writer, TimeFrames_Optional);
-    }
-    if (CacheInfo_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("cache_info"));
-        RallyHereAPI::WriteJsonValue(Writer, CacheInfo_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (TimeFrames_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("time_frames"));
+		RallyHereAPI::WriteJsonValue(Writer, TimeFrames_Optional);
+	}
+	if (CacheInfo_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("cache_info"));
+		RallyHereAPI::WriteJsonValue(Writer, CacheInfo_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_TimeFrames::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonTimeFramesField = (*Object)->TryGetField(TEXT("time_frames"));
-    if (JsonTimeFramesField.IsValid() && !JsonTimeFramesField->IsNull())
-    {
-        TimeFrames_IsSet = TryGetJsonValue(JsonTimeFramesField, TimeFrames_Optional);
-        ParseSuccess &= TimeFrames_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
-    if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
-    {
-        CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
-        ParseSuccess &= CacheInfo_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonTimeFramesField = (*Object)->TryGetField(TEXT("time_frames"));
+	if (JsonTimeFramesField.IsValid() && !JsonTimeFramesField->IsNull())
+	{
+		TimeFrames_IsSet = TryGetJsonValue(JsonTimeFramesField, TimeFrames_Optional);
+		ParseSuccess &= TimeFrames_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
+	if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
+	{
+		CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
+		ParseSuccess &= CacheInfo_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

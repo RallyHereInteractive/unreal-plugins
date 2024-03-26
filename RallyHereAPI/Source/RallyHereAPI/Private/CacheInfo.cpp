@@ -21,34 +21,34 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_CacheInfo::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("etag"));
-    RallyHereAPI::WriteJsonValue(Writer, Etag);
-    if (StrRep_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("str_rep"));
-        RallyHereAPI::WriteJsonValue(Writer, StrRep_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("etag"));
+	RallyHereAPI::WriteJsonValue(Writer, Etag);
+	if (StrRep_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("str_rep"));
+		RallyHereAPI::WriteJsonValue(Writer, StrRep_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_CacheInfo::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonEtagField = (*Object)->TryGetField(TEXT("etag"));
-    ParseSuccess &= JsonEtagField.IsValid() && !JsonEtagField->IsNull() && TryGetJsonValue(JsonEtagField, Etag);
-    const TSharedPtr<FJsonValue> JsonStrRepField = (*Object)->TryGetField(TEXT("str_rep"));
-    if (JsonStrRepField.IsValid() && !JsonStrRepField->IsNull())
-    {
-        StrRep_IsSet = TryGetJsonValue(JsonStrRepField, StrRep_Optional);
-        ParseSuccess &= StrRep_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonEtagField = (*Object)->TryGetField(TEXT("etag"));
+	ParseSuccess &= JsonEtagField.IsValid() && !JsonEtagField->IsNull() && TryGetJsonValue(JsonEtagField, Etag);
+	const TSharedPtr<FJsonValue> JsonStrRepField = (*Object)->TryGetField(TEXT("str_rep"));
+	if (JsonStrRepField.IsValid() && !JsonStrRepField->IsNull())
+	{
+		StrRep_IsSet = TryGetJsonValue(JsonStrRepField, StrRep_Optional);
+		ParseSuccess &= StrRep_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

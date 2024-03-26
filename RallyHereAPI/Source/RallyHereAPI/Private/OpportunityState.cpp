@@ -20,52 +20,52 @@ using RallyHereAPI::TryGetJsonValue;
 // Implementation for ERHAPI_OpportunityState
 FString EnumToString(const ERHAPI_OpportunityState& Value)
 {
-    switch (Value)
-    {
-    case ERHAPI_OpportunityState::Start:
-        return TEXT("start");
-    case ERHAPI_OpportunityState::Complete:
-        return TEXT("complete");
-    case ERHAPI_OpportunityState::Abort:
-        return TEXT("abort");
-    }
+	switch (Value)
+	{
+	case ERHAPI_OpportunityState::Start:
+		return TEXT("start");
+	case ERHAPI_OpportunityState::Complete:
+		return TEXT("complete");
+	case ERHAPI_OpportunityState::Abort:
+		return TEXT("abort");
+	}
 
-    UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_OpportunityState::Values Value (%d)"), (int)Value);
-    return TEXT("");
+	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_OpportunityState::Values Value (%d)"), (int)Value);
+	return TEXT("");
 }
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_OpportunityState& Value)
 {
-    static TMap<FString, ERHAPI_OpportunityState> StringToEnum = { 
-        { TEXT("start"), ERHAPI_OpportunityState::Start },
-        { TEXT("complete"), ERHAPI_OpportunityState::Complete },
-        { TEXT("abort"), ERHAPI_OpportunityState::Abort },    };
+	static TMap<FString, ERHAPI_OpportunityState> StringToEnum = { 
+		{ TEXT("start"), ERHAPI_OpportunityState::Start },
+		{ TEXT("complete"), ERHAPI_OpportunityState::Complete },
+		{ TEXT("abort"), ERHAPI_OpportunityState::Abort },	};
 
-    const auto Found = StringToEnum.Find(EnumAsString);
-    if(Found)
-        Value = *Found;
-    return Found != nullptr;
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
+	return Found != nullptr;
 }
 
 FStringFormatArg ToStringFormatArg(const ERHAPI_OpportunityState& Value)
 {
-    return FStringFormatArg(EnumToString(Value));
+	return FStringFormatArg(EnumToString(Value));
 }
 
 void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const ERHAPI_OpportunityState& Value)
 {
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
 }
 
 bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, ERHAPI_OpportunityState& Value)
 {
-    FString TmpValue;
-    if (JsonValue->TryGetString(TmpValue))
-    {
-        if (EnumFromString(TmpValue, Value))
-            return true;
-    }
-    return false;
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if (EnumFromString(TmpValue, Value))
+			return true;
+	}
+	return false;
 }
 
 

@@ -21,34 +21,34 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_Notifications::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (Notifications_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("notifications"));
-        RallyHereAPI::WriteJsonValue(Writer, Notifications_Optional);
-    }
-    Writer->WriteIdentifierPrefix(TEXT("cursor"));
-    RallyHereAPI::WriteJsonValue(Writer, Cursor);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (Notifications_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("notifications"));
+		RallyHereAPI::WriteJsonValue(Writer, Notifications_Optional);
+	}
+	Writer->WriteIdentifierPrefix(TEXT("cursor"));
+	RallyHereAPI::WriteJsonValue(Writer, Cursor);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_Notifications::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonNotificationsField = (*Object)->TryGetField(TEXT("notifications"));
-    if (JsonNotificationsField.IsValid() && !JsonNotificationsField->IsNull())
-    {
-        Notifications_IsSet = TryGetJsonValue(JsonNotificationsField, Notifications_Optional);
-        ParseSuccess &= Notifications_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonCursorField = (*Object)->TryGetField(TEXT("cursor"));
-    ParseSuccess &= JsonCursorField.IsValid() && !JsonCursorField->IsNull() && TryGetJsonValue(JsonCursorField, Cursor);
+	const TSharedPtr<FJsonValue> JsonNotificationsField = (*Object)->TryGetField(TEXT("notifications"));
+	if (JsonNotificationsField.IsValid() && !JsonNotificationsField->IsNull())
+	{
+		Notifications_IsSet = TryGetJsonValue(JsonNotificationsField, Notifications_Optional);
+		ParseSuccess &= Notifications_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonCursorField = (*Object)->TryGetField(TEXT("cursor"));
+	ParseSuccess &= JsonCursorField.IsValid() && !JsonCursorField->IsNull() && TryGetJsonValue(JsonCursorField, Cursor);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

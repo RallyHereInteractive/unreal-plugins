@@ -23,79 +23,79 @@
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_PlayerSession : public FRHAPI_Model
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    /**
-    * @brief Fills this object with data from the passed in JSON
-    *
-    * @param [in] JsonValue Data from the API call.
-    *
-    * @return true if parsing of the JSON data was successful.
-    */
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	/**
+	* @brief Fills this object with data from the passed in JSON
+	*
+	* @param [in] JsonValue Data from the API call.
+	*
+	* @return true if parsing of the JSON data was successful.
+	*/
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
-    /**
-    * @brief Writes the data from this object into the specified JSON Writer stream
-    *
-    * @param [in] Writer JSON Writer stream to push .
-    */
-    void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	/**
+	* @brief Writes the data from this object into the specified JSON Writer stream
+	*
+	* @param [in] Writer JSON Writer stream to push .
+	*/
+	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief template type */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FString Type{  };
-    /** @brief Gets the value of Type */
-    FString& GetType() { return Type; }
-    /** @brief Gets the value of Type */
-    const FString& GetType() const { return Type; }
-    /** @brief Sets the value of Type */
-    void SetType(FString NewValue) { Type = NewValue;  }
+	/** @brief template type */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Type{  };
+	/** @brief Gets the value of Type */
+	FString& GetType() { return Type; }
+	/** @brief Gets the value of Type */
+	const FString& GetType() const { return Type; }
+	/** @brief Sets the value of Type */
+	void SetType(FString NewValue) { Type = NewValue;  }
 
-    /** @brief Sessions the player is currently a part of for this session type, if any. */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    TSet<FString> SessionIds_Optional{  };
-    /** @brief true if SessionIds_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool SessionIds_IsSet{ false };
-    /** @brief Gets the value of SessionIds_Optional, regardless of it having been set */
-    TSet<FString>& GetSessionIds() { return SessionIds_Optional; }
-    /** @brief Gets the value of SessionIds_Optional, regardless of it having been set */
-    const TSet<FString>& GetSessionIds() const { return SessionIds_Optional; }
-    /** @brief Gets the value of SessionIds_Optional, if it has been set, otherwise it returns DefaultValue */
-    const TSet<FString>& GetSessionIds(const TSet<FString>& DefaultValue) const { if (SessionIds_IsSet) return SessionIds_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of SessionIds_Optional and returns true if it has been set, otherwise returns false */
-    bool GetSessionIds(TSet<FString>& OutValue) const { if (SessionIds_IsSet) OutValue = SessionIds_Optional; return SessionIds_IsSet; }
-    /** @brief Returns a pointer to SessionIds_Optional, if it has been set, otherwise returns nullptr */
-    TSet<FString>* GetSessionIdsOrNull() { if (SessionIds_IsSet) return &SessionIds_Optional; return nullptr; }
-    /** @brief Returns a pointer to SessionIds_Optional, if it has been set, otherwise returns nullptr */
-    const TSet<FString>* GetSessionIdsOrNull() const { if (SessionIds_IsSet) return &SessionIds_Optional; return nullptr; }
-    /** @brief Sets the value of SessionIds_Optional and also sets SessionIds_IsSet to true */
-    void SetSessionIds(TSet<FString> NewValue) { SessionIds_Optional = NewValue; SessionIds_IsSet = true; }
-     /** @brief Clears the value of SessionIds_Optional and sets SessionIds_IsSet to false */
-    void ClearSessionIds() { SessionIds_IsSet = false; }
+	/** @brief Sessions the player is currently a part of for this session type, if any. */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TSet<FString> SessionIds_Optional{  };
+	/** @brief true if SessionIds_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool SessionIds_IsSet{ false };
+	/** @brief Gets the value of SessionIds_Optional, regardless of it having been set */
+	TSet<FString>& GetSessionIds() { return SessionIds_Optional; }
+	/** @brief Gets the value of SessionIds_Optional, regardless of it having been set */
+	const TSet<FString>& GetSessionIds() const { return SessionIds_Optional; }
+	/** @brief Gets the value of SessionIds_Optional, if it has been set, otherwise it returns DefaultValue */
+	const TSet<FString>& GetSessionIds(const TSet<FString>& DefaultValue) const { if (SessionIds_IsSet) return SessionIds_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of SessionIds_Optional and returns true if it has been set, otherwise returns false */
+	bool GetSessionIds(TSet<FString>& OutValue) const { if (SessionIds_IsSet) OutValue = SessionIds_Optional; return SessionIds_IsSet; }
+	/** @brief Returns a pointer to SessionIds_Optional, if it has been set, otherwise returns nullptr */
+	TSet<FString>* GetSessionIdsOrNull() { if (SessionIds_IsSet) return &SessionIds_Optional; return nullptr; }
+	/** @brief Returns a pointer to SessionIds_Optional, if it has been set, otherwise returns nullptr */
+	const TSet<FString>* GetSessionIdsOrNull() const { if (SessionIds_IsSet) return &SessionIds_Optional; return nullptr; }
+	/** @brief Sets the value of SessionIds_Optional and also sets SessionIds_IsSet to true */
+	void SetSessionIds(TSet<FString> NewValue) { SessionIds_Optional = NewValue; SessionIds_IsSet = true; }
+	 /** @brief Clears the value of SessionIds_Optional and sets SessionIds_IsSet to false */
+	void ClearSessionIds() { SessionIds_IsSet = false; }
 
-    /** @brief Pending invites, if any, for the current player in this session type */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    TMap<FString, FRHAPI_PlayerSessionInvite> PendingInvites_Optional{  };
-    /** @brief true if PendingInvites_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool PendingInvites_IsSet{ false };
-    /** @brief Gets the value of PendingInvites_Optional, regardless of it having been set */
-    TMap<FString, FRHAPI_PlayerSessionInvite>& GetPendingInvites() { return PendingInvites_Optional; }
-    /** @brief Gets the value of PendingInvites_Optional, regardless of it having been set */
-    const TMap<FString, FRHAPI_PlayerSessionInvite>& GetPendingInvites() const { return PendingInvites_Optional; }
-    /** @brief Gets the value of PendingInvites_Optional, if it has been set, otherwise it returns DefaultValue */
-    const TMap<FString, FRHAPI_PlayerSessionInvite>& GetPendingInvites(const TMap<FString, FRHAPI_PlayerSessionInvite>& DefaultValue) const { if (PendingInvites_IsSet) return PendingInvites_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of PendingInvites_Optional and returns true if it has been set, otherwise returns false */
-    bool GetPendingInvites(TMap<FString, FRHAPI_PlayerSessionInvite>& OutValue) const { if (PendingInvites_IsSet) OutValue = PendingInvites_Optional; return PendingInvites_IsSet; }
-    /** @brief Returns a pointer to PendingInvites_Optional, if it has been set, otherwise returns nullptr */
-    TMap<FString, FRHAPI_PlayerSessionInvite>* GetPendingInvitesOrNull() { if (PendingInvites_IsSet) return &PendingInvites_Optional; return nullptr; }
-    /** @brief Returns a pointer to PendingInvites_Optional, if it has been set, otherwise returns nullptr */
-    const TMap<FString, FRHAPI_PlayerSessionInvite>* GetPendingInvitesOrNull() const { if (PendingInvites_IsSet) return &PendingInvites_Optional; return nullptr; }
-    /** @brief Sets the value of PendingInvites_Optional and also sets PendingInvites_IsSet to true */
-    void SetPendingInvites(TMap<FString, FRHAPI_PlayerSessionInvite> NewValue) { PendingInvites_Optional = NewValue; PendingInvites_IsSet = true; }
-     /** @brief Clears the value of PendingInvites_Optional and sets PendingInvites_IsSet to false */
-    void ClearPendingInvites() { PendingInvites_IsSet = false; }
+	/** @brief Pending invites, if any, for the current player in this session type */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TMap<FString, FRHAPI_PlayerSessionInvite> PendingInvites_Optional{  };
+	/** @brief true if PendingInvites_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool PendingInvites_IsSet{ false };
+	/** @brief Gets the value of PendingInvites_Optional, regardless of it having been set */
+	TMap<FString, FRHAPI_PlayerSessionInvite>& GetPendingInvites() { return PendingInvites_Optional; }
+	/** @brief Gets the value of PendingInvites_Optional, regardless of it having been set */
+	const TMap<FString, FRHAPI_PlayerSessionInvite>& GetPendingInvites() const { return PendingInvites_Optional; }
+	/** @brief Gets the value of PendingInvites_Optional, if it has been set, otherwise it returns DefaultValue */
+	const TMap<FString, FRHAPI_PlayerSessionInvite>& GetPendingInvites(const TMap<FString, FRHAPI_PlayerSessionInvite>& DefaultValue) const { if (PendingInvites_IsSet) return PendingInvites_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of PendingInvites_Optional and returns true if it has been set, otherwise returns false */
+	bool GetPendingInvites(TMap<FString, FRHAPI_PlayerSessionInvite>& OutValue) const { if (PendingInvites_IsSet) OutValue = PendingInvites_Optional; return PendingInvites_IsSet; }
+	/** @brief Returns a pointer to PendingInvites_Optional, if it has been set, otherwise returns nullptr */
+	TMap<FString, FRHAPI_PlayerSessionInvite>* GetPendingInvitesOrNull() { if (PendingInvites_IsSet) return &PendingInvites_Optional; return nullptr; }
+	/** @brief Returns a pointer to PendingInvites_Optional, if it has been set, otherwise returns nullptr */
+	const TMap<FString, FRHAPI_PlayerSessionInvite>* GetPendingInvitesOrNull() const { if (PendingInvites_IsSet) return &PendingInvites_Optional; return nullptr; }
+	/** @brief Sets the value of PendingInvites_Optional and also sets PendingInvites_IsSet to true */
+	void SetPendingInvites(TMap<FString, FRHAPI_PlayerSessionInvite> NewValue) { PendingInvites_Optional = NewValue; PendingInvites_IsSet = true; }
+	 /** @brief Clears the value of PendingInvites_Optional and sets PendingInvites_IsSet to false */
+	void ClearPendingInvites() { PendingInvites_IsSet = false; }
 };
 
 /** @} */

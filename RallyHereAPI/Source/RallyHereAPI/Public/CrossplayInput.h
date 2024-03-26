@@ -18,10 +18,10 @@
 UENUM(BlueprintType)
 enum class ERHAPI_CrossplayInput : uint8
 {
-    Any UMETA(ToolTip="No crossplay input preferences. Can play with players using any input"),
-    Kbm UMETA(ToolTip="Can only play with players using a keyboard and mouse"),
-    Gamepad UMETA(ToolTip="Can only player with players using a gamepad/controller"),
-    Touch UMETA(ToolTip="Can only player with players using a touch screen"),
+	Any UMETA(ToolTip="No crossplay input preferences. Can play with players using any input"),
+	Kbm UMETA(ToolTip="Can only play with players using a keyboard and mouse"),
+	Gamepad UMETA(ToolTip="Can only player with players using a gamepad/controller"),
+	Touch UMETA(ToolTip="Can only player with players using a touch screen"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_CrossplayInput& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_CrossplayInput& EnumValue);

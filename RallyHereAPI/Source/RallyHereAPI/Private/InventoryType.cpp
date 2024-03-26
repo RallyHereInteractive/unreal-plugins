@@ -20,52 +20,52 @@ using RallyHereAPI::TryGetJsonValue;
 // Implementation for ERHAPI_InventoryType
 FString EnumToString(const ERHAPI_InventoryType& Value)
 {
-    switch (Value)
-    {
-    case ERHAPI_InventoryType::Persistent:
-        return TEXT("persistent");
-    case ERHAPI_InventoryType::Transient:
-        return TEXT("transient");
-    case ERHAPI_InventoryType::AlwaysOwned:
-        return TEXT("always_owned");
-    }
+	switch (Value)
+	{
+	case ERHAPI_InventoryType::Persistent:
+		return TEXT("persistent");
+	case ERHAPI_InventoryType::Transient:
+		return TEXT("transient");
+	case ERHAPI_InventoryType::AlwaysOwned:
+		return TEXT("always_owned");
+	}
 
-    UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_InventoryType::Values Value (%d)"), (int)Value);
-    return TEXT("");
+	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_InventoryType::Values Value (%d)"), (int)Value);
+	return TEXT("");
 }
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_InventoryType& Value)
 {
-    static TMap<FString, ERHAPI_InventoryType> StringToEnum = { 
-        { TEXT("persistent"), ERHAPI_InventoryType::Persistent },
-        { TEXT("transient"), ERHAPI_InventoryType::Transient },
-        { TEXT("always_owned"), ERHAPI_InventoryType::AlwaysOwned },    };
+	static TMap<FString, ERHAPI_InventoryType> StringToEnum = { 
+		{ TEXT("persistent"), ERHAPI_InventoryType::Persistent },
+		{ TEXT("transient"), ERHAPI_InventoryType::Transient },
+		{ TEXT("always_owned"), ERHAPI_InventoryType::AlwaysOwned },	};
 
-    const auto Found = StringToEnum.Find(EnumAsString);
-    if(Found)
-        Value = *Found;
-    return Found != nullptr;
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
+	return Found != nullptr;
 }
 
 FStringFormatArg ToStringFormatArg(const ERHAPI_InventoryType& Value)
 {
-    return FStringFormatArg(EnumToString(Value));
+	return FStringFormatArg(EnumToString(Value));
 }
 
 void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const ERHAPI_InventoryType& Value)
 {
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
 }
 
 bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, ERHAPI_InventoryType& Value)
 {
-    FString TmpValue;
-    if (JsonValue->TryGetString(TmpValue))
-    {
-        if (EnumFromString(TmpValue, Value))
-            return true;
-    }
-    return false;
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if (EnumFromString(TmpValue, Value))
+			return true;
+	}
+	return false;
 }
 
 

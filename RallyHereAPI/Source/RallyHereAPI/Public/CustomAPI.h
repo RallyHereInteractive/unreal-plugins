@@ -27,13 +27,13 @@ DECLARE_DELEGATE_OneParam(FDelegate_CustomEndpointSend, const FResponse_CustomEn
 class RALLYHEREAPI_API FCustomAPI : public FAPI
 {
 public:
-    FCustomAPI();
-    virtual ~FCustomAPI();
+	FCustomAPI();
+	virtual ~FCustomAPI();
 
-    FHttpRequestPtr CustomEndpointSend(const FRequest_CustomEndpointSend& Request, const FDelegate_CustomEndpointSend& Delegate = FDelegate_CustomEndpointSend(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr CustomEndpointSend(const FRequest_CustomEndpointSend& Request, const FDelegate_CustomEndpointSend& Delegate = FDelegate_CustomEndpointSend(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
-    void OnCustomEndpointSendResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CustomEndpointSend Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnCustomEndpointSendResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CustomEndpointSend Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
@@ -43,62 +43,62 @@ private:
 */
 struct RALLYHEREAPI_API FRequest_CustomEndpointSend : public FRequest
 {
-    FRequest_CustomEndpointSend();
-    virtual ~FRequest_CustomEndpointSend() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_CustomEndpointSend();
+	virtual ~FRequest_CustomEndpointSend() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    /* The endpoint id */
-    FString EndpointId;
-    TOptional<FString> ContentType;
-    TOptional<FRHAPI_JsonValue> Body;
+	TSharedPtr<FAuthContext> AuthContext;
+	/* The endpoint id */
+	FString EndpointId;
+	TOptional<FString> ContentType;
+	TOptional<FRHAPI_JsonValue> Body;
 };
 
 struct RALLYHEREAPI_API FResponse_CustomEndpointSend : public FResponse
 {
-    FResponse_CustomEndpointSend(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_CustomEndpointSend() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_CustomEndpointSend(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_CustomEndpointSend() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+	FRHAPI_JsonValue Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Not Found
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_CustomEndpointSend
 {
-    typedef FRequest_CustomEndpointSend Request;
-    typedef FResponse_CustomEndpointSend Response;
-    typedef FDelegate_CustomEndpointSend Delegate;
-    typedef FCustomAPI API;
-    static FString Name;
+	typedef FRequest_CustomEndpointSend Request;
+	typedef FResponse_CustomEndpointSend Response;
+	typedef FDelegate_CustomEndpointSend Delegate;
+	typedef FCustomAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CustomEndpointSend(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CustomEndpointSend(InRequest, InDelegate, Priority); }
 };
 
 

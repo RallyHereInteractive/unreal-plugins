@@ -21,27 +21,27 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_PortalTokenDetailsRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("grant_type"));
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(GrantType));
-    Writer->WriteIdentifierPrefix(TEXT("portal_access_token"));
-    RallyHereAPI::WriteJsonValue(Writer, PortalAccessToken);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("grant_type"));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(GrantType));
+	Writer->WriteIdentifierPrefix(TEXT("portal_access_token"));
+	RallyHereAPI::WriteJsonValue(Writer, PortalAccessToken);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_PortalTokenDetailsRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonGrantTypeField = (*Object)->TryGetField(TEXT("grant_type"));
-    ParseSuccess &= JsonGrantTypeField.IsValid() && !JsonGrantTypeField->IsNull() && TryGetJsonValue(JsonGrantTypeField, GrantType);
-    const TSharedPtr<FJsonValue> JsonPortalAccessTokenField = (*Object)->TryGetField(TEXT("portal_access_token"));
-    ParseSuccess &= JsonPortalAccessTokenField.IsValid() && !JsonPortalAccessTokenField->IsNull() && TryGetJsonValue(JsonPortalAccessTokenField, PortalAccessToken);
+	const TSharedPtr<FJsonValue> JsonGrantTypeField = (*Object)->TryGetField(TEXT("grant_type"));
+	ParseSuccess &= JsonGrantTypeField.IsValid() && !JsonGrantTypeField->IsNull() && TryGetJsonValue(JsonGrantTypeField, GrantType);
+	const TSharedPtr<FJsonValue> JsonPortalAccessTokenField = (*Object)->TryGetField(TEXT("portal_access_token"));
+	ParseSuccess &= JsonPortalAccessTokenField.IsValid() && !JsonPortalAccessTokenField->IsNull() && TryGetJsonValue(JsonPortalAccessTokenField, PortalAccessToken);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

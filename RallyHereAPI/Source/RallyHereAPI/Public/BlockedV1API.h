@@ -38,19 +38,19 @@ DECLARE_DELEGATE_OneParam(FDelegate_Unblock, const FResponse_Unblock&);
 class RALLYHEREAPI_API FBlockedV1API : public FAPI
 {
 public:
-    FBlockedV1API();
-    virtual ~FBlockedV1API();
+	FBlockedV1API();
+	virtual ~FBlockedV1API();
 
-    FHttpRequestPtr Block(const FRequest_Block& Request, const FDelegate_Block& Delegate = FDelegate_Block(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetBlocked(const FRequest_GetBlocked& Request, const FDelegate_GetBlocked& Delegate = FDelegate_GetBlocked(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetBlockedListForPlayer(const FRequest_GetBlockedListForPlayer& Request, const FDelegate_GetBlockedListForPlayer& Delegate = FDelegate_GetBlockedListForPlayer(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr Unblock(const FRequest_Unblock& Request, const FDelegate_Unblock& Delegate = FDelegate_Unblock(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr Block(const FRequest_Block& Request, const FDelegate_Block& Delegate = FDelegate_Block(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetBlocked(const FRequest_GetBlocked& Request, const FDelegate_GetBlocked& Delegate = FDelegate_GetBlocked(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetBlockedListForPlayer(const FRequest_GetBlockedListForPlayer& Request, const FDelegate_GetBlockedListForPlayer& Delegate = FDelegate_GetBlockedListForPlayer(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr Unblock(const FRequest_Unblock& Request, const FDelegate_Unblock& Delegate = FDelegate_Unblock(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
-    void OnBlockResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Block Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetBlockedResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetBlocked Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetBlockedListForPlayerResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetBlockedListForPlayer Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnUnblockResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Unblock Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnBlockResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Block Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetBlockedResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetBlocked Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetBlockedListForPlayerResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetBlockedListForPlayer Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnUnblockResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Unblock Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
@@ -62,65 +62,65 @@ private:
 */
 struct RALLYHEREAPI_API FRequest_Block : public FRequest
 {
-    FRequest_Block();
-    virtual ~FRequest_Block() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_Block();
+	virtual ~FRequest_Block() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    int32 PlayerId = 0;
-    int32 OtherPlayerId = 0;
+	TSharedPtr<FAuthContext> AuthContext;
+	int32 PlayerId = 0;
+	int32 OtherPlayerId = 0;
 };
 
 struct RALLYHEREAPI_API FResponse_Block : public FResponse
 {
-    FResponse_Block(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_Block() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_Block(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_Block() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_BlockedPlayerV1 Content;
+	FRHAPI_BlockedPlayerV1 Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_BlockedPlayerV1& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_BlockedPlayerV1& OutContent) const;
 
-    /* Response 400
-    Bad Request
-    */
-    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 400
+	Bad Request
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 409
-    Conflict
-    */
-    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 409
+	Conflict
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_Block
 {
-    typedef FRequest_Block Request;
-    typedef FResponse_Block Response;
-    typedef FDelegate_Block Delegate;
-    typedef FBlockedV1API API;
-    static FString Name;
+	typedef FRequest_Block Request;
+	typedef FResponse_Block Response;
+	typedef FDelegate_Block Delegate;
+	typedef FBlockedV1API API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.Block(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.Block(InRequest, InDelegate, Priority); }
 };
 
 /* Get Blocked
@@ -129,65 +129,65 @@ struct RALLYHEREAPI_API Traits_Block
 */
 struct RALLYHEREAPI_API FRequest_GetBlocked : public FRequest
 {
-    FRequest_GetBlocked();
-    virtual ~FRequest_GetBlocked() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetBlocked();
+	virtual ~FRequest_GetBlocked() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    int32 PlayerId = 0;
-    int32 OtherPlayerId = 0;
+	TSharedPtr<FAuthContext> AuthContext;
+	int32 PlayerId = 0;
+	int32 OtherPlayerId = 0;
 };
 
 struct RALLYHEREAPI_API FResponse_GetBlocked : public FResponse
 {
-    FResponse_GetBlocked(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetBlocked() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetBlocked(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetBlocked() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_BlockedPlayerV1 Content;
+	FRHAPI_BlockedPlayerV1 Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_BlockedPlayerV1& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_BlockedPlayerV1& OutContent) const;
 
-    /* Response 400
-    Bad Request
-    */
-    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 400
+	Bad Request
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 409
-    Conflict
-    */
-    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 409
+	Conflict
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetBlocked
 {
-    typedef FRequest_GetBlocked Request;
-    typedef FResponse_GetBlocked Response;
-    typedef FDelegate_GetBlocked Delegate;
-    typedef FBlockedV1API API;
-    static FString Name;
+	typedef FRequest_GetBlocked Request;
+	typedef FResponse_GetBlocked Response;
+	typedef FDelegate_GetBlocked Delegate;
+	typedef FBlockedV1API API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetBlocked(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetBlocked(InRequest, InDelegate, Priority); }
 };
 
 /* Get Blocked List For Player
@@ -199,77 +199,77 @@ struct RALLYHEREAPI_API Traits_GetBlocked
 */
 struct RALLYHEREAPI_API FRequest_GetBlockedListForPlayer : public FRequest
 {
-    FRequest_GetBlockedListForPlayer();
-    virtual ~FRequest_GetBlockedListForPlayer() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetBlockedListForPlayer();
+	virtual ~FRequest_GetBlockedListForPlayer() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    int32 PlayerId = 0;
-    TOptional<int32> Page;
-    TOptional<int32> Limit;
-    /* If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	int32 PlayerId = 0;
+	TOptional<int32> Page;
+	TOptional<int32> Limit;
+	/* If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetBlockedListForPlayer : public FResponse
 {
-    FResponse_GetBlockedListForPlayer(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetBlockedListForPlayer() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetBlockedListForPlayer(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetBlockedListForPlayer() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_BlockedListV1 Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_BlockedListV1 Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_BlockedListV1& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_BlockedListV1& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 304
-    Content still has the same etag and has not changed
-    */
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
 
-    /* Response 400
-    Bad Request
-    */
-    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 400
+	Bad Request
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 409
-    Conflict
-    */
-    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 409
+	Conflict
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetBlockedListForPlayer
 {
-    typedef FRequest_GetBlockedListForPlayer Request;
-    typedef FResponse_GetBlockedListForPlayer Response;
-    typedef FDelegate_GetBlockedListForPlayer Delegate;
-    typedef FBlockedV1API API;
-    static FString Name;
+	typedef FRequest_GetBlockedListForPlayer Request;
+	typedef FResponse_GetBlockedListForPlayer Response;
+	typedef FDelegate_GetBlockedListForPlayer Delegate;
+	typedef FBlockedV1API API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetBlockedListForPlayer(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetBlockedListForPlayer(InRequest, InDelegate, Priority); }
 };
 
 /* Unblock
@@ -278,64 +278,64 @@ struct RALLYHEREAPI_API Traits_GetBlockedListForPlayer
 */
 struct RALLYHEREAPI_API FRequest_Unblock : public FRequest
 {
-    FRequest_Unblock();
-    virtual ~FRequest_Unblock() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_Unblock();
+	virtual ~FRequest_Unblock() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    int32 PlayerId = 0;
-    int32 OtherPlayerId = 0;
+	TSharedPtr<FAuthContext> AuthContext;
+	int32 PlayerId = 0;
+	int32 OtherPlayerId = 0;
 };
 
 struct RALLYHEREAPI_API FResponse_Unblock : public FResponse
 {
-    FResponse_Unblock(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_Unblock() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_Unblock(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_Unblock() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
+	
 
 
-    // Manual Response Helpers
-    /* Response 204
-    Successful Response
-    */
+	// Manual Response Helpers
+	/* Response 204
+	Successful Response
+	*/
 
-    /* Response 400
-    Bad Request
-    */
-    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 400
+	Bad Request
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 409
-    Conflict
-    */
-    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 409
+	Conflict
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_Unblock
 {
-    typedef FRequest_Unblock Request;
-    typedef FResponse_Unblock Response;
-    typedef FDelegate_Unblock Delegate;
-    typedef FBlockedV1API API;
-    static FString Name;
+	typedef FRequest_Unblock Request;
+	typedef FResponse_Unblock Response;
+	typedef FDelegate_Unblock Delegate;
+	typedef FBlockedV1API API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.Unblock(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.Unblock(InRequest, InDelegate, Priority); }
 };
 
 

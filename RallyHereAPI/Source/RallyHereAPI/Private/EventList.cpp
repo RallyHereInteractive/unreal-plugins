@@ -21,23 +21,23 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_EventList::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("event_list"));
-    RallyHereAPI::WriteJsonValue(Writer, EventList);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("event_list"));
+	RallyHereAPI::WriteJsonValue(Writer, EventList);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_EventList::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonEventListField = (*Object)->TryGetField(TEXT("event_list"));
-    ParseSuccess &= JsonEventListField.IsValid() && !JsonEventListField->IsNull() && TryGetJsonValue(JsonEventListField, EventList);
+	const TSharedPtr<FJsonValue> JsonEventListField = (*Object)->TryGetField(TEXT("event_list"));
+	ParseSuccess &= JsonEventListField.IsValid() && !JsonEventListField->IsNull() && TryGetJsonValue(JsonEventListField, EventList);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

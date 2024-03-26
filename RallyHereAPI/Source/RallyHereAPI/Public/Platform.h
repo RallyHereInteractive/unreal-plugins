@@ -18,20 +18,20 @@
 UENUM(BlueprintType)
 enum class ERHAPI_Platform : uint8
 {
-    Anon UMETA(ToolTip="An enumeration."),
-    Basic UMETA(ToolTip="An enumeration."),
-    XboxLive UMETA(ToolTip="An enumeration."),
-    Psn UMETA(ToolTip="An enumeration."),
-    NintendoNaid UMETA(ToolTip="An enumeration."),
-    NintendoSwitch UMETA(ToolTip="An enumeration."),
-    NintendoPpid UMETA(ToolTip="An enumeration."),
-    Google UMETA(ToolTip="An enumeration."),
-    GooglePlay UMETA(ToolTip="An enumeration."),
-    Apple UMETA(ToolTip="An enumeration."),
-    Epic UMETA(ToolTip="An enumeration."),
-    Steam UMETA(ToolTip="An enumeration."),
-    Amazon UMETA(ToolTip="An enumeration."),
-    Twitch UMETA(ToolTip="An enumeration."),
+	Anon UMETA(ToolTip="An enumeration."),
+	Basic UMETA(ToolTip="An enumeration."),
+	XboxLive UMETA(ToolTip="An enumeration."),
+	Psn UMETA(ToolTip="An enumeration."),
+	NintendoNaid UMETA(ToolTip="An enumeration."),
+	NintendoSwitch UMETA(ToolTip="An enumeration."),
+	NintendoPpid UMETA(ToolTip="An enumeration."),
+	Google UMETA(ToolTip="An enumeration."),
+	GooglePlay UMETA(ToolTip="An enumeration."),
+	Apple UMETA(ToolTip="An enumeration."),
+	Epic UMETA(ToolTip="An enumeration."),
+	Steam UMETA(ToolTip="An enumeration."),
+	Amazon UMETA(ToolTip="An enumeration."),
+	Twitch UMETA(ToolTip="An enumeration."),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_Platform& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_Platform& EnumValue);

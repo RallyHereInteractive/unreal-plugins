@@ -35,17 +35,17 @@ DECLARE_DELEGATE_OneParam(FDelegate_GetAppSettingsServer, const FResponse_GetApp
 class RALLYHEREAPI_API FConfigAPI : public FAPI
 {
 public:
-    FConfigAPI();
-    virtual ~FConfigAPI();
+	FConfigAPI();
+	virtual ~FConfigAPI();
 
-    FHttpRequestPtr GetAppSettingsAll(const FRequest_GetAppSettingsAll& Request, const FDelegate_GetAppSettingsAll& Delegate = FDelegate_GetAppSettingsAll(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetAppSettingsClient(const FRequest_GetAppSettingsClient& Request, const FDelegate_GetAppSettingsClient& Delegate = FDelegate_GetAppSettingsClient(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetAppSettingsServer(const FRequest_GetAppSettingsServer& Request, const FDelegate_GetAppSettingsServer& Delegate = FDelegate_GetAppSettingsServer(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetAppSettingsAll(const FRequest_GetAppSettingsAll& Request, const FDelegate_GetAppSettingsAll& Delegate = FDelegate_GetAppSettingsAll(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetAppSettingsClient(const FRequest_GetAppSettingsClient& Request, const FDelegate_GetAppSettingsClient& Delegate = FDelegate_GetAppSettingsClient(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetAppSettingsServer(const FRequest_GetAppSettingsServer& Request, const FDelegate_GetAppSettingsServer& Delegate = FDelegate_GetAppSettingsServer(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
-    void OnGetAppSettingsAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAppSettingsAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetAppSettingsClientResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAppSettingsClient Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetAppSettingsServerResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAppSettingsServer Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetAppSettingsAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAppSettingsAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetAppSettingsClientResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAppSettingsClient Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetAppSettingsServerResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAppSettingsServer Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
@@ -55,61 +55,61 @@ private:
 */
 struct RALLYHEREAPI_API FRequest_GetAppSettingsAll : public FRequest
 {
-    FRequest_GetAppSettingsAll();
-    virtual ~FRequest_GetAppSettingsAll() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetAppSettingsAll();
+	virtual ~FRequest_GetAppSettingsAll() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    /* If specified, will only return the KVs with the specified keys */
-    TOptional<TArray<FString>> KeysToInclude;
-    /* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	/* If specified, will only return the KVs with the specified keys */
+	TOptional<TArray<FString>> KeysToInclude;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetAppSettingsAll : public FResponse
 {
-    FResponse_GetAppSettingsAll(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetAppSettingsAll() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetAppSettingsAll(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetAppSettingsAll() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_KVsResponse Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_KVsResponse Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_KVsResponse& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_KVsResponse& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 304
-    Content still has the same etag and has not changed
-    */
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetAppSettingsAll
 {
-    typedef FRequest_GetAppSettingsAll Request;
-    typedef FResponse_GetAppSettingsAll Response;
-    typedef FDelegate_GetAppSettingsAll Delegate;
-    typedef FConfigAPI API;
-    static FString Name;
+	typedef FRequest_GetAppSettingsAll Request;
+	typedef FResponse_GetAppSettingsAll Response;
+	typedef FDelegate_GetAppSettingsAll Delegate;
+	typedef FConfigAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAppSettingsAll(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAppSettingsAll(InRequest, InDelegate, Priority); }
 };
 
 /* Get App Settings Client
@@ -118,57 +118,57 @@ struct RALLYHEREAPI_API Traits_GetAppSettingsAll
 */
 struct RALLYHEREAPI_API FRequest_GetAppSettingsClient : public FRequest
 {
-    FRequest_GetAppSettingsClient();
-    virtual ~FRequest_GetAppSettingsClient() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
+	FRequest_GetAppSettingsClient();
+	virtual ~FRequest_GetAppSettingsClient() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
 
-    /* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-    TOptional<FString> IfNoneMatch;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetAppSettingsClient : public FResponse
 {
-    FResponse_GetAppSettingsClient(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetAppSettingsClient() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetAppSettingsClient(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetAppSettingsClient() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    TArray<FRHAPI_AppSetting> Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	TArray<FRHAPI_AppSetting> Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(TArray<FRHAPI_AppSetting>& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(TArray<FRHAPI_AppSetting>& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 304
-    Content still has the same etag and has not changed
-    */
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetAppSettingsClient
 {
-    typedef FRequest_GetAppSettingsClient Request;
-    typedef FResponse_GetAppSettingsClient Response;
-    typedef FDelegate_GetAppSettingsClient Delegate;
-    typedef FConfigAPI API;
-    static FString Name;
+	typedef FRequest_GetAppSettingsClient Request;
+	typedef FResponse_GetAppSettingsClient Response;
+	typedef FDelegate_GetAppSettingsClient Delegate;
+	typedef FConfigAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAppSettingsClient(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAppSettingsClient(InRequest, InDelegate, Priority); }
 };
 
 /* Get App Settings Server
@@ -177,64 +177,64 @@ struct RALLYHEREAPI_API Traits_GetAppSettingsClient
 */
 struct RALLYHEREAPI_API FRequest_GetAppSettingsServer : public FRequest
 {
-    FRequest_GetAppSettingsServer();
-    virtual ~FRequest_GetAppSettingsServer() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetAppSettingsServer();
+	virtual ~FRequest_GetAppSettingsServer() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    /* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetAppSettingsServer : public FResponse
 {
-    FResponse_GetAppSettingsServer(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetAppSettingsServer() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetAppSettingsServer(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetAppSettingsServer() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    TArray<FRHAPI_AppSetting> Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	TArray<FRHAPI_AppSetting> Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(TArray<FRHAPI_AppSetting>& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(TArray<FRHAPI_AppSetting>& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 304
-    Content still has the same etag and has not changed
-    */
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetAppSettingsServer
 {
-    typedef FRequest_GetAppSettingsServer Request;
-    typedef FResponse_GetAppSettingsServer Response;
-    typedef FDelegate_GetAppSettingsServer Delegate;
-    typedef FConfigAPI API;
-    static FString Name;
+	typedef FRequest_GetAppSettingsServer Request;
+	typedef FResponse_GetAppSettingsServer Response;
+	typedef FDelegate_GetAppSettingsServer Delegate;
+	typedef FConfigAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAppSettingsServer(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAppSettingsServer(InRequest, InDelegate, Priority); }
 };
 
 

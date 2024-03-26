@@ -20,55 +20,55 @@ using RallyHereAPI::TryGetJsonValue;
 // Implementation for ERHAPI_MMRGroupingMethod
 FString EnumToString(const ERHAPI_MMRGroupingMethod& Value)
 {
-    switch (Value)
-    {
-    case ERHAPI_MMRGroupingMethod::Worst:
-        return TEXT("worst");
-    case ERHAPI_MMRGroupingMethod::Best:
-        return TEXT("best");
-    case ERHAPI_MMRGroupingMethod::AverageByVariance:
-        return TEXT("avg_weighted_by_sigma");
-    case ERHAPI_MMRGroupingMethod::Average:
-        return TEXT("avg");
-    }
+	switch (Value)
+	{
+	case ERHAPI_MMRGroupingMethod::Worst:
+		return TEXT("worst");
+	case ERHAPI_MMRGroupingMethod::Best:
+		return TEXT("best");
+	case ERHAPI_MMRGroupingMethod::AverageByVariance:
+		return TEXT("avg_weighted_by_sigma");
+	case ERHAPI_MMRGroupingMethod::Average:
+		return TEXT("avg");
+	}
 
-    UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_MMRGroupingMethod::Values Value (%d)"), (int)Value);
-    return TEXT("");
+	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_MMRGroupingMethod::Values Value (%d)"), (int)Value);
+	return TEXT("");
 }
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_MMRGroupingMethod& Value)
 {
-    static TMap<FString, ERHAPI_MMRGroupingMethod> StringToEnum = { 
-        { TEXT("worst"), ERHAPI_MMRGroupingMethod::Worst },
-        { TEXT("best"), ERHAPI_MMRGroupingMethod::Best },
-        { TEXT("avg_weighted_by_sigma"), ERHAPI_MMRGroupingMethod::AverageByVariance },
-        { TEXT("avg"), ERHAPI_MMRGroupingMethod::Average },    };
+	static TMap<FString, ERHAPI_MMRGroupingMethod> StringToEnum = { 
+		{ TEXT("worst"), ERHAPI_MMRGroupingMethod::Worst },
+		{ TEXT("best"), ERHAPI_MMRGroupingMethod::Best },
+		{ TEXT("avg_weighted_by_sigma"), ERHAPI_MMRGroupingMethod::AverageByVariance },
+		{ TEXT("avg"), ERHAPI_MMRGroupingMethod::Average },	};
 
-    const auto Found = StringToEnum.Find(EnumAsString);
-    if(Found)
-        Value = *Found;
-    return Found != nullptr;
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
+	return Found != nullptr;
 }
 
 FStringFormatArg ToStringFormatArg(const ERHAPI_MMRGroupingMethod& Value)
 {
-    return FStringFormatArg(EnumToString(Value));
+	return FStringFormatArg(EnumToString(Value));
 }
 
 void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const ERHAPI_MMRGroupingMethod& Value)
 {
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
 }
 
 bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, ERHAPI_MMRGroupingMethod& Value)
 {
-    FString TmpValue;
-    if (JsonValue->TryGetString(TmpValue))
-    {
-        if (EnumFromString(TmpValue, Value))
-            return true;
-    }
-    return false;
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if (EnumFromString(TmpValue, Value))
+			return true;
+	}
+	return false;
 }
 
 

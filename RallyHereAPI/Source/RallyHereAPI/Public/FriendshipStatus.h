@@ -18,11 +18,11 @@
 UENUM(BlueprintType)
 enum class ERHAPI_FriendshipStatus : uint8
 {
-    None UMETA(ToolTip=""),
-    Friends UMETA(ToolTip=""),
-    FriendRequestSent UMETA(ToolTip=""),
-    FriendRequestPending UMETA(ToolTip=""),
-    FriendRequestDeclinedByOther UMETA(ToolTip=""),
+	None UMETA(ToolTip=""),
+	Friends UMETA(ToolTip=""),
+	FriendRequestSent UMETA(ToolTip=""),
+	FriendRequestPending UMETA(ToolTip=""),
+	FriendRequestDeclinedByOther UMETA(ToolTip=""),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_FriendshipStatus& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_FriendshipStatus& EnumValue);

@@ -18,11 +18,11 @@
 UENUM(BlueprintType)
 enum class ERHAPI_EntitlementStatus : uint8
 {
-    Unknown UMETA(ToolTip="Entitlement status is unknown"),
-    Submitted UMETA(ToolTip="Entitlement has been submitted to the backend"),
-    Fulfilled UMETA(ToolTip="Entitlement has been fulfilled"),
-    Failed UMETA(ToolTip="Entitlement has failed, check error_code for more information"),
-    PreviouslyApplied UMETA(ToolTip="Entitlement was previously applied"),
+	Unknown UMETA(ToolTip="Entitlement status is unknown"),
+	Submitted UMETA(ToolTip="Entitlement has been submitted to the backend"),
+	Fulfilled UMETA(ToolTip="Entitlement has been fulfilled"),
+	Failed UMETA(ToolTip="Entitlement has failed, check error_code for more information"),
+	PreviouslyApplied UMETA(ToolTip="Entitlement was previously applied"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_EntitlementStatus& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_EntitlementStatus& EnumValue);

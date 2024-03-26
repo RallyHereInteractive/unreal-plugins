@@ -18,18 +18,18 @@
 UENUM(BlueprintType)
 enum class ERHAPI_PlatformID : uint8
 {
-    Anon UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform Anon"),
-    Amazon UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform Amazon"),
-    Steam UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform Steam"),
-    Psn UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform PSN"),
-    XboxLive UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform XboxLive"),
-    Basic UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform Basic"),
-    Google UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform Google"),
-    Twitch UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform Twitch"),
-    NintendoSwitch UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform NintendoSwitch"),
-    Apple UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform Apple"),
-    Nintendo UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform NintendoNAID"),
-    Epic UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform Epic"),
+	Anon UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform Anon"),
+	Amazon UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform Amazon"),
+	Steam UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform Steam"),
+	Psn UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform PSN"),
+	XboxLive UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform XboxLive"),
+	Basic UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform Basic"),
+	Google UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform Google"),
+	Twitch UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform Twitch"),
+	NintendoSwitch UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform NintendoSwitch"),
+	Apple UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform Apple"),
+	Nintendo UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform NintendoNAID"),
+	Epic UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform Epic"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_PlatformID& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_PlatformID& EnumValue);

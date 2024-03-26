@@ -20,55 +20,55 @@ using RallyHereAPI::TryGetJsonValue;
 // Implementation for ERHAPI_EntitlementEventStatus
 FString EnumToString(const ERHAPI_EntitlementEventStatus& Value)
 {
-    switch (Value)
-    {
-    case ERHAPI_EntitlementEventStatus::Success:
-        return TEXT("success");
-    case ERHAPI_EntitlementEventStatus::SkuNotFound:
-        return TEXT("sku_not_found");
-    case ERHAPI_EntitlementEventStatus::NotImplemented:
-        return TEXT("not_implemented");
-    case ERHAPI_EntitlementEventStatus::PlayerNotFound:
-        return TEXT("player_not_found");
-    }
+	switch (Value)
+	{
+	case ERHAPI_EntitlementEventStatus::Success:
+		return TEXT("success");
+	case ERHAPI_EntitlementEventStatus::SkuNotFound:
+		return TEXT("sku_not_found");
+	case ERHAPI_EntitlementEventStatus::NotImplemented:
+		return TEXT("not_implemented");
+	case ERHAPI_EntitlementEventStatus::PlayerNotFound:
+		return TEXT("player_not_found");
+	}
 
-    UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_EntitlementEventStatus::Values Value (%d)"), (int)Value);
-    return TEXT("");
+	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_EntitlementEventStatus::Values Value (%d)"), (int)Value);
+	return TEXT("");
 }
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_EntitlementEventStatus& Value)
 {
-    static TMap<FString, ERHAPI_EntitlementEventStatus> StringToEnum = { 
-        { TEXT("success"), ERHAPI_EntitlementEventStatus::Success },
-        { TEXT("sku_not_found"), ERHAPI_EntitlementEventStatus::SkuNotFound },
-        { TEXT("not_implemented"), ERHAPI_EntitlementEventStatus::NotImplemented },
-        { TEXT("player_not_found"), ERHAPI_EntitlementEventStatus::PlayerNotFound },    };
+	static TMap<FString, ERHAPI_EntitlementEventStatus> StringToEnum = { 
+		{ TEXT("success"), ERHAPI_EntitlementEventStatus::Success },
+		{ TEXT("sku_not_found"), ERHAPI_EntitlementEventStatus::SkuNotFound },
+		{ TEXT("not_implemented"), ERHAPI_EntitlementEventStatus::NotImplemented },
+		{ TEXT("player_not_found"), ERHAPI_EntitlementEventStatus::PlayerNotFound },	};
 
-    const auto Found = StringToEnum.Find(EnumAsString);
-    if(Found)
-        Value = *Found;
-    return Found != nullptr;
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
+	return Found != nullptr;
 }
 
 FStringFormatArg ToStringFormatArg(const ERHAPI_EntitlementEventStatus& Value)
 {
-    return FStringFormatArg(EnumToString(Value));
+	return FStringFormatArg(EnumToString(Value));
 }
 
 void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const ERHAPI_EntitlementEventStatus& Value)
 {
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
 }
 
 bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, ERHAPI_EntitlementEventStatus& Value)
 {
-    FString TmpValue;
-    if (JsonValue->TryGetString(TmpValue))
-    {
-        if (EnumFromString(TmpValue, Value))
-            return true;
-    }
-    return false;
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if (EnumFromString(TmpValue, Value))
+			return true;
+	}
+	return false;
 }
 
 

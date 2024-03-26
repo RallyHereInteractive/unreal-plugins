@@ -18,8 +18,8 @@
 UENUM(BlueprintType)
 enum class ERHAPI_OpportunityAbortReason : uint8
 {
-    Cancel UMETA(ToolTip="Ad was closed by the user"),
-    Other UMETA(ToolTip="Ad was closed from a misc cause"),
+	Cancel UMETA(ToolTip="Ad was closed by the user"),
+	Other UMETA(ToolTip="Ad was closed from a misc cause"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_OpportunityAbortReason& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_OpportunityAbortReason& EnumValue);

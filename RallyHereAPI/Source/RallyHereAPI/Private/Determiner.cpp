@@ -20,55 +20,55 @@ using RallyHereAPI::TryGetJsonValue;
 // Implementation for ERHAPI_Determiner
 FString EnumToString(const ERHAPI_Determiner& Value)
 {
-    switch (Value)
-    {
-    case ERHAPI_Determiner::All:
-        return TEXT("allOf");
-    case ERHAPI_Determiner::Any:
-        return TEXT("anyOf");
-    case ERHAPI_Determiner::One:
-        return TEXT("oneOf");
-    case ERHAPI_Determiner::None:
-        return TEXT("noneOf");
-    }
+	switch (Value)
+	{
+	case ERHAPI_Determiner::All:
+		return TEXT("allOf");
+	case ERHAPI_Determiner::Any:
+		return TEXT("anyOf");
+	case ERHAPI_Determiner::One:
+		return TEXT("oneOf");
+	case ERHAPI_Determiner::None:
+		return TEXT("noneOf");
+	}
 
-    UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_Determiner::Values Value (%d)"), (int)Value);
-    return TEXT("");
+	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_Determiner::Values Value (%d)"), (int)Value);
+	return TEXT("");
 }
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_Determiner& Value)
 {
-    static TMap<FString, ERHAPI_Determiner> StringToEnum = { 
-        { TEXT("allOf"), ERHAPI_Determiner::All },
-        { TEXT("anyOf"), ERHAPI_Determiner::Any },
-        { TEXT("oneOf"), ERHAPI_Determiner::One },
-        { TEXT("noneOf"), ERHAPI_Determiner::None },    };
+	static TMap<FString, ERHAPI_Determiner> StringToEnum = { 
+		{ TEXT("allOf"), ERHAPI_Determiner::All },
+		{ TEXT("anyOf"), ERHAPI_Determiner::Any },
+		{ TEXT("oneOf"), ERHAPI_Determiner::One },
+		{ TEXT("noneOf"), ERHAPI_Determiner::None },	};
 
-    const auto Found = StringToEnum.Find(EnumAsString);
-    if(Found)
-        Value = *Found;
-    return Found != nullptr;
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
+	return Found != nullptr;
 }
 
 FStringFormatArg ToStringFormatArg(const ERHAPI_Determiner& Value)
 {
-    return FStringFormatArg(EnumToString(Value));
+	return FStringFormatArg(EnumToString(Value));
 }
 
 void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const ERHAPI_Determiner& Value)
 {
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
 }
 
 bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, ERHAPI_Determiner& Value)
 {
-    FString TmpValue;
-    if (JsonValue->TryGetString(TmpValue))
-    {
-        if (EnumFromString(TmpValue, Value))
-            return true;
-    }
-    return false;
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if (EnumFromString(TmpValue, Value))
+			return true;
+	}
+	return false;
 }
 
 

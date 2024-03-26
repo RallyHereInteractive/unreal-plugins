@@ -21,23 +21,23 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_PlayerIdWrapper::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("player_id"));
-    RallyHereAPI::WriteJsonValue(Writer, PlayerId);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("player_id"));
+	RallyHereAPI::WriteJsonValue(Writer, PlayerId);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_PlayerIdWrapper::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonPlayerIdField = (*Object)->TryGetField(TEXT("player_id"));
-    ParseSuccess &= JsonPlayerIdField.IsValid() && !JsonPlayerIdField->IsNull() && TryGetJsonValue(JsonPlayerIdField, PlayerId);
+	const TSharedPtr<FJsonValue> JsonPlayerIdField = (*Object)->TryGetField(TEXT("player_id"));
+	ParseSuccess &= JsonPlayerIdField.IsValid() && !JsonPlayerIdField->IsNull() && TryGetJsonValue(JsonPlayerIdField, PlayerId);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

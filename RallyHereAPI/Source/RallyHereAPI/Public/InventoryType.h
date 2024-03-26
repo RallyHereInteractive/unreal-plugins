@@ -18,9 +18,9 @@
 UENUM(BlueprintType)
 enum class ERHAPI_InventoryType : uint8
 {
-    Persistent UMETA(ToolTip="Inventory that persists between Inventory Sessions."),
-    Transient UMETA(ToolTip="Stays around for the length of the Inventory Sessions."),
-    AlwaysOwned UMETA(ToolTip="Items that are given to all Players and cannot be modified."),
+	Persistent UMETA(ToolTip="Inventory that persists between Inventory Sessions."),
+	Transient UMETA(ToolTip="Stays around for the length of the Inventory Sessions."),
+	AlwaysOwned UMETA(ToolTip="Items that are given to all Players and cannot be modified."),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_InventoryType& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_InventoryType& EnumValue);

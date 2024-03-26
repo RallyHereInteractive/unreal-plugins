@@ -11,18 +11,18 @@ using UnrealBuildTool;
 
 public class RallyHereAPI : ModuleRules
 {
-    public RallyHereAPI(ReadOnlyTargetRules Target) : base(Target)
-    {
-        PublicDependencyModuleNames.AddRange(
-            new string[]
-            {
-                "Core",
-                "CoreUObject",
-                "HTTP",
-                "Json",
-                "Engine",
-            }
-        );
-        PCHUsage = PCHUsageMode.NoPCHs;
-    }
+	public RallyHereAPI(ReadOnlyTargetRules Target) : base(Target)
+	{
+		PublicDependencyModuleNames.AddRange(
+			new string[]
+			{
+				"Core",
+				"CoreUObject",
+				"HTTP",
+				"Json",
+				"Engine",
+			}
+		);
+		PCHUsage = PCHUsageMode.NoPCHs;
+	}
 }

@@ -21,129 +21,129 @@
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_MapConfig : public FRHAPI_Model
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    /**
-    * @brief Fills this object with data from the passed in JSON
-    *
-    * @param [in] JsonValue Data from the API call.
-    *
-    * @return true if parsing of the JSON data was successful.
-    */
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	/**
+	* @brief Fills this object with data from the passed in JSON
+	*
+	* @param [in] JsonValue Data from the API call.
+	*
+	* @return true if parsing of the JSON data was successful.
+	*/
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
-    /**
-    * @brief Writes the data from this object into the specified JSON Writer stream
-    *
-    * @param [in] Writer JSON Writer stream to push .
-    */
-    void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	/**
+	* @brief Writes the data from this object into the specified JSON Writer stream
+	*
+	* @param [in] Writer JSON Writer stream to push .
+	*/
+	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief ID to uniquely identify this map game */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    int32 MapGameId_Optional{  };
-    /** @brief true if MapGameId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool MapGameId_IsSet{ false };
-    /** @brief Gets the value of MapGameId_Optional, regardless of it having been set */
-    int32& GetMapGameId() { return MapGameId_Optional; }
-    /** @brief Gets the value of MapGameId_Optional, regardless of it having been set */
-    const int32& GetMapGameId() const { return MapGameId_Optional; }
-    /** @brief Gets the value of MapGameId_Optional, if it has been set, otherwise it returns DefaultValue */
-    const int32& GetMapGameId(const int32& DefaultValue) const { if (MapGameId_IsSet) return MapGameId_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of MapGameId_Optional and returns true if it has been set, otherwise returns false */
-    bool GetMapGameId(int32& OutValue) const { if (MapGameId_IsSet) OutValue = MapGameId_Optional; return MapGameId_IsSet; }
-    /** @brief Returns a pointer to MapGameId_Optional, if it has been set, otherwise returns nullptr */
-    int32* GetMapGameIdOrNull() { if (MapGameId_IsSet) return &MapGameId_Optional; return nullptr; }
-    /** @brief Returns a pointer to MapGameId_Optional, if it has been set, otherwise returns nullptr */
-    const int32* GetMapGameIdOrNull() const { if (MapGameId_IsSet) return &MapGameId_Optional; return nullptr; }
-    /** @brief Sets the value of MapGameId_Optional and also sets MapGameId_IsSet to true */
-    void SetMapGameId(int32 NewValue) { MapGameId_Optional = NewValue; MapGameId_IsSet = true; }
-     /** @brief Clears the value of MapGameId_Optional and sets MapGameId_IsSet to false */
-    void ClearMapGameId() { MapGameId_Optional = 0; MapGameId_IsSet = false; }
-    /** @brief Returns true if MapGameId_Optional is set and matches the default value */
-    bool IsMapGameIdDefaultValue() const { return MapGameId_IsSet && MapGameId_Optional == 0; }
-    /** @brief Sets the value of MapGameId_Optional to its default and also sets MapGameId_IsSet to true */
-    void SetMapGameIdToDefault() { MapGameId_Optional = 0; MapGameId_IsSet = true; }
+	/** @brief ID to uniquely identify this map game */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 MapGameId_Optional{  };
+	/** @brief true if MapGameId_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool MapGameId_IsSet{ false };
+	/** @brief Gets the value of MapGameId_Optional, regardless of it having been set */
+	int32& GetMapGameId() { return MapGameId_Optional; }
+	/** @brief Gets the value of MapGameId_Optional, regardless of it having been set */
+	const int32& GetMapGameId() const { return MapGameId_Optional; }
+	/** @brief Gets the value of MapGameId_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetMapGameId(const int32& DefaultValue) const { if (MapGameId_IsSet) return MapGameId_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of MapGameId_Optional and returns true if it has been set, otherwise returns false */
+	bool GetMapGameId(int32& OutValue) const { if (MapGameId_IsSet) OutValue = MapGameId_Optional; return MapGameId_IsSet; }
+	/** @brief Returns a pointer to MapGameId_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetMapGameIdOrNull() { if (MapGameId_IsSet) return &MapGameId_Optional; return nullptr; }
+	/** @brief Returns a pointer to MapGameId_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetMapGameIdOrNull() const { if (MapGameId_IsSet) return &MapGameId_Optional; return nullptr; }
+	/** @brief Sets the value of MapGameId_Optional and also sets MapGameId_IsSet to true */
+	void SetMapGameId(int32 NewValue) { MapGameId_Optional = NewValue; MapGameId_IsSet = true; }
+	 /** @brief Clears the value of MapGameId_Optional and sets MapGameId_IsSet to false */
+	void ClearMapGameId() { MapGameId_Optional = 0; MapGameId_IsSet = false; }
+	/** @brief Returns true if MapGameId_Optional is set and matches the default value */
+	bool IsMapGameIdDefaultValue() const { return MapGameId_IsSet && MapGameId_Optional == 0; }
+	/** @brief Sets the value of MapGameId_Optional to its default and also sets MapGameId_IsSet to true */
+	void SetMapGameIdToDefault() { MapGameId_Optional = 0; MapGameId_IsSet = true; }
 
-    /** @brief Name of the map the instance should load into */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FString MapName{  };
-    /** @brief Gets the value of MapName */
-    FString& GetMapName() { return MapName; }
-    /** @brief Gets the value of MapName */
-    const FString& GetMapName() const { return MapName; }
-    /** @brief Sets the value of MapName */
-    void SetMapName(FString NewValue) { MapName = NewValue;  }
+	/** @brief Name of the map the instance should load into */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString MapName{  };
+	/** @brief Gets the value of MapName */
+	FString& GetMapName() { return MapName; }
+	/** @brief Gets the value of MapName */
+	const FString& GetMapName() const { return MapName; }
+	/** @brief Sets the value of MapName */
+	void SetMapName(FString NewValue) { MapName = NewValue;  }
 
-    /** @brief Game mode for the instance to spawn in */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FString Mode_Optional{  };
-    /** @brief true if Mode_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool Mode_IsSet{ false };
-    /** @brief Gets the value of Mode_Optional, regardless of it having been set */
-    FString& GetMode() { return Mode_Optional; }
-    /** @brief Gets the value of Mode_Optional, regardless of it having been set */
-    const FString& GetMode() const { return Mode_Optional; }
-    /** @brief Gets the value of Mode_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FString& GetMode(const FString& DefaultValue) const { if (Mode_IsSet) return Mode_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of Mode_Optional and returns true if it has been set, otherwise returns false */
-    bool GetMode(FString& OutValue) const { if (Mode_IsSet) OutValue = Mode_Optional; return Mode_IsSet; }
-    /** @brief Returns a pointer to Mode_Optional, if it has been set, otherwise returns nullptr */
-    FString* GetModeOrNull() { if (Mode_IsSet) return &Mode_Optional; return nullptr; }
-    /** @brief Returns a pointer to Mode_Optional, if it has been set, otherwise returns nullptr */
-    const FString* GetModeOrNull() const { if (Mode_IsSet) return &Mode_Optional; return nullptr; }
-    /** @brief Sets the value of Mode_Optional and also sets Mode_IsSet to true */
-    void SetMode(FString NewValue) { Mode_Optional = NewValue; Mode_IsSet = true; }
-     /** @brief Clears the value of Mode_Optional and sets Mode_IsSet to false */
-    void ClearMode() { Mode_IsSet = false; }
+	/** @brief Game mode for the instance to spawn in */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Mode_Optional{  };
+	/** @brief true if Mode_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Mode_IsSet{ false };
+	/** @brief Gets the value of Mode_Optional, regardless of it having been set */
+	FString& GetMode() { return Mode_Optional; }
+	/** @brief Gets the value of Mode_Optional, regardless of it having been set */
+	const FString& GetMode() const { return Mode_Optional; }
+	/** @brief Gets the value of Mode_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetMode(const FString& DefaultValue) const { if (Mode_IsSet) return Mode_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Mode_Optional and returns true if it has been set, otherwise returns false */
+	bool GetMode(FString& OutValue) const { if (Mode_IsSet) OutValue = Mode_Optional; return Mode_IsSet; }
+	/** @brief Returns a pointer to Mode_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetModeOrNull() { if (Mode_IsSet) return &Mode_Optional; return nullptr; }
+	/** @brief Returns a pointer to Mode_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetModeOrNull() const { if (Mode_IsSet) return &Mode_Optional; return nullptr; }
+	/** @brief Sets the value of Mode_Optional and also sets Mode_IsSet to true */
+	void SetMode(FString NewValue) { Mode_Optional = NewValue; Mode_IsSet = true; }
+	 /** @brief Clears the value of Mode_Optional and sets Mode_IsSet to false */
+	void ClearMode() { Mode_IsSet = false; }
 
-    /** @brief Chance that this map will get selected in a rotation list */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    float SelectionChance_Optional{  };
-    /** @brief true if SelectionChance_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool SelectionChance_IsSet{ false };
-    /** @brief Gets the value of SelectionChance_Optional, regardless of it having been set */
-    float& GetSelectionChance() { return SelectionChance_Optional; }
-    /** @brief Gets the value of SelectionChance_Optional, regardless of it having been set */
-    const float& GetSelectionChance() const { return SelectionChance_Optional; }
-    /** @brief Gets the value of SelectionChance_Optional, if it has been set, otherwise it returns DefaultValue */
-    const float& GetSelectionChance(const float& DefaultValue) const { if (SelectionChance_IsSet) return SelectionChance_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of SelectionChance_Optional and returns true if it has been set, otherwise returns false */
-    bool GetSelectionChance(float& OutValue) const { if (SelectionChance_IsSet) OutValue = SelectionChance_Optional; return SelectionChance_IsSet; }
-    /** @brief Returns a pointer to SelectionChance_Optional, if it has been set, otherwise returns nullptr */
-    float* GetSelectionChanceOrNull() { if (SelectionChance_IsSet) return &SelectionChance_Optional; return nullptr; }
-    /** @brief Returns a pointer to SelectionChance_Optional, if it has been set, otherwise returns nullptr */
-    const float* GetSelectionChanceOrNull() const { if (SelectionChance_IsSet) return &SelectionChance_Optional; return nullptr; }
-    /** @brief Sets the value of SelectionChance_Optional and also sets SelectionChance_IsSet to true */
-    void SetSelectionChance(float NewValue) { SelectionChance_Optional = NewValue; SelectionChance_IsSet = true; }
-     /** @brief Clears the value of SelectionChance_Optional and sets SelectionChance_IsSet to false */
-    void ClearSelectionChance() { SelectionChance_IsSet = false; }
+	/** @brief Chance that this map will get selected in a rotation list */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	float SelectionChance_Optional{  };
+	/** @brief true if SelectionChance_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool SelectionChance_IsSet{ false };
+	/** @brief Gets the value of SelectionChance_Optional, regardless of it having been set */
+	float& GetSelectionChance() { return SelectionChance_Optional; }
+	/** @brief Gets the value of SelectionChance_Optional, regardless of it having been set */
+	const float& GetSelectionChance() const { return SelectionChance_Optional; }
+	/** @brief Gets the value of SelectionChance_Optional, if it has been set, otherwise it returns DefaultValue */
+	const float& GetSelectionChance(const float& DefaultValue) const { if (SelectionChance_IsSet) return SelectionChance_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of SelectionChance_Optional and returns true if it has been set, otherwise returns false */
+	bool GetSelectionChance(float& OutValue) const { if (SelectionChance_IsSet) OutValue = SelectionChance_Optional; return SelectionChance_IsSet; }
+	/** @brief Returns a pointer to SelectionChance_Optional, if it has been set, otherwise returns nullptr */
+	float* GetSelectionChanceOrNull() { if (SelectionChance_IsSet) return &SelectionChance_Optional; return nullptr; }
+	/** @brief Returns a pointer to SelectionChance_Optional, if it has been set, otherwise returns nullptr */
+	const float* GetSelectionChanceOrNull() const { if (SelectionChance_IsSet) return &SelectionChance_Optional; return nullptr; }
+	/** @brief Sets the value of SelectionChance_Optional and also sets SelectionChance_IsSet to true */
+	void SetSelectionChance(float NewValue) { SelectionChance_Optional = NewValue; SelectionChance_IsSet = true; }
+	 /** @brief Clears the value of SelectionChance_Optional and sets SelectionChance_IsSet to false */
+	void ClearSelectionChance() { SelectionChance_IsSet = false; }
 
-    /** @brief Custom data to pass through to the instance */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    TMap<FString, FString> CustomData_Optional{  };
-    /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool CustomData_IsSet{ false };
-    /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-    TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
-    /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-    const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
-    /** @brief Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue */
-    const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
-    bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
-    /** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-    TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
-    /** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-    const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
-    /** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-    void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
-     /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
-    void ClearCustomData() { CustomData_IsSet = false; }
+	/** @brief Custom data to pass through to the instance */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TMap<FString, FString> CustomData_Optional{  };
+	/** @brief true if CustomData_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool CustomData_IsSet{ false };
+	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
+	TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
+	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
+	const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
+	/** @brief Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue */
+	const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
+	bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
+	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
+	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
+	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
+	void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	void ClearCustomData() { CustomData_IsSet = false; }
 };
 
 /** @} */

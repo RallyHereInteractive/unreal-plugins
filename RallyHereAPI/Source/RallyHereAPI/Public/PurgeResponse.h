@@ -21,73 +21,73 @@
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_PurgeResponse : public FRHAPI_Model
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    /**
-    * @brief Fills this object with data from the passed in JSON
-    *
-    * @param [in] JsonValue Data from the API call.
-    *
-    * @return true if parsing of the JSON data was successful.
-    */
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	/**
+	* @brief Fills this object with data from the passed in JSON
+	*
+	* @param [in] JsonValue Data from the API call.
+	*
+	* @return true if parsing of the JSON data was successful.
+	*/
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
-    /**
-    * @brief Writes the data from this object into the specified JSON Writer stream
-    *
-    * @param [in] Writer JSON Writer stream to push .
-    */
-    void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	/**
+	* @brief Writes the data from this object into the specified JSON Writer stream
+	*
+	* @param [in] Writer JSON Writer stream to push .
+	*/
+	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief Person ID that will be purged */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FGuid PersonId{  };
-    /** @brief Gets the value of PersonId */
-    FGuid& GetPersonId() { return PersonId; }
-    /** @brief Gets the value of PersonId */
-    const FGuid& GetPersonId() const { return PersonId; }
-    /** @brief Sets the value of PersonId */
-    void SetPersonId(FGuid NewValue) { PersonId = NewValue;  }
+	/** @brief Person ID that will be purged */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FGuid PersonId{  };
+	/** @brief Gets the value of PersonId */
+	FGuid& GetPersonId() { return PersonId; }
+	/** @brief Gets the value of PersonId */
+	const FGuid& GetPersonId() const { return PersonId; }
+	/** @brief Sets the value of PersonId */
+	void SetPersonId(FGuid NewValue) { PersonId = NewValue;  }
 
-    /** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FDateTime PurgeOn{  };
-    /** @brief Gets the value of PurgeOn */
-    FDateTime& GetPurgeOn() { return PurgeOn; }
-    /** @brief Gets the value of PurgeOn */
-    const FDateTime& GetPurgeOn() const { return PurgeOn; }
-    /** @brief Sets the value of PurgeOn */
-    void SetPurgeOn(FDateTime NewValue) { PurgeOn = NewValue;  }
+	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FDateTime PurgeOn{  };
+	/** @brief Gets the value of PurgeOn */
+	FDateTime& GetPurgeOn() { return PurgeOn; }
+	/** @brief Gets the value of PurgeOn */
+	const FDateTime& GetPurgeOn() const { return PurgeOn; }
+	/** @brief Sets the value of PurgeOn */
+	void SetPurgeOn(FDateTime NewValue) { PurgeOn = NewValue;  }
 
-    /** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FDateTime CreatedOn{  };
-    /** @brief Gets the value of CreatedOn */
-    FDateTime& GetCreatedOn() { return CreatedOn; }
-    /** @brief Gets the value of CreatedOn */
-    const FDateTime& GetCreatedOn() const { return CreatedOn; }
-    /** @brief Sets the value of CreatedOn */
-    void SetCreatedOn(FDateTime NewValue) { CreatedOn = NewValue;  }
+	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FDateTime CreatedOn{  };
+	/** @brief Gets the value of CreatedOn */
+	FDateTime& GetCreatedOn() { return CreatedOn; }
+	/** @brief Gets the value of CreatedOn */
+	const FDateTime& GetCreatedOn() const { return CreatedOn; }
+	/** @brief Sets the value of CreatedOn */
+	void SetCreatedOn(FDateTime NewValue) { CreatedOn = NewValue;  }
 
-    /** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FDateTime LastModifiedOn{  };
-    /** @brief Gets the value of LastModifiedOn */
-    FDateTime& GetLastModifiedOn() { return LastModifiedOn; }
-    /** @brief Gets the value of LastModifiedOn */
-    const FDateTime& GetLastModifiedOn() const { return LastModifiedOn; }
-    /** @brief Sets the value of LastModifiedOn */
-    void SetLastModifiedOn(FDateTime NewValue) { LastModifiedOn = NewValue;  }
+	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FDateTime LastModifiedOn{  };
+	/** @brief Gets the value of LastModifiedOn */
+	FDateTime& GetLastModifiedOn() { return LastModifiedOn; }
+	/** @brief Gets the value of LastModifiedOn */
+	const FDateTime& GetLastModifiedOn() const { return LastModifiedOn; }
+	/** @brief Sets the value of LastModifiedOn */
+	void SetLastModifiedOn(FDateTime NewValue) { LastModifiedOn = NewValue;  }
 
-    /** @brief Status of the purge request */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FString Status{  };
-    /** @brief Gets the value of Status */
-    FString& GetStatus() { return Status; }
-    /** @brief Gets the value of Status */
-    const FString& GetStatus() const { return Status; }
-    /** @brief Sets the value of Status */
-    void SetStatus(FString NewValue) { Status = NewValue;  }
+	/** @brief Status of the purge request */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Status{  };
+	/** @brief Gets the value of Status */
+	FString& GetStatus() { return Status; }
+	/** @brief Gets the value of Status */
+	const FString& GetStatus() const { return Status; }
+	/** @brief Sets the value of Status */
+	void SetStatus(FString NewValue) { Status = NewValue;  }
 };
 
 /** @} */

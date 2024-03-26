@@ -22,43 +22,43 @@
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_MapSelectionListV2 : public FRHAPI_Model
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    /**
-    * @brief Fills this object with data from the passed in JSON
-    *
-    * @param [in] JsonValue Data from the API call.
-    *
-    * @return true if parsing of the JSON data was successful.
-    */
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	/**
+	* @brief Fills this object with data from the passed in JSON
+	*
+	* @param [in] JsonValue Data from the API call.
+	*
+	* @return true if parsing of the JSON data was successful.
+	*/
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
-    /**
-    * @brief Writes the data from this object into the specified JSON Writer stream
-    *
-    * @param [in] Writer JSON Writer stream to push .
-    */
-    void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	/**
+	* @brief Writes the data from this object into the specified JSON Writer stream
+	*
+	* @param [in] Writer JSON Writer stream to push .
+	*/
+	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief ID to uniquely identify this map selection list */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FString MapSelectionListId{  };
-    /** @brief Gets the value of MapSelectionListId */
-    FString& GetMapSelectionListId() { return MapSelectionListId; }
-    /** @brief Gets the value of MapSelectionListId */
-    const FString& GetMapSelectionListId() const { return MapSelectionListId; }
-    /** @brief Sets the value of MapSelectionListId */
-    void SetMapSelectionListId(FString NewValue) { MapSelectionListId = NewValue;  }
+	/** @brief ID to uniquely identify this map selection list */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString MapSelectionListId{  };
+	/** @brief Gets the value of MapSelectionListId */
+	FString& GetMapSelectionListId() { return MapSelectionListId; }
+	/** @brief Gets the value of MapSelectionListId */
+	const FString& GetMapSelectionListId() const { return MapSelectionListId; }
+	/** @brief Sets the value of MapSelectionListId */
+	void SetMapSelectionListId(FString NewValue) { MapSelectionListId = NewValue;  }
 
-    /** @brief List of maps that can be chosen in this selection list */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    TArray<FRHAPI_MapConfigV2> Maps{  };
-    /** @brief Gets the value of Maps */
-    TArray<FRHAPI_MapConfigV2>& GetMaps() { return Maps; }
-    /** @brief Gets the value of Maps */
-    const TArray<FRHAPI_MapConfigV2>& GetMaps() const { return Maps; }
-    /** @brief Sets the value of Maps */
-    void SetMaps(TArray<FRHAPI_MapConfigV2> NewValue) { Maps = NewValue;  }
+	/** @brief List of maps that can be chosen in this selection list */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TArray<FRHAPI_MapConfigV2> Maps{  };
+	/** @brief Gets the value of Maps */
+	TArray<FRHAPI_MapConfigV2>& GetMaps() { return Maps; }
+	/** @brief Gets the value of Maps */
+	const TArray<FRHAPI_MapConfigV2>& GetMaps() const { return Maps; }
+	/** @brief Sets the value of Maps */
+	void SetMaps(TArray<FRHAPI_MapConfigV2> NewValue) { Maps = NewValue;  }
 };
 
 /** @} */

@@ -18,10 +18,10 @@
 UENUM(BlueprintType)
 enum class ERHAPI_SessionPlayerStatus : uint8
 {
-    Leader UMETA(ToolTip="Player is the leader of the session. Is allowed to perform admin actions on the session"),
-    Member UMETA(ToolTip="Player is an active member of the session. Is allowed basic actions on the session"),
-    Invited UMETA(ToolTip="Player has been invited to the session, but has not accepted or declined"),
-    Reserved UMETA(ToolTip="Player&#39;s spot has been reserved on the session, but the player has not yet been notified"),
+	Leader UMETA(ToolTip="Player is the leader of the session. Is allowed to perform admin actions on the session"),
+	Member UMETA(ToolTip="Player is an active member of the session. Is allowed basic actions on the session"),
+	Invited UMETA(ToolTip="Player has been invited to the session, but has not accepted or declined"),
+	Reserved UMETA(ToolTip="Player&#39;s spot has been reserved on the session, but the player has not yet been notified"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_SessionPlayerStatus& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_SessionPlayerStatus& EnumValue);

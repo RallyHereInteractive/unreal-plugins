@@ -21,41 +21,41 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_InventoryBucketUseRuleSets::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (RuleSets_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("rule_sets"));
-        RallyHereAPI::WriteJsonValue(Writer, RuleSets_Optional);
-    }
-    if (CacheInfo_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("cache_info"));
-        RallyHereAPI::WriteJsonValue(Writer, CacheInfo_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (RuleSets_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("rule_sets"));
+		RallyHereAPI::WriteJsonValue(Writer, RuleSets_Optional);
+	}
+	if (CacheInfo_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("cache_info"));
+		RallyHereAPI::WriteJsonValue(Writer, CacheInfo_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_InventoryBucketUseRuleSets::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonRuleSetsField = (*Object)->TryGetField(TEXT("rule_sets"));
-    if (JsonRuleSetsField.IsValid() && !JsonRuleSetsField->IsNull())
-    {
-        RuleSets_IsSet = TryGetJsonValue(JsonRuleSetsField, RuleSets_Optional);
-        ParseSuccess &= RuleSets_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
-    if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
-    {
-        CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
-        ParseSuccess &= CacheInfo_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonRuleSetsField = (*Object)->TryGetField(TEXT("rule_sets"));
+	if (JsonRuleSetsField.IsValid() && !JsonRuleSetsField->IsNull())
+	{
+		RuleSets_IsSet = TryGetJsonValue(JsonRuleSetsField, RuleSets_Optional);
+		ParseSuccess &= RuleSets_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
+	if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
+	{
+		CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
+		ParseSuccess &= CacheInfo_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

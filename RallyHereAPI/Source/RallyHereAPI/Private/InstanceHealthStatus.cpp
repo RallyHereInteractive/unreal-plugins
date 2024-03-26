@@ -20,55 +20,55 @@ using RallyHereAPI::TryGetJsonValue;
 // Implementation for ERHAPI_InstanceHealthStatus
 FString EnumToString(const ERHAPI_InstanceHealthStatus& Value)
 {
-    switch (Value)
-    {
-    case ERHAPI_InstanceHealthStatus::Healthy:
-        return TEXT("healthy");
-    case ERHAPI_InstanceHealthStatus::Unhealthy:
-        return TEXT("unhealthy");
-    case ERHAPI_InstanceHealthStatus::Degraded:
-        return TEXT("degraded");
-    case ERHAPI_InstanceHealthStatus::Unknown:
-        return TEXT("unknown");
-    }
+	switch (Value)
+	{
+	case ERHAPI_InstanceHealthStatus::Healthy:
+		return TEXT("healthy");
+	case ERHAPI_InstanceHealthStatus::Unhealthy:
+		return TEXT("unhealthy");
+	case ERHAPI_InstanceHealthStatus::Degraded:
+		return TEXT("degraded");
+	case ERHAPI_InstanceHealthStatus::Unknown:
+		return TEXT("unknown");
+	}
 
-    UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_InstanceHealthStatus::Values Value (%d)"), (int)Value);
-    return TEXT("");
+	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_InstanceHealthStatus::Values Value (%d)"), (int)Value);
+	return TEXT("");
 }
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_InstanceHealthStatus& Value)
 {
-    static TMap<FString, ERHAPI_InstanceHealthStatus> StringToEnum = { 
-        { TEXT("healthy"), ERHAPI_InstanceHealthStatus::Healthy },
-        { TEXT("unhealthy"), ERHAPI_InstanceHealthStatus::Unhealthy },
-        { TEXT("degraded"), ERHAPI_InstanceHealthStatus::Degraded },
-        { TEXT("unknown"), ERHAPI_InstanceHealthStatus::Unknown },    };
+	static TMap<FString, ERHAPI_InstanceHealthStatus> StringToEnum = { 
+		{ TEXT("healthy"), ERHAPI_InstanceHealthStatus::Healthy },
+		{ TEXT("unhealthy"), ERHAPI_InstanceHealthStatus::Unhealthy },
+		{ TEXT("degraded"), ERHAPI_InstanceHealthStatus::Degraded },
+		{ TEXT("unknown"), ERHAPI_InstanceHealthStatus::Unknown },	};
 
-    const auto Found = StringToEnum.Find(EnumAsString);
-    if(Found)
-        Value = *Found;
-    return Found != nullptr;
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
+	return Found != nullptr;
 }
 
 FStringFormatArg ToStringFormatArg(const ERHAPI_InstanceHealthStatus& Value)
 {
-    return FStringFormatArg(EnumToString(Value));
+	return FStringFormatArg(EnumToString(Value));
 }
 
 void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const ERHAPI_InstanceHealthStatus& Value)
 {
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
 }
 
 bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, ERHAPI_InstanceHealthStatus& Value)
 {
-    FString TmpValue;
-    if (JsonValue->TryGetString(TmpValue))
-    {
-        if (EnumFromString(TmpValue, Value))
-            return true;
-    }
-    return false;
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if (EnumFromString(TmpValue, Value))
+			return true;
+	}
+	return false;
 }
 
 

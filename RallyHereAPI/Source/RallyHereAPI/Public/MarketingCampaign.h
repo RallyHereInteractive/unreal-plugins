@@ -23,122 +23,122 @@
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_MarketingCampaign : public FRHAPI_Model
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    /**
-    * @brief Fills this object with data from the passed in JSON
-    *
-    * @param [in] JsonValue Data from the API call.
-    *
-    * @return true if parsing of the JSON data was successful.
-    */
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	/**
+	* @brief Fills this object with data from the passed in JSON
+	*
+	* @param [in] JsonValue Data from the API call.
+	*
+	* @return true if parsing of the JSON data was successful.
+	*/
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
-    /**
-    * @brief Writes the data from this object into the specified JSON Writer stream
-    *
-    * @param [in] Writer JSON Writer stream to push .
-    */
-    void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	/**
+	* @brief Writes the data from this object into the specified JSON Writer stream
+	*
+	* @param [in] Writer JSON Writer stream to push .
+	*/
+	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief The unique identifier for the Marketing Campaign */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FGuid Uuid{  };
-    /** @brief Gets the value of Uuid */
-    FGuid& GetUuid() { return Uuid; }
-    /** @brief Gets the value of Uuid */
-    const FGuid& GetUuid() const { return Uuid; }
-    /** @brief Sets the value of Uuid */
-    void SetUuid(FGuid NewValue) { Uuid = NewValue;  }
+	/** @brief The unique identifier for the Marketing Campaign */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FGuid Uuid{  };
+	/** @brief Gets the value of Uuid */
+	FGuid& GetUuid() { return Uuid; }
+	/** @brief Gets the value of Uuid */
+	const FGuid& GetUuid() const { return Uuid; }
+	/** @brief Sets the value of Uuid */
+	void SetUuid(FGuid NewValue) { Uuid = NewValue;  }
 
-    /** @brief The name of the Marketing Campaign */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FString Name{  };
-    /** @brief Gets the value of Name */
-    FString& GetName() { return Name; }
-    /** @brief Gets the value of Name */
-    const FString& GetName() const { return Name; }
-    /** @brief Sets the value of Name */
-    void SetName(FString NewValue) { Name = NewValue;  }
+	/** @brief The name of the Marketing Campaign */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Name{  };
+	/** @brief Gets the value of Name */
+	FString& GetName() { return Name; }
+	/** @brief Gets the value of Name */
+	const FString& GetName() const { return Name; }
+	/** @brief Sets the value of Name */
+	void SetName(FString NewValue) { Name = NewValue;  }
 
-    /** @brief Platform for the Marketing Campaign */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    ERHAPI_Portal PortalId_Optional{  };
-    /** @brief true if PortalId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool PortalId_IsSet{ false };
-    /** @brief Gets the value of PortalId_Optional, regardless of it having been set */
-    ERHAPI_Portal& GetPortalId() { return PortalId_Optional; }
-    /** @brief Gets the value of PortalId_Optional, regardless of it having been set */
-    const ERHAPI_Portal& GetPortalId() const { return PortalId_Optional; }
-    /** @brief Gets the value of PortalId_Optional, if it has been set, otherwise it returns DefaultValue */
-    const ERHAPI_Portal& GetPortalId(const ERHAPI_Portal& DefaultValue) const { if (PortalId_IsSet) return PortalId_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of PortalId_Optional and returns true if it has been set, otherwise returns false */
-    bool GetPortalId(ERHAPI_Portal& OutValue) const { if (PortalId_IsSet) OutValue = PortalId_Optional; return PortalId_IsSet; }
-    /** @brief Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr */
-    ERHAPI_Portal* GetPortalIdOrNull() { if (PortalId_IsSet) return &PortalId_Optional; return nullptr; }
-    /** @brief Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr */
-    const ERHAPI_Portal* GetPortalIdOrNull() const { if (PortalId_IsSet) return &PortalId_Optional; return nullptr; }
-    /** @brief Sets the value of PortalId_Optional and also sets PortalId_IsSet to true */
-    void SetPortalId(ERHAPI_Portal NewValue) { PortalId_Optional = NewValue; PortalId_IsSet = true; }
-     /** @brief Clears the value of PortalId_Optional and sets PortalId_IsSet to false */
-    void ClearPortalId() { PortalId_IsSet = false; }
+	/** @brief Platform for the Marketing Campaign */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	ERHAPI_Portal PortalId_Optional{  };
+	/** @brief true if PortalId_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool PortalId_IsSet{ false };
+	/** @brief Gets the value of PortalId_Optional, regardless of it having been set */
+	ERHAPI_Portal& GetPortalId() { return PortalId_Optional; }
+	/** @brief Gets the value of PortalId_Optional, regardless of it having been set */
+	const ERHAPI_Portal& GetPortalId() const { return PortalId_Optional; }
+	/** @brief Gets the value of PortalId_Optional, if it has been set, otherwise it returns DefaultValue */
+	const ERHAPI_Portal& GetPortalId(const ERHAPI_Portal& DefaultValue) const { if (PortalId_IsSet) return PortalId_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of PortalId_Optional and returns true if it has been set, otherwise returns false */
+	bool GetPortalId(ERHAPI_Portal& OutValue) const { if (PortalId_IsSet) OutValue = PortalId_Optional; return PortalId_IsSet; }
+	/** @brief Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr */
+	ERHAPI_Portal* GetPortalIdOrNull() { if (PortalId_IsSet) return &PortalId_Optional; return nullptr; }
+	/** @brief Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr */
+	const ERHAPI_Portal* GetPortalIdOrNull() const { if (PortalId_IsSet) return &PortalId_Optional; return nullptr; }
+	/** @brief Sets the value of PortalId_Optional and also sets PortalId_IsSet to true */
+	void SetPortalId(ERHAPI_Portal NewValue) { PortalId_Optional = NewValue; PortalId_IsSet = true; }
+	 /** @brief Clears the value of PortalId_Optional and sets PortalId_IsSet to false */
+	void ClearPortalId() { PortalId_IsSet = false; }
 
-    /** @brief The types of keys that can be claimed from this campaign */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    TArray<FRHAPI_KeyType> KeyTypes{  };
-    /** @brief Gets the value of KeyTypes */
-    TArray<FRHAPI_KeyType>& GetKeyTypes() { return KeyTypes; }
-    /** @brief Gets the value of KeyTypes */
-    const TArray<FRHAPI_KeyType>& GetKeyTypes() const { return KeyTypes; }
-    /** @brief Sets the value of KeyTypes */
-    void SetKeyTypes(TArray<FRHAPI_KeyType> NewValue) { KeyTypes = NewValue;  }
+	/** @brief The types of keys that can be claimed from this campaign */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TArray<FRHAPI_KeyType> KeyTypes{  };
+	/** @brief Gets the value of KeyTypes */
+	TArray<FRHAPI_KeyType>& GetKeyTypes() { return KeyTypes; }
+	/** @brief Gets the value of KeyTypes */
+	const TArray<FRHAPI_KeyType>& GetKeyTypes() const { return KeyTypes; }
+	/** @brief Sets the value of KeyTypes */
+	void SetKeyTypes(TArray<FRHAPI_KeyType> NewValue) { KeyTypes = NewValue;  }
 
-    /** @brief The time the MarketingCampaign was created */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FString CreatedOn_Optional{  };
-    /** @brief true if CreatedOn_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool CreatedOn_IsSet{ false };
-    /** @brief Gets the value of CreatedOn_Optional, regardless of it having been set */
-    FString& GetCreatedOn() { return CreatedOn_Optional; }
-    /** @brief Gets the value of CreatedOn_Optional, regardless of it having been set */
-    const FString& GetCreatedOn() const { return CreatedOn_Optional; }
-    /** @brief Gets the value of CreatedOn_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FString& GetCreatedOn(const FString& DefaultValue) const { if (CreatedOn_IsSet) return CreatedOn_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of CreatedOn_Optional and returns true if it has been set, otherwise returns false */
-    bool GetCreatedOn(FString& OutValue) const { if (CreatedOn_IsSet) OutValue = CreatedOn_Optional; return CreatedOn_IsSet; }
-    /** @brief Returns a pointer to CreatedOn_Optional, if it has been set, otherwise returns nullptr */
-    FString* GetCreatedOnOrNull() { if (CreatedOn_IsSet) return &CreatedOn_Optional; return nullptr; }
-    /** @brief Returns a pointer to CreatedOn_Optional, if it has been set, otherwise returns nullptr */
-    const FString* GetCreatedOnOrNull() const { if (CreatedOn_IsSet) return &CreatedOn_Optional; return nullptr; }
-    /** @brief Sets the value of CreatedOn_Optional and also sets CreatedOn_IsSet to true */
-    void SetCreatedOn(FString NewValue) { CreatedOn_Optional = NewValue; CreatedOn_IsSet = true; }
-     /** @brief Clears the value of CreatedOn_Optional and sets CreatedOn_IsSet to false */
-    void ClearCreatedOn() { CreatedOn_IsSet = false; }
+	/** @brief The time the MarketingCampaign was created */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString CreatedOn_Optional{  };
+	/** @brief true if CreatedOn_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool CreatedOn_IsSet{ false };
+	/** @brief Gets the value of CreatedOn_Optional, regardless of it having been set */
+	FString& GetCreatedOn() { return CreatedOn_Optional; }
+	/** @brief Gets the value of CreatedOn_Optional, regardless of it having been set */
+	const FString& GetCreatedOn() const { return CreatedOn_Optional; }
+	/** @brief Gets the value of CreatedOn_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetCreatedOn(const FString& DefaultValue) const { if (CreatedOn_IsSet) return CreatedOn_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of CreatedOn_Optional and returns true if it has been set, otherwise returns false */
+	bool GetCreatedOn(FString& OutValue) const { if (CreatedOn_IsSet) OutValue = CreatedOn_Optional; return CreatedOn_IsSet; }
+	/** @brief Returns a pointer to CreatedOn_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetCreatedOnOrNull() { if (CreatedOn_IsSet) return &CreatedOn_Optional; return nullptr; }
+	/** @brief Returns a pointer to CreatedOn_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetCreatedOnOrNull() const { if (CreatedOn_IsSet) return &CreatedOn_Optional; return nullptr; }
+	/** @brief Sets the value of CreatedOn_Optional and also sets CreatedOn_IsSet to true */
+	void SetCreatedOn(FString NewValue) { CreatedOn_Optional = NewValue; CreatedOn_IsSet = true; }
+	 /** @brief Clears the value of CreatedOn_Optional and sets CreatedOn_IsSet to false */
+	void ClearCreatedOn() { CreatedOn_IsSet = false; }
 
-    /** @brief The time the MarketingCampaign was last modified */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FString LastModifiedOn_Optional{  };
-    /** @brief true if LastModifiedOn_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool LastModifiedOn_IsSet{ false };
-    /** @brief Gets the value of LastModifiedOn_Optional, regardless of it having been set */
-    FString& GetLastModifiedOn() { return LastModifiedOn_Optional; }
-    /** @brief Gets the value of LastModifiedOn_Optional, regardless of it having been set */
-    const FString& GetLastModifiedOn() const { return LastModifiedOn_Optional; }
-    /** @brief Gets the value of LastModifiedOn_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FString& GetLastModifiedOn(const FString& DefaultValue) const { if (LastModifiedOn_IsSet) return LastModifiedOn_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of LastModifiedOn_Optional and returns true if it has been set, otherwise returns false */
-    bool GetLastModifiedOn(FString& OutValue) const { if (LastModifiedOn_IsSet) OutValue = LastModifiedOn_Optional; return LastModifiedOn_IsSet; }
-    /** @brief Returns a pointer to LastModifiedOn_Optional, if it has been set, otherwise returns nullptr */
-    FString* GetLastModifiedOnOrNull() { if (LastModifiedOn_IsSet) return &LastModifiedOn_Optional; return nullptr; }
-    /** @brief Returns a pointer to LastModifiedOn_Optional, if it has been set, otherwise returns nullptr */
-    const FString* GetLastModifiedOnOrNull() const { if (LastModifiedOn_IsSet) return &LastModifiedOn_Optional; return nullptr; }
-    /** @brief Sets the value of LastModifiedOn_Optional and also sets LastModifiedOn_IsSet to true */
-    void SetLastModifiedOn(FString NewValue) { LastModifiedOn_Optional = NewValue; LastModifiedOn_IsSet = true; }
-     /** @brief Clears the value of LastModifiedOn_Optional and sets LastModifiedOn_IsSet to false */
-    void ClearLastModifiedOn() { LastModifiedOn_IsSet = false; }
+	/** @brief The time the MarketingCampaign was last modified */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString LastModifiedOn_Optional{  };
+	/** @brief true if LastModifiedOn_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool LastModifiedOn_IsSet{ false };
+	/** @brief Gets the value of LastModifiedOn_Optional, regardless of it having been set */
+	FString& GetLastModifiedOn() { return LastModifiedOn_Optional; }
+	/** @brief Gets the value of LastModifiedOn_Optional, regardless of it having been set */
+	const FString& GetLastModifiedOn() const { return LastModifiedOn_Optional; }
+	/** @brief Gets the value of LastModifiedOn_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetLastModifiedOn(const FString& DefaultValue) const { if (LastModifiedOn_IsSet) return LastModifiedOn_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of LastModifiedOn_Optional and returns true if it has been set, otherwise returns false */
+	bool GetLastModifiedOn(FString& OutValue) const { if (LastModifiedOn_IsSet) OutValue = LastModifiedOn_Optional; return LastModifiedOn_IsSet; }
+	/** @brief Returns a pointer to LastModifiedOn_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetLastModifiedOnOrNull() { if (LastModifiedOn_IsSet) return &LastModifiedOn_Optional; return nullptr; }
+	/** @brief Returns a pointer to LastModifiedOn_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetLastModifiedOnOrNull() const { if (LastModifiedOn_IsSet) return &LastModifiedOn_Optional; return nullptr; }
+	/** @brief Sets the value of LastModifiedOn_Optional and also sets LastModifiedOn_IsSet to true */
+	void SetLastModifiedOn(FString NewValue) { LastModifiedOn_Optional = NewValue; LastModifiedOn_IsSet = true; }
+	 /** @brief Clears the value of LastModifiedOn_Optional and sets LastModifiedOn_IsSet to false */
+	void ClearLastModifiedOn() { LastModifiedOn_IsSet = false; }
 };
 
 /** @} */

@@ -21,27 +21,27 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_RankedTeam::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("players"));
-    RallyHereAPI::WriteJsonValue(Writer, Players);
-    Writer->WriteIdentifierPrefix(TEXT("team_rank"));
-    RallyHereAPI::WriteJsonValue(Writer, TeamRank);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("players"));
+	RallyHereAPI::WriteJsonValue(Writer, Players);
+	Writer->WriteIdentifierPrefix(TEXT("team_rank"));
+	RallyHereAPI::WriteJsonValue(Writer, TeamRank);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_RankedTeam::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonPlayersField = (*Object)->TryGetField(TEXT("players"));
-    ParseSuccess &= JsonPlayersField.IsValid() && !JsonPlayersField->IsNull() && TryGetJsonValue(JsonPlayersField, Players);
-    const TSharedPtr<FJsonValue> JsonTeamRankField = (*Object)->TryGetField(TEXT("team_rank"));
-    ParseSuccess &= JsonTeamRankField.IsValid() && !JsonTeamRankField->IsNull() && TryGetJsonValue(JsonTeamRankField, TeamRank);
+	const TSharedPtr<FJsonValue> JsonPlayersField = (*Object)->TryGetField(TEXT("players"));
+	ParseSuccess &= JsonPlayersField.IsValid() && !JsonPlayersField->IsNull() && TryGetJsonValue(JsonPlayersField, Players);
+	const TSharedPtr<FJsonValue> JsonTeamRankField = (*Object)->TryGetField(TEXT("team_rank"));
+	ParseSuccess &= JsonTeamRankField.IsValid() && !JsonTeamRankField->IsNull() && TryGetJsonValue(JsonTeamRankField, TeamRank);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

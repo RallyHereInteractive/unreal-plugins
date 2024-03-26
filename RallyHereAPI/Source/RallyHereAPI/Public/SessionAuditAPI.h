@@ -32,15 +32,15 @@ DECLARE_DELEGATE_OneParam(FDelegate_GetSessionAudit, const FResponse_GetSessionA
 class RALLYHEREAPI_API FSessionAuditAPI : public FAPI
 {
 public:
-    FSessionAuditAPI();
-    virtual ~FSessionAuditAPI();
+	FSessionAuditAPI();
+	virtual ~FSessionAuditAPI();
 
-    FHttpRequestPtr CreateSessionAudit(const FRequest_CreateSessionAudit& Request, const FDelegate_CreateSessionAudit& Delegate = FDelegate_CreateSessionAudit(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetSessionAudit(const FRequest_GetSessionAudit& Request, const FDelegate_GetSessionAudit& Delegate = FDelegate_GetSessionAudit(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr CreateSessionAudit(const FRequest_CreateSessionAudit& Request, const FDelegate_CreateSessionAudit& Delegate = FDelegate_CreateSessionAudit(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetSessionAudit(const FRequest_GetSessionAudit& Request, const FDelegate_GetSessionAudit& Delegate = FDelegate_GetSessionAudit(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
-    void OnCreateSessionAuditResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateSessionAudit Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetSessionAuditResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetSessionAudit Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnCreateSessionAuditResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateSessionAudit Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetSessionAuditResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetSessionAudit Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
@@ -62,60 +62,60 @@ private:
 */
 struct RALLYHEREAPI_API FRequest_CreateSessionAudit : public FRequest
 {
-    FRequest_CreateSessionAudit();
-    virtual ~FRequest_CreateSessionAudit() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_CreateSessionAudit();
+	virtual ~FRequest_CreateSessionAudit() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString SessionId;
-    FRHAPI_SessionEventCreateRequest SessionEventCreateRequest;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString SessionId;
+	FRHAPI_SessionEventCreateRequest SessionEventCreateRequest;
 };
 
 struct RALLYHEREAPI_API FResponse_CreateSessionAudit : public FResponse
 {
-    FResponse_CreateSessionAudit(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_CreateSessionAudit() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_CreateSessionAudit(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_CreateSessionAudit() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+	FRHAPI_JsonValue Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-    Session doesn't exist.  See error code for more info
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	Session doesn't exist.  See error code for more info
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_CreateSessionAudit
 {
-    typedef FRequest_CreateSessionAudit Request;
-    typedef FResponse_CreateSessionAudit Response;
-    typedef FDelegate_CreateSessionAudit Delegate;
-    typedef FSessionAuditAPI API;
-    static FString Name;
+	typedef FRequest_CreateSessionAudit Request;
+	typedef FResponse_CreateSessionAudit Response;
+	typedef FDelegate_CreateSessionAudit Delegate;
+	typedef FSessionAuditAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateSessionAudit(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateSessionAudit(InRequest, InDelegate, Priority); }
 };
 
 /* Get Session Audit
@@ -132,57 +132,57 @@ struct RALLYHEREAPI_API Traits_CreateSessionAudit
 */
 struct RALLYHEREAPI_API FRequest_GetSessionAudit : public FRequest
 {
-    FRequest_GetSessionAudit();
-    virtual ~FRequest_GetSessionAudit() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetSessionAudit();
+	virtual ~FRequest_GetSessionAudit() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    TOptional<FString> SessionId;
-    TOptional<FGuid> PlayerUuid;
-    TOptional<int32> PageNum;
-    TOptional<int32> PageSize;
+	TSharedPtr<FAuthContext> AuthContext;
+	TOptional<FString> SessionId;
+	TOptional<FGuid> PlayerUuid;
+	TOptional<int32> PageNum;
+	TOptional<int32> PageSize;
 };
 
 struct RALLYHEREAPI_API FResponse_GetSessionAudit : public FResponse
 {
-    FResponse_GetSessionAudit(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetSessionAudit() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetSessionAudit(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetSessionAudit() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_AuditResponse Content;
+	FRHAPI_AuditResponse Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_AuditResponse& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_AuditResponse& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetSessionAudit
 {
-    typedef FRequest_GetSessionAudit Request;
-    typedef FResponse_GetSessionAudit Response;
-    typedef FDelegate_GetSessionAudit Delegate;
-    typedef FSessionAuditAPI API;
-    static FString Name;
+	typedef FRequest_GetSessionAudit Request;
+	typedef FResponse_GetSessionAudit Response;
+	typedef FDelegate_GetSessionAudit Delegate;
+	typedef FSessionAuditAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetSessionAudit(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetSessionAudit(InRequest, InDelegate, Priority); }
 };
 
 

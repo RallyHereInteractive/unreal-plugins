@@ -21,38 +21,38 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_RankData::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("mu"));
-    RallyHereAPI::WriteJsonValue(Writer, Mu);
-    Writer->WriteIdentifierPrefix(TEXT("sigma"));
-    RallyHereAPI::WriteJsonValue(Writer, Sigma);
-    if (CustomData_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("custom_data"));
-        RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("mu"));
+	RallyHereAPI::WriteJsonValue(Writer, Mu);
+	Writer->WriteIdentifierPrefix(TEXT("sigma"));
+	RallyHereAPI::WriteJsonValue(Writer, Sigma);
+	if (CustomData_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("custom_data"));
+		RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_RankData::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonMuField = (*Object)->TryGetField(TEXT("mu"));
-    ParseSuccess &= JsonMuField.IsValid() && !JsonMuField->IsNull() && TryGetJsonValue(JsonMuField, Mu);
-    const TSharedPtr<FJsonValue> JsonSigmaField = (*Object)->TryGetField(TEXT("sigma"));
-    ParseSuccess &= JsonSigmaField.IsValid() && !JsonSigmaField->IsNull() && TryGetJsonValue(JsonSigmaField, Sigma);
-    const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-    if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
-    {
-        CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
-        ParseSuccess &= CustomData_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonMuField = (*Object)->TryGetField(TEXT("mu"));
+	ParseSuccess &= JsonMuField.IsValid() && !JsonMuField->IsNull() && TryGetJsonValue(JsonMuField, Mu);
+	const TSharedPtr<FJsonValue> JsonSigmaField = (*Object)->TryGetField(TEXT("sigma"));
+	ParseSuccess &= JsonSigmaField.IsValid() && !JsonSigmaField->IsNull() && TryGetJsonValue(JsonSigmaField, Sigma);
+	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
+	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	{
+		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
+		ParseSuccess &= CustomData_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

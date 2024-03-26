@@ -22,50 +22,50 @@
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_ValidationError : public FRHAPI_Model
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    /**
-    * @brief Fills this object with data from the passed in JSON
-    *
-    * @param [in] JsonValue Data from the API call.
-    *
-    * @return true if parsing of the JSON data was successful.
-    */
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	/**
+	* @brief Fills this object with data from the passed in JSON
+	*
+	* @param [in] JsonValue Data from the API call.
+	*
+	* @return true if parsing of the JSON data was successful.
+	*/
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
-    /**
-    * @brief Writes the data from this object into the specified JSON Writer stream
-    *
-    * @param [in] Writer JSON Writer stream to push .
-    */
-    void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	/**
+	* @brief Writes the data from this object into the specified JSON Writer stream
+	*
+	* @param [in] Writer JSON Writer stream to push .
+	*/
+	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    TArray<FRHAPI_LocationInner> Loc{  };
-    /** @brief Gets the value of Loc */
-    TArray<FRHAPI_LocationInner>& GetLoc() { return Loc; }
-    /** @brief Gets the value of Loc */
-    const TArray<FRHAPI_LocationInner>& GetLoc() const { return Loc; }
-    /** @brief Sets the value of Loc */
-    void SetLoc(TArray<FRHAPI_LocationInner> NewValue) { Loc = NewValue;  }
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TArray<FRHAPI_LocationInner> Loc{  };
+	/** @brief Gets the value of Loc */
+	TArray<FRHAPI_LocationInner>& GetLoc() { return Loc; }
+	/** @brief Gets the value of Loc */
+	const TArray<FRHAPI_LocationInner>& GetLoc() const { return Loc; }
+	/** @brief Sets the value of Loc */
+	void SetLoc(TArray<FRHAPI_LocationInner> NewValue) { Loc = NewValue;  }
 
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FString Msg{  };
-    /** @brief Gets the value of Msg */
-    FString& GetMsg() { return Msg; }
-    /** @brief Gets the value of Msg */
-    const FString& GetMsg() const { return Msg; }
-    /** @brief Sets the value of Msg */
-    void SetMsg(FString NewValue) { Msg = NewValue;  }
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Msg{  };
+	/** @brief Gets the value of Msg */
+	FString& GetMsg() { return Msg; }
+	/** @brief Gets the value of Msg */
+	const FString& GetMsg() const { return Msg; }
+	/** @brief Sets the value of Msg */
+	void SetMsg(FString NewValue) { Msg = NewValue;  }
 
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FString Type{  };
-    /** @brief Gets the value of Type */
-    FString& GetType() { return Type; }
-    /** @brief Gets the value of Type */
-    const FString& GetType() const { return Type; }
-    /** @brief Sets the value of Type */
-    void SetType(FString NewValue) { Type = NewValue;  }
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Type{  };
+	/** @brief Gets the value of Type */
+	FString& GetType() { return Type; }
+	/** @brief Gets the value of Type */
+	const FString& GetType() const { return Type; }
+	/** @brief Sets the value of Type */
+	void SetType(FString NewValue) { Type = NewValue;  }
 };
 
 /** @} */

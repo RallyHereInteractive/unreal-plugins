@@ -20,76 +20,76 @@ using RallyHereAPI::TryGetJsonValue;
 // Implementation for ERHAPI_ClientType
 FString EnumToString(const ERHAPI_ClientType& Value)
 {
-    switch (Value)
-    {
-    case ERHAPI_ClientType::Unknown:
-        return TEXT("UNKNOWN");
-    case ERHAPI_ClientType::Win:
-        return TEXT("WIN");
-    case ERHAPI_ClientType::Mac:
-        return TEXT("MAC");
-    case ERHAPI_ClientType::Xboxone:
-        return TEXT("XBOXONE");
-    case ERHAPI_ClientType::PS4:
-        return TEXT("PS4");
-    case ERHAPI_ClientType::_Switch:
-        return TEXT("SWITCH");
-    case ERHAPI_ClientType::Android:
-        return TEXT("ANDROID");
-    case ERHAPI_ClientType::Ios:
-        return TEXT("IOS");
-    case ERHAPI_ClientType::PS5:
-        return TEXT("PS5");
-    case ERHAPI_ClientType::_Linux:
-        return TEXT("LINUX");
-    case ERHAPI_ClientType::Xsx:
-        return TEXT("XSX");
-    }
+	switch (Value)
+	{
+	case ERHAPI_ClientType::Unknown:
+		return TEXT("UNKNOWN");
+	case ERHAPI_ClientType::Win:
+		return TEXT("WIN");
+	case ERHAPI_ClientType::Mac:
+		return TEXT("MAC");
+	case ERHAPI_ClientType::Xboxone:
+		return TEXT("XBOXONE");
+	case ERHAPI_ClientType::PS4:
+		return TEXT("PS4");
+	case ERHAPI_ClientType::_Switch:
+		return TEXT("SWITCH");
+	case ERHAPI_ClientType::Android:
+		return TEXT("ANDROID");
+	case ERHAPI_ClientType::Ios:
+		return TEXT("IOS");
+	case ERHAPI_ClientType::PS5:
+		return TEXT("PS5");
+	case ERHAPI_ClientType::_Linux:
+		return TEXT("LINUX");
+	case ERHAPI_ClientType::Xsx:
+		return TEXT("XSX");
+	}
 
-    UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_ClientType::Values Value (%d)"), (int)Value);
-    return TEXT("");
+	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_ClientType::Values Value (%d)"), (int)Value);
+	return TEXT("");
 }
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_ClientType& Value)
 {
-    static TMap<FString, ERHAPI_ClientType> StringToEnum = { 
-        { TEXT("UNKNOWN"), ERHAPI_ClientType::Unknown },
-        { TEXT("WIN"), ERHAPI_ClientType::Win },
-        { TEXT("MAC"), ERHAPI_ClientType::Mac },
-        { TEXT("XBOXONE"), ERHAPI_ClientType::Xboxone },
-        { TEXT("PS4"), ERHAPI_ClientType::PS4 },
-        { TEXT("SWITCH"), ERHAPI_ClientType::_Switch },
-        { TEXT("ANDROID"), ERHAPI_ClientType::Android },
-        { TEXT("IOS"), ERHAPI_ClientType::Ios },
-        { TEXT("PS5"), ERHAPI_ClientType::PS5 },
-        { TEXT("LINUX"), ERHAPI_ClientType::_Linux },
-        { TEXT("XSX"), ERHAPI_ClientType::Xsx },    };
+	static TMap<FString, ERHAPI_ClientType> StringToEnum = { 
+		{ TEXT("UNKNOWN"), ERHAPI_ClientType::Unknown },
+		{ TEXT("WIN"), ERHAPI_ClientType::Win },
+		{ TEXT("MAC"), ERHAPI_ClientType::Mac },
+		{ TEXT("XBOXONE"), ERHAPI_ClientType::Xboxone },
+		{ TEXT("PS4"), ERHAPI_ClientType::PS4 },
+		{ TEXT("SWITCH"), ERHAPI_ClientType::_Switch },
+		{ TEXT("ANDROID"), ERHAPI_ClientType::Android },
+		{ TEXT("IOS"), ERHAPI_ClientType::Ios },
+		{ TEXT("PS5"), ERHAPI_ClientType::PS5 },
+		{ TEXT("LINUX"), ERHAPI_ClientType::_Linux },
+		{ TEXT("XSX"), ERHAPI_ClientType::Xsx },	};
 
-    const auto Found = StringToEnum.Find(EnumAsString);
-    if(Found)
-        Value = *Found;
-    return Found != nullptr;
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
+	return Found != nullptr;
 }
 
 FStringFormatArg ToStringFormatArg(const ERHAPI_ClientType& Value)
 {
-    return FStringFormatArg(EnumToString(Value));
+	return FStringFormatArg(EnumToString(Value));
 }
 
 void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const ERHAPI_ClientType& Value)
 {
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
 }
 
 bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, ERHAPI_ClientType& Value)
 {
-    FString TmpValue;
-    if (JsonValue->TryGetString(TmpValue))
-    {
-        if (EnumFromString(TmpValue, Value))
-            return true;
-    }
-    return false;
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if (EnumFromString(TmpValue, Value))
+			return true;
+	}
+	return false;
 }
 
 

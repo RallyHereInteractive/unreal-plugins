@@ -21,23 +21,23 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_SettingType::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("versions"));
-    RallyHereAPI::WriteJsonValue(Writer, Versions);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("versions"));
+	RallyHereAPI::WriteJsonValue(Writer, Versions);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_SettingType::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonVersionsField = (*Object)->TryGetField(TEXT("versions"));
-    ParseSuccess &= JsonVersionsField.IsValid() && !JsonVersionsField->IsNull() && TryGetJsonValue(JsonVersionsField, Versions);
+	const TSharedPtr<FJsonValue> JsonVersionsField = (*Object)->TryGetField(TEXT("versions"));
+	ParseSuccess &= JsonVersionsField.IsValid() && !JsonVersionsField->IsNull() && TryGetJsonValue(JsonVersionsField, Versions);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

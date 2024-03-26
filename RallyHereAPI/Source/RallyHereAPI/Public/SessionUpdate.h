@@ -22,119 +22,119 @@
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_SessionUpdate : public FRHAPI_Model
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    /**
-    * @brief Fills this object with data from the passed in JSON
-    *
-    * @param [in] JsonValue Data from the API call.
-    *
-    * @return true if parsing of the JSON data was successful.
-    */
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	/**
+	* @brief Fills this object with data from the passed in JSON
+	*
+	* @param [in] JsonValue Data from the API call.
+	*
+	* @return true if parsing of the JSON data was successful.
+	*/
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
-    /**
-    * @brief Writes the data from this object into the specified JSON Writer stream
-    *
-    * @param [in] Writer JSON Writer stream to push .
-    */
-    void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	/**
+	* @brief Writes the data from this object into the specified JSON Writer stream
+	*
+	* @param [in] Writer JSON Writer stream to push .
+	*/
+	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief Preferred region for the instance and match to take place in */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FString RegionId_Optional{  };
-    /** @brief true if RegionId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool RegionId_IsSet{ false };
-    /** @brief Gets the value of RegionId_Optional, regardless of it having been set */
-    FString& GetRegionId() { return RegionId_Optional; }
-    /** @brief Gets the value of RegionId_Optional, regardless of it having been set */
-    const FString& GetRegionId() const { return RegionId_Optional; }
-    /** @brief Gets the value of RegionId_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FString& GetRegionId(const FString& DefaultValue) const { if (RegionId_IsSet) return RegionId_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of RegionId_Optional and returns true if it has been set, otherwise returns false */
-    bool GetRegionId(FString& OutValue) const { if (RegionId_IsSet) OutValue = RegionId_Optional; return RegionId_IsSet; }
-    /** @brief Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr */
-    FString* GetRegionIdOrNull() { if (RegionId_IsSet) return &RegionId_Optional; return nullptr; }
-    /** @brief Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr */
-    const FString* GetRegionIdOrNull() const { if (RegionId_IsSet) return &RegionId_Optional; return nullptr; }
-    /** @brief Sets the value of RegionId_Optional and also sets RegionId_IsSet to true */
-    void SetRegionId(FString NewValue) { RegionId_Optional = NewValue; RegionId_IsSet = true; }
-     /** @brief Clears the value of RegionId_Optional and sets RegionId_IsSet to false */
-    void ClearRegionId() { RegionId_IsSet = false; }
+	/** @brief Preferred region for the instance and match to take place in */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString RegionId_Optional{  };
+	/** @brief true if RegionId_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool RegionId_IsSet{ false };
+	/** @brief Gets the value of RegionId_Optional, regardless of it having been set */
+	FString& GetRegionId() { return RegionId_Optional; }
+	/** @brief Gets the value of RegionId_Optional, regardless of it having been set */
+	const FString& GetRegionId() const { return RegionId_Optional; }
+	/** @brief Gets the value of RegionId_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetRegionId(const FString& DefaultValue) const { if (RegionId_IsSet) return RegionId_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of RegionId_Optional and returns true if it has been set, otherwise returns false */
+	bool GetRegionId(FString& OutValue) const { if (RegionId_IsSet) OutValue = RegionId_Optional; return RegionId_IsSet; }
+	/** @brief Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetRegionIdOrNull() { if (RegionId_IsSet) return &RegionId_Optional; return nullptr; }
+	/** @brief Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetRegionIdOrNull() const { if (RegionId_IsSet) return &RegionId_Optional; return nullptr; }
+	/** @brief Sets the value of RegionId_Optional and also sets RegionId_IsSet to true */
+	void SetRegionId(FString NewValue) { RegionId_Optional = NewValue; RegionId_IsSet = true; }
+	 /** @brief Clears the value of RegionId_Optional and sets RegionId_IsSet to false */
+	void ClearRegionId() { RegionId_IsSet = false; }
 
-    /** @brief Leader Player or instance defined custom data about this session */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    TMap<FString, FString> CustomData_Optional{  };
-    /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool CustomData_IsSet{ false };
-    /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-    TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
-    /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-    const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
-    /** @brief Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue */
-    const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
-    bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
-    /** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-    TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
-    /** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-    const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
-    /** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-    void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
-     /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
-    void ClearCustomData() { CustomData_IsSet = false; }
+	/** @brief Leader Player or instance defined custom data about this session */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TMap<FString, FString> CustomData_Optional{  };
+	/** @brief true if CustomData_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool CustomData_IsSet{ false };
+	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
+	TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
+	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
+	const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
+	/** @brief Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue */
+	const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
+	bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
+	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
+	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
+	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
+	void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	void ClearCustomData() { CustomData_IsSet = false; }
 
-    /** @brief Flag for if players can freely join this session without an invite */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool Joinable_Optional{  };
-    /** @brief true if Joinable_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool Joinable_IsSet{ false };
-    /** @brief Gets the value of Joinable_Optional, regardless of it having been set */
-    bool& GetJoinable() { return Joinable_Optional; }
-    /** @brief Gets the value of Joinable_Optional, regardless of it having been set */
-    const bool& GetJoinable() const { return Joinable_Optional; }
-    /** @brief Gets the value of Joinable_Optional, if it has been set, otherwise it returns DefaultValue */
-    const bool& GetJoinable(const bool& DefaultValue) const { if (Joinable_IsSet) return Joinable_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of Joinable_Optional and returns true if it has been set, otherwise returns false */
-    bool GetJoinable(bool& OutValue) const { if (Joinable_IsSet) OutValue = Joinable_Optional; return Joinable_IsSet; }
-    /** @brief Returns a pointer to Joinable_Optional, if it has been set, otherwise returns nullptr */
-    bool* GetJoinableOrNull() { if (Joinable_IsSet) return &Joinable_Optional; return nullptr; }
-    /** @brief Returns a pointer to Joinable_Optional, if it has been set, otherwise returns nullptr */
-    const bool* GetJoinableOrNull() const { if (Joinable_IsSet) return &Joinable_Optional; return nullptr; }
-    /** @brief Sets the value of Joinable_Optional and also sets Joinable_IsSet to true */
-    void SetJoinable(bool NewValue) { Joinable_Optional = NewValue; Joinable_IsSet = true; }
-     /** @brief Clears the value of Joinable_Optional and sets Joinable_IsSet to false */
-    void ClearJoinable() { Joinable_Optional = false; Joinable_IsSet = false; }
-    /** @brief Returns true if Joinable_Optional is set and matches the default value */
-    bool IsJoinableDefaultValue() const { return Joinable_IsSet && Joinable_Optional == false; }
-    /** @brief Sets the value of Joinable_Optional to its default and also sets Joinable_IsSet to true */
-    void SetJoinableToDefault() { Joinable_Optional = false; Joinable_IsSet = true; }
+	/** @brief Flag for if players can freely join this session without an invite */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Joinable_Optional{  };
+	/** @brief true if Joinable_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Joinable_IsSet{ false };
+	/** @brief Gets the value of Joinable_Optional, regardless of it having been set */
+	bool& GetJoinable() { return Joinable_Optional; }
+	/** @brief Gets the value of Joinable_Optional, regardless of it having been set */
+	const bool& GetJoinable() const { return Joinable_Optional; }
+	/** @brief Gets the value of Joinable_Optional, if it has been set, otherwise it returns DefaultValue */
+	const bool& GetJoinable(const bool& DefaultValue) const { if (Joinable_IsSet) return Joinable_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Joinable_Optional and returns true if it has been set, otherwise returns false */
+	bool GetJoinable(bool& OutValue) const { if (Joinable_IsSet) OutValue = Joinable_Optional; return Joinable_IsSet; }
+	/** @brief Returns a pointer to Joinable_Optional, if it has been set, otherwise returns nullptr */
+	bool* GetJoinableOrNull() { if (Joinable_IsSet) return &Joinable_Optional; return nullptr; }
+	/** @brief Returns a pointer to Joinable_Optional, if it has been set, otherwise returns nullptr */
+	const bool* GetJoinableOrNull() const { if (Joinable_IsSet) return &Joinable_Optional; return nullptr; }
+	/** @brief Sets the value of Joinable_Optional and also sets Joinable_IsSet to true */
+	void SetJoinable(bool NewValue) { Joinable_Optional = NewValue; Joinable_IsSet = true; }
+	 /** @brief Clears the value of Joinable_Optional and sets Joinable_IsSet to false */
+	void ClearJoinable() { Joinable_Optional = false; Joinable_IsSet = false; }
+	/** @brief Returns true if Joinable_Optional is set and matches the default value */
+	bool IsJoinableDefaultValue() const { return Joinable_IsSet && Joinable_Optional == false; }
+	/** @brief Sets the value of Joinable_Optional to its default and also sets Joinable_IsSet to true */
+	void SetJoinableToDefault() { Joinable_Optional = false; Joinable_IsSet = true; }
 
-    /** @brief List of team size updates for this session. The length of the list represents the number of desired teams */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    TArray<FRHAPI_TeamUpdate> Teams_Optional{  };
-    /** @brief true if Teams_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool Teams_IsSet{ false };
-    /** @brief Gets the value of Teams_Optional, regardless of it having been set */
-    TArray<FRHAPI_TeamUpdate>& GetTeams() { return Teams_Optional; }
-    /** @brief Gets the value of Teams_Optional, regardless of it having been set */
-    const TArray<FRHAPI_TeamUpdate>& GetTeams() const { return Teams_Optional; }
-    /** @brief Gets the value of Teams_Optional, if it has been set, otherwise it returns DefaultValue */
-    const TArray<FRHAPI_TeamUpdate>& GetTeams(const TArray<FRHAPI_TeamUpdate>& DefaultValue) const { if (Teams_IsSet) return Teams_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of Teams_Optional and returns true if it has been set, otherwise returns false */
-    bool GetTeams(TArray<FRHAPI_TeamUpdate>& OutValue) const { if (Teams_IsSet) OutValue = Teams_Optional; return Teams_IsSet; }
-    /** @brief Returns a pointer to Teams_Optional, if it has been set, otherwise returns nullptr */
-    TArray<FRHAPI_TeamUpdate>* GetTeamsOrNull() { if (Teams_IsSet) return &Teams_Optional; return nullptr; }
-    /** @brief Returns a pointer to Teams_Optional, if it has been set, otherwise returns nullptr */
-    const TArray<FRHAPI_TeamUpdate>* GetTeamsOrNull() const { if (Teams_IsSet) return &Teams_Optional; return nullptr; }
-    /** @brief Sets the value of Teams_Optional and also sets Teams_IsSet to true */
-    void SetTeams(TArray<FRHAPI_TeamUpdate> NewValue) { Teams_Optional = NewValue; Teams_IsSet = true; }
-     /** @brief Clears the value of Teams_Optional and sets Teams_IsSet to false */
-    void ClearTeams() { Teams_IsSet = false; }
+	/** @brief List of team size updates for this session. The length of the list represents the number of desired teams */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TArray<FRHAPI_TeamUpdate> Teams_Optional{  };
+	/** @brief true if Teams_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Teams_IsSet{ false };
+	/** @brief Gets the value of Teams_Optional, regardless of it having been set */
+	TArray<FRHAPI_TeamUpdate>& GetTeams() { return Teams_Optional; }
+	/** @brief Gets the value of Teams_Optional, regardless of it having been set */
+	const TArray<FRHAPI_TeamUpdate>& GetTeams() const { return Teams_Optional; }
+	/** @brief Gets the value of Teams_Optional, if it has been set, otherwise it returns DefaultValue */
+	const TArray<FRHAPI_TeamUpdate>& GetTeams(const TArray<FRHAPI_TeamUpdate>& DefaultValue) const { if (Teams_IsSet) return Teams_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Teams_Optional and returns true if it has been set, otherwise returns false */
+	bool GetTeams(TArray<FRHAPI_TeamUpdate>& OutValue) const { if (Teams_IsSet) OutValue = Teams_Optional; return Teams_IsSet; }
+	/** @brief Returns a pointer to Teams_Optional, if it has been set, otherwise returns nullptr */
+	TArray<FRHAPI_TeamUpdate>* GetTeamsOrNull() { if (Teams_IsSet) return &Teams_Optional; return nullptr; }
+	/** @brief Returns a pointer to Teams_Optional, if it has been set, otherwise returns nullptr */
+	const TArray<FRHAPI_TeamUpdate>* GetTeamsOrNull() const { if (Teams_IsSet) return &Teams_Optional; return nullptr; }
+	/** @brief Sets the value of Teams_Optional and also sets Teams_IsSet to true */
+	void SetTeams(TArray<FRHAPI_TeamUpdate> NewValue) { Teams_Optional = NewValue; Teams_IsSet = true; }
+	 /** @brief Clears the value of Teams_Optional and sets Teams_IsSet to false */
+	void ClearTeams() { Teams_IsSet = false; }
 };
 
 /** @} */

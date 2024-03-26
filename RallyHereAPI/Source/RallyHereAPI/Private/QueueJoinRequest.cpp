@@ -21,45 +21,45 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_QueueJoinRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("queue_id"));
-    RallyHereAPI::WriteJsonValue(Writer, QueueId);
-    if (AdditionalJoinParams_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("additional_join_params"));
-        RallyHereAPI::WriteJsonValue(Writer, AdditionalJoinParams_Optional);
-    }
-    if (MapPreferences_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("map_preferences"));
-        RallyHereAPI::WriteJsonValue(Writer, MapPreferences_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("queue_id"));
+	RallyHereAPI::WriteJsonValue(Writer, QueueId);
+	if (AdditionalJoinParams_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("additional_join_params"));
+		RallyHereAPI::WriteJsonValue(Writer, AdditionalJoinParams_Optional);
+	}
+	if (MapPreferences_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("map_preferences"));
+		RallyHereAPI::WriteJsonValue(Writer, MapPreferences_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_QueueJoinRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonQueueIdField = (*Object)->TryGetField(TEXT("queue_id"));
-    ParseSuccess &= JsonQueueIdField.IsValid() && !JsonQueueIdField->IsNull() && TryGetJsonValue(JsonQueueIdField, QueueId);
-    const TSharedPtr<FJsonValue> JsonAdditionalJoinParamsField = (*Object)->TryGetField(TEXT("additional_join_params"));
-    if (JsonAdditionalJoinParamsField.IsValid() && !JsonAdditionalJoinParamsField->IsNull())
-    {
-        AdditionalJoinParams_IsSet = TryGetJsonValue(JsonAdditionalJoinParamsField, AdditionalJoinParams_Optional);
-        ParseSuccess &= AdditionalJoinParams_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonMapPreferencesField = (*Object)->TryGetField(TEXT("map_preferences"));
-    if (JsonMapPreferencesField.IsValid() && !JsonMapPreferencesField->IsNull())
-    {
-        MapPreferences_IsSet = TryGetJsonValue(JsonMapPreferencesField, MapPreferences_Optional);
-        ParseSuccess &= MapPreferences_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonQueueIdField = (*Object)->TryGetField(TEXT("queue_id"));
+	ParseSuccess &= JsonQueueIdField.IsValid() && !JsonQueueIdField->IsNull() && TryGetJsonValue(JsonQueueIdField, QueueId);
+	const TSharedPtr<FJsonValue> JsonAdditionalJoinParamsField = (*Object)->TryGetField(TEXT("additional_join_params"));
+	if (JsonAdditionalJoinParamsField.IsValid() && !JsonAdditionalJoinParamsField->IsNull())
+	{
+		AdditionalJoinParams_IsSet = TryGetJsonValue(JsonAdditionalJoinParamsField, AdditionalJoinParams_Optional);
+		ParseSuccess &= AdditionalJoinParams_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonMapPreferencesField = (*Object)->TryGetField(TEXT("map_preferences"));
+	if (JsonMapPreferencesField.IsValid() && !JsonMapPreferencesField->IsNull())
+	{
+		MapPreferences_IsSet = TryGetJsonValue(JsonMapPreferencesField, MapPreferences_Optional);
+		ParseSuccess &= MapPreferences_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

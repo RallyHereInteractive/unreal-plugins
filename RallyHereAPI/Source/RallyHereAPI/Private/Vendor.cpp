@@ -21,96 +21,96 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_Vendor::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (CustomData_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("custom_data"));
-        RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
-    }
-    if (VendorUuid_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("vendor_uuid"));
-        RallyHereAPI::WriteJsonValue(Writer, VendorUuid_Optional);
-    }
-    if (Type_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("type"));
-        RallyHereAPI::WriteJsonValue(Writer, EnumToString(Type_Optional));
-    }
-    if (LegacyType_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("legacy_type"));
-        RallyHereAPI::WriteJsonValue(Writer, LegacyType_Optional);
-    }
-    if (LegacyConfigVersion_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("legacy_config_version"));
-        RallyHereAPI::WriteJsonValue(Writer, LegacyConfigVersion_Optional);
-    }
-    if (Loot_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("loot"));
-        RallyHereAPI::WriteJsonValue(Writer, Loot_Optional);
-    }
-    if (CacheInfo_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("cache_info"));
-        RallyHereAPI::WriteJsonValue(Writer, CacheInfo_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (CustomData_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("custom_data"));
+		RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
+	}
+	if (VendorUuid_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("vendor_uuid"));
+		RallyHereAPI::WriteJsonValue(Writer, VendorUuid_Optional);
+	}
+	if (Type_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("type"));
+		RallyHereAPI::WriteJsonValue(Writer, EnumToString(Type_Optional));
+	}
+	if (LegacyType_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("legacy_type"));
+		RallyHereAPI::WriteJsonValue(Writer, LegacyType_Optional);
+	}
+	if (LegacyConfigVersion_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("legacy_config_version"));
+		RallyHereAPI::WriteJsonValue(Writer, LegacyConfigVersion_Optional);
+	}
+	if (Loot_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("loot"));
+		RallyHereAPI::WriteJsonValue(Writer, Loot_Optional);
+	}
+	if (CacheInfo_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("cache_info"));
+		RallyHereAPI::WriteJsonValue(Writer, CacheInfo_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_Vendor::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-    if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
-    {
-        CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
-        ParseSuccess &= CustomData_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonVendorUuidField = (*Object)->TryGetField(TEXT("vendor_uuid"));
-    if (JsonVendorUuidField.IsValid() && !JsonVendorUuidField->IsNull())
-    {
-        VendorUuid_IsSet = TryGetJsonValue(JsonVendorUuidField, VendorUuid_Optional);
-        ParseSuccess &= VendorUuid_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
-    if (JsonTypeField.IsValid() && !JsonTypeField->IsNull())
-    {
-        Type_IsSet = TryGetJsonValue(JsonTypeField, Type_Optional);
-        ParseSuccess &= Type_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonLegacyTypeField = (*Object)->TryGetField(TEXT("legacy_type"));
-    if (JsonLegacyTypeField.IsValid() && !JsonLegacyTypeField->IsNull())
-    {
-        LegacyType_IsSet = TryGetJsonValue(JsonLegacyTypeField, LegacyType_Optional);
-        ParseSuccess &= LegacyType_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonLegacyConfigVersionField = (*Object)->TryGetField(TEXT("legacy_config_version"));
-    if (JsonLegacyConfigVersionField.IsValid() && !JsonLegacyConfigVersionField->IsNull())
-    {
-        LegacyConfigVersion_IsSet = TryGetJsonValue(JsonLegacyConfigVersionField, LegacyConfigVersion_Optional);
-        ParseSuccess &= LegacyConfigVersion_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonLootField = (*Object)->TryGetField(TEXT("loot"));
-    if (JsonLootField.IsValid() && !JsonLootField->IsNull())
-    {
-        Loot_IsSet = TryGetJsonValue(JsonLootField, Loot_Optional);
-        ParseSuccess &= Loot_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
-    if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
-    {
-        CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
-        ParseSuccess &= CacheInfo_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
+	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	{
+		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
+		ParseSuccess &= CustomData_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonVendorUuidField = (*Object)->TryGetField(TEXT("vendor_uuid"));
+	if (JsonVendorUuidField.IsValid() && !JsonVendorUuidField->IsNull())
+	{
+		VendorUuid_IsSet = TryGetJsonValue(JsonVendorUuidField, VendorUuid_Optional);
+		ParseSuccess &= VendorUuid_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
+	if (JsonTypeField.IsValid() && !JsonTypeField->IsNull())
+	{
+		Type_IsSet = TryGetJsonValue(JsonTypeField, Type_Optional);
+		ParseSuccess &= Type_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonLegacyTypeField = (*Object)->TryGetField(TEXT("legacy_type"));
+	if (JsonLegacyTypeField.IsValid() && !JsonLegacyTypeField->IsNull())
+	{
+		LegacyType_IsSet = TryGetJsonValue(JsonLegacyTypeField, LegacyType_Optional);
+		ParseSuccess &= LegacyType_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonLegacyConfigVersionField = (*Object)->TryGetField(TEXT("legacy_config_version"));
+	if (JsonLegacyConfigVersionField.IsValid() && !JsonLegacyConfigVersionField->IsNull())
+	{
+		LegacyConfigVersion_IsSet = TryGetJsonValue(JsonLegacyConfigVersionField, LegacyConfigVersion_Optional);
+		ParseSuccess &= LegacyConfigVersion_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonLootField = (*Object)->TryGetField(TEXT("loot"));
+	if (JsonLootField.IsValid() && !JsonLootField->IsNull())
+	{
+		Loot_IsSet = TryGetJsonValue(JsonLootField, Loot_Optional);
+		ParseSuccess &= Loot_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
+	if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
+	{
+		CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
+		ParseSuccess &= CacheInfo_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

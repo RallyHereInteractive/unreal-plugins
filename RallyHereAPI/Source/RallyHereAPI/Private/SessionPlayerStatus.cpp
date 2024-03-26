@@ -20,55 +20,55 @@ using RallyHereAPI::TryGetJsonValue;
 // Implementation for ERHAPI_SessionPlayerStatus
 FString EnumToString(const ERHAPI_SessionPlayerStatus& Value)
 {
-    switch (Value)
-    {
-    case ERHAPI_SessionPlayerStatus::Leader:
-        return TEXT("leader");
-    case ERHAPI_SessionPlayerStatus::Member:
-        return TEXT("member");
-    case ERHAPI_SessionPlayerStatus::Invited:
-        return TEXT("invited");
-    case ERHAPI_SessionPlayerStatus::Reserved:
-        return TEXT("reserved");
-    }
+	switch (Value)
+	{
+	case ERHAPI_SessionPlayerStatus::Leader:
+		return TEXT("leader");
+	case ERHAPI_SessionPlayerStatus::Member:
+		return TEXT("member");
+	case ERHAPI_SessionPlayerStatus::Invited:
+		return TEXT("invited");
+	case ERHAPI_SessionPlayerStatus::Reserved:
+		return TEXT("reserved");
+	}
 
-    UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_SessionPlayerStatus::Values Value (%d)"), (int)Value);
-    return TEXT("");
+	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_SessionPlayerStatus::Values Value (%d)"), (int)Value);
+	return TEXT("");
 }
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_SessionPlayerStatus& Value)
 {
-    static TMap<FString, ERHAPI_SessionPlayerStatus> StringToEnum = { 
-        { TEXT("leader"), ERHAPI_SessionPlayerStatus::Leader },
-        { TEXT("member"), ERHAPI_SessionPlayerStatus::Member },
-        { TEXT("invited"), ERHAPI_SessionPlayerStatus::Invited },
-        { TEXT("reserved"), ERHAPI_SessionPlayerStatus::Reserved },    };
+	static TMap<FString, ERHAPI_SessionPlayerStatus> StringToEnum = { 
+		{ TEXT("leader"), ERHAPI_SessionPlayerStatus::Leader },
+		{ TEXT("member"), ERHAPI_SessionPlayerStatus::Member },
+		{ TEXT("invited"), ERHAPI_SessionPlayerStatus::Invited },
+		{ TEXT("reserved"), ERHAPI_SessionPlayerStatus::Reserved },	};
 
-    const auto Found = StringToEnum.Find(EnumAsString);
-    if(Found)
-        Value = *Found;
-    return Found != nullptr;
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
+	return Found != nullptr;
 }
 
 FStringFormatArg ToStringFormatArg(const ERHAPI_SessionPlayerStatus& Value)
 {
-    return FStringFormatArg(EnumToString(Value));
+	return FStringFormatArg(EnumToString(Value));
 }
 
 void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const ERHAPI_SessionPlayerStatus& Value)
 {
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
 }
 
 bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, ERHAPI_SessionPlayerStatus& Value)
 {
-    FString TmpValue;
-    if (JsonValue->TryGetString(TmpValue))
-    {
-        if (EnumFromString(TmpValue, Value))
-            return true;
-    }
-    return false;
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if (EnumFromString(TmpValue, Value))
+			return true;
+	}
+	return false;
 }
 
 

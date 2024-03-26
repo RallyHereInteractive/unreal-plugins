@@ -21,23 +21,23 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_PublicKeyList::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("keys"));
-    RallyHereAPI::WriteJsonValue(Writer, Keys);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("keys"));
+	RallyHereAPI::WriteJsonValue(Writer, Keys);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_PublicKeyList::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonKeysField = (*Object)->TryGetField(TEXT("keys"));
-    ParseSuccess &= JsonKeysField.IsValid() && !JsonKeysField->IsNull() && TryGetJsonValue(JsonKeysField, Keys);
+	const TSharedPtr<FJsonValue> JsonKeysField = (*Object)->TryGetField(TEXT("keys"));
+	ParseSuccess &= JsonKeysField.IsValid() && !JsonKeysField->IsNull() && TryGetJsonValue(JsonKeysField, Keys);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

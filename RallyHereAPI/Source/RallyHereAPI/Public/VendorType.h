@@ -18,8 +18,8 @@
 UENUM(BlueprintType)
 enum class ERHAPI_VendorType : uint8
 {
-    Recipe UMETA(ToolTip="A Vendor that will always drop all of the Loot in the Loot table."),
-    RandomlySampled UMETA(ToolTip="A Vendor that will only fulfill one of the Loot in the Loot table based on the drop weights of the Loot."),
+	Recipe UMETA(ToolTip="A Vendor that will always drop all of the Loot in the Loot table."),
+	RandomlySampled UMETA(ToolTip="A Vendor that will only fulfill one of the Loot in the Loot table based on the drop weights of the Loot."),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_VendorType& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_VendorType& EnumValue);

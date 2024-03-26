@@ -21,23 +21,23 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_Platforms::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("platforms"));
-    RallyHereAPI::WriteJsonValue(Writer, Platforms);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("platforms"));
+	RallyHereAPI::WriteJsonValue(Writer, Platforms);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_Platforms::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonPlatformsField = (*Object)->TryGetField(TEXT("platforms"));
-    ParseSuccess &= JsonPlatformsField.IsValid() && !JsonPlatformsField->IsNull() && TryGetJsonValue(JsonPlatformsField, Platforms);
+	const TSharedPtr<FJsonValue> JsonPlatformsField = (*Object)->TryGetField(TEXT("platforms"));
+	ParseSuccess &= JsonPlatformsField.IsValid() && !JsonPlatformsField->IsNull() && TryGetJsonValue(JsonPlatformsField, Platforms);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

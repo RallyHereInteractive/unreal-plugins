@@ -21,42 +21,42 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_Region::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("region_id"));
-    RallyHereAPI::WriteJsonValue(Writer, RegionId);
-    Writer->WriteIdentifierPrefix(TEXT("sort_order"));
-    RallyHereAPI::WriteJsonValue(Writer, SortOrder);
-    Writer->WriteIdentifierPrefix(TEXT("custom_only"));
-    RallyHereAPI::WriteJsonValue(Writer, CustomOnly);
-    if (Description_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("description"));
-        RallyHereAPI::WriteJsonValue(Writer, Description_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("region_id"));
+	RallyHereAPI::WriteJsonValue(Writer, RegionId);
+	Writer->WriteIdentifierPrefix(TEXT("sort_order"));
+	RallyHereAPI::WriteJsonValue(Writer, SortOrder);
+	Writer->WriteIdentifierPrefix(TEXT("custom_only"));
+	RallyHereAPI::WriteJsonValue(Writer, CustomOnly);
+	if (Description_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("description"));
+		RallyHereAPI::WriteJsonValue(Writer, Description_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_Region::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonRegionIdField = (*Object)->TryGetField(TEXT("region_id"));
-    ParseSuccess &= JsonRegionIdField.IsValid() && !JsonRegionIdField->IsNull() && TryGetJsonValue(JsonRegionIdField, RegionId);
-    const TSharedPtr<FJsonValue> JsonSortOrderField = (*Object)->TryGetField(TEXT("sort_order"));
-    ParseSuccess &= JsonSortOrderField.IsValid() && !JsonSortOrderField->IsNull() && TryGetJsonValue(JsonSortOrderField, SortOrder);
-    const TSharedPtr<FJsonValue> JsonCustomOnlyField = (*Object)->TryGetField(TEXT("custom_only"));
-    ParseSuccess &= JsonCustomOnlyField.IsValid() && !JsonCustomOnlyField->IsNull() && TryGetJsonValue(JsonCustomOnlyField, CustomOnly);
-    const TSharedPtr<FJsonValue> JsonDescriptionField = (*Object)->TryGetField(TEXT("description"));
-    if (JsonDescriptionField.IsValid() && !JsonDescriptionField->IsNull())
-    {
-        Description_IsSet = TryGetJsonValue(JsonDescriptionField, Description_Optional);
-        ParseSuccess &= Description_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonRegionIdField = (*Object)->TryGetField(TEXT("region_id"));
+	ParseSuccess &= JsonRegionIdField.IsValid() && !JsonRegionIdField->IsNull() && TryGetJsonValue(JsonRegionIdField, RegionId);
+	const TSharedPtr<FJsonValue> JsonSortOrderField = (*Object)->TryGetField(TEXT("sort_order"));
+	ParseSuccess &= JsonSortOrderField.IsValid() && !JsonSortOrderField->IsNull() && TryGetJsonValue(JsonSortOrderField, SortOrder);
+	const TSharedPtr<FJsonValue> JsonCustomOnlyField = (*Object)->TryGetField(TEXT("custom_only"));
+	ParseSuccess &= JsonCustomOnlyField.IsValid() && !JsonCustomOnlyField->IsNull() && TryGetJsonValue(JsonCustomOnlyField, CustomOnly);
+	const TSharedPtr<FJsonValue> JsonDescriptionField = (*Object)->TryGetField(TEXT("description"));
+	if (JsonDescriptionField.IsValid() && !JsonDescriptionField->IsNull())
+	{
+		Description_IsSet = TryGetJsonValue(JsonDescriptionField, Description_Optional);
+		ParseSuccess &= Description_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

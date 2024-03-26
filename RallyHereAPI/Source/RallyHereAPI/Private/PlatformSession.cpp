@@ -21,46 +21,46 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_PlatformSession::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("platform"));
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(Platform));
-    Writer->WriteIdentifierPrefix(TEXT("platform_session_type"));
-    RallyHereAPI::WriteJsonValue(Writer, PlatformSessionType);
-    Writer->WriteIdentifierPrefix(TEXT("platform_session_id_base64"));
-    RallyHereAPI::WriteJsonValue(Writer, PlatformSessionIdBase64);
-    Writer->WriteIdentifierPrefix(TEXT("players"));
-    RallyHereAPI::WriteJsonValue(Writer, Players);
-    if (CustomData_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("custom_data"));
-        RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("platform"));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Platform));
+	Writer->WriteIdentifierPrefix(TEXT("platform_session_type"));
+	RallyHereAPI::WriteJsonValue(Writer, PlatformSessionType);
+	Writer->WriteIdentifierPrefix(TEXT("platform_session_id_base64"));
+	RallyHereAPI::WriteJsonValue(Writer, PlatformSessionIdBase64);
+	Writer->WriteIdentifierPrefix(TEXT("players"));
+	RallyHereAPI::WriteJsonValue(Writer, Players);
+	if (CustomData_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("custom_data"));
+		RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_PlatformSession::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonPlatformField = (*Object)->TryGetField(TEXT("platform"));
-    ParseSuccess &= JsonPlatformField.IsValid() && !JsonPlatformField->IsNull() && TryGetJsonValue(JsonPlatformField, Platform);
-    const TSharedPtr<FJsonValue> JsonPlatformSessionTypeField = (*Object)->TryGetField(TEXT("platform_session_type"));
-    ParseSuccess &= JsonPlatformSessionTypeField.IsValid() && !JsonPlatformSessionTypeField->IsNull() && TryGetJsonValue(JsonPlatformSessionTypeField, PlatformSessionType);
-    const TSharedPtr<FJsonValue> JsonPlatformSessionIdBase64Field = (*Object)->TryGetField(TEXT("platform_session_id_base64"));
-    ParseSuccess &= JsonPlatformSessionIdBase64Field.IsValid() && !JsonPlatformSessionIdBase64Field->IsNull() && TryGetJsonValue(JsonPlatformSessionIdBase64Field, PlatformSessionIdBase64);
-    const TSharedPtr<FJsonValue> JsonPlayersField = (*Object)->TryGetField(TEXT("players"));
-    ParseSuccess &= JsonPlayersField.IsValid() && !JsonPlayersField->IsNull() && TryGetJsonValue(JsonPlayersField, Players);
-    const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-    if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
-    {
-        CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
-        ParseSuccess &= CustomData_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonPlatformField = (*Object)->TryGetField(TEXT("platform"));
+	ParseSuccess &= JsonPlatformField.IsValid() && !JsonPlatformField->IsNull() && TryGetJsonValue(JsonPlatformField, Platform);
+	const TSharedPtr<FJsonValue> JsonPlatformSessionTypeField = (*Object)->TryGetField(TEXT("platform_session_type"));
+	ParseSuccess &= JsonPlatformSessionTypeField.IsValid() && !JsonPlatformSessionTypeField->IsNull() && TryGetJsonValue(JsonPlatformSessionTypeField, PlatformSessionType);
+	const TSharedPtr<FJsonValue> JsonPlatformSessionIdBase64Field = (*Object)->TryGetField(TEXT("platform_session_id_base64"));
+	ParseSuccess &= JsonPlatformSessionIdBase64Field.IsValid() && !JsonPlatformSessionIdBase64Field->IsNull() && TryGetJsonValue(JsonPlatformSessionIdBase64Field, PlatformSessionIdBase64);
+	const TSharedPtr<FJsonValue> JsonPlayersField = (*Object)->TryGetField(TEXT("players"));
+	ParseSuccess &= JsonPlayersField.IsValid() && !JsonPlayersField->IsNull() && TryGetJsonValue(JsonPlayersField, Players);
+	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
+	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	{
+		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
+		ParseSuccess &= CustomData_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

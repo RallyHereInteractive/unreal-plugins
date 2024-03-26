@@ -21,59 +21,59 @@
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_EnvironmentConfig : public FRHAPI_Model
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    /**
-    * @brief Fills this object with data from the passed in JSON
-    *
-    * @param [in] JsonValue Data from the API call.
-    *
-    * @return true if parsing of the JSON data was successful.
-    */
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	/**
+	* @brief Fills this object with data from the passed in JSON
+	*
+	* @param [in] JsonValue Data from the API call.
+	*
+	* @return true if parsing of the JSON data was successful.
+	*/
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
-    /**
-    * @brief Writes the data from this object into the specified JSON Writer stream
-    *
-    * @param [in] Writer JSON Writer stream to push .
-    */
-    void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	/**
+	* @brief Writes the data from this object into the specified JSON Writer stream
+	*
+	* @param [in] Writer JSON Writer stream to push .
+	*/
+	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FGuid OrgId{  };
-    /** @brief Gets the value of OrgId */
-    FGuid& GetOrgId() { return OrgId; }
-    /** @brief Gets the value of OrgId */
-    const FGuid& GetOrgId() const { return OrgId; }
-    /** @brief Sets the value of OrgId */
-    void SetOrgId(FGuid NewValue) { OrgId = NewValue;  }
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FGuid OrgId{  };
+	/** @brief Gets the value of OrgId */
+	FGuid& GetOrgId() { return OrgId; }
+	/** @brief Gets the value of OrgId */
+	const FGuid& GetOrgId() const { return OrgId; }
+	/** @brief Sets the value of OrgId */
+	void SetOrgId(FGuid NewValue) { OrgId = NewValue;  }
 
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FGuid ProductId{  };
-    /** @brief Gets the value of ProductId */
-    FGuid& GetProductId() { return ProductId; }
-    /** @brief Gets the value of ProductId */
-    const FGuid& GetProductId() const { return ProductId; }
-    /** @brief Sets the value of ProductId */
-    void SetProductId(FGuid NewValue) { ProductId = NewValue;  }
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FGuid ProductId{  };
+	/** @brief Gets the value of ProductId */
+	FGuid& GetProductId() { return ProductId; }
+	/** @brief Gets the value of ProductId */
+	const FGuid& GetProductId() const { return ProductId; }
+	/** @brief Sets the value of ProductId */
+	void SetProductId(FGuid NewValue) { ProductId = NewValue;  }
 
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FGuid EnvironmentId{  };
-    /** @brief Gets the value of EnvironmentId */
-    FGuid& GetEnvironmentId() { return EnvironmentId; }
-    /** @brief Gets the value of EnvironmentId */
-    const FGuid& GetEnvironmentId() const { return EnvironmentId; }
-    /** @brief Sets the value of EnvironmentId */
-    void SetEnvironmentId(FGuid NewValue) { EnvironmentId = NewValue;  }
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FGuid EnvironmentId{  };
+	/** @brief Gets the value of EnvironmentId */
+	FGuid& GetEnvironmentId() { return EnvironmentId; }
+	/** @brief Gets the value of EnvironmentId */
+	const FGuid& GetEnvironmentId() const { return EnvironmentId; }
+	/** @brief Sets the value of EnvironmentId */
+	void SetEnvironmentId(FGuid NewValue) { EnvironmentId = NewValue;  }
 
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FGuid SandboxId{  };
-    /** @brief Gets the value of SandboxId */
-    FGuid& GetSandboxId() { return SandboxId; }
-    /** @brief Gets the value of SandboxId */
-    const FGuid& GetSandboxId() const { return SandboxId; }
-    /** @brief Sets the value of SandboxId */
-    void SetSandboxId(FGuid NewValue) { SandboxId = NewValue;  }
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FGuid SandboxId{  };
+	/** @brief Gets the value of SandboxId */
+	FGuid& GetSandboxId() { return SandboxId; }
+	/** @brief Gets the value of SandboxId */
+	const FGuid& GetSandboxId() const { return SandboxId; }
+	/** @brief Sets the value of SandboxId */
+	void SetSandboxId(FGuid NewValue) { SandboxId = NewValue;  }
 };
 
 /** @} */

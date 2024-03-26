@@ -18,11 +18,11 @@
 UENUM(BlueprintType)
 enum class ERHAPI_InstanceJoinableStatus : uint8
 {
-    Requested UMETA(ToolTip="Searching for a host"),
-    Allocated UMETA(ToolTip="Host has been found, and is loading its session information"),
-    Pending UMETA(ToolTip="Host has arrived and is loading"),
-    Joinable UMETA(ToolTip="Host is ready to accept players"),
-    Closed UMETA(ToolTip="Host has left, been timed out, or could not be found"),
+	Requested UMETA(ToolTip="Searching for a host"),
+	Allocated UMETA(ToolTip="Host has been found, and is loading its session information"),
+	Pending UMETA(ToolTip="Host has arrived and is loading"),
+	Joinable UMETA(ToolTip="Host is ready to accept players"),
+	Closed UMETA(ToolTip="Host has left, been timed out, or could not be found"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_InstanceJoinableStatus& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_InstanceJoinableStatus& EnumValue);

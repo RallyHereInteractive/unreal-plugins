@@ -25,13 +25,13 @@ DECLARE_DELEGATE_OneParam(FDelegate_GetUtcTime, const FResponse_GetUtcTime&);
 class RALLYHEREAPI_API FTimeAPI : public FAPI
 {
 public:
-    FTimeAPI();
-    virtual ~FTimeAPI();
+	FTimeAPI();
+	virtual ~FTimeAPI();
 
-    FHttpRequestPtr GetUtcTime(const FRequest_GetUtcTime& Request, const FDelegate_GetUtcTime& Delegate = FDelegate_GetUtcTime(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetUtcTime(const FRequest_GetUtcTime& Request, const FDelegate_GetUtcTime& Delegate = FDelegate_GetUtcTime(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
-    void OnGetUtcTimeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetUtcTime Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetUtcTimeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetUtcTime Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
@@ -41,41 +41,41 @@ private:
 */
 struct RALLYHEREAPI_API FRequest_GetUtcTime : public FRequest
 {
-    FRequest_GetUtcTime();
-    virtual ~FRequest_GetUtcTime() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
+	FRequest_GetUtcTime();
+	virtual ~FRequest_GetUtcTime() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
 
 };
 
 struct RALLYHEREAPI_API FResponse_GetUtcTime : public FResponse
 {
-    FResponse_GetUtcTime(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetUtcTime() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetUtcTime(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetUtcTime() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FDateTime Content;
+	FDateTime Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FDateTime& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FDateTime& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetUtcTime
 {
-    typedef FRequest_GetUtcTime Request;
-    typedef FResponse_GetUtcTime Response;
-    typedef FDelegate_GetUtcTime Delegate;
-    typedef FTimeAPI API;
-    static FString Name;
+	typedef FRequest_GetUtcTime Request;
+	typedef FResponse_GetUtcTime Response;
+	typedef FDelegate_GetUtcTime Delegate;
+	typedef FTimeAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetUtcTime(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetUtcTime(InRequest, InDelegate, Priority); }
 };
 
 

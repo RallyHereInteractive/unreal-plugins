@@ -21,31 +21,31 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_TrueskillRank::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("player_uuid"));
-    RallyHereAPI::WriteJsonValue(Writer, PlayerUuid);
-    Writer->WriteIdentifierPrefix(TEXT("rank"));
-    RallyHereAPI::WriteJsonValue(Writer, Rank);
-    Writer->WriteIdentifierPrefix(TEXT("seconds_in_match"));
-    RallyHereAPI::WriteJsonValue(Writer, SecondsInMatch);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("player_uuid"));
+	RallyHereAPI::WriteJsonValue(Writer, PlayerUuid);
+	Writer->WriteIdentifierPrefix(TEXT("rank"));
+	RallyHereAPI::WriteJsonValue(Writer, Rank);
+	Writer->WriteIdentifierPrefix(TEXT("seconds_in_match"));
+	RallyHereAPI::WriteJsonValue(Writer, SecondsInMatch);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_TrueskillRank::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonPlayerUuidField = (*Object)->TryGetField(TEXT("player_uuid"));
-    ParseSuccess &= JsonPlayerUuidField.IsValid() && !JsonPlayerUuidField->IsNull() && TryGetJsonValue(JsonPlayerUuidField, PlayerUuid);
-    const TSharedPtr<FJsonValue> JsonRankField = (*Object)->TryGetField(TEXT("rank"));
-    ParseSuccess &= JsonRankField.IsValid() && !JsonRankField->IsNull() && TryGetJsonValue(JsonRankField, Rank);
-    const TSharedPtr<FJsonValue> JsonSecondsInMatchField = (*Object)->TryGetField(TEXT("seconds_in_match"));
-    ParseSuccess &= JsonSecondsInMatchField.IsValid() && !JsonSecondsInMatchField->IsNull() && TryGetJsonValue(JsonSecondsInMatchField, SecondsInMatch);
+	const TSharedPtr<FJsonValue> JsonPlayerUuidField = (*Object)->TryGetField(TEXT("player_uuid"));
+	ParseSuccess &= JsonPlayerUuidField.IsValid() && !JsonPlayerUuidField->IsNull() && TryGetJsonValue(JsonPlayerUuidField, PlayerUuid);
+	const TSharedPtr<FJsonValue> JsonRankField = (*Object)->TryGetField(TEXT("rank"));
+	ParseSuccess &= JsonRankField.IsValid() && !JsonRankField->IsNull() && TryGetJsonValue(JsonRankField, Rank);
+	const TSharedPtr<FJsonValue> JsonSecondsInMatchField = (*Object)->TryGetField(TEXT("seconds_in_match"));
+	ParseSuccess &= JsonSecondsInMatchField.IsValid() && !JsonSecondsInMatchField->IsNull() && TryGetJsonValue(JsonSecondsInMatchField, SecondsInMatch);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

@@ -21,23 +21,23 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_QueueJoinResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("ticket_id"));
-    RallyHereAPI::WriteJsonValue(Writer, TicketId);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("ticket_id"));
+	RallyHereAPI::WriteJsonValue(Writer, TicketId);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_QueueJoinResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonTicketIdField = (*Object)->TryGetField(TEXT("ticket_id"));
-    ParseSuccess &= JsonTicketIdField.IsValid() && !JsonTicketIdField->IsNull() && TryGetJsonValue(JsonTicketIdField, TicketId);
+	const TSharedPtr<FJsonValue> JsonTicketIdField = (*Object)->TryGetField(TEXT("ticket_id"));
+	ParseSuccess &= JsonTicketIdField.IsValid() && !JsonTicketIdField->IsNull() && TryGetJsonValue(JsonTicketIdField, TicketId);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

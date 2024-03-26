@@ -21,63 +21,63 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_InventoryPageMeta::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (StartingPosition_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("starting_position"));
-        RallyHereAPI::WriteJsonValue(Writer, StartingPosition_Optional);
-    }
-    if (Cursor_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("cursor"));
-        RallyHereAPI::WriteJsonValue(Writer, Cursor_Optional);
-    }
-    if (Sort_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("sort"));
-        RallyHereAPI::WriteJsonValue(Writer, EnumToString(Sort_Optional));
-    }
-    if (Limit_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("limit"));
-        RallyHereAPI::WriteJsonValue(Writer, Limit_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (StartingPosition_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("starting_position"));
+		RallyHereAPI::WriteJsonValue(Writer, StartingPosition_Optional);
+	}
+	if (Cursor_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("cursor"));
+		RallyHereAPI::WriteJsonValue(Writer, Cursor_Optional);
+	}
+	if (Sort_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("sort"));
+		RallyHereAPI::WriteJsonValue(Writer, EnumToString(Sort_Optional));
+	}
+	if (Limit_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("limit"));
+		RallyHereAPI::WriteJsonValue(Writer, Limit_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_InventoryPageMeta::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonStartingPositionField = (*Object)->TryGetField(TEXT("starting_position"));
-    if (JsonStartingPositionField.IsValid() && !JsonStartingPositionField->IsNull())
-    {
-        StartingPosition_IsSet = TryGetJsonValue(JsonStartingPositionField, StartingPosition_Optional);
-        ParseSuccess &= StartingPosition_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonCursorField = (*Object)->TryGetField(TEXT("cursor"));
-    if (JsonCursorField.IsValid() && !JsonCursorField->IsNull())
-    {
-        Cursor_IsSet = TryGetJsonValue(JsonCursorField, Cursor_Optional);
-        ParseSuccess &= Cursor_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonSortField = (*Object)->TryGetField(TEXT("sort"));
-    if (JsonSortField.IsValid() && !JsonSortField->IsNull())
-    {
-        Sort_IsSet = TryGetJsonValue(JsonSortField, Sort_Optional);
-        ParseSuccess &= Sort_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonLimitField = (*Object)->TryGetField(TEXT("limit"));
-    if (JsonLimitField.IsValid() && !JsonLimitField->IsNull())
-    {
-        Limit_IsSet = TryGetJsonValue(JsonLimitField, Limit_Optional);
-        ParseSuccess &= Limit_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonStartingPositionField = (*Object)->TryGetField(TEXT("starting_position"));
+	if (JsonStartingPositionField.IsValid() && !JsonStartingPositionField->IsNull())
+	{
+		StartingPosition_IsSet = TryGetJsonValue(JsonStartingPositionField, StartingPosition_Optional);
+		ParseSuccess &= StartingPosition_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonCursorField = (*Object)->TryGetField(TEXT("cursor"));
+	if (JsonCursorField.IsValid() && !JsonCursorField->IsNull())
+	{
+		Cursor_IsSet = TryGetJsonValue(JsonCursorField, Cursor_Optional);
+		ParseSuccess &= Cursor_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonSortField = (*Object)->TryGetField(TEXT("sort"));
+	if (JsonSortField.IsValid() && !JsonSortField->IsNull())
+	{
+		Sort_IsSet = TryGetJsonValue(JsonSortField, Sort_Optional);
+		ParseSuccess &= Sort_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonLimitField = (*Object)->TryGetField(TEXT("limit"));
+	if (JsonLimitField.IsValid() && !JsonLimitField->IsNull())
+	{
+		Limit_IsSet = TryGetJsonValue(JsonLimitField, Limit_Optional);
+		ParseSuccess &= Limit_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

@@ -43,21 +43,21 @@ DECLARE_DELEGATE_OneParam(FDelegate_UpdateOpportunityById, const FResponse_Updat
 class RALLYHEREAPI_API FAdAPI : public FAPI
 {
 public:
-    FAdAPI();
-    virtual ~FAdAPI();
+	FAdAPI();
+	virtual ~FAdAPI();
 
-    FHttpRequestPtr BeginNewSession(const FRequest_BeginNewSession& Request, const FDelegate_BeginNewSession& Delegate = FDelegate_BeginNewSession(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr FindOpportunities(const FRequest_FindOpportunities& Request, const FDelegate_FindOpportunities& Delegate = FDelegate_FindOpportunities(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr UnityAdWatched(const FRequest_UnityAdWatched& Request, const FDelegate_UnityAdWatched& Delegate = FDelegate_UnityAdWatched(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr UnityMediationAdWatched(const FRequest_UnityMediationAdWatched& Request, const FDelegate_UnityMediationAdWatched& Delegate = FDelegate_UnityMediationAdWatched(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr UpdateOpportunityById(const FRequest_UpdateOpportunityById& Request, const FDelegate_UpdateOpportunityById& Delegate = FDelegate_UpdateOpportunityById(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr BeginNewSession(const FRequest_BeginNewSession& Request, const FDelegate_BeginNewSession& Delegate = FDelegate_BeginNewSession(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr FindOpportunities(const FRequest_FindOpportunities& Request, const FDelegate_FindOpportunities& Delegate = FDelegate_FindOpportunities(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr UnityAdWatched(const FRequest_UnityAdWatched& Request, const FDelegate_UnityAdWatched& Delegate = FDelegate_UnityAdWatched(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr UnityMediationAdWatched(const FRequest_UnityMediationAdWatched& Request, const FDelegate_UnityMediationAdWatched& Delegate = FDelegate_UnityMediationAdWatched(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr UpdateOpportunityById(const FRequest_UpdateOpportunityById& Request, const FDelegate_UpdateOpportunityById& Delegate = FDelegate_UpdateOpportunityById(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
-    void OnBeginNewSessionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_BeginNewSession Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnFindOpportunitiesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_FindOpportunities Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnUnityAdWatchedResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UnityAdWatched Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnUnityMediationAdWatchedResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UnityMediationAdWatched Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnUpdateOpportunityByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateOpportunityById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnBeginNewSessionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_BeginNewSession Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnFindOpportunitiesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_FindOpportunities Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnUnityAdWatchedResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UnityAdWatched Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnUnityMediationAdWatchedResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UnityMediationAdWatched Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnUpdateOpportunityByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateOpportunityById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
@@ -67,67 +67,67 @@ private:
 */
 struct RALLYHEREAPI_API FRequest_BeginNewSession : public FRequest
 {
-    FRequest_BeginNewSession();
-    virtual ~FRequest_BeginNewSession() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_BeginNewSession();
+	virtual ~FRequest_BeginNewSession() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FRHAPI_BodyBeginNewSession BodyBeginNewSession;
-    /* Optional header to make calling the endpoint faster by not requiring a new token to be generated. */
-    TOptional<FString> XHzAdApiToken;
+	TSharedPtr<FAuthContext> AuthContext;
+	FRHAPI_BodyBeginNewSession BodyBeginNewSession;
+	/* Optional header to make calling the endpoint faster by not requiring a new token to be generated. */
+	TOptional<FString> XHzAdApiToken;
 };
 
 struct RALLYHEREAPI_API FResponse_BeginNewSession : public FResponse
 {
-    FResponse_BeginNewSession(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_BeginNewSession() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_BeginNewSession(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_BeginNewSession() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
-    // Headers
-    /* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
-    TOptional<FString> XHzAdApiToken;
+	FRHAPI_JsonValue Content;
+	// Headers
+	/* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
+	TOptional<FString> XHzAdApiToken;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
-    /* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
-    TOptional<FString> GetHeader200_XHzAdApiToken() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+	/* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
+	TOptional<FString> GetHeader200_XHzAdApiToken() const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
-    /* Response 500
-    Internal Server Error
-    */
-    /* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
-    TOptional<FString> GetHeader500_XHzAdApiToken() const;
+	/* Response 500
+	Internal Server Error
+	*/
+	/* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
+	TOptional<FString> GetHeader500_XHzAdApiToken() const;
 
 };
 
 struct RALLYHEREAPI_API Traits_BeginNewSession
 {
-    typedef FRequest_BeginNewSession Request;
-    typedef FResponse_BeginNewSession Response;
-    typedef FDelegate_BeginNewSession Delegate;
-    typedef FAdAPI API;
-    static FString Name;
+	typedef FRequest_BeginNewSession Request;
+	typedef FResponse_BeginNewSession Response;
+	typedef FDelegate_BeginNewSession Delegate;
+	typedef FAdAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.BeginNewSession(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.BeginNewSession(InRequest, InDelegate, Priority); }
 };
 
 /* Find Opportunities
@@ -136,67 +136,67 @@ struct RALLYHEREAPI_API Traits_BeginNewSession
 */
 struct RALLYHEREAPI_API FRequest_FindOpportunities : public FRequest
 {
-    FRequest_FindOpportunities();
-    virtual ~FRequest_FindOpportunities() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_FindOpportunities();
+	virtual ~FRequest_FindOpportunities() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FRHAPI_BodyFindOpportunities BodyFindOpportunities;
-    /* Optional header to make calling the endpoint faster by not requiring a new token to be generated. */
-    TOptional<FString> XHzAdApiToken;
+	TSharedPtr<FAuthContext> AuthContext;
+	FRHAPI_BodyFindOpportunities BodyFindOpportunities;
+	/* Optional header to make calling the endpoint faster by not requiring a new token to be generated. */
+	TOptional<FString> XHzAdApiToken;
 };
 
 struct RALLYHEREAPI_API FResponse_FindOpportunities : public FResponse
 {
-    FResponse_FindOpportunities(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_FindOpportunities() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_FindOpportunities(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_FindOpportunities() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_AdOpportunities Content;
-    // Headers
-    /* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
-    TOptional<FString> XHzAdApiToken;
+	FRHAPI_AdOpportunities Content;
+	// Headers
+	/* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
+	TOptional<FString> XHzAdApiToken;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_AdOpportunities& OutContent) const;
-    /* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
-    TOptional<FString> GetHeader200_XHzAdApiToken() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_AdOpportunities& OutContent) const;
+	/* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
+	TOptional<FString> GetHeader200_XHzAdApiToken() const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
-    /* Response 500
-    Internal Server Error
-    */
-    /* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
-    TOptional<FString> GetHeader500_XHzAdApiToken() const;
+	/* Response 500
+	Internal Server Error
+	*/
+	/* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
+	TOptional<FString> GetHeader500_XHzAdApiToken() const;
 
 };
 
 struct RALLYHEREAPI_API Traits_FindOpportunities
 {
-    typedef FRequest_FindOpportunities Request;
-    typedef FResponse_FindOpportunities Response;
-    typedef FDelegate_FindOpportunities Delegate;
-    typedef FAdAPI API;
-    static FString Name;
+	typedef FRequest_FindOpportunities Request;
+	typedef FResponse_FindOpportunities Response;
+	typedef FDelegate_FindOpportunities Delegate;
+	typedef FAdAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.FindOpportunities(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.FindOpportunities(InRequest, InDelegate, Priority); }
 };
 
 /* Unity Ad Watched
@@ -205,54 +205,54 @@ struct RALLYHEREAPI_API Traits_FindOpportunities
 */
 struct RALLYHEREAPI_API FRequest_UnityAdWatched : public FRequest
 {
-    FRequest_UnityAdWatched();
-    virtual ~FRequest_UnityAdWatched() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
+	FRequest_UnityAdWatched();
+	virtual ~FRequest_UnityAdWatched() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
 
-    /* Product ID in the Unity console */
-    int32 Productid = 0;
-    /* Server ID that contains custom data. Expected to be a comma separated list of platform and player ID */
-    FString Sid;
-    /* Unique ID for the ad view generated by Unity */
-    FString Oid;
-    /* The HMAC-MD5 hash of the parameter string used to validate the request */
-    FString Hmac;
+	/* Product ID in the Unity console */
+	int32 Productid = 0;
+	/* Server ID that contains custom data. Expected to be a comma separated list of platform and player ID */
+	FString Sid;
+	/* Unique ID for the ad view generated by Unity */
+	FString Oid;
+	/* The HMAC-MD5 hash of the parameter string used to validate the request */
+	FString Hmac;
 };
 
 struct RALLYHEREAPI_API FResponse_UnityAdWatched : public FResponse
 {
-    FResponse_UnityAdWatched(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_UnityAdWatched() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_UnityAdWatched(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_UnityAdWatched() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FString Content;
+	FString Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FString& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FString& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_UnityAdWatched
 {
-    typedef FRequest_UnityAdWatched Request;
-    typedef FResponse_UnityAdWatched Response;
-    typedef FDelegate_UnityAdWatched Delegate;
-    typedef FAdAPI API;
-    static FString Name;
+	typedef FRequest_UnityAdWatched Request;
+	typedef FResponse_UnityAdWatched Response;
+	typedef FDelegate_UnityAdWatched Delegate;
+	typedef FAdAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UnityAdWatched(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UnityAdWatched(InRequest, InDelegate, Priority); }
 };
 
 /* Unity Mediation Ad Watched
@@ -261,56 +261,56 @@ struct RALLYHEREAPI_API Traits_UnityAdWatched
 */
 struct RALLYHEREAPI_API FRequest_UnityMediationAdWatched : public FRequest
 {
-    FRequest_UnityMediationAdWatched();
-    virtual ~FRequest_UnityMediationAdWatched() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
+	FRequest_UnityMediationAdWatched();
+	virtual ~FRequest_UnityMediationAdWatched() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
 
-    /* Custom data provide by client. Expected to be client type */
-    FString CustomizedData;
-    /* User ID provided by the client */
-    FString UserId;
-    /* Unique ID for the ad view generated by Unity */
-    FString EventId;
-    /* Timestamp of an ad event in Unix format */
-    int32 Timestamp = 0;
-    /* The HMAC-MD5 hash of the parameter string used to validate the request */
-    FString Signature;
+	/* Custom data provide by client. Expected to be client type */
+	FString CustomizedData;
+	/* User ID provided by the client */
+	FString UserId;
+	/* Unique ID for the ad view generated by Unity */
+	FString EventId;
+	/* Timestamp of an ad event in Unix format */
+	int32 Timestamp = 0;
+	/* The HMAC-MD5 hash of the parameter string used to validate the request */
+	FString Signature;
 };
 
 struct RALLYHEREAPI_API FResponse_UnityMediationAdWatched : public FResponse
 {
-    FResponse_UnityMediationAdWatched(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_UnityMediationAdWatched() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_UnityMediationAdWatched(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_UnityMediationAdWatched() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FString Content;
+	FString Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FString& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FString& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_UnityMediationAdWatched
 {
-    typedef FRequest_UnityMediationAdWatched Request;
-    typedef FResponse_UnityMediationAdWatched Response;
-    typedef FDelegate_UnityMediationAdWatched Delegate;
-    typedef FAdAPI API;
-    static FString Name;
+	typedef FRequest_UnityMediationAdWatched Request;
+	typedef FResponse_UnityMediationAdWatched Response;
+	typedef FDelegate_UnityMediationAdWatched Delegate;
+	typedef FAdAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UnityMediationAdWatched(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UnityMediationAdWatched(InRequest, InDelegate, Priority); }
 };
 
 /* Update Opportunity By Id
@@ -319,68 +319,68 @@ struct RALLYHEREAPI_API Traits_UnityMediationAdWatched
 */
 struct RALLYHEREAPI_API FRequest_UpdateOpportunityById : public FRequest
 {
-    FRequest_UpdateOpportunityById();
-    virtual ~FRequest_UpdateOpportunityById() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_UpdateOpportunityById();
+	virtual ~FRequest_UpdateOpportunityById() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString OpportunityId;
-    FRHAPI_BodyUpdateOpportunityById BodyUpdateOpportunityById;
-    /* Optional header to make calling the endpoint faster by not requiring a new token to be generated. */
-    TOptional<FString> XHzAdApiToken;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString OpportunityId;
+	FRHAPI_BodyUpdateOpportunityById BodyUpdateOpportunityById;
+	/* Optional header to make calling the endpoint faster by not requiring a new token to be generated. */
+	TOptional<FString> XHzAdApiToken;
 };
 
 struct RALLYHEREAPI_API FResponse_UpdateOpportunityById : public FResponse
 {
-    FResponse_UpdateOpportunityById(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_UpdateOpportunityById() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_UpdateOpportunityById(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_UpdateOpportunityById() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
-    // Headers
-    /* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
-    TOptional<FString> XHzAdApiToken;
+	FRHAPI_JsonValue Content;
+	// Headers
+	/* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
+	TOptional<FString> XHzAdApiToken;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
-    /* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
-    TOptional<FString> GetHeader200_XHzAdApiToken() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+	/* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
+	TOptional<FString> GetHeader200_XHzAdApiToken() const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
-    /* Response 500
-    Internal Server Error
-    */
-    /* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
-    TOptional<FString> GetHeader500_XHzAdApiToken() const;
+	/* Response 500
+	Internal Server Error
+	*/
+	/* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
+	TOptional<FString> GetHeader500_XHzAdApiToken() const;
 
 };
 
 struct RALLYHEREAPI_API Traits_UpdateOpportunityById
 {
-    typedef FRequest_UpdateOpportunityById Request;
-    typedef FResponse_UpdateOpportunityById Response;
-    typedef FDelegate_UpdateOpportunityById Delegate;
-    typedef FAdAPI API;
-    static FString Name;
+	typedef FRequest_UpdateOpportunityById Request;
+	typedef FResponse_UpdateOpportunityById Response;
+	typedef FDelegate_UpdateOpportunityById Delegate;
+	typedef FAdAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateOpportunityById(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateOpportunityById(InRequest, InDelegate, Priority); }
 };
 
 

@@ -26,13 +26,13 @@ DECLARE_DELEGATE_OneParam(FDelegate_GetEnvironmentId, const FResponse_GetEnviron
 class RALLYHEREAPI_API FEnvironmentAPI : public FAPI
 {
 public:
-    FEnvironmentAPI();
-    virtual ~FEnvironmentAPI();
+	FEnvironmentAPI();
+	virtual ~FEnvironmentAPI();
 
-    FHttpRequestPtr GetEnvironmentId(const FRequest_GetEnvironmentId& Request, const FDelegate_GetEnvironmentId& Delegate = FDelegate_GetEnvironmentId(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetEnvironmentId(const FRequest_GetEnvironmentId& Request, const FDelegate_GetEnvironmentId& Delegate = FDelegate_GetEnvironmentId(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
-    void OnGetEnvironmentIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetEnvironmentId Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetEnvironmentIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetEnvironmentId Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
@@ -42,41 +42,41 @@ private:
 */
 struct RALLYHEREAPI_API FRequest_GetEnvironmentId : public FRequest
 {
-    FRequest_GetEnvironmentId();
-    virtual ~FRequest_GetEnvironmentId() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
+	FRequest_GetEnvironmentId();
+	virtual ~FRequest_GetEnvironmentId() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
 
 };
 
 struct RALLYHEREAPI_API FResponse_GetEnvironmentId : public FResponse
 {
-    FResponse_GetEnvironmentId(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetEnvironmentId() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetEnvironmentId(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetEnvironmentId() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_EnvironmentConfig Content;
+	FRHAPI_EnvironmentConfig Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_EnvironmentConfig& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_EnvironmentConfig& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetEnvironmentId
 {
-    typedef FRequest_GetEnvironmentId Request;
-    typedef FResponse_GetEnvironmentId Response;
-    typedef FDelegate_GetEnvironmentId Delegate;
-    typedef FEnvironmentAPI API;
-    static FString Name;
+	typedef FRequest_GetEnvironmentId Request;
+	typedef FResponse_GetEnvironmentId Response;
+	typedef FDelegate_GetEnvironmentId Delegate;
+	typedef FEnvironmentAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetEnvironmentId(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetEnvironmentId(InRequest, InDelegate, Priority); }
 };
 
 

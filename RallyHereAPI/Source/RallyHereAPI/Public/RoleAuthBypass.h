@@ -18,9 +18,9 @@
 UENUM(BlueprintType)
 enum class ERHAPI_RoleAuthBypass : uint8
 {
-    None UMETA(ToolTip="Does not bypass any auth states"),
-    Limited UMETA(ToolTip="Allow bypass of the limited auth state"),
-    Locked UMETA(ToolTip="Auth bypass for the limited and locked auth states"),
+	None UMETA(ToolTip="Does not bypass any auth states"),
+	Limited UMETA(ToolTip="Allow bypass of the limited auth state"),
+	Locked UMETA(ToolTip="Auth bypass for the limited and locked auth states"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_RoleAuthBypass& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_RoleAuthBypass& EnumValue);

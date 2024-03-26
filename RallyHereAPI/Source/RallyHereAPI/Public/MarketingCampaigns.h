@@ -22,33 +22,33 @@
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_MarketingCampaigns : public FRHAPI_Model
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    /**
-    * @brief Fills this object with data from the passed in JSON
-    *
-    * @param [in] JsonValue Data from the API call.
-    *
-    * @return true if parsing of the JSON data was successful.
-    */
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	/**
+	* @brief Fills this object with data from the passed in JSON
+	*
+	* @param [in] JsonValue Data from the API call.
+	*
+	* @return true if parsing of the JSON data was successful.
+	*/
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
-    /**
-    * @brief Writes the data from this object into the specified JSON Writer stream
-    *
-    * @param [in] Writer JSON Writer stream to push .
-    */
-    void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	/**
+	* @brief Writes the data from this object into the specified JSON Writer stream
+	*
+	* @param [in] Writer JSON Writer stream to push .
+	*/
+	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief List of external Marketing Campaigns */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    TArray<FRHAPI_MarketingCampaign> Campaigns{  };
-    /** @brief Gets the value of Campaigns */
-    TArray<FRHAPI_MarketingCampaign>& GetCampaigns() { return Campaigns; }
-    /** @brief Gets the value of Campaigns */
-    const TArray<FRHAPI_MarketingCampaign>& GetCampaigns() const { return Campaigns; }
-    /** @brief Sets the value of Campaigns */
-    void SetCampaigns(TArray<FRHAPI_MarketingCampaign> NewValue) { Campaigns = NewValue;  }
+	/** @brief List of external Marketing Campaigns */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TArray<FRHAPI_MarketingCampaign> Campaigns{  };
+	/** @brief Gets the value of Campaigns */
+	TArray<FRHAPI_MarketingCampaign>& GetCampaigns() { return Campaigns; }
+	/** @brief Gets the value of Campaigns */
+	const TArray<FRHAPI_MarketingCampaign>& GetCampaigns() const { return Campaigns; }
+	/** @brief Sets the value of Campaigns */
+	void SetCampaigns(TArray<FRHAPI_MarketingCampaign> NewValue) { Campaigns = NewValue;  }
 };
 
 /** @} */

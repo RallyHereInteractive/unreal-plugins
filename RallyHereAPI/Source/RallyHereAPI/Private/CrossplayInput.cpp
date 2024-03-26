@@ -20,55 +20,55 @@ using RallyHereAPI::TryGetJsonValue;
 // Implementation for ERHAPI_CrossplayInput
 FString EnumToString(const ERHAPI_CrossplayInput& Value)
 {
-    switch (Value)
-    {
-    case ERHAPI_CrossplayInput::Any:
-        return TEXT("desired_inputs_any");
-    case ERHAPI_CrossplayInput::Kbm:
-        return TEXT("desired_inputs_keyboardandmouse");
-    case ERHAPI_CrossplayInput::Gamepad:
-        return TEXT("desired_inputs_gamepad");
-    case ERHAPI_CrossplayInput::Touch:
-        return TEXT("desired_inputs_touch");
-    }
+	switch (Value)
+	{
+	case ERHAPI_CrossplayInput::Any:
+		return TEXT("desired_inputs_any");
+	case ERHAPI_CrossplayInput::Kbm:
+		return TEXT("desired_inputs_keyboardandmouse");
+	case ERHAPI_CrossplayInput::Gamepad:
+		return TEXT("desired_inputs_gamepad");
+	case ERHAPI_CrossplayInput::Touch:
+		return TEXT("desired_inputs_touch");
+	}
 
-    UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_CrossplayInput::Values Value (%d)"), (int)Value);
-    return TEXT("");
+	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_CrossplayInput::Values Value (%d)"), (int)Value);
+	return TEXT("");
 }
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_CrossplayInput& Value)
 {
-    static TMap<FString, ERHAPI_CrossplayInput> StringToEnum = { 
-        { TEXT("desired_inputs_any"), ERHAPI_CrossplayInput::Any },
-        { TEXT("desired_inputs_keyboardandmouse"), ERHAPI_CrossplayInput::Kbm },
-        { TEXT("desired_inputs_gamepad"), ERHAPI_CrossplayInput::Gamepad },
-        { TEXT("desired_inputs_touch"), ERHAPI_CrossplayInput::Touch },    };
+	static TMap<FString, ERHAPI_CrossplayInput> StringToEnum = { 
+		{ TEXT("desired_inputs_any"), ERHAPI_CrossplayInput::Any },
+		{ TEXT("desired_inputs_keyboardandmouse"), ERHAPI_CrossplayInput::Kbm },
+		{ TEXT("desired_inputs_gamepad"), ERHAPI_CrossplayInput::Gamepad },
+		{ TEXT("desired_inputs_touch"), ERHAPI_CrossplayInput::Touch },	};
 
-    const auto Found = StringToEnum.Find(EnumAsString);
-    if(Found)
-        Value = *Found;
-    return Found != nullptr;
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
+	return Found != nullptr;
 }
 
 FStringFormatArg ToStringFormatArg(const ERHAPI_CrossplayInput& Value)
 {
-    return FStringFormatArg(EnumToString(Value));
+	return FStringFormatArg(EnumToString(Value));
 }
 
 void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const ERHAPI_CrossplayInput& Value)
 {
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
 }
 
 bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, ERHAPI_CrossplayInput& Value)
 {
-    FString TmpValue;
-    if (JsonValue->TryGetString(TmpValue))
-    {
-        if (EnumFromString(TmpValue, Value))
-            return true;
-    }
-    return false;
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if (EnumFromString(TmpValue, Value))
+			return true;
+	}
+	return false;
 }
 
 

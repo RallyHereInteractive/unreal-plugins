@@ -21,38 +21,38 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_HzApiErrorModel::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (AuthSuccess_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("auth_success"));
-        RallyHereAPI::WriteJsonValue(Writer, AuthSuccess_Optional);
-    }
-    Writer->WriteIdentifierPrefix(TEXT("error_code"));
-    RallyHereAPI::WriteJsonValue(Writer, ErrorCode);
-    Writer->WriteIdentifierPrefix(TEXT("desc"));
-    RallyHereAPI::WriteJsonValue(Writer, Desc);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (AuthSuccess_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("auth_success"));
+		RallyHereAPI::WriteJsonValue(Writer, AuthSuccess_Optional);
+	}
+	Writer->WriteIdentifierPrefix(TEXT("error_code"));
+	RallyHereAPI::WriteJsonValue(Writer, ErrorCode);
+	Writer->WriteIdentifierPrefix(TEXT("desc"));
+	RallyHereAPI::WriteJsonValue(Writer, Desc);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_HzApiErrorModel::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonAuthSuccessField = (*Object)->TryGetField(TEXT("auth_success"));
-    if (JsonAuthSuccessField.IsValid() && !JsonAuthSuccessField->IsNull())
-    {
-        AuthSuccess_IsSet = TryGetJsonValue(JsonAuthSuccessField, AuthSuccess_Optional);
-        ParseSuccess &= AuthSuccess_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonErrorCodeField = (*Object)->TryGetField(TEXT("error_code"));
-    ParseSuccess &= JsonErrorCodeField.IsValid() && !JsonErrorCodeField->IsNull() && TryGetJsonValue(JsonErrorCodeField, ErrorCode);
-    const TSharedPtr<FJsonValue> JsonDescField = (*Object)->TryGetField(TEXT("desc"));
-    ParseSuccess &= JsonDescField.IsValid() && !JsonDescField->IsNull() && TryGetJsonValue(JsonDescField, Desc);
+	const TSharedPtr<FJsonValue> JsonAuthSuccessField = (*Object)->TryGetField(TEXT("auth_success"));
+	if (JsonAuthSuccessField.IsValid() && !JsonAuthSuccessField->IsNull())
+	{
+		AuthSuccess_IsSet = TryGetJsonValue(JsonAuthSuccessField, AuthSuccess_Optional);
+		ParseSuccess &= AuthSuccess_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonErrorCodeField = (*Object)->TryGetField(TEXT("error_code"));
+	ParseSuccess &= JsonErrorCodeField.IsValid() && !JsonErrorCodeField->IsNull() && TryGetJsonValue(JsonErrorCodeField, ErrorCode);
+	const TSharedPtr<FJsonValue> JsonDescField = (*Object)->TryGetField(TEXT("desc"));
+	ParseSuccess &= JsonDescField.IsValid() && !JsonDescField->IsNull() && TryGetJsonValue(JsonDescField, Desc);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

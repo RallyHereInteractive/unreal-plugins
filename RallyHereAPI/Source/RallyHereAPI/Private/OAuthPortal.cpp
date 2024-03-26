@@ -20,70 +20,70 @@ using RallyHereAPI::TryGetJsonValue;
 // Implementation for ERHAPI_OAuthPortal
 FString EnumToString(const ERHAPI_OAuthPortal& Value)
 {
-    switch (Value)
-    {
-    case ERHAPI_OAuthPortal::Google:
-        return TEXT("google");
-    case ERHAPI_OAuthPortal::Apple:
-        return TEXT("apple");
-    case ERHAPI_OAuthPortal::Epic:
-        return TEXT("epic");
-    case ERHAPI_OAuthPortal::Xbox:
-        return TEXT("xbox");
-    case ERHAPI_OAuthPortal::Psn:
-        return TEXT("psn");
-    case ERHAPI_OAuthPortal::Nintendo:
-        return TEXT("nintendo");
-    case ERHAPI_OAuthPortal::Steam:
-        return TEXT("steam");
-    case ERHAPI_OAuthPortal::Amazon:
-        return TEXT("amazon");
-    case ERHAPI_OAuthPortal::Twitch:
-        return TEXT("twitch");
-    }
+	switch (Value)
+	{
+	case ERHAPI_OAuthPortal::Google:
+		return TEXT("google");
+	case ERHAPI_OAuthPortal::Apple:
+		return TEXT("apple");
+	case ERHAPI_OAuthPortal::Epic:
+		return TEXT("epic");
+	case ERHAPI_OAuthPortal::Xbox:
+		return TEXT("xbox");
+	case ERHAPI_OAuthPortal::Psn:
+		return TEXT("psn");
+	case ERHAPI_OAuthPortal::Nintendo:
+		return TEXT("nintendo");
+	case ERHAPI_OAuthPortal::Steam:
+		return TEXT("steam");
+	case ERHAPI_OAuthPortal::Amazon:
+		return TEXT("amazon");
+	case ERHAPI_OAuthPortal::Twitch:
+		return TEXT("twitch");
+	}
 
-    UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_OAuthPortal::Values Value (%d)"), (int)Value);
-    return TEXT("");
+	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_OAuthPortal::Values Value (%d)"), (int)Value);
+	return TEXT("");
 }
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_OAuthPortal& Value)
 {
-    static TMap<FString, ERHAPI_OAuthPortal> StringToEnum = { 
-        { TEXT("google"), ERHAPI_OAuthPortal::Google },
-        { TEXT("apple"), ERHAPI_OAuthPortal::Apple },
-        { TEXT("epic"), ERHAPI_OAuthPortal::Epic },
-        { TEXT("xbox"), ERHAPI_OAuthPortal::Xbox },
-        { TEXT("psn"), ERHAPI_OAuthPortal::Psn },
-        { TEXT("nintendo"), ERHAPI_OAuthPortal::Nintendo },
-        { TEXT("steam"), ERHAPI_OAuthPortal::Steam },
-        { TEXT("amazon"), ERHAPI_OAuthPortal::Amazon },
-        { TEXT("twitch"), ERHAPI_OAuthPortal::Twitch },    };
+	static TMap<FString, ERHAPI_OAuthPortal> StringToEnum = { 
+		{ TEXT("google"), ERHAPI_OAuthPortal::Google },
+		{ TEXT("apple"), ERHAPI_OAuthPortal::Apple },
+		{ TEXT("epic"), ERHAPI_OAuthPortal::Epic },
+		{ TEXT("xbox"), ERHAPI_OAuthPortal::Xbox },
+		{ TEXT("psn"), ERHAPI_OAuthPortal::Psn },
+		{ TEXT("nintendo"), ERHAPI_OAuthPortal::Nintendo },
+		{ TEXT("steam"), ERHAPI_OAuthPortal::Steam },
+		{ TEXT("amazon"), ERHAPI_OAuthPortal::Amazon },
+		{ TEXT("twitch"), ERHAPI_OAuthPortal::Twitch },	};
 
-    const auto Found = StringToEnum.Find(EnumAsString);
-    if(Found)
-        Value = *Found;
-    return Found != nullptr;
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
+	return Found != nullptr;
 }
 
 FStringFormatArg ToStringFormatArg(const ERHAPI_OAuthPortal& Value)
 {
-    return FStringFormatArg(EnumToString(Value));
+	return FStringFormatArg(EnumToString(Value));
 }
 
 void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const ERHAPI_OAuthPortal& Value)
 {
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
 }
 
 bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, ERHAPI_OAuthPortal& Value)
 {
-    FString TmpValue;
-    if (JsonValue->TryGetString(TmpValue))
-    {
-        if (EnumFromString(TmpValue, Value))
-            return true;
-    }
-    return false;
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if (EnumFromString(TmpValue, Value))
+			return true;
+	}
+	return false;
 }
 
 

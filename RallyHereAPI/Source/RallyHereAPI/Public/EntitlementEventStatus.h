@@ -18,10 +18,10 @@
 UENUM(BlueprintType)
 enum class ERHAPI_EntitlementEventStatus : uint8
 {
-    Success UMETA(ToolTip="The event was successful"),
-    SkuNotFound UMETA(ToolTip="The SKU was not found"),
-    NotImplemented UMETA(ToolTip="The requested operation is not implemented yet"),
-    PlayerNotFound UMETA(ToolTip="The player was not found"),
+	Success UMETA(ToolTip="The event was successful"),
+	SkuNotFound UMETA(ToolTip="The SKU was not found"),
+	NotImplemented UMETA(ToolTip="The requested operation is not implemented yet"),
+	PlayerNotFound UMETA(ToolTip="The player was not found"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_EntitlementEventStatus& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_EntitlementEventStatus& EnumValue);

@@ -22,47 +22,47 @@
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_RegionsResponse : public FRHAPI_Model
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    /**
-    * @brief Fills this object with data from the passed in JSON
-    *
-    * @param [in] JsonValue Data from the API call.
-    *
-    * @return true if parsing of the JSON data was successful.
-    */
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	/**
+	* @brief Fills this object with data from the passed in JSON
+	*
+	* @param [in] JsonValue Data from the API call.
+	*
+	* @return true if parsing of the JSON data was successful.
+	*/
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
-    /**
-    * @brief Writes the data from this object into the specified JSON Writer stream
-    *
-    * @param [in] Writer JSON Writer stream to push .
-    */
-    void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	/**
+	* @brief Writes the data from this object into the specified JSON Writer stream
+	*
+	* @param [in] Writer JSON Writer stream to push .
+	*/
+	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief List of all regions */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    TArray<FRHAPI_Region> Regions{  };
-    /** @brief Gets the value of Regions */
-    TArray<FRHAPI_Region>& GetRegions() { return Regions; }
-    /** @brief Gets the value of Regions */
-    const TArray<FRHAPI_Region>& GetRegions() const { return Regions; }
-    /** @brief Sets the value of Regions */
-    void SetRegions(TArray<FRHAPI_Region> NewValue) { Regions = NewValue;  }
+	/** @brief List of all regions */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TArray<FRHAPI_Region> Regions{  };
+	/** @brief Gets the value of Regions */
+	TArray<FRHAPI_Region>& GetRegions() { return Regions; }
+	/** @brief Gets the value of Regions */
+	const TArray<FRHAPI_Region>& GetRegions() const { return Regions; }
+	/** @brief Sets the value of Regions */
+	void SetRegions(TArray<FRHAPI_Region> NewValue) { Regions = NewValue;  }
 
-    /** @brief Cursor to continue iterating through enabled regions. Non 0 cursor in the response means there are more regions. Pass the returned cursor up on a subsequent call to continue. A 0 cursor in the response means you have reached the end */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    int32 Cursor{ 0 };
-    /** @brief Gets the value of Cursor */
-    int32& GetCursor() { return Cursor; }
-    /** @brief Gets the value of Cursor */
-    const int32& GetCursor() const { return Cursor; }
-    /** @brief Sets the value of Cursor */
-    void SetCursor(int32 NewValue) { Cursor = NewValue;  }
-    /** @brief Returns true if Cursor matches the default value */
-    bool IsCursorDefaultValue() const { return Cursor == 0; }
-    /** @brief Sets the value of Cursor to its default  */
-    void SetCursorToDefault() { Cursor = 0;  }
+	/** @brief Cursor to continue iterating through enabled regions. Non 0 cursor in the response means there are more regions. Pass the returned cursor up on a subsequent call to continue. A 0 cursor in the response means you have reached the end */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Cursor{ 0 };
+	/** @brief Gets the value of Cursor */
+	int32& GetCursor() { return Cursor; }
+	/** @brief Gets the value of Cursor */
+	const int32& GetCursor() const { return Cursor; }
+	/** @brief Sets the value of Cursor */
+	void SetCursor(int32 NewValue) { Cursor = NewValue;  }
+	/** @brief Returns true if Cursor matches the default value */
+	bool IsCursorDefaultValue() const { return Cursor == 0; }
+	/** @brief Sets the value of Cursor to its default  */
+	void SetCursorToDefault() { Cursor = 0;  }
 };
 
 /** @} */

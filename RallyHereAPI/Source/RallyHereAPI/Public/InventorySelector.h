@@ -18,12 +18,12 @@
 UENUM(BlueprintType)
 enum class ERHAPI_InventorySelector : uint8
 {
-    Invalid UMETA(ToolTip="Invalid Inventory Selector."),
-    Own UMETA(ToolTip="The Inventory will be stored across Inventory Sessions."),
-    Rent UMETA(ToolTip="The Inventory will be stored across Inventory Sessions but will expire after a period of time. Quantity modification will modify the Inventory&#39;s expiration time."),
-    RentTimeframeLocked UMETA(ToolTip="The Inventory will be stored across Inventory Sessions by will expire after a period of time. Quantity modification will not modify the Inventory&#39;s expiration time but instead the quantity of the Inventory."),
-    OwnTransient UMETA(ToolTip="The Inventory will by fulfilled as transient Inventory and will not persist across Inventory Sessions."),
-    InheritEntitlementInventory UMETA(ToolTip="Loot fulfilled will look for a parent Entitlement and then grant the Loot as transient Inventory with the rental expiration as the parent."),
+	Invalid UMETA(ToolTip="Invalid Inventory Selector."),
+	Own UMETA(ToolTip="The Inventory will be stored across Inventory Sessions."),
+	Rent UMETA(ToolTip="The Inventory will be stored across Inventory Sessions but will expire after a period of time. Quantity modification will modify the Inventory&#39;s expiration time."),
+	RentTimeframeLocked UMETA(ToolTip="The Inventory will be stored across Inventory Sessions by will expire after a period of time. Quantity modification will not modify the Inventory&#39;s expiration time but instead the quantity of the Inventory."),
+	OwnTransient UMETA(ToolTip="The Inventory will by fulfilled as transient Inventory and will not persist across Inventory Sessions."),
+	InheritEntitlementInventory UMETA(ToolTip="Loot fulfilled will look for a parent Entitlement and then grant the Loot as transient Inventory with the rental expiration as the parent."),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_InventorySelector& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_InventorySelector& EnumValue);

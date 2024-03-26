@@ -24,126 +24,126 @@
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_SelfSessionPlayerUpdateRequest : public FRHAPI_Model
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    /**
-    * @brief Fills this object with data from the passed in JSON
-    *
-    * @param [in] JsonValue Data from the API call.
-    *
-    * @return true if parsing of the JSON data was successful.
-    */
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	/**
+	* @brief Fills this object with data from the passed in JSON
+	*
+	* @param [in] JsonValue Data from the API call.
+	*
+	* @return true if parsing of the JSON data was successful.
+	*/
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
-    /**
-    * @brief Writes the data from this object into the specified JSON Writer stream
-    *
-    * @param [in] Writer JSON Writer stream to push .
-    */
-    void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	/**
+	* @brief Writes the data from this object into the specified JSON Writer stream
+	*
+	* @param [in] Writer JSON Writer stream to push .
+	*/
+	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief Status that the player would like after the request is complete. Note that some join operations may promote the player from `member` to `leader` */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    ERHAPI_SessionPlayerStatus Status_Optional{  };
-    /** @brief true if Status_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool Status_IsSet{ false };
-    /** @brief Gets the value of Status_Optional, regardless of it having been set */
-    ERHAPI_SessionPlayerStatus& GetStatus() { return Status_Optional; }
-    /** @brief Gets the value of Status_Optional, regardless of it having been set */
-    const ERHAPI_SessionPlayerStatus& GetStatus() const { return Status_Optional; }
-    /** @brief Gets the value of Status_Optional, if it has been set, otherwise it returns DefaultValue */
-    const ERHAPI_SessionPlayerStatus& GetStatus(const ERHAPI_SessionPlayerStatus& DefaultValue) const { if (Status_IsSet) return Status_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of Status_Optional and returns true if it has been set, otherwise returns false */
-    bool GetStatus(ERHAPI_SessionPlayerStatus& OutValue) const { if (Status_IsSet) OutValue = Status_Optional; return Status_IsSet; }
-    /** @brief Returns a pointer to Status_Optional, if it has been set, otherwise returns nullptr */
-    ERHAPI_SessionPlayerStatus* GetStatusOrNull() { if (Status_IsSet) return &Status_Optional; return nullptr; }
-    /** @brief Returns a pointer to Status_Optional, if it has been set, otherwise returns nullptr */
-    const ERHAPI_SessionPlayerStatus* GetStatusOrNull() const { if (Status_IsSet) return &Status_Optional; return nullptr; }
-    /** @brief Sets the value of Status_Optional and also sets Status_IsSet to true */
-    void SetStatus(ERHAPI_SessionPlayerStatus NewValue) { Status_Optional = NewValue; Status_IsSet = true; }
-     /** @brief Clears the value of Status_Optional and sets Status_IsSet to false */
-    void ClearStatus() { Status_IsSet = false; }
+	/** @brief Status that the player would like after the request is complete. Note that some join operations may promote the player from `member` to `leader` */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	ERHAPI_SessionPlayerStatus Status_Optional{  };
+	/** @brief true if Status_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Status_IsSet{ false };
+	/** @brief Gets the value of Status_Optional, regardless of it having been set */
+	ERHAPI_SessionPlayerStatus& GetStatus() { return Status_Optional; }
+	/** @brief Gets the value of Status_Optional, regardless of it having been set */
+	const ERHAPI_SessionPlayerStatus& GetStatus() const { return Status_Optional; }
+	/** @brief Gets the value of Status_Optional, if it has been set, otherwise it returns DefaultValue */
+	const ERHAPI_SessionPlayerStatus& GetStatus(const ERHAPI_SessionPlayerStatus& DefaultValue) const { if (Status_IsSet) return Status_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Status_Optional and returns true if it has been set, otherwise returns false */
+	bool GetStatus(ERHAPI_SessionPlayerStatus& OutValue) const { if (Status_IsSet) OutValue = Status_Optional; return Status_IsSet; }
+	/** @brief Returns a pointer to Status_Optional, if it has been set, otherwise returns nullptr */
+	ERHAPI_SessionPlayerStatus* GetStatusOrNull() { if (Status_IsSet) return &Status_Optional; return nullptr; }
+	/** @brief Returns a pointer to Status_Optional, if it has been set, otherwise returns nullptr */
+	const ERHAPI_SessionPlayerStatus* GetStatusOrNull() const { if (Status_IsSet) return &Status_Optional; return nullptr; }
+	/** @brief Sets the value of Status_Optional and also sets Status_IsSet to true */
+	void SetStatus(ERHAPI_SessionPlayerStatus NewValue) { Status_Optional = NewValue; Status_IsSet = true; }
+	 /** @brief Clears the value of Status_Optional and sets Status_IsSet to false */
+	void ClearStatus() { Status_IsSet = false; }
 
-    /** @brief Semver for updated client */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FString ClientVersion{  };
-    /** @brief Gets the value of ClientVersion */
-    FString& GetClientVersion() { return ClientVersion; }
-    /** @brief Gets the value of ClientVersion */
-    const FString& GetClientVersion() const { return ClientVersion; }
-    /** @brief Sets the value of ClientVersion */
-    void SetClientVersion(FString NewValue) { ClientVersion = NewValue;  }
+	/** @brief Semver for updated client */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString ClientVersion{  };
+	/** @brief Gets the value of ClientVersion */
+	FString& GetClientVersion() { return ClientVersion; }
+	/** @brief Gets the value of ClientVersion */
+	const FString& GetClientVersion() const { return ClientVersion; }
+	/** @brief Sets the value of ClientVersion */
+	void SetClientVersion(FString NewValue) { ClientVersion = NewValue;  }
 
-    /** @brief Which input type and platform the client is using */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FRHAPI_ClientSettings ClientSettings{  };
-    /** @brief Gets the value of ClientSettings */
-    FRHAPI_ClientSettings& GetClientSettings() { return ClientSettings; }
-    /** @brief Gets the value of ClientSettings */
-    const FRHAPI_ClientSettings& GetClientSettings() const { return ClientSettings; }
-    /** @brief Sets the value of ClientSettings */
-    void SetClientSettings(FRHAPI_ClientSettings NewValue) { ClientSettings = NewValue;  }
+	/** @brief Which input type and platform the client is using */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FRHAPI_ClientSettings ClientSettings{  };
+	/** @brief Gets the value of ClientSettings */
+	FRHAPI_ClientSettings& GetClientSettings() { return ClientSettings; }
+	/** @brief Gets the value of ClientSettings */
+	const FRHAPI_ClientSettings& GetClientSettings() const { return ClientSettings; }
+	/** @brief Sets the value of ClientSettings */
+	void SetClientSettings(FRHAPI_ClientSettings NewValue) { ClientSettings = NewValue;  }
 
-    /** @brief Which team the player is one */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    int32 TeamId{ 0 };
-    /** @brief Gets the value of TeamId */
-    int32& GetTeamId() { return TeamId; }
-    /** @brief Gets the value of TeamId */
-    const int32& GetTeamId() const { return TeamId; }
-    /** @brief Sets the value of TeamId */
-    void SetTeamId(int32 NewValue) { TeamId = NewValue;  }
-    /** @brief Returns true if TeamId matches the default value */
-    bool IsTeamIdDefaultValue() const { return TeamId == 0; }
-    /** @brief Sets the value of TeamId to its default  */
-    void SetTeamIdToDefault() { TeamId = 0;  }
+	/** @brief Which team the player is one */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 TeamId{ 0 };
+	/** @brief Gets the value of TeamId */
+	int32& GetTeamId() { return TeamId; }
+	/** @brief Gets the value of TeamId */
+	const int32& GetTeamId() const { return TeamId; }
+	/** @brief Sets the value of TeamId */
+	void SetTeamId(int32 NewValue) { TeamId = NewValue;  }
+	/** @brief Returns true if TeamId matches the default value */
+	bool IsTeamIdDefaultValue() const { return TeamId == 0; }
+	/** @brief Sets the value of TeamId to its default  */
+	void SetTeamIdToDefault() { TeamId = 0;  }
 
-    /** @brief Client's desired crossplay settings to determine which other clients it can play with. If not defined, assumed to be as permissive as possible */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FRHAPI_CrossplayPreferences CrossplayPreferences_Optional{  };
-    /** @brief true if CrossplayPreferences_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool CrossplayPreferences_IsSet{ false };
-    /** @brief Gets the value of CrossplayPreferences_Optional, regardless of it having been set */
-    FRHAPI_CrossplayPreferences& GetCrossplayPreferences() { return CrossplayPreferences_Optional; }
-    /** @brief Gets the value of CrossplayPreferences_Optional, regardless of it having been set */
-    const FRHAPI_CrossplayPreferences& GetCrossplayPreferences() const { return CrossplayPreferences_Optional; }
-    /** @brief Gets the value of CrossplayPreferences_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FRHAPI_CrossplayPreferences& GetCrossplayPreferences(const FRHAPI_CrossplayPreferences& DefaultValue) const { if (CrossplayPreferences_IsSet) return CrossplayPreferences_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of CrossplayPreferences_Optional and returns true if it has been set, otherwise returns false */
-    bool GetCrossplayPreferences(FRHAPI_CrossplayPreferences& OutValue) const { if (CrossplayPreferences_IsSet) OutValue = CrossplayPreferences_Optional; return CrossplayPreferences_IsSet; }
-    /** @brief Returns a pointer to CrossplayPreferences_Optional, if it has been set, otherwise returns nullptr */
-    FRHAPI_CrossplayPreferences* GetCrossplayPreferencesOrNull() { if (CrossplayPreferences_IsSet) return &CrossplayPreferences_Optional; return nullptr; }
-    /** @brief Returns a pointer to CrossplayPreferences_Optional, if it has been set, otherwise returns nullptr */
-    const FRHAPI_CrossplayPreferences* GetCrossplayPreferencesOrNull() const { if (CrossplayPreferences_IsSet) return &CrossplayPreferences_Optional; return nullptr; }
-    /** @brief Sets the value of CrossplayPreferences_Optional and also sets CrossplayPreferences_IsSet to true */
-    void SetCrossplayPreferences(FRHAPI_CrossplayPreferences NewValue) { CrossplayPreferences_Optional = NewValue; CrossplayPreferences_IsSet = true; }
-     /** @brief Clears the value of CrossplayPreferences_Optional and sets CrossplayPreferences_IsSet to false */
-    void ClearCrossplayPreferences() { CrossplayPreferences_IsSet = false; }
+	/** @brief Client's desired crossplay settings to determine which other clients it can play with. If not defined, assumed to be as permissive as possible */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FRHAPI_CrossplayPreferences CrossplayPreferences_Optional{  };
+	/** @brief true if CrossplayPreferences_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool CrossplayPreferences_IsSet{ false };
+	/** @brief Gets the value of CrossplayPreferences_Optional, regardless of it having been set */
+	FRHAPI_CrossplayPreferences& GetCrossplayPreferences() { return CrossplayPreferences_Optional; }
+	/** @brief Gets the value of CrossplayPreferences_Optional, regardless of it having been set */
+	const FRHAPI_CrossplayPreferences& GetCrossplayPreferences() const { return CrossplayPreferences_Optional; }
+	/** @brief Gets the value of CrossplayPreferences_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FRHAPI_CrossplayPreferences& GetCrossplayPreferences(const FRHAPI_CrossplayPreferences& DefaultValue) const { if (CrossplayPreferences_IsSet) return CrossplayPreferences_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of CrossplayPreferences_Optional and returns true if it has been set, otherwise returns false */
+	bool GetCrossplayPreferences(FRHAPI_CrossplayPreferences& OutValue) const { if (CrossplayPreferences_IsSet) OutValue = CrossplayPreferences_Optional; return CrossplayPreferences_IsSet; }
+	/** @brief Returns a pointer to CrossplayPreferences_Optional, if it has been set, otherwise returns nullptr */
+	FRHAPI_CrossplayPreferences* GetCrossplayPreferencesOrNull() { if (CrossplayPreferences_IsSet) return &CrossplayPreferences_Optional; return nullptr; }
+	/** @brief Returns a pointer to CrossplayPreferences_Optional, if it has been set, otherwise returns nullptr */
+	const FRHAPI_CrossplayPreferences* GetCrossplayPreferencesOrNull() const { if (CrossplayPreferences_IsSet) return &CrossplayPreferences_Optional; return nullptr; }
+	/** @brief Sets the value of CrossplayPreferences_Optional and also sets CrossplayPreferences_IsSet to true */
+	void SetCrossplayPreferences(FRHAPI_CrossplayPreferences NewValue) { CrossplayPreferences_Optional = NewValue; CrossplayPreferences_IsSet = true; }
+	 /** @brief Clears the value of CrossplayPreferences_Optional and sets CrossplayPreferences_IsSet to false */
+	void ClearCrossplayPreferences() { CrossplayPreferences_IsSet = false; }
 
-    /** @brief player-defined custom data */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    TMap<FString, FString> CustomData_Optional{  };
-    /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool CustomData_IsSet{ false };
-    /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-    TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
-    /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-    const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
-    /** @brief Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue */
-    const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
-    bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
-    /** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-    TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
-    /** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-    const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
-    /** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-    void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
-     /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
-    void ClearCustomData() { CustomData_IsSet = false; }
+	/** @brief player-defined custom data */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TMap<FString, FString> CustomData_Optional{  };
+	/** @brief true if CustomData_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool CustomData_IsSet{ false };
+	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
+	TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
+	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
+	const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
+	/** @brief Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue */
+	const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
+	bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
+	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
+	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
+	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
+	void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	void ClearCustomData() { CustomData_IsSet = false; }
 };
 
 /** @} */

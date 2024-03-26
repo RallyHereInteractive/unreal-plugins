@@ -21,30 +21,30 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_PurgeRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (SuggestedPurgeTime_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("suggested_purge_time"));
-        RallyHereAPI::WriteJsonValue(Writer, SuggestedPurgeTime_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (SuggestedPurgeTime_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("suggested_purge_time"));
+		RallyHereAPI::WriteJsonValue(Writer, SuggestedPurgeTime_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_PurgeRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonSuggestedPurgeTimeField = (*Object)->TryGetField(TEXT("suggested_purge_time"));
-    if (JsonSuggestedPurgeTimeField.IsValid() && !JsonSuggestedPurgeTimeField->IsNull())
-    {
-        SuggestedPurgeTime_IsSet = TryGetJsonValue(JsonSuggestedPurgeTimeField, SuggestedPurgeTime_Optional);
-        ParseSuccess &= SuggestedPurgeTime_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonSuggestedPurgeTimeField = (*Object)->TryGetField(TEXT("suggested_purge_time"));
+	if (JsonSuggestedPurgeTimeField.IsValid() && !JsonSuggestedPurgeTimeField->IsNull())
+	{
+		SuggestedPurgeTime_IsSet = TryGetJsonValue(JsonSuggestedPurgeTimeField, SuggestedPurgeTime_Optional);
+		ParseSuccess &= SuggestedPurgeTime_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

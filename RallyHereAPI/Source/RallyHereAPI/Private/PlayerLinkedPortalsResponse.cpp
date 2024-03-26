@@ -21,27 +21,27 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_PlayerLinkedPortalsResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("player"));
-    RallyHereAPI::WriteJsonValue(Writer, Player);
-    Writer->WriteIdentifierPrefix(TEXT("linked_portals"));
-    RallyHereAPI::WriteJsonValue(Writer, LinkedPortals);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("player"));
+	RallyHereAPI::WriteJsonValue(Writer, Player);
+	Writer->WriteIdentifierPrefix(TEXT("linked_portals"));
+	RallyHereAPI::WriteJsonValue(Writer, LinkedPortals);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_PlayerLinkedPortalsResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonPlayerField = (*Object)->TryGetField(TEXT("player"));
-    ParseSuccess &= JsonPlayerField.IsValid() && !JsonPlayerField->IsNull() && TryGetJsonValue(JsonPlayerField, Player);
-    const TSharedPtr<FJsonValue> JsonLinkedPortalsField = (*Object)->TryGetField(TEXT("linked_portals"));
-    ParseSuccess &= JsonLinkedPortalsField.IsValid() && !JsonLinkedPortalsField->IsNull() && TryGetJsonValue(JsonLinkedPortalsField, LinkedPortals);
+	const TSharedPtr<FJsonValue> JsonPlayerField = (*Object)->TryGetField(TEXT("player"));
+	ParseSuccess &= JsonPlayerField.IsValid() && !JsonPlayerField->IsNull() && TryGetJsonValue(JsonPlayerField, Player);
+	const TSharedPtr<FJsonValue> JsonLinkedPortalsField = (*Object)->TryGetField(TEXT("linked_portals"));
+	ParseSuccess &= JsonLinkedPortalsField.IsValid() && !JsonLinkedPortalsField->IsNull() && TryGetJsonValue(JsonLinkedPortalsField, LinkedPortals);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

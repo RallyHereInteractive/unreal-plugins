@@ -21,63 +21,63 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_XpTable::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (CustomData_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("custom_data"));
-        RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
-    }
-    if (XpUuid_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("xp_uuid"));
-        RallyHereAPI::WriteJsonValue(Writer, XpUuid_Optional);
-    }
-    if (XpEntries_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("xp_entries"));
-        RallyHereAPI::WriteJsonValue(Writer, XpEntries_Optional);
-    }
-    if (CacheInfo_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("cache_info"));
-        RallyHereAPI::WriteJsonValue(Writer, CacheInfo_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (CustomData_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("custom_data"));
+		RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
+	}
+	if (XpUuid_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("xp_uuid"));
+		RallyHereAPI::WriteJsonValue(Writer, XpUuid_Optional);
+	}
+	if (XpEntries_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("xp_entries"));
+		RallyHereAPI::WriteJsonValue(Writer, XpEntries_Optional);
+	}
+	if (CacheInfo_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("cache_info"));
+		RallyHereAPI::WriteJsonValue(Writer, CacheInfo_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_XpTable::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-    if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
-    {
-        CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
-        ParseSuccess &= CustomData_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonXpUuidField = (*Object)->TryGetField(TEXT("xp_uuid"));
-    if (JsonXpUuidField.IsValid() && !JsonXpUuidField->IsNull())
-    {
-        XpUuid_IsSet = TryGetJsonValue(JsonXpUuidField, XpUuid_Optional);
-        ParseSuccess &= XpUuid_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonXpEntriesField = (*Object)->TryGetField(TEXT("xp_entries"));
-    if (JsonXpEntriesField.IsValid() && !JsonXpEntriesField->IsNull())
-    {
-        XpEntries_IsSet = TryGetJsonValue(JsonXpEntriesField, XpEntries_Optional);
-        ParseSuccess &= XpEntries_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
-    if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
-    {
-        CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
-        ParseSuccess &= CacheInfo_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
+	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	{
+		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
+		ParseSuccess &= CustomData_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonXpUuidField = (*Object)->TryGetField(TEXT("xp_uuid"));
+	if (JsonXpUuidField.IsValid() && !JsonXpUuidField->IsNull())
+	{
+		XpUuid_IsSet = TryGetJsonValue(JsonXpUuidField, XpUuid_Optional);
+		ParseSuccess &= XpUuid_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonXpEntriesField = (*Object)->TryGetField(TEXT("xp_entries"));
+	if (JsonXpEntriesField.IsValid() && !JsonXpEntriesField->IsNull())
+	{
+		XpEntries_IsSet = TryGetJsonValue(JsonXpEntriesField, XpEntries_Optional);
+		ParseSuccess &= XpEntries_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
+	if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
+	{
+		CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
+		ParseSuccess &= CacheInfo_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

@@ -35,53 +35,53 @@ DECLARE_DELEGATE_OneParam(FAuthContextLoginRefreshTokenExpired, FSimpleDelegate)
 struct RALLYHEREAPI_API FAuthContext : TSharedFromThis<FAuthContext>
 {
 public:
-    FAuthContext(FAuthAPI& LoginAPI_, FString ClientId, FString ClientSecret);
+	FAuthContext(FAuthAPI& LoginAPI_, FString ClientId, FString ClientSecret);
 
-    FAuthContext(FAuthAPI& LoginAPI_);
+	FAuthContext(FAuthAPI& LoginAPI_);
 
-    void ProcessLogin(const FResponse_Login &LoginResponse_);
-    void ProcessLoginToken(const FResponse_Token &LoginResponse_);
-    void ProcessLoginRefresh(const FResponse_Login &LoginResponse_);
-    bool Refresh();
-    FAuthContextLoginComplete& OnLoginComplete() { return LoginComplete; }
-    FAuthContextLoginUserChanged& OnLoginUserChanged() { return LoginUserChanged; }
-    FAuthContextLogout& OnLogout() { return Logout; }
-    const TOptional<FRHAPI_LoginResult>& GetLoginResult() const;
-    const TOptional<FRHAPI_TokenResponse>& GetTokenResponse() const;
-    bool IsLoggedIn() const;
-    FString GetAccessToken() const;
-    FString GetRefreshToken() const;
+	void ProcessLogin(const FResponse_Login &LoginResponse_);
+	void ProcessLoginToken(const FResponse_Token &LoginResponse_);
+	void ProcessLoginRefresh(const FResponse_Login &LoginResponse_);
+	bool Refresh();
+	FAuthContextLoginComplete& OnLoginComplete() { return LoginComplete; }
+	FAuthContextLoginUserChanged& OnLoginUserChanged() { return LoginUserChanged; }
+	FAuthContextLogout& OnLogout() { return Logout; }
+	const TOptional<FRHAPI_LoginResult>& GetLoginResult() const;
+	const TOptional<FRHAPI_TokenResponse>& GetTokenResponse() const;
+	bool IsLoggedIn() const;
+	FString GetAccessToken() const;
+	FString GetRefreshToken() const;
 
-    void OnRefreshTokenExpired();
-    void ClearAuthContext(bool bRefreshTokenExpired = false);
+	void OnRefreshTokenExpired();
+	void ClearAuthContext(bool bRefreshTokenExpired = false);
 
-    void SetClientId(const FString& InClientId);
-    void SetClientSecret(const FString& InClientSecret);
+	void SetClientId(const FString& InClientId);
+	void SetClientSecret(const FString& InClientSecret);
 
-    bool AddClientCredentials(const FHttpRequestRef& HttpRequest) const;
-    bool AddClientCredentials(const FHttpRequestPtr& HttpRequest) const;
+	bool AddClientCredentials(const FHttpRequestRef& HttpRequest) const;
+	bool AddClientCredentials(const FHttpRequestPtr& HttpRequest) const;
 
-    bool AddBearerToken(const FHttpRequestRef& HttpRequest) const;
-    bool AddBearerToken(const FHttpRequestPtr& HttpRequest) const;
+	bool AddBearerToken(const FHttpRequestRef& HttpRequest) const;
+	bool AddBearerToken(const FHttpRequestPtr& HttpRequest) const;
 
-    void SetRefreshTokenExpiredDelegate(FAuthContextLoginRefreshTokenExpired ExpiredDelegate) { RefreshTokenExpired = ExpiredDelegate; }
+	void SetRefreshTokenExpiredDelegate(FAuthContextLoginRefreshTokenExpired ExpiredDelegate) { RefreshTokenExpired = ExpiredDelegate; }
 
-    static bool IsSameUser(const TOptional<FRHAPI_LoginResult>& A, const TOptional<FRHAPI_LoginResult>& B);
+	static bool IsSameUser(const TOptional<FRHAPI_LoginResult>& A, const TOptional<FRHAPI_LoginResult>& B);
 
 private:
-    FAuthAPI* LoginAPI;
-    TOptional<FString> ClientId;
-    TOptional<FString> ClientSecret;
-    TOptional<FString> BasicAuthValue;
-    bool bIsRefreshing;
-    FAuthContextLoginComplete LoginComplete;
-    FAuthContextLoginUserChanged LoginUserChanged;
-    FAuthContextLogout Logout;
-    FAuthContextLoginRefreshTokenExpired RefreshTokenExpired;
-    TOptional<FRHAPI_LoginResult> LoginResult;
-    TOptional<FRHAPI_TokenResponse> TokenResponse;
+	FAuthAPI* LoginAPI;
+	TOptional<FString> ClientId;
+	TOptional<FString> ClientSecret;
+	TOptional<FString> BasicAuthValue;
+	bool bIsRefreshing;
+	FAuthContextLoginComplete LoginComplete;
+	FAuthContextLoginUserChanged LoginUserChanged;
+	FAuthContextLogout Logout;
+	FAuthContextLoginRefreshTokenExpired RefreshTokenExpired;
+	TOptional<FRHAPI_LoginResult> LoginResult;
+	TOptional<FRHAPI_TokenResponse> TokenResponse;
 
-    inline void UpdateBasicAuthValue();
+	inline void UpdateBasicAuthValue();
 };
 }
 

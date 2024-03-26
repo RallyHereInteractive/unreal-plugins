@@ -18,17 +18,17 @@
 UENUM(BlueprintType)
 enum class ERHAPI_ClientType : uint8
 {
-    Unknown UMETA(ToolTip="Unknown client type"),
-    Win UMETA(ToolTip="Windows client type"),
-    Mac UMETA(ToolTip="Mac client type"),
-    Xboxone UMETA(ToolTip="XboxOne client type"),
-    PS4 UMETA(ToolTip="Playstation 4 client type"),
-    _Switch UMETA(ToolTip="Nintendo Switch client type"),
-    Android UMETA(ToolTip="Android client type"),
-    Ios UMETA(ToolTip="iOS client type"),
-    PS5 UMETA(ToolTip="Playstation 5 client type"),
-    _Linux UMETA(ToolTip="Linux client type"),
-    Xsx UMETA(ToolTip="XSX client type"),
+	Unknown UMETA(ToolTip="Unknown client type"),
+	Win UMETA(ToolTip="Windows client type"),
+	Mac UMETA(ToolTip="Mac client type"),
+	Xboxone UMETA(ToolTip="XboxOne client type"),
+	PS4 UMETA(ToolTip="Playstation 4 client type"),
+	_Switch UMETA(ToolTip="Nintendo Switch client type"),
+	Android UMETA(ToolTip="Android client type"),
+	Ios UMETA(ToolTip="iOS client type"),
+	PS5 UMETA(ToolTip="Playstation 5 client type"),
+	_Linux UMETA(ToolTip="Linux client type"),
+	Xsx UMETA(ToolTip="XSX client type"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_ClientType& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_ClientType& EnumValue);

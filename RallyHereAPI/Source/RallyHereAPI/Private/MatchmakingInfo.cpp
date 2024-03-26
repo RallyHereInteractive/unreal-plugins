@@ -21,45 +21,45 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_MatchmakingInfo::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("ticket_id"));
-    RallyHereAPI::WriteJsonValue(Writer, TicketId);
-    if (CustomData_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("custom_data"));
-        RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
-    }
-    if (QueueId_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("queue_id"));
-        RallyHereAPI::WriteJsonValue(Writer, QueueId_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("ticket_id"));
+	RallyHereAPI::WriteJsonValue(Writer, TicketId);
+	if (CustomData_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("custom_data"));
+		RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
+	}
+	if (QueueId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("queue_id"));
+		RallyHereAPI::WriteJsonValue(Writer, QueueId_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_MatchmakingInfo::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonTicketIdField = (*Object)->TryGetField(TEXT("ticket_id"));
-    ParseSuccess &= JsonTicketIdField.IsValid() && !JsonTicketIdField->IsNull() && TryGetJsonValue(JsonTicketIdField, TicketId);
-    const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-    if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
-    {
-        CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
-        ParseSuccess &= CustomData_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonQueueIdField = (*Object)->TryGetField(TEXT("queue_id"));
-    if (JsonQueueIdField.IsValid() && !JsonQueueIdField->IsNull())
-    {
-        QueueId_IsSet = TryGetJsonValue(JsonQueueIdField, QueueId_Optional);
-        ParseSuccess &= QueueId_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonTicketIdField = (*Object)->TryGetField(TEXT("ticket_id"));
+	ParseSuccess &= JsonTicketIdField.IsValid() && !JsonTicketIdField->IsNull() && TryGetJsonValue(JsonTicketIdField, TicketId);
+	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
+	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	{
+		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
+		ParseSuccess &= CustomData_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonQueueIdField = (*Object)->TryGetField(TEXT("queue_id"));
+	if (JsonQueueIdField.IsValid() && !JsonQueueIdField->IsNull())
+	{
+		QueueId_IsSet = TryGetJsonValue(JsonQueueIdField, QueueId_Optional);
+		ParseSuccess &= QueueId_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

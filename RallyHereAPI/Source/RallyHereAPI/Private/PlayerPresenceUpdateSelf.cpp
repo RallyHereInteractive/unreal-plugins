@@ -21,63 +21,63 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_PlayerPresenceUpdateSelf::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (Status_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("status"));
-        RallyHereAPI::WriteJsonValue(Writer, EnumToString(Status_Optional));
-    }
-    if (Message_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("message"));
-        RallyHereAPI::WriteJsonValue(Writer, Message_Optional);
-    }
-    if (DoNotDisturb_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("do_not_disturb"));
-        RallyHereAPI::WriteJsonValue(Writer, DoNotDisturb_Optional);
-    }
-    if (CustomData_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("custom_data"));
-        RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (Status_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("status"));
+		RallyHereAPI::WriteJsonValue(Writer, EnumToString(Status_Optional));
+	}
+	if (Message_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("message"));
+		RallyHereAPI::WriteJsonValue(Writer, Message_Optional);
+	}
+	if (DoNotDisturb_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("do_not_disturb"));
+		RallyHereAPI::WriteJsonValue(Writer, DoNotDisturb_Optional);
+	}
+	if (CustomData_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("custom_data"));
+		RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_PlayerPresenceUpdateSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonStatusField = (*Object)->TryGetField(TEXT("status"));
-    if (JsonStatusField.IsValid() && !JsonStatusField->IsNull())
-    {
-        Status_IsSet = TryGetJsonValue(JsonStatusField, Status_Optional);
-        ParseSuccess &= Status_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonMessageField = (*Object)->TryGetField(TEXT("message"));
-    if (JsonMessageField.IsValid() && !JsonMessageField->IsNull())
-    {
-        Message_IsSet = TryGetJsonValue(JsonMessageField, Message_Optional);
-        ParseSuccess &= Message_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonDoNotDisturbField = (*Object)->TryGetField(TEXT("do_not_disturb"));
-    if (JsonDoNotDisturbField.IsValid() && !JsonDoNotDisturbField->IsNull())
-    {
-        DoNotDisturb_IsSet = TryGetJsonValue(JsonDoNotDisturbField, DoNotDisturb_Optional);
-        ParseSuccess &= DoNotDisturb_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-    if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
-    {
-        CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
-        ParseSuccess &= CustomData_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonStatusField = (*Object)->TryGetField(TEXT("status"));
+	if (JsonStatusField.IsValid() && !JsonStatusField->IsNull())
+	{
+		Status_IsSet = TryGetJsonValue(JsonStatusField, Status_Optional);
+		ParseSuccess &= Status_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonMessageField = (*Object)->TryGetField(TEXT("message"));
+	if (JsonMessageField.IsValid() && !JsonMessageField->IsNull())
+	{
+		Message_IsSet = TryGetJsonValue(JsonMessageField, Message_Optional);
+		ParseSuccess &= Message_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonDoNotDisturbField = (*Object)->TryGetField(TEXT("do_not_disturb"));
+	if (JsonDoNotDisturbField.IsValid() && !JsonDoNotDisturbField->IsNull())
+	{
+		DoNotDisturb_IsSet = TryGetJsonValue(JsonDoNotDisturbField, DoNotDisturb_Optional);
+		ParseSuccess &= DoNotDisturb_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
+	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	{
+		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
+		ParseSuccess &= CustomData_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

@@ -69,33 +69,33 @@ DECLARE_DELEGATE_OneParam(FDelegate_Verify, const FResponse_Verify&);
 class RALLYHEREAPI_API FAuthAPI : public FAPI
 {
 public:
-    FAuthAPI();
-    virtual ~FAuthAPI();
+	FAuthAPI();
+	virtual ~FAuthAPI();
 
-    FHttpRequestPtr GenerateKey(const FRequest_GenerateKey& Request, const FDelegate_GenerateKey& Delegate = FDelegate_GenerateKey(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetAllPublicKeys(const FRequest_GetAllPublicKeys& Request, const FDelegate_GetAllPublicKeys& Delegate = FDelegate_GetAllPublicKeys(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetPortalTokenDetails(const FRequest_GetPortalTokenDetails& Request, const FDelegate_GetPortalTokenDetails& Delegate = FDelegate_GetPortalTokenDetails(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetPublicKeyById(const FRequest_GetPublicKeyById& Request, const FDelegate_GetPublicKeyById& Delegate = FDelegate_GetPublicKeyById(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr Login(const FRequest_Login& Request, const FDelegate_Login& Delegate = FDelegate_Login(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr Logout(const FRequest_Logout& Request, const FDelegate_Logout& Delegate = FDelegate_Logout(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr OauthLogin(const FRequest_OauthLogin& Request, const FDelegate_OauthLogin& Delegate = FDelegate_OauthLogin(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr OauthResponse(const FRequest_OauthResponse& Request, const FDelegate_OauthResponse& Delegate = FDelegate_OauthResponse(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr OauthTokenExchange(const FRequest_OauthTokenExchange& Request, const FDelegate_OauthTokenExchange& Delegate = FDelegate_OauthTokenExchange(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr Token(const FRequest_Token& Request, const FDelegate_Token& Delegate = FDelegate_Token(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr Verify(const FRequest_Verify& Request, const FDelegate_Verify& Delegate = FDelegate_Verify(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GenerateKey(const FRequest_GenerateKey& Request, const FDelegate_GenerateKey& Delegate = FDelegate_GenerateKey(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetAllPublicKeys(const FRequest_GetAllPublicKeys& Request, const FDelegate_GetAllPublicKeys& Delegate = FDelegate_GetAllPublicKeys(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetPortalTokenDetails(const FRequest_GetPortalTokenDetails& Request, const FDelegate_GetPortalTokenDetails& Delegate = FDelegate_GetPortalTokenDetails(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetPublicKeyById(const FRequest_GetPublicKeyById& Request, const FDelegate_GetPublicKeyById& Delegate = FDelegate_GetPublicKeyById(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr Login(const FRequest_Login& Request, const FDelegate_Login& Delegate = FDelegate_Login(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr Logout(const FRequest_Logout& Request, const FDelegate_Logout& Delegate = FDelegate_Logout(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr OauthLogin(const FRequest_OauthLogin& Request, const FDelegate_OauthLogin& Delegate = FDelegate_OauthLogin(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr OauthResponse(const FRequest_OauthResponse& Request, const FDelegate_OauthResponse& Delegate = FDelegate_OauthResponse(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr OauthTokenExchange(const FRequest_OauthTokenExchange& Request, const FDelegate_OauthTokenExchange& Delegate = FDelegate_OauthTokenExchange(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr Token(const FRequest_Token& Request, const FDelegate_Token& Delegate = FDelegate_Token(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr Verify(const FRequest_Verify& Request, const FDelegate_Verify& Delegate = FDelegate_Verify(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
-    void OnGenerateKeyResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GenerateKey Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetAllPublicKeysResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPublicKeys Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetPortalTokenDetailsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPortalTokenDetails Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetPublicKeyByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPublicKeyById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnLoginResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Login Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnLogoutResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Logout Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOauthLoginResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OauthLogin Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOauthResponseResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OauthResponse Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOauthTokenExchangeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OauthTokenExchange Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnTokenResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Token Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnVerifyResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Verify Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGenerateKeyResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GenerateKey Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetAllPublicKeysResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPublicKeys Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetPortalTokenDetailsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPortalTokenDetails Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetPublicKeyByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPublicKeyById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnLoginResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Login Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnLogoutResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Logout Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnOauthLoginResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OauthLogin Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnOauthResponseResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OauthResponse Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnOauthTokenExchangeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OauthTokenExchange Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnTokenResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Token Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnVerifyResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Verify Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
@@ -107,41 +107,41 @@ private:
 */
 struct RALLYHEREAPI_API FRequest_GenerateKey : public FRequest
 {
-    FRequest_GenerateKey();
-    virtual ~FRequest_GenerateKey() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
+	FRequest_GenerateKey();
+	virtual ~FRequest_GenerateKey() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
 
 };
 
 struct RALLYHEREAPI_API FResponse_GenerateKey : public FResponse
 {
-    FResponse_GenerateKey(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GenerateKey() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GenerateKey(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GenerateKey() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+	FRHAPI_JsonValue Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GenerateKey
 {
-    typedef FRequest_GenerateKey Request;
-    typedef FResponse_GenerateKey Response;
-    typedef FDelegate_GenerateKey Delegate;
-    typedef FAuthAPI API;
-    static FString Name;
+	typedef FRequest_GenerateKey Request;
+	typedef FResponse_GenerateKey Response;
+	typedef FDelegate_GenerateKey Delegate;
+	typedef FAuthAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GenerateKey(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GenerateKey(InRequest, InDelegate, Priority); }
 };
 
 /* Get All Public Keys
@@ -152,144 +152,144 @@ struct RALLYHEREAPI_API Traits_GenerateKey
 */
 struct RALLYHEREAPI_API FRequest_GetAllPublicKeys : public FRequest
 {
-    FRequest_GetAllPublicKeys();
-    virtual ~FRequest_GetAllPublicKeys() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
+	FRequest_GetAllPublicKeys();
+	virtual ~FRequest_GetAllPublicKeys() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
 
 };
 
 struct RALLYHEREAPI_API FResponse_GetAllPublicKeys : public FResponse
 {
-    FResponse_GetAllPublicKeys(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetAllPublicKeys() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetAllPublicKeys(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetAllPublicKeys() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PublicKeyList Content;
+	FRHAPI_PublicKeyList Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PublicKeyList& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PublicKeyList& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetAllPublicKeys
 {
-    typedef FRequest_GetAllPublicKeys Request;
-    typedef FResponse_GetAllPublicKeys Response;
-    typedef FDelegate_GetAllPublicKeys Delegate;
-    typedef FAuthAPI API;
-    static FString Name;
+	typedef FRequest_GetAllPublicKeys Request;
+	typedef FResponse_GetAllPublicKeys Response;
+	typedef FDelegate_GetAllPublicKeys Delegate;
+	typedef FAuthAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllPublicKeys(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllPublicKeys(InRequest, InDelegate, Priority); }
 };
 
 /* Get Portal Token Details
 */
 struct RALLYHEREAPI_API FRequest_GetPortalTokenDetails : public FRequest
 {
-    FRequest_GetPortalTokenDetails();
-    virtual ~FRequest_GetPortalTokenDetails() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
+	FRequest_GetPortalTokenDetails();
+	virtual ~FRequest_GetPortalTokenDetails() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
 
-    FRHAPI_PortalTokenDetailsRequest PortalTokenDetailsRequest;
+	FRHAPI_PortalTokenDetailsRequest PortalTokenDetailsRequest;
 };
 
 struct RALLYHEREAPI_API FResponse_GetPortalTokenDetails : public FResponse
 {
-    FResponse_GetPortalTokenDetails(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetPortalTokenDetails() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetPortalTokenDetails(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetPortalTokenDetails() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    TMap<FString, FString> Content;
+	TMap<FString, FString> Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(TMap<FString, FString>& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(TMap<FString, FString>& OutContent) const;
 
-    /* Response 403
-     Error Codes: - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator. - `no_redirects_configured` - No redirect urls setup for oauth. - `redirect_uri_does_not_match` - Redirect URI does not match a configured value. - `error_occurred_during_exchange` - An error occurred while exchanging a code for token. - `failed_to_verify_state` - Failed to verify the state associated with the request. - `failed_to_save_state` - Error occurred saving the state. - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator - `too_many_users` - Account has too many users associated with it.  Contact an administrator - `user_auth_restricted` - Authentication for this user has been restricted - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required - `error_retrieving_player_results` - Error retrieving player results - `failed_to_retrieve_roles` - Failed to retrieve roles - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later - `authentication_locked` - Authentication is currently locked.  Please try again later - `amazon_disabled` - Amazon authentication is currently disabled - `amazon_token_empty` - Amazon access token is empty - `amazon_invalid_access_token` - Amazon access token is invalid - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon - `anon_disabled` - Anon authentication is currently disabled - `anon_token_empty` - Anon access token is empty - `apple_disabled` - Apple authentication is currently disabled - `apple_token_empty` - Apple access token is empty - `apple_failed_key_lookup` - Failed to retrieve keys from Apple - `apple_token_exchange_failed` - Problem exchanging code for token with Apple - `apple_token_key_not_valid` - public key not found - `apple_token_not_valid` - Apple access token is not valid - `authorization_code_not_found` - Authorization code not found or expired - `basic_disabled` - Basic authentication is currently disabled - `basic_token_empty` - Basic access token is empty - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD` - `basic_auth_credentials_not_found` - Basic auth credentials not found - `epic_disabled` - Epic authentication is currently disabled - `epic_token_empty` - Epic access token is empty - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id - `epic_v1_token_invalid` - Epic v1 token is invalid - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator - `epic_v2_token_invalid` - Epic v2 token is invalid - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic - `google_disabled` - Google authentication is currently disabled - `google_token_empty` - Google access token is empty - `google_keys_not_available` - Google keys are not available.  Please contact an administrator - `google_token_not_valid` - Google access token is not valid - `google_token_exchange_failed` - Problem exchanging code for token with Google - `nintendo_disabled` - Nintendo authentication is currently disabled - `nintendo_token_empty` - Nintendo access token is empty - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found - `nintendo_access_token_not_valid` - Nintendo access token is not valid - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID. - `nintendo_ppid_conversion_failed` - error during PPID conversion - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion - `nintendo_ppid_missing` - PPID is missing for user - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL. - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly. - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled - `ps4_v1_token_empty` - PS4 v1 access token is empty - `ps4_v1_token_expired` - PS4 v1 access token is expired - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4 - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4 - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4 - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled - `ps4_v3_token_empty` - PS4 v3 access token is empty - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4 - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled - `ps5_v3_token_empty` - PS5 v3 access token is empty - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5 - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment. - `refresh_disabled` - Refresh authentication is currently disabled - `refresh_token_empty` - Refresh token is empty - `refresh_token_not_found` - Refresh token was not found or has expired - `refresh_token_invalid_user` - Refresh token refrences invalid user - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token - `steam_disabled` - Steam authentication is currently disabled - `steam_token_empty` - Steam code (Ticket) is empty - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam - `steam_user_vacbanned` - User is VAC banned - `steam_user_publisherbanned` - User is publisher banned - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application - `twitch_disabled` - Twitch authentication is currently disabled - `twitch_token_empty` - Twitch access token is empty - `twitch_token_invalid` - Twitch access token is not valid - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch - `xbox_disabled` - Xbox authentication is currently disabled - `xbox_xsts_token_empty` - Xbox XSTS token is empty - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid - `xbox_xtoken_invalid` - Xbox XToken is not valid - `xbox_access_token_request_failed` - Problem requesting access token from Xbox - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox  
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	 Error Codes: - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator. - `no_redirects_configured` - No redirect urls setup for oauth. - `redirect_uri_does_not_match` - Redirect URI does not match a configured value. - `error_occurred_during_exchange` - An error occurred while exchanging a code for token. - `failed_to_verify_state` - Failed to verify the state associated with the request. - `failed_to_save_state` - Error occurred saving the state. - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator - `too_many_users` - Account has too many users associated with it.  Contact an administrator - `user_auth_restricted` - Authentication for this user has been restricted - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required - `error_retrieving_player_results` - Error retrieving player results - `failed_to_retrieve_roles` - Failed to retrieve roles - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later - `authentication_locked` - Authentication is currently locked.  Please try again later - `amazon_disabled` - Amazon authentication is currently disabled - `amazon_token_empty` - Amazon access token is empty - `amazon_invalid_access_token` - Amazon access token is invalid - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon - `anon_disabled` - Anon authentication is currently disabled - `anon_token_empty` - Anon access token is empty - `apple_disabled` - Apple authentication is currently disabled - `apple_token_empty` - Apple access token is empty - `apple_failed_key_lookup` - Failed to retrieve keys from Apple - `apple_token_exchange_failed` - Problem exchanging code for token with Apple - `apple_token_key_not_valid` - public key not found - `apple_token_not_valid` - Apple access token is not valid - `authorization_code_not_found` - Authorization code not found or expired - `basic_disabled` - Basic authentication is currently disabled - `basic_token_empty` - Basic access token is empty - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD` - `basic_auth_credentials_not_found` - Basic auth credentials not found - `epic_disabled` - Epic authentication is currently disabled - `epic_token_empty` - Epic access token is empty - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id - `epic_v1_token_invalid` - Epic v1 token is invalid - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator - `epic_v2_token_invalid` - Epic v2 token is invalid - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic - `google_disabled` - Google authentication is currently disabled - `google_token_empty` - Google access token is empty - `google_keys_not_available` - Google keys are not available.  Please contact an administrator - `google_token_not_valid` - Google access token is not valid - `google_token_exchange_failed` - Problem exchanging code for token with Google - `nintendo_disabled` - Nintendo authentication is currently disabled - `nintendo_token_empty` - Nintendo access token is empty - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found - `nintendo_access_token_not_valid` - Nintendo access token is not valid - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID. - `nintendo_ppid_conversion_failed` - error during PPID conversion - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion - `nintendo_ppid_missing` - PPID is missing for user - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL. - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly. - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled - `ps4_v1_token_empty` - PS4 v1 access token is empty - `ps4_v1_token_expired` - PS4 v1 access token is expired - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4 - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4 - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4 - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled - `ps4_v3_token_empty` - PS4 v3 access token is empty - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4 - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled - `ps5_v3_token_empty` - PS5 v3 access token is empty - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5 - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment. - `refresh_disabled` - Refresh authentication is currently disabled - `refresh_token_empty` - Refresh token is empty - `refresh_token_not_found` - Refresh token was not found or has expired - `refresh_token_invalid_user` - Refresh token refrences invalid user - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token - `steam_disabled` - Steam authentication is currently disabled - `steam_token_empty` - Steam code (Ticket) is empty - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam - `steam_user_vacbanned` - User is VAC banned - `steam_user_publisherbanned` - User is publisher banned - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application - `twitch_disabled` - Twitch authentication is currently disabled - `twitch_token_empty` - Twitch access token is empty - `twitch_token_invalid` - Twitch access token is not valid - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch - `xbox_disabled` - Xbox authentication is currently disabled - `xbox_xsts_token_empty` - Xbox XSTS token is empty - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid - `xbox_xtoken_invalid` - Xbox XToken is not valid - `xbox_access_token_request_failed` - Problem requesting access token from Xbox - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox  
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetPortalTokenDetails
 {
-    typedef FRequest_GetPortalTokenDetails Request;
-    typedef FResponse_GetPortalTokenDetails Response;
-    typedef FDelegate_GetPortalTokenDetails Delegate;
-    typedef FAuthAPI API;
-    static FString Name;
+	typedef FRequest_GetPortalTokenDetails Request;
+	typedef FResponse_GetPortalTokenDetails Response;
+	typedef FDelegate_GetPortalTokenDetails Delegate;
+	typedef FAuthAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPortalTokenDetails(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPortalTokenDetails(InRequest, InDelegate, Priority); }
 };
 
 /* Get Public Key By Id
 */
 struct RALLYHEREAPI_API FRequest_GetPublicKeyById : public FRequest
 {
-    FRequest_GetPublicKeyById();
-    virtual ~FRequest_GetPublicKeyById() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
+	FRequest_GetPublicKeyById();
+	virtual ~FRequest_GetPublicKeyById() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
 
-    FString KeyId;
+	FString KeyId;
 };
 
 struct RALLYHEREAPI_API FResponse_GetPublicKeyById : public FResponse
 {
-    FResponse_GetPublicKeyById(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetPublicKeyById() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetPublicKeyById(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetPublicKeyById() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PublicKey Content;
+	FRHAPI_PublicKey Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_PublicKey& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PublicKey& OutContent) const;
 
-    /* Response 404
-    Not Found
-    */
+	/* Response 404
+	Not Found
+	*/
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetPublicKeyById
 {
-    typedef FRequest_GetPublicKeyById Request;
-    typedef FResponse_GetPublicKeyById Response;
-    typedef FDelegate_GetPublicKeyById Delegate;
-    typedef FAuthAPI API;
-    static FString Name;
+	typedef FRequest_GetPublicKeyById Request;
+	typedef FResponse_GetPublicKeyById Response;
+	typedef FDelegate_GetPublicKeyById Delegate;
+	typedef FAuthAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPublicKeyById(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPublicKeyById(InRequest, InDelegate, Priority); }
 };
 
 /* Login
@@ -300,103 +300,103 @@ struct RALLYHEREAPI_API Traits_GetPublicKeyById
 */
 struct RALLYHEREAPI_API FRequest_Login : public FRequest
 {
-    FRequest_Login();
-    virtual ~FRequest_Login() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_Login();
+	virtual ~FRequest_Login() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FRHAPI_LoginRequestV1 LoginRequestV1;
-    TOptional<FString> UserAgent;
-    TOptional<FString> XForwardedFor;
+	TSharedPtr<FAuthContext> AuthContext;
+	FRHAPI_LoginRequestV1 LoginRequestV1;
+	TOptional<FString> UserAgent;
+	TOptional<FString> XForwardedFor;
 };
 
 struct RALLYHEREAPI_API FResponse_Login : public FResponse
 {
-    FResponse_Login(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_Login() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_Login(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_Login() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_LoginResult Content;
+	FRHAPI_LoginResult Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_LoginResult& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_LoginResult& OutContent) const;
 
-    /* Response 403
-    User authentication failed.  See error code and description for further details.  Error Codes: - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator. - `no_redirects_configured` - No redirect urls setup for oauth. - `redirect_uri_does_not_match` - Redirect URI does not match a configured value. - `error_occurred_during_exchange` - An error occurred while exchanging a code for token. - `failed_to_verify_state` - Failed to verify the state associated with the request. - `failed_to_save_state` - Error occurred saving the state. - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator - `too_many_users` - Account has too many users associated with it.  Contact an administrator - `user_auth_restricted` - Authentication for this user has been restricted - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required - `error_retrieving_player_results` - Error retrieving player results - `failed_to_retrieve_roles` - Failed to retrieve roles - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later - `authentication_locked` - Authentication is currently locked.  Please try again later - `amazon_disabled` - Amazon authentication is currently disabled - `amazon_token_empty` - Amazon access token is empty - `amazon_invalid_access_token` - Amazon access token is invalid - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon - `anon_disabled` - Anon authentication is currently disabled - `anon_token_empty` - Anon access token is empty - `apple_disabled` - Apple authentication is currently disabled - `apple_token_empty` - Apple access token is empty - `apple_failed_key_lookup` - Failed to retrieve keys from Apple - `apple_token_exchange_failed` - Problem exchanging code for token with Apple - `apple_token_key_not_valid` - public key not found - `apple_token_not_valid` - Apple access token is not valid - `authorization_code_not_found` - Authorization code not found or expired - `basic_disabled` - Basic authentication is currently disabled - `basic_token_empty` - Basic access token is empty - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD` - `basic_auth_credentials_not_found` - Basic auth credentials not found - `epic_disabled` - Epic authentication is currently disabled - `epic_token_empty` - Epic access token is empty - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id - `epic_v1_token_invalid` - Epic v1 token is invalid - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator - `epic_v2_token_invalid` - Epic v2 token is invalid - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic - `google_disabled` - Google authentication is currently disabled - `google_token_empty` - Google access token is empty - `google_keys_not_available` - Google keys are not available.  Please contact an administrator - `google_token_not_valid` - Google access token is not valid - `google_token_exchange_failed` - Problem exchanging code for token with Google - `nintendo_disabled` - Nintendo authentication is currently disabled - `nintendo_token_empty` - Nintendo access token is empty - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found - `nintendo_access_token_not_valid` - Nintendo access token is not valid - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID. - `nintendo_ppid_conversion_failed` - error during PPID conversion - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion - `nintendo_ppid_missing` - PPID is missing for user - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL. - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly. - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled - `ps4_v1_token_empty` - PS4 v1 access token is empty - `ps4_v1_token_expired` - PS4 v1 access token is expired - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4 - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4 - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4 - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled - `ps4_v3_token_empty` - PS4 v3 access token is empty - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4 - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled - `ps5_v3_token_empty` - PS5 v3 access token is empty - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5 - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment. - `refresh_disabled` - Refresh authentication is currently disabled - `refresh_token_empty` - Refresh token is empty - `refresh_token_not_found` - Refresh token was not found or has expired - `refresh_token_invalid_user` - Refresh token refrences invalid user - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token - `steam_disabled` - Steam authentication is currently disabled - `steam_token_empty` - Steam code (Ticket) is empty - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam - `steam_user_vacbanned` - User is VAC banned - `steam_user_publisherbanned` - User is publisher banned - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application - `twitch_disabled` - Twitch authentication is currently disabled - `twitch_token_empty` - Twitch access token is empty - `twitch_token_invalid` - Twitch access token is not valid - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch - `xbox_disabled` - Xbox authentication is currently disabled - `xbox_xsts_token_empty` - Xbox XSTS token is empty - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid - `xbox_xtoken_invalid` - Xbox XToken is not valid - `xbox_access_token_request_failed` - Problem requesting access token from Xbox - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox  
-    */
-    bool TryGetContentFor403(FRHAPI_AgreementMessage& OutContent) const;
+	/* Response 403
+	User authentication failed.  See error code and description for further details.  Error Codes: - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator. - `no_redirects_configured` - No redirect urls setup for oauth. - `redirect_uri_does_not_match` - Redirect URI does not match a configured value. - `error_occurred_during_exchange` - An error occurred while exchanging a code for token. - `failed_to_verify_state` - Failed to verify the state associated with the request. - `failed_to_save_state` - Error occurred saving the state. - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator - `too_many_users` - Account has too many users associated with it.  Contact an administrator - `user_auth_restricted` - Authentication for this user has been restricted - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required - `error_retrieving_player_results` - Error retrieving player results - `failed_to_retrieve_roles` - Failed to retrieve roles - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later - `authentication_locked` - Authentication is currently locked.  Please try again later - `amazon_disabled` - Amazon authentication is currently disabled - `amazon_token_empty` - Amazon access token is empty - `amazon_invalid_access_token` - Amazon access token is invalid - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon - `anon_disabled` - Anon authentication is currently disabled - `anon_token_empty` - Anon access token is empty - `apple_disabled` - Apple authentication is currently disabled - `apple_token_empty` - Apple access token is empty - `apple_failed_key_lookup` - Failed to retrieve keys from Apple - `apple_token_exchange_failed` - Problem exchanging code for token with Apple - `apple_token_key_not_valid` - public key not found - `apple_token_not_valid` - Apple access token is not valid - `authorization_code_not_found` - Authorization code not found or expired - `basic_disabled` - Basic authentication is currently disabled - `basic_token_empty` - Basic access token is empty - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD` - `basic_auth_credentials_not_found` - Basic auth credentials not found - `epic_disabled` - Epic authentication is currently disabled - `epic_token_empty` - Epic access token is empty - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id - `epic_v1_token_invalid` - Epic v1 token is invalid - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator - `epic_v2_token_invalid` - Epic v2 token is invalid - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic - `google_disabled` - Google authentication is currently disabled - `google_token_empty` - Google access token is empty - `google_keys_not_available` - Google keys are not available.  Please contact an administrator - `google_token_not_valid` - Google access token is not valid - `google_token_exchange_failed` - Problem exchanging code for token with Google - `nintendo_disabled` - Nintendo authentication is currently disabled - `nintendo_token_empty` - Nintendo access token is empty - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found - `nintendo_access_token_not_valid` - Nintendo access token is not valid - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID. - `nintendo_ppid_conversion_failed` - error during PPID conversion - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion - `nintendo_ppid_missing` - PPID is missing for user - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL. - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly. - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled - `ps4_v1_token_empty` - PS4 v1 access token is empty - `ps4_v1_token_expired` - PS4 v1 access token is expired - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4 - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4 - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4 - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled - `ps4_v3_token_empty` - PS4 v3 access token is empty - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4 - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled - `ps5_v3_token_empty` - PS5 v3 access token is empty - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5 - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment. - `refresh_disabled` - Refresh authentication is currently disabled - `refresh_token_empty` - Refresh token is empty - `refresh_token_not_found` - Refresh token was not found or has expired - `refresh_token_invalid_user` - Refresh token refrences invalid user - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token - `steam_disabled` - Steam authentication is currently disabled - `steam_token_empty` - Steam code (Ticket) is empty - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam - `steam_user_vacbanned` - User is VAC banned - `steam_user_publisherbanned` - User is publisher banned - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application - `twitch_disabled` - Twitch authentication is currently disabled - `twitch_token_empty` - Twitch access token is empty - `twitch_token_invalid` - Twitch access token is not valid - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch - `xbox_disabled` - Xbox authentication is currently disabled - `xbox_xsts_token_empty` - Xbox XSTS token is empty - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid - `xbox_xtoken_invalid` - Xbox XToken is not valid - `xbox_access_token_request_failed` - Problem requesting access token from Xbox - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox  
+	*/
+	bool TryGetContentFor403(FRHAPI_AgreementMessage& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_Login
 {
-    typedef FRequest_Login Request;
-    typedef FResponse_Login Response;
-    typedef FDelegate_Login Delegate;
-    typedef FAuthAPI API;
-    static FString Name;
+	typedef FRequest_Login Request;
+	typedef FResponse_Login Response;
+	typedef FDelegate_Login Delegate;
+	typedef FAuthAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.Login(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.Login(InRequest, InDelegate, Priority); }
 };
 
 /* Logout
 */
 struct RALLYHEREAPI_API FRequest_Logout : public FRequest
 {
-    FRequest_Logout();
-    virtual ~FRequest_Logout() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
+	FRequest_Logout();
+	virtual ~FRequest_Logout() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
 
-    FRHAPI_LogoutRequest LogoutRequest;
+	FRHAPI_LogoutRequest LogoutRequest;
 };
 
 struct RALLYHEREAPI_API FResponse_Logout : public FResponse
 {
-    FResponse_Logout(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_Logout() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_Logout(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_Logout() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+	FRHAPI_JsonValue Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_Logout
 {
-    typedef FRequest_Logout Request;
-    typedef FResponse_Logout Response;
-    typedef FDelegate_Logout Delegate;
-    typedef FAuthAPI API;
-    static FString Name;
+	typedef FRequest_Logout Request;
+	typedef FResponse_Logout Response;
+	typedef FDelegate_Logout Delegate;
+	typedef FAuthAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.Logout(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.Logout(InRequest, InDelegate, Priority); }
 };
 
 /* Oauth Login
@@ -410,58 +410,58 @@ struct RALLYHEREAPI_API Traits_Logout
 */
 struct RALLYHEREAPI_API FRequest_OauthLogin : public FRequest
 {
-    FRequest_OauthLogin();
-    virtual ~FRequest_OauthLogin() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
+	FRequest_OauthLogin();
+	virtual ~FRequest_OauthLogin() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
 
-    /* The platform to use for authentication */
-    ERHAPI_OAuthPortal Platform;
-    /* A client state value to be forwarded with this request to the redirect URI. */
-    TOptional<FString> State;
-    /* The URI to redirect to after the OAuth flow is complete. If not provided, or does not match one of the preconfigured redirect URIs, the first configured redirect URI will be used. */
-    TOptional<FString> RedirectUri;
-    TOptional<FString> UserAgent;
-    TOptional<FString> XForwardedFor;
+	/* The platform to use for authentication */
+	ERHAPI_OAuthPortal Platform;
+	/* A client state value to be forwarded with this request to the redirect URI. */
+	TOptional<FString> State;
+	/* The URI to redirect to after the OAuth flow is complete. If not provided, or does not match one of the preconfigured redirect URIs, the first configured redirect URI will be used. */
+	TOptional<FString> RedirectUri;
+	TOptional<FString> UserAgent;
+	TOptional<FString> XForwardedFor;
 };
 
 struct RALLYHEREAPI_API FResponse_OauthLogin : public FResponse
 {
-    FResponse_OauthLogin(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OauthLogin() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_OauthLogin(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_OauthLogin() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
-    // Headers
-    /*  URL that the user should be redirected to complete the next step of the OAuth flow.  Redirects to the `redirect_uri` and may include the following query parameters: - `code`: The authorization_code that can be exchanged for an access token for the user. - `state`: The state value that was provided in the original request. - `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:     - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.     - `no_redirects_configured` - No redirect urls setup for oauth.     - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.     - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.     - `failed_to_verify_state` - Failed to verify the state associated with the request.     - `failed_to_save_state` - Error occurred saving the state.     - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator     - `too_many_users` - Account has too many users associated with it.  Contact an administrator     - `user_auth_restricted` - Authentication for this user has been restricted     - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required     - `error_retrieving_player_results` - Error retrieving player results     - `failed_to_retrieve_roles` - Failed to retrieve roles     - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid     - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later     - `authentication_locked` - Authentication is currently locked.  Please try again later     - `amazon_disabled` - Amazon authentication is currently disabled     - `amazon_token_empty` - Amazon access token is empty     - `amazon_invalid_access_token` - Amazon access token is invalid     - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon     - `anon_disabled` - Anon authentication is currently disabled     - `anon_token_empty` - Anon access token is empty     - `apple_disabled` - Apple authentication is currently disabled     - `apple_token_empty` - Apple access token is empty     - `apple_failed_key_lookup` - Failed to retrieve keys from Apple     - `apple_token_exchange_failed` - Problem exchanging code for token with Apple     - `apple_token_key_not_valid` - public key not found     - `apple_token_not_valid` - Apple access token is not valid     - `authorization_code_not_found` - Authorization code not found or expired     - `basic_disabled` - Basic authentication is currently disabled     - `basic_token_empty` - Basic access token is empty     - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`     - `basic_auth_credentials_not_found` - Basic auth credentials not found     - `epic_disabled` - Epic authentication is currently disabled     - `epic_token_empty` - Epic access token is empty     - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id     - `epic_v1_token_invalid` - Epic v1 token is invalid     - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator     - `epic_v2_token_invalid` - Epic v2 token is invalid     - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic     - `google_disabled` - Google authentication is currently disabled     - `google_token_empty` - Google access token is empty     - `google_keys_not_available` - Google keys are not available.  Please contact an administrator     - `google_token_not_valid` - Google access token is not valid     - `google_token_exchange_failed` - Problem exchanging code for token with Google     - `nintendo_disabled` - Nintendo authentication is currently disabled     - `nintendo_token_empty` - Nintendo access token is empty     - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found     - `nintendo_access_token_not_valid` - Nintendo access token is not valid     - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID     - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.     - `nintendo_ppid_conversion_failed` - error during PPID conversion     - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion     - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion     - `nintendo_ppid_missing` - PPID is missing for user     - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid     - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.     - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid     - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app     - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.     - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo     - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled     - `ps4_v1_token_empty` - PS4 v1 access token is empty     - `ps4_v1_token_expired` - PS4 v1 access token is expired     - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4     - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid     - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled     - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4     - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled     - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled     - `ps4_v3_token_empty` - PS4 v3 access token is empty     - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid     - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled     - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled     - `ps5_v3_token_empty` - PS5 v3 access token is empty     - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5     - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid     - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.     - `refresh_disabled` - Refresh authentication is currently disabled     - `refresh_token_empty` - Refresh token is empty     - `refresh_token_not_found` - Refresh token was not found or has expired     - `refresh_token_invalid_user` - Refresh token refrences invalid user     - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token     - `steam_disabled` - Steam authentication is currently disabled     - `steam_token_empty` - Steam code (Ticket) is empty     - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam     - `steam_user_vacbanned` - User is VAC banned     - `steam_user_publisherbanned` - User is publisher banned     - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate     - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam     - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application     - `twitch_disabled` - Twitch authentication is currently disabled     - `twitch_token_empty` - Twitch access token is empty     - `twitch_token_invalid` - Twitch access token is not valid     - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator     - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch     - `xbox_disabled` - Xbox authentication is currently disabled     - `xbox_xsts_token_empty` - Xbox XSTS token is empty     - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid     - `xbox_xtoken_invalid` - Xbox XToken is not valid     - `xbox_access_token_request_failed` - Problem requesting access token from Xbox     - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox     - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox  - `error_description`: The description for the error that occurred during the OAuth flow. - `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:     - `NO_CODE_IN_REQUEST` - No code in request.     - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.     - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.     - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.     - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.     - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.     - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.     - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.   */
-    TOptional<FString> Location;
+	
+	// Headers
+	/*  URL that the user should be redirected to complete the next step of the OAuth flow.  Redirects to the `redirect_uri` and may include the following query parameters: - `code`: The authorization_code that can be exchanged for an access token for the user. - `state`: The state value that was provided in the original request. - `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:     - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.     - `no_redirects_configured` - No redirect urls setup for oauth.     - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.     - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.     - `failed_to_verify_state` - Failed to verify the state associated with the request.     - `failed_to_save_state` - Error occurred saving the state.     - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator     - `too_many_users` - Account has too many users associated with it.  Contact an administrator     - `user_auth_restricted` - Authentication for this user has been restricted     - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required     - `error_retrieving_player_results` - Error retrieving player results     - `failed_to_retrieve_roles` - Failed to retrieve roles     - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid     - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later     - `authentication_locked` - Authentication is currently locked.  Please try again later     - `amazon_disabled` - Amazon authentication is currently disabled     - `amazon_token_empty` - Amazon access token is empty     - `amazon_invalid_access_token` - Amazon access token is invalid     - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon     - `anon_disabled` - Anon authentication is currently disabled     - `anon_token_empty` - Anon access token is empty     - `apple_disabled` - Apple authentication is currently disabled     - `apple_token_empty` - Apple access token is empty     - `apple_failed_key_lookup` - Failed to retrieve keys from Apple     - `apple_token_exchange_failed` - Problem exchanging code for token with Apple     - `apple_token_key_not_valid` - public key not found     - `apple_token_not_valid` - Apple access token is not valid     - `authorization_code_not_found` - Authorization code not found or expired     - `basic_disabled` - Basic authentication is currently disabled     - `basic_token_empty` - Basic access token is empty     - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`     - `basic_auth_credentials_not_found` - Basic auth credentials not found     - `epic_disabled` - Epic authentication is currently disabled     - `epic_token_empty` - Epic access token is empty     - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id     - `epic_v1_token_invalid` - Epic v1 token is invalid     - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator     - `epic_v2_token_invalid` - Epic v2 token is invalid     - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic     - `google_disabled` - Google authentication is currently disabled     - `google_token_empty` - Google access token is empty     - `google_keys_not_available` - Google keys are not available.  Please contact an administrator     - `google_token_not_valid` - Google access token is not valid     - `google_token_exchange_failed` - Problem exchanging code for token with Google     - `nintendo_disabled` - Nintendo authentication is currently disabled     - `nintendo_token_empty` - Nintendo access token is empty     - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found     - `nintendo_access_token_not_valid` - Nintendo access token is not valid     - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID     - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.     - `nintendo_ppid_conversion_failed` - error during PPID conversion     - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion     - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion     - `nintendo_ppid_missing` - PPID is missing for user     - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid     - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.     - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid     - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app     - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.     - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo     - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled     - `ps4_v1_token_empty` - PS4 v1 access token is empty     - `ps4_v1_token_expired` - PS4 v1 access token is expired     - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4     - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid     - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled     - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4     - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled     - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled     - `ps4_v3_token_empty` - PS4 v3 access token is empty     - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid     - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled     - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled     - `ps5_v3_token_empty` - PS5 v3 access token is empty     - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5     - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid     - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.     - `refresh_disabled` - Refresh authentication is currently disabled     - `refresh_token_empty` - Refresh token is empty     - `refresh_token_not_found` - Refresh token was not found or has expired     - `refresh_token_invalid_user` - Refresh token refrences invalid user     - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token     - `steam_disabled` - Steam authentication is currently disabled     - `steam_token_empty` - Steam code (Ticket) is empty     - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam     - `steam_user_vacbanned` - User is VAC banned     - `steam_user_publisherbanned` - User is publisher banned     - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate     - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam     - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application     - `twitch_disabled` - Twitch authentication is currently disabled     - `twitch_token_empty` - Twitch access token is empty     - `twitch_token_invalid` - Twitch access token is not valid     - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator     - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch     - `xbox_disabled` - Xbox authentication is currently disabled     - `xbox_xsts_token_empty` - Xbox XSTS token is empty     - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid     - `xbox_xtoken_invalid` - Xbox XToken is not valid     - `xbox_access_token_request_failed` - Problem requesting access token from Xbox     - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox     - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox  - `error_description`: The description for the error that occurred during the OAuth flow. - `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:     - `NO_CODE_IN_REQUEST` - No code in request.     - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.     - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.     - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.     - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.     - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.     - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.     - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.   */
+	TOptional<FString> Location;
 
-    // Manual Response Helpers
-    /* Response 307
-    Redirect to next step in OAuth flow
-    */
-    /*  URL that the user should be redirected to complete the next step of the OAuth flow.  Redirects to the `redirect_uri` and may include the following query parameters: - `code`: The authorization_code that can be exchanged for an access token for the user. - `state`: The state value that was provided in the original request. - `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:     - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.     - `no_redirects_configured` - No redirect urls setup for oauth.     - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.     - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.     - `failed_to_verify_state` - Failed to verify the state associated with the request.     - `failed_to_save_state` - Error occurred saving the state.     - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator     - `too_many_users` - Account has too many users associated with it.  Contact an administrator     - `user_auth_restricted` - Authentication for this user has been restricted     - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required     - `error_retrieving_player_results` - Error retrieving player results     - `failed_to_retrieve_roles` - Failed to retrieve roles     - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid     - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later     - `authentication_locked` - Authentication is currently locked.  Please try again later     - `amazon_disabled` - Amazon authentication is currently disabled     - `amazon_token_empty` - Amazon access token is empty     - `amazon_invalid_access_token` - Amazon access token is invalid     - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon     - `anon_disabled` - Anon authentication is currently disabled     - `anon_token_empty` - Anon access token is empty     - `apple_disabled` - Apple authentication is currently disabled     - `apple_token_empty` - Apple access token is empty     - `apple_failed_key_lookup` - Failed to retrieve keys from Apple     - `apple_token_exchange_failed` - Problem exchanging code for token with Apple     - `apple_token_key_not_valid` - public key not found     - `apple_token_not_valid` - Apple access token is not valid     - `authorization_code_not_found` - Authorization code not found or expired     - `basic_disabled` - Basic authentication is currently disabled     - `basic_token_empty` - Basic access token is empty     - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`     - `basic_auth_credentials_not_found` - Basic auth credentials not found     - `epic_disabled` - Epic authentication is currently disabled     - `epic_token_empty` - Epic access token is empty     - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id     - `epic_v1_token_invalid` - Epic v1 token is invalid     - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator     - `epic_v2_token_invalid` - Epic v2 token is invalid     - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic     - `google_disabled` - Google authentication is currently disabled     - `google_token_empty` - Google access token is empty     - `google_keys_not_available` - Google keys are not available.  Please contact an administrator     - `google_token_not_valid` - Google access token is not valid     - `google_token_exchange_failed` - Problem exchanging code for token with Google     - `nintendo_disabled` - Nintendo authentication is currently disabled     - `nintendo_token_empty` - Nintendo access token is empty     - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found     - `nintendo_access_token_not_valid` - Nintendo access token is not valid     - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID     - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.     - `nintendo_ppid_conversion_failed` - error during PPID conversion     - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion     - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion     - `nintendo_ppid_missing` - PPID is missing for user     - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid     - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.     - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid     - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app     - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.     - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo     - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled     - `ps4_v1_token_empty` - PS4 v1 access token is empty     - `ps4_v1_token_expired` - PS4 v1 access token is expired     - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4     - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid     - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled     - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4     - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled     - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled     - `ps4_v3_token_empty` - PS4 v3 access token is empty     - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid     - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled     - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled     - `ps5_v3_token_empty` - PS5 v3 access token is empty     - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5     - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid     - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.     - `refresh_disabled` - Refresh authentication is currently disabled     - `refresh_token_empty` - Refresh token is empty     - `refresh_token_not_found` - Refresh token was not found or has expired     - `refresh_token_invalid_user` - Refresh token refrences invalid user     - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token     - `steam_disabled` - Steam authentication is currently disabled     - `steam_token_empty` - Steam code (Ticket) is empty     - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam     - `steam_user_vacbanned` - User is VAC banned     - `steam_user_publisherbanned` - User is publisher banned     - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate     - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam     - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application     - `twitch_disabled` - Twitch authentication is currently disabled     - `twitch_token_empty` - Twitch access token is empty     - `twitch_token_invalid` - Twitch access token is not valid     - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator     - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch     - `xbox_disabled` - Xbox authentication is currently disabled     - `xbox_xsts_token_empty` - Xbox XSTS token is empty     - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid     - `xbox_xtoken_invalid` - Xbox XToken is not valid     - `xbox_access_token_request_failed` - Problem requesting access token from Xbox     - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox     - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox  - `error_description`: The description for the error that occurred during the OAuth flow. - `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:     - `NO_CODE_IN_REQUEST` - No code in request.     - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.     - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.     - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.     - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.     - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.     - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.     - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.   */
-    TOptional<FString> GetHeader307_Location() const;
+	// Manual Response Helpers
+	/* Response 307
+	Redirect to next step in OAuth flow
+	*/
+	/*  URL that the user should be redirected to complete the next step of the OAuth flow.  Redirects to the `redirect_uri` and may include the following query parameters: - `code`: The authorization_code that can be exchanged for an access token for the user. - `state`: The state value that was provided in the original request. - `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:     - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.     - `no_redirects_configured` - No redirect urls setup for oauth.     - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.     - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.     - `failed_to_verify_state` - Failed to verify the state associated with the request.     - `failed_to_save_state` - Error occurred saving the state.     - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator     - `too_many_users` - Account has too many users associated with it.  Contact an administrator     - `user_auth_restricted` - Authentication for this user has been restricted     - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required     - `error_retrieving_player_results` - Error retrieving player results     - `failed_to_retrieve_roles` - Failed to retrieve roles     - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid     - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later     - `authentication_locked` - Authentication is currently locked.  Please try again later     - `amazon_disabled` - Amazon authentication is currently disabled     - `amazon_token_empty` - Amazon access token is empty     - `amazon_invalid_access_token` - Amazon access token is invalid     - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon     - `anon_disabled` - Anon authentication is currently disabled     - `anon_token_empty` - Anon access token is empty     - `apple_disabled` - Apple authentication is currently disabled     - `apple_token_empty` - Apple access token is empty     - `apple_failed_key_lookup` - Failed to retrieve keys from Apple     - `apple_token_exchange_failed` - Problem exchanging code for token with Apple     - `apple_token_key_not_valid` - public key not found     - `apple_token_not_valid` - Apple access token is not valid     - `authorization_code_not_found` - Authorization code not found or expired     - `basic_disabled` - Basic authentication is currently disabled     - `basic_token_empty` - Basic access token is empty     - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`     - `basic_auth_credentials_not_found` - Basic auth credentials not found     - `epic_disabled` - Epic authentication is currently disabled     - `epic_token_empty` - Epic access token is empty     - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id     - `epic_v1_token_invalid` - Epic v1 token is invalid     - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator     - `epic_v2_token_invalid` - Epic v2 token is invalid     - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic     - `google_disabled` - Google authentication is currently disabled     - `google_token_empty` - Google access token is empty     - `google_keys_not_available` - Google keys are not available.  Please contact an administrator     - `google_token_not_valid` - Google access token is not valid     - `google_token_exchange_failed` - Problem exchanging code for token with Google     - `nintendo_disabled` - Nintendo authentication is currently disabled     - `nintendo_token_empty` - Nintendo access token is empty     - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found     - `nintendo_access_token_not_valid` - Nintendo access token is not valid     - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID     - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.     - `nintendo_ppid_conversion_failed` - error during PPID conversion     - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion     - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion     - `nintendo_ppid_missing` - PPID is missing for user     - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid     - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.     - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid     - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app     - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.     - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo     - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled     - `ps4_v1_token_empty` - PS4 v1 access token is empty     - `ps4_v1_token_expired` - PS4 v1 access token is expired     - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4     - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid     - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled     - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4     - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled     - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled     - `ps4_v3_token_empty` - PS4 v3 access token is empty     - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid     - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled     - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled     - `ps5_v3_token_empty` - PS5 v3 access token is empty     - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5     - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid     - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.     - `refresh_disabled` - Refresh authentication is currently disabled     - `refresh_token_empty` - Refresh token is empty     - `refresh_token_not_found` - Refresh token was not found or has expired     - `refresh_token_invalid_user` - Refresh token refrences invalid user     - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token     - `steam_disabled` - Steam authentication is currently disabled     - `steam_token_empty` - Steam code (Ticket) is empty     - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam     - `steam_user_vacbanned` - User is VAC banned     - `steam_user_publisherbanned` - User is publisher banned     - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate     - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam     - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application     - `twitch_disabled` - Twitch authentication is currently disabled     - `twitch_token_empty` - Twitch access token is empty     - `twitch_token_invalid` - Twitch access token is not valid     - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator     - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch     - `xbox_disabled` - Xbox authentication is currently disabled     - `xbox_xsts_token_empty` - Xbox XSTS token is empty     - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid     - `xbox_xtoken_invalid` - Xbox XToken is not valid     - `xbox_access_token_request_failed` - Problem requesting access token from Xbox     - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox     - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox  - `error_description`: The description for the error that occurred during the OAuth flow. - `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:     - `NO_CODE_IN_REQUEST` - No code in request.     - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.     - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.     - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.     - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.     - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.     - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.     - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.   */
+	TOptional<FString> GetHeader307_Location() const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_OauthLogin
 {
-    typedef FRequest_OauthLogin Request;
-    typedef FResponse_OauthLogin Response;
-    typedef FDelegate_OauthLogin Delegate;
-    typedef FAuthAPI API;
-    static FString Name;
+	typedef FRequest_OauthLogin Request;
+	typedef FResponse_OauthLogin Response;
+	typedef FDelegate_OauthLogin Delegate;
+	typedef FAuthAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.OauthLogin(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.OauthLogin(InRequest, InDelegate, Priority); }
 };
 
 /* Oauth Response
@@ -470,58 +470,58 @@ struct RALLYHEREAPI_API Traits_OauthLogin
 */
 struct RALLYHEREAPI_API FRequest_OauthResponse : public FRequest
 {
-    FRequest_OauthResponse();
-    virtual ~FRequest_OauthResponse() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
+	FRequest_OauthResponse();
+	virtual ~FRequest_OauthResponse() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
 
-    /* The platform to use for authentication */
-    ERHAPI_OAuthPortal Platform;
-    /* The code or token from the platform that can be used to validate the user's identity */
-    TOptional<FString> Code;
-    /* The state value sent to the platform provider that is used to continue with the oauth request. */
-    TOptional<FString> State;
-    TOptional<FString> UserAgent;
-    TOptional<FString> XForwardedFor;
+	/* The platform to use for authentication */
+	ERHAPI_OAuthPortal Platform;
+	/* The code or token from the platform that can be used to validate the user's identity */
+	TOptional<FString> Code;
+	/* The state value sent to the platform provider that is used to continue with the oauth request. */
+	TOptional<FString> State;
+	TOptional<FString> UserAgent;
+	TOptional<FString> XForwardedFor;
 };
 
 struct RALLYHEREAPI_API FResponse_OauthResponse : public FResponse
 {
-    FResponse_OauthResponse(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OauthResponse() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_OauthResponse(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_OauthResponse() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
-    // Headers
-    /*  URL that the user should be redirected to complete the next step of the OAuth flow.  Redirects to the `redirect_uri` and may include the following query parameters: - `code`: The authorization_code that can be exchanged for an access token for the user. - `state`: The state value that was provided in the original request. - `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:     - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.     - `no_redirects_configured` - No redirect urls setup for oauth.     - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.     - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.     - `failed_to_verify_state` - Failed to verify the state associated with the request.     - `failed_to_save_state` - Error occurred saving the state.     - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator     - `too_many_users` - Account has too many users associated with it.  Contact an administrator     - `user_auth_restricted` - Authentication for this user has been restricted     - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required     - `error_retrieving_player_results` - Error retrieving player results     - `failed_to_retrieve_roles` - Failed to retrieve roles     - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid     - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later     - `authentication_locked` - Authentication is currently locked.  Please try again later     - `amazon_disabled` - Amazon authentication is currently disabled     - `amazon_token_empty` - Amazon access token is empty     - `amazon_invalid_access_token` - Amazon access token is invalid     - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon     - `anon_disabled` - Anon authentication is currently disabled     - `anon_token_empty` - Anon access token is empty     - `apple_disabled` - Apple authentication is currently disabled     - `apple_token_empty` - Apple access token is empty     - `apple_failed_key_lookup` - Failed to retrieve keys from Apple     - `apple_token_exchange_failed` - Problem exchanging code for token with Apple     - `apple_token_key_not_valid` - public key not found     - `apple_token_not_valid` - Apple access token is not valid     - `authorization_code_not_found` - Authorization code not found or expired     - `basic_disabled` - Basic authentication is currently disabled     - `basic_token_empty` - Basic access token is empty     - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`     - `basic_auth_credentials_not_found` - Basic auth credentials not found     - `epic_disabled` - Epic authentication is currently disabled     - `epic_token_empty` - Epic access token is empty     - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id     - `epic_v1_token_invalid` - Epic v1 token is invalid     - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator     - `epic_v2_token_invalid` - Epic v2 token is invalid     - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic     - `google_disabled` - Google authentication is currently disabled     - `google_token_empty` - Google access token is empty     - `google_keys_not_available` - Google keys are not available.  Please contact an administrator     - `google_token_not_valid` - Google access token is not valid     - `google_token_exchange_failed` - Problem exchanging code for token with Google     - `nintendo_disabled` - Nintendo authentication is currently disabled     - `nintendo_token_empty` - Nintendo access token is empty     - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found     - `nintendo_access_token_not_valid` - Nintendo access token is not valid     - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID     - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.     - `nintendo_ppid_conversion_failed` - error during PPID conversion     - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion     - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion     - `nintendo_ppid_missing` - PPID is missing for user     - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid     - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.     - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid     - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app     - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.     - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo     - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled     - `ps4_v1_token_empty` - PS4 v1 access token is empty     - `ps4_v1_token_expired` - PS4 v1 access token is expired     - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4     - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid     - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled     - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4     - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled     - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled     - `ps4_v3_token_empty` - PS4 v3 access token is empty     - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid     - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled     - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled     - `ps5_v3_token_empty` - PS5 v3 access token is empty     - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5     - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid     - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.     - `refresh_disabled` - Refresh authentication is currently disabled     - `refresh_token_empty` - Refresh token is empty     - `refresh_token_not_found` - Refresh token was not found or has expired     - `refresh_token_invalid_user` - Refresh token refrences invalid user     - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token     - `steam_disabled` - Steam authentication is currently disabled     - `steam_token_empty` - Steam code (Ticket) is empty     - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam     - `steam_user_vacbanned` - User is VAC banned     - `steam_user_publisherbanned` - User is publisher banned     - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate     - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam     - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application     - `twitch_disabled` - Twitch authentication is currently disabled     - `twitch_token_empty` - Twitch access token is empty     - `twitch_token_invalid` - Twitch access token is not valid     - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator     - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch     - `xbox_disabled` - Xbox authentication is currently disabled     - `xbox_xsts_token_empty` - Xbox XSTS token is empty     - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid     - `xbox_xtoken_invalid` - Xbox XToken is not valid     - `xbox_access_token_request_failed` - Problem requesting access token from Xbox     - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox     - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox  - `error_description`: The description for the error that occurred during the OAuth flow. - `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:     - `NO_CODE_IN_REQUEST` - No code in request.     - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.     - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.     - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.     - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.     - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.     - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.     - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.   */
-    TOptional<FString> Location;
+	
+	// Headers
+	/*  URL that the user should be redirected to complete the next step of the OAuth flow.  Redirects to the `redirect_uri` and may include the following query parameters: - `code`: The authorization_code that can be exchanged for an access token for the user. - `state`: The state value that was provided in the original request. - `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:     - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.     - `no_redirects_configured` - No redirect urls setup for oauth.     - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.     - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.     - `failed_to_verify_state` - Failed to verify the state associated with the request.     - `failed_to_save_state` - Error occurred saving the state.     - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator     - `too_many_users` - Account has too many users associated with it.  Contact an administrator     - `user_auth_restricted` - Authentication for this user has been restricted     - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required     - `error_retrieving_player_results` - Error retrieving player results     - `failed_to_retrieve_roles` - Failed to retrieve roles     - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid     - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later     - `authentication_locked` - Authentication is currently locked.  Please try again later     - `amazon_disabled` - Amazon authentication is currently disabled     - `amazon_token_empty` - Amazon access token is empty     - `amazon_invalid_access_token` - Amazon access token is invalid     - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon     - `anon_disabled` - Anon authentication is currently disabled     - `anon_token_empty` - Anon access token is empty     - `apple_disabled` - Apple authentication is currently disabled     - `apple_token_empty` - Apple access token is empty     - `apple_failed_key_lookup` - Failed to retrieve keys from Apple     - `apple_token_exchange_failed` - Problem exchanging code for token with Apple     - `apple_token_key_not_valid` - public key not found     - `apple_token_not_valid` - Apple access token is not valid     - `authorization_code_not_found` - Authorization code not found or expired     - `basic_disabled` - Basic authentication is currently disabled     - `basic_token_empty` - Basic access token is empty     - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`     - `basic_auth_credentials_not_found` - Basic auth credentials not found     - `epic_disabled` - Epic authentication is currently disabled     - `epic_token_empty` - Epic access token is empty     - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id     - `epic_v1_token_invalid` - Epic v1 token is invalid     - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator     - `epic_v2_token_invalid` - Epic v2 token is invalid     - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic     - `google_disabled` - Google authentication is currently disabled     - `google_token_empty` - Google access token is empty     - `google_keys_not_available` - Google keys are not available.  Please contact an administrator     - `google_token_not_valid` - Google access token is not valid     - `google_token_exchange_failed` - Problem exchanging code for token with Google     - `nintendo_disabled` - Nintendo authentication is currently disabled     - `nintendo_token_empty` - Nintendo access token is empty     - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found     - `nintendo_access_token_not_valid` - Nintendo access token is not valid     - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID     - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.     - `nintendo_ppid_conversion_failed` - error during PPID conversion     - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion     - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion     - `nintendo_ppid_missing` - PPID is missing for user     - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid     - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.     - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid     - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app     - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.     - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo     - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled     - `ps4_v1_token_empty` - PS4 v1 access token is empty     - `ps4_v1_token_expired` - PS4 v1 access token is expired     - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4     - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid     - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled     - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4     - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled     - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled     - `ps4_v3_token_empty` - PS4 v3 access token is empty     - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid     - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled     - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled     - `ps5_v3_token_empty` - PS5 v3 access token is empty     - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5     - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid     - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.     - `refresh_disabled` - Refresh authentication is currently disabled     - `refresh_token_empty` - Refresh token is empty     - `refresh_token_not_found` - Refresh token was not found or has expired     - `refresh_token_invalid_user` - Refresh token refrences invalid user     - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token     - `steam_disabled` - Steam authentication is currently disabled     - `steam_token_empty` - Steam code (Ticket) is empty     - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam     - `steam_user_vacbanned` - User is VAC banned     - `steam_user_publisherbanned` - User is publisher banned     - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate     - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam     - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application     - `twitch_disabled` - Twitch authentication is currently disabled     - `twitch_token_empty` - Twitch access token is empty     - `twitch_token_invalid` - Twitch access token is not valid     - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator     - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch     - `xbox_disabled` - Xbox authentication is currently disabled     - `xbox_xsts_token_empty` - Xbox XSTS token is empty     - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid     - `xbox_xtoken_invalid` - Xbox XToken is not valid     - `xbox_access_token_request_failed` - Problem requesting access token from Xbox     - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox     - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox  - `error_description`: The description for the error that occurred during the OAuth flow. - `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:     - `NO_CODE_IN_REQUEST` - No code in request.     - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.     - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.     - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.     - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.     - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.     - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.     - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.   */
+	TOptional<FString> Location;
 
-    // Manual Response Helpers
-    /* Response 307
-    Redirect to next step in OAuth flow
-    */
-    /*  URL that the user should be redirected to complete the next step of the OAuth flow.  Redirects to the `redirect_uri` and may include the following query parameters: - `code`: The authorization_code that can be exchanged for an access token for the user. - `state`: The state value that was provided in the original request. - `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:     - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.     - `no_redirects_configured` - No redirect urls setup for oauth.     - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.     - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.     - `failed_to_verify_state` - Failed to verify the state associated with the request.     - `failed_to_save_state` - Error occurred saving the state.     - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator     - `too_many_users` - Account has too many users associated with it.  Contact an administrator     - `user_auth_restricted` - Authentication for this user has been restricted     - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required     - `error_retrieving_player_results` - Error retrieving player results     - `failed_to_retrieve_roles` - Failed to retrieve roles     - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid     - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later     - `authentication_locked` - Authentication is currently locked.  Please try again later     - `amazon_disabled` - Amazon authentication is currently disabled     - `amazon_token_empty` - Amazon access token is empty     - `amazon_invalid_access_token` - Amazon access token is invalid     - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon     - `anon_disabled` - Anon authentication is currently disabled     - `anon_token_empty` - Anon access token is empty     - `apple_disabled` - Apple authentication is currently disabled     - `apple_token_empty` - Apple access token is empty     - `apple_failed_key_lookup` - Failed to retrieve keys from Apple     - `apple_token_exchange_failed` - Problem exchanging code for token with Apple     - `apple_token_key_not_valid` - public key not found     - `apple_token_not_valid` - Apple access token is not valid     - `authorization_code_not_found` - Authorization code not found or expired     - `basic_disabled` - Basic authentication is currently disabled     - `basic_token_empty` - Basic access token is empty     - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`     - `basic_auth_credentials_not_found` - Basic auth credentials not found     - `epic_disabled` - Epic authentication is currently disabled     - `epic_token_empty` - Epic access token is empty     - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id     - `epic_v1_token_invalid` - Epic v1 token is invalid     - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator     - `epic_v2_token_invalid` - Epic v2 token is invalid     - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic     - `google_disabled` - Google authentication is currently disabled     - `google_token_empty` - Google access token is empty     - `google_keys_not_available` - Google keys are not available.  Please contact an administrator     - `google_token_not_valid` - Google access token is not valid     - `google_token_exchange_failed` - Problem exchanging code for token with Google     - `nintendo_disabled` - Nintendo authentication is currently disabled     - `nintendo_token_empty` - Nintendo access token is empty     - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found     - `nintendo_access_token_not_valid` - Nintendo access token is not valid     - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID     - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.     - `nintendo_ppid_conversion_failed` - error during PPID conversion     - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion     - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion     - `nintendo_ppid_missing` - PPID is missing for user     - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid     - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.     - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid     - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app     - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.     - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo     - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled     - `ps4_v1_token_empty` - PS4 v1 access token is empty     - `ps4_v1_token_expired` - PS4 v1 access token is expired     - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4     - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid     - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled     - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4     - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled     - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled     - `ps4_v3_token_empty` - PS4 v3 access token is empty     - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid     - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled     - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled     - `ps5_v3_token_empty` - PS5 v3 access token is empty     - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5     - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid     - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.     - `refresh_disabled` - Refresh authentication is currently disabled     - `refresh_token_empty` - Refresh token is empty     - `refresh_token_not_found` - Refresh token was not found or has expired     - `refresh_token_invalid_user` - Refresh token refrences invalid user     - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token     - `steam_disabled` - Steam authentication is currently disabled     - `steam_token_empty` - Steam code (Ticket) is empty     - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam     - `steam_user_vacbanned` - User is VAC banned     - `steam_user_publisherbanned` - User is publisher banned     - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate     - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam     - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application     - `twitch_disabled` - Twitch authentication is currently disabled     - `twitch_token_empty` - Twitch access token is empty     - `twitch_token_invalid` - Twitch access token is not valid     - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator     - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch     - `xbox_disabled` - Xbox authentication is currently disabled     - `xbox_xsts_token_empty` - Xbox XSTS token is empty     - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid     - `xbox_xtoken_invalid` - Xbox XToken is not valid     - `xbox_access_token_request_failed` - Problem requesting access token from Xbox     - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox     - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox  - `error_description`: The description for the error that occurred during the OAuth flow. - `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:     - `NO_CODE_IN_REQUEST` - No code in request.     - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.     - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.     - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.     - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.     - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.     - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.     - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.   */
-    TOptional<FString> GetHeader307_Location() const;
+	// Manual Response Helpers
+	/* Response 307
+	Redirect to next step in OAuth flow
+	*/
+	/*  URL that the user should be redirected to complete the next step of the OAuth flow.  Redirects to the `redirect_uri` and may include the following query parameters: - `code`: The authorization_code that can be exchanged for an access token for the user. - `state`: The state value that was provided in the original request. - `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:     - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.     - `no_redirects_configured` - No redirect urls setup for oauth.     - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.     - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.     - `failed_to_verify_state` - Failed to verify the state associated with the request.     - `failed_to_save_state` - Error occurred saving the state.     - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator     - `too_many_users` - Account has too many users associated with it.  Contact an administrator     - `user_auth_restricted` - Authentication for this user has been restricted     - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required     - `error_retrieving_player_results` - Error retrieving player results     - `failed_to_retrieve_roles` - Failed to retrieve roles     - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid     - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later     - `authentication_locked` - Authentication is currently locked.  Please try again later     - `amazon_disabled` - Amazon authentication is currently disabled     - `amazon_token_empty` - Amazon access token is empty     - `amazon_invalid_access_token` - Amazon access token is invalid     - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon     - `anon_disabled` - Anon authentication is currently disabled     - `anon_token_empty` - Anon access token is empty     - `apple_disabled` - Apple authentication is currently disabled     - `apple_token_empty` - Apple access token is empty     - `apple_failed_key_lookup` - Failed to retrieve keys from Apple     - `apple_token_exchange_failed` - Problem exchanging code for token with Apple     - `apple_token_key_not_valid` - public key not found     - `apple_token_not_valid` - Apple access token is not valid     - `authorization_code_not_found` - Authorization code not found or expired     - `basic_disabled` - Basic authentication is currently disabled     - `basic_token_empty` - Basic access token is empty     - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`     - `basic_auth_credentials_not_found` - Basic auth credentials not found     - `epic_disabled` - Epic authentication is currently disabled     - `epic_token_empty` - Epic access token is empty     - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id     - `epic_v1_token_invalid` - Epic v1 token is invalid     - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator     - `epic_v2_token_invalid` - Epic v2 token is invalid     - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic     - `google_disabled` - Google authentication is currently disabled     - `google_token_empty` - Google access token is empty     - `google_keys_not_available` - Google keys are not available.  Please contact an administrator     - `google_token_not_valid` - Google access token is not valid     - `google_token_exchange_failed` - Problem exchanging code for token with Google     - `nintendo_disabled` - Nintendo authentication is currently disabled     - `nintendo_token_empty` - Nintendo access token is empty     - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found     - `nintendo_access_token_not_valid` - Nintendo access token is not valid     - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID     - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.     - `nintendo_ppid_conversion_failed` - error during PPID conversion     - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion     - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion     - `nintendo_ppid_missing` - PPID is missing for user     - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid     - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.     - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid     - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app     - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.     - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo     - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled     - `ps4_v1_token_empty` - PS4 v1 access token is empty     - `ps4_v1_token_expired` - PS4 v1 access token is expired     - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4     - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid     - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled     - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4     - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled     - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled     - `ps4_v3_token_empty` - PS4 v3 access token is empty     - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid     - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled     - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled     - `ps5_v3_token_empty` - PS5 v3 access token is empty     - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5     - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid     - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.     - `refresh_disabled` - Refresh authentication is currently disabled     - `refresh_token_empty` - Refresh token is empty     - `refresh_token_not_found` - Refresh token was not found or has expired     - `refresh_token_invalid_user` - Refresh token refrences invalid user     - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token     - `steam_disabled` - Steam authentication is currently disabled     - `steam_token_empty` - Steam code (Ticket) is empty     - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam     - `steam_user_vacbanned` - User is VAC banned     - `steam_user_publisherbanned` - User is publisher banned     - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate     - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam     - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application     - `twitch_disabled` - Twitch authentication is currently disabled     - `twitch_token_empty` - Twitch access token is empty     - `twitch_token_invalid` - Twitch access token is not valid     - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator     - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch     - `xbox_disabled` - Xbox authentication is currently disabled     - `xbox_xsts_token_empty` - Xbox XSTS token is empty     - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid     - `xbox_xtoken_invalid` - Xbox XToken is not valid     - `xbox_access_token_request_failed` - Problem requesting access token from Xbox     - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox     - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox  - `error_description`: The description for the error that occurred during the OAuth flow. - `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:     - `NO_CODE_IN_REQUEST` - No code in request.     - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.     - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.     - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.     - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.     - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.     - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.     - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.   */
+	TOptional<FString> GetHeader307_Location() const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_OauthResponse
 {
-    typedef FRequest_OauthResponse Request;
-    typedef FResponse_OauthResponse Response;
-    typedef FDelegate_OauthResponse Delegate;
-    typedef FAuthAPI API;
-    static FString Name;
+	typedef FRequest_OauthResponse Request;
+	typedef FResponse_OauthResponse Response;
+	typedef FDelegate_OauthResponse Delegate;
+	typedef FAuthAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.OauthResponse(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.OauthResponse(InRequest, InDelegate, Priority); }
 };
 
 /* Oauth Token Exchange
@@ -530,54 +530,54 @@ struct RALLYHEREAPI_API Traits_OauthResponse
 */
 struct RALLYHEREAPI_API FRequest_OauthTokenExchange : public FRequest
 {
-    FRequest_OauthTokenExchange();
-    virtual ~FRequest_OauthTokenExchange() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
+	FRequest_OauthTokenExchange();
+	virtual ~FRequest_OauthTokenExchange() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
 
-    FRHAPI_OAuthTokenExchange OAuthTokenExchange;
-    TOptional<FString> UserAgent;
-    TOptional<FString> XForwardedFor;
+	FRHAPI_OAuthTokenExchange OAuthTokenExchange;
+	TOptional<FString> UserAgent;
+	TOptional<FString> XForwardedFor;
 };
 
 struct RALLYHEREAPI_API FResponse_OauthTokenExchange : public FResponse
 {
-    FResponse_OauthTokenExchange(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OauthTokenExchange() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_OauthTokenExchange(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_OauthTokenExchange() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_OAuthTokenResponse Content;
+	FRHAPI_OAuthTokenResponse Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_OAuthTokenResponse& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_OAuthTokenResponse& OutContent) const;
 
-    /* Response 403
-     Error Codes: - `authorization_code_not_found`: Authorization code not found or expired 
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	 Error Codes: - `authorization_code_not_found`: Authorization code not found or expired 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_OauthTokenExchange
 {
-    typedef FRequest_OauthTokenExchange Request;
-    typedef FResponse_OauthTokenExchange Response;
-    typedef FDelegate_OauthTokenExchange Delegate;
-    typedef FAuthAPI API;
-    static FString Name;
+	typedef FRequest_OauthTokenExchange Request;
+	typedef FResponse_OauthTokenExchange Response;
+	typedef FDelegate_OauthTokenExchange Delegate;
+	typedef FAuthAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.OauthTokenExchange(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.OauthTokenExchange(InRequest, InDelegate, Priority); }
 };
 
 /* Token
@@ -586,99 +586,99 @@ struct RALLYHEREAPI_API Traits_OauthTokenExchange
 */
 struct RALLYHEREAPI_API FRequest_Token : public FRequest
 {
-    FRequest_Token();
-    virtual ~FRequest_Token() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_Token();
+	virtual ~FRequest_Token() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FRHAPI_TokenRequest TokenRequest;
-    TOptional<FString> UserAgent;
-    TOptional<FString> XForwardedFor;
+	TSharedPtr<FAuthContext> AuthContext;
+	FRHAPI_TokenRequest TokenRequest;
+	TOptional<FString> UserAgent;
+	TOptional<FString> XForwardedFor;
 };
 
 struct RALLYHEREAPI_API FResponse_Token : public FResponse
 {
-    FResponse_Token(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_Token() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_Token(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_Token() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_TokenResponse Content;
+	FRHAPI_TokenResponse Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_TokenResponse& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_TokenResponse& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_Token
 {
-    typedef FRequest_Token Request;
-    typedef FResponse_Token Response;
-    typedef FDelegate_Token Delegate;
-    typedef FAuthAPI API;
-    static FString Name;
+	typedef FRequest_Token Request;
+	typedef FResponse_Token Response;
+	typedef FDelegate_Token Delegate;
+	typedef FAuthAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.Token(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.Token(InRequest, InDelegate, Priority); }
 };
 
 /* Verify
 */
 struct RALLYHEREAPI_API FRequest_Verify : public FRequest
 {
-    FRequest_Verify();
-    virtual ~FRequest_Verify() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_Verify();
+	virtual ~FRequest_Verify() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
+	TSharedPtr<FAuthContext> AuthContext;
 };
 
 struct RALLYHEREAPI_API FResponse_Verify : public FResponse
 {
-    FResponse_Verify(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_Verify() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_Verify(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_Verify() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+	FRHAPI_JsonValue Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_Verify
 {
-    typedef FRequest_Verify Request;
-    typedef FResponse_Verify Response;
-    typedef FDelegate_Verify Delegate;
-    typedef FAuthAPI API;
-    static FString Name;
+	typedef FRequest_Verify Request;
+	typedef FResponse_Verify Response;
+	typedef FDelegate_Verify Delegate;
+	typedef FAuthAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.Verify(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.Verify(InRequest, InDelegate, Priority); }
 };
 
 

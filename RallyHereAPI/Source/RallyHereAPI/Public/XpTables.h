@@ -23,67 +23,67 @@
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_XpTables : public FRHAPI_Model
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    /**
-    * @brief Fills this object with data from the passed in JSON
-    *
-    * @param [in] JsonValue Data from the API call.
-    *
-    * @return true if parsing of the JSON data was successful.
-    */
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	/**
+	* @brief Fills this object with data from the passed in JSON
+	*
+	* @param [in] JsonValue Data from the API call.
+	*
+	* @return true if parsing of the JSON data was successful.
+	*/
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
-    /**
-    * @brief Writes the data from this object into the specified JSON Writer stream
-    *
-    * @param [in] Writer JSON Writer stream to push .
-    */
-    void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	/**
+	* @brief Writes the data from this object into the specified JSON Writer stream
+	*
+	* @param [in] Writer JSON Writer stream to push .
+	*/
+	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    TMap<FString, FRHAPI_XpTable> XpTables_Optional{  };
-    /** @brief true if XpTables_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool XpTables_IsSet{ false };
-    /** @brief Gets the value of XpTables_Optional, regardless of it having been set */
-    TMap<FString, FRHAPI_XpTable>& GetXpTables() { return XpTables_Optional; }
-    /** @brief Gets the value of XpTables_Optional, regardless of it having been set */
-    const TMap<FString, FRHAPI_XpTable>& GetXpTables() const { return XpTables_Optional; }
-    /** @brief Gets the value of XpTables_Optional, if it has been set, otherwise it returns DefaultValue */
-    const TMap<FString, FRHAPI_XpTable>& GetXpTables(const TMap<FString, FRHAPI_XpTable>& DefaultValue) const { if (XpTables_IsSet) return XpTables_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of XpTables_Optional and returns true if it has been set, otherwise returns false */
-    bool GetXpTables(TMap<FString, FRHAPI_XpTable>& OutValue) const { if (XpTables_IsSet) OutValue = XpTables_Optional; return XpTables_IsSet; }
-    /** @brief Returns a pointer to XpTables_Optional, if it has been set, otherwise returns nullptr */
-    TMap<FString, FRHAPI_XpTable>* GetXpTablesOrNull() { if (XpTables_IsSet) return &XpTables_Optional; return nullptr; }
-    /** @brief Returns a pointer to XpTables_Optional, if it has been set, otherwise returns nullptr */
-    const TMap<FString, FRHAPI_XpTable>* GetXpTablesOrNull() const { if (XpTables_IsSet) return &XpTables_Optional; return nullptr; }
-    /** @brief Sets the value of XpTables_Optional and also sets XpTables_IsSet to true */
-    void SetXpTables(TMap<FString, FRHAPI_XpTable> NewValue) { XpTables_Optional = NewValue; XpTables_IsSet = true; }
-     /** @brief Clears the value of XpTables_Optional and sets XpTables_IsSet to false */
-    void ClearXpTables() { XpTables_IsSet = false; }
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TMap<FString, FRHAPI_XpTable> XpTables_Optional{  };
+	/** @brief true if XpTables_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool XpTables_IsSet{ false };
+	/** @brief Gets the value of XpTables_Optional, regardless of it having been set */
+	TMap<FString, FRHAPI_XpTable>& GetXpTables() { return XpTables_Optional; }
+	/** @brief Gets the value of XpTables_Optional, regardless of it having been set */
+	const TMap<FString, FRHAPI_XpTable>& GetXpTables() const { return XpTables_Optional; }
+	/** @brief Gets the value of XpTables_Optional, if it has been set, otherwise it returns DefaultValue */
+	const TMap<FString, FRHAPI_XpTable>& GetXpTables(const TMap<FString, FRHAPI_XpTable>& DefaultValue) const { if (XpTables_IsSet) return XpTables_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of XpTables_Optional and returns true if it has been set, otherwise returns false */
+	bool GetXpTables(TMap<FString, FRHAPI_XpTable>& OutValue) const { if (XpTables_IsSet) OutValue = XpTables_Optional; return XpTables_IsSet; }
+	/** @brief Returns a pointer to XpTables_Optional, if it has been set, otherwise returns nullptr */
+	TMap<FString, FRHAPI_XpTable>* GetXpTablesOrNull() { if (XpTables_IsSet) return &XpTables_Optional; return nullptr; }
+	/** @brief Returns a pointer to XpTables_Optional, if it has been set, otherwise returns nullptr */
+	const TMap<FString, FRHAPI_XpTable>* GetXpTablesOrNull() const { if (XpTables_IsSet) return &XpTables_Optional; return nullptr; }
+	/** @brief Sets the value of XpTables_Optional and also sets XpTables_IsSet to true */
+	void SetXpTables(TMap<FString, FRHAPI_XpTable> NewValue) { XpTables_Optional = NewValue; XpTables_IsSet = true; }
+	 /** @brief Clears the value of XpTables_Optional and sets XpTables_IsSet to false */
+	void ClearXpTables() { XpTables_IsSet = false; }
 
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FRHAPI_CacheInfo CacheInfo_Optional{  };
-    /** @brief true if CacheInfo_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool CacheInfo_IsSet{ false };
-    /** @brief Gets the value of CacheInfo_Optional, regardless of it having been set */
-    FRHAPI_CacheInfo& GetCacheInfo() { return CacheInfo_Optional; }
-    /** @brief Gets the value of CacheInfo_Optional, regardless of it having been set */
-    const FRHAPI_CacheInfo& GetCacheInfo() const { return CacheInfo_Optional; }
-    /** @brief Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FRHAPI_CacheInfo& GetCacheInfo(const FRHAPI_CacheInfo& DefaultValue) const { if (CacheInfo_IsSet) return CacheInfo_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false */
-    bool GetCacheInfo(FRHAPI_CacheInfo& OutValue) const { if (CacheInfo_IsSet) OutValue = CacheInfo_Optional; return CacheInfo_IsSet; }
-    /** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
-    FRHAPI_CacheInfo* GetCacheInfoOrNull() { if (CacheInfo_IsSet) return &CacheInfo_Optional; return nullptr; }
-    /** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
-    const FRHAPI_CacheInfo* GetCacheInfoOrNull() const { if (CacheInfo_IsSet) return &CacheInfo_Optional; return nullptr; }
-    /** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true */
-    void SetCacheInfo(FRHAPI_CacheInfo NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
-     /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
-    void ClearCacheInfo() { CacheInfo_IsSet = false; }
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FRHAPI_CacheInfo CacheInfo_Optional{  };
+	/** @brief true if CacheInfo_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool CacheInfo_IsSet{ false };
+	/** @brief Gets the value of CacheInfo_Optional, regardless of it having been set */
+	FRHAPI_CacheInfo& GetCacheInfo() { return CacheInfo_Optional; }
+	/** @brief Gets the value of CacheInfo_Optional, regardless of it having been set */
+	const FRHAPI_CacheInfo& GetCacheInfo() const { return CacheInfo_Optional; }
+	/** @brief Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FRHAPI_CacheInfo& GetCacheInfo(const FRHAPI_CacheInfo& DefaultValue) const { if (CacheInfo_IsSet) return CacheInfo_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false */
+	bool GetCacheInfo(FRHAPI_CacheInfo& OutValue) const { if (CacheInfo_IsSet) OutValue = CacheInfo_Optional; return CacheInfo_IsSet; }
+	/** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
+	FRHAPI_CacheInfo* GetCacheInfoOrNull() { if (CacheInfo_IsSet) return &CacheInfo_Optional; return nullptr; }
+	/** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
+	const FRHAPI_CacheInfo* GetCacheInfoOrNull() const { if (CacheInfo_IsSet) return &CacheInfo_Optional; return nullptr; }
+	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true */
+	void SetCacheInfo(FRHAPI_CacheInfo NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
+	 /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
+	void ClearCacheInfo() { CacheInfo_IsSet = false; }
 };
 
 /** @} */

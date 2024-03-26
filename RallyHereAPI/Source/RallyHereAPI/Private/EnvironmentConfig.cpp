@@ -21,35 +21,35 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_EnvironmentConfig::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("org_id"));
-    RallyHereAPI::WriteJsonValue(Writer, OrgId);
-    Writer->WriteIdentifierPrefix(TEXT("product_id"));
-    RallyHereAPI::WriteJsonValue(Writer, ProductId);
-    Writer->WriteIdentifierPrefix(TEXT("environment_id"));
-    RallyHereAPI::WriteJsonValue(Writer, EnvironmentId);
-    Writer->WriteIdentifierPrefix(TEXT("sandbox_id"));
-    RallyHereAPI::WriteJsonValue(Writer, SandboxId);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("org_id"));
+	RallyHereAPI::WriteJsonValue(Writer, OrgId);
+	Writer->WriteIdentifierPrefix(TEXT("product_id"));
+	RallyHereAPI::WriteJsonValue(Writer, ProductId);
+	Writer->WriteIdentifierPrefix(TEXT("environment_id"));
+	RallyHereAPI::WriteJsonValue(Writer, EnvironmentId);
+	Writer->WriteIdentifierPrefix(TEXT("sandbox_id"));
+	RallyHereAPI::WriteJsonValue(Writer, SandboxId);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_EnvironmentConfig::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonOrgIdField = (*Object)->TryGetField(TEXT("org_id"));
-    ParseSuccess &= JsonOrgIdField.IsValid() && !JsonOrgIdField->IsNull() && TryGetJsonValue(JsonOrgIdField, OrgId);
-    const TSharedPtr<FJsonValue> JsonProductIdField = (*Object)->TryGetField(TEXT("product_id"));
-    ParseSuccess &= JsonProductIdField.IsValid() && !JsonProductIdField->IsNull() && TryGetJsonValue(JsonProductIdField, ProductId);
-    const TSharedPtr<FJsonValue> JsonEnvironmentIdField = (*Object)->TryGetField(TEXT("environment_id"));
-    ParseSuccess &= JsonEnvironmentIdField.IsValid() && !JsonEnvironmentIdField->IsNull() && TryGetJsonValue(JsonEnvironmentIdField, EnvironmentId);
-    const TSharedPtr<FJsonValue> JsonSandboxIdField = (*Object)->TryGetField(TEXT("sandbox_id"));
-    ParseSuccess &= JsonSandboxIdField.IsValid() && !JsonSandboxIdField->IsNull() && TryGetJsonValue(JsonSandboxIdField, SandboxId);
+	const TSharedPtr<FJsonValue> JsonOrgIdField = (*Object)->TryGetField(TEXT("org_id"));
+	ParseSuccess &= JsonOrgIdField.IsValid() && !JsonOrgIdField->IsNull() && TryGetJsonValue(JsonOrgIdField, OrgId);
+	const TSharedPtr<FJsonValue> JsonProductIdField = (*Object)->TryGetField(TEXT("product_id"));
+	ParseSuccess &= JsonProductIdField.IsValid() && !JsonProductIdField->IsNull() && TryGetJsonValue(JsonProductIdField, ProductId);
+	const TSharedPtr<FJsonValue> JsonEnvironmentIdField = (*Object)->TryGetField(TEXT("environment_id"));
+	ParseSuccess &= JsonEnvironmentIdField.IsValid() && !JsonEnvironmentIdField->IsNull() && TryGetJsonValue(JsonEnvironmentIdField, EnvironmentId);
+	const TSharedPtr<FJsonValue> JsonSandboxIdField = (*Object)->TryGetField(TEXT("sandbox_id"));
+	ParseSuccess &= JsonSandboxIdField.IsValid() && !JsonSandboxIdField->IsNull() && TryGetJsonValue(JsonSandboxIdField, SandboxId);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

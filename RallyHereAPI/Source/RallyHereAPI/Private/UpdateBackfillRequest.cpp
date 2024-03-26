@@ -21,45 +21,45 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_UpdateBackfillRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("instance_id"));
-    RallyHereAPI::WriteJsonValue(Writer, InstanceId);
-    if (AdditionalJoinParams_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("additional_join_params"));
-        RallyHereAPI::WriteJsonValue(Writer, AdditionalJoinParams_Optional);
-    }
-    if (Teams_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("teams"));
-        RallyHereAPI::WriteJsonValue(Writer, Teams_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("instance_id"));
+	RallyHereAPI::WriteJsonValue(Writer, InstanceId);
+	if (AdditionalJoinParams_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("additional_join_params"));
+		RallyHereAPI::WriteJsonValue(Writer, AdditionalJoinParams_Optional);
+	}
+	if (Teams_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("teams"));
+		RallyHereAPI::WriteJsonValue(Writer, Teams_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_UpdateBackfillRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonInstanceIdField = (*Object)->TryGetField(TEXT("instance_id"));
-    ParseSuccess &= JsonInstanceIdField.IsValid() && !JsonInstanceIdField->IsNull() && TryGetJsonValue(JsonInstanceIdField, InstanceId);
-    const TSharedPtr<FJsonValue> JsonAdditionalJoinParamsField = (*Object)->TryGetField(TEXT("additional_join_params"));
-    if (JsonAdditionalJoinParamsField.IsValid() && !JsonAdditionalJoinParamsField->IsNull())
-    {
-        AdditionalJoinParams_IsSet = TryGetJsonValue(JsonAdditionalJoinParamsField, AdditionalJoinParams_Optional);
-        ParseSuccess &= AdditionalJoinParams_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonTeamsField = (*Object)->TryGetField(TEXT("teams"));
-    if (JsonTeamsField.IsValid() && !JsonTeamsField->IsNull())
-    {
-        Teams_IsSet = TryGetJsonValue(JsonTeamsField, Teams_Optional);
-        ParseSuccess &= Teams_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonInstanceIdField = (*Object)->TryGetField(TEXT("instance_id"));
+	ParseSuccess &= JsonInstanceIdField.IsValid() && !JsonInstanceIdField->IsNull() && TryGetJsonValue(JsonInstanceIdField, InstanceId);
+	const TSharedPtr<FJsonValue> JsonAdditionalJoinParamsField = (*Object)->TryGetField(TEXT("additional_join_params"));
+	if (JsonAdditionalJoinParamsField.IsValid() && !JsonAdditionalJoinParamsField->IsNull())
+	{
+		AdditionalJoinParams_IsSet = TryGetJsonValue(JsonAdditionalJoinParamsField, AdditionalJoinParams_Optional);
+		ParseSuccess &= AdditionalJoinParams_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonTeamsField = (*Object)->TryGetField(TEXT("teams"));
+	if (JsonTeamsField.IsValid() && !JsonTeamsField->IsNull())
+	{
+		Teams_IsSet = TryGetJsonValue(JsonTeamsField, Teams_Optional);
+		ParseSuccess &= Teams_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

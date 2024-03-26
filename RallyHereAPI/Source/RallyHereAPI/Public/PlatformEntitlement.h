@@ -23,139 +23,139 @@
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_PlatformEntitlement : public FRHAPI_Model
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    /**
-    * @brief Fills this object with data from the passed in JSON
-    *
-    * @param [in] JsonValue Data from the API call.
-    *
-    * @return true if parsing of the JSON data was successful.
-    */
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	/**
+	* @brief Fills this object with data from the passed in JSON
+	*
+	* @param [in] JsonValue Data from the API call.
+	*
+	* @return true if parsing of the JSON data was successful.
+	*/
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
-    /**
-    * @brief Writes the data from this object into the specified JSON Writer stream
-    *
-    * @param [in] Writer JSON Writer stream to push .
-    */
-    void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	/**
+	* @brief Writes the data from this object into the specified JSON Writer stream
+	*
+	* @param [in] Writer JSON Writer stream to push .
+	*/
+	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief platform identifier for this purchase type */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FString PlatformSku{  };
-    /** @brief Gets the value of PlatformSku */
-    FString& GetPlatformSku() { return PlatformSku; }
-    /** @brief Gets the value of PlatformSku */
-    const FString& GetPlatformSku() const { return PlatformSku; }
-    /** @brief Sets the value of PlatformSku */
-    void SetPlatformSku(FString NewValue) { PlatformSku = NewValue;  }
+	/** @brief platform identifier for this purchase type */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString PlatformSku{  };
+	/** @brief Gets the value of PlatformSku */
+	FString& GetPlatformSku() { return PlatformSku; }
+	/** @brief Gets the value of PlatformSku */
+	const FString& GetPlatformSku() const { return PlatformSku; }
+	/** @brief Sets the value of PlatformSku */
+	void SetPlatformSku(FString NewValue) { PlatformSku = NewValue;  }
 
-    /** @brief unique identifier for this purchased item (instance owned by this user) */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FString PlatformEntitlementId{  };
-    /** @brief Gets the value of PlatformEntitlementId */
-    FString& GetPlatformEntitlementId() { return PlatformEntitlementId; }
-    /** @brief Gets the value of PlatformEntitlementId */
-    const FString& GetPlatformEntitlementId() const { return PlatformEntitlementId; }
-    /** @brief Sets the value of PlatformEntitlementId */
-    void SetPlatformEntitlementId(FString NewValue) { PlatformEntitlementId = NewValue;  }
+	/** @brief unique identifier for this purchased item (instance owned by this user) */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString PlatformEntitlementId{  };
+	/** @brief Gets the value of PlatformEntitlementId */
+	FString& GetPlatformEntitlementId() { return PlatformEntitlementId; }
+	/** @brief Gets the value of PlatformEntitlementId */
+	const FString& GetPlatformEntitlementId() const { return PlatformEntitlementId; }
+	/** @brief Sets the value of PlatformEntitlementId */
+	void SetPlatformEntitlementId(FString NewValue) { PlatformEntitlementId = NewValue;  }
 
-    /** @brief number purchased */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    int32 Quantity_Optional{  };
-    /** @brief true if Quantity_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool Quantity_IsSet{ false };
-    /** @brief Gets the value of Quantity_Optional, regardless of it having been set */
-    int32& GetQuantity() { return Quantity_Optional; }
-    /** @brief Gets the value of Quantity_Optional, regardless of it having been set */
-    const int32& GetQuantity() const { return Quantity_Optional; }
-    /** @brief Gets the value of Quantity_Optional, if it has been set, otherwise it returns DefaultValue */
-    const int32& GetQuantity(const int32& DefaultValue) const { if (Quantity_IsSet) return Quantity_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of Quantity_Optional and returns true if it has been set, otherwise returns false */
-    bool GetQuantity(int32& OutValue) const { if (Quantity_IsSet) OutValue = Quantity_Optional; return Quantity_IsSet; }
-    /** @brief Returns a pointer to Quantity_Optional, if it has been set, otherwise returns nullptr */
-    int32* GetQuantityOrNull() { if (Quantity_IsSet) return &Quantity_Optional; return nullptr; }
-    /** @brief Returns a pointer to Quantity_Optional, if it has been set, otherwise returns nullptr */
-    const int32* GetQuantityOrNull() const { if (Quantity_IsSet) return &Quantity_Optional; return nullptr; }
-    /** @brief Sets the value of Quantity_Optional and also sets Quantity_IsSet to true */
-    void SetQuantity(int32 NewValue) { Quantity_Optional = NewValue; Quantity_IsSet = true; }
-     /** @brief Clears the value of Quantity_Optional and sets Quantity_IsSet to false */
-    void ClearQuantity() { Quantity_Optional = 1; Quantity_IsSet = false; }
-    /** @brief Returns true if Quantity_Optional is set and matches the default value */
-    bool IsQuantityDefaultValue() const { return Quantity_IsSet && Quantity_Optional == 1; }
-    /** @brief Sets the value of Quantity_Optional to its default and also sets Quantity_IsSet to true */
-    void SetQuantityToDefault() { Quantity_Optional = 1; Quantity_IsSet = true; }
+	/** @brief number purchased */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Quantity_Optional{  };
+	/** @brief true if Quantity_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Quantity_IsSet{ false };
+	/** @brief Gets the value of Quantity_Optional, regardless of it having been set */
+	int32& GetQuantity() { return Quantity_Optional; }
+	/** @brief Gets the value of Quantity_Optional, regardless of it having been set */
+	const int32& GetQuantity() const { return Quantity_Optional; }
+	/** @brief Gets the value of Quantity_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetQuantity(const int32& DefaultValue) const { if (Quantity_IsSet) return Quantity_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Quantity_Optional and returns true if it has been set, otherwise returns false */
+	bool GetQuantity(int32& OutValue) const { if (Quantity_IsSet) OutValue = Quantity_Optional; return Quantity_IsSet; }
+	/** @brief Returns a pointer to Quantity_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetQuantityOrNull() { if (Quantity_IsSet) return &Quantity_Optional; return nullptr; }
+	/** @brief Returns a pointer to Quantity_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetQuantityOrNull() const { if (Quantity_IsSet) return &Quantity_Optional; return nullptr; }
+	/** @brief Sets the value of Quantity_Optional and also sets Quantity_IsSet to true */
+	void SetQuantity(int32 NewValue) { Quantity_Optional = NewValue; Quantity_IsSet = true; }
+	 /** @brief Clears the value of Quantity_Optional and sets Quantity_IsSet to false */
+	void ClearQuantity() { Quantity_Optional = 1; Quantity_IsSet = false; }
+	/** @brief Returns true if Quantity_Optional is set and matches the default value */
+	bool IsQuantityDefaultValue() const { return Quantity_IsSet && Quantity_Optional == 1; }
+	/** @brief Sets the value of Quantity_Optional to its default and also sets Quantity_IsSet to true */
+	void SetQuantityToDefault() { Quantity_Optional = 1; Quantity_IsSet = true; }
 
-    /** @brief status of this entitlement */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    ERHAPI_EntitlementStatus Status_Optional{  };
-    /** @brief true if Status_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool Status_IsSet{ false };
-    /** @brief Gets the value of Status_Optional, regardless of it having been set */
-    ERHAPI_EntitlementStatus& GetStatus() { return Status_Optional; }
-    /** @brief Gets the value of Status_Optional, regardless of it having been set */
-    const ERHAPI_EntitlementStatus& GetStatus() const { return Status_Optional; }
-    /** @brief Gets the value of Status_Optional, if it has been set, otherwise it returns DefaultValue */
-    const ERHAPI_EntitlementStatus& GetStatus(const ERHAPI_EntitlementStatus& DefaultValue) const { if (Status_IsSet) return Status_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of Status_Optional and returns true if it has been set, otherwise returns false */
-    bool GetStatus(ERHAPI_EntitlementStatus& OutValue) const { if (Status_IsSet) OutValue = Status_Optional; return Status_IsSet; }
-    /** @brief Returns a pointer to Status_Optional, if it has been set, otherwise returns nullptr */
-    ERHAPI_EntitlementStatus* GetStatusOrNull() { if (Status_IsSet) return &Status_Optional; return nullptr; }
-    /** @brief Returns a pointer to Status_Optional, if it has been set, otherwise returns nullptr */
-    const ERHAPI_EntitlementStatus* GetStatusOrNull() const { if (Status_IsSet) return &Status_Optional; return nullptr; }
-    /** @brief Sets the value of Status_Optional and also sets Status_IsSet to true */
-    void SetStatus(ERHAPI_EntitlementStatus NewValue) { Status_Optional = NewValue; Status_IsSet = true; }
-     /** @brief Clears the value of Status_Optional and sets Status_IsSet to false */
-    void ClearStatus() { Status_IsSet = false; }
+	/** @brief status of this entitlement */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	ERHAPI_EntitlementStatus Status_Optional{  };
+	/** @brief true if Status_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Status_IsSet{ false };
+	/** @brief Gets the value of Status_Optional, regardless of it having been set */
+	ERHAPI_EntitlementStatus& GetStatus() { return Status_Optional; }
+	/** @brief Gets the value of Status_Optional, regardless of it having been set */
+	const ERHAPI_EntitlementStatus& GetStatus() const { return Status_Optional; }
+	/** @brief Gets the value of Status_Optional, if it has been set, otherwise it returns DefaultValue */
+	const ERHAPI_EntitlementStatus& GetStatus(const ERHAPI_EntitlementStatus& DefaultValue) const { if (Status_IsSet) return Status_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Status_Optional and returns true if it has been set, otherwise returns false */
+	bool GetStatus(ERHAPI_EntitlementStatus& OutValue) const { if (Status_IsSet) OutValue = Status_Optional; return Status_IsSet; }
+	/** @brief Returns a pointer to Status_Optional, if it has been set, otherwise returns nullptr */
+	ERHAPI_EntitlementStatus* GetStatusOrNull() { if (Status_IsSet) return &Status_Optional; return nullptr; }
+	/** @brief Returns a pointer to Status_Optional, if it has been set, otherwise returns nullptr */
+	const ERHAPI_EntitlementStatus* GetStatusOrNull() const { if (Status_IsSet) return &Status_Optional; return nullptr; }
+	/** @brief Sets the value of Status_Optional and also sets Status_IsSet to true */
+	void SetStatus(ERHAPI_EntitlementStatus NewValue) { Status_Optional = NewValue; Status_IsSet = true; }
+	 /** @brief Clears the value of Status_Optional and sets Status_IsSet to false */
+	void ClearStatus() { Status_IsSet = false; }
 
-    /** @brief Error code for this entitlement */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    ERHAPI_EntitlementErrorCode ErrorCode_Optional{  };
-    /** @brief true if ErrorCode_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool ErrorCode_IsSet{ false };
-    /** @brief Gets the value of ErrorCode_Optional, regardless of it having been set */
-    ERHAPI_EntitlementErrorCode& GetErrorCode() { return ErrorCode_Optional; }
-    /** @brief Gets the value of ErrorCode_Optional, regardless of it having been set */
-    const ERHAPI_EntitlementErrorCode& GetErrorCode() const { return ErrorCode_Optional; }
-    /** @brief Gets the value of ErrorCode_Optional, if it has been set, otherwise it returns DefaultValue */
-    const ERHAPI_EntitlementErrorCode& GetErrorCode(const ERHAPI_EntitlementErrorCode& DefaultValue) const { if (ErrorCode_IsSet) return ErrorCode_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of ErrorCode_Optional and returns true if it has been set, otherwise returns false */
-    bool GetErrorCode(ERHAPI_EntitlementErrorCode& OutValue) const { if (ErrorCode_IsSet) OutValue = ErrorCode_Optional; return ErrorCode_IsSet; }
-    /** @brief Returns a pointer to ErrorCode_Optional, if it has been set, otherwise returns nullptr */
-    ERHAPI_EntitlementErrorCode* GetErrorCodeOrNull() { if (ErrorCode_IsSet) return &ErrorCode_Optional; return nullptr; }
-    /** @brief Returns a pointer to ErrorCode_Optional, if it has been set, otherwise returns nullptr */
-    const ERHAPI_EntitlementErrorCode* GetErrorCodeOrNull() const { if (ErrorCode_IsSet) return &ErrorCode_Optional; return nullptr; }
-    /** @brief Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true */
-    void SetErrorCode(ERHAPI_EntitlementErrorCode NewValue) { ErrorCode_Optional = NewValue; ErrorCode_IsSet = true; }
-     /** @brief Clears the value of ErrorCode_Optional and sets ErrorCode_IsSet to false */
-    void ClearErrorCode() { ErrorCode_IsSet = false; }
+	/** @brief Error code for this entitlement */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	ERHAPI_EntitlementErrorCode ErrorCode_Optional{  };
+	/** @brief true if ErrorCode_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool ErrorCode_IsSet{ false };
+	/** @brief Gets the value of ErrorCode_Optional, regardless of it having been set */
+	ERHAPI_EntitlementErrorCode& GetErrorCode() { return ErrorCode_Optional; }
+	/** @brief Gets the value of ErrorCode_Optional, regardless of it having been set */
+	const ERHAPI_EntitlementErrorCode& GetErrorCode() const { return ErrorCode_Optional; }
+	/** @brief Gets the value of ErrorCode_Optional, if it has been set, otherwise it returns DefaultValue */
+	const ERHAPI_EntitlementErrorCode& GetErrorCode(const ERHAPI_EntitlementErrorCode& DefaultValue) const { if (ErrorCode_IsSet) return ErrorCode_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of ErrorCode_Optional and returns true if it has been set, otherwise returns false */
+	bool GetErrorCode(ERHAPI_EntitlementErrorCode& OutValue) const { if (ErrorCode_IsSet) OutValue = ErrorCode_Optional; return ErrorCode_IsSet; }
+	/** @brief Returns a pointer to ErrorCode_Optional, if it has been set, otherwise returns nullptr */
+	ERHAPI_EntitlementErrorCode* GetErrorCodeOrNull() { if (ErrorCode_IsSet) return &ErrorCode_Optional; return nullptr; }
+	/** @brief Returns a pointer to ErrorCode_Optional, if it has been set, otherwise returns nullptr */
+	const ERHAPI_EntitlementErrorCode* GetErrorCodeOrNull() const { if (ErrorCode_IsSet) return &ErrorCode_Optional; return nullptr; }
+	/** @brief Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true */
+	void SetErrorCode(ERHAPI_EntitlementErrorCode NewValue) { ErrorCode_Optional = NewValue; ErrorCode_IsSet = true; }
+	 /** @brief Clears the value of ErrorCode_Optional and sets ErrorCode_IsSet to false */
+	void ClearErrorCode() { ErrorCode_IsSet = false; }
 
-    /** @brief Order ID for this entitlement */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FString OrderId_Optional{  };
-    /** @brief true if OrderId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool OrderId_IsSet{ false };
-    /** @brief Gets the value of OrderId_Optional, regardless of it having been set */
-    FString& GetOrderId() { return OrderId_Optional; }
-    /** @brief Gets the value of OrderId_Optional, regardless of it having been set */
-    const FString& GetOrderId() const { return OrderId_Optional; }
-    /** @brief Gets the value of OrderId_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FString& GetOrderId(const FString& DefaultValue) const { if (OrderId_IsSet) return OrderId_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of OrderId_Optional and returns true if it has been set, otherwise returns false */
-    bool GetOrderId(FString& OutValue) const { if (OrderId_IsSet) OutValue = OrderId_Optional; return OrderId_IsSet; }
-    /** @brief Returns a pointer to OrderId_Optional, if it has been set, otherwise returns nullptr */
-    FString* GetOrderIdOrNull() { if (OrderId_IsSet) return &OrderId_Optional; return nullptr; }
-    /** @brief Returns a pointer to OrderId_Optional, if it has been set, otherwise returns nullptr */
-    const FString* GetOrderIdOrNull() const { if (OrderId_IsSet) return &OrderId_Optional; return nullptr; }
-    /** @brief Sets the value of OrderId_Optional and also sets OrderId_IsSet to true */
-    void SetOrderId(FString NewValue) { OrderId_Optional = NewValue; OrderId_IsSet = true; }
-     /** @brief Clears the value of OrderId_Optional and sets OrderId_IsSet to false */
-    void ClearOrderId() { OrderId_IsSet = false; }
+	/** @brief Order ID for this entitlement */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString OrderId_Optional{  };
+	/** @brief true if OrderId_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool OrderId_IsSet{ false };
+	/** @brief Gets the value of OrderId_Optional, regardless of it having been set */
+	FString& GetOrderId() { return OrderId_Optional; }
+	/** @brief Gets the value of OrderId_Optional, regardless of it having been set */
+	const FString& GetOrderId() const { return OrderId_Optional; }
+	/** @brief Gets the value of OrderId_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetOrderId(const FString& DefaultValue) const { if (OrderId_IsSet) return OrderId_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of OrderId_Optional and returns true if it has been set, otherwise returns false */
+	bool GetOrderId(FString& OutValue) const { if (OrderId_IsSet) OutValue = OrderId_Optional; return OrderId_IsSet; }
+	/** @brief Returns a pointer to OrderId_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetOrderIdOrNull() { if (OrderId_IsSet) return &OrderId_Optional; return nullptr; }
+	/** @brief Returns a pointer to OrderId_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetOrderIdOrNull() const { if (OrderId_IsSet) return &OrderId_Optional; return nullptr; }
+	/** @brief Sets the value of OrderId_Optional and also sets OrderId_IsSet to true */
+	void SetOrderId(FString NewValue) { OrderId_Optional = NewValue; OrderId_IsSet = true; }
+	 /** @brief Clears the value of OrderId_Optional and sets OrderId_IsSet to false */
+	void ClearOrderId() { OrderId_IsSet = false; }
 };
 
 /** @} */

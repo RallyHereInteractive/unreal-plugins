@@ -21,45 +21,45 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_UpdateInventoryRequests::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (Source_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("source"));
-        RallyHereAPI::WriteJsonValue(Writer, EnumToString(Source_Optional));
-    }
-    if (ClientOrderRefId_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("client_order_ref_id"));
-        RallyHereAPI::WriteJsonValue(Writer, ClientOrderRefId_Optional);
-    }
-    Writer->WriteIdentifierPrefix(TEXT("inventory"));
-    RallyHereAPI::WriteJsonValue(Writer, Inventory);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (Source_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("source"));
+		RallyHereAPI::WriteJsonValue(Writer, EnumToString(Source_Optional));
+	}
+	if (ClientOrderRefId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("client_order_ref_id"));
+		RallyHereAPI::WriteJsonValue(Writer, ClientOrderRefId_Optional);
+	}
+	Writer->WriteIdentifierPrefix(TEXT("inventory"));
+	RallyHereAPI::WriteJsonValue(Writer, Inventory);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_UpdateInventoryRequests::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonSourceField = (*Object)->TryGetField(TEXT("source"));
-    if (JsonSourceField.IsValid() && !JsonSourceField->IsNull())
-    {
-        Source_IsSet = TryGetJsonValue(JsonSourceField, Source_Optional);
-        ParseSuccess &= Source_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonClientOrderRefIdField = (*Object)->TryGetField(TEXT("client_order_ref_id"));
-    if (JsonClientOrderRefIdField.IsValid() && !JsonClientOrderRefIdField->IsNull())
-    {
-        ClientOrderRefId_IsSet = TryGetJsonValue(JsonClientOrderRefIdField, ClientOrderRefId_Optional);
-        ParseSuccess &= ClientOrderRefId_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonInventoryField = (*Object)->TryGetField(TEXT("inventory"));
-    ParseSuccess &= JsonInventoryField.IsValid() && !JsonInventoryField->IsNull() && TryGetJsonValue(JsonInventoryField, Inventory);
+	const TSharedPtr<FJsonValue> JsonSourceField = (*Object)->TryGetField(TEXT("source"));
+	if (JsonSourceField.IsValid() && !JsonSourceField->IsNull())
+	{
+		Source_IsSet = TryGetJsonValue(JsonSourceField, Source_Optional);
+		ParseSuccess &= Source_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonClientOrderRefIdField = (*Object)->TryGetField(TEXT("client_order_ref_id"));
+	if (JsonClientOrderRefIdField.IsValid() && !JsonClientOrderRefIdField->IsNull())
+	{
+		ClientOrderRefId_IsSet = TryGetJsonValue(JsonClientOrderRefIdField, ClientOrderRefId_Optional);
+		ParseSuccess &= ClientOrderRefId_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInventoryField = (*Object)->TryGetField(TEXT("inventory"));
+	ParseSuccess &= JsonInventoryField.IsValid() && !JsonInventoryField->IsNull() && TryGetJsonValue(JsonInventoryField, Inventory);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

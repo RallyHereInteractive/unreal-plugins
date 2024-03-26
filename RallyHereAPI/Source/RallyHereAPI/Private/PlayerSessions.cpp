@@ -21,41 +21,41 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_PlayerSessions::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (Sessions_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("sessions"));
-        RallyHereAPI::WriteJsonValue(Writer, Sessions_Optional);
-    }
-    if (LastUpdatedTimestamp_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("last_updated_timestamp"));
-        RallyHereAPI::WriteJsonValue(Writer, LastUpdatedTimestamp_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (Sessions_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("sessions"));
+		RallyHereAPI::WriteJsonValue(Writer, Sessions_Optional);
+	}
+	if (LastUpdatedTimestamp_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("last_updated_timestamp"));
+		RallyHereAPI::WriteJsonValue(Writer, LastUpdatedTimestamp_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_PlayerSessions::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonSessionsField = (*Object)->TryGetField(TEXT("sessions"));
-    if (JsonSessionsField.IsValid() && !JsonSessionsField->IsNull())
-    {
-        Sessions_IsSet = TryGetJsonValue(JsonSessionsField, Sessions_Optional);
-        ParseSuccess &= Sessions_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonLastUpdatedTimestampField = (*Object)->TryGetField(TEXT("last_updated_timestamp"));
-    if (JsonLastUpdatedTimestampField.IsValid() && !JsonLastUpdatedTimestampField->IsNull())
-    {
-        LastUpdatedTimestamp_IsSet = TryGetJsonValue(JsonLastUpdatedTimestampField, LastUpdatedTimestamp_Optional);
-        ParseSuccess &= LastUpdatedTimestamp_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonSessionsField = (*Object)->TryGetField(TEXT("sessions"));
+	if (JsonSessionsField.IsValid() && !JsonSessionsField->IsNull())
+	{
+		Sessions_IsSet = TryGetJsonValue(JsonSessionsField, Sessions_Optional);
+		ParseSuccess &= Sessions_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonLastUpdatedTimestampField = (*Object)->TryGetField(TEXT("last_updated_timestamp"));
+	if (JsonLastUpdatedTimestampField.IsValid() && !JsonLastUpdatedTimestampField->IsNull())
+	{
+		LastUpdatedTimestamp_IsSet = TryGetJsonValue(JsonLastUpdatedTimestampField, LastUpdatedTimestamp_Optional);
+		ParseSuccess &= LastUpdatedTimestamp_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

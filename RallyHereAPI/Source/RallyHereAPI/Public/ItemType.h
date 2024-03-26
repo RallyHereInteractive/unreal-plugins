@@ -18,11 +18,11 @@
 UENUM(BlueprintType)
 enum class ERHAPI_ItemType : uint8
 {
-    Unit UMETA(ToolTip="An item that is stored in a player&#39;s inventory."),
-    Recipe UMETA(ToolTip="A Loot with the ItemType receipt will fulfill SubVendor Loot and will not stored in a player&#39;s inventory."),
-    RecipeWithPriceReduction UMETA(ToolTip="The same as &#x60;ItemType.recipe&#x60; but will reduce the price based on whether or not the player owns items in the SubVendor&#39;s Loot table."),
-    Entitlement UMETA(ToolTip="An entitlement is a special item that is stored in a player&#39;s inventory and is fulfilled to the player each time an Inventory Session is created and when the Entitlement is fulfilled to the Player."),
-    DynamicBundle UMETA(ToolTip="Not support at this time."),
+	Unit UMETA(ToolTip="An item that is stored in a player&#39;s inventory."),
+	Recipe UMETA(ToolTip="A Loot with the ItemType receipt will fulfill SubVendor Loot and will not stored in a player&#39;s inventory."),
+	RecipeWithPriceReduction UMETA(ToolTip="The same as &#x60;ItemType.recipe&#x60; but will reduce the price based on whether or not the player owns items in the SubVendor&#39;s Loot table."),
+	Entitlement UMETA(ToolTip="An entitlement is a special item that is stored in a player&#39;s inventory and is fulfilled to the player each time an Inventory Session is created and when the Entitlement is fulfilled to the Player."),
+	DynamicBundle UMETA(ToolTip="Not support at this time."),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_ItemType& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_ItemType& EnumValue);

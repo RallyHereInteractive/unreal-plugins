@@ -22,79 +22,79 @@
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_AcknowledgeBackfillRequest : public FRHAPI_Model
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    /**
-    * @brief Fills this object with data from the passed in JSON
-    *
-    * @param [in] JsonValue Data from the API call.
-    *
-    * @return true if parsing of the JSON data was successful.
-    */
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	/**
+	* @brief Fills this object with data from the passed in JSON
+	*
+	* @param [in] JsonValue Data from the API call.
+	*
+	* @return true if parsing of the JSON data was successful.
+	*/
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
-    /**
-    * @brief Writes the data from this object into the specified JSON Writer stream
-    *
-    * @param [in] Writer JSON Writer stream to push .
-    */
-    void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	/**
+	* @brief Writes the data from this object into the specified JSON Writer stream
+	*
+	* @param [in] Writer JSON Writer stream to push .
+	*/
+	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief The instance ID for this backfill request */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FString InstanceId{  };
-    /** @brief Gets the value of InstanceId */
-    FString& GetInstanceId() { return InstanceId; }
-    /** @brief Gets the value of InstanceId */
-    const FString& GetInstanceId() const { return InstanceId; }
-    /** @brief Sets the value of InstanceId */
-    void SetInstanceId(FString NewValue) { InstanceId = NewValue;  }
+	/** @brief The instance ID for this backfill request */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString InstanceId{  };
+	/** @brief Gets the value of InstanceId */
+	FString& GetInstanceId() { return InstanceId; }
+	/** @brief Gets the value of InstanceId */
+	const FString& GetInstanceId() const { return InstanceId; }
+	/** @brief Sets the value of InstanceId */
+	void SetInstanceId(FString NewValue) { InstanceId = NewValue;  }
 
-    /** @brief Additional extensions to add to the Assignment for the backfill resource associated with the session */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    TMap<FString, FString> Extensions_Optional{  };
-    /** @brief true if Extensions_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool Extensions_IsSet{ false };
-    /** @brief Gets the value of Extensions_Optional, regardless of it having been set */
-    TMap<FString, FString>& GetExtensions() { return Extensions_Optional; }
-    /** @brief Gets the value of Extensions_Optional, regardless of it having been set */
-    const TMap<FString, FString>& GetExtensions() const { return Extensions_Optional; }
-    /** @brief Gets the value of Extensions_Optional, if it has been set, otherwise it returns DefaultValue */
-    const TMap<FString, FString>& GetExtensions(const TMap<FString, FString>& DefaultValue) const { if (Extensions_IsSet) return Extensions_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of Extensions_Optional and returns true if it has been set, otherwise returns false */
-    bool GetExtensions(TMap<FString, FString>& OutValue) const { if (Extensions_IsSet) OutValue = Extensions_Optional; return Extensions_IsSet; }
-    /** @brief Returns a pointer to Extensions_Optional, if it has been set, otherwise returns nullptr */
-    TMap<FString, FString>* GetExtensionsOrNull() { if (Extensions_IsSet) return &Extensions_Optional; return nullptr; }
-    /** @brief Returns a pointer to Extensions_Optional, if it has been set, otherwise returns nullptr */
-    const TMap<FString, FString>* GetExtensionsOrNull() const { if (Extensions_IsSet) return &Extensions_Optional; return nullptr; }
-    /** @brief Sets the value of Extensions_Optional and also sets Extensions_IsSet to true */
-    void SetExtensions(TMap<FString, FString> NewValue) { Extensions_Optional = NewValue; Extensions_IsSet = true; }
-     /** @brief Clears the value of Extensions_Optional and sets Extensions_IsSet to false */
-    void ClearExtensions() { Extensions_IsSet = false; }
+	/** @brief Additional extensions to add to the Assignment for the backfill resource associated with the session */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TMap<FString, FString> Extensions_Optional{  };
+	/** @brief true if Extensions_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Extensions_IsSet{ false };
+	/** @brief Gets the value of Extensions_Optional, regardless of it having been set */
+	TMap<FString, FString>& GetExtensions() { return Extensions_Optional; }
+	/** @brief Gets the value of Extensions_Optional, regardless of it having been set */
+	const TMap<FString, FString>& GetExtensions() const { return Extensions_Optional; }
+	/** @brief Gets the value of Extensions_Optional, if it has been set, otherwise it returns DefaultValue */
+	const TMap<FString, FString>& GetExtensions(const TMap<FString, FString>& DefaultValue) const { if (Extensions_IsSet) return Extensions_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Extensions_Optional and returns true if it has been set, otherwise returns false */
+	bool GetExtensions(TMap<FString, FString>& OutValue) const { if (Extensions_IsSet) OutValue = Extensions_Optional; return Extensions_IsSet; }
+	/** @brief Returns a pointer to Extensions_Optional, if it has been set, otherwise returns nullptr */
+	TMap<FString, FString>* GetExtensionsOrNull() { if (Extensions_IsSet) return &Extensions_Optional; return nullptr; }
+	/** @brief Returns a pointer to Extensions_Optional, if it has been set, otherwise returns nullptr */
+	const TMap<FString, FString>* GetExtensionsOrNull() const { if (Extensions_IsSet) return &Extensions_Optional; return nullptr; }
+	/** @brief Sets the value of Extensions_Optional and also sets Extensions_IsSet to true */
+	void SetExtensions(TMap<FString, FString> NewValue) { Extensions_Optional = NewValue; Extensions_IsSet = true; }
+	 /** @brief Clears the value of Extensions_Optional and sets Extensions_IsSet to false */
+	void ClearExtensions() { Extensions_IsSet = false; }
 
-    /** @brief How to handle backfills that return too many players for a team */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    ERHAPI_TeamOverflowAction OverflowAction_Optional{  };
-    /** @brief true if OverflowAction_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool OverflowAction_IsSet{ false };
-    /** @brief Gets the value of OverflowAction_Optional, regardless of it having been set */
-    ERHAPI_TeamOverflowAction& GetOverflowAction() { return OverflowAction_Optional; }
-    /** @brief Gets the value of OverflowAction_Optional, regardless of it having been set */
-    const ERHAPI_TeamOverflowAction& GetOverflowAction() const { return OverflowAction_Optional; }
-    /** @brief Gets the value of OverflowAction_Optional, if it has been set, otherwise it returns DefaultValue */
-    const ERHAPI_TeamOverflowAction& GetOverflowAction(const ERHAPI_TeamOverflowAction& DefaultValue) const { if (OverflowAction_IsSet) return OverflowAction_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of OverflowAction_Optional and returns true if it has been set, otherwise returns false */
-    bool GetOverflowAction(ERHAPI_TeamOverflowAction& OutValue) const { if (OverflowAction_IsSet) OutValue = OverflowAction_Optional; return OverflowAction_IsSet; }
-    /** @brief Returns a pointer to OverflowAction_Optional, if it has been set, otherwise returns nullptr */
-    ERHAPI_TeamOverflowAction* GetOverflowActionOrNull() { if (OverflowAction_IsSet) return &OverflowAction_Optional; return nullptr; }
-    /** @brief Returns a pointer to OverflowAction_Optional, if it has been set, otherwise returns nullptr */
-    const ERHAPI_TeamOverflowAction* GetOverflowActionOrNull() const { if (OverflowAction_IsSet) return &OverflowAction_Optional; return nullptr; }
-    /** @brief Sets the value of OverflowAction_Optional and also sets OverflowAction_IsSet to true */
-    void SetOverflowAction(ERHAPI_TeamOverflowAction NewValue) { OverflowAction_Optional = NewValue; OverflowAction_IsSet = true; }
-     /** @brief Clears the value of OverflowAction_Optional and sets OverflowAction_IsSet to false */
-    void ClearOverflowAction() { OverflowAction_IsSet = false; }
+	/** @brief How to handle backfills that return too many players for a team */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	ERHAPI_TeamOverflowAction OverflowAction_Optional{  };
+	/** @brief true if OverflowAction_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool OverflowAction_IsSet{ false };
+	/** @brief Gets the value of OverflowAction_Optional, regardless of it having been set */
+	ERHAPI_TeamOverflowAction& GetOverflowAction() { return OverflowAction_Optional; }
+	/** @brief Gets the value of OverflowAction_Optional, regardless of it having been set */
+	const ERHAPI_TeamOverflowAction& GetOverflowAction() const { return OverflowAction_Optional; }
+	/** @brief Gets the value of OverflowAction_Optional, if it has been set, otherwise it returns DefaultValue */
+	const ERHAPI_TeamOverflowAction& GetOverflowAction(const ERHAPI_TeamOverflowAction& DefaultValue) const { if (OverflowAction_IsSet) return OverflowAction_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of OverflowAction_Optional and returns true if it has been set, otherwise returns false */
+	bool GetOverflowAction(ERHAPI_TeamOverflowAction& OutValue) const { if (OverflowAction_IsSet) OutValue = OverflowAction_Optional; return OverflowAction_IsSet; }
+	/** @brief Returns a pointer to OverflowAction_Optional, if it has been set, otherwise returns nullptr */
+	ERHAPI_TeamOverflowAction* GetOverflowActionOrNull() { if (OverflowAction_IsSet) return &OverflowAction_Optional; return nullptr; }
+	/** @brief Returns a pointer to OverflowAction_Optional, if it has been set, otherwise returns nullptr */
+	const ERHAPI_TeamOverflowAction* GetOverflowActionOrNull() const { if (OverflowAction_IsSet) return &OverflowAction_Optional; return nullptr; }
+	/** @brief Sets the value of OverflowAction_Optional and also sets OverflowAction_IsSet to true */
+	void SetOverflowAction(ERHAPI_TeamOverflowAction NewValue) { OverflowAction_Optional = NewValue; OverflowAction_IsSet = true; }
+	 /** @brief Clears the value of OverflowAction_Optional and sets OverflowAction_IsSet to false */
+	void ClearOverflowAction() { OverflowAction_IsSet = false; }
 };
 
 /** @} */

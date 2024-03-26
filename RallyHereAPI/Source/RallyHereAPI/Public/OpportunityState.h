@@ -18,9 +18,9 @@
 UENUM(BlueprintType)
 enum class ERHAPI_OpportunityState : uint8
 {
-    Start UMETA(ToolTip="User started watching the ad"),
-    Complete UMETA(ToolTip="User finished watching the ad"),
-    Abort UMETA(ToolTip="User stopped watching the ad partway through"),
+	Start UMETA(ToolTip="User started watching the ad"),
+	Complete UMETA(ToolTip="User finished watching the ad"),
+	Abort UMETA(ToolTip="User stopped watching the ad partway through"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_OpportunityState& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_OpportunityState& EnumValue);

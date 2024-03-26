@@ -21,60 +21,60 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_LootEntitlement::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("type"));
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(Type));
-    Writer->WriteIdentifierPrefix(TEXT("loot_id"));
-    RallyHereAPI::WriteJsonValue(Writer, LootId);
-    if (RefundLootId_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("refund_loot_id"));
-        RallyHereAPI::WriteJsonValue(Writer, RefundLootId_Optional);
-    }
-    if (ChargebackLootId_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("chargeback_loot_id"));
-        RallyHereAPI::WriteJsonValue(Writer, ChargebackLootId_Optional);
-    }
-    if (ChargebackReversalLootId_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("chargeback_reversal_loot_id"));
-        RallyHereAPI::WriteJsonValue(Writer, ChargebackReversalLootId_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("type"));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Type));
+	Writer->WriteIdentifierPrefix(TEXT("loot_id"));
+	RallyHereAPI::WriteJsonValue(Writer, LootId);
+	if (RefundLootId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("refund_loot_id"));
+		RallyHereAPI::WriteJsonValue(Writer, RefundLootId_Optional);
+	}
+	if (ChargebackLootId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("chargeback_loot_id"));
+		RallyHereAPI::WriteJsonValue(Writer, ChargebackLootId_Optional);
+	}
+	if (ChargebackReversalLootId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("chargeback_reversal_loot_id"));
+		RallyHereAPI::WriteJsonValue(Writer, ChargebackReversalLootId_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_LootEntitlement::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
-    ParseSuccess &= JsonTypeField.IsValid() && !JsonTypeField->IsNull() && TryGetJsonValue(JsonTypeField, Type);
-    const TSharedPtr<FJsonValue> JsonLootIdField = (*Object)->TryGetField(TEXT("loot_id"));
-    ParseSuccess &= JsonLootIdField.IsValid() && !JsonLootIdField->IsNull() && TryGetJsonValue(JsonLootIdField, LootId);
-    const TSharedPtr<FJsonValue> JsonRefundLootIdField = (*Object)->TryGetField(TEXT("refund_loot_id"));
-    if (JsonRefundLootIdField.IsValid() && !JsonRefundLootIdField->IsNull())
-    {
-        RefundLootId_IsSet = TryGetJsonValue(JsonRefundLootIdField, RefundLootId_Optional);
-        ParseSuccess &= RefundLootId_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonChargebackLootIdField = (*Object)->TryGetField(TEXT("chargeback_loot_id"));
-    if (JsonChargebackLootIdField.IsValid() && !JsonChargebackLootIdField->IsNull())
-    {
-        ChargebackLootId_IsSet = TryGetJsonValue(JsonChargebackLootIdField, ChargebackLootId_Optional);
-        ParseSuccess &= ChargebackLootId_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonChargebackReversalLootIdField = (*Object)->TryGetField(TEXT("chargeback_reversal_loot_id"));
-    if (JsonChargebackReversalLootIdField.IsValid() && !JsonChargebackReversalLootIdField->IsNull())
-    {
-        ChargebackReversalLootId_IsSet = TryGetJsonValue(JsonChargebackReversalLootIdField, ChargebackReversalLootId_Optional);
-        ParseSuccess &= ChargebackReversalLootId_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
+	ParseSuccess &= JsonTypeField.IsValid() && !JsonTypeField->IsNull() && TryGetJsonValue(JsonTypeField, Type);
+	const TSharedPtr<FJsonValue> JsonLootIdField = (*Object)->TryGetField(TEXT("loot_id"));
+	ParseSuccess &= JsonLootIdField.IsValid() && !JsonLootIdField->IsNull() && TryGetJsonValue(JsonLootIdField, LootId);
+	const TSharedPtr<FJsonValue> JsonRefundLootIdField = (*Object)->TryGetField(TEXT("refund_loot_id"));
+	if (JsonRefundLootIdField.IsValid() && !JsonRefundLootIdField->IsNull())
+	{
+		RefundLootId_IsSet = TryGetJsonValue(JsonRefundLootIdField, RefundLootId_Optional);
+		ParseSuccess &= RefundLootId_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonChargebackLootIdField = (*Object)->TryGetField(TEXT("chargeback_loot_id"));
+	if (JsonChargebackLootIdField.IsValid() && !JsonChargebackLootIdField->IsNull())
+	{
+		ChargebackLootId_IsSet = TryGetJsonValue(JsonChargebackLootIdField, ChargebackLootId_Optional);
+		ParseSuccess &= ChargebackLootId_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonChargebackReversalLootIdField = (*Object)->TryGetField(TEXT("chargeback_reversal_loot_id"));
+	if (JsonChargebackReversalLootIdField.IsValid() && !JsonChargebackReversalLootIdField->IsNull())
+	{
+		ChargebackReversalLootId_IsSet = TryGetJsonValue(JsonChargebackReversalLootIdField, ChargebackReversalLootId_Optional);
+		ParseSuccess &= ChargebackReversalLootId_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

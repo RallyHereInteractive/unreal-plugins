@@ -21,94 +21,94 @@
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_QueueConfigV2 : public FRHAPI_Model
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    /**
-    * @brief Fills this object with data from the passed in JSON
-    *
-    * @param [in] JsonValue Data from the API call.
-    *
-    * @return true if parsing of the JSON data was successful.
-    */
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	/**
+	* @brief Fills this object with data from the passed in JSON
+	*
+	* @param [in] JsonValue Data from the API call.
+	*
+	* @return true if parsing of the JSON data was successful.
+	*/
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
-    /**
-    * @brief Writes the data from this object into the specified JSON Writer stream
-    *
-    * @param [in] Writer JSON Writer stream to push .
-    */
-    void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	/**
+	* @brief Writes the data from this object into the specified JSON Writer stream
+	*
+	* @param [in] Writer JSON Writer stream to push .
+	*/
+	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief ID to uniquely identify this queue */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FString QueueId{  };
-    /** @brief Gets the value of QueueId */
-    FString& GetQueueId() { return QueueId; }
-    /** @brief Gets the value of QueueId */
-    const FString& GetQueueId() const { return QueueId; }
-    /** @brief Sets the value of QueueId */
-    void SetQueueId(FString NewValue) { QueueId = NewValue;  }
+	/** @brief ID to uniquely identify this queue */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString QueueId{  };
+	/** @brief Gets the value of QueueId */
+	FString& GetQueueId() { return QueueId; }
+	/** @brief Gets the value of QueueId */
+	const FString& GetQueueId() const { return QueueId; }
+	/** @brief Sets the value of QueueId */
+	void SetQueueId(FString NewValue) { QueueId = NewValue;  }
 
-    /** @brief Flag for whether or not the queue is active, and can be joined or sessions created from it */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool Active{ false };
-    /** @brief Gets the value of Active */
-    bool& GetActive() { return Active; }
-    /** @brief Gets the value of Active */
-    const bool& GetActive() const { return Active; }
-    /** @brief Sets the value of Active */
-    void SetActive(bool NewValue) { Active = NewValue;  }
-    /** @brief Returns true if Active matches the default value */
-    bool IsActiveDefaultValue() const { return Active == false; }
-    /** @brief Sets the value of Active to its default  */
-    void SetActiveToDefault() { Active = false;  }
+	/** @brief Flag for whether or not the queue is active, and can be joined or sessions created from it */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Active{ false };
+	/** @brief Gets the value of Active */
+	bool& GetActive() { return Active; }
+	/** @brief Gets the value of Active */
+	const bool& GetActive() const { return Active; }
+	/** @brief Sets the value of Active */
+	void SetActive(bool NewValue) { Active = NewValue;  }
+	/** @brief Returns true if Active matches the default value */
+	bool IsActiveDefaultValue() const { return Active == false; }
+	/** @brief Sets the value of Active to its default  */
+	void SetActiveToDefault() { Active = false;  }
 
-    /** @brief The maximum size of a group that can join this queue */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    int32 MaxQueueGroupSize{ 0 };
-    /** @brief Gets the value of MaxQueueGroupSize */
-    int32& GetMaxQueueGroupSize() { return MaxQueueGroupSize; }
-    /** @brief Gets the value of MaxQueueGroupSize */
-    const int32& GetMaxQueueGroupSize() const { return MaxQueueGroupSize; }
-    /** @brief Sets the value of MaxQueueGroupSize */
-    void SetMaxQueueGroupSize(int32 NewValue) { MaxQueueGroupSize = NewValue;  }
-    /** @brief Returns true if MaxQueueGroupSize matches the default value */
-    bool IsMaxQueueGroupSizeDefaultValue() const { return MaxQueueGroupSize == 0; }
-    /** @brief Sets the value of MaxQueueGroupSize to its default  */
-    void SetMaxQueueGroupSizeToDefault() { MaxQueueGroupSize = 0;  }
+	/** @brief The maximum size of a group that can join this queue */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 MaxQueueGroupSize{ 0 };
+	/** @brief Gets the value of MaxQueueGroupSize */
+	int32& GetMaxQueueGroupSize() { return MaxQueueGroupSize; }
+	/** @brief Gets the value of MaxQueueGroupSize */
+	const int32& GetMaxQueueGroupSize() const { return MaxQueueGroupSize; }
+	/** @brief Sets the value of MaxQueueGroupSize */
+	void SetMaxQueueGroupSize(int32 NewValue) { MaxQueueGroupSize = NewValue;  }
+	/** @brief Returns true if MaxQueueGroupSize matches the default value */
+	bool IsMaxQueueGroupSizeDefaultValue() const { return MaxQueueGroupSize == 0; }
+	/** @brief Sets the value of MaxQueueGroupSize to its default  */
+	void SetMaxQueueGroupSizeToDefault() { MaxQueueGroupSize = 0;  }
 
-    /** @brief ID for which group of matchmaking templates/rules will be used when joining this queue */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FGuid MatchMakingTemplateGroupId{  };
-    /** @brief Gets the value of MatchMakingTemplateGroupId */
-    FGuid& GetMatchMakingTemplateGroupId() { return MatchMakingTemplateGroupId; }
-    /** @brief Gets the value of MatchMakingTemplateGroupId */
-    const FGuid& GetMatchMakingTemplateGroupId() const { return MatchMakingTemplateGroupId; }
-    /** @brief Sets the value of MatchMakingTemplateGroupId */
-    void SetMatchMakingTemplateGroupId(FGuid NewValue) { MatchMakingTemplateGroupId = NewValue;  }
+	/** @brief ID for which group of matchmaking templates/rules will be used when joining this queue */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FGuid MatchMakingTemplateGroupId{  };
+	/** @brief Gets the value of MatchMakingTemplateGroupId */
+	FGuid& GetMatchMakingTemplateGroupId() { return MatchMakingTemplateGroupId; }
+	/** @brief Gets the value of MatchMakingTemplateGroupId */
+	const FGuid& GetMatchMakingTemplateGroupId() const { return MatchMakingTemplateGroupId; }
+	/** @brief Sets the value of MatchMakingTemplateGroupId */
+	void SetMatchMakingTemplateGroupId(FGuid NewValue) { MatchMakingTemplateGroupId = NewValue;  }
 
-    /** @brief Legacy config to help migrate clients */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    TMap<FString, FString> LegacyConfig_Optional{  };
-    /** @brief true if LegacyConfig_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool LegacyConfig_IsSet{ false };
-    /** @brief Gets the value of LegacyConfig_Optional, regardless of it having been set */
-    TMap<FString, FString>& GetLegacyConfig() { return LegacyConfig_Optional; }
-    /** @brief Gets the value of LegacyConfig_Optional, regardless of it having been set */
-    const TMap<FString, FString>& GetLegacyConfig() const { return LegacyConfig_Optional; }
-    /** @brief Gets the value of LegacyConfig_Optional, if it has been set, otherwise it returns DefaultValue */
-    const TMap<FString, FString>& GetLegacyConfig(const TMap<FString, FString>& DefaultValue) const { if (LegacyConfig_IsSet) return LegacyConfig_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of LegacyConfig_Optional and returns true if it has been set, otherwise returns false */
-    bool GetLegacyConfig(TMap<FString, FString>& OutValue) const { if (LegacyConfig_IsSet) OutValue = LegacyConfig_Optional; return LegacyConfig_IsSet; }
-    /** @brief Returns a pointer to LegacyConfig_Optional, if it has been set, otherwise returns nullptr */
-    TMap<FString, FString>* GetLegacyConfigOrNull() { if (LegacyConfig_IsSet) return &LegacyConfig_Optional; return nullptr; }
-    /** @brief Returns a pointer to LegacyConfig_Optional, if it has been set, otherwise returns nullptr */
-    const TMap<FString, FString>* GetLegacyConfigOrNull() const { if (LegacyConfig_IsSet) return &LegacyConfig_Optional; return nullptr; }
-    /** @brief Sets the value of LegacyConfig_Optional and also sets LegacyConfig_IsSet to true */
-    void SetLegacyConfig(TMap<FString, FString> NewValue) { LegacyConfig_Optional = NewValue; LegacyConfig_IsSet = true; }
-     /** @brief Clears the value of LegacyConfig_Optional and sets LegacyConfig_IsSet to false */
-    void ClearLegacyConfig() { LegacyConfig_IsSet = false; }
+	/** @brief Legacy config to help migrate clients */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TMap<FString, FString> LegacyConfig_Optional{  };
+	/** @brief true if LegacyConfig_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool LegacyConfig_IsSet{ false };
+	/** @brief Gets the value of LegacyConfig_Optional, regardless of it having been set */
+	TMap<FString, FString>& GetLegacyConfig() { return LegacyConfig_Optional; }
+	/** @brief Gets the value of LegacyConfig_Optional, regardless of it having been set */
+	const TMap<FString, FString>& GetLegacyConfig() const { return LegacyConfig_Optional; }
+	/** @brief Gets the value of LegacyConfig_Optional, if it has been set, otherwise it returns DefaultValue */
+	const TMap<FString, FString>& GetLegacyConfig(const TMap<FString, FString>& DefaultValue) const { if (LegacyConfig_IsSet) return LegacyConfig_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of LegacyConfig_Optional and returns true if it has been set, otherwise returns false */
+	bool GetLegacyConfig(TMap<FString, FString>& OutValue) const { if (LegacyConfig_IsSet) OutValue = LegacyConfig_Optional; return LegacyConfig_IsSet; }
+	/** @brief Returns a pointer to LegacyConfig_Optional, if it has been set, otherwise returns nullptr */
+	TMap<FString, FString>* GetLegacyConfigOrNull() { if (LegacyConfig_IsSet) return &LegacyConfig_Optional; return nullptr; }
+	/** @brief Returns a pointer to LegacyConfig_Optional, if it has been set, otherwise returns nullptr */
+	const TMap<FString, FString>* GetLegacyConfigOrNull() const { if (LegacyConfig_IsSet) return &LegacyConfig_Optional; return nullptr; }
+	/** @brief Sets the value of LegacyConfig_Optional and also sets LegacyConfig_IsSet to true */
+	void SetLegacyConfig(TMap<FString, FString> NewValue) { LegacyConfig_Optional = NewValue; LegacyConfig_IsSet = true; }
+	 /** @brief Clears the value of LegacyConfig_Optional and sets LegacyConfig_IsSet to false */
+	void ClearLegacyConfig() { LegacyConfig_IsSet = false; }
 };
 
 /** @} */

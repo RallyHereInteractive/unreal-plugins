@@ -13,9 +13,9 @@ namespace RallyHereAPI
 {
 
 FAuthContext::FAuthContext(FAuthAPI &LoginAPI_, FString ClientId, FString ClientSecret) : LoginAPI{ &LoginAPI_ },
-    ClientId{std::move(ClientId)}, ClientSecret{std::move(ClientSecret)}, bIsRefreshing{}, LoginComplete{}, LoginResult{}, TokenResponse{}
+	ClientId{std::move(ClientId)}, ClientSecret{std::move(ClientSecret)}, bIsRefreshing{}, LoginComplete{}, LoginResult{}, TokenResponse{}
 {
-    UpdateBasicAuthValue();
+	UpdateBasicAuthValue();
 }
 
 FAuthContext::FAuthContext(FAuthAPI& LoginAPI_) : LoginAPI{ &LoginAPI_ }, bIsRefreshing{}, LoginComplete{}, LoginResult{}, TokenResponse{}
@@ -24,288 +24,288 @@ FAuthContext::FAuthContext(FAuthAPI& LoginAPI_) : LoginAPI{ &LoginAPI_ }, bIsRef
 
 const TOptional<FRHAPI_LoginResult>& FAuthContext::GetLoginResult() const
 {
-    return LoginResult;
+	return LoginResult;
 }
 
 const TOptional<FRHAPI_TokenResponse>& FAuthContext::GetTokenResponse() const
 {
-    return TokenResponse;
+	return TokenResponse;
 }
 
 bool FAuthContext::IsLoggedIn() const
 {
-    if (LoginResult.IsSet())
-    {
-        return LoginResult->AccessToken_IsSet;
-    }
-    else if (TokenResponse.IsSet())
-    {
-        return true;
-    }
-    return false;
+	if (LoginResult.IsSet())
+	{
+		return LoginResult->AccessToken_IsSet;
+	}
+	else if (TokenResponse.IsSet())
+	{
+		return true;
+	}
+	return false;
 }
 
 FString FAuthContext::GetAccessToken() const
 {
-    if (LoginResult.IsSet())
-    {
-        return LoginResult->GetAccessToken(FString());
-    }
-    else if (TokenResponse.IsSet())
-    {
-        return TokenResponse->GetAccessToken();
-    }
-    return FString();
+	if (LoginResult.IsSet())
+	{
+		return LoginResult->GetAccessToken(FString());
+	}
+	else if (TokenResponse.IsSet())
+	{
+		return TokenResponse->GetAccessToken();
+	}
+	return FString();
 }
 
 FString FAuthContext::GetRefreshToken() const
 {
-    if (LoginResult.IsSet())
-    {
-        return LoginResult->GetRefreshToken(FString());
-    }
-    else if (TokenResponse.IsSet())
-    {
-        return TokenResponse->GetRefreshToken();
-    }
-    return FString();
+	if (LoginResult.IsSet())
+	{
+		return LoginResult->GetRefreshToken(FString());
+	}
+	else if (TokenResponse.IsSet())
+	{
+		return TokenResponse->GetRefreshToken();
+	}
+	return FString();
 }
 
 void FAuthContext::ProcessLogin(const FResponse_Login& LoginResponse_)
 {
-    bIsRefreshing = false;
-    const bool bSuccess = LoginResponse_.IsSuccessful() && LoginResponse_.GetHttpResponseCode() == EHttpResponseCodes::Type::Ok;
-    if (!bSuccess)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastLoginFailed, FColor::Purple);
-        LoginComplete.Broadcast(false);
-        return;
-    }
+	bIsRefreshing = false;
+	const bool bSuccess = LoginResponse_.IsSuccessful() && LoginResponse_.GetHttpResponseCode() == EHttpResponseCodes::Type::Ok;
+	if (!bSuccess)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastLoginFailed, FColor::Purple);
+		LoginComplete.Broadcast(false);
+		return;
+	}
 
-    const auto PreviousLoginResult = LoginResult;
-    LoginResult = LoginResponse_.Content;
+	const auto PreviousLoginResult = LoginResult;
+	LoginResult = LoginResponse_.Content;
 
-    // clear out any token response
-    TokenResponse.Reset();
+	// clear out any token response
+	TokenResponse.Reset();
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastLoginComplete, FColor::Purple);
-        LoginComplete.Broadcast(true);
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastLoginComplete, FColor::Purple);
+		LoginComplete.Broadcast(true);
+	}
 
-    if (!IsSameUser(PreviousLoginResult, LoginResult))
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastLoginUserChanged, FColor::Purple);
-        LoginUserChanged.Broadcast();
-    }
+	if (!IsSameUser(PreviousLoginResult, LoginResult))
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastLoginUserChanged, FColor::Purple);
+		LoginUserChanged.Broadcast();
+	}
 }
 
 void FAuthContext::ProcessLoginToken(const FResponse_Token& LoginResponse_)
 {
-    bIsRefreshing = false;
-    const bool bSuccess = LoginResponse_.IsSuccessful() && LoginResponse_.GetHttpResponseCode() == EHttpResponseCodes::Type::Ok;
-    if (!bSuccess)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastLoginFailed, FColor::Purple);
-        LoginComplete.Broadcast(false);
-        return;
-    }
+	bIsRefreshing = false;
+	const bool bSuccess = LoginResponse_.IsSuccessful() && LoginResponse_.GetHttpResponseCode() == EHttpResponseCodes::Type::Ok;
+	if (!bSuccess)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastLoginFailed, FColor::Purple);
+		LoginComplete.Broadcast(false);
+		return;
+	}
 
-    TokenResponse = LoginResponse_.Content;
+	TokenResponse = LoginResponse_.Content;
 
-    // clear out any login result
-    LoginResult.Reset();
+	// clear out any login result
+	LoginResult.Reset();
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastLoginComplete, FColor::Purple);
-        LoginComplete.Broadcast(true);
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastLoginComplete, FColor::Purple);
+		LoginComplete.Broadcast(true);
+	}
 }
 
 
 void FAuthContext::ProcessLoginRefresh(const FResponse_Login& LoginResponse_)
 {
-    const bool bSuccess = LoginResponse_.IsSuccessful() && LoginResponse_.GetHttpResponseCode() == EHttpResponseCodes::Type::Ok;
+	const bool bSuccess = LoginResponse_.IsSuccessful() && LoginResponse_.GetHttpResponseCode() == EHttpResponseCodes::Type::Ok;
 
-    // if refresh was successful, use normal login handler
-    if (bSuccess)
-    {
-        ProcessLogin(LoginResponse_);
-        return;
-    }
+	// if refresh was successful, use normal login handler
+	if (bSuccess)
+	{
+		ProcessLogin(LoginResponse_);
+		return;
+	}
 
-    // clear refreshing flag for consistency
-    bIsRefreshing = false;
-    OnRefreshTokenExpired();
+	// clear refreshing flag for consistency
+	bIsRefreshing = false;
+	OnRefreshTokenExpired();
 }
 
 void FAuthContext::OnRefreshTokenExpired()
 {
-    if (bIsRefreshing)
-    {
-        UE_LOG(LogRallyHereAPI, Verbose, TEXT("FAuthContext::OnRefreshTokenExpired skipping refresh while already in progress"));
-        return;
-    }
+	if (bIsRefreshing)
+	{
+		UE_LOG(LogRallyHereAPI, Verbose, TEXT("FAuthContext::OnRefreshTokenExpired skipping refresh while already in progress"));
+		return;
+	}
 
-    // set refreshing flag for consistency, to block multiple refresh attempts
-    bIsRefreshing = true;
+	// set refreshing flag for consistency, to block multiple refresh attempts
+	bIsRefreshing = true;
 
-    // if refresh was not successful, dispatch delegate to attempt to relogin
-    if (RefreshTokenExpired.IsBound())
-    {
-        UE_LOG(LogRallyHereAPI, Log, TEXT("FAuthContext::OnRefreshTokenExpired attempting to resolve expired or invalid refresh token via delegate"));
+	// if refresh was not successful, dispatch delegate to attempt to relogin
+	if (RefreshTokenExpired.IsBound())
+	{
+		UE_LOG(LogRallyHereAPI, Log, TEXT("FAuthContext::OnRefreshTokenExpired attempting to resolve expired or invalid refresh token via delegate"));
 
-        // fire the token expiration delegate if it is bound.  If we are not logged in when its delegate is completed, clear the auth context to log out
-        TWeakPtr<FAuthContext> WeakSharedThis = AsShared();
-        RefreshTokenExpired.Execute(FSimpleDelegate::CreateLambda([WeakSharedThis]() {
-            auto StrongThis = WeakSharedThis.Pin();
-            if (StrongThis.IsValid())
-            {
-                // if we are still in the refreshing state (or if we now are explicitly logged out), we did not successfully relogin
-                if (StrongThis->bIsRefreshing || !StrongThis->IsLoggedIn())
-                {
-                    UE_LOG(LogRallyHereAPI, Warning, TEXT("FAuthContext::OnRefreshTokenExpired was unable to resolve expired or invalid refresh token, clearing auth context"));
-                    // clear refreshing state, and auth context, which will trigger logout callback
-                    StrongThis->bIsRefreshing = false;
-                    StrongThis->ClearAuthContext(true);
-                }
-                else
-                {
-                    UE_LOG(LogRallyHereAPI, Log, TEXT("FAuthContext::OnRefreshTokenExpired successfully resolved expired refresh token"));
-                }
-            }
-        }));
-    }
-    else
-    {
-        UE_LOG(LogRallyHereAPI, Log, TEXT("FAuthContext::OnRefreshTokenExpired does not have a delegate bound, clearing auth context"));
+		// fire the token expiration delegate if it is bound.  If we are not logged in when its delegate is completed, clear the auth context to log out
+		TWeakPtr<FAuthContext> WeakSharedThis = AsShared();
+		RefreshTokenExpired.Execute(FSimpleDelegate::CreateLambda([WeakSharedThis]() {
+			auto StrongThis = WeakSharedThis.Pin();
+			if (StrongThis.IsValid())
+			{
+				// if we are still in the refreshing state (or if we now are explicitly logged out), we did not successfully relogin
+				if (StrongThis->bIsRefreshing || !StrongThis->IsLoggedIn())
+				{
+					UE_LOG(LogRallyHereAPI, Warning, TEXT("FAuthContext::OnRefreshTokenExpired was unable to resolve expired or invalid refresh token, clearing auth context"));
+					// clear refreshing state, and auth context, which will trigger logout callback
+					StrongThis->bIsRefreshing = false;
+					StrongThis->ClearAuthContext(true);
+				}
+				else
+				{
+					UE_LOG(LogRallyHereAPI, Log, TEXT("FAuthContext::OnRefreshTokenExpired successfully resolved expired refresh token"));
+				}
+			}
+		}));
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Log, TEXT("FAuthContext::OnRefreshTokenExpired does not have a delegate bound, clearing auth context"));
 
-        // no handler is bound for when the refresh token expires, so clear the auth context to log out
-        bIsRefreshing = false;
-        ClearAuthContext(true);
-    }
+		// no handler is bound for when the refresh token expires, so clear the auth context to log out
+		bIsRefreshing = false;
+		ClearAuthContext(true);
+	}
 }
 
 bool FAuthContext::IsSameUser(const TOptional<FRHAPI_LoginResult>& A, const TOptional<FRHAPI_LoginResult>& B)
 {
-    if (A.IsSet() != B.IsSet())
-    {
-        return false;
-    }
+	if (A.IsSet() != B.IsSet())
+	{
+		return false;
+	}
 
-    if (!A.IsSet())
-    {
-        return true;
-    }
+	if (!A.IsSet())
+	{
+		return true;
+	}
 
-    return A->ActivePlayerUuid_Optional == B->ActivePlayerUuid_Optional && A->GetPersonId() == B->GetPersonId();
+	return A->ActivePlayerUuid_Optional == B->ActivePlayerUuid_Optional && A->GetPersonId() == B->GetPersonId();
 }
 
 bool FAuthContext::Refresh()
 {
-    if (bIsRefreshing)
-    {
-        UE_LOG(LogRallyHereAPI, Verbose, TEXT("FAuthContext::Refresh skipping refresh while already in progress"));
-        return true; // We will handle their refresh request with the already pending one
-    }
+	if (bIsRefreshing)
+	{
+		UE_LOG(LogRallyHereAPI, Verbose, TEXT("FAuthContext::Refresh skipping refresh while already in progress"));
+		return true; // We will handle their refresh request with the already pending one
+	}
 
-    auto refreshToken = GetRefreshToken();
-    if (refreshToken.IsEmpty())
-    {
-        UE_LOG(LogRallyHereAPI, Verbose, TEXT("FAuthContext::Refresh No token to refresh with"));
+	auto refreshToken = GetRefreshToken();
+	if (refreshToken.IsEmpty())
+	{
+		UE_LOG(LogRallyHereAPI, Verbose, TEXT("FAuthContext::Refresh No token to refresh with"));
 
-        // Call the refresh token expiration handler, to do the refresh token expiration logic and attempt a full new login if possible.
-        // This is primarily for cases where a refresh token was not requested during login
-        OnRefreshTokenExpired();
-        return false;
-    }
+		// Call the refresh token expiration handler, to do the refresh token expiration logic and attempt a full new login if possible.
+		// This is primarily for cases where a refresh token was not requested during login
+		OnRefreshTokenExpired();
+		return false;
+	}
 
-    FDelegate_Login Delegate;
-    Delegate.BindSP(AsShared(), &FAuthContext::ProcessLoginRefresh);
-    FRequest_Login Request;
-    Request.AuthContext = SharedThis(this);
-    Request.LoginRequestV1.SetIncludeRefresh(true);
-    Request.LoginRequestV1.SetGrantType(ERHAPI_GrantType::Refresh);
-    Request.LoginRequestV1.SetPortalAccessToken(std::move(refreshToken));
-    auto submittedRequest = LoginAPI->Login(Request, std::move(Delegate));
-    bIsRefreshing = submittedRequest != nullptr;
-    UE_LOG(LogRallyHereAPI, Verbose, TEXT("FAuthContext::Refresh Submitted: %s"), bIsRefreshing ? TEXT("Yes") : TEXT("No"));
-    return bIsRefreshing;
+	FDelegate_Login Delegate;
+	Delegate.BindSP(AsShared(), &FAuthContext::ProcessLoginRefresh);
+	FRequest_Login Request;
+	Request.AuthContext = SharedThis(this);
+	Request.LoginRequestV1.SetIncludeRefresh(true);
+	Request.LoginRequestV1.SetGrantType(ERHAPI_GrantType::Refresh);
+	Request.LoginRequestV1.SetPortalAccessToken(std::move(refreshToken));
+	auto submittedRequest = LoginAPI->Login(Request, std::move(Delegate));
+	bIsRefreshing = submittedRequest != nullptr;
+	UE_LOG(LogRallyHereAPI, Verbose, TEXT("FAuthContext::Refresh Submitted: %s"), bIsRefreshing ? TEXT("Yes") : TEXT("No"));
+	return bIsRefreshing;
 }
 
 void FAuthContext::ClearAuthContext(bool bRefreshTokenExpired)
 {
-    bIsRefreshing = false;
-    LoginResult.Reset();
-    TokenResponse.Reset();
+	bIsRefreshing = false;
+	LoginResult.Reset();
+	TokenResponse.Reset();
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastLogout, FColor::Purple);
-        Logout.Broadcast(bRefreshTokenExpired);
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastLogout, FColor::Purple);
+		Logout.Broadcast(bRefreshTokenExpired);
+	}
 }
 
 void FAuthContext::SetClientId(const FString& InClientId)
 {
-    ClientId = InClientId;
-    UpdateBasicAuthValue();
+	ClientId = InClientId;
+	UpdateBasicAuthValue();
 }
 
 void FAuthContext::SetClientSecret(const FString& InClientSecret)
 {
-    ClientSecret = InClientSecret;
-    UpdateBasicAuthValue();
+	ClientSecret = InClientSecret;
+	UpdateBasicAuthValue();
 }
 
 bool FAuthContext::AddClientCredentials(const FHttpRequestRef& HttpRequest) const
 {
-    if (BasicAuthValue.IsSet())
-    {
-        HttpRequest->SetHeader(TEXT("Authorization"), *BasicAuthValue);
-    }
+	if (BasicAuthValue.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("Authorization"), *BasicAuthValue);
+	}
 
-    return true;
+	return true;
 }
 
 bool FAuthContext::AddClientCredentials(const FHttpRequestPtr& HttpRequest) const
 {
-    if (BasicAuthValue.IsSet())
-    {
-        HttpRequest->SetHeader(TEXT("Authorization"), *BasicAuthValue);
-    }
+	if (BasicAuthValue.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("Authorization"), *BasicAuthValue);
+	}
 
-    return true;
+	return true;
 }
 
 bool FAuthContext::AddBearerToken(const FHttpRequestRef& HttpRequest) const
 {
-    if (!IsLoggedIn())
-    {
-        return false;
-    }
-    HttpRequest->SetHeader(TEXT("Authorization"), TEXT("Bearer ") + GetAccessToken());
-    return true;
+	if (!IsLoggedIn())
+	{
+		return false;
+	}
+	HttpRequest->SetHeader(TEXT("Authorization"), TEXT("Bearer ") + GetAccessToken());
+	return true;
 }
 
 bool FAuthContext::AddBearerToken(const FHttpRequestPtr& HttpRequest) const
 {
-    if (!IsLoggedIn())
-    {
-        return false;
-    }
-    HttpRequest->SetHeader(TEXT("Authorization"), TEXT("Bearer ") + GetAccessToken());
-    return true;
+	if (!IsLoggedIn())
+	{
+		return false;
+	}
+	HttpRequest->SetHeader(TEXT("Authorization"), TEXT("Bearer ") + GetAccessToken());
+	return true;
 }
 
 void FAuthContext::UpdateBasicAuthValue()
 {
-    if (ClientId.IsSet() && !ClientId->IsEmpty() && ClientSecret.IsSet() && !ClientSecret->IsEmpty())
-    {
-        BasicAuthValue = TEXT("Basic ") + Base64UrlEncode(*ClientId + TEXT(":") + *ClientSecret);
-    }
-    else
-    {
-        BasicAuthValue.Reset();
-    }
+	if (ClientId.IsSet() && !ClientId->IsEmpty() && ClientSecret.IsSet() && !ClientSecret->IsEmpty())
+	{
+		BasicAuthValue = TEXT("Basic ") + Base64UrlEncode(*ClientId + TEXT(":") + *ClientSecret);
+	}
+	else
+	{
+		BasicAuthValue.Reset();
+	}
 }
 }

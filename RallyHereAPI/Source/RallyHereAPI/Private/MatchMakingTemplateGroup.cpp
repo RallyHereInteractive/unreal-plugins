@@ -21,38 +21,38 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_MatchMakingTemplateGroup::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("template_group_id"));
-    RallyHereAPI::WriteJsonValue(Writer, TemplateGroupId);
-    Writer->WriteIdentifierPrefix(TEXT("template_options"));
-    RallyHereAPI::WriteJsonValue(Writer, TemplateOptions);
-    if (RequiredItemIds_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("required_item_ids"));
-        RallyHereAPI::WriteJsonValue(Writer, RequiredItemIds_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("template_group_id"));
+	RallyHereAPI::WriteJsonValue(Writer, TemplateGroupId);
+	Writer->WriteIdentifierPrefix(TEXT("template_options"));
+	RallyHereAPI::WriteJsonValue(Writer, TemplateOptions);
+	if (RequiredItemIds_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("required_item_ids"));
+		RallyHereAPI::WriteJsonValue(Writer, RequiredItemIds_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_MatchMakingTemplateGroup::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonTemplateGroupIdField = (*Object)->TryGetField(TEXT("template_group_id"));
-    ParseSuccess &= JsonTemplateGroupIdField.IsValid() && !JsonTemplateGroupIdField->IsNull() && TryGetJsonValue(JsonTemplateGroupIdField, TemplateGroupId);
-    const TSharedPtr<FJsonValue> JsonTemplateOptionsField = (*Object)->TryGetField(TEXT("template_options"));
-    ParseSuccess &= JsonTemplateOptionsField.IsValid() && !JsonTemplateOptionsField->IsNull() && TryGetJsonValue(JsonTemplateOptionsField, TemplateOptions);
-    const TSharedPtr<FJsonValue> JsonRequiredItemIdsField = (*Object)->TryGetField(TEXT("required_item_ids"));
-    if (JsonRequiredItemIdsField.IsValid() && !JsonRequiredItemIdsField->IsNull())
-    {
-        RequiredItemIds_IsSet = TryGetJsonValue(JsonRequiredItemIdsField, RequiredItemIds_Optional);
-        ParseSuccess &= RequiredItemIds_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonTemplateGroupIdField = (*Object)->TryGetField(TEXT("template_group_id"));
+	ParseSuccess &= JsonTemplateGroupIdField.IsValid() && !JsonTemplateGroupIdField->IsNull() && TryGetJsonValue(JsonTemplateGroupIdField, TemplateGroupId);
+	const TSharedPtr<FJsonValue> JsonTemplateOptionsField = (*Object)->TryGetField(TEXT("template_options"));
+	ParseSuccess &= JsonTemplateOptionsField.IsValid() && !JsonTemplateOptionsField->IsNull() && TryGetJsonValue(JsonTemplateOptionsField, TemplateOptions);
+	const TSharedPtr<FJsonValue> JsonRequiredItemIdsField = (*Object)->TryGetField(TEXT("required_item_ids"));
+	if (JsonRequiredItemIdsField.IsValid() && !JsonRequiredItemIdsField->IsNull())
+	{
+		RequiredItemIds_IsSet = TryGetJsonValue(JsonRequiredItemIdsField, RequiredItemIds_Optional);
+		ParseSuccess &= RequiredItemIds_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

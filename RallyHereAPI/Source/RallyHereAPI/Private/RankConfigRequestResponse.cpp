@@ -21,23 +21,23 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_RankConfigRequestResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("rank_configs"));
-    RallyHereAPI::WriteJsonValue(Writer, RankConfigs);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("rank_configs"));
+	RallyHereAPI::WriteJsonValue(Writer, RankConfigs);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_RankConfigRequestResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonRankConfigsField = (*Object)->TryGetField(TEXT("rank_configs"));
-    ParseSuccess &= JsonRankConfigsField.IsValid() && !JsonRankConfigsField->IsNull() && TryGetJsonValue(JsonRankConfigsField, RankConfigs);
+	const TSharedPtr<FJsonValue> JsonRankConfigsField = (*Object)->TryGetField(TEXT("rank_configs"));
+	ParseSuccess &= JsonRankConfigsField.IsValid() && !JsonRankConfigsField->IsNull() && TryGetJsonValue(JsonRankConfigsField, RankConfigs);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

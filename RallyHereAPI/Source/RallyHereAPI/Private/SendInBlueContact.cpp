@@ -21,78 +21,78 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_SendInBlueContact::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("email"));
-    RallyHereAPI::WriteJsonValue(Writer, Email);
-    if (Attributes_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("attributes"));
-        RallyHereAPI::WriteJsonValue(Writer, Attributes_Optional);
-    }
-    if (EmailBlacklisted_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("emailBlacklisted"));
-        RallyHereAPI::WriteJsonValue(Writer, EmailBlacklisted_Optional);
-    }
-    if (ListIds_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("listIds"));
-        RallyHereAPI::WriteJsonValue(Writer, ListIds_Optional);
-    }
-    if (UnlinkListIds_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("unlinkListIds"));
-        RallyHereAPI::WriteJsonValue(Writer, UnlinkListIds_Optional);
-    }
-    if (UpdateEnabled_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("updateEnabled"));
-        RallyHereAPI::WriteJsonValue(Writer, UpdateEnabled_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("email"));
+	RallyHereAPI::WriteJsonValue(Writer, Email);
+	if (Attributes_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("attributes"));
+		RallyHereAPI::WriteJsonValue(Writer, Attributes_Optional);
+	}
+	if (EmailBlacklisted_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("emailBlacklisted"));
+		RallyHereAPI::WriteJsonValue(Writer, EmailBlacklisted_Optional);
+	}
+	if (ListIds_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("listIds"));
+		RallyHereAPI::WriteJsonValue(Writer, ListIds_Optional);
+	}
+	if (UnlinkListIds_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("unlinkListIds"));
+		RallyHereAPI::WriteJsonValue(Writer, UnlinkListIds_Optional);
+	}
+	if (UpdateEnabled_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("updateEnabled"));
+		RallyHereAPI::WriteJsonValue(Writer, UpdateEnabled_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_SendInBlueContact::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonEmailField = (*Object)->TryGetField(TEXT("email"));
-    ParseSuccess &= JsonEmailField.IsValid() && !JsonEmailField->IsNull() && TryGetJsonValue(JsonEmailField, Email);
-    const TSharedPtr<FJsonValue> JsonAttributesField = (*Object)->TryGetField(TEXT("attributes"));
-    if (JsonAttributesField.IsValid() && !JsonAttributesField->IsNull())
-    {
-        Attributes_IsSet = TryGetJsonValue(JsonAttributesField, Attributes_Optional);
-        ParseSuccess &= Attributes_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonEmailBlacklistedField = (*Object)->TryGetField(TEXT("emailBlacklisted"));
-    if (JsonEmailBlacklistedField.IsValid() && !JsonEmailBlacklistedField->IsNull())
-    {
-        EmailBlacklisted_IsSet = TryGetJsonValue(JsonEmailBlacklistedField, EmailBlacklisted_Optional);
-        ParseSuccess &= EmailBlacklisted_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonListIdsField = (*Object)->TryGetField(TEXT("listIds"));
-    if (JsonListIdsField.IsValid() && !JsonListIdsField->IsNull())
-    {
-        ListIds_IsSet = TryGetJsonValue(JsonListIdsField, ListIds_Optional);
-        ParseSuccess &= ListIds_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonUnlinkListIdsField = (*Object)->TryGetField(TEXT("unlinkListIds"));
-    if (JsonUnlinkListIdsField.IsValid() && !JsonUnlinkListIdsField->IsNull())
-    {
-        UnlinkListIds_IsSet = TryGetJsonValue(JsonUnlinkListIdsField, UnlinkListIds_Optional);
-        ParseSuccess &= UnlinkListIds_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonUpdateEnabledField = (*Object)->TryGetField(TEXT("updateEnabled"));
-    if (JsonUpdateEnabledField.IsValid() && !JsonUpdateEnabledField->IsNull())
-    {
-        UpdateEnabled_IsSet = TryGetJsonValue(JsonUpdateEnabledField, UpdateEnabled_Optional);
-        ParseSuccess &= UpdateEnabled_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonEmailField = (*Object)->TryGetField(TEXT("email"));
+	ParseSuccess &= JsonEmailField.IsValid() && !JsonEmailField->IsNull() && TryGetJsonValue(JsonEmailField, Email);
+	const TSharedPtr<FJsonValue> JsonAttributesField = (*Object)->TryGetField(TEXT("attributes"));
+	if (JsonAttributesField.IsValid() && !JsonAttributesField->IsNull())
+	{
+		Attributes_IsSet = TryGetJsonValue(JsonAttributesField, Attributes_Optional);
+		ParseSuccess &= Attributes_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonEmailBlacklistedField = (*Object)->TryGetField(TEXT("emailBlacklisted"));
+	if (JsonEmailBlacklistedField.IsValid() && !JsonEmailBlacklistedField->IsNull())
+	{
+		EmailBlacklisted_IsSet = TryGetJsonValue(JsonEmailBlacklistedField, EmailBlacklisted_Optional);
+		ParseSuccess &= EmailBlacklisted_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonListIdsField = (*Object)->TryGetField(TEXT("listIds"));
+	if (JsonListIdsField.IsValid() && !JsonListIdsField->IsNull())
+	{
+		ListIds_IsSet = TryGetJsonValue(JsonListIdsField, ListIds_Optional);
+		ParseSuccess &= ListIds_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonUnlinkListIdsField = (*Object)->TryGetField(TEXT("unlinkListIds"));
+	if (JsonUnlinkListIdsField.IsValid() && !JsonUnlinkListIdsField->IsNull())
+	{
+		UnlinkListIds_IsSet = TryGetJsonValue(JsonUnlinkListIdsField, UnlinkListIds_Optional);
+		ParseSuccess &= UnlinkListIds_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonUpdateEnabledField = (*Object)->TryGetField(TEXT("updateEnabled"));
+	if (JsonUpdateEnabledField.IsValid() && !JsonUpdateEnabledField->IsNull())
+	{
+		UpdateEnabled_IsSet = TryGetJsonValue(JsonUpdateEnabledField, UpdateEnabled_Optional);
+		ParseSuccess &= UpdateEnabled_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

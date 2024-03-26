@@ -21,34 +21,34 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_BackfillInfo::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("backfill_id"));
-    RallyHereAPI::WriteJsonValue(Writer, BackfillId);
-    if (Extensions_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("extensions"));
-        RallyHereAPI::WriteJsonValue(Writer, Extensions_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("backfill_id"));
+	RallyHereAPI::WriteJsonValue(Writer, BackfillId);
+	if (Extensions_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("extensions"));
+		RallyHereAPI::WriteJsonValue(Writer, Extensions_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_BackfillInfo::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonBackfillIdField = (*Object)->TryGetField(TEXT("backfill_id"));
-    ParseSuccess &= JsonBackfillIdField.IsValid() && !JsonBackfillIdField->IsNull() && TryGetJsonValue(JsonBackfillIdField, BackfillId);
-    const TSharedPtr<FJsonValue> JsonExtensionsField = (*Object)->TryGetField(TEXT("extensions"));
-    if (JsonExtensionsField.IsValid() && !JsonExtensionsField->IsNull())
-    {
-        Extensions_IsSet = TryGetJsonValue(JsonExtensionsField, Extensions_Optional);
-        ParseSuccess &= Extensions_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonBackfillIdField = (*Object)->TryGetField(TEXT("backfill_id"));
+	ParseSuccess &= JsonBackfillIdField.IsValid() && !JsonBackfillIdField->IsNull() && TryGetJsonValue(JsonBackfillIdField, BackfillId);
+	const TSharedPtr<FJsonValue> JsonExtensionsField = (*Object)->TryGetField(TEXT("extensions"));
+	if (JsonExtensionsField.IsValid() && !JsonExtensionsField->IsNull())
+	{
+		Extensions_IsSet = TryGetJsonValue(JsonExtensionsField, Extensions_Optional);
+		ParseSuccess &= Extensions_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

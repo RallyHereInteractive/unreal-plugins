@@ -24,190 +24,190 @@
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_Vendor : public FRHAPI_Model
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    /**
-    * @brief Fills this object with data from the passed in JSON
-    *
-    * @param [in] JsonValue Data from the API call.
-    *
-    * @return true if parsing of the JSON data was successful.
-    */
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	/**
+	* @brief Fills this object with data from the passed in JSON
+	*
+	* @param [in] JsonValue Data from the API call.
+	*
+	* @return true if parsing of the JSON data was successful.
+	*/
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
-    /**
-    * @brief Writes the data from this object into the specified JSON Writer stream
-    *
-    * @param [in] Writer JSON Writer stream to push .
-    */
-    void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	/**
+	* @brief Writes the data from this object into the specified JSON Writer stream
+	*
+	* @param [in] Writer JSON Writer stream to push .
+	*/
+	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief Custom data associated with the resource */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    TMap<FString, FString> CustomData_Optional{  };
-    /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool CustomData_IsSet{ false };
-    /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-    TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
-    /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-    const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
-    /** @brief Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue */
-    const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
-    bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
-    /** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-    TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
-    /** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-    const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
-    /** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-    void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
-     /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
-    void ClearCustomData() { CustomData_IsSet = false; }
+	/** @brief Custom data associated with the resource */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TMap<FString, FString> CustomData_Optional{  };
+	/** @brief true if CustomData_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool CustomData_IsSet{ false };
+	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
+	TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
+	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
+	const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
+	/** @brief Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue */
+	const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
+	bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
+	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
+	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
+	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
+	void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	void ClearCustomData() { CustomData_IsSet = false; }
 
-    /** @brief The Vendor UUID */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FGuid VendorUuid_Optional{  };
-    /** @brief true if VendorUuid_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool VendorUuid_IsSet{ false };
-    /** @brief Gets the value of VendorUuid_Optional, regardless of it having been set */
-    FGuid& GetVendorUuid() { return VendorUuid_Optional; }
-    /** @brief Gets the value of VendorUuid_Optional, regardless of it having been set */
-    const FGuid& GetVendorUuid() const { return VendorUuid_Optional; }
-    /** @brief Gets the value of VendorUuid_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FGuid& GetVendorUuid(const FGuid& DefaultValue) const { if (VendorUuid_IsSet) return VendorUuid_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of VendorUuid_Optional and returns true if it has been set, otherwise returns false */
-    bool GetVendorUuid(FGuid& OutValue) const { if (VendorUuid_IsSet) OutValue = VendorUuid_Optional; return VendorUuid_IsSet; }
-    /** @brief Returns a pointer to VendorUuid_Optional, if it has been set, otherwise returns nullptr */
-    FGuid* GetVendorUuidOrNull() { if (VendorUuid_IsSet) return &VendorUuid_Optional; return nullptr; }
-    /** @brief Returns a pointer to VendorUuid_Optional, if it has been set, otherwise returns nullptr */
-    const FGuid* GetVendorUuidOrNull() const { if (VendorUuid_IsSet) return &VendorUuid_Optional; return nullptr; }
-    /** @brief Sets the value of VendorUuid_Optional and also sets VendorUuid_IsSet to true */
-    void SetVendorUuid(FGuid NewValue) { VendorUuid_Optional = NewValue; VendorUuid_IsSet = true; }
-     /** @brief Clears the value of VendorUuid_Optional and sets VendorUuid_IsSet to false */
-    void ClearVendorUuid() { VendorUuid_IsSet = false; }
+	/** @brief The Vendor UUID */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FGuid VendorUuid_Optional{  };
+	/** @brief true if VendorUuid_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool VendorUuid_IsSet{ false };
+	/** @brief Gets the value of VendorUuid_Optional, regardless of it having been set */
+	FGuid& GetVendorUuid() { return VendorUuid_Optional; }
+	/** @brief Gets the value of VendorUuid_Optional, regardless of it having been set */
+	const FGuid& GetVendorUuid() const { return VendorUuid_Optional; }
+	/** @brief Gets the value of VendorUuid_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FGuid& GetVendorUuid(const FGuid& DefaultValue) const { if (VendorUuid_IsSet) return VendorUuid_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of VendorUuid_Optional and returns true if it has been set, otherwise returns false */
+	bool GetVendorUuid(FGuid& OutValue) const { if (VendorUuid_IsSet) OutValue = VendorUuid_Optional; return VendorUuid_IsSet; }
+	/** @brief Returns a pointer to VendorUuid_Optional, if it has been set, otherwise returns nullptr */
+	FGuid* GetVendorUuidOrNull() { if (VendorUuid_IsSet) return &VendorUuid_Optional; return nullptr; }
+	/** @brief Returns a pointer to VendorUuid_Optional, if it has been set, otherwise returns nullptr */
+	const FGuid* GetVendorUuidOrNull() const { if (VendorUuid_IsSet) return &VendorUuid_Optional; return nullptr; }
+	/** @brief Sets the value of VendorUuid_Optional and also sets VendorUuid_IsSet to true */
+	void SetVendorUuid(FGuid NewValue) { VendorUuid_Optional = NewValue; VendorUuid_IsSet = true; }
+	 /** @brief Clears the value of VendorUuid_Optional and sets VendorUuid_IsSet to false */
+	void ClearVendorUuid() { VendorUuid_IsSet = false; }
 
-    /** @brief Determines how the Vendor fulfills the loot */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    ERHAPI_VendorType Type_Optional{  };
-    /** @brief true if Type_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool Type_IsSet{ false };
-    /** @brief Gets the value of Type_Optional, regardless of it having been set */
-    ERHAPI_VendorType& GetType() { return Type_Optional; }
-    /** @brief Gets the value of Type_Optional, regardless of it having been set */
-    const ERHAPI_VendorType& GetType() const { return Type_Optional; }
-    /** @brief Gets the value of Type_Optional, if it has been set, otherwise it returns DefaultValue */
-    const ERHAPI_VendorType& GetType(const ERHAPI_VendorType& DefaultValue) const { if (Type_IsSet) return Type_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of Type_Optional and returns true if it has been set, otherwise returns false */
-    bool GetType(ERHAPI_VendorType& OutValue) const { if (Type_IsSet) OutValue = Type_Optional; return Type_IsSet; }
-    /** @brief Returns a pointer to Type_Optional, if it has been set, otherwise returns nullptr */
-    ERHAPI_VendorType* GetTypeOrNull() { if (Type_IsSet) return &Type_Optional; return nullptr; }
-    /** @brief Returns a pointer to Type_Optional, if it has been set, otherwise returns nullptr */
-    const ERHAPI_VendorType* GetTypeOrNull() const { if (Type_IsSet) return &Type_Optional; return nullptr; }
-    /** @brief Sets the value of Type_Optional and also sets Type_IsSet to true */
-    void SetType(ERHAPI_VendorType NewValue) { Type_Optional = NewValue; Type_IsSet = true; }
-     /** @brief Clears the value of Type_Optional and sets Type_IsSet to false */
-    void ClearType() { Type_IsSet = false; }
+	/** @brief Determines how the Vendor fulfills the loot */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	ERHAPI_VendorType Type_Optional{  };
+	/** @brief true if Type_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Type_IsSet{ false };
+	/** @brief Gets the value of Type_Optional, regardless of it having been set */
+	ERHAPI_VendorType& GetType() { return Type_Optional; }
+	/** @brief Gets the value of Type_Optional, regardless of it having been set */
+	const ERHAPI_VendorType& GetType() const { return Type_Optional; }
+	/** @brief Gets the value of Type_Optional, if it has been set, otherwise it returns DefaultValue */
+	const ERHAPI_VendorType& GetType(const ERHAPI_VendorType& DefaultValue) const { if (Type_IsSet) return Type_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Type_Optional and returns true if it has been set, otherwise returns false */
+	bool GetType(ERHAPI_VendorType& OutValue) const { if (Type_IsSet) OutValue = Type_Optional; return Type_IsSet; }
+	/** @brief Returns a pointer to Type_Optional, if it has been set, otherwise returns nullptr */
+	ERHAPI_VendorType* GetTypeOrNull() { if (Type_IsSet) return &Type_Optional; return nullptr; }
+	/** @brief Returns a pointer to Type_Optional, if it has been set, otherwise returns nullptr */
+	const ERHAPI_VendorType* GetTypeOrNull() const { if (Type_IsSet) return &Type_Optional; return nullptr; }
+	/** @brief Sets the value of Type_Optional and also sets Type_IsSet to true */
+	void SetType(ERHAPI_VendorType NewValue) { Type_Optional = NewValue; Type_IsSet = true; }
+	 /** @brief Clears the value of Type_Optional and sets Type_IsSet to false */
+	void ClearType() { Type_IsSet = false; }
 
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    int32 LegacyType_Optional{  };
-    /** @brief true if LegacyType_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool LegacyType_IsSet{ false };
-    /** @brief Gets the value of LegacyType_Optional, regardless of it having been set */
-    int32& GetLegacyType() { return LegacyType_Optional; }
-    /** @brief Gets the value of LegacyType_Optional, regardless of it having been set */
-    const int32& GetLegacyType() const { return LegacyType_Optional; }
-    /** @brief Gets the value of LegacyType_Optional, if it has been set, otherwise it returns DefaultValue */
-    const int32& GetLegacyType(const int32& DefaultValue) const { if (LegacyType_IsSet) return LegacyType_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of LegacyType_Optional and returns true if it has been set, otherwise returns false */
-    bool GetLegacyType(int32& OutValue) const { if (LegacyType_IsSet) OutValue = LegacyType_Optional; return LegacyType_IsSet; }
-    /** @brief Returns a pointer to LegacyType_Optional, if it has been set, otherwise returns nullptr */
-    int32* GetLegacyTypeOrNull() { if (LegacyType_IsSet) return &LegacyType_Optional; return nullptr; }
-    /** @brief Returns a pointer to LegacyType_Optional, if it has been set, otherwise returns nullptr */
-    const int32* GetLegacyTypeOrNull() const { if (LegacyType_IsSet) return &LegacyType_Optional; return nullptr; }
-    /** @brief Sets the value of LegacyType_Optional and also sets LegacyType_IsSet to true */
-    void SetLegacyType(int32 NewValue) { LegacyType_Optional = NewValue; LegacyType_IsSet = true; }
-     /** @brief Clears the value of LegacyType_Optional and sets LegacyType_IsSet to false */
-    void ClearLegacyType() { LegacyType_Optional = 0; LegacyType_IsSet = false; }
-    /** @brief Returns true if LegacyType_Optional is set and matches the default value */
-    bool IsLegacyTypeDefaultValue() const { return LegacyType_IsSet && LegacyType_Optional == 0; }
-    /** @brief Sets the value of LegacyType_Optional to its default and also sets LegacyType_IsSet to true */
-    void SetLegacyTypeToDefault() { LegacyType_Optional = 0; LegacyType_IsSet = true; }
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 LegacyType_Optional{  };
+	/** @brief true if LegacyType_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool LegacyType_IsSet{ false };
+	/** @brief Gets the value of LegacyType_Optional, regardless of it having been set */
+	int32& GetLegacyType() { return LegacyType_Optional; }
+	/** @brief Gets the value of LegacyType_Optional, regardless of it having been set */
+	const int32& GetLegacyType() const { return LegacyType_Optional; }
+	/** @brief Gets the value of LegacyType_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetLegacyType(const int32& DefaultValue) const { if (LegacyType_IsSet) return LegacyType_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of LegacyType_Optional and returns true if it has been set, otherwise returns false */
+	bool GetLegacyType(int32& OutValue) const { if (LegacyType_IsSet) OutValue = LegacyType_Optional; return LegacyType_IsSet; }
+	/** @brief Returns a pointer to LegacyType_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetLegacyTypeOrNull() { if (LegacyType_IsSet) return &LegacyType_Optional; return nullptr; }
+	/** @brief Returns a pointer to LegacyType_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetLegacyTypeOrNull() const { if (LegacyType_IsSet) return &LegacyType_Optional; return nullptr; }
+	/** @brief Sets the value of LegacyType_Optional and also sets LegacyType_IsSet to true */
+	void SetLegacyType(int32 NewValue) { LegacyType_Optional = NewValue; LegacyType_IsSet = true; }
+	 /** @brief Clears the value of LegacyType_Optional and sets LegacyType_IsSet to false */
+	void ClearLegacyType() { LegacyType_Optional = 0; LegacyType_IsSet = false; }
+	/** @brief Returns true if LegacyType_Optional is set and matches the default value */
+	bool IsLegacyTypeDefaultValue() const { return LegacyType_IsSet && LegacyType_Optional == 0; }
+	/** @brief Sets the value of LegacyType_Optional to its default and also sets LegacyType_IsSet to true */
+	void SetLegacyTypeToDefault() { LegacyType_Optional = 0; LegacyType_IsSet = true; }
 
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    int32 LegacyConfigVersion_Optional{  };
-    /** @brief true if LegacyConfigVersion_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool LegacyConfigVersion_IsSet{ false };
-    /** @brief Gets the value of LegacyConfigVersion_Optional, regardless of it having been set */
-    int32& GetLegacyConfigVersion() { return LegacyConfigVersion_Optional; }
-    /** @brief Gets the value of LegacyConfigVersion_Optional, regardless of it having been set */
-    const int32& GetLegacyConfigVersion() const { return LegacyConfigVersion_Optional; }
-    /** @brief Gets the value of LegacyConfigVersion_Optional, if it has been set, otherwise it returns DefaultValue */
-    const int32& GetLegacyConfigVersion(const int32& DefaultValue) const { if (LegacyConfigVersion_IsSet) return LegacyConfigVersion_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of LegacyConfigVersion_Optional and returns true if it has been set, otherwise returns false */
-    bool GetLegacyConfigVersion(int32& OutValue) const { if (LegacyConfigVersion_IsSet) OutValue = LegacyConfigVersion_Optional; return LegacyConfigVersion_IsSet; }
-    /** @brief Returns a pointer to LegacyConfigVersion_Optional, if it has been set, otherwise returns nullptr */
-    int32* GetLegacyConfigVersionOrNull() { if (LegacyConfigVersion_IsSet) return &LegacyConfigVersion_Optional; return nullptr; }
-    /** @brief Returns a pointer to LegacyConfigVersion_Optional, if it has been set, otherwise returns nullptr */
-    const int32* GetLegacyConfigVersionOrNull() const { if (LegacyConfigVersion_IsSet) return &LegacyConfigVersion_Optional; return nullptr; }
-    /** @brief Sets the value of LegacyConfigVersion_Optional and also sets LegacyConfigVersion_IsSet to true */
-    void SetLegacyConfigVersion(int32 NewValue) { LegacyConfigVersion_Optional = NewValue; LegacyConfigVersion_IsSet = true; }
-     /** @brief Clears the value of LegacyConfigVersion_Optional and sets LegacyConfigVersion_IsSet to false */
-    void ClearLegacyConfigVersion() { LegacyConfigVersion_Optional = 0; LegacyConfigVersion_IsSet = false; }
-    /** @brief Returns true if LegacyConfigVersion_Optional is set and matches the default value */
-    bool IsLegacyConfigVersionDefaultValue() const { return LegacyConfigVersion_IsSet && LegacyConfigVersion_Optional == 0; }
-    /** @brief Sets the value of LegacyConfigVersion_Optional to its default and also sets LegacyConfigVersion_IsSet to true */
-    void SetLegacyConfigVersionToDefault() { LegacyConfigVersion_Optional = 0; LegacyConfigVersion_IsSet = true; }
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 LegacyConfigVersion_Optional{  };
+	/** @brief true if LegacyConfigVersion_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool LegacyConfigVersion_IsSet{ false };
+	/** @brief Gets the value of LegacyConfigVersion_Optional, regardless of it having been set */
+	int32& GetLegacyConfigVersion() { return LegacyConfigVersion_Optional; }
+	/** @brief Gets the value of LegacyConfigVersion_Optional, regardless of it having been set */
+	const int32& GetLegacyConfigVersion() const { return LegacyConfigVersion_Optional; }
+	/** @brief Gets the value of LegacyConfigVersion_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetLegacyConfigVersion(const int32& DefaultValue) const { if (LegacyConfigVersion_IsSet) return LegacyConfigVersion_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of LegacyConfigVersion_Optional and returns true if it has been set, otherwise returns false */
+	bool GetLegacyConfigVersion(int32& OutValue) const { if (LegacyConfigVersion_IsSet) OutValue = LegacyConfigVersion_Optional; return LegacyConfigVersion_IsSet; }
+	/** @brief Returns a pointer to LegacyConfigVersion_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetLegacyConfigVersionOrNull() { if (LegacyConfigVersion_IsSet) return &LegacyConfigVersion_Optional; return nullptr; }
+	/** @brief Returns a pointer to LegacyConfigVersion_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetLegacyConfigVersionOrNull() const { if (LegacyConfigVersion_IsSet) return &LegacyConfigVersion_Optional; return nullptr; }
+	/** @brief Sets the value of LegacyConfigVersion_Optional and also sets LegacyConfigVersion_IsSet to true */
+	void SetLegacyConfigVersion(int32 NewValue) { LegacyConfigVersion_Optional = NewValue; LegacyConfigVersion_IsSet = true; }
+	 /** @brief Clears the value of LegacyConfigVersion_Optional and sets LegacyConfigVersion_IsSet to false */
+	void ClearLegacyConfigVersion() { LegacyConfigVersion_Optional = 0; LegacyConfigVersion_IsSet = false; }
+	/** @brief Returns true if LegacyConfigVersion_Optional is set and matches the default value */
+	bool IsLegacyConfigVersionDefaultValue() const { return LegacyConfigVersion_IsSet && LegacyConfigVersion_Optional == 0; }
+	/** @brief Sets the value of LegacyConfigVersion_Optional to its default and also sets LegacyConfigVersion_IsSet to true */
+	void SetLegacyConfigVersionToDefault() { LegacyConfigVersion_Optional = 0; LegacyConfigVersion_IsSet = true; }
 
-    /** @brief The Loot the Vendor will fulfill mapped by Loot ID. */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    TMap<FString, FRHAPI_Loot> Loot_Optional{  };
-    /** @brief true if Loot_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool Loot_IsSet{ false };
-    /** @brief Gets the value of Loot_Optional, regardless of it having been set */
-    TMap<FString, FRHAPI_Loot>& GetLoot() { return Loot_Optional; }
-    /** @brief Gets the value of Loot_Optional, regardless of it having been set */
-    const TMap<FString, FRHAPI_Loot>& GetLoot() const { return Loot_Optional; }
-    /** @brief Gets the value of Loot_Optional, if it has been set, otherwise it returns DefaultValue */
-    const TMap<FString, FRHAPI_Loot>& GetLoot(const TMap<FString, FRHAPI_Loot>& DefaultValue) const { if (Loot_IsSet) return Loot_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of Loot_Optional and returns true if it has been set, otherwise returns false */
-    bool GetLoot(TMap<FString, FRHAPI_Loot>& OutValue) const { if (Loot_IsSet) OutValue = Loot_Optional; return Loot_IsSet; }
-    /** @brief Returns a pointer to Loot_Optional, if it has been set, otherwise returns nullptr */
-    TMap<FString, FRHAPI_Loot>* GetLootOrNull() { if (Loot_IsSet) return &Loot_Optional; return nullptr; }
-    /** @brief Returns a pointer to Loot_Optional, if it has been set, otherwise returns nullptr */
-    const TMap<FString, FRHAPI_Loot>* GetLootOrNull() const { if (Loot_IsSet) return &Loot_Optional; return nullptr; }
-    /** @brief Sets the value of Loot_Optional and also sets Loot_IsSet to true */
-    void SetLoot(TMap<FString, FRHAPI_Loot> NewValue) { Loot_Optional = NewValue; Loot_IsSet = true; }
-     /** @brief Clears the value of Loot_Optional and sets Loot_IsSet to false */
-    void ClearLoot() { Loot_IsSet = false; }
+	/** @brief The Loot the Vendor will fulfill mapped by Loot ID. */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TMap<FString, FRHAPI_Loot> Loot_Optional{  };
+	/** @brief true if Loot_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Loot_IsSet{ false };
+	/** @brief Gets the value of Loot_Optional, regardless of it having been set */
+	TMap<FString, FRHAPI_Loot>& GetLoot() { return Loot_Optional; }
+	/** @brief Gets the value of Loot_Optional, regardless of it having been set */
+	const TMap<FString, FRHAPI_Loot>& GetLoot() const { return Loot_Optional; }
+	/** @brief Gets the value of Loot_Optional, if it has been set, otherwise it returns DefaultValue */
+	const TMap<FString, FRHAPI_Loot>& GetLoot(const TMap<FString, FRHAPI_Loot>& DefaultValue) const { if (Loot_IsSet) return Loot_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Loot_Optional and returns true if it has been set, otherwise returns false */
+	bool GetLoot(TMap<FString, FRHAPI_Loot>& OutValue) const { if (Loot_IsSet) OutValue = Loot_Optional; return Loot_IsSet; }
+	/** @brief Returns a pointer to Loot_Optional, if it has been set, otherwise returns nullptr */
+	TMap<FString, FRHAPI_Loot>* GetLootOrNull() { if (Loot_IsSet) return &Loot_Optional; return nullptr; }
+	/** @brief Returns a pointer to Loot_Optional, if it has been set, otherwise returns nullptr */
+	const TMap<FString, FRHAPI_Loot>* GetLootOrNull() const { if (Loot_IsSet) return &Loot_Optional; return nullptr; }
+	/** @brief Sets the value of Loot_Optional and also sets Loot_IsSet to true */
+	void SetLoot(TMap<FString, FRHAPI_Loot> NewValue) { Loot_Optional = NewValue; Loot_IsSet = true; }
+	 /** @brief Clears the value of Loot_Optional and sets Loot_IsSet to false */
+	void ClearLoot() { Loot_IsSet = false; }
 
-    /** @brief Cache info for the Vendor. */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FRHAPI_CacheInfo CacheInfo_Optional{  };
-    /** @brief true if CacheInfo_Optional has been set to a value */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    bool CacheInfo_IsSet{ false };
-    /** @brief Gets the value of CacheInfo_Optional, regardless of it having been set */
-    FRHAPI_CacheInfo& GetCacheInfo() { return CacheInfo_Optional; }
-    /** @brief Gets the value of CacheInfo_Optional, regardless of it having been set */
-    const FRHAPI_CacheInfo& GetCacheInfo() const { return CacheInfo_Optional; }
-    /** @brief Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FRHAPI_CacheInfo& GetCacheInfo(const FRHAPI_CacheInfo& DefaultValue) const { if (CacheInfo_IsSet) return CacheInfo_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false */
-    bool GetCacheInfo(FRHAPI_CacheInfo& OutValue) const { if (CacheInfo_IsSet) OutValue = CacheInfo_Optional; return CacheInfo_IsSet; }
-    /** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
-    FRHAPI_CacheInfo* GetCacheInfoOrNull() { if (CacheInfo_IsSet) return &CacheInfo_Optional; return nullptr; }
-    /** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
-    const FRHAPI_CacheInfo* GetCacheInfoOrNull() const { if (CacheInfo_IsSet) return &CacheInfo_Optional; return nullptr; }
-    /** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true */
-    void SetCacheInfo(FRHAPI_CacheInfo NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
-     /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
-    void ClearCacheInfo() { CacheInfo_IsSet = false; }
+	/** @brief Cache info for the Vendor. */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FRHAPI_CacheInfo CacheInfo_Optional{  };
+	/** @brief true if CacheInfo_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool CacheInfo_IsSet{ false };
+	/** @brief Gets the value of CacheInfo_Optional, regardless of it having been set */
+	FRHAPI_CacheInfo& GetCacheInfo() { return CacheInfo_Optional; }
+	/** @brief Gets the value of CacheInfo_Optional, regardless of it having been set */
+	const FRHAPI_CacheInfo& GetCacheInfo() const { return CacheInfo_Optional; }
+	/** @brief Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FRHAPI_CacheInfo& GetCacheInfo(const FRHAPI_CacheInfo& DefaultValue) const { if (CacheInfo_IsSet) return CacheInfo_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false */
+	bool GetCacheInfo(FRHAPI_CacheInfo& OutValue) const { if (CacheInfo_IsSet) OutValue = CacheInfo_Optional; return CacheInfo_IsSet; }
+	/** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
+	FRHAPI_CacheInfo* GetCacheInfoOrNull() { if (CacheInfo_IsSet) return &CacheInfo_Optional; return nullptr; }
+	/** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
+	const FRHAPI_CacheInfo* GetCacheInfoOrNull() const { if (CacheInfo_IsSet) return &CacheInfo_Optional; return nullptr; }
+	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true */
+	void SetCacheInfo(FRHAPI_CacheInfo NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
+	 /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
+	void ClearCacheInfo() { CacheInfo_IsSet = false; }
 };
 
 /** @} */

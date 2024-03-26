@@ -18,12 +18,12 @@
 UENUM(BlueprintType)
 enum class ERHAPI_Operation : uint8
 {
-    Equal UMETA(ToolTip="The two values must be equal"),
-    NotEqual UMETA(ToolTip="The two values must not be equal"),
-    LessThan UMETA(ToolTip="Value A must be less than value B"),
-    LessThanEqual UMETA(ToolTip="Value A must be less than or equal to value B"),
-    GreaterThan UMETA(ToolTip="Value A must be greater than value B"),
-    GreaterThanEqual UMETA(ToolTip="Value A must be greater than or equal to value B"),
+	Equal UMETA(ToolTip="The two values must be equal"),
+	NotEqual UMETA(ToolTip="The two values must not be equal"),
+	LessThan UMETA(ToolTip="Value A must be less than value B"),
+	LessThanEqual UMETA(ToolTip="Value A must be less than or equal to value B"),
+	GreaterThan UMETA(ToolTip="Value A must be greater than value B"),
+	GreaterThanEqual UMETA(ToolTip="Value A must be greater than or equal to value B"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_Operation& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_Operation& EnumValue);

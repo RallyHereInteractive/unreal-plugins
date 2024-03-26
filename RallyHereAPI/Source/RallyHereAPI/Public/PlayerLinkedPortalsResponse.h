@@ -23,43 +23,43 @@
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_PlayerLinkedPortalsResponse : public FRHAPI_Model
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    /**
-    * @brief Fills this object with data from the passed in JSON
-    *
-    * @param [in] JsonValue Data from the API call.
-    *
-    * @return true if parsing of the JSON data was successful.
-    */
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	/**
+	* @brief Fills this object with data from the passed in JSON
+	*
+	* @param [in] JsonValue Data from the API call.
+	*
+	* @return true if parsing of the JSON data was successful.
+	*/
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
-    /**
-    * @brief Writes the data from this object into the specified JSON Writer stream
-    *
-    * @param [in] Writer JSON Writer stream to push .
-    */
-    void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	/**
+	* @brief Writes the data from this object into the specified JSON Writer stream
+	*
+	* @param [in] Writer JSON Writer stream to push .
+	*/
+	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief Player info */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FRHAPI_PlayerPersonResponse Player{  };
-    /** @brief Gets the value of Player */
-    FRHAPI_PlayerPersonResponse& GetPlayer() { return Player; }
-    /** @brief Gets the value of Player */
-    const FRHAPI_PlayerPersonResponse& GetPlayer() const { return Player; }
-    /** @brief Sets the value of Player */
-    void SetPlayer(FRHAPI_PlayerPersonResponse NewValue) { Player = NewValue;  }
+	/** @brief Player info */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FRHAPI_PlayerPersonResponse Player{  };
+	/** @brief Gets the value of Player */
+	FRHAPI_PlayerPersonResponse& GetPlayer() { return Player; }
+	/** @brief Gets the value of Player */
+	const FRHAPI_PlayerPersonResponse& GetPlayer() const { return Player; }
+	/** @brief Sets the value of Player */
+	void SetPlayer(FRHAPI_PlayerPersonResponse NewValue) { Player = NewValue;  }
 
-    /** @brief List of linked portals */
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    TArray<FRHAPI_PortalUserResponse> LinkedPortals{  };
-    /** @brief Gets the value of LinkedPortals */
-    TArray<FRHAPI_PortalUserResponse>& GetLinkedPortals() { return LinkedPortals; }
-    /** @brief Gets the value of LinkedPortals */
-    const TArray<FRHAPI_PortalUserResponse>& GetLinkedPortals() const { return LinkedPortals; }
-    /** @brief Sets the value of LinkedPortals */
-    void SetLinkedPortals(TArray<FRHAPI_PortalUserResponse> NewValue) { LinkedPortals = NewValue;  }
+	/** @brief List of linked portals */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TArray<FRHAPI_PortalUserResponse> LinkedPortals{  };
+	/** @brief Gets the value of LinkedPortals */
+	TArray<FRHAPI_PortalUserResponse>& GetLinkedPortals() { return LinkedPortals; }
+	/** @brief Gets the value of LinkedPortals */
+	const TArray<FRHAPI_PortalUserResponse>& GetLinkedPortals() const { return LinkedPortals; }
+	/** @brief Sets the value of LinkedPortals */
+	void SetLinkedPortals(TArray<FRHAPI_PortalUserResponse> NewValue) { LinkedPortals = NewValue;  }
 };
 
 /** @} */

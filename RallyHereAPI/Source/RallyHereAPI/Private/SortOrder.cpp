@@ -20,49 +20,49 @@ using RallyHereAPI::TryGetJsonValue;
 // Implementation for ERHAPI_SortOrder
 FString EnumToString(const ERHAPI_SortOrder& Value)
 {
-    switch (Value)
-    {
-    case ERHAPI_SortOrder::Ascending:
-        return TEXT("asc");
-    case ERHAPI_SortOrder::Descending:
-        return TEXT("desc");
-    }
+	switch (Value)
+	{
+	case ERHAPI_SortOrder::Ascending:
+		return TEXT("asc");
+	case ERHAPI_SortOrder::Descending:
+		return TEXT("desc");
+	}
 
-    UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_SortOrder::Values Value (%d)"), (int)Value);
-    return TEXT("");
+	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_SortOrder::Values Value (%d)"), (int)Value);
+	return TEXT("");
 }
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_SortOrder& Value)
 {
-    static TMap<FString, ERHAPI_SortOrder> StringToEnum = { 
-        { TEXT("asc"), ERHAPI_SortOrder::Ascending },
-        { TEXT("desc"), ERHAPI_SortOrder::Descending },    };
+	static TMap<FString, ERHAPI_SortOrder> StringToEnum = { 
+		{ TEXT("asc"), ERHAPI_SortOrder::Ascending },
+		{ TEXT("desc"), ERHAPI_SortOrder::Descending },	};
 
-    const auto Found = StringToEnum.Find(EnumAsString);
-    if(Found)
-        Value = *Found;
-    return Found != nullptr;
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
+	return Found != nullptr;
 }
 
 FStringFormatArg ToStringFormatArg(const ERHAPI_SortOrder& Value)
 {
-    return FStringFormatArg(EnumToString(Value));
+	return FStringFormatArg(EnumToString(Value));
 }
 
 void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const ERHAPI_SortOrder& Value)
 {
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
 }
 
 bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, ERHAPI_SortOrder& Value)
 {
-    FString TmpValue;
-    if (JsonValue->TryGetString(TmpValue))
-    {
-        if (EnumFromString(TmpValue, Value))
-            return true;
-    }
-    return false;
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if (EnumFromString(TmpValue, Value))
+			return true;
+	}
+	return false;
 }
 
 

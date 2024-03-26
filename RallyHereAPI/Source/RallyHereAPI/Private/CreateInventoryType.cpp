@@ -20,49 +20,49 @@ using RallyHereAPI::TryGetJsonValue;
 // Implementation for ERHAPI_CreateInventoryType
 FString EnumToString(const ERHAPI_CreateInventoryType& Value)
 {
-    switch (Value)
-    {
-    case ERHAPI_CreateInventoryType::Persistent:
-        return TEXT("persistent");
-    case ERHAPI_CreateInventoryType::Transient:
-        return TEXT("transient");
-    }
+	switch (Value)
+	{
+	case ERHAPI_CreateInventoryType::Persistent:
+		return TEXT("persistent");
+	case ERHAPI_CreateInventoryType::Transient:
+		return TEXT("transient");
+	}
 
-    UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_CreateInventoryType::Values Value (%d)"), (int)Value);
-    return TEXT("");
+	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_CreateInventoryType::Values Value (%d)"), (int)Value);
+	return TEXT("");
 }
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_CreateInventoryType& Value)
 {
-    static TMap<FString, ERHAPI_CreateInventoryType> StringToEnum = { 
-        { TEXT("persistent"), ERHAPI_CreateInventoryType::Persistent },
-        { TEXT("transient"), ERHAPI_CreateInventoryType::Transient },    };
+	static TMap<FString, ERHAPI_CreateInventoryType> StringToEnum = { 
+		{ TEXT("persistent"), ERHAPI_CreateInventoryType::Persistent },
+		{ TEXT("transient"), ERHAPI_CreateInventoryType::Transient },	};
 
-    const auto Found = StringToEnum.Find(EnumAsString);
-    if(Found)
-        Value = *Found;
-    return Found != nullptr;
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
+	return Found != nullptr;
 }
 
 FStringFormatArg ToStringFormatArg(const ERHAPI_CreateInventoryType& Value)
 {
-    return FStringFormatArg(EnumToString(Value));
+	return FStringFormatArg(EnumToString(Value));
 }
 
 void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const ERHAPI_CreateInventoryType& Value)
 {
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
 }
 
 bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, ERHAPI_CreateInventoryType& Value)
 {
-    FString TmpValue;
-    if (JsonValue->TryGetString(TmpValue))
-    {
-        if (EnumFromString(TmpValue, Value))
-            return true;
-    }
-    return false;
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if (EnumFromString(TmpValue, Value))
+			return true;
+	}
+	return false;
 }
 
 

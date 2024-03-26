@@ -21,23 +21,23 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_BackfillSettingsResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("timeout"));
-    RallyHereAPI::WriteJsonValue(Writer, Timeout);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("timeout"));
+	RallyHereAPI::WriteJsonValue(Writer, Timeout);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_BackfillSettingsResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonTimeoutField = (*Object)->TryGetField(TEXT("timeout"));
-    ParseSuccess &= JsonTimeoutField.IsValid() && !JsonTimeoutField->IsNull() && TryGetJsonValue(JsonTimeoutField, Timeout);
+	const TSharedPtr<FJsonValue> JsonTimeoutField = (*Object)->TryGetField(TEXT("timeout"));
+	ParseSuccess &= JsonTimeoutField.IsValid() && !JsonTimeoutField->IsNull() && TryGetJsonValue(JsonTimeoutField, Timeout);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

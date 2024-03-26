@@ -21,100 +21,100 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_PlayerReportCreate::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (SourcePlayerUuid_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("source_player_uuid"));
-        RallyHereAPI::WriteJsonValue(Writer, SourcePlayerUuid_Optional);
-    }
-    Writer->WriteIdentifierPrefix(TEXT("reason"));
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(Reason));
-    if (Description_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("description"));
-        RallyHereAPI::WriteJsonValue(Writer, Description_Optional);
-    }
-    if (SessionId_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("session_id"));
-        RallyHereAPI::WriteJsonValue(Writer, SessionId_Optional);
-    }
-    if (InstanceId_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("instance_id"));
-        RallyHereAPI::WriteJsonValue(Writer, InstanceId_Optional);
-    }
-    if (MatchId_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("match_id"));
-        RallyHereAPI::WriteJsonValue(Writer, MatchId_Optional);
-    }
-    if (MatchSegment_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("match_segment"));
-        RallyHereAPI::WriteJsonValue(Writer, MatchSegment_Optional);
-    }
-    if (CustomData_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("custom_data"));
-        RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (SourcePlayerUuid_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("source_player_uuid"));
+		RallyHereAPI::WriteJsonValue(Writer, SourcePlayerUuid_Optional);
+	}
+	Writer->WriteIdentifierPrefix(TEXT("reason"));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Reason));
+	if (Description_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("description"));
+		RallyHereAPI::WriteJsonValue(Writer, Description_Optional);
+	}
+	if (SessionId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("session_id"));
+		RallyHereAPI::WriteJsonValue(Writer, SessionId_Optional);
+	}
+	if (InstanceId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("instance_id"));
+		RallyHereAPI::WriteJsonValue(Writer, InstanceId_Optional);
+	}
+	if (MatchId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("match_id"));
+		RallyHereAPI::WriteJsonValue(Writer, MatchId_Optional);
+	}
+	if (MatchSegment_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("match_segment"));
+		RallyHereAPI::WriteJsonValue(Writer, MatchSegment_Optional);
+	}
+	if (CustomData_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("custom_data"));
+		RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_PlayerReportCreate::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonSourcePlayerUuidField = (*Object)->TryGetField(TEXT("source_player_uuid"));
-    if (JsonSourcePlayerUuidField.IsValid() && !JsonSourcePlayerUuidField->IsNull())
-    {
-        SourcePlayerUuid_IsSet = TryGetJsonValue(JsonSourcePlayerUuidField, SourcePlayerUuid_Optional);
-        ParseSuccess &= SourcePlayerUuid_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonReasonField = (*Object)->TryGetField(TEXT("reason"));
-    ParseSuccess &= JsonReasonField.IsValid() && !JsonReasonField->IsNull() && TryGetJsonValue(JsonReasonField, Reason);
-    const TSharedPtr<FJsonValue> JsonDescriptionField = (*Object)->TryGetField(TEXT("description"));
-    if (JsonDescriptionField.IsValid() && !JsonDescriptionField->IsNull())
-    {
-        Description_IsSet = TryGetJsonValue(JsonDescriptionField, Description_Optional);
-        ParseSuccess &= Description_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonSessionIdField = (*Object)->TryGetField(TEXT("session_id"));
-    if (JsonSessionIdField.IsValid() && !JsonSessionIdField->IsNull())
-    {
-        SessionId_IsSet = TryGetJsonValue(JsonSessionIdField, SessionId_Optional);
-        ParseSuccess &= SessionId_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonInstanceIdField = (*Object)->TryGetField(TEXT("instance_id"));
-    if (JsonInstanceIdField.IsValid() && !JsonInstanceIdField->IsNull())
-    {
-        InstanceId_IsSet = TryGetJsonValue(JsonInstanceIdField, InstanceId_Optional);
-        ParseSuccess &= InstanceId_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonMatchIdField = (*Object)->TryGetField(TEXT("match_id"));
-    if (JsonMatchIdField.IsValid() && !JsonMatchIdField->IsNull())
-    {
-        MatchId_IsSet = TryGetJsonValue(JsonMatchIdField, MatchId_Optional);
-        ParseSuccess &= MatchId_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonMatchSegmentField = (*Object)->TryGetField(TEXT("match_segment"));
-    if (JsonMatchSegmentField.IsValid() && !JsonMatchSegmentField->IsNull())
-    {
-        MatchSegment_IsSet = TryGetJsonValue(JsonMatchSegmentField, MatchSegment_Optional);
-        ParseSuccess &= MatchSegment_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-    if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
-    {
-        CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
-        ParseSuccess &= CustomData_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonSourcePlayerUuidField = (*Object)->TryGetField(TEXT("source_player_uuid"));
+	if (JsonSourcePlayerUuidField.IsValid() && !JsonSourcePlayerUuidField->IsNull())
+	{
+		SourcePlayerUuid_IsSet = TryGetJsonValue(JsonSourcePlayerUuidField, SourcePlayerUuid_Optional);
+		ParseSuccess &= SourcePlayerUuid_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonReasonField = (*Object)->TryGetField(TEXT("reason"));
+	ParseSuccess &= JsonReasonField.IsValid() && !JsonReasonField->IsNull() && TryGetJsonValue(JsonReasonField, Reason);
+	const TSharedPtr<FJsonValue> JsonDescriptionField = (*Object)->TryGetField(TEXT("description"));
+	if (JsonDescriptionField.IsValid() && !JsonDescriptionField->IsNull())
+	{
+		Description_IsSet = TryGetJsonValue(JsonDescriptionField, Description_Optional);
+		ParseSuccess &= Description_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonSessionIdField = (*Object)->TryGetField(TEXT("session_id"));
+	if (JsonSessionIdField.IsValid() && !JsonSessionIdField->IsNull())
+	{
+		SessionId_IsSet = TryGetJsonValue(JsonSessionIdField, SessionId_Optional);
+		ParseSuccess &= SessionId_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInstanceIdField = (*Object)->TryGetField(TEXT("instance_id"));
+	if (JsonInstanceIdField.IsValid() && !JsonInstanceIdField->IsNull())
+	{
+		InstanceId_IsSet = TryGetJsonValue(JsonInstanceIdField, InstanceId_Optional);
+		ParseSuccess &= InstanceId_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonMatchIdField = (*Object)->TryGetField(TEXT("match_id"));
+	if (JsonMatchIdField.IsValid() && !JsonMatchIdField->IsNull())
+	{
+		MatchId_IsSet = TryGetJsonValue(JsonMatchIdField, MatchId_Optional);
+		ParseSuccess &= MatchId_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonMatchSegmentField = (*Object)->TryGetField(TEXT("match_segment"));
+	if (JsonMatchSegmentField.IsValid() && !JsonMatchSegmentField->IsNull())
+	{
+		MatchSegment_IsSet = TryGetJsonValue(JsonMatchSegmentField, MatchSegment_Optional);
+		ParseSuccess &= MatchSegment_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
+	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	{
+		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
+		ParseSuccess &= CustomData_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

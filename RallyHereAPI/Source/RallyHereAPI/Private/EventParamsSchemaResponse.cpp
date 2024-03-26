@@ -21,23 +21,23 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_EventParamsSchemaResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("event_param_schemas"));
-    RallyHereAPI::WriteJsonValue(Writer, EventParamSchemas);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("event_param_schemas"));
+	RallyHereAPI::WriteJsonValue(Writer, EventParamSchemas);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_EventParamsSchemaResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonEventParamSchemasField = (*Object)->TryGetField(TEXT("event_param_schemas"));
-    ParseSuccess &= JsonEventParamSchemasField.IsValid() && !JsonEventParamSchemasField->IsNull() && TryGetJsonValue(JsonEventParamSchemasField, EventParamSchemas);
+	const TSharedPtr<FJsonValue> JsonEventParamSchemasField = (*Object)->TryGetField(TEXT("event_param_schemas"));
+	ParseSuccess &= JsonEventParamSchemasField.IsValid() && !JsonEventParamSchemasField->IsNull() && TryGetJsonValue(JsonEventParamSchemasField, EventParamSchemas);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

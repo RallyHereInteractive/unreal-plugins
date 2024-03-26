@@ -21,87 +21,87 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_PlatformEntitlementProcessResult::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("request_id"));
-    RallyHereAPI::WriteJsonValue(Writer, RequestId);
-    Writer->WriteIdentifierPrefix(TEXT("client_type"));
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(ClientType));
-    Writer->WriteIdentifierPrefix(TEXT("transaction_id"));
-    RallyHereAPI::WriteJsonValue(Writer, TransactionId);
-    Writer->WriteIdentifierPrefix(TEXT("platform_region"));
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(PlatformRegion));
-    if (Status_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("status"));
-        RallyHereAPI::WriteJsonValue(Writer, Status_Optional);
-    }
-    if (ClientEntitlements_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("client_entitlements"));
-        RallyHereAPI::WriteJsonValue(Writer, ClientEntitlements_Optional);
-    }
-    if (ServerEntitlements_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("server_entitlements"));
-        RallyHereAPI::WriteJsonValue(Writer, ServerEntitlements_Optional);
-    }
-    Writer->WriteIdentifierPrefix(TEXT("platform_id"));
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(PlatformId));
-    Writer->WriteIdentifierPrefix(TEXT("platform_user_id"));
-    RallyHereAPI::WriteJsonValue(Writer, PlatformUserId);
-    if (SkippedServerEntitlements_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("skipped_server_entitlements"));
-        RallyHereAPI::WriteJsonValue(Writer, SkippedServerEntitlements_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("request_id"));
+	RallyHereAPI::WriteJsonValue(Writer, RequestId);
+	Writer->WriteIdentifierPrefix(TEXT("client_type"));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(ClientType));
+	Writer->WriteIdentifierPrefix(TEXT("transaction_id"));
+	RallyHereAPI::WriteJsonValue(Writer, TransactionId);
+	Writer->WriteIdentifierPrefix(TEXT("platform_region"));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(PlatformRegion));
+	if (Status_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("status"));
+		RallyHereAPI::WriteJsonValue(Writer, Status_Optional);
+	}
+	if (ClientEntitlements_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("client_entitlements"));
+		RallyHereAPI::WriteJsonValue(Writer, ClientEntitlements_Optional);
+	}
+	if (ServerEntitlements_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("server_entitlements"));
+		RallyHereAPI::WriteJsonValue(Writer, ServerEntitlements_Optional);
+	}
+	Writer->WriteIdentifierPrefix(TEXT("platform_id"));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(PlatformId));
+	Writer->WriteIdentifierPrefix(TEXT("platform_user_id"));
+	RallyHereAPI::WriteJsonValue(Writer, PlatformUserId);
+	if (SkippedServerEntitlements_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("skipped_server_entitlements"));
+		RallyHereAPI::WriteJsonValue(Writer, SkippedServerEntitlements_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_PlatformEntitlementProcessResult::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonRequestIdField = (*Object)->TryGetField(TEXT("request_id"));
-    ParseSuccess &= JsonRequestIdField.IsValid() && !JsonRequestIdField->IsNull() && TryGetJsonValue(JsonRequestIdField, RequestId);
-    const TSharedPtr<FJsonValue> JsonClientTypeField = (*Object)->TryGetField(TEXT("client_type"));
-    ParseSuccess &= JsonClientTypeField.IsValid() && !JsonClientTypeField->IsNull() && TryGetJsonValue(JsonClientTypeField, ClientType);
-    const TSharedPtr<FJsonValue> JsonTransactionIdField = (*Object)->TryGetField(TEXT("transaction_id"));
-    ParseSuccess &= JsonTransactionIdField.IsValid() && !JsonTransactionIdField->IsNull() && TryGetJsonValue(JsonTransactionIdField, TransactionId);
-    const TSharedPtr<FJsonValue> JsonPlatformRegionField = (*Object)->TryGetField(TEXT("platform_region"));
-    ParseSuccess &= JsonPlatformRegionField.IsValid() && !JsonPlatformRegionField->IsNull() && TryGetJsonValue(JsonPlatformRegionField, PlatformRegion);
-    const TSharedPtr<FJsonValue> JsonStatusField = (*Object)->TryGetField(TEXT("status"));
-    if (JsonStatusField.IsValid() && !JsonStatusField->IsNull())
-    {
-        Status_IsSet = TryGetJsonValue(JsonStatusField, Status_Optional);
-        ParseSuccess &= Status_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonClientEntitlementsField = (*Object)->TryGetField(TEXT("client_entitlements"));
-    if (JsonClientEntitlementsField.IsValid() && !JsonClientEntitlementsField->IsNull())
-    {
-        ClientEntitlements_IsSet = TryGetJsonValue(JsonClientEntitlementsField, ClientEntitlements_Optional);
-        ParseSuccess &= ClientEntitlements_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonServerEntitlementsField = (*Object)->TryGetField(TEXT("server_entitlements"));
-    if (JsonServerEntitlementsField.IsValid() && !JsonServerEntitlementsField->IsNull())
-    {
-        ServerEntitlements_IsSet = TryGetJsonValue(JsonServerEntitlementsField, ServerEntitlements_Optional);
-        ParseSuccess &= ServerEntitlements_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonPlatformIdField = (*Object)->TryGetField(TEXT("platform_id"));
-    ParseSuccess &= JsonPlatformIdField.IsValid() && !JsonPlatformIdField->IsNull() && TryGetJsonValue(JsonPlatformIdField, PlatformId);
-    const TSharedPtr<FJsonValue> JsonPlatformUserIdField = (*Object)->TryGetField(TEXT("platform_user_id"));
-    ParseSuccess &= JsonPlatformUserIdField.IsValid() && !JsonPlatformUserIdField->IsNull() && TryGetJsonValue(JsonPlatformUserIdField, PlatformUserId);
-    const TSharedPtr<FJsonValue> JsonSkippedServerEntitlementsField = (*Object)->TryGetField(TEXT("skipped_server_entitlements"));
-    if (JsonSkippedServerEntitlementsField.IsValid() && !JsonSkippedServerEntitlementsField->IsNull())
-    {
-        SkippedServerEntitlements_IsSet = TryGetJsonValue(JsonSkippedServerEntitlementsField, SkippedServerEntitlements_Optional);
-        ParseSuccess &= SkippedServerEntitlements_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonRequestIdField = (*Object)->TryGetField(TEXT("request_id"));
+	ParseSuccess &= JsonRequestIdField.IsValid() && !JsonRequestIdField->IsNull() && TryGetJsonValue(JsonRequestIdField, RequestId);
+	const TSharedPtr<FJsonValue> JsonClientTypeField = (*Object)->TryGetField(TEXT("client_type"));
+	ParseSuccess &= JsonClientTypeField.IsValid() && !JsonClientTypeField->IsNull() && TryGetJsonValue(JsonClientTypeField, ClientType);
+	const TSharedPtr<FJsonValue> JsonTransactionIdField = (*Object)->TryGetField(TEXT("transaction_id"));
+	ParseSuccess &= JsonTransactionIdField.IsValid() && !JsonTransactionIdField->IsNull() && TryGetJsonValue(JsonTransactionIdField, TransactionId);
+	const TSharedPtr<FJsonValue> JsonPlatformRegionField = (*Object)->TryGetField(TEXT("platform_region"));
+	ParseSuccess &= JsonPlatformRegionField.IsValid() && !JsonPlatformRegionField->IsNull() && TryGetJsonValue(JsonPlatformRegionField, PlatformRegion);
+	const TSharedPtr<FJsonValue> JsonStatusField = (*Object)->TryGetField(TEXT("status"));
+	if (JsonStatusField.IsValid() && !JsonStatusField->IsNull())
+	{
+		Status_IsSet = TryGetJsonValue(JsonStatusField, Status_Optional);
+		ParseSuccess &= Status_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonClientEntitlementsField = (*Object)->TryGetField(TEXT("client_entitlements"));
+	if (JsonClientEntitlementsField.IsValid() && !JsonClientEntitlementsField->IsNull())
+	{
+		ClientEntitlements_IsSet = TryGetJsonValue(JsonClientEntitlementsField, ClientEntitlements_Optional);
+		ParseSuccess &= ClientEntitlements_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonServerEntitlementsField = (*Object)->TryGetField(TEXT("server_entitlements"));
+	if (JsonServerEntitlementsField.IsValid() && !JsonServerEntitlementsField->IsNull())
+	{
+		ServerEntitlements_IsSet = TryGetJsonValue(JsonServerEntitlementsField, ServerEntitlements_Optional);
+		ParseSuccess &= ServerEntitlements_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonPlatformIdField = (*Object)->TryGetField(TEXT("platform_id"));
+	ParseSuccess &= JsonPlatformIdField.IsValid() && !JsonPlatformIdField->IsNull() && TryGetJsonValue(JsonPlatformIdField, PlatformId);
+	const TSharedPtr<FJsonValue> JsonPlatformUserIdField = (*Object)->TryGetField(TEXT("platform_user_id"));
+	ParseSuccess &= JsonPlatformUserIdField.IsValid() && !JsonPlatformUserIdField->IsNull() && TryGetJsonValue(JsonPlatformUserIdField, PlatformUserId);
+	const TSharedPtr<FJsonValue> JsonSkippedServerEntitlementsField = (*Object)->TryGetField(TEXT("skipped_server_entitlements"));
+	if (JsonSkippedServerEntitlementsField.IsValid() && !JsonSkippedServerEntitlementsField->IsNull())
+	{
+		SkippedServerEntitlements_IsSet = TryGetJsonValue(JsonSkippedServerEntitlementsField, SkippedServerEntitlements_Optional);
+		ParseSuccess &= SkippedServerEntitlements_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

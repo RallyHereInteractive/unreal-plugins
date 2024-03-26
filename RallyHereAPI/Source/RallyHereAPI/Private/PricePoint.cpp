@@ -21,96 +21,96 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_PricePoint::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (CustomData_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("custom_data"));
-        RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
-    }
-    if (Name_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("name"));
-        RallyHereAPI::WriteJsonValue(Writer, Name_Optional);
-    }
-    if (StrictFlag_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("strict_flag"));
-        RallyHereAPI::WriteJsonValue(Writer, StrictFlag_Optional);
-    }
-    if (CapFlag_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("cap_flag"));
-        RallyHereAPI::WriteJsonValue(Writer, CapFlag_Optional);
-    }
-    if (CurrentBreakpoints_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("current_breakpoints"));
-        RallyHereAPI::WriteJsonValue(Writer, CurrentBreakpoints_Optional);
-    }
-    if (PreSaleBreakpoints_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("pre_sale_breakpoints"));
-        RallyHereAPI::WriteJsonValue(Writer, PreSaleBreakpoints_Optional);
-    }
-    if (CacheInfo_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("cache_info"));
-        RallyHereAPI::WriteJsonValue(Writer, CacheInfo_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (CustomData_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("custom_data"));
+		RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
+	}
+	if (Name_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("name"));
+		RallyHereAPI::WriteJsonValue(Writer, Name_Optional);
+	}
+	if (StrictFlag_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("strict_flag"));
+		RallyHereAPI::WriteJsonValue(Writer, StrictFlag_Optional);
+	}
+	if (CapFlag_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("cap_flag"));
+		RallyHereAPI::WriteJsonValue(Writer, CapFlag_Optional);
+	}
+	if (CurrentBreakpoints_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("current_breakpoints"));
+		RallyHereAPI::WriteJsonValue(Writer, CurrentBreakpoints_Optional);
+	}
+	if (PreSaleBreakpoints_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("pre_sale_breakpoints"));
+		RallyHereAPI::WriteJsonValue(Writer, PreSaleBreakpoints_Optional);
+	}
+	if (CacheInfo_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("cache_info"));
+		RallyHereAPI::WriteJsonValue(Writer, CacheInfo_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_PricePoint::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-    if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
-    {
-        CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
-        ParseSuccess &= CustomData_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonNameField = (*Object)->TryGetField(TEXT("name"));
-    if (JsonNameField.IsValid() && !JsonNameField->IsNull())
-    {
-        Name_IsSet = TryGetJsonValue(JsonNameField, Name_Optional);
-        ParseSuccess &= Name_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonStrictFlagField = (*Object)->TryGetField(TEXT("strict_flag"));
-    if (JsonStrictFlagField.IsValid() && !JsonStrictFlagField->IsNull())
-    {
-        StrictFlag_IsSet = TryGetJsonValue(JsonStrictFlagField, StrictFlag_Optional);
-        ParseSuccess &= StrictFlag_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonCapFlagField = (*Object)->TryGetField(TEXT("cap_flag"));
-    if (JsonCapFlagField.IsValid() && !JsonCapFlagField->IsNull())
-    {
-        CapFlag_IsSet = TryGetJsonValue(JsonCapFlagField, CapFlag_Optional);
-        ParseSuccess &= CapFlag_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonCurrentBreakpointsField = (*Object)->TryGetField(TEXT("current_breakpoints"));
-    if (JsonCurrentBreakpointsField.IsValid() && !JsonCurrentBreakpointsField->IsNull())
-    {
-        CurrentBreakpoints_IsSet = TryGetJsonValue(JsonCurrentBreakpointsField, CurrentBreakpoints_Optional);
-        ParseSuccess &= CurrentBreakpoints_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonPreSaleBreakpointsField = (*Object)->TryGetField(TEXT("pre_sale_breakpoints"));
-    if (JsonPreSaleBreakpointsField.IsValid() && !JsonPreSaleBreakpointsField->IsNull())
-    {
-        PreSaleBreakpoints_IsSet = TryGetJsonValue(JsonPreSaleBreakpointsField, PreSaleBreakpoints_Optional);
-        ParseSuccess &= PreSaleBreakpoints_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
-    if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
-    {
-        CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
-        ParseSuccess &= CacheInfo_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
+	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	{
+		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
+		ParseSuccess &= CustomData_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonNameField = (*Object)->TryGetField(TEXT("name"));
+	if (JsonNameField.IsValid() && !JsonNameField->IsNull())
+	{
+		Name_IsSet = TryGetJsonValue(JsonNameField, Name_Optional);
+		ParseSuccess &= Name_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonStrictFlagField = (*Object)->TryGetField(TEXT("strict_flag"));
+	if (JsonStrictFlagField.IsValid() && !JsonStrictFlagField->IsNull())
+	{
+		StrictFlag_IsSet = TryGetJsonValue(JsonStrictFlagField, StrictFlag_Optional);
+		ParseSuccess &= StrictFlag_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonCapFlagField = (*Object)->TryGetField(TEXT("cap_flag"));
+	if (JsonCapFlagField.IsValid() && !JsonCapFlagField->IsNull())
+	{
+		CapFlag_IsSet = TryGetJsonValue(JsonCapFlagField, CapFlag_Optional);
+		ParseSuccess &= CapFlag_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonCurrentBreakpointsField = (*Object)->TryGetField(TEXT("current_breakpoints"));
+	if (JsonCurrentBreakpointsField.IsValid() && !JsonCurrentBreakpointsField->IsNull())
+	{
+		CurrentBreakpoints_IsSet = TryGetJsonValue(JsonCurrentBreakpointsField, CurrentBreakpoints_Optional);
+		ParseSuccess &= CurrentBreakpoints_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonPreSaleBreakpointsField = (*Object)->TryGetField(TEXT("pre_sale_breakpoints"));
+	if (JsonPreSaleBreakpointsField.IsValid() && !JsonPreSaleBreakpointsField->IsNull())
+	{
+		PreSaleBreakpoints_IsSet = TryGetJsonValue(JsonPreSaleBreakpointsField, PreSaleBreakpoints_Optional);
+		ParseSuccess &= PreSaleBreakpoints_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
+	if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
+	{
+		CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
+		ParseSuccess &= CacheInfo_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

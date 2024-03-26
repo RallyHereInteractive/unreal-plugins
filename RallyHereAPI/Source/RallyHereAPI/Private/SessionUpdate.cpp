@@ -21,63 +21,63 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_SessionUpdate::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (RegionId_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("region_id"));
-        RallyHereAPI::WriteJsonValue(Writer, RegionId_Optional);
-    }
-    if (CustomData_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("custom_data"));
-        RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
-    }
-    if (Joinable_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("joinable"));
-        RallyHereAPI::WriteJsonValue(Writer, Joinable_Optional);
-    }
-    if (Teams_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("teams"));
-        RallyHereAPI::WriteJsonValue(Writer, Teams_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (RegionId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("region_id"));
+		RallyHereAPI::WriteJsonValue(Writer, RegionId_Optional);
+	}
+	if (CustomData_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("custom_data"));
+		RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
+	}
+	if (Joinable_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("joinable"));
+		RallyHereAPI::WriteJsonValue(Writer, Joinable_Optional);
+	}
+	if (Teams_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("teams"));
+		RallyHereAPI::WriteJsonValue(Writer, Teams_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_SessionUpdate::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonRegionIdField = (*Object)->TryGetField(TEXT("region_id"));
-    if (JsonRegionIdField.IsValid() && !JsonRegionIdField->IsNull())
-    {
-        RegionId_IsSet = TryGetJsonValue(JsonRegionIdField, RegionId_Optional);
-        ParseSuccess &= RegionId_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-    if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
-    {
-        CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
-        ParseSuccess &= CustomData_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonJoinableField = (*Object)->TryGetField(TEXT("joinable"));
-    if (JsonJoinableField.IsValid() && !JsonJoinableField->IsNull())
-    {
-        Joinable_IsSet = TryGetJsonValue(JsonJoinableField, Joinable_Optional);
-        ParseSuccess &= Joinable_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonTeamsField = (*Object)->TryGetField(TEXT("teams"));
-    if (JsonTeamsField.IsValid() && !JsonTeamsField->IsNull())
-    {
-        Teams_IsSet = TryGetJsonValue(JsonTeamsField, Teams_Optional);
-        ParseSuccess &= Teams_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonRegionIdField = (*Object)->TryGetField(TEXT("region_id"));
+	if (JsonRegionIdField.IsValid() && !JsonRegionIdField->IsNull())
+	{
+		RegionId_IsSet = TryGetJsonValue(JsonRegionIdField, RegionId_Optional);
+		ParseSuccess &= RegionId_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
+	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	{
+		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
+		ParseSuccess &= CustomData_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonJoinableField = (*Object)->TryGetField(TEXT("joinable"));
+	if (JsonJoinableField.IsValid() && !JsonJoinableField->IsNull())
+	{
+		Joinable_IsSet = TryGetJsonValue(JsonJoinableField, Joinable_Optional);
+		ParseSuccess &= Joinable_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonTeamsField = (*Object)->TryGetField(TEXT("teams"));
+	if (JsonTeamsField.IsValid() && !JsonTeamsField->IsNull())
+	{
+		Teams_IsSet = TryGetJsonValue(JsonTeamsField, Teams_Optional);
+		ParseSuccess &= Teams_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

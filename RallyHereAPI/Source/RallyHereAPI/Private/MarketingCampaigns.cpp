@@ -21,23 +21,23 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_MarketingCampaigns::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("campaigns"));
-    RallyHereAPI::WriteJsonValue(Writer, Campaigns);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("campaigns"));
+	RallyHereAPI::WriteJsonValue(Writer, Campaigns);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_MarketingCampaigns::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonCampaignsField = (*Object)->TryGetField(TEXT("campaigns"));
-    ParseSuccess &= JsonCampaignsField.IsValid() && !JsonCampaignsField->IsNull() && TryGetJsonValue(JsonCampaignsField, Campaigns);
+	const TSharedPtr<FJsonValue> JsonCampaignsField = (*Object)->TryGetField(TEXT("campaigns"));
+	ParseSuccess &= JsonCampaignsField.IsValid() && !JsonCampaignsField->IsNull() && TryGetJsonValue(JsonCampaignsField, Campaigns);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

@@ -21,30 +21,30 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_InventoryContextResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (Inventory_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("inventory"));
-        RallyHereAPI::WriteJsonValue(Writer, Inventory_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (Inventory_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("inventory"));
+		RallyHereAPI::WriteJsonValue(Writer, Inventory_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_InventoryContextResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonInventoryField = (*Object)->TryGetField(TEXT("inventory"));
-    if (JsonInventoryField.IsValid() && !JsonInventoryField->IsNull())
-    {
-        Inventory_IsSet = TryGetJsonValue(JsonInventoryField, Inventory_Optional);
-        ParseSuccess &= Inventory_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonInventoryField = (*Object)->TryGetField(TEXT("inventory"));
+	if (JsonInventoryField.IsValid() && !JsonInventoryField->IsNull())
+	{
+		Inventory_IsSet = TryGetJsonValue(JsonInventoryField, Inventory_Optional);
+		ParseSuccess &= Inventory_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

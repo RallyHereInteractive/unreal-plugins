@@ -18,13 +18,13 @@
 UENUM(BlueprintType)
 enum class ERHAPI_InventoryOperation : uint8
 {
-    Invalid UMETA(ToolTip="Invalid Inventory Operation."),
-    Add UMETA(ToolTip="Add the quantity or expiration of the Inventory."),
-    Subtract UMETA(ToolTip="Subtract the quantity or expiration of the Inventory."),
-    Set UMETA(ToolTip="Set the quantity or expiration of the Inventory."),
-    CheckGreaterThanOrEqual UMETA(ToolTip="Check if the quantity or expiration of the Inventory is greater than or equal to the value."),
-    CheckLessThan UMETA(ToolTip="Check if the quantity or expiration of the Inventory is less than the value."),
-    CheckGreaterThanOrEqualAndSubtract UMETA(ToolTip="Check if the quantity or expiration of the Inventory is greater than or equal to the value and subtract the value from the quantity or expiration."),
+	Invalid UMETA(ToolTip="Invalid Inventory Operation."),
+	Add UMETA(ToolTip="Add the quantity or expiration of the Inventory."),
+	Subtract UMETA(ToolTip="Subtract the quantity or expiration of the Inventory."),
+	Set UMETA(ToolTip="Set the quantity or expiration of the Inventory."),
+	CheckGreaterThanOrEqual UMETA(ToolTip="Check if the quantity or expiration of the Inventory is greater than or equal to the value."),
+	CheckLessThan UMETA(ToolTip="Check if the quantity or expiration of the Inventory is less than the value."),
+	CheckGreaterThanOrEqualAndSubtract UMETA(ToolTip="Check if the quantity or expiration of the Inventory is greater than or equal to the value and subtract the value from the quantity or expiration."),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_InventoryOperation& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_InventoryOperation& EnumValue);

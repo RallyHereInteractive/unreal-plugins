@@ -49,25 +49,25 @@ DECLARE_DELEGATE_OneParam(FDelegate_GetFriendsListForPlayerV2, const FResponse_G
 class RALLYHEREAPI_API FFriendsV2API : public FAPI
 {
 public:
-    FFriendsV2API();
-    virtual ~FFriendsV2API();
+	FFriendsV2API();
+	virtual ~FFriendsV2API();
 
-    FHttpRequestPtr AddFriendV2(const FRequest_AddFriendV2& Request, const FDelegate_AddFriendV2& Delegate = FDelegate_AddFriendV2(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr AddNotesV2(const FRequest_AddNotesV2& Request, const FDelegate_AddNotesV2& Delegate = FDelegate_AddNotesV2(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr DeleteFriendV2(const FRequest_DeleteFriendV2& Request, const FDelegate_DeleteFriendV2& Delegate = FDelegate_DeleteFriendV2(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr DeleteFriendsV2(const FRequest_DeleteFriendsV2& Request, const FDelegate_DeleteFriendsV2& Delegate = FDelegate_DeleteFriendsV2(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr DeleteNotesV2(const FRequest_DeleteNotesV2& Request, const FDelegate_DeleteNotesV2& Delegate = FDelegate_DeleteNotesV2(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetFriendRelationshipV2(const FRequest_GetFriendRelationshipV2& Request, const FDelegate_GetFriendRelationshipV2& Delegate = FDelegate_GetFriendRelationshipV2(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetFriendsListForPlayerV2(const FRequest_GetFriendsListForPlayerV2& Request, const FDelegate_GetFriendsListForPlayerV2& Delegate = FDelegate_GetFriendsListForPlayerV2(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr AddFriendV2(const FRequest_AddFriendV2& Request, const FDelegate_AddFriendV2& Delegate = FDelegate_AddFriendV2(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr AddNotesV2(const FRequest_AddNotesV2& Request, const FDelegate_AddNotesV2& Delegate = FDelegate_AddNotesV2(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr DeleteFriendV2(const FRequest_DeleteFriendV2& Request, const FDelegate_DeleteFriendV2& Delegate = FDelegate_DeleteFriendV2(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr DeleteFriendsV2(const FRequest_DeleteFriendsV2& Request, const FDelegate_DeleteFriendsV2& Delegate = FDelegate_DeleteFriendsV2(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr DeleteNotesV2(const FRequest_DeleteNotesV2& Request, const FDelegate_DeleteNotesV2& Delegate = FDelegate_DeleteNotesV2(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetFriendRelationshipV2(const FRequest_GetFriendRelationshipV2& Request, const FDelegate_GetFriendRelationshipV2& Delegate = FDelegate_GetFriendRelationshipV2(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetFriendsListForPlayerV2(const FRequest_GetFriendsListForPlayerV2& Request, const FDelegate_GetFriendsListForPlayerV2& Delegate = FDelegate_GetFriendsListForPlayerV2(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
-    void OnAddFriendV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AddFriendV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnAddNotesV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AddNotesV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnDeleteFriendV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteFriendV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnDeleteFriendsV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteFriendsV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnDeleteNotesV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteNotesV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetFriendRelationshipV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetFriendRelationshipV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetFriendsListForPlayerV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetFriendsListForPlayerV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnAddFriendV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AddFriendV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnAddNotesV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AddNotesV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnDeleteFriendV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteFriendV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnDeleteFriendsV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteFriendsV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnDeleteNotesV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteNotesV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetFriendRelationshipV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetFriendRelationshipV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetFriendsListForPlayerV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetFriendsListForPlayerV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
@@ -84,77 +84,77 @@ private:
 */
 struct RALLYHEREAPI_API FRequest_AddFriendV2 : public FRequest
 {
-    FRequest_AddFriendV2();
-    virtual ~FRequest_AddFriendV2() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_AddFriendV2();
+	virtual ~FRequest_AddFriendV2() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid PlayerUuid;
-    FGuid OtherPlayerUuid;
-    /* If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed. */
-    TOptional<FString> IfMatch;
-    TOptional<FRHAPI_Notes> Notes;
+	TSharedPtr<FAuthContext> AuthContext;
+	FGuid PlayerUuid;
+	FGuid OtherPlayerUuid;
+	/* If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed. */
+	TOptional<FString> IfMatch;
+	TOptional<FRHAPI_Notes> Notes;
 };
 
 struct RALLYHEREAPI_API FResponse_AddFriendV2 : public FResponse
 {
-    FResponse_AddFriendV2(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_AddFriendV2() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_AddFriendV2(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_AddFriendV2() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_FriendRelationship Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_FriendRelationship Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_FriendRelationship& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_FriendRelationship& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 400
-    Bad Request
-    */
-    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 400
+	Bad Request
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 409
-    Conflict
-    */
-    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 409
+	Conflict
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 412
-    The resource's Etag does not match the Etag provided. Get the Etag from the Get request and try again
-    */
+	/* Response 412
+	The resource's Etag does not match the Etag provided. Get the Etag from the Get request and try again
+	*/
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_AddFriendV2
 {
-    typedef FRequest_AddFriendV2 Request;
-    typedef FResponse_AddFriendV2 Response;
-    typedef FDelegate_AddFriendV2 Delegate;
-    typedef FFriendsV2API API;
-    static FString Name;
+	typedef FRequest_AddFriendV2 Request;
+	typedef FResponse_AddFriendV2 Response;
+	typedef FDelegate_AddFriendV2 Delegate;
+	typedef FFriendsV2API API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AddFriendV2(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AddFriendV2(InRequest, InDelegate, Priority); }
 };
 
 /* Add Notes V2
@@ -165,73 +165,73 @@ struct RALLYHEREAPI_API Traits_AddFriendV2
 */
 struct RALLYHEREAPI_API FRequest_AddNotesV2 : public FRequest
 {
-    FRequest_AddNotesV2();
-    virtual ~FRequest_AddNotesV2() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_AddNotesV2();
+	virtual ~FRequest_AddNotesV2() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid PlayerUuid;
-    FGuid OtherPlayerUuid;
-    FRHAPI_Notes Notes;
-    /* If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed. */
-    TOptional<FString> IfMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	FGuid PlayerUuid;
+	FGuid OtherPlayerUuid;
+	FRHAPI_Notes Notes;
+	/* If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed. */
+	TOptional<FString> IfMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_AddNotesV2 : public FResponse
 {
-    FResponse_AddNotesV2(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_AddNotesV2() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_AddNotesV2(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_AddNotesV2() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_FriendRelationship Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_FriendRelationship Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_FriendRelationship& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_FriendRelationship& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 400
-    Bad Request
-    */
-    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 400
+	Bad Request
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 409
-    Conflict
-    */
-    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 409
+	Conflict
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_AddNotesV2
 {
-    typedef FRequest_AddNotesV2 Request;
-    typedef FResponse_AddNotesV2 Response;
-    typedef FDelegate_AddNotesV2 Delegate;
-    typedef FFriendsV2API API;
-    static FString Name;
+	typedef FRequest_AddNotesV2 Request;
+	typedef FResponse_AddNotesV2 Response;
+	typedef FDelegate_AddNotesV2 Delegate;
+	typedef FFriendsV2API API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AddNotesV2(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AddNotesV2(InRequest, InDelegate, Priority); }
 };
 
 /* Delete Friend V2
@@ -245,75 +245,75 @@ struct RALLYHEREAPI_API Traits_AddNotesV2
 */
 struct RALLYHEREAPI_API FRequest_DeleteFriendV2 : public FRequest
 {
-    FRequest_DeleteFriendV2();
-    virtual ~FRequest_DeleteFriendV2() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_DeleteFriendV2();
+	virtual ~FRequest_DeleteFriendV2() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid PlayerUuid;
-    FGuid OtherPlayerUuid;
-    /* If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed. */
-    TOptional<FString> IfMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	FGuid PlayerUuid;
+	FGuid OtherPlayerUuid;
+	/* If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed. */
+	TOptional<FString> IfMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_DeleteFriendV2 : public FResponse
 {
-    FResponse_DeleteFriendV2(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_DeleteFriendV2() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_DeleteFriendV2(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_DeleteFriendV2() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 204
-    Successful Response
-    */
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader204_ETag() const;
+	// Manual Response Helpers
+	/* Response 204
+	Successful Response
+	*/
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader204_ETag() const;
 
-    /* Response 400
-    Bad Request
-    */
-    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 400
+	Bad Request
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 409
-    Conflict
-    */
-    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 409
+	Conflict
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 412
-    The resource's Etag does not match the Etag provided. Get the Etag from the Get request and try again
-    */
+	/* Response 412
+	The resource's Etag does not match the Etag provided. Get the Etag from the Get request and try again
+	*/
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_DeleteFriendV2
 {
-    typedef FRequest_DeleteFriendV2 Request;
-    typedef FResponse_DeleteFriendV2 Response;
-    typedef FDelegate_DeleteFriendV2 Delegate;
-    typedef FFriendsV2API API;
-    static FString Name;
+	typedef FRequest_DeleteFriendV2 Request;
+	typedef FResponse_DeleteFriendV2 Response;
+	typedef FDelegate_DeleteFriendV2 Delegate;
+	typedef FFriendsV2API API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteFriendV2(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteFriendV2(InRequest, InDelegate, Priority); }
 };
 
 /* Delete Friends V2
@@ -322,64 +322,64 @@ struct RALLYHEREAPI_API Traits_DeleteFriendV2
 */
 struct RALLYHEREAPI_API FRequest_DeleteFriendsV2 : public FRequest
 {
-    FRequest_DeleteFriendsV2();
-    virtual ~FRequest_DeleteFriendsV2() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_DeleteFriendsV2();
+	virtual ~FRequest_DeleteFriendsV2() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid PlayerUuid;
-    FRHAPI_Friends Friends;
+	TSharedPtr<FAuthContext> AuthContext;
+	FGuid PlayerUuid;
+	FRHAPI_Friends Friends;
 };
 
 struct RALLYHEREAPI_API FResponse_DeleteFriendsV2 : public FResponse
 {
-    FResponse_DeleteFriendsV2(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_DeleteFriendsV2() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_DeleteFriendsV2(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_DeleteFriendsV2() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
+	
 
 
-    // Manual Response Helpers
-    /* Response 204
-    Successful Response
-    */
+	// Manual Response Helpers
+	/* Response 204
+	Successful Response
+	*/
 
-    /* Response 400
-    Bad Request
-    */
-    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 400
+	Bad Request
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 409
-    Conflict
-    */
-    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 409
+	Conflict
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_DeleteFriendsV2
 {
-    typedef FRequest_DeleteFriendsV2 Request;
-    typedef FResponse_DeleteFriendsV2 Response;
-    typedef FDelegate_DeleteFriendsV2 Delegate;
-    typedef FFriendsV2API API;
-    static FString Name;
+	typedef FRequest_DeleteFriendsV2 Request;
+	typedef FResponse_DeleteFriendsV2 Response;
+	typedef FDelegate_DeleteFriendsV2 Delegate;
+	typedef FFriendsV2API API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteFriendsV2(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteFriendsV2(InRequest, InDelegate, Priority); }
 };
 
 /* Delete Notes V2
@@ -390,66 +390,66 @@ struct RALLYHEREAPI_API Traits_DeleteFriendsV2
 */
 struct RALLYHEREAPI_API FRequest_DeleteNotesV2 : public FRequest
 {
-    FRequest_DeleteNotesV2();
-    virtual ~FRequest_DeleteNotesV2() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_DeleteNotesV2();
+	virtual ~FRequest_DeleteNotesV2() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid PlayerUuid;
-    FGuid OtherPlayerUuid;
-    /* If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed. */
-    TOptional<FString> IfMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	FGuid PlayerUuid;
+	FGuid OtherPlayerUuid;
+	/* If you provide the ETag that does not matches the current ETag for this resource, a 412 response will be return - indicating that the resource has changed. */
+	TOptional<FString> IfMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_DeleteNotesV2 : public FResponse
 {
-    FResponse_DeleteNotesV2(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_DeleteNotesV2() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_DeleteNotesV2(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_DeleteNotesV2() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
+	
 
 
-    // Manual Response Helpers
-    /* Response 204
-    Successful Response
-    */
+	// Manual Response Helpers
+	/* Response 204
+	Successful Response
+	*/
 
-    /* Response 400
-    Bad Request
-    */
-    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 400
+	Bad Request
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 409
-    Conflict
-    */
-    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 409
+	Conflict
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_DeleteNotesV2
 {
-    typedef FRequest_DeleteNotesV2 Request;
-    typedef FResponse_DeleteNotesV2 Response;
-    typedef FDelegate_DeleteNotesV2 Delegate;
-    typedef FFriendsV2API API;
-    static FString Name;
+	typedef FRequest_DeleteNotesV2 Request;
+	typedef FResponse_DeleteNotesV2 Response;
+	typedef FDelegate_DeleteNotesV2 Delegate;
+	typedef FFriendsV2API API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteNotesV2(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteNotesV2(InRequest, InDelegate, Priority); }
 };
 
 /* Get Friend Relationship V2
@@ -462,76 +462,76 @@ struct RALLYHEREAPI_API Traits_DeleteNotesV2
 */
 struct RALLYHEREAPI_API FRequest_GetFriendRelationshipV2 : public FRequest
 {
-    FRequest_GetFriendRelationshipV2();
-    virtual ~FRequest_GetFriendRelationshipV2() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetFriendRelationshipV2();
+	virtual ~FRequest_GetFriendRelationshipV2() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid PlayerUuid;
-    FGuid OtherPlayerUuid;
-    /* If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	FGuid PlayerUuid;
+	FGuid OtherPlayerUuid;
+	/* If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetFriendRelationshipV2 : public FResponse
 {
-    FResponse_GetFriendRelationshipV2(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetFriendRelationshipV2() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetFriendRelationshipV2(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetFriendRelationshipV2() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_FriendRelationship Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_FriendRelationship Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_FriendRelationship& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_FriendRelationship& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 304
-    Content still has the same etag and has not changed
-    */
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
 
-    /* Response 400
-    Bad Request
-    */
-    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 400
+	Bad Request
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 409
-    Conflict
-    */
-    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 409
+	Conflict
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetFriendRelationshipV2
 {
-    typedef FRequest_GetFriendRelationshipV2 Request;
-    typedef FResponse_GetFriendRelationshipV2 Response;
-    typedef FDelegate_GetFriendRelationshipV2 Delegate;
-    typedef FFriendsV2API API;
-    static FString Name;
+	typedef FRequest_GetFriendRelationshipV2 Request;
+	typedef FResponse_GetFriendRelationshipV2 Response;
+	typedef FDelegate_GetFriendRelationshipV2 Delegate;
+	typedef FFriendsV2API API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetFriendRelationshipV2(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetFriendRelationshipV2(InRequest, InDelegate, Priority); }
 };
 
 /* Get Friends List For Player V2
@@ -542,77 +542,77 @@ struct RALLYHEREAPI_API Traits_GetFriendRelationshipV2
 */
 struct RALLYHEREAPI_API FRequest_GetFriendsListForPlayerV2 : public FRequest
 {
-    FRequest_GetFriendsListForPlayerV2();
-    virtual ~FRequest_GetFriendsListForPlayerV2() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_GetFriendsListForPlayerV2();
+	virtual ~FRequest_GetFriendsListForPlayerV2() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid PlayerUuid;
-    TOptional<int32> Page;
-    TOptional<int32> Limit;
-    /* If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed. */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	FGuid PlayerUuid;
+	TOptional<int32> Page;
+	TOptional<int32> Limit;
+	/* If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed. */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetFriendsListForPlayerV2 : public FResponse
 {
-    FResponse_GetFriendsListForPlayerV2(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetFriendsListForPlayerV2() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    bool ParseHeaders() override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_GetFriendsListForPlayerV2(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetFriendsListForPlayerV2() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_FriendsList Content;
-    // Headers
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> ETag;
+	FRHAPI_FriendsList Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_FriendsList& OutContent) const;
-    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-    TOptional<FString> GetHeader200_ETag() const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_FriendsList& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
 
-    /* Response 304
-    Content still has the same etag and has not changed
-    */
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
 
-    /* Response 400
-    Bad Request
-    */
-    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 400
+	Bad Request
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 409
-    Conflict
-    */
-    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 409
+	Conflict
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_GetFriendsListForPlayerV2
 {
-    typedef FRequest_GetFriendsListForPlayerV2 Request;
-    typedef FResponse_GetFriendsListForPlayerV2 Response;
-    typedef FDelegate_GetFriendsListForPlayerV2 Delegate;
-    typedef FFriendsV2API API;
-    static FString Name;
+	typedef FRequest_GetFriendsListForPlayerV2 Request;
+	typedef FResponse_GetFriendsListForPlayerV2 Response;
+	typedef FDelegate_GetFriendsListForPlayerV2 Delegate;
+	typedef FFriendsV2API API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetFriendsListForPlayerV2(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetFriendsListForPlayerV2(InRequest, InDelegate, Priority); }
 };
 
 

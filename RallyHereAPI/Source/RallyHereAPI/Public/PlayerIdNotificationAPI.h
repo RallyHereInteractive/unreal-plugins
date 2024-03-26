@@ -53,27 +53,27 @@ DECLARE_DELEGATE_OneParam(FDelegate_PlayeridLongPollForNotificationsSelf, const 
 class RALLYHEREAPI_API FPlayerIdNotificationAPI : public FAPI
 {
 public:
-    FPlayerIdNotificationAPI();
-    virtual ~FPlayerIdNotificationAPI();
+	FPlayerIdNotificationAPI();
+	virtual ~FPlayerIdNotificationAPI();
 
-    FHttpRequestPtr PlayeridCreateNotification(const FRequest_PlayeridCreateNotification& Request, const FDelegate_PlayeridCreateNotification& Delegate = FDelegate_PlayeridCreateNotification(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr PlayeridCreateNotificationSelf(const FRequest_PlayeridCreateNotificationSelf& Request, const FDelegate_PlayeridCreateNotificationSelf& Delegate = FDelegate_PlayeridCreateNotificationSelf(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr PlayeridGetNotificationById(const FRequest_PlayeridGetNotificationById& Request, const FDelegate_PlayeridGetNotificationById& Delegate = FDelegate_PlayeridGetNotificationById(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr PlayeridGetNotificationByIdSelf(const FRequest_PlayeridGetNotificationByIdSelf& Request, const FDelegate_PlayeridGetNotificationByIdSelf& Delegate = FDelegate_PlayeridGetNotificationByIdSelf(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr PlayeridGetNotificationsPage(const FRequest_PlayeridGetNotificationsPage& Request, const FDelegate_PlayeridGetNotificationsPage& Delegate = FDelegate_PlayeridGetNotificationsPage(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr PlayeridGetNotificationsPageSelf(const FRequest_PlayeridGetNotificationsPageSelf& Request, const FDelegate_PlayeridGetNotificationsPageSelf& Delegate = FDelegate_PlayeridGetNotificationsPageSelf(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr PlayeridLongPollForNotifications(const FRequest_PlayeridLongPollForNotifications& Request, const FDelegate_PlayeridLongPollForNotifications& Delegate = FDelegate_PlayeridLongPollForNotifications(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr PlayeridLongPollForNotificationsSelf(const FRequest_PlayeridLongPollForNotificationsSelf& Request, const FDelegate_PlayeridLongPollForNotificationsSelf& Delegate = FDelegate_PlayeridLongPollForNotificationsSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr PlayeridCreateNotification(const FRequest_PlayeridCreateNotification& Request, const FDelegate_PlayeridCreateNotification& Delegate = FDelegate_PlayeridCreateNotification(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr PlayeridCreateNotificationSelf(const FRequest_PlayeridCreateNotificationSelf& Request, const FDelegate_PlayeridCreateNotificationSelf& Delegate = FDelegate_PlayeridCreateNotificationSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr PlayeridGetNotificationById(const FRequest_PlayeridGetNotificationById& Request, const FDelegate_PlayeridGetNotificationById& Delegate = FDelegate_PlayeridGetNotificationById(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr PlayeridGetNotificationByIdSelf(const FRequest_PlayeridGetNotificationByIdSelf& Request, const FDelegate_PlayeridGetNotificationByIdSelf& Delegate = FDelegate_PlayeridGetNotificationByIdSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr PlayeridGetNotificationsPage(const FRequest_PlayeridGetNotificationsPage& Request, const FDelegate_PlayeridGetNotificationsPage& Delegate = FDelegate_PlayeridGetNotificationsPage(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr PlayeridGetNotificationsPageSelf(const FRequest_PlayeridGetNotificationsPageSelf& Request, const FDelegate_PlayeridGetNotificationsPageSelf& Delegate = FDelegate_PlayeridGetNotificationsPageSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr PlayeridLongPollForNotifications(const FRequest_PlayeridLongPollForNotifications& Request, const FDelegate_PlayeridLongPollForNotifications& Delegate = FDelegate_PlayeridLongPollForNotifications(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr PlayeridLongPollForNotificationsSelf(const FRequest_PlayeridLongPollForNotificationsSelf& Request, const FDelegate_PlayeridLongPollForNotificationsSelf& Delegate = FDelegate_PlayeridLongPollForNotificationsSelf(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
-    void OnPlayeridCreateNotificationResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridCreateNotification Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnPlayeridCreateNotificationSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridCreateNotificationSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnPlayeridGetNotificationByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridGetNotificationById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnPlayeridGetNotificationByIdSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridGetNotificationByIdSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnPlayeridGetNotificationsPageResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridGetNotificationsPage Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnPlayeridGetNotificationsPageSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridGetNotificationsPageSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnPlayeridLongPollForNotificationsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridLongPollForNotifications Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnPlayeridLongPollForNotificationsSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridLongPollForNotificationsSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnPlayeridCreateNotificationResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridCreateNotification Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnPlayeridCreateNotificationSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridCreateNotificationSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnPlayeridGetNotificationByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridGetNotificationById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnPlayeridGetNotificationByIdSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridGetNotificationByIdSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnPlayeridGetNotificationsPageResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridGetNotificationsPage Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnPlayeridGetNotificationsPageSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridGetNotificationsPageSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnPlayeridLongPollForNotificationsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridLongPollForNotifications Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnPlayeridLongPollForNotificationsSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridLongPollForNotificationsSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
@@ -89,70 +89,70 @@ private:
 */
 struct RALLYHEREAPI_API FRequest_PlayeridCreateNotification : public FRequest
 {
-    FRequest_PlayeridCreateNotification();
-    virtual ~FRequest_PlayeridCreateNotification() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_PlayeridCreateNotification();
+	virtual ~FRequest_PlayeridCreateNotification() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    int32 PlayerId = 0;
-    FRHAPI_NotificationCreates NotificationCreates;
+	TSharedPtr<FAuthContext> AuthContext;
+	int32 PlayerId = 0;
+	FRHAPI_NotificationCreates NotificationCreates;
 };
 
 struct RALLYHEREAPI_API FResponse_PlayeridCreateNotification : public FResponse
 {
-    FResponse_PlayeridCreateNotification(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_PlayeridCreateNotification() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_PlayeridCreateNotification(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_PlayeridCreateNotification() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_NotificationCreateResult Content;
+	FRHAPI_NotificationCreateResult Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_NotificationCreateResult& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_NotificationCreateResult& OutContent) const;
 
-    /* Response 400
-     Error Codes: - bad_id - Passed client id is not a valid id 
-    */
-    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 400
+	 Error Codes: - bad_id - Passed client id is not a valid id 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 403
-     Error Codes: - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization 
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	 Error Codes: - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 409
-     Error Codes: - too_many_listening_to_single_client - An enumeration. 
-    */
-    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 409
+	 Error Codes: - too_many_listening_to_single_client - An enumeration. 
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
-    /* Response 503
-     Error Codes: - connection_limit_reached - An enumeration. 
-    */
-    bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 503
+	 Error Codes: - connection_limit_reached - An enumeration. 
+	*/
+	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_PlayeridCreateNotification
 {
-    typedef FRequest_PlayeridCreateNotification Request;
-    typedef FResponse_PlayeridCreateNotification Response;
-    typedef FDelegate_PlayeridCreateNotification Delegate;
-    typedef FPlayerIdNotificationAPI API;
-    static FString Name;
+	typedef FRequest_PlayeridCreateNotification Request;
+	typedef FResponse_PlayeridCreateNotification Response;
+	typedef FDelegate_PlayeridCreateNotification Delegate;
+	typedef FPlayerIdNotificationAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayeridCreateNotification(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayeridCreateNotification(InRequest, InDelegate, Priority); }
 };
 
 /* Create Notification Self
@@ -164,69 +164,69 @@ struct RALLYHEREAPI_API Traits_PlayeridCreateNotification
 */
 struct RALLYHEREAPI_API FRequest_PlayeridCreateNotificationSelf : public FRequest
 {
-    FRequest_PlayeridCreateNotificationSelf();
-    virtual ~FRequest_PlayeridCreateNotificationSelf() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_PlayeridCreateNotificationSelf();
+	virtual ~FRequest_PlayeridCreateNotificationSelf() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FRHAPI_NotificationCreates NotificationCreates;
+	TSharedPtr<FAuthContext> AuthContext;
+	FRHAPI_NotificationCreates NotificationCreates;
 };
 
 struct RALLYHEREAPI_API FResponse_PlayeridCreateNotificationSelf : public FResponse
 {
-    FResponse_PlayeridCreateNotificationSelf(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_PlayeridCreateNotificationSelf() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_PlayeridCreateNotificationSelf(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_PlayeridCreateNotificationSelf() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_NotificationCreateResult Content;
+	FRHAPI_NotificationCreateResult Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_NotificationCreateResult& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_NotificationCreateResult& OutContent) const;
 
-    /* Response 400
-     Error Codes: - bad_id - Passed client id is not a valid id 
-    */
-    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 400
+	 Error Codes: - bad_id - Passed client id is not a valid id 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 403
-     Error Codes: - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization 
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	 Error Codes: - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 409
-     Error Codes: - too_many_listening_to_single_client - An enumeration. 
-    */
-    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 409
+	 Error Codes: - too_many_listening_to_single_client - An enumeration. 
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
-    /* Response 503
-     Error Codes: - connection_limit_reached - An enumeration. 
-    */
-    bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 503
+	 Error Codes: - connection_limit_reached - An enumeration. 
+	*/
+	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_PlayeridCreateNotificationSelf
 {
-    typedef FRequest_PlayeridCreateNotificationSelf Request;
-    typedef FResponse_PlayeridCreateNotificationSelf Response;
-    typedef FDelegate_PlayeridCreateNotificationSelf Delegate;
-    typedef FPlayerIdNotificationAPI API;
-    static FString Name;
+	typedef FRequest_PlayeridCreateNotificationSelf Request;
+	typedef FResponse_PlayeridCreateNotificationSelf Response;
+	typedef FDelegate_PlayeridCreateNotificationSelf Delegate;
+	typedef FPlayerIdNotificationAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayeridCreateNotificationSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayeridCreateNotificationSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Notification By Id
@@ -243,75 +243,75 @@ struct RALLYHEREAPI_API Traits_PlayeridCreateNotificationSelf
 */
 struct RALLYHEREAPI_API FRequest_PlayeridGetNotificationById : public FRequest
 {
-    FRequest_PlayeridGetNotificationById();
-    virtual ~FRequest_PlayeridGetNotificationById() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_PlayeridGetNotificationById();
+	virtual ~FRequest_PlayeridGetNotificationById() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString NotificationId;
-    int32 PlayerId = 0;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString NotificationId;
+	int32 PlayerId = 0;
 };
 
 struct RALLYHEREAPI_API FResponse_PlayeridGetNotificationById : public FResponse
 {
-    FResponse_PlayeridGetNotificationById(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_PlayeridGetNotificationById() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_PlayeridGetNotificationById(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_PlayeridGetNotificationById() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_Notification Content;
+	FRHAPI_Notification Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_Notification& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_Notification& OutContent) const;
 
-    /* Response 400
-     Error Codes: - bad_id - Passed client id is not a valid id 
-    */
-    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 400
+	 Error Codes: - bad_id - Passed client id is not a valid id 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 403
-     Error Codes: - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization 
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	 Error Codes: - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-     Error Codes: - resource_not_found - Notification could not be found 
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	 Error Codes: - resource_not_found - Notification could not be found 
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 409
-     Error Codes: - too_many_listening_to_single_client - An enumeration. 
-    */
-    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 409
+	 Error Codes: - too_many_listening_to_single_client - An enumeration. 
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
-    /* Response 503
-     Error Codes: - connection_limit_reached - An enumeration. 
-    */
-    bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 503
+	 Error Codes: - connection_limit_reached - An enumeration. 
+	*/
+	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_PlayeridGetNotificationById
 {
-    typedef FRequest_PlayeridGetNotificationById Request;
-    typedef FResponse_PlayeridGetNotificationById Response;
-    typedef FDelegate_PlayeridGetNotificationById Delegate;
-    typedef FPlayerIdNotificationAPI API;
-    static FString Name;
+	typedef FRequest_PlayeridGetNotificationById Request;
+	typedef FResponse_PlayeridGetNotificationById Response;
+	typedef FDelegate_PlayeridGetNotificationById Delegate;
+	typedef FPlayerIdNotificationAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayeridGetNotificationById(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayeridGetNotificationById(InRequest, InDelegate, Priority); }
 };
 
 /* Get Notification By Id Self
@@ -324,74 +324,74 @@ struct RALLYHEREAPI_API Traits_PlayeridGetNotificationById
 */
 struct RALLYHEREAPI_API FRequest_PlayeridGetNotificationByIdSelf : public FRequest
 {
-    FRequest_PlayeridGetNotificationByIdSelf();
-    virtual ~FRequest_PlayeridGetNotificationByIdSelf() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_PlayeridGetNotificationByIdSelf();
+	virtual ~FRequest_PlayeridGetNotificationByIdSelf() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    FString NotificationId;
+	TSharedPtr<FAuthContext> AuthContext;
+	FString NotificationId;
 };
 
 struct RALLYHEREAPI_API FResponse_PlayeridGetNotificationByIdSelf : public FResponse
 {
-    FResponse_PlayeridGetNotificationByIdSelf(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_PlayeridGetNotificationByIdSelf() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_PlayeridGetNotificationByIdSelf(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_PlayeridGetNotificationByIdSelf() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_Notification Content;
+	FRHAPI_Notification Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_Notification& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_Notification& OutContent) const;
 
-    /* Response 400
-     Error Codes: - bad_id - Passed client id is not a valid id 
-    */
-    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 400
+	 Error Codes: - bad_id - Passed client id is not a valid id 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 403
-     Error Codes: - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization 
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	 Error Codes: - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 404
-     Error Codes: - resource_not_found - Notification could not be found 
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 404
+	 Error Codes: - resource_not_found - Notification could not be found 
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 409
-     Error Codes: - too_many_listening_to_single_client - An enumeration. 
-    */
-    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 409
+	 Error Codes: - too_many_listening_to_single_client - An enumeration. 
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
-    /* Response 503
-     Error Codes: - connection_limit_reached - An enumeration. 
-    */
-    bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 503
+	 Error Codes: - connection_limit_reached - An enumeration. 
+	*/
+	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_PlayeridGetNotificationByIdSelf
 {
-    typedef FRequest_PlayeridGetNotificationByIdSelf Request;
-    typedef FResponse_PlayeridGetNotificationByIdSelf Response;
-    typedef FDelegate_PlayeridGetNotificationByIdSelf Delegate;
-    typedef FPlayerIdNotificationAPI API;
-    static FString Name;
+	typedef FRequest_PlayeridGetNotificationByIdSelf Request;
+	typedef FResponse_PlayeridGetNotificationByIdSelf Response;
+	typedef FDelegate_PlayeridGetNotificationByIdSelf Delegate;
+	typedef FPlayerIdNotificationAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayeridGetNotificationByIdSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayeridGetNotificationByIdSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Notifications Page
@@ -417,80 +417,80 @@ struct RALLYHEREAPI_API Traits_PlayeridGetNotificationByIdSelf
 */
 struct RALLYHEREAPI_API FRequest_PlayeridGetNotificationsPage : public FRequest
 {
-    FRequest_PlayeridGetNotificationsPage();
-    virtual ~FRequest_PlayeridGetNotificationsPage() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_PlayeridGetNotificationsPage();
+	virtual ~FRequest_PlayeridGetNotificationsPage() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    int32 PlayerId = 0;
-    TOptional<int32> PageSize;
-    /* Return results starting at this index (inclusive).  If none provided then will start at the latest notification.  You cannot depend on the format of this string, and it must be considered opaque */
-    TOptional<FString> StartAt;
-    /* All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque */
-    TOptional<FString> ExcludeBefore;
-    /* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	int32 PlayerId = 0;
+	TOptional<int32> PageSize;
+	/* Return results starting at this index (inclusive).  If none provided then will start at the latest notification.  You cannot depend on the format of this string, and it must be considered opaque */
+	TOptional<FString> StartAt;
+	/* All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque */
+	TOptional<FString> ExcludeBefore;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_PlayeridGetNotificationsPage : public FResponse
 {
-    FResponse_PlayeridGetNotificationsPage(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_PlayeridGetNotificationsPage() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_PlayeridGetNotificationsPage(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_PlayeridGetNotificationsPage() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_Notifications Content;
+	FRHAPI_Notifications Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_Notifications& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_Notifications& OutContent) const;
 
-    /* Response 304
-    Not Modified
-    */
+	/* Response 304
+	Not Modified
+	*/
 
-    /* Response 400
-     Error Codes: - bad_id - Passed client id is not a valid id 
-    */
-    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 400
+	 Error Codes: - bad_id - Passed client id is not a valid id 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 403
-     Error Codes: - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization 
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	 Error Codes: - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 409
-     Error Codes: - too_many_listening_to_single_client - An enumeration. 
-    */
-    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 409
+	 Error Codes: - too_many_listening_to_single_client - An enumeration. 
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
-    /* Response 503
-     Error Codes: - connection_limit_reached - An enumeration. 
-    */
-    bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 503
+	 Error Codes: - connection_limit_reached - An enumeration. 
+	*/
+	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_PlayeridGetNotificationsPage
 {
-    typedef FRequest_PlayeridGetNotificationsPage Request;
-    typedef FResponse_PlayeridGetNotificationsPage Response;
-    typedef FDelegate_PlayeridGetNotificationsPage Delegate;
-    typedef FPlayerIdNotificationAPI API;
-    static FString Name;
+	typedef FRequest_PlayeridGetNotificationsPage Request;
+	typedef FResponse_PlayeridGetNotificationsPage Response;
+	typedef FDelegate_PlayeridGetNotificationsPage Delegate;
+	typedef FPlayerIdNotificationAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayeridGetNotificationsPage(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayeridGetNotificationsPage(InRequest, InDelegate, Priority); }
 };
 
 /* Get Notifications Page Self
@@ -512,79 +512,79 @@ struct RALLYHEREAPI_API Traits_PlayeridGetNotificationsPage
 */
 struct RALLYHEREAPI_API FRequest_PlayeridGetNotificationsPageSelf : public FRequest
 {
-    FRequest_PlayeridGetNotificationsPageSelf();
-    virtual ~FRequest_PlayeridGetNotificationsPageSelf() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_PlayeridGetNotificationsPageSelf();
+	virtual ~FRequest_PlayeridGetNotificationsPageSelf() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    TOptional<int32> PageSize;
-    /* Return results starting at this index (inclusive).  If none provided then will start at the latest notification.  You cannot depend on the format of this string, and it must be considered opaque */
-    TOptional<FString> StartAt;
-    /* All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque */
-    TOptional<FString> ExcludeBefore;
-    /* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed */
-    TOptional<FString> IfNoneMatch;
+	TSharedPtr<FAuthContext> AuthContext;
+	TOptional<int32> PageSize;
+	/* Return results starting at this index (inclusive).  If none provided then will start at the latest notification.  You cannot depend on the format of this string, and it must be considered opaque */
+	TOptional<FString> StartAt;
+	/* All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque */
+	TOptional<FString> ExcludeBefore;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed */
+	TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_PlayeridGetNotificationsPageSelf : public FResponse
 {
-    FResponse_PlayeridGetNotificationsPageSelf(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_PlayeridGetNotificationsPageSelf() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_PlayeridGetNotificationsPageSelf(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_PlayeridGetNotificationsPageSelf() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_Notifications Content;
+	FRHAPI_Notifications Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_Notifications& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_Notifications& OutContent) const;
 
-    /* Response 304
-    Not Modified
-    */
+	/* Response 304
+	Not Modified
+	*/
 
-    /* Response 400
-     Error Codes: - bad_id - Passed client id is not a valid id 
-    */
-    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 400
+	 Error Codes: - bad_id - Passed client id is not a valid id 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 403
-     Error Codes: - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization 
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	 Error Codes: - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 409
-     Error Codes: - too_many_listening_to_single_client - An enumeration. 
-    */
-    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 409
+	 Error Codes: - too_many_listening_to_single_client - An enumeration. 
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
-    /* Response 503
-     Error Codes: - connection_limit_reached - An enumeration. 
-    */
-    bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 503
+	 Error Codes: - connection_limit_reached - An enumeration. 
+	*/
+	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_PlayeridGetNotificationsPageSelf
 {
-    typedef FRequest_PlayeridGetNotificationsPageSelf Request;
-    typedef FResponse_PlayeridGetNotificationsPageSelf Response;
-    typedef FDelegate_PlayeridGetNotificationsPageSelf Delegate;
-    typedef FPlayerIdNotificationAPI API;
-    static FString Name;
+	typedef FRequest_PlayeridGetNotificationsPageSelf Request;
+	typedef FResponse_PlayeridGetNotificationsPageSelf Response;
+	typedef FDelegate_PlayeridGetNotificationsPageSelf Delegate;
+	typedef FPlayerIdNotificationAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayeridGetNotificationsPageSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayeridGetNotificationsPageSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Long Poll For Notifications
@@ -607,77 +607,77 @@ struct RALLYHEREAPI_API Traits_PlayeridGetNotificationsPageSelf
 */
 struct RALLYHEREAPI_API FRequest_PlayeridLongPollForNotifications : public FRequest
 {
-    FRequest_PlayeridLongPollForNotifications();
-    virtual ~FRequest_PlayeridLongPollForNotifications() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_PlayeridLongPollForNotifications();
+	virtual ~FRequest_PlayeridLongPollForNotifications() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    int32 PlayerId = 0;
-    /* Max number of entries to return at one time */
-    TOptional<int32> MaxPageSize;
-    /* All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque */
-    TOptional<FString> ExcludeBefore;
-    /* When `exclude_before` is not found in the stream or not given, begin streaming messages from the earliest/latest message */
-    TOptional<ERHAPI_OffsetReset> OffsetResetStrategy;
-    /* We will try to the best of our ability to return by this deadline, even when we have no notifications.  Value should be in seconds */
-    TOptional<int32> Deadline;
+	TSharedPtr<FAuthContext> AuthContext;
+	int32 PlayerId = 0;
+	/* Max number of entries to return at one time */
+	TOptional<int32> MaxPageSize;
+	/* All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque */
+	TOptional<FString> ExcludeBefore;
+	/* When `exclude_before` is not found in the stream or not given, begin streaming messages from the earliest/latest message */
+	TOptional<ERHAPI_OffsetReset> OffsetResetStrategy;
+	/* We will try to the best of our ability to return by this deadline, even when we have no notifications.  Value should be in seconds */
+	TOptional<int32> Deadline;
 };
 
 struct RALLYHEREAPI_API FResponse_PlayeridLongPollForNotifications : public FResponse
 {
-    FResponse_PlayeridLongPollForNotifications(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_PlayeridLongPollForNotifications() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_PlayeridLongPollForNotifications(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_PlayeridLongPollForNotifications() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_Notifications Content;
+	FRHAPI_Notifications Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_Notifications& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_Notifications& OutContent) const;
 
-    /* Response 400
-     Error Codes: - bad_id - Passed client id is not a valid id 
-    */
-    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 400
+	 Error Codes: - bad_id - Passed client id is not a valid id 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 403
-     Error Codes: - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization 
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	 Error Codes: - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 409
-     Error Codes: - too_many_listening_to_single_client - An enumeration. 
-    */
-    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 409
+	 Error Codes: - too_many_listening_to_single_client - An enumeration. 
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
-    /* Response 503
-     Error Codes: - connection_limit_reached - An enumeration. 
-    */
-    bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 503
+	 Error Codes: - connection_limit_reached - An enumeration. 
+	*/
+	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_PlayeridLongPollForNotifications
 {
-    typedef FRequest_PlayeridLongPollForNotifications Request;
-    typedef FResponse_PlayeridLongPollForNotifications Response;
-    typedef FDelegate_PlayeridLongPollForNotifications Delegate;
-    typedef FPlayerIdNotificationAPI API;
-    static FString Name;
+	typedef FRequest_PlayeridLongPollForNotifications Request;
+	typedef FResponse_PlayeridLongPollForNotifications Response;
+	typedef FDelegate_PlayeridLongPollForNotifications Delegate;
+	typedef FPlayerIdNotificationAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayeridLongPollForNotifications(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayeridLongPollForNotifications(InRequest, InDelegate, Priority); }
 };
 
 /* Long Poll For Notifications Self
@@ -696,76 +696,76 @@ struct RALLYHEREAPI_API Traits_PlayeridLongPollForNotifications
 */
 struct RALLYHEREAPI_API FRequest_PlayeridLongPollForNotificationsSelf : public FRequest
 {
-    FRequest_PlayeridLongPollForNotificationsSelf();
-    virtual ~FRequest_PlayeridLongPollForNotificationsSelf() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+	FRequest_PlayeridLongPollForNotificationsSelf();
+	virtual ~FRequest_PlayeridLongPollForNotificationsSelf() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Max number of entries to return at one time */
-    TOptional<int32> MaxPageSize;
-    /* All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque */
-    TOptional<FString> ExcludeBefore;
-    /* When `exclude_before` is not found in the stream or not given, begin streaming messages from the earliest/latest message */
-    TOptional<ERHAPI_OffsetReset> OffsetResetStrategy;
-    /* We will try to the best of our ability to return by this deadline, even when we have no notifications.  Value should be in seconds */
-    TOptional<int32> Deadline;
+	TSharedPtr<FAuthContext> AuthContext;
+	/* Max number of entries to return at one time */
+	TOptional<int32> MaxPageSize;
+	/* All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque */
+	TOptional<FString> ExcludeBefore;
+	/* When `exclude_before` is not found in the stream or not given, begin streaming messages from the earliest/latest message */
+	TOptional<ERHAPI_OffsetReset> OffsetResetStrategy;
+	/* We will try to the best of our ability to return by this deadline, even when we have no notifications.  Value should be in seconds */
+	TOptional<int32> Deadline;
 };
 
 struct RALLYHEREAPI_API FResponse_PlayeridLongPollForNotificationsSelf : public FResponse
 {
-    FResponse_PlayeridLongPollForNotificationsSelf(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_PlayeridLongPollForNotificationsSelf() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	FResponse_PlayeridLongPollForNotificationsSelf(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_PlayeridLongPollForNotificationsSelf() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_Notifications Content;
+	FRHAPI_Notifications Content;
 
 
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_Notifications& OutContent) const;
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_Notifications& OutContent) const;
 
-    /* Response 400
-     Error Codes: - bad_id - Passed client id is not a valid id 
-    */
-    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 400
+	 Error Codes: - bad_id - Passed client id is not a valid id 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 403
-     Error Codes: - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization 
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 403
+	 Error Codes: - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 409
-     Error Codes: - too_many_listening_to_single_client - An enumeration. 
-    */
-    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 409
+	 Error Codes: - too_many_listening_to_single_client - An enumeration. 
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
 
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
-    /* Response 503
-     Error Codes: - connection_limit_reached - An enumeration. 
-    */
-    bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Response 503
+	 Error Codes: - connection_limit_reached - An enumeration. 
+	*/
+	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
 
 };
 
 struct RALLYHEREAPI_API Traits_PlayeridLongPollForNotificationsSelf
 {
-    typedef FRequest_PlayeridLongPollForNotificationsSelf Request;
-    typedef FResponse_PlayeridLongPollForNotificationsSelf Response;
-    typedef FDelegate_PlayeridLongPollForNotificationsSelf Delegate;
-    typedef FPlayerIdNotificationAPI API;
-    static FString Name;
+	typedef FRequest_PlayeridLongPollForNotificationsSelf Request;
+	typedef FResponse_PlayeridLongPollForNotificationsSelf Response;
+	typedef FDelegate_PlayeridLongPollForNotificationsSelf Delegate;
+	typedef FPlayerIdNotificationAPI API;
+	static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayeridLongPollForNotificationsSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayeridLongPollForNotificationsSelf(InRequest, InDelegate, Priority); }
 };
 
 

@@ -18,8 +18,8 @@
 UENUM(BlueprintType)
 enum class ERHAPI_QuantityType : uint8
 {
-    Relative UMETA(ToolTip="The quantity will be modified relative to the context in which it is fulfilled."),
-    Absolute UMETA(ToolTip="The quantity will be modified regardless of the context in which it is fulfilled."),
+	Relative UMETA(ToolTip="The quantity will be modified relative to the context in which it is fulfilled."),
+	Absolute UMETA(ToolTip="The quantity will be modified regardless of the context in which it is fulfilled."),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_QuantityType& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_QuantityType& EnumValue);

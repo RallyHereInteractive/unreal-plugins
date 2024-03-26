@@ -21,38 +21,38 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_AppSetting::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("key"));
-    RallyHereAPI::WriteJsonValue(Writer, Key);
-    Writer->WriteIdentifierPrefix(TEXT("value"));
-    RallyHereAPI::WriteJsonValue(Writer, Value);
-    if (Notes_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("notes"));
-        RallyHereAPI::WriteJsonValue(Writer, Notes_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("key"));
+	RallyHereAPI::WriteJsonValue(Writer, Key);
+	Writer->WriteIdentifierPrefix(TEXT("value"));
+	RallyHereAPI::WriteJsonValue(Writer, Value);
+	if (Notes_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("notes"));
+		RallyHereAPI::WriteJsonValue(Writer, Notes_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_AppSetting::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonKeyField = (*Object)->TryGetField(TEXT("key"));
-    ParseSuccess &= JsonKeyField.IsValid() && !JsonKeyField->IsNull() && TryGetJsonValue(JsonKeyField, Key);
-    const TSharedPtr<FJsonValue> JsonValueField = (*Object)->TryGetField(TEXT("value"));
-    ParseSuccess &= JsonValueField.IsValid() && !JsonValueField->IsNull() && TryGetJsonValue(JsonValueField, Value);
-    const TSharedPtr<FJsonValue> JsonNotesField = (*Object)->TryGetField(TEXT("notes"));
-    if (JsonNotesField.IsValid() && !JsonNotesField->IsNull())
-    {
-        Notes_IsSet = TryGetJsonValue(JsonNotesField, Notes_Optional);
-        ParseSuccess &= Notes_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonKeyField = (*Object)->TryGetField(TEXT("key"));
+	ParseSuccess &= JsonKeyField.IsValid() && !JsonKeyField->IsNull() && TryGetJsonValue(JsonKeyField, Key);
+	const TSharedPtr<FJsonValue> JsonValueField = (*Object)->TryGetField(TEXT("value"));
+	ParseSuccess &= JsonValueField.IsValid() && !JsonValueField->IsNull() && TryGetJsonValue(JsonValueField, Value);
+	const TSharedPtr<FJsonValue> JsonNotesField = (*Object)->TryGetField(TEXT("notes"));
+	if (JsonNotesField.IsValid() && !JsonNotesField->IsNull())
+	{
+		Notes_IsSet = TryGetJsonValue(JsonNotesField, Notes_Optional);
+		ParseSuccess &= Notes_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

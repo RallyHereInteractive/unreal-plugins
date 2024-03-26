@@ -21,64 +21,64 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_CreateOrJoinRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("client_version"));
-    RallyHereAPI::WriteJsonValue(Writer, ClientVersion);
-    Writer->WriteIdentifierPrefix(TEXT("client_settings"));
-    RallyHereAPI::WriteJsonValue(Writer, ClientSettings);
-    if (CrossplayPreferences_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("crossplay_preferences"));
-        RallyHereAPI::WriteJsonValue(Writer, CrossplayPreferences_Optional);
-    }
-    Writer->WriteIdentifierPrefix(TEXT("session_type"));
-    RallyHereAPI::WriteJsonValue(Writer, SessionType);
-    if (RegionId_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("region_id"));
-        RallyHereAPI::WriteJsonValue(Writer, RegionId_Optional);
-    }
-    if (Player_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("player"));
-        RallyHereAPI::WriteJsonValue(Writer, Player_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("client_version"));
+	RallyHereAPI::WriteJsonValue(Writer, ClientVersion);
+	Writer->WriteIdentifierPrefix(TEXT("client_settings"));
+	RallyHereAPI::WriteJsonValue(Writer, ClientSettings);
+	if (CrossplayPreferences_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("crossplay_preferences"));
+		RallyHereAPI::WriteJsonValue(Writer, CrossplayPreferences_Optional);
+	}
+	Writer->WriteIdentifierPrefix(TEXT("session_type"));
+	RallyHereAPI::WriteJsonValue(Writer, SessionType);
+	if (RegionId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("region_id"));
+		RallyHereAPI::WriteJsonValue(Writer, RegionId_Optional);
+	}
+	if (Player_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("player"));
+		RallyHereAPI::WriteJsonValue(Writer, Player_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_CreateOrJoinRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonClientVersionField = (*Object)->TryGetField(TEXT("client_version"));
-    ParseSuccess &= JsonClientVersionField.IsValid() && !JsonClientVersionField->IsNull() && TryGetJsonValue(JsonClientVersionField, ClientVersion);
-    const TSharedPtr<FJsonValue> JsonClientSettingsField = (*Object)->TryGetField(TEXT("client_settings"));
-    ParseSuccess &= JsonClientSettingsField.IsValid() && !JsonClientSettingsField->IsNull() && TryGetJsonValue(JsonClientSettingsField, ClientSettings);
-    const TSharedPtr<FJsonValue> JsonCrossplayPreferencesField = (*Object)->TryGetField(TEXT("crossplay_preferences"));
-    if (JsonCrossplayPreferencesField.IsValid() && !JsonCrossplayPreferencesField->IsNull())
-    {
-        CrossplayPreferences_IsSet = TryGetJsonValue(JsonCrossplayPreferencesField, CrossplayPreferences_Optional);
-        ParseSuccess &= CrossplayPreferences_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonSessionTypeField = (*Object)->TryGetField(TEXT("session_type"));
-    ParseSuccess &= JsonSessionTypeField.IsValid() && !JsonSessionTypeField->IsNull() && TryGetJsonValue(JsonSessionTypeField, SessionType);
-    const TSharedPtr<FJsonValue> JsonRegionIdField = (*Object)->TryGetField(TEXT("region_id"));
-    if (JsonRegionIdField.IsValid() && !JsonRegionIdField->IsNull())
-    {
-        RegionId_IsSet = TryGetJsonValue(JsonRegionIdField, RegionId_Optional);
-        ParseSuccess &= RegionId_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonPlayerField = (*Object)->TryGetField(TEXT("player"));
-    if (JsonPlayerField.IsValid() && !JsonPlayerField->IsNull())
-    {
-        Player_IsSet = TryGetJsonValue(JsonPlayerField, Player_Optional);
-        ParseSuccess &= Player_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonClientVersionField = (*Object)->TryGetField(TEXT("client_version"));
+	ParseSuccess &= JsonClientVersionField.IsValid() && !JsonClientVersionField->IsNull() && TryGetJsonValue(JsonClientVersionField, ClientVersion);
+	const TSharedPtr<FJsonValue> JsonClientSettingsField = (*Object)->TryGetField(TEXT("client_settings"));
+	ParseSuccess &= JsonClientSettingsField.IsValid() && !JsonClientSettingsField->IsNull() && TryGetJsonValue(JsonClientSettingsField, ClientSettings);
+	const TSharedPtr<FJsonValue> JsonCrossplayPreferencesField = (*Object)->TryGetField(TEXT("crossplay_preferences"));
+	if (JsonCrossplayPreferencesField.IsValid() && !JsonCrossplayPreferencesField->IsNull())
+	{
+		CrossplayPreferences_IsSet = TryGetJsonValue(JsonCrossplayPreferencesField, CrossplayPreferences_Optional);
+		ParseSuccess &= CrossplayPreferences_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonSessionTypeField = (*Object)->TryGetField(TEXT("session_type"));
+	ParseSuccess &= JsonSessionTypeField.IsValid() && !JsonSessionTypeField->IsNull() && TryGetJsonValue(JsonSessionTypeField, SessionType);
+	const TSharedPtr<FJsonValue> JsonRegionIdField = (*Object)->TryGetField(TEXT("region_id"));
+	if (JsonRegionIdField.IsValid() && !JsonRegionIdField->IsNull())
+	{
+		RegionId_IsSet = TryGetJsonValue(JsonRegionIdField, RegionId_Optional);
+		ParseSuccess &= RegionId_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonPlayerField = (*Object)->TryGetField(TEXT("player"));
+	if (JsonPlayerField.IsValid() && !JsonPlayerField->IsNull())
+	{
+		Player_IsSet = TryGetJsonValue(JsonPlayerField, Player_Optional);
+		ParseSuccess &= Player_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

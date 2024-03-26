@@ -21,39 +21,39 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_PurgeResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("person_id"));
-    RallyHereAPI::WriteJsonValue(Writer, PersonId);
-    Writer->WriteIdentifierPrefix(TEXT("purge_on"));
-    RallyHereAPI::WriteJsonValue(Writer, PurgeOn);
-    Writer->WriteIdentifierPrefix(TEXT("created_on"));
-    RallyHereAPI::WriteJsonValue(Writer, CreatedOn);
-    Writer->WriteIdentifierPrefix(TEXT("last_modified_on"));
-    RallyHereAPI::WriteJsonValue(Writer, LastModifiedOn);
-    Writer->WriteIdentifierPrefix(TEXT("status"));
-    RallyHereAPI::WriteJsonValue(Writer, Status);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("person_id"));
+	RallyHereAPI::WriteJsonValue(Writer, PersonId);
+	Writer->WriteIdentifierPrefix(TEXT("purge_on"));
+	RallyHereAPI::WriteJsonValue(Writer, PurgeOn);
+	Writer->WriteIdentifierPrefix(TEXT("created_on"));
+	RallyHereAPI::WriteJsonValue(Writer, CreatedOn);
+	Writer->WriteIdentifierPrefix(TEXT("last_modified_on"));
+	RallyHereAPI::WriteJsonValue(Writer, LastModifiedOn);
+	Writer->WriteIdentifierPrefix(TEXT("status"));
+	RallyHereAPI::WriteJsonValue(Writer, Status);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_PurgeResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonPersonIdField = (*Object)->TryGetField(TEXT("person_id"));
-    ParseSuccess &= JsonPersonIdField.IsValid() && !JsonPersonIdField->IsNull() && TryGetJsonValue(JsonPersonIdField, PersonId);
-    const TSharedPtr<FJsonValue> JsonPurgeOnField = (*Object)->TryGetField(TEXT("purge_on"));
-    ParseSuccess &= JsonPurgeOnField.IsValid() && !JsonPurgeOnField->IsNull() && TryGetJsonValue(JsonPurgeOnField, PurgeOn);
-    const TSharedPtr<FJsonValue> JsonCreatedOnField = (*Object)->TryGetField(TEXT("created_on"));
-    ParseSuccess &= JsonCreatedOnField.IsValid() && !JsonCreatedOnField->IsNull() && TryGetJsonValue(JsonCreatedOnField, CreatedOn);
-    const TSharedPtr<FJsonValue> JsonLastModifiedOnField = (*Object)->TryGetField(TEXT("last_modified_on"));
-    ParseSuccess &= JsonLastModifiedOnField.IsValid() && !JsonLastModifiedOnField->IsNull() && TryGetJsonValue(JsonLastModifiedOnField, LastModifiedOn);
-    const TSharedPtr<FJsonValue> JsonStatusField = (*Object)->TryGetField(TEXT("status"));
-    ParseSuccess &= JsonStatusField.IsValid() && !JsonStatusField->IsNull() && TryGetJsonValue(JsonStatusField, Status);
+	const TSharedPtr<FJsonValue> JsonPersonIdField = (*Object)->TryGetField(TEXT("person_id"));
+	ParseSuccess &= JsonPersonIdField.IsValid() && !JsonPersonIdField->IsNull() && TryGetJsonValue(JsonPersonIdField, PersonId);
+	const TSharedPtr<FJsonValue> JsonPurgeOnField = (*Object)->TryGetField(TEXT("purge_on"));
+	ParseSuccess &= JsonPurgeOnField.IsValid() && !JsonPurgeOnField->IsNull() && TryGetJsonValue(JsonPurgeOnField, PurgeOn);
+	const TSharedPtr<FJsonValue> JsonCreatedOnField = (*Object)->TryGetField(TEXT("created_on"));
+	ParseSuccess &= JsonCreatedOnField.IsValid() && !JsonCreatedOnField->IsNull() && TryGetJsonValue(JsonCreatedOnField, CreatedOn);
+	const TSharedPtr<FJsonValue> JsonLastModifiedOnField = (*Object)->TryGetField(TEXT("last_modified_on"));
+	ParseSuccess &= JsonLastModifiedOnField.IsValid() && !JsonLastModifiedOnField->IsNull() && TryGetJsonValue(JsonLastModifiedOnField, LastModifiedOn);
+	const TSharedPtr<FJsonValue> JsonStatusField = (*Object)->TryGetField(TEXT("status"));
+	ParseSuccess &= JsonStatusField.IsValid() && !JsonStatusField->IsNull() && TryGetJsonValue(JsonStatusField, Status);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

@@ -21,63 +21,63 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_AdditionalJoinParams::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (DoubleArgs_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("double_args"));
-        RallyHereAPI::WriteJsonValue(Writer, DoubleArgs_Optional);
-    }
-    if (StringArgs_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("string_args"));
-        RallyHereAPI::WriteJsonValue(Writer, StringArgs_Optional);
-    }
-    if (Tags_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("tags"));
-        RallyHereAPI::WriteJsonValue(Writer, Tags_Optional);
-    }
-    if (Extensions_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("extensions"));
-        RallyHereAPI::WriteJsonValue(Writer, Extensions_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (DoubleArgs_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("double_args"));
+		RallyHereAPI::WriteJsonValue(Writer, DoubleArgs_Optional);
+	}
+	if (StringArgs_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("string_args"));
+		RallyHereAPI::WriteJsonValue(Writer, StringArgs_Optional);
+	}
+	if (Tags_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("tags"));
+		RallyHereAPI::WriteJsonValue(Writer, Tags_Optional);
+	}
+	if (Extensions_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("extensions"));
+		RallyHereAPI::WriteJsonValue(Writer, Extensions_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_AdditionalJoinParams::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonDoubleArgsField = (*Object)->TryGetField(TEXT("double_args"));
-    if (JsonDoubleArgsField.IsValid() && !JsonDoubleArgsField->IsNull())
-    {
-        DoubleArgs_IsSet = TryGetJsonValue(JsonDoubleArgsField, DoubleArgs_Optional);
-        ParseSuccess &= DoubleArgs_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonStringArgsField = (*Object)->TryGetField(TEXT("string_args"));
-    if (JsonStringArgsField.IsValid() && !JsonStringArgsField->IsNull())
-    {
-        StringArgs_IsSet = TryGetJsonValue(JsonStringArgsField, StringArgs_Optional);
-        ParseSuccess &= StringArgs_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonTagsField = (*Object)->TryGetField(TEXT("tags"));
-    if (JsonTagsField.IsValid() && !JsonTagsField->IsNull())
-    {
-        Tags_IsSet = TryGetJsonValue(JsonTagsField, Tags_Optional);
-        ParseSuccess &= Tags_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonExtensionsField = (*Object)->TryGetField(TEXT("extensions"));
-    if (JsonExtensionsField.IsValid() && !JsonExtensionsField->IsNull())
-    {
-        Extensions_IsSet = TryGetJsonValue(JsonExtensionsField, Extensions_Optional);
-        ParseSuccess &= Extensions_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonDoubleArgsField = (*Object)->TryGetField(TEXT("double_args"));
+	if (JsonDoubleArgsField.IsValid() && !JsonDoubleArgsField->IsNull())
+	{
+		DoubleArgs_IsSet = TryGetJsonValue(JsonDoubleArgsField, DoubleArgs_Optional);
+		ParseSuccess &= DoubleArgs_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonStringArgsField = (*Object)->TryGetField(TEXT("string_args"));
+	if (JsonStringArgsField.IsValid() && !JsonStringArgsField->IsNull())
+	{
+		StringArgs_IsSet = TryGetJsonValue(JsonStringArgsField, StringArgs_Optional);
+		ParseSuccess &= StringArgs_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonTagsField = (*Object)->TryGetField(TEXT("tags"));
+	if (JsonTagsField.IsValid() && !JsonTagsField->IsNull())
+	{
+		Tags_IsSet = TryGetJsonValue(JsonTagsField, Tags_Optional);
+		ParseSuccess &= Tags_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonExtensionsField = (*Object)->TryGetField(TEXT("extensions"));
+	if (JsonExtensionsField.IsValid() && !JsonExtensionsField->IsNull())
+	{
+		Extensions_IsSet = TryGetJsonValue(JsonExtensionsField, Extensions_Optional);
+		ParseSuccess &= Extensions_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

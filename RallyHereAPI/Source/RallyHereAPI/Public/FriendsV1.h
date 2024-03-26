@@ -21,32 +21,32 @@
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_FriendsV1 : public FRHAPI_Model
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    /**
-    * @brief Fills this object with data from the passed in JSON
-    *
-    * @param [in] JsonValue Data from the API call.
-    *
-    * @return true if parsing of the JSON data was successful.
-    */
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	/**
+	* @brief Fills this object with data from the passed in JSON
+	*
+	* @param [in] JsonValue Data from the API call.
+	*
+	* @return true if parsing of the JSON data was successful.
+	*/
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
-    /**
-    * @brief Writes the data from this object into the specified JSON Writer stream
-    *
-    * @param [in] Writer JSON Writer stream to push .
-    */
-    void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	/**
+	* @brief Writes the data from this object into the specified JSON Writer stream
+	*
+	* @param [in] Writer JSON Writer stream to push .
+	*/
+	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    TArray<int32> Friends{  };
-    /** @brief Gets the value of Friends */
-    TArray<int32>& GetFriends() { return Friends; }
-    /** @brief Gets the value of Friends */
-    const TArray<int32>& GetFriends() const { return Friends; }
-    /** @brief Sets the value of Friends */
-    void SetFriends(TArray<int32> NewValue) { Friends = NewValue;  }
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TArray<int32> Friends{  };
+	/** @brief Gets the value of Friends */
+	TArray<int32>& GetFriends() { return Friends; }
+	/** @brief Gets the value of Friends */
+	const TArray<int32>& GetFriends() const { return Friends; }
+	/** @brief Sets the value of Friends */
+	void SetFriends(TArray<int32> NewValue) { Friends = NewValue;  }
 };
 
 /** @} */

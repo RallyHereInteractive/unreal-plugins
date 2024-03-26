@@ -21,57 +21,57 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_PortalUserResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (PortalUserId_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("portal_user_id"));
-        RallyHereAPI::WriteJsonValue(Writer, PortalUserId_Optional);
-    }
-    Writer->WriteIdentifierPrefix(TEXT("portal_id"));
-    RallyHereAPI::WriteJsonValue(Writer, PortalId);
-    Writer->WriteIdentifierPrefix(TEXT("platform"));
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(Platform));
-    if (DisplayName_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("display_name"));
-        RallyHereAPI::WriteJsonValue(Writer, DisplayName_Optional);
-    }
-    Writer->WriteIdentifierPrefix(TEXT("player_id"));
-    RallyHereAPI::WriteJsonValue(Writer, PlayerId);
-    Writer->WriteIdentifierPrefix(TEXT("player_uuid"));
-    RallyHereAPI::WriteJsonValue(Writer, PlayerUuid);
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (PortalUserId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("portal_user_id"));
+		RallyHereAPI::WriteJsonValue(Writer, PortalUserId_Optional);
+	}
+	Writer->WriteIdentifierPrefix(TEXT("portal_id"));
+	RallyHereAPI::WriteJsonValue(Writer, PortalId);
+	Writer->WriteIdentifierPrefix(TEXT("platform"));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Platform));
+	if (DisplayName_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("display_name"));
+		RallyHereAPI::WriteJsonValue(Writer, DisplayName_Optional);
+	}
+	Writer->WriteIdentifierPrefix(TEXT("player_id"));
+	RallyHereAPI::WriteJsonValue(Writer, PlayerId);
+	Writer->WriteIdentifierPrefix(TEXT("player_uuid"));
+	RallyHereAPI::WriteJsonValue(Writer, PlayerUuid);
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_PortalUserResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonPortalUserIdField = (*Object)->TryGetField(TEXT("portal_user_id"));
-    if (JsonPortalUserIdField.IsValid() && !JsonPortalUserIdField->IsNull())
-    {
-        PortalUserId_IsSet = TryGetJsonValue(JsonPortalUserIdField, PortalUserId_Optional);
-        ParseSuccess &= PortalUserId_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonPortalIdField = (*Object)->TryGetField(TEXT("portal_id"));
-    ParseSuccess &= JsonPortalIdField.IsValid() && !JsonPortalIdField->IsNull() && TryGetJsonValue(JsonPortalIdField, PortalId);
-    const TSharedPtr<FJsonValue> JsonPlatformField = (*Object)->TryGetField(TEXT("platform"));
-    ParseSuccess &= JsonPlatformField.IsValid() && !JsonPlatformField->IsNull() && TryGetJsonValue(JsonPlatformField, Platform);
-    const TSharedPtr<FJsonValue> JsonDisplayNameField = (*Object)->TryGetField(TEXT("display_name"));
-    if (JsonDisplayNameField.IsValid() && !JsonDisplayNameField->IsNull())
-    {
-        DisplayName_IsSet = TryGetJsonValue(JsonDisplayNameField, DisplayName_Optional);
-        ParseSuccess &= DisplayName_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonPlayerIdField = (*Object)->TryGetField(TEXT("player_id"));
-    ParseSuccess &= JsonPlayerIdField.IsValid() && !JsonPlayerIdField->IsNull() && TryGetJsonValue(JsonPlayerIdField, PlayerId);
-    const TSharedPtr<FJsonValue> JsonPlayerUuidField = (*Object)->TryGetField(TEXT("player_uuid"));
-    ParseSuccess &= JsonPlayerUuidField.IsValid() && !JsonPlayerUuidField->IsNull() && TryGetJsonValue(JsonPlayerUuidField, PlayerUuid);
+	const TSharedPtr<FJsonValue> JsonPortalUserIdField = (*Object)->TryGetField(TEXT("portal_user_id"));
+	if (JsonPortalUserIdField.IsValid() && !JsonPortalUserIdField->IsNull())
+	{
+		PortalUserId_IsSet = TryGetJsonValue(JsonPortalUserIdField, PortalUserId_Optional);
+		ParseSuccess &= PortalUserId_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonPortalIdField = (*Object)->TryGetField(TEXT("portal_id"));
+	ParseSuccess &= JsonPortalIdField.IsValid() && !JsonPortalIdField->IsNull() && TryGetJsonValue(JsonPortalIdField, PortalId);
+	const TSharedPtr<FJsonValue> JsonPlatformField = (*Object)->TryGetField(TEXT("platform"));
+	ParseSuccess &= JsonPlatformField.IsValid() && !JsonPlatformField->IsNull() && TryGetJsonValue(JsonPlatformField, Platform);
+	const TSharedPtr<FJsonValue> JsonDisplayNameField = (*Object)->TryGetField(TEXT("display_name"));
+	if (JsonDisplayNameField.IsValid() && !JsonDisplayNameField->IsNull())
+	{
+		DisplayName_IsSet = TryGetJsonValue(JsonDisplayNameField, DisplayName_Optional);
+		ParseSuccess &= DisplayName_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonPlayerIdField = (*Object)->TryGetField(TEXT("player_id"));
+	ParseSuccess &= JsonPlayerIdField.IsValid() && !JsonPlayerIdField->IsNull() && TryGetJsonValue(JsonPlayerIdField, PlayerId);
+	const TSharedPtr<FJsonValue> JsonPlayerUuidField = (*Object)->TryGetField(TEXT("player_uuid"));
+	ParseSuccess &= JsonPlayerUuidField.IsValid() && !JsonPlayerUuidField->IsNull() && TryGetJsonValue(JsonPlayerUuidField, PlayerUuid);
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 

@@ -21,71 +21,71 @@ using RallyHereAPI::TryGetJsonValue;
 
 void FRHAPI_PlatformSKU::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
-    Writer->WriteObjectStart();
-    if (CustomData_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("custom_data"));
-        RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
-    }
-    Writer->WriteIdentifierPrefix(TEXT("platform"));
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(Platform));
-    Writer->WriteIdentifierPrefix(TEXT("sku"));
-    RallyHereAPI::WriteJsonValue(Writer, Sku);
-    if (LootEntitlement_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("loot_entitlement"));
-        RallyHereAPI::WriteJsonValue(Writer, LootEntitlement_Optional);
-    }
-    if (ExternalKeyEntitlement_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("external_key_entitlement"));
-        RallyHereAPI::WriteJsonValue(Writer, ExternalKeyEntitlement_Optional);
-    }
-    if (CacheInfo_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("cache_info"));
-        RallyHereAPI::WriteJsonValue(Writer, CacheInfo_Optional);
-    }
-    Writer->WriteObjectEnd();
+	Writer->WriteObjectStart();
+	if (CustomData_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("custom_data"));
+		RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
+	}
+	Writer->WriteIdentifierPrefix(TEXT("platform"));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Platform));
+	Writer->WriteIdentifierPrefix(TEXT("sku"));
+	RallyHereAPI::WriteJsonValue(Writer, Sku);
+	if (LootEntitlement_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("loot_entitlement"));
+		RallyHereAPI::WriteJsonValue(Writer, LootEntitlement_Optional);
+	}
+	if (ExternalKeyEntitlement_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("external_key_entitlement"));
+		RallyHereAPI::WriteJsonValue(Writer, ExternalKeyEntitlement_Optional);
+	}
+	if (CacheInfo_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("cache_info"));
+		RallyHereAPI::WriteJsonValue(Writer, CacheInfo_Optional);
+	}
+	Writer->WriteObjectEnd();
 }
 
 bool FRHAPI_PlatformSKU::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    const TSharedPtr<FJsonObject>* Object;
-    if (!JsonValue->TryGetObject(Object))
-        return false;
+	const TSharedPtr<FJsonObject>* Object;
+	if (!JsonValue->TryGetObject(Object))
+		return false;
 
-    bool ParseSuccess = true;
+	bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-    if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
-    {
-        CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
-        ParseSuccess &= CustomData_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonPlatformField = (*Object)->TryGetField(TEXT("platform"));
-    ParseSuccess &= JsonPlatformField.IsValid() && !JsonPlatformField->IsNull() && TryGetJsonValue(JsonPlatformField, Platform);
-    const TSharedPtr<FJsonValue> JsonSkuField = (*Object)->TryGetField(TEXT("sku"));
-    ParseSuccess &= JsonSkuField.IsValid() && !JsonSkuField->IsNull() && TryGetJsonValue(JsonSkuField, Sku);
-    const TSharedPtr<FJsonValue> JsonLootEntitlementField = (*Object)->TryGetField(TEXT("loot_entitlement"));
-    if (JsonLootEntitlementField.IsValid() && !JsonLootEntitlementField->IsNull())
-    {
-        LootEntitlement_IsSet = TryGetJsonValue(JsonLootEntitlementField, LootEntitlement_Optional);
-        ParseSuccess &= LootEntitlement_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonExternalKeyEntitlementField = (*Object)->TryGetField(TEXT("external_key_entitlement"));
-    if (JsonExternalKeyEntitlementField.IsValid() && !JsonExternalKeyEntitlementField->IsNull())
-    {
-        ExternalKeyEntitlement_IsSet = TryGetJsonValue(JsonExternalKeyEntitlementField, ExternalKeyEntitlement_Optional);
-        ParseSuccess &= ExternalKeyEntitlement_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
-    if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
-    {
-        CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
-        ParseSuccess &= CacheInfo_IsSet;
-    }
+	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
+	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	{
+		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
+		ParseSuccess &= CustomData_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonPlatformField = (*Object)->TryGetField(TEXT("platform"));
+	ParseSuccess &= JsonPlatformField.IsValid() && !JsonPlatformField->IsNull() && TryGetJsonValue(JsonPlatformField, Platform);
+	const TSharedPtr<FJsonValue> JsonSkuField = (*Object)->TryGetField(TEXT("sku"));
+	ParseSuccess &= JsonSkuField.IsValid() && !JsonSkuField->IsNull() && TryGetJsonValue(JsonSkuField, Sku);
+	const TSharedPtr<FJsonValue> JsonLootEntitlementField = (*Object)->TryGetField(TEXT("loot_entitlement"));
+	if (JsonLootEntitlementField.IsValid() && !JsonLootEntitlementField->IsNull())
+	{
+		LootEntitlement_IsSet = TryGetJsonValue(JsonLootEntitlementField, LootEntitlement_Optional);
+		ParseSuccess &= LootEntitlement_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonExternalKeyEntitlementField = (*Object)->TryGetField(TEXT("external_key_entitlement"));
+	if (JsonExternalKeyEntitlementField.IsValid() && !JsonExternalKeyEntitlementField->IsNull())
+	{
+		ExternalKeyEntitlement_IsSet = TryGetJsonValue(JsonExternalKeyEntitlementField, ExternalKeyEntitlement_Optional);
+		ParseSuccess &= ExternalKeyEntitlement_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
+	if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
+	{
+		CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
+		ParseSuccess &= CacheInfo_IsSet;
+	}
 
-    return ParseSuccess;
+	return ParseSuccess;
 }
 
