@@ -154,25 +154,20 @@ protected:
 			
 			Completed(RHSession.IsValid());	// add or update can fail in some edge cases, try to be graceful
 		}
-		else if (Resp.GetHttpResponseCode() == EHttpResponseCodes::NotFound && Resp.GetJsonResponse() != nullptr && Resp.GetJsonResponse()->IsValid())
+		else if (Resp.GetHttpResponseCode() == EHttpResponseCodes::NotFound)
 		{
 			// this could be due to the API being down, or due to the session being missing, so check further
-			const TSharedPtr<FJsonObject>* JsonObject = nullptr;
-			FString ErrorCodeDesc;
-			if ((*Resp.GetJsonResponse())->TryGetObject(JsonObject) && JsonObject != nullptr && JsonObject->Get()->TryGetStringField(TEXT("error_code"), ErrorCodeDesc))
+			if (ErrorInfo.bIsRallyHereError && ErrorInfo.RHErrorCode == TEXT("session_not_found")) // todo - const somewhere?
 			{
-				if (ErrorCodeDesc == TEXT("session_not_found")) // todo - const somewhere?
+				auto* ExistingSession = SessionOwner->GetSessionById(SessionId);
+				if (ExistingSession != nullptr)
 				{
-					auto* ExistingSession = SessionOwner->GetSessionById(SessionId);
-					if (ExistingSession != nullptr)
-					{
-						SCOPED_NAMED_EVENT(RallyHere_BroadcastSessionNotFound, FColor::Purple);
-						ExistingSession->BLUEPRINT_OnSessionNotFoundDelegate.Broadcast(ExistingSession);
-						ExistingSession->OnSessionNotFoundDelegate.Broadcast(ExistingSession);
-					}
-					Failed(TEXT("Session Not Found"));
-					return;
+					SCOPED_NAMED_EVENT(RallyHere_BroadcastSessionNotFound, FColor::Purple);
+					ExistingSession->BLUEPRINT_OnSessionNotFoundDelegate.Broadcast(ExistingSession);
+					ExistingSession->OnSessionNotFoundDelegate.Broadcast(ExistingSession);
 				}
+				Failed(TEXT("Session Not Found"));
+				return;
 			}
 
 			Failed(TEXT("Lookup Failed"));

@@ -277,6 +277,27 @@ struct FRH_ErrorInfo
 	 */
 	UPROPERTY(BlueprintReadOnly, Category = "Error")
 	FString ResponseContent{};
+
+	/**
+	 * @brief Whether the response is a RallyHere error.
+	 */
+	UPROPERTY(BlueprintReadOnly, Category = "Error")
+	bool bIsRallyHereError;
+	/**
+	 * @brief Whether the response is a RallyHere error with an auth success.
+	 */
+	UPROPERTY(BlueprintReadOnly, Category = "Error")
+	bool bRHAuthSuccess;
+	/**
+	 * @brief Rally Here error code
+	 */
+	UPROPERTY(BlueprintReadOnly, Category = "Error")
+	FString RHErrorCode;
+	/**
+	 * @brief Rally Here error description
+	 */
+	UPROPERTY(BlueprintReadOnly, Category = "Error")
+	FString RHErrorDesc;
 	/**
 	 * @brief Default constructor.
 	 */
@@ -317,6 +338,30 @@ struct FRH_ErrorInfo
 			const auto HttpResp = Response.GetHttpResponse();
 			ResponseCode = HttpResp->GetResponseCode();
 			ResponseContent = HttpResp->GetContentAsString();
+
+			const auto JsonValuePtr = Response.TryGetPayload<RallyHereAPI::FResponse::JsonPayloadType>();
+			if (JsonValuePtr != nullptr)
+			{
+				auto JsonValue = *JsonValuePtr;
+				const TSharedPtr<FJsonObject>*JsonObject = nullptr;
+
+				FString AuthSuccessTemp, ErrorCodeTemp, ErrorDescTemp;
+				if (JsonValue->TryGetObject(JsonObject) && JsonObject != nullptr && JsonObject->Get()->TryGetStringField(TEXT("error_code"), ErrorCodeTemp))
+				{
+					bIsRallyHereError = true;
+					RHErrorCode = ErrorCodeTemp;
+
+					if (JsonValue->TryGetObject(JsonObject) && JsonObject != nullptr && JsonObject->Get()->TryGetStringField(TEXT("auth_success"), AuthSuccessTemp))
+					{
+						bRHAuthSuccess = AuthSuccessTemp.ToBool();
+					}
+					if (JsonValue->TryGetObject(JsonObject) && JsonObject != nullptr && JsonObject->Get()->TryGetStringField(TEXT("desc"), ErrorDescTemp))
+					{
+						RHErrorDesc = ErrorDescTemp;
+					}
+				}
+				
+			}
 		}
 	}
 };
