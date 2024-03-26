@@ -6,7 +6,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-    https://www.apache.org/licenses/LICENSE-2.0
+	https://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -40,7 +40,7 @@ UENUM(BlueprintType)
 enum class {{{classname}}} : uint8
 {
 {{#enumVars}}
-    {{name}} UMETA(ToolTip="{{#enumDescription}}{{.}}{{/enumDescription}}"),
+	{{name}} UMETA(ToolTip="{{#enumDescription}}{{.}}{{/enumDescription}}"),
 {{/enumVars}}
 };
 {{/allowableValues}}
@@ -54,94 +54,94 @@ enum class {{{classname}}} : uint8
 USTRUCT(BlueprintType)
 struct {{dllapi}} {{classname}} : public {{unrealModelPrefix}}Model
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    /**
-    * @brief Fills this object with data from the passed in JSON
-    *
-    * @param [in] JsonValue Data from the API call.
-    *
-    * @return true if parsing of the JSON data was successful.
-    */
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	/**
+	* @brief Fills this object with data from the passed in JSON
+	*
+	* @param [in] JsonValue Data from the API call.
+	*
+	* @return true if parsing of the JSON data was successful.
+	*/
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
-    /**
-    * @brief Writes the data from this object into the specified JSON Writer stream
-    *
-    * @param [in] Writer JSON Writer stream to push .
-    */
-    void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	/**
+	* @brief Writes the data from this object into the specified JSON Writer stream
+	*
+	* @param [in] Writer JSON Writer stream to push .
+	*/
+	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    {{#isString}}
-    FString Value{{#defaultValue}} = {{{.}}}{{/defaultValue}};
-    {{/isString}}
-    {{#vars}}
-    {{#isEnum}}
-    {{#allowableValues}}
-    enum class {{{enumName}}}
-    {
-        {{#enumVars}}
-        {{name}},{{#enumDescription}} //{{.}}{{/enumDescription}}
-        {{/enumVars}}
-    };
-    {{/allowableValues}}
+	{{#isString}}
+	FString Value{{#defaultValue}} = {{{.}}}{{/defaultValue}};
+	{{/isString}}
+	{{#vars}}
+	{{#isEnum}}
+	{{#allowableValues}}
+	enum class {{{enumName}}}
+	{
+		{{#enumVars}}
+		{{name}},{{#enumDescription}} //{{.}}{{/enumDescription}}
+		{{/enumVars}}
+	};
+	{{/allowableValues}}
 
-    static FString EnumToString(const {{{enumName}}}& EnumValue);
-    static bool EnumFromString(const FString& EnumAsString, {{{enumName}}}& EnumValue);
-    {{/isEnum}}
-    {{#description}}
-    /** @brief {{{.}}} */
-    {{/description}}
-    {{^isContainer}}
-    {{#isStripBlueprintCompatibility}}
-    UPROPERTY(BlueprintReadWrite, Category = "{{unrealCategory}}")
-    {{/isStripBlueprintCompatibility}}
-    {{/isContainer}}
-    {{#isContainer}}
-    {{^items.isContainer}}
-    {{#isStripBlueprintCompatibility}}
-    UPROPERTY(BlueprintReadWrite, Category = "{{unrealCategory}}")
-    {{/isStripBlueprintCompatibility}}
-    {{/items.isContainer}}
-    {{/isContainer}}
-    {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{datatype}}}{{/isEnum}} {{name}}{{^required}}_Optional{{/required}}{ {{#required}}{{#defaultValue}}{{{.}}}{{/defaultValue}}{{/required}} };
-    {{^required}}
-    /** @brief true if {{name}}_Optional has been set to a value */
-    {{#isStripBlueprintCompatibility}}
-    UPROPERTY(BlueprintReadWrite, Category = "{{unrealCategory}}")
-    {{/isStripBlueprintCompatibility}}
-    bool {{name}}_IsSet{ false };
-    {{/required}}
-    /** @brief Gets the value of {{name}}{{^required}}_Optional, regardless of it having been set{{/required}} */
-    {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{datatype}}}{{/isEnum}}& Get{{name}}() { return {{name}}{{^required}}_Optional{{/required}}; }
-    /** @brief Gets the value of {{name}}{{^required}}_Optional, regardless of it having been set{{/required}} */
-    const {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{datatype}}}{{/isEnum}}& Get{{name}}() const { return {{name}}{{^required}}_Optional{{/required}}; }
-    {{^required}}
-    /** @brief Gets the value of {{name}}_Optional, if it has been set, otherwise it returns DefaultValue */
-    const {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{datatype}}}{{/isEnum}}& Get{{name}}(const {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{datatype}}}{{/isEnum}}& DefaultValue) const { if ({{name}}_IsSet) return {{name}}_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of {{name}}_Optional and returns true if it has been set, otherwise returns false */
-    bool Get{{name}}({{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{datatype}}}{{/isEnum}}& OutValue) const { if ({{name}}_IsSet) OutValue = {{name}}_Optional; return {{name}}_IsSet; }
-    /** @brief Returns a pointer to {{name}}_Optional, if it has been set, otherwise returns nullptr */
-    {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{datatype}}}{{/isEnum}}* Get{{name}}OrNull() { if ({{name}}_IsSet) return &{{name}}_Optional; return nullptr; }
-    /** @brief Returns a pointer to {{name}}_Optional, if it has been set, otherwise returns nullptr */
-    const {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{datatype}}}{{/isEnum}}* Get{{name}}OrNull() const { if ({{name}}_IsSet) return &{{name}}_Optional; return nullptr; }
-    {{/required}}
-    /** @brief Sets the value of {{name}}{{^required}}_Optional and also sets {{name}}_IsSet to true{{/required}} */
-    void Set{{name}}({{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{datatype}}}{{/isEnum}} NewValue) { {{name}}{{^required}}_Optional{{/required}} = NewValue; {{^required}}{{name}}_IsSet = true;{{/required}} }
-    {{^required}}
-     /** @brief Clears the value of {{name}}_Optional and sets {{name}}_IsSet to false */
-    void Clear{{name}}() { {{#defaultValue}}{{name}}_Optional = {{{.}}}; {{/defaultValue}}{{name}}_IsSet = false; }
-    {{/required}}
-    {{#defaultValue}}
-    /** @brief Returns true if {{name}}{{^required}}_Optional is set and{{/required}} matches the default value */
-    bool Is{{name}}DefaultValue() const { return {{^required}}{{name}}_IsSet && {{/required}}{{name}}{{^required}}_Optional{{/required}} == {{{.}}}; }
-    /** @brief Sets the value of {{name}}{{^required}}_Optional{{/required}} to its default {{^required}}and also sets {{name}}_IsSet to true{{/required}} */
-    void Set{{name}}ToDefault() { {{name}}{{^required}}_Optional{{/required}} = {{{.}}}; {{^required}}{{name}}_IsSet = true;{{/required}} }
-    {{/defaultValue}}
-    {{^-last}}
+	static FString EnumToString(const {{{enumName}}}& EnumValue);
+	static bool EnumFromString(const FString& EnumAsString, {{{enumName}}}& EnumValue);
+	{{/isEnum}}
+	{{#description}}
+	/** @brief {{{.}}} */
+	{{/description}}
+	{{^isContainer}}
+	{{#isStripBlueprintCompatibility}}
+	UPROPERTY(BlueprintReadWrite, Category = "{{unrealCategory}}")
+	{{/isStripBlueprintCompatibility}}
+	{{/isContainer}}
+	{{#isContainer}}
+	{{^items.isContainer}}
+	{{#isStripBlueprintCompatibility}}
+	UPROPERTY(BlueprintReadWrite, Category = "{{unrealCategory}}")
+	{{/isStripBlueprintCompatibility}}
+	{{/items.isContainer}}
+	{{/isContainer}}
+	{{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{datatype}}}{{/isEnum}} {{name}}{{^required}}_Optional{{/required}}{ {{#required}}{{#defaultValue}}{{{.}}}{{/defaultValue}}{{/required}} };
+	{{^required}}
+	/** @brief true if {{name}}_Optional has been set to a value */
+	{{#isStripBlueprintCompatibility}}
+	UPROPERTY(BlueprintReadWrite, Category = "{{unrealCategory}}")
+	{{/isStripBlueprintCompatibility}}
+	bool {{name}}_IsSet{ false };
+	{{/required}}
+	/** @brief Gets the value of {{name}}{{^required}}_Optional, regardless of it having been set{{/required}} */
+	{{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{datatype}}}{{/isEnum}}& Get{{name}}() { return {{name}}{{^required}}_Optional{{/required}}; }
+	/** @brief Gets the value of {{name}}{{^required}}_Optional, regardless of it having been set{{/required}} */
+	const {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{datatype}}}{{/isEnum}}& Get{{name}}() const { return {{name}}{{^required}}_Optional{{/required}}; }
+	{{^required}}
+	/** @brief Gets the value of {{name}}_Optional, if it has been set, otherwise it returns DefaultValue */
+	const {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{datatype}}}{{/isEnum}}& Get{{name}}(const {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{datatype}}}{{/isEnum}}& DefaultValue) const { if ({{name}}_IsSet) return {{name}}_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of {{name}}_Optional and returns true if it has been set, otherwise returns false */
+	bool Get{{name}}({{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{datatype}}}{{/isEnum}}& OutValue) const { if ({{name}}_IsSet) OutValue = {{name}}_Optional; return {{name}}_IsSet; }
+	/** @brief Returns a pointer to {{name}}_Optional, if it has been set, otherwise returns nullptr */
+	{{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{datatype}}}{{/isEnum}}* Get{{name}}OrNull() { if ({{name}}_IsSet) return &{{name}}_Optional; return nullptr; }
+	/** @brief Returns a pointer to {{name}}_Optional, if it has been set, otherwise returns nullptr */
+	const {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{datatype}}}{{/isEnum}}* Get{{name}}OrNull() const { if ({{name}}_IsSet) return &{{name}}_Optional; return nullptr; }
+	{{/required}}
+	/** @brief Sets the value of {{name}}{{^required}}_Optional and also sets {{name}}_IsSet to true{{/required}} */
+	void Set{{name}}({{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{datatype}}}{{/isEnum}} NewValue) { {{name}}{{^required}}_Optional{{/required}} = NewValue; {{^required}}{{name}}_IsSet = true;{{/required}} }
+	{{^required}}
+	 /** @brief Clears the value of {{name}}_Optional and sets {{name}}_IsSet to false */
+	void Clear{{name}}() { {{#defaultValue}}{{name}}_Optional = {{{.}}}; {{/defaultValue}}{{name}}_IsSet = false; }
+	{{/required}}
+	{{#defaultValue}}
+	/** @brief Returns true if {{name}}{{^required}}_Optional is set and{{/required}} matches the default value */
+	bool Is{{name}}DefaultValue() const { return {{^required}}{{name}}_IsSet && {{/required}}{{name}}{{^required}}_Optional{{/required}} == {{{.}}}; }
+	/** @brief Sets the value of {{name}}{{^required}}_Optional{{/required}} to its default {{^required}}and also sets {{name}}_IsSet to true{{/required}} */
+	void Set{{name}}ToDefault() { {{name}}{{^required}}_Optional{{/required}} = {{{.}}}; {{^required}}{{name}}_IsSet = true;{{/required}} }
+	{{/defaultValue}}
+	{{^-last}}
 
-    {{/-last}}
-    {{/vars}}
+	{{/-last}}
+	{{/vars}}
 };
 
 /** @} */

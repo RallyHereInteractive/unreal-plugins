@@ -6,7 +6,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-    https://www.apache.org/licenses/LICENSE-2.0
+	https://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -26,9 +26,9 @@ namespace {{this}}
 {{/cppNamespaceDeclarations}}
 
 FAuthContext::FAuthContext(FAuthAPI &LoginAPI_, FString ClientId, FString ClientSecret) : LoginAPI{ &LoginAPI_ },
-    ClientId{std::move(ClientId)}, ClientSecret{std::move(ClientSecret)}, bIsRefreshing{}, LoginComplete{}//, LoginResult{}, TokenResponse{}
+	ClientId{std::move(ClientId)}, ClientSecret{std::move(ClientSecret)}, bIsRefreshing{}, LoginComplete{}//, LoginResult{}, TokenResponse{}
 {
-    UpdateBasicAuthValue();
+	UpdateBasicAuthValue();
 }
 
 FAuthContext::FAuthContext(FAuthAPI& LoginAPI_) : LoginAPI{ &LoginAPI_ }, bIsRefreshing{}, LoginComplete{}//, LoginResult{}, TokenResponse{}
@@ -37,228 +37,228 @@ FAuthContext::FAuthContext(FAuthAPI& LoginAPI_) : LoginAPI{ &LoginAPI_ }, bIsRef
 /*
 const TOptional<{{unrealModelPrefix}}LoginResult>& FAuthContext::GetLoginResult() const
 {
-    return LoginResult;
+	return LoginResult;
 }
 
 const TOptional<{{unrealModelPrefix}}TokenResponse>& FAuthContext::GetTokenResponse() const
 {
-    return TokenResponse;
+	return TokenResponse;
 }
 */
 bool FAuthContext::IsLoggedIn() const
 {
 /*
-    if (LoginResult.IsSet())
-    {
-        return LoginResult->AccessToken_IsSet;
-    }
-    else if (TokenResponse.IsSet())
-    {
-        return true;
-    }
+	if (LoginResult.IsSet())
+	{
+		return LoginResult->AccessToken_IsSet;
+	}
+	else if (TokenResponse.IsSet())
+	{
+		return true;
+	}
 */
-    return false;
+	return false;
 }
 
 FString FAuthContext::GetAccessToken() const
 {
 /*
-    if (LoginResult.IsSet())
-    {
-        return LoginResult->GetAccessToken(FString());
-    }
-    else if (TokenResponse.IsSet())
-    {
-        return TokenResponse->GetAccessToken();
-    }
+	if (LoginResult.IsSet())
+	{
+		return LoginResult->GetAccessToken(FString());
+	}
+	else if (TokenResponse.IsSet())
+	{
+		return TokenResponse->GetAccessToken();
+	}
 */
-    return FString();
+	return FString();
 }
 
 FString FAuthContext::GetRefreshToken() const
 {
 /*
-    if (LoginResult.IsSet())
-    {
-        return LoginResult->GetRefreshToken(FString());
-    }
-    else if (TokenResponse.IsSet())
-    {
-        return TokenResponse->GetRefreshToken();
-    }
+	if (LoginResult.IsSet())
+	{
+		return LoginResult->GetRefreshToken(FString());
+	}
+	else if (TokenResponse.IsSet())
+	{
+		return TokenResponse->GetRefreshToken();
+	}
 */
-    return FString();
+	return FString();
 }
 /*
 void FAuthContext::ProcessLogin(const FResponse_Login& LoginResponse_)
 {
-    bIsRefreshing = false;
-    const bool bSuccess = LoginResponse_.IsSuccessful() && LoginResponse_.GetHttpResponseCode() == EHttpResponseCodes::Type::Ok;
-    if (!bSuccess)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastLoginFailed, FColor::Purple);
-        LoginComplete.Broadcast(false);
-        return;
-    }
+	bIsRefreshing = false;
+	const bool bSuccess = LoginResponse_.IsSuccessful() && LoginResponse_.GetHttpResponseCode() == EHttpResponseCodes::Type::Ok;
+	if (!bSuccess)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastLoginFailed, FColor::Purple);
+		LoginComplete.Broadcast(false);
+		return;
+	}
 
-    const auto PreviousLoginResult = LoginResult;
-    LoginResult = LoginResponse_.Content;
+	const auto PreviousLoginResult = LoginResult;
+	LoginResult = LoginResponse_.Content;
 
-    // clear out any token response
-    TokenResponse.Reset();
+	// clear out any token response
+	TokenResponse.Reset();
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastLoginComplete, FColor::Purple);
-        LoginComplete.Broadcast(true);
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastLoginComplete, FColor::Purple);
+		LoginComplete.Broadcast(true);
+	}
 
-    if (!IsSameUser(PreviousLoginResult, LoginResult))
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastLoginUserChanged, FColor::Purple);
-        LoginUserChanged.Broadcast();
-    }
+	if (!IsSameUser(PreviousLoginResult, LoginResult))
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastLoginUserChanged, FColor::Purple);
+		LoginUserChanged.Broadcast();
+	}
 }
 
 void FAuthContext::ProcessLoginToken(const FResponse_Token& LoginResponse_)
 {
-    bIsRefreshing = false;
-    const bool bSuccess = LoginResponse_.IsSuccessful() && LoginResponse_.GetHttpResponseCode() == EHttpResponseCodes::Type::Ok;
-    if (!bSuccess)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastLoginFailed, FColor::Purple);
-        LoginComplete.Broadcast(false);
-        return;
-    }
+	bIsRefreshing = false;
+	const bool bSuccess = LoginResponse_.IsSuccessful() && LoginResponse_.GetHttpResponseCode() == EHttpResponseCodes::Type::Ok;
+	if (!bSuccess)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastLoginFailed, FColor::Purple);
+		LoginComplete.Broadcast(false);
+		return;
+	}
 
-    TokenResponse = LoginResponse_.Content;
+	TokenResponse = LoginResponse_.Content;
 
-    // clear out any login result
-    LoginResult.Reset();
+	// clear out any login result
+	LoginResult.Reset();
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastLoginComplete, FColor::Purple);
-        LoginComplete.Broadcast(true);
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastLoginComplete, FColor::Purple);
+		LoginComplete.Broadcast(true);
+	}
 }
 
 bool FAuthContext::IsSameUser(const TOptional<{{unrealModelPrefix}}LoginResult>& A, const TOptional<{{unrealModelPrefix}}LoginResult>& B)
 {
-    if (A.IsSet() != B.IsSet())
-    {
-        return false;
-    }
+	if (A.IsSet() != B.IsSet())
+	{
+		return false;
+	}
 
-    if (!A.IsSet())
-    {
-        return true;
-    }
+	if (!A.IsSet())
+	{
+		return true;
+	}
 
-    return A->ActivePlayerUuid_Optional == B->ActivePlayerUuid_Optional && A->PersonId == B->PersonId;
+	return A->ActivePlayerUuid_Optional == B->ActivePlayerUuid_Optional && A->PersonId == B->PersonId;
 }
 */
 bool FAuthContext::Refresh()
 {
 /*
-    if (bIsRefreshing)
-    {
-        UE_LOG(Log{{unrealModuleName}}, Verbose, TEXT("FAuthContext::Refresh skipping refresh while already in progress"));
-        return true; // We will handle their refresh request with the already pending one
-    }
+	if (bIsRefreshing)
+	{
+		UE_LOG(Log{{unrealModuleName}}, Verbose, TEXT("FAuthContext::Refresh skipping refresh while already in progress"));
+		return true; // We will handle their refresh request with the already pending one
+	}
 
-    auto refreshToken = GetRefreshToken();
-    if (refreshToken.IsEmpty())
-    {
-        UE_LOG(Log{{unrealModuleName}}, Verbose, TEXT("FAuthContext::Refresh No token to refresh with"));
-        return false;
-    }
+	auto refreshToken = GetRefreshToken();
+	if (refreshToken.IsEmpty())
+	{
+		UE_LOG(Log{{unrealModuleName}}, Verbose, TEXT("FAuthContext::Refresh No token to refresh with"));
+		return false;
+	}
 
-    FDelegate_Login Delegate;
-    Delegate.BindSP(AsShared(), &FAuthContext::ProcessLogin);
-    FRequest_Login Request;
-    Request.AuthContext = SharedThis(this);
-    Request.LoginRequestV1.SetIncludeRefresh(true);
-    Request.LoginRequestV1.GrantType = {{unrealEnumPrefix}}GrantType::Refresh;
-    Request.LoginRequestV1.PortalAccessToken = std::move(refreshToken);
-    auto submittedRequest = LoginAPI->Login(Request, std::move(Delegate));
-    bIsRefreshing = submittedRequest != nullptr;
-    UE_LOG(Log{{unrealModuleName}}, Verbose, TEXT("FAuthContext::Refresh Submitted: %s"), bIsRefreshing ? TEXT("Yes") : TEXT("No"));
+	FDelegate_Login Delegate;
+	Delegate.BindSP(AsShared(), &FAuthContext::ProcessLogin);
+	FRequest_Login Request;
+	Request.AuthContext = SharedThis(this);
+	Request.LoginRequestV1.SetIncludeRefresh(true);
+	Request.LoginRequestV1.GrantType = {{unrealEnumPrefix}}GrantType::Refresh;
+	Request.LoginRequestV1.PortalAccessToken = std::move(refreshToken);
+	auto submittedRequest = LoginAPI->Login(Request, std::move(Delegate));
+	bIsRefreshing = submittedRequest != nullptr;
+	UE_LOG(Log{{unrealModuleName}}, Verbose, TEXT("FAuthContext::Refresh Submitted: %s"), bIsRefreshing ? TEXT("Yes") : TEXT("No"));
 */
-    return bIsRefreshing;
+	return bIsRefreshing;
 }
 
 void FAuthContext::ClearAuthContext()
 {
-    //LoginResult.Reset();
-    //TokenResponse.Reset();
+	//LoginResult.Reset();
+	//TokenResponse.Reset();
 
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastLogout, FColor::Purple);
-        Logout.Broadcast();
-    }
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastLogout, FColor::Purple);
+		Logout.Broadcast();
+	}
 }
 
 void FAuthContext::SetClientId(const FString& InClientId)
 {
-    ClientId = InClientId;
-    UpdateBasicAuthValue();
+	ClientId = InClientId;
+	UpdateBasicAuthValue();
 }
 
 void FAuthContext::SetClientSecret(const FString& InClientSecret)
 {
-    ClientSecret = InClientSecret;
-    UpdateBasicAuthValue();
+	ClientSecret = InClientSecret;
+	UpdateBasicAuthValue();
 }
 
 bool FAuthContext::AddClientCredentials(const FHttpRequestRef& HttpRequest) const
 {
-    if (BasicAuthValue.IsSet())
-    {
-        HttpRequest->SetHeader(TEXT("Authorization"), *BasicAuthValue);
-    }
+	if (BasicAuthValue.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("Authorization"), *BasicAuthValue);
+	}
 
-    return true;
+	return true;
 }
 
 bool FAuthContext::AddClientCredentials(const FHttpRequestPtr& HttpRequest) const
 {
-    if (BasicAuthValue.IsSet())
-    {
-        HttpRequest->SetHeader(TEXT("Authorization"), *BasicAuthValue);
-    }
+	if (BasicAuthValue.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("Authorization"), *BasicAuthValue);
+	}
 
-    return true;
+	return true;
 }
 
 bool FAuthContext::AddBearerToken(const FHttpRequestRef& HttpRequest) const
 {
-    if (!IsLoggedIn())
-    {
-        return false;
-    }
-    HttpRequest->SetHeader(TEXT("Authorization"), TEXT("Bearer ") + GetAccessToken());
-    return true;
+	if (!IsLoggedIn())
+	{
+		return false;
+	}
+	HttpRequest->SetHeader(TEXT("Authorization"), TEXT("Bearer ") + GetAccessToken());
+	return true;
 }
 
 bool FAuthContext::AddBearerToken(const FHttpRequestPtr& HttpRequest) const
 {
-    if (!IsLoggedIn())
-    {
-        return false;
-    }
-    HttpRequest->SetHeader(TEXT("Authorization"), TEXT("Bearer ") + GetAccessToken());
-    return true;
+	if (!IsLoggedIn())
+	{
+		return false;
+	}
+	HttpRequest->SetHeader(TEXT("Authorization"), TEXT("Bearer ") + GetAccessToken());
+	return true;
 }
 
 void FAuthContext::UpdateBasicAuthValue()
 {
-    if (ClientId.IsSet() && !ClientId->IsEmpty() && ClientSecret.IsSet() && !ClientSecret->IsEmpty())
-    {
-        BasicAuthValue = TEXT("Basic ") + Base64UrlEncode(*ClientId + TEXT(":") + *ClientSecret);
-    }
-    else
-    {
-        BasicAuthValue.Reset();
-    }
+	if (ClientId.IsSet() && !ClientId->IsEmpty() && ClientSecret.IsSet() && !ClientSecret->IsEmpty())
+	{
+		BasicAuthValue = TEXT("Basic ") + Base64UrlEncode(*ClientId + TEXT(":") + *ClientSecret);
+	}
+	else
+	{
+		BasicAuthValue.Reset();
+	}
 }
 {{#cppNamespaceDeclarations}}
 }

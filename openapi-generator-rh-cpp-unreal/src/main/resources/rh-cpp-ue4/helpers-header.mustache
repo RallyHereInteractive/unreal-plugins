@@ -6,7 +6,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-    https://www.apache.org/licenses/LICENSE-2.0
+	https://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -35,13 +35,13 @@ constexpr int32 Default{{unrealModuleName}}Priority = 1000000;
 UENUM(BlueprintType)
 enum class {{unrealEnumPrefix}}JsonValueType : uint8
 {
-    None,
-    Null,
-    String,
-    Number,
-    Boolean,
-    Array,
-    Object
+	None,
+	Null,
+	String,
+	Number,
+	Boolean,
+	Array,
+	Object
 };
 
 // forward declare both json types since they can reference each other
@@ -51,16 +51,16 @@ struct {{unrealModelPrefix}}JsonValue;
 USTRUCT(BlueprintType)
 struct {{dllapi}} {{unrealModelPrefix}}JsonObject
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 public:
 	{{unrealModelPrefix}}JsonObject() { SetObject(MakeShareable(new FJsonObject())); }
 	{{unrealModelPrefix}}JsonObject(TSharedPtr<FJsonObject> InObj){ SetObject(InObj); }
 	
 	static {{unrealModelPrefix}}JsonObject CreateFromUnrealObject(TSharedPtr<FJsonObject> NewObj) { return {{unrealModelPrefix}}JsonObject(NewObj); }
 
-    {{unrealModelPrefix}}JsonValue TryGetValue(const FString& FieldName) const;
+	{{unrealModelPrefix}}JsonValue TryGetValue(const FString& FieldName) const;
 
-    bool HasField(const FString& FieldName) const;
+	bool HasField(const FString& FieldName) const;
 	void SetField(const FString& FieldName, const {{unrealModelPrefix}}JsonValue& Value) const;
 	void RemoveField(const FString& FieldName) const;
 
@@ -85,42 +85,42 @@ public:
 	void SetStringField(const FString& FieldName, const FString& StringValue) const;
 
 	bool GetBoolField(const FString& FieldName) const;
-    bool TryGetBoolField(const FString& FieldName, bool& OutBool) const;
+	bool TryGetBoolField(const FString& FieldName, bool& OutBool) const;
 	void SetBoolField(const FString& FieldName, bool InValue) const;
 
 	TArray<{{unrealModelPrefix}}JsonValue> GetArrayField(const FString& FieldName) const;
 	bool TryGetArrayField(const FString& FieldName, TArray<{{unrealModelPrefix}}JsonValue>& OutArray) const;
 	void SetArrayField(const FString& FieldName, const TArray<{{unrealModelPrefix}}JsonValue>& Array) const;
 
-    {{unrealModelPrefix}}JsonObject GetObjectField(const FString& FieldName) const;
+	{{unrealModelPrefix}}JsonObject GetObjectField(const FString& FieldName) const;
 	bool TryGetObjectField(const FString& FieldName, {{unrealModelPrefix}}JsonObject& OutObject) const;
 	void SetObjectField(const FString& FieldName, const {{unrealModelPrefix}}JsonObject& JsonObject) const;
 
-    void SetObject(const TSharedPtr<FJsonObject> NewObj) { Obj = NewObj; }
-    TSharedPtr<FJsonObject> GetObject() const { return Obj; }
+	void SetObject(const TSharedPtr<FJsonObject> NewObj) { Obj = NewObj; }
+	TSharedPtr<FJsonObject> GetObject() const { return Obj; }
 
 private:
-    TSharedPtr<FJsonObject> Obj;
+	TSharedPtr<FJsonObject> Obj;
 };
 
 USTRUCT(BlueprintType)
 struct {{dllapi}} {{unrealModelPrefix}}JsonValue
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 public:
 	{{unrealModelPrefix}}JsonValue() { SetValue(MakeShareable(new FJsonValueNull())); }
 	{{unrealModelPrefix}}JsonValue(TSharedPtr<FJsonValue> InValue) { SetValue(InValue); }
 
-    static {{unrealModelPrefix}}JsonValue CreateFromUnrealValue(TSharedPtr<FJsonValue> NewVal) { return {{unrealModelPrefix}}JsonValue(NewVal); }
+	static {{unrealModelPrefix}}JsonValue CreateFromUnrealValue(TSharedPtr<FJsonValue> NewVal) { return {{unrealModelPrefix}}JsonValue(NewVal); }
 
-    float AsNumber() const;
-    FString AsString() const;
-    bool AsBool() const;
-    bool IsNull() const;
-    TArray<{{unrealModelPrefix}}JsonValue> AsArray() const;
-    {{unrealModelPrefix}}JsonObject AsObject() const;
+	float AsNumber() const;
+	FString AsString() const;
+	bool AsBool() const;
+	bool IsNull() const;
+	TArray<{{unrealModelPrefix}}JsonValue> AsArray() const;
+	{{unrealModelPrefix}}JsonObject AsObject() const;
 
-    {{unrealEnumPrefix}}JsonValueType GetType() const;
+	{{unrealEnumPrefix}}JsonValueType GetType() const;
 
 	bool TryGetNumber(float& OutNumber) const;
 	bool TryGetInteger(int32& OutNumber) const;
@@ -137,20 +137,20 @@ public:
 	bool TryGetArray(TArray<{{unrealModelPrefix}}JsonValue>& OutArray) const;
 	bool TryGetObject({{unrealModelPrefix}}JsonObject& OutObject) const;
 
-    void SetValue(const TSharedPtr<FJsonValue> NewValue) { Value = NewValue; }
-    TSharedPtr<FJsonValue> GetValue() const { return Value; }
+	void SetValue(const TSharedPtr<FJsonValue> NewValue) { Value = NewValue; }
+	TSharedPtr<FJsonValue> GetValue() const { return Value; }
 
-    bool CompareEqual(const {{unrealModelPrefix}}JsonValue& Other) const;
+	bool CompareEqual(const {{unrealModelPrefix}}JsonValue& Other) const;
 
 private:
-    TSharedPtr<FJsonValue> Value;
+	TSharedPtr<FJsonValue> Value;
 };
 
 
 UCLASS()
 class {{dllapi}} {{unrealClassPrefix}}JsonObjectBlueprintLibrary : public UBlueprintFunctionLibrary
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 public:
 	UFUNCTION(BlueprintCallable, Category="RallyHere|Json")
 	static bool {{unrealModelPrefix}}JsonObjectToString(const {{unrealModelPrefix}}JsonObject& InObject, FString& OutString);
@@ -215,7 +215,7 @@ public:
 UCLASS()
 class {{dllapi}} {{unrealClassPrefix}}JsonValueBlueprintLibrary : public UBlueprintFunctionLibrary
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 public:
 	
 	UFUNCTION(BlueprintCallable, Category="RallyHere|Json")
@@ -295,11 +295,11 @@ public:
 	explicit FHttpFileInput(const FString& InFilePath);
 
 	// This will automatically set the content type if not already set
-    void SetFilePath(const TCHAR* InFilePath);
+	void SetFilePath(const TCHAR* InFilePath);
 	void SetFilePath(const FString& InFilePath);
 
-    // Optional if it can be deduced from the FilePath
-    void SetContentType(const TCHAR* ContentType);
+	// Optional if it can be deduced from the FilePath
+	void SetContentType(const TCHAR* ContentType);
 
 	FHttpFileInput& operator=(const FHttpFileInput& Other) = default;
 	FHttpFileInput& operator=(const FString& InFilePath) { SetFilePath(*InFilePath); return*this; }
@@ -312,8 +312,8 @@ public:
 	FString GetFilename() const;
 
 private:
-    FString FilePath;
-    FString ContentType;
+	FString FilePath;
+	FString ContentType;
 };
 
 //////////////////////////////////////////////////////////////////////////
@@ -426,7 +426,7 @@ inline FString ToString(const TArray<uint8>& Value)
 inline FString ToString(const {{unrealModelPrefix}}Model& Value)
 {
 	FString String;
-    TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&String);
+	TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&String);
 	Value.WriteJson(Writer);
 	Writer->Close();
 	return String;
