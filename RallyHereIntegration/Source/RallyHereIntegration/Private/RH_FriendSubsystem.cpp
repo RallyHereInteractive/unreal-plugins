@@ -1027,10 +1027,19 @@ void URH_FriendSubsystem::UpdateWithOSSFriends(const FString& ListName /* = "Def
 		return;
 	}
 
+	TOptional<ERHAPI_Platform> LocalPlayerPlatform = RH_GetPlatformFromOSSName(OSS->GetSubsystemName());
+	if (!LocalPlayerPlatform.IsSet())
+	{
+		UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] failed to get local player platform"), ANSI_TO_TCHAR(__FUNCTION__));
+		return;
+	}
+
 	const auto OSSPresenceInterface = OSS->GetPresenceInterface();
 
 	TArray<URH_PlatformFriend*> RHPlatformFriends;
+	TArray<FString> ChangedPlatformUserIds;
 
+	// create list of friends from OSS data to process
 	for (auto i = 0; i < OnlineFriendsList.Num(); ++i)
 	{
 		const FOnlineFriend& OnlineFriend = *OnlineFriendsList[i];
@@ -1040,8 +1049,10 @@ void URH_FriendSubsystem::UpdateWithOSSFriends(const FString& ListName /* = "Def
 		const FOnlineUserPresence& Presence = bSuccessful ? *PresencePtr : OnlineFriend.GetPresence();
 
 		URH_PlatformFriend* RHPlatformFriend = NewObject<URH_PlatformFriend>(this);
-		RHPlatformFriend->Init(OnlineFriend, Presence, OSS, PlatformBlockedPlayers.Contains(OnlineFriend.GetUserId()->ToString()));
+		const FString PlatformUserId = OnlineFriend.GetUserId()->ToString();
+		RHPlatformFriend->Init(OnlineFriend, Presence, OSS, PlatformBlockedPlayers.Contains(PlatformUserId));
 		RHPlatformFriends.Add(RHPlatformFriend);
+		ChangedPlatformUserIds.Add(PlatformUserId);
 
 		UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]: Friend %s [%s]: %s %i %i %i %i %s"),
 		       ANSI_TO_TCHAR(__FUNCTION__),
@@ -1055,6 +1066,19 @@ void URH_FriendSubsystem::UpdateWithOSSFriends(const FString& ListName /* = "Def
 		       *Presence.Status.StatusStr);
 	}
 
+	// Add known blocked players into the list, so that UpdatePlatformFriends has a full list to work with
+	for (const FString& BlockedUserId : PlatformBlockedPlayers)
+	{
+		if (!ChangedPlatformUserIds.Contains(BlockedUserId))
+		{
+			URH_PlatformFriend* RHPlatformFriend = NewObject<URH_PlatformFriend>(this);
+			const auto BlockedPlatformId = FRH_PlayerPlatformId(BlockedUserId, LocalPlayerPlatform.GetValue());
+			RHPlatformFriend->InitBlocked(BlockedPlatformId);
+			RHPlatformFriends.Add(RHPlatformFriend);
+		}
+	}
+
+	// update internal state with new friends data
 	UpdatePlatformFriends(RHPlatformFriends);
 }
 
