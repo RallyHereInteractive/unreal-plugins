@@ -45,6 +45,8 @@ Main settings for the Integration.
 `public bool `[`bAutoCreateMatches`](#classURH__IntegrationSettings_1a52ca137edf91dc8a02a83a89f0aea548) | Whether to automatically create a match when a session becomes active if the host.
 `public bool `[`bAutoAddConnectedPlayersToMatches`](#classURH__IntegrationSettings_1a469c1d73694b665b028459c025ff2c1b) | Whether to automatically add players who connect to the match.
 `public bool `[`bAutoCloseMatchOnSessionInactive`](#classURH__IntegrationSettings_1a089e31e1c743c7933b237fb62b4a5d8c) | Whether to automatically close a match when a session becomes inactive if the host.
+`public bool `[`bAutoCreateInventorySessionOnLogin`](#classURH__IntegrationSettings_1a140069cc5be0f8410447d4d2caf68c1e) | Whether to automatically create an inventory session when a player logs in.
+`public bool `[`bAutoProcessPlatformEntitlementsOnLogin`](#classURH__IntegrationSettings_1a5f78f6a76f285af5862bcc93d612da3e) | Whether to automatically process platform entitlements on login (will wait for inventory session creation if using bAutoCreateInventorySessionOnLogin)
 `public int32 `[`WebRequestsMaxSimultaneousRequests`](#classURH__IntegrationSettings_1a86e14803734cde1b954191b437ceaafe) | Sets the maximum number of Http Requests that can be made simultaneously. 0 = No Limit.
 `public int `[`WebRequestsTrackedRequestsCountLimit`](#classURH__IntegrationSettings_1a35b03db2758bd2f4e393fb1fb3c7aab4) | Sets the maximum number of web requests for which tracking data is kept.
 `public int32 `[`WebRequestsBurstCountThreshold`](#classURH__IntegrationSettings_1af81d481668affe4c87d3fb8c20cf239d) | Sets the count above which web traffic is considered a burst.
@@ -281,6 +283,16 @@ Whether to automatically add players who connect to the match.
 #### `public bool `[`bAutoCloseMatchOnSessionInactive`](#classURH__IntegrationSettings_1a089e31e1c743c7933b237fb62b4a5d8c) <a id="classURH__IntegrationSettings_1a089e31e1c743c7933b237fb62b4a5d8c"></a>
 
 Whether to automatically close a match when a session becomes inactive if the host.
+
+<br>
+#### `public bool `[`bAutoCreateInventorySessionOnLogin`](#classURH__IntegrationSettings_1a140069cc5be0f8410447d4d2caf68c1e) <a id="classURH__IntegrationSettings_1a140069cc5be0f8410447d4d2caf68c1e"></a>
+
+Whether to automatically create an inventory session when a player logs in.
+
+<br>
+#### `public bool `[`bAutoProcessPlatformEntitlementsOnLogin`](#classURH__IntegrationSettings_1a5f78f6a76f285af5862bcc93d612da3e) <a id="classURH__IntegrationSettings_1a5f78f6a76f285af5862bcc93d612da3e"></a>
+
+Whether to automatically process platform entitlements on login (will wait for inventory session creation if using bAutoCreateInventorySessionOnLogin)
 
 <br>
 #### `public int32 `[`WebRequestsMaxSimultaneousRequests`](#classURH__IntegrationSettings_1a86e14803734cde1b954191b437ceaafe) <a id="classURH__IntegrationSettings_1a86e14803734cde1b954191b437ceaafe"></a>

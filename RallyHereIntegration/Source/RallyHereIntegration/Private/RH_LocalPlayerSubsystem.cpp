@@ -245,6 +245,8 @@ void URH_LocalPlayerSubsystem::OnUserLoggedOut(bool bRefreshTokenExpired)
 
 void URH_LocalPlayerSubsystem::OnUserChanged()
 {
+	const auto Settings = GetDefault<URH_IntegrationSettings>();
+
 	FGuid OldUuid;
 	URH_PlayerInfo* OldPlayerInfo = PlayerInfoCache.Get();
 	// clear notification watch on last player info
@@ -280,10 +282,63 @@ void URH_LocalPlayerSubsystem::OnUserChanged()
 			PlayerInfoCache->StartStreamingNotifications();
 		}
 
-		if (PlayerInfoCache->GetPlayerInventory() != nullptr)
+		auto AutoProcessPlatformEntitlements = FSimpleDelegate::CreateWeakLambda(this, [this]()
+			{
+				// if auto processing is enabled, process platform entitlements
+				auto Settings = GetDefault<URH_IntegrationSettings>();
+				if (Settings->bAutoProcessPlatformEntitlementsOnLogin)
+				{
+					// process platform entitlements
+					auto EntitlementSubsystem = GetEntitlementSubsystem();
+					if (EntitlementSubsystem != nullptr)
+					{
+						auto EntitlementDelegate = FRH_ProcessEntitlementCompletedDelegate::CreateWeakLambda(this, [this](bool bSuccess, FRHAPI_PlatformEntitlementProcessResult Result)
+							{
+								if (bSuccess)
+								{
+									OnAutoEntitlementsProcessed.Broadcast(true);
+									UE_LOG(LogRallyHereIntegration, Verbose, TEXT("Auto platform entitlements processed successfully"));
+								}
+								else
+								{
+									OnAutoEntitlementsProcessed.Broadcast(false);
+									UE_LOG(LogRallyHereIntegration, Warning, TEXT("Failed to auto process platform entitlements"));
+								}
+							});
+						EntitlementSubsystem->SubmitEntitlementsForLoggedInOSS(EntitlementDelegate);
+					}
+				}
+			});
+
+		if (PlayerInfoCache->GetPlayerInventory() != nullptr && Settings->bAutoCreateInventorySessionOnLogin)
 		{
 			// start an inventory session so that inventory queries will work as expected for session based inventory grants
-			PlayerInfoCache->GetPlayerInventory()->CreateInventorySession({});
+
+			// create a delegate that calls the multicast delegate when the inventory session is created
+			auto InventoryDelegate = FRH_OnInventorySessionUpdateDelegate::CreateWeakLambda(this, [this, AutoProcessPlatformEntitlements](bool bSuccess)
+				{
+					if (bSuccess)
+					{
+						UE_LOG(LogRallyHereIntegration, Verbose, TEXT("Inventory session created successfully"));
+
+						OnAutoInventorySessionCreated.Broadcast(true);
+
+						AutoProcessPlatformEntitlements.Execute();
+					}
+					else
+					{
+						UE_LOG(LogRallyHereIntegration, Warning, TEXT("Failed to create inventory session"));
+						OnAutoInventorySessionCreated.Broadcast(false);
+
+						AutoProcessPlatformEntitlements.Execute();
+					}
+				});
+
+			PlayerInfoCache->GetPlayerInventory()->CreateInventorySession({}, InventoryDelegate);
+		}
+		else
+		{
+			AutoProcessPlatformEntitlements.Execute();
 		}
 	}
 }

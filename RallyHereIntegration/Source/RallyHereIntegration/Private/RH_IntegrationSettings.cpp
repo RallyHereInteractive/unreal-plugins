@@ -31,6 +31,9 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 
 	bLocalPlayerSubsystemSandboxing = false;
 
+	bAutoCreateInventorySessionOnLogin = true;
+	bAutoProcessPlatformEntitlementsOnLogin = true;
+
 	WebRequestsMaxSimultaneousRequests = 15;
 	WebRequestsTrackedRequestsCountLimit = 200;
 	WebRequestsBurstCountThreshold = 5;
