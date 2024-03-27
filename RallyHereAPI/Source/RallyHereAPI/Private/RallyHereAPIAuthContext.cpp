@@ -8,6 +8,7 @@
 #include "RallyHereAPIAuthContext.h"
 #include "RallyHereAPIModule.h"
 #include "AuthAPI.h"
+#include "HzAPIErrorModel.h"
 
 namespace RallyHereAPI
 {
@@ -231,6 +232,43 @@ bool FAuthContext::Refresh()
 	bIsRefreshing = submittedRequest != nullptr;
 	UE_LOG(LogRallyHereAPI, Verbose, TEXT("FAuthContext::Refresh Submitted: %s"), bIsRefreshing ? TEXT("Yes") : TEXT("No"));
 	return bIsRefreshing;
+}
+
+bool FAuthContext::ConditionalRefreshOnFailedResponse(const FResponse& TriggeringResponse)
+{
+	const auto ResponseCode = TriggeringResponse.GetHttpResponseCode();
+
+	bool bNeedsRefresh = ResponseCode == EHttpResponseCodes::Denied; // need to reauth if we received a denied response.
+
+	// some consoles forcibly retry 401 errors with a modified body, which can generate 403 errors, so check those for an auth success flag
+	const auto JsonPayload = TriggeringResponse.TryGetPayload<FResponse::JsonPayloadType>();
+	if (ResponseCode == EHttpResponseCodes::Forbidden && JsonPayload != nullptr && JsonPayload->IsValid())
+	{
+		FRHAPI_HzApiErrorModel Error;
+		if (Error.FromJson(*JsonPayload))
+		{
+			const auto* AuthSuccess = Error.GetAuthSuccessOrNull();
+			bNeedsRefresh = AuthSuccess != nullptr && !(*AuthSuccess);
+		}
+	}
+
+	if (bNeedsRefresh)
+	{
+		// attempt a refresh
+		if (Refresh())
+		{
+			// refresh is pending, so return success
+			return true;
+		}
+		
+		// no refresh is pending, so return failure
+		return false;
+	}
+	else
+	{
+		// no refresh is needed
+		return false;
+	}
 }
 
 void FAuthContext::ClearAuthContext(bool bRefreshTokenExpired)
