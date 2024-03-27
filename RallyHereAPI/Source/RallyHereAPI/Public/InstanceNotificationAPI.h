@@ -132,7 +132,7 @@ struct RALLYHEREAPI_API Traits_InstanceCreateNotification
 	typedef FInstanceNotificationAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.InstanceCreateNotification(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->InstanceCreateNotification(InRequest, InDelegate, Priority); }
 };
 
 /* Get Notification By Id
@@ -217,7 +217,7 @@ struct RALLYHEREAPI_API Traits_InstanceGetNotificationById
 	typedef FInstanceNotificationAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.InstanceGetNotificationById(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->InstanceGetNotificationById(InRequest, InDelegate, Priority); }
 };
 
 /* Get Notifications Page
@@ -316,7 +316,7 @@ struct RALLYHEREAPI_API Traits_InstanceGetNotificationsPage
 	typedef FInstanceNotificationAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.InstanceGetNotificationsPage(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->InstanceGetNotificationsPage(InRequest, InDelegate, Priority); }
 };
 
 /* Long Poll For Notifications
@@ -409,7 +409,7 @@ struct RALLYHEREAPI_API Traits_InstanceLongPollForNotifications
 	typedef FInstanceNotificationAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.InstanceLongPollForNotifications(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->InstanceLongPollForNotifications(InRequest, InDelegate, Priority); }
 };
 
 

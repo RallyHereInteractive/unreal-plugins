@@ -115,7 +115,7 @@ struct RALLYHEREAPI_API Traits_CreateSessionAudit
 	typedef FSessionAuditAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateSessionAudit(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->CreateSessionAudit(InRequest, InDelegate, Priority); }
 };
 
 /* Get Session Audit
@@ -182,7 +182,7 @@ struct RALLYHEREAPI_API Traits_GetSessionAudit
 	typedef FSessionAuditAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetSessionAudit(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetSessionAudit(InRequest, InDelegate, Priority); }
 };
 
 

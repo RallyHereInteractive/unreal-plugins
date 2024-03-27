@@ -160,7 +160,7 @@ struct RALLYHEREAPI_API Traits_ClaimPlayerUuidUnclaimedKeyClaim
 	typedef FKeyClaimsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ClaimPlayerUuidUnclaimedKeyClaim(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->ClaimPlayerUuidUnclaimedKeyClaim(InRequest, InDelegate, Priority); }
 };
 
 /* Claim Player Uuid Unclaimed Key Claim For Me
@@ -227,7 +227,7 @@ struct RALLYHEREAPI_API Traits_ClaimPlayerUuidUnclaimedKeyClaimForMe
 	typedef FKeyClaimsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ClaimPlayerUuidUnclaimedKeyClaimForMe(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->ClaimPlayerUuidUnclaimedKeyClaimForMe(InRequest, InDelegate, Priority); }
 };
 
 /* Claim Unclaimed Key Claim
@@ -295,7 +295,7 @@ struct RALLYHEREAPI_API Traits_ClaimUnclaimedKeyClaim
 	typedef FKeyClaimsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ClaimUnclaimedKeyClaim(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->ClaimUnclaimedKeyClaim(InRequest, InDelegate, Priority); }
 };
 
 /* Claim Unclaimed Key Claim For Me
@@ -362,7 +362,7 @@ struct RALLYHEREAPI_API Traits_ClaimUnclaimedKeyClaimForMe
 	typedef FKeyClaimsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ClaimUnclaimedKeyClaimForMe(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->ClaimUnclaimedKeyClaimForMe(InRequest, InDelegate, Priority); }
 };
 
 /* Get Key Claim
@@ -429,7 +429,7 @@ struct RALLYHEREAPI_API Traits_GetKeyClaim
 	typedef FKeyClaimsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetKeyClaim(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetKeyClaim(InRequest, InDelegate, Priority); }
 };
 
 /* Get Key Claim For Me
@@ -495,7 +495,7 @@ struct RALLYHEREAPI_API Traits_GetKeyClaimForMe
 	typedef FKeyClaimsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetKeyClaimForMe(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetKeyClaimForMe(InRequest, InDelegate, Priority); }
 };
 
 /* Get Key Claims
@@ -561,7 +561,7 @@ struct RALLYHEREAPI_API Traits_GetKeyClaims
 	typedef FKeyClaimsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetKeyClaims(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetKeyClaims(InRequest, InDelegate, Priority); }
 };
 
 /* Get Key Claims For Me
@@ -621,7 +621,7 @@ struct RALLYHEREAPI_API Traits_GetKeyClaimsForMe
 	typedef FKeyClaimsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetKeyClaimsForMe(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetKeyClaimsForMe(InRequest, InDelegate, Priority); }
 };
 
 /* Get Key Claims For My Uuid
@@ -681,7 +681,7 @@ struct RALLYHEREAPI_API Traits_GetKeyClaimsForMyUuid
 	typedef FKeyClaimsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetKeyClaimsForMyUuid(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetKeyClaimsForMyUuid(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Uuid Key Claim
@@ -748,7 +748,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidKeyClaim
 	typedef FKeyClaimsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidKeyClaim(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPlayerUuidKeyClaim(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Uuid Key Claim Self
@@ -814,7 +814,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidKeyClaimSelf
 	typedef FKeyClaimsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidKeyClaimSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPlayerUuidKeyClaimSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Uuid Key Claims
@@ -880,7 +880,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidKeyClaims
 	typedef FKeyClaimsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidKeyClaims(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPlayerUuidKeyClaims(InRequest, InDelegate, Priority); }
 };
 
 

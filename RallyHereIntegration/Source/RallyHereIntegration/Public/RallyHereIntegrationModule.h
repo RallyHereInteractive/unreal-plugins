@@ -53,23 +53,24 @@ private:
 // shortener for the above lookup
 namespace RH_APIs
 {
-	FORCEINLINE static RallyHereAPI::FRallyHereAPIAll& GetAPIs() { return FRallyHereIntegrationModule::Get().GetAPIs(); }
-	FORCEINLINE static RallyHereAPI::FAdAPI& GetAdAPI() { return GetAPIs().GetAd(); }
-	FORCEINLINE static RallyHereAPI::FConfigAPI& GetConfigAPI() { return GetAPIs().GetConfig(); }
-	FORCEINLINE static RallyHereAPI::FAuthAPI& GetAuthAPI() { return GetAPIs().GetAuth(); }
-	FORCEINLINE static RallyHereAPI::FFriendsV2API& GetFriendsV2API() { return GetAPIs().GetFriendsV2(); }
-	FORCEINLINE static RallyHereAPI::FBlockedV2API& GetBlockedV2API() { return GetAPIs().GetBlockedV2(); }
-	FORCEINLINE static RallyHereAPI::FSessionsAPI& GetSessionsAPI() { return GetAPIs().GetSessions(); }
-	FORCEINLINE static RallyHereAPI::FMatchAPI& GetMatchAPI() { return GetAPIs().GetMatch(); }
-	FORCEINLINE static RallyHereAPI::FReportsAPI& GetReportsAPI() { return GetAPIs().GetReports(); }
-	FORCEINLINE static RallyHereAPI::FRankAPI& GetRankAPI() { return GetAPIs().GetRank(); }
-	FORCEINLINE static RallyHereAPI::FQueuesAPI& GetQueuesAPI() { return GetAPIs().GetQueues(); }
-	FORCEINLINE static RallyHereAPI::FPresenceAPI& GetPresenceAPI() { return GetAPIs().GetPresence(); }
-	FORCEINLINE static RallyHereAPI::FUsersAPI& GetUsersAPI() { return GetAPIs().GetUsers(); }
-	FORCEINLINE static RallyHereAPI::FSettingsAPI& GetSettingsAPI() { return GetAPIs().GetSettings(); }
-	FORCEINLINE static RallyHereAPI::FInventoryAPI& GetInventoryAPI() { return GetAPIs().GetInventory(); }
-	FORCEINLINE static RallyHereAPI::FCatalogAPI& GetCatalogAPI() { return GetAPIs().GetCatalog(); }
-	FORCEINLINE static RallyHereAPI::FEventsAPI& GetEventsAPI() { return GetAPIs().GetEvents(); }
+	FORCEINLINE static RallyHereAPI::FRallyHereAPIAll GetAPIs() { return FRallyHereIntegrationModule::Get().GetAPIs(); }
+
+	FORCEINLINE static TSharedRef<RallyHereAPI::FAdAPI> GetAdAPI() { return GetAPIs().GetAd(); }
+	FORCEINLINE static TSharedRef<RallyHereAPI::FConfigAPI> GetConfigAPI() { return GetAPIs().GetConfig(); }
+	FORCEINLINE static TSharedRef<RallyHereAPI::FAuthAPI> GetAuthAPI() { return GetAPIs().GetAuth(); }
+	FORCEINLINE static TSharedRef<RallyHereAPI::FFriendsV2API> GetFriendsV2API() { return GetAPIs().GetFriendsV2(); }
+	FORCEINLINE static TSharedRef<RallyHereAPI::FBlockedV2API> GetBlockedV2API() { return GetAPIs().GetBlockedV2(); }
+	FORCEINLINE static TSharedRef<RallyHereAPI::FSessionsAPI> GetSessionsAPI() { return GetAPIs().GetSessions(); }
+	FORCEINLINE static TSharedRef<RallyHereAPI::FMatchAPI> GetMatchAPI() { return GetAPIs().GetMatch(); }
+	FORCEINLINE static TSharedRef<RallyHereAPI::FReportsAPI> GetReportsAPI() { return GetAPIs().GetReports(); }
+	FORCEINLINE static TSharedRef<RallyHereAPI::FRankAPI> GetRankAPI() { return GetAPIs().GetRank(); }
+	FORCEINLINE static TSharedRef<RallyHereAPI::FQueuesAPI> GetQueuesAPI() { return GetAPIs().GetQueues(); }
+	FORCEINLINE static TSharedRef<RallyHereAPI::FPresenceAPI> GetPresenceAPI() { return GetAPIs().GetPresence(); }
+	FORCEINLINE static TSharedRef<RallyHereAPI::FUsersAPI> GetUsersAPI() { return GetAPIs().GetUsers(); }
+	FORCEINLINE static TSharedRef<RallyHereAPI::FSettingsAPI> GetSettingsAPI() { return GetAPIs().GetSettings(); }
+	FORCEINLINE static TSharedRef<RallyHereAPI::FInventoryAPI> GetInventoryAPI() { return GetAPIs().GetInventory(); }
+	FORCEINLINE static TSharedRef<RallyHereAPI::FCatalogAPI> GetCatalogAPI() { return GetAPIs().GetCatalog(); }
+	FORCEINLINE static TSharedRef<RallyHereAPI::FEventsAPI> GetEventsAPI() { return GetAPIs().GetEvents(); }
 }
 
 /** @} */

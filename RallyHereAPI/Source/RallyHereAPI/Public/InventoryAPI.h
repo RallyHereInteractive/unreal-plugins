@@ -277,7 +277,7 @@ struct RALLYHEREAPI_API Traits_CreateNewInventorySession
 	typedef FInventoryAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateNewInventorySession(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->CreateNewInventorySession(InRequest, InDelegate, Priority); }
 };
 
 /* Create New Inventory Session By Player Uuid
@@ -334,7 +334,7 @@ struct RALLYHEREAPI_API Traits_CreateNewInventorySessionByPlayerUuid
 	typedef FInventoryAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateNewInventorySessionByPlayerUuid(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->CreateNewInventorySessionByPlayerUuid(InRequest, InDelegate, Priority); }
 };
 
 /* Create New Inventory Session By Player Uuid Self
@@ -390,7 +390,7 @@ struct RALLYHEREAPI_API Traits_CreateNewInventorySessionByPlayerUuidSelf
 	typedef FInventoryAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateNewInventorySessionByPlayerUuidSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->CreateNewInventorySessionByPlayerUuidSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Create New Inventory Session Self
@@ -446,7 +446,7 @@ struct RALLYHEREAPI_API Traits_CreateNewInventorySessionSelf
 	typedef FInventoryAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateNewInventorySessionSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->CreateNewInventorySessionSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Create New Player Order
@@ -510,7 +510,7 @@ struct RALLYHEREAPI_API Traits_CreateNewPlayerOrder
 	typedef FInventoryAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateNewPlayerOrder(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->CreateNewPlayerOrder(InRequest, InDelegate, Priority); }
 };
 
 /* Create New Player Order Self
@@ -573,7 +573,7 @@ struct RALLYHEREAPI_API Traits_CreateNewPlayerOrderSelf
 	typedef FInventoryAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateNewPlayerOrderSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->CreateNewPlayerOrderSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Create New Player Uuid Order
@@ -637,7 +637,7 @@ struct RALLYHEREAPI_API Traits_CreateNewPlayerUuidOrder
 	typedef FInventoryAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateNewPlayerUuidOrder(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->CreateNewPlayerUuidOrder(InRequest, InDelegate, Priority); }
 };
 
 /* Create New Player Uuid Order Self
@@ -700,7 +700,7 @@ struct RALLYHEREAPI_API Traits_CreateNewPlayerUuidOrderSelf
 	typedef FInventoryAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateNewPlayerUuidOrderSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->CreateNewPlayerUuidOrderSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Create Player Inventory
@@ -762,7 +762,7 @@ struct RALLYHEREAPI_API Traits_CreatePlayerInventory
 	typedef FInventoryAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreatePlayerInventory(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->CreatePlayerInventory(InRequest, InDelegate, Priority); }
 };
 
 /* Create Player Inventory Self
@@ -823,7 +823,7 @@ struct RALLYHEREAPI_API Traits_CreatePlayerInventorySelf
 	typedef FInventoryAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreatePlayerInventorySelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->CreatePlayerInventorySelf(InRequest, InDelegate, Priority); }
 };
 
 /* Create Player Inventory Uuid
@@ -885,7 +885,7 @@ struct RALLYHEREAPI_API Traits_CreatePlayerInventoryUuid
 	typedef FInventoryAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreatePlayerInventoryUuid(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->CreatePlayerInventoryUuid(InRequest, InDelegate, Priority); }
 };
 
 /* Create Player Inventory Uuid Self
@@ -946,7 +946,7 @@ struct RALLYHEREAPI_API Traits_CreatePlayerInventoryUuidSelf
 	typedef FInventoryAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreatePlayerInventoryUuidSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->CreatePlayerInventoryUuidSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Inventory Session Info
@@ -1002,7 +1002,7 @@ struct RALLYHEREAPI_API Traits_GetInventorySessionInfo
 	typedef FInventoryAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetInventorySessionInfo(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetInventorySessionInfo(InRequest, InDelegate, Priority); }
 };
 
 /* Get Inventory Session Info By Player Uuid
@@ -1058,7 +1058,7 @@ struct RALLYHEREAPI_API Traits_GetInventorySessionInfoByPlayerUuid
 	typedef FInventoryAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetInventorySessionInfoByPlayerUuid(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetInventorySessionInfoByPlayerUuid(InRequest, InDelegate, Priority); }
 };
 
 /* Get Inventory Session Info By Player Uuid Self
@@ -1108,7 +1108,7 @@ struct RALLYHEREAPI_API Traits_GetInventorySessionInfoByPlayerUuidSelf
 	typedef FInventoryAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetInventorySessionInfoByPlayerUuidSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetInventorySessionInfoByPlayerUuidSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Inventory Session Info Self
@@ -1158,7 +1158,7 @@ struct RALLYHEREAPI_API Traits_GetInventorySessionInfoSelf
 	typedef FInventoryAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetInventorySessionInfoSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetInventorySessionInfoSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Inventory
@@ -1222,7 +1222,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerInventory
 	typedef FInventoryAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerInventory(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPlayerInventory(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Inventory Self
@@ -1285,7 +1285,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerInventorySelf
 	typedef FInventoryAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerInventorySelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPlayerInventorySelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Inventory Uuid
@@ -1349,7 +1349,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerInventoryUuid
 	typedef FInventoryAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerInventoryUuid(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPlayerInventoryUuid(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Inventory Uuid Self
@@ -1412,7 +1412,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerInventoryUuidSelf
 	typedef FInventoryAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerInventoryUuidSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPlayerInventoryUuidSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Order By Id
@@ -1474,7 +1474,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerOrderById
 	typedef FInventoryAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerOrderById(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPlayerOrderById(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Order By Id Self
@@ -1535,7 +1535,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerOrderByIdSelf
 	typedef FInventoryAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerOrderByIdSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPlayerOrderByIdSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Orders
@@ -1599,7 +1599,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerOrders
 	typedef FInventoryAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerOrders(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPlayerOrders(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Orders Self
@@ -1662,7 +1662,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerOrdersSelf
 	typedef FInventoryAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerOrdersSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPlayerOrdersSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Uuid Order By Id
@@ -1724,7 +1724,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidOrderById
 	typedef FInventoryAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidOrderById(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPlayerUuidOrderById(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Uuid Order By Id Self
@@ -1785,7 +1785,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidOrderByIdSelf
 	typedef FInventoryAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidOrderByIdSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPlayerUuidOrderByIdSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Uuid Orders
@@ -1849,7 +1849,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidOrders
 	typedef FInventoryAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidOrders(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPlayerUuidOrders(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Uuid Orders Self
@@ -1912,7 +1912,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidOrdersSelf
 	typedef FInventoryAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidOrdersSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPlayerUuidOrdersSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Modify Many Player Inventory
@@ -1974,7 +1974,7 @@ struct RALLYHEREAPI_API Traits_ModifyManyPlayerInventory
 	typedef FInventoryAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ModifyManyPlayerInventory(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->ModifyManyPlayerInventory(InRequest, InDelegate, Priority); }
 };
 
 /* Modify Many Player Inventory Self
@@ -2035,7 +2035,7 @@ struct RALLYHEREAPI_API Traits_ModifyManyPlayerInventorySelf
 	typedef FInventoryAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ModifyManyPlayerInventorySelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->ModifyManyPlayerInventorySelf(InRequest, InDelegate, Priority); }
 };
 
 /* Modify Many Player Inventory Uuid
@@ -2097,7 +2097,7 @@ struct RALLYHEREAPI_API Traits_ModifyManyPlayerInventoryUuid
 	typedef FInventoryAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ModifyManyPlayerInventoryUuid(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->ModifyManyPlayerInventoryUuid(InRequest, InDelegate, Priority); }
 };
 
 /* Modify Many Player Inventory Uuid Self
@@ -2158,7 +2158,7 @@ struct RALLYHEREAPI_API Traits_ModifyManyPlayerInventoryUuidSelf
 	typedef FInventoryAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ModifyManyPlayerInventoryUuidSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->ModifyManyPlayerInventoryUuidSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Modify Player Inventory
@@ -2221,7 +2221,7 @@ struct RALLYHEREAPI_API Traits_ModifyPlayerInventory
 	typedef FInventoryAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ModifyPlayerInventory(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->ModifyPlayerInventory(InRequest, InDelegate, Priority); }
 };
 
 /* Modify Player Inventory Self
@@ -2283,7 +2283,7 @@ struct RALLYHEREAPI_API Traits_ModifyPlayerInventorySelf
 	typedef FInventoryAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ModifyPlayerInventorySelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->ModifyPlayerInventorySelf(InRequest, InDelegate, Priority); }
 };
 
 /* Modify Player Inventory Uuid
@@ -2346,7 +2346,7 @@ struct RALLYHEREAPI_API Traits_ModifyPlayerInventoryUuid
 	typedef FInventoryAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ModifyPlayerInventoryUuid(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->ModifyPlayerInventoryUuid(InRequest, InDelegate, Priority); }
 };
 
 /* Modify Player Inventory Uuid Self
@@ -2408,7 +2408,7 @@ struct RALLYHEREAPI_API Traits_ModifyPlayerInventoryUuidSelf
 	typedef FInventoryAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ModifyPlayerInventoryUuidSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->ModifyPlayerInventoryUuidSelf(InRequest, InDelegate, Priority); }
 };
 
 

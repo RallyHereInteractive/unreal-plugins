@@ -28,7 +28,7 @@ FHttpRequestPtr FInventoryAPI::CreateNewInventorySession(const FRequest_CreateNe
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -214,7 +214,7 @@ FHttpRequestPtr FInventoryAPI::CreateNewInventorySessionByPlayerUuid(const FRequ
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -400,7 +400,7 @@ FHttpRequestPtr FInventoryAPI::CreateNewInventorySessionByPlayerUuidSelf(const F
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -581,7 +581,7 @@ FHttpRequestPtr FInventoryAPI::CreateNewInventorySessionSelf(const FRequest_Crea
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -762,7 +762,7 @@ FHttpRequestPtr FInventoryAPI::CreateNewPlayerOrder(const FRequest_CreateNewPlay
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -960,7 +960,7 @@ FHttpRequestPtr FInventoryAPI::CreateNewPlayerOrderSelf(const FRequest_CreateNew
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -1153,7 +1153,7 @@ FHttpRequestPtr FInventoryAPI::CreateNewPlayerUuidOrder(const FRequest_CreateNew
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -1351,7 +1351,7 @@ FHttpRequestPtr FInventoryAPI::CreateNewPlayerUuidOrderSelf(const FRequest_Creat
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -1544,7 +1544,7 @@ FHttpRequestPtr FInventoryAPI::CreatePlayerInventory(const FRequest_CreatePlayer
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -1742,7 +1742,7 @@ FHttpRequestPtr FInventoryAPI::CreatePlayerInventorySelf(const FRequest_CreatePl
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -1935,7 +1935,7 @@ FHttpRequestPtr FInventoryAPI::CreatePlayerInventoryUuid(const FRequest_CreatePl
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -2133,7 +2133,7 @@ FHttpRequestPtr FInventoryAPI::CreatePlayerInventoryUuidSelf(const FRequest_Crea
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -2326,7 +2326,7 @@ FHttpRequestPtr FInventoryAPI::GetInventorySessionInfo(const FRequest_GetInvento
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -2501,7 +2501,7 @@ FHttpRequestPtr FInventoryAPI::GetInventorySessionInfoByPlayerUuid(const FReques
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -2676,7 +2676,7 @@ FHttpRequestPtr FInventoryAPI::GetInventorySessionInfoByPlayerUuidSelf(const FRe
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -2834,7 +2834,7 @@ FHttpRequestPtr FInventoryAPI::GetInventorySessionInfoSelf(const FRequest_GetInv
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -2992,7 +2992,7 @@ FHttpRequestPtr FInventoryAPI::GetPlayerInventory(const FRequest_GetPlayerInvent
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -3201,7 +3201,7 @@ FHttpRequestPtr FInventoryAPI::GetPlayerInventorySelf(const FRequest_GetPlayerIn
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -3405,7 +3405,7 @@ FHttpRequestPtr FInventoryAPI::GetPlayerInventoryUuid(const FRequest_GetPlayerIn
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -3614,7 +3614,7 @@ FHttpRequestPtr FInventoryAPI::GetPlayerInventoryUuidSelf(const FRequest_GetPlay
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -3818,7 +3818,7 @@ FHttpRequestPtr FInventoryAPI::GetPlayerOrderById(const FRequest_GetPlayerOrderB
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -4006,7 +4006,7 @@ FHttpRequestPtr FInventoryAPI::GetPlayerOrderByIdSelf(const FRequest_GetPlayerOr
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -4193,7 +4193,7 @@ FHttpRequestPtr FInventoryAPI::GetPlayerOrders(const FRequest_GetPlayerOrders& R
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -4388,7 +4388,7 @@ FHttpRequestPtr FInventoryAPI::GetPlayerOrdersSelf(const FRequest_GetPlayerOrder
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -4578,7 +4578,7 @@ FHttpRequestPtr FInventoryAPI::GetPlayerUuidOrderById(const FRequest_GetPlayerUu
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -4766,7 +4766,7 @@ FHttpRequestPtr FInventoryAPI::GetPlayerUuidOrderByIdSelf(const FRequest_GetPlay
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -4953,7 +4953,7 @@ FHttpRequestPtr FInventoryAPI::GetPlayerUuidOrders(const FRequest_GetPlayerUuidO
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -5148,7 +5148,7 @@ FHttpRequestPtr FInventoryAPI::GetPlayerUuidOrdersSelf(const FRequest_GetPlayerU
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -5338,7 +5338,7 @@ FHttpRequestPtr FInventoryAPI::ModifyManyPlayerInventory(const FRequest_ModifyMa
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -5536,7 +5536,7 @@ FHttpRequestPtr FInventoryAPI::ModifyManyPlayerInventorySelf(const FRequest_Modi
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -5729,7 +5729,7 @@ FHttpRequestPtr FInventoryAPI::ModifyManyPlayerInventoryUuid(const FRequest_Modi
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -5927,7 +5927,7 @@ FHttpRequestPtr FInventoryAPI::ModifyManyPlayerInventoryUuidSelf(const FRequest_
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -6120,7 +6120,7 @@ FHttpRequestPtr FInventoryAPI::ModifyPlayerInventory(const FRequest_ModifyPlayer
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -6319,7 +6319,7 @@ FHttpRequestPtr FInventoryAPI::ModifyPlayerInventorySelf(const FRequest_ModifyPl
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -6517,7 +6517,7 @@ FHttpRequestPtr FInventoryAPI::ModifyPlayerInventoryUuid(const FRequest_ModifyPl
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -6716,7 +6716,7 @@ FHttpRequestPtr FInventoryAPI::ModifyPlayerInventoryUuidSelf(const FRequest_Modi
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)

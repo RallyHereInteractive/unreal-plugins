@@ -28,7 +28,7 @@ FHttpRequestPtr FReportsAPI::CreateReportForTargetPlayerUuid(const FRequest_Crea
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -238,7 +238,7 @@ FHttpRequestPtr FReportsAPI::GetReportsForTargetPlayerUuid(const FRequest_GetRep
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -437,7 +437,7 @@ FHttpRequestPtr FReportsAPI::GetReportsForTargetPlayerUuidSelf(const FRequest_Ge
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -631,7 +631,7 @@ FHttpRequestPtr FReportsAPI::GetReportsFromSourcePlayerUuid(const FRequest_GetRe
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -830,7 +830,7 @@ FHttpRequestPtr FReportsAPI::GetReportsFromSourcePlayerUuidSelf(const FRequest_G
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)

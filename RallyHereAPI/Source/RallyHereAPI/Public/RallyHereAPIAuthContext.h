@@ -35,9 +35,9 @@ DECLARE_DELEGATE_OneParam(FAuthContextLoginRefreshTokenExpired, FSimpleDelegate)
 struct RALLYHEREAPI_API FAuthContext : TSharedFromThis<FAuthContext>
 {
 public:
-	FAuthContext(FAuthAPI& LoginAPI_, FString ClientId, FString ClientSecret);
+	FAuthContext(TSharedRef<FAuthAPI> LoginAPI_, FString ClientId, FString ClientSecret);
 
-	FAuthContext(FAuthAPI& LoginAPI_);
+	FAuthContext(TSharedRef<FAuthAPI> LoginAPI_);
 
 	void ProcessLogin(const FResponse_Login &LoginResponse_);
 	void ProcessLoginToken(const FResponse_Token &LoginResponse_);
@@ -69,7 +69,7 @@ public:
 	static bool IsSameUser(const TOptional<FRHAPI_LoginResult>& A, const TOptional<FRHAPI_LoginResult>& B);
 
 private:
-	FAuthAPI* LoginAPI;
+	TSharedRef<FAuthAPI> LoginAPI;
 	TOptional<FString> ClientId;
 	TOptional<FString> ClientSecret;
 	TOptional<FString> BasicAuthValue;

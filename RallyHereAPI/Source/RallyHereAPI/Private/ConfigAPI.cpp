@@ -28,7 +28,7 @@ FHttpRequestPtr FConfigAPI::GetAppSettingsAll(const FRequest_GetAppSettingsAll& 
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -237,7 +237,7 @@ FHttpRequestPtr FConfigAPI::GetAppSettingsClient(const FRequest_GetAppSettingsCl
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -427,7 +427,7 @@ FHttpRequestPtr FConfigAPI::GetAppSettingsServer(const FRequest_GetAppSettingsSe
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)

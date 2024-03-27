@@ -28,7 +28,7 @@ FHttpRequestPtr FRankAPI::CalculateV2Ranks(const FRequest_CalculateV2Ranks& Requ
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -209,7 +209,7 @@ FHttpRequestPtr FRankAPI::GetAllPlayerUuidRanks(const FRequest_GetAllPlayerUuidR
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -384,7 +384,7 @@ FHttpRequestPtr FRankAPI::GetAllPlayerUuidRanksSelf(const FRequest_GetAllPlayerU
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -542,7 +542,7 @@ FHttpRequestPtr FRankAPI::GetAllPlayerUuidRanksSelfV2(const FRequest_GetAllPlaye
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -700,7 +700,7 @@ FHttpRequestPtr FRankAPI::GetAllPlayerUuidRanksV2(const FRequest_GetAllPlayerUui
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -875,7 +875,7 @@ FHttpRequestPtr FRankAPI::GetAllRankConfig(const FRequest_GetAllRankConfig& Requ
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -1033,7 +1033,7 @@ FHttpRequestPtr FRankAPI::GetAllRankConfigV2(const FRequest_GetAllRankConfigV2& 
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -1191,7 +1191,7 @@ FHttpRequestPtr FRankAPI::GetPlayerUuidRank(const FRequest_GetPlayerUuidRank& Re
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -1367,7 +1367,7 @@ FHttpRequestPtr FRankAPI::GetPlayerUuidRankSelf(const FRequest_GetPlayerUuidRank
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -1542,7 +1542,7 @@ FHttpRequestPtr FRankAPI::GetPlayerUuidRankSelfV2(const FRequest_GetPlayerUuidRa
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -1717,7 +1717,7 @@ FHttpRequestPtr FRankAPI::GetPlayerUuidRankV2(const FRequest_GetPlayerUuidRankV2
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -1893,7 +1893,7 @@ FHttpRequestPtr FRankAPI::GetRankConfig(const FRequest_GetRankConfig& Request, c
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -2068,7 +2068,7 @@ FHttpRequestPtr FRankAPI::GetRankConfigV2(const FRequest_GetRankConfigV2& Reques
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -2243,7 +2243,7 @@ FHttpRequestPtr FRankAPI::UpdatePlayerUuidRank(const FRequest_UpdatePlayerUuidRa
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -2430,7 +2430,7 @@ FHttpRequestPtr FRankAPI::UpdatePlayerUuidRankSelf(const FRequest_UpdatePlayerUu
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -2616,7 +2616,7 @@ FHttpRequestPtr FRankAPI::UpdatePlayerUuidRankSelfV2(const FRequest_UpdatePlayer
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -2802,7 +2802,7 @@ FHttpRequestPtr FRankAPI::UpdatePlayerUuidRankV2(const FRequest_UpdatePlayerUuid
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -2989,7 +2989,7 @@ FHttpRequestPtr FRankAPI::UpdateRankingsV1(const FRequest_UpdateRankingsV1& Requ
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)

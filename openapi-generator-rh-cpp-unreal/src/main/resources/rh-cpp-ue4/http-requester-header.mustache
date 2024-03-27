@@ -35,7 +35,7 @@ class F{{unrealModuleName}}HttpRequester;
 struct F{{unrealModuleName}}HttpRequestData
 {
 public:
-	F{{unrealModuleName}}HttpRequestData(const FHttpRequestRef& InHttpRequest, FAPI& InAPI, int32 InPriority) :
+	F{{unrealModuleName}}HttpRequestData(const FHttpRequestRef& InHttpRequest, TSharedRef<FAPI> InAPI, int32 InPriority) :
 	  HttpRequest(InHttpRequest),
 	  API(InAPI),
 	  Priority(InPriority)
@@ -54,7 +54,7 @@ public:
 
 	FHttpRequestRef HttpRequest;
 	FRequestMetadata Metadata;
-	FAPI& API;
+	TSharedRef<FAPI> API;
 	int32 Priority;
 	FHttpRequestCompleteDelegate ResponseDelegate;
 };

@@ -28,7 +28,7 @@ FHttpRequestPtr FAuthAPI::GenerateKey(const FRequest_GenerateKey& Request, const
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -163,7 +163,7 @@ FHttpRequestPtr FAuthAPI::GetAllPublicKeys(const FRequest_GetAllPublicKeys& Requ
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -298,7 +298,7 @@ FHttpRequestPtr FAuthAPI::GetPortalTokenDetails(const FRequest_GetPortalTokenDet
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -478,7 +478,7 @@ FHttpRequestPtr FAuthAPI::GetPublicKeyById(const FRequest_GetPublicKeyById& Requ
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -632,7 +632,7 @@ FHttpRequestPtr FAuthAPI::Login(const FRequest_Login& Request, const FDelegate_L
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -833,7 +833,7 @@ FHttpRequestPtr FAuthAPI::Logout(const FRequest_Logout& Request, const FDelegate
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -991,7 +991,7 @@ FHttpRequestPtr FAuthAPI::OauthLogin(const FRequest_OauthLogin& Request, const F
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -1190,7 +1190,7 @@ FHttpRequestPtr FAuthAPI::OauthResponse(const FRequest_OauthResponse& Request, c
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -1389,7 +1389,7 @@ FHttpRequestPtr FAuthAPI::OauthTokenExchange(const FRequest_OauthTokenExchange& 
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -1569,7 +1569,7 @@ FHttpRequestPtr FAuthAPI::Token(const FRequest_Token& Request, const FDelegate_T
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -1748,7 +1748,7 @@ FHttpRequestPtr FAuthAPI::Verify(const FRequest_Verify& Request, const FDelegate
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)

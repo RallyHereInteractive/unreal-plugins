@@ -21,7 +21,7 @@ class FRallyHereAPIHttpRequester;
 struct FRallyHereAPIHttpRequestData
 {
 public:
-	FRallyHereAPIHttpRequestData(const FHttpRequestRef& InHttpRequest, FAPI& InAPI, int32 InPriority) :
+	FRallyHereAPIHttpRequestData(const FHttpRequestRef& InHttpRequest, TSharedRef<FAPI> InAPI, int32 InPriority) :
 	  HttpRequest(InHttpRequest),
 	  API(InAPI),
 	  Priority(InPriority)
@@ -40,7 +40,7 @@ public:
 
 	FHttpRequestRef HttpRequest;
 	FRequestMetadata Metadata;
-	FAPI& API;
+	TSharedRef<FAPI> API;
 	int32 Priority;
 	FHttpRequestCompleteDelegate ResponseDelegate;
 };

@@ -109,7 +109,7 @@ struct RALLYHEREAPI_API Traits_GetAppSettingsAll
 	typedef FConfigAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAppSettingsAll(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetAppSettingsAll(InRequest, InDelegate, Priority); }
 };
 
 /* Get App Settings Client
@@ -168,7 +168,7 @@ struct RALLYHEREAPI_API Traits_GetAppSettingsClient
 	typedef FConfigAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAppSettingsClient(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetAppSettingsClient(InRequest, InDelegate, Priority); }
 };
 
 /* Get App Settings Server
@@ -234,7 +234,7 @@ struct RALLYHEREAPI_API Traits_GetAppSettingsServer
 	typedef FConfigAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAppSettingsServer(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetAppSettingsServer(InRequest, InDelegate, Priority); }
 };
 
 

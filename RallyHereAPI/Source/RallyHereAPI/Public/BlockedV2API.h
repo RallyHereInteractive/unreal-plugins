@@ -120,7 +120,7 @@ struct RALLYHEREAPI_API Traits_BlockV2
 	typedef FBlockedV2API API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.BlockV2(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->BlockV2(InRequest, InDelegate, Priority); }
 };
 
 /* Get Blocked List For Player V2
@@ -202,7 +202,7 @@ struct RALLYHEREAPI_API Traits_GetBlockedListForPlayerV2
 	typedef FBlockedV2API API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetBlockedListForPlayerV2(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetBlockedListForPlayerV2(InRequest, InDelegate, Priority); }
 };
 
 /* Get Blocked V2
@@ -269,7 +269,7 @@ struct RALLYHEREAPI_API Traits_GetBlockedV2
 	typedef FBlockedV2API API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetBlockedV2(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetBlockedV2(InRequest, InDelegate, Priority); }
 };
 
 /* Unblock V2
@@ -335,7 +335,7 @@ struct RALLYHEREAPI_API Traits_UnblockV2
 	typedef FBlockedV2API API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UnblockV2(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->UnblockV2(InRequest, InDelegate, Priority); }
 };
 
 

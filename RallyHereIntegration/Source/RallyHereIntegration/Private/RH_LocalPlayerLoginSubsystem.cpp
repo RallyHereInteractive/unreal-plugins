@@ -904,7 +904,7 @@ void URH_LocalPlayerLoginSubsystem::DoRallyHereLogin(FRH_PendingLoginRequest& Re
 
     UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] Creating RallyHere Login request"),
            ANSI_TO_TCHAR(__FUNCTION__));
-    auto HttpRequest = RH_APIs::GetAPIs().GetAuth().Login(Request,
+    auto HttpRequest = RH_APIs::GetAPIs().GetAuth()->Login(Request,
 		RallyHereAPI::FDelegate_Login::CreateUObject(
 		    this,
 		    &URH_LocalPlayerLoginSubsystem::RallyHereLoginComplete,

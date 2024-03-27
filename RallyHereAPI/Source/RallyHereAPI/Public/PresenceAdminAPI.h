@@ -207,7 +207,7 @@ struct RALLYHEREAPI_API Traits_AdminGetKnownPlatforms
 	typedef FPresenceAdminAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetKnownPlatforms(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->AdminGetKnownPlatforms(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Player Presence
@@ -271,7 +271,7 @@ struct RALLYHEREAPI_API Traits_AdminGetPlayerPresence
 	typedef FPresenceAdminAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetPlayerPresence(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->AdminGetPlayerPresence(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Player Presence Id
@@ -335,7 +335,7 @@ struct RALLYHEREAPI_API Traits_AdminGetPlayerPresenceId
 	typedef FPresenceAdminAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetPlayerPresenceId(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->AdminGetPlayerPresenceId(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Requesting Ccu
@@ -397,7 +397,7 @@ struct RALLYHEREAPI_API Traits_AdminGetRequestingCcu
 	typedef FPresenceAdminAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetRequestingCcu(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->AdminGetRequestingCcu(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Requesting Ccu All Platform Combined
@@ -453,7 +453,7 @@ struct RALLYHEREAPI_API Traits_AdminGetRequestingCcuAllPlatformCombined
 	typedef FPresenceAdminAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetRequestingCcuAllPlatformCombined(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->AdminGetRequestingCcuAllPlatformCombined(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Requesting Ccu All Platform Individual
@@ -509,7 +509,7 @@ struct RALLYHEREAPI_API Traits_AdminGetRequestingCcuAllPlatformIndividual
 	typedef FPresenceAdminAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetRequestingCcuAllPlatformIndividual(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->AdminGetRequestingCcuAllPlatformIndividual(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Requesting Ccu Individual
@@ -569,7 +569,7 @@ struct RALLYHEREAPI_API Traits_AdminGetRequestingCcuIndividual
 	typedef FPresenceAdminAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetRequestingCcuIndividual(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->AdminGetRequestingCcuIndividual(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Requesting Ccu Platform Combined
@@ -626,7 +626,7 @@ struct RALLYHEREAPI_API Traits_AdminGetRequestingCcuPlatformCombined
 	typedef FPresenceAdminAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetRequestingCcuPlatformCombined(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->AdminGetRequestingCcuPlatformCombined(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Requesting Ccu Platform Individual
@@ -683,7 +683,7 @@ struct RALLYHEREAPI_API Traits_AdminGetRequestingCcuPlatformIndividual
 	typedef FPresenceAdminAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetRequestingCcuPlatformIndividual(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->AdminGetRequestingCcuPlatformIndividual(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Total Ccu
@@ -745,7 +745,7 @@ struct RALLYHEREAPI_API Traits_AdminGetTotalCcu
 	typedef FPresenceAdminAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetTotalCcu(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->AdminGetTotalCcu(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Total Ccu All Platform Combined
@@ -801,7 +801,7 @@ struct RALLYHEREAPI_API Traits_AdminGetTotalCcuAllPlatformCombined
 	typedef FPresenceAdminAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetTotalCcuAllPlatformCombined(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->AdminGetTotalCcuAllPlatformCombined(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Total Ccu All Platform Individual
@@ -857,7 +857,7 @@ struct RALLYHEREAPI_API Traits_AdminGetTotalCcuAllPlatformIndividual
 	typedef FPresenceAdminAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetTotalCcuAllPlatformIndividual(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->AdminGetTotalCcuAllPlatformIndividual(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Total Ccu Individual
@@ -917,7 +917,7 @@ struct RALLYHEREAPI_API Traits_AdminGetTotalCcuIndividual
 	typedef FPresenceAdminAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetTotalCcuIndividual(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->AdminGetTotalCcuIndividual(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Total Ccu Platform Combined
@@ -974,7 +974,7 @@ struct RALLYHEREAPI_API Traits_AdminGetTotalCcuPlatformCombined
 	typedef FPresenceAdminAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetTotalCcuPlatformCombined(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->AdminGetTotalCcuPlatformCombined(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Total Ccu Platform Individual
@@ -1031,7 +1031,7 @@ struct RALLYHEREAPI_API Traits_AdminGetTotalCcuPlatformIndividual
 	typedef FPresenceAdminAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetTotalCcuPlatformIndividual(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->AdminGetTotalCcuPlatformIndividual(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Updating Ccu
@@ -1093,7 +1093,7 @@ struct RALLYHEREAPI_API Traits_AdminGetUpdatingCcu
 	typedef FPresenceAdminAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetUpdatingCcu(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->AdminGetUpdatingCcu(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Updating Ccu All Platform Combined
@@ -1149,7 +1149,7 @@ struct RALLYHEREAPI_API Traits_AdminGetUpdatingCcuAllPlatformCombined
 	typedef FPresenceAdminAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetUpdatingCcuAllPlatformCombined(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->AdminGetUpdatingCcuAllPlatformCombined(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Updating Ccu All Platform Individual
@@ -1205,7 +1205,7 @@ struct RALLYHEREAPI_API Traits_AdminGetUpdatingCcuAllPlatformIndividual
 	typedef FPresenceAdminAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetUpdatingCcuAllPlatformIndividual(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->AdminGetUpdatingCcuAllPlatformIndividual(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Updating Ccu Individual
@@ -1265,7 +1265,7 @@ struct RALLYHEREAPI_API Traits_AdminGetUpdatingCcuIndividual
 	typedef FPresenceAdminAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetUpdatingCcuIndividual(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->AdminGetUpdatingCcuIndividual(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Updating Ccu Platform Combined
@@ -1322,7 +1322,7 @@ struct RALLYHEREAPI_API Traits_AdminGetUpdatingCcuPlatformCombined
 	typedef FPresenceAdminAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetUpdatingCcuPlatformCombined(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->AdminGetUpdatingCcuPlatformCombined(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Updating Ccu Platform Individual
@@ -1379,7 +1379,7 @@ struct RALLYHEREAPI_API Traits_AdminGetUpdatingCcuPlatformIndividual
 	typedef FPresenceAdminAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetUpdatingCcuPlatformIndividual(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->AdminGetUpdatingCcuPlatformIndividual(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Update Player Last Seen
@@ -1448,7 +1448,7 @@ struct RALLYHEREAPI_API Traits_AdminUpdatePlayerLastSeen
 	typedef FPresenceAdminAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminUpdatePlayerLastSeen(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->AdminUpdatePlayerLastSeen(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Update Player Last Seen Id
@@ -1517,7 +1517,7 @@ struct RALLYHEREAPI_API Traits_AdminUpdatePlayerLastSeenId
 	typedef FPresenceAdminAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminUpdatePlayerLastSeenId(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->AdminUpdatePlayerLastSeenId(InRequest, InDelegate, Priority); }
 };
 
 

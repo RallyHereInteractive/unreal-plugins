@@ -129,7 +129,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerPresencePublicById
 	typedef FPresenceAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerPresencePublicById(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPlayerPresencePublicById(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Presence Public By Uuid
@@ -201,7 +201,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerPresencePublicByUuid
 	typedef FPresenceAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerPresencePublicByUuid(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPlayerPresencePublicByUuid(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Presence Self
@@ -263,7 +263,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerPresenceSelf
 	typedef FPresenceAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerPresenceSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPlayerPresenceSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Presence Settings
@@ -306,7 +306,7 @@ struct RALLYHEREAPI_API Traits_GetPresenceSettings
 	typedef FPresenceAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPresenceSettings(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPresenceSettings(InRequest, InDelegate, Priority); }
 };
 
 /* Update Player Presence Self
@@ -375,7 +375,7 @@ struct RALLYHEREAPI_API Traits_UpdatePlayerPresenceSelf
 	typedef FPresenceAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdatePlayerPresenceSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->UpdatePlayerPresenceSelf(InRequest, InDelegate, Priority); }
 };
 
 

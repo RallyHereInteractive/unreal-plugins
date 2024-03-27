@@ -134,7 +134,7 @@ struct RALLYHEREAPI_API Traits_GenerateEntitlementEvent
 	typedef FEntitlementsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GenerateEntitlementEvent(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GenerateEntitlementEvent(InRequest, InDelegate, Priority); }
 };
 
 /* Get Entitlement Events
@@ -199,7 +199,7 @@ struct RALLYHEREAPI_API Traits_GetEntitlementEvents
 	typedef FEntitlementsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetEntitlementEvents(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetEntitlementEvents(InRequest, InDelegate, Priority); }
 };
 
 /* Process Platform Entitlement For Me
@@ -263,7 +263,7 @@ struct RALLYHEREAPI_API Traits_ProcessPlatformEntitlementForMe
 	typedef FEntitlementsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ProcessPlatformEntitlementForMe(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->ProcessPlatformEntitlementForMe(InRequest, InDelegate, Priority); }
 };
 
 /* Process Platform Entitlements By Player Uuid
@@ -328,7 +328,7 @@ struct RALLYHEREAPI_API Traits_ProcessPlatformEntitlementsByPlayerUuid
 	typedef FEntitlementsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ProcessPlatformEntitlementsByPlayerUuid(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->ProcessPlatformEntitlementsByPlayerUuid(InRequest, InDelegate, Priority); }
 };
 
 /* Retrieve Entitlement Request By Player Uuid
@@ -391,7 +391,7 @@ struct RALLYHEREAPI_API Traits_RetrieveEntitlementRequestByPlayerUuid
 	typedef FEntitlementsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.RetrieveEntitlementRequestByPlayerUuid(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->RetrieveEntitlementRequestByPlayerUuid(InRequest, InDelegate, Priority); }
 };
 
 /* Retrieve Entitlement Request For Me
@@ -453,7 +453,7 @@ struct RALLYHEREAPI_API Traits_RetrieveEntitlementRequestForMe
 	typedef FEntitlementsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.RetrieveEntitlementRequestForMe(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->RetrieveEntitlementRequestForMe(InRequest, InDelegate, Priority); }
 };
 
 

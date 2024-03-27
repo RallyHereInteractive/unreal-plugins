@@ -150,7 +150,7 @@ struct RALLYHEREAPI_API Traits_GetAllMapGameInfo
 	typedef FQueuesAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllMapGameInfo(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetAllMapGameInfo(InRequest, InDelegate, Priority); }
 };
 
 /* Get All Queue Info
@@ -223,7 +223,7 @@ struct RALLYHEREAPI_API Traits_GetAllQueueInfo
 	typedef FQueuesAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllQueueInfo(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetAllQueueInfo(InRequest, InDelegate, Priority); }
 };
 
 /* Get All Queue Info V2
@@ -295,7 +295,7 @@ struct RALLYHEREAPI_API Traits_GetAllQueueInfoV2
 	typedef FQueuesAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllQueueInfoV2(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetAllQueueInfoV2(InRequest, InDelegate, Priority); }
 };
 
 /* Get Instance Request Template
@@ -367,7 +367,7 @@ struct RALLYHEREAPI_API Traits_GetInstanceRequestTemplate
 	typedef FQueuesAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetInstanceRequestTemplate(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetInstanceRequestTemplate(InRequest, InDelegate, Priority); }
 };
 
 /* Get Match Making Profile
@@ -439,7 +439,7 @@ struct RALLYHEREAPI_API Traits_GetMatchMakingProfile
 	typedef FQueuesAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetMatchMakingProfile(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetMatchMakingProfile(InRequest, InDelegate, Priority); }
 };
 
 /* Get Match Making Profile V2
@@ -510,7 +510,7 @@ struct RALLYHEREAPI_API Traits_GetMatchMakingProfileV2
 	typedef FQueuesAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetMatchMakingProfileV2(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetMatchMakingProfileV2(InRequest, InDelegate, Priority); }
 };
 
 /* Get Match Making Templates
@@ -583,7 +583,7 @@ struct RALLYHEREAPI_API Traits_GetMatchMakingTemplates
 	typedef FQueuesAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetMatchMakingTemplates(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetMatchMakingTemplates(InRequest, InDelegate, Priority); }
 };
 
 /* Get Match Making Templates V2
@@ -656,7 +656,7 @@ struct RALLYHEREAPI_API Traits_GetMatchMakingTemplatesV2
 	typedef FQueuesAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetMatchMakingTemplatesV2(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetMatchMakingTemplatesV2(InRequest, InDelegate, Priority); }
 };
 
 

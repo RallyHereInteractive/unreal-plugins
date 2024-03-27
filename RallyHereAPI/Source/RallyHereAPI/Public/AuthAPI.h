@@ -141,7 +141,7 @@ struct RALLYHEREAPI_API Traits_GenerateKey
 	typedef FAuthAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GenerateKey(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GenerateKey(InRequest, InDelegate, Priority); }
 };
 
 /* Get All Public Keys
@@ -186,7 +186,7 @@ struct RALLYHEREAPI_API Traits_GetAllPublicKeys
 	typedef FAuthAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllPublicKeys(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetAllPublicKeys(InRequest, InDelegate, Priority); }
 };
 
 /* Get Portal Token Details
@@ -238,7 +238,7 @@ struct RALLYHEREAPI_API Traits_GetPortalTokenDetails
 	typedef FAuthAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPortalTokenDetails(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPortalTokenDetails(InRequest, InDelegate, Priority); }
 };
 
 /* Get Public Key By Id
@@ -289,7 +289,7 @@ struct RALLYHEREAPI_API Traits_GetPublicKeyById
 	typedef FAuthAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPublicKeyById(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPublicKeyById(InRequest, InDelegate, Priority); }
 };
 
 /* Login
@@ -349,7 +349,7 @@ struct RALLYHEREAPI_API Traits_Login
 	typedef FAuthAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.Login(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->Login(InRequest, InDelegate, Priority); }
 };
 
 /* Logout
@@ -396,7 +396,7 @@ struct RALLYHEREAPI_API Traits_Logout
 	typedef FAuthAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.Logout(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->Logout(InRequest, InDelegate, Priority); }
 };
 
 /* Oauth Login
@@ -461,7 +461,7 @@ struct RALLYHEREAPI_API Traits_OauthLogin
 	typedef FAuthAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.OauthLogin(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->OauthLogin(InRequest, InDelegate, Priority); }
 };
 
 /* Oauth Response
@@ -521,7 +521,7 @@ struct RALLYHEREAPI_API Traits_OauthResponse
 	typedef FAuthAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.OauthResponse(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->OauthResponse(InRequest, InDelegate, Priority); }
 };
 
 /* Oauth Token Exchange
@@ -577,7 +577,7 @@ struct RALLYHEREAPI_API Traits_OauthTokenExchange
 	typedef FAuthAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.OauthTokenExchange(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->OauthTokenExchange(InRequest, InDelegate, Priority); }
 };
 
 /* Token
@@ -630,7 +630,7 @@ struct RALLYHEREAPI_API Traits_Token
 	typedef FAuthAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.Token(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->Token(InRequest, InDelegate, Priority); }
 };
 
 /* Verify
@@ -678,7 +678,7 @@ struct RALLYHEREAPI_API Traits_Verify
 	typedef FAuthAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.Verify(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->Verify(InRequest, InDelegate, Priority); }
 };
 
 

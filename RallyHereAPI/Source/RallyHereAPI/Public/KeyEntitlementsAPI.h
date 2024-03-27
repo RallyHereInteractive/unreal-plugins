@@ -112,7 +112,7 @@ struct RALLYHEREAPI_API Traits_ProcessKeyEntitlements
 	typedef FKeyEntitlementsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ProcessKeyEntitlements(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->ProcessKeyEntitlements(InRequest, InDelegate, Priority); }
 };
 
 /* Process Key Entitlements Player Uuid
@@ -174,7 +174,7 @@ struct RALLYHEREAPI_API Traits_ProcessKeyEntitlementsPlayerUuid
 	typedef FKeyEntitlementsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ProcessKeyEntitlementsPlayerUuid(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->ProcessKeyEntitlementsPlayerUuid(InRequest, InDelegate, Priority); }
 };
 
 /* Process Key Entitlements Self
@@ -235,7 +235,7 @@ struct RALLYHEREAPI_API Traits_ProcessKeyEntitlementsSelf
 	typedef FKeyEntitlementsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ProcessKeyEntitlementsSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->ProcessKeyEntitlementsSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Process Player Uuid Entitlements Self
@@ -296,7 +296,7 @@ struct RALLYHEREAPI_API Traits_ProcessPlayerUuidEntitlementsSelf
 	typedef FKeyEntitlementsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ProcessPlayerUuidEntitlementsSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->ProcessPlayerUuidEntitlementsSelf(InRequest, InDelegate, Priority); }
 };
 
 

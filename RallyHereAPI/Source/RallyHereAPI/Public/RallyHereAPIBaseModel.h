@@ -221,7 +221,7 @@ protected:
 DECLARE_MULTICAST_DELEGATE_TwoParams(FAPI_RequestStarted, const FRequestMetadata&, FHttpRequestRef);
 DECLARE_MULTICAST_DELEGATE_FiveParams(FAPI_RequestCompleted, const FResponse&, FHttpRequestPtr, FHttpResponsePtr, bool /* success */, bool /* willRetryWithAuth */);
 
-class RALLYHEREAPI_API FAPI
+class RALLYHEREAPI_API FAPI : public TSharedFromThis<FAPI>
 {
 public:
 	FAPI() = default;

@@ -42,7 +42,7 @@ FHttpRequestPtr {{classname}}::{{operationIdCamelCase}}(const FRequest_{{operati
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<F{{unrealModuleName}}HttpRequestData> RequestData = MakeShared<F{{unrealModuleName}}HttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<F{{unrealModuleName}}HttpRequestData> RequestData = MakeShared<F{{unrealModuleName}}HttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)

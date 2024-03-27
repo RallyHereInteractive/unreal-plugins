@@ -152,7 +152,7 @@ struct RALLYHEREAPI_API Traits_PlayerCreateNotification
 	typedef FPlayerNotificationAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayerCreateNotification(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->PlayerCreateNotification(InRequest, InDelegate, Priority); }
 };
 
 /* Create Notification Self
@@ -226,7 +226,7 @@ struct RALLYHEREAPI_API Traits_PlayerCreateNotificationSelf
 	typedef FPlayerNotificationAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayerCreateNotificationSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->PlayerCreateNotificationSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Notification By Id
@@ -311,7 +311,7 @@ struct RALLYHEREAPI_API Traits_PlayerGetNotificationById
 	typedef FPlayerNotificationAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayerGetNotificationById(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->PlayerGetNotificationById(InRequest, InDelegate, Priority); }
 };
 
 /* Get Notification By Id Self
@@ -391,7 +391,7 @@ struct RALLYHEREAPI_API Traits_PlayerGetNotificationByIdSelf
 	typedef FPlayerNotificationAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayerGetNotificationByIdSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->PlayerGetNotificationByIdSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Notifications Page
@@ -490,7 +490,7 @@ struct RALLYHEREAPI_API Traits_PlayerGetNotificationsPage
 	typedef FPlayerNotificationAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayerGetNotificationsPage(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->PlayerGetNotificationsPage(InRequest, InDelegate, Priority); }
 };
 
 /* Get Notifications Page Self
@@ -584,7 +584,7 @@ struct RALLYHEREAPI_API Traits_PlayerGetNotificationsPageSelf
 	typedef FPlayerNotificationAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayerGetNotificationsPageSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->PlayerGetNotificationsPageSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Long Poll For Notifications
@@ -677,7 +677,7 @@ struct RALLYHEREAPI_API Traits_PlayerLongPollForNotifications
 	typedef FPlayerNotificationAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayerLongPollForNotifications(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->PlayerLongPollForNotifications(InRequest, InDelegate, Priority); }
 };
 
 /* Long Poll For Notifications Self
@@ -765,7 +765,7 @@ struct RALLYHEREAPI_API Traits_PlayerLongPollForNotificationsSelf
 	typedef FPlayerNotificationAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayerLongPollForNotificationsSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->PlayerLongPollForNotificationsSelf(InRequest, InDelegate, Priority); }
 };
 
 
