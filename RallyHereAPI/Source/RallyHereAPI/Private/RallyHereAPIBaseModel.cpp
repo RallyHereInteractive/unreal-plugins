@@ -10,6 +10,8 @@
 #include "RallyHereAPIHttpRequester.h"
 #include "RallyHereAPIAuthContext.h"
 #include "RallyHereAPIModule.h"
+#include "HzApiErrorModel.h"
+#include "ValidationError.h"
 #include "Serialization/JsonReader.h"
 #include "Serialization/JsonSerializer.h"
 #include "HttpModule.h"
@@ -142,31 +144,54 @@ bool FResponse::ParseJsonTypeContent(bool& bOutNeedsReauth)
 	{
 		SetPayload<JsonPayloadType>(JsonValue);
 
-		TOptional<bool> bAuthIsValid;
-		const TSharedPtr<FJsonObject>* JsonObject;
-		switch (HttpResponse->GetResponseCode())
+		if (EHttpResponseCodes::IsOk(ResponseCode))
 		{
-		case 403: // some consoles forcibly retry 401 errors with a modified body, which can generate 403 errors
-		case 401:
-			if (JsonValue->TryGetObject(JsonObject) && JsonObject && JsonObject->IsValid() && TryGetJsonValue(*JsonObject, FString(TEXT("auth_success")), bAuthIsValid) && bAuthIsValid.IsSet() && !bAuthIsValid.GetValue())
+			// for successfull responses, attempt to parse the json into local structures
+			if (FromJson(JsonValue))
 			{
-				UE_LOG(LogRallyHereAPI, Warning, TEXT("Parsed JSON successfully, but detected authorization error, marking to reauth and retry"));
-				bOutNeedsReauth = true;
+				// Successfully parsed default value
 				return true;
 			}
-			break;
-		}
-
-		if (FromJson(JsonValue))
-		{
-			// Successfully parsed
-			return true;
+			else
+			{
+				// Report the parse error but do not mark the request as unsuccessful. Data could be partial or malformed, but the request succeeded.
+				UE_LOG(LogRallyHereAPI, Warning, TEXT("Parsed JSON successfully, but failed to ingest into API structures (note: failure may be partial):\n%s"), *ContentAsString);
+				return true;
+			}
 		}
 		else
 		{
-			// Report the parse error but do not mark the request as unsuccessful. Data could be partial or malformed, but the request succeeded.
-			UE_LOG(LogRallyHereAPI, Warning, TEXT("Parsed JSON successfully, but failed to ingest into API structures (note: failure may be partial):\n%s"), *ContentAsString);
-			return true;
+			// for error responses, attempt to parse the json into error model to determine if we can reauth and retry
+			FRHAPI_HzApiErrorModel ErrorModel;
+			FRHAPI_ValidationError ValidationError;
+			if (ErrorModel.FromJson(JsonValue))
+			{
+				if (ResponseCode == EHttpResponseCodes::Denied
+					|| ResponseCode == EHttpResponseCodes::Forbidden // some consoles forcibly retry 401 errors with a modified body, which can generate 403 errors
+					)
+				{
+					const auto AuthSuccess = ErrorModel.GetAuthSuccessOrNull();
+					if (AuthSuccess != nullptr && !(*AuthSuccess))
+					{
+						UE_LOG(LogRallyHereAPI, Warning, TEXT("Parsed JSON successfully, but detected authorization error, marking to reauth and retry"));
+						bOutNeedsReauth = true;
+						return true;
+					}
+				}
+				
+				// error model parsed successfull
+				return true;
+			}
+			else if (ValidationError.FromJson(JsonValue))
+			{
+				// validation error parsed successfully
+				return true;
+			}
+			else
+			{
+				UE_LOG(LogRallyHereAPI, Warning, TEXT("Parsed JSON successfully, but failed to ingest into API Error structures:\n%s"), *ContentAsString);
+				return false;
+			}
 		}
 	}
 	else
