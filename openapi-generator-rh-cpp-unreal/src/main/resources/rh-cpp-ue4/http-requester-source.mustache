@@ -30,16 +30,16 @@ F{{unrealModuleName}}HttpRequester::F{{unrealModuleName}}HttpRequester()
 	PendingRequestCount = 0;
 }
 
-void F{{unrealModuleName}}HttpRequester::FlushRequestQueue()
+void F{{unrealModuleName}}HttpRequester::FlushRequestQueue(bool bIsExiting)
 {
 	// temporarily unlimit requests
 	TGuardValue<int32> MaxRequestsGuard(MaxSimultaneousRequests, 0);
 
 	// execute all queued requests
-	TryExecuteNextRequest();
+	TryExecuteNextRequest(bIsExiting);
 }
 
-void F{{unrealModuleName}}HttpRequester::TryExecuteNextRequest()
+void F{{unrealModuleName}}HttpRequester::TryExecuteNextRequest(bool bIsExiting)
 {
 	if (!CanExecuteRequest())
 	{
@@ -64,6 +64,8 @@ void F{{unrealModuleName}}HttpRequester::TryExecuteNextRequest()
 						PendingRequestCount++;
 					}
 
+					// do not fire callback if exiting
+					if (!bIsExiting)
 					{
 						SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestStarted, FColor::Purple);
 						Request->API.OnRequestStarted().Broadcast(Request->Metadata, Request->HttpRequest);
