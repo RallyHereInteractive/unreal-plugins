@@ -86,6 +86,7 @@ FRequest_GetAllEventSchema::FRequest_GetAllEventSchema()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetAllEventSchema::GetSimplifiedPath() const
@@ -221,6 +222,7 @@ FRequest_ReceiveEventsV1::FRequest_ReceiveEventsV1()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_ReceiveEventsV1::GetSimplifiedPath() const

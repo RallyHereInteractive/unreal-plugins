@@ -86,6 +86,7 @@ FRequest_GetAppSettingsAll::FRequest_GetAppSettingsAll()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetAppSettingsAll::GetSimplifiedPath() const
@@ -295,6 +296,7 @@ FRequest_GetAppSettingsClient::FRequest_GetAppSettingsClient()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetAppSettingsClient::GetSimplifiedPath() const
@@ -485,6 +487,7 @@ FRequest_GetAppSettingsServer::FRequest_GetAppSettingsServer()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetAppSettingsServer::GetSimplifiedPath() const

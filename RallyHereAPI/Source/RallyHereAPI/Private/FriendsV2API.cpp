@@ -86,6 +86,7 @@ FRequest_AddFriendV2::FRequest_AddFriendV2()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_AddFriendV2::GetSimplifiedPath() const
@@ -343,6 +344,7 @@ FRequest_AddNotesV2::FRequest_AddNotesV2()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_AddNotesV2::GetSimplifiedPath() const
@@ -595,6 +597,7 @@ FRequest_DeleteFriendV2::FRequest_DeleteFriendV2()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_DeleteFriendV2::GetSimplifiedPath() const
@@ -828,6 +831,7 @@ FRequest_DeleteFriendsV2::FRequest_DeleteFriendsV2()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_DeleteFriendsV2::GetSimplifiedPath() const
@@ -1028,6 +1032,7 @@ FRequest_DeleteNotesV2::FRequest_DeleteNotesV2()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_DeleteNotesV2::GetSimplifiedPath() const
@@ -1224,6 +1229,7 @@ FRequest_GetFriendRelationshipV2::FRequest_GetFriendRelationshipV2()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetFriendRelationshipV2::GetSimplifiedPath() const
@@ -1467,6 +1473,7 @@ FRequest_GetFriendsListForPlayerV2::FRequest_GetFriendsListForPlayerV2()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetFriendsListForPlayerV2::GetSimplifiedPath() const

@@ -86,6 +86,7 @@ FRequest_PlayeridCreateNotification::FRequest_PlayeridCreateNotification()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_PlayeridCreateNotification::GetSimplifiedPath() const
@@ -308,6 +309,7 @@ FRequest_PlayeridCreateNotificationSelf::FRequest_PlayeridCreateNotificationSelf
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_PlayeridCreateNotificationSelf::GetSimplifiedPath() const
@@ -525,6 +527,7 @@ FRequest_PlayeridGetNotificationById::FRequest_PlayeridGetNotificationById()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_PlayeridGetNotificationById::GetSimplifiedPath() const
@@ -749,6 +752,7 @@ FRequest_PlayeridGetNotificationByIdSelf::FRequest_PlayeridGetNotificationByIdSe
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_PlayeridGetNotificationByIdSelf::GetSimplifiedPath() const
@@ -972,6 +976,7 @@ FRequest_PlayeridGetNotificationsPage::FRequest_PlayeridGetNotificationsPage()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_PlayeridGetNotificationsPage::GetSimplifiedPath() const
@@ -1207,6 +1212,7 @@ FRequest_PlayeridGetNotificationsPageSelf::FRequest_PlayeridGetNotificationsPage
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_PlayeridGetNotificationsPageSelf::GetSimplifiedPath() const
@@ -1437,6 +1443,7 @@ FRequest_PlayeridLongPollForNotifications::FRequest_PlayeridLongPollForNotificat
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_PlayeridLongPollForNotifications::GetSimplifiedPath() const
@@ -1668,6 +1675,7 @@ FRequest_PlayeridLongPollForNotificationsSelf::FRequest_PlayeridLongPollForNotif
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_PlayeridLongPollForNotificationsSelf::GetSimplifiedPath() const

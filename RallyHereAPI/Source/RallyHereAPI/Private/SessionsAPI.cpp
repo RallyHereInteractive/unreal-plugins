@@ -86,6 +86,7 @@ FRequest_AcknowledgeBackfillRequest::FRequest_AcknowledgeBackfillRequest()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_AcknowledgeBackfillRequest::GetSimplifiedPath() const
@@ -292,6 +293,7 @@ FRequest_AddPlatformSessionToRallyHereSession::FRequest_AddPlatformSessionToRall
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_AddPlatformSessionToRallyHereSession::GetSimplifiedPath() const
@@ -550,6 +552,7 @@ FRequest_BackfillConfig::FRequest_BackfillConfig()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_BackfillConfig::GetSimplifiedPath() const
@@ -708,6 +711,7 @@ FRequest_CreateInstanceRequest::FRequest_CreateInstanceRequest()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_CreateInstanceRequest::GetSimplifiedPath() const
@@ -894,6 +898,7 @@ FRequest_CreateOrJoinSession::FRequest_CreateOrJoinSession()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_CreateOrJoinSession::GetSimplifiedPath() const
@@ -1075,6 +1080,7 @@ FRequest_DeleteBackfillRequest::FRequest_DeleteBackfillRequest()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_DeleteBackfillRequest::GetSimplifiedPath() const
@@ -1271,6 +1277,7 @@ FRequest_DeleteBrowserInfo::FRequest_DeleteBrowserInfo()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_DeleteBrowserInfo::GetSimplifiedPath() const
@@ -1436,6 +1443,7 @@ FRequest_DeletePlatformSessionFromRallyHereSession::FRequest_DeletePlatformSessi
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_DeletePlatformSessionFromRallyHereSession::GetSimplifiedPath() const
@@ -1649,6 +1657,7 @@ FRequest_EndInstance::FRequest_EndInstance()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_EndInstance::GetSimplifiedPath() const
@@ -1849,6 +1858,7 @@ FRequest_GetAllSessionTemplates::FRequest_GetAllSessionTemplates()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetAllSessionTemplates::GetSimplifiedPath() const
@@ -2060,6 +2070,7 @@ FRequest_GetBrowserSessionsByType::FRequest_GetBrowserSessionsByType()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetBrowserSessionsByType::GetSimplifiedPath() const
@@ -2282,6 +2293,7 @@ FRequest_GetConnectionInfoSelf::FRequest_GetConnectionInfoSelf()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetConnectionInfoSelf::GetSimplifiedPath() const
@@ -2458,6 +2470,7 @@ FRequest_GetPlatformSessionInfo::FRequest_GetPlatformSessionInfo()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPlatformSessionInfo::GetSimplifiedPath() const
@@ -2687,6 +2700,7 @@ FRequest_GetPlayerSessions::FRequest_GetPlayerSessions()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPlayerSessions::GetSimplifiedPath() const
@@ -2862,6 +2876,7 @@ FRequest_GetPlayerSessionsByUuid::FRequest_GetPlayerSessionsByUuid()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPlayerSessionsByUuid::GetSimplifiedPath() const
@@ -3078,6 +3093,7 @@ FRequest_GetPlayerSessionsByUuidV2::FRequest_GetPlayerSessionsByUuidV2()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPlayerSessionsByUuidV2::GetSimplifiedPath() const
@@ -3294,6 +3310,7 @@ FRequest_GetPlayerSessionsSelf::FRequest_GetPlayerSessionsSelf()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPlayerSessionsSelf::GetSimplifiedPath() const
@@ -3505,6 +3522,7 @@ FRequest_GetSessionByAllocationId::FRequest_GetSessionByAllocationId()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetSessionByAllocationId::GetSimplifiedPath() const
@@ -3721,6 +3739,7 @@ FRequest_GetSessionById::FRequest_GetSessionById()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetSessionById::GetSimplifiedPath() const
@@ -3945,6 +3964,7 @@ FRequest_GetSessionTemplateByType::FRequest_GetSessionTemplateByType()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetSessionTemplateByType::GetSimplifiedPath() const
@@ -4161,6 +4181,7 @@ FRequest_InstanceHealthCheck::FRequest_InstanceHealthCheck()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_InstanceHealthCheck::GetSimplifiedPath() const
@@ -4347,6 +4368,7 @@ FRequest_InstanceHealthConfig::FRequest_InstanceHealthConfig()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_InstanceHealthConfig::GetSimplifiedPath() const
@@ -4505,6 +4527,7 @@ FRequest_InviteSessionToSession::FRequest_InviteSessionToSession()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_InviteSessionToSession::GetSimplifiedPath() const
@@ -4739,6 +4762,7 @@ FRequest_JoinQueue::FRequest_JoinQueue()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_JoinQueue::GetSimplifiedPath() const
@@ -4925,6 +4949,7 @@ FRequest_JoinSessionByIdSelf::FRequest_JoinSessionByIdSelf()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_JoinSessionByIdSelf::GetSimplifiedPath() const
@@ -5158,6 +5183,7 @@ FRequest_JoinSessionByPlatformSessionByUuid::FRequest_JoinSessionByPlatformSessi
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_JoinSessionByPlatformSessionByUuid::GetSimplifiedPath() const
@@ -5427,6 +5453,7 @@ FRequest_JoinSessionByPlatformSessionIdSelf::FRequest_JoinSessionByPlatformSessi
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_JoinSessionByPlatformSessionIdSelf::GetSimplifiedPath() const
@@ -5687,6 +5714,7 @@ FRequest_KickPlayerFromSessionById::FRequest_KickPlayerFromSessionById()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_KickPlayerFromSessionById::GetSimplifiedPath() const
@@ -5865,6 +5893,7 @@ FRequest_KickPlayerFromSessionByUuid::FRequest_KickPlayerFromSessionByUuid()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_KickPlayerFromSessionByUuid::GetSimplifiedPath() const
@@ -6078,6 +6107,7 @@ FRequest_KickPlayerFromSessionByUuidV2::FRequest_KickPlayerFromSessionByUuidV2()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_KickPlayerFromSessionByUuidV2::GetSimplifiedPath() const
@@ -6291,6 +6321,7 @@ FRequest_KickSessionFromSession::FRequest_KickSessionFromSession()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_KickSessionFromSession::GetSimplifiedPath() const
@@ -6469,6 +6500,7 @@ FRequest_LeaveQueue::FRequest_LeaveQueue()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_LeaveQueue::GetSimplifiedPath() const
@@ -6654,6 +6686,7 @@ FRequest_LeaveSessionByIdSelf::FRequest_LeaveSessionByIdSelf()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_LeaveSessionByIdSelf::GetSimplifiedPath() const
@@ -6831,6 +6864,7 @@ FRequest_LeaveSessionByPlatformSessionByUuid::FRequest_LeaveSessionByPlatformSes
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_LeaveSessionByPlatformSessionByUuid::GetSimplifiedPath() const
@@ -7036,6 +7070,7 @@ FRequest_LeaveSessionByPlatformSessionSelf::FRequest_LeaveSessionByPlatformSessi
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_LeaveSessionByPlatformSessionSelf::GetSimplifiedPath() const
@@ -7240,6 +7275,7 @@ FRequest_PostBrowserInfo::FRequest_PostBrowserInfo()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_PostBrowserInfo::GetSimplifiedPath() const
@@ -7434,6 +7470,7 @@ FRequest_UpdateBackfillRequest::FRequest_UpdateBackfillRequest()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_UpdateBackfillRequest::GetSimplifiedPath() const
@@ -7630,6 +7667,7 @@ FRequest_UpdateBrowserInfo::FRequest_UpdateBrowserInfo()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_UpdateBrowserInfo::GetSimplifiedPath() const
@@ -7816,6 +7854,7 @@ FRequest_UpdateInstanceInfo::FRequest_UpdateInstanceInfo()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_UpdateInstanceInfo::GetSimplifiedPath() const
@@ -8002,6 +8041,7 @@ FRequest_UpdateSessionById::FRequest_UpdateSessionById()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_UpdateSessionById::GetSimplifiedPath() const
@@ -8223,6 +8263,7 @@ FRequest_UpdateSessionPlayerById::FRequest_UpdateSessionPlayerById()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_UpdateSessionPlayerById::GetSimplifiedPath() const
@@ -8422,6 +8463,7 @@ FRequest_UpdateSessionPlayerByUuid::FRequest_UpdateSessionPlayerByUuid()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_UpdateSessionPlayerByUuid::GetSimplifiedPath() const
@@ -8656,6 +8698,7 @@ FRequest_UpdateSessionPlayerByUuidV2::FRequest_UpdateSessionPlayerByUuidV2()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_UpdateSessionPlayerByUuidV2::GetSimplifiedPath() const

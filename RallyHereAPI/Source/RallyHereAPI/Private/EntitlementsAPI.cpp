@@ -86,6 +86,7 @@ FRequest_GenerateEntitlementEvent::FRequest_GenerateEntitlementEvent()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GenerateEntitlementEvent::GetSimplifiedPath() const
@@ -291,6 +292,7 @@ FRequest_GetEntitlementEvents::FRequest_GetEntitlementEvents()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetEntitlementEvents::GetSimplifiedPath() const
@@ -477,6 +479,7 @@ FRequest_ProcessPlatformEntitlementForMe::FRequest_ProcessPlatformEntitlementFor
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_ProcessPlatformEntitlementForMe::GetSimplifiedPath() const
@@ -658,6 +661,7 @@ FRequest_ProcessPlatformEntitlementsByPlayerUuid::FRequest_ProcessPlatformEntitl
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_ProcessPlatformEntitlementsByPlayerUuid::GetSimplifiedPath() const
@@ -844,6 +848,7 @@ FRequest_RetrieveEntitlementRequestByPlayerUuid::FRequest_RetrieveEntitlementReq
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_RetrieveEntitlementRequestByPlayerUuid::GetSimplifiedPath() const
@@ -1020,6 +1025,7 @@ FRequest_RetrieveEntitlementRequestForMe::FRequest_RetrieveEntitlementRequestFor
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_RetrieveEntitlementRequestForMe::GetSimplifiedPath() const

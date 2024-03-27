@@ -86,6 +86,7 @@ FRequest_BeginNewSession::FRequest_BeginNewSession()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_BeginNewSession::GetSimplifiedPath() const
@@ -324,6 +325,7 @@ FRequest_FindOpportunities::FRequest_FindOpportunities()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_FindOpportunities::GetSimplifiedPath() const
@@ -562,6 +564,7 @@ FRequest_UnityAdWatched::FRequest_UnityAdWatched()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_UnityAdWatched::GetSimplifiedPath() const
@@ -717,6 +720,7 @@ FRequest_UnityMediationAdWatched::FRequest_UnityMediationAdWatched()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_UnityMediationAdWatched::GetSimplifiedPath() const
@@ -873,6 +877,7 @@ FRequest_UpdateOpportunityById::FRequest_UpdateOpportunityById()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_UpdateOpportunityById::GetSimplifiedPath() const

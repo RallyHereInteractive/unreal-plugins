@@ -86,6 +86,7 @@ FRequest_GenerateKey::FRequest_GenerateKey()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GenerateKey::GetSimplifiedPath() const
@@ -221,6 +222,7 @@ FRequest_GetAllPublicKeys::FRequest_GetAllPublicKeys()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetAllPublicKeys::GetSimplifiedPath() const
@@ -356,6 +358,7 @@ FRequest_GetPortalTokenDetails::FRequest_GetPortalTokenDetails()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPortalTokenDetails::GetSimplifiedPath() const
@@ -536,6 +539,7 @@ FRequest_GetPublicKeyById::FRequest_GetPublicKeyById()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPublicKeyById::GetSimplifiedPath() const
@@ -690,6 +694,7 @@ FRequest_Login::FRequest_Login()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_Login::GetSimplifiedPath() const
@@ -891,6 +896,7 @@ FRequest_Logout::FRequest_Logout()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_Logout::GetSimplifiedPath() const
@@ -1049,6 +1055,7 @@ FRequest_OauthLogin::FRequest_OauthLogin()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_OauthLogin::GetSimplifiedPath() const
@@ -1248,6 +1255,7 @@ FRequest_OauthResponse::FRequest_OauthResponse()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_OauthResponse::GetSimplifiedPath() const
@@ -1447,6 +1455,7 @@ FRequest_OauthTokenExchange::FRequest_OauthTokenExchange()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_OauthTokenExchange::GetSimplifiedPath() const
@@ -1627,6 +1636,7 @@ FRequest_Token::FRequest_Token()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_Token::GetSimplifiedPath() const
@@ -1806,6 +1816,7 @@ FRequest_Verify::FRequest_Verify()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_Verify::GetSimplifiedPath() const

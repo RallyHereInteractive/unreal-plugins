@@ -86,6 +86,7 @@ FRequest_GetPlayerPresencePublicById::FRequest_GetPlayerPresencePublicById()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPlayerPresencePublicById::GetSimplifiedPath() const
@@ -322,6 +323,7 @@ FRequest_GetPlayerPresencePublicByUuid::FRequest_GetPlayerPresencePublicByUuid()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPlayerPresencePublicByUuid::GetSimplifiedPath() const
@@ -558,6 +560,7 @@ FRequest_GetPlayerPresenceSelf::FRequest_GetPlayerPresenceSelf()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPlayerPresenceSelf::GetSimplifiedPath() const
@@ -771,6 +774,7 @@ FRequest_GetPresenceSettings::FRequest_GetPresenceSettings()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPresenceSettings::GetSimplifiedPath() const
@@ -906,6 +910,7 @@ FRequest_UpdatePlayerPresenceSelf::FRequest_UpdatePlayerPresenceSelf()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_UpdatePlayerPresenceSelf::GetSimplifiedPath() const

@@ -86,6 +86,7 @@ FRequest_AdminGetKnownPlatforms::FRequest_AdminGetKnownPlatforms()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_AdminGetKnownPlatforms::GetSimplifiedPath() const
@@ -264,6 +265,7 @@ FRequest_AdminGetPlayerPresence::FRequest_AdminGetPlayerPresence()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_AdminGetPlayerPresence::GetSimplifiedPath() const
@@ -459,6 +461,7 @@ FRequest_AdminGetPlayerPresenceId::FRequest_AdminGetPlayerPresenceId()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_AdminGetPlayerPresenceId::GetSimplifiedPath() const
@@ -654,6 +657,7 @@ FRequest_AdminGetRequestingCcu::FRequest_AdminGetRequestingCcu()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_AdminGetRequestingCcu::GetSimplifiedPath() const
@@ -834,6 +838,7 @@ FRequest_AdminGetRequestingCcuAllPlatformCombined::FRequest_AdminGetRequestingCc
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_AdminGetRequestingCcuAllPlatformCombined::GetSimplifiedPath() const
@@ -1014,6 +1019,7 @@ FRequest_AdminGetRequestingCcuAllPlatformIndividual::FRequest_AdminGetRequesting
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_AdminGetRequestingCcuAllPlatformIndividual::GetSimplifiedPath() const
@@ -1194,6 +1200,7 @@ FRequest_AdminGetRequestingCcuIndividual::FRequest_AdminGetRequestingCcuIndividu
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_AdminGetRequestingCcuIndividual::GetSimplifiedPath() const
@@ -1374,6 +1381,7 @@ FRequest_AdminGetRequestingCcuPlatformCombined::FRequest_AdminGetRequestingCcuPl
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_AdminGetRequestingCcuPlatformCombined::GetSimplifiedPath() const
@@ -1559,6 +1567,7 @@ FRequest_AdminGetRequestingCcuPlatformIndividual::FRequest_AdminGetRequestingCcu
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_AdminGetRequestingCcuPlatformIndividual::GetSimplifiedPath() const
@@ -1744,6 +1753,7 @@ FRequest_AdminGetTotalCcu::FRequest_AdminGetTotalCcu()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_AdminGetTotalCcu::GetSimplifiedPath() const
@@ -1924,6 +1934,7 @@ FRequest_AdminGetTotalCcuAllPlatformCombined::FRequest_AdminGetTotalCcuAllPlatfo
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_AdminGetTotalCcuAllPlatformCombined::GetSimplifiedPath() const
@@ -2104,6 +2115,7 @@ FRequest_AdminGetTotalCcuAllPlatformIndividual::FRequest_AdminGetTotalCcuAllPlat
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_AdminGetTotalCcuAllPlatformIndividual::GetSimplifiedPath() const
@@ -2284,6 +2296,7 @@ FRequest_AdminGetTotalCcuIndividual::FRequest_AdminGetTotalCcuIndividual()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_AdminGetTotalCcuIndividual::GetSimplifiedPath() const
@@ -2464,6 +2477,7 @@ FRequest_AdminGetTotalCcuPlatformCombined::FRequest_AdminGetTotalCcuPlatformComb
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_AdminGetTotalCcuPlatformCombined::GetSimplifiedPath() const
@@ -2649,6 +2663,7 @@ FRequest_AdminGetTotalCcuPlatformIndividual::FRequest_AdminGetTotalCcuPlatformIn
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_AdminGetTotalCcuPlatformIndividual::GetSimplifiedPath() const
@@ -2834,6 +2849,7 @@ FRequest_AdminGetUpdatingCcu::FRequest_AdminGetUpdatingCcu()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_AdminGetUpdatingCcu::GetSimplifiedPath() const
@@ -3014,6 +3030,7 @@ FRequest_AdminGetUpdatingCcuAllPlatformCombined::FRequest_AdminGetUpdatingCcuAll
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_AdminGetUpdatingCcuAllPlatformCombined::GetSimplifiedPath() const
@@ -3194,6 +3211,7 @@ FRequest_AdminGetUpdatingCcuAllPlatformIndividual::FRequest_AdminGetUpdatingCcuA
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_AdminGetUpdatingCcuAllPlatformIndividual::GetSimplifiedPath() const
@@ -3374,6 +3392,7 @@ FRequest_AdminGetUpdatingCcuIndividual::FRequest_AdminGetUpdatingCcuIndividual()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_AdminGetUpdatingCcuIndividual::GetSimplifiedPath() const
@@ -3554,6 +3573,7 @@ FRequest_AdminGetUpdatingCcuPlatformCombined::FRequest_AdminGetUpdatingCcuPlatfo
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_AdminGetUpdatingCcuPlatformCombined::GetSimplifiedPath() const
@@ -3739,6 +3759,7 @@ FRequest_AdminGetUpdatingCcuPlatformIndividual::FRequest_AdminGetUpdatingCcuPlat
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_AdminGetUpdatingCcuPlatformIndividual::GetSimplifiedPath() const
@@ -3924,6 +3945,7 @@ FRequest_AdminUpdatePlayerLastSeen::FRequest_AdminUpdatePlayerLastSeen()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_AdminUpdatePlayerLastSeen::GetSimplifiedPath() const
@@ -4155,6 +4177,7 @@ FRequest_AdminUpdatePlayerLastSeenId::FRequest_AdminUpdatePlayerLastSeenId()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_AdminUpdatePlayerLastSeenId::GetSimplifiedPath() const

@@ -86,6 +86,7 @@ FRequest_CreateSessionAudit::FRequest_CreateSessionAudit()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_CreateSessionAudit::GetSimplifiedPath() const
@@ -284,6 +285,7 @@ FRequest_GetSessionAudit::FRequest_GetSessionAudit()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetSessionAudit::GetSimplifiedPath() const

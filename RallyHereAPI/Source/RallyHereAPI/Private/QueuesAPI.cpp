@@ -86,6 +86,7 @@ FRequest_GetAllMapGameInfo::FRequest_GetAllMapGameInfo()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetAllMapGameInfo::GetSimplifiedPath() const
@@ -302,6 +303,7 @@ FRequest_GetAllQueueInfo::FRequest_GetAllQueueInfo()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetAllQueueInfo::GetSimplifiedPath() const
@@ -525,6 +527,7 @@ FRequest_GetAllQueueInfoV2::FRequest_GetAllQueueInfoV2()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetAllQueueInfoV2::GetSimplifiedPath() const
@@ -748,6 +751,7 @@ FRequest_GetInstanceRequestTemplate::FRequest_GetInstanceRequestTemplate()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetInstanceRequestTemplate::GetSimplifiedPath() const
@@ -964,6 +968,7 @@ FRequest_GetMatchMakingProfile::FRequest_GetMatchMakingProfile()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetMatchMakingProfile::GetSimplifiedPath() const
@@ -1180,6 +1185,7 @@ FRequest_GetMatchMakingProfileV2::FRequest_GetMatchMakingProfileV2()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetMatchMakingProfileV2::GetSimplifiedPath() const
@@ -1396,6 +1402,7 @@ FRequest_GetMatchMakingTemplates::FRequest_GetMatchMakingTemplates()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetMatchMakingTemplates::GetSimplifiedPath() const
@@ -1612,6 +1619,7 @@ FRequest_GetMatchMakingTemplatesV2::FRequest_GetMatchMakingTemplatesV2()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetMatchMakingTemplatesV2::GetSimplifiedPath() const

@@ -86,6 +86,7 @@ FRequest_GetFriendsAndBlockLimits::FRequest_GetFriendsAndBlockLimits()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetFriendsAndBlockLimits::GetSimplifiedPath() const

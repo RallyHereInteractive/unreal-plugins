@@ -114,6 +114,7 @@ struct RALLYHEREAPI_API FRequestMetadata
 	FGuid Identifier;
 	FName SimplifiedPath;
 	int32 RetryCount = 0;
+	FDateTime CreateTimestamp, QueuedTimestamp, HttpQueuedTimestamp;
 };
 
 class RALLYHEREAPI_API FRequest

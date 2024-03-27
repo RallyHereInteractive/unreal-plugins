@@ -86,6 +86,7 @@ FRequest_CreateReportForTargetPlayerUuid::FRequest_CreateReportForTargetPlayerUu
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_CreateReportForTargetPlayerUuid::GetSimplifiedPath() const
@@ -296,6 +297,7 @@ FRequest_GetReportsForTargetPlayerUuid::FRequest_GetReportsForTargetPlayerUuid()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetReportsForTargetPlayerUuid::GetSimplifiedPath() const
@@ -495,6 +497,7 @@ FRequest_GetReportsForTargetPlayerUuidSelf::FRequest_GetReportsForTargetPlayerUu
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetReportsForTargetPlayerUuidSelf::GetSimplifiedPath() const
@@ -689,6 +692,7 @@ FRequest_GetReportsFromSourcePlayerUuid::FRequest_GetReportsFromSourcePlayerUuid
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetReportsFromSourcePlayerUuid::GetSimplifiedPath() const
@@ -888,6 +892,7 @@ FRequest_GetReportsFromSourcePlayerUuidSelf::FRequest_GetReportsFromSourcePlayer
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetReportsFromSourcePlayerUuidSelf::GetSimplifiedPath() const

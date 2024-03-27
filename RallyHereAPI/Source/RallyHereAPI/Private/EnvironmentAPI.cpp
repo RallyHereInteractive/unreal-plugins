@@ -86,6 +86,7 @@ FRequest_GetEnvironmentId::FRequest_GetEnvironmentId()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetEnvironmentId::GetSimplifiedPath() const

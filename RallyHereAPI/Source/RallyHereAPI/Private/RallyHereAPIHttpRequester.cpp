@@ -40,6 +40,7 @@ void FRallyHereAPIHttpRequester::TryExecuteNextRequest(bool bIsExiting)
 				while ((*findItem).Num())
 				{
 					const auto Request = (*findItem).Pop();
+					Request->Metadata.HttpQueuedTimestamp = FDateTime::Now();
 					Request->HttpRequest->OnProcessRequestComplete().BindSP(AsShared(), &FRallyHereAPIHttpRequester::OnResponse, Request->ResponseDelegate);
 					if (Request->HttpRequest->ProcessRequest())
 					{
@@ -83,6 +84,8 @@ void FRallyHereAPIHttpRequester::OnResponse(FHttpRequestPtr HttpRequest, FHttpRe
 
 void FRallyHereAPIHttpRequester::EnqueueHttpRequest(TSharedPtr<struct FRallyHereAPIHttpRequestData> RequestData)
 {
+	RequestData->Metadata.QueuedTimestamp = FDateTime::Now();
+
 	if (auto findItem = HttpRequestQueue.Find(RequestData->Priority))
 	{
 		(*findItem).Insert(RequestData, 0);

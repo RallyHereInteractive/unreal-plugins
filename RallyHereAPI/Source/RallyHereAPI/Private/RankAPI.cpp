@@ -86,6 +86,7 @@ FRequest_CalculateV2Ranks::FRequest_CalculateV2Ranks()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_CalculateV2Ranks::GetSimplifiedPath() const
@@ -267,6 +268,7 @@ FRequest_GetAllPlayerUuidRanks::FRequest_GetAllPlayerUuidRanks()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetAllPlayerUuidRanks::GetSimplifiedPath() const
@@ -442,6 +444,7 @@ FRequest_GetAllPlayerUuidRanksSelf::FRequest_GetAllPlayerUuidRanksSelf()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetAllPlayerUuidRanksSelf::GetSimplifiedPath() const
@@ -600,6 +603,7 @@ FRequest_GetAllPlayerUuidRanksSelfV2::FRequest_GetAllPlayerUuidRanksSelfV2()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetAllPlayerUuidRanksSelfV2::GetSimplifiedPath() const
@@ -758,6 +762,7 @@ FRequest_GetAllPlayerUuidRanksV2::FRequest_GetAllPlayerUuidRanksV2()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetAllPlayerUuidRanksV2::GetSimplifiedPath() const
@@ -933,6 +938,7 @@ FRequest_GetAllRankConfig::FRequest_GetAllRankConfig()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetAllRankConfig::GetSimplifiedPath() const
@@ -1091,6 +1097,7 @@ FRequest_GetAllRankConfigV2::FRequest_GetAllRankConfigV2()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetAllRankConfigV2::GetSimplifiedPath() const
@@ -1249,6 +1256,7 @@ FRequest_GetPlayerUuidRank::FRequest_GetPlayerUuidRank()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPlayerUuidRank::GetSimplifiedPath() const
@@ -1425,6 +1433,7 @@ FRequest_GetPlayerUuidRankSelf::FRequest_GetPlayerUuidRankSelf()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPlayerUuidRankSelf::GetSimplifiedPath() const
@@ -1600,6 +1609,7 @@ FRequest_GetPlayerUuidRankSelfV2::FRequest_GetPlayerUuidRankSelfV2()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPlayerUuidRankSelfV2::GetSimplifiedPath() const
@@ -1775,6 +1785,7 @@ FRequest_GetPlayerUuidRankV2::FRequest_GetPlayerUuidRankV2()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPlayerUuidRankV2::GetSimplifiedPath() const
@@ -1951,6 +1962,7 @@ FRequest_GetRankConfig::FRequest_GetRankConfig()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetRankConfig::GetSimplifiedPath() const
@@ -2126,6 +2138,7 @@ FRequest_GetRankConfigV2::FRequest_GetRankConfigV2()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetRankConfigV2::GetSimplifiedPath() const
@@ -2301,6 +2314,7 @@ FRequest_UpdatePlayerUuidRank::FRequest_UpdatePlayerUuidRank()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_UpdatePlayerUuidRank::GetSimplifiedPath() const
@@ -2488,6 +2502,7 @@ FRequest_UpdatePlayerUuidRankSelf::FRequest_UpdatePlayerUuidRankSelf()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_UpdatePlayerUuidRankSelf::GetSimplifiedPath() const
@@ -2674,6 +2689,7 @@ FRequest_UpdatePlayerUuidRankSelfV2::FRequest_UpdatePlayerUuidRankSelfV2()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_UpdatePlayerUuidRankSelfV2::GetSimplifiedPath() const
@@ -2860,6 +2876,7 @@ FRequest_UpdatePlayerUuidRankV2::FRequest_UpdatePlayerUuidRankV2()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_UpdatePlayerUuidRankV2::GetSimplifiedPath() const
@@ -3047,6 +3064,7 @@ FRequest_UpdateRankingsV1::FRequest_UpdateRankingsV1()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_UpdateRankingsV1::GetSimplifiedPath() const

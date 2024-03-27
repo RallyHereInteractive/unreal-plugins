@@ -86,6 +86,7 @@ FRequest_GetMarketingCampaigns::FRequest_GetMarketingCampaigns()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetMarketingCampaigns::GetSimplifiedPath() const

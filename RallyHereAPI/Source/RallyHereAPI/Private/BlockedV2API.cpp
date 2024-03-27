@@ -86,6 +86,7 @@ FRequest_BlockV2::FRequest_BlockV2()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_BlockV2::GetSimplifiedPath() const
@@ -286,6 +287,7 @@ FRequest_GetBlockedListForPlayerV2::FRequest_GetBlockedListForPlayerV2()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetBlockedListForPlayerV2::GetSimplifiedPath() const
@@ -540,6 +542,7 @@ FRequest_GetBlockedV2::FRequest_GetBlockedV2()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetBlockedV2::GetSimplifiedPath() const
@@ -740,6 +743,7 @@ FRequest_UnblockV2::FRequest_UnblockV2()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_UnblockV2::GetSimplifiedPath() const

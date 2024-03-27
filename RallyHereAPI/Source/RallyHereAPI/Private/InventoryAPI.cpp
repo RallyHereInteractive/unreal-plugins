@@ -86,6 +86,7 @@ FRequest_CreateNewInventorySession::FRequest_CreateNewInventorySession()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_CreateNewInventorySession::GetSimplifiedPath() const
@@ -272,6 +273,7 @@ FRequest_CreateNewInventorySessionByPlayerUuid::FRequest_CreateNewInventorySessi
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_CreateNewInventorySessionByPlayerUuid::GetSimplifiedPath() const
@@ -458,6 +460,7 @@ FRequest_CreateNewInventorySessionByPlayerUuidSelf::FRequest_CreateNewInventoryS
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_CreateNewInventorySessionByPlayerUuidSelf::GetSimplifiedPath() const
@@ -639,6 +642,7 @@ FRequest_CreateNewInventorySessionSelf::FRequest_CreateNewInventorySessionSelf()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_CreateNewInventorySessionSelf::GetSimplifiedPath() const
@@ -820,6 +824,7 @@ FRequest_CreateNewPlayerOrder::FRequest_CreateNewPlayerOrder()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_CreateNewPlayerOrder::GetSimplifiedPath() const
@@ -1018,6 +1023,7 @@ FRequest_CreateNewPlayerOrderSelf::FRequest_CreateNewPlayerOrderSelf()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_CreateNewPlayerOrderSelf::GetSimplifiedPath() const
@@ -1211,6 +1217,7 @@ FRequest_CreateNewPlayerUuidOrder::FRequest_CreateNewPlayerUuidOrder()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_CreateNewPlayerUuidOrder::GetSimplifiedPath() const
@@ -1409,6 +1416,7 @@ FRequest_CreateNewPlayerUuidOrderSelf::FRequest_CreateNewPlayerUuidOrderSelf()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_CreateNewPlayerUuidOrderSelf::GetSimplifiedPath() const
@@ -1602,6 +1610,7 @@ FRequest_CreatePlayerInventory::FRequest_CreatePlayerInventory()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_CreatePlayerInventory::GetSimplifiedPath() const
@@ -1800,6 +1809,7 @@ FRequest_CreatePlayerInventorySelf::FRequest_CreatePlayerInventorySelf()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_CreatePlayerInventorySelf::GetSimplifiedPath() const
@@ -1993,6 +2003,7 @@ FRequest_CreatePlayerInventoryUuid::FRequest_CreatePlayerInventoryUuid()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_CreatePlayerInventoryUuid::GetSimplifiedPath() const
@@ -2191,6 +2202,7 @@ FRequest_CreatePlayerInventoryUuidSelf::FRequest_CreatePlayerInventoryUuidSelf()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_CreatePlayerInventoryUuidSelf::GetSimplifiedPath() const
@@ -2384,6 +2396,7 @@ FRequest_GetInventorySessionInfo::FRequest_GetInventorySessionInfo()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetInventorySessionInfo::GetSimplifiedPath() const
@@ -2559,6 +2572,7 @@ FRequest_GetInventorySessionInfoByPlayerUuid::FRequest_GetInventorySessionInfoBy
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetInventorySessionInfoByPlayerUuid::GetSimplifiedPath() const
@@ -2734,6 +2748,7 @@ FRequest_GetInventorySessionInfoByPlayerUuidSelf::FRequest_GetInventorySessionIn
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetInventorySessionInfoByPlayerUuidSelf::GetSimplifiedPath() const
@@ -2892,6 +2907,7 @@ FRequest_GetInventorySessionInfoSelf::FRequest_GetInventorySessionInfoSelf()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetInventorySessionInfoSelf::GetSimplifiedPath() const
@@ -3050,6 +3066,7 @@ FRequest_GetPlayerInventory::FRequest_GetPlayerInventory()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPlayerInventory::GetSimplifiedPath() const
@@ -3259,6 +3276,7 @@ FRequest_GetPlayerInventorySelf::FRequest_GetPlayerInventorySelf()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPlayerInventorySelf::GetSimplifiedPath() const
@@ -3463,6 +3481,7 @@ FRequest_GetPlayerInventoryUuid::FRequest_GetPlayerInventoryUuid()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPlayerInventoryUuid::GetSimplifiedPath() const
@@ -3672,6 +3691,7 @@ FRequest_GetPlayerInventoryUuidSelf::FRequest_GetPlayerInventoryUuidSelf()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPlayerInventoryUuidSelf::GetSimplifiedPath() const
@@ -3876,6 +3896,7 @@ FRequest_GetPlayerOrderById::FRequest_GetPlayerOrderById()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPlayerOrderById::GetSimplifiedPath() const
@@ -4064,6 +4085,7 @@ FRequest_GetPlayerOrderByIdSelf::FRequest_GetPlayerOrderByIdSelf()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPlayerOrderByIdSelf::GetSimplifiedPath() const
@@ -4251,6 +4273,7 @@ FRequest_GetPlayerOrders::FRequest_GetPlayerOrders()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPlayerOrders::GetSimplifiedPath() const
@@ -4446,6 +4469,7 @@ FRequest_GetPlayerOrdersSelf::FRequest_GetPlayerOrdersSelf()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPlayerOrdersSelf::GetSimplifiedPath() const
@@ -4636,6 +4660,7 @@ FRequest_GetPlayerUuidOrderById::FRequest_GetPlayerUuidOrderById()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPlayerUuidOrderById::GetSimplifiedPath() const
@@ -4824,6 +4849,7 @@ FRequest_GetPlayerUuidOrderByIdSelf::FRequest_GetPlayerUuidOrderByIdSelf()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPlayerUuidOrderByIdSelf::GetSimplifiedPath() const
@@ -5011,6 +5037,7 @@ FRequest_GetPlayerUuidOrders::FRequest_GetPlayerUuidOrders()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPlayerUuidOrders::GetSimplifiedPath() const
@@ -5206,6 +5233,7 @@ FRequest_GetPlayerUuidOrdersSelf::FRequest_GetPlayerUuidOrdersSelf()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPlayerUuidOrdersSelf::GetSimplifiedPath() const
@@ -5396,6 +5424,7 @@ FRequest_ModifyManyPlayerInventory::FRequest_ModifyManyPlayerInventory()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_ModifyManyPlayerInventory::GetSimplifiedPath() const
@@ -5594,6 +5623,7 @@ FRequest_ModifyManyPlayerInventorySelf::FRequest_ModifyManyPlayerInventorySelf()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_ModifyManyPlayerInventorySelf::GetSimplifiedPath() const
@@ -5787,6 +5817,7 @@ FRequest_ModifyManyPlayerInventoryUuid::FRequest_ModifyManyPlayerInventoryUuid()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_ModifyManyPlayerInventoryUuid::GetSimplifiedPath() const
@@ -5985,6 +6016,7 @@ FRequest_ModifyManyPlayerInventoryUuidSelf::FRequest_ModifyManyPlayerInventoryUu
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_ModifyManyPlayerInventoryUuidSelf::GetSimplifiedPath() const
@@ -6178,6 +6210,7 @@ FRequest_ModifyPlayerInventory::FRequest_ModifyPlayerInventory()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_ModifyPlayerInventory::GetSimplifiedPath() const
@@ -6377,6 +6410,7 @@ FRequest_ModifyPlayerInventorySelf::FRequest_ModifyPlayerInventorySelf()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_ModifyPlayerInventorySelf::GetSimplifiedPath() const
@@ -6575,6 +6609,7 @@ FRequest_ModifyPlayerInventoryUuid::FRequest_ModifyPlayerInventoryUuid()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_ModifyPlayerInventoryUuid::GetSimplifiedPath() const
@@ -6774,6 +6809,7 @@ FRequest_ModifyPlayerInventoryUuidSelf::FRequest_ModifyPlayerInventoryUuidSelf()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_ModifyPlayerInventoryUuidSelf::GetSimplifiedPath() const

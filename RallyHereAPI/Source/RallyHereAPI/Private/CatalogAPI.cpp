@@ -86,6 +86,7 @@ FRequest_GetCatalogAll::FRequest_GetCatalogAll()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetCatalogAll::GetSimplifiedPath() const
@@ -311,6 +312,7 @@ FRequest_GetCatalogEntitlementSku::FRequest_GetCatalogEntitlementSku()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetCatalogEntitlementSku::GetSimplifiedPath() const
@@ -542,6 +544,7 @@ FRequest_GetCatalogEntitlementSkuAll::FRequest_GetCatalogEntitlementSkuAll()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetCatalogEntitlementSkuAll::GetSimplifiedPath() const
@@ -767,6 +770,7 @@ FRequest_GetCatalogInventoryBucketUseRuleSet::FRequest_GetCatalogInventoryBucket
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetCatalogInventoryBucketUseRuleSet::GetSimplifiedPath() const
@@ -997,6 +1001,7 @@ FRequest_GetCatalogInventoryBucketUseRuleSetsAll::FRequest_GetCatalogInventoryBu
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetCatalogInventoryBucketUseRuleSetsAll::GetSimplifiedPath() const
@@ -1222,6 +1227,7 @@ FRequest_GetCatalogItem::FRequest_GetCatalogItem()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetCatalogItem::GetSimplifiedPath() const
@@ -1452,6 +1458,7 @@ FRequest_GetCatalogItemsAll::FRequest_GetCatalogItemsAll()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetCatalogItemsAll::GetSimplifiedPath() const
@@ -1677,6 +1684,7 @@ FRequest_GetCatalogLoot::FRequest_GetCatalogLoot()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetCatalogLoot::GetSimplifiedPath() const
@@ -1907,6 +1915,7 @@ FRequest_GetCatalogLootsAll::FRequest_GetCatalogLootsAll()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetCatalogLootsAll::GetSimplifiedPath() const
@@ -2132,6 +2141,7 @@ FRequest_GetCatalogPortalUseRuleset::FRequest_GetCatalogPortalUseRuleset()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetCatalogPortalUseRuleset::GetSimplifiedPath() const
@@ -2362,6 +2372,7 @@ FRequest_GetCatalogPortalUseRulesetsAll::FRequest_GetCatalogPortalUseRulesetsAll
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetCatalogPortalUseRulesetsAll::GetSimplifiedPath() const
@@ -2587,6 +2598,7 @@ FRequest_GetCatalogPricePoint::FRequest_GetCatalogPricePoint()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetCatalogPricePoint::GetSimplifiedPath() const
@@ -2817,6 +2829,7 @@ FRequest_GetCatalogPricePointsAll::FRequest_GetCatalogPricePointsAll()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetCatalogPricePointsAll::GetSimplifiedPath() const
@@ -3042,6 +3055,7 @@ FRequest_GetCatalogTimeFrame::FRequest_GetCatalogTimeFrame()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetCatalogTimeFrame::GetSimplifiedPath() const
@@ -3272,6 +3286,7 @@ FRequest_GetCatalogTimeFramesAll::FRequest_GetCatalogTimeFramesAll()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetCatalogTimeFramesAll::GetSimplifiedPath() const
@@ -3497,6 +3512,7 @@ FRequest_GetCatalogVendor::FRequest_GetCatalogVendor()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetCatalogVendor::GetSimplifiedPath() const
@@ -3727,6 +3743,7 @@ FRequest_GetCatalogVendorsAll::FRequest_GetCatalogVendorsAll()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetCatalogVendorsAll::GetSimplifiedPath() const
@@ -3952,6 +3969,7 @@ FRequest_GetCatalogXpAll::FRequest_GetCatalogXpAll()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetCatalogXpAll::GetSimplifiedPath() const
@@ -4177,6 +4195,7 @@ FRequest_GetCatalogXpTable::FRequest_GetCatalogXpTable()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetCatalogXpTable::GetSimplifiedPath() const

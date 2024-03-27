@@ -165,6 +165,7 @@ FRequest_{{operationIdCamelCase}}::FRequest_{{operationIdCamelCase}}()
 	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.RetryCount = 0;
+	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_{{operationIdCamelCase}}::GetSimplifiedPath() const

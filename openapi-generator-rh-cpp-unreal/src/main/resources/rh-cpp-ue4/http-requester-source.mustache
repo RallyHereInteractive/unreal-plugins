@@ -58,6 +58,7 @@ void F{{unrealModuleName}}HttpRequester::TryExecuteNextRequest(bool bIsExiting)
 				while ((*findItem).Num())
 				{
 					const auto Request = (*findItem).Pop();
+					Request->Metadata.HttpQueuedTimestamp = FDateTime::Now();
 					Request->HttpRequest->OnProcessRequestComplete().BindSP(AsShared(), &F{{unrealModuleName}}HttpRequester::OnResponse, Request->ResponseDelegate);
 					if (Request->HttpRequest->ProcessRequest())
 					{
@@ -101,6 +102,8 @@ void F{{unrealModuleName}}HttpRequester::OnResponse(FHttpRequestPtr HttpRequest,
 
 void F{{unrealModuleName}}HttpRequester::EnqueueHttpRequest(TSharedPtr<struct F{{unrealModuleName}}HttpRequestData> RequestData)
 {
+	RequestData->Metadata.QueuedTimestamp = FDateTime::Now();
+
 	if (auto findItem = HttpRequestQueue.Find(RequestData->Priority))
 	{
 		(*findItem).Insert(RequestData, 0);
