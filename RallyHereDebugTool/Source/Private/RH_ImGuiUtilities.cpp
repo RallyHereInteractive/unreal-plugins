@@ -92,7 +92,7 @@ void ImGuiDisplayCopyableValue(const FString& Key, const FGuid& Value, ECopyMode
 
 void ImGuiDisplayCopyableValue(const FString& Key, const FDateTime& Value, ECopyMode CopyMode, bool bButtonOnLeftSide, bool bContentAsTooltip)
 {
-	FString ValueString = Value.ToString();
+	FString ValueString = Value.ToIso8601();
 	ImGuiDisplayCopyableValue(Key, ValueString, CopyMode, bButtonOnLeftSide, bContentAsTooltip);
 }
 
