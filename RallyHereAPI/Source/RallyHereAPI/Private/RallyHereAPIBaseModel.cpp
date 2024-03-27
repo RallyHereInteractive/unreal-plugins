@@ -193,7 +193,8 @@ bool FResponse::ParseUnknownTypeContent(bool& bOutNeedsReauth)
 
 	bOutNeedsReauth = false;
 	
-	ClearPayload();
+	// load the response content as binary data, since we do not have a better way to parse it
+	SetPayload<BinaryPayloadType>(MakeArrayView(HttpResponse->GetContent()));
 
 	return false; // could not parse unknown type
 }
