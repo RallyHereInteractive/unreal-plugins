@@ -82,11 +82,9 @@ void FUsersAPI::OnCreatePlatformUserByIdResponse(FHttpRequestPtr HttpRequest, FH
 }
 
 FRequest_CreatePlatformUserById::FRequest_CreatePlatformUserById()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_CreatePlatformUserById::GetSimplifiedPath() const
@@ -276,11 +274,9 @@ void FUsersAPI::OnDequeueMeForPurgeResponse(FHttpRequestPtr HttpRequest, FHttpRe
 }
 
 FRequest_DequeueMeForPurge::FRequest_DequeueMeForPurge()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_DequeueMeForPurge::GetSimplifiedPath() const
@@ -437,11 +433,9 @@ void FUsersAPI::OnDequeuePersonForPurgeResponse(FHttpRequestPtr HttpRequest, FHt
 }
 
 FRequest_DequeuePersonForPurge::FRequest_DequeuePersonForPurge()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_DequeuePersonForPurge::GetSimplifiedPath() const
@@ -615,11 +609,9 @@ void FUsersAPI::OnDisableCrossProgressionResponse(FHttpRequestPtr HttpRequest, F
 }
 
 FRequest_DisableCrossProgression::FRequest_DisableCrossProgression()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_DisableCrossProgression::GetSimplifiedPath() const
@@ -764,11 +756,9 @@ void FUsersAPI::OnEnableCrossProgressionResponse(FHttpRequestPtr HttpRequest, FH
 }
 
 FRequest_EnableCrossProgression::FRequest_EnableCrossProgression()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_EnableCrossProgression::GetSimplifiedPath() const
@@ -913,11 +903,9 @@ void FUsersAPI::OnFindPlatformUserByIdResponse(FHttpRequestPtr HttpRequest, FHtt
 }
 
 FRequest_FindPlatformUserById::FRequest_FindPlatformUserById()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_FindPlatformUserById::GetSimplifiedPath() const
@@ -1102,11 +1090,9 @@ void FUsersAPI::OnGetAllRolesResponse(FHttpRequestPtr HttpRequest, FHttpResponse
 }
 
 FRequest_GetAllRoles::FRequest_GetAllRoles()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetAllRoles::GetSimplifiedPath() const
@@ -1273,11 +1259,9 @@ void FUsersAPI::OnGetPersonResponse(FHttpRequestPtr HttpRequest, FHttpResponsePt
 }
 
 FRequest_GetPerson::FRequest_GetPerson()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPerson::GetSimplifiedPath() const
@@ -1461,11 +1445,9 @@ void FUsersAPI::OnGetPersonEmailListResponse(FHttpRequestPtr HttpRequest, FHttpR
 }
 
 FRequest_GetPersonEmailList::FRequest_GetPersonEmailList()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPersonEmailList::GetSimplifiedPath() const
@@ -1649,11 +1631,9 @@ void FUsersAPI::OnGetPersonEmailListForSelfResponse(FHttpRequestPtr HttpRequest,
 }
 
 FRequest_GetPersonEmailListForSelf::FRequest_GetPersonEmailListForSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPersonEmailListForSelf::GetSimplifiedPath() const
@@ -1820,11 +1800,9 @@ void FUsersAPI::OnGetPersonForSelfResponse(FHttpRequestPtr HttpRequest, FHttpRes
 }
 
 FRequest_GetPersonForSelf::FRequest_GetPersonForSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPersonForSelf::GetSimplifiedPath() const
@@ -1991,11 +1969,9 @@ void FUsersAPI::OnGetPlayerIdFromPlayerUuidResponse(FHttpRequestPtr HttpRequest,
 }
 
 FRequest_GetPlayerIdFromPlayerUuid::FRequest_GetPlayerIdFromPlayerUuid()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPlayerIdFromPlayerUuid::GetSimplifiedPath() const
@@ -2203,11 +2179,9 @@ void FUsersAPI::OnGetPlayerIdFromPlayerUuidForSelfResponse(FHttpRequestPtr HttpR
 }
 
 FRequest_GetPlayerIdFromPlayerUuidForSelf::FRequest_GetPlayerIdFromPlayerUuidForSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPlayerIdFromPlayerUuidForSelf::GetSimplifiedPath() const
@@ -2398,11 +2372,9 @@ void FUsersAPI::OnGetPlayerLinkedPortalsResponse(FHttpRequestPtr HttpRequest, FH
 }
 
 FRequest_GetPlayerLinkedPortals::FRequest_GetPlayerLinkedPortals()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPlayerLinkedPortals::GetSimplifiedPath() const
@@ -2598,11 +2570,9 @@ void FUsersAPI::OnGetPlayerLinksResponse(FHttpRequestPtr HttpRequest, FHttpRespo
 }
 
 FRequest_GetPlayerLinks::FRequest_GetPlayerLinks()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPlayerLinks::GetSimplifiedPath() const
@@ -2798,11 +2768,9 @@ void FUsersAPI::OnGetPlayerLinksForSelfResponse(FHttpRequestPtr HttpRequest, FHt
 }
 
 FRequest_GetPlayerLinksForSelf::FRequest_GetPlayerLinksForSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPlayerLinksForSelf::GetSimplifiedPath() const
@@ -2981,11 +2949,9 @@ void FUsersAPI::OnGetPlayerUuidFromPlayerIdResponse(FHttpRequestPtr HttpRequest,
 }
 
 FRequest_GetPlayerUuidFromPlayerId::FRequest_GetPlayerUuidFromPlayerId()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPlayerUuidFromPlayerId::GetSimplifiedPath() const
@@ -3181,11 +3147,9 @@ void FUsersAPI::OnGetPlayerUuidFromPlayerIdForSelfResponse(FHttpRequestPtr HttpR
 }
 
 FRequest_GetPlayerUuidFromPlayerIdForSelf::FRequest_GetPlayerUuidFromPlayerIdForSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPlayerUuidFromPlayerIdForSelf::GetSimplifiedPath() const
@@ -3364,11 +3328,9 @@ void FUsersAPI::OnGetPlayerUuidFromPlayerIdForSelfV2Response(FHttpRequestPtr Htt
 }
 
 FRequest_GetPlayerUuidFromPlayerIdForSelfV2::FRequest_GetPlayerUuidFromPlayerIdForSelfV2()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPlayerUuidFromPlayerIdForSelfV2::GetSimplifiedPath() const
@@ -3547,11 +3509,9 @@ void FUsersAPI::OnGetPlayerUuidFromPlayerIdV2Response(FHttpRequestPtr HttpReques
 }
 
 FRequest_GetPlayerUuidFromPlayerIdV2::FRequest_GetPlayerUuidFromPlayerIdV2()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPlayerUuidFromPlayerIdV2::GetSimplifiedPath() const
@@ -3747,11 +3707,9 @@ void FUsersAPI::OnGetPlayersPagedResponse(FHttpRequestPtr HttpRequest, FHttpResp
 }
 
 FRequest_GetPlayersPaged::FRequest_GetPlayersPaged()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPlayersPaged::GetSimplifiedPath() const
@@ -3954,11 +3912,9 @@ void FUsersAPI::OnGetQueuePurgeStatusForMeResponse(FHttpRequestPtr HttpRequest, 
 }
 
 FRequest_GetQueuePurgeStatusForMe::FRequest_GetQueuePurgeStatusForMe()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetQueuePurgeStatusForMe::GetSimplifiedPath() const
@@ -4137,11 +4093,9 @@ void FUsersAPI::OnGetQueuePurgeStatusForPersonResponse(FHttpRequestPtr HttpReque
 }
 
 FRequest_GetQueuePurgeStatusForPerson::FRequest_GetQueuePurgeStatusForPerson()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetQueuePurgeStatusForPerson::GetSimplifiedPath() const
@@ -4337,11 +4291,9 @@ void FUsersAPI::OnLinkResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr Htt
 }
 
 FRequest_Link::FRequest_Link()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_Link::GetSimplifiedPath() const
@@ -4509,11 +4461,9 @@ void FUsersAPI::OnLookupPlayerByPortalResponse(FHttpRequestPtr HttpRequest, FHtt
 }
 
 FRequest_LookupPlayerByPortal::FRequest_LookupPlayerByPortal()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_LookupPlayerByPortal::GetSimplifiedPath() const
@@ -4712,11 +4662,9 @@ void FUsersAPI::OnQueueMeForPurgeResponse(FHttpRequestPtr HttpRequest, FHttpResp
 }
 
 FRequest_QueueMeForPurge::FRequest_QueueMeForPurge()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_QueueMeForPurge::GetSimplifiedPath() const
@@ -4918,11 +4866,9 @@ void FUsersAPI::OnQueuePersonForPurgeResponse(FHttpRequestPtr HttpRequest, FHttp
 }
 
 FRequest_QueuePersonForPurge::FRequest_QueuePersonForPurge()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_QueuePersonForPurge::GetSimplifiedPath() const
@@ -5117,11 +5063,9 @@ void FUsersAPI::OnUnlinkResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr H
 }
 
 FRequest_Unlink::FRequest_Unlink()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_Unlink::GetSimplifiedPath() const
@@ -5266,11 +5210,9 @@ void FUsersAPI::OnUpdatePersonResponse(FHttpRequestPtr HttpRequest, FHttpRespons
 }
 
 FRequest_UpdatePerson::FRequest_UpdatePerson()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_UpdatePerson::GetSimplifiedPath() const
@@ -5465,11 +5407,9 @@ void FUsersAPI::OnUpdatePersonEmailListResponse(FHttpRequestPtr HttpRequest, FHt
 }
 
 FRequest_UpdatePersonEmailList::FRequest_UpdatePersonEmailList()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_UpdatePersonEmailList::GetSimplifiedPath() const
@@ -5664,11 +5604,9 @@ void FUsersAPI::OnUpdatePersonEmailListForSelfResponse(FHttpRequestPtr HttpReque
 }
 
 FRequest_UpdatePersonEmailListForSelf::FRequest_UpdatePersonEmailListForSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_UpdatePersonEmailListForSelf::GetSimplifiedPath() const
@@ -5858,11 +5796,9 @@ void FUsersAPI::OnUpdatePersonForSelfResponse(FHttpRequestPtr HttpRequest, FHttp
 }
 
 FRequest_UpdatePersonForSelf::FRequest_UpdatePersonForSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_UpdatePersonForSelf::GetSimplifiedPath() const
@@ -6052,11 +5988,9 @@ void FUsersAPI::OnUpsertContactResponse(FHttpRequestPtr HttpRequest, FHttpRespon
 }
 
 FRequest_UpsertContact::FRequest_UpsertContact()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_UpsertContact::GetSimplifiedPath() const

@@ -82,11 +82,9 @@ void FSessionsAPI::OnAcknowledgeBackfillRequestResponse(FHttpRequestPtr HttpRequ
 }
 
 FRequest_AcknowledgeBackfillRequest::FRequest_AcknowledgeBackfillRequest()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_AcknowledgeBackfillRequest::GetSimplifiedPath() const
@@ -289,11 +287,9 @@ void FSessionsAPI::OnAddPlatformSessionToRallyHereSessionResponse(FHttpRequestPt
 }
 
 FRequest_AddPlatformSessionToRallyHereSession::FRequest_AddPlatformSessionToRallyHereSession()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_AddPlatformSessionToRallyHereSession::GetSimplifiedPath() const
@@ -548,11 +544,9 @@ void FSessionsAPI::OnBackfillConfigResponse(FHttpRequestPtr HttpRequest, FHttpRe
 }
 
 FRequest_BackfillConfig::FRequest_BackfillConfig()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_BackfillConfig::GetSimplifiedPath() const
@@ -707,11 +701,9 @@ void FSessionsAPI::OnCreateInstanceRequestResponse(FHttpRequestPtr HttpRequest, 
 }
 
 FRequest_CreateInstanceRequest::FRequest_CreateInstanceRequest()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_CreateInstanceRequest::GetSimplifiedPath() const
@@ -894,11 +886,9 @@ void FSessionsAPI::OnCreateOrJoinSessionResponse(FHttpRequestPtr HttpRequest, FH
 }
 
 FRequest_CreateOrJoinSession::FRequest_CreateOrJoinSession()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_CreateOrJoinSession::GetSimplifiedPath() const
@@ -1076,11 +1066,9 @@ void FSessionsAPI::OnDeleteBackfillRequestResponse(FHttpRequestPtr HttpRequest, 
 }
 
 FRequest_DeleteBackfillRequest::FRequest_DeleteBackfillRequest()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_DeleteBackfillRequest::GetSimplifiedPath() const
@@ -1273,11 +1261,9 @@ void FSessionsAPI::OnDeleteBrowserInfoResponse(FHttpRequestPtr HttpRequest, FHtt
 }
 
 FRequest_DeleteBrowserInfo::FRequest_DeleteBrowserInfo()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_DeleteBrowserInfo::GetSimplifiedPath() const
@@ -1439,11 +1425,9 @@ void FSessionsAPI::OnDeletePlatformSessionFromRallyHereSessionResponse(FHttpRequ
 }
 
 FRequest_DeletePlatformSessionFromRallyHereSession::FRequest_DeletePlatformSessionFromRallyHereSession()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_DeletePlatformSessionFromRallyHereSession::GetSimplifiedPath() const
@@ -1653,11 +1637,9 @@ void FSessionsAPI::OnEndInstanceResponse(FHttpRequestPtr HttpRequest, FHttpRespo
 }
 
 FRequest_EndInstance::FRequest_EndInstance()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_EndInstance::GetSimplifiedPath() const
@@ -1854,11 +1836,9 @@ void FSessionsAPI::OnGetAllSessionTemplatesResponse(FHttpRequestPtr HttpRequest,
 }
 
 FRequest_GetAllSessionTemplates::FRequest_GetAllSessionTemplates()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetAllSessionTemplates::GetSimplifiedPath() const
@@ -2066,11 +2046,9 @@ void FSessionsAPI::OnGetBrowserSessionsByTypeResponse(FHttpRequestPtr HttpReques
 }
 
 FRequest_GetBrowserSessionsByType::FRequest_GetBrowserSessionsByType()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetBrowserSessionsByType::GetSimplifiedPath() const
@@ -2289,11 +2267,9 @@ void FSessionsAPI::OnGetConnectionInfoSelfResponse(FHttpRequestPtr HttpRequest, 
 }
 
 FRequest_GetConnectionInfoSelf::FRequest_GetConnectionInfoSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetConnectionInfoSelf::GetSimplifiedPath() const
@@ -2466,11 +2442,9 @@ void FSessionsAPI::OnGetPlatformSessionInfoResponse(FHttpRequestPtr HttpRequest,
 }
 
 FRequest_GetPlatformSessionInfo::FRequest_GetPlatformSessionInfo()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPlatformSessionInfo::GetSimplifiedPath() const
@@ -2696,11 +2670,9 @@ void FSessionsAPI::OnGetPlayerSessionsResponse(FHttpRequestPtr HttpRequest, FHtt
 }
 
 FRequest_GetPlayerSessions::FRequest_GetPlayerSessions()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPlayerSessions::GetSimplifiedPath() const
@@ -2872,11 +2844,9 @@ void FSessionsAPI::OnGetPlayerSessionsByUuidResponse(FHttpRequestPtr HttpRequest
 }
 
 FRequest_GetPlayerSessionsByUuid::FRequest_GetPlayerSessionsByUuid()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPlayerSessionsByUuid::GetSimplifiedPath() const
@@ -3089,11 +3059,9 @@ void FSessionsAPI::OnGetPlayerSessionsByUuidV2Response(FHttpRequestPtr HttpReque
 }
 
 FRequest_GetPlayerSessionsByUuidV2::FRequest_GetPlayerSessionsByUuidV2()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPlayerSessionsByUuidV2::GetSimplifiedPath() const
@@ -3306,11 +3274,9 @@ void FSessionsAPI::OnGetPlayerSessionsSelfResponse(FHttpRequestPtr HttpRequest, 
 }
 
 FRequest_GetPlayerSessionsSelf::FRequest_GetPlayerSessionsSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetPlayerSessionsSelf::GetSimplifiedPath() const
@@ -3518,11 +3484,9 @@ void FSessionsAPI::OnGetSessionByAllocationIdResponse(FHttpRequestPtr HttpReques
 }
 
 FRequest_GetSessionByAllocationId::FRequest_GetSessionByAllocationId()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetSessionByAllocationId::GetSimplifiedPath() const
@@ -3735,11 +3699,9 @@ void FSessionsAPI::OnGetSessionByIdResponse(FHttpRequestPtr HttpRequest, FHttpRe
 }
 
 FRequest_GetSessionById::FRequest_GetSessionById()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetSessionById::GetSimplifiedPath() const
@@ -3960,11 +3922,9 @@ void FSessionsAPI::OnGetSessionTemplateByTypeResponse(FHttpRequestPtr HttpReques
 }
 
 FRequest_GetSessionTemplateByType::FRequest_GetSessionTemplateByType()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetSessionTemplateByType::GetSimplifiedPath() const
@@ -4177,11 +4137,9 @@ void FSessionsAPI::OnInstanceHealthCheckResponse(FHttpRequestPtr HttpRequest, FH
 }
 
 FRequest_InstanceHealthCheck::FRequest_InstanceHealthCheck()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_InstanceHealthCheck::GetSimplifiedPath() const
@@ -4364,11 +4322,9 @@ void FSessionsAPI::OnInstanceHealthConfigResponse(FHttpRequestPtr HttpRequest, F
 }
 
 FRequest_InstanceHealthConfig::FRequest_InstanceHealthConfig()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_InstanceHealthConfig::GetSimplifiedPath() const
@@ -4523,11 +4479,9 @@ void FSessionsAPI::OnInviteSessionToSessionResponse(FHttpRequestPtr HttpRequest,
 }
 
 FRequest_InviteSessionToSession::FRequest_InviteSessionToSession()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_InviteSessionToSession::GetSimplifiedPath() const
@@ -4758,11 +4712,9 @@ void FSessionsAPI::OnJoinQueueResponse(FHttpRequestPtr HttpRequest, FHttpRespons
 }
 
 FRequest_JoinQueue::FRequest_JoinQueue()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_JoinQueue::GetSimplifiedPath() const
@@ -4945,11 +4897,9 @@ void FSessionsAPI::OnJoinSessionByIdSelfResponse(FHttpRequestPtr HttpRequest, FH
 }
 
 FRequest_JoinSessionByIdSelf::FRequest_JoinSessionByIdSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_JoinSessionByIdSelf::GetSimplifiedPath() const
@@ -5179,11 +5129,9 @@ void FSessionsAPI::OnJoinSessionByPlatformSessionByUuidResponse(FHttpRequestPtr 
 }
 
 FRequest_JoinSessionByPlatformSessionByUuid::FRequest_JoinSessionByPlatformSessionByUuid()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_JoinSessionByPlatformSessionByUuid::GetSimplifiedPath() const
@@ -5449,11 +5397,9 @@ void FSessionsAPI::OnJoinSessionByPlatformSessionIdSelfResponse(FHttpRequestPtr 
 }
 
 FRequest_JoinSessionByPlatformSessionIdSelf::FRequest_JoinSessionByPlatformSessionIdSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_JoinSessionByPlatformSessionIdSelf::GetSimplifiedPath() const
@@ -5710,11 +5656,9 @@ void FSessionsAPI::OnKickPlayerFromSessionByIdResponse(FHttpRequestPtr HttpReque
 }
 
 FRequest_KickPlayerFromSessionById::FRequest_KickPlayerFromSessionById()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_KickPlayerFromSessionById::GetSimplifiedPath() const
@@ -5889,11 +5833,9 @@ void FSessionsAPI::OnKickPlayerFromSessionByUuidResponse(FHttpRequestPtr HttpReq
 }
 
 FRequest_KickPlayerFromSessionByUuid::FRequest_KickPlayerFromSessionByUuid()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_KickPlayerFromSessionByUuid::GetSimplifiedPath() const
@@ -6103,11 +6045,9 @@ void FSessionsAPI::OnKickPlayerFromSessionByUuidV2Response(FHttpRequestPtr HttpR
 }
 
 FRequest_KickPlayerFromSessionByUuidV2::FRequest_KickPlayerFromSessionByUuidV2()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_KickPlayerFromSessionByUuidV2::GetSimplifiedPath() const
@@ -6317,11 +6257,9 @@ void FSessionsAPI::OnKickSessionFromSessionResponse(FHttpRequestPtr HttpRequest,
 }
 
 FRequest_KickSessionFromSession::FRequest_KickSessionFromSession()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_KickSessionFromSession::GetSimplifiedPath() const
@@ -6496,11 +6434,9 @@ void FSessionsAPI::OnLeaveQueueResponse(FHttpRequestPtr HttpRequest, FHttpRespon
 }
 
 FRequest_LeaveQueue::FRequest_LeaveQueue()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_LeaveQueue::GetSimplifiedPath() const
@@ -6682,11 +6618,9 @@ void FSessionsAPI::OnLeaveSessionByIdSelfResponse(FHttpRequestPtr HttpRequest, F
 }
 
 FRequest_LeaveSessionByIdSelf::FRequest_LeaveSessionByIdSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_LeaveSessionByIdSelf::GetSimplifiedPath() const
@@ -6860,11 +6794,9 @@ void FSessionsAPI::OnLeaveSessionByPlatformSessionByUuidResponse(FHttpRequestPtr
 }
 
 FRequest_LeaveSessionByPlatformSessionByUuid::FRequest_LeaveSessionByPlatformSessionByUuid()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_LeaveSessionByPlatformSessionByUuid::GetSimplifiedPath() const
@@ -7066,11 +6998,9 @@ void FSessionsAPI::OnLeaveSessionByPlatformSessionSelfResponse(FHttpRequestPtr H
 }
 
 FRequest_LeaveSessionByPlatformSessionSelf::FRequest_LeaveSessionByPlatformSessionSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_LeaveSessionByPlatformSessionSelf::GetSimplifiedPath() const
@@ -7271,11 +7201,9 @@ void FSessionsAPI::OnPostBrowserInfoResponse(FHttpRequestPtr HttpRequest, FHttpR
 }
 
 FRequest_PostBrowserInfo::FRequest_PostBrowserInfo()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_PostBrowserInfo::GetSimplifiedPath() const
@@ -7466,11 +7394,9 @@ void FSessionsAPI::OnUpdateBackfillRequestResponse(FHttpRequestPtr HttpRequest, 
 }
 
 FRequest_UpdateBackfillRequest::FRequest_UpdateBackfillRequest()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_UpdateBackfillRequest::GetSimplifiedPath() const
@@ -7663,11 +7589,9 @@ void FSessionsAPI::OnUpdateBrowserInfoResponse(FHttpRequestPtr HttpRequest, FHtt
 }
 
 FRequest_UpdateBrowserInfo::FRequest_UpdateBrowserInfo()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_UpdateBrowserInfo::GetSimplifiedPath() const
@@ -7850,11 +7774,9 @@ void FSessionsAPI::OnUpdateInstanceInfoResponse(FHttpRequestPtr HttpRequest, FHt
 }
 
 FRequest_UpdateInstanceInfo::FRequest_UpdateInstanceInfo()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_UpdateInstanceInfo::GetSimplifiedPath() const
@@ -8037,11 +7959,9 @@ void FSessionsAPI::OnUpdateSessionByIdResponse(FHttpRequestPtr HttpRequest, FHtt
 }
 
 FRequest_UpdateSessionById::FRequest_UpdateSessionById()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_UpdateSessionById::GetSimplifiedPath() const
@@ -8259,11 +8179,9 @@ void FSessionsAPI::OnUpdateSessionPlayerByIdResponse(FHttpRequestPtr HttpRequest
 }
 
 FRequest_UpdateSessionPlayerById::FRequest_UpdateSessionPlayerById()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_UpdateSessionPlayerById::GetSimplifiedPath() const
@@ -8459,11 +8377,9 @@ void FSessionsAPI::OnUpdateSessionPlayerByUuidResponse(FHttpRequestPtr HttpReque
 }
 
 FRequest_UpdateSessionPlayerByUuid::FRequest_UpdateSessionPlayerByUuid()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_UpdateSessionPlayerByUuid::GetSimplifiedPath() const
@@ -8694,11 +8610,9 @@ void FSessionsAPI::OnUpdateSessionPlayerByUuidV2Response(FHttpRequestPtr HttpReq
 }
 
 FRequest_UpdateSessionPlayerByUuidV2::FRequest_UpdateSessionPlayerByUuidV2()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_UpdateSessionPlayerByUuidV2::GetSimplifiedPath() const

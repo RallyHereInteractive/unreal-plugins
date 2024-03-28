@@ -82,11 +82,9 @@ void FInstanceNotificationAPI::OnInstanceCreateNotificationResponse(FHttpRequest
 }
 
 FRequest_InstanceCreateNotification::FRequest_InstanceCreateNotification()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_InstanceCreateNotification::GetSimplifiedPath() const
@@ -305,11 +303,9 @@ void FInstanceNotificationAPI::OnInstanceGetNotificationByIdResponse(FHttpReques
 }
 
 FRequest_InstanceGetNotificationById::FRequest_InstanceGetNotificationById()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_InstanceGetNotificationById::GetSimplifiedPath() const
@@ -530,11 +526,9 @@ void FInstanceNotificationAPI::OnInstanceGetNotificationsPageResponse(FHttpReque
 }
 
 FRequest_InstanceGetNotificationsPage::FRequest_InstanceGetNotificationsPage()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_InstanceGetNotificationsPage::GetSimplifiedPath() const
@@ -766,11 +760,9 @@ void FInstanceNotificationAPI::OnInstanceLongPollForNotificationsResponse(FHttpR
 }
 
 FRequest_InstanceLongPollForNotifications::FRequest_InstanceLongPollForNotifications()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_InstanceLongPollForNotifications::GetSimplifiedPath() const

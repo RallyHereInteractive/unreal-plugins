@@ -82,11 +82,9 @@ void FPlayerIdNotificationAPI::OnPlayeridCreateNotificationResponse(FHttpRequest
 }
 
 FRequest_PlayeridCreateNotification::FRequest_PlayeridCreateNotification()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_PlayeridCreateNotification::GetSimplifiedPath() const
@@ -305,11 +303,9 @@ void FPlayerIdNotificationAPI::OnPlayeridCreateNotificationSelfResponse(FHttpReq
 }
 
 FRequest_PlayeridCreateNotificationSelf::FRequest_PlayeridCreateNotificationSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_PlayeridCreateNotificationSelf::GetSimplifiedPath() const
@@ -523,11 +519,9 @@ void FPlayerIdNotificationAPI::OnPlayeridGetNotificationByIdResponse(FHttpReques
 }
 
 FRequest_PlayeridGetNotificationById::FRequest_PlayeridGetNotificationById()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_PlayeridGetNotificationById::GetSimplifiedPath() const
@@ -748,11 +742,9 @@ void FPlayerIdNotificationAPI::OnPlayeridGetNotificationByIdSelfResponse(FHttpRe
 }
 
 FRequest_PlayeridGetNotificationByIdSelf::FRequest_PlayeridGetNotificationByIdSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_PlayeridGetNotificationByIdSelf::GetSimplifiedPath() const
@@ -972,11 +964,9 @@ void FPlayerIdNotificationAPI::OnPlayeridGetNotificationsPageResponse(FHttpReque
 }
 
 FRequest_PlayeridGetNotificationsPage::FRequest_PlayeridGetNotificationsPage()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_PlayeridGetNotificationsPage::GetSimplifiedPath() const
@@ -1208,11 +1198,9 @@ void FPlayerIdNotificationAPI::OnPlayeridGetNotificationsPageSelfResponse(FHttpR
 }
 
 FRequest_PlayeridGetNotificationsPageSelf::FRequest_PlayeridGetNotificationsPageSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_PlayeridGetNotificationsPageSelf::GetSimplifiedPath() const
@@ -1439,11 +1427,9 @@ void FPlayerIdNotificationAPI::OnPlayeridLongPollForNotificationsResponse(FHttpR
 }
 
 FRequest_PlayeridLongPollForNotifications::FRequest_PlayeridLongPollForNotifications()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_PlayeridLongPollForNotifications::GetSimplifiedPath() const
@@ -1671,11 +1657,9 @@ void FPlayerIdNotificationAPI::OnPlayeridLongPollForNotificationsSelfResponse(FH
 }
 
 FRequest_PlayeridLongPollForNotificationsSelf::FRequest_PlayeridLongPollForNotificationsSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_PlayeridLongPollForNotificationsSelf::GetSimplifiedPath() const

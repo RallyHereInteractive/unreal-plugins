@@ -82,11 +82,9 @@ void FEventsAPI::OnGetAllEventSchemaResponse(FHttpRequestPtr HttpRequest, FHttpR
 }
 
 FRequest_GetAllEventSchema::FRequest_GetAllEventSchema()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetAllEventSchema::GetSimplifiedPath() const
@@ -218,11 +216,9 @@ void FEventsAPI::OnReceiveEventsV1Response(FHttpRequestPtr HttpRequest, FHttpRes
 }
 
 FRequest_ReceiveEventsV1::FRequest_ReceiveEventsV1()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_ReceiveEventsV1::GetSimplifiedPath() const

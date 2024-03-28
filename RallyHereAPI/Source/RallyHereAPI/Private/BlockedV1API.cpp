@@ -82,11 +82,9 @@ void FBlockedV1API::OnBlockResponse(FHttpRequestPtr HttpRequest, FHttpResponsePt
 }
 
 FRequest_Block::FRequest_Block()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_Block::GetSimplifiedPath() const
@@ -283,11 +281,9 @@ void FBlockedV1API::OnGetBlockedResponse(FHttpRequestPtr HttpRequest, FHttpRespo
 }
 
 FRequest_GetBlocked::FRequest_GetBlocked()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetBlocked::GetSimplifiedPath() const
@@ -484,11 +480,9 @@ void FBlockedV1API::OnGetBlockedListForPlayerResponse(FHttpRequestPtr HttpReques
 }
 
 FRequest_GetBlockedListForPlayer::FRequest_GetBlockedListForPlayer()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetBlockedListForPlayer::GetSimplifiedPath() const
@@ -739,11 +733,9 @@ void FBlockedV1API::OnUnblockResponse(FHttpRequestPtr HttpRequest, FHttpResponse
 }
 
 FRequest_Unblock::FRequest_Unblock()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_Unblock::GetSimplifiedPath() const

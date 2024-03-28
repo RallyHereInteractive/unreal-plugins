@@ -161,11 +161,9 @@ inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, FRequest_{{
 {{/isEnum}}
 {{/allParams}}
 FRequest_{{operationIdCamelCase}}::FRequest_{{operationIdCamelCase}}()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_{{operationIdCamelCase}}::GetSimplifiedPath() const

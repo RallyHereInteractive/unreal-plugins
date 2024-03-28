@@ -82,11 +82,9 @@ void FSettingsAPI::OnDeleteAllPlayerIdSettingsForSettingTypeResponse(FHttpReques
 }
 
 FRequest_DeleteAllPlayerIdSettingsForSettingType::FRequest_DeleteAllPlayerIdSettingsForSettingType()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_DeleteAllPlayerIdSettingsForSettingType::GetSimplifiedPath() const
@@ -283,11 +281,9 @@ void FSettingsAPI::OnDeleteAllPlayerUuidSettingsForSettingTypeResponse(FHttpRequ
 }
 
 FRequest_DeleteAllPlayerUuidSettingsForSettingType::FRequest_DeleteAllPlayerUuidSettingsForSettingType()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_DeleteAllPlayerUuidSettingsForSettingType::GetSimplifiedPath() const
@@ -484,11 +480,9 @@ void FSettingsAPI::OnDeleteAllPlayerUuidSettingsForSettingTypeSelfResponse(FHttp
 }
 
 FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf::FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf::GetSimplifiedPath() const
@@ -684,11 +678,9 @@ void FSettingsAPI::OnDeleteSinglePlayerIdSettingResponse(FHttpRequestPtr HttpReq
 }
 
 FRequest_DeleteSinglePlayerIdSetting::FRequest_DeleteSinglePlayerIdSetting()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_DeleteSinglePlayerIdSetting::GetSimplifiedPath() const
@@ -886,11 +878,9 @@ void FSettingsAPI::OnDeleteSinglePlayerUuidSettingResponse(FHttpRequestPtr HttpR
 }
 
 FRequest_DeleteSinglePlayerUuidSetting::FRequest_DeleteSinglePlayerUuidSetting()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_DeleteSinglePlayerUuidSetting::GetSimplifiedPath() const
@@ -1088,11 +1078,9 @@ void FSettingsAPI::OnDeleteSinglePlayerUuidSettingSelfResponse(FHttpRequestPtr H
 }
 
 FRequest_DeleteSinglePlayerUuidSettingSelf::FRequest_DeleteSinglePlayerUuidSettingSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_DeleteSinglePlayerUuidSettingSelf::GetSimplifiedPath() const
@@ -1289,11 +1277,9 @@ void FSettingsAPI::OnGetAllPlayerIdSettingsForSettingTypeResponse(FHttpRequestPt
 }
 
 FRequest_GetAllPlayerIdSettingsForSettingType::FRequest_GetAllPlayerIdSettingsForSettingType()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetAllPlayerIdSettingsForSettingType::GetSimplifiedPath() const
@@ -1498,11 +1484,9 @@ void FSettingsAPI::OnGetAllPlayerUuidSettingsForSettingTypeResponse(FHttpRequest
 }
 
 FRequest_GetAllPlayerUuidSettingsForSettingType::FRequest_GetAllPlayerUuidSettingsForSettingType()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetAllPlayerUuidSettingsForSettingType::GetSimplifiedPath() const
@@ -1707,11 +1691,9 @@ void FSettingsAPI::OnGetAllPlayerUuidSettingsForSettingTypeSelfResponse(FHttpReq
 }
 
 FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf::FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf::GetSimplifiedPath() const
@@ -1915,11 +1897,9 @@ void FSettingsAPI::OnGetConfigForAllSettingTypesResponse(FHttpRequestPtr HttpReq
 }
 
 FRequest_GetConfigForAllSettingTypes::FRequest_GetConfigForAllSettingTypes()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetConfigForAllSettingTypes::GetSimplifiedPath() const
@@ -2062,11 +2042,9 @@ void FSettingsAPI::OnGetConfigForSingleSettingTypeAllVersionsResponse(FHttpReque
 }
 
 FRequest_GetConfigForSingleSettingTypeAllVersions::FRequest_GetConfigForSingleSettingTypeAllVersions()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetConfigForSingleSettingTypeAllVersions::GetSimplifiedPath() const
@@ -2250,11 +2228,9 @@ void FSettingsAPI::OnGetConfigForSingleSettingTypeAndVersionResponse(FHttpReques
 }
 
 FRequest_GetConfigForSingleSettingTypeAndVersion::FRequest_GetConfigForSingleSettingTypeAndVersion()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetConfigForSingleSettingTypeAndVersion::GetSimplifiedPath() const
@@ -2439,11 +2415,9 @@ void FSettingsAPI::OnGetSinglePlayerIdSettingResponse(FHttpRequestPtr HttpReques
 }
 
 FRequest_GetSinglePlayerIdSetting::FRequest_GetSinglePlayerIdSetting()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetSinglePlayerIdSetting::GetSimplifiedPath() const
@@ -2641,11 +2615,9 @@ void FSettingsAPI::OnGetSinglePlayerUuidSettingResponse(FHttpRequestPtr HttpRequ
 }
 
 FRequest_GetSinglePlayerUuidSetting::FRequest_GetSinglePlayerUuidSetting()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetSinglePlayerUuidSetting::GetSimplifiedPath() const
@@ -2843,11 +2815,9 @@ void FSettingsAPI::OnGetSinglePlayerUuidSettingSelfResponse(FHttpRequestPtr Http
 }
 
 FRequest_GetSinglePlayerUuidSettingSelf::FRequest_GetSinglePlayerUuidSettingSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetSinglePlayerUuidSettingSelf::GetSimplifiedPath() const
@@ -3044,11 +3014,9 @@ void FSettingsAPI::OnSetSinglePlayerIdSettingResponse(FHttpRequestPtr HttpReques
 }
 
 FRequest_SetSinglePlayerIdSetting::FRequest_SetSinglePlayerIdSetting()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_SetSinglePlayerIdSetting::GetSimplifiedPath() const
@@ -3269,11 +3237,9 @@ void FSettingsAPI::OnSetSinglePlayerUuidSettingResponse(FHttpRequestPtr HttpRequ
 }
 
 FRequest_SetSinglePlayerUuidSetting::FRequest_SetSinglePlayerUuidSetting()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_SetSinglePlayerUuidSetting::GetSimplifiedPath() const
@@ -3494,11 +3460,9 @@ void FSettingsAPI::OnSetSinglePlayerUuidSettingSelfResponse(FHttpRequestPtr Http
 }
 
 FRequest_SetSinglePlayerUuidSettingSelf::FRequest_SetSinglePlayerUuidSettingSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_SetSinglePlayerUuidSettingSelf::GetSimplifiedPath() const

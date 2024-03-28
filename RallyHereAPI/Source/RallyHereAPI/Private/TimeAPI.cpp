@@ -82,11 +82,9 @@ void FTimeAPI::OnGetUtcTimeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePt
 }
 
 FRequest_GetUtcTime::FRequest_GetUtcTime()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetUtcTime::GetSimplifiedPath() const

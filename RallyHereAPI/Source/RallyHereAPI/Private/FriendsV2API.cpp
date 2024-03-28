@@ -82,11 +82,9 @@ void FFriendsV2API::OnAddFriendV2Response(FHttpRequestPtr HttpRequest, FHttpResp
 }
 
 FRequest_AddFriendV2::FRequest_AddFriendV2()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_AddFriendV2::GetSimplifiedPath() const
@@ -340,11 +338,9 @@ void FFriendsV2API::OnAddNotesV2Response(FHttpRequestPtr HttpRequest, FHttpRespo
 }
 
 FRequest_AddNotesV2::FRequest_AddNotesV2()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_AddNotesV2::GetSimplifiedPath() const
@@ -593,11 +589,9 @@ void FFriendsV2API::OnDeleteFriendV2Response(FHttpRequestPtr HttpRequest, FHttpR
 }
 
 FRequest_DeleteFriendV2::FRequest_DeleteFriendV2()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_DeleteFriendV2::GetSimplifiedPath() const
@@ -827,11 +821,9 @@ void FFriendsV2API::OnDeleteFriendsV2Response(FHttpRequestPtr HttpRequest, FHttp
 }
 
 FRequest_DeleteFriendsV2::FRequest_DeleteFriendsV2()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_DeleteFriendsV2::GetSimplifiedPath() const
@@ -1028,11 +1020,9 @@ void FFriendsV2API::OnDeleteNotesV2Response(FHttpRequestPtr HttpRequest, FHttpRe
 }
 
 FRequest_DeleteNotesV2::FRequest_DeleteNotesV2()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_DeleteNotesV2::GetSimplifiedPath() const
@@ -1225,11 +1215,9 @@ void FFriendsV2API::OnGetFriendRelationshipV2Response(FHttpRequestPtr HttpReques
 }
 
 FRequest_GetFriendRelationshipV2::FRequest_GetFriendRelationshipV2()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetFriendRelationshipV2::GetSimplifiedPath() const
@@ -1469,11 +1457,9 @@ void FFriendsV2API::OnGetFriendsListForPlayerV2Response(FHttpRequestPtr HttpRequ
 }
 
 FRequest_GetFriendsListForPlayerV2::FRequest_GetFriendsListForPlayerV2()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetFriendsListForPlayerV2::GetSimplifiedPath() const

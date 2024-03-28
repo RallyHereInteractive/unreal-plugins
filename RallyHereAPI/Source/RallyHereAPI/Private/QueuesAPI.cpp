@@ -82,11 +82,9 @@ void FQueuesAPI::OnGetAllMapGameInfoResponse(FHttpRequestPtr HttpRequest, FHttpR
 }
 
 FRequest_GetAllMapGameInfo::FRequest_GetAllMapGameInfo()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetAllMapGameInfo::GetSimplifiedPath() const
@@ -299,11 +297,9 @@ void FQueuesAPI::OnGetAllQueueInfoResponse(FHttpRequestPtr HttpRequest, FHttpRes
 }
 
 FRequest_GetAllQueueInfo::FRequest_GetAllQueueInfo()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetAllQueueInfo::GetSimplifiedPath() const
@@ -523,11 +519,9 @@ void FQueuesAPI::OnGetAllQueueInfoV2Response(FHttpRequestPtr HttpRequest, FHttpR
 }
 
 FRequest_GetAllQueueInfoV2::FRequest_GetAllQueueInfoV2()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetAllQueueInfoV2::GetSimplifiedPath() const
@@ -747,11 +741,9 @@ void FQueuesAPI::OnGetInstanceRequestTemplateResponse(FHttpRequestPtr HttpReques
 }
 
 FRequest_GetInstanceRequestTemplate::FRequest_GetInstanceRequestTemplate()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetInstanceRequestTemplate::GetSimplifiedPath() const
@@ -964,11 +956,9 @@ void FQueuesAPI::OnGetMatchMakingProfileResponse(FHttpRequestPtr HttpRequest, FH
 }
 
 FRequest_GetMatchMakingProfile::FRequest_GetMatchMakingProfile()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetMatchMakingProfile::GetSimplifiedPath() const
@@ -1181,11 +1171,9 @@ void FQueuesAPI::OnGetMatchMakingProfileV2Response(FHttpRequestPtr HttpRequest, 
 }
 
 FRequest_GetMatchMakingProfileV2::FRequest_GetMatchMakingProfileV2()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetMatchMakingProfileV2::GetSimplifiedPath() const
@@ -1398,11 +1386,9 @@ void FQueuesAPI::OnGetMatchMakingTemplatesResponse(FHttpRequestPtr HttpRequest, 
 }
 
 FRequest_GetMatchMakingTemplates::FRequest_GetMatchMakingTemplates()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetMatchMakingTemplates::GetSimplifiedPath() const
@@ -1615,11 +1601,9 @@ void FQueuesAPI::OnGetMatchMakingTemplatesV2Response(FHttpRequestPtr HttpRequest
 }
 
 FRequest_GetMatchMakingTemplatesV2::FRequest_GetMatchMakingTemplatesV2()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetMatchMakingTemplatesV2::GetSimplifiedPath() const

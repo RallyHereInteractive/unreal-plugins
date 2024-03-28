@@ -82,11 +82,9 @@ void FKeyEntitlementsAPI::OnProcessKeyEntitlementsResponse(FHttpRequestPtr HttpR
 }
 
 FRequest_ProcessKeyEntitlements::FRequest_ProcessKeyEntitlements()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_ProcessKeyEntitlements::GetSimplifiedPath() const
@@ -271,11 +269,9 @@ void FKeyEntitlementsAPI::OnProcessKeyEntitlementsPlayerUuidResponse(FHttpReques
 }
 
 FRequest_ProcessKeyEntitlementsPlayerUuid::FRequest_ProcessKeyEntitlementsPlayerUuid()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_ProcessKeyEntitlementsPlayerUuid::GetSimplifiedPath() const
@@ -460,11 +456,9 @@ void FKeyEntitlementsAPI::OnProcessKeyEntitlementsSelfResponse(FHttpRequestPtr H
 }
 
 FRequest_ProcessKeyEntitlementsSelf::FRequest_ProcessKeyEntitlementsSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_ProcessKeyEntitlementsSelf::GetSimplifiedPath() const
@@ -648,11 +642,9 @@ void FKeyEntitlementsAPI::OnProcessPlayerUuidEntitlementsSelfResponse(FHttpReque
 }
 
 FRequest_ProcessPlayerUuidEntitlementsSelf::FRequest_ProcessPlayerUuidEntitlementsSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_ProcessPlayerUuidEntitlementsSelf::GetSimplifiedPath() const

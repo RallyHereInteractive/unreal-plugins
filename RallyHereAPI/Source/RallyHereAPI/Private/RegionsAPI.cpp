@@ -82,11 +82,9 @@ void FRegionsAPI::OnGetAllRegionsResponse(FHttpRequestPtr HttpRequest, FHttpResp
 }
 
 FRequest_GetAllRegions::FRequest_GetAllRegions()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetAllRegions::GetSimplifiedPath() const

@@ -82,11 +82,9 @@ void FEntitlementsAPI::OnGenerateEntitlementEventResponse(FHttpRequestPtr HttpRe
 }
 
 FRequest_GenerateEntitlementEvent::FRequest_GenerateEntitlementEvent()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GenerateEntitlementEvent::GetSimplifiedPath() const
@@ -288,11 +286,9 @@ void FEntitlementsAPI::OnGetEntitlementEventsResponse(FHttpRequestPtr HttpReques
 }
 
 FRequest_GetEntitlementEvents::FRequest_GetEntitlementEvents()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_GetEntitlementEvents::GetSimplifiedPath() const
@@ -475,11 +471,9 @@ void FEntitlementsAPI::OnProcessPlatformEntitlementForMeResponse(FHttpRequestPtr
 }
 
 FRequest_ProcessPlatformEntitlementForMe::FRequest_ProcessPlatformEntitlementForMe()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_ProcessPlatformEntitlementForMe::GetSimplifiedPath() const
@@ -657,11 +651,9 @@ void FEntitlementsAPI::OnProcessPlatformEntitlementsByPlayerUuidResponse(FHttpRe
 }
 
 FRequest_ProcessPlatformEntitlementsByPlayerUuid::FRequest_ProcessPlatformEntitlementsByPlayerUuid()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_ProcessPlatformEntitlementsByPlayerUuid::GetSimplifiedPath() const
@@ -844,11 +836,9 @@ void FEntitlementsAPI::OnRetrieveEntitlementRequestByPlayerUuidResponse(FHttpReq
 }
 
 FRequest_RetrieveEntitlementRequestByPlayerUuid::FRequest_RetrieveEntitlementRequestByPlayerUuid()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_RetrieveEntitlementRequestByPlayerUuid::GetSimplifiedPath() const
@@ -1021,11 +1011,9 @@ void FEntitlementsAPI::OnRetrieveEntitlementRequestForMeResponse(FHttpRequestPtr
 }
 
 FRequest_RetrieveEntitlementRequestForMe::FRequest_RetrieveEntitlementRequestForMe()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
-	RequestMetadata.CreateTimestamp = FDateTime::Now();
 }
 
 FName FRequest_RetrieveEntitlementRequestForMe::GetSimplifiedPath() const
