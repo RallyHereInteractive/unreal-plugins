@@ -82,10 +82,9 @@ void FRankAPI::OnCalculateV2RanksResponse(FHttpRequestPtr HttpRequest, FHttpResp
 }
 
 FRequest_CalculateV2Ranks::FRequest_CalculateV2Ranks()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_CalculateV2Ranks::GetSimplifiedPath() const
@@ -263,10 +262,9 @@ void FRankAPI::OnGetAllPlayerUuidRanksResponse(FHttpRequestPtr HttpRequest, FHtt
 }
 
 FRequest_GetAllPlayerUuidRanks::FRequest_GetAllPlayerUuidRanks()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetAllPlayerUuidRanks::GetSimplifiedPath() const
@@ -438,10 +436,9 @@ void FRankAPI::OnGetAllPlayerUuidRanksSelfResponse(FHttpRequestPtr HttpRequest, 
 }
 
 FRequest_GetAllPlayerUuidRanksSelf::FRequest_GetAllPlayerUuidRanksSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetAllPlayerUuidRanksSelf::GetSimplifiedPath() const
@@ -596,10 +593,9 @@ void FRankAPI::OnGetAllPlayerUuidRanksSelfV2Response(FHttpRequestPtr HttpRequest
 }
 
 FRequest_GetAllPlayerUuidRanksSelfV2::FRequest_GetAllPlayerUuidRanksSelfV2()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetAllPlayerUuidRanksSelfV2::GetSimplifiedPath() const
@@ -754,10 +750,9 @@ void FRankAPI::OnGetAllPlayerUuidRanksV2Response(FHttpRequestPtr HttpRequest, FH
 }
 
 FRequest_GetAllPlayerUuidRanksV2::FRequest_GetAllPlayerUuidRanksV2()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetAllPlayerUuidRanksV2::GetSimplifiedPath() const
@@ -929,10 +924,9 @@ void FRankAPI::OnGetAllRankConfigResponse(FHttpRequestPtr HttpRequest, FHttpResp
 }
 
 FRequest_GetAllRankConfig::FRequest_GetAllRankConfig()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetAllRankConfig::GetSimplifiedPath() const
@@ -1087,10 +1081,9 @@ void FRankAPI::OnGetAllRankConfigV2Response(FHttpRequestPtr HttpRequest, FHttpRe
 }
 
 FRequest_GetAllRankConfigV2::FRequest_GetAllRankConfigV2()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetAllRankConfigV2::GetSimplifiedPath() const
@@ -1245,10 +1238,9 @@ void FRankAPI::OnGetPlayerUuidRankResponse(FHttpRequestPtr HttpRequest, FHttpRes
 }
 
 FRequest_GetPlayerUuidRank::FRequest_GetPlayerUuidRank()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetPlayerUuidRank::GetSimplifiedPath() const
@@ -1421,10 +1413,9 @@ void FRankAPI::OnGetPlayerUuidRankSelfResponse(FHttpRequestPtr HttpRequest, FHtt
 }
 
 FRequest_GetPlayerUuidRankSelf::FRequest_GetPlayerUuidRankSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetPlayerUuidRankSelf::GetSimplifiedPath() const
@@ -1596,10 +1587,9 @@ void FRankAPI::OnGetPlayerUuidRankSelfV2Response(FHttpRequestPtr HttpRequest, FH
 }
 
 FRequest_GetPlayerUuidRankSelfV2::FRequest_GetPlayerUuidRankSelfV2()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetPlayerUuidRankSelfV2::GetSimplifiedPath() const
@@ -1771,10 +1761,9 @@ void FRankAPI::OnGetPlayerUuidRankV2Response(FHttpRequestPtr HttpRequest, FHttpR
 }
 
 FRequest_GetPlayerUuidRankV2::FRequest_GetPlayerUuidRankV2()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetPlayerUuidRankV2::GetSimplifiedPath() const
@@ -1947,10 +1936,9 @@ void FRankAPI::OnGetRankConfigResponse(FHttpRequestPtr HttpRequest, FHttpRespons
 }
 
 FRequest_GetRankConfig::FRequest_GetRankConfig()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetRankConfig::GetSimplifiedPath() const
@@ -2122,10 +2110,9 @@ void FRankAPI::OnGetRankConfigV2Response(FHttpRequestPtr HttpRequest, FHttpRespo
 }
 
 FRequest_GetRankConfigV2::FRequest_GetRankConfigV2()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetRankConfigV2::GetSimplifiedPath() const
@@ -2297,10 +2284,9 @@ void FRankAPI::OnUpdatePlayerUuidRankResponse(FHttpRequestPtr HttpRequest, FHttp
 }
 
 FRequest_UpdatePlayerUuidRank::FRequest_UpdatePlayerUuidRank()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_UpdatePlayerUuidRank::GetSimplifiedPath() const
@@ -2484,10 +2470,9 @@ void FRankAPI::OnUpdatePlayerUuidRankSelfResponse(FHttpRequestPtr HttpRequest, F
 }
 
 FRequest_UpdatePlayerUuidRankSelf::FRequest_UpdatePlayerUuidRankSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_UpdatePlayerUuidRankSelf::GetSimplifiedPath() const
@@ -2670,10 +2655,9 @@ void FRankAPI::OnUpdatePlayerUuidRankSelfV2Response(FHttpRequestPtr HttpRequest,
 }
 
 FRequest_UpdatePlayerUuidRankSelfV2::FRequest_UpdatePlayerUuidRankSelfV2()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_UpdatePlayerUuidRankSelfV2::GetSimplifiedPath() const
@@ -2856,10 +2840,9 @@ void FRankAPI::OnUpdatePlayerUuidRankV2Response(FHttpRequestPtr HttpRequest, FHt
 }
 
 FRequest_UpdatePlayerUuidRankV2::FRequest_UpdatePlayerUuidRankV2()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_UpdatePlayerUuidRankV2::GetSimplifiedPath() const
@@ -3043,10 +3026,9 @@ void FRankAPI::OnUpdateRankingsV1Response(FHttpRequestPtr HttpRequest, FHttpResp
 }
 
 FRequest_UpdateRankingsV1::FRequest_UpdateRankingsV1()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_UpdateRankingsV1::GetSimplifiedPath() const

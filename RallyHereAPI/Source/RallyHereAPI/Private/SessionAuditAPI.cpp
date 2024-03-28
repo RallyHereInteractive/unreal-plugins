@@ -82,10 +82,9 @@ void FSessionAuditAPI::OnCreateSessionAuditResponse(FHttpRequestPtr HttpRequest,
 }
 
 FRequest_CreateSessionAudit::FRequest_CreateSessionAudit()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_CreateSessionAudit::GetSimplifiedPath() const
@@ -280,10 +279,9 @@ void FSessionAuditAPI::OnGetSessionAuditResponse(FHttpRequestPtr HttpRequest, FH
 }
 
 FRequest_GetSessionAudit::FRequest_GetSessionAudit()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetSessionAudit::GetSimplifiedPath() const

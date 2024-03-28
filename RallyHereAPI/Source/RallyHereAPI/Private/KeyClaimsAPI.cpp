@@ -82,10 +82,9 @@ void FKeyClaimsAPI::OnClaimPlayerUuidUnclaimedKeyClaimResponse(FHttpRequestPtr H
 }
 
 FRequest_ClaimPlayerUuidUnclaimedKeyClaim::FRequest_ClaimPlayerUuidUnclaimedKeyClaim()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_ClaimPlayerUuidUnclaimedKeyClaim::GetSimplifiedPath() const
@@ -293,10 +292,9 @@ void FKeyClaimsAPI::OnClaimPlayerUuidUnclaimedKeyClaimForMeResponse(FHttpRequest
 }
 
 FRequest_ClaimPlayerUuidUnclaimedKeyClaimForMe::FRequest_ClaimPlayerUuidUnclaimedKeyClaimForMe()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_ClaimPlayerUuidUnclaimedKeyClaimForMe::GetSimplifiedPath() const
@@ -503,10 +501,9 @@ void FKeyClaimsAPI::OnClaimUnclaimedKeyClaimResponse(FHttpRequestPtr HttpRequest
 }
 
 FRequest_ClaimUnclaimedKeyClaim::FRequest_ClaimUnclaimedKeyClaim()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_ClaimUnclaimedKeyClaim::GetSimplifiedPath() const
@@ -714,10 +711,9 @@ void FKeyClaimsAPI::OnClaimUnclaimedKeyClaimForMeResponse(FHttpRequestPtr HttpRe
 }
 
 FRequest_ClaimUnclaimedKeyClaimForMe::FRequest_ClaimUnclaimedKeyClaimForMe()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_ClaimUnclaimedKeyClaimForMe::GetSimplifiedPath() const
@@ -924,10 +920,9 @@ void FKeyClaimsAPI::OnGetKeyClaimResponse(FHttpRequestPtr HttpRequest, FHttpResp
 }
 
 FRequest_GetKeyClaim::FRequest_GetKeyClaim()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetKeyClaim::GetSimplifiedPath() const
@@ -1124,10 +1119,9 @@ void FKeyClaimsAPI::OnGetKeyClaimForMeResponse(FHttpRequestPtr HttpRequest, FHtt
 }
 
 FRequest_GetKeyClaimForMe::FRequest_GetKeyClaimForMe()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetKeyClaimForMe::GetSimplifiedPath() const
@@ -1323,10 +1317,9 @@ void FKeyClaimsAPI::OnGetKeyClaimsResponse(FHttpRequestPtr HttpRequest, FHttpRes
 }
 
 FRequest_GetKeyClaims::FRequest_GetKeyClaims()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetKeyClaims::GetSimplifiedPath() const
@@ -1522,10 +1515,9 @@ void FKeyClaimsAPI::OnGetKeyClaimsForMeResponse(FHttpRequestPtr HttpRequest, FHt
 }
 
 FRequest_GetKeyClaimsForMe::FRequest_GetKeyClaimsForMe()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetKeyClaimsForMe::GetSimplifiedPath() const
@@ -1704,10 +1696,9 @@ void FKeyClaimsAPI::OnGetKeyClaimsForMyUuidResponse(FHttpRequestPtr HttpRequest,
 }
 
 FRequest_GetKeyClaimsForMyUuid::FRequest_GetKeyClaimsForMyUuid()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetKeyClaimsForMyUuid::GetSimplifiedPath() const
@@ -1886,10 +1877,9 @@ void FKeyClaimsAPI::OnGetPlayerUuidKeyClaimResponse(FHttpRequestPtr HttpRequest,
 }
 
 FRequest_GetPlayerUuidKeyClaim::FRequest_GetPlayerUuidKeyClaim()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetPlayerUuidKeyClaim::GetSimplifiedPath() const
@@ -2086,10 +2076,9 @@ void FKeyClaimsAPI::OnGetPlayerUuidKeyClaimSelfResponse(FHttpRequestPtr HttpRequ
 }
 
 FRequest_GetPlayerUuidKeyClaimSelf::FRequest_GetPlayerUuidKeyClaimSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetPlayerUuidKeyClaimSelf::GetSimplifiedPath() const
@@ -2285,10 +2274,9 @@ void FKeyClaimsAPI::OnGetPlayerUuidKeyClaimsResponse(FHttpRequestPtr HttpRequest
 }
 
 FRequest_GetPlayerUuidKeyClaims::FRequest_GetPlayerUuidKeyClaims()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetPlayerUuidKeyClaims::GetSimplifiedPath() const

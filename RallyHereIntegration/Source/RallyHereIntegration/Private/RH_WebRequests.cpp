@@ -449,6 +449,17 @@ TSharedPtr<FJsonObject> FRH_WebRequests::CreateJsonObjectFromWebRequest(const FR
 	Metadata->SetStringField(TEXT("Identifier"), request.Metadata.Identifier.ToString(EGuidFormats::DigitsWithHyphens));
 	Metadata->SetStringField(TEXT("Simplified Path"), request.Metadata.SimplifiedPath.ToString());
 	Metadata->SetNumberField(TEXT("Retry Count"), request.Metadata.RetryCount);
+	Metadata->SetStringField(TEXT("Create-Time"), request.Metadata.CreateTimestamp.ToIso8601());
+	Metadata->SetStringField(TEXT("Queued-Time"), request.Metadata.QueuedTimestamp.ToIso8601());
+	Metadata->SetStringField(TEXT("Http-Queued-Time"), request.Metadata.HttpQueuedTimestamp.ToIso8601());
+	
+	// calculate durations
+	if (request.Metadata.QueuedTimestamp.GetTicks() > 0 && request.Metadata.HttpQueuedTimestamp.GetTicks() > 0)
+	{
+		Metadata->SetStringField(TEXT("Requester-Queue-Duration-Time"), (request.Metadata.HttpQueuedTimestamp - request.Metadata.QueuedTimestamp).ToString());
+		Metadata->SetStringField(TEXT("Http-Queue-Duration-Time"), (request.Timestamp - request.Metadata.HttpQueuedTimestamp).ToString());
+	}
+	
 	WebRequestJson->SetObjectField(TEXT("Metadata"), Metadata);
 
 	// Responses
@@ -460,7 +471,7 @@ TSharedPtr<FJsonObject> FRH_WebRequests::CreateJsonObjectFromWebRequest(const FR
 		Response->SetBoolField(TEXT("Http-Success"), request.Responses[x].ResponseSuccess);
 		Response->SetNumberField(TEXT("Response-Code"), request.Responses[x].ResponseCode);
 		Response->SetStringField(TEXT("Received-Time"), request.Responses[x].ReceivedTime.ToIso8601());
-		Response->SetNumberField(TEXT("Duration-Time"), (request.Responses[x].ReceivedTime - request.Timestamp).GetTotalSeconds());
+		Response->SetStringField(TEXT("Http-Duration-Time"), (request.Responses[x].ReceivedTime - request.Metadata.HttpQueuedTimestamp).ToString());
 
 		Reader = TJsonReaderFactory<>::Create(request.Responses[x].Content);
 		if (FJsonSerializer::Deserialize(Reader, JsonValue) && JsonValue.IsValid())

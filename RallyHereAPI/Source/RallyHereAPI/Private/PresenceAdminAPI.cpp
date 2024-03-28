@@ -82,10 +82,9 @@ void FPresenceAdminAPI::OnAdminGetKnownPlatformsResponse(FHttpRequestPtr HttpReq
 }
 
 FRequest_AdminGetKnownPlatforms::FRequest_AdminGetKnownPlatforms()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetKnownPlatforms::GetSimplifiedPath() const
@@ -260,10 +259,9 @@ void FPresenceAdminAPI::OnAdminGetPlayerPresenceResponse(FHttpRequestPtr HttpReq
 }
 
 FRequest_AdminGetPlayerPresence::FRequest_AdminGetPlayerPresence()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetPlayerPresence::GetSimplifiedPath() const
@@ -455,10 +453,9 @@ void FPresenceAdminAPI::OnAdminGetPlayerPresenceIdResponse(FHttpRequestPtr HttpR
 }
 
 FRequest_AdminGetPlayerPresenceId::FRequest_AdminGetPlayerPresenceId()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetPlayerPresenceId::GetSimplifiedPath() const
@@ -650,10 +647,9 @@ void FPresenceAdminAPI::OnAdminGetRequestingCcuResponse(FHttpRequestPtr HttpRequ
 }
 
 FRequest_AdminGetRequestingCcu::FRequest_AdminGetRequestingCcu()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetRequestingCcu::GetSimplifiedPath() const
@@ -830,10 +826,9 @@ void FPresenceAdminAPI::OnAdminGetRequestingCcuAllPlatformCombinedResponse(FHttp
 }
 
 FRequest_AdminGetRequestingCcuAllPlatformCombined::FRequest_AdminGetRequestingCcuAllPlatformCombined()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetRequestingCcuAllPlatformCombined::GetSimplifiedPath() const
@@ -1010,10 +1005,9 @@ void FPresenceAdminAPI::OnAdminGetRequestingCcuAllPlatformIndividualResponse(FHt
 }
 
 FRequest_AdminGetRequestingCcuAllPlatformIndividual::FRequest_AdminGetRequestingCcuAllPlatformIndividual()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetRequestingCcuAllPlatformIndividual::GetSimplifiedPath() const
@@ -1190,10 +1184,9 @@ void FPresenceAdminAPI::OnAdminGetRequestingCcuIndividualResponse(FHttpRequestPt
 }
 
 FRequest_AdminGetRequestingCcuIndividual::FRequest_AdminGetRequestingCcuIndividual()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetRequestingCcuIndividual::GetSimplifiedPath() const
@@ -1370,10 +1363,9 @@ void FPresenceAdminAPI::OnAdminGetRequestingCcuPlatformCombinedResponse(FHttpReq
 }
 
 FRequest_AdminGetRequestingCcuPlatformCombined::FRequest_AdminGetRequestingCcuPlatformCombined()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetRequestingCcuPlatformCombined::GetSimplifiedPath() const
@@ -1555,10 +1547,9 @@ void FPresenceAdminAPI::OnAdminGetRequestingCcuPlatformIndividualResponse(FHttpR
 }
 
 FRequest_AdminGetRequestingCcuPlatformIndividual::FRequest_AdminGetRequestingCcuPlatformIndividual()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetRequestingCcuPlatformIndividual::GetSimplifiedPath() const
@@ -1740,10 +1731,9 @@ void FPresenceAdminAPI::OnAdminGetTotalCcuResponse(FHttpRequestPtr HttpRequest, 
 }
 
 FRequest_AdminGetTotalCcu::FRequest_AdminGetTotalCcu()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetTotalCcu::GetSimplifiedPath() const
@@ -1920,10 +1910,9 @@ void FPresenceAdminAPI::OnAdminGetTotalCcuAllPlatformCombinedResponse(FHttpReque
 }
 
 FRequest_AdminGetTotalCcuAllPlatformCombined::FRequest_AdminGetTotalCcuAllPlatformCombined()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetTotalCcuAllPlatformCombined::GetSimplifiedPath() const
@@ -2100,10 +2089,9 @@ void FPresenceAdminAPI::OnAdminGetTotalCcuAllPlatformIndividualResponse(FHttpReq
 }
 
 FRequest_AdminGetTotalCcuAllPlatformIndividual::FRequest_AdminGetTotalCcuAllPlatformIndividual()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetTotalCcuAllPlatformIndividual::GetSimplifiedPath() const
@@ -2280,10 +2268,9 @@ void FPresenceAdminAPI::OnAdminGetTotalCcuIndividualResponse(FHttpRequestPtr Htt
 }
 
 FRequest_AdminGetTotalCcuIndividual::FRequest_AdminGetTotalCcuIndividual()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetTotalCcuIndividual::GetSimplifiedPath() const
@@ -2460,10 +2447,9 @@ void FPresenceAdminAPI::OnAdminGetTotalCcuPlatformCombinedResponse(FHttpRequestP
 }
 
 FRequest_AdminGetTotalCcuPlatformCombined::FRequest_AdminGetTotalCcuPlatformCombined()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetTotalCcuPlatformCombined::GetSimplifiedPath() const
@@ -2645,10 +2631,9 @@ void FPresenceAdminAPI::OnAdminGetTotalCcuPlatformIndividualResponse(FHttpReques
 }
 
 FRequest_AdminGetTotalCcuPlatformIndividual::FRequest_AdminGetTotalCcuPlatformIndividual()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetTotalCcuPlatformIndividual::GetSimplifiedPath() const
@@ -2830,10 +2815,9 @@ void FPresenceAdminAPI::OnAdminGetUpdatingCcuResponse(FHttpRequestPtr HttpReques
 }
 
 FRequest_AdminGetUpdatingCcu::FRequest_AdminGetUpdatingCcu()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetUpdatingCcu::GetSimplifiedPath() const
@@ -3010,10 +2994,9 @@ void FPresenceAdminAPI::OnAdminGetUpdatingCcuAllPlatformCombinedResponse(FHttpRe
 }
 
 FRequest_AdminGetUpdatingCcuAllPlatformCombined::FRequest_AdminGetUpdatingCcuAllPlatformCombined()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetUpdatingCcuAllPlatformCombined::GetSimplifiedPath() const
@@ -3190,10 +3173,9 @@ void FPresenceAdminAPI::OnAdminGetUpdatingCcuAllPlatformIndividualResponse(FHttp
 }
 
 FRequest_AdminGetUpdatingCcuAllPlatformIndividual::FRequest_AdminGetUpdatingCcuAllPlatformIndividual()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetUpdatingCcuAllPlatformIndividual::GetSimplifiedPath() const
@@ -3370,10 +3352,9 @@ void FPresenceAdminAPI::OnAdminGetUpdatingCcuIndividualResponse(FHttpRequestPtr 
 }
 
 FRequest_AdminGetUpdatingCcuIndividual::FRequest_AdminGetUpdatingCcuIndividual()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetUpdatingCcuIndividual::GetSimplifiedPath() const
@@ -3550,10 +3531,9 @@ void FPresenceAdminAPI::OnAdminGetUpdatingCcuPlatformCombinedResponse(FHttpReque
 }
 
 FRequest_AdminGetUpdatingCcuPlatformCombined::FRequest_AdminGetUpdatingCcuPlatformCombined()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetUpdatingCcuPlatformCombined::GetSimplifiedPath() const
@@ -3735,10 +3715,9 @@ void FPresenceAdminAPI::OnAdminGetUpdatingCcuPlatformIndividualResponse(FHttpReq
 }
 
 FRequest_AdminGetUpdatingCcuPlatformIndividual::FRequest_AdminGetUpdatingCcuPlatformIndividual()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetUpdatingCcuPlatformIndividual::GetSimplifiedPath() const
@@ -3920,10 +3899,9 @@ void FPresenceAdminAPI::OnAdminUpdatePlayerLastSeenResponse(FHttpRequestPtr Http
 }
 
 FRequest_AdminUpdatePlayerLastSeen::FRequest_AdminUpdatePlayerLastSeen()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminUpdatePlayerLastSeen::GetSimplifiedPath() const
@@ -4151,10 +4129,9 @@ void FPresenceAdminAPI::OnAdminUpdatePlayerLastSeenIdResponse(FHttpRequestPtr Ht
 }
 
 FRequest_AdminUpdatePlayerLastSeenId::FRequest_AdminUpdatePlayerLastSeenId()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminUpdatePlayerLastSeenId::GetSimplifiedPath() const

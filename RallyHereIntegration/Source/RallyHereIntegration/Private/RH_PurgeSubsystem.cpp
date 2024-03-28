@@ -92,8 +92,7 @@ void URH_PurgeSubsystem::OnPurgeMe(const RallyHereAPI::FResponse_QueueMeForPurge
 	}
 	else
 	{
-		auto Error = FRH_ErrorInfo();
-		Error.ImportErrorInfo(Resp);
+		auto Error = FRH_ErrorInfo(Resp);
 		Delegate.ExecuteIfBound(false, PurgeStatus, Error);
 	}
 }
@@ -108,8 +107,7 @@ void URH_PurgeSubsystem::OnDequeueMe(const RallyHereAPI::FResponse_DequeueMeForP
 	}
 	else
 	{
-		auto Error = FRH_ErrorInfo();
-		Error.ImportErrorInfo(Resp);
+		auto Error = FRH_ErrorInfo(Resp);
 		Delegate.ExecuteIfBound(false, PurgeStatus, Error);
 	}
 }
@@ -129,8 +127,7 @@ void URH_PurgeSubsystem::OnGetMyPurgeStatus(const RallyHereAPI::FResponse_GetQue
 	}
 	else
 	{
-		auto Error = FRH_ErrorInfo();
-		Error.ImportErrorInfo(Resp);
+		auto Error = FRH_ErrorInfo(Resp);
 		Delegate.ExecuteIfBound(false, PurgeStatus, Error);
 	}
 }

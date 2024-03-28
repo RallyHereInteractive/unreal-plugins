@@ -82,10 +82,9 @@ void FFriendsV1API::OnAddFriendResponse(FHttpRequestPtr HttpRequest, FHttpRespon
 }
 
 FRequest_AddFriend::FRequest_AddFriend()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AddFriend::GetSimplifiedPath() const
@@ -339,10 +338,9 @@ void FFriendsV1API::OnAddNotesResponse(FHttpRequestPtr HttpRequest, FHttpRespons
 }
 
 FRequest_AddNotes::FRequest_AddNotes()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AddNotes::GetSimplifiedPath() const
@@ -591,10 +589,9 @@ void FFriendsV1API::OnDeleteFriendResponse(FHttpRequestPtr HttpRequest, FHttpRes
 }
 
 FRequest_DeleteFriend::FRequest_DeleteFriend()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_DeleteFriend::GetSimplifiedPath() const
@@ -824,10 +821,9 @@ void FFriendsV1API::OnDeleteFriendsResponse(FHttpRequestPtr HttpRequest, FHttpRe
 }
 
 FRequest_DeleteFriends::FRequest_DeleteFriends()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_DeleteFriends::GetSimplifiedPath() const
@@ -1024,10 +1020,9 @@ void FFriendsV1API::OnDeleteNotesResponse(FHttpRequestPtr HttpRequest, FHttpResp
 }
 
 FRequest_DeleteNotes::FRequest_DeleteNotes()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_DeleteNotes::GetSimplifiedPath() const
@@ -1220,10 +1215,9 @@ void FFriendsV1API::OnGetFriendRelationshipResponse(FHttpRequestPtr HttpRequest,
 }
 
 FRequest_GetFriendRelationship::FRequest_GetFriendRelationship()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetFriendRelationship::GetSimplifiedPath() const
@@ -1463,10 +1457,9 @@ void FFriendsV1API::OnGetFriendsListForPlayerResponse(FHttpRequestPtr HttpReques
 }
 
 FRequest_GetFriendsListForPlayer::FRequest_GetFriendsListForPlayer()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetFriendsListForPlayer::GetSimplifiedPath() const

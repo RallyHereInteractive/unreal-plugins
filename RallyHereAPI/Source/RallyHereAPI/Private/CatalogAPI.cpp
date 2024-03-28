@@ -82,10 +82,9 @@ void FCatalogAPI::OnGetCatalogAllResponse(FHttpRequestPtr HttpRequest, FHttpResp
 }
 
 FRequest_GetCatalogAll::FRequest_GetCatalogAll()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetCatalogAll::GetSimplifiedPath() const
@@ -307,10 +306,9 @@ void FCatalogAPI::OnGetCatalogEntitlementSkuResponse(FHttpRequestPtr HttpRequest
 }
 
 FRequest_GetCatalogEntitlementSku::FRequest_GetCatalogEntitlementSku()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetCatalogEntitlementSku::GetSimplifiedPath() const
@@ -538,10 +536,9 @@ void FCatalogAPI::OnGetCatalogEntitlementSkuAllResponse(FHttpRequestPtr HttpRequ
 }
 
 FRequest_GetCatalogEntitlementSkuAll::FRequest_GetCatalogEntitlementSkuAll()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetCatalogEntitlementSkuAll::GetSimplifiedPath() const
@@ -763,10 +760,9 @@ void FCatalogAPI::OnGetCatalogInventoryBucketUseRuleSetResponse(FHttpRequestPtr 
 }
 
 FRequest_GetCatalogInventoryBucketUseRuleSet::FRequest_GetCatalogInventoryBucketUseRuleSet()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetCatalogInventoryBucketUseRuleSet::GetSimplifiedPath() const
@@ -993,10 +989,9 @@ void FCatalogAPI::OnGetCatalogInventoryBucketUseRuleSetsAllResponse(FHttpRequest
 }
 
 FRequest_GetCatalogInventoryBucketUseRuleSetsAll::FRequest_GetCatalogInventoryBucketUseRuleSetsAll()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetCatalogInventoryBucketUseRuleSetsAll::GetSimplifiedPath() const
@@ -1218,10 +1213,9 @@ void FCatalogAPI::OnGetCatalogItemResponse(FHttpRequestPtr HttpRequest, FHttpRes
 }
 
 FRequest_GetCatalogItem::FRequest_GetCatalogItem()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetCatalogItem::GetSimplifiedPath() const
@@ -1448,10 +1442,9 @@ void FCatalogAPI::OnGetCatalogItemsAllResponse(FHttpRequestPtr HttpRequest, FHtt
 }
 
 FRequest_GetCatalogItemsAll::FRequest_GetCatalogItemsAll()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetCatalogItemsAll::GetSimplifiedPath() const
@@ -1673,10 +1666,9 @@ void FCatalogAPI::OnGetCatalogLootResponse(FHttpRequestPtr HttpRequest, FHttpRes
 }
 
 FRequest_GetCatalogLoot::FRequest_GetCatalogLoot()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetCatalogLoot::GetSimplifiedPath() const
@@ -1903,10 +1895,9 @@ void FCatalogAPI::OnGetCatalogLootsAllResponse(FHttpRequestPtr HttpRequest, FHtt
 }
 
 FRequest_GetCatalogLootsAll::FRequest_GetCatalogLootsAll()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetCatalogLootsAll::GetSimplifiedPath() const
@@ -2128,10 +2119,9 @@ void FCatalogAPI::OnGetCatalogPortalUseRulesetResponse(FHttpRequestPtr HttpReque
 }
 
 FRequest_GetCatalogPortalUseRuleset::FRequest_GetCatalogPortalUseRuleset()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetCatalogPortalUseRuleset::GetSimplifiedPath() const
@@ -2358,10 +2348,9 @@ void FCatalogAPI::OnGetCatalogPortalUseRulesetsAllResponse(FHttpRequestPtr HttpR
 }
 
 FRequest_GetCatalogPortalUseRulesetsAll::FRequest_GetCatalogPortalUseRulesetsAll()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetCatalogPortalUseRulesetsAll::GetSimplifiedPath() const
@@ -2583,10 +2572,9 @@ void FCatalogAPI::OnGetCatalogPricePointResponse(FHttpRequestPtr HttpRequest, FH
 }
 
 FRequest_GetCatalogPricePoint::FRequest_GetCatalogPricePoint()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetCatalogPricePoint::GetSimplifiedPath() const
@@ -2813,10 +2801,9 @@ void FCatalogAPI::OnGetCatalogPricePointsAllResponse(FHttpRequestPtr HttpRequest
 }
 
 FRequest_GetCatalogPricePointsAll::FRequest_GetCatalogPricePointsAll()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetCatalogPricePointsAll::GetSimplifiedPath() const
@@ -3038,10 +3025,9 @@ void FCatalogAPI::OnGetCatalogTimeFrameResponse(FHttpRequestPtr HttpRequest, FHt
 }
 
 FRequest_GetCatalogTimeFrame::FRequest_GetCatalogTimeFrame()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetCatalogTimeFrame::GetSimplifiedPath() const
@@ -3268,10 +3254,9 @@ void FCatalogAPI::OnGetCatalogTimeFramesAllResponse(FHttpRequestPtr HttpRequest,
 }
 
 FRequest_GetCatalogTimeFramesAll::FRequest_GetCatalogTimeFramesAll()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetCatalogTimeFramesAll::GetSimplifiedPath() const
@@ -3493,10 +3478,9 @@ void FCatalogAPI::OnGetCatalogVendorResponse(FHttpRequestPtr HttpRequest, FHttpR
 }
 
 FRequest_GetCatalogVendor::FRequest_GetCatalogVendor()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetCatalogVendor::GetSimplifiedPath() const
@@ -3723,10 +3707,9 @@ void FCatalogAPI::OnGetCatalogVendorsAllResponse(FHttpRequestPtr HttpRequest, FH
 }
 
 FRequest_GetCatalogVendorsAll::FRequest_GetCatalogVendorsAll()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetCatalogVendorsAll::GetSimplifiedPath() const
@@ -3948,10 +3931,9 @@ void FCatalogAPI::OnGetCatalogXpAllResponse(FHttpRequestPtr HttpRequest, FHttpRe
 }
 
 FRequest_GetCatalogXpAll::FRequest_GetCatalogXpAll()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetCatalogXpAll::GetSimplifiedPath() const
@@ -4173,10 +4155,9 @@ void FCatalogAPI::OnGetCatalogXpTableResponse(FHttpRequestPtr HttpRequest, FHttp
 }
 
 FRequest_GetCatalogXpTable::FRequest_GetCatalogXpTable()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetCatalogXpTable::GetSimplifiedPath() const

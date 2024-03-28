@@ -82,10 +82,9 @@ void FInventoryAPI::OnCreateNewInventorySessionResponse(FHttpRequestPtr HttpRequ
 }
 
 FRequest_CreateNewInventorySession::FRequest_CreateNewInventorySession()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_CreateNewInventorySession::GetSimplifiedPath() const
@@ -268,10 +267,9 @@ void FInventoryAPI::OnCreateNewInventorySessionByPlayerUuidResponse(FHttpRequest
 }
 
 FRequest_CreateNewInventorySessionByPlayerUuid::FRequest_CreateNewInventorySessionByPlayerUuid()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_CreateNewInventorySessionByPlayerUuid::GetSimplifiedPath() const
@@ -454,10 +452,9 @@ void FInventoryAPI::OnCreateNewInventorySessionByPlayerUuidSelfResponse(FHttpReq
 }
 
 FRequest_CreateNewInventorySessionByPlayerUuidSelf::FRequest_CreateNewInventorySessionByPlayerUuidSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_CreateNewInventorySessionByPlayerUuidSelf::GetSimplifiedPath() const
@@ -635,10 +632,9 @@ void FInventoryAPI::OnCreateNewInventorySessionSelfResponse(FHttpRequestPtr Http
 }
 
 FRequest_CreateNewInventorySessionSelf::FRequest_CreateNewInventorySessionSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_CreateNewInventorySessionSelf::GetSimplifiedPath() const
@@ -816,10 +812,9 @@ void FInventoryAPI::OnCreateNewPlayerOrderResponse(FHttpRequestPtr HttpRequest, 
 }
 
 FRequest_CreateNewPlayerOrder::FRequest_CreateNewPlayerOrder()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_CreateNewPlayerOrder::GetSimplifiedPath() const
@@ -1014,10 +1009,9 @@ void FInventoryAPI::OnCreateNewPlayerOrderSelfResponse(FHttpRequestPtr HttpReque
 }
 
 FRequest_CreateNewPlayerOrderSelf::FRequest_CreateNewPlayerOrderSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_CreateNewPlayerOrderSelf::GetSimplifiedPath() const
@@ -1207,10 +1201,9 @@ void FInventoryAPI::OnCreateNewPlayerUuidOrderResponse(FHttpRequestPtr HttpReque
 }
 
 FRequest_CreateNewPlayerUuidOrder::FRequest_CreateNewPlayerUuidOrder()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_CreateNewPlayerUuidOrder::GetSimplifiedPath() const
@@ -1405,10 +1398,9 @@ void FInventoryAPI::OnCreateNewPlayerUuidOrderSelfResponse(FHttpRequestPtr HttpR
 }
 
 FRequest_CreateNewPlayerUuidOrderSelf::FRequest_CreateNewPlayerUuidOrderSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_CreateNewPlayerUuidOrderSelf::GetSimplifiedPath() const
@@ -1598,10 +1590,9 @@ void FInventoryAPI::OnCreatePlayerInventoryResponse(FHttpRequestPtr HttpRequest,
 }
 
 FRequest_CreatePlayerInventory::FRequest_CreatePlayerInventory()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_CreatePlayerInventory::GetSimplifiedPath() const
@@ -1796,10 +1787,9 @@ void FInventoryAPI::OnCreatePlayerInventorySelfResponse(FHttpRequestPtr HttpRequ
 }
 
 FRequest_CreatePlayerInventorySelf::FRequest_CreatePlayerInventorySelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_CreatePlayerInventorySelf::GetSimplifiedPath() const
@@ -1989,10 +1979,9 @@ void FInventoryAPI::OnCreatePlayerInventoryUuidResponse(FHttpRequestPtr HttpRequ
 }
 
 FRequest_CreatePlayerInventoryUuid::FRequest_CreatePlayerInventoryUuid()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_CreatePlayerInventoryUuid::GetSimplifiedPath() const
@@ -2187,10 +2176,9 @@ void FInventoryAPI::OnCreatePlayerInventoryUuidSelfResponse(FHttpRequestPtr Http
 }
 
 FRequest_CreatePlayerInventoryUuidSelf::FRequest_CreatePlayerInventoryUuidSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_CreatePlayerInventoryUuidSelf::GetSimplifiedPath() const
@@ -2380,10 +2368,9 @@ void FInventoryAPI::OnGetInventorySessionInfoResponse(FHttpRequestPtr HttpReques
 }
 
 FRequest_GetInventorySessionInfo::FRequest_GetInventorySessionInfo()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetInventorySessionInfo::GetSimplifiedPath() const
@@ -2555,10 +2542,9 @@ void FInventoryAPI::OnGetInventorySessionInfoByPlayerUuidResponse(FHttpRequestPt
 }
 
 FRequest_GetInventorySessionInfoByPlayerUuid::FRequest_GetInventorySessionInfoByPlayerUuid()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetInventorySessionInfoByPlayerUuid::GetSimplifiedPath() const
@@ -2730,10 +2716,9 @@ void FInventoryAPI::OnGetInventorySessionInfoByPlayerUuidSelfResponse(FHttpReque
 }
 
 FRequest_GetInventorySessionInfoByPlayerUuidSelf::FRequest_GetInventorySessionInfoByPlayerUuidSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetInventorySessionInfoByPlayerUuidSelf::GetSimplifiedPath() const
@@ -2888,10 +2873,9 @@ void FInventoryAPI::OnGetInventorySessionInfoSelfResponse(FHttpRequestPtr HttpRe
 }
 
 FRequest_GetInventorySessionInfoSelf::FRequest_GetInventorySessionInfoSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetInventorySessionInfoSelf::GetSimplifiedPath() const
@@ -3046,10 +3030,9 @@ void FInventoryAPI::OnGetPlayerInventoryResponse(FHttpRequestPtr HttpRequest, FH
 }
 
 FRequest_GetPlayerInventory::FRequest_GetPlayerInventory()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetPlayerInventory::GetSimplifiedPath() const
@@ -3255,10 +3238,9 @@ void FInventoryAPI::OnGetPlayerInventorySelfResponse(FHttpRequestPtr HttpRequest
 }
 
 FRequest_GetPlayerInventorySelf::FRequest_GetPlayerInventorySelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetPlayerInventorySelf::GetSimplifiedPath() const
@@ -3459,10 +3441,9 @@ void FInventoryAPI::OnGetPlayerInventoryUuidResponse(FHttpRequestPtr HttpRequest
 }
 
 FRequest_GetPlayerInventoryUuid::FRequest_GetPlayerInventoryUuid()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetPlayerInventoryUuid::GetSimplifiedPath() const
@@ -3668,10 +3649,9 @@ void FInventoryAPI::OnGetPlayerInventoryUuidSelfResponse(FHttpRequestPtr HttpReq
 }
 
 FRequest_GetPlayerInventoryUuidSelf::FRequest_GetPlayerInventoryUuidSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetPlayerInventoryUuidSelf::GetSimplifiedPath() const
@@ -3872,10 +3852,9 @@ void FInventoryAPI::OnGetPlayerOrderByIdResponse(FHttpRequestPtr HttpRequest, FH
 }
 
 FRequest_GetPlayerOrderById::FRequest_GetPlayerOrderById()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetPlayerOrderById::GetSimplifiedPath() const
@@ -4060,10 +4039,9 @@ void FInventoryAPI::OnGetPlayerOrderByIdSelfResponse(FHttpRequestPtr HttpRequest
 }
 
 FRequest_GetPlayerOrderByIdSelf::FRequest_GetPlayerOrderByIdSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetPlayerOrderByIdSelf::GetSimplifiedPath() const
@@ -4247,10 +4225,9 @@ void FInventoryAPI::OnGetPlayerOrdersResponse(FHttpRequestPtr HttpRequest, FHttp
 }
 
 FRequest_GetPlayerOrders::FRequest_GetPlayerOrders()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetPlayerOrders::GetSimplifiedPath() const
@@ -4442,10 +4419,9 @@ void FInventoryAPI::OnGetPlayerOrdersSelfResponse(FHttpRequestPtr HttpRequest, F
 }
 
 FRequest_GetPlayerOrdersSelf::FRequest_GetPlayerOrdersSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetPlayerOrdersSelf::GetSimplifiedPath() const
@@ -4632,10 +4608,9 @@ void FInventoryAPI::OnGetPlayerUuidOrderByIdResponse(FHttpRequestPtr HttpRequest
 }
 
 FRequest_GetPlayerUuidOrderById::FRequest_GetPlayerUuidOrderById()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetPlayerUuidOrderById::GetSimplifiedPath() const
@@ -4820,10 +4795,9 @@ void FInventoryAPI::OnGetPlayerUuidOrderByIdSelfResponse(FHttpRequestPtr HttpReq
 }
 
 FRequest_GetPlayerUuidOrderByIdSelf::FRequest_GetPlayerUuidOrderByIdSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetPlayerUuidOrderByIdSelf::GetSimplifiedPath() const
@@ -5007,10 +4981,9 @@ void FInventoryAPI::OnGetPlayerUuidOrdersResponse(FHttpRequestPtr HttpRequest, F
 }
 
 FRequest_GetPlayerUuidOrders::FRequest_GetPlayerUuidOrders()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetPlayerUuidOrders::GetSimplifiedPath() const
@@ -5202,10 +5175,9 @@ void FInventoryAPI::OnGetPlayerUuidOrdersSelfResponse(FHttpRequestPtr HttpReques
 }
 
 FRequest_GetPlayerUuidOrdersSelf::FRequest_GetPlayerUuidOrdersSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetPlayerUuidOrdersSelf::GetSimplifiedPath() const
@@ -5392,10 +5364,9 @@ void FInventoryAPI::OnModifyManyPlayerInventoryResponse(FHttpRequestPtr HttpRequ
 }
 
 FRequest_ModifyManyPlayerInventory::FRequest_ModifyManyPlayerInventory()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_ModifyManyPlayerInventory::GetSimplifiedPath() const
@@ -5590,10 +5561,9 @@ void FInventoryAPI::OnModifyManyPlayerInventorySelfResponse(FHttpRequestPtr Http
 }
 
 FRequest_ModifyManyPlayerInventorySelf::FRequest_ModifyManyPlayerInventorySelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_ModifyManyPlayerInventorySelf::GetSimplifiedPath() const
@@ -5783,10 +5753,9 @@ void FInventoryAPI::OnModifyManyPlayerInventoryUuidResponse(FHttpRequestPtr Http
 }
 
 FRequest_ModifyManyPlayerInventoryUuid::FRequest_ModifyManyPlayerInventoryUuid()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_ModifyManyPlayerInventoryUuid::GetSimplifiedPath() const
@@ -5981,10 +5950,9 @@ void FInventoryAPI::OnModifyManyPlayerInventoryUuidSelfResponse(FHttpRequestPtr 
 }
 
 FRequest_ModifyManyPlayerInventoryUuidSelf::FRequest_ModifyManyPlayerInventoryUuidSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_ModifyManyPlayerInventoryUuidSelf::GetSimplifiedPath() const
@@ -6174,10 +6142,9 @@ void FInventoryAPI::OnModifyPlayerInventoryResponse(FHttpRequestPtr HttpRequest,
 }
 
 FRequest_ModifyPlayerInventory::FRequest_ModifyPlayerInventory()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_ModifyPlayerInventory::GetSimplifiedPath() const
@@ -6373,10 +6340,9 @@ void FInventoryAPI::OnModifyPlayerInventorySelfResponse(FHttpRequestPtr HttpRequ
 }
 
 FRequest_ModifyPlayerInventorySelf::FRequest_ModifyPlayerInventorySelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_ModifyPlayerInventorySelf::GetSimplifiedPath() const
@@ -6571,10 +6537,9 @@ void FInventoryAPI::OnModifyPlayerInventoryUuidResponse(FHttpRequestPtr HttpRequ
 }
 
 FRequest_ModifyPlayerInventoryUuid::FRequest_ModifyPlayerInventoryUuid()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_ModifyPlayerInventoryUuid::GetSimplifiedPath() const
@@ -6770,10 +6735,9 @@ void FInventoryAPI::OnModifyPlayerInventoryUuidSelfResponse(FHttpRequestPtr Http
 }
 
 FRequest_ModifyPlayerInventoryUuidSelf::FRequest_ModifyPlayerInventoryUuidSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_ModifyPlayerInventoryUuidSelf::GetSimplifiedPath() const

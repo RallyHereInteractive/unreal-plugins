@@ -82,10 +82,9 @@ void FConfigAPI::OnGetAppSettingsAllResponse(FHttpRequestPtr HttpRequest, FHttpR
 }
 
 FRequest_GetAppSettingsAll::FRequest_GetAppSettingsAll()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetAppSettingsAll::GetSimplifiedPath() const
@@ -291,10 +290,9 @@ void FConfigAPI::OnGetAppSettingsClientResponse(FHttpRequestPtr HttpRequest, FHt
 }
 
 FRequest_GetAppSettingsClient::FRequest_GetAppSettingsClient()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetAppSettingsClient::GetSimplifiedPath() const
@@ -481,10 +479,9 @@ void FConfigAPI::OnGetAppSettingsServerResponse(FHttpRequestPtr HttpRequest, FHt
 }
 
 FRequest_GetAppSettingsServer::FRequest_GetAppSettingsServer()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetAppSettingsServer::GetSimplifiedPath() const

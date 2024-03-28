@@ -12,16 +12,16 @@ FRallyHereAPIHttpRequester::FRallyHereAPIHttpRequester()
 	PendingRequestCount = 0;
 }
 
-void FRallyHereAPIHttpRequester::FlushRequestQueue()
+void FRallyHereAPIHttpRequester::FlushRequestQueue(bool bIsExiting)
 {
 	// temporarily unlimit requests
 	TGuardValue<int32> MaxRequestsGuard(MaxSimultaneousRequests, 0);
 
 	// execute all queued requests
-	TryExecuteNextRequest();
+	TryExecuteNextRequest(bIsExiting);
 }
 
-void FRallyHereAPIHttpRequester::TryExecuteNextRequest()
+void FRallyHereAPIHttpRequester::TryExecuteNextRequest(bool bIsExiting)
 {
 	if (!CanExecuteRequest())
 	{
@@ -40,12 +40,15 @@ void FRallyHereAPIHttpRequester::TryExecuteNextRequest()
 				while ((*findItem).Num())
 				{
 					const auto Request = (*findItem).Pop();
+					Request->Metadata.HttpQueuedTimestamp = FDateTime::Now();
 					Request->HttpRequest->OnProcessRequestComplete().BindSP(AsShared(), &FRallyHereAPIHttpRequester::OnResponse, Request->ResponseDelegate);
 					if (Request->HttpRequest->ProcessRequest())
 					{
 						PendingRequestCount++;
 					}
 
+					// do not fire callback if exiting
+					if (!bIsExiting)
 					{
 						SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestStarted, FColor::Purple);
 						Request->API->OnRequestStarted().Broadcast(Request->Metadata, Request->HttpRequest);
@@ -81,6 +84,8 @@ void FRallyHereAPIHttpRequester::OnResponse(FHttpRequestPtr HttpRequest, FHttpRe
 
 void FRallyHereAPIHttpRequester::EnqueueHttpRequest(TSharedPtr<struct FRallyHereAPIHttpRequestData> RequestData)
 {
+	RequestData->Metadata.QueuedTimestamp = FDateTime::Now();
+
 	if (auto findItem = HttpRequestQueue.Find(RequestData->Priority))
 	{
 		(*findItem).Insert(RequestData, 0);

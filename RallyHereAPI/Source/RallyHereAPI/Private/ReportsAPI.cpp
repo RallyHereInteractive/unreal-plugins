@@ -82,10 +82,9 @@ void FReportsAPI::OnCreateReportForTargetPlayerUuidResponse(FHttpRequestPtr Http
 }
 
 FRequest_CreateReportForTargetPlayerUuid::FRequest_CreateReportForTargetPlayerUuid()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_CreateReportForTargetPlayerUuid::GetSimplifiedPath() const
@@ -292,10 +291,9 @@ void FReportsAPI::OnGetReportsForTargetPlayerUuidResponse(FHttpRequestPtr HttpRe
 }
 
 FRequest_GetReportsForTargetPlayerUuid::FRequest_GetReportsForTargetPlayerUuid()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetReportsForTargetPlayerUuid::GetSimplifiedPath() const
@@ -491,10 +489,9 @@ void FReportsAPI::OnGetReportsForTargetPlayerUuidSelfResponse(FHttpRequestPtr Ht
 }
 
 FRequest_GetReportsForTargetPlayerUuidSelf::FRequest_GetReportsForTargetPlayerUuidSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetReportsForTargetPlayerUuidSelf::GetSimplifiedPath() const
@@ -685,10 +682,9 @@ void FReportsAPI::OnGetReportsFromSourcePlayerUuidResponse(FHttpRequestPtr HttpR
 }
 
 FRequest_GetReportsFromSourcePlayerUuid::FRequest_GetReportsFromSourcePlayerUuid()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetReportsFromSourcePlayerUuid::GetSimplifiedPath() const
@@ -884,10 +880,9 @@ void FReportsAPI::OnGetReportsFromSourcePlayerUuidSelfResponse(FHttpRequestPtr H
 }
 
 FRequest_GetReportsFromSourcePlayerUuidSelf::FRequest_GetReportsFromSourcePlayerUuidSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetReportsFromSourcePlayerUuidSelf::GetSimplifiedPath() const

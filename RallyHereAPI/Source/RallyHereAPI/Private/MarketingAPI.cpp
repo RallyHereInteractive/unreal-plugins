@@ -82,10 +82,9 @@ void FMarketingAPI::OnGetMarketingCampaignsResponse(FHttpRequestPtr HttpRequest,
 }
 
 FRequest_GetMarketingCampaigns::FRequest_GetMarketingCampaigns()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetMarketingCampaigns::GetSimplifiedPath() const

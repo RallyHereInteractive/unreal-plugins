@@ -82,10 +82,9 @@ void FAuthAPI::OnGenerateKeyResponse(FHttpRequestPtr HttpRequest, FHttpResponseP
 }
 
 FRequest_GenerateKey::FRequest_GenerateKey()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GenerateKey::GetSimplifiedPath() const
@@ -217,10 +216,9 @@ void FAuthAPI::OnGetAllPublicKeysResponse(FHttpRequestPtr HttpRequest, FHttpResp
 }
 
 FRequest_GetAllPublicKeys::FRequest_GetAllPublicKeys()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetAllPublicKeys::GetSimplifiedPath() const
@@ -352,10 +350,9 @@ void FAuthAPI::OnGetPortalTokenDetailsResponse(FHttpRequestPtr HttpRequest, FHtt
 }
 
 FRequest_GetPortalTokenDetails::FRequest_GetPortalTokenDetails()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetPortalTokenDetails::GetSimplifiedPath() const
@@ -532,10 +529,9 @@ void FAuthAPI::OnGetPublicKeyByIdResponse(FHttpRequestPtr HttpRequest, FHttpResp
 }
 
 FRequest_GetPublicKeyById::FRequest_GetPublicKeyById()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetPublicKeyById::GetSimplifiedPath() const
@@ -686,10 +682,9 @@ void FAuthAPI::OnLoginResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr Htt
 }
 
 FRequest_Login::FRequest_Login()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_Login::GetSimplifiedPath() const
@@ -887,10 +882,9 @@ void FAuthAPI::OnLogoutResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr Ht
 }
 
 FRequest_Logout::FRequest_Logout()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_Logout::GetSimplifiedPath() const
@@ -1045,10 +1039,9 @@ void FAuthAPI::OnOauthLoginResponse(FHttpRequestPtr HttpRequest, FHttpResponsePt
 }
 
 FRequest_OauthLogin::FRequest_OauthLogin()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_OauthLogin::GetSimplifiedPath() const
@@ -1244,10 +1237,9 @@ void FAuthAPI::OnOauthResponseResponse(FHttpRequestPtr HttpRequest, FHttpRespons
 }
 
 FRequest_OauthResponse::FRequest_OauthResponse()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_OauthResponse::GetSimplifiedPath() const
@@ -1443,10 +1435,9 @@ void FAuthAPI::OnOauthTokenExchangeResponse(FHttpRequestPtr HttpRequest, FHttpRe
 }
 
 FRequest_OauthTokenExchange::FRequest_OauthTokenExchange()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_OauthTokenExchange::GetSimplifiedPath() const
@@ -1623,10 +1614,9 @@ void FAuthAPI::OnTokenResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr Htt
 }
 
 FRequest_Token::FRequest_Token()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_Token::GetSimplifiedPath() const
@@ -1802,10 +1792,9 @@ void FAuthAPI::OnVerifyResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr Ht
 }
 
 FRequest_Verify::FRequest_Verify()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_Verify::GetSimplifiedPath() const

@@ -157,7 +157,7 @@ protected:
 		else if (Resp.GetHttpResponseCode() == EHttpResponseCodes::NotFound)
 		{
 			// this could be due to the API being down, or due to the session being missing, so check further
-			if (ErrorInfo.bIsRallyHereError && ErrorInfo.RHErrorCode == TEXT("session_not_found")) // todo - const somewhere?
+			if (ErrorInfo.bIsRHCommonError && ErrorInfo.RHCommonError.GetErrorCode() == TEXT("session_not_found")) // todo - const somewhere?
 			{
 				auto* ExistingSession = SessionOwner->GetSessionById(SessionId);
 				if (ExistingSession != nullptr)

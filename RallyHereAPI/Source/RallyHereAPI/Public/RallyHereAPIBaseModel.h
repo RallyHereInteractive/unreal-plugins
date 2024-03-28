@@ -113,7 +113,14 @@ struct RALLYHEREAPI_API FRequestMetadata
 {
 	FGuid Identifier;
 	FName SimplifiedPath;
-	int32 RetryCount = 0;
+	int32 RetryCount;
+	FDateTime CreateTimestamp, QueuedTimestamp, HttpQueuedTimestamp;
+	
+	FRequestMetadata()
+		: Identifier(FGuid::NewGuid())
+		, RetryCount(0)
+		, CreateTimestamp(FDateTime::Now())
+	{}
 };
 
 class RALLYHEREAPI_API FRequest
@@ -153,19 +160,19 @@ public:
 	FResponse(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse() = default;
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) = 0;
-	bool ParseResponse(bool& bOutParsedHeaders, bool& bOutParsedContent, bool& bOutNeedsReauth)
+	bool ParseResponse(bool& bOutParsedHeaders, bool& bOutParsedContent)
 	{
-		bOutParsedContent = bOutNeedsReauth = false;
+		bOutParsedContent = false;
 		bOutParsedHeaders = ParseHeaders();
 		if (bOutParsedHeaders)
 		{
-			bOutParsedContent = ParseContent(bOutNeedsReauth);
+			bOutParsedContent = ParseContent();
 		}
-		return bOutParsedHeaders && bOutParsedContent && !bOutNeedsReauth;
+		return bOutParsedHeaders && bOutParsedContent;
 	};
 	
 	virtual bool ParseHeaders() { return true; }
-	virtual bool ParseContent(bool& bOutNeedsReauth);
+	virtual bool ParseContent();
 
 	void SetSuccessful(bool InSuccessful) { Successful = InSuccessful; }
 	bool IsSuccessful() const { return Successful; }
@@ -207,11 +214,11 @@ protected:
 	
 	PayloadVariantType Payload;
 	
-	virtual bool ParseTypelessContent(bool& bNeedsReauth);
-	virtual bool ParseStringTypeContent(bool& bNeedsReauth);
-	virtual bool ParseJsonTypeContent(bool& bNeedsReauth);
-	virtual bool ParseBinaryTypeContent(bool& bNeedsReauth);
-	virtual bool ParseUnknownTypeContent(bool& bNeedsReauth);
+	virtual bool ParseTypelessContent();
+	virtual bool ParseStringTypeContent();
+	virtual bool ParseJsonTypeContent();
+	virtual bool ParseBinaryTypeContent();
+	virtual bool ParseUnknownTypeContent();
 	
 	// static payloads to allow deprecated functions to return references
 	static JsonPayloadType DefaultJsonPayload;

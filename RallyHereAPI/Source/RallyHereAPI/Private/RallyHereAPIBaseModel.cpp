@@ -58,62 +58,54 @@ FString FResponse::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHtt
 	return EHttpResponseCodes::GetDescription(InHttpResponseCode).ToString();
 }
 
-bool FResponse::ParseContent(bool& bOutNeedsReauth)
+bool FResponse::ParseContent()
 {
-	bOutNeedsReauth = false;
-
 	FString ContentType = HttpResponse->GetContentType();
 	ContentType.TrimStartAndEndInline();
 
 	if (ContentType.IsEmpty())
 	{
-		return ParseTypelessContent(bOutNeedsReauth);
+		return ParseTypelessContent();
 	}
 	else if (ContentType.StartsWith(TEXT("application/json")) || ContentType.StartsWith("text/json"))
 	{
-		return ParseJsonTypeContent(bOutNeedsReauth);
+		return ParseJsonTypeContent();
 	}
 	else if (ContentType.StartsWith(TEXT("text/plain")))
 	{
-		return ParseStringTypeContent(bOutNeedsReauth);
+		return ParseStringTypeContent();
 	}
 	else if (ContentType.StartsWith(TEXT("application/octet-stream")))
 	{
-		return ParseBinaryTypeContent(bOutNeedsReauth);
+		return ParseBinaryTypeContent();
 	}
 	else
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("Failed to recognize http response type: %s"), *ContentType);
-		return ParseUnknownTypeContent(bOutNeedsReauth);
+		return ParseUnknownTypeContent();
 	}
 }
 
-bool FResponse::ParseTypelessContent(bool& bOutNeedsReauth)
+bool FResponse::ParseTypelessContent()
 {
 	check(HttpResponse != nullptr);
-
-	bOutNeedsReauth = false;
 
 	ClearPayload();
 
 	return true; // Successfully parsed
 }
 
-bool FResponse::ParseStringTypeContent(bool& bOutNeedsReauth)
+bool FResponse::ParseStringTypeContent()
 {
 	check(HttpResponse != nullptr);
 
-	bOutNeedsReauth = false;
-	
 	SetPayload<StringPayloadType>(HttpResponse->GetContentAsString());
 	return true; // Successfully parsed
 }
 
-bool FResponse::ParseJsonTypeContent(bool& bOutNeedsReauth)
+bool FResponse::ParseJsonTypeContent()
 {
 	check(HttpResponse != nullptr);
-
-	bOutNeedsReauth = false;
 
 	ClearPayload();
 
@@ -142,30 +134,25 @@ bool FResponse::ParseJsonTypeContent(bool& bOutNeedsReauth)
 	{
 		SetPayload<JsonPayloadType>(JsonValue);
 
-		TOptional<bool> bAuthIsValid;
-		const TSharedPtr<FJsonObject>* JsonObject;
-		switch (HttpResponse->GetResponseCode())
+		if (EHttpResponseCodes::IsOk(ResponseCode))
 		{
-		case 403: // some consoles forcibly retry 401 errors with a modified body, which can generate 403 errors
-		case 401:
-			if (JsonValue->TryGetObject(JsonObject) && JsonObject && JsonObject->IsValid() && TryGetJsonValue(*JsonObject, FString(TEXT("auth_success")), bAuthIsValid) && bAuthIsValid.IsSet() && !bAuthIsValid.GetValue())
+			// for successfull responses, attempt to parse the json into local structures
+			if (FromJson(JsonValue))
 			{
-				UE_LOG(LogRallyHereAPI, Warning, TEXT("Parsed JSON successfully, but detected authorization error, marking to reauth and retry"));
-				bOutNeedsReauth = true;
+				// Successfully parsed default value
 				return true;
 			}
-			break;
-		}
-
-		if (FromJson(JsonValue))
-		{
-			// Successfully parsed
-			return true;
+			else
+			{
+				// Report the parse error but do not mark the request as unsuccessful. Data could be partial or malformed, but the request succeeded.
+				UE_LOG(LogRallyHereAPI, Warning, TEXT("Parsed JSON successfully, but failed to ingest into API structures (note: failure may be partial):\n%s"), *ContentAsString);
+				return true;
+			}
 		}
 		else
 		{
-			// Report the parse error but do not mark the request as unsuccessful. Data could be partial or malformed, but the request succeeded.
-			UE_LOG(LogRallyHereAPI, Warning, TEXT("Parsed JSON successfully, but failed to ingest into API structures (note: failure may be partial):\n%s"), *ContentAsString);
+			// for error responses, do not parse into local structures, but we did parse the json successfully, so return success
+			UE_LOG(LogRallyHereAPI, Warning, TEXT("Parsed JSON successfully, but failed to ingest into API Error structures:\n%s"), *ContentAsString);
 			return true;
 		}
 	}
@@ -177,23 +164,20 @@ bool FResponse::ParseJsonTypeContent(bool& bOutNeedsReauth)
 	}
 }
 
-bool FResponse::ParseBinaryTypeContent(bool& bOutNeedsReauth)
+bool FResponse::ParseBinaryTypeContent()
 {
 	check(HttpResponse != nullptr);
 
-	bOutNeedsReauth = false;
-	
 	SetPayload<BinaryPayloadType>(MakeArrayView(HttpResponse->GetContent()));
 	return true; // Successfully parsed
 }
 
-bool FResponse::ParseUnknownTypeContent(bool& bOutNeedsReauth)
+bool FResponse::ParseUnknownTypeContent()
 {
 	check(HttpResponse != nullptr);
 
-	bOutNeedsReauth = false;
-	
-	ClearPayload();
+	// load the response content as binary data, since we do not have a better way to parse it
+	SetPayload<BinaryPayloadType>(MakeArrayView(HttpResponse->GetContent()));
 
 	return false; // could not parse unknown type
 }
@@ -287,7 +271,7 @@ bool FAPI::HandleResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResp
 		bool bParsedContent = false;
 		bool bNeedsReauth = false;
 		
-		InOutResponse.ParseResponse(bParsedHeaders, bParsedContent, bNeedsReauth);
+		InOutResponse.ParseResponse(bParsedHeaders, bParsedContent);
 
 		if (!bParsedHeaders)
 		{
@@ -302,21 +286,25 @@ bool FAPI::HandleResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResp
 			UE_LOG(LogRallyHereAPI, Warning, TEXT("Failed to parse Http response content"));
 			return false;
 		}
-
-		if (bNeedsReauth)
+		
+		// attempt reauth for certain error codes
+		if (InOutResponse.GetHttpResponseCode() == EHttpResponseCodes::Denied 
+			|| InOutResponse.GetHttpResponseCode() == EHttpResponseCodes::Forbidden) // some consoles forcibly retry 401 errors with a modified body, which can generate 403 errors, so check those for an auth success flag
 		{
 			auto Retry = MakeShared<FRequestPendingAuthRetry>();
 			Retry->HttpRequest = HttpRequest;
 			Retry->AuthContext = AuthContext;
-			Retry->Handle = AuthContext->OnLoginComplete().AddSP(AsShared(), &FAPI::RetryRequestAfterAuth, Retry, ResponseDelegate, RequestMetadata, Priority);
-			if (AuthContext->Refresh())
+			
+			// set a callback handle
+			Retry->Handle = AuthContext->OnLoginComplete().AddSP(this, &FAPI::RetryRequestAfterAuth, Retry, ResponseDelegate, RequestMetadata, Priority);
+
+			if (AuthContext->ConditionalRefreshOnFailedResponse(InOutResponse))
 			{
 				return true; // Don't submit the response for this request, we are going to retry it.
 			}
-			else // unable to refresh the token, so cancel the request and go with what we have
-			{
-				AuthContext->OnLoginComplete().Remove(Retry->Handle);
-			}
+			
+			// failed to conditionally refresh, so remove the handle, and return completion
+			AuthContext->OnLoginComplete().Remove(Retry->Handle);
 			return false;
 		}
 

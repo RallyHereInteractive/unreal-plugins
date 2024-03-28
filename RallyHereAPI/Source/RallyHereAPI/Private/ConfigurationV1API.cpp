@@ -82,10 +82,9 @@ void FConfigurationV1API::OnGetFriendsAndBlockLimitsResponse(FHttpRequestPtr Htt
 }
 
 FRequest_GetFriendsAndBlockLimits::FRequest_GetFriendsAndBlockLimits()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetFriendsAndBlockLimits::GetSimplifiedPath() const

@@ -279,42 +279,48 @@ struct FRH_ErrorInfo
 	FString ResponseContent{};
 
 	/**
-	 * @brief Whether the response is a RallyHere error.
+	 * @brief Whether the response is a RallyHere common error.
 	 */
 	UPROPERTY(BlueprintReadOnly, Category = "Error")
-	bool bIsRallyHereError;
+	bool bIsRHCommonError;
 	/**
-	 * @brief Whether the response is a RallyHere error with an auth success.
+	 * @brief The response as a RallyHere common error.
 	 */
 	UPROPERTY(BlueprintReadOnly, Category = "Error")
-	bool bRHAuthSuccess;
+	FRHAPI_HzApiErrorModel RHCommonError;
+
 	/**
-	 * @brief Rally Here error code
+	 * @brief Whether the response is a RallyHere validation error.
 	 */
 	UPROPERTY(BlueprintReadOnly, Category = "Error")
-	FString RHErrorCode;
+	bool bIsRHValidationError;
 	/**
-	 * @brief Rally Here error description
+	 * @brief The response as a RallyHere validation error.
 	 */
 	UPROPERTY(BlueprintReadOnly, Category = "Error")
-	FString RHErrorDesc;
+	FRHAPI_ValidationError RHValidationError;
+
 	/**
 	 * @brief Default constructor.
 	 */
-	FRH_ErrorInfo() = default;
+	FRH_ErrorInfo()
+		: ResponseCode(0)
+		, ResponseContent()
+		, bIsRHCommonError(false)
+		, RHCommonError()
+		, bIsRHValidationError(false)
+		, RHValidationError()
+	{
+
+	}
 	/**
 	 * @brief Construct from Response Ptr.
 	 */
-	FRH_ErrorInfo(const RallyHereAPI::FResponse* Response)
+	FRH_ErrorInfo(const RallyHereAPI::FResponse* Response) : FRH_ErrorInfo()
 	{
-		if (Response)
+		if (Response != nullptr)
 		{
-			if (Response->GetHttpResponse().IsValid())
-			{
-				const auto HttpResp = Response->GetHttpResponse();
-				ResponseCode = HttpResp->GetResponseCode();
-				ResponseContent = HttpResp->GetContentAsString();
-			}
+			ImportErrorInfo(*Response);
 		}
 	}
 	/**
@@ -342,25 +348,11 @@ struct FRH_ErrorInfo
 			const auto JsonValuePtr = Response.TryGetPayload<RallyHereAPI::FResponse::JsonPayloadType>();
 			if (JsonValuePtr != nullptr)
 			{
-				auto JsonValue = *JsonValuePtr;
-				const TSharedPtr<FJsonObject>*JsonObject = nullptr;
-
-				FString AuthSuccessTemp, ErrorCodeTemp, ErrorDescTemp;
-				if (JsonValue->TryGetObject(JsonObject) && JsonObject != nullptr && JsonObject->Get()->TryGetStringField(TEXT("error_code"), ErrorCodeTemp))
+				bool bCommonError = RHCommonError.FromJson(*JsonValuePtr);
+				if (!bCommonError)
 				{
-					bIsRallyHereError = true;
-					RHErrorCode = ErrorCodeTemp;
-
-					if (JsonValue->TryGetObject(JsonObject) && JsonObject != nullptr && JsonObject->Get()->TryGetStringField(TEXT("auth_success"), AuthSuccessTemp))
-					{
-						bRHAuthSuccess = AuthSuccessTemp.ToBool();
-					}
-					if (JsonValue->TryGetObject(JsonObject) && JsonObject != nullptr && JsonObject->Get()->TryGetStringField(TEXT("desc"), ErrorDescTemp))
-					{
-						RHErrorDesc = ErrorDescTemp;
-					}
+					RHValidationError.FromJson(*JsonValuePtr);
 				}
-				
 			}
 		}
 	}

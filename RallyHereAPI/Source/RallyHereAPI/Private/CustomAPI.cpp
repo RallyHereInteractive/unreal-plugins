@@ -82,10 +82,9 @@ void FCustomAPI::OnCustomEndpointSendResponse(FHttpRequestPtr HttpRequest, FHttp
 }
 
 FRequest_CustomEndpointSend::FRequest_CustomEndpointSend()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_CustomEndpointSend::GetSimplifiedPath() const

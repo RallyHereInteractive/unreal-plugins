@@ -82,10 +82,9 @@ void FAdAPI::OnBeginNewSessionResponse(FHttpRequestPtr HttpRequest, FHttpRespons
 }
 
 FRequest_BeginNewSession::FRequest_BeginNewSession()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_BeginNewSession::GetSimplifiedPath() const
@@ -320,10 +319,9 @@ void FAdAPI::OnFindOpportunitiesResponse(FHttpRequestPtr HttpRequest, FHttpRespo
 }
 
 FRequest_FindOpportunities::FRequest_FindOpportunities()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_FindOpportunities::GetSimplifiedPath() const
@@ -558,10 +556,9 @@ void FAdAPI::OnUnityAdWatchedResponse(FHttpRequestPtr HttpRequest, FHttpResponse
 }
 
 FRequest_UnityAdWatched::FRequest_UnityAdWatched()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_UnityAdWatched::GetSimplifiedPath() const
@@ -713,10 +710,9 @@ void FAdAPI::OnUnityMediationAdWatchedResponse(FHttpRequestPtr HttpRequest, FHtt
 }
 
 FRequest_UnityMediationAdWatched::FRequest_UnityMediationAdWatched()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_UnityMediationAdWatched::GetSimplifiedPath() const
@@ -869,10 +865,9 @@ void FAdAPI::OnUpdateOpportunityByIdResponse(FHttpRequestPtr HttpRequest, FHttpR
 }
 
 FRequest_UpdateOpportunityById::FRequest_UpdateOpportunityById()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_UpdateOpportunityById::GetSimplifiedPath() const
