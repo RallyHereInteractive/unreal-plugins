@@ -310,7 +310,7 @@ bool FAPI::HandleResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResp
 			// set a callback handle
 			Retry->Handle = AuthContext->OnLoginComplete().AddRaw(this, &FAPI::RetryRequestAfterAuth, Retry, ResponseDelegate, RequestMetadata, Priority);
 
-			if (AuthContext->ConditionalRefreshOnFailedResponse(InOutResponse, Retry))
+			if (AuthContext->ConditionalRefreshOnFailedResponse(InOutResponse))
 			{
 				return true; // Don't submit the response for this request, we are going to retry it.
 			}
