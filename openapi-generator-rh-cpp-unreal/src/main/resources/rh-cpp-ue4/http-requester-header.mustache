@@ -79,7 +79,7 @@ public:
 	{
 		if (Singleton.IsValid())
 		{
-			Singleton->FlushRequestQueue();
+			Singleton->FlushRequestQueue(true);
 			Singleton.Reset();
 		}
 	}
@@ -101,11 +101,11 @@ public:
 	void OnResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FHttpRequestCompleteDelegate ResponseDelegate);
 
 	// Immediately flushes all requests in the queue (useful in cases where the http system may be shutting down soon)
-	void FlushRequestQueue();
+	void FlushRequestQueue(bool bIsExiting = false);
 
 private:
 	void QueueNextRequestCall();
-	void TryExecuteNextRequest();
+	void TryExecuteNextRequest(bool bIsExiting = false);
 	bool CanExecuteRequest() const { return HttpRequestQueue.Num() > 0 && (MaxSimultaneousRequests == 0 || PendingRequestCount < MaxSimultaneousRequests); }
 
 	static TSharedPtr<F{{unrealModuleName}}HttpRequester> Singleton;

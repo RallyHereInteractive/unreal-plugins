@@ -125,7 +125,7 @@ struct RALLYHEREAPI_API FResponse_CreateMatch : public FResponse
 	FResponse_CreateMatch(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_CreateMatch() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_MatchWithPlayers Content;
 
@@ -183,7 +183,7 @@ struct RALLYHEREAPI_API FResponse_CreateMatchPlayer : public FResponse
 	FResponse_CreateMatchPlayer(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_CreateMatchPlayer() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_MatchPlayerWithMatch Content;
 
@@ -239,7 +239,7 @@ struct RALLYHEREAPI_API FResponse_DeleteMatch : public FResponse
 	FResponse_DeleteMatch(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_DeleteMatch() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	
 
@@ -295,7 +295,7 @@ struct RALLYHEREAPI_API FResponse_DeleteMatchPlayer : public FResponse
 	FResponse_DeleteMatchPlayer(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_DeleteMatchPlayer() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	
 
@@ -350,7 +350,7 @@ struct RALLYHEREAPI_API FResponse_GetMatch : public FResponse
 	FResponse_GetMatch(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetMatch() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_MatchWithPlayers Content;
 
@@ -412,7 +412,7 @@ struct RALLYHEREAPI_API FResponse_GetMatchPlayer : public FResponse
 	FResponse_GetMatchPlayer(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetMatchPlayer() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_MatchPlayerWithMatch Content;
 
@@ -476,7 +476,7 @@ struct RALLYHEREAPI_API FResponse_GetMatches : public FResponse
 	FResponse_GetMatches(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetMatches() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PagedMatchResponse Content;
 
@@ -534,7 +534,7 @@ struct RALLYHEREAPI_API FResponse_GetPlayerMatchesSelf : public FResponse
 	FResponse_GetPlayerMatchesSelf(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetPlayerMatchesSelf() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PagedPlayerMatchResponse Content;
 
@@ -593,7 +593,7 @@ struct RALLYHEREAPI_API FResponse_GetPlayersMatches : public FResponse
 	FResponse_GetPlayersMatches(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetPlayersMatches() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PagedPlayerMatchResponse Content;
 
@@ -650,7 +650,7 @@ struct RALLYHEREAPI_API FResponse_PatchMatch : public FResponse
 	FResponse_PatchMatch(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_PatchMatch() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_MatchWithPlayers Content;
 
@@ -708,7 +708,7 @@ struct RALLYHEREAPI_API FResponse_PatchMatchPlayer : public FResponse
 	FResponse_PatchMatchPlayer(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_PatchMatchPlayer() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_MatchPlayerWithMatch Content;
 
@@ -765,7 +765,7 @@ struct RALLYHEREAPI_API FResponse_UpdateMatch : public FResponse
 	FResponse_UpdateMatch(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_UpdateMatch() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_MatchWithPlayers Content;
 
@@ -823,7 +823,7 @@ struct RALLYHEREAPI_API FResponse_UpdateMatchPlayer : public FResponse
 	FResponse_UpdateMatchPlayer(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_UpdateMatchPlayer() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_MatchPlayerWithMatch Content;
 

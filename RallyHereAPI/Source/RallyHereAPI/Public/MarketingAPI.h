@@ -58,7 +58,7 @@ struct RALLYHEREAPI_API FResponse_GetMarketingCampaigns : public FResponse
 	FResponse_GetMarketingCampaigns(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetMarketingCampaigns() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_MarketingCampaigns Content;
 

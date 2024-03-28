@@ -54,7 +54,7 @@ struct RALLYHEREAPI_API FResponse_GetUtcTime : public FResponse
 	FResponse_GetUtcTime(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetUtcTime() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FDateTime Content;
 

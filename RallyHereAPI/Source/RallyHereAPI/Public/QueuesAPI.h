@@ -115,7 +115,7 @@ struct RALLYHEREAPI_API FResponse_GetAllMapGameInfo : public FResponse
 	virtual ~FResponse_GetAllMapGameInfo() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_InstanceLaunchTemplate Content;
 	// Headers
@@ -188,7 +188,7 @@ struct RALLYHEREAPI_API FResponse_GetAllQueueInfo : public FResponse
 	virtual ~FResponse_GetAllQueueInfo() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_QueuesResponse Content;
 	// Headers
@@ -260,7 +260,7 @@ struct RALLYHEREAPI_API FResponse_GetAllQueueInfoV2 : public FResponse
 	virtual ~FResponse_GetAllQueueInfoV2() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_QueuesResponseV2 Content;
 	// Headers
@@ -332,7 +332,7 @@ struct RALLYHEREAPI_API FResponse_GetInstanceRequestTemplate : public FResponse
 	virtual ~FResponse_GetInstanceRequestTemplate() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_InstanceRequestTemplate Content;
 	// Headers
@@ -404,7 +404,7 @@ struct RALLYHEREAPI_API FResponse_GetMatchMakingProfile : public FResponse
 	virtual ~FResponse_GetMatchMakingProfile() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_MatchMakingProfile Content;
 	// Headers
@@ -475,7 +475,7 @@ struct RALLYHEREAPI_API FResponse_GetMatchMakingProfileV2 : public FResponse
 	virtual ~FResponse_GetMatchMakingProfileV2() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_MatchMakingProfileV2 Content;
 	// Headers
@@ -548,7 +548,7 @@ struct RALLYHEREAPI_API FResponse_GetMatchMakingTemplates : public FResponse
 	virtual ~FResponse_GetMatchMakingTemplates() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_MatchMakingTemplateGroup Content;
 	// Headers
@@ -621,7 +621,7 @@ struct RALLYHEREAPI_API FResponse_GetMatchMakingTemplatesV2 : public FResponse
 	virtual ~FResponse_GetMatchMakingTemplatesV2() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_MatchMakingTemplateGroupV2 Content;
 	// Headers

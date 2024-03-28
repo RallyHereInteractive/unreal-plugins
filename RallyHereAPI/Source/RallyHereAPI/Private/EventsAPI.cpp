@@ -82,10 +82,9 @@ void FEventsAPI::OnGetAllEventSchemaResponse(FHttpRequestPtr HttpRequest, FHttpR
 }
 
 FRequest_GetAllEventSchema::FRequest_GetAllEventSchema()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetAllEventSchema::GetSimplifiedPath() const
@@ -125,20 +124,25 @@ bool FRequest_GetAllEventSchema::SetupHttpRequest(const FHttpRequestRef& HttpReq
 	return true;
 }
 
-void FResponse_GetAllEventSchema::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetAllEventSchema::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetAllEventSchema::TryGetContentFor200(FRHAPI_EventParamsSchemaResponse& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAllEventSchema::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -212,10 +216,9 @@ void FEventsAPI::OnReceiveEventsV1Response(FHttpRequestPtr HttpRequest, FHttpRes
 }
 
 FRequest_ReceiveEventsV1::FRequest_ReceiveEventsV1()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_ReceiveEventsV1::GetSimplifiedPath() const
@@ -266,52 +269,73 @@ bool FRequest_ReceiveEventsV1::SetupHttpRequest(const FHttpRequestRef& HttpReque
 	return true;
 }
 
-void FResponse_ReceiveEventsV1::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_ReceiveEventsV1::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 207:
-		SetResponseString(TEXT(" Error Codes: - events_multi_results - Some of the events from the request failed to process, and uploaded to deadletter blob storage "));
-		break;
+		return TEXT(" Error Codes: - events_multi_results - Some of the events from the request failed to process, and uploaded to deadletter blob storage ");
 	case 400:
-		SetResponseString(TEXT(" Error Codes: - events_all_failed - All of events from the request failed to process, and uploaded to deadletter blob storage - event_lists_invalid - The input eventLists is invalid, failed pydantic validation - event_unsupported - Event name is not known - event_denied - Events of that name are currently denied - event_duplicated - Event has the same event_uuid as an event already received - event_params_invalid - The event_params failed validation against the jsonschema defined for the type/version.  See response description for more details.  "));
-		break;
+		return TEXT(" Error Codes: - events_all_failed - All of events from the request failed to process, and uploaded to deadletter blob storage - event_lists_invalid - The input eventLists is invalid, failed pydantic validation - event_unsupported - Event name is not known - event_denied - Events of that name are currently denied - event_duplicated - Event has the same event_uuid as an event already received - event_params_invalid - The event_params failed validation against the jsonschema defined for the type/version.  See response description for more details.  ");
 	case 404:
-		SetResponseString(TEXT(" Error Codes: - event_schema_invalid - event_params jsonschema is empty, failed to load from developer-api - event_schema_not_found - The jsonschema is invalid and could not be used to validate the event_params value.  See response description for more details. "));
-		break;
+		return TEXT(" Error Codes: - event_schema_invalid - event_params jsonschema is empty, failed to load from developer-api - event_schema_not_found - The jsonschema is invalid and could not be used to validate the event_params value.  See response description for more details. ");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_ReceiveEventsV1::TryGetContentFor200(FRHAPI_PostGameEventsResponse& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_ReceiveEventsV1::TryGetContentFor207(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_ReceiveEventsV1::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_ReceiveEventsV1::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_ReceiveEventsV1::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_ReceiveEventsV1::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

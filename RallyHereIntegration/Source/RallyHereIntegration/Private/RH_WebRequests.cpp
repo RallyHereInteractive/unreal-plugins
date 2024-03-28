@@ -275,7 +275,9 @@ void FRH_WebRequests::OnWebRequestStarted_Track(const RallyHereAPI::FRequestMeta
 	Request->Verb = HttpRequest->GetVerb();
 	Request->URL = HttpRequest->GetURL();
 
+	// Requests do not allow GetContentAsString(), so parse it out manually
 	FString TempContent;
+	TempContent.Reserve(HttpRequest->GetContent().Num());
 	for (auto b : HttpRequest->GetContent())
 	{
 		TempContent.AppendChar(static_cast<char>(b));
@@ -365,7 +367,15 @@ void FRH_WebRequests::OnWebRequestCompleted_Track(const RallyHereAPI::FResponse&
 	TrackedResponse.ReceivedTime = FDateTime::Now();
 	if (HttpResponse)
 	{
-		TrackedResponse.Content = SanitizeContent(HttpResponse->GetContentAsString(), GetSensitiveFieldsForResponse(Response.GetRequestMetadata()));
+		if (Response.GetPayload().IsType<RallyHereAPI::FResponse::BinaryPayloadType>())
+		{
+			auto BinaryPayload = Response.GetPayload().Get<RallyHereAPI::FResponse::BinaryPayloadType>();
+			TrackedResponse.Content = FBase64::Encode(BinaryPayload.GetData(), BinaryPayload.Num());
+		}
+		else
+		{
+			TrackedResponse.Content = SanitizeContent(HttpResponse->GetContentAsString(), GetSensitiveFieldsForResponse(Response.GetRequestMetadata()));
+		}
 		TArray<FString> Headers = SanitizeHeaders(HttpResponse->GetAllHeaders(), GetSensitiveHeadersForResponse(Response.GetRequestMetadata()));
 		for (const auto& headerStr : Headers)
 		{
@@ -459,6 +469,17 @@ TSharedPtr<FJsonObject> FRH_WebRequests::CreateJsonObjectFromWebRequest(const FR
 	Metadata->SetStringField(TEXT("Identifier"), request.Metadata.Identifier.ToString(EGuidFormats::DigitsWithHyphens));
 	Metadata->SetStringField(TEXT("Simplified Path"), request.Metadata.SimplifiedPath.ToString());
 	Metadata->SetNumberField(TEXT("Retry Count"), request.Metadata.RetryCount);
+	Metadata->SetStringField(TEXT("Create-Time"), request.Metadata.CreateTimestamp.ToIso8601());
+	Metadata->SetStringField(TEXT("Queued-Time"), request.Metadata.QueuedTimestamp.ToIso8601());
+	Metadata->SetStringField(TEXT("Http-Queued-Time"), request.Metadata.HttpQueuedTimestamp.ToIso8601());
+	
+	// calculate durations
+	if (request.Metadata.QueuedTimestamp.GetTicks() > 0 && request.Metadata.HttpQueuedTimestamp.GetTicks() > 0)
+	{
+		Metadata->SetStringField(TEXT("Requester-Queue-Duration-Time"), (request.Metadata.HttpQueuedTimestamp - request.Metadata.QueuedTimestamp).ToString());
+		Metadata->SetStringField(TEXT("Http-Queue-Duration-Time"), (request.Timestamp - request.Metadata.HttpQueuedTimestamp).ToString());
+	}
+	
 	WebRequestJson->SetObjectField(TEXT("Metadata"), Metadata);
 
 	// Responses
@@ -470,7 +491,7 @@ TSharedPtr<FJsonObject> FRH_WebRequests::CreateJsonObjectFromWebRequest(const FR
 		Response->SetBoolField(TEXT("Http-Success"), request.Responses[x].ResponseSuccess);
 		Response->SetNumberField(TEXT("Response-Code"), request.Responses[x].ResponseCode);
 		Response->SetStringField(TEXT("Received-Time"), request.Responses[x].ReceivedTime.ToIso8601());
-		Response->SetNumberField(TEXT("Duration-Time"), (request.Responses[x].ReceivedTime - request.Timestamp).GetTotalSeconds());
+		Response->SetStringField(TEXT("Http-Duration-Time"), (request.Responses[x].ReceivedTime - request.Metadata.HttpQueuedTimestamp).ToString());
 
 		Reader = TJsonReaderFactory<>::Create(request.Responses[x].Content);
 		if (FJsonSerializer::Deserialize(Reader, JsonValue) && JsonValue.IsValid())

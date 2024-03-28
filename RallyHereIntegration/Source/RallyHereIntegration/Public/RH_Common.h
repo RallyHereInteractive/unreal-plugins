@@ -277,23 +277,50 @@ struct FRH_ErrorInfo
 	 */
 	UPROPERTY(BlueprintReadOnly, Category = "Error")
 	FString ResponseContent{};
+
+	/**
+	 * @brief Whether the response is a RallyHere common error.
+	 */
+	UPROPERTY(BlueprintReadOnly, Category = "Error")
+	bool bIsRHCommonError;
+	/**
+	 * @brief The response as a RallyHere common error.
+	 */
+	UPROPERTY(BlueprintReadOnly, Category = "Error")
+	FRHAPI_HzApiErrorModel RHCommonError;
+
+	/**
+	 * @brief Whether the response is a RallyHere validation error.
+	 */
+	UPROPERTY(BlueprintReadOnly, Category = "Error")
+	bool bIsRHValidationError;
+	/**
+	 * @brief The response as a RallyHere validation error.
+	 */
+	UPROPERTY(BlueprintReadOnly, Category = "Error")
+	FRHAPI_ValidationError RHValidationError;
+
 	/**
 	 * @brief Default constructor.
 	 */
-	FRH_ErrorInfo() = default;
+	FRH_ErrorInfo()
+		: ResponseCode(0)
+		, ResponseContent()
+		, bIsRHCommonError(false)
+		, RHCommonError()
+		, bIsRHValidationError(false)
+		, RHValidationError()
+	{
+
+	}
 	/**
 	 * @brief Construct from Response Ptr.
 	 */
-	FRH_ErrorInfo(const RallyHereAPI::FResponse* Response)
+	FRH_ErrorInfo(const RallyHereAPI::FResponse* Response) : FRH_ErrorInfo()
 	{
-		if (Response)
+		if (Response != nullptr)
 		{
-			if (Response->GetHttpResponse().IsValid())
-			{
-				const auto HttpResp = Response->GetHttpResponse();
-				ResponseCode = HttpResp->GetResponseCode();
-				ResponseContent = HttpResp->GetContentAsString();
-			}
+			ImportErrorInfo(*Response);
 		}
 	}
 	/**
@@ -317,6 +344,16 @@ struct FRH_ErrorInfo
 			const auto HttpResp = Response.GetHttpResponse();
 			ResponseCode = HttpResp->GetResponseCode();
 			ResponseContent = HttpResp->GetContentAsString();
+
+			const auto JsonValuePtr = Response.TryGetPayload<RallyHereAPI::FResponse::JsonPayloadType>();
+			if (JsonValuePtr != nullptr)
+			{
+				bool bCommonError = RHCommonError.FromJson(*JsonValuePtr);
+				if (!bCommonError)
+				{
+					RHValidationError.FromJson(*JsonValuePtr);
+				}
+			}
 		}
 	}
 };

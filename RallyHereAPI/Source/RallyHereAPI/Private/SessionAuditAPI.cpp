@@ -82,10 +82,9 @@ void FSessionAuditAPI::OnCreateSessionAuditResponse(FHttpRequestPtr HttpRequest,
 }
 
 FRequest_CreateSessionAudit::FRequest_CreateSessionAudit()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_CreateSessionAudit::GetSimplifiedPath() const
@@ -152,44 +151,61 @@ bool FRequest_CreateSessionAudit::SetupHttpRequest(const FHttpRequestRef& HttpRe
 	return true;
 }
 
-void FResponse_CreateSessionAudit::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_CreateSessionAudit::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT("Session doesn&#39;t exist.  See error code for more info"));
-		break;
+		return TEXT("Session doesn&#39;t exist.  See error code for more info");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_CreateSessionAudit::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_CreateSessionAudit::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_CreateSessionAudit::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_CreateSessionAudit::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_CreateSessionAudit::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -263,10 +279,9 @@ void FSessionAuditAPI::OnGetSessionAuditResponse(FHttpRequestPtr HttpRequest, FH
 }
 
 FRequest_GetSessionAudit::FRequest_GetSessionAudit()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetSessionAudit::GetSimplifiedPath() const
@@ -337,36 +352,49 @@ bool FRequest_GetSessionAudit::SetupHttpRequest(const FHttpRequestRef& HttpReque
 	return true;
 }
 
-void FResponse_GetSessionAudit::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetSessionAudit::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetSessionAudit::TryGetContentFor200(FRHAPI_AuditResponse& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetSessionAudit::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetSessionAudit::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetSessionAudit::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

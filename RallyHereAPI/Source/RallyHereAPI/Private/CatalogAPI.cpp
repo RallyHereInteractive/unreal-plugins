@@ -82,10 +82,9 @@ void FCatalogAPI::OnGetCatalogAllResponse(FHttpRequestPtr HttpRequest, FHttpResp
 }
 
 FRequest_GetCatalogAll::FRequest_GetCatalogAll()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetCatalogAll::GetSimplifiedPath() const
@@ -142,27 +141,23 @@ bool FRequest_GetCatalogAll::SetupHttpRequest(const FHttpRequestRef& HttpRequest
 	return true;
 }
 
-void FResponse_GetCatalogAll::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetCatalogAll::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 304:
-		SetResponseString(TEXT("Content still has the same etag and has not changed"));
-		break;
+		return TEXT("Content still has the same etag and has not changed");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT("Not Found"));
-		break;
+		return TEXT("Not Found");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetCatalogAll::ParseHeaders()
@@ -188,7 +183,12 @@ bool FResponse_GetCatalogAll::ParseHeaders()
 
 bool FResponse_GetCatalogAll::TryGetContentFor200(FRHAPI_Catalog& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -207,17 +207,32 @@ TOptional<FString> FResponse_GetCatalogAll::GetHeader200_ETag() const
 
 bool FResponse_GetCatalogAll::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogAll::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogAll::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogAll::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -291,10 +306,9 @@ void FCatalogAPI::OnGetCatalogEntitlementSkuResponse(FHttpRequestPtr HttpRequest
 }
 
 FRequest_GetCatalogEntitlementSku::FRequest_GetCatalogEntitlementSku()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetCatalogEntitlementSku::GetSimplifiedPath() const
@@ -357,27 +371,23 @@ bool FRequest_GetCatalogEntitlementSku::SetupHttpRequest(const FHttpRequestRef& 
 	return true;
 }
 
-void FResponse_GetCatalogEntitlementSku::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetCatalogEntitlementSku::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 304:
-		SetResponseString(TEXT("Content still has the same etag and has not changed"));
-		break;
+		return TEXT("Content still has the same etag and has not changed");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT("Not Found"));
-		break;
+		return TEXT("Not Found");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetCatalogEntitlementSku::ParseHeaders()
@@ -403,7 +413,12 @@ bool FResponse_GetCatalogEntitlementSku::ParseHeaders()
 
 bool FResponse_GetCatalogEntitlementSku::TryGetContentFor200(FRHAPI_PlatformSKU& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -422,17 +437,32 @@ TOptional<FString> FResponse_GetCatalogEntitlementSku::GetHeader200_ETag() const
 
 bool FResponse_GetCatalogEntitlementSku::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogEntitlementSku::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogEntitlementSku::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogEntitlementSku::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -506,10 +536,9 @@ void FCatalogAPI::OnGetCatalogEntitlementSkuAllResponse(FHttpRequestPtr HttpRequ
 }
 
 FRequest_GetCatalogEntitlementSkuAll::FRequest_GetCatalogEntitlementSkuAll()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetCatalogEntitlementSkuAll::GetSimplifiedPath() const
@@ -566,27 +595,23 @@ bool FRequest_GetCatalogEntitlementSkuAll::SetupHttpRequest(const FHttpRequestRe
 	return true;
 }
 
-void FResponse_GetCatalogEntitlementSkuAll::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetCatalogEntitlementSkuAll::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 304:
-		SetResponseString(TEXT("Content still has the same etag and has not changed"));
-		break;
+		return TEXT("Content still has the same etag and has not changed");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT("Not Found"));
-		break;
+		return TEXT("Not Found");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetCatalogEntitlementSkuAll::ParseHeaders()
@@ -612,7 +637,12 @@ bool FResponse_GetCatalogEntitlementSkuAll::ParseHeaders()
 
 bool FResponse_GetCatalogEntitlementSkuAll::TryGetContentFor200(FRHAPI_PlatformSKUs& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -631,17 +661,32 @@ TOptional<FString> FResponse_GetCatalogEntitlementSkuAll::GetHeader200_ETag() co
 
 bool FResponse_GetCatalogEntitlementSkuAll::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogEntitlementSkuAll::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogEntitlementSkuAll::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogEntitlementSkuAll::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -715,10 +760,9 @@ void FCatalogAPI::OnGetCatalogInventoryBucketUseRuleSetResponse(FHttpRequestPtr 
 }
 
 FRequest_GetCatalogInventoryBucketUseRuleSet::FRequest_GetCatalogInventoryBucketUseRuleSet()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetCatalogInventoryBucketUseRuleSet::GetSimplifiedPath() const
@@ -780,27 +824,23 @@ bool FRequest_GetCatalogInventoryBucketUseRuleSet::SetupHttpRequest(const FHttpR
 	return true;
 }
 
-void FResponse_GetCatalogInventoryBucketUseRuleSet::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetCatalogInventoryBucketUseRuleSet::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 304:
-		SetResponseString(TEXT("Content still has the same etag and has not changed"));
-		break;
+		return TEXT("Content still has the same etag and has not changed");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT("Not Found"));
-		break;
+		return TEXT("Not Found");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetCatalogInventoryBucketUseRuleSet::ParseHeaders()
@@ -826,7 +866,12 @@ bool FResponse_GetCatalogInventoryBucketUseRuleSet::ParseHeaders()
 
 bool FResponse_GetCatalogInventoryBucketUseRuleSet::TryGetContentFor200(FRHAPI_InventoryBucketUseRuleSet& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -845,17 +890,32 @@ TOptional<FString> FResponse_GetCatalogInventoryBucketUseRuleSet::GetHeader200_E
 
 bool FResponse_GetCatalogInventoryBucketUseRuleSet::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogInventoryBucketUseRuleSet::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogInventoryBucketUseRuleSet::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogInventoryBucketUseRuleSet::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -929,10 +989,9 @@ void FCatalogAPI::OnGetCatalogInventoryBucketUseRuleSetsAllResponse(FHttpRequest
 }
 
 FRequest_GetCatalogInventoryBucketUseRuleSetsAll::FRequest_GetCatalogInventoryBucketUseRuleSetsAll()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetCatalogInventoryBucketUseRuleSetsAll::GetSimplifiedPath() const
@@ -989,27 +1048,23 @@ bool FRequest_GetCatalogInventoryBucketUseRuleSetsAll::SetupHttpRequest(const FH
 	return true;
 }
 
-void FResponse_GetCatalogInventoryBucketUseRuleSetsAll::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetCatalogInventoryBucketUseRuleSetsAll::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 304:
-		SetResponseString(TEXT("Content still has the same etag and has not changed"));
-		break;
+		return TEXT("Content still has the same etag and has not changed");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT("Not Found"));
-		break;
+		return TEXT("Not Found");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetCatalogInventoryBucketUseRuleSetsAll::ParseHeaders()
@@ -1035,7 +1090,12 @@ bool FResponse_GetCatalogInventoryBucketUseRuleSetsAll::ParseHeaders()
 
 bool FResponse_GetCatalogInventoryBucketUseRuleSetsAll::TryGetContentFor200(FRHAPI_InventoryBucketUseRuleSets& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -1054,17 +1114,32 @@ TOptional<FString> FResponse_GetCatalogInventoryBucketUseRuleSetsAll::GetHeader2
 
 bool FResponse_GetCatalogInventoryBucketUseRuleSetsAll::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogInventoryBucketUseRuleSetsAll::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogInventoryBucketUseRuleSetsAll::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogInventoryBucketUseRuleSetsAll::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1138,10 +1213,9 @@ void FCatalogAPI::OnGetCatalogItemResponse(FHttpRequestPtr HttpRequest, FHttpRes
 }
 
 FRequest_GetCatalogItem::FRequest_GetCatalogItem()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetCatalogItem::GetSimplifiedPath() const
@@ -1203,27 +1277,23 @@ bool FRequest_GetCatalogItem::SetupHttpRequest(const FHttpRequestRef& HttpReques
 	return true;
 }
 
-void FResponse_GetCatalogItem::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetCatalogItem::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 304:
-		SetResponseString(TEXT("Content still has the same etag and has not changed"));
-		break;
+		return TEXT("Content still has the same etag and has not changed");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT("Not Found"));
-		break;
+		return TEXT("Not Found");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetCatalogItem::ParseHeaders()
@@ -1249,7 +1319,12 @@ bool FResponse_GetCatalogItem::ParseHeaders()
 
 bool FResponse_GetCatalogItem::TryGetContentFor200(FRHAPI_Item& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -1268,17 +1343,32 @@ TOptional<FString> FResponse_GetCatalogItem::GetHeader200_ETag() const
 
 bool FResponse_GetCatalogItem::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogItem::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogItem::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogItem::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1352,10 +1442,9 @@ void FCatalogAPI::OnGetCatalogItemsAllResponse(FHttpRequestPtr HttpRequest, FHtt
 }
 
 FRequest_GetCatalogItemsAll::FRequest_GetCatalogItemsAll()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetCatalogItemsAll::GetSimplifiedPath() const
@@ -1412,27 +1501,23 @@ bool FRequest_GetCatalogItemsAll::SetupHttpRequest(const FHttpRequestRef& HttpRe
 	return true;
 }
 
-void FResponse_GetCatalogItemsAll::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetCatalogItemsAll::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 304:
-		SetResponseString(TEXT("Content still has the same etag and has not changed"));
-		break;
+		return TEXT("Content still has the same etag and has not changed");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT("Not Found"));
-		break;
+		return TEXT("Not Found");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetCatalogItemsAll::ParseHeaders()
@@ -1458,7 +1543,12 @@ bool FResponse_GetCatalogItemsAll::ParseHeaders()
 
 bool FResponse_GetCatalogItemsAll::TryGetContentFor200(FRHAPI_Items& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -1477,17 +1567,32 @@ TOptional<FString> FResponse_GetCatalogItemsAll::GetHeader200_ETag() const
 
 bool FResponse_GetCatalogItemsAll::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogItemsAll::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogItemsAll::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogItemsAll::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1561,10 +1666,9 @@ void FCatalogAPI::OnGetCatalogLootResponse(FHttpRequestPtr HttpRequest, FHttpRes
 }
 
 FRequest_GetCatalogLoot::FRequest_GetCatalogLoot()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetCatalogLoot::GetSimplifiedPath() const
@@ -1626,27 +1730,23 @@ bool FRequest_GetCatalogLoot::SetupHttpRequest(const FHttpRequestRef& HttpReques
 	return true;
 }
 
-void FResponse_GetCatalogLoot::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetCatalogLoot::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 304:
-		SetResponseString(TEXT("Content still has the same etag and has not changed"));
-		break;
+		return TEXT("Content still has the same etag and has not changed");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT("Not Found"));
-		break;
+		return TEXT("Not Found");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetCatalogLoot::ParseHeaders()
@@ -1672,7 +1772,12 @@ bool FResponse_GetCatalogLoot::ParseHeaders()
 
 bool FResponse_GetCatalogLoot::TryGetContentFor200(FRHAPI_Loot& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -1691,17 +1796,32 @@ TOptional<FString> FResponse_GetCatalogLoot::GetHeader200_ETag() const
 
 bool FResponse_GetCatalogLoot::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogLoot::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogLoot::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogLoot::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1775,10 +1895,9 @@ void FCatalogAPI::OnGetCatalogLootsAllResponse(FHttpRequestPtr HttpRequest, FHtt
 }
 
 FRequest_GetCatalogLootsAll::FRequest_GetCatalogLootsAll()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetCatalogLootsAll::GetSimplifiedPath() const
@@ -1835,27 +1954,23 @@ bool FRequest_GetCatalogLootsAll::SetupHttpRequest(const FHttpRequestRef& HttpRe
 	return true;
 }
 
-void FResponse_GetCatalogLootsAll::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetCatalogLootsAll::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 304:
-		SetResponseString(TEXT("Content still has the same etag and has not changed"));
-		break;
+		return TEXT("Content still has the same etag and has not changed");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT("Not Found"));
-		break;
+		return TEXT("Not Found");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetCatalogLootsAll::ParseHeaders()
@@ -1881,7 +1996,12 @@ bool FResponse_GetCatalogLootsAll::ParseHeaders()
 
 bool FResponse_GetCatalogLootsAll::TryGetContentFor200(FRHAPI_Loots& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -1900,17 +2020,32 @@ TOptional<FString> FResponse_GetCatalogLootsAll::GetHeader200_ETag() const
 
 bool FResponse_GetCatalogLootsAll::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogLootsAll::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogLootsAll::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogLootsAll::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1984,10 +2119,9 @@ void FCatalogAPI::OnGetCatalogPortalUseRulesetResponse(FHttpRequestPtr HttpReque
 }
 
 FRequest_GetCatalogPortalUseRuleset::FRequest_GetCatalogPortalUseRuleset()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetCatalogPortalUseRuleset::GetSimplifiedPath() const
@@ -2049,27 +2183,23 @@ bool FRequest_GetCatalogPortalUseRuleset::SetupHttpRequest(const FHttpRequestRef
 	return true;
 }
 
-void FResponse_GetCatalogPortalUseRuleset::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetCatalogPortalUseRuleset::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 304:
-		SetResponseString(TEXT("Content still has the same etag and has not changed"));
-		break;
+		return TEXT("Content still has the same etag and has not changed");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT("Not Found"));
-		break;
+		return TEXT("Not Found");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetCatalogPortalUseRuleset::ParseHeaders()
@@ -2095,7 +2225,12 @@ bool FResponse_GetCatalogPortalUseRuleset::ParseHeaders()
 
 bool FResponse_GetCatalogPortalUseRuleset::TryGetContentFor200(FRHAPI_PortalUseRuleset& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -2114,17 +2249,32 @@ TOptional<FString> FResponse_GetCatalogPortalUseRuleset::GetHeader200_ETag() con
 
 bool FResponse_GetCatalogPortalUseRuleset::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogPortalUseRuleset::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogPortalUseRuleset::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogPortalUseRuleset::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2198,10 +2348,9 @@ void FCatalogAPI::OnGetCatalogPortalUseRulesetsAllResponse(FHttpRequestPtr HttpR
 }
 
 FRequest_GetCatalogPortalUseRulesetsAll::FRequest_GetCatalogPortalUseRulesetsAll()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetCatalogPortalUseRulesetsAll::GetSimplifiedPath() const
@@ -2258,27 +2407,23 @@ bool FRequest_GetCatalogPortalUseRulesetsAll::SetupHttpRequest(const FHttpReques
 	return true;
 }
 
-void FResponse_GetCatalogPortalUseRulesetsAll::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetCatalogPortalUseRulesetsAll::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 304:
-		SetResponseString(TEXT("Content still has the same etag and has not changed"));
-		break;
+		return TEXT("Content still has the same etag and has not changed");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT("Not Found"));
-		break;
+		return TEXT("Not Found");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetCatalogPortalUseRulesetsAll::ParseHeaders()
@@ -2304,7 +2449,12 @@ bool FResponse_GetCatalogPortalUseRulesetsAll::ParseHeaders()
 
 bool FResponse_GetCatalogPortalUseRulesetsAll::TryGetContentFor200(FRHAPI_PortalUseRulesets& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -2323,17 +2473,32 @@ TOptional<FString> FResponse_GetCatalogPortalUseRulesetsAll::GetHeader200_ETag()
 
 bool FResponse_GetCatalogPortalUseRulesetsAll::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogPortalUseRulesetsAll::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogPortalUseRulesetsAll::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogPortalUseRulesetsAll::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2407,10 +2572,9 @@ void FCatalogAPI::OnGetCatalogPricePointResponse(FHttpRequestPtr HttpRequest, FH
 }
 
 FRequest_GetCatalogPricePoint::FRequest_GetCatalogPricePoint()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetCatalogPricePoint::GetSimplifiedPath() const
@@ -2472,27 +2636,23 @@ bool FRequest_GetCatalogPricePoint::SetupHttpRequest(const FHttpRequestRef& Http
 	return true;
 }
 
-void FResponse_GetCatalogPricePoint::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetCatalogPricePoint::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 304:
-		SetResponseString(TEXT("Content still has the same etag and has not changed"));
-		break;
+		return TEXT("Content still has the same etag and has not changed");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT("Not Found"));
-		break;
+		return TEXT("Not Found");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetCatalogPricePoint::ParseHeaders()
@@ -2518,7 +2678,12 @@ bool FResponse_GetCatalogPricePoint::ParseHeaders()
 
 bool FResponse_GetCatalogPricePoint::TryGetContentFor200(FRHAPI_PricePoint& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -2537,17 +2702,32 @@ TOptional<FString> FResponse_GetCatalogPricePoint::GetHeader200_ETag() const
 
 bool FResponse_GetCatalogPricePoint::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogPricePoint::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogPricePoint::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogPricePoint::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2621,10 +2801,9 @@ void FCatalogAPI::OnGetCatalogPricePointsAllResponse(FHttpRequestPtr HttpRequest
 }
 
 FRequest_GetCatalogPricePointsAll::FRequest_GetCatalogPricePointsAll()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetCatalogPricePointsAll::GetSimplifiedPath() const
@@ -2681,27 +2860,23 @@ bool FRequest_GetCatalogPricePointsAll::SetupHttpRequest(const FHttpRequestRef& 
 	return true;
 }
 
-void FResponse_GetCatalogPricePointsAll::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetCatalogPricePointsAll::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 304:
-		SetResponseString(TEXT("Content still has the same etag and has not changed"));
-		break;
+		return TEXT("Content still has the same etag and has not changed");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT("Not Found"));
-		break;
+		return TEXT("Not Found");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetCatalogPricePointsAll::ParseHeaders()
@@ -2727,7 +2902,12 @@ bool FResponse_GetCatalogPricePointsAll::ParseHeaders()
 
 bool FResponse_GetCatalogPricePointsAll::TryGetContentFor200(FRHAPI_PricePoints& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -2746,17 +2926,32 @@ TOptional<FString> FResponse_GetCatalogPricePointsAll::GetHeader200_ETag() const
 
 bool FResponse_GetCatalogPricePointsAll::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogPricePointsAll::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogPricePointsAll::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogPricePointsAll::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2830,10 +3025,9 @@ void FCatalogAPI::OnGetCatalogTimeFrameResponse(FHttpRequestPtr HttpRequest, FHt
 }
 
 FRequest_GetCatalogTimeFrame::FRequest_GetCatalogTimeFrame()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetCatalogTimeFrame::GetSimplifiedPath() const
@@ -2895,27 +3089,23 @@ bool FRequest_GetCatalogTimeFrame::SetupHttpRequest(const FHttpRequestRef& HttpR
 	return true;
 }
 
-void FResponse_GetCatalogTimeFrame::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetCatalogTimeFrame::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 304:
-		SetResponseString(TEXT("Content still has the same etag and has not changed"));
-		break;
+		return TEXT("Content still has the same etag and has not changed");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT("Not Found"));
-		break;
+		return TEXT("Not Found");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetCatalogTimeFrame::ParseHeaders()
@@ -2941,7 +3131,12 @@ bool FResponse_GetCatalogTimeFrame::ParseHeaders()
 
 bool FResponse_GetCatalogTimeFrame::TryGetContentFor200(FRHAPI_TimeFrame& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -2960,17 +3155,32 @@ TOptional<FString> FResponse_GetCatalogTimeFrame::GetHeader200_ETag() const
 
 bool FResponse_GetCatalogTimeFrame::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogTimeFrame::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogTimeFrame::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogTimeFrame::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3044,10 +3254,9 @@ void FCatalogAPI::OnGetCatalogTimeFramesAllResponse(FHttpRequestPtr HttpRequest,
 }
 
 FRequest_GetCatalogTimeFramesAll::FRequest_GetCatalogTimeFramesAll()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetCatalogTimeFramesAll::GetSimplifiedPath() const
@@ -3104,27 +3313,23 @@ bool FRequest_GetCatalogTimeFramesAll::SetupHttpRequest(const FHttpRequestRef& H
 	return true;
 }
 
-void FResponse_GetCatalogTimeFramesAll::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetCatalogTimeFramesAll::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 304:
-		SetResponseString(TEXT("Content still has the same etag and has not changed"));
-		break;
+		return TEXT("Content still has the same etag and has not changed");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT("Not Found"));
-		break;
+		return TEXT("Not Found");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetCatalogTimeFramesAll::ParseHeaders()
@@ -3150,7 +3355,12 @@ bool FResponse_GetCatalogTimeFramesAll::ParseHeaders()
 
 bool FResponse_GetCatalogTimeFramesAll::TryGetContentFor200(FRHAPI_TimeFrames& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -3169,17 +3379,32 @@ TOptional<FString> FResponse_GetCatalogTimeFramesAll::GetHeader200_ETag() const
 
 bool FResponse_GetCatalogTimeFramesAll::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogTimeFramesAll::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogTimeFramesAll::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogTimeFramesAll::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3253,10 +3478,9 @@ void FCatalogAPI::OnGetCatalogVendorResponse(FHttpRequestPtr HttpRequest, FHttpR
 }
 
 FRequest_GetCatalogVendor::FRequest_GetCatalogVendor()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetCatalogVendor::GetSimplifiedPath() const
@@ -3318,27 +3542,23 @@ bool FRequest_GetCatalogVendor::SetupHttpRequest(const FHttpRequestRef& HttpRequ
 	return true;
 }
 
-void FResponse_GetCatalogVendor::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetCatalogVendor::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 304:
-		SetResponseString(TEXT("Content still has the same etag and has not changed"));
-		break;
+		return TEXT("Content still has the same etag and has not changed");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT("Not Found"));
-		break;
+		return TEXT("Not Found");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetCatalogVendor::ParseHeaders()
@@ -3364,7 +3584,12 @@ bool FResponse_GetCatalogVendor::ParseHeaders()
 
 bool FResponse_GetCatalogVendor::TryGetContentFor200(FRHAPI_Vendor& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -3383,17 +3608,32 @@ TOptional<FString> FResponse_GetCatalogVendor::GetHeader200_ETag() const
 
 bool FResponse_GetCatalogVendor::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogVendor::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogVendor::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogVendor::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3467,10 +3707,9 @@ void FCatalogAPI::OnGetCatalogVendorsAllResponse(FHttpRequestPtr HttpRequest, FH
 }
 
 FRequest_GetCatalogVendorsAll::FRequest_GetCatalogVendorsAll()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetCatalogVendorsAll::GetSimplifiedPath() const
@@ -3527,27 +3766,23 @@ bool FRequest_GetCatalogVendorsAll::SetupHttpRequest(const FHttpRequestRef& Http
 	return true;
 }
 
-void FResponse_GetCatalogVendorsAll::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetCatalogVendorsAll::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 304:
-		SetResponseString(TEXT("Content still has the same etag and has not changed"));
-		break;
+		return TEXT("Content still has the same etag and has not changed");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT("Not Found"));
-		break;
+		return TEXT("Not Found");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetCatalogVendorsAll::ParseHeaders()
@@ -3573,7 +3808,12 @@ bool FResponse_GetCatalogVendorsAll::ParseHeaders()
 
 bool FResponse_GetCatalogVendorsAll::TryGetContentFor200(FRHAPI_Vendors& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -3592,17 +3832,32 @@ TOptional<FString> FResponse_GetCatalogVendorsAll::GetHeader200_ETag() const
 
 bool FResponse_GetCatalogVendorsAll::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogVendorsAll::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogVendorsAll::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogVendorsAll::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3676,10 +3931,9 @@ void FCatalogAPI::OnGetCatalogXpAllResponse(FHttpRequestPtr HttpRequest, FHttpRe
 }
 
 FRequest_GetCatalogXpAll::FRequest_GetCatalogXpAll()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetCatalogXpAll::GetSimplifiedPath() const
@@ -3736,27 +3990,23 @@ bool FRequest_GetCatalogXpAll::SetupHttpRequest(const FHttpRequestRef& HttpReque
 	return true;
 }
 
-void FResponse_GetCatalogXpAll::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetCatalogXpAll::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 304:
-		SetResponseString(TEXT("Content still has the same etag and has not changed"));
-		break;
+		return TEXT("Content still has the same etag and has not changed");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT("Not Found"));
-		break;
+		return TEXT("Not Found");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetCatalogXpAll::ParseHeaders()
@@ -3782,7 +4032,12 @@ bool FResponse_GetCatalogXpAll::ParseHeaders()
 
 bool FResponse_GetCatalogXpAll::TryGetContentFor200(FRHAPI_XpTables& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -3801,17 +4056,32 @@ TOptional<FString> FResponse_GetCatalogXpAll::GetHeader200_ETag() const
 
 bool FResponse_GetCatalogXpAll::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogXpAll::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogXpAll::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogXpAll::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3885,10 +4155,9 @@ void FCatalogAPI::OnGetCatalogXpTableResponse(FHttpRequestPtr HttpRequest, FHttp
 }
 
 FRequest_GetCatalogXpTable::FRequest_GetCatalogXpTable()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetCatalogXpTable::GetSimplifiedPath() const
@@ -3950,27 +4219,23 @@ bool FRequest_GetCatalogXpTable::SetupHttpRequest(const FHttpRequestRef& HttpReq
 	return true;
 }
 
-void FResponse_GetCatalogXpTable::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetCatalogXpTable::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 304:
-		SetResponseString(TEXT("Content still has the same etag and has not changed"));
-		break;
+		return TEXT("Content still has the same etag and has not changed");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT("Not Found"));
-		break;
+		return TEXT("Not Found");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetCatalogXpTable::ParseHeaders()
@@ -3996,7 +4261,12 @@ bool FResponse_GetCatalogXpTable::ParseHeaders()
 
 bool FResponse_GetCatalogXpTable::TryGetContentFor200(FRHAPI_XpTable& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -4015,17 +4285,32 @@ TOptional<FString> FResponse_GetCatalogXpTable::GetHeader200_ETag() const
 
 bool FResponse_GetCatalogXpTable::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogXpTable::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogXpTable::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetCatalogXpTable::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

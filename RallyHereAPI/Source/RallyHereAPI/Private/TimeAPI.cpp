@@ -82,10 +82,9 @@ void FTimeAPI::OnGetUtcTimeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePt
 }
 
 FRequest_GetUtcTime::FRequest_GetUtcTime()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetUtcTime::GetSimplifiedPath() const
@@ -125,20 +124,25 @@ bool FRequest_GetUtcTime::SetupHttpRequest(const FHttpRequestRef& HttpRequest) c
 	return true;
 }
 
-void FResponse_GetUtcTime::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetUtcTime::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetUtcTime::TryGetContentFor200(FDateTime& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetUtcTime::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

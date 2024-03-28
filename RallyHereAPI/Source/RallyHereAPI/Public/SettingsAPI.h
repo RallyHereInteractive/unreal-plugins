@@ -153,7 +153,7 @@ struct RALLYHEREAPI_API FResponse_DeleteAllPlayerIdSettingsForSettingType : publ
 	FResponse_DeleteAllPlayerIdSettingsForSettingType(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_DeleteAllPlayerIdSettingsForSettingType() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_JsonValue Content;
 
@@ -224,7 +224,7 @@ struct RALLYHEREAPI_API FResponse_DeleteAllPlayerUuidSettingsForSettingType : pu
 	FResponse_DeleteAllPlayerUuidSettingsForSettingType(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_DeleteAllPlayerUuidSettingsForSettingType() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_JsonValue Content;
 
@@ -293,7 +293,7 @@ struct RALLYHEREAPI_API FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf 
 	FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_JsonValue Content;
 
@@ -368,7 +368,7 @@ struct RALLYHEREAPI_API FResponse_DeleteSinglePlayerIdSetting : public FResponse
 	FResponse_DeleteSinglePlayerIdSetting(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_DeleteSinglePlayerIdSetting() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_JsonValue Content;
 
@@ -441,7 +441,7 @@ struct RALLYHEREAPI_API FResponse_DeleteSinglePlayerUuidSetting : public FRespon
 	FResponse_DeleteSinglePlayerUuidSetting(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_DeleteSinglePlayerUuidSetting() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_JsonValue Content;
 
@@ -512,7 +512,7 @@ struct RALLYHEREAPI_API FResponse_DeleteSinglePlayerUuidSettingSelf : public FRe
 	FResponse_DeleteSinglePlayerUuidSettingSelf(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_DeleteSinglePlayerUuidSettingSelf() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_JsonValue Content;
 
@@ -587,7 +587,7 @@ struct RALLYHEREAPI_API FResponse_GetAllPlayerIdSettingsForSettingType : public 
 	FResponse_GetAllPlayerIdSettingsForSettingType(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetAllPlayerIdSettingsForSettingType() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	TMap<FString, FRHAPI_SettingData> Content;
 
@@ -660,7 +660,7 @@ struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidSettingsForSettingType : publi
 	FResponse_GetAllPlayerUuidSettingsForSettingType(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetAllPlayerUuidSettingsForSettingType() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	TMap<FString, FRHAPI_SettingData> Content;
 
@@ -731,7 +731,7 @@ struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf : p
 	FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	TMap<FString, FRHAPI_SettingData> Content;
 
@@ -798,7 +798,7 @@ struct RALLYHEREAPI_API FResponse_GetConfigForAllSettingTypes : public FResponse
 	FResponse_GetConfigForAllSettingTypes(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetConfigForAllSettingTypes() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	TMap<FString, FRHAPI_SettingType> Content;
 
@@ -846,7 +846,7 @@ struct RALLYHEREAPI_API FResponse_GetConfigForSingleSettingTypeAllVersions : pub
 	FResponse_GetConfigForSingleSettingTypeAllVersions(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetConfigForSingleSettingTypeAllVersions() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	TMap<FString, FRHAPI_SettingTypeVersion> Content;
 
@@ -908,7 +908,7 @@ struct RALLYHEREAPI_API FResponse_GetConfigForSingleSettingTypeAndVersion : publ
 	FResponse_GetConfigForSingleSettingTypeAndVersion(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetConfigForSingleSettingTypeAndVersion() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_SettingTypeVersion Content;
 
@@ -978,7 +978,7 @@ struct RALLYHEREAPI_API FResponse_GetSinglePlayerIdSetting : public FResponse
 	FResponse_GetSinglePlayerIdSetting(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetSinglePlayerIdSetting() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_SettingData Content;
 
@@ -1051,7 +1051,7 @@ struct RALLYHEREAPI_API FResponse_GetSinglePlayerUuidSetting : public FResponse
 	FResponse_GetSinglePlayerUuidSetting(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetSinglePlayerUuidSetting() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_SettingData Content;
 
@@ -1122,7 +1122,7 @@ struct RALLYHEREAPI_API FResponse_GetSinglePlayerUuidSettingSelf : public FRespo
 	FResponse_GetSinglePlayerUuidSettingSelf(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetSinglePlayerUuidSettingSelf() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_SettingData Content;
 
@@ -1204,7 +1204,7 @@ struct RALLYHEREAPI_API FResponse_SetSinglePlayerIdSetting : public FResponse
 	FResponse_SetSinglePlayerIdSetting(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_SetSinglePlayerIdSetting() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	TMap<FString, FRHAPI_SettingData> Content;
 
@@ -1289,7 +1289,7 @@ struct RALLYHEREAPI_API FResponse_SetSinglePlayerUuidSetting : public FResponse
 	FResponse_SetSinglePlayerUuidSetting(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_SetSinglePlayerUuidSetting() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	TMap<FString, FRHAPI_SettingData> Content;
 
@@ -1372,7 +1372,7 @@ struct RALLYHEREAPI_API FResponse_SetSinglePlayerUuidSettingSelf : public FRespo
 	FResponse_SetSinglePlayerUuidSettingSelf(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_SetSinglePlayerUuidSettingSelf() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	TMap<FString, FRHAPI_SettingData> Content;
 

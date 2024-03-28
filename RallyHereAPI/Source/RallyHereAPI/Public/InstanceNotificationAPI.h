@@ -86,7 +86,7 @@ struct RALLYHEREAPI_API FResponse_InstanceCreateNotification : public FResponse
 	FResponse_InstanceCreateNotification(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_InstanceCreateNotification() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_NotificationCreateResult Content;
 
@@ -166,7 +166,7 @@ struct RALLYHEREAPI_API FResponse_InstanceGetNotificationById : public FResponse
 	FResponse_InstanceGetNotificationById(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_InstanceGetNotificationById() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_Notification Content;
 
@@ -266,7 +266,7 @@ struct RALLYHEREAPI_API FResponse_InstanceGetNotificationsPage : public FRespons
 	FResponse_InstanceGetNotificationsPage(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_InstanceGetNotificationsPage() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_Notifications Content;
 
@@ -363,7 +363,7 @@ struct RALLYHEREAPI_API FResponse_InstanceLongPollForNotifications : public FRes
 	FResponse_InstanceLongPollForNotifications(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_InstanceLongPollForNotifications() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_Notifications Content;
 

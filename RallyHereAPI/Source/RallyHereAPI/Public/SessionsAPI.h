@@ -302,7 +302,7 @@ struct RALLYHEREAPI_API FResponse_AcknowledgeBackfillRequest : public FResponse
 	FResponse_AcknowledgeBackfillRequest(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_AcknowledgeBackfillRequest() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_AcknowledgeBackfillResponse Content;
 
@@ -375,7 +375,7 @@ struct RALLYHEREAPI_API FResponse_AddPlatformSessionToRallyHereSession : public 
 	virtual ~FResponse_AddPlatformSessionToRallyHereSession() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlatformSession Content;
 	// Headers
@@ -450,7 +450,7 @@ struct RALLYHEREAPI_API FResponse_BackfillConfig : public FResponse
 	FResponse_BackfillConfig(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_BackfillConfig() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_BackfillSettingsResponse Content;
 
@@ -510,7 +510,7 @@ struct RALLYHEREAPI_API FResponse_CreateInstanceRequest : public FResponse
 	FResponse_CreateInstanceRequest(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_CreateInstanceRequest() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_InstanceInfo Content;
 
@@ -575,7 +575,7 @@ struct RALLYHEREAPI_API FResponse_CreateOrJoinSession : public FResponse
 	FResponse_CreateOrJoinSession(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_CreateOrJoinSession() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_SessionJoinResponse Content;
 
@@ -633,7 +633,7 @@ struct RALLYHEREAPI_API FResponse_DeleteBackfillRequest : public FResponse
 	FResponse_DeleteBackfillRequest(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_DeleteBackfillRequest() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	
 
@@ -701,7 +701,7 @@ struct RALLYHEREAPI_API FResponse_DeleteBrowserInfo : public FResponse
 	FResponse_DeleteBrowserInfo(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_DeleteBrowserInfo() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	
 
@@ -767,7 +767,7 @@ struct RALLYHEREAPI_API FResponse_DeletePlatformSessionFromRallyHereSession : pu
 	FResponse_DeletePlatformSessionFromRallyHereSession(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_DeletePlatformSessionFromRallyHereSession() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	
 
@@ -843,7 +843,7 @@ struct RALLYHEREAPI_API FResponse_EndInstance : public FResponse
 	virtual ~FResponse_EndInstance() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	
 	// Headers
@@ -912,7 +912,7 @@ struct RALLYHEREAPI_API FResponse_GetAllSessionTemplates : public FResponse
 	virtual ~FResponse_GetAllSessionTemplates() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_SessionTemplates Content;
 	// Headers
@@ -984,7 +984,7 @@ struct RALLYHEREAPI_API FResponse_GetBrowserSessionsByType : public FResponse
 	virtual ~FResponse_GetBrowserSessionsByType() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_BrowserResponse Content;
 	// Headers
@@ -1052,7 +1052,7 @@ struct RALLYHEREAPI_API FResponse_GetConnectionInfoSelf : public FResponse
 	FResponse_GetConnectionInfoSelf(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetConnectionInfoSelf() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_ConnectionInfo Content;
 
@@ -1120,7 +1120,7 @@ struct RALLYHEREAPI_API FResponse_GetPlatformSessionInfo : public FResponse
 	virtual ~FResponse_GetPlatformSessionInfo() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlatformSession Content;
 	// Headers
@@ -1195,7 +1195,7 @@ struct RALLYHEREAPI_API FResponse_GetPlayerSessions : public FResponse
 	FResponse_GetPlayerSessions(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetPlayerSessions() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlayerSessions Content;
 
@@ -1263,7 +1263,7 @@ struct RALLYHEREAPI_API FResponse_GetPlayerSessionsByUuid : public FResponse
 	virtual ~FResponse_GetPlayerSessionsByUuid() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlayerSessions Content;
 	// Headers
@@ -1334,7 +1334,7 @@ struct RALLYHEREAPI_API FResponse_GetPlayerSessionsByUuidV2 : public FResponse
 	virtual ~FResponse_GetPlayerSessionsByUuidV2() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlayerSessions Content;
 	// Headers
@@ -1400,7 +1400,7 @@ struct RALLYHEREAPI_API FResponse_GetPlayerSessionsSelf : public FResponse
 	virtual ~FResponse_GetPlayerSessionsSelf() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlayerSessions Content;
 	// Headers
@@ -1471,7 +1471,7 @@ struct RALLYHEREAPI_API FResponse_GetSessionByAllocationId : public FResponse
 	virtual ~FResponse_GetSessionByAllocationId() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_Session Content;
 	// Headers
@@ -1544,7 +1544,7 @@ struct RALLYHEREAPI_API FResponse_GetSessionById : public FResponse
 	virtual ~FResponse_GetSessionById() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_Session Content;
 	// Headers
@@ -1615,7 +1615,7 @@ struct RALLYHEREAPI_API FResponse_GetSessionTemplateByType : public FResponse
 	virtual ~FResponse_GetSessionTemplateByType() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_SessionTemplate Content;
 	// Headers
@@ -1684,7 +1684,7 @@ struct RALLYHEREAPI_API FResponse_InstanceHealthCheck : public FResponse
 	FResponse_InstanceHealthCheck(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_InstanceHealthCheck() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_InstanceHealthStatusResponse Content;
 
@@ -1743,7 +1743,7 @@ struct RALLYHEREAPI_API FResponse_InstanceHealthConfig : public FResponse
 	FResponse_InstanceHealthConfig(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_InstanceHealthConfig() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_InstanceHealthSettingsResponse Content;
 
@@ -1811,7 +1811,7 @@ struct RALLYHEREAPI_API FResponse_InviteSessionToSession : public FResponse
 	virtual ~FResponse_InviteSessionToSession() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_SessionInviteResponse Content;
 	// Headers
@@ -1885,7 +1885,7 @@ struct RALLYHEREAPI_API FResponse_JoinQueue : public FResponse
 	FResponse_JoinQueue(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_JoinQueue() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_QueueJoinResponse Content;
 
@@ -1951,7 +1951,7 @@ struct RALLYHEREAPI_API FResponse_JoinSessionByIdSelf : public FResponse
 	virtual ~FResponse_JoinSessionByIdSelf() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_SessionPlayerUpdateResponse Content;
 	// Headers
@@ -2029,7 +2029,7 @@ struct RALLYHEREAPI_API FResponse_JoinSessionByPlatformSessionByUuid : public FR
 	virtual ~FResponse_JoinSessionByPlatformSessionByUuid() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_Session Content;
 	// Headers
@@ -2112,7 +2112,7 @@ struct RALLYHEREAPI_API FResponse_JoinSessionByPlatformSessionIdSelf : public FR
 	virtual ~FResponse_JoinSessionByPlatformSessionIdSelf() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_Session Content;
 	// Headers
@@ -2196,7 +2196,7 @@ struct RALLYHEREAPI_API FResponse_KickPlayerFromSessionById : public FResponse
 	FResponse_KickPlayerFromSessionById(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_KickPlayerFromSessionById() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	
 
@@ -2268,7 +2268,7 @@ struct RALLYHEREAPI_API FResponse_KickPlayerFromSessionByUuid : public FResponse
 	virtual ~FResponse_KickPlayerFromSessionByUuid() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	
 	// Headers
@@ -2343,7 +2343,7 @@ struct RALLYHEREAPI_API FResponse_KickPlayerFromSessionByUuidV2 : public FRespon
 	virtual ~FResponse_KickPlayerFromSessionByUuidV2() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	
 	// Headers
@@ -2422,7 +2422,7 @@ struct RALLYHEREAPI_API FResponse_KickSessionFromSession : public FResponse
 	FResponse_KickSessionFromSession(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_KickSessionFromSession() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	
 
@@ -2491,7 +2491,7 @@ struct RALLYHEREAPI_API FResponse_LeaveQueue : public FResponse
 	FResponse_LeaveQueue(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_LeaveQueue() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	
 
@@ -2559,7 +2559,7 @@ struct RALLYHEREAPI_API FResponse_LeaveSessionByIdSelf : public FResponse
 	FResponse_LeaveSessionByIdSelf(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_LeaveSessionByIdSelf() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	
 
@@ -2629,7 +2629,7 @@ struct RALLYHEREAPI_API FResponse_LeaveSessionByPlatformSessionByUuid : public F
 	FResponse_LeaveSessionByPlatformSessionByUuid(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_LeaveSessionByPlatformSessionByUuid() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	
 
@@ -2705,7 +2705,7 @@ struct RALLYHEREAPI_API FResponse_LeaveSessionByPlatformSessionSelf : public FRe
 	FResponse_LeaveSessionByPlatformSessionSelf(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_LeaveSessionByPlatformSessionSelf() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	
 
@@ -2782,7 +2782,7 @@ struct RALLYHEREAPI_API FResponse_PostBrowserInfo : public FResponse
 	FResponse_PostBrowserInfo(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_PostBrowserInfo() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_BrowserInfo Content;
 
@@ -2840,7 +2840,7 @@ struct RALLYHEREAPI_API FResponse_UpdateBackfillRequest : public FResponse
 	FResponse_UpdateBackfillRequest(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_UpdateBackfillRequest() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	
 
@@ -2909,7 +2909,7 @@ struct RALLYHEREAPI_API FResponse_UpdateBrowserInfo : public FResponse
 	FResponse_UpdateBrowserInfo(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_UpdateBrowserInfo() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_BrowserInfo Content;
 
@@ -2975,7 +2975,7 @@ struct RALLYHEREAPI_API FResponse_UpdateInstanceInfo : public FResponse
 	FResponse_UpdateInstanceInfo(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_UpdateInstanceInfo() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_InstanceInfo Content;
 
@@ -3041,7 +3041,7 @@ struct RALLYHEREAPI_API FResponse_UpdateSessionById : public FResponse
 	virtual ~FResponse_UpdateSessionById() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_Session Content;
 	// Headers
@@ -3114,7 +3114,7 @@ struct RALLYHEREAPI_API FResponse_UpdateSessionPlayerById : public FResponse
 	FResponse_UpdateSessionPlayerById(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_UpdateSessionPlayerById() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_SessionPlayerUpdateResponse Content;
 
@@ -3188,7 +3188,7 @@ struct RALLYHEREAPI_API FResponse_UpdateSessionPlayerByUuid : public FResponse
 	virtual ~FResponse_UpdateSessionPlayerByUuid() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_SessionPlayerUpdateResponse Content;
 	// Headers
@@ -3265,7 +3265,7 @@ struct RALLYHEREAPI_API FResponse_UpdateSessionPlayerByUuidV2 : public FResponse
 	virtual ~FResponse_UpdateSessionPlayerByUuidV2() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_SessionPlayerUpdateResponse Content;
 	// Headers

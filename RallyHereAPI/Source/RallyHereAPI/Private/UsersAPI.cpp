@@ -82,10 +82,9 @@ void FUsersAPI::OnCreatePlatformUserByIdResponse(FHttpRequestPtr HttpRequest, FH
 }
 
 FRequest_CreatePlatformUserById::FRequest_CreatePlatformUserById()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_CreatePlatformUserById::GetSimplifiedPath() const
@@ -147,44 +146,61 @@ bool FRequest_CreatePlatformUserById::SetupHttpRequest(const FHttpRequestRef& Ht
 	return true;
 }
 
-void FResponse_CreatePlatformUserById::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_CreatePlatformUserById::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 201:
-		SetResponseString(TEXT("Platform user was created successfully"));
-		break;
+		return TEXT("Platform user was created successfully");
 	case 403:
-		SetResponseString(TEXT(" Error Codes: - insufficient_permissions - Insufficient Permissions - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization - auth_invalid_version - Invalid Authorization - version - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} "));
-		break;
+		return TEXT(" Error Codes: - insufficient_permissions - Insufficient Permissions - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization - auth_invalid_version - Invalid Authorization - version - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} ");
 	case 409:
-		SetResponseString(TEXT("Failed to create platform user.  See error code and description for further details.   Error Codes: - user_already_exists - User already exists  "));
-		break;
+		return TEXT("Failed to create platform user.  See error code and description for further details.   Error Codes: - user_already_exists - User already exists  ");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_CreatePlatformUserById::TryGetContentFor201(FRHAPI_PlatformUserResponse& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_CreatePlatformUserById::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_CreatePlatformUserById::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_CreatePlatformUserById::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_CreatePlatformUserById::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -258,10 +274,9 @@ void FUsersAPI::OnDequeueMeForPurgeResponse(FHttpRequestPtr HttpRequest, FHttpRe
 }
 
 FRequest_DequeueMeForPurge::FRequest_DequeueMeForPurge()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_DequeueMeForPurge::GetSimplifiedPath() const
@@ -312,31 +327,39 @@ bool FRequest_DequeueMeForPurge::SetupHttpRequest(const FHttpRequestRef& HttpReq
 	return true;
 }
 
-void FResponse_DequeueMeForPurge::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_DequeueMeForPurge::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 204:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 500:
-		SetResponseString(TEXT("Internal Server Error"));
-		break;
+		return TEXT("Internal Server Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_DequeueMeForPurge::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DequeueMeForPurge::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DequeueMeForPurge::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -410,10 +433,9 @@ void FUsersAPI::OnDequeuePersonForPurgeResponse(FHttpRequestPtr HttpRequest, FHt
 }
 
 FRequest_DequeuePersonForPurge::FRequest_DequeuePersonForPurge()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_DequeuePersonForPurge::GetSimplifiedPath() const
@@ -469,39 +491,51 @@ bool FRequest_DequeuePersonForPurge::SetupHttpRequest(const FHttpRequestRef& Htt
 	return true;
 }
 
-void FResponse_DequeuePersonForPurge::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_DequeuePersonForPurge::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 204:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	case 500:
-		SetResponseString(TEXT("Internal Server Error"));
-		break;
+		return TEXT("Internal Server Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_DequeuePersonForPurge::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DequeuePersonForPurge::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DequeuePersonForPurge::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DequeuePersonForPurge::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -575,10 +609,9 @@ void FUsersAPI::OnDisableCrossProgressionResponse(FHttpRequestPtr HttpRequest, F
 }
 
 FRequest_DisableCrossProgression::FRequest_DisableCrossProgression()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_DisableCrossProgression::GetSimplifiedPath() const
@@ -629,23 +662,27 @@ bool FRequest_DisableCrossProgression::SetupHttpRequest(const FHttpRequestRef& H
 	return true;
 }
 
-void FResponse_DisableCrossProgression::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_DisableCrossProgression::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_DisableCrossProgression::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DisableCrossProgression::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -719,10 +756,9 @@ void FUsersAPI::OnEnableCrossProgressionResponse(FHttpRequestPtr HttpRequest, FH
 }
 
 FRequest_EnableCrossProgression::FRequest_EnableCrossProgression()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_EnableCrossProgression::GetSimplifiedPath() const
@@ -773,23 +809,27 @@ bool FRequest_EnableCrossProgression::SetupHttpRequest(const FHttpRequestRef& Ht
 	return true;
 }
 
-void FResponse_EnableCrossProgression::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_EnableCrossProgression::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_EnableCrossProgression::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_EnableCrossProgression::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -863,10 +903,9 @@ void FUsersAPI::OnFindPlatformUserByIdResponse(FHttpRequestPtr HttpRequest, FHtt
 }
 
 FRequest_FindPlatformUserById::FRequest_FindPlatformUserById()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_FindPlatformUserById::GetSimplifiedPath() const
@@ -923,44 +962,61 @@ bool FRequest_FindPlatformUserById::SetupHttpRequest(const FHttpRequestRef& Http
 	return true;
 }
 
-void FResponse_FindPlatformUserById::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_FindPlatformUserById::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Platform user was found successfully"));
-		break;
+		return TEXT("Platform user was found successfully");
 	case 403:
-		SetResponseString(TEXT(" Error Codes: - insufficient_permissions - Insufficient Permissions - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization - auth_invalid_version - Invalid Authorization - version - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} "));
-		break;
+		return TEXT(" Error Codes: - insufficient_permissions - Insufficient Permissions - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization - auth_invalid_version - Invalid Authorization - version - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} ");
 	case 404:
-		SetResponseString(TEXT("Failed to find platform user.  See error code and description for further details.   Error Codes: - user_not_found - User not found  "));
-		break;
+		return TEXT("Failed to find platform user.  See error code and description for further details.   Error Codes: - user_not_found - User not found  ");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_FindPlatformUserById::TryGetContentFor200(FRHAPI_PlatformUserResponse& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_FindPlatformUserById::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_FindPlatformUserById::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_FindPlatformUserById::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_FindPlatformUserById::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1034,10 +1090,9 @@ void FUsersAPI::OnGetAllRolesResponse(FHttpRequestPtr HttpRequest, FHttpResponse
 }
 
 FRequest_GetAllRoles::FRequest_GetAllRoles()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetAllRoles::GetSimplifiedPath() const
@@ -1088,36 +1143,49 @@ bool FRequest_GetAllRoles::SetupHttpRequest(const FHttpRequestRef& HttpRequest) 
 	return true;
 }
 
-void FResponse_GetAllRoles::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetAllRoles::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 400:
-		SetResponseString(TEXT("Bad Request"));
-		break;
+		return TEXT("Bad Request");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetAllRoles::TryGetContentFor200(TArray<FRHAPI_Role>& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAllRoles::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAllRoles::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAllRoles::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1191,10 +1259,9 @@ void FUsersAPI::OnGetPersonResponse(FHttpRequestPtr HttpRequest, FHttpResponsePt
 }
 
 FRequest_GetPerson::FRequest_GetPerson()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetPerson::GetSimplifiedPath() const
@@ -1250,44 +1317,61 @@ bool FRequest_GetPerson::SetupHttpRequest(const FHttpRequestRef& HttpRequest) co
 	return true;
 }
 
-void FResponse_GetPerson::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetPerson::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	case 500:
-		SetResponseString(TEXT("Internal Server Error"));
-		break;
+		return TEXT("Internal Server Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetPerson::TryGetContentFor200(FRHAPI_PersonInfoResponse& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPerson::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPerson::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPerson::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPerson::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1361,10 +1445,9 @@ void FUsersAPI::OnGetPersonEmailListResponse(FHttpRequestPtr HttpRequest, FHttpR
 }
 
 FRequest_GetPersonEmailList::FRequest_GetPersonEmailList()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetPersonEmailList::GetSimplifiedPath() const
@@ -1420,44 +1503,61 @@ bool FRequest_GetPersonEmailList::SetupHttpRequest(const FHttpRequestRef& HttpRe
 	return true;
 }
 
-void FResponse_GetPersonEmailList::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetPersonEmailList::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	case 500:
-		SetResponseString(TEXT("Internal Server Error"));
-		break;
+		return TEXT("Internal Server Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetPersonEmailList::TryGetContentFor200(FRHAPI_PersonEmailListResponse& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPersonEmailList::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPersonEmailList::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPersonEmailList::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPersonEmailList::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1531,10 +1631,9 @@ void FUsersAPI::OnGetPersonEmailListForSelfResponse(FHttpRequestPtr HttpRequest,
 }
 
 FRequest_GetPersonEmailListForSelf::FRequest_GetPersonEmailListForSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetPersonEmailListForSelf::GetSimplifiedPath() const
@@ -1585,36 +1684,49 @@ bool FRequest_GetPersonEmailListForSelf::SetupHttpRequest(const FHttpRequestRef&
 	return true;
 }
 
-void FResponse_GetPersonEmailListForSelf::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetPersonEmailListForSelf::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 500:
-		SetResponseString(TEXT("Internal Server Error"));
-		break;
+		return TEXT("Internal Server Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetPersonEmailListForSelf::TryGetContentFor200(FRHAPI_PersonEmailListResponse& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPersonEmailListForSelf::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPersonEmailListForSelf::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPersonEmailListForSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1688,10 +1800,9 @@ void FUsersAPI::OnGetPersonForSelfResponse(FHttpRequestPtr HttpRequest, FHttpRes
 }
 
 FRequest_GetPersonForSelf::FRequest_GetPersonForSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetPersonForSelf::GetSimplifiedPath() const
@@ -1742,36 +1853,49 @@ bool FRequest_GetPersonForSelf::SetupHttpRequest(const FHttpRequestRef& HttpRequ
 	return true;
 }
 
-void FResponse_GetPersonForSelf::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetPersonForSelf::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 500:
-		SetResponseString(TEXT("Internal Server Error"));
-		break;
+		return TEXT("Internal Server Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetPersonForSelf::TryGetContentFor200(FRHAPI_PersonInfoResponse& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPersonForSelf::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPersonForSelf::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPersonForSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1845,10 +1969,9 @@ void FUsersAPI::OnGetPlayerIdFromPlayerUuidResponse(FHttpRequestPtr HttpRequest,
 }
 
 FRequest_GetPlayerIdFromPlayerUuid::FRequest_GetPlayerIdFromPlayerUuid()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetPlayerIdFromPlayerUuid::GetSimplifiedPath() const
@@ -1904,60 +2027,85 @@ bool FRequest_GetPlayerIdFromPlayerUuid::SetupHttpRequest(const FHttpRequestRef&
 	return true;
 }
 
-void FResponse_GetPlayerIdFromPlayerUuid::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetPlayerIdFromPlayerUuid::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 400:
-		SetResponseString(TEXT("Bad Request"));
-		break;
+		return TEXT("Bad Request");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT("Not Found"));
-		break;
+		return TEXT("Not Found");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	case 500:
-		SetResponseString(TEXT("Internal Server Error"));
-		break;
+		return TEXT("Internal Server Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetPlayerIdFromPlayerUuid::TryGetContentFor200(FRHAPI_PlayerIdWrapper& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerIdFromPlayerUuid::TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerIdFromPlayerUuid::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerIdFromPlayerUuid::TryGetContentFor404(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerIdFromPlayerUuid::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerIdFromPlayerUuid::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerIdFromPlayerUuid::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2031,10 +2179,9 @@ void FUsersAPI::OnGetPlayerIdFromPlayerUuidForSelfResponse(FHttpRequestPtr HttpR
 }
 
 FRequest_GetPlayerIdFromPlayerUuidForSelf::FRequest_GetPlayerIdFromPlayerUuidForSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetPlayerIdFromPlayerUuidForSelf::GetSimplifiedPath() const
@@ -2085,52 +2232,73 @@ bool FRequest_GetPlayerIdFromPlayerUuidForSelf::SetupHttpRequest(const FHttpRequ
 	return true;
 }
 
-void FResponse_GetPlayerIdFromPlayerUuidForSelf::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetPlayerIdFromPlayerUuidForSelf::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 400:
-		SetResponseString(TEXT("Bad Request"));
-		break;
+		return TEXT("Bad Request");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT("Not Found"));
-		break;
+		return TEXT("Not Found");
 	case 500:
-		SetResponseString(TEXT("Internal Server Error"));
-		break;
+		return TEXT("Internal Server Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetPlayerIdFromPlayerUuidForSelf::TryGetContentFor200(FRHAPI_PlayerIdWrapper& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerIdFromPlayerUuidForSelf::TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerIdFromPlayerUuidForSelf::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerIdFromPlayerUuidForSelf::TryGetContentFor404(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerIdFromPlayerUuidForSelf::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerIdFromPlayerUuidForSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2204,10 +2372,9 @@ void FUsersAPI::OnGetPlayerLinkedPortalsResponse(FHttpRequestPtr HttpRequest, FH
 }
 
 FRequest_GetPlayerLinkedPortals::FRequest_GetPlayerLinkedPortals()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetPlayerLinkedPortals::GetSimplifiedPath() const
@@ -2263,52 +2430,73 @@ bool FRequest_GetPlayerLinkedPortals::SetupHttpRequest(const FHttpRequestRef& Ht
 	return true;
 }
 
-void FResponse_GetPlayerLinkedPortals::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetPlayerLinkedPortals::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 400:
-		SetResponseString(TEXT("Bad Request"));
-		break;
+		return TEXT("Bad Request");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	case 500:
-		SetResponseString(TEXT("Internal Server Error"));
-		break;
+		return TEXT("Internal Server Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetPlayerLinkedPortals::TryGetContentFor200(FRHAPI_PlayerLinkedPortalsResponse& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerLinkedPortals::TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerLinkedPortals::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerLinkedPortals::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerLinkedPortals::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerLinkedPortals::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2382,10 +2570,9 @@ void FUsersAPI::OnGetPlayerLinksResponse(FHttpRequestPtr HttpRequest, FHttpRespo
 }
 
 FRequest_GetPlayerLinks::FRequest_GetPlayerLinks()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetPlayerLinks::GetSimplifiedPath() const
@@ -2441,52 +2628,73 @@ bool FRequest_GetPlayerLinks::SetupHttpRequest(const FHttpRequestRef& HttpReques
 	return true;
 }
 
-void FResponse_GetPlayerLinks::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetPlayerLinks::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 400:
-		SetResponseString(TEXT("Bad Request"));
-		break;
+		return TEXT("Bad Request");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	case 500:
-		SetResponseString(TEXT("Internal Server Error"));
-		break;
+		return TEXT("Internal Server Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetPlayerLinks::TryGetContentFor200(FRHAPI_PlayerLinkedPortalsResponse& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerLinks::TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerLinks::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerLinks::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerLinks::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerLinks::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2560,10 +2768,9 @@ void FUsersAPI::OnGetPlayerLinksForSelfResponse(FHttpRequestPtr HttpRequest, FHt
 }
 
 FRequest_GetPlayerLinksForSelf::FRequest_GetPlayerLinksForSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetPlayerLinksForSelf::GetSimplifiedPath() const
@@ -2614,44 +2821,61 @@ bool FRequest_GetPlayerLinksForSelf::SetupHttpRequest(const FHttpRequestRef& Htt
 	return true;
 }
 
-void FResponse_GetPlayerLinksForSelf::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetPlayerLinksForSelf::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 400:
-		SetResponseString(TEXT("Bad Request"));
-		break;
+		return TEXT("Bad Request");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 500:
-		SetResponseString(TEXT("Internal Server Error"));
-		break;
+		return TEXT("Internal Server Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetPlayerLinksForSelf::TryGetContentFor200(FRHAPI_PlayerLinkedPortalsResponse& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerLinksForSelf::TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerLinksForSelf::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerLinksForSelf::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerLinksForSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2725,10 +2949,9 @@ void FUsersAPI::OnGetPlayerUuidFromPlayerIdResponse(FHttpRequestPtr HttpRequest,
 }
 
 FRequest_GetPlayerUuidFromPlayerId::FRequest_GetPlayerUuidFromPlayerId()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetPlayerUuidFromPlayerId::GetSimplifiedPath() const
@@ -2784,52 +3007,73 @@ bool FRequest_GetPlayerUuidFromPlayerId::SetupHttpRequest(const FHttpRequestRef&
 	return true;
 }
 
-void FResponse_GetPlayerUuidFromPlayerId::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetPlayerUuidFromPlayerId::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 400:
-		SetResponseString(TEXT("Bad Request"));
-		break;
+		return TEXT("Bad Request");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	case 500:
-		SetResponseString(TEXT("Internal Server Error"));
-		break;
+		return TEXT("Internal Server Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetPlayerUuidFromPlayerId::TryGetContentFor200(FGuid& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerUuidFromPlayerId::TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerUuidFromPlayerId::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerUuidFromPlayerId::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerUuidFromPlayerId::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerUuidFromPlayerId::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2903,10 +3147,9 @@ void FUsersAPI::OnGetPlayerUuidFromPlayerIdForSelfResponse(FHttpRequestPtr HttpR
 }
 
 FRequest_GetPlayerUuidFromPlayerIdForSelf::FRequest_GetPlayerUuidFromPlayerIdForSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetPlayerUuidFromPlayerIdForSelf::GetSimplifiedPath() const
@@ -2957,44 +3200,61 @@ bool FRequest_GetPlayerUuidFromPlayerIdForSelf::SetupHttpRequest(const FHttpRequ
 	return true;
 }
 
-void FResponse_GetPlayerUuidFromPlayerIdForSelf::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetPlayerUuidFromPlayerIdForSelf::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 400:
-		SetResponseString(TEXT("Bad Request"));
-		break;
+		return TEXT("Bad Request");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 500:
-		SetResponseString(TEXT("Internal Server Error"));
-		break;
+		return TEXT("Internal Server Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetPlayerUuidFromPlayerIdForSelf::TryGetContentFor200(FGuid& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerUuidFromPlayerIdForSelf::TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerUuidFromPlayerIdForSelf::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerUuidFromPlayerIdForSelf::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerUuidFromPlayerIdForSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3068,10 +3328,9 @@ void FUsersAPI::OnGetPlayerUuidFromPlayerIdForSelfV2Response(FHttpRequestPtr Htt
 }
 
 FRequest_GetPlayerUuidFromPlayerIdForSelfV2::FRequest_GetPlayerUuidFromPlayerIdForSelfV2()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetPlayerUuidFromPlayerIdForSelfV2::GetSimplifiedPath() const
@@ -3122,44 +3381,61 @@ bool FRequest_GetPlayerUuidFromPlayerIdForSelfV2::SetupHttpRequest(const FHttpRe
 	return true;
 }
 
-void FResponse_GetPlayerUuidFromPlayerIdForSelfV2::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetPlayerUuidFromPlayerIdForSelfV2::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 400:
-		SetResponseString(TEXT("Bad Request"));
-		break;
+		return TEXT("Bad Request");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 500:
-		SetResponseString(TEXT("Internal Server Error"));
-		break;
+		return TEXT("Internal Server Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetPlayerUuidFromPlayerIdForSelfV2::TryGetContentFor200(FRHAPI_PlayerUuidFromId& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerUuidFromPlayerIdForSelfV2::TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerUuidFromPlayerIdForSelfV2::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerUuidFromPlayerIdForSelfV2::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerUuidFromPlayerIdForSelfV2::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3233,10 +3509,9 @@ void FUsersAPI::OnGetPlayerUuidFromPlayerIdV2Response(FHttpRequestPtr HttpReques
 }
 
 FRequest_GetPlayerUuidFromPlayerIdV2::FRequest_GetPlayerUuidFromPlayerIdV2()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetPlayerUuidFromPlayerIdV2::GetSimplifiedPath() const
@@ -3292,52 +3567,73 @@ bool FRequest_GetPlayerUuidFromPlayerIdV2::SetupHttpRequest(const FHttpRequestRe
 	return true;
 }
 
-void FResponse_GetPlayerUuidFromPlayerIdV2::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetPlayerUuidFromPlayerIdV2::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 400:
-		SetResponseString(TEXT("Bad Request"));
-		break;
+		return TEXT("Bad Request");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	case 500:
-		SetResponseString(TEXT("Internal Server Error"));
-		break;
+		return TEXT("Internal Server Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetPlayerUuidFromPlayerIdV2::TryGetContentFor200(FRHAPI_PlayerUuidFromId& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerUuidFromPlayerIdV2::TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerUuidFromPlayerIdV2::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerUuidFromPlayerIdV2::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerUuidFromPlayerIdV2::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayerUuidFromPlayerIdV2::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3411,10 +3707,9 @@ void FUsersAPI::OnGetPlayersPagedResponse(FHttpRequestPtr HttpRequest, FHttpResp
 }
 
 FRequest_GetPlayersPaged::FRequest_GetPlayersPaged()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetPlayersPaged::GetSimplifiedPath() const
@@ -3477,52 +3772,73 @@ bool FRequest_GetPlayersPaged::SetupHttpRequest(const FHttpRequestRef& HttpReque
 	return true;
 }
 
-void FResponse_GetPlayersPaged::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetPlayersPaged::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 400:
-		SetResponseString(TEXT("Bad Request"));
-		break;
+		return TEXT("Bad Request");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	case 500:
-		SetResponseString(TEXT("Internal Server Error"));
-		break;
+		return TEXT("Internal Server Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetPlayersPaged::TryGetContentFor200(FRHAPI_PlayerIterateResponse& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayersPaged::TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayersPaged::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayersPaged::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayersPaged::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetPlayersPaged::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3596,10 +3912,9 @@ void FUsersAPI::OnGetQueuePurgeStatusForMeResponse(FHttpRequestPtr HttpRequest, 
 }
 
 FRequest_GetQueuePurgeStatusForMe::FRequest_GetQueuePurgeStatusForMe()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetQueuePurgeStatusForMe::GetSimplifiedPath() const
@@ -3650,44 +3965,61 @@ bool FRequest_GetQueuePurgeStatusForMe::SetupHttpRequest(const FHttpRequestRef& 
 	return true;
 }
 
-void FResponse_GetQueuePurgeStatusForMe::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetQueuePurgeStatusForMe::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT("Not Found"));
-		break;
+		return TEXT("Not Found");
 	case 500:
-		SetResponseString(TEXT("Internal Server Error"));
-		break;
+		return TEXT("Internal Server Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetQueuePurgeStatusForMe::TryGetContentFor200(FRHAPI_PurgeResponse& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetQueuePurgeStatusForMe::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetQueuePurgeStatusForMe::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetQueuePurgeStatusForMe::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetQueuePurgeStatusForMe::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3761,10 +4093,9 @@ void FUsersAPI::OnGetQueuePurgeStatusForPersonResponse(FHttpRequestPtr HttpReque
 }
 
 FRequest_GetQueuePurgeStatusForPerson::FRequest_GetQueuePurgeStatusForPerson()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetQueuePurgeStatusForPerson::GetSimplifiedPath() const
@@ -3820,52 +4151,73 @@ bool FRequest_GetQueuePurgeStatusForPerson::SetupHttpRequest(const FHttpRequestR
 	return true;
 }
 
-void FResponse_GetQueuePurgeStatusForPerson::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetQueuePurgeStatusForPerson::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT("Not Found"));
-		break;
+		return TEXT("Not Found");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	case 500:
-		SetResponseString(TEXT("Internal Server Error"));
-		break;
+		return TEXT("Internal Server Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetQueuePurgeStatusForPerson::TryGetContentFor200(FRHAPI_PurgeResponse& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetQueuePurgeStatusForPerson::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetQueuePurgeStatusForPerson::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetQueuePurgeStatusForPerson::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetQueuePurgeStatusForPerson::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetQueuePurgeStatusForPerson::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3939,10 +4291,9 @@ void FUsersAPI::OnLinkResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr Htt
 }
 
 FRequest_Link::FRequest_Link()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_Link::GetSimplifiedPath() const
@@ -4004,31 +4355,39 @@ bool FRequest_Link::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 	return true;
 }
 
-void FResponse_Link::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_Link::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_Link::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_Link::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_Link::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -4102,10 +4461,9 @@ void FUsersAPI::OnLookupPlayerByPortalResponse(FHttpRequestPtr HttpRequest, FHtt
 }
 
 FRequest_LookupPlayerByPortal::FRequest_LookupPlayerByPortal()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_LookupPlayerByPortal::GetSimplifiedPath() const
@@ -4176,44 +4534,61 @@ bool FRequest_LookupPlayerByPortal::SetupHttpRequest(const FHttpRequestRef& Http
 	return true;
 }
 
-void FResponse_LookupPlayerByPortal::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_LookupPlayerByPortal::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 400:
-		SetResponseString(TEXT("Bad Request"));
-		break;
+		return TEXT("Bad Request");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_LookupPlayerByPortal::TryGetContentFor200(FRHAPI_LookupResults& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_LookupPlayerByPortal::TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_LookupPlayerByPortal::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_LookupPlayerByPortal::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_LookupPlayerByPortal::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -4287,10 +4662,9 @@ void FUsersAPI::OnQueueMeForPurgeResponse(FHttpRequestPtr HttpRequest, FHttpResp
 }
 
 FRequest_QueueMeForPurge::FRequest_QueueMeForPurge()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_QueueMeForPurge::GetSimplifiedPath() const
@@ -4352,52 +4726,73 @@ bool FRequest_QueueMeForPurge::SetupHttpRequest(const FHttpRequestRef& HttpReque
 	return true;
 }
 
-void FResponse_QueueMeForPurge::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_QueueMeForPurge::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 202:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 409:
-		SetResponseString(TEXT("Conflict"));
-		break;
+		return TEXT("Conflict");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	case 500:
-		SetResponseString(TEXT("Internal Server Error"));
-		break;
+		return TEXT("Internal Server Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_QueueMeForPurge::TryGetContentFor202(FRHAPI_PurgeResponse& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_QueueMeForPurge::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_QueueMeForPurge::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_QueueMeForPurge::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_QueueMeForPurge::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_QueueMeForPurge::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -4471,10 +4866,9 @@ void FUsersAPI::OnQueuePersonForPurgeResponse(FHttpRequestPtr HttpRequest, FHttp
 }
 
 FRequest_QueuePersonForPurge::FRequest_QueuePersonForPurge()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_QueuePersonForPurge::GetSimplifiedPath() const
@@ -4541,44 +4935,61 @@ bool FRequest_QueuePersonForPurge::SetupHttpRequest(const FHttpRequestRef& HttpR
 	return true;
 }
 
-void FResponse_QueuePersonForPurge::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_QueuePersonForPurge::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 202:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	case 500:
-		SetResponseString(TEXT("Internal Server Error"));
-		break;
+		return TEXT("Internal Server Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_QueuePersonForPurge::TryGetContentFor202(FRHAPI_PurgeResponse& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_QueuePersonForPurge::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_QueuePersonForPurge::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_QueuePersonForPurge::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_QueuePersonForPurge::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -4652,10 +5063,9 @@ void FUsersAPI::OnUnlinkResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr H
 }
 
 FRequest_Unlink::FRequest_Unlink()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_Unlink::GetSimplifiedPath() const
@@ -4706,23 +5116,27 @@ bool FRequest_Unlink::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 	return true;
 }
 
-void FResponse_Unlink::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_Unlink::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_Unlink::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_Unlink::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -4796,10 +5210,9 @@ void FUsersAPI::OnUpdatePersonResponse(FHttpRequestPtr HttpRequest, FHttpRespons
 }
 
 FRequest_UpdatePerson::FRequest_UpdatePerson()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_UpdatePerson::GetSimplifiedPath() const
@@ -4866,44 +5279,61 @@ bool FRequest_UpdatePerson::SetupHttpRequest(const FHttpRequestRef& HttpRequest)
 	return true;
 }
 
-void FResponse_UpdatePerson::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_UpdatePerson::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	case 500:
-		SetResponseString(TEXT("Internal Server Error"));
-		break;
+		return TEXT("Internal Server Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_UpdatePerson::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdatePerson::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdatePerson::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdatePerson::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdatePerson::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -4977,10 +5407,9 @@ void FUsersAPI::OnUpdatePersonEmailListResponse(FHttpRequestPtr HttpRequest, FHt
 }
 
 FRequest_UpdatePersonEmailList::FRequest_UpdatePersonEmailList()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_UpdatePersonEmailList::GetSimplifiedPath() const
@@ -5047,44 +5476,61 @@ bool FRequest_UpdatePersonEmailList::SetupHttpRequest(const FHttpRequestRef& Htt
 	return true;
 }
 
-void FResponse_UpdatePersonEmailList::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_UpdatePersonEmailList::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	case 500:
-		SetResponseString(TEXT("Internal Server Error"));
-		break;
+		return TEXT("Internal Server Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_UpdatePersonEmailList::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdatePersonEmailList::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdatePersonEmailList::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdatePersonEmailList::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdatePersonEmailList::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -5158,10 +5604,9 @@ void FUsersAPI::OnUpdatePersonEmailListForSelfResponse(FHttpRequestPtr HttpReque
 }
 
 FRequest_UpdatePersonEmailListForSelf::FRequest_UpdatePersonEmailListForSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_UpdatePersonEmailListForSelf::GetSimplifiedPath() const
@@ -5223,44 +5668,61 @@ bool FRequest_UpdatePersonEmailListForSelf::SetupHttpRequest(const FHttpRequestR
 	return true;
 }
 
-void FResponse_UpdatePersonEmailListForSelf::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_UpdatePersonEmailListForSelf::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	case 500:
-		SetResponseString(TEXT("Internal Server Error"));
-		break;
+		return TEXT("Internal Server Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_UpdatePersonEmailListForSelf::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdatePersonEmailListForSelf::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdatePersonEmailListForSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdatePersonEmailListForSelf::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdatePersonEmailListForSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -5334,10 +5796,9 @@ void FUsersAPI::OnUpdatePersonForSelfResponse(FHttpRequestPtr HttpRequest, FHttp
 }
 
 FRequest_UpdatePersonForSelf::FRequest_UpdatePersonForSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_UpdatePersonForSelf::GetSimplifiedPath() const
@@ -5399,44 +5860,61 @@ bool FRequest_UpdatePersonForSelf::SetupHttpRequest(const FHttpRequestRef& HttpR
 	return true;
 }
 
-void FResponse_UpdatePersonForSelf::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_UpdatePersonForSelf::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	case 500:
-		SetResponseString(TEXT("Internal Server Error"));
-		break;
+		return TEXT("Internal Server Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_UpdatePersonForSelf::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdatePersonForSelf::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdatePersonForSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdatePersonForSelf::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdatePersonForSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -5510,10 +5988,9 @@ void FUsersAPI::OnUpsertContactResponse(FHttpRequestPtr HttpRequest, FHttpRespon
 }
 
 FRequest_UpsertContact::FRequest_UpsertContact()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_UpsertContact::GetSimplifiedPath() const
@@ -5575,44 +6052,61 @@ bool FRequest_UpsertContact::SetupHttpRequest(const FHttpRequestRef& HttpRequest
 	return true;
 }
 
-void FResponse_UpsertContact::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_UpsertContact::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	case 500:
-		SetResponseString(TEXT("Internal Server Error"));
-		break;
+		return TEXT("Internal Server Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_UpsertContact::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpsertContact::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpsertContact::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpsertContact::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpsertContact::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

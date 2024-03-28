@@ -82,10 +82,9 @@ void FAdAPI::OnBeginNewSessionResponse(FHttpRequestPtr HttpRequest, FHttpRespons
 }
 
 FRequest_BeginNewSession::FRequest_BeginNewSession()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_BeginNewSession::GetSimplifiedPath() const
@@ -153,24 +152,21 @@ bool FRequest_BeginNewSession::SetupHttpRequest(const FHttpRequestRef& HttpReque
 	return true;
 }
 
-void FResponse_BeginNewSession::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_BeginNewSession::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	case 500:
-		SetResponseString(TEXT("Internal Server Error"));
-		break;
+		return TEXT("Internal Server Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_BeginNewSession::ParseHeaders()
@@ -196,7 +192,12 @@ bool FResponse_BeginNewSession::ParseHeaders()
 
 bool FResponse_BeginNewSession::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
@@ -215,12 +216,22 @@ TOptional<FString> FResponse_BeginNewSession::GetHeader200_XHzAdApiToken() const
 
 bool FResponse_BeginNewSession::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_BeginNewSession::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
@@ -308,10 +319,9 @@ void FAdAPI::OnFindOpportunitiesResponse(FHttpRequestPtr HttpRequest, FHttpRespo
 }
 
 FRequest_FindOpportunities::FRequest_FindOpportunities()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_FindOpportunities::GetSimplifiedPath() const
@@ -379,24 +389,21 @@ bool FRequest_FindOpportunities::SetupHttpRequest(const FHttpRequestRef& HttpReq
 	return true;
 }
 
-void FResponse_FindOpportunities::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_FindOpportunities::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	case 500:
-		SetResponseString(TEXT("Internal Server Error"));
-		break;
+		return TEXT("Internal Server Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_FindOpportunities::ParseHeaders()
@@ -422,7 +429,12 @@ bool FResponse_FindOpportunities::ParseHeaders()
 
 bool FResponse_FindOpportunities::TryGetContentFor200(FRHAPI_AdOpportunities& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
@@ -441,12 +453,22 @@ TOptional<FString> FResponse_FindOpportunities::GetHeader200_XHzAdApiToken() con
 
 bool FResponse_FindOpportunities::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_FindOpportunities::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
@@ -534,10 +556,9 @@ void FAdAPI::OnUnityAdWatchedResponse(FHttpRequestPtr HttpRequest, FHttpResponse
 }
 
 FRequest_UnityAdWatched::FRequest_UnityAdWatched()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_UnityAdWatched::GetSimplifiedPath() const
@@ -585,28 +606,37 @@ bool FRequest_UnityAdWatched::SetupHttpRequest(const FHttpRequestRef& HttpReques
 	return true;
 }
 
-void FResponse_UnityAdWatched::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_UnityAdWatched::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_UnityAdWatched::TryGetContentFor200(FString& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UnityAdWatched::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UnityAdWatched::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -680,10 +710,9 @@ void FAdAPI::OnUnityMediationAdWatchedResponse(FHttpRequestPtr HttpRequest, FHtt
 }
 
 FRequest_UnityMediationAdWatched::FRequest_UnityMediationAdWatched()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_UnityMediationAdWatched::GetSimplifiedPath() const
@@ -732,28 +761,37 @@ bool FRequest_UnityMediationAdWatched::SetupHttpRequest(const FHttpRequestRef& H
 	return true;
 }
 
-void FResponse_UnityMediationAdWatched::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_UnityMediationAdWatched::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_UnityMediationAdWatched::TryGetContentFor200(FString& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UnityMediationAdWatched::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UnityMediationAdWatched::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -827,10 +865,9 @@ void FAdAPI::OnUpdateOpportunityByIdResponse(FHttpRequestPtr HttpRequest, FHttpR
 }
 
 FRequest_UpdateOpportunityById::FRequest_UpdateOpportunityById()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_UpdateOpportunityById::GetSimplifiedPath() const
@@ -903,24 +940,21 @@ bool FRequest_UpdateOpportunityById::SetupHttpRequest(const FHttpRequestRef& Htt
 	return true;
 }
 
-void FResponse_UpdateOpportunityById::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_UpdateOpportunityById::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	case 500:
-		SetResponseString(TEXT("Internal Server Error"));
-		break;
+		return TEXT("Internal Server Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_UpdateOpportunityById::ParseHeaders()
@@ -946,7 +980,12 @@ bool FResponse_UpdateOpportunityById::ParseHeaders()
 
 bool FResponse_UpdateOpportunityById::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
@@ -965,12 +1004,22 @@ TOptional<FString> FResponse_UpdateOpportunityById::GetHeader200_XHzAdApiToken()
 
 bool FResponse_UpdateOpportunityById::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_UpdateOpportunityById::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */

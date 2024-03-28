@@ -106,7 +106,7 @@ struct RALLYHEREAPI_API FResponse_PlayeridCreateNotification : public FResponse
 	FResponse_PlayeridCreateNotification(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_PlayeridCreateNotification() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_NotificationCreateResult Content;
 
@@ -180,7 +180,7 @@ struct RALLYHEREAPI_API FResponse_PlayeridCreateNotificationSelf : public FRespo
 	FResponse_PlayeridCreateNotificationSelf(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_PlayeridCreateNotificationSelf() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_NotificationCreateResult Content;
 
@@ -260,7 +260,7 @@ struct RALLYHEREAPI_API FResponse_PlayeridGetNotificationById : public FResponse
 	FResponse_PlayeridGetNotificationById(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_PlayeridGetNotificationById() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_Notification Content;
 
@@ -340,7 +340,7 @@ struct RALLYHEREAPI_API FResponse_PlayeridGetNotificationByIdSelf : public FResp
 	FResponse_PlayeridGetNotificationByIdSelf(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_PlayeridGetNotificationByIdSelf() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_Notification Content;
 
@@ -440,7 +440,7 @@ struct RALLYHEREAPI_API FResponse_PlayeridGetNotificationsPage : public FRespons
 	FResponse_PlayeridGetNotificationsPage(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_PlayeridGetNotificationsPage() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_Notifications Content;
 
@@ -534,7 +534,7 @@ struct RALLYHEREAPI_API FResponse_PlayeridGetNotificationsPageSelf : public FRes
 	FResponse_PlayeridGetNotificationsPageSelf(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_PlayeridGetNotificationsPageSelf() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_Notifications Content;
 
@@ -631,7 +631,7 @@ struct RALLYHEREAPI_API FResponse_PlayeridLongPollForNotifications : public FRes
 	FResponse_PlayeridLongPollForNotifications(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_PlayeridLongPollForNotifications() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_Notifications Content;
 
@@ -719,7 +719,7 @@ struct RALLYHEREAPI_API FResponse_PlayeridLongPollForNotificationsSelf : public 
 	FResponse_PlayeridLongPollForNotificationsSelf(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_PlayeridLongPollForNotificationsSelf() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_Notifications Content;
 

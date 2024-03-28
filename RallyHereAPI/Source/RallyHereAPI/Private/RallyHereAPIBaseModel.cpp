@@ -36,10 +36,12 @@ FHttpRetryParams::FHttpRetryParams(const FRetryLimitCountSetting& InRetryLimitCo
 {
 }
 
+FResponse::JsonPayloadType FResponse::DefaultJsonPayload = FResponse::JsonPayloadType();
+FResponse::StringPayloadType FResponse::DefaultStringPayload = FResponse::StringPayloadType();
+
 FResponse::FResponse(FRequestMetadata InRequestMetadata) :
 	Successful{},
 	ResponseCode{ EHttpResponseCodes::Type::Unknown },
-	ResponseString{ TEXT("Unset") },
 	HttpResponse{},
 	RequestMetadata{ MoveTemp(InRequestMetadata) }
 {
@@ -49,10 +51,135 @@ void FResponse::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
 	ResponseCode = InHttpResponseCode;
 	SetSuccessful(EHttpResponseCodes::IsOk(InHttpResponseCode));
-	if(InHttpResponseCode == EHttpResponseCodes::RequestTimeout)
+}
+
+FString FResponse::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
+{
+	return EHttpResponseCodes::GetDescription(InHttpResponseCode).ToString();
+}
+
+bool FResponse::ParseContent()
+{
+	FString ContentType = HttpResponse->GetContentType();
+	ContentType.TrimStartAndEndInline();
+
+	if (ContentType.IsEmpty())
 	{
-		SetResponseString(TEXT("Request Timeout"));
+		return ParseTypelessContent();
 	}
+	else if (ContentType.StartsWith(TEXT("application/json")) || ContentType.StartsWith("text/json"))
+	{
+		return ParseJsonTypeContent();
+	}
+	else if (ContentType.StartsWith(TEXT("text/plain")))
+	{
+		return ParseStringTypeContent();
+	}
+	else if (ContentType.StartsWith(TEXT("application/octet-stream")))
+	{
+		return ParseBinaryTypeContent();
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("Failed to recognize http response type: %s"), *ContentType);
+		return ParseUnknownTypeContent();
+	}
+}
+
+bool FResponse::ParseTypelessContent()
+{
+	check(HttpResponse != nullptr);
+
+	ClearPayload();
+
+	return true; // Successfully parsed
+}
+
+bool FResponse::ParseStringTypeContent()
+{
+	check(HttpResponse != nullptr);
+
+	SetPayload<StringPayloadType>(HttpResponse->GetContentAsString());
+	return true; // Successfully parsed
+}
+
+bool FResponse::ParseJsonTypeContent()
+{
+	check(HttpResponse != nullptr);
+
+	ClearPayload();
+
+	TSharedPtr<FJsonValue> JsonValue;
+	const FString ContentAsString = HttpResponse->GetContentAsString();
+	auto Reader = TJsonReaderFactory<>::Create(ContentAsString);
+
+	if (!FJsonSerializer::Deserialize(Reader, JsonValue))
+	{
+		if (Reader->GetErrorMessage().StartsWith(TEXT("Open Curly or Square Brace token expected, but not found")))
+		{
+			FString ContentArrayWrapper = TEXT("[") + ContentAsString + TEXT("]");
+			Reader = TJsonReaderFactory<>::Create(ContentArrayWrapper);
+			if (FJsonSerializer::Deserialize(Reader, JsonValue) && JsonValue.IsValid())
+			{
+				TArray<TSharedPtr<FJsonValue>>* OutArray;
+				if (JsonValue->TryGetArray(OutArray) && OutArray != nullptr && OutArray->Num() > 0)
+				{
+					JsonValue = (*OutArray).Last();
+				}
+			}
+		}
+	}
+
+	if (JsonValue.IsValid())
+	{
+		SetPayload<JsonPayloadType>(JsonValue);
+
+		if (EHttpResponseCodes::IsOk(ResponseCode))
+		{
+			// for successfull responses, attempt to parse the json into local structures
+			if (FromJson(JsonValue))
+			{
+				// Successfully parsed default value
+				return true;
+			}
+			else
+			{
+				// Report the parse error but do not mark the request as unsuccessful. Data could be partial or malformed, but the request succeeded.
+				UE_LOG(LogRallyHereAPI, Warning, TEXT("Parsed JSON successfully, but failed to ingest into API structures (note: failure may be partial):\n%s"), *ContentAsString);
+				return true;
+			}
+		}
+		else
+		{
+			// for error responses, do not parse into local structures, but we did parse the json successfully, so return success
+			UE_LOG(LogRallyHereAPI, Warning, TEXT("Parsed JSON successfully, but failed to ingest into API Error structures:\n%s"), *ContentAsString);
+			return true;
+		}
+	}
+	else
+	{
+		// Report the parse error, as this was supposed to be json but could not be serialized as such
+		UE_LOG(LogRallyHereAPI, Error, TEXT("Failed to deserialize JSON content in Http response:\n%s"), *ContentAsString);
+		return false;
+	}
+}
+
+bool FResponse::ParseBinaryTypeContent()
+{
+	check(HttpResponse != nullptr);
+
+	SetPayload<BinaryPayloadType>(MakeArrayView(HttpResponse->GetContent()));
+	return true; // Successfully parsed
+}
+
+bool FResponse::ParseUnknownTypeContent()
+{
+	check(HttpResponse != nullptr);
+
+	// load the response content as binary data, since we do not have a better way to parse it
+	SetPayload<BinaryPayloadType>(MakeArrayView(HttpResponse->GetContent()));
+
+	return false; // could not parse unknown type
 }
 
 void FAPI::SetURL(const FString& InUrl)
@@ -140,110 +267,48 @@ bool FAPI::HandleResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResp
 	{
 		InOutResponse.SetHttpResponseCode((EHttpResponseCodes::Type)HttpResponse->GetResponseCode());
 
-		if (!InOutResponse.ParseHeaders())
+		bool bParsedHeaders = false;
+		bool bParsedContent = false;
+		bool bNeedsReauth = false;
+		
+		InOutResponse.ParseResponse(bParsedHeaders, bParsedContent);
+
+		if (!bParsedHeaders)
 		{
 			// Report the parse error but do not mark the request as unsuccessful. Data could be partial or malformed, but the request succeeded.
 			UE_LOG(LogRallyHereAPI, Error, TEXT("Failed to parse Http response headers"));
 			return false;
 		}
 
-		FString ContentType = HttpResponse->GetContentType();
-		ContentType.TrimStartAndEndInline();
-		FString Content;
-
-		if (ContentType.IsEmpty())
+		if (!bParsedContent)
 		{
-			return false; // Nothing to parse
+			// Report the parse error but do not mark the request as unsuccessful. Data could be partial or malformed, but the request succeeded.
+			UE_LOG(LogRallyHereAPI, Warning, TEXT("Failed to parse Http response content"));
+			return false;
 		}
-		else if (ContentType.StartsWith(TEXT("application/json")) || ContentType.StartsWith("text/json"))
+		
+		// attempt reauth for certain error codes
+		if (InOutResponse.GetHttpResponseCode() == EHttpResponseCodes::Denied 
+			|| InOutResponse.GetHttpResponseCode() == EHttpResponseCodes::Forbidden) // some consoles forcibly retry 401 errors with a modified body, which can generate 403 errors, so check those for an auth success flag
 		{
-			Content = HttpResponse->GetContentAsString();
+			auto Retry = MakeShared<FRequestPendingAuthRetry>();
+			Retry->HttpRequest = HttpRequest;
+			Retry->AuthContext = AuthContext;
 
-			TSharedPtr<FJsonValue> JsonValue;
-			auto Reader = TJsonReaderFactory<>::Create(Content);
+			// set a callback handle
+			Retry->Handle = AuthContext->OnLoginComplete().AddRaw(this, &FAPI::RetryRequestAfterAuth, Retry, ResponseDelegate, RequestMetadata, Priority);
 
-			if (!FJsonSerializer::Deserialize(Reader, JsonValue))
+			if (AuthContext->ConditionalRefreshOnFailedResponse(InOutResponse))
 			{
-				if (Reader->GetErrorMessage().StartsWith(TEXT("Open Curly or Square Brace token expected, but not found")))
-				{
-					FString ContentArrayWrapper = TEXT("[") + Content + TEXT("]");
-					Reader = TJsonReaderFactory<>::Create(ContentArrayWrapper);
-					if (FJsonSerializer::Deserialize(Reader, JsonValue) && JsonValue.IsValid())
-					{
-#if !(ENGINE_MAJOR_VERSION < (5) || (ENGINE_MAJOR_VERSION == (5) && ENGINE_MINOR_VERSION < (0)))
-						TArray<TSharedPtr<FJsonValue>>* OutArray;
-						if (JsonValue->TryGetArray(OutArray) && OutArray != nullptr && OutArray->Num() > 0)
-						{
-							JsonValue = (*OutArray).Last();
-						}
-#else
-						auto OutArray = JsonValue->AsArray();
-						if (OutArray.Num() > 0)
-						{
-							JsonValue = OutArray.Last();
-						}
-#endif
-					}
-				}
+				return true; // Don't submit the response for this request, we are going to retry it.
 			}
-
-			if (JsonValue.IsValid())
-			{
-				InOutResponse.SetJsonResponse(JsonValue);
-
-				if (AuthContext)
-				{
-					TOptional<bool> bAuthIsValid;
-					const TSharedPtr<FJsonObject>* JsonObject;
-					switch (HttpResponse->GetResponseCode())
-					{
-					case 403: // XDK clients screwed this one up for us
-					case 401:
-						if (JsonValue->TryGetObject(JsonObject) && JsonObject && JsonObject->IsValid() && TryGetJsonValue(*JsonObject, FString(TEXT("auth_success")), bAuthIsValid) && bAuthIsValid.IsSet() && !bAuthIsValid.GetValue())
-						{
-							auto Retry = MakeShared<FRequestPendingAuthRetry>();
-							Retry->HttpRequest = HttpRequest;
-							Retry->AuthContext = AuthContext;
-							Retry->Handle = AuthContext->OnLoginComplete().AddRaw(this, &FAPI::RetryRequestAfterAuth, Retry, ResponseDelegate, RequestMetadata, Priority);
-							if (AuthContext->Refresh())
-							{
-								return true; // Don't submit the response for this request, we are going to retry it.
-							}
-							else // unable to refresh the token, so cancel the request and go with what we have
-							{
-								AuthContext->OnLoginComplete().Remove(Retry->Handle);
-							}
-						}
-						break;
-					}
-				}
-				if (InOutResponse.FromJson(JsonValue))
-				{
-					return false; // Successfully parsed
-				}
-				else
-				{
-					// Report the parse error but do not mark the request as unsuccessful. Data could be partial or malformed, but the request succeeded.
-					UE_LOG(LogRallyHereAPI, Warning, TEXT("Parsed JSON successfully, but failed to ingest into API structures (note: failure may be partial) (type:%s):\n%s"), *ContentType, *Content);
-					return false;
-				}
-			}
-			else
-			{
-				// Report the parse error but do not mark the request as unsuccessful. Data could be partial or malformed, but the request succeeded.
-				UE_LOG(LogRallyHereAPI, Error, TEXT("Failed to deserialize JSON content in Http response (type:%s):\n%s"), *ContentType, *Content);
-				return false;
-			}
-		}
-		else if(ContentType.StartsWith(TEXT("text/plain")))
-		{
-			Content = HttpResponse->GetContentAsString();
-			InOutResponse.SetResponseString(Content);
-			return false; // Successfully parsed
+			
+			// failed to conditionally refresh, so remove the handle, and return completion
+			AuthContext->OnLoginComplete().Remove(Retry->Handle);
+			return false;
 		}
 
-		// Report the parse error but do not mark the request as unsuccessful. Data could be partial or malformed, but the request succeeded.
-		UE_LOG(LogRallyHereAPI, Error, TEXT("Failed to deserialize Http response content (type:%s):\n%s"), *ContentType, *Content);
+		// successfully parsed content
 		return false;
 	}
 

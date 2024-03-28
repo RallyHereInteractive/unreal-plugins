@@ -89,7 +89,7 @@ struct RALLYHEREAPI_API FResponse_GetPlayerPresencePublicById : public FResponse
 	virtual ~FResponse_GetPlayerPresencePublicById() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlayerPresence Content;
 	// Headers
@@ -161,7 +161,7 @@ struct RALLYHEREAPI_API FResponse_GetPlayerPresencePublicByUuid : public FRespon
 	virtual ~FResponse_GetPlayerPresencePublicByUuid() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlayerPresence Content;
 	// Headers
@@ -228,7 +228,7 @@ struct RALLYHEREAPI_API FResponse_GetPlayerPresenceSelf : public FResponse
 	virtual ~FResponse_GetPlayerPresenceSelf() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlayerPresence Content;
 	// Headers
@@ -285,7 +285,7 @@ struct RALLYHEREAPI_API FResponse_GetPresenceSettings : public FResponse
 	FResponse_GetPresenceSettings(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetPresenceSettings() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_ClientVisibleSettings Content;
 
@@ -336,7 +336,7 @@ struct RALLYHEREAPI_API FResponse_UpdatePlayerPresenceSelf : public FResponse
 	virtual ~FResponse_UpdatePlayerPresenceSelf() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	
 	// Headers

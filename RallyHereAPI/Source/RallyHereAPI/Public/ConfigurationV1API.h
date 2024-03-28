@@ -58,7 +58,7 @@ struct RALLYHEREAPI_API FResponse_GetFriendsAndBlockLimits : public FResponse
 	FResponse_GetFriendsAndBlockLimits(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetFriendsAndBlockLimits() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_FriendsApiConfig Content;
 

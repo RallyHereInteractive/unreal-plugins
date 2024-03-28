@@ -26,6 +26,7 @@ limitations under the License.
 #include "Containers/Ticker.h"
 #include "Runtime/Launch/Resources/Version.h"
 #include "Misc/Guid.h"
+#include "Misc/TVariant.h"
 #include "{{unrealModuleName}}BaseModel.generated.h"
 
 /** @defgroup RHAPI_BaseModel RallyHere API Base Model
@@ -124,7 +125,14 @@ struct {{dllapi}} FRequestMetadata
 {
 	FGuid Identifier;
 	FName SimplifiedPath;
-	int32 RetryCount = 0;
+	int32 RetryCount;
+	FDateTime CreateTimestamp, QueuedTimestamp, HttpQueuedTimestamp;
+	
+	FRequestMetadata()
+		: Identifier(FGuid::NewGuid())
+		, RetryCount(0)
+		, CreateTimestamp(FDateTime::Now())
+	{}
 };
 
 class {{dllapi}} FRequest
@@ -155,35 +163,78 @@ protected:
 class {{dllapi}} FResponse
 {
 public:
+	typedef nullptr_t EmptyPayloadType;
+	typedef FString StringPayloadType;
+	typedef TSharedPtr<FJsonValue> JsonPayloadType;
+	typedef TArrayView<const uint8> BinaryPayloadType;
+	typedef TVariant<EmptyPayloadType, StringPayloadType, JsonPayloadType, BinaryPayloadType> PayloadVariantType;
+
 	FResponse(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse() = default;
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) = 0;
+	bool ParseResponse(bool& bOutParsedHeaders, bool& bOutParsedContent)
+	{
+		bOutParsedContent = false;
+		bOutParsedHeaders = ParseHeaders();
+		if (bOutParsedHeaders)
+		{
+			bOutParsedContent = ParseContent();
+		}
+		return bOutParsedHeaders && bOutParsedContent;
+	};
+	
 	virtual bool ParseHeaders() { return true; }
+	virtual bool ParseContent();
 
 	void SetSuccessful(bool InSuccessful) { Successful = InSuccessful; }
 	bool IsSuccessful() const { return Successful; }
 
 	virtual void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode);
 	EHttpResponseCodes::Type GetHttpResponseCode() const { return ResponseCode; }
-
-	void SetResponseString(const FString& InResponseString) { ResponseString = InResponseString; }
-	const FString& GetResponseString() const { return ResponseString; }
+	
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const;
 
 	void SetHttpResponse(const FHttpResponsePtr& InHttpResponse) { HttpResponse = InHttpResponse; }
 	const FHttpResponsePtr& GetHttpResponse() const { return HttpResponse; }
 
 	const FRequestMetadata GetRequestMetadata() const { return RequestMetadata; }
 
-	void SetJsonResponse(const TSharedPtr<FJsonValue>& InJsonValue) { ResponseJson = InJsonValue; }
-	const TSharedPtr<FJsonValue>& GetJsonResponse() const { return ResponseJson; }
+	template<typename T>
+	void SetPayload(const T& InPayload) { Payload.Set<T>(InPayload); }
+	void SetPayload(const PayloadVariantType& InPayload) { Payload = InPayload; }
+	const PayloadVariantType& GetPayload() const { return Payload; }
+	template<typename T>
+	const T* TryGetPayload() const { return Payload.TryGet<T>(); }
+
+	void ClearPayload() { return Payload.Set<EmptyPayloadType>(nullptr); }
+
+	UE_DEPRECATED(5.0, "Please use SetPayload<>() instead" )
+	void SetResponseString(const StringPayloadType& InValue) { SetPayload<StringPayloadType>(InValue); }
+	UE_DEPRECATED(5.0, "Please use TryGetPayload<>() instead" )
+	const StringPayloadType& GetResponseString() const { auto PayloadString = TryGetPayload<StringPayloadType>(); return PayloadString ? *PayloadString : DefaultStringPayload; }
+
+	UE_DEPRECATED(5.0, "Please use SetPayload<>() instead" )
+	void SetJsonResponse(const JsonPayloadType& InValue) { SetPayload<JsonPayloadType>(InValue); }
+	UE_DEPRECATED(5.0, "Please use TryGetPayload<>() instead" )
+	const JsonPayloadType& GetJsonResponse() const { auto PayloadJson = TryGetPayload<JsonPayloadType>(); return PayloadJson ? *PayloadJson : DefaultJsonPayload; }
 
 protected:
 	bool Successful;
 	EHttpResponseCodes::Type ResponseCode;
-	FString ResponseString;
 	FHttpResponsePtr HttpResponse;
 	FRequestMetadata RequestMetadata;
-	TSharedPtr<FJsonValue> ResponseJson;
+	
+	PayloadVariantType Payload;
+	
+	virtual bool ParseTypelessContent();
+	virtual bool ParseStringTypeContent();
+	virtual bool ParseJsonTypeContent();
+	virtual bool ParseBinaryTypeContent();
+	virtual bool ParseUnknownTypeContent();
+	
+	// static payloads to allow deprecated functions to return references
+	static JsonPayloadType DefaultJsonPayload;
+	static StringPayloadType DefaultStringPayload;
 };
 
 DECLARE_MULTICAST_DELEGATE_TwoParams(FAPI_RequestStarted, const FRequestMetadata&, FHttpRequestRef);

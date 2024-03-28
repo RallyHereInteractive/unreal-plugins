@@ -82,10 +82,9 @@ void FEnvironmentAPI::OnGetEnvironmentIdResponse(FHttpRequestPtr HttpRequest, FH
 }
 
 FRequest_GetEnvironmentId::FRequest_GetEnvironmentId()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetEnvironmentId::GetSimplifiedPath() const
@@ -125,20 +124,25 @@ bool FRequest_GetEnvironmentId::SetupHttpRequest(const FHttpRequestRef& HttpRequ
 	return true;
 }
 
-void FResponse_GetEnvironmentId::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetEnvironmentId::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetEnvironmentId::TryGetContentFor200(FRHAPI_EnvironmentConfig& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetEnvironmentId::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

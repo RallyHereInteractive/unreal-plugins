@@ -76,7 +76,7 @@ struct RALLYHEREAPI_API FResponse_ProcessKeyEntitlements : public FResponse
 	FResponse_ProcessKeyEntitlements(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_ProcessKeyEntitlements() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_JsonValue Content;
 
@@ -138,7 +138,7 @@ struct RALLYHEREAPI_API FResponse_ProcessKeyEntitlementsPlayerUuid : public FRes
 	FResponse_ProcessKeyEntitlementsPlayerUuid(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_ProcessKeyEntitlementsPlayerUuid() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_JsonValue Content;
 
@@ -199,7 +199,7 @@ struct RALLYHEREAPI_API FResponse_ProcessKeyEntitlementsSelf : public FResponse
 	FResponse_ProcessKeyEntitlementsSelf(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_ProcessKeyEntitlementsSelf() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_JsonValue Content;
 
@@ -260,7 +260,7 @@ struct RALLYHEREAPI_API FResponse_ProcessPlayerUuidEntitlementsSelf : public FRe
 	FResponse_ProcessPlayerUuidEntitlementsSelf(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_ProcessPlayerUuidEntitlementsSelf() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_JsonValue Content;
 

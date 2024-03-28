@@ -82,10 +82,9 @@ void FQueuesAPI::OnGetAllMapGameInfoResponse(FHttpRequestPtr HttpRequest, FHttpR
 }
 
 FRequest_GetAllMapGameInfo::FRequest_GetAllMapGameInfo()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetAllMapGameInfo::GetSimplifiedPath() const
@@ -147,21 +146,19 @@ bool FRequest_GetAllMapGameInfo::SetupHttpRequest(const FHttpRequestRef& HttpReq
 	return true;
 }
 
-void FResponse_GetAllMapGameInfo::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetAllMapGameInfo::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetAllMapGameInfo::ParseHeaders()
@@ -187,7 +184,12 @@ bool FResponse_GetAllMapGameInfo::ParseHeaders()
 
 bool FResponse_GetAllMapGameInfo::TryGetContentFor200(FRHAPI_InstanceLaunchTemplate& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -206,12 +208,22 @@ TOptional<FString> FResponse_GetAllMapGameInfo::GetHeader200_ETag() const
 
 bool FResponse_GetAllMapGameInfo::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAllMapGameInfo::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAllMapGameInfo::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -285,10 +297,9 @@ void FQueuesAPI::OnGetAllQueueInfoResponse(FHttpRequestPtr HttpRequest, FHttpRes
 }
 
 FRequest_GetAllQueueInfo::FRequest_GetAllQueueInfo()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetAllQueueInfo::GetSimplifiedPath() const
@@ -357,21 +368,19 @@ bool FRequest_GetAllQueueInfo::SetupHttpRequest(const FHttpRequestRef& HttpReque
 	return true;
 }
 
-void FResponse_GetAllQueueInfo::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetAllQueueInfo::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetAllQueueInfo::ParseHeaders()
@@ -397,7 +406,12 @@ bool FResponse_GetAllQueueInfo::ParseHeaders()
 
 bool FResponse_GetAllQueueInfo::TryGetContentFor200(FRHAPI_QueuesResponse& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -416,12 +430,22 @@ TOptional<FString> FResponse_GetAllQueueInfo::GetHeader200_ETag() const
 
 bool FResponse_GetAllQueueInfo::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAllQueueInfo::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAllQueueInfo::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -495,10 +519,9 @@ void FQueuesAPI::OnGetAllQueueInfoV2Response(FHttpRequestPtr HttpRequest, FHttpR
 }
 
 FRequest_GetAllQueueInfoV2::FRequest_GetAllQueueInfoV2()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetAllQueueInfoV2::GetSimplifiedPath() const
@@ -567,21 +590,19 @@ bool FRequest_GetAllQueueInfoV2::SetupHttpRequest(const FHttpRequestRef& HttpReq
 	return true;
 }
 
-void FResponse_GetAllQueueInfoV2::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetAllQueueInfoV2::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetAllQueueInfoV2::ParseHeaders()
@@ -607,7 +628,12 @@ bool FResponse_GetAllQueueInfoV2::ParseHeaders()
 
 bool FResponse_GetAllQueueInfoV2::TryGetContentFor200(FRHAPI_QueuesResponseV2& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -626,12 +652,22 @@ TOptional<FString> FResponse_GetAllQueueInfoV2::GetHeader200_ETag() const
 
 bool FResponse_GetAllQueueInfoV2::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAllQueueInfoV2::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAllQueueInfoV2::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -705,10 +741,9 @@ void FQueuesAPI::OnGetInstanceRequestTemplateResponse(FHttpRequestPtr HttpReques
 }
 
 FRequest_GetInstanceRequestTemplate::FRequest_GetInstanceRequestTemplate()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetInstanceRequestTemplate::GetSimplifiedPath() const
@@ -770,21 +805,19 @@ bool FRequest_GetInstanceRequestTemplate::SetupHttpRequest(const FHttpRequestRef
 	return true;
 }
 
-void FResponse_GetInstanceRequestTemplate::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetInstanceRequestTemplate::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetInstanceRequestTemplate::ParseHeaders()
@@ -810,7 +843,12 @@ bool FResponse_GetInstanceRequestTemplate::ParseHeaders()
 
 bool FResponse_GetInstanceRequestTemplate::TryGetContentFor200(FRHAPI_InstanceRequestTemplate& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -829,12 +867,22 @@ TOptional<FString> FResponse_GetInstanceRequestTemplate::GetHeader200_ETag() con
 
 bool FResponse_GetInstanceRequestTemplate::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetInstanceRequestTemplate::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetInstanceRequestTemplate::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -908,10 +956,9 @@ void FQueuesAPI::OnGetMatchMakingProfileResponse(FHttpRequestPtr HttpRequest, FH
 }
 
 FRequest_GetMatchMakingProfile::FRequest_GetMatchMakingProfile()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetMatchMakingProfile::GetSimplifiedPath() const
@@ -973,21 +1020,19 @@ bool FRequest_GetMatchMakingProfile::SetupHttpRequest(const FHttpRequestRef& Htt
 	return true;
 }
 
-void FResponse_GetMatchMakingProfile::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetMatchMakingProfile::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetMatchMakingProfile::ParseHeaders()
@@ -1013,7 +1058,12 @@ bool FResponse_GetMatchMakingProfile::ParseHeaders()
 
 bool FResponse_GetMatchMakingProfile::TryGetContentFor200(FRHAPI_MatchMakingProfile& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -1032,12 +1082,22 @@ TOptional<FString> FResponse_GetMatchMakingProfile::GetHeader200_ETag() const
 
 bool FResponse_GetMatchMakingProfile::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetMatchMakingProfile::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetMatchMakingProfile::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1111,10 +1171,9 @@ void FQueuesAPI::OnGetMatchMakingProfileV2Response(FHttpRequestPtr HttpRequest, 
 }
 
 FRequest_GetMatchMakingProfileV2::FRequest_GetMatchMakingProfileV2()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetMatchMakingProfileV2::GetSimplifiedPath() const
@@ -1176,21 +1235,19 @@ bool FRequest_GetMatchMakingProfileV2::SetupHttpRequest(const FHttpRequestRef& H
 	return true;
 }
 
-void FResponse_GetMatchMakingProfileV2::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetMatchMakingProfileV2::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetMatchMakingProfileV2::ParseHeaders()
@@ -1216,7 +1273,12 @@ bool FResponse_GetMatchMakingProfileV2::ParseHeaders()
 
 bool FResponse_GetMatchMakingProfileV2::TryGetContentFor200(FRHAPI_MatchMakingProfileV2& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -1235,12 +1297,22 @@ TOptional<FString> FResponse_GetMatchMakingProfileV2::GetHeader200_ETag() const
 
 bool FResponse_GetMatchMakingProfileV2::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetMatchMakingProfileV2::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetMatchMakingProfileV2::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1314,10 +1386,9 @@ void FQueuesAPI::OnGetMatchMakingTemplatesResponse(FHttpRequestPtr HttpRequest, 
 }
 
 FRequest_GetMatchMakingTemplates::FRequest_GetMatchMakingTemplates()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetMatchMakingTemplates::GetSimplifiedPath() const
@@ -1379,21 +1450,19 @@ bool FRequest_GetMatchMakingTemplates::SetupHttpRequest(const FHttpRequestRef& H
 	return true;
 }
 
-void FResponse_GetMatchMakingTemplates::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetMatchMakingTemplates::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetMatchMakingTemplates::ParseHeaders()
@@ -1419,7 +1488,12 @@ bool FResponse_GetMatchMakingTemplates::ParseHeaders()
 
 bool FResponse_GetMatchMakingTemplates::TryGetContentFor200(FRHAPI_MatchMakingTemplateGroup& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -1438,12 +1512,22 @@ TOptional<FString> FResponse_GetMatchMakingTemplates::GetHeader200_ETag() const
 
 bool FResponse_GetMatchMakingTemplates::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetMatchMakingTemplates::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetMatchMakingTemplates::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1517,10 +1601,9 @@ void FQueuesAPI::OnGetMatchMakingTemplatesV2Response(FHttpRequestPtr HttpRequest
 }
 
 FRequest_GetMatchMakingTemplatesV2::FRequest_GetMatchMakingTemplatesV2()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetMatchMakingTemplatesV2::GetSimplifiedPath() const
@@ -1582,21 +1665,19 @@ bool FRequest_GetMatchMakingTemplatesV2::SetupHttpRequest(const FHttpRequestRef&
 	return true;
 }
 
-void FResponse_GetMatchMakingTemplatesV2::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetMatchMakingTemplatesV2::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetMatchMakingTemplatesV2::ParseHeaders()
@@ -1622,7 +1703,12 @@ bool FResponse_GetMatchMakingTemplatesV2::ParseHeaders()
 
 bool FResponse_GetMatchMakingTemplatesV2::TryGetContentFor200(FRHAPI_MatchMakingTemplateGroupV2& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -1641,12 +1727,22 @@ TOptional<FString> FResponse_GetMatchMakingTemplatesV2::GetHeader200_ETag() cons
 
 bool FResponse_GetMatchMakingTemplatesV2::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetMatchMakingTemplatesV2::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetMatchMakingTemplatesV2::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

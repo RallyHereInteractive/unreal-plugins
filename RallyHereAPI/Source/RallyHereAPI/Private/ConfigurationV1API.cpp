@@ -82,10 +82,9 @@ void FConfigurationV1API::OnGetFriendsAndBlockLimitsResponse(FHttpRequestPtr Htt
 }
 
 FRequest_GetFriendsAndBlockLimits::FRequest_GetFriendsAndBlockLimits()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetFriendsAndBlockLimits::GetSimplifiedPath() const
@@ -136,28 +135,37 @@ bool FRequest_GetFriendsAndBlockLimits::SetupHttpRequest(const FHttpRequestRef& 
 	return true;
 }
 
-void FResponse_GetFriendsAndBlockLimits::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetFriendsAndBlockLimits::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetFriendsAndBlockLimits::TryGetContentFor200(FRHAPI_FriendsApiConfig& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetFriendsAndBlockLimits::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetFriendsAndBlockLimits::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

@@ -93,7 +93,7 @@ struct RALLYHEREAPI_API FResponse_GenerateEntitlementEvent : public FResponse
 	FResponse_GenerateEntitlementEvent(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GenerateEntitlementEvent() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_EntitlementEvent Content;
 
@@ -168,7 +168,7 @@ struct RALLYHEREAPI_API FResponse_GetEntitlementEvents : public FResponse
 	FResponse_GetEntitlementEvents(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetEntitlementEvents() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_EntitlementEventList Content;
 
@@ -232,7 +232,7 @@ struct RALLYHEREAPI_API FResponse_ProcessPlatformEntitlementForMe : public FResp
 	FResponse_ProcessPlatformEntitlementForMe(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_ProcessPlatformEntitlementForMe() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlatformEntitlementProcessResult Content;
 
@@ -297,7 +297,7 @@ struct RALLYHEREAPI_API FResponse_ProcessPlatformEntitlementsByPlayerUuid : publ
 	FResponse_ProcessPlatformEntitlementsByPlayerUuid(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_ProcessPlatformEntitlementsByPlayerUuid() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlatformEntitlementProcessResult Content;
 
@@ -360,7 +360,7 @@ struct RALLYHEREAPI_API FResponse_RetrieveEntitlementRequestByPlayerUuid : publi
 	FResponse_RetrieveEntitlementRequestByPlayerUuid(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_RetrieveEntitlementRequestByPlayerUuid() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlatformEntitlementProcessResult Content;
 
@@ -422,7 +422,7 @@ struct RALLYHEREAPI_API FResponse_RetrieveEntitlementRequestForMe : public FResp
 	FResponse_RetrieveEntitlementRequestForMe(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_RetrieveEntitlementRequestForMe() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PlatformEntitlementProcessResult Content;
 

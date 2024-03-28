@@ -82,10 +82,9 @@ void FSettingsAPI::OnDeleteAllPlayerIdSettingsForSettingTypeResponse(FHttpReques
 }
 
 FRequest_DeleteAllPlayerIdSettingsForSettingType::FRequest_DeleteAllPlayerIdSettingsForSettingType()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_DeleteAllPlayerIdSettingsForSettingType::GetSimplifiedPath() const
@@ -142,52 +141,73 @@ bool FRequest_DeleteAllPlayerIdSettingsForSettingType::SetupHttpRequest(const FH
 	return true;
 }
 
-void FResponse_DeleteAllPlayerIdSettingsForSettingType::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_DeleteAllPlayerIdSettingsForSettingType::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 400:
-		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator "));
-		break;
+		return TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator ");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist         "));
-		break;
+		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist         ");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_DeleteAllPlayerIdSettingsForSettingType::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteAllPlayerIdSettingsForSettingType::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteAllPlayerIdSettingsForSettingType::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteAllPlayerIdSettingsForSettingType::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteAllPlayerIdSettingsForSettingType::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteAllPlayerIdSettingsForSettingType::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -261,10 +281,9 @@ void FSettingsAPI::OnDeleteAllPlayerUuidSettingsForSettingTypeResponse(FHttpRequ
 }
 
 FRequest_DeleteAllPlayerUuidSettingsForSettingType::FRequest_DeleteAllPlayerUuidSettingsForSettingType()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_DeleteAllPlayerUuidSettingsForSettingType::GetSimplifiedPath() const
@@ -321,52 +340,73 @@ bool FRequest_DeleteAllPlayerUuidSettingsForSettingType::SetupHttpRequest(const 
 	return true;
 }
 
-void FResponse_DeleteAllPlayerUuidSettingsForSettingType::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_DeleteAllPlayerUuidSettingsForSettingType::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 400:
-		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator "));
-		break;
+		return TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator ");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist         "));
-		break;
+		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist         ");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_DeleteAllPlayerUuidSettingsForSettingType::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteAllPlayerUuidSettingsForSettingType::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteAllPlayerUuidSettingsForSettingType::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteAllPlayerUuidSettingsForSettingType::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteAllPlayerUuidSettingsForSettingType::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteAllPlayerUuidSettingsForSettingType::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -440,10 +480,9 @@ void FSettingsAPI::OnDeleteAllPlayerUuidSettingsForSettingTypeSelfResponse(FHttp
 }
 
 FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf::FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf::GetSimplifiedPath() const
@@ -499,52 +538,73 @@ bool FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf::SetupHttpRequest(co
 	return true;
 }
 
-void FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 400:
-		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator "));
-		break;
+		return TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator ");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist         "));
-		break;
+		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist         ");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -618,10 +678,9 @@ void FSettingsAPI::OnDeleteSinglePlayerIdSettingResponse(FHttpRequestPtr HttpReq
 }
 
 FRequest_DeleteSinglePlayerIdSetting::FRequest_DeleteSinglePlayerIdSetting()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_DeleteSinglePlayerIdSetting::GetSimplifiedPath() const
@@ -679,52 +738,73 @@ bool FRequest_DeleteSinglePlayerIdSetting::SetupHttpRequest(const FHttpRequestRe
 	return true;
 }
 
-void FResponse_DeleteSinglePlayerIdSetting::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_DeleteSinglePlayerIdSetting::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 400:
-		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator "));
-		break;
+		return TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator ");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist         "));
-		break;
+		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist         ");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_DeleteSinglePlayerIdSetting::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteSinglePlayerIdSetting::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteSinglePlayerIdSetting::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteSinglePlayerIdSetting::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteSinglePlayerIdSetting::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteSinglePlayerIdSetting::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -798,10 +878,9 @@ void FSettingsAPI::OnDeleteSinglePlayerUuidSettingResponse(FHttpRequestPtr HttpR
 }
 
 FRequest_DeleteSinglePlayerUuidSetting::FRequest_DeleteSinglePlayerUuidSetting()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_DeleteSinglePlayerUuidSetting::GetSimplifiedPath() const
@@ -859,52 +938,73 @@ bool FRequest_DeleteSinglePlayerUuidSetting::SetupHttpRequest(const FHttpRequest
 	return true;
 }
 
-void FResponse_DeleteSinglePlayerUuidSetting::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_DeleteSinglePlayerUuidSetting::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 400:
-		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator "));
-		break;
+		return TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator ");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist         "));
-		break;
+		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist         ");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_DeleteSinglePlayerUuidSetting::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteSinglePlayerUuidSetting::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteSinglePlayerUuidSetting::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteSinglePlayerUuidSetting::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteSinglePlayerUuidSetting::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteSinglePlayerUuidSetting::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -978,10 +1078,9 @@ void FSettingsAPI::OnDeleteSinglePlayerUuidSettingSelfResponse(FHttpRequestPtr H
 }
 
 FRequest_DeleteSinglePlayerUuidSettingSelf::FRequest_DeleteSinglePlayerUuidSettingSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_DeleteSinglePlayerUuidSettingSelf::GetSimplifiedPath() const
@@ -1038,52 +1137,73 @@ bool FRequest_DeleteSinglePlayerUuidSettingSelf::SetupHttpRequest(const FHttpReq
 	return true;
 }
 
-void FResponse_DeleteSinglePlayerUuidSettingSelf::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_DeleteSinglePlayerUuidSettingSelf::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 400:
-		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator "));
-		break;
+		return TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator ");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist         "));
-		break;
+		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist         ");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_DeleteSinglePlayerUuidSettingSelf::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteSinglePlayerUuidSettingSelf::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteSinglePlayerUuidSettingSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteSinglePlayerUuidSettingSelf::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteSinglePlayerUuidSettingSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteSinglePlayerUuidSettingSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1157,10 +1277,9 @@ void FSettingsAPI::OnGetAllPlayerIdSettingsForSettingTypeResponse(FHttpRequestPt
 }
 
 FRequest_GetAllPlayerIdSettingsForSettingType::FRequest_GetAllPlayerIdSettingsForSettingType()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetAllPlayerIdSettingsForSettingType::GetSimplifiedPath() const
@@ -1225,52 +1344,73 @@ bool FRequest_GetAllPlayerIdSettingsForSettingType::SetupHttpRequest(const FHttp
 	return true;
 }
 
-void FResponse_GetAllPlayerIdSettingsForSettingType::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetAllPlayerIdSettingsForSettingType::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 400:
-		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator "));
-		break;
+		return TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator ");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found         "));
-		break;
+		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found         ");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetAllPlayerIdSettingsForSettingType::TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAllPlayerIdSettingsForSettingType::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAllPlayerIdSettingsForSettingType::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAllPlayerIdSettingsForSettingType::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAllPlayerIdSettingsForSettingType::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAllPlayerIdSettingsForSettingType::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1344,10 +1484,9 @@ void FSettingsAPI::OnGetAllPlayerUuidSettingsForSettingTypeResponse(FHttpRequest
 }
 
 FRequest_GetAllPlayerUuidSettingsForSettingType::FRequest_GetAllPlayerUuidSettingsForSettingType()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetAllPlayerUuidSettingsForSettingType::GetSimplifiedPath() const
@@ -1412,52 +1551,73 @@ bool FRequest_GetAllPlayerUuidSettingsForSettingType::SetupHttpRequest(const FHt
 	return true;
 }
 
-void FResponse_GetAllPlayerUuidSettingsForSettingType::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetAllPlayerUuidSettingsForSettingType::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 400:
-		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator "));
-		break;
+		return TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator ");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found         "));
-		break;
+		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found         ");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetAllPlayerUuidSettingsForSettingType::TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAllPlayerUuidSettingsForSettingType::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAllPlayerUuidSettingsForSettingType::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAllPlayerUuidSettingsForSettingType::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAllPlayerUuidSettingsForSettingType::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAllPlayerUuidSettingsForSettingType::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1531,10 +1691,9 @@ void FSettingsAPI::OnGetAllPlayerUuidSettingsForSettingTypeSelfResponse(FHttpReq
 }
 
 FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf::FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf::GetSimplifiedPath() const
@@ -1598,52 +1757,73 @@ bool FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf::SetupHttpRequest(const
 	return true;
 }
 
-void FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 400:
-		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator "));
-		break;
+		return TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator ");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found         "));
-		break;
+		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found         ");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf::TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1717,10 +1897,9 @@ void FSettingsAPI::OnGetConfigForAllSettingTypesResponse(FHttpRequestPtr HttpReq
 }
 
 FRequest_GetConfigForAllSettingTypes::FRequest_GetConfigForAllSettingTypes()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetConfigForAllSettingTypes::GetSimplifiedPath() const
@@ -1771,20 +1950,25 @@ bool FRequest_GetConfigForAllSettingTypes::SetupHttpRequest(const FHttpRequestRe
 	return true;
 }
 
-void FResponse_GetConfigForAllSettingTypes::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetConfigForAllSettingTypes::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetConfigForAllSettingTypes::TryGetContentFor200(TMap<FString, FRHAPI_SettingType>& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetConfigForAllSettingTypes::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1858,10 +2042,9 @@ void FSettingsAPI::OnGetConfigForSingleSettingTypeAllVersionsResponse(FHttpReque
 }
 
 FRequest_GetConfigForSingleSettingTypeAllVersions::FRequest_GetConfigForSingleSettingTypeAllVersions()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetConfigForSingleSettingTypeAllVersions::GetSimplifiedPath() const
@@ -1917,44 +2100,61 @@ bool FRequest_GetConfigForSingleSettingTypeAllVersions::SetupHttpRequest(const F
 	return true;
 }
 
-void FResponse_GetConfigForSingleSettingTypeAllVersions::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetConfigForSingleSettingTypeAllVersions::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found         "));
-		break;
+		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found         ");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetConfigForSingleSettingTypeAllVersions::TryGetContentFor200(TMap<FString, FRHAPI_SettingTypeVersion>& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetConfigForSingleSettingTypeAllVersions::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetConfigForSingleSettingTypeAllVersions::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetConfigForSingleSettingTypeAllVersions::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetConfigForSingleSettingTypeAllVersions::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2028,10 +2228,9 @@ void FSettingsAPI::OnGetConfigForSingleSettingTypeAndVersionResponse(FHttpReques
 }
 
 FRequest_GetConfigForSingleSettingTypeAndVersion::FRequest_GetConfigForSingleSettingTypeAndVersion()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetConfigForSingleSettingTypeAndVersion::GetSimplifiedPath() const
@@ -2088,44 +2287,61 @@ bool FRequest_GetConfigForSingleSettingTypeAndVersion::SetupHttpRequest(const FH
 	return true;
 }
 
-void FResponse_GetConfigForSingleSettingTypeAndVersion::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetConfigForSingleSettingTypeAndVersion::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;setting_version_id_not_found&#x60; - The setting Version was not found for that type         "));
-		break;
+		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;setting_version_id_not_found&#x60; - The setting Version was not found for that type         ");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetConfigForSingleSettingTypeAndVersion::TryGetContentFor200(FRHAPI_SettingTypeVersion& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetConfigForSingleSettingTypeAndVersion::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetConfigForSingleSettingTypeAndVersion::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetConfigForSingleSettingTypeAndVersion::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetConfigForSingleSettingTypeAndVersion::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2199,10 +2415,9 @@ void FSettingsAPI::OnGetSinglePlayerIdSettingResponse(FHttpRequestPtr HttpReques
 }
 
 FRequest_GetSinglePlayerIdSetting::FRequest_GetSinglePlayerIdSetting()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetSinglePlayerIdSetting::GetSimplifiedPath() const
@@ -2260,52 +2475,73 @@ bool FRequest_GetSinglePlayerIdSetting::SetupHttpRequest(const FHttpRequestRef& 
 	return true;
 }
 
-void FResponse_GetSinglePlayerIdSetting::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetSinglePlayerIdSetting::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 400:
-		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator "));
-		break;
+		return TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator ");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;not_found&#x60; - The setting key was not found         "));
-		break;
+		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;not_found&#x60; - The setting key was not found         ");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetSinglePlayerIdSetting::TryGetContentFor200(FRHAPI_SettingData& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetSinglePlayerIdSetting::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetSinglePlayerIdSetting::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetSinglePlayerIdSetting::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetSinglePlayerIdSetting::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetSinglePlayerIdSetting::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2379,10 +2615,9 @@ void FSettingsAPI::OnGetSinglePlayerUuidSettingResponse(FHttpRequestPtr HttpRequ
 }
 
 FRequest_GetSinglePlayerUuidSetting::FRequest_GetSinglePlayerUuidSetting()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetSinglePlayerUuidSetting::GetSimplifiedPath() const
@@ -2440,52 +2675,73 @@ bool FRequest_GetSinglePlayerUuidSetting::SetupHttpRequest(const FHttpRequestRef
 	return true;
 }
 
-void FResponse_GetSinglePlayerUuidSetting::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetSinglePlayerUuidSetting::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 400:
-		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator "));
-		break;
+		return TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator ");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;not_found&#x60; - The setting key was not found         "));
-		break;
+		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;not_found&#x60; - The setting key was not found         ");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetSinglePlayerUuidSetting::TryGetContentFor200(FRHAPI_SettingData& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetSinglePlayerUuidSetting::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetSinglePlayerUuidSetting::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetSinglePlayerUuidSetting::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetSinglePlayerUuidSetting::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetSinglePlayerUuidSetting::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2559,10 +2815,9 @@ void FSettingsAPI::OnGetSinglePlayerUuidSettingSelfResponse(FHttpRequestPtr Http
 }
 
 FRequest_GetSinglePlayerUuidSettingSelf::FRequest_GetSinglePlayerUuidSettingSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetSinglePlayerUuidSettingSelf::GetSimplifiedPath() const
@@ -2619,52 +2874,73 @@ bool FRequest_GetSinglePlayerUuidSettingSelf::SetupHttpRequest(const FHttpReques
 	return true;
 }
 
-void FResponse_GetSinglePlayerUuidSettingSelf::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetSinglePlayerUuidSettingSelf::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 400:
-		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator "));
-		break;
+		return TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator ");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;not_found&#x60; - The setting key was not found         "));
-		break;
+		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;not_found&#x60; - The setting key was not found         ");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetSinglePlayerUuidSettingSelf::TryGetContentFor200(FRHAPI_SettingData& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetSinglePlayerUuidSettingSelf::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetSinglePlayerUuidSettingSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetSinglePlayerUuidSettingSelf::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetSinglePlayerUuidSettingSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetSinglePlayerUuidSettingSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2738,10 +3014,9 @@ void FSettingsAPI::OnSetSinglePlayerIdSettingResponse(FHttpRequestPtr HttpReques
 }
 
 FRequest_SetSinglePlayerIdSetting::FRequest_SetSinglePlayerIdSetting()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_SetSinglePlayerIdSetting::GetSimplifiedPath() const
@@ -2810,60 +3085,85 @@ bool FRequest_SetSinglePlayerIdSetting::SetupHttpRequest(const FHttpRequestRef& 
 	return true;
 }
 
-void FResponse_SetSinglePlayerIdSetting::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_SetSinglePlayerIdSetting::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 400:
-		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator - &#x60;setting_version_invalid&#x60; - Setting Version is not valid for the provided type - &#x60;update_not_enabled&#x60; - Setting Type Version has updates disabled - &#x60;setting_key_invalid&#x60; - Setting Key does not meet requirements for that type/version - &#x60;setting_value_invalid&#x60; - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details "));
-		break;
+		return TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator - &#x60;setting_version_invalid&#x60; - Setting Version is not valid for the provided type - &#x60;update_not_enabled&#x60; - Setting Type Version has updates disabled - &#x60;setting_key_invalid&#x60; - Setting Key does not meet requirements for that type/version - &#x60;setting_value_invalid&#x60; - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details ");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist - This will only occur for legacy setting types.         "));
-		break;
+		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist - This will only occur for legacy setting types.         ");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	case 500:
-		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_version_schema_invalid&#x60; - Setting type/version jsonschema is invalid and could not be used to validate the setting value.  See response description for more details.         "));
-		break;
+		return TEXT(" Error Codes: - &#x60;setting_type_version_schema_invalid&#x60; - Setting type/version jsonschema is invalid and could not be used to validate the setting value.  See response description for more details.         ");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_SetSinglePlayerIdSetting::TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_SetSinglePlayerIdSetting::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_SetSinglePlayerIdSetting::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_SetSinglePlayerIdSetting::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_SetSinglePlayerIdSetting::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_SetSinglePlayerIdSetting::TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_SetSinglePlayerIdSetting::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2937,10 +3237,9 @@ void FSettingsAPI::OnSetSinglePlayerUuidSettingResponse(FHttpRequestPtr HttpRequ
 }
 
 FRequest_SetSinglePlayerUuidSetting::FRequest_SetSinglePlayerUuidSetting()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_SetSinglePlayerUuidSetting::GetSimplifiedPath() const
@@ -3009,60 +3308,85 @@ bool FRequest_SetSinglePlayerUuidSetting::SetupHttpRequest(const FHttpRequestRef
 	return true;
 }
 
-void FResponse_SetSinglePlayerUuidSetting::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_SetSinglePlayerUuidSetting::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 400:
-		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator - &#x60;setting_version_invalid&#x60; - Setting Version is not valid for the provided type - &#x60;update_not_enabled&#x60; - Setting Type Version has updates disabled - &#x60;setting_key_invalid&#x60; - Setting Key does not meet requirements for that type/version - &#x60;setting_value_invalid&#x60; - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details "));
-		break;
+		return TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator - &#x60;setting_version_invalid&#x60; - Setting Version is not valid for the provided type - &#x60;update_not_enabled&#x60; - Setting Type Version has updates disabled - &#x60;setting_key_invalid&#x60; - Setting Key does not meet requirements for that type/version - &#x60;setting_value_invalid&#x60; - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details ");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist - This will only occur for legacy setting types.         "));
-		break;
+		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist - This will only occur for legacy setting types.         ");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	case 500:
-		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_version_schema_invalid&#x60; - Setting type/version jsonschema is invalid and could not be used to validate the setting value.  See response description for more details.         "));
-		break;
+		return TEXT(" Error Codes: - &#x60;setting_type_version_schema_invalid&#x60; - Setting type/version jsonschema is invalid and could not be used to validate the setting value.  See response description for more details.         ");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_SetSinglePlayerUuidSetting::TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_SetSinglePlayerUuidSetting::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_SetSinglePlayerUuidSetting::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_SetSinglePlayerUuidSetting::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_SetSinglePlayerUuidSetting::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_SetSinglePlayerUuidSetting::TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_SetSinglePlayerUuidSetting::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3136,10 +3460,9 @@ void FSettingsAPI::OnSetSinglePlayerUuidSettingSelfResponse(FHttpRequestPtr Http
 }
 
 FRequest_SetSinglePlayerUuidSettingSelf::FRequest_SetSinglePlayerUuidSettingSelf()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_SetSinglePlayerUuidSettingSelf::GetSimplifiedPath() const
@@ -3207,60 +3530,85 @@ bool FRequest_SetSinglePlayerUuidSettingSelf::SetupHttpRequest(const FHttpReques
 	return true;
 }
 
-void FResponse_SetSinglePlayerUuidSettingSelf::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_SetSinglePlayerUuidSettingSelf::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 400:
-		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator - &#x60;setting_version_invalid&#x60; - Setting Version is not valid for the provided type - &#x60;update_not_enabled&#x60; - Setting Type Version has updates disabled - &#x60;setting_key_invalid&#x60; - Setting Key does not meet requirements for that type/version - &#x60;setting_value_invalid&#x60; - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details "));
-		break;
+		return TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator - &#x60;setting_version_invalid&#x60; - Setting Version is not valid for the provided type - &#x60;update_not_enabled&#x60; - Setting Type Version has updates disabled - &#x60;setting_key_invalid&#x60; - Setting Key does not meet requirements for that type/version - &#x60;setting_value_invalid&#x60; - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details ");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist - This will only occur for legacy setting types.         "));
-		break;
+		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist - This will only occur for legacy setting types.         ");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	case 500:
-		SetResponseString(TEXT(" Error Codes: - &#x60;setting_type_version_schema_invalid&#x60; - Setting type/version jsonschema is invalid and could not be used to validate the setting value.  See response description for more details.         "));
-		break;
+		return TEXT(" Error Codes: - &#x60;setting_type_version_schema_invalid&#x60; - Setting type/version jsonschema is invalid and could not be used to validate the setting value.  See response description for more details.         ");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_SetSinglePlayerUuidSettingSelf::TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_SetSinglePlayerUuidSettingSelf::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_SetSinglePlayerUuidSettingSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_SetSinglePlayerUuidSettingSelf::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_SetSinglePlayerUuidSettingSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_SetSinglePlayerUuidSettingSelf::TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_SetSinglePlayerUuidSettingSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

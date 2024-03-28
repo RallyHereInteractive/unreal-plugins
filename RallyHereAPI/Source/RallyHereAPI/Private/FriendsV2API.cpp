@@ -82,10 +82,9 @@ void FFriendsV2API::OnAddFriendV2Response(FHttpRequestPtr HttpRequest, FHttpResp
 }
 
 FRequest_AddFriendV2::FRequest_AddFriendV2()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AddFriendV2::GetSimplifiedPath() const
@@ -162,30 +161,25 @@ bool FRequest_AddFriendV2::SetupHttpRequest(const FHttpRequestRef& HttpRequest) 
 	return true;
 }
 
-void FResponse_AddFriendV2::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_AddFriendV2::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 400:
-		SetResponseString(TEXT("Bad Request"));
-		break;
+		return TEXT("Bad Request");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 409:
-		SetResponseString(TEXT("Conflict"));
-		break;
+		return TEXT("Conflict");
 	case 412:
-		SetResponseString(TEXT("The resource&#39;s Etag does not match the Etag provided. Get the Etag from the Get request and try again"));
-		break;
+		return TEXT("The resource&#39;s Etag does not match the Etag provided. Get the Etag from the Get request and try again");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_AddFriendV2::ParseHeaders()
@@ -211,7 +205,12 @@ bool FResponse_AddFriendV2::ParseHeaders()
 
 bool FResponse_AddFriendV2::TryGetContentFor200(FRHAPI_FriendRelationship& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -230,22 +229,42 @@ TOptional<FString> FResponse_AddFriendV2::GetHeader200_ETag() const
 
 bool FResponse_AddFriendV2::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AddFriendV2::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AddFriendV2::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AddFriendV2::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AddFriendV2::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -319,10 +338,9 @@ void FFriendsV2API::OnAddNotesV2Response(FHttpRequestPtr HttpRequest, FHttpRespo
 }
 
 FRequest_AddNotesV2::FRequest_AddNotesV2()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AddNotesV2::GetSimplifiedPath() const
@@ -396,27 +414,23 @@ bool FRequest_AddNotesV2::SetupHttpRequest(const FHttpRequestRef& HttpRequest) c
 	return true;
 }
 
-void FResponse_AddNotesV2::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_AddNotesV2::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 400:
-		SetResponseString(TEXT("Bad Request"));
-		break;
+		return TEXT("Bad Request");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 409:
-		SetResponseString(TEXT("Conflict"));
-		break;
+		return TEXT("Conflict");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_AddNotesV2::ParseHeaders()
@@ -442,7 +456,12 @@ bool FResponse_AddNotesV2::ParseHeaders()
 
 bool FResponse_AddNotesV2::TryGetContentFor200(FRHAPI_FriendRelationship& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -461,22 +480,42 @@ TOptional<FString> FResponse_AddNotesV2::GetHeader200_ETag() const
 
 bool FResponse_AddNotesV2::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AddNotesV2::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AddNotesV2::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AddNotesV2::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AddNotesV2::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -550,10 +589,9 @@ void FFriendsV2API::OnDeleteFriendV2Response(FHttpRequestPtr HttpRequest, FHttpR
 }
 
 FRequest_DeleteFriendV2::FRequest_DeleteFriendV2()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_DeleteFriendV2::GetSimplifiedPath() const
@@ -616,30 +654,25 @@ bool FRequest_DeleteFriendV2::SetupHttpRequest(const FHttpRequestRef& HttpReques
 	return true;
 }
 
-void FResponse_DeleteFriendV2::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_DeleteFriendV2::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 204:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 400:
-		SetResponseString(TEXT("Bad Request"));
-		break;
+		return TEXT("Bad Request");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 409:
-		SetResponseString(TEXT("Conflict"));
-		break;
+		return TEXT("Conflict");
 	case 412:
-		SetResponseString(TEXT("The resource&#39;s Etag does not match the Etag provided. Get the Etag from the Get request and try again"));
-		break;
+		return TEXT("The resource&#39;s Etag does not match the Etag provided. Get the Etag from the Get request and try again");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_DeleteFriendV2::ParseHeaders()
@@ -679,22 +712,42 @@ TOptional<FString> FResponse_DeleteFriendV2::GetHeader204_ETag() const
 
 bool FResponse_DeleteFriendV2::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteFriendV2::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteFriendV2::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteFriendV2::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteFriendV2::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -768,10 +821,9 @@ void FFriendsV2API::OnDeleteFriendsV2Response(FHttpRequestPtr HttpRequest, FHttp
 }
 
 FRequest_DeleteFriendsV2::FRequest_DeleteFriendsV2()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_DeleteFriendsV2::GetSimplifiedPath() const
@@ -838,47 +890,63 @@ bool FRequest_DeleteFriendsV2::SetupHttpRequest(const FHttpRequestRef& HttpReque
 	return true;
 }
 
-void FResponse_DeleteFriendsV2::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_DeleteFriendsV2::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 204:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 400:
-		SetResponseString(TEXT("Bad Request"));
-		break;
+		return TEXT("Bad Request");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 409:
-		SetResponseString(TEXT("Conflict"));
-		break;
+		return TEXT("Conflict");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_DeleteFriendsV2::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteFriendsV2::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteFriendsV2::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteFriendsV2::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteFriendsV2::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -952,10 +1020,9 @@ void FFriendsV2API::OnDeleteNotesV2Response(FHttpRequestPtr HttpRequest, FHttpRe
 }
 
 FRequest_DeleteNotesV2::FRequest_DeleteNotesV2()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_DeleteNotesV2::GetSimplifiedPath() const
@@ -1018,47 +1085,63 @@ bool FRequest_DeleteNotesV2::SetupHttpRequest(const FHttpRequestRef& HttpRequest
 	return true;
 }
 
-void FResponse_DeleteNotesV2::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_DeleteNotesV2::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 204:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 400:
-		SetResponseString(TEXT("Bad Request"));
-		break;
+		return TEXT("Bad Request");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 409:
-		SetResponseString(TEXT("Conflict"));
-		break;
+		return TEXT("Conflict");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_DeleteNotesV2::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteNotesV2::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteNotesV2::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteNotesV2::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_DeleteNotesV2::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1132,10 +1215,9 @@ void FFriendsV2API::OnGetFriendRelationshipV2Response(FHttpRequestPtr HttpReques
 }
 
 FRequest_GetFriendRelationshipV2::FRequest_GetFriendRelationshipV2()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetFriendRelationshipV2::GetSimplifiedPath() const
@@ -1198,30 +1280,25 @@ bool FRequest_GetFriendRelationshipV2::SetupHttpRequest(const FHttpRequestRef& H
 	return true;
 }
 
-void FResponse_GetFriendRelationshipV2::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetFriendRelationshipV2::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 304:
-		SetResponseString(TEXT("Content still has the same etag and has not changed"));
-		break;
+		return TEXT("Content still has the same etag and has not changed");
 	case 400:
-		SetResponseString(TEXT("Bad Request"));
-		break;
+		return TEXT("Bad Request");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 409:
-		SetResponseString(TEXT("Conflict"));
-		break;
+		return TEXT("Conflict");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetFriendRelationshipV2::ParseHeaders()
@@ -1247,7 +1324,12 @@ bool FResponse_GetFriendRelationshipV2::ParseHeaders()
 
 bool FResponse_GetFriendRelationshipV2::TryGetContentFor200(FRHAPI_FriendRelationship& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -1266,22 +1348,42 @@ TOptional<FString> FResponse_GetFriendRelationshipV2::GetHeader200_ETag() const
 
 bool FResponse_GetFriendRelationshipV2::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetFriendRelationshipV2::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetFriendRelationshipV2::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetFriendRelationshipV2::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetFriendRelationshipV2::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1355,10 +1457,9 @@ void FFriendsV2API::OnGetFriendsListForPlayerV2Response(FHttpRequestPtr HttpRequ
 }
 
 FRequest_GetFriendsListForPlayerV2::FRequest_GetFriendsListForPlayerV2()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetFriendsListForPlayerV2::GetSimplifiedPath() const
@@ -1432,30 +1533,25 @@ bool FRequest_GetFriendsListForPlayerV2::SetupHttpRequest(const FHttpRequestRef&
 	return true;
 }
 
-void FResponse_GetFriendsListForPlayerV2::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetFriendsListForPlayerV2::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 304:
-		SetResponseString(TEXT("Content still has the same etag and has not changed"));
-		break;
+		return TEXT("Content still has the same etag and has not changed");
 	case 400:
-		SetResponseString(TEXT("Bad Request"));
-		break;
+		return TEXT("Bad Request");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 409:
-		SetResponseString(TEXT("Conflict"));
-		break;
+		return TEXT("Conflict");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetFriendsListForPlayerV2::ParseHeaders()
@@ -1481,7 +1577,12 @@ bool FResponse_GetFriendsListForPlayerV2::ParseHeaders()
 
 bool FResponse_GetFriendsListForPlayerV2::TryGetContentFor200(FRHAPI_FriendsList& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -1500,22 +1601,42 @@ TOptional<FString> FResponse_GetFriendsListForPlayerV2::GetHeader200_ETag() cons
 
 bool FResponse_GetFriendsListForPlayerV2::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetFriendsListForPlayerV2::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetFriendsListForPlayerV2::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetFriendsListForPlayerV2::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetFriendsListForPlayerV2::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

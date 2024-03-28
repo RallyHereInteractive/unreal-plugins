@@ -341,7 +341,7 @@ void FRHDTW_WebRequests::DoViewResponse(const FRH_WebResponse* WebResponse, cons
 	ImGuiDisplayCopyableValue(TEXT("Timestamp"), WebResponse->ReceivedTime);
 	if (WebRequest != nullptr)
 	{
-		ImGuiDisplayCopyableValue(TEXT("Duration"), (WebResponse->ReceivedTime - WebRequest->Timestamp).GetTotalSeconds());
+		ImGuiDisplayCopyableValue(TEXT("Duration"), (WebResponse->ReceivedTime - WebRequest->Metadata.HttpQueuedTimestamp));
 	}
 	
 
@@ -402,16 +402,53 @@ void FRHDTW_WebRequests::DoViewMetadata(const FRH_WebRequest* WebRequest)
 		ImGuiDisplayCopyableValue("Identifier", WebRequest->Metadata.Identifier, ECopyMode::Key);
 		ImGui::TableNextColumn();
 		ImGui::Text("%s", TCHAR_TO_UTF8(*WebRequest->Metadata.Identifier.ToString(EGuidFormats::DigitsWithHyphens)));
+
 		ImGui::TableNextRow();
 		ImGui::TableNextColumn();
 		ImGuiDisplayCopyableValue("Simplified Path", WebRequest->Metadata.SimplifiedPath.ToString(), ECopyMode::Key);
 		ImGui::TableNextColumn();
 		ImGui::Text("%s", TCHAR_TO_UTF8(*WebRequest->Metadata.SimplifiedPath.ToString()));
+
 		ImGui::TableNextRow();
 		ImGui::TableNextColumn();
 		ImGuiDisplayCopyableValue("Retry Count", WebRequest->Metadata.RetryCount, ECopyMode::Key);
 		ImGui::TableNextColumn();
 		ImGui::Text("%d", WebRequest->Metadata.RetryCount);
+
+		ImGui::TableNextRow();
+		ImGui::TableNextColumn();
+		ImGuiDisplayCopyableValue("Request Create Time", WebRequest->Metadata.CreateTimestamp, ECopyMode::Key);
+		ImGui::TableNextColumn();
+		ImGui::Text("%s", TCHAR_TO_UTF8(*WebRequest->Metadata.CreateTimestamp.ToIso8601()));
+
+		ImGui::TableNextRow();
+		ImGui::TableNextColumn();
+		ImGuiDisplayCopyableValue("Requester Queue Time", WebRequest->Metadata.QueuedTimestamp, ECopyMode::Key);
+		ImGui::TableNextColumn();
+		ImGui::Text("%s", TCHAR_TO_UTF8(*WebRequest->Metadata.QueuedTimestamp.ToIso8601()));
+
+		ImGui::TableNextRow();
+		ImGui::TableNextColumn();
+		ImGuiDisplayCopyableValue("Http Queue Time", WebRequest->Metadata.HttpQueuedTimestamp, ECopyMode::Key);
+		ImGui::TableNextColumn();
+		ImGui::Text("%s", TCHAR_TO_UTF8(*WebRequest->Metadata.HttpQueuedTimestamp.ToIso8601()));
+
+		if (WebRequest->Metadata.QueuedTimestamp.GetTicks() > 0 && WebRequest->Metadata.HttpQueuedTimestamp.GetTicks() > 0)
+		{
+			const auto RequestQueueDuration = (WebRequest->Metadata.HttpQueuedTimestamp - WebRequest->Metadata.QueuedTimestamp);
+			ImGui::TableNextRow();
+			ImGui::TableNextColumn();
+			ImGuiDisplayCopyableValue("Requester Queue Duration", RequestQueueDuration, ECopyMode::Key);
+			ImGui::TableNextColumn();
+			ImGui::Text("%s", TCHAR_TO_UTF8(*RequestQueueDuration.ToString()));
+
+			const auto HttpQueueDuration = (WebRequest->Timestamp - WebRequest->Metadata.HttpQueuedTimestamp);
+			ImGui::TableNextRow();
+			ImGui::TableNextColumn();
+			ImGuiDisplayCopyableValue("Http Queue Duration", HttpQueueDuration, ECopyMode::Key);
+			ImGui::TableNextColumn();
+			ImGui::Text("%s", TCHAR_TO_UTF8(*HttpQueueDuration.ToString()));
+		}
 
 		ImGui::EndTable();
 	}

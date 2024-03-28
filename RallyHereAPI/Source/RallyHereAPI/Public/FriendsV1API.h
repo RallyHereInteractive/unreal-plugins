@@ -104,7 +104,7 @@ struct RALLYHEREAPI_API FResponse_AddFriend : public FResponse
 	virtual ~FResponse_AddFriend() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_FriendRelationshipV1 Content;
 	// Headers
@@ -185,7 +185,7 @@ struct RALLYHEREAPI_API FResponse_AddNotes : public FResponse
 	virtual ~FResponse_AddNotes() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_FriendRelationshipV1 Content;
 	// Headers
@@ -264,7 +264,7 @@ struct RALLYHEREAPI_API FResponse_DeleteFriend : public FResponse
 	virtual ~FResponse_DeleteFriend() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	
 	// Headers
@@ -338,7 +338,7 @@ struct RALLYHEREAPI_API FResponse_DeleteFriends : public FResponse
 	FResponse_DeleteFriends(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_DeleteFriends() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	
 
@@ -408,7 +408,7 @@ struct RALLYHEREAPI_API FResponse_DeleteNotes : public FResponse
 	FResponse_DeleteNotes(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_DeleteNotes() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	
 
@@ -481,7 +481,7 @@ struct RALLYHEREAPI_API FResponse_GetFriendRelationship : public FResponse
 	virtual ~FResponse_GetFriendRelationship() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_FriendRelationshipV1 Content;
 	// Headers
@@ -563,7 +563,7 @@ struct RALLYHEREAPI_API FResponse_GetFriendsListForPlayer : public FResponse
 	virtual ~FResponse_GetFriendsListForPlayer() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_FriendsListV1 Content;
 	// Headers

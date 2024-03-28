@@ -119,7 +119,7 @@ struct RALLYHEREAPI_API FResponse_ClaimPlayerUuidUnclaimedKeyClaim : public FRes
 	FResponse_ClaimPlayerUuidUnclaimedKeyClaim(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_ClaimPlayerUuidUnclaimedKeyClaim() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_KeyClaim Content;
 
@@ -186,7 +186,7 @@ struct RALLYHEREAPI_API FResponse_ClaimPlayerUuidUnclaimedKeyClaimForMe : public
 	FResponse_ClaimPlayerUuidUnclaimedKeyClaimForMe(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_ClaimPlayerUuidUnclaimedKeyClaimForMe() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_KeyClaim Content;
 
@@ -254,7 +254,7 @@ struct RALLYHEREAPI_API FResponse_ClaimUnclaimedKeyClaim : public FResponse
 	FResponse_ClaimUnclaimedKeyClaim(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_ClaimUnclaimedKeyClaim() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_KeyClaim Content;
 
@@ -321,7 +321,7 @@ struct RALLYHEREAPI_API FResponse_ClaimUnclaimedKeyClaimForMe : public FResponse
 	FResponse_ClaimUnclaimedKeyClaimForMe(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_ClaimUnclaimedKeyClaimForMe() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_KeyClaim Content;
 
@@ -388,7 +388,7 @@ struct RALLYHEREAPI_API FResponse_GetKeyClaim : public FResponse
 	FResponse_GetKeyClaim(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetKeyClaim() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_KeyClaim Content;
 
@@ -454,7 +454,7 @@ struct RALLYHEREAPI_API FResponse_GetKeyClaimForMe : public FResponse
 	FResponse_GetKeyClaimForMe(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetKeyClaimForMe() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_KeyClaim Content;
 
@@ -520,7 +520,7 @@ struct RALLYHEREAPI_API FResponse_GetKeyClaims : public FResponse
 	FResponse_GetKeyClaims(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetKeyClaims() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_KeyClaims Content;
 
@@ -585,7 +585,7 @@ struct RALLYHEREAPI_API FResponse_GetKeyClaimsForMe : public FResponse
 	FResponse_GetKeyClaimsForMe(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetKeyClaimsForMe() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_KeyClaims Content;
 
@@ -645,7 +645,7 @@ struct RALLYHEREAPI_API FResponse_GetKeyClaimsForMyUuid : public FResponse
 	FResponse_GetKeyClaimsForMyUuid(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetKeyClaimsForMyUuid() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_KeyClaims Content;
 
@@ -707,7 +707,7 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidKeyClaim : public FResponse
 	FResponse_GetPlayerUuidKeyClaim(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetPlayerUuidKeyClaim() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_KeyClaim Content;
 
@@ -773,7 +773,7 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidKeyClaimSelf : public FResponse
 	FResponse_GetPlayerUuidKeyClaimSelf(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetPlayerUuidKeyClaimSelf() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_KeyClaim Content;
 
@@ -839,7 +839,7 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidKeyClaims : public FResponse
 	FResponse_GetPlayerUuidKeyClaims(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetPlayerUuidKeyClaims() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_KeyClaims Content;
 

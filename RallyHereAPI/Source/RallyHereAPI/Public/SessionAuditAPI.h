@@ -79,7 +79,7 @@ struct RALLYHEREAPI_API FResponse_CreateSessionAudit : public FResponse
 	FResponse_CreateSessionAudit(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_CreateSessionAudit() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_JsonValue Content;
 
@@ -151,7 +151,7 @@ struct RALLYHEREAPI_API FResponse_GetSessionAudit : public FResponse
 	FResponse_GetSessionAudit(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetSessionAudit() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_AuditResponse Content;
 

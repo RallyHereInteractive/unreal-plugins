@@ -64,7 +64,7 @@ struct RALLYHEREAPI_API FResponse_GetAllEventSchema : public FResponse
 	FResponse_GetAllEventSchema(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_GetAllEventSchema() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_EventParamsSchemaResponse Content;
 
@@ -108,7 +108,7 @@ struct RALLYHEREAPI_API FResponse_ReceiveEventsV1 : public FResponse
 	FResponse_ReceiveEventsV1(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse_ReceiveEventsV1() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_PostGameEventsResponse Content;
 

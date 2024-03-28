@@ -82,10 +82,9 @@ void FPresenceAdminAPI::OnAdminGetKnownPlatformsResponse(FHttpRequestPtr HttpReq
 }
 
 FRequest_AdminGetKnownPlatforms::FRequest_AdminGetKnownPlatforms()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetKnownPlatforms::GetSimplifiedPath() const
@@ -144,36 +143,49 @@ bool FRequest_AdminGetKnownPlatforms::SetupHttpRequest(const FHttpRequestRef& Ht
 	return true;
 }
 
-void FResponse_AdminGetKnownPlatforms::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_AdminGetKnownPlatforms::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_AdminGetKnownPlatforms::TryGetContentFor200(FRHAPI_Platforms& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetKnownPlatforms::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetKnownPlatforms::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetKnownPlatforms::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -247,10 +259,9 @@ void FPresenceAdminAPI::OnAdminGetPlayerPresenceResponse(FHttpRequestPtr HttpReq
 }
 
 FRequest_AdminGetPlayerPresence::FRequest_AdminGetPlayerPresence()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetPlayerPresence::GetSimplifiedPath() const
@@ -314,44 +325,61 @@ bool FRequest_AdminGetPlayerPresence::SetupHttpRequest(const FHttpRequestRef& Ht
 	return true;
 }
 
-void FResponse_AdminGetPlayerPresence::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_AdminGetPlayerPresence::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT("Not Found"));
-		break;
+		return TEXT("Not Found");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_AdminGetPlayerPresence::TryGetContentFor200(FRHAPI_PlayerPresence& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetPlayerPresence::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetPlayerPresence::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetPlayerPresence::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetPlayerPresence::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -425,10 +453,9 @@ void FPresenceAdminAPI::OnAdminGetPlayerPresenceIdResponse(FHttpRequestPtr HttpR
 }
 
 FRequest_AdminGetPlayerPresenceId::FRequest_AdminGetPlayerPresenceId()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetPlayerPresenceId::GetSimplifiedPath() const
@@ -492,44 +519,61 @@ bool FRequest_AdminGetPlayerPresenceId::SetupHttpRequest(const FHttpRequestRef& 
 	return true;
 }
 
-void FResponse_AdminGetPlayerPresenceId::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_AdminGetPlayerPresenceId::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 404:
-		SetResponseString(TEXT("Not Found"));
-		break;
+		return TEXT("Not Found");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_AdminGetPlayerPresenceId::TryGetContentFor200(FRHAPI_PlayerPresence& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetPlayerPresenceId::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetPlayerPresenceId::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetPlayerPresenceId::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetPlayerPresenceId::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -603,10 +647,9 @@ void FPresenceAdminAPI::OnAdminGetRequestingCcuResponse(FHttpRequestPtr HttpRequ
 }
 
 FRequest_AdminGetRequestingCcu::FRequest_AdminGetRequestingCcu()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetRequestingCcu::GetSimplifiedPath() const
@@ -667,36 +710,49 @@ bool FRequest_AdminGetRequestingCcu::SetupHttpRequest(const FHttpRequestRef& Htt
 	return true;
 }
 
-void FResponse_AdminGetRequestingCcu::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_AdminGetRequestingCcu::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_AdminGetRequestingCcu::TryGetContentFor200(FRHAPI_UnionCCU& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetRequestingCcu::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetRequestingCcu::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetRequestingCcu::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -770,10 +826,9 @@ void FPresenceAdminAPI::OnAdminGetRequestingCcuAllPlatformCombinedResponse(FHttp
 }
 
 FRequest_AdminGetRequestingCcuAllPlatformCombined::FRequest_AdminGetRequestingCcuAllPlatformCombined()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetRequestingCcuAllPlatformCombined::GetSimplifiedPath() const
@@ -834,36 +889,49 @@ bool FRequest_AdminGetRequestingCcuAllPlatformCombined::SetupHttpRequest(const F
 	return true;
 }
 
-void FResponse_AdminGetRequestingCcuAllPlatformCombined::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_AdminGetRequestingCcuAllPlatformCombined::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_AdminGetRequestingCcuAllPlatformCombined::TryGetContentFor200(FRHAPI_PlatformUnionCCUs& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetRequestingCcuAllPlatformCombined::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetRequestingCcuAllPlatformCombined::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetRequestingCcuAllPlatformCombined::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -937,10 +1005,9 @@ void FPresenceAdminAPI::OnAdminGetRequestingCcuAllPlatformIndividualResponse(FHt
 }
 
 FRequest_AdminGetRequestingCcuAllPlatformIndividual::FRequest_AdminGetRequestingCcuAllPlatformIndividual()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetRequestingCcuAllPlatformIndividual::GetSimplifiedPath() const
@@ -1001,36 +1068,49 @@ bool FRequest_AdminGetRequestingCcuAllPlatformIndividual::SetupHttpRequest(const
 	return true;
 }
 
-void FResponse_AdminGetRequestingCcuAllPlatformIndividual::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_AdminGetRequestingCcuAllPlatformIndividual::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_AdminGetRequestingCcuAllPlatformIndividual::TryGetContentFor200(FRHAPI_PlatformIndividualCCUs& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetRequestingCcuAllPlatformIndividual::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetRequestingCcuAllPlatformIndividual::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetRequestingCcuAllPlatformIndividual::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1104,10 +1184,9 @@ void FPresenceAdminAPI::OnAdminGetRequestingCcuIndividualResponse(FHttpRequestPt
 }
 
 FRequest_AdminGetRequestingCcuIndividual::FRequest_AdminGetRequestingCcuIndividual()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetRequestingCcuIndividual::GetSimplifiedPath() const
@@ -1168,36 +1247,49 @@ bool FRequest_AdminGetRequestingCcuIndividual::SetupHttpRequest(const FHttpReque
 	return true;
 }
 
-void FResponse_AdminGetRequestingCcuIndividual::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_AdminGetRequestingCcuIndividual::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_AdminGetRequestingCcuIndividual::TryGetContentFor200(FRHAPI_IndividualCCUs& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetRequestingCcuIndividual::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetRequestingCcuIndividual::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetRequestingCcuIndividual::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1271,10 +1363,9 @@ void FPresenceAdminAPI::OnAdminGetRequestingCcuPlatformCombinedResponse(FHttpReq
 }
 
 FRequest_AdminGetRequestingCcuPlatformCombined::FRequest_AdminGetRequestingCcuPlatformCombined()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetRequestingCcuPlatformCombined::GetSimplifiedPath() const
@@ -1340,36 +1431,49 @@ bool FRequest_AdminGetRequestingCcuPlatformCombined::SetupHttpRequest(const FHtt
 	return true;
 }
 
-void FResponse_AdminGetRequestingCcuPlatformCombined::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_AdminGetRequestingCcuPlatformCombined::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_AdminGetRequestingCcuPlatformCombined::TryGetContentFor200(FRHAPI_PlatformUnionCCUs& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetRequestingCcuPlatformCombined::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetRequestingCcuPlatformCombined::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetRequestingCcuPlatformCombined::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1443,10 +1547,9 @@ void FPresenceAdminAPI::OnAdminGetRequestingCcuPlatformIndividualResponse(FHttpR
 }
 
 FRequest_AdminGetRequestingCcuPlatformIndividual::FRequest_AdminGetRequestingCcuPlatformIndividual()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetRequestingCcuPlatformIndividual::GetSimplifiedPath() const
@@ -1512,36 +1615,49 @@ bool FRequest_AdminGetRequestingCcuPlatformIndividual::SetupHttpRequest(const FH
 	return true;
 }
 
-void FResponse_AdminGetRequestingCcuPlatformIndividual::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_AdminGetRequestingCcuPlatformIndividual::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_AdminGetRequestingCcuPlatformIndividual::TryGetContentFor200(FRHAPI_PlatformIndividualCCUs& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetRequestingCcuPlatformIndividual::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetRequestingCcuPlatformIndividual::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetRequestingCcuPlatformIndividual::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1615,10 +1731,9 @@ void FPresenceAdminAPI::OnAdminGetTotalCcuResponse(FHttpRequestPtr HttpRequest, 
 }
 
 FRequest_AdminGetTotalCcu::FRequest_AdminGetTotalCcu()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetTotalCcu::GetSimplifiedPath() const
@@ -1679,36 +1794,49 @@ bool FRequest_AdminGetTotalCcu::SetupHttpRequest(const FHttpRequestRef& HttpRequ
 	return true;
 }
 
-void FResponse_AdminGetTotalCcu::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_AdminGetTotalCcu::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_AdminGetTotalCcu::TryGetContentFor200(FRHAPI_UnionCCU& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetTotalCcu::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetTotalCcu::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetTotalCcu::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1782,10 +1910,9 @@ void FPresenceAdminAPI::OnAdminGetTotalCcuAllPlatformCombinedResponse(FHttpReque
 }
 
 FRequest_AdminGetTotalCcuAllPlatformCombined::FRequest_AdminGetTotalCcuAllPlatformCombined()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetTotalCcuAllPlatformCombined::GetSimplifiedPath() const
@@ -1846,36 +1973,49 @@ bool FRequest_AdminGetTotalCcuAllPlatformCombined::SetupHttpRequest(const FHttpR
 	return true;
 }
 
-void FResponse_AdminGetTotalCcuAllPlatformCombined::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_AdminGetTotalCcuAllPlatformCombined::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_AdminGetTotalCcuAllPlatformCombined::TryGetContentFor200(FRHAPI_PlatformUnionCCUs& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetTotalCcuAllPlatformCombined::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetTotalCcuAllPlatformCombined::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetTotalCcuAllPlatformCombined::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1949,10 +2089,9 @@ void FPresenceAdminAPI::OnAdminGetTotalCcuAllPlatformIndividualResponse(FHttpReq
 }
 
 FRequest_AdminGetTotalCcuAllPlatformIndividual::FRequest_AdminGetTotalCcuAllPlatformIndividual()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetTotalCcuAllPlatformIndividual::GetSimplifiedPath() const
@@ -2013,36 +2152,49 @@ bool FRequest_AdminGetTotalCcuAllPlatformIndividual::SetupHttpRequest(const FHtt
 	return true;
 }
 
-void FResponse_AdminGetTotalCcuAllPlatformIndividual::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_AdminGetTotalCcuAllPlatformIndividual::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_AdminGetTotalCcuAllPlatformIndividual::TryGetContentFor200(FRHAPI_PlatformIndividualCCUs& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetTotalCcuAllPlatformIndividual::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetTotalCcuAllPlatformIndividual::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetTotalCcuAllPlatformIndividual::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2116,10 +2268,9 @@ void FPresenceAdminAPI::OnAdminGetTotalCcuIndividualResponse(FHttpRequestPtr Htt
 }
 
 FRequest_AdminGetTotalCcuIndividual::FRequest_AdminGetTotalCcuIndividual()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetTotalCcuIndividual::GetSimplifiedPath() const
@@ -2180,36 +2331,49 @@ bool FRequest_AdminGetTotalCcuIndividual::SetupHttpRequest(const FHttpRequestRef
 	return true;
 }
 
-void FResponse_AdminGetTotalCcuIndividual::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_AdminGetTotalCcuIndividual::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_AdminGetTotalCcuIndividual::TryGetContentFor200(FRHAPI_IndividualCCUs& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetTotalCcuIndividual::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetTotalCcuIndividual::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetTotalCcuIndividual::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2283,10 +2447,9 @@ void FPresenceAdminAPI::OnAdminGetTotalCcuPlatformCombinedResponse(FHttpRequestP
 }
 
 FRequest_AdminGetTotalCcuPlatformCombined::FRequest_AdminGetTotalCcuPlatformCombined()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetTotalCcuPlatformCombined::GetSimplifiedPath() const
@@ -2352,36 +2515,49 @@ bool FRequest_AdminGetTotalCcuPlatformCombined::SetupHttpRequest(const FHttpRequ
 	return true;
 }
 
-void FResponse_AdminGetTotalCcuPlatformCombined::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_AdminGetTotalCcuPlatformCombined::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_AdminGetTotalCcuPlatformCombined::TryGetContentFor200(FRHAPI_PlatformUnionCCUs& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetTotalCcuPlatformCombined::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetTotalCcuPlatformCombined::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetTotalCcuPlatformCombined::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2455,10 +2631,9 @@ void FPresenceAdminAPI::OnAdminGetTotalCcuPlatformIndividualResponse(FHttpReques
 }
 
 FRequest_AdminGetTotalCcuPlatformIndividual::FRequest_AdminGetTotalCcuPlatformIndividual()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetTotalCcuPlatformIndividual::GetSimplifiedPath() const
@@ -2524,36 +2699,49 @@ bool FRequest_AdminGetTotalCcuPlatformIndividual::SetupHttpRequest(const FHttpRe
 	return true;
 }
 
-void FResponse_AdminGetTotalCcuPlatformIndividual::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_AdminGetTotalCcuPlatformIndividual::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_AdminGetTotalCcuPlatformIndividual::TryGetContentFor200(FRHAPI_PlatformIndividualCCUs& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetTotalCcuPlatformIndividual::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetTotalCcuPlatformIndividual::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetTotalCcuPlatformIndividual::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2627,10 +2815,9 @@ void FPresenceAdminAPI::OnAdminGetUpdatingCcuResponse(FHttpRequestPtr HttpReques
 }
 
 FRequest_AdminGetUpdatingCcu::FRequest_AdminGetUpdatingCcu()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetUpdatingCcu::GetSimplifiedPath() const
@@ -2691,36 +2878,49 @@ bool FRequest_AdminGetUpdatingCcu::SetupHttpRequest(const FHttpRequestRef& HttpR
 	return true;
 }
 
-void FResponse_AdminGetUpdatingCcu::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_AdminGetUpdatingCcu::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_AdminGetUpdatingCcu::TryGetContentFor200(FRHAPI_UnionCCU& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetUpdatingCcu::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetUpdatingCcu::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetUpdatingCcu::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2794,10 +2994,9 @@ void FPresenceAdminAPI::OnAdminGetUpdatingCcuAllPlatformCombinedResponse(FHttpRe
 }
 
 FRequest_AdminGetUpdatingCcuAllPlatformCombined::FRequest_AdminGetUpdatingCcuAllPlatformCombined()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetUpdatingCcuAllPlatformCombined::GetSimplifiedPath() const
@@ -2858,36 +3057,49 @@ bool FRequest_AdminGetUpdatingCcuAllPlatformCombined::SetupHttpRequest(const FHt
 	return true;
 }
 
-void FResponse_AdminGetUpdatingCcuAllPlatformCombined::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_AdminGetUpdatingCcuAllPlatformCombined::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_AdminGetUpdatingCcuAllPlatformCombined::TryGetContentFor200(FRHAPI_PlatformUnionCCUs& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetUpdatingCcuAllPlatformCombined::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetUpdatingCcuAllPlatformCombined::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetUpdatingCcuAllPlatformCombined::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2961,10 +3173,9 @@ void FPresenceAdminAPI::OnAdminGetUpdatingCcuAllPlatformIndividualResponse(FHttp
 }
 
 FRequest_AdminGetUpdatingCcuAllPlatformIndividual::FRequest_AdminGetUpdatingCcuAllPlatformIndividual()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetUpdatingCcuAllPlatformIndividual::GetSimplifiedPath() const
@@ -3025,36 +3236,49 @@ bool FRequest_AdminGetUpdatingCcuAllPlatformIndividual::SetupHttpRequest(const F
 	return true;
 }
 
-void FResponse_AdminGetUpdatingCcuAllPlatformIndividual::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_AdminGetUpdatingCcuAllPlatformIndividual::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_AdminGetUpdatingCcuAllPlatformIndividual::TryGetContentFor200(FRHAPI_PlatformIndividualCCUs& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetUpdatingCcuAllPlatformIndividual::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetUpdatingCcuAllPlatformIndividual::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetUpdatingCcuAllPlatformIndividual::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3128,10 +3352,9 @@ void FPresenceAdminAPI::OnAdminGetUpdatingCcuIndividualResponse(FHttpRequestPtr 
 }
 
 FRequest_AdminGetUpdatingCcuIndividual::FRequest_AdminGetUpdatingCcuIndividual()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetUpdatingCcuIndividual::GetSimplifiedPath() const
@@ -3192,36 +3415,49 @@ bool FRequest_AdminGetUpdatingCcuIndividual::SetupHttpRequest(const FHttpRequest
 	return true;
 }
 
-void FResponse_AdminGetUpdatingCcuIndividual::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_AdminGetUpdatingCcuIndividual::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_AdminGetUpdatingCcuIndividual::TryGetContentFor200(FRHAPI_IndividualCCUs& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetUpdatingCcuIndividual::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetUpdatingCcuIndividual::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetUpdatingCcuIndividual::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3295,10 +3531,9 @@ void FPresenceAdminAPI::OnAdminGetUpdatingCcuPlatformCombinedResponse(FHttpReque
 }
 
 FRequest_AdminGetUpdatingCcuPlatformCombined::FRequest_AdminGetUpdatingCcuPlatformCombined()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetUpdatingCcuPlatformCombined::GetSimplifiedPath() const
@@ -3364,36 +3599,49 @@ bool FRequest_AdminGetUpdatingCcuPlatformCombined::SetupHttpRequest(const FHttpR
 	return true;
 }
 
-void FResponse_AdminGetUpdatingCcuPlatformCombined::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_AdminGetUpdatingCcuPlatformCombined::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_AdminGetUpdatingCcuPlatformCombined::TryGetContentFor200(FRHAPI_PlatformUnionCCUs& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetUpdatingCcuPlatformCombined::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetUpdatingCcuPlatformCombined::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetUpdatingCcuPlatformCombined::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3467,10 +3715,9 @@ void FPresenceAdminAPI::OnAdminGetUpdatingCcuPlatformIndividualResponse(FHttpReq
 }
 
 FRequest_AdminGetUpdatingCcuPlatformIndividual::FRequest_AdminGetUpdatingCcuPlatformIndividual()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminGetUpdatingCcuPlatformIndividual::GetSimplifiedPath() const
@@ -3536,36 +3783,49 @@ bool FRequest_AdminGetUpdatingCcuPlatformIndividual::SetupHttpRequest(const FHtt
 	return true;
 }
 
-void FResponse_AdminGetUpdatingCcuPlatformIndividual::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_AdminGetUpdatingCcuPlatformIndividual::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_AdminGetUpdatingCcuPlatformIndividual::TryGetContentFor200(FRHAPI_PlatformIndividualCCUs& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetUpdatingCcuPlatformIndividual::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetUpdatingCcuPlatformIndividual::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminGetUpdatingCcuPlatformIndividual::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3639,10 +3899,9 @@ void FPresenceAdminAPI::OnAdminUpdatePlayerLastSeenResponse(FHttpRequestPtr Http
 }
 
 FRequest_AdminUpdatePlayerLastSeen::FRequest_AdminUpdatePlayerLastSeen()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminUpdatePlayerLastSeen::GetSimplifiedPath() const
@@ -3717,24 +3976,21 @@ bool FRequest_AdminUpdatePlayerLastSeen::SetupHttpRequest(const FHttpRequestRef&
 	return true;
 }
 
-void FResponse_AdminUpdatePlayerLastSeen::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_AdminUpdatePlayerLastSeen::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	case 500:
-		SetResponseString(TEXT("Internal Server Error"));
-		break;
+		return TEXT("Internal Server Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_AdminUpdatePlayerLastSeen::ParseHeaders()
@@ -3774,17 +4030,32 @@ TOptional<FString> FResponse_AdminUpdatePlayerLastSeen::GetHeader200_ETag() cons
 
 bool FResponse_AdminUpdatePlayerLastSeen::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminUpdatePlayerLastSeen::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminUpdatePlayerLastSeen::TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminUpdatePlayerLastSeen::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3858,10 +4129,9 @@ void FPresenceAdminAPI::OnAdminUpdatePlayerLastSeenIdResponse(FHttpRequestPtr Ht
 }
 
 FRequest_AdminUpdatePlayerLastSeenId::FRequest_AdminUpdatePlayerLastSeenId()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_AdminUpdatePlayerLastSeenId::GetSimplifiedPath() const
@@ -3936,24 +4206,21 @@ bool FRequest_AdminUpdatePlayerLastSeenId::SetupHttpRequest(const FHttpRequestRe
 	return true;
 }
 
-void FResponse_AdminUpdatePlayerLastSeenId::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_AdminUpdatePlayerLastSeenId::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	case 500:
-		SetResponseString(TEXT("Internal Server Error"));
-		break;
+		return TEXT("Internal Server Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_AdminUpdatePlayerLastSeenId::ParseHeaders()
@@ -3993,17 +4260,32 @@ TOptional<FString> FResponse_AdminUpdatePlayerLastSeenId::GetHeader200_ETag() co
 
 bool FResponse_AdminUpdatePlayerLastSeenId::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminUpdatePlayerLastSeenId::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminUpdatePlayerLastSeenId::TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_AdminUpdatePlayerLastSeenId::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

@@ -75,7 +75,7 @@ struct RALLYHEREAPI_API FResponse_GetAppSettingsAll : public FResponse
 	virtual ~FResponse_GetAppSettingsAll() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	FRHAPI_KVsResponse Content;
 	// Headers
@@ -134,7 +134,7 @@ struct RALLYHEREAPI_API FResponse_GetAppSettingsClient : public FResponse
 	virtual ~FResponse_GetAppSettingsClient() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	TArray<FRHAPI_AppSetting> Content;
 	// Headers
@@ -195,7 +195,7 @@ struct RALLYHEREAPI_API FResponse_GetAppSettingsServer : public FResponse
 	virtual ~FResponse_GetAppSettingsServer() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 	TArray<FRHAPI_AppSetting> Content;
 	// Headers

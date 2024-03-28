@@ -82,10 +82,9 @@ void FConfigAPI::OnGetAppSettingsAllResponse(FHttpRequestPtr HttpRequest, FHttpR
 }
 
 FRequest_GetAppSettingsAll::FRequest_GetAppSettingsAll()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetAppSettingsAll::GetSimplifiedPath() const
@@ -150,21 +149,19 @@ bool FRequest_GetAppSettingsAll::SetupHttpRequest(const FHttpRequestRef& HttpReq
 	return true;
 }
 
-void FResponse_GetAppSettingsAll::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetAppSettingsAll::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 304:
-		SetResponseString(TEXT("Content still has the same etag and has not changed"));
-		break;
+		return TEXT("Content still has the same etag and has not changed");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetAppSettingsAll::ParseHeaders()
@@ -190,7 +187,12 @@ bool FResponse_GetAppSettingsAll::ParseHeaders()
 
 bool FResponse_GetAppSettingsAll::TryGetContentFor200(FRHAPI_KVsResponse& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -209,7 +211,12 @@ TOptional<FString> FResponse_GetAppSettingsAll::GetHeader200_ETag() const
 
 bool FResponse_GetAppSettingsAll::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAppSettingsAll::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -283,10 +290,9 @@ void FConfigAPI::OnGetAppSettingsClientResponse(FHttpRequestPtr HttpRequest, FHt
 }
 
 FRequest_GetAppSettingsClient::FRequest_GetAppSettingsClient()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetAppSettingsClient::GetSimplifiedPath() const
@@ -332,21 +338,19 @@ bool FRequest_GetAppSettingsClient::SetupHttpRequest(const FHttpRequestRef& Http
 	return true;
 }
 
-void FResponse_GetAppSettingsClient::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetAppSettingsClient::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 304:
-		SetResponseString(TEXT("Content still has the same etag and has not changed"));
-		break;
+		return TEXT("Content still has the same etag and has not changed");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetAppSettingsClient::ParseHeaders()
@@ -372,7 +376,12 @@ bool FResponse_GetAppSettingsClient::ParseHeaders()
 
 bool FResponse_GetAppSettingsClient::TryGetContentFor200(TArray<FRHAPI_AppSetting>& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -391,7 +400,12 @@ TOptional<FString> FResponse_GetAppSettingsClient::GetHeader200_ETag() const
 
 bool FResponse_GetAppSettingsClient::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAppSettingsClient::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -465,10 +479,9 @@ void FConfigAPI::OnGetAppSettingsServerResponse(FHttpRequestPtr HttpRequest, FHt
 }
 
 FRequest_GetAppSettingsServer::FRequest_GetAppSettingsServer()
+	: FRequest()
 {
-	RequestMetadata.Identifier = FGuid::NewGuid();
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.RetryCount = 0;
 }
 
 FName FRequest_GetAppSettingsServer::GetSimplifiedPath() const
@@ -525,24 +538,21 @@ bool FRequest_GetAppSettingsServer::SetupHttpRequest(const FHttpRequestRef& Http
 	return true;
 }
 
-void FResponse_GetAppSettingsServer::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+FString FResponse_GetAppSettingsServer::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
-	FResponse::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
-		SetResponseString(TEXT("Successful Response"));
-		break;
+		return TEXT("Successful Response");
 	case 304:
-		SetResponseString(TEXT("Content still has the same etag and has not changed"));
-		break;
+		return TEXT("Content still has the same etag and has not changed");
 	case 403:
-		SetResponseString(TEXT("Forbidden"));
-		break;
+		return TEXT("Forbidden");
 	case 422:
-		SetResponseString(TEXT("Validation Error"));
-		break;
+		return TEXT("Validation Error");
 	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_GetAppSettingsServer::ParseHeaders()
@@ -568,7 +578,12 @@ bool FResponse_GetAppSettingsServer::ParseHeaders()
 
 bool FResponse_GetAppSettingsServer::TryGetContentFor200(TArray<FRHAPI_AppSetting>& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -587,12 +602,22 @@ TOptional<FString> FResponse_GetAppSettingsServer::GetHeader200_ETag() const
 
 bool FResponse_GetAppSettingsServer::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAppSettingsServer::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	return TryGetJsonValue(ResponseJson, OutContent);
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_GetAppSettingsServer::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
