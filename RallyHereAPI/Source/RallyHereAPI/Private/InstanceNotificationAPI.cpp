@@ -44,7 +44,7 @@ FHttpRequestPtr FInstanceNotificationAPI::InstanceCreateNotification(const FRequ
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInstanceNotificationAPI::OnInstanceCreateNotificationResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInstanceNotificationAPI::OnInstanceCreateNotificationResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -63,7 +63,7 @@ void FInstanceNotificationAPI::OnInstanceCreateNotificationResponse(FHttpRequest
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInstanceNotificationAPI::OnInstanceCreateNotificationResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInstanceNotificationAPI::OnInstanceCreateNotificationResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_InstanceCreateNotification Response{ RequestMetadata };
@@ -266,7 +266,7 @@ FHttpRequestPtr FInstanceNotificationAPI::InstanceGetNotificationById(const FReq
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInstanceNotificationAPI::OnInstanceGetNotificationByIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInstanceNotificationAPI::OnInstanceGetNotificationByIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -285,7 +285,7 @@ void FInstanceNotificationAPI::OnInstanceGetNotificationByIdResponse(FHttpReques
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInstanceNotificationAPI::OnInstanceGetNotificationByIdResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInstanceNotificationAPI::OnInstanceGetNotificationByIdResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_InstanceGetNotificationById Response{ RequestMetadata };
@@ -490,7 +490,7 @@ FHttpRequestPtr FInstanceNotificationAPI::InstanceGetNotificationsPage(const FRe
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInstanceNotificationAPI::OnInstanceGetNotificationsPageResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInstanceNotificationAPI::OnInstanceGetNotificationsPageResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -509,7 +509,7 @@ void FInstanceNotificationAPI::OnInstanceGetNotificationsPageResponse(FHttpReque
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInstanceNotificationAPI::OnInstanceGetNotificationsPageResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInstanceNotificationAPI::OnInstanceGetNotificationsPageResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_InstanceGetNotificationsPage Response{ RequestMetadata };
@@ -725,7 +725,7 @@ FHttpRequestPtr FInstanceNotificationAPI::InstanceLongPollForNotifications(const
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInstanceNotificationAPI::OnInstanceLongPollForNotificationsResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInstanceNotificationAPI::OnInstanceLongPollForNotificationsResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -744,7 +744,7 @@ void FInstanceNotificationAPI::OnInstanceLongPollForNotificationsResponse(FHttpR
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInstanceNotificationAPI::OnInstanceLongPollForNotificationsResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInstanceNotificationAPI::OnInstanceLongPollForNotificationsResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_InstanceLongPollForNotifications Response{ RequestMetadata };

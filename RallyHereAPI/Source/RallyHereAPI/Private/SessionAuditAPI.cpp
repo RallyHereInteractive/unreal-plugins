@@ -44,7 +44,7 @@ FHttpRequestPtr FSessionAuditAPI::CreateSessionAudit(const FRequest_CreateSessio
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FSessionAuditAPI::OnCreateSessionAuditResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionAuditAPI::OnCreateSessionAuditResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -63,7 +63,7 @@ void FSessionAuditAPI::OnCreateSessionAuditResponse(FHttpRequestPtr HttpRequest,
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FSessionAuditAPI::OnCreateSessionAuditResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FSessionAuditAPI::OnCreateSessionAuditResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_CreateSessionAudit Response{ RequestMetadata };
@@ -242,7 +242,7 @@ FHttpRequestPtr FSessionAuditAPI::GetSessionAudit(const FRequest_GetSessionAudit
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FSessionAuditAPI::OnGetSessionAuditResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionAuditAPI::OnGetSessionAuditResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -261,7 +261,7 @@ void FSessionAuditAPI::OnGetSessionAuditResponse(FHttpRequestPtr HttpRequest, FH
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FSessionAuditAPI::OnGetSessionAuditResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FSessionAuditAPI::OnGetSessionAuditResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetSessionAudit Response{ RequestMetadata };

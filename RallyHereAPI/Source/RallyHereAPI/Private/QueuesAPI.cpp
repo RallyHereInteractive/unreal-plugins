@@ -44,7 +44,7 @@ FHttpRequestPtr FQueuesAPI::GetAllMapGameInfo(const FRequest_GetAllMapGameInfo& 
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FQueuesAPI::OnGetAllMapGameInfoResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FQueuesAPI::OnGetAllMapGameInfoResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -63,7 +63,7 @@ void FQueuesAPI::OnGetAllMapGameInfoResponse(FHttpRequestPtr HttpRequest, FHttpR
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FQueuesAPI::OnGetAllMapGameInfoResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FQueuesAPI::OnGetAllMapGameInfoResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetAllMapGameInfo Response{ RequestMetadata };
@@ -260,7 +260,7 @@ FHttpRequestPtr FQueuesAPI::GetAllQueueInfo(const FRequest_GetAllQueueInfo& Requ
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FQueuesAPI::OnGetAllQueueInfoResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FQueuesAPI::OnGetAllQueueInfoResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -279,7 +279,7 @@ void FQueuesAPI::OnGetAllQueueInfoResponse(FHttpRequestPtr HttpRequest, FHttpRes
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FQueuesAPI::OnGetAllQueueInfoResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FQueuesAPI::OnGetAllQueueInfoResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetAllQueueInfo Response{ RequestMetadata };
@@ -483,7 +483,7 @@ FHttpRequestPtr FQueuesAPI::GetAllQueueInfoV2(const FRequest_GetAllQueueInfoV2& 
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FQueuesAPI::OnGetAllQueueInfoV2Response, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FQueuesAPI::OnGetAllQueueInfoV2Response, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -502,7 +502,7 @@ void FQueuesAPI::OnGetAllQueueInfoV2Response(FHttpRequestPtr HttpRequest, FHttpR
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FQueuesAPI::OnGetAllQueueInfoV2Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FQueuesAPI::OnGetAllQueueInfoV2Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetAllQueueInfoV2 Response{ RequestMetadata };
@@ -706,7 +706,7 @@ FHttpRequestPtr FQueuesAPI::GetInstanceRequestTemplate(const FRequest_GetInstanc
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FQueuesAPI::OnGetInstanceRequestTemplateResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FQueuesAPI::OnGetInstanceRequestTemplateResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -725,7 +725,7 @@ void FQueuesAPI::OnGetInstanceRequestTemplateResponse(FHttpRequestPtr HttpReques
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FQueuesAPI::OnGetInstanceRequestTemplateResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FQueuesAPI::OnGetInstanceRequestTemplateResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetInstanceRequestTemplate Response{ RequestMetadata };
@@ -922,7 +922,7 @@ FHttpRequestPtr FQueuesAPI::GetMatchMakingProfile(const FRequest_GetMatchMakingP
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FQueuesAPI::OnGetMatchMakingProfileResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FQueuesAPI::OnGetMatchMakingProfileResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -941,7 +941,7 @@ void FQueuesAPI::OnGetMatchMakingProfileResponse(FHttpRequestPtr HttpRequest, FH
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FQueuesAPI::OnGetMatchMakingProfileResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FQueuesAPI::OnGetMatchMakingProfileResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetMatchMakingProfile Response{ RequestMetadata };
@@ -1138,7 +1138,7 @@ FHttpRequestPtr FQueuesAPI::GetMatchMakingProfileV2(const FRequest_GetMatchMakin
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FQueuesAPI::OnGetMatchMakingProfileV2Response, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FQueuesAPI::OnGetMatchMakingProfileV2Response, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -1157,7 +1157,7 @@ void FQueuesAPI::OnGetMatchMakingProfileV2Response(FHttpRequestPtr HttpRequest, 
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FQueuesAPI::OnGetMatchMakingProfileV2Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FQueuesAPI::OnGetMatchMakingProfileV2Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetMatchMakingProfileV2 Response{ RequestMetadata };
@@ -1354,7 +1354,7 @@ FHttpRequestPtr FQueuesAPI::GetMatchMakingTemplates(const FRequest_GetMatchMakin
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FQueuesAPI::OnGetMatchMakingTemplatesResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FQueuesAPI::OnGetMatchMakingTemplatesResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -1373,7 +1373,7 @@ void FQueuesAPI::OnGetMatchMakingTemplatesResponse(FHttpRequestPtr HttpRequest, 
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FQueuesAPI::OnGetMatchMakingTemplatesResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FQueuesAPI::OnGetMatchMakingTemplatesResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetMatchMakingTemplates Response{ RequestMetadata };
@@ -1570,7 +1570,7 @@ FHttpRequestPtr FQueuesAPI::GetMatchMakingTemplatesV2(const FRequest_GetMatchMak
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FQueuesAPI::OnGetMatchMakingTemplatesV2Response, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FQueuesAPI::OnGetMatchMakingTemplatesV2Response, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -1589,7 +1589,7 @@ void FQueuesAPI::OnGetMatchMakingTemplatesV2Response(FHttpRequestPtr HttpRequest
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FQueuesAPI::OnGetMatchMakingTemplatesV2Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FQueuesAPI::OnGetMatchMakingTemplatesV2Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetMatchMakingTemplatesV2 Response{ RequestMetadata };

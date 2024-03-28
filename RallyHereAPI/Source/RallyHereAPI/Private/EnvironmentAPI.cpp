@@ -44,7 +44,7 @@ FHttpRequestPtr FEnvironmentAPI::GetEnvironmentId(const FRequest_GetEnvironmentI
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FEnvironmentAPI::OnGetEnvironmentIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FEnvironmentAPI::OnGetEnvironmentIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -63,7 +63,7 @@ void FEnvironmentAPI::OnGetEnvironmentIdResponse(FHttpRequestPtr HttpRequest, FH
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FEnvironmentAPI::OnGetEnvironmentIdResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FEnvironmentAPI::OnGetEnvironmentIdResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetEnvironmentId Response{ RequestMetadata };

@@ -44,7 +44,7 @@ FHttpRequestPtr FAuthAPI::GenerateKey(const FRequest_GenerateKey& Request, const
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FAuthAPI::OnGenerateKeyResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FAuthAPI::OnGenerateKeyResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -63,7 +63,7 @@ void FAuthAPI::OnGenerateKeyResponse(FHttpRequestPtr HttpRequest, FHttpResponseP
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FAuthAPI::OnGenerateKeyResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FAuthAPI::OnGenerateKeyResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GenerateKey Response{ RequestMetadata };
@@ -179,7 +179,7 @@ FHttpRequestPtr FAuthAPI::GetAllPublicKeys(const FRequest_GetAllPublicKeys& Requ
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FAuthAPI::OnGetAllPublicKeysResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FAuthAPI::OnGetAllPublicKeysResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -198,7 +198,7 @@ void FAuthAPI::OnGetAllPublicKeysResponse(FHttpRequestPtr HttpRequest, FHttpResp
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FAuthAPI::OnGetAllPublicKeysResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FAuthAPI::OnGetAllPublicKeysResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetAllPublicKeys Response{ RequestMetadata };
@@ -314,7 +314,7 @@ FHttpRequestPtr FAuthAPI::GetPortalTokenDetails(const FRequest_GetPortalTokenDet
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FAuthAPI::OnGetPortalTokenDetailsResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FAuthAPI::OnGetPortalTokenDetailsResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -333,7 +333,7 @@ void FAuthAPI::OnGetPortalTokenDetailsResponse(FHttpRequestPtr HttpRequest, FHtt
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FAuthAPI::OnGetPortalTokenDetailsResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FAuthAPI::OnGetPortalTokenDetailsResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetPortalTokenDetails Response{ RequestMetadata };
@@ -494,7 +494,7 @@ FHttpRequestPtr FAuthAPI::GetPublicKeyById(const FRequest_GetPublicKeyById& Requ
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FAuthAPI::OnGetPublicKeyByIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FAuthAPI::OnGetPublicKeyByIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -513,7 +513,7 @@ void FAuthAPI::OnGetPublicKeyByIdResponse(FHttpRequestPtr HttpRequest, FHttpResp
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FAuthAPI::OnGetPublicKeyByIdResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FAuthAPI::OnGetPublicKeyByIdResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetPublicKeyById Response{ RequestMetadata };
@@ -648,7 +648,7 @@ FHttpRequestPtr FAuthAPI::Login(const FRequest_Login& Request, const FDelegate_L
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FAuthAPI::OnLoginResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FAuthAPI::OnLoginResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -667,7 +667,7 @@ void FAuthAPI::OnLoginResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr Htt
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FAuthAPI::OnLoginResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FAuthAPI::OnLoginResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_Login Response{ RequestMetadata };
@@ -849,7 +849,7 @@ FHttpRequestPtr FAuthAPI::Logout(const FRequest_Logout& Request, const FDelegate
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FAuthAPI::OnLogoutResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FAuthAPI::OnLogoutResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -868,7 +868,7 @@ void FAuthAPI::OnLogoutResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr Ht
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FAuthAPI::OnLogoutResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FAuthAPI::OnLogoutResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_Logout Response{ RequestMetadata };
@@ -1007,7 +1007,7 @@ FHttpRequestPtr FAuthAPI::OauthLogin(const FRequest_OauthLogin& Request, const F
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FAuthAPI::OnOauthLoginResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FAuthAPI::OnOauthLoginResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -1026,7 +1026,7 @@ void FAuthAPI::OnOauthLoginResponse(FHttpRequestPtr HttpRequest, FHttpResponsePt
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FAuthAPI::OnOauthLoginResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FAuthAPI::OnOauthLoginResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_OauthLogin Response{ RequestMetadata };
@@ -1206,7 +1206,7 @@ FHttpRequestPtr FAuthAPI::OauthResponse(const FRequest_OauthResponse& Request, c
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FAuthAPI::OnOauthResponseResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FAuthAPI::OnOauthResponseResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -1225,7 +1225,7 @@ void FAuthAPI::OnOauthResponseResponse(FHttpRequestPtr HttpRequest, FHttpRespons
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FAuthAPI::OnOauthResponseResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FAuthAPI::OnOauthResponseResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_OauthResponse Response{ RequestMetadata };
@@ -1405,7 +1405,7 @@ FHttpRequestPtr FAuthAPI::OauthTokenExchange(const FRequest_OauthTokenExchange& 
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FAuthAPI::OnOauthTokenExchangeResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FAuthAPI::OnOauthTokenExchangeResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -1424,7 +1424,7 @@ void FAuthAPI::OnOauthTokenExchangeResponse(FHttpRequestPtr HttpRequest, FHttpRe
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FAuthAPI::OnOauthTokenExchangeResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FAuthAPI::OnOauthTokenExchangeResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_OauthTokenExchange Response{ RequestMetadata };
@@ -1585,7 +1585,7 @@ FHttpRequestPtr FAuthAPI::Token(const FRequest_Token& Request, const FDelegate_T
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FAuthAPI::OnTokenResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FAuthAPI::OnTokenResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -1604,7 +1604,7 @@ void FAuthAPI::OnTokenResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr Htt
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FAuthAPI::OnTokenResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FAuthAPI::OnTokenResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_Token Response{ RequestMetadata };
@@ -1764,7 +1764,7 @@ FHttpRequestPtr FAuthAPI::Verify(const FRequest_Verify& Request, const FDelegate
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FAuthAPI::OnVerifyResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FAuthAPI::OnVerifyResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -1783,7 +1783,7 @@ void FAuthAPI::OnVerifyResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr Ht
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FAuthAPI::OnVerifyResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FAuthAPI::OnVerifyResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_Verify Response{ RequestMetadata };

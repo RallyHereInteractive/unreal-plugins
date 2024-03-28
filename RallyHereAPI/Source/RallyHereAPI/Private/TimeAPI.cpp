@@ -44,7 +44,7 @@ FHttpRequestPtr FTimeAPI::GetUtcTime(const FRequest_GetUtcTime& Request, const F
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FTimeAPI::OnGetUtcTimeResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FTimeAPI::OnGetUtcTimeResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -63,7 +63,7 @@ void FTimeAPI::OnGetUtcTimeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePt
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FTimeAPI::OnGetUtcTimeResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FTimeAPI::OnGetUtcTimeResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetUtcTime Response{ RequestMetadata };

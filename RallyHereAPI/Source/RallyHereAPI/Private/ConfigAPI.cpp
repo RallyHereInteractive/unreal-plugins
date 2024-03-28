@@ -44,7 +44,7 @@ FHttpRequestPtr FConfigAPI::GetAppSettingsAll(const FRequest_GetAppSettingsAll& 
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FConfigAPI::OnGetAppSettingsAllResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FConfigAPI::OnGetAppSettingsAllResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -63,7 +63,7 @@ void FConfigAPI::OnGetAppSettingsAllResponse(FHttpRequestPtr HttpRequest, FHttpR
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FConfigAPI::OnGetAppSettingsAllResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FConfigAPI::OnGetAppSettingsAllResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetAppSettingsAll Response{ RequestMetadata };
@@ -253,7 +253,7 @@ FHttpRequestPtr FConfigAPI::GetAppSettingsClient(const FRequest_GetAppSettingsCl
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FConfigAPI::OnGetAppSettingsClientResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FConfigAPI::OnGetAppSettingsClientResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -272,7 +272,7 @@ void FConfigAPI::OnGetAppSettingsClientResponse(FHttpRequestPtr HttpRequest, FHt
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FConfigAPI::OnGetAppSettingsClientResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FConfigAPI::OnGetAppSettingsClientResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetAppSettingsClient Response{ RequestMetadata };
@@ -443,7 +443,7 @@ FHttpRequestPtr FConfigAPI::GetAppSettingsServer(const FRequest_GetAppSettingsSe
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FConfigAPI::OnGetAppSettingsServerResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FConfigAPI::OnGetAppSettingsServerResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -462,7 +462,7 @@ void FConfigAPI::OnGetAppSettingsServerResponse(FHttpRequestPtr HttpRequest, FHt
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FConfigAPI::OnGetAppSettingsServerResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FConfigAPI::OnGetAppSettingsServerResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetAppSettingsServer Response{ RequestMetadata };

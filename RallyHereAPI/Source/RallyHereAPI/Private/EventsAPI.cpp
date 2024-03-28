@@ -44,7 +44,7 @@ FHttpRequestPtr FEventsAPI::GetAllEventSchema(const FRequest_GetAllEventSchema& 
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FEventsAPI::OnGetAllEventSchemaResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FEventsAPI::OnGetAllEventSchemaResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -63,7 +63,7 @@ void FEventsAPI::OnGetAllEventSchemaResponse(FHttpRequestPtr HttpRequest, FHttpR
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FEventsAPI::OnGetAllEventSchemaResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FEventsAPI::OnGetAllEventSchemaResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetAllEventSchema Response{ RequestMetadata };
@@ -179,7 +179,7 @@ FHttpRequestPtr FEventsAPI::ReceiveEventsV1(const FRequest_ReceiveEventsV1& Requ
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FEventsAPI::OnReceiveEventsV1Response, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FEventsAPI::OnReceiveEventsV1Response, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -198,7 +198,7 @@ void FEventsAPI::OnReceiveEventsV1Response(FHttpRequestPtr HttpRequest, FHttpRes
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FEventsAPI::OnReceiveEventsV1Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FEventsAPI::OnReceiveEventsV1Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_ReceiveEventsV1 Response{ RequestMetadata };

@@ -44,7 +44,7 @@ FHttpRequestPtr FPlayerNotificationAPI::PlayerCreateNotification(const FRequest_
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FPlayerNotificationAPI::OnPlayerCreateNotificationResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FPlayerNotificationAPI::OnPlayerCreateNotificationResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -63,7 +63,7 @@ void FPlayerNotificationAPI::OnPlayerCreateNotificationResponse(FHttpRequestPtr 
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FPlayerNotificationAPI::OnPlayerCreateNotificationResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FPlayerNotificationAPI::OnPlayerCreateNotificationResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_PlayerCreateNotification Response{ RequestMetadata };
@@ -266,7 +266,7 @@ FHttpRequestPtr FPlayerNotificationAPI::PlayerCreateNotificationSelf(const FRequ
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FPlayerNotificationAPI::OnPlayerCreateNotificationSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FPlayerNotificationAPI::OnPlayerCreateNotificationSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -285,7 +285,7 @@ void FPlayerNotificationAPI::OnPlayerCreateNotificationSelfResponse(FHttpRequest
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FPlayerNotificationAPI::OnPlayerCreateNotificationSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FPlayerNotificationAPI::OnPlayerCreateNotificationSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_PlayerCreateNotificationSelf Response{ RequestMetadata };
@@ -483,7 +483,7 @@ FHttpRequestPtr FPlayerNotificationAPI::PlayerGetNotificationById(const FRequest
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FPlayerNotificationAPI::OnPlayerGetNotificationByIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FPlayerNotificationAPI::OnPlayerGetNotificationByIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -502,7 +502,7 @@ void FPlayerNotificationAPI::OnPlayerGetNotificationByIdResponse(FHttpRequestPtr
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FPlayerNotificationAPI::OnPlayerGetNotificationByIdResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FPlayerNotificationAPI::OnPlayerGetNotificationByIdResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_PlayerGetNotificationById Response{ RequestMetadata };
@@ -707,7 +707,7 @@ FHttpRequestPtr FPlayerNotificationAPI::PlayerGetNotificationByIdSelf(const FReq
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FPlayerNotificationAPI::OnPlayerGetNotificationByIdSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FPlayerNotificationAPI::OnPlayerGetNotificationByIdSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -726,7 +726,7 @@ void FPlayerNotificationAPI::OnPlayerGetNotificationByIdSelfResponse(FHttpReques
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FPlayerNotificationAPI::OnPlayerGetNotificationByIdSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FPlayerNotificationAPI::OnPlayerGetNotificationByIdSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_PlayerGetNotificationByIdSelf Response{ RequestMetadata };
@@ -930,7 +930,7 @@ FHttpRequestPtr FPlayerNotificationAPI::PlayerGetNotificationsPage(const FReques
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FPlayerNotificationAPI::OnPlayerGetNotificationsPageResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FPlayerNotificationAPI::OnPlayerGetNotificationsPageResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -949,7 +949,7 @@ void FPlayerNotificationAPI::OnPlayerGetNotificationsPageResponse(FHttpRequestPt
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FPlayerNotificationAPI::OnPlayerGetNotificationsPageResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FPlayerNotificationAPI::OnPlayerGetNotificationsPageResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_PlayerGetNotificationsPage Response{ RequestMetadata };
@@ -1165,7 +1165,7 @@ FHttpRequestPtr FPlayerNotificationAPI::PlayerGetNotificationsPageSelf(const FRe
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FPlayerNotificationAPI::OnPlayerGetNotificationsPageSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FPlayerNotificationAPI::OnPlayerGetNotificationsPageSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -1184,7 +1184,7 @@ void FPlayerNotificationAPI::OnPlayerGetNotificationsPageSelfResponse(FHttpReque
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FPlayerNotificationAPI::OnPlayerGetNotificationsPageSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FPlayerNotificationAPI::OnPlayerGetNotificationsPageSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_PlayerGetNotificationsPageSelf Response{ RequestMetadata };
@@ -1395,7 +1395,7 @@ FHttpRequestPtr FPlayerNotificationAPI::PlayerLongPollForNotifications(const FRe
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FPlayerNotificationAPI::OnPlayerLongPollForNotificationsResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FPlayerNotificationAPI::OnPlayerLongPollForNotificationsResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -1414,7 +1414,7 @@ void FPlayerNotificationAPI::OnPlayerLongPollForNotificationsResponse(FHttpReque
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FPlayerNotificationAPI::OnPlayerLongPollForNotificationsResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FPlayerNotificationAPI::OnPlayerLongPollForNotificationsResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_PlayerLongPollForNotifications Response{ RequestMetadata };
@@ -1626,7 +1626,7 @@ FHttpRequestPtr FPlayerNotificationAPI::PlayerLongPollForNotificationsSelf(const
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FPlayerNotificationAPI::OnPlayerLongPollForNotificationsSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FPlayerNotificationAPI::OnPlayerLongPollForNotificationsSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -1645,7 +1645,7 @@ void FPlayerNotificationAPI::OnPlayerLongPollForNotificationsSelfResponse(FHttpR
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FPlayerNotificationAPI::OnPlayerLongPollForNotificationsSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FPlayerNotificationAPI::OnPlayerLongPollForNotificationsSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_PlayerLongPollForNotificationsSelf Response{ RequestMetadata };

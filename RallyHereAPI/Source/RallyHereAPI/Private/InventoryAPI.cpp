@@ -44,7 +44,7 @@ FHttpRequestPtr FInventoryAPI::CreateNewInventorySession(const FRequest_CreateNe
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInventoryAPI::OnCreateNewInventorySessionResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreateNewInventorySessionResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -63,7 +63,7 @@ void FInventoryAPI::OnCreateNewInventorySessionResponse(FHttpRequestPtr HttpRequ
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInventoryAPI::OnCreateNewInventorySessionResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreateNewInventorySessionResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_CreateNewInventorySession Response{ RequestMetadata };
@@ -230,7 +230,7 @@ FHttpRequestPtr FInventoryAPI::CreateNewInventorySessionByPlayerUuid(const FRequ
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInventoryAPI::OnCreateNewInventorySessionByPlayerUuidResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreateNewInventorySessionByPlayerUuidResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -249,7 +249,7 @@ void FInventoryAPI::OnCreateNewInventorySessionByPlayerUuidResponse(FHttpRequest
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInventoryAPI::OnCreateNewInventorySessionByPlayerUuidResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreateNewInventorySessionByPlayerUuidResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_CreateNewInventorySessionByPlayerUuid Response{ RequestMetadata };
@@ -416,7 +416,7 @@ FHttpRequestPtr FInventoryAPI::CreateNewInventorySessionByPlayerUuidSelf(const F
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInventoryAPI::OnCreateNewInventorySessionByPlayerUuidSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreateNewInventorySessionByPlayerUuidSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -435,7 +435,7 @@ void FInventoryAPI::OnCreateNewInventorySessionByPlayerUuidSelfResponse(FHttpReq
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInventoryAPI::OnCreateNewInventorySessionByPlayerUuidSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreateNewInventorySessionByPlayerUuidSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_CreateNewInventorySessionByPlayerUuidSelf Response{ RequestMetadata };
@@ -597,7 +597,7 @@ FHttpRequestPtr FInventoryAPI::CreateNewInventorySessionSelf(const FRequest_Crea
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInventoryAPI::OnCreateNewInventorySessionSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreateNewInventorySessionSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -616,7 +616,7 @@ void FInventoryAPI::OnCreateNewInventorySessionSelfResponse(FHttpRequestPtr Http
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInventoryAPI::OnCreateNewInventorySessionSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreateNewInventorySessionSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_CreateNewInventorySessionSelf Response{ RequestMetadata };
@@ -778,7 +778,7 @@ FHttpRequestPtr FInventoryAPI::CreateNewPlayerOrder(const FRequest_CreateNewPlay
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInventoryAPI::OnCreateNewPlayerOrderResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreateNewPlayerOrderResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -797,7 +797,7 @@ void FInventoryAPI::OnCreateNewPlayerOrderResponse(FHttpRequestPtr HttpRequest, 
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInventoryAPI::OnCreateNewPlayerOrderResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreateNewPlayerOrderResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_CreateNewPlayerOrder Response{ RequestMetadata };
@@ -976,7 +976,7 @@ FHttpRequestPtr FInventoryAPI::CreateNewPlayerOrderSelf(const FRequest_CreateNew
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInventoryAPI::OnCreateNewPlayerOrderSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreateNewPlayerOrderSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -995,7 +995,7 @@ void FInventoryAPI::OnCreateNewPlayerOrderSelfResponse(FHttpRequestPtr HttpReque
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInventoryAPI::OnCreateNewPlayerOrderSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreateNewPlayerOrderSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_CreateNewPlayerOrderSelf Response{ RequestMetadata };
@@ -1169,7 +1169,7 @@ FHttpRequestPtr FInventoryAPI::CreateNewPlayerUuidOrder(const FRequest_CreateNew
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInventoryAPI::OnCreateNewPlayerUuidOrderResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreateNewPlayerUuidOrderResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -1188,7 +1188,7 @@ void FInventoryAPI::OnCreateNewPlayerUuidOrderResponse(FHttpRequestPtr HttpReque
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInventoryAPI::OnCreateNewPlayerUuidOrderResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreateNewPlayerUuidOrderResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_CreateNewPlayerUuidOrder Response{ RequestMetadata };
@@ -1367,7 +1367,7 @@ FHttpRequestPtr FInventoryAPI::CreateNewPlayerUuidOrderSelf(const FRequest_Creat
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInventoryAPI::OnCreateNewPlayerUuidOrderSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreateNewPlayerUuidOrderSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -1386,7 +1386,7 @@ void FInventoryAPI::OnCreateNewPlayerUuidOrderSelfResponse(FHttpRequestPtr HttpR
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInventoryAPI::OnCreateNewPlayerUuidOrderSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreateNewPlayerUuidOrderSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_CreateNewPlayerUuidOrderSelf Response{ RequestMetadata };
@@ -1560,7 +1560,7 @@ FHttpRequestPtr FInventoryAPI::CreatePlayerInventory(const FRequest_CreatePlayer
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInventoryAPI::OnCreatePlayerInventoryResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreatePlayerInventoryResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -1579,7 +1579,7 @@ void FInventoryAPI::OnCreatePlayerInventoryResponse(FHttpRequestPtr HttpRequest,
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInventoryAPI::OnCreatePlayerInventoryResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreatePlayerInventoryResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_CreatePlayerInventory Response{ RequestMetadata };
@@ -1758,7 +1758,7 @@ FHttpRequestPtr FInventoryAPI::CreatePlayerInventorySelf(const FRequest_CreatePl
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInventoryAPI::OnCreatePlayerInventorySelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreatePlayerInventorySelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -1777,7 +1777,7 @@ void FInventoryAPI::OnCreatePlayerInventorySelfResponse(FHttpRequestPtr HttpRequ
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInventoryAPI::OnCreatePlayerInventorySelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreatePlayerInventorySelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_CreatePlayerInventorySelf Response{ RequestMetadata };
@@ -1951,7 +1951,7 @@ FHttpRequestPtr FInventoryAPI::CreatePlayerInventoryUuid(const FRequest_CreatePl
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInventoryAPI::OnCreatePlayerInventoryUuidResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreatePlayerInventoryUuidResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -1970,7 +1970,7 @@ void FInventoryAPI::OnCreatePlayerInventoryUuidResponse(FHttpRequestPtr HttpRequ
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInventoryAPI::OnCreatePlayerInventoryUuidResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreatePlayerInventoryUuidResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_CreatePlayerInventoryUuid Response{ RequestMetadata };
@@ -2149,7 +2149,7 @@ FHttpRequestPtr FInventoryAPI::CreatePlayerInventoryUuidSelf(const FRequest_Crea
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInventoryAPI::OnCreatePlayerInventoryUuidSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreatePlayerInventoryUuidSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -2168,7 +2168,7 @@ void FInventoryAPI::OnCreatePlayerInventoryUuidSelfResponse(FHttpRequestPtr Http
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInventoryAPI::OnCreatePlayerInventoryUuidSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreatePlayerInventoryUuidSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_CreatePlayerInventoryUuidSelf Response{ RequestMetadata };
@@ -2342,7 +2342,7 @@ FHttpRequestPtr FInventoryAPI::GetInventorySessionInfo(const FRequest_GetInvento
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInventoryAPI::OnGetInventorySessionInfoResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetInventorySessionInfoResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -2361,7 +2361,7 @@ void FInventoryAPI::OnGetInventorySessionInfoResponse(FHttpRequestPtr HttpReques
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInventoryAPI::OnGetInventorySessionInfoResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetInventorySessionInfoResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetInventorySessionInfo Response{ RequestMetadata };
@@ -2517,7 +2517,7 @@ FHttpRequestPtr FInventoryAPI::GetInventorySessionInfoByPlayerUuid(const FReques
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInventoryAPI::OnGetInventorySessionInfoByPlayerUuidResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetInventorySessionInfoByPlayerUuidResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -2536,7 +2536,7 @@ void FInventoryAPI::OnGetInventorySessionInfoByPlayerUuidResponse(FHttpRequestPt
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInventoryAPI::OnGetInventorySessionInfoByPlayerUuidResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetInventorySessionInfoByPlayerUuidResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetInventorySessionInfoByPlayerUuid Response{ RequestMetadata };
@@ -2692,7 +2692,7 @@ FHttpRequestPtr FInventoryAPI::GetInventorySessionInfoByPlayerUuidSelf(const FRe
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInventoryAPI::OnGetInventorySessionInfoByPlayerUuidSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetInventorySessionInfoByPlayerUuidSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -2711,7 +2711,7 @@ void FInventoryAPI::OnGetInventorySessionInfoByPlayerUuidSelfResponse(FHttpReque
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInventoryAPI::OnGetInventorySessionInfoByPlayerUuidSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetInventorySessionInfoByPlayerUuidSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetInventorySessionInfoByPlayerUuidSelf Response{ RequestMetadata };
@@ -2850,7 +2850,7 @@ FHttpRequestPtr FInventoryAPI::GetInventorySessionInfoSelf(const FRequest_GetInv
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInventoryAPI::OnGetInventorySessionInfoSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetInventorySessionInfoSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -2869,7 +2869,7 @@ void FInventoryAPI::OnGetInventorySessionInfoSelfResponse(FHttpRequestPtr HttpRe
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInventoryAPI::OnGetInventorySessionInfoSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetInventorySessionInfoSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetInventorySessionInfoSelf Response{ RequestMetadata };
@@ -3008,7 +3008,7 @@ FHttpRequestPtr FInventoryAPI::GetPlayerInventory(const FRequest_GetPlayerInvent
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInventoryAPI::OnGetPlayerInventoryResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerInventoryResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -3027,7 +3027,7 @@ void FInventoryAPI::OnGetPlayerInventoryResponse(FHttpRequestPtr HttpRequest, FH
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInventoryAPI::OnGetPlayerInventoryResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerInventoryResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetPlayerInventory Response{ RequestMetadata };
@@ -3217,7 +3217,7 @@ FHttpRequestPtr FInventoryAPI::GetPlayerInventorySelf(const FRequest_GetPlayerIn
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInventoryAPI::OnGetPlayerInventorySelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerInventorySelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -3236,7 +3236,7 @@ void FInventoryAPI::OnGetPlayerInventorySelfResponse(FHttpRequestPtr HttpRequest
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInventoryAPI::OnGetPlayerInventorySelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerInventorySelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetPlayerInventorySelf Response{ RequestMetadata };
@@ -3421,7 +3421,7 @@ FHttpRequestPtr FInventoryAPI::GetPlayerInventoryUuid(const FRequest_GetPlayerIn
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInventoryAPI::OnGetPlayerInventoryUuidResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerInventoryUuidResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -3440,7 +3440,7 @@ void FInventoryAPI::OnGetPlayerInventoryUuidResponse(FHttpRequestPtr HttpRequest
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInventoryAPI::OnGetPlayerInventoryUuidResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerInventoryUuidResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetPlayerInventoryUuid Response{ RequestMetadata };
@@ -3630,7 +3630,7 @@ FHttpRequestPtr FInventoryAPI::GetPlayerInventoryUuidSelf(const FRequest_GetPlay
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInventoryAPI::OnGetPlayerInventoryUuidSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerInventoryUuidSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -3649,7 +3649,7 @@ void FInventoryAPI::OnGetPlayerInventoryUuidSelfResponse(FHttpRequestPtr HttpReq
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInventoryAPI::OnGetPlayerInventoryUuidSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerInventoryUuidSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetPlayerInventoryUuidSelf Response{ RequestMetadata };
@@ -3834,7 +3834,7 @@ FHttpRequestPtr FInventoryAPI::GetPlayerOrderById(const FRequest_GetPlayerOrderB
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInventoryAPI::OnGetPlayerOrderByIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerOrderByIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -3853,7 +3853,7 @@ void FInventoryAPI::OnGetPlayerOrderByIdResponse(FHttpRequestPtr HttpRequest, FH
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInventoryAPI::OnGetPlayerOrderByIdResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerOrderByIdResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetPlayerOrderById Response{ RequestMetadata };
@@ -4022,7 +4022,7 @@ FHttpRequestPtr FInventoryAPI::GetPlayerOrderByIdSelf(const FRequest_GetPlayerOr
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInventoryAPI::OnGetPlayerOrderByIdSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerOrderByIdSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -4041,7 +4041,7 @@ void FInventoryAPI::OnGetPlayerOrderByIdSelfResponse(FHttpRequestPtr HttpRequest
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInventoryAPI::OnGetPlayerOrderByIdSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerOrderByIdSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetPlayerOrderByIdSelf Response{ RequestMetadata };
@@ -4209,7 +4209,7 @@ FHttpRequestPtr FInventoryAPI::GetPlayerOrders(const FRequest_GetPlayerOrders& R
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInventoryAPI::OnGetPlayerOrdersResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerOrdersResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -4228,7 +4228,7 @@ void FInventoryAPI::OnGetPlayerOrdersResponse(FHttpRequestPtr HttpRequest, FHttp
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInventoryAPI::OnGetPlayerOrdersResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerOrdersResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetPlayerOrders Response{ RequestMetadata };
@@ -4404,7 +4404,7 @@ FHttpRequestPtr FInventoryAPI::GetPlayerOrdersSelf(const FRequest_GetPlayerOrder
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInventoryAPI::OnGetPlayerOrdersSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerOrdersSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -4423,7 +4423,7 @@ void FInventoryAPI::OnGetPlayerOrdersSelfResponse(FHttpRequestPtr HttpRequest, F
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInventoryAPI::OnGetPlayerOrdersSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerOrdersSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetPlayerOrdersSelf Response{ RequestMetadata };
@@ -4594,7 +4594,7 @@ FHttpRequestPtr FInventoryAPI::GetPlayerUuidOrderById(const FRequest_GetPlayerUu
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInventoryAPI::OnGetPlayerUuidOrderByIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerUuidOrderByIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -4613,7 +4613,7 @@ void FInventoryAPI::OnGetPlayerUuidOrderByIdResponse(FHttpRequestPtr HttpRequest
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInventoryAPI::OnGetPlayerUuidOrderByIdResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerUuidOrderByIdResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetPlayerUuidOrderById Response{ RequestMetadata };
@@ -4782,7 +4782,7 @@ FHttpRequestPtr FInventoryAPI::GetPlayerUuidOrderByIdSelf(const FRequest_GetPlay
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInventoryAPI::OnGetPlayerUuidOrderByIdSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerUuidOrderByIdSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -4801,7 +4801,7 @@ void FInventoryAPI::OnGetPlayerUuidOrderByIdSelfResponse(FHttpRequestPtr HttpReq
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInventoryAPI::OnGetPlayerUuidOrderByIdSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerUuidOrderByIdSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetPlayerUuidOrderByIdSelf Response{ RequestMetadata };
@@ -4969,7 +4969,7 @@ FHttpRequestPtr FInventoryAPI::GetPlayerUuidOrders(const FRequest_GetPlayerUuidO
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInventoryAPI::OnGetPlayerUuidOrdersResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerUuidOrdersResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -4988,7 +4988,7 @@ void FInventoryAPI::OnGetPlayerUuidOrdersResponse(FHttpRequestPtr HttpRequest, F
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInventoryAPI::OnGetPlayerUuidOrdersResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerUuidOrdersResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetPlayerUuidOrders Response{ RequestMetadata };
@@ -5164,7 +5164,7 @@ FHttpRequestPtr FInventoryAPI::GetPlayerUuidOrdersSelf(const FRequest_GetPlayerU
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInventoryAPI::OnGetPlayerUuidOrdersSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerUuidOrdersSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -5183,7 +5183,7 @@ void FInventoryAPI::OnGetPlayerUuidOrdersSelfResponse(FHttpRequestPtr HttpReques
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInventoryAPI::OnGetPlayerUuidOrdersSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerUuidOrdersSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetPlayerUuidOrdersSelf Response{ RequestMetadata };
@@ -5354,7 +5354,7 @@ FHttpRequestPtr FInventoryAPI::ModifyManyPlayerInventory(const FRequest_ModifyMa
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInventoryAPI::OnModifyManyPlayerInventoryResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnModifyManyPlayerInventoryResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -5373,7 +5373,7 @@ void FInventoryAPI::OnModifyManyPlayerInventoryResponse(FHttpRequestPtr HttpRequ
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInventoryAPI::OnModifyManyPlayerInventoryResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInventoryAPI::OnModifyManyPlayerInventoryResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_ModifyManyPlayerInventory Response{ RequestMetadata };
@@ -5552,7 +5552,7 @@ FHttpRequestPtr FInventoryAPI::ModifyManyPlayerInventorySelf(const FRequest_Modi
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInventoryAPI::OnModifyManyPlayerInventorySelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnModifyManyPlayerInventorySelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -5571,7 +5571,7 @@ void FInventoryAPI::OnModifyManyPlayerInventorySelfResponse(FHttpRequestPtr Http
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInventoryAPI::OnModifyManyPlayerInventorySelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInventoryAPI::OnModifyManyPlayerInventorySelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_ModifyManyPlayerInventorySelf Response{ RequestMetadata };
@@ -5745,7 +5745,7 @@ FHttpRequestPtr FInventoryAPI::ModifyManyPlayerInventoryUuid(const FRequest_Modi
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInventoryAPI::OnModifyManyPlayerInventoryUuidResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnModifyManyPlayerInventoryUuidResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -5764,7 +5764,7 @@ void FInventoryAPI::OnModifyManyPlayerInventoryUuidResponse(FHttpRequestPtr Http
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInventoryAPI::OnModifyManyPlayerInventoryUuidResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInventoryAPI::OnModifyManyPlayerInventoryUuidResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_ModifyManyPlayerInventoryUuid Response{ RequestMetadata };
@@ -5943,7 +5943,7 @@ FHttpRequestPtr FInventoryAPI::ModifyManyPlayerInventoryUuidSelf(const FRequest_
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInventoryAPI::OnModifyManyPlayerInventoryUuidSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnModifyManyPlayerInventoryUuidSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -5962,7 +5962,7 @@ void FInventoryAPI::OnModifyManyPlayerInventoryUuidSelfResponse(FHttpRequestPtr 
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInventoryAPI::OnModifyManyPlayerInventoryUuidSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInventoryAPI::OnModifyManyPlayerInventoryUuidSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_ModifyManyPlayerInventoryUuidSelf Response{ RequestMetadata };
@@ -6136,7 +6136,7 @@ FHttpRequestPtr FInventoryAPI::ModifyPlayerInventory(const FRequest_ModifyPlayer
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInventoryAPI::OnModifyPlayerInventoryResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnModifyPlayerInventoryResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -6155,7 +6155,7 @@ void FInventoryAPI::OnModifyPlayerInventoryResponse(FHttpRequestPtr HttpRequest,
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInventoryAPI::OnModifyPlayerInventoryResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInventoryAPI::OnModifyPlayerInventoryResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_ModifyPlayerInventory Response{ RequestMetadata };
@@ -6335,7 +6335,7 @@ FHttpRequestPtr FInventoryAPI::ModifyPlayerInventorySelf(const FRequest_ModifyPl
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInventoryAPI::OnModifyPlayerInventorySelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnModifyPlayerInventorySelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -6354,7 +6354,7 @@ void FInventoryAPI::OnModifyPlayerInventorySelfResponse(FHttpRequestPtr HttpRequ
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInventoryAPI::OnModifyPlayerInventorySelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInventoryAPI::OnModifyPlayerInventorySelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_ModifyPlayerInventorySelf Response{ RequestMetadata };
@@ -6533,7 +6533,7 @@ FHttpRequestPtr FInventoryAPI::ModifyPlayerInventoryUuid(const FRequest_ModifyPl
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInventoryAPI::OnModifyPlayerInventoryUuidResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnModifyPlayerInventoryUuidResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -6552,7 +6552,7 @@ void FInventoryAPI::OnModifyPlayerInventoryUuidResponse(FHttpRequestPtr HttpRequ
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInventoryAPI::OnModifyPlayerInventoryUuidResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInventoryAPI::OnModifyPlayerInventoryUuidResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_ModifyPlayerInventoryUuid Response{ RequestMetadata };
@@ -6732,7 +6732,7 @@ FHttpRequestPtr FInventoryAPI::ModifyPlayerInventoryUuidSelf(const FRequest_Modi
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FInventoryAPI::OnModifyPlayerInventoryUuidSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnModifyPlayerInventoryUuidSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -6751,7 +6751,7 @@ void FInventoryAPI::OnModifyPlayerInventoryUuidSelfResponse(FHttpRequestPtr Http
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FInventoryAPI::OnModifyPlayerInventoryUuidSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FInventoryAPI::OnModifyPlayerInventoryUuidSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_ModifyPlayerInventoryUuidSelf Response{ RequestMetadata };

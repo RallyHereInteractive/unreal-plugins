@@ -44,7 +44,7 @@ FHttpRequestPtr FAdAPI::BeginNewSession(const FRequest_BeginNewSession& Request,
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FAdAPI::OnBeginNewSessionResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FAdAPI::OnBeginNewSessionResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -63,7 +63,7 @@ void FAdAPI::OnBeginNewSessionResponse(FHttpRequestPtr HttpRequest, FHttpRespons
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FAdAPI::OnBeginNewSessionResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FAdAPI::OnBeginNewSessionResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_BeginNewSession Response{ RequestMetadata };
@@ -282,7 +282,7 @@ FHttpRequestPtr FAdAPI::FindOpportunities(const FRequest_FindOpportunities& Requ
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FAdAPI::OnFindOpportunitiesResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FAdAPI::OnFindOpportunitiesResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -301,7 +301,7 @@ void FAdAPI::OnFindOpportunitiesResponse(FHttpRequestPtr HttpRequest, FHttpRespo
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FAdAPI::OnFindOpportunitiesResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FAdAPI::OnFindOpportunitiesResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_FindOpportunities Response{ RequestMetadata };
@@ -520,7 +520,7 @@ FHttpRequestPtr FAdAPI::UnityAdWatched(const FRequest_UnityAdWatched& Request, c
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FAdAPI::OnUnityAdWatchedResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FAdAPI::OnUnityAdWatchedResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -539,7 +539,7 @@ void FAdAPI::OnUnityAdWatchedResponse(FHttpRequestPtr HttpRequest, FHttpResponse
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FAdAPI::OnUnityAdWatchedResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FAdAPI::OnUnityAdWatchedResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_UnityAdWatched Response{ RequestMetadata };
@@ -675,7 +675,7 @@ FHttpRequestPtr FAdAPI::UnityMediationAdWatched(const FRequest_UnityMediationAdW
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FAdAPI::OnUnityMediationAdWatchedResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FAdAPI::OnUnityMediationAdWatchedResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -694,7 +694,7 @@ void FAdAPI::OnUnityMediationAdWatchedResponse(FHttpRequestPtr HttpRequest, FHtt
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FAdAPI::OnUnityMediationAdWatchedResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FAdAPI::OnUnityMediationAdWatchedResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_UnityMediationAdWatched Response{ RequestMetadata };
@@ -831,7 +831,7 @@ FHttpRequestPtr FAdAPI::UpdateOpportunityById(const FRequest_UpdateOpportunityBy
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FAdAPI::OnUpdateOpportunityByIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FAdAPI::OnUpdateOpportunityByIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -850,7 +850,7 @@ void FAdAPI::OnUpdateOpportunityByIdResponse(FHttpRequestPtr HttpRequest, FHttpR
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FAdAPI::OnUpdateOpportunityByIdResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FAdAPI::OnUpdateOpportunityByIdResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_UpdateOpportunityById Response{ RequestMetadata };

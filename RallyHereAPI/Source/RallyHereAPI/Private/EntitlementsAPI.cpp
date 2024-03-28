@@ -44,7 +44,7 @@ FHttpRequestPtr FEntitlementsAPI::GenerateEntitlementEvent(const FRequest_Genera
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FEntitlementsAPI::OnGenerateEntitlementEventResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FEntitlementsAPI::OnGenerateEntitlementEventResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -63,7 +63,7 @@ void FEntitlementsAPI::OnGenerateEntitlementEventResponse(FHttpRequestPtr HttpRe
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FEntitlementsAPI::OnGenerateEntitlementEventResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FEntitlementsAPI::OnGenerateEntitlementEventResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GenerateEntitlementEvent Response{ RequestMetadata };
@@ -249,7 +249,7 @@ FHttpRequestPtr FEntitlementsAPI::GetEntitlementEvents(const FRequest_GetEntitle
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FEntitlementsAPI::OnGetEntitlementEventsResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FEntitlementsAPI::OnGetEntitlementEventsResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -268,7 +268,7 @@ void FEntitlementsAPI::OnGetEntitlementEventsResponse(FHttpRequestPtr HttpReques
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FEntitlementsAPI::OnGetEntitlementEventsResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FEntitlementsAPI::OnGetEntitlementEventsResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetEntitlementEvents Response{ RequestMetadata };
@@ -435,7 +435,7 @@ FHttpRequestPtr FEntitlementsAPI::ProcessPlatformEntitlementForMe(const FRequest
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FEntitlementsAPI::OnProcessPlatformEntitlementForMeResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FEntitlementsAPI::OnProcessPlatformEntitlementForMeResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -454,7 +454,7 @@ void FEntitlementsAPI::OnProcessPlatformEntitlementForMeResponse(FHttpRequestPtr
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FEntitlementsAPI::OnProcessPlatformEntitlementForMeResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FEntitlementsAPI::OnProcessPlatformEntitlementForMeResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_ProcessPlatformEntitlementForMe Response{ RequestMetadata };
@@ -616,7 +616,7 @@ FHttpRequestPtr FEntitlementsAPI::ProcessPlatformEntitlementsByPlayerUuid(const 
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FEntitlementsAPI::OnProcessPlatformEntitlementsByPlayerUuidResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FEntitlementsAPI::OnProcessPlatformEntitlementsByPlayerUuidResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -635,7 +635,7 @@ void FEntitlementsAPI::OnProcessPlatformEntitlementsByPlayerUuidResponse(FHttpRe
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FEntitlementsAPI::OnProcessPlatformEntitlementsByPlayerUuidResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FEntitlementsAPI::OnProcessPlatformEntitlementsByPlayerUuidResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_ProcessPlatformEntitlementsByPlayerUuid Response{ RequestMetadata };
@@ -802,7 +802,7 @@ FHttpRequestPtr FEntitlementsAPI::RetrieveEntitlementRequestByPlayerUuid(const F
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FEntitlementsAPI::OnRetrieveEntitlementRequestByPlayerUuidResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FEntitlementsAPI::OnRetrieveEntitlementRequestByPlayerUuidResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -821,7 +821,7 @@ void FEntitlementsAPI::OnRetrieveEntitlementRequestByPlayerUuidResponse(FHttpReq
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FEntitlementsAPI::OnRetrieveEntitlementRequestByPlayerUuidResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FEntitlementsAPI::OnRetrieveEntitlementRequestByPlayerUuidResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_RetrieveEntitlementRequestByPlayerUuid Response{ RequestMetadata };
@@ -978,7 +978,7 @@ FHttpRequestPtr FEntitlementsAPI::RetrieveEntitlementRequestForMe(const FRequest
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FEntitlementsAPI::OnRetrieveEntitlementRequestForMeResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FEntitlementsAPI::OnRetrieveEntitlementRequestForMeResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -997,7 +997,7 @@ void FEntitlementsAPI::OnRetrieveEntitlementRequestForMeResponse(FHttpRequestPtr
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FEntitlementsAPI::OnRetrieveEntitlementRequestForMeResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FEntitlementsAPI::OnRetrieveEntitlementRequestForMeResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_RetrieveEntitlementRequestForMe Response{ RequestMetadata };

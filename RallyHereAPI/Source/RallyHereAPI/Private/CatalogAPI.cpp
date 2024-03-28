@@ -44,7 +44,7 @@ FHttpRequestPtr FCatalogAPI::GetCatalogAll(const FRequest_GetCatalogAll& Request
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogAllResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FCatalogAPI::OnGetCatalogAllResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -63,7 +63,7 @@ void FCatalogAPI::OnGetCatalogAllResponse(FHttpRequestPtr HttpRequest, FHttpResp
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogAllResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FCatalogAPI::OnGetCatalogAllResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetCatalogAll Response{ RequestMetadata };
@@ -269,7 +269,7 @@ FHttpRequestPtr FCatalogAPI::GetCatalogEntitlementSku(const FRequest_GetCatalogE
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogEntitlementSkuResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FCatalogAPI::OnGetCatalogEntitlementSkuResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -288,7 +288,7 @@ void FCatalogAPI::OnGetCatalogEntitlementSkuResponse(FHttpRequestPtr HttpRequest
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogEntitlementSkuResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FCatalogAPI::OnGetCatalogEntitlementSkuResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetCatalogEntitlementSku Response{ RequestMetadata };
@@ -500,7 +500,7 @@ FHttpRequestPtr FCatalogAPI::GetCatalogEntitlementSkuAll(const FRequest_GetCatal
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogEntitlementSkuAllResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FCatalogAPI::OnGetCatalogEntitlementSkuAllResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -519,7 +519,7 @@ void FCatalogAPI::OnGetCatalogEntitlementSkuAllResponse(FHttpRequestPtr HttpRequ
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogEntitlementSkuAllResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FCatalogAPI::OnGetCatalogEntitlementSkuAllResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetCatalogEntitlementSkuAll Response{ RequestMetadata };
@@ -725,7 +725,7 @@ FHttpRequestPtr FCatalogAPI::GetCatalogInventoryBucketUseRuleSet(const FRequest_
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogInventoryBucketUseRuleSetResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FCatalogAPI::OnGetCatalogInventoryBucketUseRuleSetResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -744,7 +744,7 @@ void FCatalogAPI::OnGetCatalogInventoryBucketUseRuleSetResponse(FHttpRequestPtr 
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogInventoryBucketUseRuleSetResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FCatalogAPI::OnGetCatalogInventoryBucketUseRuleSetResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetCatalogInventoryBucketUseRuleSet Response{ RequestMetadata };
@@ -955,7 +955,7 @@ FHttpRequestPtr FCatalogAPI::GetCatalogInventoryBucketUseRuleSetsAll(const FRequ
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogInventoryBucketUseRuleSetsAllResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FCatalogAPI::OnGetCatalogInventoryBucketUseRuleSetsAllResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -974,7 +974,7 @@ void FCatalogAPI::OnGetCatalogInventoryBucketUseRuleSetsAllResponse(FHttpRequest
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogInventoryBucketUseRuleSetsAllResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FCatalogAPI::OnGetCatalogInventoryBucketUseRuleSetsAllResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetCatalogInventoryBucketUseRuleSetsAll Response{ RequestMetadata };
@@ -1180,7 +1180,7 @@ FHttpRequestPtr FCatalogAPI::GetCatalogItem(const FRequest_GetCatalogItem& Reque
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogItemResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FCatalogAPI::OnGetCatalogItemResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -1199,7 +1199,7 @@ void FCatalogAPI::OnGetCatalogItemResponse(FHttpRequestPtr HttpRequest, FHttpRes
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogItemResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FCatalogAPI::OnGetCatalogItemResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetCatalogItem Response{ RequestMetadata };
@@ -1410,7 +1410,7 @@ FHttpRequestPtr FCatalogAPI::GetCatalogItemsAll(const FRequest_GetCatalogItemsAl
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogItemsAllResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FCatalogAPI::OnGetCatalogItemsAllResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -1429,7 +1429,7 @@ void FCatalogAPI::OnGetCatalogItemsAllResponse(FHttpRequestPtr HttpRequest, FHtt
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogItemsAllResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FCatalogAPI::OnGetCatalogItemsAllResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetCatalogItemsAll Response{ RequestMetadata };
@@ -1635,7 +1635,7 @@ FHttpRequestPtr FCatalogAPI::GetCatalogLoot(const FRequest_GetCatalogLoot& Reque
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogLootResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FCatalogAPI::OnGetCatalogLootResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -1654,7 +1654,7 @@ void FCatalogAPI::OnGetCatalogLootResponse(FHttpRequestPtr HttpRequest, FHttpRes
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogLootResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FCatalogAPI::OnGetCatalogLootResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetCatalogLoot Response{ RequestMetadata };
@@ -1865,7 +1865,7 @@ FHttpRequestPtr FCatalogAPI::GetCatalogLootsAll(const FRequest_GetCatalogLootsAl
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogLootsAllResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FCatalogAPI::OnGetCatalogLootsAllResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -1884,7 +1884,7 @@ void FCatalogAPI::OnGetCatalogLootsAllResponse(FHttpRequestPtr HttpRequest, FHtt
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogLootsAllResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FCatalogAPI::OnGetCatalogLootsAllResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetCatalogLootsAll Response{ RequestMetadata };
@@ -2090,7 +2090,7 @@ FHttpRequestPtr FCatalogAPI::GetCatalogPortalUseRuleset(const FRequest_GetCatalo
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogPortalUseRulesetResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FCatalogAPI::OnGetCatalogPortalUseRulesetResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -2109,7 +2109,7 @@ void FCatalogAPI::OnGetCatalogPortalUseRulesetResponse(FHttpRequestPtr HttpReque
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogPortalUseRulesetResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FCatalogAPI::OnGetCatalogPortalUseRulesetResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetCatalogPortalUseRuleset Response{ RequestMetadata };
@@ -2320,7 +2320,7 @@ FHttpRequestPtr FCatalogAPI::GetCatalogPortalUseRulesetsAll(const FRequest_GetCa
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogPortalUseRulesetsAllResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FCatalogAPI::OnGetCatalogPortalUseRulesetsAllResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -2339,7 +2339,7 @@ void FCatalogAPI::OnGetCatalogPortalUseRulesetsAllResponse(FHttpRequestPtr HttpR
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogPortalUseRulesetsAllResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FCatalogAPI::OnGetCatalogPortalUseRulesetsAllResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetCatalogPortalUseRulesetsAll Response{ RequestMetadata };
@@ -2545,7 +2545,7 @@ FHttpRequestPtr FCatalogAPI::GetCatalogPricePoint(const FRequest_GetCatalogPrice
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogPricePointResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FCatalogAPI::OnGetCatalogPricePointResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -2564,7 +2564,7 @@ void FCatalogAPI::OnGetCatalogPricePointResponse(FHttpRequestPtr HttpRequest, FH
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogPricePointResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FCatalogAPI::OnGetCatalogPricePointResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetCatalogPricePoint Response{ RequestMetadata };
@@ -2775,7 +2775,7 @@ FHttpRequestPtr FCatalogAPI::GetCatalogPricePointsAll(const FRequest_GetCatalogP
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogPricePointsAllResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FCatalogAPI::OnGetCatalogPricePointsAllResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -2794,7 +2794,7 @@ void FCatalogAPI::OnGetCatalogPricePointsAllResponse(FHttpRequestPtr HttpRequest
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogPricePointsAllResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FCatalogAPI::OnGetCatalogPricePointsAllResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetCatalogPricePointsAll Response{ RequestMetadata };
@@ -3000,7 +3000,7 @@ FHttpRequestPtr FCatalogAPI::GetCatalogTimeFrame(const FRequest_GetCatalogTimeFr
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogTimeFrameResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FCatalogAPI::OnGetCatalogTimeFrameResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -3019,7 +3019,7 @@ void FCatalogAPI::OnGetCatalogTimeFrameResponse(FHttpRequestPtr HttpRequest, FHt
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogTimeFrameResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FCatalogAPI::OnGetCatalogTimeFrameResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetCatalogTimeFrame Response{ RequestMetadata };
@@ -3230,7 +3230,7 @@ FHttpRequestPtr FCatalogAPI::GetCatalogTimeFramesAll(const FRequest_GetCatalogTi
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogTimeFramesAllResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FCatalogAPI::OnGetCatalogTimeFramesAllResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -3249,7 +3249,7 @@ void FCatalogAPI::OnGetCatalogTimeFramesAllResponse(FHttpRequestPtr HttpRequest,
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogTimeFramesAllResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FCatalogAPI::OnGetCatalogTimeFramesAllResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetCatalogTimeFramesAll Response{ RequestMetadata };
@@ -3455,7 +3455,7 @@ FHttpRequestPtr FCatalogAPI::GetCatalogVendor(const FRequest_GetCatalogVendor& R
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogVendorResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FCatalogAPI::OnGetCatalogVendorResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -3474,7 +3474,7 @@ void FCatalogAPI::OnGetCatalogVendorResponse(FHttpRequestPtr HttpRequest, FHttpR
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogVendorResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FCatalogAPI::OnGetCatalogVendorResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetCatalogVendor Response{ RequestMetadata };
@@ -3685,7 +3685,7 @@ FHttpRequestPtr FCatalogAPI::GetCatalogVendorsAll(const FRequest_GetCatalogVendo
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogVendorsAllResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FCatalogAPI::OnGetCatalogVendorsAllResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -3704,7 +3704,7 @@ void FCatalogAPI::OnGetCatalogVendorsAllResponse(FHttpRequestPtr HttpRequest, FH
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogVendorsAllResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FCatalogAPI::OnGetCatalogVendorsAllResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetCatalogVendorsAll Response{ RequestMetadata };
@@ -3910,7 +3910,7 @@ FHttpRequestPtr FCatalogAPI::GetCatalogXpAll(const FRequest_GetCatalogXpAll& Req
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogXpAllResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FCatalogAPI::OnGetCatalogXpAllResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -3929,7 +3929,7 @@ void FCatalogAPI::OnGetCatalogXpAllResponse(FHttpRequestPtr HttpRequest, FHttpRe
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogXpAllResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FCatalogAPI::OnGetCatalogXpAllResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetCatalogXpAll Response{ RequestMetadata };
@@ -4135,7 +4135,7 @@ FHttpRequestPtr FCatalogAPI::GetCatalogXpTable(const FRequest_GetCatalogXpTable&
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogXpTableResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FCatalogAPI::OnGetCatalogXpTableResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -4154,7 +4154,7 @@ void FCatalogAPI::OnGetCatalogXpTableResponse(FHttpRequestPtr HttpRequest, FHttp
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogXpTableResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FCatalogAPI::OnGetCatalogXpTableResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetCatalogXpTable Response{ RequestMetadata };

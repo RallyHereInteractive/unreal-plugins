@@ -44,7 +44,7 @@ FHttpRequestPtr FPresenceAPI::GetPlayerPresencePublicById(const FRequest_GetPlay
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FPresenceAPI::OnGetPlayerPresencePublicByIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FPresenceAPI::OnGetPlayerPresencePublicByIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -63,7 +63,7 @@ void FPresenceAPI::OnGetPlayerPresencePublicByIdResponse(FHttpRequestPtr HttpReq
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FPresenceAPI::OnGetPlayerPresencePublicByIdResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FPresenceAPI::OnGetPlayerPresencePublicByIdResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetPlayerPresencePublicById Response{ RequestMetadata };
@@ -280,7 +280,7 @@ FHttpRequestPtr FPresenceAPI::GetPlayerPresencePublicByUuid(const FRequest_GetPl
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FPresenceAPI::OnGetPlayerPresencePublicByUuidResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FPresenceAPI::OnGetPlayerPresencePublicByUuidResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -299,7 +299,7 @@ void FPresenceAPI::OnGetPlayerPresencePublicByUuidResponse(FHttpRequestPtr HttpR
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FPresenceAPI::OnGetPlayerPresencePublicByUuidResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FPresenceAPI::OnGetPlayerPresencePublicByUuidResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetPlayerPresencePublicByUuid Response{ RequestMetadata };
@@ -516,7 +516,7 @@ FHttpRequestPtr FPresenceAPI::GetPlayerPresenceSelf(const FRequest_GetPlayerPres
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FPresenceAPI::OnGetPlayerPresenceSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FPresenceAPI::OnGetPlayerPresenceSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -535,7 +535,7 @@ void FPresenceAPI::OnGetPlayerPresenceSelfResponse(FHttpRequestPtr HttpRequest, 
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FPresenceAPI::OnGetPlayerPresenceSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FPresenceAPI::OnGetPlayerPresenceSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetPlayerPresenceSelf Response{ RequestMetadata };
@@ -729,7 +729,7 @@ FHttpRequestPtr FPresenceAPI::GetPresenceSettings(const FRequest_GetPresenceSett
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FPresenceAPI::OnGetPresenceSettingsResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FPresenceAPI::OnGetPresenceSettingsResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -748,7 +748,7 @@ void FPresenceAPI::OnGetPresenceSettingsResponse(FHttpRequestPtr HttpRequest, FH
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FPresenceAPI::OnGetPresenceSettingsResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FPresenceAPI::OnGetPresenceSettingsResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetPresenceSettings Response{ RequestMetadata };
@@ -864,7 +864,7 @@ FHttpRequestPtr FPresenceAPI::UpdatePlayerPresenceSelf(const FRequest_UpdatePlay
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FPresenceAPI::OnUpdatePlayerPresenceSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FPresenceAPI::OnUpdatePlayerPresenceSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -883,7 +883,7 @@ void FPresenceAPI::OnUpdatePlayerPresenceSelfResponse(FHttpRequestPtr HttpReques
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FPresenceAPI::OnUpdatePlayerPresenceSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FPresenceAPI::OnUpdatePlayerPresenceSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_UpdatePlayerPresenceSelf Response{ RequestMetadata };

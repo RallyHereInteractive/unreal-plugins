@@ -44,7 +44,7 @@ FHttpRequestPtr FMatchAPI::CreateMatch(const FRequest_CreateMatch& Request, cons
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FMatchAPI::OnCreateMatchResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FMatchAPI::OnCreateMatchResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -63,7 +63,7 @@ void FMatchAPI::OnCreateMatchResponse(FHttpRequestPtr HttpRequest, FHttpResponse
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FMatchAPI::OnCreateMatchResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FMatchAPI::OnCreateMatchResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_CreateMatch Response{ RequestMetadata };
@@ -225,7 +225,7 @@ FHttpRequestPtr FMatchAPI::CreateMatchPlayer(const FRequest_CreateMatchPlayer& R
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FMatchAPI::OnCreateMatchPlayerResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FMatchAPI::OnCreateMatchPlayerResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -244,7 +244,7 @@ void FMatchAPI::OnCreateMatchPlayerResponse(FHttpRequestPtr HttpRequest, FHttpRe
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FMatchAPI::OnCreateMatchPlayerResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FMatchAPI::OnCreateMatchPlayerResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_CreateMatchPlayer Response{ RequestMetadata };
@@ -412,7 +412,7 @@ FHttpRequestPtr FMatchAPI::DeleteMatch(const FRequest_DeleteMatch& Request, cons
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FMatchAPI::OnDeleteMatchResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FMatchAPI::OnDeleteMatchResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -431,7 +431,7 @@ void FMatchAPI::OnDeleteMatchResponse(FHttpRequestPtr HttpRequest, FHttpResponse
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FMatchAPI::OnDeleteMatchResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FMatchAPI::OnDeleteMatchResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_DeleteMatch Response{ RequestMetadata };
@@ -577,7 +577,7 @@ FHttpRequestPtr FMatchAPI::DeleteMatchPlayer(const FRequest_DeleteMatchPlayer& R
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FMatchAPI::OnDeleteMatchPlayerResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FMatchAPI::OnDeleteMatchPlayerResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -596,7 +596,7 @@ void FMatchAPI::OnDeleteMatchPlayerResponse(FHttpRequestPtr HttpRequest, FHttpRe
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FMatchAPI::OnDeleteMatchPlayerResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FMatchAPI::OnDeleteMatchPlayerResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_DeleteMatchPlayer Response{ RequestMetadata };
@@ -743,7 +743,7 @@ FHttpRequestPtr FMatchAPI::GetMatch(const FRequest_GetMatch& Request, const FDel
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FMatchAPI::OnGetMatchResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FMatchAPI::OnGetMatchResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -762,7 +762,7 @@ void FMatchAPI::OnGetMatchResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FMatchAPI::OnGetMatchResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FMatchAPI::OnGetMatchResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetMatch Response{ RequestMetadata };
@@ -930,7 +930,7 @@ FHttpRequestPtr FMatchAPI::GetMatchPlayer(const FRequest_GetMatchPlayer& Request
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FMatchAPI::OnGetMatchPlayerResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FMatchAPI::OnGetMatchPlayerResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -949,7 +949,7 @@ void FMatchAPI::OnGetMatchPlayerResponse(FHttpRequestPtr HttpRequest, FHttpRespo
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FMatchAPI::OnGetMatchPlayerResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FMatchAPI::OnGetMatchPlayerResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetMatchPlayer Response{ RequestMetadata };
@@ -1106,7 +1106,7 @@ FHttpRequestPtr FMatchAPI::GetMatches(const FRequest_GetMatches& Request, const 
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FMatchAPI::OnGetMatchesResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FMatchAPI::OnGetMatchesResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -1125,7 +1125,7 @@ void FMatchAPI::OnGetMatchesResponse(FHttpRequestPtr HttpRequest, FHttpResponseP
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FMatchAPI::OnGetMatchesResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FMatchAPI::OnGetMatchesResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetMatches Response{ RequestMetadata };
@@ -1312,7 +1312,7 @@ FHttpRequestPtr FMatchAPI::GetPlayerMatchesSelf(const FRequest_GetPlayerMatchesS
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FMatchAPI::OnGetPlayerMatchesSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FMatchAPI::OnGetPlayerMatchesSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -1331,7 +1331,7 @@ void FMatchAPI::OnGetPlayerMatchesSelfResponse(FHttpRequestPtr HttpRequest, FHtt
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FMatchAPI::OnGetPlayerMatchesSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FMatchAPI::OnGetPlayerMatchesSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetPlayerMatchesSelf Response{ RequestMetadata };
@@ -1494,7 +1494,7 @@ FHttpRequestPtr FMatchAPI::GetPlayersMatches(const FRequest_GetPlayersMatches& R
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FMatchAPI::OnGetPlayersMatchesResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FMatchAPI::OnGetPlayersMatchesResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -1513,7 +1513,7 @@ void FMatchAPI::OnGetPlayersMatchesResponse(FHttpRequestPtr HttpRequest, FHttpRe
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FMatchAPI::OnGetPlayersMatchesResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FMatchAPI::OnGetPlayersMatchesResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetPlayersMatches Response{ RequestMetadata };
@@ -1681,7 +1681,7 @@ FHttpRequestPtr FMatchAPI::PatchMatch(const FRequest_PatchMatch& Request, const 
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FMatchAPI::OnPatchMatchResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FMatchAPI::OnPatchMatchResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -1700,7 +1700,7 @@ void FMatchAPI::OnPatchMatchResponse(FHttpRequestPtr HttpRequest, FHttpResponseP
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FMatchAPI::OnPatchMatchResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FMatchAPI::OnPatchMatchResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_PatchMatch Response{ RequestMetadata };
@@ -1867,7 +1867,7 @@ FHttpRequestPtr FMatchAPI::PatchMatchPlayer(const FRequest_PatchMatchPlayer& Req
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FMatchAPI::OnPatchMatchPlayerResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FMatchAPI::OnPatchMatchPlayerResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -1886,7 +1886,7 @@ void FMatchAPI::OnPatchMatchPlayerResponse(FHttpRequestPtr HttpRequest, FHttpRes
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FMatchAPI::OnPatchMatchPlayerResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FMatchAPI::OnPatchMatchPlayerResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_PatchMatchPlayer Response{ RequestMetadata };
@@ -2054,7 +2054,7 @@ FHttpRequestPtr FMatchAPI::UpdateMatch(const FRequest_UpdateMatch& Request, cons
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FMatchAPI::OnUpdateMatchResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FMatchAPI::OnUpdateMatchResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -2073,7 +2073,7 @@ void FMatchAPI::OnUpdateMatchResponse(FHttpRequestPtr HttpRequest, FHttpResponse
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FMatchAPI::OnUpdateMatchResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FMatchAPI::OnUpdateMatchResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_UpdateMatch Response{ RequestMetadata };
@@ -2240,7 +2240,7 @@ FHttpRequestPtr FMatchAPI::UpdateMatchPlayer(const FRequest_UpdateMatchPlayer& R
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FMatchAPI::OnUpdateMatchPlayerResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FMatchAPI::OnUpdateMatchPlayerResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -2259,7 +2259,7 @@ void FMatchAPI::OnUpdateMatchPlayerResponse(FHttpRequestPtr HttpRequest, FHttpRe
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FMatchAPI::OnUpdateMatchPlayerResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FMatchAPI::OnUpdateMatchPlayerResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_UpdateMatchPlayer Response{ RequestMetadata };

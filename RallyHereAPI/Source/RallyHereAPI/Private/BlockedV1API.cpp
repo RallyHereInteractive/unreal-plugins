@@ -44,7 +44,7 @@ FHttpRequestPtr FBlockedV1API::Block(const FRequest_Block& Request, const FDeleg
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FBlockedV1API::OnBlockResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FBlockedV1API::OnBlockResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -63,7 +63,7 @@ void FBlockedV1API::OnBlockResponse(FHttpRequestPtr HttpRequest, FHttpResponsePt
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FBlockedV1API::OnBlockResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FBlockedV1API::OnBlockResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_Block Response{ RequestMetadata };
@@ -244,7 +244,7 @@ FHttpRequestPtr FBlockedV1API::GetBlocked(const FRequest_GetBlocked& Request, co
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FBlockedV1API::OnGetBlockedResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FBlockedV1API::OnGetBlockedResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -263,7 +263,7 @@ void FBlockedV1API::OnGetBlockedResponse(FHttpRequestPtr HttpRequest, FHttpRespo
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FBlockedV1API::OnGetBlockedResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FBlockedV1API::OnGetBlockedResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetBlocked Response{ RequestMetadata };
@@ -444,7 +444,7 @@ FHttpRequestPtr FBlockedV1API::GetBlockedListForPlayer(const FRequest_GetBlocked
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FBlockedV1API::OnGetBlockedListForPlayerResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FBlockedV1API::OnGetBlockedListForPlayerResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -463,7 +463,7 @@ void FBlockedV1API::OnGetBlockedListForPlayerResponse(FHttpRequestPtr HttpReques
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FBlockedV1API::OnGetBlockedListForPlayerResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FBlockedV1API::OnGetBlockedListForPlayerResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetBlockedListForPlayer Response{ RequestMetadata };
@@ -698,7 +698,7 @@ FHttpRequestPtr FBlockedV1API::Unblock(const FRequest_Unblock& Request, const FD
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &FBlockedV1API::OnUnblockResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FBlockedV1API::OnUnblockResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -717,7 +717,7 @@ void FBlockedV1API::OnUnblockResponse(FHttpRequestPtr HttpRequest, FHttpResponse
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &FBlockedV1API::OnUnblockResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FBlockedV1API::OnUnblockResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_Unblock Response{ RequestMetadata };
