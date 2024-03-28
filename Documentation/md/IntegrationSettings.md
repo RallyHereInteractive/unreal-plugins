@@ -35,6 +35,7 @@ Main settings for the Integration.
 `public FName `[`EnvironmentOSSName`](#classURH__IntegrationSettings_1a6dcea31e94599c761b3616e62f0b65ab) | Online Subsystem to use for selecting the base URL environment. If not provided, will use the default OSS.
 `public bool `[`bAutoStartSessionsAfterJoin`](#classURH__IntegrationSettings_1a43e468e0d80e224c6fc7479940e0bcab) | Whether to automatically start platform sessions after joining them.
 `public bool `[`bAutoJoinPlatformSessionsAfterUserChange`](#classURH__IntegrationSettings_1a999a80d02b5974b5be5be331ac13682a) | Whether to automatically join platform sessions after a user change when invites were received while logged out.
+`public bool `[`bAutoMakeSessionsJoinableOnHostMapLoadComplete`](#classURH__IntegrationSettings_1a6776fe09a632de261d308f6402261675) | Whether to automatically mark hosted sessions as joinable after map load completes.
 `public bool `[`bUseSecurityTokenForJoining`](#classURH__IntegrationSettings_1a782c0fd4f8a350128f7f686fad7e1af2) | If set, the connection attempt must have a valid security token to be allowed to connect.
 `public bool `[`bRequireImportedPlayerIdsForJoining`](#classURH__IntegrationSettings_1aa8eb456e2ac57561cf12b7c3c306327f) | If set, the Player Id must have been imported to the instance before being allowed to connect.
 `public bool `[`bRequireValidPlayerIdsForJoining`](#classURH__IntegrationSettings_1a6fad3a9359d98b325990c8723a48a4c9) | If set, the Player Id must be valid before being allowed to connect.
@@ -44,10 +45,13 @@ Main settings for the Integration.
 `public bool `[`bAutoCreateMatches`](#classURH__IntegrationSettings_1a52ca137edf91dc8a02a83a89f0aea548) | Whether to automatically create a match when a session becomes active if the host.
 `public bool `[`bAutoAddConnectedPlayersToMatches`](#classURH__IntegrationSettings_1a469c1d73694b665b028459c025ff2c1b) | Whether to automatically add players who connect to the match.
 `public bool `[`bAutoCloseMatchOnSessionInactive`](#classURH__IntegrationSettings_1a089e31e1c743c7933b237fb62b4a5d8c) | Whether to automatically close a match when a session becomes inactive if the host.
+`public bool `[`bAutoCreateInventorySessionOnLogin`](#classURH__IntegrationSettings_1a140069cc5be0f8410447d4d2caf68c1e) | Whether to automatically create an inventory session when a player logs in.
+`public bool `[`bAutoProcessPlatformEntitlementsOnLogin`](#classURH__IntegrationSettings_1a5f78f6a76f285af5862bcc93d612da3e) | Whether to automatically process platform entitlements on login (will wait for inventory session creation if using bAutoCreateInventorySessionOnLogin)
 `public int32 `[`WebRequestsMaxSimultaneousRequests`](#classURH__IntegrationSettings_1a86e14803734cde1b954191b437ceaafe) | Sets the maximum number of Http Requests that can be made simultaneously. 0 = No Limit.
 `public int `[`WebRequestsTrackedRequestsCountLimit`](#classURH__IntegrationSettings_1a35b03db2758bd2f4e393fb1fb3c7aab4) | Sets the maximum number of web requests for which tracking data is kept.
 `public int32 `[`WebRequestsBurstCountThreshold`](#classURH__IntegrationSettings_1af81d481668affe4c87d3fb8c20cf239d) | Sets the count above which web traffic is considered a burst.
 `public int32 `[`WebRequestsBurstTimeThresholdInSeconds`](#classURH__IntegrationSettings_1abb0a83cebcc39ea7215e7207bca115cb) | Sets the time threshold for web traffic burst detection.
+`public FString `[`ClientDeviceIpEndpoint`](#classURH__IntegrationSettings_1aaf4eb696ef72a9b4bbad54dc624aff2b) | Sets an endpoint to use to determine public IP of a client for analytics.
 `public FSoftClassPath `[`LocalPlayerLoginSubsystemClass`](#classURH__IntegrationSettings_1aea8c51bec96a3a50100085354f8fe816) | Extensible LocalPlayerLoginSubsystem class path.
 `public FSoftClassPath `[`AdSubsystemClass`](#classURH__IntegrationSettings_1a134dbaebd973ab90d1bdb12027285009) | Extensible AdSubsystem class path.
 `public FSoftClassPath `[`FriendSubsystemClass`](#classURH__IntegrationSettings_1af67c19ac851c03c6e667a609182e1ac9) | Extensible FriendSubsystem class path.
@@ -232,6 +236,11 @@ Whether to automatically start platform sessions after joining them.
 Whether to automatically join platform sessions after a user change when invites were received while logged out.
 
 <br>
+#### `public bool `[`bAutoMakeSessionsJoinableOnHostMapLoadComplete`](#classURH__IntegrationSettings_1a6776fe09a632de261d308f6402261675) <a id="classURH__IntegrationSettings_1a6776fe09a632de261d308f6402261675"></a>
+
+Whether to automatically mark hosted sessions as joinable after map load completes.
+
+<br>
 #### `public bool `[`bUseSecurityTokenForJoining`](#classURH__IntegrationSettings_1a782c0fd4f8a350128f7f686fad7e1af2) <a id="classURH__IntegrationSettings_1a782c0fd4f8a350128f7f686fad7e1af2"></a>
 
 If set, the connection attempt must have a valid security token to be allowed to connect.
@@ -277,6 +286,16 @@ Whether to automatically add players who connect to the match.
 Whether to automatically close a match when a session becomes inactive if the host.
 
 <br>
+#### `public bool `[`bAutoCreateInventorySessionOnLogin`](#classURH__IntegrationSettings_1a140069cc5be0f8410447d4d2caf68c1e) <a id="classURH__IntegrationSettings_1a140069cc5be0f8410447d4d2caf68c1e"></a>
+
+Whether to automatically create an inventory session when a player logs in.
+
+<br>
+#### `public bool `[`bAutoProcessPlatformEntitlementsOnLogin`](#classURH__IntegrationSettings_1a5f78f6a76f285af5862bcc93d612da3e) <a id="classURH__IntegrationSettings_1a5f78f6a76f285af5862bcc93d612da3e"></a>
+
+Whether to automatically process platform entitlements on login (will wait for inventory session creation if using bAutoCreateInventorySessionOnLogin)
+
+<br>
 #### `public int32 `[`WebRequestsMaxSimultaneousRequests`](#classURH__IntegrationSettings_1a86e14803734cde1b954191b437ceaafe) <a id="classURH__IntegrationSettings_1a86e14803734cde1b954191b437ceaafe"></a>
 
 Sets the maximum number of Http Requests that can be made simultaneously. 0 = No Limit.
@@ -295,6 +314,11 @@ Sets the count above which web traffic is considered a burst.
 #### `public int32 `[`WebRequestsBurstTimeThresholdInSeconds`](#classURH__IntegrationSettings_1abb0a83cebcc39ea7215e7207bca115cb) <a id="classURH__IntegrationSettings_1abb0a83cebcc39ea7215e7207bca115cb"></a>
 
 Sets the time threshold for web traffic burst detection.
+
+<br>
+#### `public FString `[`ClientDeviceIpEndpoint`](#classURH__IntegrationSettings_1aaf4eb696ef72a9b4bbad54dc624aff2b) <a id="classURH__IntegrationSettings_1aaf4eb696ef72a9b4bbad54dc624aff2b"></a>
+
+Sets an endpoint to use to determine public IP of a client for analytics.
 
 <br>
 #### `public FSoftClassPath `[`LocalPlayerLoginSubsystemClass`](#classURH__IntegrationSettings_1aea8c51bec96a3a50100085354f8fe816) <a id="classURH__IntegrationSettings_1aea8c51bec96a3a50100085354f8fe816"></a>

@@ -113,6 +113,10 @@ public:
 	UPROPERTY(EditAnywhere, Config, Category = "Sessions|Platform")
 	bool bAutoJoinPlatformSessionsAfterUserChange;
 
+	/** @brief Whether to automatically mark hosted sessions as joinable after map load completes */
+	UPROPERTY(EditAnywhere, Config, Category = "Sessions|Joining")
+	bool bAutoMakeSessionsJoinableOnHostMapLoadComplete;
+
 	/** @brief If set, the connection attempt must have a valid security token to be allowed to connect. */
 	UPROPERTY(EditAnywhere, Config, Category = "Sessions|Joining")
 	bool bUseSecurityTokenForJoining;
@@ -150,6 +154,18 @@ public:
 	bool bAutoCloseMatchOnSessionInactive;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// Inventory
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	/** @brief Whether to automatically create an inventory session when a player logs in */
+	UPROPERTY(EditAnywhere, Config, Category = "Inventory")
+	bool bAutoCreateInventorySessionOnLogin;
+
+	/** @brief Whether to automatically process platform entitlements on login (will wait for inventory session creation if using bAutoCreateInventorySessionOnLogin) */
+	UPROPERTY(EditAnywhere, Config, Category = "Inventory")
+	bool bAutoProcessPlatformEntitlementsOnLogin;
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Web Requests
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -168,6 +184,10 @@ public:
 	/** @brief Sets the time threshold for web traffic burst detection. */
 	UPROPERTY(EditAnywhere, Config, Category = "Web Requests")
 	int32 WebRequestsBurstTimeThresholdInSeconds;
+
+	/** @brief Sets an endpoint to use to determine public IP of a client for analytics. */
+	UPROPERTY(EditAnywhere, Config, Category = "Web Requests")
+	FString ClientDeviceIpEndpoint;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Subsystem Classes

@@ -1646,6 +1646,8 @@ Subsystem to manage the local player.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
+`public FRH_AutoInventoryCompleteDelegate `[`OnAutoInventorySessionCreated`](#classURH__LocalPlayerSubsystem_1a07b265e2b34b7384507856b5039833cf) | Broadcast delegate for when intial inventory session is created, if using auto creation.
+`public FRH_AutoInventoryCompleteDelegate `[`OnAutoEntitlementsProcessed`](#classURH__LocalPlayerSubsystem_1af051878305aecdec83c71ea862099d47) | Broadcast delegate for when intial platform entitlements are processed, if using auto processing.
 `public void `[`Initialize`](#classURH__LocalPlayerSubsystem_1aa2c904ac8c9e4e1e89d2f44f56297f19)`(FSubsystemCollectionBase & Collection)` | Initialize the subsystem.
 `public void `[`Deinitialize`](#classURH__LocalPlayerSubsystem_1a2eb5553bdd14a18a7496048e4fd8de60)`()` | Safely tears down the subsystem.
 `public bool `[`IsLoggedIn`](#classURH__LocalPlayerSubsystem_1a3b7ce92eb8ce587f9da1bddd333d83a8)`() const` | Gets if the player is currently logged in.
@@ -1695,6 +1697,16 @@ Subsystem to manage the local player.
 
 #### Members
 
+#### `public FRH_AutoInventoryCompleteDelegate `[`OnAutoInventorySessionCreated`](#classURH__LocalPlayerSubsystem_1a07b265e2b34b7384507856b5039833cf) <a id="classURH__LocalPlayerSubsystem_1a07b265e2b34b7384507856b5039833cf"></a>
+
+Broadcast delegate for when intial inventory session is created, if using auto creation.
+
+<br>
+#### `public FRH_AutoInventoryCompleteDelegate `[`OnAutoEntitlementsProcessed`](#classURH__LocalPlayerSubsystem_1af051878305aecdec83c71ea862099d47) <a id="classURH__LocalPlayerSubsystem_1af051878305aecdec83c71ea862099d47"></a>
+
+Broadcast delegate for when intial platform entitlements are processed, if using auto processing.
+
+<br>
 #### `public void `[`Initialize`](#classURH__LocalPlayerSubsystem_1aa2c904ac8c9e4e1e89d2f44f56297f19)`(FSubsystemCollectionBase & Collection)` <a id="classURH__LocalPlayerSubsystem_1aa2c904ac8c9e4e1e89d2f44f56297f19"></a>
 
 Initialize the subsystem.

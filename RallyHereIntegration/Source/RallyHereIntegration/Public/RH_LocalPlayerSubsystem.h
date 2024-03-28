@@ -22,7 +22,7 @@ class URH_PurgeSubsystem;
 class URH_EntitlementSubsystem;
 class URH_PlayerNotifications;
 
-// #RHTODO - add OSS inventory checking after login, app reactivation
+DECLARE_MULTICAST_DELEGATE_OneParam(FRH_AutoInventoryCompleteDelegate, bool);
 
 /** @defgroup LocalPlayer RallyHere Local Player
  *  @{
@@ -177,6 +177,11 @@ public:
 		CustomEndpoint(Request, Delegate);
 	}
 
+	/** @brief Broadcast delegate for when intial inventory session is created, if using auto creation. */
+	FRH_AutoInventoryCompleteDelegate OnAutoInventorySessionCreated;
+
+	/** @brief Broadcast delegate for when intial platform entitlements are processed, if using auto processing. */
+	FRH_AutoInventoryCompleteDelegate OnAutoEntitlementsProcessed;
 
 protected:
 	/** @brief Array of plugins for the Local Player Subsystem. */
