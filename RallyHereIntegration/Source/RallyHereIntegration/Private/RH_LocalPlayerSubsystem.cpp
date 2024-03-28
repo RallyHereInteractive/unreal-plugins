@@ -289,8 +289,8 @@ void URH_LocalPlayerSubsystem::OnUserChanged()
 				if (Settings->bAutoProcessPlatformEntitlementsOnLogin)
 				{
 					// process platform entitlements
-					auto EntitlementSubsystem = GetEntitlementSubsystem();
-					if (EntitlementSubsystem != nullptr)
+					auto pEntitlementSubsystem = GetEntitlementSubsystem();
+					if (pEntitlementSubsystem != nullptr)
 					{
 						auto EntitlementDelegate = FRH_ProcessEntitlementCompletedDelegate::CreateWeakLambda(this, [this](bool bSuccess, FRHAPI_PlatformEntitlementProcessResult Result)
 							{
@@ -305,7 +305,7 @@ void URH_LocalPlayerSubsystem::OnUserChanged()
 									UE_LOG(LogRallyHereIntegration, Warning, TEXT("Failed to auto process platform entitlements"));
 								}
 							});
-						EntitlementSubsystem->SubmitEntitlementsForLoggedInOSS(EntitlementDelegate);
+						pEntitlementSubsystem->SubmitEntitlementsForLoggedInOSS(EntitlementDelegate);
 					}
 				}
 			});
