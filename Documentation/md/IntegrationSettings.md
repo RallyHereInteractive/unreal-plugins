@@ -51,6 +51,7 @@ Main settings for the Integration.
 `public int `[`WebRequestsTrackedRequestsCountLimit`](#classURH__IntegrationSettings_1a35b03db2758bd2f4e393fb1fb3c7aab4) | Sets the maximum number of web requests for which tracking data is kept.
 `public int32 `[`WebRequestsBurstCountThreshold`](#classURH__IntegrationSettings_1af81d481668affe4c87d3fb8c20cf239d) | Sets the count above which web traffic is considered a burst.
 `public int32 `[`WebRequestsBurstTimeThresholdInSeconds`](#classURH__IntegrationSettings_1abb0a83cebcc39ea7215e7207bca115cb) | Sets the time threshold for web traffic burst detection.
+`public FString `[`ClientDeviceIpEndpoint`](#classURH__IntegrationSettings_1aaf4eb696ef72a9b4bbad54dc624aff2b) | Sets an endpoint to use to determine public IP of a client for analytics.
 `public FSoftClassPath `[`LocalPlayerLoginSubsystemClass`](#classURH__IntegrationSettings_1aea8c51bec96a3a50100085354f8fe816) | Extensible LocalPlayerLoginSubsystem class path.
 `public FSoftClassPath `[`AdSubsystemClass`](#classURH__IntegrationSettings_1a134dbaebd973ab90d1bdb12027285009) | Extensible AdSubsystem class path.
 `public FSoftClassPath `[`FriendSubsystemClass`](#classURH__IntegrationSettings_1af67c19ac851c03c6e667a609182e1ac9) | Extensible FriendSubsystem class path.
@@ -313,6 +314,11 @@ Sets the count above which web traffic is considered a burst.
 #### `public int32 `[`WebRequestsBurstTimeThresholdInSeconds`](#classURH__IntegrationSettings_1abb0a83cebcc39ea7215e7207bca115cb) <a id="classURH__IntegrationSettings_1abb0a83cebcc39ea7215e7207bca115cb"></a>
 
 Sets the time threshold for web traffic burst detection.
+
+<br>
+#### `public FString `[`ClientDeviceIpEndpoint`](#classURH__IntegrationSettings_1aaf4eb696ef72a9b4bbad54dc624aff2b) <a id="classURH__IntegrationSettings_1aaf4eb696ef72a9b4bbad54dc624aff2b"></a>
+
+Sets an endpoint to use to determine public IP of a client for analytics.
 
 <br>
 #### `public FSoftClassPath `[`LocalPlayerLoginSubsystemClass`](#classURH__IntegrationSettings_1aea8c51bec96a3a50100085354f8fe816) <a id="classURH__IntegrationSettings_1aea8c51bec96a3a50100085354f8fe816"></a>
