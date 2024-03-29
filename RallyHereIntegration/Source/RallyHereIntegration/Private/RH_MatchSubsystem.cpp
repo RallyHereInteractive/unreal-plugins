@@ -272,6 +272,28 @@ void URH_MatchSubsystem::UpdateMatchPlayer(const FString& MatchId, const FGuid& 
 #include "RH_AutomationTests.h"
 #include "RH_GameInstanceSubsystem.h"
 
+FRHAPI_MatchPlayerRequest GenerateTestMatchPlayer()
+{
+	FRHAPI_MatchPlayerRequest PlayerRequest;
+	PlayerRequest.SetPlayerUuid(FGuid::NewGuid());
+	PlayerRequest.SetTeamId(FMath::RandBool() ? TEXT("Red") : TEXT("Blue"));
+	PlayerRequest.SetPartySessionId(FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphens));
+	PlayerRequest.SetPlacement(1);
+	const float Duration = 100;
+	PlayerRequest.SetJoinedMatchTimestamp(FDateTime::UtcNow());
+	PlayerRequest.SetLeftMatchTimestamp(FDateTime::UtcNow() + FTimespan::FromSeconds(Duration));
+	PlayerRequest.SetDurationSeconds(Duration);
+	PlayerRequest.SetStartingRank(TEXT("Last"));
+	PlayerRequest.SetFinishingRank(TEXT("First"));
+
+	FRHAPI_JsonObject CustomData;
+	CustomData.SetStringField(TEXT("TestField"), TEXT("TestValue"));
+	CustomData.SetStringField(TEXT("TestField2"), TEXT("TestValue2"));
+	PlayerRequest.SetCustomData(CustomData);
+
+	return PlayerRequest;
+}
+
 template <typename T>
 T GenerateTestMatchEntry()
 {
@@ -295,7 +317,12 @@ T GenerateTestMatchEntry()
 	//MatchRequest.SetInstances();
 	//MatchRequest.SetAllocations();
 
-	//MatchRequest.SetPlayers();
+	TArray<FRHAPI_MatchPlayerRequest> Players;
+	for (auto i = 0; i < 4; i++)
+	{
+		Players.Add(GenerateTestMatchPlayer());
+	}
+	MatchRequest.SetPlayers(Players);
 
 	//MatchRequest.SetSegments();
 
@@ -397,6 +424,63 @@ void FRH_MatchCreateSimple::Define()
 									TestTrue(TEXT("Success"), bSuccess);
 									Done.Execute();
 								}));
+						}));
+				});
+
+			LatentIt("should create match, add a player, and patch match to be closed", [this](const FDoneDelegate& Done)
+				{
+					if (!TestNotNull(TEXT("LatentSubsystem"), Subsystem.Get()))
+					{
+						Done.Execute();
+						return;
+					}
+
+					// generate a match request
+					MatchRequest = GenerateTestMatchEntry<FRHAPI_MatchRequest>();
+
+					Subsystem->CreateMatch(MatchRequest, true, FRH_OnMatchUpdateCompleteDelegate::CreateLambda([this, Done](bool bSuccess, const FRHAPI_MatchWithPlayers& Match, const FRH_ErrorInfo& ErrorInfo)
+						{
+							if (!TestTrue(TEXT("Success"), bSuccess))
+							{
+								Done.Execute();
+								return;
+							}
+
+							if (!TestNotNull(TEXT("LatentSubsystem"), Subsystem.Get()))
+							{
+								Done.Execute();
+								return;
+							}
+
+							// generate a player request
+							FRHAPI_MatchPlayerRequest PlayerRequest = GenerateTestMatchPlayer();
+
+							Subsystem->UpdateMatchPlayer(Subsystem->GetActiveMatchId(), PlayerRequest.GetPlayerUuid(), PlayerRequest, FRH_OnMatchPlayerUpdateCompleteDelegate::CreateLambda([this, Done](bool bSuccess, const FRHAPI_MatchPlayerWithMatch& Player, const FRH_ErrorInfo& ErrorInfo)
+								{
+									if (!TestTrue(TEXT("Success"), bSuccess))
+									{
+										Done.Execute();
+										return;
+									}
+
+									if (!TestNotNull(TEXT("LatentSubsystem"), Subsystem.Get()))
+									{
+										Done.Execute();
+										return;
+									}
+
+									// generate a patch request to close the match
+									FRHAPI_MatchRequest PatchRequest;
+									PatchRequest.SetState(ERHAPI_MatchState::Closed);
+
+									Subsystem->UpdateMatch(Subsystem->GetActiveMatchId(), PatchRequest, FRH_OnMatchUpdateCompleteDelegate::CreateLambda([this, Done](bool bSuccess, const FRHAPI_MatchWithPlayers& Match, const FRH_ErrorInfo& ErrorInfo)
+										{
+											TestTrue(TEXT("Success"), bSuccess);
+											Done.Execute();
+										}));
+								}));
+
+
 						}));
 				});
 		});
