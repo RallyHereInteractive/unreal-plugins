@@ -266,7 +266,13 @@ public:
 	 * @brief Gets whether the active match exists
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Matches")
-	bool HasActiveMatchId() const { return ActiveMatchId.IsSet(); }
+	virtual bool HasActiveMatchId() const { return ActiveMatchId.IsSet(); }
+
+	/**
+	 * @brief Clears the active match
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Matches")
+	virtual void ClearActiveMatchId() { ActiveMatchId.Reset(); }
 	
 	/**
 	 * @brief Create a match (POST)

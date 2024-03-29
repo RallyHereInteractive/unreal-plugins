@@ -251,20 +251,9 @@ namespace RHStandardEvents
 	}
 }
 
-#include "Misc/AutomationTest.h"
-
 #if WITH_DEV_AUTOMATION_TESTS
 
-// todo - move this somewhere more convenient
-UWorld* RH_GetSimpleEngineAutomationTestGameWorld(const int32 TestFlags)
-{
-	// Accessing the game world is only valid for game-only 
-	check((TestFlags & EAutomationTestFlags::ApplicationContextMask) == EAutomationTestFlags::ClientContext);
-	check(GEngine->GetWorldContexts().Num() == 1);
-	check(GEngine->GetWorldContexts()[0].WorldType == EWorldType::Game);
-
-	return GEngine->GetWorldContexts()[0].World();
-}
+#include "RH_AutomationTests.h"
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FRH_GetsAutomationTestAll, "RHAutomation.Events.All", EAutomationTestFlags::ClientContext | EAutomationTestFlags::RequiresUser | EAutomationTestFlags::ProductFilter | EAutomationTestFlags::MediumPriority)
 
@@ -273,10 +262,7 @@ bool FRH_GetsAutomationTestAll::RunTest(const FString& Parameters)
 	auto AnalyticsProvider = RHStandardEvents::AutoCreateAnalyticsProvider();
 	UTEST_VALID(TEXT("AnalyticsProvider"), AnalyticsProvider);
 
-	auto World = RH_GetSimpleEngineAutomationTestGameWorld(GetTestFlags());
-	UTEST_NOT_NULL(TEXT("World"), World);
-
-	auto GameInstance = World->GetGameInstance();
+	auto GameInstance = RHAutomationTestUtils::GetGameInstance(this);
 	UTEST_NOT_NULL(TEXT("GameInstance"), GameInstance);
 
 	FDateTime AnalyticsStartTime = FDateTime::UtcNow();
