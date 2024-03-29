@@ -96,7 +96,7 @@ void URH_LocalPlayerSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 		AnalyticsProvider->StartSession();
 
 		// emit the auto correlation start event
-		RHStandardEvents::FCorrelationStartEvent::AutoEmit(AnalyticsProvider.Get(), GetLocalPlayer()->GetGameInstance());
+		RHStandardEvents::FCorrelationStartEvent::AutoEmit(AnalyticsProvider, GetLocalPlayer()->GetGameInstance());
 
 		// emit the auto client device event on the next frame (to allow for game viewport to be initialized)
 		if (GetLocalPlayer()->GetWorld() != nullptr)
@@ -107,7 +107,7 @@ void URH_LocalPlayerSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 			{
 				if (AnalyticsProvider.IsValid())
 				{
-					RHStandardEvents::FClientDeviceEvent::AutoEmit(AnalyticsProvider.Get(), GetLocalPlayer()->GetGameInstance());
+					RHStandardEvents::FClientDeviceEvent::AutoEmit(AnalyticsProvider, GetLocalPlayer()->GetGameInstance());
 				}
 			}));
 		}
@@ -132,7 +132,7 @@ void URH_LocalPlayerSubsystem::Deinitialize()
 			}
 			AnalyticsStartTime.Reset();
 
-			CorrelationEndEvent.EmitTo(AnalyticsProvider.Get());
+			CorrelationEndEvent.EmitTo(AnalyticsProvider);
 		}
 
 		AnalyticsProvider->EndSession();
