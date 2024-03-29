@@ -94,16 +94,16 @@ namespace RHStandardEvents
 		{
 		}
 
-		void EmitTo(IAnalyticsProvider* Provider) const
+		void EmitTo(TSharedPtr<IAnalyticsProvider> Provider) const
 		{
 			Emit(Provider, PlatformName, ClientBuildVersion, EngineVersion, IntegrationPluginVersion, ClientTimestamp, ServerTimestamp, CommandLineArg, IsEditor, Mode, CustomData);
 		}
 
 		/** @brief automaticly harvest data and emit the event */
-		static void RALLYHEREINTEGRATION_API AutoEmit(IAnalyticsProvider* Provider, UGameInstance* pGameInstance);
+		static void RALLYHEREINTEGRATION_API AutoEmit(TSharedPtr<IAnalyticsProvider> Provider, UGameInstance* pGameInstance);
 
 		static void Emit(
-			IAnalyticsProvider* Provider,
+			TSharedPtr<IAnalyticsProvider> Provider,
 			const FString& InPlatformName,
 			const FString& InClientBuildVersion,
 			const FString& InEngineVersion,
@@ -116,7 +116,7 @@ namespace RHStandardEvents
 			const TOptional<TMap<FString, FString>>& InCustomData = TOptional<TMap<FString, FString>>()
 		)
 		{
-			check(Provider != nullptr);
+			check(Provider.IsValid());
 			TArray<FAnalyticsEventAttribute> Attributes;
 
 			Attributes.Add(FAnalyticsEventAttribute(TEXT("platform_name"), InPlatformName));
@@ -174,19 +174,19 @@ namespace RHStandardEvents
 		{
 		}
 
-		void EmitTo(IAnalyticsProvider* Provider) const
+		void EmitTo(TSharedPtr<IAnalyticsProvider> Provider) const
 		{
 			Emit(Provider, Reason, DurationSeconds, CustomData);
 		}
 
 		static void Emit(
-			IAnalyticsProvider* Provider,
+			TSharedPtr<IAnalyticsProvider> Provider,
 			const TOptional<FString>& InReason,
 			const TOptional<float>& InDurationSeconds,
 			const TOptional<TMap<FString, FString>>& InCustomData = TOptional<TMap<FString, FString>>()
 		)
 		{
-			check(Provider != nullptr);
+			check(Provider.IsValid());
 			TArray<FAnalyticsEventAttribute> Attributes;
 
 			if (InReason.IsSet())
@@ -258,16 +258,16 @@ namespace RHStandardEvents
 		{
 		}
 
-		void EmitTo(IAnalyticsProvider* Provider) const
+		void EmitTo(TSharedPtr<IAnalyticsProvider> Provider) const
 		{
 			Emit(Provider, CpuType, CpuCores, GpuType, ScreenHeight, ScreenWidth, RamTotal, RamAvailable, Ip, DeviceType, CustomData);
 		}
 
 		/** @brief automaticly harvest data and emit the event */
-		static void RALLYHEREINTEGRATION_API AutoEmit(IAnalyticsProvider* Provider, class UGameInstance* pGameInstance);
+		static void RALLYHEREINTEGRATION_API AutoEmit(TSharedPtr<IAnalyticsProvider> Provider, class UGameInstance* pGameInstance);
 
 		static void Emit(
-			IAnalyticsProvider* Provider,
+			TSharedPtr<IAnalyticsProvider> Provider,
 			const TOptional<FString>& InCpuType,
 			const TOptional<int32>& InCpuCores,
 			const TOptional<FString>& InGpuType,
@@ -280,7 +280,7 @@ namespace RHStandardEvents
 			const TOptional<TMap<FString, FString>>& InCustomData = TOptional<TMap<FString, FString>>()
 		)
 		{
-			check(Provider != nullptr);
+			check(Provider.IsValid());
 			TArray<FAnalyticsEventAttribute> Attributes;
 
 			if (InCpuType.IsSet())
@@ -356,20 +356,20 @@ namespace RHStandardEvents
 		{
 		}
 
-		void EmitTo(IAnalyticsProvider* Provider) const
+		void EmitTo(TSharedPtr<IAnalyticsProvider> Provider) const
 		{
 			Emit(Provider, SessionId, InstanceId, ConnectionString, CustomData);
 		}
 
 		static void Emit(
-			IAnalyticsProvider* Provider,
+			TSharedPtr<IAnalyticsProvider> Provider,
 			const TOptional<FString>& InSessionId,
 			const TOptional<FString>& InInstanceId,
 			const TOptional<FString>& InConnectionString,
 			const TOptional<TMap<FString, FString>>& InCustomData = TOptional<TMap<FString, FString>>()
 		)
 		{
-			check(Provider != nullptr);
+			check(Provider.IsValid());
 			TArray<FAnalyticsEventAttribute> Attributes;
 
 			if (InSessionId.IsSet())
@@ -426,13 +426,13 @@ namespace RHStandardEvents
 		{
 		}
 
-		void EmitTo(IAnalyticsProvider* Provider) const
+		void EmitTo(TSharedPtr<IAnalyticsProvider> Provider) const
 		{
 			Emit(Provider, IsSuccess, SessionId, InstanceId, Reason, CustomData);
 		}
 
 		static void Emit(
-			IAnalyticsProvider* Provider,
+			TSharedPtr<IAnalyticsProvider> Provider,
 			bool InIsSuccess,
 			const TOptional<FString>& InSessionId,
 			const TOptional<FString>& InInstanceId,
@@ -440,7 +440,7 @@ namespace RHStandardEvents
 			const TOptional<TMap<FString, FString>>& InCustomData = TOptional<TMap<FString, FString>>()
 		)
 		{
-			check(Provider != nullptr);
+			check(Provider.IsValid());
 			TArray<FAnalyticsEventAttribute> Attributes;
 
 			Attributes.Add(FAnalyticsEventAttribute(TEXT("is_success"), InIsSuccess));
@@ -494,20 +494,20 @@ namespace RHStandardEvents
 		{
 		}
 
-		void EmitTo(IAnalyticsProvider* Provider) const
+		void EmitTo(TSharedPtr<IAnalyticsProvider> Provider) const
 		{
 			Emit(Provider, SessionId, InstanceId, Reason, CustomData);
 		}
 
 		static void Emit(
-			IAnalyticsProvider* Provider,
+			TSharedPtr<IAnalyticsProvider> Provider,
 			const TOptional<FString>& InSessionId,
 			const TOptional<FString>& InInstanceId,
 			const TOptional<FString>& InReason,
 			const TOptional<TMap<FString, FString>>& InCustomData = TOptional<TMap<FString, FString>>()
 		)
 		{
-			check(Provider != nullptr);
+			check(Provider.IsValid());
 			TArray<FAnalyticsEventAttribute> Attributes;
 
 			if (InSessionId.IsSet())
@@ -564,13 +564,13 @@ namespace RHStandardEvents
 		{
 		}
 
-		void EmitTo(IAnalyticsProvider* Provider) const
+		void EmitTo(TSharedPtr<IAnalyticsProvider> Provider) const
 		{
 			Emit(Provider, SessionId, InstanceId, UserId, IpAddress, CustomData);
 		}
 
 		static void Emit(
-			IAnalyticsProvider* Provider,
+			TSharedPtr<IAnalyticsProvider> Provider,
 			const TOptional<FString>& InSessionId,
 			const TOptional<FString>& InInstanceId,
 			const TOptional<FGuid>& InUserId,
@@ -578,7 +578,7 @@ namespace RHStandardEvents
 			const TOptional<TMap<FString, FString>>& InCustomData = TOptional<TMap<FString, FString>>()
 		)
 		{
-			check(Provider != nullptr);
+			check(Provider.IsValid());
 			TArray<FAnalyticsEventAttribute> Attributes;
 
 			if (InSessionId.IsSet())
@@ -678,13 +678,13 @@ namespace RHStandardEvents
 		{
 		}
 
-		void EmitTo(IAnalyticsProvider* Provider) const
+		void EmitTo(TSharedPtr<IAnalyticsProvider> Provider) const
 		{
 			Emit(Provider, IsSuccess, SessionId, InstanceId, UserId, PlatformUserId, PlatformId, ConnectionString, SplitJoinInfo, CustomData);
 		}
 
 		static void Emit(
-			IAnalyticsProvider* Provider,
+			TSharedPtr<IAnalyticsProvider> Provider,
 			bool InIsSuccess,
 			const TOptional<FString>& InSessionId,
 			const TOptional<FString>& InInstanceId,
@@ -696,8 +696,7 @@ namespace RHStandardEvents
 			const TOptional<TMap<FString, FString>>& InCustomData = TOptional<TMap<FString, FString>>()
 		)
 		{
-			check(Provider != nullptr);
-
+			check(Provider.IsValid()); check(Provider.IsValid());
 			TArray<FAnalyticsEventAttribute> Attributes;
 
 			Attributes.Add(FAnalyticsEventAttribute(TEXT("is_success"), InIsSuccess));
@@ -771,13 +770,13 @@ namespace RHStandardEvents
 		{
 		}
 
-		void EmitTo(IAnalyticsProvider* Provider) const
+		void EmitTo(TSharedPtr<IAnalyticsProvider> Provider) const
 		{
 			Emit(Provider, IsSuccess, SessionId, InstanceId, UserId, CustomData);
 		}
 
 		static void Emit(
-			IAnalyticsProvider* Provider,
+			TSharedPtr<IAnalyticsProvider> Provider,
 			bool InIsSuccess,
 			const TOptional<FString>& InSessionId,
 			const TOptional<FString>& InInstanceId,
@@ -785,8 +784,7 @@ namespace RHStandardEvents
 			const TOptional<TMap<FString, FString>>& InCustomData = TOptional<TMap<FString, FString>>()
 		)
 		{
-			check(Provider != nullptr);
-
+			check(Provider.IsValid());
 			TArray<FAnalyticsEventAttribute> Attributes;
 
 			Attributes.Add(FAnalyticsEventAttribute(TEXT("is_success"), InIsSuccess));
@@ -845,13 +843,13 @@ namespace RHStandardEvents
 		{
 		}
 
-		void EmitTo(IAnalyticsProvider* Provider) const
+		void EmitTo(TSharedPtr<IAnalyticsProvider> Provider) const
 		{
 			Emit(Provider, SessionId, InstanceId, UserId, Reason, CustomData);
 		}
 
 		static void Emit(
-			IAnalyticsProvider* Provider,
+			TSharedPtr<IAnalyticsProvider> Provider,
 			const TOptional<FString>& InSessionId,
 			const TOptional<FString>& InInstanceId,
 			const TOptional<FGuid>& InUserId,
@@ -859,7 +857,7 @@ namespace RHStandardEvents
 			const TOptional<TMap<FString, FString>>& InCustomData = TOptional<TMap<FString, FString>>()
 		)
 		{
-			check(Provider != nullptr);
+			check(Provider.IsValid());
 			TArray<FAnalyticsEventAttribute> Attributes;
 
 			if (InSessionId.IsSet())
@@ -908,18 +906,18 @@ namespace RHStandardEvents
 		{
 		}
 
-		void EmitTo(IAnalyticsProvider* Provider) const
+		void EmitTo(TSharedPtr<IAnalyticsProvider> Provider) const
 		{
 			Emit(Provider, PlatformDisplayName, CustomData);
 		}
 
 		static void Emit(
-			IAnalyticsProvider* Provider,
+			TSharedPtr<IAnalyticsProvider> Provider,
 			const TOptional<FString>& InPlatformDisplayName,
 			const TOptional<TMap<FString, FString>>& InCustomData = TOptional<TMap<FString, FString>>()
 		)
 		{
-			check(Provider != nullptr);
+			check(Provider.IsValid());
 			TArray<FAnalyticsEventAttribute> Attributes;
 
 			if (InPlatformDisplayName.IsSet())
@@ -987,13 +985,13 @@ namespace RHStandardEvents
 		{
 		}
 
-		void EmitTo(IAnalyticsProvider* Provider) const
+		void EmitTo(TSharedPtr<IAnalyticsProvider> Provider) const
 		{
 			Emit(Provider, PlatformUserId, PlatformId, Status, PlatformDisplayName, PersonId, Reason, DurationSeconds, SubmitTimestamp, PlatformLoginCompleteTimestamp, CustomData);
 		}
 
 		static void Emit(
-			IAnalyticsProvider* Provider,
+			TSharedPtr<IAnalyticsProvider> Provider,
 			const FString& InPlatformUserId,
 			const FString& InPlatformId,
 			const FString& InStatus,
@@ -1006,7 +1004,7 @@ namespace RHStandardEvents
 			const TOptional<TMap<FString, FString>>& InCustomData = TOptional<TMap<FString, FString>>()
 		)
 		{
-			check(Provider != nullptr);
+			check(Provider.IsValid());
 			TArray<FAnalyticsEventAttribute> Attributes;
 
 			Attributes.Add(FAnalyticsEventAttribute(TEXT("platform_user_id"), InPlatformUserId));
@@ -1123,13 +1121,13 @@ namespace RHStandardEvents
 		{
 		}
 
-		void EmitTo(IAnalyticsProvider* Provider) const
+		void EmitTo(TSharedPtr<IAnalyticsProvider> Provider) const
 		{
 			Emit(Provider, Category, Status, Context, VendorId, LootId, ItemId, StartProgress, EndProgress, ProviderId, OrderRefId, OrderId, OrderEntryId, Description, SessionId, InstanceId, CustomData);
 		}
 
 		static void Emit(
-			IAnalyticsProvider* Provider,
+			TSharedPtr<IAnalyticsProvider> Provider,
 			const FString& InCategory,
 			const FString& InStatus,
 			const TOptional<FString>& InContext,
@@ -1148,7 +1146,7 @@ namespace RHStandardEvents
 			const TOptional<TMap<FString, FString>>& InCustomData = TOptional<TMap<FString, FString>>()
 		)
 		{
-			check(Provider != nullptr);
+			check(Provider.IsValid());
 			TArray<FAnalyticsEventAttribute> Attributes;
 
 			Attributes.Add(FAnalyticsEventAttribute(TEXT("category"), InCategory));
@@ -1271,13 +1269,13 @@ namespace RHStandardEvents
 		{
 		}
 
-		void EmitTo(IAnalyticsProvider* Provider) const
+		void EmitTo(TSharedPtr<IAnalyticsProvider> Provider) const
 		{
 			Emit(Provider, Placement, GameSessionId, InstanceId, DurationSeconds, TeamId, Round, PartySessionId, IsAfkKicked, WasBackfilled, PrimaryInputType, CustomData);
 		}
 
 		static void Emit(
-			IAnalyticsProvider* Provider,
+			TSharedPtr<IAnalyticsProvider> Provider,
 			const TOptional<int32>& InPlacement,
 			const TOptional<FString>& InGameSessionId,
 			const TOptional<FString>& InInstanceId,
@@ -1291,7 +1289,7 @@ namespace RHStandardEvents
 			const TOptional<TMap<FString, FString>>& InCustomData = TOptional<TMap<FString, FString>>()
 		)
 		{
-			check(Provider != nullptr);
+			check(Provider.IsValid());
 			TArray<FAnalyticsEventAttribute> Attributes;
 
 			if (InPlacement.IsSet())
@@ -1480,20 +1478,20 @@ namespace RHStandardEvents
 		{
 		}
 
-		void EmitTo(IAnalyticsProvider* Provider) const
+		void EmitTo(TSharedPtr<IAnalyticsProvider> Provider) const
 		{
 			Emit(Provider, Checkout, Receipt, State, CustomData);
 		}
 
 		static void Emit(
-			IAnalyticsProvider* Provider,
+			TSharedPtr<IAnalyticsProvider> Provider,
 			const FCheckoutData& InCheckout,
 			const FReceiptData& InReceipt,
 			const FString& InState,
 			const TOptional<TMap<FString, FString>>& InCustomData = TOptional<TMap<FString, FString>>()
 		)
 		{
-			check(Provider != nullptr);
+			check(Provider.IsValid());
 			TArray<FAnalyticsEventAttribute> Attributes;
 
 			Attributes.Add(FAnalyticsEventAttribute(TEXT("checkout"), JsonValueToFragment(InCheckout.ToJsonValue())));
@@ -1529,19 +1527,19 @@ namespace RHStandardEvents
 		{
 		}
 
-		void EmitTo(IAnalyticsProvider* Provider) const
+		void EmitTo(TSharedPtr<IAnalyticsProvider> Provider) const
 		{
 			Emit(Provider, EventName, Attributes, CustomData);
 		}
 
 		static void Emit(
-			IAnalyticsProvider* Provider,
+			TSharedPtr<IAnalyticsProvider> Provider,
 			const FString& InEventName,
 			const TArray<FAnalyticsEventAttribute>& InAttributes,
 			const TOptional<TMap<FString, FString>>& InCustomData = TOptional<TMap<FString, FString>>()
 		)
 		{
-			check(Provider != nullptr);
+			check(Provider.IsValid());
 			TArray<FAnalyticsEventAttribute> Attributes = InAttributes;
 
 			CreateCustomDataAttributes(InCustomData, Attributes);

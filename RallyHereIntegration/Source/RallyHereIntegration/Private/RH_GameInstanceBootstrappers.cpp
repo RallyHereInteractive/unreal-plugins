@@ -200,7 +200,7 @@ void URH_GameInstanceServerBootstrapper::Deinitialize()
 			}
 			AnalyticsStartTime.Reset();
 
-			CorrelationEndEvent.EmitTo(AnalyticsProvider.Get());
+			CorrelationEndEvent.EmitTo(AnalyticsProvider);
 		}
 
 		AnalyticsProvider->EndSession();
@@ -535,10 +535,10 @@ void URH_GameInstanceServerBootstrapper::BeginRegistration()
 			AnalyticsProvider->StartSession();
 
 			// emit the auto correlation start event
-			RHStandardEvents::FCorrelationStartEvent::AutoEmit(AnalyticsProvider.Get(), GetGameInstanceSubsystem()->GetGameInstance());
+			RHStandardEvents::FCorrelationStartEvent::AutoEmit(AnalyticsProvider, GetGameInstanceSubsystem()->GetGameInstance());
 
 			// emit the auto client device event
-			RHStandardEvents::FClientDeviceEvent::AutoEmit(AnalyticsProvider.Get(), GetGameInstanceSubsystem()->GetGameInstance());
+			RHStandardEvents::FClientDeviceEvent::AutoEmit(AnalyticsProvider, GetGameInstanceSubsystem()->GetGameInstance());
 
 			GetGameInstanceSubsystem()->SetAnalyticsProvider(AnalyticsProvider);
 		}
@@ -1062,7 +1062,7 @@ void URH_GameInstanceServerBootstrapper::OnCleanupSessionSyncComplete(URH_Joined
 			}
 			AnalyticsStartTime.Reset();
 
-			CorrelationEndEvent.EmitTo(AnalyticsProvider.Get());
+			CorrelationEndEvent.EmitTo(AnalyticsProvider);
 		}
 
 		AnalyticsProvider->EndSession();

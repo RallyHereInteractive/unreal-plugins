@@ -566,7 +566,7 @@ bool URH_GameInstanceSessionSubsystem::ValidateIncomingConnection(UNetConnection
 		{
 			Event.IsSuccess = ErrorMessage.Len() == 0;
 
-			Event.EmitTo(Provider.Get());
+			Event.EmitTo(Provider);
 		}
 	};
 
@@ -723,7 +723,7 @@ void URH_GameInstanceSessionSubsystem::GameModePostLoginEvent(class AGameModeBas
 	auto Provider = GetGameInstanceSubsystem()->GetAnalyticsProvider();
 	if (Provider != nullptr)
 	{
-		Event.EmitTo(Provider.Get());
+		Event.EmitTo(Provider);
 	}
 
 	if (NewPlayer != nullptr && PlayerId.IsSet())
@@ -795,7 +795,7 @@ void URH_GameInstanceSessionSubsystem::GameModeLogoutEvent(class AGameModeBase* 
 	auto Provider = GetGameInstanceSubsystem()->GetAnalyticsProvider();
 	if (Provider != nullptr)
 	{
-		Event.EmitTo(Provider.Get());
+		Event.EmitTo(Provider);
 	}
 
 	// update the match player
@@ -1430,7 +1430,7 @@ void EmitEventToAllProvidersOnce(UGameInstance* pGameInstance, const EventType& 
 	// emit to the shared provider if it exists
 	if (pGameInstanceProvider.IsValid())
 	{
-		Event.EmitTo(pGameInstanceSubsystem->GetAnalyticsProvider().Get());
+		Event.EmitTo(pGameInstanceSubsystem->GetAnalyticsProvider());
 	}
 
 	// emit analytics update to all local players
@@ -1446,7 +1446,7 @@ void EmitEventToAllProvidersOnce(UGameInstance* pGameInstance, const EventType& 
 				auto Provider = pLPSubsystem->GetAnalyticsProvider();
 				if (Provider != pGameInstanceProvider)
 				{
-					Event.EmitTo(pLPSubsystem->GetAnalyticsProvider().Get());
+					Event.EmitTo(pLPSubsystem->GetAnalyticsProvider());
 				}
 			}
 		}
