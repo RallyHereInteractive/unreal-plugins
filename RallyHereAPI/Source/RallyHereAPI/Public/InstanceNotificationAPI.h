@@ -103,7 +103,7 @@ struct RALLYHEREAPI_API FResponse_InstanceCreateNotification : public FResponse
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	 Error Codes: - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization 
+	 Error Codes: - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_not_jwt - Invalid Authorization - insufficient_permissions - Insufficient Permissions - auth_token_expired - Token is expired - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_token_sig_invalid - Token Signature is invalid - auth_invalid_version - Invalid Authorization - version - auth_token_unknown - Failed to parse token - auth_token_format - Invalid Authorization - {} 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -143,9 +143,9 @@ struct RALLYHEREAPI_API Traits_InstanceCreateNotification
  * 
  * Required Permissions:
  * 
- * - For any instance (including themselves) any of: `notification:instance:*`, `notification:instance:read`
+ * - For any instance (including themselves) any of: `notification:instance:read`, `notification:instance:*`
  * 
- * - For the instance themselves any of: `notification:instance:self:*`, `notification:instance:self:read`
+ * - For the instance themselves any of: `notification:instance:self:read`, `notification:instance:self:*`
 */
 struct RALLYHEREAPI_API FRequest_InstanceGetNotificationById : public FRequest
 {
@@ -183,7 +183,7 @@ struct RALLYHEREAPI_API FResponse_InstanceGetNotificationById : public FResponse
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	 Error Codes: - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization 
+	 Error Codes: - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_not_jwt - Invalid Authorization - insufficient_permissions - Insufficient Permissions - auth_token_expired - Token is expired - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_token_sig_invalid - Token Signature is invalid - auth_invalid_version - Invalid Authorization - version - auth_token_unknown - Failed to parse token - auth_token_format - Invalid Authorization - {} 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -237,9 +237,9 @@ struct RALLYHEREAPI_API Traits_InstanceGetNotificationById
  * 
  * Required Permissions:
  * 
- * - For any instance (including themselves) any of: `notification:instance:*`, `notification:instance:read`
+ * - For any instance (including themselves) any of: `notification:instance:read`, `notification:instance:*`
  * 
- * - For the instance themselves any of: `notification:instance:self:*`, `notification:instance:self:read`
+ * - For the instance themselves any of: `notification:instance:self:read`, `notification:instance:self:*`
 */
 struct RALLYHEREAPI_API FRequest_InstanceGetNotificationsPage : public FRequest
 {
@@ -287,7 +287,7 @@ struct RALLYHEREAPI_API FResponse_InstanceGetNotificationsPage : public FRespons
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	 Error Codes: - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization 
+	 Error Codes: - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_not_jwt - Invalid Authorization - insufficient_permissions - Insufficient Permissions - auth_token_expired - Token is expired - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_token_sig_invalid - Token Signature is invalid - auth_invalid_version - Invalid Authorization - version - auth_token_unknown - Failed to parse token - auth_token_format - Invalid Authorization - {} 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -333,9 +333,9 @@ struct RALLYHEREAPI_API Traits_InstanceGetNotificationsPage
  * 
  * Required Permissions:
  * 
- * - For any instance (including themselves) any of: `notification:instance:*`, `notification:instance:read`
+ * - For any instance (including themselves) any of: `notification:instance:read`, `notification:instance:*`
  * 
- * - For the instance themselves any of: `notification:instance:self:*`, `notification:instance:self:read`
+ * - For the instance themselves any of: `notification:instance:self:read`, `notification:instance:self:*`
 */
 struct RALLYHEREAPI_API FRequest_InstanceLongPollForNotifications : public FRequest
 {
@@ -380,7 +380,7 @@ struct RALLYHEREAPI_API FResponse_InstanceLongPollForNotifications : public FRes
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	 Error Codes: - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization 
+	 Error Codes: - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_not_jwt - Invalid Authorization - insufficient_permissions - Insufficient Permissions - auth_token_expired - Token is expired - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_token_sig_invalid - Token Signature is invalid - auth_invalid_version - Invalid Authorization - version - auth_token_unknown - Failed to parse token - auth_token_format - Invalid Authorization - {} 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
