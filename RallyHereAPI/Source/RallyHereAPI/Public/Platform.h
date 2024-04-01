@@ -32,6 +32,8 @@ enum class ERHAPI_Platform : uint8
 	Steam UMETA(ToolTip="An enumeration."),
 	Amazon UMETA(ToolTip="An enumeration."),
 	Twitch UMETA(ToolTip="An enumeration."),
+	Rallyhere UMETA(ToolTip="An enumeration."),
+	Legacyname UMETA(ToolTip="An enumeration."),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_Platform& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_Platform& EnumValue);

@@ -28,7 +28,7 @@ struct FRHAPI_MatchSegmentRequest
 `public bool `[`EndTimestamp_IsSet`](#structFRHAPI__MatchSegmentRequest_1a9a4793cdf472804b2e7893f657e4ece0) | true if EndTimestamp_Optional has been set to a value
 `public int32 `[`DurationSeconds_Optional`](#structFRHAPI__MatchSegmentRequest_1a3de5d52bd1d8dda3b664c502c53ba264) | 
 `public bool `[`DurationSeconds_IsSet`](#structFRHAPI__MatchSegmentRequest_1a77358533af3b31fed689fde879b475cd) | true if DurationSeconds_Optional has been set to a value
-`public `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` `[`CustomData_Optional`](#structFRHAPI__MatchSegmentRequest_1aea6f464cff9e548b5e1cfa69b27dff4a) | 
+`public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__MatchSegmentRequest_1abb0505d707dd5ef98075a053e1e67f2a) | 
 `public bool `[`CustomData_IsSet`](#structFRHAPI__MatchSegmentRequest_1a715c005955b9c2ac62348cecc532b8ed) | true if CustomData_Optional has been set to a value
 `public FString `[`CorrelationId_Optional`](#structFRHAPI__MatchSegmentRequest_1a311dc63348fd76c42ec53bb0a879a39d) | 
 `public bool `[`CorrelationId_IsSet`](#structFRHAPI__MatchSegmentRequest_1a983a0c162b2f1c2d5c5c44bda2a3d797) | true if CorrelationId_Optional has been set to a value
@@ -87,13 +87,13 @@ struct FRHAPI_MatchSegmentRequest
 `public inline void `[`ClearDurationSeconds`](#structFRHAPI__MatchSegmentRequest_1ab41aef77bfcccf8cf329309671101fd8)`()` | Clears the value of DurationSeconds_Optional and sets DurationSeconds_IsSet to false.
 `public inline bool `[`IsDurationSecondsDefaultValue`](#structFRHAPI__MatchSegmentRequest_1a24262b2fd97565326e67cc86c76974c0)`() const` | Returns true if DurationSeconds_Optional is set and matches the default value.
 `public inline void `[`SetDurationSecondsToDefault`](#structFRHAPI__MatchSegmentRequest_1ad27dc476dbe4fbdfc2076753fcc36788)`()` | Sets the value of DurationSeconds_Optional to its default and also sets DurationSeconds_IsSet to true.
-`public inline `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetCustomData`](#structFRHAPI__MatchSegmentRequest_1a31ac95c0a9863b7e6710babb7e8cdc76)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetCustomData`](#structFRHAPI__MatchSegmentRequest_1a95cc832896938939e0aaabf278183273)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetCustomData`](#structFRHAPI__MatchSegmentRequest_1af5bbcf834a04c9b4e0011fef851b927c)`(const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCustomData`](#structFRHAPI__MatchSegmentRequest_1abc311ab11fa7289cccb3b6557fedbbb8)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` * `[`GetCustomDataOrNull`](#structFRHAPI__MatchSegmentRequest_1a8a1c23bdcfc75152fd0013130adcd13e)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` * `[`GetCustomDataOrNull`](#structFRHAPI__MatchSegmentRequest_1a7f44e2ea4839deedbfe268fb05f8b170)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCustomData`](#structFRHAPI__MatchSegmentRequest_1a6ab2764e7e78e2e2d56db0d16e0a1c96)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchSegmentRequest_1ace6b416f3bb5cd9fada32511d8bfe1db)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchSegmentRequest_1a07d1e5048c3c842ba321105115b920ba)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchSegmentRequest_1a58fd8180f57c73bf08e2b64397614ce0)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetCustomData`](#structFRHAPI__MatchSegmentRequest_1af46bfbebc861f17b7ff548f0295a8150)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
+`public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchSegmentRequest_1ac795f4a212f677c502aa0b1e5aab192c)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchSegmentRequest_1a96f7c3d809ea33586c44eecfe1ce917b)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetCustomData`](#structFRHAPI__MatchSegmentRequest_1a988ae18478e3fb403e93df60032e06ba)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`ClearCustomData`](#structFRHAPI__MatchSegmentRequest_1adb2c7a7e1606c8ab240c7023ec84fa16)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 `public inline FString & `[`GetCorrelationId`](#structFRHAPI__MatchSegmentRequest_1ade81d0ae93a6edcfbc25aaa3ac58018a)`()` | Gets the value of CorrelationId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetCorrelationId`](#structFRHAPI__MatchSegmentRequest_1a305c683b0243cbf414bec654cd949ede)`() const` | Gets the value of CorrelationId_Optional, regardless of it having been set.
@@ -187,7 +187,7 @@ true if EndTimestamp_Optional has been set to a value
 true if DurationSeconds_Optional has been set to a value
 
 <br>
-#### `public `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` `[`CustomData_Optional`](#structFRHAPI__MatchSegmentRequest_1aea6f464cff9e548b5e1cfa69b27dff4a) <a id="structFRHAPI__MatchSegmentRequest_1aea6f464cff9e548b5e1cfa69b27dff4a"></a>
+#### `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__MatchSegmentRequest_1abb0505d707dd5ef98075a053e1e67f2a) <a id="structFRHAPI__MatchSegmentRequest_1abb0505d707dd5ef98075a053e1e67f2a"></a>
 
 <br>
 #### `public bool `[`CustomData_IsSet`](#structFRHAPI__MatchSegmentRequest_1a715c005955b9c2ac62348cecc532b8ed) <a id="structFRHAPI__MatchSegmentRequest_1a715c005955b9c2ac62348cecc532b8ed"></a>
@@ -487,37 +487,37 @@ Returns true if DurationSeconds_Optional is set and matches the default value.
 Sets the value of DurationSeconds_Optional to its default and also sets DurationSeconds_IsSet to true.
 
 <br>
-#### `public inline `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetCustomData`](#structFRHAPI__MatchSegmentRequest_1a31ac95c0a9863b7e6710babb7e8cdc76)`()` <a id="structFRHAPI__MatchSegmentRequest_1a31ac95c0a9863b7e6710babb7e8cdc76"></a>
+#### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchSegmentRequest_1ace6b416f3bb5cd9fada32511d8bfe1db)`()` <a id="structFRHAPI__MatchSegmentRequest_1ace6b416f3bb5cd9fada32511d8bfe1db"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
 <br>
-#### `public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetCustomData`](#structFRHAPI__MatchSegmentRequest_1a95cc832896938939e0aaabf278183273)`() const` <a id="structFRHAPI__MatchSegmentRequest_1a95cc832896938939e0aaabf278183273"></a>
+#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchSegmentRequest_1a07d1e5048c3c842ba321105115b920ba)`() const` <a id="structFRHAPI__MatchSegmentRequest_1a07d1e5048c3c842ba321105115b920ba"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
 <br>
-#### `public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetCustomData`](#structFRHAPI__MatchSegmentRequest_1af5bbcf834a04c9b4e0011fef851b927c)`(const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & DefaultValue) const` <a id="structFRHAPI__MatchSegmentRequest_1af5bbcf834a04c9b4e0011fef851b927c"></a>
+#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchSegmentRequest_1a58fd8180f57c73bf08e2b64397614ce0)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__MatchSegmentRequest_1a58fd8180f57c73bf08e2b64397614ce0"></a>
 
 Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
 
 <br>
-#### `public inline bool `[`GetCustomData`](#structFRHAPI__MatchSegmentRequest_1abc311ab11fa7289cccb3b6557fedbbb8)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & OutValue) const` <a id="structFRHAPI__MatchSegmentRequest_1abc311ab11fa7289cccb3b6557fedbbb8"></a>
+#### `public inline bool `[`GetCustomData`](#structFRHAPI__MatchSegmentRequest_1af46bfbebc861f17b7ff548f0295a8150)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__MatchSegmentRequest_1af46bfbebc861f17b7ff548f0295a8150"></a>
 
 Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 
 <br>
-#### `public inline `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` * `[`GetCustomDataOrNull`](#structFRHAPI__MatchSegmentRequest_1a8a1c23bdcfc75152fd0013130adcd13e)`()` <a id="structFRHAPI__MatchSegmentRequest_1a8a1c23bdcfc75152fd0013130adcd13e"></a>
+#### `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchSegmentRequest_1ac795f4a212f677c502aa0b1e5aab192c)`()` <a id="structFRHAPI__MatchSegmentRequest_1ac795f4a212f677c502aa0b1e5aab192c"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
 <br>
-#### `public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` * `[`GetCustomDataOrNull`](#structFRHAPI__MatchSegmentRequest_1a7f44e2ea4839deedbfe268fb05f8b170)`() const` <a id="structFRHAPI__MatchSegmentRequest_1a7f44e2ea4839deedbfe268fb05f8b170"></a>
+#### `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchSegmentRequest_1a96f7c3d809ea33586c44eecfe1ce917b)`() const` <a id="structFRHAPI__MatchSegmentRequest_1a96f7c3d809ea33586c44eecfe1ce917b"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
 <br>
-#### `public inline void `[`SetCustomData`](#structFRHAPI__MatchSegmentRequest_1a6ab2764e7e78e2e2d56db0d16e0a1c96)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` NewValue)` <a id="structFRHAPI__MatchSegmentRequest_1a6ab2764e7e78e2e2d56db0d16e0a1c96"></a>
+#### `public inline void `[`SetCustomData`](#structFRHAPI__MatchSegmentRequest_1a988ae18478e3fb403e93df60032e06ba)`(TMap< FString, FString > NewValue)` <a id="structFRHAPI__MatchSegmentRequest_1a988ae18478e3fb403e93df60032e06ba"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 

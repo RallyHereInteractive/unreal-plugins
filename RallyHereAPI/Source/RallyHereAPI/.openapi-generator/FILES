@@ -7,7 +7,6 @@ Private/AdOpportunity.cpp
 Private/AdditionalJoinParams.cpp
 Private/AgreementMessage.cpp
 Private/AppSetting.cpp
-Private/AuditResponse.cpp
 Private/AuthAPI.cpp
 Private/BackfillInfo.cpp
 Private/BackfillSettingsResponse.cpp
@@ -267,10 +266,8 @@ Private/RallyHereAPIHttpRequester.cpp
 Private/RallyHereAPIModule.cpp
 Private/RallyHereEvent.cpp
 Private/RankAPI.cpp
-Private/RankConfig.cpp
-Private/RankConfigRequestResponse.cpp
-Private/RankConfigRequestResponseV2.cpp
-Private/RankConfigV2.cpp
+Private/RankConfigRequestResponseV3.cpp
+Private/RankConfigV3.cpp
 Private/RankData.cpp
 Private/RankUpdateRequest.cpp
 Private/RankUpdateRequestV2.cpp
@@ -289,8 +286,6 @@ Private/RuleType.cpp
 Private/SelfSessionPlayerUpdateRequest.cpp
 Private/SendInBlueContact.cpp
 Private/Session.cpp
-Private/SessionAuditAPI.cpp
-Private/SessionEventCreateRequest.cpp
 Private/SessionInviteRequest.cpp
 Private/SessionInviteResponse.cpp
 Private/SessionJoinResponse.cpp
@@ -317,8 +312,6 @@ Private/TimeFrame.cpp
 Private/TimeFrames.cpp
 Private/TokenRequest.cpp
 Private/TokenResponse.cpp
-Private/TrueskillRank.cpp
-Private/TrueskillTeam.cpp
 Private/UnionCCU.cpp
 Private/UpdateBackfillRequest.cpp
 Private/UpdateInventoryRequest.cpp
@@ -341,7 +334,6 @@ Public/AdOpportunity.h
 Public/AdditionalJoinParams.h
 Public/AgreementMessage.h
 Public/AppSetting.h
-Public/AuditResponse.h
 Public/AuthAPI.h
 Public/BackfillInfo.h
 Public/BackfillSettingsResponse.h
@@ -601,10 +593,8 @@ Public/RallyHereAPIHttpRequester.h
 Public/RallyHereAPIModule.h
 Public/RallyHereEvent.h
 Public/RankAPI.h
-Public/RankConfig.h
-Public/RankConfigRequestResponse.h
-Public/RankConfigRequestResponseV2.h
-Public/RankConfigV2.h
+Public/RankConfigRequestResponseV3.h
+Public/RankConfigV3.h
 Public/RankData.h
 Public/RankUpdateRequest.h
 Public/RankUpdateRequestV2.h
@@ -623,8 +613,6 @@ Public/RuleType.h
 Public/SelfSessionPlayerUpdateRequest.h
 Public/SendInBlueContact.h
 Public/Session.h
-Public/SessionAuditAPI.h
-Public/SessionEventCreateRequest.h
 Public/SessionInviteRequest.h
 Public/SessionInviteResponse.h
 Public/SessionJoinResponse.h
@@ -651,8 +639,6 @@ Public/TimeFrame.h
 Public/TimeFrames.h
 Public/TokenRequest.h
 Public/TokenResponse.h
-Public/TrueskillRank.h
-Public/TrueskillTeam.h
 Public/UnionCCU.h
 Public/UpdateBackfillRequest.h
 Public/UpdateInventoryRequest.h

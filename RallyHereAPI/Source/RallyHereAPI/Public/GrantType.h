@@ -31,6 +31,7 @@ enum class ERHAPI_GrantType : uint8
 	NintendoSwitch UMETA(ToolTip="Nintendo Service Account (for Nintendo Switch) authentication"),
 	Steam UMETA(ToolTip="Steam authentication"),
 	Basic UMETA(ToolTip="Basic Username/Password authentication"),
+	Rallyhere UMETA(ToolTip="RallyHere Developer authentication"),
 	ClientCredentials UMETA(ToolTip="Authentication that doesn&#39;t require user credentials, only a Client ID/Secret in the Authorization header."),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_GrantType& EnumValue);

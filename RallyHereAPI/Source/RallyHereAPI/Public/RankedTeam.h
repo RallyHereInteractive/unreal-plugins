@@ -17,7 +17,7 @@
  */
 
 /**
- * @brief One team of players from a match along with their placement in the match, and previous trueskill data about all of the players
+ * @brief One team of players from a match along with their placement in the match, and previous rank data about all of the players
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_RankedTeam : public FRHAPI_Model

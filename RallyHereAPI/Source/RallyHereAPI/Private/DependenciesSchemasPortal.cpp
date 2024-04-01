@@ -36,6 +36,8 @@ FString EnumToString(const ERHAPI_DependenciesSchemasPortal& Value)
 		return TEXT("11");
 	case ERHAPI_DependenciesSchemasPortal::Google:
 		return TEXT("13");
+	case ERHAPI_DependenciesSchemasPortal::Rallyhere:
+		return TEXT("14");
 	case ERHAPI_DependenciesSchemasPortal::Twitch:
 		return TEXT("16");
 	case ERHAPI_DependenciesSchemasPortal::NintendoSwitch:
@@ -44,6 +46,8 @@ FString EnumToString(const ERHAPI_DependenciesSchemasPortal& Value)
 		return TEXT("24");
 	case ERHAPI_DependenciesSchemasPortal::Nintendo:
 		return TEXT("26");
+	case ERHAPI_DependenciesSchemasPortal::Legacyname:
+		return TEXT("27");
 	case ERHAPI_DependenciesSchemasPortal::Epic:
 		return TEXT("28");
 	case ERHAPI_DependenciesSchemasPortal::NintendoPpid:
@@ -64,10 +68,12 @@ bool EnumFromString(const FString& EnumAsString, ERHAPI_DependenciesSchemasPorta
 		{ TEXT("10"), ERHAPI_DependenciesSchemasPortal::Xboxlive },
 		{ TEXT("11"), ERHAPI_DependenciesSchemasPortal::Basic },
 		{ TEXT("13"), ERHAPI_DependenciesSchemasPortal::Google },
+		{ TEXT("14"), ERHAPI_DependenciesSchemasPortal::Rallyhere },
 		{ TEXT("16"), ERHAPI_DependenciesSchemasPortal::Twitch },
 		{ TEXT("22"), ERHAPI_DependenciesSchemasPortal::NintendoSwitch },
 		{ TEXT("24"), ERHAPI_DependenciesSchemasPortal::Apple },
 		{ TEXT("26"), ERHAPI_DependenciesSchemasPortal::Nintendo },
+		{ TEXT("27"), ERHAPI_DependenciesSchemasPortal::Legacyname },
 		{ TEXT("28"), ERHAPI_DependenciesSchemasPortal::Epic },
 		{ TEXT("33"), ERHAPI_DependenciesSchemasPortal::NintendoPpid },	};
 
