@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_RankData`](#structFRHAPI__RankData) | Trueskill oriented ranked data about a player&#39;s skill and confidence levels.
+`struct `[`FRHAPI_RankData`](#structFRHAPI__RankData) | Ranked data about a player&#39;s skill and confidence levels.
 
 ## struct `FRHAPI_RankData` <a id="structFRHAPI__RankData"></a>
 
@@ -13,14 +13,14 @@ struct FRHAPI_RankData
   : public FRHAPI_Model
 ```
 
-Trueskill oriented ranked data about a player&#39;s skill and confidence levels.
+Ranked data about a player&#39;s skill and confidence levels.
 
 #### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public float `[`Mu`](#structFRHAPI__RankData_1a93050be6e5e700a4df0ce7653e9b4661) | Trueskill mu. This is a measure of perceived skill in a player.
-`public float `[`Sigma`](#structFRHAPI__RankData_1a45a6360cbb9002f253ce3481b84b2260) | Trueskill sigma. This is a measure of how unconfident we are in the perceived skill (high sigma means less confident)
+`public float `[`Mu`](#structFRHAPI__RankData_1a93050be6e5e700a4df0ce7653e9b4661) | A measure of perceived skill in a player.
+`public float `[`Sigma`](#structFRHAPI__RankData_1a45a6360cbb9002f253ce3481b84b2260) | A measure of how confident we are in the perceived skill (high sigma means low confidence)
 `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__RankData_1a6cc90e4d02ac3c6eb18ac7bbed74c9e6) | Custom key-value player rank data.
 `public bool `[`CustomData_IsSet`](#structFRHAPI__RankData_1a1d6a997932948120bf350d5fd2b61ed1) | true if CustomData_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__RankData_1a7626e3e65856e26d5d6fe6cd74c95457)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
@@ -44,12 +44,12 @@ Trueskill oriented ranked data about a player&#39;s skill and confidence levels.
 
 #### `public float `[`Mu`](#structFRHAPI__RankData_1a93050be6e5e700a4df0ce7653e9b4661) <a id="structFRHAPI__RankData_1a93050be6e5e700a4df0ce7653e9b4661"></a>
 
-Trueskill mu. This is a measure of perceived skill in a player.
+A measure of perceived skill in a player.
 
 <br>
 #### `public float `[`Sigma`](#structFRHAPI__RankData_1a45a6360cbb9002f253ce3481b84b2260) <a id="structFRHAPI__RankData_1a45a6360cbb9002f253ce3481b84b2260"></a>
 
-Trueskill sigma. This is a measure of how unconfident we are in the perceived skill (high sigma means less confident)
+A measure of how confident we are in the perceived skill (high sigma means low confidence)
 
 <br>
 #### `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__RankData_1a6cc90e4d02ac3c6eb18ac7bbed74c9e6) <a id="structFRHAPI__RankData_1a6cc90e4d02ac3c6eb18ac7bbed74c9e6"></a>

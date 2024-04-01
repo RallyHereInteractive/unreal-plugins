@@ -33,7 +33,6 @@ FRallyHereAPIAll::FRallyHereAPIAll()
 	AllAPIs.Add(&Rank);
 	AllAPIs.Add(&Regions);
 	AllAPIs.Add(&Reports);
-	AllAPIs.Add(&SessionAudit);
 	AllAPIs.Add(&Sessions);
 	AllAPIs.Add(&Settings);
 	AllAPIs.Add(&Time);
@@ -313,16 +312,6 @@ FReportsAPI& FRallyHereAPIAll::GetReports()
 const FReportsAPI& FRallyHereAPIAll::GetReports() const
 {
 	return Reports;
-}
-
-FSessionAuditAPI& FRallyHereAPIAll::GetSessionAudit()
-{
-	return SessionAudit;
-}
-
-const FSessionAuditAPI& FRallyHereAPIAll::GetSessionAudit() const
-{
-	return SessionAudit;
 }
 
 FSessionsAPI& FRallyHereAPIAll::GetSessions()

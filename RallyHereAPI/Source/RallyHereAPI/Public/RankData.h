@@ -16,7 +16,7 @@
  */
 
 /**
- * @brief Trueskill oriented ranked data about a player&#39;s skill and confidence levels
+ * @brief Ranked data about a player&#39;s skill and confidence levels
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_RankData : public FRHAPI_Model
@@ -39,7 +39,7 @@ struct RALLYHEREAPI_API FRHAPI_RankData : public FRHAPI_Model
 	*/
 	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-	/** @brief Trueskill mu. This is a measure of perceived skill in a player */
+	/** @brief A measure of perceived skill in a player */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float Mu{  };
 	/** @brief Gets the value of Mu */
@@ -49,7 +49,7 @@ struct RALLYHEREAPI_API FRHAPI_RankData : public FRHAPI_Model
 	/** @brief Sets the value of Mu */
 	void SetMu(float NewValue) { Mu = NewValue;  }
 
-	/** @brief Trueskill sigma. This is a measure of how unconfident we are in the perceived skill (high sigma means less confident) */
+	/** @brief A measure of how confident we are in the perceived skill (high sigma means low confidence) */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float Sigma{  };
 	/** @brief Gets the value of Sigma */

@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 
-#include "RankConfigRequestResponse.h"
+#include "RankConfigRequestResponseV3.h"
 #include "RallyHereAPIModule.h"
 #include "RallyHereAPIHelpers.h"
 #include "Templates/SharedPointer.h"
@@ -17,9 +17,9 @@ using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
 ////////////////////////////////////////////////////
-// Implementation for FRHAPI_RankConfigRequestResponse
+// Implementation for FRHAPI_RankConfigRequestResponseV3
 
-void FRHAPI_RankConfigRequestResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
+void FRHAPI_RankConfigRequestResponseV3::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
 	Writer->WriteObjectStart();
 	Writer->WriteIdentifierPrefix(TEXT("rank_configs"));
@@ -27,7 +27,7 @@ void FRHAPI_RankConfigRequestResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writ
 	Writer->WriteObjectEnd();
 }
 
-bool FRHAPI_RankConfigRequestResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FRHAPI_RankConfigRequestResponseV3::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
 	const TSharedPtr<FJsonObject>* Object;
 	if (!JsonValue->TryGetObject(Object))

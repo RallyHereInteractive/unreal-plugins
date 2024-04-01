@@ -25,10 +25,12 @@ enum class ERHAPI_DependenciesSchemasPortal : uint8
 	Xboxlive UMETA(ToolTip="Xbox Live portal"),
 	Basic UMETA(ToolTip="Basic portal"),
 	Google UMETA(ToolTip="Google portal"),
+	Rallyhere UMETA(ToolTip="RallyHere Developer portal"),
 	Twitch UMETA(ToolTip="Twitch portal"),
 	NintendoSwitch UMETA(ToolTip="Nintendo Switch portal"),
 	Apple UMETA(ToolTip="Apple portal"),
 	Nintendo UMETA(ToolTip="Nintendo portal"),
+	Legacyname UMETA(ToolTip="Legacy name portal"),
 	Epic UMETA(ToolTip="Epic portal"),
 	NintendoPpid UMETA(ToolTip="Nintendo PPID portal"),
 };
