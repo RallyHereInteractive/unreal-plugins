@@ -286,9 +286,9 @@ FRHAPI_MatchPlayerRequest GenerateTestMatchPlayer()
 	PlayerRequest.SetStartingRank(TEXT("Last"));
 	PlayerRequest.SetFinishingRank(TEXT("First"));
 
-	FRHAPI_JsonObject CustomData;
-	CustomData.SetStringField(TEXT("TestField"), TEXT("TestValue"));
-	CustomData.SetStringField(TEXT("TestField2"), TEXT("TestValue2"));
+	TMap<FString, FString> CustomData;
+	CustomData.Add(TEXT("TestField"), TEXT("TestValue"));
+	CustomData.Add(TEXT("TestField2"), TEXT("TestValue2"));
 	PlayerRequest.SetCustomData(CustomData);
 
 	return PlayerRequest;
@@ -306,9 +306,9 @@ T GenerateTestMatchEntry()
 	MatchRequest.SetEndTimestamp(FDateTime::UtcNow() + FTimespan::FromSeconds(Duration));
 	MatchRequest.SetDurationSeconds(Duration);
 
-	FRHAPI_JsonObject CustomData;
-	CustomData.SetStringField(TEXT("TestField"), TEXT("TestValue"));
-	CustomData.SetStringField(TEXT("TestField2"), TEXT("TestValue2"));
+	TMap<FString, FString> CustomData;
+	CustomData.Add(TEXT("TestField"), TEXT("TestValue"));
+	CustomData.Add(TEXT("TestField2"), TEXT("TestValue2"));
 	MatchRequest.SetCustomData(CustomData);
 
 	MatchRequest.SetCorrelationId(FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphens));
