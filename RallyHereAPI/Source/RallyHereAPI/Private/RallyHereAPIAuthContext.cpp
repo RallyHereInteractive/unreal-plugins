@@ -8,7 +8,7 @@
 #include "RallyHereAPIAuthContext.h"
 #include "RallyHereAPIModule.h"
 #include "AuthAPI.h"
-#include "HzAPIErrorModel.h"
+#include "HzApiErrorModel.h"
 
 namespace RallyHereAPI
 {

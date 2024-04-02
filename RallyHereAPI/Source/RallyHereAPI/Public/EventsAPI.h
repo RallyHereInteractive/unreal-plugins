@@ -120,17 +120,17 @@ struct RALLYHEREAPI_API FResponse_ReceiveEventsV1 : public FResponse
 	bool TryGetContentFor200(FRHAPI_PostGameEventsResponse& OutContent) const;
 
 	/* Response 207
-	 Error Codes: - events_multi_results - Some of the events from the request failed to process, and uploaded to deadletter blob storage 
+	 Error Codes: - `events_multi_results` - Some of the events from the request failed to process, and uploaded to deadletter blob storage 
 	*/
 	bool TryGetContentFor207(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 400
-	 Error Codes: - events_all_failed - All of events from the request failed to process, and uploaded to deadletter blob storage - event_lists_invalid - The input eventLists is invalid, failed pydantic validation - event_unsupported - Event name is not known - event_denied - Events of that name are currently denied - event_duplicated - Event has the same event_uuid as an event already received - event_params_invalid - The event_params failed validation against the jsonschema defined for the type/version.  See response description for more details.  
+	 Error Codes: - `event_denied` - Events of that name are currently denied - `event_duplicated` - Event has the same event_uuid as an event already received - `event_lists_invalid` - The input eventLists is invalid, failed pydantic validation - `event_params_invalid` - The event_params failed validation against the jsonschema defined for the type/version.  See response description for more details.  - `event_unsupported` - Event name is not known - `events_all_failed` - All of events from the request failed to process, and uploaded to deadletter blob storage 
 	*/
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 404
-	 Error Codes: - event_schema_invalid - event_params jsonschema is empty, failed to load from developer-api - event_schema_not_found - The jsonschema is invalid and could not be used to validate the event_params value.  See response description for more details. 
+	 Error Codes: - `event_schema_invalid` - event_params jsonschema is empty, failed to load from developer-api - `event_schema_not_found` - The jsonschema is invalid and could not be used to validate the event_params value.  See response description for more details. 
 	*/
 	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 

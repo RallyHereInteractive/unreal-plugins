@@ -9,18 +9,18 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
-#include "RankConfig.h"
-#include "RankConfigRequestResponse.generated.h"
+#include "RankConfigV3.h"
+#include "RankConfigRequestResponseV3.generated.h"
 
-/** @defgroup RHAPI_RankConfigRequestResponse RallyHere API Model RankConfigRequestResponse
+/** @defgroup RHAPI_RankConfigRequestResponseV3 RallyHere API Model RankConfigRequestResponseV3
  *  @{
  */
 
 /**
- * @brief DEPRECATED Response to successfully requesting all rank config
+ * @brief Response to successfully requesting all rank config
  */
 USTRUCT(BlueprintType)
-struct RALLYHEREAPI_API FRHAPI_RankConfigRequestResponse : public FRHAPI_Model
+struct RALLYHEREAPI_API FRHAPI_RankConfigRequestResponseV3 : public FRHAPI_Model
 {
 	GENERATED_BODY()
 
@@ -42,13 +42,13 @@ struct RALLYHEREAPI_API FRHAPI_RankConfigRequestResponse : public FRHAPI_Model
 
 	/** @brief List of rank configurations */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	TArray<FRHAPI_RankConfig> RankConfigs{  };
+	TArray<FRHAPI_RankConfigV3> RankConfigs{  };
 	/** @brief Gets the value of RankConfigs */
-	TArray<FRHAPI_RankConfig>& GetRankConfigs() { return RankConfigs; }
+	TArray<FRHAPI_RankConfigV3>& GetRankConfigs() { return RankConfigs; }
 	/** @brief Gets the value of RankConfigs */
-	const TArray<FRHAPI_RankConfig>& GetRankConfigs() const { return RankConfigs; }
+	const TArray<FRHAPI_RankConfigV3>& GetRankConfigs() const { return RankConfigs; }
 	/** @brief Sets the value of RankConfigs */
-	void SetRankConfigs(TArray<FRHAPI_RankConfig> NewValue) { RankConfigs = NewValue;  }
+	void SetRankConfigs(TArray<FRHAPI_RankConfigV3> NewValue) { RankConfigs = NewValue;  }
 };
 
 /** @} */

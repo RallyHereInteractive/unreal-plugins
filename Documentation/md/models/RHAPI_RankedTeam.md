@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_RankedTeam`](#structFRHAPI__RankedTeam) | One team of players from a match along with their placement in the match, and previous trueskill data about all of the players.
+`struct `[`FRHAPI_RankedTeam`](#structFRHAPI__RankedTeam) | One team of players from a match along with their placement in the match, and previous rank data about all of the players.
 
 ## struct `FRHAPI_RankedTeam` <a id="structFRHAPI__RankedTeam"></a>
 
@@ -13,7 +13,7 @@ struct FRHAPI_RankedTeam
   : public FRHAPI_Model
 ```
 
-One team of players from a match along with their placement in the match, and previous trueskill data about all of the players.
+One team of players from a match along with their placement in the match, and previous rank data about all of the players.
 
 #### Summary
 

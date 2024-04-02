@@ -44,7 +44,7 @@ private:
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:read:config`, `session:*`
+ * - For any player (including themselves) any of: `session:*`, `session:read:config`
  * 
  * 
  * 

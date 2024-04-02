@@ -33,7 +33,6 @@ FRallyHereAPIAll::FRallyHereAPIAll()
 	, Rank(MakeShareable(new FRankAPI()))
 	, Regions(MakeShareable(new FRegionsAPI()))
 	, Reports(MakeShareable(new FReportsAPI()))
-	, SessionAudit(MakeShareable(new FSessionAuditAPI()))
 	, Sessions(MakeShareable(new FSessionsAPI()))
 	, Settings(MakeShareable(new FSettingsAPI()))
 	, Time(MakeShareable(new FTimeAPI()))
@@ -67,7 +66,6 @@ FRallyHereAPIAll::FRallyHereAPIAll()
 	AllAPIs.Add(Rank);
 	AllAPIs.Add(Regions);
 	AllAPIs.Add(Reports);
-	AllAPIs.Add(SessionAudit);
 	AllAPIs.Add(Sessions);
 	AllAPIs.Add(Settings);
 	AllAPIs.Add(Time);
@@ -347,16 +345,6 @@ TSharedRef<FReportsAPI> FRallyHereAPIAll::GetReports()
 const TSharedRef<FReportsAPI> FRallyHereAPIAll::GetReports() const
 {
 	return Reports;
-}
-
-TSharedRef<FSessionAuditAPI> FRallyHereAPIAll::GetSessionAudit()
-{
-	return SessionAudit;
-}
-
-const TSharedRef<FSessionAuditAPI> FRallyHereAPIAll::GetSessionAudit() const
-{
-	return SessionAudit;
 }
 
 TSharedRef<FSessionsAPI> FRallyHereAPIAll::GetSessions()

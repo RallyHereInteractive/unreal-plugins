@@ -9,7 +9,7 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
-#include "TrueskillTeam.h"
+#include "RankedTeam.h"
 #include "RankUpdateRequestV2.generated.h"
 
 /** @defgroup RHAPI_RankUpdateRequestV2 RallyHere API Model RankUpdateRequestV2
@@ -89,13 +89,13 @@ struct RALLYHEREAPI_API FRHAPI_RankUpdateRequestV2 : public FRHAPI_Model
 
 	/** @brief List of teams that participated in this match */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	TArray<FRHAPI_TrueskillTeam> Teams{  };
+	TArray<FRHAPI_RankedTeam> Teams{  };
 	/** @brief Gets the value of Teams */
-	TArray<FRHAPI_TrueskillTeam>& GetTeams() { return Teams; }
+	TArray<FRHAPI_RankedTeam>& GetTeams() { return Teams; }
 	/** @brief Gets the value of Teams */
-	const TArray<FRHAPI_TrueskillTeam>& GetTeams() const { return Teams; }
+	const TArray<FRHAPI_RankedTeam>& GetTeams() const { return Teams; }
 	/** @brief Sets the value of Teams */
-	void SetTeams(TArray<FRHAPI_TrueskillTeam> NewValue) { Teams = NewValue;  }
+	void SetTeams(TArray<FRHAPI_RankedTeam> NewValue) { Teams = NewValue;  }
 };
 
 /** @} */

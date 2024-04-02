@@ -31,7 +31,7 @@ struct FRHAPI_MatchSegmentWithPlayers
 `public bool `[`EndTimestamp_IsSet`](#structFRHAPI__MatchSegmentWithPlayers_1a98fde9c4578a9e3a87dc35aacc09dd7f) | true if EndTimestamp_Optional has been set to a value
 `public int32 `[`DurationSeconds_Optional`](#structFRHAPI__MatchSegmentWithPlayers_1a71a7c957df8d10a7c598790bd36c451b) | 
 `public bool `[`DurationSeconds_IsSet`](#structFRHAPI__MatchSegmentWithPlayers_1a15ef72098e5544655b697455c2d70728) | true if DurationSeconds_Optional has been set to a value
-`public `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` `[`CustomData_Optional`](#structFRHAPI__MatchSegmentWithPlayers_1a35c1213633243a9e06a51bccaf012f89) | 
+`public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__MatchSegmentWithPlayers_1a9baed3771da571a4763025931342fd86) | 
 `public bool `[`CustomData_IsSet`](#structFRHAPI__MatchSegmentWithPlayers_1a702ee27225f5a4793a8bba1bc1021461) | true if CustomData_Optional has been set to a value
 `public FString `[`CorrelationId_Optional`](#structFRHAPI__MatchSegmentWithPlayers_1a8b13aa7a271cf5c9a628d2fc41abb117) | 
 `public bool `[`CorrelationId_IsSet`](#structFRHAPI__MatchSegmentWithPlayers_1ae0198259edd0be64a411dc7e0806fad7) | true if CorrelationId_Optional has been set to a value
@@ -106,13 +106,13 @@ struct FRHAPI_MatchSegmentWithPlayers
 `public inline void `[`ClearDurationSeconds`](#structFRHAPI__MatchSegmentWithPlayers_1a859cad510bd50f14da7ec423a7c01fca)`()` | Clears the value of DurationSeconds_Optional and sets DurationSeconds_IsSet to false.
 `public inline bool `[`IsDurationSecondsDefaultValue`](#structFRHAPI__MatchSegmentWithPlayers_1abbb72031ca57070ac395d6f7ec36c679)`() const` | Returns true if DurationSeconds_Optional is set and matches the default value.
 `public inline void `[`SetDurationSecondsToDefault`](#structFRHAPI__MatchSegmentWithPlayers_1ad498f534581644269e95aaacc28bb0d0)`()` | Sets the value of DurationSeconds_Optional to its default and also sets DurationSeconds_IsSet to true.
-`public inline `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetCustomData`](#structFRHAPI__MatchSegmentWithPlayers_1adb7535e1771e15de691899f911680b7e)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetCustomData`](#structFRHAPI__MatchSegmentWithPlayers_1ab9d5f1c84215fd1b69ba07e374326a1a)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetCustomData`](#structFRHAPI__MatchSegmentWithPlayers_1a21edb638611d95cffca043b763fff55e)`(const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCustomData`](#structFRHAPI__MatchSegmentWithPlayers_1a8f96d8cf7ced0a193f474321cc901975)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` * `[`GetCustomDataOrNull`](#structFRHAPI__MatchSegmentWithPlayers_1a2638235b40a011d21e7fea006fc6bbe4)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` * `[`GetCustomDataOrNull`](#structFRHAPI__MatchSegmentWithPlayers_1ad24f4c3ea2aa2cd9ce6f1fd7d72fb874)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCustomData`](#structFRHAPI__MatchSegmentWithPlayers_1ad61f6b443bb6ba3c883d1e8d81e297bb)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchSegmentWithPlayers_1a1a3c1947f70bccbbc6d3c4192bbb7c17)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchSegmentWithPlayers_1a5bd13f529ec882c5987a6690f55e0937)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchSegmentWithPlayers_1a6f7d8ce6c5d41b276e6ba31932461017)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetCustomData`](#structFRHAPI__MatchSegmentWithPlayers_1a5ade724ffe505aec2215e2ae359a7785)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
+`public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchSegmentWithPlayers_1a409ac76919c5abde60d9c564c37b1940)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchSegmentWithPlayers_1a097572a83f258a81009cd3a89d7fe0b6)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetCustomData`](#structFRHAPI__MatchSegmentWithPlayers_1a9fd7174677406fabc5c6bb38debf42e7)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`ClearCustomData`](#structFRHAPI__MatchSegmentWithPlayers_1af69bbc7dff23cd38b47e468eb12468a3)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 `public inline FString & `[`GetCorrelationId`](#structFRHAPI__MatchSegmentWithPlayers_1a77d6313eac98a831a506a0f05bcb8763)`()` | Gets the value of CorrelationId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetCorrelationId`](#structFRHAPI__MatchSegmentWithPlayers_1a008b95ad7144ca6009d79f294906b137)`() const` | Gets the value of CorrelationId_Optional, regardless of it having been set.
@@ -232,7 +232,7 @@ true if EndTimestamp_Optional has been set to a value
 true if DurationSeconds_Optional has been set to a value
 
 <br>
-#### `public `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` `[`CustomData_Optional`](#structFRHAPI__MatchSegmentWithPlayers_1a35c1213633243a9e06a51bccaf012f89) <a id="structFRHAPI__MatchSegmentWithPlayers_1a35c1213633243a9e06a51bccaf012f89"></a>
+#### `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__MatchSegmentWithPlayers_1a9baed3771da571a4763025931342fd86) <a id="structFRHAPI__MatchSegmentWithPlayers_1a9baed3771da571a4763025931342fd86"></a>
 
 <br>
 #### `public bool `[`CustomData_IsSet`](#structFRHAPI__MatchSegmentWithPlayers_1a702ee27225f5a4793a8bba1bc1021461) <a id="structFRHAPI__MatchSegmentWithPlayers_1a702ee27225f5a4793a8bba1bc1021461"></a>
@@ -610,37 +610,37 @@ Returns true if DurationSeconds_Optional is set and matches the default value.
 Sets the value of DurationSeconds_Optional to its default and also sets DurationSeconds_IsSet to true.
 
 <br>
-#### `public inline `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetCustomData`](#structFRHAPI__MatchSegmentWithPlayers_1adb7535e1771e15de691899f911680b7e)`()` <a id="structFRHAPI__MatchSegmentWithPlayers_1adb7535e1771e15de691899f911680b7e"></a>
+#### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchSegmentWithPlayers_1a1a3c1947f70bccbbc6d3c4192bbb7c17)`()` <a id="structFRHAPI__MatchSegmentWithPlayers_1a1a3c1947f70bccbbc6d3c4192bbb7c17"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
 <br>
-#### `public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetCustomData`](#structFRHAPI__MatchSegmentWithPlayers_1ab9d5f1c84215fd1b69ba07e374326a1a)`() const` <a id="structFRHAPI__MatchSegmentWithPlayers_1ab9d5f1c84215fd1b69ba07e374326a1a"></a>
+#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchSegmentWithPlayers_1a5bd13f529ec882c5987a6690f55e0937)`() const` <a id="structFRHAPI__MatchSegmentWithPlayers_1a5bd13f529ec882c5987a6690f55e0937"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
 <br>
-#### `public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetCustomData`](#structFRHAPI__MatchSegmentWithPlayers_1a21edb638611d95cffca043b763fff55e)`(const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & DefaultValue) const` <a id="structFRHAPI__MatchSegmentWithPlayers_1a21edb638611d95cffca043b763fff55e"></a>
+#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchSegmentWithPlayers_1a6f7d8ce6c5d41b276e6ba31932461017)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__MatchSegmentWithPlayers_1a6f7d8ce6c5d41b276e6ba31932461017"></a>
 
 Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
 
 <br>
-#### `public inline bool `[`GetCustomData`](#structFRHAPI__MatchSegmentWithPlayers_1a8f96d8cf7ced0a193f474321cc901975)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & OutValue) const` <a id="structFRHAPI__MatchSegmentWithPlayers_1a8f96d8cf7ced0a193f474321cc901975"></a>
+#### `public inline bool `[`GetCustomData`](#structFRHAPI__MatchSegmentWithPlayers_1a5ade724ffe505aec2215e2ae359a7785)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__MatchSegmentWithPlayers_1a5ade724ffe505aec2215e2ae359a7785"></a>
 
 Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 
 <br>
-#### `public inline `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` * `[`GetCustomDataOrNull`](#structFRHAPI__MatchSegmentWithPlayers_1a2638235b40a011d21e7fea006fc6bbe4)`()` <a id="structFRHAPI__MatchSegmentWithPlayers_1a2638235b40a011d21e7fea006fc6bbe4"></a>
+#### `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchSegmentWithPlayers_1a409ac76919c5abde60d9c564c37b1940)`()` <a id="structFRHAPI__MatchSegmentWithPlayers_1a409ac76919c5abde60d9c564c37b1940"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
 <br>
-#### `public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` * `[`GetCustomDataOrNull`](#structFRHAPI__MatchSegmentWithPlayers_1ad24f4c3ea2aa2cd9ce6f1fd7d72fb874)`() const` <a id="structFRHAPI__MatchSegmentWithPlayers_1ad24f4c3ea2aa2cd9ce6f1fd7d72fb874"></a>
+#### `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchSegmentWithPlayers_1a097572a83f258a81009cd3a89d7fe0b6)`() const` <a id="structFRHAPI__MatchSegmentWithPlayers_1a097572a83f258a81009cd3a89d7fe0b6"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
 <br>
-#### `public inline void `[`SetCustomData`](#structFRHAPI__MatchSegmentWithPlayers_1ad61f6b443bb6ba3c883d1e8d81e297bb)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` NewValue)` <a id="structFRHAPI__MatchSegmentWithPlayers_1ad61f6b443bb6ba3c883d1e8d81e297bb"></a>
+#### `public inline void `[`SetCustomData`](#structFRHAPI__MatchSegmentWithPlayers_1a9fd7174677406fabc5c6bb38debf42e7)`(TMap< FString, FString > NewValue)` <a id="structFRHAPI__MatchSegmentWithPlayers_1a9fd7174677406fabc5c6bb38debf42e7"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 

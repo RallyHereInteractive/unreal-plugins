@@ -146,7 +146,7 @@ void FRHDTW_PlayerReports::DoCreateReport()
 
 	ImGui::Separator();
 	ImGui::Text("Result");
-	ImGui::Text(TCHAR_TO_UTF8(*CreateReportActionResult));
+	ImGui::Text("%s", TCHAR_TO_UTF8(*CreateReportActionResult));
 }
 
 
@@ -196,7 +196,7 @@ void FRHDTW_PlayerReports::DoViewReportsReceived()
 
 	ImGui::Separator();
 	ImGui::Text("Result");
-	ImGui::Text(TCHAR_TO_UTF8(*GetReportsReceivedActionResult));
+	ImGui::Text("%s", TCHAR_TO_UTF8(*GetReportsReceivedActionResult));
 	ImGuiDisplayCopyableValue(TEXT("Next Cursor"), GetReportsReceivedNextCursor);
 }
 
@@ -246,7 +246,7 @@ void FRHDTW_PlayerReports::DoViewReportsSent()
 
 	ImGui::Separator();
 	ImGui::Text("Result");
-	ImGui::Text(TCHAR_TO_UTF8(*GetReportsSentActionResult));
+	ImGui::Text("%s", TCHAR_TO_UTF8(*GetReportsSentActionResult));
 	ImGuiDisplayCopyableValue(TEXT("Next Cursor"), GetReportsSentNextCursor);
 }
 

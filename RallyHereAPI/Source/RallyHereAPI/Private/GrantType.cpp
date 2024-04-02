@@ -48,6 +48,8 @@ FString EnumToString(const ERHAPI_GrantType& Value)
 		return TEXT("steam");
 	case ERHAPI_GrantType::Basic:
 		return TEXT("basic");
+	case ERHAPI_GrantType::Rallyhere:
+		return TEXT("rallyhere");
 	case ERHAPI_GrantType::ClientCredentials:
 		return TEXT("client_credentials");
 	}
@@ -72,6 +74,7 @@ bool EnumFromString(const FString& EnumAsString, ERHAPI_GrantType& Value)
 		{ TEXT("nintendo_switch"), ERHAPI_GrantType::NintendoSwitch },
 		{ TEXT("steam"), ERHAPI_GrantType::Steam },
 		{ TEXT("basic"), ERHAPI_GrantType::Basic },
+		{ TEXT("rallyhere"), ERHAPI_GrantType::Rallyhere },
 		{ TEXT("client_credentials"), ERHAPI_GrantType::ClientCredentials },	};
 
 	const auto Found = StringToEnum.Find(EnumAsString);

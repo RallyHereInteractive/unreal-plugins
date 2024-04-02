@@ -222,8 +222,9 @@ private:
  * 
  * WARNING: This endpoint does not validate that the provided user ID is valid, and should only be used after validating a user's identity.
  * 
- * Required Permissions: 
- * 	For any player (including themselves)any of: `user:*`, `user:platform:create`
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `user:*`, `user:platform:create`
 */
 struct RALLYHEREAPI_API FRequest_CreatePlatformUserById : public FRequest
 {
@@ -255,12 +256,12 @@ struct RALLYHEREAPI_API FResponse_CreatePlatformUserById : public FResponse
 	bool TryGetContentFor201(FRHAPI_PlatformUserResponse& OutContent) const;
 
 	/* Response 403
-	 Error Codes: - insufficient_permissions - Insufficient Permissions - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization - auth_invalid_version - Invalid Authorization - version - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} 
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 409
-	Failed to create platform user.  See error code and description for further details.   Error Codes: - user_already_exists - User already exists  
+	Failed to create platform user.  See error code and description for further details.   Error Codes: - `user_already_exists` - User already exists  
 	*/
 	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -494,8 +495,9 @@ struct RALLYHEREAPI_API Traits_EnableCrossProgression
  *
  * Find an existing platform user with their platform identity.
  * 
- * Required Permissions: 
- * 	For any player (including themselves)any of: `user:*`, `user:platform:read`
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `user:*`, `user:platform:read`
 */
 struct RALLYHEREAPI_API FRequest_FindPlatformUserById : public FRequest
 {
@@ -530,12 +532,12 @@ struct RALLYHEREAPI_API FResponse_FindPlatformUserById : public FResponse
 	bool TryGetContentFor200(FRHAPI_PlatformUserResponse& OutContent) const;
 
 	/* Response 403
-	 Error Codes: - insufficient_permissions - Insufficient Permissions - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization - auth_invalid_version - Invalid Authorization - version - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} 
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 404
-	Failed to find platform user.  See error code and description for further details.   Error Codes: - user_not_found - User not found  
+	Failed to find platform user.  See error code and description for further details.   Error Codes: - `user_not_found` - User not found  
 	*/
 	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 

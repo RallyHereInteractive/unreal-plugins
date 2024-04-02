@@ -23,7 +23,7 @@ A request body to calculate and update players&#39; ratings from a match.
 `public bool `[`InstanceId_IsSet`](#structFRHAPI__RankUpdateRequestV2_1afccfe640c8c1404cb359c5ac6c6c7b45) | true if InstanceId_Optional has been set to a value
 `public FString `[`RankId`](#structFRHAPI__RankUpdateRequestV2_1a4471c36e5393b21c7eabf9f3b0c6bbc4) | ID for the rank type used in this match.
 `public int32 `[`MatchLengthSeconds`](#structFRHAPI__RankUpdateRequestV2_1a91bf0f8e7fcd9eeef4368ca8bff338b4) | How many seconds the match lasted.
-`public TArray< `[`FRHAPI_TrueskillTeam`](RHAPI_TrueskillTeam.md#structFRHAPI__TrueskillTeam)` > `[`Teams`](#structFRHAPI__RankUpdateRequestV2_1a9f4e13c383bc49ec44fc377085404170) | List of teams that participated in this match.
+`public TArray< `[`FRHAPI_RankedTeam`](RHAPI_RankedTeam.md#structFRHAPI__RankedTeam)` > `[`Teams`](#structFRHAPI__RankUpdateRequestV2_1a58770a4cd45a001521437970c51f70aa) | List of teams that participated in this match.
 `public virtual bool `[`FromJson`](#structFRHAPI__RankUpdateRequestV2_1a5020149358d9579f4eb583bca8b1414e)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__RankUpdateRequestV2_1ad235d4cde2797f0b64c5ccdc1b70f527)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetInstanceId`](#structFRHAPI__RankUpdateRequestV2_1a2b91761d385633e05c71230d3aa0d232)`()` | Gets the value of InstanceId_Optional, regardless of it having been set.
@@ -42,9 +42,9 @@ A request body to calculate and update players&#39; ratings from a match.
 `public inline void `[`SetMatchLengthSeconds`](#structFRHAPI__RankUpdateRequestV2_1aefda24506618bfab93b74d2df4fc5104)`(int32 NewValue)` | Sets the value of MatchLengthSeconds.
 `public inline bool `[`IsMatchLengthSecondsDefaultValue`](#structFRHAPI__RankUpdateRequestV2_1af0e25b4e70c4ce62e1111cb7d2d23021)`() const` | Returns true if MatchLengthSeconds matches the default value.
 `public inline void `[`SetMatchLengthSecondsToDefault`](#structFRHAPI__RankUpdateRequestV2_1a51886b3f82c9ed12a88b4f732997b38c)`()` | Sets the value of MatchLengthSeconds to its default
-`public inline TArray< `[`FRHAPI_TrueskillTeam`](RHAPI_TrueskillTeam.md#structFRHAPI__TrueskillTeam)` > & `[`GetTeams`](#structFRHAPI__RankUpdateRequestV2_1af8a65a1c5515e814938c69d87f3f2d94)`()` | Gets the value of Teams.
-`public inline const TArray< `[`FRHAPI_TrueskillTeam`](RHAPI_TrueskillTeam.md#structFRHAPI__TrueskillTeam)` > & `[`GetTeams`](#structFRHAPI__RankUpdateRequestV2_1afe98cac88f5a71859b313b7413a60400)`() const` | Gets the value of Teams.
-`public inline void `[`SetTeams`](#structFRHAPI__RankUpdateRequestV2_1afaef9a0a05f8c4eebdf446951211b8e6)`(TArray< `[`FRHAPI_TrueskillTeam`](RHAPI_TrueskillTeam.md#structFRHAPI__TrueskillTeam)` > NewValue)` | Sets the value of Teams.
+`public inline TArray< `[`FRHAPI_RankedTeam`](RHAPI_RankedTeam.md#structFRHAPI__RankedTeam)` > & `[`GetTeams`](#structFRHAPI__RankUpdateRequestV2_1ad2c39c42c9dcd6140eb9f55680409733)`()` | Gets the value of Teams.
+`public inline const TArray< `[`FRHAPI_RankedTeam`](RHAPI_RankedTeam.md#structFRHAPI__RankedTeam)` > & `[`GetTeams`](#structFRHAPI__RankUpdateRequestV2_1ac99f7c05920af593e0837ab937e8f6b6)`() const` | Gets the value of Teams.
+`public inline void `[`SetTeams`](#structFRHAPI__RankUpdateRequestV2_1a04cd41756d8060c90206ebed41b44723)`(TArray< `[`FRHAPI_RankedTeam`](RHAPI_RankedTeam.md#structFRHAPI__RankedTeam)` > NewValue)` | Sets the value of Teams.
 
 #### Members
 
@@ -68,7 +68,7 @@ ID for the rank type used in this match.
 How many seconds the match lasted.
 
 <br>
-#### `public TArray< `[`FRHAPI_TrueskillTeam`](RHAPI_TrueskillTeam.md#structFRHAPI__TrueskillTeam)` > `[`Teams`](#structFRHAPI__RankUpdateRequestV2_1a9f4e13c383bc49ec44fc377085404170) <a id="structFRHAPI__RankUpdateRequestV2_1a9f4e13c383bc49ec44fc377085404170"></a>
+#### `public TArray< `[`FRHAPI_RankedTeam`](RHAPI_RankedTeam.md#structFRHAPI__RankedTeam)` > `[`Teams`](#structFRHAPI__RankUpdateRequestV2_1a58770a4cd45a001521437970c51f70aa) <a id="structFRHAPI__RankUpdateRequestV2_1a58770a4cd45a001521437970c51f70aa"></a>
 
 List of teams that participated in this match.
 
@@ -172,17 +172,17 @@ Returns true if MatchLengthSeconds matches the default value.
 Sets the value of MatchLengthSeconds to its default
 
 <br>
-#### `public inline TArray< `[`FRHAPI_TrueskillTeam`](RHAPI_TrueskillTeam.md#structFRHAPI__TrueskillTeam)` > & `[`GetTeams`](#structFRHAPI__RankUpdateRequestV2_1af8a65a1c5515e814938c69d87f3f2d94)`()` <a id="structFRHAPI__RankUpdateRequestV2_1af8a65a1c5515e814938c69d87f3f2d94"></a>
+#### `public inline TArray< `[`FRHAPI_RankedTeam`](RHAPI_RankedTeam.md#structFRHAPI__RankedTeam)` > & `[`GetTeams`](#structFRHAPI__RankUpdateRequestV2_1ad2c39c42c9dcd6140eb9f55680409733)`()` <a id="structFRHAPI__RankUpdateRequestV2_1ad2c39c42c9dcd6140eb9f55680409733"></a>
 
 Gets the value of Teams.
 
 <br>
-#### `public inline const TArray< `[`FRHAPI_TrueskillTeam`](RHAPI_TrueskillTeam.md#structFRHAPI__TrueskillTeam)` > & `[`GetTeams`](#structFRHAPI__RankUpdateRequestV2_1afe98cac88f5a71859b313b7413a60400)`() const` <a id="structFRHAPI__RankUpdateRequestV2_1afe98cac88f5a71859b313b7413a60400"></a>
+#### `public inline const TArray< `[`FRHAPI_RankedTeam`](RHAPI_RankedTeam.md#structFRHAPI__RankedTeam)` > & `[`GetTeams`](#structFRHAPI__RankUpdateRequestV2_1ac99f7c05920af593e0837ab937e8f6b6)`() const` <a id="structFRHAPI__RankUpdateRequestV2_1ac99f7c05920af593e0837ab937e8f6b6"></a>
 
 Gets the value of Teams.
 
 <br>
-#### `public inline void `[`SetTeams`](#structFRHAPI__RankUpdateRequestV2_1afaef9a0a05f8c4eebdf446951211b8e6)`(TArray< `[`FRHAPI_TrueskillTeam`](RHAPI_TrueskillTeam.md#structFRHAPI__TrueskillTeam)` > NewValue)` <a id="structFRHAPI__RankUpdateRequestV2_1afaef9a0a05f8c4eebdf446951211b8e6"></a>
+#### `public inline void `[`SetTeams`](#structFRHAPI__RankUpdateRequestV2_1a04cd41756d8060c90206ebed41b44723)`(TArray< `[`FRHAPI_RankedTeam`](RHAPI_RankedTeam.md#structFRHAPI__RankedTeam)` > NewValue)` <a id="structFRHAPI__RankUpdateRequestV2_1a04cd41756d8060c90206ebed41b44723"></a>
 
 Sets the value of Teams.
 

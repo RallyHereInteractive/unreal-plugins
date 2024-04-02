@@ -54,7 +54,7 @@ FString EnumToString(const ERHAPI_FastapicommonPlatformsPortal& Value)
 		return TEXT("12");
 	case ERHAPI_FastapicommonPlatformsPortal::Google:
 		return TEXT("13");
-	case ERHAPI_FastapicommonPlatformsPortal::UNUSED14:
+	case ERHAPI_FastapicommonPlatformsPortal::Rallyhere:
 		return TEXT("14");
 	case ERHAPI_FastapicommonPlatformsPortal::RivalsMobile:
 		return TEXT("15");
@@ -80,7 +80,7 @@ FString EnumToString(const ERHAPI_FastapicommonPlatformsPortal& Value)
 		return TEXT("25");
 	case ERHAPI_FastapicommonPlatformsPortal::Nintendo:
 		return TEXT("26");
-	case ERHAPI_FastapicommonPlatformsPortal::UNUSED27:
+	case ERHAPI_FastapicommonPlatformsPortal::Legacyname:
 		return TEXT("27");
 	case ERHAPI_FastapicommonPlatformsPortal::Epic:
 		return TEXT("28");
@@ -119,7 +119,7 @@ bool EnumFromString(const FString& EnumAsString, ERHAPI_FastapicommonPlatformsPo
 		{ TEXT("11"), ERHAPI_FastapicommonPlatformsPortal::Basic },
 		{ TEXT("12"), ERHAPI_FastapicommonPlatformsPortal::Facebook },
 		{ TEXT("13"), ERHAPI_FastapicommonPlatformsPortal::Google },
-		{ TEXT("14"), ERHAPI_FastapicommonPlatformsPortal::UNUSED14 },
+		{ TEXT("14"), ERHAPI_FastapicommonPlatformsPortal::Rallyhere },
 		{ TEXT("15"), ERHAPI_FastapicommonPlatformsPortal::RivalsMobile },
 		{ TEXT("16"), ERHAPI_FastapicommonPlatformsPortal::Twitch },
 		{ TEXT("17"), ERHAPI_FastapicommonPlatformsPortal::PaladinsStrike },
@@ -132,7 +132,7 @@ bool EnumFromString(const FString& EnumAsString, ERHAPI_FastapicommonPlatformsPo
 		{ TEXT("24"), ERHAPI_FastapicommonPlatformsPortal::Apple },
 		{ TEXT("25"), ERHAPI_FastapicommonPlatformsPortal::Discord },
 		{ TEXT("26"), ERHAPI_FastapicommonPlatformsPortal::Nintendo },
-		{ TEXT("27"), ERHAPI_FastapicommonPlatformsPortal::UNUSED27 },
+		{ TEXT("27"), ERHAPI_FastapicommonPlatformsPortal::Legacyname },
 		{ TEXT("28"), ERHAPI_FastapicommonPlatformsPortal::Epic },
 		{ TEXT("29"), ERHAPI_FastapicommonPlatformsPortal::Forte },
 		{ TEXT("30"), ERHAPI_FastapicommonPlatformsPortal::Simulmedia },

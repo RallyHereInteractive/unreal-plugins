@@ -53,13 +53,26 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingRuleset : public FRHAPI_Model
 
 	/** @brief Determiner of how many rules must be satisfied in this rulest (all, any, one, none) */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	ERHAPI_Determiner Determiner{  };
-	/** @brief Gets the value of Determiner */
-	ERHAPI_Determiner& GetDeterminer() { return Determiner; }
-	/** @brief Gets the value of Determiner */
-	const ERHAPI_Determiner& GetDeterminer() const { return Determiner; }
-	/** @brief Sets the value of Determiner */
-	void SetDeterminer(ERHAPI_Determiner NewValue) { Determiner = NewValue;  }
+	ERHAPI_Determiner Determiner_Optional{  };
+	/** @brief true if Determiner_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Determiner_IsSet{ false };
+	/** @brief Gets the value of Determiner_Optional, regardless of it having been set */
+	ERHAPI_Determiner& GetDeterminer() { return Determiner_Optional; }
+	/** @brief Gets the value of Determiner_Optional, regardless of it having been set */
+	const ERHAPI_Determiner& GetDeterminer() const { return Determiner_Optional; }
+	/** @brief Gets the value of Determiner_Optional, if it has been set, otherwise it returns DefaultValue */
+	const ERHAPI_Determiner& GetDeterminer(const ERHAPI_Determiner& DefaultValue) const { if (Determiner_IsSet) return Determiner_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Determiner_Optional and returns true if it has been set, otherwise returns false */
+	bool GetDeterminer(ERHAPI_Determiner& OutValue) const { if (Determiner_IsSet) OutValue = Determiner_Optional; return Determiner_IsSet; }
+	/** @brief Returns a pointer to Determiner_Optional, if it has been set, otherwise returns nullptr */
+	ERHAPI_Determiner* GetDeterminerOrNull() { if (Determiner_IsSet) return &Determiner_Optional; return nullptr; }
+	/** @brief Returns a pointer to Determiner_Optional, if it has been set, otherwise returns nullptr */
+	const ERHAPI_Determiner* GetDeterminerOrNull() const { if (Determiner_IsSet) return &Determiner_Optional; return nullptr; }
+	/** @brief Sets the value of Determiner_Optional and also sets Determiner_IsSet to true */
+	void SetDeterminer(ERHAPI_Determiner NewValue) { Determiner_Optional = NewValue; Determiner_IsSet = true; }
+	 /** @brief Clears the value of Determiner_Optional and sets Determiner_IsSet to false */
+	void ClearDeterminer() { Determiner_IsSet = false; }
 };
 
 /** @} */

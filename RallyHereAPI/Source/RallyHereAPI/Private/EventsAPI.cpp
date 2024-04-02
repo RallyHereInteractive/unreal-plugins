@@ -276,11 +276,11 @@ FString FResponse_ReceiveEventsV1::GetHttpResponseCodeDescription(EHttpResponseC
 	case 200:
 		return TEXT("Successful Response");
 	case 207:
-		return TEXT(" Error Codes: - events_multi_results - Some of the events from the request failed to process, and uploaded to deadletter blob storage ");
+		return TEXT(" Error Codes: - &#x60;events_multi_results&#x60; - Some of the events from the request failed to process, and uploaded to deadletter blob storage ");
 	case 400:
-		return TEXT(" Error Codes: - events_all_failed - All of events from the request failed to process, and uploaded to deadletter blob storage - event_lists_invalid - The input eventLists is invalid, failed pydantic validation - event_unsupported - Event name is not known - event_denied - Events of that name are currently denied - event_duplicated - Event has the same event_uuid as an event already received - event_params_invalid - The event_params failed validation against the jsonschema defined for the type/version.  See response description for more details.  ");
+		return TEXT(" Error Codes: - &#x60;event_denied&#x60; - Events of that name are currently denied - &#x60;event_duplicated&#x60; - Event has the same event_uuid as an event already received - &#x60;event_lists_invalid&#x60; - The input eventLists is invalid, failed pydantic validation - &#x60;event_params_invalid&#x60; - The event_params failed validation against the jsonschema defined for the type/version.  See response description for more details.  - &#x60;event_unsupported&#x60; - Event name is not known - &#x60;events_all_failed&#x60; - All of events from the request failed to process, and uploaded to deadletter blob storage ");
 	case 404:
-		return TEXT(" Error Codes: - event_schema_invalid - event_params jsonschema is empty, failed to load from developer-api - event_schema_not_found - The jsonschema is invalid and could not be used to validate the event_params value.  See response description for more details. ");
+		return TEXT(" Error Codes: - &#x60;event_schema_invalid&#x60; - event_params jsonschema is empty, failed to load from developer-api - &#x60;event_schema_not_found&#x60; - The jsonschema is invalid and could not be used to validate the event_params value.  See response description for more details. ");
 	case 422:
 		return TEXT("Validation Error");
 	}
