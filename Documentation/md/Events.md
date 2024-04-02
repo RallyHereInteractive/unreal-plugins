@@ -53,7 +53,7 @@ rh.correlation_start
 `public TOptional< FString > `[`Mode`](#structRHStandardEvents_1_1FCorrelationStartEvent_1a44a1e5df276714002007b51441393896) | The mode the client is running in.
 `public TOptional< TMap< FString, FString > > `[`CustomData`](#structRHStandardEvents_1_1FCorrelationStartEvent_1a8d0e6c9968c9c4268ccb31d72aea70e2) | custom data fields (will be auto-prefixed with custom data prefix)
 `public inline  `[`FCorrelationStartEvent`](#structRHStandardEvents_1_1FCorrelationStartEvent_1a1a51eff01e7eb9d12b21c31bf06b8070)`()` | 
-`public inline void `[`EmitTo`](#structRHStandardEvents_1_1FCorrelationStartEvent_1a0ccb1224987fdfcd710ce798dbedf13d)`(IAnalyticsProvider * Provider) const` | 
+`public inline void `[`EmitTo`](#structRHStandardEvents_1_1FCorrelationStartEvent_1aa06c42ce5f4bb34ad9f481c14c2e806d)`(TSharedPtr< IAnalyticsProvider > Provider) const` | 
 
 #### Members
 
@@ -110,7 +110,7 @@ custom data fields (will be auto-prefixed with custom data prefix)
 #### `public inline  `[`FCorrelationStartEvent`](#structRHStandardEvents_1_1FCorrelationStartEvent_1a1a51eff01e7eb9d12b21c31bf06b8070)`()` <a id="structRHStandardEvents_1_1FCorrelationStartEvent_1a1a51eff01e7eb9d12b21c31bf06b8070"></a>
 
 <br>
-#### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FCorrelationStartEvent_1a0ccb1224987fdfcd710ce798dbedf13d)`(IAnalyticsProvider * Provider) const` <a id="structRHStandardEvents_1_1FCorrelationStartEvent_1a0ccb1224987fdfcd710ce798dbedf13d"></a>
+#### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FCorrelationStartEvent_1aa06c42ce5f4bb34ad9f481c14c2e806d)`(TSharedPtr< IAnalyticsProvider > Provider) const` <a id="structRHStandardEvents_1_1FCorrelationStartEvent_1aa06c42ce5f4bb34ad9f481c14c2e806d"></a>
 
 <br>
 ## struct `RHStandardEvents::FCorrelationEndEvent` <a id="structRHStandardEvents_1_1FCorrelationEndEvent"></a>
@@ -127,7 +127,7 @@ rh.correlation_end
 `public TOptional< float > `[`DurationSeconds`](#structRHStandardEvents_1_1FCorrelationEndEvent_1a2198feae504ef70955648fe7752b37d7) | The duration of the correlation.
 `public TOptional< TMap< FString, FString > > `[`CustomData`](#structRHStandardEvents_1_1FCorrelationEndEvent_1a2c182c2aafe72419987a26a15e57708b) | custom data fields (will be auto-prefixed with custom data prefix)
 `public inline  `[`FCorrelationEndEvent`](#structRHStandardEvents_1_1FCorrelationEndEvent_1ab67461755e3ea773980869285b599e8d)`()` | 
-`public inline void `[`EmitTo`](#structRHStandardEvents_1_1FCorrelationEndEvent_1a19410683fa4e5105f754323ce77be689)`(IAnalyticsProvider * Provider) const` | 
+`public inline void `[`EmitTo`](#structRHStandardEvents_1_1FCorrelationEndEvent_1acbe26340b20e312185ca15cb63410c52)`(TSharedPtr< IAnalyticsProvider > Provider) const` | 
 
 #### Members
 
@@ -149,7 +149,7 @@ custom data fields (will be auto-prefixed with custom data prefix)
 #### `public inline  `[`FCorrelationEndEvent`](#structRHStandardEvents_1_1FCorrelationEndEvent_1ab67461755e3ea773980869285b599e8d)`()` <a id="structRHStandardEvents_1_1FCorrelationEndEvent_1ab67461755e3ea773980869285b599e8d"></a>
 
 <br>
-#### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FCorrelationEndEvent_1a19410683fa4e5105f754323ce77be689)`(IAnalyticsProvider * Provider) const` <a id="structRHStandardEvents_1_1FCorrelationEndEvent_1a19410683fa4e5105f754323ce77be689"></a>
+#### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FCorrelationEndEvent_1acbe26340b20e312185ca15cb63410c52)`(TSharedPtr< IAnalyticsProvider > Provider) const` <a id="structRHStandardEvents_1_1FCorrelationEndEvent_1acbe26340b20e312185ca15cb63410c52"></a>
 
 <br>
 ## struct `RHStandardEvents::FClientDeviceEvent` <a id="structRHStandardEvents_1_1FClientDeviceEvent"></a>
@@ -173,7 +173,7 @@ rh.client_device
 `public TOptional< FString > `[`DeviceType`](#structRHStandardEvents_1_1FClientDeviceEvent_1a52fbd8a4229809e92327d3e6f83cc4c5) | This will be then platform the game client is running on.
 `public TOptional< TMap< FString, FString > > `[`CustomData`](#structRHStandardEvents_1_1FClientDeviceEvent_1a341236af57be2415969ac60cc296c7c5) | custom data fields (will be auto-prefixed with custom data prefix)
 `public inline  `[`FClientDeviceEvent`](#structRHStandardEvents_1_1FClientDeviceEvent_1ad549fc630bc30c9f77f2d5f1a6c39ac3)`()` | 
-`public inline void `[`EmitTo`](#structRHStandardEvents_1_1FClientDeviceEvent_1acfb344c95e558432c3a3e07311be7fc9)`(IAnalyticsProvider * Provider) const` | 
+`public inline void `[`EmitTo`](#structRHStandardEvents_1_1FClientDeviceEvent_1a54f90bffb25c8b36caf77e901b7f32ed)`(TSharedPtr< IAnalyticsProvider > Provider) const` | 
 
 #### Members
 
@@ -230,7 +230,7 @@ custom data fields (will be auto-prefixed with custom data prefix)
 #### `public inline  `[`FClientDeviceEvent`](#structRHStandardEvents_1_1FClientDeviceEvent_1ad549fc630bc30c9f77f2d5f1a6c39ac3)`()` <a id="structRHStandardEvents_1_1FClientDeviceEvent_1ad549fc630bc30c9f77f2d5f1a6c39ac3"></a>
 
 <br>
-#### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FClientDeviceEvent_1acfb344c95e558432c3a3e07311be7fc9)`(IAnalyticsProvider * Provider) const` <a id="structRHStandardEvents_1_1FClientDeviceEvent_1acfb344c95e558432c3a3e07311be7fc9"></a>
+#### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FClientDeviceEvent_1a54f90bffb25c8b36caf77e901b7f32ed)`(TSharedPtr< IAnalyticsProvider > Provider) const` <a id="structRHStandardEvents_1_1FClientDeviceEvent_1a54f90bffb25c8b36caf77e901b7f32ed"></a>
 
 <br>
 ## struct `RHStandardEvents::FInstanceJoinStartEvent` <a id="structRHStandardEvents_1_1FInstanceJoinStartEvent"></a>
@@ -248,7 +248,7 @@ rh.instance_join_start
 `public TOptional< FString > `[`ConnectionString`](#structRHStandardEvents_1_1FInstanceJoinStartEvent_1a133d73e2a9d924f03beb8701a94fa153) | The connection string of the instance the player is attempting to join.
 `public TOptional< TMap< FString, FString > > `[`CustomData`](#structRHStandardEvents_1_1FInstanceJoinStartEvent_1a809a4e3ad455ea11f699db5e96c823c0) | custom data fields (will be auto-prefixed with custom data prefix)
 `public inline  `[`FInstanceJoinStartEvent`](#structRHStandardEvents_1_1FInstanceJoinStartEvent_1a9fe9145048ff3fc4d3c3c951d8a1f2ec)`()` | 
-`public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceJoinStartEvent_1a410a6489ad2d7531ad7bd5816d9306a3)`(IAnalyticsProvider * Provider) const` | 
+`public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceJoinStartEvent_1a18aae3f8bfeeb923bfcf877511d26cc9)`(TSharedPtr< IAnalyticsProvider > Provider) const` | 
 
 #### Members
 
@@ -275,7 +275,7 @@ custom data fields (will be auto-prefixed with custom data prefix)
 #### `public inline  `[`FInstanceJoinStartEvent`](#structRHStandardEvents_1_1FInstanceJoinStartEvent_1a9fe9145048ff3fc4d3c3c951d8a1f2ec)`()` <a id="structRHStandardEvents_1_1FInstanceJoinStartEvent_1a9fe9145048ff3fc4d3c3c951d8a1f2ec"></a>
 
 <br>
-#### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceJoinStartEvent_1a410a6489ad2d7531ad7bd5816d9306a3)`(IAnalyticsProvider * Provider) const` <a id="structRHStandardEvents_1_1FInstanceJoinStartEvent_1a410a6489ad2d7531ad7bd5816d9306a3"></a>
+#### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceJoinStartEvent_1a18aae3f8bfeeb923bfcf877511d26cc9)`(TSharedPtr< IAnalyticsProvider > Provider) const` <a id="structRHStandardEvents_1_1FInstanceJoinStartEvent_1a18aae3f8bfeeb923bfcf877511d26cc9"></a>
 
 <br>
 ## struct `RHStandardEvents::FInstanceJoinCompleteEvent` <a id="structRHStandardEvents_1_1FInstanceJoinCompleteEvent"></a>
@@ -294,7 +294,7 @@ rh.instnace_join_complete
 `public TOptional< FString > `[`Reason`](#structRHStandardEvents_1_1FInstanceJoinCompleteEvent_1a8295d75bbfd9a941c64eeb68b8722c6d) | The reason for the failure to join the instance.
 `public TOptional< TMap< FString, FString > > `[`CustomData`](#structRHStandardEvents_1_1FInstanceJoinCompleteEvent_1a7a60eeaf37414665063ad1a6386fb40c) | custom data fields (will be auto-prefixed with custom data prefix)
 `public inline  `[`FInstanceJoinCompleteEvent`](#structRHStandardEvents_1_1FInstanceJoinCompleteEvent_1a90fc553eeebc4e89006ed2709011fc10)`()` | 
-`public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceJoinCompleteEvent_1aef5e96360a6ac8389b5371a78efddf98)`(IAnalyticsProvider * Provider) const` | 
+`public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceJoinCompleteEvent_1a2b9f43b23fb6ea4254f6cdb3dd5d03b0)`(TSharedPtr< IAnalyticsProvider > Provider) const` | 
 
 #### Members
 
@@ -326,7 +326,7 @@ custom data fields (will be auto-prefixed with custom data prefix)
 #### `public inline  `[`FInstanceJoinCompleteEvent`](#structRHStandardEvents_1_1FInstanceJoinCompleteEvent_1a90fc553eeebc4e89006ed2709011fc10)`()` <a id="structRHStandardEvents_1_1FInstanceJoinCompleteEvent_1a90fc553eeebc4e89006ed2709011fc10"></a>
 
 <br>
-#### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceJoinCompleteEvent_1aef5e96360a6ac8389b5371a78efddf98)`(IAnalyticsProvider * Provider) const` <a id="structRHStandardEvents_1_1FInstanceJoinCompleteEvent_1aef5e96360a6ac8389b5371a78efddf98"></a>
+#### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceJoinCompleteEvent_1a2b9f43b23fb6ea4254f6cdb3dd5d03b0)`(TSharedPtr< IAnalyticsProvider > Provider) const` <a id="structRHStandardEvents_1_1FInstanceJoinCompleteEvent_1a2b9f43b23fb6ea4254f6cdb3dd5d03b0"></a>
 
 <br>
 ## struct `RHStandardEvents::FInstanceLeftEvent` <a id="structRHStandardEvents_1_1FInstanceLeftEvent"></a>
@@ -344,7 +344,7 @@ rh.instance_left
 `public TOptional< FString > `[`Reason`](#structRHStandardEvents_1_1FInstanceLeftEvent_1a686540f637f62130ffc392ede61f09f9) | The reason for the player leaving the instance.
 `public TOptional< TMap< FString, FString > > `[`CustomData`](#structRHStandardEvents_1_1FInstanceLeftEvent_1af42085b7b056b6dd38e169dd0342811e) | custom data fields (will be auto-prefixed with custom data prefix)
 `public inline  `[`FInstanceLeftEvent`](#structRHStandardEvents_1_1FInstanceLeftEvent_1a698bd9d2e86ef8f5956b84286c677ba6)`()` | 
-`public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceLeftEvent_1acb0af23c65982c32df6644f4b4a82b6f)`(IAnalyticsProvider * Provider) const` | 
+`public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceLeftEvent_1adeafad021ed9b7fe7ea6c07237a4e5e0)`(TSharedPtr< IAnalyticsProvider > Provider) const` | 
 
 #### Members
 
@@ -371,7 +371,7 @@ custom data fields (will be auto-prefixed with custom data prefix)
 #### `public inline  `[`FInstanceLeftEvent`](#structRHStandardEvents_1_1FInstanceLeftEvent_1a698bd9d2e86ef8f5956b84286c677ba6)`()` <a id="structRHStandardEvents_1_1FInstanceLeftEvent_1a698bd9d2e86ef8f5956b84286c677ba6"></a>
 
 <br>
-#### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceLeftEvent_1acb0af23c65982c32df6644f4b4a82b6f)`(IAnalyticsProvider * Provider) const` <a id="structRHStandardEvents_1_1FInstanceLeftEvent_1acb0af23c65982c32df6644f4b4a82b6f"></a>
+#### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceLeftEvent_1adeafad021ed9b7fe7ea6c07237a4e5e0)`(TSharedPtr< IAnalyticsProvider > Provider) const` <a id="structRHStandardEvents_1_1FInstanceLeftEvent_1adeafad021ed9b7fe7ea6c07237a4e5e0"></a>
 
 <br>
 ## struct `RHStandardEvents::FInstanceHelloReceivedEvent` <a id="structRHStandardEvents_1_1FInstanceHelloReceivedEvent"></a>
@@ -390,7 +390,7 @@ rh.instance_hello_received
 `public TOptional< FString > `[`IpAddress`](#structRHStandardEvents_1_1FInstanceHelloReceivedEvent_1ae7d2fb50c71dac5533ddbd9bd2314bc3) | The incoming IP Address the connection is originating from.
 `public TOptional< TMap< FString, FString > > `[`CustomData`](#structRHStandardEvents_1_1FInstanceHelloReceivedEvent_1a4192fcb94955a7d002b4f72f8f638237) | custom data fields (will be auto-prefixed with custom data prefix)
 `public inline  `[`FInstanceHelloReceivedEvent`](#structRHStandardEvents_1_1FInstanceHelloReceivedEvent_1acf31d6acaee497ce21e28d13c868d677)`()` | 
-`public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceHelloReceivedEvent_1a8dd8971a4314464e14e9a02932a0db5c)`(IAnalyticsProvider * Provider) const` | 
+`public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceHelloReceivedEvent_1acb3da06c8a8e2a674b37513cc8225f5c)`(TSharedPtr< IAnalyticsProvider > Provider) const` | 
 
 #### Members
 
@@ -422,7 +422,7 @@ custom data fields (will be auto-prefixed with custom data prefix)
 #### `public inline  `[`FInstanceHelloReceivedEvent`](#structRHStandardEvents_1_1FInstanceHelloReceivedEvent_1acf31d6acaee497ce21e28d13c868d677)`()` <a id="structRHStandardEvents_1_1FInstanceHelloReceivedEvent_1acf31d6acaee497ce21e28d13c868d677"></a>
 
 <br>
-#### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceHelloReceivedEvent_1a8dd8971a4314464e14e9a02932a0db5c)`(IAnalyticsProvider * Provider) const` <a id="structRHStandardEvents_1_1FInstanceHelloReceivedEvent_1a8dd8971a4314464e14e9a02932a0db5c"></a>
+#### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceHelloReceivedEvent_1acb3da06c8a8e2a674b37513cc8225f5c)`(TSharedPtr< IAnalyticsProvider > Provider) const` <a id="structRHStandardEvents_1_1FInstanceHelloReceivedEvent_1acb3da06c8a8e2a674b37513cc8225f5c"></a>
 
 <br>
 ## struct `RHStandardEvents::FInstanceLoginReceivedEvent` <a id="structRHStandardEvents_1_1FInstanceLoginReceivedEvent"></a>
@@ -445,7 +445,7 @@ rh.instance_login_received
 `public TOptional< `[`FSplitJoinInfo`](undefined.md#structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1_1FSplitJoinInfo)` > `[`SplitJoinInfo`](#structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1af380b47e61e9e28a297e09a42f0aba9c) | the split join info for this connection
 `public TOptional< TMap< FString, FString > > `[`CustomData`](#structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1a44430050aeffe42e9f26b693afa5c06a) | custom data fields (will be auto-prefixed with custom data prefix)
 `public inline  `[`FInstanceLoginReceivedEvent`](#structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1ab9cf4514ca3affaad4f8a8d637fae248)`()` | 
-`public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1afc6e60ff75293eb3130004aa8b8f4070)`(IAnalyticsProvider * Provider) const` | 
+`public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1a636bc78d31cc71600065a000f9ef4920)`(TSharedPtr< IAnalyticsProvider > Provider) const` | 
 
 #### Members
 
@@ -495,7 +495,7 @@ custom data fields (will be auto-prefixed with custom data prefix)
 #### `public inline  `[`FInstanceLoginReceivedEvent`](#structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1ab9cf4514ca3affaad4f8a8d637fae248)`()` <a id="structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1ab9cf4514ca3affaad4f8a8d637fae248"></a>
 
 <br>
-#### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1afc6e60ff75293eb3130004aa8b8f4070)`(IAnalyticsProvider * Provider) const` <a id="structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1afc6e60ff75293eb3130004aa8b8f4070"></a>
+#### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1a636bc78d31cc71600065a000f9ef4920)`(TSharedPtr< IAnalyticsProvider > Provider) const` <a id="structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1a636bc78d31cc71600065a000f9ef4920"></a>
 
 <br>
 ## struct `RHStandardEvents::FInstanceJoinReceivedEvent` <a id="structRHStandardEvents_1_1FInstanceJoinReceivedEvent"></a>
@@ -514,7 +514,7 @@ rh.instance_join_received
 `public TOptional< FGuid > `[`UserId`](#structRHStandardEvents_1_1FInstanceJoinReceivedEvent_1a8f1e4cc77730d933962c6b381138e2d5) | The user id of the instance the player is attempting to join.
 `public TOptional< TMap< FString, FString > > `[`CustomData`](#structRHStandardEvents_1_1FInstanceJoinReceivedEvent_1a8f9b48c48f0943bb96aeca521f38b8f7) | custom data fields (will be auto-prefixed with custom data prefix)
 `public inline  `[`FInstanceJoinReceivedEvent`](#structRHStandardEvents_1_1FInstanceJoinReceivedEvent_1ad9f191b94536fd1a693453b5b04aa7db)`()` | 
-`public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceJoinReceivedEvent_1a713ce24d16f21526fe567f1bc3993c98)`(IAnalyticsProvider * Provider) const` | 
+`public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceJoinReceivedEvent_1a5346d8d8bfaf1197ead639cfe58ba231)`(TSharedPtr< IAnalyticsProvider > Provider) const` | 
 
 #### Members
 
@@ -544,7 +544,7 @@ custom data fields (will be auto-prefixed with custom data prefix)
 #### `public inline  `[`FInstanceJoinReceivedEvent`](#structRHStandardEvents_1_1FInstanceJoinReceivedEvent_1ad9f191b94536fd1a693453b5b04aa7db)`()` <a id="structRHStandardEvents_1_1FInstanceJoinReceivedEvent_1ad9f191b94536fd1a693453b5b04aa7db"></a>
 
 <br>
-#### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceJoinReceivedEvent_1a713ce24d16f21526fe567f1bc3993c98)`(IAnalyticsProvider * Provider) const` <a id="structRHStandardEvents_1_1FInstanceJoinReceivedEvent_1a713ce24d16f21526fe567f1bc3993c98"></a>
+#### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceJoinReceivedEvent_1a5346d8d8bfaf1197ead639cfe58ba231)`(TSharedPtr< IAnalyticsProvider > Provider) const` <a id="structRHStandardEvents_1_1FInstanceJoinReceivedEvent_1a5346d8d8bfaf1197ead639cfe58ba231"></a>
 
 <br>
 ## struct `RHStandardEvents::FInstanceClientDisconnectEvent` <a id="structRHStandardEvents_1_1FInstanceClientDisconnectEvent"></a>
@@ -563,7 +563,7 @@ rh.instance_client_disconnect
 `public TOptional< FString > `[`Reason`](#structRHStandardEvents_1_1FInstanceClientDisconnectEvent_1a6b570cbbcfd12805a316b70509211289) | The reason for the disconnect, if known.
 `public TOptional< TMap< FString, FString > > `[`CustomData`](#structRHStandardEvents_1_1FInstanceClientDisconnectEvent_1ad7aa4cd4a10bbc653a8fc9d275d1002b) | custom data fields (will be auto-prefixed with custom data prefix)
 `public inline  `[`FInstanceClientDisconnectEvent`](#structRHStandardEvents_1_1FInstanceClientDisconnectEvent_1a66881d90ba7836f59ffdbaf86058ab76)`()` | 
-`public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceClientDisconnectEvent_1ae2d932b03b4e86770c1cf21677c18841)`(IAnalyticsProvider * Provider) const` | 
+`public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceClientDisconnectEvent_1a518754aa3e41452b87a617ba74047d2f)`(TSharedPtr< IAnalyticsProvider > Provider) const` | 
 
 #### Members
 
@@ -595,7 +595,7 @@ custom data fields (will be auto-prefixed with custom data prefix)
 #### `public inline  `[`FInstanceClientDisconnectEvent`](#structRHStandardEvents_1_1FInstanceClientDisconnectEvent_1a66881d90ba7836f59ffdbaf86058ab76)`()` <a id="structRHStandardEvents_1_1FInstanceClientDisconnectEvent_1a66881d90ba7836f59ffdbaf86058ab76"></a>
 
 <br>
-#### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceClientDisconnectEvent_1ae2d932b03b4e86770c1cf21677c18841)`(IAnalyticsProvider * Provider) const` <a id="structRHStandardEvents_1_1FInstanceClientDisconnectEvent_1ae2d932b03b4e86770c1cf21677c18841"></a>
+#### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceClientDisconnectEvent_1a518754aa3e41452b87a617ba74047d2f)`(TSharedPtr< IAnalyticsProvider > Provider) const` <a id="structRHStandardEvents_1_1FInstanceClientDisconnectEvent_1a518754aa3e41452b87a617ba74047d2f"></a>
 
 <br>
 ## struct `RHStandardEvents::FLoginStartEvent` <a id="structRHStandardEvents_1_1FLoginStartEvent"></a>
@@ -611,7 +611,7 @@ rh.login_start
 `public TOptional< FString > `[`PlatformDisplayName`](#structRHStandardEvents_1_1FLoginStartEvent_1ad86dab7ee24d5268c6a919f4bd940bee) | Platform username / gamertag of the player.
 `public TOptional< TMap< FString, FString > > `[`CustomData`](#structRHStandardEvents_1_1FLoginStartEvent_1aaa8c15c1d4484c3ea1a940b5432b6999) | custom data fields (will be auto-prefixed with custom data prefix)
 `public inline  `[`FLoginStartEvent`](#structRHStandardEvents_1_1FLoginStartEvent_1ade639811664eb76689e326042f554bca)`()` | 
-`public inline void `[`EmitTo`](#structRHStandardEvents_1_1FLoginStartEvent_1a21dac598f0c7d0c9a06f0535d8eab4ac)`(IAnalyticsProvider * Provider) const` | 
+`public inline void `[`EmitTo`](#structRHStandardEvents_1_1FLoginStartEvent_1af024329f3908140ea3739f1a21e6f968)`(TSharedPtr< IAnalyticsProvider > Provider) const` | 
 
 #### Members
 
@@ -628,7 +628,7 @@ custom data fields (will be auto-prefixed with custom data prefix)
 #### `public inline  `[`FLoginStartEvent`](#structRHStandardEvents_1_1FLoginStartEvent_1ade639811664eb76689e326042f554bca)`()` <a id="structRHStandardEvents_1_1FLoginStartEvent_1ade639811664eb76689e326042f554bca"></a>
 
 <br>
-#### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FLoginStartEvent_1a21dac598f0c7d0c9a06f0535d8eab4ac)`(IAnalyticsProvider * Provider) const` <a id="structRHStandardEvents_1_1FLoginStartEvent_1a21dac598f0c7d0c9a06f0535d8eab4ac"></a>
+#### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FLoginStartEvent_1af024329f3908140ea3739f1a21e6f968)`(TSharedPtr< IAnalyticsProvider > Provider) const` <a id="structRHStandardEvents_1_1FLoginStartEvent_1af024329f3908140ea3739f1a21e6f968"></a>
 
 <br>
 ## struct `RHStandardEvents::FLoginCompleteEvent` <a id="structRHStandardEvents_1_1FLoginCompleteEvent"></a>
@@ -652,7 +652,7 @@ rh.login_complete
 `public TOptional< FString > `[`PlatformLoginCompleteTimestamp`](#structRHStandardEvents_1_1FLoginCompleteEvent_1a0c48e762565c10bf0f8bc212ac817846) | The timestamp when the login process was completed.
 `public TOptional< TMap< FString, FString > > `[`CustomData`](#structRHStandardEvents_1_1FLoginCompleteEvent_1a6505fba3d70c9ddf43416360bc48bbbf) | custom data fields (will be auto-prefixed with custom data prefix)
 `public inline  `[`FLoginCompleteEvent`](#structRHStandardEvents_1_1FLoginCompleteEvent_1a54e374804cb72bc28f8de6152169e08c)`()` | 
-`public inline void `[`EmitTo`](#structRHStandardEvents_1_1FLoginCompleteEvent_1a13109823a17b2b5a67125d947661caf7)`(IAnalyticsProvider * Provider) const` | 
+`public inline void `[`EmitTo`](#structRHStandardEvents_1_1FLoginCompleteEvent_1abde8b2f4341c987eb3517d4886eb4a11)`(TSharedPtr< IAnalyticsProvider > Provider) const` | 
 
 #### Members
 
@@ -709,7 +709,7 @@ custom data fields (will be auto-prefixed with custom data prefix)
 #### `public inline  `[`FLoginCompleteEvent`](#structRHStandardEvents_1_1FLoginCompleteEvent_1a54e374804cb72bc28f8de6152169e08c)`()` <a id="structRHStandardEvents_1_1FLoginCompleteEvent_1a54e374804cb72bc28f8de6152169e08c"></a>
 
 <br>
-#### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FLoginCompleteEvent_1a13109823a17b2b5a67125d947661caf7)`(IAnalyticsProvider * Provider) const` <a id="structRHStandardEvents_1_1FLoginCompleteEvent_1a13109823a17b2b5a67125d947661caf7"></a>
+#### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FLoginCompleteEvent_1abde8b2f4341c987eb3517d4886eb4a11)`(TSharedPtr< IAnalyticsProvider > Provider) const` <a id="structRHStandardEvents_1_1FLoginCompleteEvent_1abde8b2f4341c987eb3517d4886eb4a11"></a>
 
 <br>
 ## struct `RHStandardEvents::FObjectiveProgressEvent` <a id="structRHStandardEvents_1_1FObjectiveProgressEvent"></a>
@@ -739,7 +739,7 @@ rh.objective_progress
 `public TOptional< FString > `[`InstanceId`](#structRHStandardEvents_1_1FObjectiveProgressEvent_1a6b0bd7a6a9497aebe4f49967394ac8a3) | A InstanceId to be associated with this event (ex: for gameplay rewards)
 `public TOptional< TMap< FString, FString > > `[`CustomData`](#structRHStandardEvents_1_1FObjectiveProgressEvent_1a9ffc3b2b5472a6ec21830cdc57638356) | custom data fields (will be auto-prefixed with custom data prefix)
 `public inline  `[`FObjectiveProgressEvent`](#structRHStandardEvents_1_1FObjectiveProgressEvent_1ae4ae09439045f64f41c15068bd296729)`()` | 
-`public inline void `[`EmitTo`](#structRHStandardEvents_1_1FObjectiveProgressEvent_1afc45b87abf3b09ff20d3299ecb6a322e)`(IAnalyticsProvider * Provider) const` | 
+`public inline void `[`EmitTo`](#structRHStandardEvents_1_1FObjectiveProgressEvent_1a4d6366be8ce37f2622f2b4902051a58c)`(TSharedPtr< IAnalyticsProvider > Provider) const` | 
 
 #### Members
 
@@ -826,7 +826,7 @@ custom data fields (will be auto-prefixed with custom data prefix)
 #### `public inline  `[`FObjectiveProgressEvent`](#structRHStandardEvents_1_1FObjectiveProgressEvent_1ae4ae09439045f64f41c15068bd296729)`()` <a id="structRHStandardEvents_1_1FObjectiveProgressEvent_1ae4ae09439045f64f41c15068bd296729"></a>
 
 <br>
-#### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FObjectiveProgressEvent_1afc45b87abf3b09ff20d3299ecb6a322e)`(IAnalyticsProvider * Provider) const` <a id="structRHStandardEvents_1_1FObjectiveProgressEvent_1afc45b87abf3b09ff20d3299ecb6a322e"></a>
+#### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FObjectiveProgressEvent_1a4d6366be8ce37f2622f2b4902051a58c)`(TSharedPtr< IAnalyticsProvider > Provider) const` <a id="structRHStandardEvents_1_1FObjectiveProgressEvent_1a4d6366be8ce37f2622f2b4902051a58c"></a>
 
 <br>
 ## struct `RHStandardEvents::FPlayerGameResultEvent` <a id="structRHStandardEvents_1_1FPlayerGameResultEvent"></a>
@@ -851,7 +851,7 @@ rh.player_game_result
 `public TOptional< FString > `[`PrimaryInputType`](#structRHStandardEvents_1_1FPlayerGameResultEvent_1adbe683133ec0c01df96811e54c4c235d) | The primary input type of the player
 `public TOptional< TMap< FString, FString > > `[`CustomData`](#structRHStandardEvents_1_1FPlayerGameResultEvent_1a53999f026467c7e844cf0dbe19e36e37) | custom data fields (will be auto-prefixed with custom data prefix)
 `public inline  `[`FPlayerGameResultEvent`](#structRHStandardEvents_1_1FPlayerGameResultEvent_1a63ed113be1c84b80b0d193dbf3faead0)`()` | 
-`public inline void `[`EmitTo`](#structRHStandardEvents_1_1FPlayerGameResultEvent_1a5428c9acaee0b90c784476e272fae149)`(IAnalyticsProvider * Provider) const` | 
+`public inline void `[`EmitTo`](#structRHStandardEvents_1_1FPlayerGameResultEvent_1a6b9c96a90cfbbd0572315f8b80166868)`(TSharedPtr< IAnalyticsProvider > Provider) const` | 
 
 #### Members
 
@@ -913,7 +913,7 @@ custom data fields (will be auto-prefixed with custom data prefix)
 #### `public inline  `[`FPlayerGameResultEvent`](#structRHStandardEvents_1_1FPlayerGameResultEvent_1a63ed113be1c84b80b0d193dbf3faead0)`()` <a id="structRHStandardEvents_1_1FPlayerGameResultEvent_1a63ed113be1c84b80b0d193dbf3faead0"></a>
 
 <br>
-#### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FPlayerGameResultEvent_1a5428c9acaee0b90c784476e272fae149)`(IAnalyticsProvider * Provider) const` <a id="structRHStandardEvents_1_1FPlayerGameResultEvent_1a5428c9acaee0b90c784476e272fae149"></a>
+#### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FPlayerGameResultEvent_1a6b9c96a90cfbbd0572315f8b80166868)`(TSharedPtr< IAnalyticsProvider > Provider) const` <a id="structRHStandardEvents_1_1FPlayerGameResultEvent_1a6b9c96a90cfbbd0572315f8b80166868"></a>
 
 <br>
 ## struct `RHStandardEvents::FPlatformPurchaseEvent` <a id="structRHStandardEvents_1_1FPlatformPurchaseEvent"></a>
@@ -931,7 +931,7 @@ rh.platform_purchase
 `public FString `[`State`](#structRHStandardEvents_1_1FPlatformPurchaseEvent_1aa20e40471f982db8d7544951a49d253c) | The state of the purchase
 `public TOptional< TMap< FString, FString > > `[`CustomData`](#structRHStandardEvents_1_1FPlatformPurchaseEvent_1ad5022bcbe859ffa72c5b593fa292d395) | custom data fields (will be auto-prefixed with custom data prefix)
 `public inline  `[`FPlatformPurchaseEvent`](#structRHStandardEvents_1_1FPlatformPurchaseEvent_1a1b772cdc5a20dc0eac0f5b71f24531d7)`()` | 
-`public inline void `[`EmitTo`](#structRHStandardEvents_1_1FPlatformPurchaseEvent_1ac11f111abda67274f03f584fc22912da)`(IAnalyticsProvider * Provider) const` | 
+`public inline void `[`EmitTo`](#structRHStandardEvents_1_1FPlatformPurchaseEvent_1ae736aa93ea8284152324d901169d459c)`(TSharedPtr< IAnalyticsProvider > Provider) const` | 
 
 #### Members
 
@@ -958,7 +958,7 @@ custom data fields (will be auto-prefixed with custom data prefix)
 #### `public inline  `[`FPlatformPurchaseEvent`](#structRHStandardEvents_1_1FPlatformPurchaseEvent_1a1b772cdc5a20dc0eac0f5b71f24531d7)`()` <a id="structRHStandardEvents_1_1FPlatformPurchaseEvent_1a1b772cdc5a20dc0eac0f5b71f24531d7"></a>
 
 <br>
-#### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FPlatformPurchaseEvent_1ac11f111abda67274f03f584fc22912da)`(IAnalyticsProvider * Provider) const` <a id="structRHStandardEvents_1_1FPlatformPurchaseEvent_1ac11f111abda67274f03f584fc22912da"></a>
+#### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FPlatformPurchaseEvent_1ae736aa93ea8284152324d901169d459c)`(TSharedPtr< IAnalyticsProvider > Provider) const` <a id="structRHStandardEvents_1_1FPlatformPurchaseEvent_1ae736aa93ea8284152324d901169d459c"></a>
 
 <br>
 ## struct `RHStandardEvents::FCustomEvent` <a id="structRHStandardEvents_1_1FCustomEvent"></a>
@@ -973,7 +973,7 @@ This is a wrapper for providing custom event data.
 `public TArray< FAnalyticsEventAttribute > `[`Attributes`](#structRHStandardEvents_1_1FCustomEvent_1af6f0ea633eef4ceab7a4a985cb57fff0) | Attribute list.
 `public TOptional< TMap< FString, FString > > `[`CustomData`](#structRHStandardEvents_1_1FCustomEvent_1aa15d1cedc9143c218dc3db2506e32dc7) | custom data fields (will be auto-prefixed with custom data prefix)
 `public inline  `[`FCustomEvent`](#structRHStandardEvents_1_1FCustomEvent_1add4d8214b9316a09b1974046126b6787)`()` | 
-`public inline void `[`EmitTo`](#structRHStandardEvents_1_1FCustomEvent_1a9c9fe99fea36643abbf5082ea6c8ce6e)`(IAnalyticsProvider * Provider) const` | 
+`public inline void `[`EmitTo`](#structRHStandardEvents_1_1FCustomEvent_1a591d2bf1b9de8aee79e92e94e74b1d0b)`(TSharedPtr< IAnalyticsProvider > Provider) const` | 
 
 #### Members
 
@@ -995,6 +995,6 @@ custom data fields (will be auto-prefixed with custom data prefix)
 #### `public inline  `[`FCustomEvent`](#structRHStandardEvents_1_1FCustomEvent_1add4d8214b9316a09b1974046126b6787)`()` <a id="structRHStandardEvents_1_1FCustomEvent_1add4d8214b9316a09b1974046126b6787"></a>
 
 <br>
-#### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FCustomEvent_1a9c9fe99fea36643abbf5082ea6c8ce6e)`(IAnalyticsProvider * Provider) const` <a id="structRHStandardEvents_1_1FCustomEvent_1a9c9fe99fea36643abbf5082ea6c8ce6e"></a>
+#### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FCustomEvent_1a591d2bf1b9de8aee79e92e94e74b1d0b)`(TSharedPtr< IAnalyticsProvider > Provider) const` <a id="structRHStandardEvents_1_1FCustomEvent_1a591d2bf1b9de8aee79e92e94e74b1d0b"></a>
 
 <br>
