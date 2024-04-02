@@ -199,7 +199,7 @@ const TArray<FName> FRH_WebRequests::GetAPINames() const
 	TArray<FName> Results;
 	if (APIs != nullptr)
 	{
-		for (const auto API : APIs->GetAllAPIs())
+		for (const auto& API : APIs->GetAllAPIs())
 		{
 			Results.Add(API->GetName());
 		}
@@ -212,7 +212,7 @@ bool FRH_WebRequests::GetLogAllWebRequests() const
 {
 	if (APIs != nullptr)
 	{
-		for (const auto API : APIs->GetAllAPIs())
+		for (const auto& API : APIs->GetAllAPIs())
 		{
 			if (!GetLogWebRequests(API->GetName()))
 			{
@@ -227,7 +227,7 @@ void FRH_WebRequests::SetLogAllWebRequests(bool bValue)
 {
 	if (APIs != nullptr)
 	{
-		for (const auto API : APIs->GetAllAPIs())
+		for (const auto& API : APIs->GetAllAPIs())
 		{
 			SetLogWebRequests(API->GetName(), bValue);
 		}
