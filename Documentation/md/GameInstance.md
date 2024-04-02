@@ -148,7 +148,7 @@ Server Bootstrapper for the Game Instance.
 `protected virtual void `[`HandleAppTerminatedGameThread`](#classURH__GameInstanceServerBootstrapper_1a1ec1c5bb9f2a33ab6046cf66d8b4b152)`()` | Callback binding for the default engine SIGTERM / CTRL - C(Windows) handlers - these are indicating an IMMEDIATE shutdown - runs in the game thread.
 `protected virtual void `[`BestEffortLeaveSession`](#classURH__GameInstanceServerBootstrapper_1a14524147b04e9d0a6c2e2f4e7e1de9bf)`()` | Fallback routine that does its best to leave the session we have loaded.
 `protected virtual void `[`UpdateBootstrapStep`](#classURH__GameInstanceServerBootstrapper_1ad3057c819da82f1bd348bbfc8eeb1850)`(`[`ERH_ServerBootstrapFlowStep`](undefined.md#group__GameInstance_1ga70ec3ebac3b063bae8ad728c7cdd4d36)` NewStep)` | Updates the current bootstrapping step, and handles step change logic.
-`protected virtual void `[`OnBootstrappingFailed`](#classURH__GameInstanceServerBootstrapper_1a1875bbf2ad7df512f7f1c977a6dfe161)`()` | Bootstrapping Flow [Failed] - trigger bootstrapping failure and handles failure logic.
+`protected virtual void `[`OnBootstrappingFailed`](#classURH__GameInstanceServerBootstrapper_1a0153222bb4308545e9f1270882ddab4f)`(const FString & FailureReason)` | Bootstrapping Flow [Failed] - trigger bootstrapping failure and handles failure logic.
 `protected virtual void `[`OnBootstrappingComplete`](#classURH__GameInstanceServerBootstrapper_1a2882f79445b73579a19dbb92e8b859df)`()` | Bootstrapping Flow [Complete] - trigger bootstrapping complete and handles completion logic. Note that recycling may start a new bootstrapping flow.
 `protected virtual void `[`BeginServerLogin`](#classURH__GameInstanceServerBootstrapper_1a924d64924d1e13251752ae00763ea765)`()` | Bootstrapping Flow [LoggingIn] - begin the login process to the RallyHere API.
 `protected virtual void `[`OnServerLoginComplete`](#classURH__GameInstanceServerBootstrapper_1aa3753ed4ef198142046a76016193062e)`(bool bSuccess,const `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` & ErrorInfo)` | Bootstrapping Flow [Login] - completion callback for RallyHere API login.
@@ -478,7 +478,7 @@ Updates the current bootstrapping step, and handles step change logic.
 * `NewStep` The new step to transition to
 
 <br>
-#### `protected virtual void `[`OnBootstrappingFailed`](#classURH__GameInstanceServerBootstrapper_1a1875bbf2ad7df512f7f1c977a6dfe161)`()` <a id="classURH__GameInstanceServerBootstrapper_1a1875bbf2ad7df512f7f1c977a6dfe161"></a>
+#### `protected virtual void `[`OnBootstrappingFailed`](#classURH__GameInstanceServerBootstrapper_1a0153222bb4308545e9f1270882ddab4f)`(const FString & FailureReason)` <a id="classURH__GameInstanceServerBootstrapper_1a0153222bb4308545e9f1270882ddab4f"></a>
 
 Bootstrapping Flow [Failed] - trigger bootstrapping failure and handles failure logic.
 
