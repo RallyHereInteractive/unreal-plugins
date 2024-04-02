@@ -5,351 +5,384 @@ namespace RallyHereAPI
 {
 
 FRallyHereAPIAll::FRallyHereAPIAll()
+	: DummyValue(0)
+	, Ad(MakeShareable(new FAdAPI()))
+	, Auth(MakeShareable(new FAuthAPI()))
+	, BlockedV1(MakeShareable(new FBlockedV1API()))
+	, BlockedV2(MakeShareable(new FBlockedV2API()))
+	, Catalog(MakeShareable(new FCatalogAPI()))
+	, Config(MakeShareable(new FConfigAPI()))
+	, ConfigurationV1(MakeShareable(new FConfigurationV1API()))
+	, Custom(MakeShareable(new FCustomAPI()))
+	, Entitlements(MakeShareable(new FEntitlementsAPI()))
+	, Environment(MakeShareable(new FEnvironmentAPI()))
+	, Events(MakeShareable(new FEventsAPI()))
+	, FriendsV1(MakeShareable(new FFriendsV1API()))
+	, FriendsV2(MakeShareable(new FFriendsV2API()))
+	, InstanceNotification(MakeShareable(new FInstanceNotificationAPI()))
+	, Inventory(MakeShareable(new FInventoryAPI()))
+	, KeyClaims(MakeShareable(new FKeyClaimsAPI()))
+	, KeyEntitlements(MakeShareable(new FKeyEntitlementsAPI()))
+	, Marketing(MakeShareable(new FMarketingAPI()))
+	, Match(MakeShareable(new FMatchAPI()))
+	, PlayerIdNotification(MakeShareable(new FPlayerIdNotificationAPI()))
+	, PlayerNotification(MakeShareable(new FPlayerNotificationAPI()))
+	, Presence(MakeShareable(new FPresenceAPI()))
+	, PresenceAdmin(MakeShareable(new FPresenceAdminAPI()))
+	, Queues(MakeShareable(new FQueuesAPI()))
+	, Rank(MakeShareable(new FRankAPI()))
+	, Regions(MakeShareable(new FRegionsAPI()))
+	, Reports(MakeShareable(new FReportsAPI()))
+	, Sessions(MakeShareable(new FSessionsAPI()))
+	, Settings(MakeShareable(new FSettingsAPI()))
+	, Time(MakeShareable(new FTimeAPI()))
+	, Users(MakeShareable(new FUsersAPI()))
+
 {
-	AllAPIs.Add(&Ad);
-	AllAPIs.Add(&Auth);
-	AllAPIs.Add(&BlockedV1);
-	AllAPIs.Add(&BlockedV2);
-	AllAPIs.Add(&Catalog);
-	AllAPIs.Add(&Config);
-	AllAPIs.Add(&ConfigurationV1);
-	AllAPIs.Add(&Custom);
-	AllAPIs.Add(&Entitlements);
-	AllAPIs.Add(&Environment);
-	AllAPIs.Add(&Events);
-	AllAPIs.Add(&FriendsV1);
-	AllAPIs.Add(&FriendsV2);
-	AllAPIs.Add(&InstanceNotification);
-	AllAPIs.Add(&Inventory);
-	AllAPIs.Add(&KeyClaims);
-	AllAPIs.Add(&KeyEntitlements);
-	AllAPIs.Add(&Marketing);
-	AllAPIs.Add(&Match);
-	AllAPIs.Add(&PlayerIdNotification);
-	AllAPIs.Add(&PlayerNotification);
-	AllAPIs.Add(&Presence);
-	AllAPIs.Add(&PresenceAdmin);
-	AllAPIs.Add(&Queues);
-	AllAPIs.Add(&Rank);
-	AllAPIs.Add(&Regions);
-	AllAPIs.Add(&Reports);
-	AllAPIs.Add(&Sessions);
-	AllAPIs.Add(&Settings);
-	AllAPIs.Add(&Time);
-	AllAPIs.Add(&Users);
+	AllAPIs.Add(Ad);
+	AllAPIs.Add(Auth);
+	AllAPIs.Add(BlockedV1);
+	AllAPIs.Add(BlockedV2);
+	AllAPIs.Add(Catalog);
+	AllAPIs.Add(Config);
+	AllAPIs.Add(ConfigurationV1);
+	AllAPIs.Add(Custom);
+	AllAPIs.Add(Entitlements);
+	AllAPIs.Add(Environment);
+	AllAPIs.Add(Events);
+	AllAPIs.Add(FriendsV1);
+	AllAPIs.Add(FriendsV2);
+	AllAPIs.Add(InstanceNotification);
+	AllAPIs.Add(Inventory);
+	AllAPIs.Add(KeyClaims);
+	AllAPIs.Add(KeyEntitlements);
+	AllAPIs.Add(Marketing);
+	AllAPIs.Add(Match);
+	AllAPIs.Add(PlayerIdNotification);
+	AllAPIs.Add(PlayerNotification);
+	AllAPIs.Add(Presence);
+	AllAPIs.Add(PresenceAdmin);
+	AllAPIs.Add(Queues);
+	AllAPIs.Add(Rank);
+	AllAPIs.Add(Regions);
+	AllAPIs.Add(Reports);
+	AllAPIs.Add(Sessions);
+	AllAPIs.Add(Settings);
+	AllAPIs.Add(Time);
+	AllAPIs.Add(Users);
 }
 
-TArray<FAPI*> FRallyHereAPIAll::GetAllAPIs() const
+TArray<TSharedRef<FAPI>> FRallyHereAPIAll::GetAllAPIs() const
 {
 	return AllAPIs;
 }
 
-FAdAPI& FRallyHereAPIAll::GetAd()
+TSharedRef<FAdAPI> FRallyHereAPIAll::GetAd()
 {
 	return Ad;
 }
 
-const FAdAPI& FRallyHereAPIAll::GetAd() const
+const TSharedRef<FAdAPI> FRallyHereAPIAll::GetAd() const
 {
 	return Ad;
 }
 
-FAuthAPI& FRallyHereAPIAll::GetAuth()
+TSharedRef<FAuthAPI> FRallyHereAPIAll::GetAuth()
 {
 	return Auth;
 }
 
-const FAuthAPI& FRallyHereAPIAll::GetAuth() const
+const TSharedRef<FAuthAPI> FRallyHereAPIAll::GetAuth() const
 {
 	return Auth;
 }
 
-FBlockedV1API& FRallyHereAPIAll::GetBlockedV1()
+TSharedRef<FBlockedV1API> FRallyHereAPIAll::GetBlockedV1()
 {
 	return BlockedV1;
 }
 
-const FBlockedV1API& FRallyHereAPIAll::GetBlockedV1() const
+const TSharedRef<FBlockedV1API> FRallyHereAPIAll::GetBlockedV1() const
 {
 	return BlockedV1;
 }
 
-FBlockedV2API& FRallyHereAPIAll::GetBlockedV2()
+TSharedRef<FBlockedV2API> FRallyHereAPIAll::GetBlockedV2()
 {
 	return BlockedV2;
 }
 
-const FBlockedV2API& FRallyHereAPIAll::GetBlockedV2() const
+const TSharedRef<FBlockedV2API> FRallyHereAPIAll::GetBlockedV2() const
 {
 	return BlockedV2;
 }
 
-FCatalogAPI& FRallyHereAPIAll::GetCatalog()
+TSharedRef<FCatalogAPI> FRallyHereAPIAll::GetCatalog()
 {
 	return Catalog;
 }
 
-const FCatalogAPI& FRallyHereAPIAll::GetCatalog() const
+const TSharedRef<FCatalogAPI> FRallyHereAPIAll::GetCatalog() const
 {
 	return Catalog;
 }
 
-FConfigAPI& FRallyHereAPIAll::GetConfig()
+TSharedRef<FConfigAPI> FRallyHereAPIAll::GetConfig()
 {
 	return Config;
 }
 
-const FConfigAPI& FRallyHereAPIAll::GetConfig() const
+const TSharedRef<FConfigAPI> FRallyHereAPIAll::GetConfig() const
 {
 	return Config;
 }
 
-FConfigurationV1API& FRallyHereAPIAll::GetConfigurationV1()
+TSharedRef<FConfigurationV1API> FRallyHereAPIAll::GetConfigurationV1()
 {
 	return ConfigurationV1;
 }
 
-const FConfigurationV1API& FRallyHereAPIAll::GetConfigurationV1() const
+const TSharedRef<FConfigurationV1API> FRallyHereAPIAll::GetConfigurationV1() const
 {
 	return ConfigurationV1;
 }
 
-FCustomAPI& FRallyHereAPIAll::GetCustom()
+TSharedRef<FCustomAPI> FRallyHereAPIAll::GetCustom()
 {
 	return Custom;
 }
 
-const FCustomAPI& FRallyHereAPIAll::GetCustom() const
+const TSharedRef<FCustomAPI> FRallyHereAPIAll::GetCustom() const
 {
 	return Custom;
 }
 
-FEntitlementsAPI& FRallyHereAPIAll::GetEntitlements()
+TSharedRef<FEntitlementsAPI> FRallyHereAPIAll::GetEntitlements()
 {
 	return Entitlements;
 }
 
-const FEntitlementsAPI& FRallyHereAPIAll::GetEntitlements() const
+const TSharedRef<FEntitlementsAPI> FRallyHereAPIAll::GetEntitlements() const
 {
 	return Entitlements;
 }
 
-FEnvironmentAPI& FRallyHereAPIAll::GetEnvironment()
+TSharedRef<FEnvironmentAPI> FRallyHereAPIAll::GetEnvironment()
 {
 	return Environment;
 }
 
-const FEnvironmentAPI& FRallyHereAPIAll::GetEnvironment() const
+const TSharedRef<FEnvironmentAPI> FRallyHereAPIAll::GetEnvironment() const
 {
 	return Environment;
 }
 
-FEventsAPI& FRallyHereAPIAll::GetEvents()
+TSharedRef<FEventsAPI> FRallyHereAPIAll::GetEvents()
 {
 	return Events;
 }
 
-const FEventsAPI& FRallyHereAPIAll::GetEvents() const
+const TSharedRef<FEventsAPI> FRallyHereAPIAll::GetEvents() const
 {
 	return Events;
 }
 
-FFriendsV1API& FRallyHereAPIAll::GetFriendsV1()
+TSharedRef<FFriendsV1API> FRallyHereAPIAll::GetFriendsV1()
 {
 	return FriendsV1;
 }
 
-const FFriendsV1API& FRallyHereAPIAll::GetFriendsV1() const
+const TSharedRef<FFriendsV1API> FRallyHereAPIAll::GetFriendsV1() const
 {
 	return FriendsV1;
 }
 
-FFriendsV2API& FRallyHereAPIAll::GetFriendsV2()
+TSharedRef<FFriendsV2API> FRallyHereAPIAll::GetFriendsV2()
 {
 	return FriendsV2;
 }
 
-const FFriendsV2API& FRallyHereAPIAll::GetFriendsV2() const
+const TSharedRef<FFriendsV2API> FRallyHereAPIAll::GetFriendsV2() const
 {
 	return FriendsV2;
 }
 
-FInstanceNotificationAPI& FRallyHereAPIAll::GetInstanceNotification()
+TSharedRef<FInstanceNotificationAPI> FRallyHereAPIAll::GetInstanceNotification()
 {
 	return InstanceNotification;
 }
 
-const FInstanceNotificationAPI& FRallyHereAPIAll::GetInstanceNotification() const
+const TSharedRef<FInstanceNotificationAPI> FRallyHereAPIAll::GetInstanceNotification() const
 {
 	return InstanceNotification;
 }
 
-FInventoryAPI& FRallyHereAPIAll::GetInventory()
+TSharedRef<FInventoryAPI> FRallyHereAPIAll::GetInventory()
 {
 	return Inventory;
 }
 
-const FInventoryAPI& FRallyHereAPIAll::GetInventory() const
+const TSharedRef<FInventoryAPI> FRallyHereAPIAll::GetInventory() const
 {
 	return Inventory;
 }
 
-FKeyClaimsAPI& FRallyHereAPIAll::GetKeyClaims()
+TSharedRef<FKeyClaimsAPI> FRallyHereAPIAll::GetKeyClaims()
 {
 	return KeyClaims;
 }
 
-const FKeyClaimsAPI& FRallyHereAPIAll::GetKeyClaims() const
+const TSharedRef<FKeyClaimsAPI> FRallyHereAPIAll::GetKeyClaims() const
 {
 	return KeyClaims;
 }
 
-FKeyEntitlementsAPI& FRallyHereAPIAll::GetKeyEntitlements()
+TSharedRef<FKeyEntitlementsAPI> FRallyHereAPIAll::GetKeyEntitlements()
 {
 	return KeyEntitlements;
 }
 
-const FKeyEntitlementsAPI& FRallyHereAPIAll::GetKeyEntitlements() const
+const TSharedRef<FKeyEntitlementsAPI> FRallyHereAPIAll::GetKeyEntitlements() const
 {
 	return KeyEntitlements;
 }
 
-FMarketingAPI& FRallyHereAPIAll::GetMarketing()
+TSharedRef<FMarketingAPI> FRallyHereAPIAll::GetMarketing()
 {
 	return Marketing;
 }
 
-const FMarketingAPI& FRallyHereAPIAll::GetMarketing() const
+const TSharedRef<FMarketingAPI> FRallyHereAPIAll::GetMarketing() const
 {
 	return Marketing;
 }
 
-FMatchAPI& FRallyHereAPIAll::GetMatch()
+TSharedRef<FMatchAPI> FRallyHereAPIAll::GetMatch()
 {
 	return Match;
 }
 
-const FMatchAPI& FRallyHereAPIAll::GetMatch() const
+const TSharedRef<FMatchAPI> FRallyHereAPIAll::GetMatch() const
 {
 	return Match;
 }
 
-FPlayerIdNotificationAPI& FRallyHereAPIAll::GetPlayerIdNotification()
+TSharedRef<FPlayerIdNotificationAPI> FRallyHereAPIAll::GetPlayerIdNotification()
 {
 	return PlayerIdNotification;
 }
 
-const FPlayerIdNotificationAPI& FRallyHereAPIAll::GetPlayerIdNotification() const
+const TSharedRef<FPlayerIdNotificationAPI> FRallyHereAPIAll::GetPlayerIdNotification() const
 {
 	return PlayerIdNotification;
 }
 
-FPlayerNotificationAPI& FRallyHereAPIAll::GetPlayerNotification()
+TSharedRef<FPlayerNotificationAPI> FRallyHereAPIAll::GetPlayerNotification()
 {
 	return PlayerNotification;
 }
 
-const FPlayerNotificationAPI& FRallyHereAPIAll::GetPlayerNotification() const
+const TSharedRef<FPlayerNotificationAPI> FRallyHereAPIAll::GetPlayerNotification() const
 {
 	return PlayerNotification;
 }
 
-FPresenceAPI& FRallyHereAPIAll::GetPresence()
+TSharedRef<FPresenceAPI> FRallyHereAPIAll::GetPresence()
 {
 	return Presence;
 }
 
-const FPresenceAPI& FRallyHereAPIAll::GetPresence() const
+const TSharedRef<FPresenceAPI> FRallyHereAPIAll::GetPresence() const
 {
 	return Presence;
 }
 
-FPresenceAdminAPI& FRallyHereAPIAll::GetPresenceAdmin()
+TSharedRef<FPresenceAdminAPI> FRallyHereAPIAll::GetPresenceAdmin()
 {
 	return PresenceAdmin;
 }
 
-const FPresenceAdminAPI& FRallyHereAPIAll::GetPresenceAdmin() const
+const TSharedRef<FPresenceAdminAPI> FRallyHereAPIAll::GetPresenceAdmin() const
 {
 	return PresenceAdmin;
 }
 
-FQueuesAPI& FRallyHereAPIAll::GetQueues()
+TSharedRef<FQueuesAPI> FRallyHereAPIAll::GetQueues()
 {
 	return Queues;
 }
 
-const FQueuesAPI& FRallyHereAPIAll::GetQueues() const
+const TSharedRef<FQueuesAPI> FRallyHereAPIAll::GetQueues() const
 {
 	return Queues;
 }
 
-FRankAPI& FRallyHereAPIAll::GetRank()
+TSharedRef<FRankAPI> FRallyHereAPIAll::GetRank()
 {
 	return Rank;
 }
 
-const FRankAPI& FRallyHereAPIAll::GetRank() const
+const TSharedRef<FRankAPI> FRallyHereAPIAll::GetRank() const
 {
 	return Rank;
 }
 
-FRegionsAPI& FRallyHereAPIAll::GetRegions()
+TSharedRef<FRegionsAPI> FRallyHereAPIAll::GetRegions()
 {
 	return Regions;
 }
 
-const FRegionsAPI& FRallyHereAPIAll::GetRegions() const
+const TSharedRef<FRegionsAPI> FRallyHereAPIAll::GetRegions() const
 {
 	return Regions;
 }
 
-FReportsAPI& FRallyHereAPIAll::GetReports()
+TSharedRef<FReportsAPI> FRallyHereAPIAll::GetReports()
 {
 	return Reports;
 }
 
-const FReportsAPI& FRallyHereAPIAll::GetReports() const
+const TSharedRef<FReportsAPI> FRallyHereAPIAll::GetReports() const
 {
 	return Reports;
 }
 
-FSessionsAPI& FRallyHereAPIAll::GetSessions()
+TSharedRef<FSessionsAPI> FRallyHereAPIAll::GetSessions()
 {
 	return Sessions;
 }
 
-const FSessionsAPI& FRallyHereAPIAll::GetSessions() const
+const TSharedRef<FSessionsAPI> FRallyHereAPIAll::GetSessions() const
 {
 	return Sessions;
 }
 
-FSettingsAPI& FRallyHereAPIAll::GetSettings()
+TSharedRef<FSettingsAPI> FRallyHereAPIAll::GetSettings()
 {
 	return Settings;
 }
 
-const FSettingsAPI& FRallyHereAPIAll::GetSettings() const
+const TSharedRef<FSettingsAPI> FRallyHereAPIAll::GetSettings() const
 {
 	return Settings;
 }
 
-FTimeAPI& FRallyHereAPIAll::GetTime()
+TSharedRef<FTimeAPI> FRallyHereAPIAll::GetTime()
 {
 	return Time;
 }
 
-const FTimeAPI& FRallyHereAPIAll::GetTime() const
+const TSharedRef<FTimeAPI> FRallyHereAPIAll::GetTime() const
 {
 	return Time;
 }
 
-FUsersAPI& FRallyHereAPIAll::GetUsers()
+TSharedRef<FUsersAPI> FRallyHereAPIAll::GetUsers()
 {
 	return Users;
 }
 
-const FUsersAPI& FRallyHereAPIAll::GetUsers() const
+const TSharedRef<FUsersAPI> FRallyHereAPIAll::GetUsers() const
 {
 	return Users;
 }

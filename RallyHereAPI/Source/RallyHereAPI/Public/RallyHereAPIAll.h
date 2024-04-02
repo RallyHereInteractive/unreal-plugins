@@ -49,133 +49,136 @@ struct RALLYHEREAPI_API FRallyHereAPIAll
 public:
 	FRallyHereAPIAll();
 
-	TArray<FAPI*> GetAllAPIs() const;
+	// dummy value to help autogenerator for constructor
+	int32 DummyValue;
 
-	FAdAPI& GetAd();
-	const FAdAPI& GetAd() const;
+	TArray<TSharedRef<FAPI>> GetAllAPIs() const;
 
-	FAuthAPI& GetAuth();
-	const FAuthAPI& GetAuth() const;
+	TSharedRef<FAdAPI> GetAd();
+	const TSharedRef<FAdAPI> GetAd() const;
 
-	FBlockedV1API& GetBlockedV1();
-	const FBlockedV1API& GetBlockedV1() const;
+	TSharedRef<FAuthAPI> GetAuth();
+	const TSharedRef<FAuthAPI> GetAuth() const;
 
-	FBlockedV2API& GetBlockedV2();
-	const FBlockedV2API& GetBlockedV2() const;
+	TSharedRef<FBlockedV1API> GetBlockedV1();
+	const TSharedRef<FBlockedV1API> GetBlockedV1() const;
 
-	FCatalogAPI& GetCatalog();
-	const FCatalogAPI& GetCatalog() const;
+	TSharedRef<FBlockedV2API> GetBlockedV2();
+	const TSharedRef<FBlockedV2API> GetBlockedV2() const;
 
-	FConfigAPI& GetConfig();
-	const FConfigAPI& GetConfig() const;
+	TSharedRef<FCatalogAPI> GetCatalog();
+	const TSharedRef<FCatalogAPI> GetCatalog() const;
 
-	FConfigurationV1API& GetConfigurationV1();
-	const FConfigurationV1API& GetConfigurationV1() const;
+	TSharedRef<FConfigAPI> GetConfig();
+	const TSharedRef<FConfigAPI> GetConfig() const;
 
-	FCustomAPI& GetCustom();
-	const FCustomAPI& GetCustom() const;
+	TSharedRef<FConfigurationV1API> GetConfigurationV1();
+	const TSharedRef<FConfigurationV1API> GetConfigurationV1() const;
 
-	FEntitlementsAPI& GetEntitlements();
-	const FEntitlementsAPI& GetEntitlements() const;
+	TSharedRef<FCustomAPI> GetCustom();
+	const TSharedRef<FCustomAPI> GetCustom() const;
 
-	FEnvironmentAPI& GetEnvironment();
-	const FEnvironmentAPI& GetEnvironment() const;
+	TSharedRef<FEntitlementsAPI> GetEntitlements();
+	const TSharedRef<FEntitlementsAPI> GetEntitlements() const;
 
-	FEventsAPI& GetEvents();
-	const FEventsAPI& GetEvents() const;
+	TSharedRef<FEnvironmentAPI> GetEnvironment();
+	const TSharedRef<FEnvironmentAPI> GetEnvironment() const;
 
-	FFriendsV1API& GetFriendsV1();
-	const FFriendsV1API& GetFriendsV1() const;
+	TSharedRef<FEventsAPI> GetEvents();
+	const TSharedRef<FEventsAPI> GetEvents() const;
 
-	FFriendsV2API& GetFriendsV2();
-	const FFriendsV2API& GetFriendsV2() const;
+	TSharedRef<FFriendsV1API> GetFriendsV1();
+	const TSharedRef<FFriendsV1API> GetFriendsV1() const;
 
-	FInstanceNotificationAPI& GetInstanceNotification();
-	const FInstanceNotificationAPI& GetInstanceNotification() const;
+	TSharedRef<FFriendsV2API> GetFriendsV2();
+	const TSharedRef<FFriendsV2API> GetFriendsV2() const;
 
-	FInventoryAPI& GetInventory();
-	const FInventoryAPI& GetInventory() const;
+	TSharedRef<FInstanceNotificationAPI> GetInstanceNotification();
+	const TSharedRef<FInstanceNotificationAPI> GetInstanceNotification() const;
 
-	FKeyClaimsAPI& GetKeyClaims();
-	const FKeyClaimsAPI& GetKeyClaims() const;
+	TSharedRef<FInventoryAPI> GetInventory();
+	const TSharedRef<FInventoryAPI> GetInventory() const;
 
-	FKeyEntitlementsAPI& GetKeyEntitlements();
-	const FKeyEntitlementsAPI& GetKeyEntitlements() const;
+	TSharedRef<FKeyClaimsAPI> GetKeyClaims();
+	const TSharedRef<FKeyClaimsAPI> GetKeyClaims() const;
 
-	FMarketingAPI& GetMarketing();
-	const FMarketingAPI& GetMarketing() const;
+	TSharedRef<FKeyEntitlementsAPI> GetKeyEntitlements();
+	const TSharedRef<FKeyEntitlementsAPI> GetKeyEntitlements() const;
 
-	FMatchAPI& GetMatch();
-	const FMatchAPI& GetMatch() const;
+	TSharedRef<FMarketingAPI> GetMarketing();
+	const TSharedRef<FMarketingAPI> GetMarketing() const;
 
-	FPlayerIdNotificationAPI& GetPlayerIdNotification();
-	const FPlayerIdNotificationAPI& GetPlayerIdNotification() const;
+	TSharedRef<FMatchAPI> GetMatch();
+	const TSharedRef<FMatchAPI> GetMatch() const;
 
-	FPlayerNotificationAPI& GetPlayerNotification();
-	const FPlayerNotificationAPI& GetPlayerNotification() const;
+	TSharedRef<FPlayerIdNotificationAPI> GetPlayerIdNotification();
+	const TSharedRef<FPlayerIdNotificationAPI> GetPlayerIdNotification() const;
 
-	FPresenceAPI& GetPresence();
-	const FPresenceAPI& GetPresence() const;
+	TSharedRef<FPlayerNotificationAPI> GetPlayerNotification();
+	const TSharedRef<FPlayerNotificationAPI> GetPlayerNotification() const;
 
-	FPresenceAdminAPI& GetPresenceAdmin();
-	const FPresenceAdminAPI& GetPresenceAdmin() const;
+	TSharedRef<FPresenceAPI> GetPresence();
+	const TSharedRef<FPresenceAPI> GetPresence() const;
 
-	FQueuesAPI& GetQueues();
-	const FQueuesAPI& GetQueues() const;
+	TSharedRef<FPresenceAdminAPI> GetPresenceAdmin();
+	const TSharedRef<FPresenceAdminAPI> GetPresenceAdmin() const;
 
-	FRankAPI& GetRank();
-	const FRankAPI& GetRank() const;
+	TSharedRef<FQueuesAPI> GetQueues();
+	const TSharedRef<FQueuesAPI> GetQueues() const;
 
-	FRegionsAPI& GetRegions();
-	const FRegionsAPI& GetRegions() const;
+	TSharedRef<FRankAPI> GetRank();
+	const TSharedRef<FRankAPI> GetRank() const;
 
-	FReportsAPI& GetReports();
-	const FReportsAPI& GetReports() const;
+	TSharedRef<FRegionsAPI> GetRegions();
+	const TSharedRef<FRegionsAPI> GetRegions() const;
 
-	FSessionsAPI& GetSessions();
-	const FSessionsAPI& GetSessions() const;
+	TSharedRef<FReportsAPI> GetReports();
+	const TSharedRef<FReportsAPI> GetReports() const;
 
-	FSettingsAPI& GetSettings();
-	const FSettingsAPI& GetSettings() const;
+	TSharedRef<FSessionsAPI> GetSessions();
+	const TSharedRef<FSessionsAPI> GetSessions() const;
 
-	FTimeAPI& GetTime();
-	const FTimeAPI& GetTime() const;
+	TSharedRef<FSettingsAPI> GetSettings();
+	const TSharedRef<FSettingsAPI> GetSettings() const;
 
-	FUsersAPI& GetUsers();
-	const FUsersAPI& GetUsers() const;
+	TSharedRef<FTimeAPI> GetTime();
+	const TSharedRef<FTimeAPI> GetTime() const;
+
+	TSharedRef<FUsersAPI> GetUsers();
+	const TSharedRef<FUsersAPI> GetUsers() const;
 
 private:
-	TArray<FAPI*> AllAPIs;
-	FAdAPI Ad;
-	FAuthAPI Auth;
-	FBlockedV1API BlockedV1;
-	FBlockedV2API BlockedV2;
-	FCatalogAPI Catalog;
-	FConfigAPI Config;
-	FConfigurationV1API ConfigurationV1;
-	FCustomAPI Custom;
-	FEntitlementsAPI Entitlements;
-	FEnvironmentAPI Environment;
-	FEventsAPI Events;
-	FFriendsV1API FriendsV1;
-	FFriendsV2API FriendsV2;
-	FInstanceNotificationAPI InstanceNotification;
-	FInventoryAPI Inventory;
-	FKeyClaimsAPI KeyClaims;
-	FKeyEntitlementsAPI KeyEntitlements;
-	FMarketingAPI Marketing;
-	FMatchAPI Match;
-	FPlayerIdNotificationAPI PlayerIdNotification;
-	FPlayerNotificationAPI PlayerNotification;
-	FPresenceAPI Presence;
-	FPresenceAdminAPI PresenceAdmin;
-	FQueuesAPI Queues;
-	FRankAPI Rank;
-	FRegionsAPI Regions;
-	FReportsAPI Reports;
-	FSessionsAPI Sessions;
-	FSettingsAPI Settings;
-	FTimeAPI Time;
-	FUsersAPI Users;
+	TArray<TSharedRef<FAPI>> AllAPIs;
+	TSharedRef<FAdAPI> Ad;
+	TSharedRef<FAuthAPI> Auth;
+	TSharedRef<FBlockedV1API> BlockedV1;
+	TSharedRef<FBlockedV2API> BlockedV2;
+	TSharedRef<FCatalogAPI> Catalog;
+	TSharedRef<FConfigAPI> Config;
+	TSharedRef<FConfigurationV1API> ConfigurationV1;
+	TSharedRef<FCustomAPI> Custom;
+	TSharedRef<FEntitlementsAPI> Entitlements;
+	TSharedRef<FEnvironmentAPI> Environment;
+	TSharedRef<FEventsAPI> Events;
+	TSharedRef<FFriendsV1API> FriendsV1;
+	TSharedRef<FFriendsV2API> FriendsV2;
+	TSharedRef<FInstanceNotificationAPI> InstanceNotification;
+	TSharedRef<FInventoryAPI> Inventory;
+	TSharedRef<FKeyClaimsAPI> KeyClaims;
+	TSharedRef<FKeyEntitlementsAPI> KeyEntitlements;
+	TSharedRef<FMarketingAPI> Marketing;
+	TSharedRef<FMatchAPI> Match;
+	TSharedRef<FPlayerIdNotificationAPI> PlayerIdNotification;
+	TSharedRef<FPlayerNotificationAPI> PlayerNotification;
+	TSharedRef<FPresenceAPI> Presence;
+	TSharedRef<FPresenceAdminAPI> PresenceAdmin;
+	TSharedRef<FQueuesAPI> Queues;
+	TSharedRef<FRankAPI> Rank;
+	TSharedRef<FRegionsAPI> Regions;
+	TSharedRef<FReportsAPI> Reports;
+	TSharedRef<FSessionsAPI> Sessions;
+	TSharedRef<FSettingsAPI> Settings;
+	TSharedRef<FTimeAPI> Time;
+	TSharedRef<FUsersAPI> Users;
 };
 }

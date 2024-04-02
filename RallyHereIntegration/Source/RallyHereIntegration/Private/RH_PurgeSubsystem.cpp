@@ -28,7 +28,7 @@ bool URH_PurgeSubsystem::EnqueueMeForPurge(const TOptional<FDateTime>& PurgeTime
 	Request.AuthContext = GetAuthContext();
 	if (PurgeTime.IsSet()) Request.PurgeRequest.SetSuggestedPurgeTime(PurgeTime.GetValue());
 
-	const auto HttpPtr = RH_APIs::GetAPIs().GetUsers().QueueMeForPurge(Request,
+	const auto HttpPtr = RH_APIs::GetAPIs().GetUsers()->QueueMeForPurge(Request,
     		RallyHereAPI::FDelegate_QueueMeForPurge::CreateUObject(
     			this, &URH_PurgeSubsystem::OnPurgeMe,
     			Delegate),
@@ -45,7 +45,7 @@ bool URH_PurgeSubsystem::DequeueMeForPurge(const FRH_OnPurgeStatusUpdatedDelegat
 	auto Request = RallyHereAPI::FRequest_DequeueMeForPurge();
 	Request.AuthContext = GetAuthContext();
 
-	const auto HttpPtr = RH_APIs::GetAPIs().GetUsers().DequeueMeForPurge(Request,
+	const auto HttpPtr = RH_APIs::GetAPIs().GetUsers()->DequeueMeForPurge(Request,
     		RallyHereAPI::FDelegate_DequeueMeForPurge::CreateUObject(
     			this, &URH_PurgeSubsystem::OnDequeueMe,
     			Delegate),
@@ -63,7 +63,7 @@ bool URH_PurgeSubsystem::QueryMyPurgeStatus(const FRH_OnPurgeStatusUpdatedDelega
 	auto Request = RallyHereAPI::FRequest_GetQueuePurgeStatusForMe();
 	Request.AuthContext = GetAuthContext();
 
-	const auto HttpPtr = RH_APIs::GetAPIs().GetUsers().GetQueuePurgeStatusForMe(Request,
+	const auto HttpPtr = RH_APIs::GetAPIs().GetUsers()->GetQueuePurgeStatusForMe(Request,
     		RallyHereAPI::FDelegate_GetQueuePurgeStatusForMe::CreateUObject(
     			this, &URH_PurgeSubsystem::OnGetMyPurgeStatus,
     			Delegate),

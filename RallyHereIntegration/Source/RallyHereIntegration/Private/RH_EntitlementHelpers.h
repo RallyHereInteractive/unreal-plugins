@@ -259,7 +259,7 @@ protected:
 		Request.PlayerUuid = PlayerUuid;
 		Request.PlatformEntitlementProcessRequest = entitlementRequest;
 
-		const auto HttpPtr = RH_APIs::GetAPIs().GetEntitlements().ProcessPlatformEntitlementsByPlayerUuid(Request,
+		const auto HttpPtr = RH_APIs::GetAPIs().GetEntitlements()->ProcessPlatformEntitlementsByPlayerUuid(Request,
 			RallyHereAPI::FDelegate_ProcessPlatformEntitlementsByPlayerUuid::CreateSP(this, &FRH_EntitlementProcessor::ProcessPlatformInventoryComplete), GetDefault<URH_IntegrationSettings>()->ProcessPlatformEntitlementsPriority);
 
 		if (!HttpPtr)
@@ -341,7 +341,7 @@ protected:
 		Request.PlayerUuid = AuthContext->GetLoginResult()->GetActivePlayerUuid();
 		Request.RequestId = ProcessEntitlementResult.RequestId;
 
-		const auto HttpPtr = RH_APIs::GetAPIs().GetEntitlements().RetrieveEntitlementRequestByPlayerUuid(Request,
+		const auto HttpPtr = RH_APIs::GetAPIs().GetEntitlements()->RetrieveEntitlementRequestByPlayerUuid(Request,
 			RallyHereAPI::FDelegate_RetrieveEntitlementRequestByPlayerUuid::CreateSP(this,
 				&FRH_EntitlementProcessor::PollEntitlementComplete, Delegate), GetDefault<URH_IntegrationSettings>()->RetrievePlatformEntitlementsPriority);
 

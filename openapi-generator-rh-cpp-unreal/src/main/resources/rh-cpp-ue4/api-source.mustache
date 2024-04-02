@@ -42,7 +42,7 @@ FHttpRequestPtr {{classname}}::{{operationIdCamelCase}}(const FRequest_{{operati
 	if (!IsValid())
 		return nullptr;
 
-	TSharedPtr<F{{unrealModuleName}}HttpRequestData> RequestData = MakeShared<F{{unrealModuleName}}HttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+	TSharedPtr<F{{unrealModuleName}}HttpRequestData> RequestData = MakeShared<F{{unrealModuleName}}HttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -58,7 +58,7 @@ FHttpRequestPtr {{classname}}::{{operationIdCamelCase}}(const FRequest_{{operati
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindRaw(this, &{{classname}}::On{{operationIdCamelCase}}Response, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &{{classname}}::On{{operationIdCamelCase}}Response, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = F{{unrealModuleName}}HttpRequester::Get();
@@ -77,7 +77,7 @@ void {{classname}}::On{{operationIdCamelCase}}Response(FHttpRequestPtr HttpReque
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindRaw(this, &{{classname}}::On{{operationIdCamelCase}}Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &{{classname}}::On{{operationIdCamelCase}}Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_{{operationIdCamelCase}} Response{ RequestMetadata };

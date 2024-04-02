@@ -60,7 +60,7 @@ FHttpRequestPtr URH_AdSubsystem::BeginNewSession(RallyHereAPI::FRequest_BeginNew
     {
         Request.XHzAdApiToken = XHzAdApiToken;
     }
-    return RH_APIs::GetAdAPI().BeginNewSession(Request,
+    return RH_APIs::GetAdAPI()->BeginNewSession(Request,
                                                                                 RallyHereAPI::FDelegate_BeginNewSession::CreateUObject(
                                                                                     this, &URH_AdSubsystem::OnBeginNewSession,
                                                                                     Delegate), GetDefault<URH_IntegrationSettings>()->BeginNewAdSessionPriority);
@@ -98,7 +98,7 @@ FHttpRequestPtr URH_AdSubsystem::FindOpportunities(RallyHereAPI::FRequest_FindOp
     {
         Request.XHzAdApiToken = XHzAdApiToken;
     }
-    return RH_APIs::GetAdAPI().FindOpportunities(Request,
+    return RH_APIs::GetAdAPI()->FindOpportunities(Request,
                                                                                   RallyHereAPI::FDelegate_FindOpportunities::CreateUObject(
                                                                                       this, &URH_AdSubsystem::OnFindOpportunities,
                                                                                       Delegate), GetDefault<URH_IntegrationSettings>()->FindAdOppertunitiesPriority);
@@ -129,7 +129,7 @@ FHttpRequestPtr URH_AdSubsystem::UpdateOpportunityById(RallyHereAPI::FRequest_Up
     {
         Request.XHzAdApiToken = XHzAdApiToken;
     }
-    return RH_APIs::GetAdAPI().UpdateOpportunityById(Request,
+    return RH_APIs::GetAdAPI()->UpdateOpportunityById(Request,
                                                      RallyHereAPI::FDelegate_UpdateOpportunityById::CreateUObject(
                                                          this,
                                                          &URH_AdSubsystem::OnUpdateOpportunityById,

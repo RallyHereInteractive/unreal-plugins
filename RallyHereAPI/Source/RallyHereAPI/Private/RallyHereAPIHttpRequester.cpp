@@ -51,7 +51,7 @@ void FRallyHereAPIHttpRequester::TryExecuteNextRequest(bool bIsExiting)
 					if (!bIsExiting)
 					{
 						SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestStarted, FColor::Purple);
-						Request->API.OnRequestStarted().Broadcast(Request->Metadata, Request->HttpRequest);
+						Request->API->OnRequestStarted().Broadcast(Request->Metadata, Request->HttpRequest);
 					}
 
 					if (MaxSimultaneousRequests > 0 && PendingRequestCount >= MaxSimultaneousRequests)

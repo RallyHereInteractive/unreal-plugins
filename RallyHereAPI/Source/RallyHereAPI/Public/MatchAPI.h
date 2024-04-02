@@ -156,7 +156,7 @@ struct RALLYHEREAPI_API Traits_CreateMatch
 	typedef FMatchAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateMatch(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->CreateMatch(InRequest, InDelegate, Priority); }
 };
 
 /* Create Match Player
@@ -214,7 +214,7 @@ struct RALLYHEREAPI_API Traits_CreateMatchPlayer
 	typedef FMatchAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateMatchPlayer(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->CreateMatchPlayer(InRequest, InDelegate, Priority); }
 };
 
 /* Delete Match
@@ -269,7 +269,7 @@ struct RALLYHEREAPI_API Traits_DeleteMatch
 	typedef FMatchAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteMatch(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DeleteMatch(InRequest, InDelegate, Priority); }
 };
 
 /* Delete Match Player
@@ -325,7 +325,7 @@ struct RALLYHEREAPI_API Traits_DeleteMatchPlayer
 	typedef FMatchAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteMatchPlayer(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DeleteMatchPlayer(InRequest, InDelegate, Priority); }
 };
 
 /* Get Match
@@ -386,7 +386,7 @@ struct RALLYHEREAPI_API Traits_GetMatch
 	typedef FMatchAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetMatch(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetMatch(InRequest, InDelegate, Priority); }
 };
 
 /* Get Match Player
@@ -443,7 +443,7 @@ struct RALLYHEREAPI_API Traits_GetMatchPlayer
 	typedef FMatchAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetMatchPlayer(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetMatchPlayer(InRequest, InDelegate, Priority); }
 };
 
 /* Get Matches
@@ -507,7 +507,7 @@ struct RALLYHEREAPI_API Traits_GetMatches
 	typedef FMatchAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetMatches(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetMatches(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Matches Self
@@ -565,7 +565,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerMatchesSelf
 	typedef FMatchAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerMatchesSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPlayerMatchesSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Players Matches
@@ -624,7 +624,7 @@ struct RALLYHEREAPI_API Traits_GetPlayersMatches
 	typedef FMatchAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayersMatches(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPlayersMatches(InRequest, InDelegate, Priority); }
 };
 
 /* Patch Match
@@ -681,7 +681,7 @@ struct RALLYHEREAPI_API Traits_PatchMatch
 	typedef FMatchAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PatchMatch(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->PatchMatch(InRequest, InDelegate, Priority); }
 };
 
 /* Patch Match Player
@@ -739,7 +739,7 @@ struct RALLYHEREAPI_API Traits_PatchMatchPlayer
 	typedef FMatchAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PatchMatchPlayer(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->PatchMatchPlayer(InRequest, InDelegate, Priority); }
 };
 
 /* Update Match
@@ -796,7 +796,7 @@ struct RALLYHEREAPI_API Traits_UpdateMatch
 	typedef FMatchAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateMatch(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->UpdateMatch(InRequest, InDelegate, Priority); }
 };
 
 /* Update Match Player
@@ -854,7 +854,7 @@ struct RALLYHEREAPI_API Traits_UpdateMatchPlayer
 	typedef FMatchAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateMatchPlayer(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->UpdateMatchPlayer(InRequest, InDelegate, Priority); }
 };
 
 

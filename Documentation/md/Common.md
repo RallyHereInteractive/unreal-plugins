@@ -256,7 +256,7 @@ Templated helper class for asynchronously executing basic RallyHere API queries.
 --------------------------------|---------------------------------------------
 `public inline  `[`FRH_SimpleQueryHelper`](#classFRH__SimpleQueryHelper_1a6d5816682112de01ec950d228924d835)`(const typename BaseType::Delegate & InUpdateDelegate,const FRH_GenericSuccessWithErrorBlock & InCompleteDelegate,int32 InPriority)` | Constructor allowing for the specification of callback delegates.
 `public inline  `[`FRH_SimpleQueryHelper`](#classFRH__SimpleQueryHelper_1af6c2dbc3abf92fc2972831a9b8edcd7f)`(const typename BaseType::Delegate & InUpdateDelegate,const FRH_GenericSuccessBlock & InCompleteDelegate,int32 InPriority)` | Constructor allowing for the specification of callback delegates.
-`public inline virtual void `[`Start`](#classFRH__SimpleQueryHelper_1adf977f6c0dd9bd070de048fedcd12a5c)`(typename BaseType::API & API,const typename BaseType::Request & Request)` | Begins the task of asynchronously querying the API.
+`public inline virtual void `[`Start`](#classFRH__SimpleQueryHelper_1a503dfcc4b3226e4e8d2d7dc7b34b8eb8)`(TSharedRef< typename BaseType::API > API,const typename BaseType::Request & Request)` | Begins the task of asynchronously querying the API.
 `public inline void `[`OnQueryComplete`](#classFRH__SimpleQueryHelper_1aa31bbdb22654a1396b93497dcd2ae1e8)`(const typename BaseType::Response & Resp)` | Called once the asynchronous query has returned a response.
 `public inline virtual FString `[`GetName`](#classFRH__SimpleQueryHelper_1a6084b0d198a8ebd51d3ca5d8699fb7ec)`() const` | Gets the templated name for this object.
 `public inline virtual void `[`ExecuteCallback`](#classFRH__SimpleQueryHelper_1abd7b0c6ff2ee89e535370844cbd30331)`(bool bSuccess) const` | Executes the generic delegate associated with this asynchronous task forwarding bSuccess.
@@ -287,7 +287,7 @@ Constructor allowing for the specification of callback delegates.
 * `InCompleteDelegate` Generic completion delegate called regardless of success or failure
 
 <br>
-#### `public inline virtual void `[`Start`](#classFRH__SimpleQueryHelper_1adf977f6c0dd9bd070de048fedcd12a5c)`(typename BaseType::API & API,const typename BaseType::Request & Request)` <a id="classFRH__SimpleQueryHelper_1adf977f6c0dd9bd070de048fedcd12a5c"></a>
+#### `public inline virtual void `[`Start`](#classFRH__SimpleQueryHelper_1a503dfcc4b3226e4e8d2d7dc7b34b8eb8)`(TSharedRef< typename BaseType::API > API,const typename BaseType::Request & Request)` <a id="classFRH__SimpleQueryHelper_1a503dfcc4b3226e4e8d2d7dc7b34b8eb8"></a>
 
 Begins the task of asynchronously querying the API.
 

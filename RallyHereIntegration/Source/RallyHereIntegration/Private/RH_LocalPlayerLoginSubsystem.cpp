@@ -153,7 +153,7 @@ void URH_LocalPlayerLoginSubsystem::PostResults(FRH_PendingLoginRequest& Req, co
 	auto* LPSubsystem = GetLocalPlayerSubsystem();
 	if (LPSubsystem != nullptr && LPSubsystem->GetAnalyticsProvider().IsValid())
 	{
-		auto* AnalyticsProvider = LPSubsystem->GetAnalyticsProvider().Get();
+		auto AnalyticsProvider = LPSubsystem->GetAnalyticsProvider();
 
 		// use local player subsystem accessor for ease of use, rather than cracking auth context ourselves
 		FGuid PlayerUuid = LPSubsystem->GetPlayerUuid();
@@ -263,7 +263,7 @@ void URH_LocalPlayerLoginSubsystem::SubmitLogin(const FOnlineAccountCredentials&
 	auto* LPSubsystem = GetLocalPlayerSubsystem();
 	if (LPSubsystem != nullptr && LPSubsystem->GetAnalyticsProvider().IsValid())
 	{
-		auto* AnalyticsProvider = LPSubsystem->GetAnalyticsProvider().Get();
+		auto AnalyticsProvider = LPSubsystem->GetAnalyticsProvider();
 
 		// todo - see if we can look up display name here
 		RHStandardEvents::FLoginStartEvent::Emit(AnalyticsProvider, TOptional<FString>());
@@ -904,7 +904,7 @@ void URH_LocalPlayerLoginSubsystem::DoRallyHereLogin(FRH_PendingLoginRequest& Re
 
     UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] Creating RallyHere Login request"),
            ANSI_TO_TCHAR(__FUNCTION__));
-    auto HttpRequest = RH_APIs::GetAPIs().GetAuth().Login(Request,
+    auto HttpRequest = RH_APIs::GetAPIs().GetAuth()->Login(Request,
 		RallyHereAPI::FDelegate_Login::CreateUObject(
 		    this,
 		    &URH_LocalPlayerLoginSubsystem::RallyHereLoginComplete,

@@ -215,7 +215,7 @@ struct RALLYHEREAPI_API Traits_GetCatalogAll
 	typedef FCatalogAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogAll(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetCatalogAll(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Entitlement Sku
@@ -288,7 +288,7 @@ struct RALLYHEREAPI_API Traits_GetCatalogEntitlementSku
 	typedef FCatalogAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogEntitlementSku(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetCatalogEntitlementSku(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Entitlement Sku All
@@ -359,7 +359,7 @@ struct RALLYHEREAPI_API Traits_GetCatalogEntitlementSkuAll
 	typedef FCatalogAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogEntitlementSkuAll(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetCatalogEntitlementSkuAll(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Inventory Bucket Use Rule Set
@@ -431,7 +431,7 @@ struct RALLYHEREAPI_API Traits_GetCatalogInventoryBucketUseRuleSet
 	typedef FCatalogAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogInventoryBucketUseRuleSet(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetCatalogInventoryBucketUseRuleSet(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Inventory Bucket Use Rule Sets All
@@ -502,7 +502,7 @@ struct RALLYHEREAPI_API Traits_GetCatalogInventoryBucketUseRuleSetsAll
 	typedef FCatalogAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogInventoryBucketUseRuleSetsAll(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetCatalogInventoryBucketUseRuleSetsAll(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Item
@@ -574,7 +574,7 @@ struct RALLYHEREAPI_API Traits_GetCatalogItem
 	typedef FCatalogAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogItem(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetCatalogItem(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Items All
@@ -645,7 +645,7 @@ struct RALLYHEREAPI_API Traits_GetCatalogItemsAll
 	typedef FCatalogAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogItemsAll(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetCatalogItemsAll(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Loot
@@ -717,7 +717,7 @@ struct RALLYHEREAPI_API Traits_GetCatalogLoot
 	typedef FCatalogAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogLoot(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetCatalogLoot(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Loots All
@@ -788,7 +788,7 @@ struct RALLYHEREAPI_API Traits_GetCatalogLootsAll
 	typedef FCatalogAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogLootsAll(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetCatalogLootsAll(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Portal Use Ruleset
@@ -860,7 +860,7 @@ struct RALLYHEREAPI_API Traits_GetCatalogPortalUseRuleset
 	typedef FCatalogAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogPortalUseRuleset(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetCatalogPortalUseRuleset(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Portal Use Rulesets All
@@ -931,7 +931,7 @@ struct RALLYHEREAPI_API Traits_GetCatalogPortalUseRulesetsAll
 	typedef FCatalogAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogPortalUseRulesetsAll(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetCatalogPortalUseRulesetsAll(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Price Point
@@ -1003,7 +1003,7 @@ struct RALLYHEREAPI_API Traits_GetCatalogPricePoint
 	typedef FCatalogAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogPricePoint(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetCatalogPricePoint(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Price Points All
@@ -1074,7 +1074,7 @@ struct RALLYHEREAPI_API Traits_GetCatalogPricePointsAll
 	typedef FCatalogAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogPricePointsAll(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetCatalogPricePointsAll(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Time Frame
@@ -1146,7 +1146,7 @@ struct RALLYHEREAPI_API Traits_GetCatalogTimeFrame
 	typedef FCatalogAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogTimeFrame(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetCatalogTimeFrame(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Time Frames All
@@ -1217,7 +1217,7 @@ struct RALLYHEREAPI_API Traits_GetCatalogTimeFramesAll
 	typedef FCatalogAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogTimeFramesAll(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetCatalogTimeFramesAll(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Vendor
@@ -1289,7 +1289,7 @@ struct RALLYHEREAPI_API Traits_GetCatalogVendor
 	typedef FCatalogAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogVendor(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetCatalogVendor(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Vendors All
@@ -1360,7 +1360,7 @@ struct RALLYHEREAPI_API Traits_GetCatalogVendorsAll
 	typedef FCatalogAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogVendorsAll(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetCatalogVendorsAll(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Xp All
@@ -1431,7 +1431,7 @@ struct RALLYHEREAPI_API Traits_GetCatalogXpAll
 	typedef FCatalogAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogXpAll(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetCatalogXpAll(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Xp Table
@@ -1503,7 +1503,7 @@ struct RALLYHEREAPI_API Traits_GetCatalogXpTable
 	typedef FCatalogAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogXpTable(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetCatalogXpTable(InRequest, InDelegate, Priority); }
 };
 
 

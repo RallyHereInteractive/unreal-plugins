@@ -13,13 +13,13 @@
 namespace RallyHereAPI
 {
 
-FAuthContext::FAuthContext(FAuthAPI &LoginAPI_, FString ClientId, FString ClientSecret) : LoginAPI{ &LoginAPI_ },
+FAuthContext::FAuthContext(TSharedRef<FAuthAPI> LoginAPI_, FString ClientId, FString ClientSecret) : LoginAPI{ LoginAPI_ },
 	ClientId{std::move(ClientId)}, ClientSecret{std::move(ClientSecret)}, bIsRefreshing{}, LoginComplete{}, LoginResult{}, TokenResponse{}
 {
 	UpdateBasicAuthValue();
 }
 
-FAuthContext::FAuthContext(FAuthAPI& LoginAPI_) : LoginAPI{ &LoginAPI_ }, bIsRefreshing{}, LoginComplete{}, LoginResult{}, TokenResponse{}
+FAuthContext::FAuthContext(TSharedRef<FAuthAPI> LoginAPI_) : LoginAPI{ LoginAPI_ }, bIsRefreshing{}, LoginComplete{}, LoginResult{}, TokenResponse{}
 {
 }
 

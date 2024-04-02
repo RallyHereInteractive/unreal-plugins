@@ -154,7 +154,7 @@ struct RALLYHEREAPI_API Traits_AddFriendV2
 	typedef FFriendsV2API API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AddFriendV2(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->AddFriendV2(InRequest, InDelegate, Priority); }
 };
 
 /* Add Notes V2
@@ -231,7 +231,7 @@ struct RALLYHEREAPI_API Traits_AddNotesV2
 	typedef FFriendsV2API API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AddNotesV2(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->AddNotesV2(InRequest, InDelegate, Priority); }
 };
 
 /* Delete Friend V2
@@ -313,7 +313,7 @@ struct RALLYHEREAPI_API Traits_DeleteFriendV2
 	typedef FFriendsV2API API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteFriendV2(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DeleteFriendV2(InRequest, InDelegate, Priority); }
 };
 
 /* Delete Friends V2
@@ -379,7 +379,7 @@ struct RALLYHEREAPI_API Traits_DeleteFriendsV2
 	typedef FFriendsV2API API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteFriendsV2(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DeleteFriendsV2(InRequest, InDelegate, Priority); }
 };
 
 /* Delete Notes V2
@@ -449,7 +449,7 @@ struct RALLYHEREAPI_API Traits_DeleteNotesV2
 	typedef FFriendsV2API API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteNotesV2(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DeleteNotesV2(InRequest, InDelegate, Priority); }
 };
 
 /* Get Friend Relationship V2
@@ -531,7 +531,7 @@ struct RALLYHEREAPI_API Traits_GetFriendRelationshipV2
 	typedef FFriendsV2API API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetFriendRelationshipV2(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetFriendRelationshipV2(InRequest, InDelegate, Priority); }
 };
 
 /* Get Friends List For Player V2
@@ -612,7 +612,7 @@ struct RALLYHEREAPI_API Traits_GetFriendsListForPlayerV2
 	typedef FFriendsV2API API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetFriendsListForPlayerV2(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetFriendsListForPlayerV2(InRequest, InDelegate, Priority); }
 };
 
 

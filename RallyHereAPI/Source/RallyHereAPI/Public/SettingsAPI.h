@@ -194,7 +194,7 @@ struct RALLYHEREAPI_API Traits_DeleteAllPlayerIdSettingsForSettingType
 	typedef FSettingsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteAllPlayerIdSettingsForSettingType(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DeleteAllPlayerIdSettingsForSettingType(InRequest, InDelegate, Priority); }
 };
 
 /* Delete All Player Uuid Settings For Setting Type
@@ -265,7 +265,7 @@ struct RALLYHEREAPI_API Traits_DeleteAllPlayerUuidSettingsForSettingType
 	typedef FSettingsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteAllPlayerUuidSettingsForSettingType(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DeleteAllPlayerUuidSettingsForSettingType(InRequest, InDelegate, Priority); }
 };
 
 /* Delete All Player Uuid Settings For Setting Type Self
@@ -334,7 +334,7 @@ struct RALLYHEREAPI_API Traits_DeleteAllPlayerUuidSettingsForSettingTypeSelf
 	typedef FSettingsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteAllPlayerUuidSettingsForSettingTypeSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DeleteAllPlayerUuidSettingsForSettingTypeSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Delete Single Player Id Setting
@@ -409,7 +409,7 @@ struct RALLYHEREAPI_API Traits_DeleteSinglePlayerIdSetting
 	typedef FSettingsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteSinglePlayerIdSetting(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DeleteSinglePlayerIdSetting(InRequest, InDelegate, Priority); }
 };
 
 /* Delete Single Player Uuid Setting
@@ -482,7 +482,7 @@ struct RALLYHEREAPI_API Traits_DeleteSinglePlayerUuidSetting
 	typedef FSettingsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteSinglePlayerUuidSetting(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DeleteSinglePlayerUuidSetting(InRequest, InDelegate, Priority); }
 };
 
 /* Delete Single Player Uuid Setting Self
@@ -553,7 +553,7 @@ struct RALLYHEREAPI_API Traits_DeleteSinglePlayerUuidSettingSelf
 	typedef FSettingsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteSinglePlayerUuidSettingSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DeleteSinglePlayerUuidSettingSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get All Player Id Settings For Setting Type
@@ -628,7 +628,7 @@ struct RALLYHEREAPI_API Traits_GetAllPlayerIdSettingsForSettingType
 	typedef FSettingsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllPlayerIdSettingsForSettingType(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetAllPlayerIdSettingsForSettingType(InRequest, InDelegate, Priority); }
 };
 
 /* Get All Player Uuid Settings For Setting Type
@@ -701,7 +701,7 @@ struct RALLYHEREAPI_API Traits_GetAllPlayerUuidSettingsForSettingType
 	typedef FSettingsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllPlayerUuidSettingsForSettingType(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetAllPlayerUuidSettingsForSettingType(InRequest, InDelegate, Priority); }
 };
 
 /* Get All Player Uuid Settings For Setting Type Self
@@ -772,7 +772,7 @@ struct RALLYHEREAPI_API Traits_GetAllPlayerUuidSettingsForSettingTypeSelf
 	typedef FSettingsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllPlayerUuidSettingsForSettingTypeSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetAllPlayerUuidSettingsForSettingTypeSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Config For All Setting Types
@@ -819,7 +819,7 @@ struct RALLYHEREAPI_API Traits_GetConfigForAllSettingTypes
 	typedef FSettingsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetConfigForAllSettingTypes(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetConfigForAllSettingTypes(InRequest, InDelegate, Priority); }
 };
 
 /* Get Config For Single Setting Type All Versions
@@ -882,7 +882,7 @@ struct RALLYHEREAPI_API Traits_GetConfigForSingleSettingTypeAllVersions
 	typedef FSettingsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetConfigForSingleSettingTypeAllVersions(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetConfigForSingleSettingTypeAllVersions(InRequest, InDelegate, Priority); }
 };
 
 /* Get Config For Single Setting Type And Version
@@ -944,7 +944,7 @@ struct RALLYHEREAPI_API Traits_GetConfigForSingleSettingTypeAndVersion
 	typedef FSettingsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetConfigForSingleSettingTypeAndVersion(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetConfigForSingleSettingTypeAndVersion(InRequest, InDelegate, Priority); }
 };
 
 /* Get Single Player Id Setting
@@ -1019,7 +1019,7 @@ struct RALLYHEREAPI_API Traits_GetSinglePlayerIdSetting
 	typedef FSettingsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetSinglePlayerIdSetting(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetSinglePlayerIdSetting(InRequest, InDelegate, Priority); }
 };
 
 /* Get Single Player Uuid Setting
@@ -1092,7 +1092,7 @@ struct RALLYHEREAPI_API Traits_GetSinglePlayerUuidSetting
 	typedef FSettingsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetSinglePlayerUuidSetting(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetSinglePlayerUuidSetting(InRequest, InDelegate, Priority); }
 };
 
 /* Get Single Player Uuid Setting Self
@@ -1163,7 +1163,7 @@ struct RALLYHEREAPI_API Traits_GetSinglePlayerUuidSettingSelf
 	typedef FSettingsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetSinglePlayerUuidSettingSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetSinglePlayerUuidSettingSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Set Single Player Id Setting
@@ -1250,7 +1250,7 @@ struct RALLYHEREAPI_API Traits_SetSinglePlayerIdSetting
 	typedef FSettingsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.SetSinglePlayerIdSetting(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->SetSinglePlayerIdSetting(InRequest, InDelegate, Priority); }
 };
 
 /* Set Single Player Uuid Setting
@@ -1335,7 +1335,7 @@ struct RALLYHEREAPI_API Traits_SetSinglePlayerUuidSetting
 	typedef FSettingsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.SetSinglePlayerUuidSetting(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->SetSinglePlayerUuidSetting(InRequest, InDelegate, Priority); }
 };
 
 /* Set Single Player Uuid Setting Self
@@ -1418,7 +1418,7 @@ struct RALLYHEREAPI_API Traits_SetSinglePlayerUuidSettingSelf
 	typedef FSettingsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.SetSinglePlayerUuidSettingSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->SetSinglePlayerUuidSettingSelf(InRequest, InDelegate, Priority); }
 };
 
 

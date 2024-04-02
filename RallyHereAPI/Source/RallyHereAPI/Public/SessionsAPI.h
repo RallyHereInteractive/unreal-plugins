@@ -338,7 +338,7 @@ struct RALLYHEREAPI_API Traits_AcknowledgeBackfillRequest
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AcknowledgeBackfillRequest(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->AcknowledgeBackfillRequest(InRequest, InDelegate, Priority); }
 };
 
 /* Add Platform Session To Rally Here Session
@@ -422,7 +422,7 @@ struct RALLYHEREAPI_API Traits_AddPlatformSessionToRallyHereSession
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AddPlatformSessionToRallyHereSession(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->AddPlatformSessionToRallyHereSession(InRequest, InDelegate, Priority); }
 };
 
 /* Backfill Config
@@ -476,7 +476,7 @@ struct RALLYHEREAPI_API Traits_BackfillConfig
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.BackfillConfig(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->BackfillConfig(InRequest, InDelegate, Priority); }
 };
 
 /* Create Instance Request
@@ -541,7 +541,7 @@ struct RALLYHEREAPI_API Traits_CreateInstanceRequest
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateInstanceRequest(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->CreateInstanceRequest(InRequest, InDelegate, Priority); }
 };
 
 /* Create Or Join Session
@@ -606,7 +606,7 @@ struct RALLYHEREAPI_API Traits_CreateOrJoinSession
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateOrJoinSession(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->CreateOrJoinSession(InRequest, InDelegate, Priority); }
 };
 
 /* Delete Backfill Request
@@ -668,7 +668,7 @@ struct RALLYHEREAPI_API Traits_DeleteBackfillRequest
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteBackfillRequest(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DeleteBackfillRequest(InRequest, InDelegate, Priority); }
 };
 
 /* Delete Browser Info
@@ -731,7 +731,7 @@ struct RALLYHEREAPI_API Traits_DeleteBrowserInfo
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteBrowserInfo(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DeleteBrowserInfo(InRequest, InDelegate, Priority); }
 };
 
 /* Delete Platform Session From Rally Here Session
@@ -809,7 +809,7 @@ struct RALLYHEREAPI_API Traits_DeletePlatformSessionFromRallyHereSession
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeletePlatformSessionFromRallyHereSession(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DeletePlatformSessionFromRallyHereSession(InRequest, InDelegate, Priority); }
 };
 
 /* End Instance
@@ -877,7 +877,7 @@ struct RALLYHEREAPI_API Traits_EndInstance
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.EndInstance(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->EndInstance(InRequest, InDelegate, Priority); }
 };
 
 /* Get All Session Templates
@@ -947,7 +947,7 @@ struct RALLYHEREAPI_API Traits_GetAllSessionTemplates
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllSessionTemplates(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetAllSessionTemplates(InRequest, InDelegate, Priority); }
 };
 
 /* Get Browser Sessions By Type
@@ -1019,7 +1019,7 @@ struct RALLYHEREAPI_API Traits_GetBrowserSessionsByType
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetBrowserSessionsByType(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetBrowserSessionsByType(InRequest, InDelegate, Priority); }
 };
 
 /* Get Connection Info Self
@@ -1083,7 +1083,7 @@ struct RALLYHEREAPI_API Traits_GetConnectionInfoSelf
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetConnectionInfoSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetConnectionInfoSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Platform Session Info
@@ -1160,7 +1160,7 @@ struct RALLYHEREAPI_API Traits_GetPlatformSessionInfo
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlatformSessionInfo(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPlatformSessionInfo(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Sessions
@@ -1226,7 +1226,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerSessions
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerSessions(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPlayerSessions(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Sessions By Uuid
@@ -1298,7 +1298,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerSessionsByUuid
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerSessionsByUuid(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPlayerSessionsByUuid(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Sessions By Uuid V2
@@ -1369,7 +1369,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerSessionsByUuidV2
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerSessionsByUuidV2(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPlayerSessionsByUuidV2(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Sessions Self
@@ -1435,7 +1435,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerSessionsSelf
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerSessionsSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPlayerSessionsSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Session By Allocation Id
@@ -1506,7 +1506,7 @@ struct RALLYHEREAPI_API Traits_GetSessionByAllocationId
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetSessionByAllocationId(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetSessionByAllocationId(InRequest, InDelegate, Priority); }
 };
 
 /* Get Session By Id
@@ -1579,7 +1579,7 @@ struct RALLYHEREAPI_API Traits_GetSessionById
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetSessionById(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetSessionById(InRequest, InDelegate, Priority); }
 };
 
 /* Get Session Template By Type
@@ -1650,7 +1650,7 @@ struct RALLYHEREAPI_API Traits_GetSessionTemplateByType
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetSessionTemplateByType(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetSessionTemplateByType(InRequest, InDelegate, Priority); }
 };
 
 /* Instance Health Check
@@ -1715,7 +1715,7 @@ struct RALLYHEREAPI_API Traits_InstanceHealthCheck
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.InstanceHealthCheck(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->InstanceHealthCheck(InRequest, InDelegate, Priority); }
 };
 
 /* Instance Health Config
@@ -1769,7 +1769,7 @@ struct RALLYHEREAPI_API Traits_InstanceHealthConfig
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.InstanceHealthConfig(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->InstanceHealthConfig(InRequest, InDelegate, Priority); }
 };
 
 /* Invite Session To Session
@@ -1851,7 +1851,7 @@ struct RALLYHEREAPI_API Traits_InviteSessionToSession
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.InviteSessionToSession(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->InviteSessionToSession(InRequest, InDelegate, Priority); }
 };
 
 /* Join Queue
@@ -1916,7 +1916,7 @@ struct RALLYHEREAPI_API Traits_JoinQueue
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.JoinQueue(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->JoinQueue(InRequest, InDelegate, Priority); }
 };
 
 /* Join Session By Id Self
@@ -1991,7 +1991,7 @@ struct RALLYHEREAPI_API Traits_JoinSessionByIdSelf
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.JoinSessionByIdSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->JoinSessionByIdSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Join Session By Platform Session By Uuid
@@ -2076,7 +2076,7 @@ struct RALLYHEREAPI_API Traits_JoinSessionByPlatformSessionByUuid
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.JoinSessionByPlatformSessionByUuid(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->JoinSessionByPlatformSessionByUuid(InRequest, InDelegate, Priority); }
 };
 
 /* Join Session By Platform Session Id Self
@@ -2159,7 +2159,7 @@ struct RALLYHEREAPI_API Traits_JoinSessionByPlatformSessionIdSelf
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.JoinSessionByPlatformSessionIdSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->JoinSessionByPlatformSessionIdSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Kick Player From Session By Id
@@ -2231,7 +2231,7 @@ struct RALLYHEREAPI_API Traits_KickPlayerFromSessionById
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.KickPlayerFromSessionById(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->KickPlayerFromSessionById(InRequest, InDelegate, Priority); }
 };
 
 /* Kick Player From Session By Uuid
@@ -2307,7 +2307,7 @@ struct RALLYHEREAPI_API Traits_KickPlayerFromSessionByUuid
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.KickPlayerFromSessionByUuid(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->KickPlayerFromSessionByUuid(InRequest, InDelegate, Priority); }
 };
 
 /* Kick Player From Session By Uuid V2
@@ -2382,7 +2382,7 @@ struct RALLYHEREAPI_API Traits_KickPlayerFromSessionByUuidV2
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.KickPlayerFromSessionByUuidV2(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->KickPlayerFromSessionByUuidV2(InRequest, InDelegate, Priority); }
 };
 
 /* Kick Session From Session
@@ -2457,7 +2457,7 @@ struct RALLYHEREAPI_API Traits_KickSessionFromSession
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.KickSessionFromSession(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->KickSessionFromSession(InRequest, InDelegate, Priority); }
 };
 
 /* Leave Queue
@@ -2526,7 +2526,7 @@ struct RALLYHEREAPI_API Traits_LeaveQueue
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.LeaveQueue(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->LeaveQueue(InRequest, InDelegate, Priority); }
 };
 
 /* Leave Session By Id Self
@@ -2594,7 +2594,7 @@ struct RALLYHEREAPI_API Traits_LeaveSessionByIdSelf
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.LeaveSessionByIdSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->LeaveSessionByIdSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Leave Session By Platform Session By Uuid
@@ -2671,7 +2671,7 @@ struct RALLYHEREAPI_API Traits_LeaveSessionByPlatformSessionByUuid
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.LeaveSessionByPlatformSessionByUuid(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->LeaveSessionByPlatformSessionByUuid(InRequest, InDelegate, Priority); }
 };
 
 /* Leave Session By Platform Session Self
@@ -2747,7 +2747,7 @@ struct RALLYHEREAPI_API Traits_LeaveSessionByPlatformSessionSelf
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.LeaveSessionByPlatformSessionSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->LeaveSessionByPlatformSessionSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Post Browser Info
@@ -2813,7 +2813,7 @@ struct RALLYHEREAPI_API Traits_PostBrowserInfo
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PostBrowserInfo(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->PostBrowserInfo(InRequest, InDelegate, Priority); }
 };
 
 /* Update Backfill Request
@@ -2875,7 +2875,7 @@ struct RALLYHEREAPI_API Traits_UpdateBackfillRequest
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateBackfillRequest(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->UpdateBackfillRequest(InRequest, InDelegate, Priority); }
 };
 
 /* Update Browser Info
@@ -2940,7 +2940,7 @@ struct RALLYHEREAPI_API Traits_UpdateBrowserInfo
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateBrowserInfo(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->UpdateBrowserInfo(InRequest, InDelegate, Priority); }
 };
 
 /* Update Instance Info
@@ -3006,7 +3006,7 @@ struct RALLYHEREAPI_API Traits_UpdateInstanceInfo
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateInstanceInfo(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->UpdateInstanceInfo(InRequest, InDelegate, Priority); }
 };
 
 /* Update Session By Id
@@ -3076,7 +3076,7 @@ struct RALLYHEREAPI_API Traits_UpdateSessionById
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateSessionById(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->UpdateSessionById(InRequest, InDelegate, Priority); }
 };
 
 /* Update Session Player By Id
@@ -3150,7 +3150,7 @@ struct RALLYHEREAPI_API Traits_UpdateSessionPlayerById
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateSessionPlayerById(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->UpdateSessionPlayerById(InRequest, InDelegate, Priority); }
 };
 
 /* Update Session Player By Uuid
@@ -3228,7 +3228,7 @@ struct RALLYHEREAPI_API Traits_UpdateSessionPlayerByUuid
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateSessionPlayerByUuid(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->UpdateSessionPlayerByUuid(InRequest, InDelegate, Priority); }
 };
 
 /* Update Session Player By Uuid V2
@@ -3305,7 +3305,7 @@ struct RALLYHEREAPI_API Traits_UpdateSessionPlayerByUuidV2
 	typedef FSessionsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateSessionPlayerByUuidV2(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->UpdateSessionPlayerByUuidV2(InRequest, InDelegate, Priority); }
 };
 
 

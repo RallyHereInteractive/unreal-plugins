@@ -253,14 +253,14 @@ void FRH_AnalyticsProvider::FlushEventsOnce()
 	if(ensure(FModuleManager::Get().IsModuleLoaded("RallyHereIntegration")))
 	{
 		// grab event API, then compute the endpoint from a test event
-		auto& EventsAPI = RH_APIs::GetEventsAPI();
+		auto EventsAPI = RH_APIs::GetEventsAPI();
 
 		// this manually emits the event for efficiency using a binary send, rather than using the API version which does extra copies
 		{
 			QUICK_SCOPE_CYCLE_COUNTER(STAT_FlushEventsHttpRequest);
 
 			// Create/send Http request for an event
-			EventsAPI.ReceiveEventsV1(Request, 
+			EventsAPI->ReceiveEventsV1(Request, 
 				!bShuttingDown ? BaseReceiveEventsType::Delegate::CreateSP(this, &FRH_AnalyticsProvider::EventRequestComplete) : BaseReceiveEventsType::Delegate(),
 				GetDefault<URH_IntegrationSettings>()->EventsReceiveEventPriority);
 		}

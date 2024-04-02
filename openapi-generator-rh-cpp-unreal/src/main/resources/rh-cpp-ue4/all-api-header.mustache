@@ -35,20 +35,23 @@ struct {{dllapi}} F{{unrealModuleName}}All
 public:
 	F{{unrealModuleName}}All();
 
-	TArray<FAPI*> GetAllAPIs() const;
+	// dummy value to help autogenerator for constructor
+	int32 DummyValue;
+
+	TArray<TSharedRef<FAPI>> GetAllAPIs() const;
 
 	{{#apiInfo}}
 	{{#apis}}
-	{{{classname}}}& Get{{{baseName}}}();
-	const {{{classname}}}& Get{{{baseName}}}() const;
+	TSharedRef<{{{classname}}}> Get{{{baseName}}}();
+	const TSharedRef<{{{classname}}}> Get{{{baseName}}}() const;
 
 	{{/apis}}
 	{{/apiInfo}}
 private:
-	TArray<FAPI*> AllAPIs;
+	TArray<TSharedRef<FAPI>> AllAPIs;
 	{{#apiInfo}}
 	{{#apis}}
-	{{{classname}}} {{{baseName}}};
+	TSharedRef<{{{classname}}}> {{{baseName}}};
 	{{/apis}}
 	{{/apiInfo}}
 };

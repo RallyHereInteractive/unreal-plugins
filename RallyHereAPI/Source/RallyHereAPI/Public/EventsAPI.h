@@ -85,7 +85,7 @@ struct RALLYHEREAPI_API Traits_GetAllEventSchema
 	typedef FEventsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllEventSchema(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetAllEventSchema(InRequest, InDelegate, Priority); }
 };
 
 /* Receive Events V1
@@ -149,7 +149,7 @@ struct RALLYHEREAPI_API Traits_ReceiveEventsV1
 	typedef FEventsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ReceiveEventsV1(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->ReceiveEventsV1(InRequest, InDelegate, Priority); }
 };
 
 

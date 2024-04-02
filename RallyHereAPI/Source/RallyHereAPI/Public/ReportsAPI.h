@@ -127,7 +127,7 @@ struct RALLYHEREAPI_API Traits_CreateReportForTargetPlayerUuid
 	typedef FReportsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateReportForTargetPlayerUuid(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->CreateReportForTargetPlayerUuid(InRequest, InDelegate, Priority); }
 };
 
 /* Get Reports For Target Player Uuid
@@ -202,7 +202,7 @@ struct RALLYHEREAPI_API Traits_GetReportsForTargetPlayerUuid
 	typedef FReportsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetReportsForTargetPlayerUuid(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetReportsForTargetPlayerUuid(InRequest, InDelegate, Priority); }
 };
 
 /* Get Reports For Target Player Uuid Self
@@ -276,7 +276,7 @@ struct RALLYHEREAPI_API Traits_GetReportsForTargetPlayerUuidSelf
 	typedef FReportsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetReportsForTargetPlayerUuidSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetReportsForTargetPlayerUuidSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Reports From Source Player Uuid
@@ -345,7 +345,7 @@ struct RALLYHEREAPI_API Traits_GetReportsFromSourcePlayerUuid
 	typedef FReportsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetReportsFromSourcePlayerUuid(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetReportsFromSourcePlayerUuid(InRequest, InDelegate, Priority); }
 };
 
 /* Get Reports From Source Player Uuid Self
@@ -413,7 +413,7 @@ struct RALLYHEREAPI_API Traits_GetReportsFromSourcePlayerUuidSelf
 	typedef FReportsAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetReportsFromSourcePlayerUuidSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetReportsFromSourcePlayerUuidSelf(InRequest, InDelegate, Priority); }
 };
 
 

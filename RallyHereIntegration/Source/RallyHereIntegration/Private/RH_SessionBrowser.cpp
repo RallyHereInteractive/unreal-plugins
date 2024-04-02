@@ -111,6 +111,7 @@ protected:
 		}
 	}
 
+	typedef RallyHereAPI::Traits_GetSessionById GetSessionByIdType;
 	void DoSessionLookup(const FString& SessionId)
 	{
 		if (!SessionOwner.IsValid())
@@ -120,7 +121,7 @@ protected:
 		}
 
 		// Read session data
-		RallyHereAPI::FRequest_GetSessionById Request;
+		GetSessionByIdType::Request Request;
 		Request.AuthContext = AuthContext;
 		Request.SessionId = SessionId;
 		Request.RefreshTtl = false; // for search looked up sessions, do not refresh TTL
@@ -130,14 +131,14 @@ protected:
 			Request.IfNoneMatch = SessionOwner->GetETagForSession(SessionId);
 		}
 
-		HttpRequest = RH_APIs::GetSessionsAPI().GetSessionById(Request, RallyHereAPI::Traits_GetSessionById::Delegate::CreateSP(this, &FRH_SessionBrowserSearchHelper::OnSessionLookup), GetDefault<URH_IntegrationSettings>()->SessionGetBySessionIdPriority);
+		HttpRequest = GetSessionByIdType::DoCall(RH_APIs::GetSessionsAPI(), Request, RallyHereAPI::Traits_GetSessionById::Delegate::CreateSP(this, &FRH_SessionBrowserSearchHelper::OnSessionLookup), GetDefault<URH_IntegrationSettings>()->SessionGetBySessionIdPriority);
 		if (!HttpRequest)
 		{
 			Failed(TEXT("Could not create http request to lookup session"));
 		}
 	}
 
-	void OnSessionLookup(const RallyHereAPI::Traits_GetSessionById::Response& Resp)
+	void OnSessionLookup(const GetSessionByIdType::Response& Resp)
 	{
 		HttpRequest = nullptr;
 

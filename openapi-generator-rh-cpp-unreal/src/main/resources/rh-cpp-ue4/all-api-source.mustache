@@ -23,27 +23,34 @@ namespace {{this}}
 {{/cppNamespaceDeclarations}}
 
 F{{unrealModuleName}}All::F{{unrealModuleName}}All()
+	: DummyValue(0)
+	{{#apiInfo}}
+	{{#apis}}
+	, {{{baseName}}}(MakeShareable(new {{{classname}}}()))
+	{{/apis}}
+	{{/apiInfo}}
+
 {
 	{{#apiInfo}}
 	{{#apis}}
-	AllAPIs.Add(&{{{baseName}}});
+	AllAPIs.Add({{{baseName}}});
 	{{/apis}}
 	{{/apiInfo}}
 }
 
-TArray<FAPI*> F{{unrealModuleName}}All::GetAllAPIs() const
+TArray<TSharedRef<FAPI>> F{{unrealModuleName}}All::GetAllAPIs() const
 {
 	return AllAPIs;
 }
 {{#apiInfo}}
 {{#apis}}
 
-{{{classname}}}& F{{unrealModuleName}}All::Get{{{baseName}}}()
+TSharedRef<{{{classname}}}> F{{unrealModuleName}}All::Get{{{baseName}}}()
 {
 	return {{{baseName}}};
 }
 
-const {{{classname}}}& F{{unrealModuleName}}All::Get{{{baseName}}}() const
+const TSharedRef<{{{classname}}}> F{{unrealModuleName}}All::Get{{{baseName}}}() const
 {
 	return {{{baseName}}};
 }

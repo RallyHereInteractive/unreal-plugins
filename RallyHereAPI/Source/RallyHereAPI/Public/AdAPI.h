@@ -127,7 +127,7 @@ struct RALLYHEREAPI_API Traits_BeginNewSession
 	typedef FAdAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.BeginNewSession(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->BeginNewSession(InRequest, InDelegate, Priority); }
 };
 
 /* Find Opportunities
@@ -196,7 +196,7 @@ struct RALLYHEREAPI_API Traits_FindOpportunities
 	typedef FAdAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.FindOpportunities(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->FindOpportunities(InRequest, InDelegate, Priority); }
 };
 
 /* Unity Ad Watched
@@ -252,7 +252,7 @@ struct RALLYHEREAPI_API Traits_UnityAdWatched
 	typedef FAdAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UnityAdWatched(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->UnityAdWatched(InRequest, InDelegate, Priority); }
 };
 
 /* Unity Mediation Ad Watched
@@ -310,7 +310,7 @@ struct RALLYHEREAPI_API Traits_UnityMediationAdWatched
 	typedef FAdAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UnityMediationAdWatched(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->UnityMediationAdWatched(InRequest, InDelegate, Priority); }
 };
 
 /* Update Opportunity By Id
@@ -380,7 +380,7 @@ struct RALLYHEREAPI_API Traits_UpdateOpportunityById
 	typedef FAdAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateOpportunityById(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->UpdateOpportunityById(InRequest, InDelegate, Priority); }
 };
 
 

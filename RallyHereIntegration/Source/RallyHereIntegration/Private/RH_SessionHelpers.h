@@ -570,6 +570,7 @@ protected:
 		}
 	}
 
+	typedef RallyHereAPI::Traits_GetSessionById SessionLookupType;
 	void DoSessionLookup(const FString& SessionId)
 	{
 		if (!SessionOwner.IsValid())
@@ -591,7 +592,7 @@ protected:
 		}
 
 		// Read session data
-		RallyHereAPI::FRequest_GetSessionById Request;
+		SessionLookupType::Request Request;
 		Request.AuthContext = GetAuthContext();
 		Request.SessionId = SessionId;
 		Request.IfNoneMatch = SessionOwner->GetETagForSession(SessionId);
@@ -599,14 +600,14 @@ protected:
 
 		LastSessionLookupId = SessionId;
 
-		HttpRequest = RH_APIs::GetSessionsAPI().GetSessionById(Request, RallyHereAPI::Traits_GetSessionById::Delegate::CreateSP(this, &FRH_SessionPollAllHelper::OnSessionLookup));
+		HttpRequest = SessionLookupType::DoCall(RH_APIs::GetSessionsAPI(), Request, RallyHereAPI::Traits_GetSessionById::Delegate::CreateSP(this, &FRH_SessionPollAllHelper::OnSessionLookup), GetDefault<URH_IntegrationSettings>()->SessionPollPriority);
 		if (!HttpRequest)
 		{
 			Failed(TEXT("Could not create http request to lookup session"));
 		}
 	}
 
-	void OnSessionLookup(const RallyHereAPI::Traits_GetSessionById::Response& Resp)
+	void OnSessionLookup(const SessionLookupType::Response& Resp)
 	{
 		HttpRequest = nullptr;
 
@@ -633,11 +634,11 @@ protected:
 		else if (Resp.GetHttpResponseCode() == EHttpResponseCodes::NotFound)
 		{
 			// Session association still exists, but session no longer exists, attempt to clean up the local state, do not track the call
-			RallyHereAPI::FRequest_LeaveSessionByIdSelf Request;
+			RallyHereAPI::Traits_LeaveSessionByIdSelf::Request Request;
 			Request.AuthContext = GetAuthContext();
 			Request.SessionId = LastSessionLookupId;
 
-			RH_APIs::GetSessionsAPI().LeaveSessionByIdSelf(Request);
+			RallyHereAPI::Traits_LeaveSessionByIdSelf::DoCall(RH_APIs::GetSessionsAPI(), Request);
 		}
 		else if (Resp.GetHttpResponseCode() == EHttpResponseCodes::ServerError)
 		{

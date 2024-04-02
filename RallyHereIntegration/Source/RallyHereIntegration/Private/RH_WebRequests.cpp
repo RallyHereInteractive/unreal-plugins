@@ -199,9 +199,9 @@ const TArray<FName> FRH_WebRequests::GetAPINames() const
 	TArray<FName> Results;
 	if (APIs != nullptr)
 	{
-		for (const auto* API : APIs->GetAllAPIs())
+		for (const auto API : APIs->GetAllAPIs())
 		{
-			if (API != nullptr) Results.Add(API->GetName());
+			Results.Add(API->GetName());
 		}
 	}
 
@@ -212,14 +212,11 @@ bool FRH_WebRequests::GetLogAllWebRequests() const
 {
 	if (APIs != nullptr)
 	{
-		for (const auto* API : APIs->GetAllAPIs())
+		for (const auto API : APIs->GetAllAPIs())
 		{
-			if (API != nullptr)
+			if (!GetLogWebRequests(API->GetName()))
 			{
-				if (!GetLogWebRequests(API->GetName()))
-				{
-					return false;
-				}
+				return false;
 			}
 		}
 	}
@@ -230,12 +227,9 @@ void FRH_WebRequests::SetLogAllWebRequests(bool bValue)
 {
 	if (APIs != nullptr)
 	{
-		for (const auto* API : APIs->GetAllAPIs())
+		for (const auto API : APIs->GetAllAPIs())
 		{
-			if (API != nullptr)
-			{
-				SetLogWebRequests(API->GetName(), bValue);
-			}
+			SetLogWebRequests(API->GetName(), bValue);
 		}
 	}
 }
@@ -254,20 +248,15 @@ const FRH_WebRequest* FRH_WebRequests::GetTrackedRequestById(const FGuid& id) co
 	return nullptr;
 }
 
-void FRH_WebRequests::OnWebRequestStarted(const RallyHereAPI::FRequestMetadata& RequestMetadata, FHttpRequestRef HttpRequest, RallyHereAPI::FAPI* API)
+void FRH_WebRequests::OnWebRequestStarted(const RallyHereAPI::FRequestMetadata& RequestMetadata, FHttpRequestRef HttpRequest, TSharedRef<RallyHereAPI::FAPI> API)
 {
 	OnWebRequestStarted_Log(RequestMetadata, HttpRequest, API);
 	OnWebRequestStarted_Track(RequestMetadata, HttpRequest, API);
 	OnWebRequestStarted_RecordTimestamp(RequestMetadata, HttpRequest, API);
 }
 
-void FRH_WebRequests::OnWebRequestStarted_Track(const RallyHereAPI::FRequestMetadata& RequestMetadata, FHttpRequestRef HttpRequest, RallyHereAPI::FAPI* API)
+void FRH_WebRequests::OnWebRequestStarted_Track(const RallyHereAPI::FRequestMetadata& RequestMetadata, FHttpRequestRef HttpRequest, TSharedRef<RallyHereAPI::FAPI> API)
 {
-	if (API == nullptr)
-	{
-		return;
-	}
-
 	auto Request = MakeShared<FRH_WebRequest>();
 	Request->APIName = API->GetName();
 	Request->Timestamp = FDateTime::Now();
@@ -318,9 +307,9 @@ void FRH_WebRequests::OnWebRequestStarted_Track(const RallyHereAPI::FRequestMeta
 	}
 }
 
-void FRH_WebRequests::OnWebRequestStarted_Log(const RallyHereAPI::FRequestMetadata& RequestMetadata, FHttpRequestRef HttpRequest, RallyHereAPI::FAPI* API)
+void FRH_WebRequests::OnWebRequestStarted_Log(const RallyHereAPI::FRequestMetadata& RequestMetadata, FHttpRequestRef HttpRequest, TSharedRef<RallyHereAPI::FAPI> API)
 {
-	bool bShouldLog = API != nullptr && GetLogWebRequests(API->GetName());
+	bool bShouldLog = GetLogWebRequests(API->GetName());
 	if (!bShouldLog || !UE_LOG_ACTIVE(LogRallyHereIntegration, VeryVerbose))
 	{
 		return;
@@ -331,29 +320,20 @@ void FRH_WebRequests::OnWebRequestStarted_Log(const RallyHereAPI::FRequestMetada
 	LogHttpBase(*HttpRequest, Prefix, GetSensitiveHeadersForRequest(RequestMetadata), GetSensitiveFieldsForRequest(RequestMetadata));
 }
 
-void FRH_WebRequests::OnWebRequestStarted_RecordTimestamp(const RallyHereAPI::FRequestMetadata& RequestMetadata, FHttpRequestRef HttpRequest, RallyHereAPI::FAPI* API)
+void FRH_WebRequests::OnWebRequestStarted_RecordTimestamp(const RallyHereAPI::FRequestMetadata& RequestMetadata, FHttpRequestRef HttpRequest, TSharedRef<RallyHereAPI::FAPI> API)
 {
-	if (API == nullptr)
-	{
-		return;
-	}
 	APINameToCallCountMap.FindOrAdd(API->GetName())++;
 	SimplifiedPathToCallCountMap.FindOrAdd(RequestMetadata.SimplifiedPath)++;
 }
 
-void FRH_WebRequests::OnWebRequestCompleted(const RallyHereAPI::FResponse& Response, FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSuccess, bool bWillRetryWithAuth, RallyHereAPI::FAPI* API)
+void FRH_WebRequests::OnWebRequestCompleted(const RallyHereAPI::FResponse& Response, FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSuccess, bool bWillRetryWithAuth, TSharedRef<RallyHereAPI::FAPI> API)
 {
 	OnWebRequestCompleted_Log(Response, HttpRequest, HttpResponse, bSuccess, bWillRetryWithAuth, API);
 	OnWebRequestCompleted_Track(Response, HttpRequest, HttpResponse, bSuccess, bWillRetryWithAuth, API);
 }
 
-void FRH_WebRequests::OnWebRequestCompleted_Track(const RallyHereAPI::FResponse& Response, FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSuccess, bool bWillRetryWithAuth, RallyHereAPI::FAPI* API)
+void FRH_WebRequests::OnWebRequestCompleted_Track(const RallyHereAPI::FResponse& Response, FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSuccess, bool bWillRetryWithAuth, TSharedRef<RallyHereAPI::FAPI> API)
 {
-	if (API == nullptr)
-	{
-		return;
-	}
-
 	auto TrackedRequest = TrackedRequestsById.Find(Response.GetRequestMetadata().Identifier);
 	if (!TrackedRequest)
 	{
@@ -390,9 +370,9 @@ void FRH_WebRequests::OnWebRequestCompleted_Track(const RallyHereAPI::FResponse&
 	}
 }
 
-void FRH_WebRequests::OnWebRequestCompleted_Log(const RallyHereAPI::FResponse& Response, FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSuccess, bool bWillRetryWithAuth, RallyHereAPI::FAPI* API)
+void FRH_WebRequests::OnWebRequestCompleted_Log(const RallyHereAPI::FResponse& Response, FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSuccess, bool bWillRetryWithAuth, TSharedRef<RallyHereAPI::FAPI> API)
 {
-	bool bShouldLog = API != nullptr && GetLogWebRequests(API->GetName());
+	bool bShouldLog = GetLogWebRequests(API->GetName());
 	if (!bShouldLog || !UE_LOG_ACTIVE(LogRallyHereIntegration, VeryVerbose))
 	{
 		return;

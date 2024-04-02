@@ -417,7 +417,7 @@ public:
 	 * @param [in] Request Templated request data for the query
 	 * @param [in] Priority The Priority of the call, lower is higher priority
 	 */
-	virtual void Start(typename BaseType::API& API, const typename BaseType::Request& Request)
+	virtual void Start(TSharedRef<typename BaseType::API> API, const typename BaseType::Request& Request)
 	{
 		Started();
 

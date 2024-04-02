@@ -176,7 +176,7 @@ struct RALLYHEREAPI_API Traits_CalculateV2Ranks
 	typedef FRankAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CalculateV2Ranks(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->CalculateV2Ranks(InRequest, InDelegate, Priority); }
 };
 
 /* Get All Player Uuid Ranks
@@ -236,7 +236,7 @@ struct RALLYHEREAPI_API Traits_GetAllPlayerUuidRanks
 	typedef FRankAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllPlayerUuidRanks(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetAllPlayerUuidRanks(InRequest, InDelegate, Priority); }
 };
 
 /* Get All Player Uuid Ranks Self
@@ -289,7 +289,7 @@ struct RALLYHEREAPI_API Traits_GetAllPlayerUuidRanksSelf
 	typedef FRankAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllPlayerUuidRanksSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetAllPlayerUuidRanksSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get All Player Uuid Ranks Self V2
@@ -341,7 +341,7 @@ struct RALLYHEREAPI_API Traits_GetAllPlayerUuidRanksSelfV2
 	typedef FRankAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllPlayerUuidRanksSelfV2(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetAllPlayerUuidRanksSelfV2(InRequest, InDelegate, Priority); }
 };
 
 /* Get All Player Uuid Ranks V2
@@ -400,7 +400,7 @@ struct RALLYHEREAPI_API Traits_GetAllPlayerUuidRanksV2
 	typedef FRankAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllPlayerUuidRanksV2(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetAllPlayerUuidRanksV2(InRequest, InDelegate, Priority); }
 };
 
 /* Get All Rank Config V3
@@ -452,7 +452,7 @@ struct RALLYHEREAPI_API Traits_GetAllRankConfigV3
 	typedef FRankAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllRankConfigV3(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetAllRankConfigV3(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Uuid Rank
@@ -513,7 +513,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidRank
 	typedef FRankAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidRank(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPlayerUuidRank(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Uuid Rank Self
@@ -572,7 +572,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidRankSelf
 	typedef FRankAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidRankSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPlayerUuidRankSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Uuid Rank Self V2
@@ -630,7 +630,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidRankSelfV2
 	typedef FRankAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidRankSelfV2(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPlayerUuidRankSelfV2(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Uuid Rank V2
@@ -690,7 +690,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidRankV2
 	typedef FRankAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidRankV2(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPlayerUuidRankV2(InRequest, InDelegate, Priority); }
 };
 
 /* Get Rank Config V3
@@ -748,7 +748,7 @@ struct RALLYHEREAPI_API Traits_GetRankConfigV3
 	typedef FRankAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetRankConfigV3(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetRankConfigV3(InRequest, InDelegate, Priority); }
 };
 
 /* Update Player Uuid Rank
@@ -810,7 +810,7 @@ struct RALLYHEREAPI_API Traits_UpdatePlayerUuidRank
 	typedef FRankAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdatePlayerUuidRank(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->UpdatePlayerUuidRank(InRequest, InDelegate, Priority); }
 };
 
 /* Update Player Uuid Rank Self
@@ -870,7 +870,7 @@ struct RALLYHEREAPI_API Traits_UpdatePlayerUuidRankSelf
 	typedef FRankAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdatePlayerUuidRankSelf(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->UpdatePlayerUuidRankSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Update Player Uuid Rank Self V2
@@ -929,7 +929,7 @@ struct RALLYHEREAPI_API Traits_UpdatePlayerUuidRankSelfV2
 	typedef FRankAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdatePlayerUuidRankSelfV2(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->UpdatePlayerUuidRankSelfV2(InRequest, InDelegate, Priority); }
 };
 
 /* Update Player Uuid Rank V2
@@ -990,7 +990,7 @@ struct RALLYHEREAPI_API Traits_UpdatePlayerUuidRankV2
 	typedef FRankAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdatePlayerUuidRankV2(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->UpdatePlayerUuidRankV2(InRequest, InDelegate, Priority); }
 };
 
 /* Update Rankings V1
@@ -1050,7 +1050,7 @@ struct RALLYHEREAPI_API Traits_UpdateRankingsV1
 	typedef FRankAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateRankingsV1(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->UpdateRankingsV1(InRequest, InDelegate, Priority); }
 };
 
 

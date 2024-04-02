@@ -271,7 +271,7 @@ void URH_PlayerInventory::CreateInventorySession(const TOptional<ERHAPI_Platform
 		Request.InventorySessionCreateRequest.ClearSessionPlatform();
 	}
 
-	const auto HttpPtr = RH_APIs::GetAPIs().GetInventory().CreateNewInventorySessionByPlayerUuid(Request,
+	const auto HttpPtr = RH_APIs::GetAPIs().GetInventory()->CreateNewInventorySessionByPlayerUuid(Request,
 			RallyHereAPI::FDelegate_CreateNewInventorySessionByPlayerUuid::CreateUObject(
 				this, &URH_PlayerInventory::HandleCreateInventorySession,
 				Delegate), GetDefault<URH_IntegrationSettings>()->InventoryCreateSessionPriority);
@@ -319,7 +319,7 @@ void URH_PlayerInventory::GetInventorySession(const FRH_OnInventorySessionUpdate
 	Request.PlayerUuid = GetRHPlayerUuid();
 	Request.AuthContext = GetAuthContext();
 
-	const auto HttpPtr = RH_APIs::GetAPIs().GetInventory().GetInventorySessionInfoByPlayerUuid(Request,
+	const auto HttpPtr = RH_APIs::GetAPIs().GetInventory()->GetInventorySessionInfoByPlayerUuid(Request,
 			RallyHereAPI::FDelegate_GetInventorySessionInfoByPlayerUuid::CreateUObject(
 				this, &URH_PlayerInventory::HandleGetInventorySession,
 				Delegate), GetDefault<URH_IntegrationSettings>()->InventoryGetSessionPriority);
@@ -455,7 +455,7 @@ void URH_PlayerInventory::GetInventory(TArray<int32> ItemIds, const FRH_OnInvent
 		Request.ItemIds = ItemIds;
 	}
 
-	const auto HttpPtr = RH_APIs::GetAPIs().GetInventory().GetPlayerInventoryUuid(Request,
+	const auto HttpPtr = RH_APIs::GetAPIs().GetInventory()->GetPlayerInventoryUuid(Request,
 			RallyHereAPI::FDelegate_GetPlayerInventoryUuid::CreateUObject(
 				this, &URH_PlayerInventory::HandleGetInventory,
 				ItemIds, Delegate), GetDefault<URH_IntegrationSettings>()->InventoryGetPriority);
@@ -594,7 +594,7 @@ void URH_PlayerInventory::CreateInventory(const TOptional<FGuid>& ClientOrderRef
 		Request.CreateInventoryRequests.Inventory.Emplace(Create);
 	}
 
-	const auto HttpPtr = RH_APIs::GetAPIs().GetInventory().CreatePlayerInventoryUuid(Request,
+	const auto HttpPtr = RH_APIs::GetAPIs().GetInventory()->CreatePlayerInventoryUuid(Request,
 			RallyHereAPI::FDelegate_CreatePlayerInventoryUuid::CreateUObject(
 				this, &URH_PlayerInventory::HandleCreateInventory, Delegate),
 			GetDefault<URH_IntegrationSettings>()->InventoryCreatePriority);
@@ -666,7 +666,7 @@ void URH_PlayerInventory::UpdateInventory(const TOptional<FGuid>& ClientOrderRef
 		Request.UpdateInventoryRequests.Inventory.Emplace(Update);
 	}
 
-	const auto HttpPtr = RH_APIs::GetAPIs().GetInventory().ModifyManyPlayerInventoryUuid(Request,
+	const auto HttpPtr = RH_APIs::GetAPIs().GetInventory()->ModifyManyPlayerInventoryUuid(Request,
 			RallyHereAPI::FDelegate_ModifyManyPlayerInventoryUuid::CreateUObject(
 				this, &URH_PlayerInventory::HandleUpdateInventory, Delegate),
 			GetDefault<URH_IntegrationSettings>()->InventoryUpdatePriority);

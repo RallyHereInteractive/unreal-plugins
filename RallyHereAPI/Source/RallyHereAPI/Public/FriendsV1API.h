@@ -153,7 +153,7 @@ struct RALLYHEREAPI_API Traits_AddFriend
 	typedef FFriendsV1API API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AddFriend(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->AddFriend(InRequest, InDelegate, Priority); }
 };
 
 /* Add Notes
@@ -230,7 +230,7 @@ struct RALLYHEREAPI_API Traits_AddNotes
 	typedef FFriendsV1API API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AddNotes(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->AddNotes(InRequest, InDelegate, Priority); }
 };
 
 /* Delete Friend
@@ -312,7 +312,7 @@ struct RALLYHEREAPI_API Traits_DeleteFriend
 	typedef FFriendsV1API API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteFriend(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DeleteFriend(InRequest, InDelegate, Priority); }
 };
 
 /* Delete Friends
@@ -378,7 +378,7 @@ struct RALLYHEREAPI_API Traits_DeleteFriends
 	typedef FFriendsV1API API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteFriends(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DeleteFriends(InRequest, InDelegate, Priority); }
 };
 
 /* Delete Notes
@@ -448,7 +448,7 @@ struct RALLYHEREAPI_API Traits_DeleteNotes
 	typedef FFriendsV1API API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteNotes(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DeleteNotes(InRequest, InDelegate, Priority); }
 };
 
 /* Get Friend Relationship
@@ -530,7 +530,7 @@ struct RALLYHEREAPI_API Traits_GetFriendRelationship
 	typedef FFriendsV1API API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetFriendRelationship(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetFriendRelationship(InRequest, InDelegate, Priority); }
 };
 
 /* Get Friends List For Player
@@ -612,7 +612,7 @@ struct RALLYHEREAPI_API Traits_GetFriendsListForPlayer
 	typedef FFriendsV1API API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetFriendsListForPlayer(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetFriendsListForPlayer(InRequest, InDelegate, Priority); }
 };
 
 

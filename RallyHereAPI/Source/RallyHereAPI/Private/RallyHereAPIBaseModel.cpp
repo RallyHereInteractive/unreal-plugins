@@ -294,9 +294,9 @@ bool FAPI::HandleResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResp
 			auto Retry = MakeShared<FRequestPendingAuthRetry>();
 			Retry->HttpRequest = HttpRequest;
 			Retry->AuthContext = AuthContext;
-
+			
 			// set a callback handle
-			Retry->Handle = AuthContext->OnLoginComplete().AddRaw(this, &FAPI::RetryRequestAfterAuth, Retry, ResponseDelegate, RequestMetadata, Priority);
+			Retry->Handle = AuthContext->OnLoginComplete().AddSP(this, &FAPI::RetryRequestAfterAuth, Retry, ResponseDelegate, RequestMetadata, Priority);
 
 			if (AuthContext->ConditionalRefreshOnFailedResponse(InOutResponse))
 			{
@@ -324,7 +324,7 @@ void FAPI::RetryRequestAfterAuth(bool bAuthSuccess, TSharedRef<FRequestPendingAu
 
 	if (auto* HttpRequester = FRallyHereAPIHttpRequester::Get())
 	{
-		TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(Request->HttpRequest.ToSharedRef(), *this, Priority);
+		TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(Request->HttpRequest.ToSharedRef(), AsShared(), Priority);
 		RequestMetadata.RetryCount++;
 		RequestData->SetMetadata(RequestMetadata);
 		RequestData->SetDelegate(ResponseDelegate);
