@@ -109,7 +109,7 @@ namespace RHStandardEvents
 			if (ensure(FModuleManager::Get().IsModuleLoaded("HTTP")))
 			{
 				// use the custom API's retry manager
-				auto HttpRetryManager = RH_APIs::GetAPIs().GetCustom().GetHttpRetryManager();
+				auto HttpRetryManager = RH_APIs::GetAPIs().GetCustom()->GetHttpRetryManager();
 
 				// Create/send Http request for an event
 				TSharedRef<IHttpRequest, ESPMode::ThreadSafe> HttpRequest = HttpRetryManager->CreateRequest(FHttpRetrySystem::FRetryLimitCountSetting(),
