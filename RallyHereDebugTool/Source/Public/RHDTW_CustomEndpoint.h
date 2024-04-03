@@ -1,4 +1,4 @@
-﻿// Copyright 2022-2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 #pragma once
 
@@ -16,9 +16,9 @@ struct FRHDTW_CustomEndpoint : public FRH_DebugToolWindow
 	virtual void Do() override;
 	void HandleCustomEndpointResult(const FRH_CustomEndpointResponseWrapper& Response);
 
-	TArray<ANSICHAR> EndpointId;
-	TArray<ANSICHAR> ContentType;
-	TArray<ANSICHAR> Body;
+	FString EndpointId;
+	FString ContentType;
+	FString Body;
 	int32 Priority;
 
 	TArray<FRH_CustomEndpointResponseWrapper> LastResults;

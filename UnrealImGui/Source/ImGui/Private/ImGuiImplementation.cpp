@@ -49,8 +49,12 @@ static FImGuiContextHandle ImGuiContextPtrHandle(ImGuiContextPtr);
 
 //$$ BEGIN - Support additional features
 #include "imgui_tables.cpp"
-#include "imgui_stdlib.cpp"
 //$$ END - Support additional features
+
+#ifdef WITH_IMGUI_STRING_SUPPORT
+#include "imgui_stdlib.cpp"
+#include "imgui_unrealstring.cpp"
+#endif
 
 //$$ BEGIN - Support ImPlot
 #ifdef WITH_IMGUI_IMPLOT
