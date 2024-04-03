@@ -26,8 +26,6 @@ public:
 	/** Implement this for deinitialization of instances of the system */
 	virtual void Deinitialize() override;
 
-	void OnPostActorTick(UWorld* /*World*/, ELevelTick/**Tick Type*/, float/**Delta Seconds*/);
-
 	void RegisterWindow(const TSharedRef<FRH_DebugToolWindow>& InWindow);
 	void UnregisterWindow(const TSharedRef<FRH_DebugToolWindow>& InWindow);
 

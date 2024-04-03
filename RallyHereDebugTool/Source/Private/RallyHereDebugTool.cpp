@@ -50,6 +50,10 @@
 
 #include "Runtime/Launch/Resources/Version.h"
 
+#ifdef WITH_IMGUI_NETIMGUI
+#include "NetImgui_Api.h"
+#endif
+
 URallyHereDebugTool::URallyHereDebugTool()
 	: Super()
 {
@@ -137,8 +141,6 @@ void URallyHereDebugTool::Initialize(FSubsystemCollectionBase& Collection)
 	SavedWindowVisibilities.Add(OutputLogWindow->Name, true);
 
 	IRallyHereDebugToolModule::Get().GetSpawnToolDelegate().Broadcast(this);
-
-	FWorldDelegates::OnWorldPostActorTick.AddUObject(this, &URallyHereDebugTool::OnPostActorTick);
 }
 
 /** Implement this for deinitialization of instances of the system */
@@ -155,22 +157,6 @@ void URallyHereDebugTool::Deinitialize()
 	IRallyHereDebugToolModule::Get().GetCleanupToolDelegate().Broadcast(this);
 
 	Super::Deinitialize();
-}
-
-void URallyHereDebugTool::OnPostActorTick(UWorld* World, ELevelTick TickType, float DeltaSeconds)
-{
-	if (bActive && TickType != ELevelTick::LEVELTICK_ViewportsOnly)
-	{
-#if RH_FROM_ENGINE_VERSION(5, 0)
-		if (IsValidChecked(this) && !this->IsUnreachable())
-#else
-		if (!this->IsPendingKillOrUnreachable())
-#endif
-		{
-			FScopeCycleCounterUObject Scope(this);
-			DoImGui();
-		}
-	}
 }
 
 void URallyHereDebugTool::RegisterWindow(const TSharedRef<FRH_DebugToolWindow>& InWindow)
@@ -500,11 +486,27 @@ void URallyHereDebugTool::ToggleUI()
 #endif
 		FImGuiModule::Get().GetProperties().SetLayoutToLoad(URallyHereDebugToolSettings::Get()->DefaultWindowPositions, true);
 		bDoOnce = false;
+
+		FImGuiDelegates::OnWorldDebug(GetWorld()).Add(FSimpleDelegate::CreateUObject(this, &URallyHereDebugTool::DoImGui));
+
+#ifdef WITH_IMGUI_NETIMGUI
+		if (IsRunningDedicatedServer())
+		{
+			NetImgui::ConnectFromApp("rhdebugtool-server");
+		}
+		else
+		{
+			NetImgui::ConnectFromApp("rhdebugtool-client");
+		}
+#endif
 	}
 
 	// Since ImGUI adds its root level widget on boot, but other widgets are added later, drawing order can be broken when invalidation is not enabled.
 	// as a temp fix, invalidate all widgets here, as even just invaliding the actual ImGUI widget may not be sufficient (though we should try that at some point)
-	FSlateApplication::Get().InvalidateAllWidgets(false);
+	if (FSlateApplication::IsInitialized())
+	{
+		FSlateApplication::Get().InvalidateAllWidgets(false);
+	}
 	OnActiveStateChanged.Broadcast();
 }
 
