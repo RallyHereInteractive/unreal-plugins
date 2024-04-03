@@ -30,6 +30,10 @@ URallyHereDebugToolSettings::URallyHereDebugToolSettings(const FObjectInitialize
 	OutputLogTimesType = ELogTimes::Local;
 	bOnlyLogWhileActive = true;
 	bEnableLocalOptions = true;
+
+	NetImguiPolicy = ERH_NetImGuiPolicy::ConnectToApp;
+	DedicatedServerNetImguiPolicy = ERH_NetImGuiPolicy::Disabled;
+	NetImguiDefaultConnectIP = TEXT("127.0.0.1"); // localhost
 }
 
 void URallyHereDebugToolSettings::PostInitProperties()

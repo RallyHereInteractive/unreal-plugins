@@ -141,6 +141,23 @@ void URallyHereDebugTool::Initialize(FSubsystemCollectionBase& Collection)
 	SavedWindowVisibilities.Add(OutputLogWindow->Name, true);
 
 	IRallyHereDebugToolModule::Get().GetSpawnToolDelegate().Broadcast(this);
+
+	// for now, toggle ui if dedicated server wants netimgui connections, so it renders the UI
+	// once we have ability to not render the local UI, can do something similar for client if needed
+	if (IsRunningDedicatedServer())
+	{
+		const auto Policy = IsRunningDedicatedServer() ? URallyHereDebugToolSettings::Get()->DedicatedServerNetImguiPolicy : URallyHereDebugToolSettings::Get()->NetImguiPolicy;
+		if (Policy == ERH_NetImGuiPolicy::ConnectToAppOnStartup || Policy == ERH_NetImGuiPolicy::ConnectFromAppOnStartup)
+		{
+			// defer the state change to the next frame
+			FTSTicker::GetCoreTicker().AddTicker(FTickerDelegate::CreateWeakLambda(this, [this](float)
+				{
+					ToggleUI();
+					return false;
+				}), 0);
+			
+		}
+	}
 }
 
 /** Implement this for deinitialization of instances of the system */
@@ -490,13 +507,20 @@ void URallyHereDebugTool::ToggleUI()
 		FImGuiDelegates::OnWorldDebug(GetWorld()).Add(FSimpleDelegate::CreateUObject(this, &URallyHereDebugTool::DoImGui));
 
 #ifdef WITH_IMGUI_NETIMGUI
-		if (IsRunningDedicatedServer())
 		{
-			NetImgui::ConnectFromApp("rhdebugtool-server");
-		}
-		else
-		{
-			NetImgui::ConnectFromApp("rhdebugtool-client");
+			const auto Policy = IsRunningDedicatedServer() ? URallyHereDebugToolSettings::Get()->DedicatedServerNetImguiPolicy : URallyHereDebugToolSettings::Get()->NetImguiPolicy;
+			const auto NetImguiAppName = IsRunningDedicatedServer() ? "rhdebugtool-server" : "rhdebugtool";
+			if (Policy == ERH_NetImGuiPolicy::ConnectToAppOnStartup)
+			{
+				// connect to localhost by default
+				FString ConnectIp = URallyHereDebugToolSettings::Get()->NetImguiDefaultConnectIP;
+				FParse::Value(FCommandLine::Get(), TEXT("rh.dtconnectip"), ConnectIp);
+				NetImgui::ConnectToApp(NetImguiAppName, TCHAR_TO_UTF8(*ConnectIp));
+			}
+			else if (Policy == ERH_NetImGuiPolicy::ConnectFromAppOnStartup)
+			{
+				NetImgui::ConnectFromApp(NetImguiAppName);
+			}
 		}
 #endif
 	}
@@ -585,6 +609,39 @@ void URallyHereDebugTool::DoImGui()
 		{
 			FImGuiModule::Get().GetProperties().SetLayoutToLoad(URallyHereDebugToolSettings::Get()->DefaultWindowPositions, false);
 		}
+
+#ifdef WITH_IMGUI_NETIMGUI
+		const auto Policy = IsRunningDedicatedServer() ? URallyHereDebugToolSettings::Get()->DedicatedServerNetImguiPolicy : URallyHereDebugToolSettings::Get()->NetImguiPolicy;
+		const auto NetImguiAppName = IsRunningDedicatedServer() ? "rhdebugtool-server" : "rhdebugtool";
+		if (Policy != ERH_NetImGuiPolicy::Disabled)
+		{
+			ImGui::SameLine();
+			if (NetImgui::IsConnected() || NetImgui::IsConnectionPending())
+			{
+				if (ImGui::Button("Disconnect NetImgui"))
+				{
+					NetImgui::Disconnect();
+				}
+			}
+			else if (Policy == ERH_NetImGuiPolicy::ConnectToApp || Policy == ERH_NetImGuiPolicy::ConnectToAppOnStartup)
+			{
+				if (ImGui::Button("Connect NetImgui"))
+				{
+					// connect to localhost by default
+					FString ConnectIp = URallyHereDebugToolSettings::Get()->NetImguiDefaultConnectIP;
+					FParse::Value(FCommandLine::Get(), TEXT("rh.dtconnectip"), ConnectIp);
+					NetImgui::ConnectToApp(NetImguiAppName, TCHAR_TO_UTF8(*ConnectIp));
+				}
+			}
+			else if (Policy == ERH_NetImGuiPolicy::ConnectFromApp || Policy == ERH_NetImGuiPolicy::ConnectFromAppOnStartup)
+			{
+				if (ImGui::Button("Allow NetImgui"))
+				{
+					NetImgui::ConnectFromApp(NetImguiAppName);
+				}
+			}
+		}
+#endif
 
 		if (FRallyHereIntegrationModule::IsAvailable())
 		{

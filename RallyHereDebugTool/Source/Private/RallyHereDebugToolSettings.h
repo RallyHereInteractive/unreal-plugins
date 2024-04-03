@@ -50,6 +50,21 @@ struct FRallyHereDebugToolKeyInfo
 	}
 };
 
+UENUM(BlueprintType)
+enum class ERH_NetImGuiPolicy : uint8
+{
+	/** No connections allowed, system is disabled. */
+	Disabled,
+	/** Connection to viewer is triggered from Unreal. */
+	ConnectToApp,
+	/** Connection to viewer is triggered from Unreal, allows commandline connection on startup via -rh.dtconnectip=<ip>. */
+	ConnectToAppOnStartup,
+	/** Connection to viewer is triggered from viewer (Unreal listens for connection - less secure). */
+	ConnectFromApp,
+	/** Connection to viewer is triggered from viewer, automatically listen on startup (Unreal listens for connection - less secure). */
+	ConnectFromAppOnStartup,
+};
+
 UCLASS(Config=RallyHereIntegration, DefaultConfig, meta=(DisplayName = "Rally Here Debug Tool Settings"))
 class URallyHereDebugToolSettings : public UDeveloperSettings
 {
@@ -109,6 +124,13 @@ public:
 
 	UPROPERTY(Config, EditAnywhere, Category = "Rally Here Debug Tool")
 	FString DefaultWindowPositions;
+
+	UPROPERTY(Config, EditAnywhere, Category = "Rally Here Debug Tool|NetImgui")
+	ERH_NetImGuiPolicy NetImguiPolicy;
+	UPROPERTY(Config, EditAnywhere, Category = "Rally Here Debug Tool|NetImGui")
+	ERH_NetImGuiPolicy DedicatedServerNetImguiPolicy;
+	UPROPERTY(Config, EditAnywhere, Category = "Rally Here Debug Tool|NetImGui")
+	FString NetImguiDefaultConnectIP;
 
 	static const FString strToggleDebugTool;
 
