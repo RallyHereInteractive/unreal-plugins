@@ -6,9 +6,13 @@
 
 #include "Engine/LocalPlayer.h"
 #include "Engine/World.h"
+#include "Engine/GameInstance.h"
 #include "Kismet/GameplayStatics.h"
 
 #include "RH_LocalPlayerLoginSubsystem.h"
+#include "RH_GameInstanceSubsystem.h"
+#include "RH_GameInstanceBootstrappers.h"
+
 
 #include "imgui.h"
 
@@ -146,20 +150,31 @@ void FRHDTW_Login::Do()
 	{
 		ImGui::SetNextItemWidth(50);
 
-		if (ImGui::BeginTabItem("Login", nullptr, ImGuiTabItemFlags_None))
+		if (IsRunningDedicatedServer())
 		{
-			DoLoginTab();
-			ImGui::EndTabItem();
-		}
-
-		if (ImGui::BeginTabItem("Multi Login", nullptr, ImGuiTabItemFlags_None))
-		{
-			DoMassLoginTab();
-			ImGui::EndTabItem();
+			if (ImGui::BeginTabItem("Login", nullptr, ImGuiTabItemFlags_None))
+			{
+				DoServerLoginTab();
+				ImGui::EndTabItem();
+			}
 		}
 		else
 		{
-			ML_Result = FString();
+			if (ImGui::BeginTabItem("Login", nullptr, ImGuiTabItemFlags_None))
+			{
+				DoLoginTab();
+				ImGui::EndTabItem();
+			}
+
+			if (ImGui::BeginTabItem("Multi Login", nullptr, ImGuiTabItemFlags_None))
+			{
+				DoMassLoginTab();
+				ImGui::EndTabItem();
+			}
+			else
+			{
+				ML_Result = FString();
+			}
 		}
 
 		ImGui::EndTabBar();
@@ -200,7 +215,14 @@ void FRHDTW_Login::DoLoginTab()
 	const bool bIsLoggedIn = pRH_LocalPlayerSubsystem->GetAuthContext()->IsLoggedIn();
 	if (bIsLoggedIn)
 	{
-		ImGuiDisplayLoginResult(*LoginResult);
+		if (LoginResult.IsSet())
+		{
+			ImGuiDisplayLoginResult(LoginResult.GetValue());
+		}
+		else
+		{
+			ImGui::Text("Logged in to RallyHere, but no login result found");
+		}
 	}
 	else
 	{
@@ -352,5 +374,54 @@ void FRHDTW_Login::DoMassLoginTab()
 		{
 			UGameplayStatics::SetForceDisableSplitscreen(pWorld, true);
 		}
+	}
+}
+
+
+void FRHDTW_Login::DoServerLoginTab()
+{
+	auto pGameInstance = GetGameInstance();
+	if (pGameInstance == nullptr)
+	{
+		ImGui::Text("No Game Instance found.");
+		return;
+	}
+
+	auto pRH_GameInstanceSubsystem = pGameInstance->GetSubsystem<URH_GameInstanceSubsystem>();
+	if (pRH_GameInstanceSubsystem == nullptr)
+	{
+		ImGui::Text("RH_GameInstanceSubsystem not available.");
+		return;
+	}
+
+	auto* pRH_GameInstanceBootstrapper = pRH_GameInstanceSubsystem->GetServerBootstrapper();
+	if (pRH_GameInstanceBootstrapper == nullptr)
+	{
+		ImGui::Text("RH_GameInstanceBootstrapper not available.");
+		return;
+	}
+
+	auto LoginResult = pRH_GameInstanceBootstrapper->GetAuthContext()->GetLoginResult();
+	const bool bIsLoggedIn = pRH_GameInstanceBootstrapper->GetAuthContext()->IsLoggedIn();
+	if (bIsLoggedIn)
+	{
+		if (LoginResult.IsSet())
+		{
+			ImGuiDisplayLoginResult(LoginResult.GetValue());
+		}
+		else
+		{
+			ImGui::Text("Logged in to RallyHere, but no login result found");
+		}
+	}
+	else
+	{
+		ImGui::Text("Logged out");
+	}
+	ImGui::Separator();
+
+	if (ImGui::Button("Refresh Login"))
+	{
+		pRH_GameInstanceBootstrapper->GetAuthContext()->Refresh();
 	}
 }

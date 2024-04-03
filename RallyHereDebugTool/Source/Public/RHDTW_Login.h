@@ -14,6 +14,7 @@ struct FRHDTW_Login : public FRH_DebugToolWindow
 	virtual void Do() override;
 	void DoLoginTab();
 	void DoMassLoginTab();
+	void DoServerLoginTab();
 
 	// Login variables
 	bool bAcceptEULA;
