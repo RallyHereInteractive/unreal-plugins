@@ -255,6 +255,21 @@ void FImGuiModule::ToggleShowDemo()
 	}
 }
 
+bool FImGuiModule::IsViewportWidgetVisible(UGameViewportClient* GameViewport)
+{
+	if (GameViewport)
+	{
+		return ImGuiModuleManager->IsViewportWidgetVisible(GameViewport);
+	}
+	return false;
+}
+void FImGuiModule::SetViewportWidgetVisibility(UGameViewportClient* GameViewport, bool bVisible)
+{
+	if (GameViewport)
+	{
+		ImGuiModuleManager->SetViewportWidgetVisibility(GameViewport, bVisible);
+	}
+}
 
 //----------------------------------------------------------------------------------------------------
 // Runtime loader

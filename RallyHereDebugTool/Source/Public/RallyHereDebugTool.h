@@ -29,6 +29,8 @@ public:
 	void RegisterWindow(const TSharedRef<FRH_DebugToolWindow>& InWindow);
 	void UnregisterWindow(const TSharedRef<FRH_DebugToolWindow>& InWindow);
 
+	void ImGuiPostInit();
+
 	// Local Players selection
 	TArray<ULocalPlayer*> GetAllLocalPlayers() const;
 	TArray<ULocalPlayer*> GetAllSelectedLocalPlayers() const;

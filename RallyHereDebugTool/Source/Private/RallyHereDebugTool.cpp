@@ -152,7 +152,7 @@ void URallyHereDebugTool::Initialize(FSubsystemCollectionBase& Collection)
 			// defer the state change to the next frame
 			FTSTicker::GetCoreTicker().AddTicker(FTickerDelegate::CreateWeakLambda(this, [this](float)
 				{
-					ToggleUI();
+					ImGuiPostInit();
 					return false;
 				}), 0);
 			
@@ -486,7 +486,11 @@ void URallyHereDebugTool::UntargetAllPlayerInfos()
 
 bool URallyHereDebugTool::IsUIActive() const
 {
+#ifdef WITH_IMGUI_NETIMGUI
+	return bActive || NetImgui::IsConnected();
+#else
 	return bActive;
+#endif
 }
 
 void URallyHereDebugTool::ToggleUI()
@@ -494,9 +498,30 @@ void URallyHereDebugTool::ToggleUI()
 	bActive = !bActive;
 	IRallyHereDebugToolModule::Get().UpdateImGuiInputState();
 
+	// make sure we are initialized
+	ImGuiPostInit();
+
+	if (FSlateApplication::IsInitialized())
+	{
+		auto Viewport = GetWorld()->GetGameViewport();
+
+		if (Viewport != nullptr && FImGuiModule::IsAvailable())
+		{
+			FImGuiModule::Get().SetViewportWidgetVisibility(Viewport, bActive);
+		}
+
+		// Since ImGUI adds its root level widget on boot, but other widgets are added later, drawing order can be broken when invalidation is not enabled.
+		// as a temp fix, invalidate all widgets here, as even just invaliding the actual ImGUI widget may not be sufficient (though we should try that at some point)
+		FSlateApplication::Get().InvalidateAllWidgets(false);
+	}
+	OnActiveStateChanged.Broadcast();
+}
+
+void URallyHereDebugTool::ImGuiPostInit()
+{
 	static bool bDoOnce = true;
 
-	if (bActive && bDoOnce)
+	if (bDoOnce)
 	{
 #ifdef WITH_IMGUI_DOCK_SUPPORT
 		ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_DockingEnable;
@@ -524,18 +549,27 @@ void URallyHereDebugTool::ToggleUI()
 		}
 #endif
 	}
-
-	// Since ImGUI adds its root level widget on boot, but other widgets are added later, drawing order can be broken when invalidation is not enabled.
-	// as a temp fix, invalidate all widgets here, as even just invaliding the actual ImGUI widget may not be sufficient (though we should try that at some point)
-	if (FSlateApplication::IsInitialized())
-	{
-		FSlateApplication::Get().InvalidateAllWidgets(false);
-	}
-	OnActiveStateChanged.Broadcast();
 }
 
 void URallyHereDebugTool::DoImGui()
 {
+	if (!FImGuiModule::IsAvailable())
+	{
+		return;
+	}
+	auto GameViewport = GetWorld()->GetGameViewport();
+	bool bVisibleInViewport = GameViewport != nullptr && FImGuiModule::Get().IsViewportWidgetVisible(GameViewport);
+#ifdef WITH_IMGUI_NETIMGUI
+	bool bVisibleInRemote = NetImgui::IsConnected();
+#else
+	bool bVisibleInRemote = false;
+#endif
+	if (!bVisibleInViewport && !bVisibleInRemote)
+	{
+		// not being viewed, do not render
+		return;
+	}
+
 #ifndef WITH_IMGUI_DOCK_SUPPORT
 	bool bAllowWindowViewSelection = true;
 #else

@@ -264,3 +264,21 @@ void FImGuiModuleManager::OnContextProxyCreated(int32 ContextIndex, FImGuiContex
 	LoadTextures();
 	ContextProxy.OnDraw().AddLambda([this, ContextIndex]() { ImGuiDemo.DrawControls(ContextIndex); });
 }
+
+bool FImGuiModuleManager::IsViewportWidgetVisible(UGameViewportClient* GameViewport)
+{
+	auto Widget = Widgets.FindByPredicate([GameViewport](const auto& Widget) { return Widget.IsValid() && Widget.Pin()->GetGameViewport().Get() == GameViewport; });
+	if (Widget && Widget->IsValid())
+	{
+		return Widget->Pin()->GetVisibility() == EVisibility::Visible;
+	}
+	return false;
+}
+void FImGuiModuleManager::SetViewportWidgetVisibility(UGameViewportClient* GameViewport, bool bVisible)
+{
+	auto Widget = Widgets.FindByPredicate([GameViewport](const auto& Widget) { return Widget.IsValid() && Widget.Pin()->GetGameViewport().Get() == GameViewport; });
+	if (Widget && Widget->IsValid())
+	{
+		return Widget->Pin()->SetVisibility(bVisible ? EVisibility::Visible : EVisibility::Collapsed);
+	}
+}
