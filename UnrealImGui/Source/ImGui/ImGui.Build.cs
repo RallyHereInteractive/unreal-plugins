@@ -34,23 +34,25 @@ public class ImGui : ModuleRules
 		bTreatAsEngineModule = true;
 #endif
 
+		PublicDefinitions.Add("WITH_IMGUI_DOCK_SUPPORT");
+		PublicDefinitions.Add("WITH_IMGUI_IMPLOT");
+		PublicDefinitions.Add("WITH_IMGUI_NETIMGUI");
+
 		PublicIncludePaths.AddRange(
 			new string[] {
-				Path.Combine(ModuleDirectory, "../ThirdParty/ImGuiLibrary/Include")
+				Path.Combine(ModuleDirectory, "../ThirdParty/ImGuiLibrary/Include"),
+				Path.Combine(ModuleDirectory, "../ThirdParty/ImPlotLibrary/Include"),
+				Path.Combine(ModuleDirectory, "../ThirdParty/NetImGuiLibrary/Include"),
 				// ... add public include paths required here ...
 			}
 			);
 
-		//$$ BEGIN ImPlot support
-		PublicDefinitions.Add("WITH_IMGUI_IMPLOT");
-		PublicDefinitions.Add("WITH_IMGUI_DOCK_SUPPORT");
-		//$$ END
-
-
 		PrivateIncludePaths.AddRange(
 			new string[] {
 				"ImGui/Private",
-				"ThirdParty/ImGuiLibrary/Private"
+				"ThirdParty/ImGuiLibrary/Private",
+				"ThirdParty/ImPlotLibrary/Private",
+				"ThirdParty/NetImGuiLibrary",
 				// ... add other private include paths required here ...
 			}
 			);
@@ -75,7 +77,8 @@ public class ImGui : ModuleRules
 				"Slate",
 				"SlateCore",
 				// ... add private dependencies that you statically link with here ...	
-				"PosixShim"
+				"PosixShim",
+				"Sockets"
 			}
 			);
 

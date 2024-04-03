@@ -56,9 +56,8 @@
 // backward nor forward ABI compatibility and also function call overhead. If you
 // do use ImPlot as a DLL, be sure to call SetImGuiContext (see Miscellanous section).
 #ifndef IMPLOT_API
-//$$ BEGIN Reuse the IMGUI_API define, for UE5 editor module compatibility
+//$$ use same API define as IMGUI
 #define IMPLOT_API IMGUI_API
-//$$ END
 #endif
 
 // ImPlot version string.

@@ -124,36 +124,7 @@ You can read releases logs https://github.com/epezent/implot/releases for more d
 
 */
 
-//$$ BEGIN We use a global definition for the module, so the naked define here was causing issues, wrapper it with an ifndef
-#ifndef IMGUI_DEFINE_MATH_OPERATORS
 #define IMGUI_DEFINE_MATH_OPERATORS
-#endif
-//$$ END
-
-//$$ BEGIN handle varying versions of time.h support
-#ifdef _WIN32
-#define PLATFORM_SUPPORTS_WINDOWS_TIME 1
-#else
-#define PLATFORM_SUPPORTS_WINDOWS_TIME 0
-#endif
-#define PLATFORM_SUPPORTS_C23_TIME (!PLATFORM_SUPPORTS_WINDOWS_TIME)
-
-#define PLATFORM_SUPPORTS_TIMEGM PLATFORM_SUPPORTS_C23_TIME
-// sony platforms do not implement timegm
-#ifdef PLATFORM_PS4
-	#if PLATFORM_PS4
-		#undef PLATFORM_SUPPORTS_TIMEGM
-		#define PLATFORM_SUPPORTS_TIMEGM 0
-	#endif
-#endif
-#ifdef PLATFORM_PS5
-	#if PLATFORM_PS5
-	#undef PLATFORM_SUPPORTS_TIMEGM
-	#define PLATFORM_SUPPORTS_TIMEGM 0
-	#endif
-#endif
-//$$ END
-
 #include "implot.h"
 #include "implot_internal.h"
 
@@ -916,15 +887,11 @@ inline int GetTimeStep(int max_divs, ImPlotTimeUnit unit) {
 
 ImPlotTime MkGmtTime(struct tm *ptm) {
     ImPlotTime t;
-	//$$ BEGIN - use platform time defines
-#if PLATFORM_SUPPORTS_WINDOWS_TIME
+#ifdef _WIN32
     t.S = _mkgmtime(ptm);
-#elif PLATFORM_SUPPORTS_TIMEGM
-	t.S = timegm(ptm);
 #else
-	return MkLocTime(ptm);
+    t.S = timegm(ptm);
 #endif
-	//$$ END
     if (t.S < 0)
         t.S = 0;
     return t;
@@ -932,18 +899,14 @@ ImPlotTime MkGmtTime(struct tm *ptm) {
 
 tm* GetGmtTime(const ImPlotTime& t, tm* ptm)
 {
-	//$$ BEGIN - use platform time defines
-#if PLATFORM_SUPPORTS_WINDOWS_TIME
-    if (gmtime_s(ptm, &t.S) == 0)
-        return ptm;
-    else
-        return nullptr;
-#elif PLATFORM_SUPPORTS_C23_TIME
-    return gmtime_r(&t.S, ptm);
+#ifdef _WIN32
+  if (gmtime_s(ptm, &t.S) == 0)
+    return ptm;
+  else
+    return nullptr;
 #else
-    return gmtime_s(&t.S, ptm);
+  return gmtime_r(&t.S, ptm);
 #endif
-  //$$ END
 }
 
 ImPlotTime MkLocTime(struct tm *ptm) {
@@ -955,18 +918,14 @@ ImPlotTime MkLocTime(struct tm *ptm) {
 }
 
 tm* GetLocTime(const ImPlotTime& t, tm* ptm) {
-	//$$ BEGIN - use platform time defines
-#if PLATFORM_SUPPORTS_WINDOWS_TIME
-    if (localtime_s(ptm, &t.S) == 0)
-        return ptm;
-    else
-        return nullptr;
-#elif PLATFORM_SUPPORTS_C23_TIME
-	return localtime_r(&t.S, ptm);
+#ifdef _WIN32
+  if (localtime_s(ptm, &t.S) == 0)
+    return ptm;
+  else
+    return nullptr;
 #else
-	return localtime_s(&t.S, ptm);
+    return localtime_r(&t.S, ptm);
 #endif
-	//$$ END
 }
 
 inline ImPlotTime MkTime(struct tm *ptm) {
