@@ -279,8 +279,9 @@ namespace RallyHereAPI
 class RALLYHEREAPI_API FHttpFileInput
 {
 public:
-	explicit FHttpFileInput(const TCHAR* InFilePath);
-	explicit FHttpFileInput(const FString& InFilePath);
+	FHttpFileInput();
+	FHttpFileInput(const TCHAR* InFilePath);
+	FHttpFileInput(const FString& InFilePath);
 
 	// This will automatically set the content type if not already set
 	void SetFilePath(const TCHAR* InFilePath);

@@ -435,6 +435,11 @@ namespace {{this}}
 {
 {{/cppNamespaceDeclarations}}
 
+FHttpFileInput::FHttpFileInput()
+{
+	SetFilePath(TEXT(""));
+}
+
 FHttpFileInput::FHttpFileInput(const TCHAR* InFilePath)
 {
 	SetFilePath(InFilePath);

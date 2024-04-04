@@ -423,6 +423,11 @@ bool URHAPI_JsonValueBlueprintLibrary::StringToFRHAPI_JsonValue(const FString& I
 namespace RallyHereAPI
 {
 
+FHttpFileInput::FHttpFileInput()
+{
+	SetFilePath(TEXT(""));
+}
+
 FHttpFileInput::FHttpFileInput(const TCHAR* InFilePath)
 {
 	SetFilePath(InFilePath);

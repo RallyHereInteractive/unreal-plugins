@@ -14,7 +14,6 @@
 #include "HTTPValidationError.h"
 #include "HzApiErrorModel.h"
 #include "StorageInformation.h"
-#include "Helpers.h"
 
 namespace RallyHereAPI
 {
@@ -101,7 +100,7 @@ struct RALLYHEREAPI_API FRequest_CreateMatchDirectoryDeveloperFile : public FReq
 	TSharedPtr<FAuthContext> AuthContext;
 	FString FileName;
 	FString MatchId;
-	HttpFileInput File;
+	FHttpFileInput File;
 };
 
 struct RALLYHEREAPI_API FResponse_CreateMatchDirectoryDeveloperFile : public FResponse
@@ -158,7 +157,7 @@ struct RALLYHEREAPI_API FRequest_CreateMatchDirectoryFile : public FRequest
 	TSharedPtr<FAuthContext> AuthContext;
 	FString FileName;
 	FString MatchId;
-	HttpFileInput File;
+	FHttpFileInput File;
 };
 
 struct RALLYHEREAPI_API FResponse_CreateMatchDirectoryFile : public FResponse
