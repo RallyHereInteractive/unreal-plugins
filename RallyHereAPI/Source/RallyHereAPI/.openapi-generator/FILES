@@ -63,6 +63,9 @@ Private/EventParamsSchemaResponse.cpp
 Private/EventsAPI.cpp
 Private/ExternalKeyEntitlement.cpp
 Private/FastapicommonPlatformsPortal.cpp
+Private/FileAPI.cpp
+Private/FileListResponse.cpp
+Private/FileResponse.cpp
 Private/FriendRelationship.cpp
 Private/FriendRelationshipV1.cpp
 Private/Friends.cpp
@@ -305,6 +308,7 @@ Private/SettingTypeVersion.cpp
 Private/SettingsAPI.cpp
 Private/SortOrder.cpp
 Private/Source.cpp
+Private/StorageInformation.cpp
 Private/TeamOverflowAction.cpp
 Private/TeamUpdate.cpp
 Private/TimeAPI.cpp
@@ -390,6 +394,9 @@ Public/EventParamsSchemaResponse.h
 Public/EventsAPI.h
 Public/ExternalKeyEntitlement.h
 Public/FastapicommonPlatformsPortal.h
+Public/FileAPI.h
+Public/FileListResponse.h
+Public/FileResponse.h
 Public/FriendRelationship.h
 Public/FriendRelationshipV1.h
 Public/Friends.h
@@ -632,6 +639,7 @@ Public/SettingTypeVersion.h
 Public/SettingsAPI.h
 Public/SortOrder.h
 Public/Source.h
+Public/StorageInformation.h
 Public/TeamOverflowAction.h
 Public/TeamUpdate.h
 Public/TimeAPI.h
