@@ -996,11 +996,15 @@ CODE
 #ifndef NOMINMAX
 #define NOMINMAX
 #endif
+//$$ BEGIN - user wrappered windows includes
 #ifndef __MINGW32__
-#include <Windows.h>        // _wfopen, OpenClipboard
+// #include <Windows.h>        // _wfopen, OpenClipboard
+#include "Windows/WindowsHWrapper.h"
 #else
-#include <windows.h>
+//#include <windows.h>
+#include "Windows/WindowsHWrapper.h"
 #endif
+//$$ END
 #if defined(WINAPI_FAMILY) && (WINAPI_FAMILY == WINAPI_FAMILY_APP) // UWP doesn't have all Win32 functions
 #define IMGUI_DISABLE_WIN32_DEFAULT_CLIPBOARD_FUNCTIONS
 #define IMGUI_DISABLE_WIN32_DEFAULT_IME_FUNCTIONS

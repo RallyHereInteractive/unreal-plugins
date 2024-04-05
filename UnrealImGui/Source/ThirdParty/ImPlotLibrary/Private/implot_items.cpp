@@ -22,7 +22,12 @@
 
 // ImPlot v0.16
 
+//$$ BEGIN We use a global definition for the module, so the naked define here was causing issues, wrapper it with an ifndef
+#ifndef IMGUI_DEFINE_MATH_OPERATORS
 #define IMGUI_DEFINE_MATH_OPERATORS
+#endif
+//$$ END
+
 #include "implot.h"
 #include "implot_internal.h"
 
