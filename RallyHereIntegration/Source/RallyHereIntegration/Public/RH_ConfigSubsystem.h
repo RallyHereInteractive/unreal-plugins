@@ -21,6 +21,9 @@ DECLARE_MULTICAST_DELEGATE_OneParam(FAppSettingsUpdatedDelegate, URH_ConfigSubsy
 DECLARE_MULTICAST_DELEGATE_OneParam(FSettingsUpdatedDelegate, URH_ConfigSubsystem*);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FSettingsUpdatedDynamicDelegate, URH_ConfigSubsystem*, ConfigSubsystem);
 
+DECLARE_MULTICAST_DELEGATE_OneParam(FKVsUpdatedDelegate, URH_ConfigSubsystem*);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FKVsUpdatedDynamicDelegate, URH_ConfigSubsystem*, ConfigSubsystem);
+
 
 /** @defgroup Config RallyHere Config
  *  @{
@@ -96,18 +99,29 @@ class RALLYHEREINTEGRATION_API URH_ConfigSubsystem : public URH_GameInstanceSubs
 	GENERATED_UCLASS_BODY()
 public:
 	/**
+	 * @brief Delegate that can be listented to for whenever KVs get updated from polling.
+	 */
+	FKVsUpdatedDelegate OnKVsUpdated;
+	/**
+	 * @brief Delegate that can be listented to for whenever KVs get updated from polling.
+	 */
+	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Config", meta = (DisplayName = "On KVs Updated"))
+	FKVsUpdatedDynamicDelegate BLUEPRINT_OnKVsUpdated;
+	/**
 	 * @brief Delegate that can be listented to for whenever App Settings get updated from polling.
 	 */
-	UE_DEPRECATED(5.0, "Please use the OnSettingsUpdatedDelegate instead")
+	UE_DEPRECATED(5.0, "Please use the OnKVsUpdatedDelegate instead")
 	FAppSettingsUpdatedDelegate AppSettingsUpdatedDelegate;
 	/**
 	 * @brief Delegate that can be listented to for whenever Settings get updated from polling.
 	 */
+	UE_DEPRECATED(5.0, "Please use the OnKVsUpdatedDelegate instead")
 	FSettingsUpdatedDelegate OnSettingsUpdated;
 	/**
 	 * @brief Delegate that can be listented to for whenever Settings get updated from polling.
 	 */
-	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Config", meta = (DisplayName = "On Settings Updated"))
+	UE_DEPRECATED(5.0, "Please use the OnKVsUpdatedDelegate instead")
+	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Config", meta = (DeprecatedFunction, DisplayName = "On Settings Updated"))
 	FSettingsUpdatedDynamicDelegate BLUEPRINT_OnSettingsUpdated;
 	/**
 	* @brief Initialize the subsystem.
@@ -117,29 +131,117 @@ public:
 	* @brief Safely tears down the subsystem.
 	*/
 	virtual void Deinitialize() override;
+
+	typedef RallyHereAPI::Traits_GetAppSettingsAll GetKVsAPIType;
+	/**
+	* @brief Requests the server for the latest KVs.
+	* @param [in] Delegate Delegate to call when the request is complete.
+	*/
+	virtual void FetchKVs(const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock());
+	/**
+	* @brief Pulses a FetchKVs call for the polling of KVs.
+	* @param [in] Delegate Delegate to call when the request is complete.
+	*/
+	void PollKVs(const FRH_PollCompleteFunc& Delegate);
+	/**
+	* @brief Gets the map of all the Public KVs and their values.
+	* @return Map of all the Public KVs and their values
+	*/
+	UFUNCTION(BlueprintGetter, Category = "Config")
+	const TMap<FString, FString>& GetKVs() const
+	{
+		return KVs;
+	}
+	/**
+	* @brief Gets the map of all the Secret KVs and their values.
+	* @return Map of all the Secret KVs and their values
+	*/
+	UFUNCTION(BlueprintGetter, Category = "Config")
+	const TMap<FString, FString>& GetSecretKVs() const
+	{
+		return SecretKVs;
+	}
+	/**
+	* @brief Gets the value of a specific Publc KV.
+	* @param [in] Key Key of the KV to get the value of.
+	* @param [out] Value Value of the KV.
+	* @return if true, a Value was found for the Key.
+	*/
+	UFUNCTION(BlueprintPure, Category = "Config")
+	bool GetKV(const FString& Key, FString& Value) const
+	{
+		const auto KVValue = KVs.Find(Key);
+		if (KVValue != nullptr)
+		{
+			Value = *KVValue;
+			return true;
+		}
+		return false;
+	}
+	/**
+	* @brief Gets the value of a specific Secret KV.
+	* @param [in] Key Key of the KV to get the value of.
+	* @param [out] Value Value of the KV.
+	* @return if true, a Value was found for the Key.
+	*/
+	UFUNCTION(BlueprintPure, Category = "Config")
+	bool GetSecretKV(const FString& Key, FString& Value) const
+	{
+		const auto KVValue = SecretKVs.Find(Key);
+		if (KVValue != nullptr)
+		{
+			Value = *KVValue;
+			return true;
+		}
+		return false;
+	}
+	/**
+	* @brief Gets the value of a specific Publc or Secret KV (secret takes precidence.
+	* @param [in] Key Key of the KV to get the value of.
+	* @param [out] Value Value of the KV.
+	* @return if true, a Value was found for the Key.
+	*/
+	UFUNCTION(BlueprintPure, Category = "Config")
+	bool GetAnyKV(const FString& Key, FString& Value) const
+	{
+		if (GetSecretKV(Key, Value))
+		{
+			return true;
+		}
+		return GetKV(Key, Value);
+	}
 	/**
 	* @brief Requests the server for the latest App Settings.
 	* @param [in] Delegate Delegate to call when the request is complete.
 	*/
-	void FetchAppSettings(const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock());
-	UE_DEPRECATED(5.0, "Please use the version with the error delegate")
+	UE_DEPRECATED(5.0, "Please use FetchKVs")
+		void FetchAppSettings(const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock())
+	{
+		return FetchKVs(Delegate);
+	}
+	UE_DEPRECATED(5.0, "Please use FetchKVs")
 	FORCEINLINE void FetchAppSettings(const FRH_GenericSuccessDelegate& Delegate = FRH_GenericSuccessDelegate())
 	{
-		return FetchAppSettings(RH_ConvertGenericSucessDelegateBlock(Delegate));
+		return FetchKVs(RH_ConvertGenericSucessDelegateBlock(Delegate));
 	}
 	/**
 	* @brief Pulses a FetchAppSettings call for the polling of App Settings.
 	* @param [in] Delegate Delegate to call when the request is complete.
 	*/
-	void PollAppSettings(const FRH_PollCompleteFunc& Delegate);
+	UE_DEPRECATED(5.0, "Please use PollKVs")
+	void PollAppSettings(const FRH_PollCompleteFunc& Delegate)
+	{
+		PollKVs(Delegate);
+	}
 	/**
 	* @brief Gets the map of all the App Settings and their values.
 	* @return Map of all the App Settings and their values
 	*/
-	UFUNCTION(BlueprintGetter, Category = "Config")
+	UE_DEPRECATED(5.0, "Please use GetKVs")
+	UFUNCTION(BlueprintGetter, Category = "Config", meta = (DeprecatedFunction))
 	const TMap<FString, FString>& GetAppSettings() const
 	{
-		return AppSettings;
+		return GetKVs();
 	}
 	/**
 	* @brief Gets the value of a specific App Setting.
@@ -147,29 +249,24 @@ public:
 	* @param [out] Value Value of the App Setting.
 	* @return if true, a Value was found for the Key.
 	*/
-	UFUNCTION(BlueprintPure, Category = "Config")
+	UE_DEPRECATED(5.0, "Please use GetKV")
+	UFUNCTION(BlueprintPure, Category = "Config", meta = (DeprecatedFunction))
 	bool GetAppSetting(const FString& Key, FString& Value) const
 	{
-		const auto AppSetting = AppSettings.Find(Key);
-		if (AppSetting != nullptr)
-		{
-			Value = *AppSetting;
-			return true;
-		}
-		return false;
+		return GetKV(Key, Value);
 	}
 	/**
 	* @brief If hotfix settings are set, this starts the process of applying them to unreal assets.
 	*/
 	void TriggerHotfixProcessing();
 	/**
-	* @brief Starts the polling for App Settings.
+	* @brief Starts the polling for KVs.
 	*/
-	void StartAppSettingsRefreshTimer();
+	void StartKVsRefreshTimer();
 	/**
-	* @brief Stops the polling for App Settings.
+	* @brief Stops the polling for KVs.
 	*/
-	void StopAppSettingsRefreshTimer();
+	void StopKVsRefreshTimer();
 
 	/**
 	* @brief Requests the server time cache to be updated
@@ -209,18 +306,21 @@ public:
 	bool GetHotfixTestValue() const { return bHotfixTestValue; }
 
 protected:
-	/** @brief Map of app settings by name. */
-	UPROPERTY(VisibleInstanceOnly, BlueprintGetter=GetAppSettings, Category = "Config")
-	TMap<FString, FString> AppSettings;
-	/** @brief ETag of last Get App Settings call response. */
+	/** @brief Map of KVs by Key. */
+	UPROPERTY(VisibleInstanceOnly, BlueprintGetter=GetKVs, Category = "Config")
+	TMap<FString, FString> KVs;
+	/** @brief Map of secret (permissioned) KVs by Key. */
+	UPROPERTY(VisibleInstanceOnly, BlueprintGetter = GetSecretKVs, Category = "Config")
+	TMap<FString, FString> SecretKVs;
+	/** @brief ETag of last GetKVs call response. */
 	UPROPERTY(VisibleInstanceOnly, Category = "Config")
-	FString AppSettingsETag;
-	/** @brief Poller responsible for App Settings. */
-	FRH_AutoPollerPtr AppSettingsPoller;
-	/** @brief If set, automatically start the poller for App Settings. */
+	FString KVsETag;
+	/** @brief Poller responsible for KVs. */
+	FRH_AutoPollerPtr KVsPoller;
+	/** @brief If set, automatically start the poller for KVs. */
 	UPROPERTY(config)
 	bool bAutomaticallyPollConfigurationData;
-	/** @brief If set, automatically use hotfix data in App Settings to modify local data. */
+	/** @brief If set, automatically use hotfix data in KVs to modify local data. */
 	UPROPERTY(config)
 	bool bAutomaticallyApplyHotfixData;
 	/** @brief debug value to test if the hotfix system is working properly. */
@@ -233,13 +333,11 @@ protected:
 	/** @brief Initializes the subsystem with defaults for its cached data. */
 	virtual void InitPropertiesWithDefaultValues();
 	/**
-	* @brief Handles the response to a Fetch App Settings call
+	* @brief Handles the response to a FetchKVs call
 	* @param [in] Resp Response given for the call
 	* @param [in] Delegate Delegate passed in for original call to respond to when call completes.
 	*/
-	virtual void OnFetchAppSettings(const RallyHereAPI::FResponse_GetAppSettingsClient& Resp);
-
-	friend class FRH_FetchAppSettingsHelper;
+	virtual void OnFetchKVs(const GetKVsAPIType::Response& Resp);
 };
 
 /** @} */
