@@ -72,7 +72,8 @@ Match Subsystem used for match API calls.
 `public inline void `[`ClearMatchesCache`](#classURH__MatchSubsystem_1abad303e288ec2208c57861a2c449b17b)`()` | Clear the match cache.
 `public inline virtual const FString `[`GetActiveMatchId`](#classURH__MatchSubsystem_1ae1c52d179cfaab95d435d7e4c05b756c)`() const` | Get the active match ID.
 `public inline virtual void `[`SetActiveMatchId`](#classURH__MatchSubsystem_1a763cfebaad6b8e6e884e8beda81b862e)`(const FString & MatchId)` | Set the active match.
-`public inline bool `[`HasActiveMatchId`](#classURH__MatchSubsystem_1a573c61acf388354a9875ac765df1b0c4)`() const` | Gets whether the active match exists.
+`public inline virtual bool `[`HasActiveMatchId`](#classURH__MatchSubsystem_1ae991c30b43b4dec38b4ed4fd5421928a)`() const` | Gets whether the active match exists.
+`public inline virtual void `[`ClearActiveMatchId`](#classURH__MatchSubsystem_1ae32c11a820e23c6048777b0c06435920)`()` | Clears the active match.
 `public virtual void `[`CreateMatch`](#classURH__MatchSubsystem_1a88ae0bc379ecc672dff718686ca8887b)`(const `[`FRHAPI_MatchRequest`](models/RHAPI_MatchRequest.md#structFRHAPI__MatchRequest)` & Match,bool bSetActive,const FRH_OnMatchUpdateCompleteDelegateBlock & Delegate)` | Create a match (POST)
 `public inline void `[`BLUEPRINT_CreateMatch`](#classURH__MatchSubsystem_1ab410c3b3372a427d1ef2284d609c9fb8)`(const `[`FRHAPI_MatchRequest`](models/RHAPI_MatchRequest.md#structFRHAPI__MatchRequest)` & Match,bool bSetActive,const FRH_OnMatchUpdateCompleteDynamicDelegate & Delegate)` | 
 `public virtual void `[`UpdateMatch`](#classURH__MatchSubsystem_1a3300d745ccd6c04a28a76895dfd7a6fd)`(const FString & MatchId,const `[`FRHAPI_MatchRequest`](models/RHAPI_MatchRequest.md#structFRHAPI__MatchRequest)` & Match,const FRH_OnMatchUpdateCompleteDelegateBlock & Delegate)` | Update a match (PATCH)
@@ -146,9 +147,14 @@ Get the active match ID.
 Set the active match.
 
 <br>
-#### `public inline bool `[`HasActiveMatchId`](#classURH__MatchSubsystem_1a573c61acf388354a9875ac765df1b0c4)`() const` <a id="classURH__MatchSubsystem_1a573c61acf388354a9875ac765df1b0c4"></a>
+#### `public inline virtual bool `[`HasActiveMatchId`](#classURH__MatchSubsystem_1ae991c30b43b4dec38b4ed4fd5421928a)`() const` <a id="classURH__MatchSubsystem_1ae991c30b43b4dec38b4ed4fd5421928a"></a>
 
 Gets whether the active match exists.
+
+<br>
+#### `public inline virtual void `[`ClearActiveMatchId`](#classURH__MatchSubsystem_1ae32c11a820e23c6048777b0c06435920)`()` <a id="classURH__MatchSubsystem_1ae32c11a820e23c6048777b0c06435920"></a>
+
+Clears the active match.
 
 <br>
 #### `public virtual void `[`CreateMatch`](#classURH__MatchSubsystem_1a88ae0bc379ecc672dff718686ca8887b)`(const `[`FRHAPI_MatchRequest`](models/RHAPI_MatchRequest.md#structFRHAPI__MatchRequest)` & Match,bool bSetActive,const FRH_OnMatchUpdateCompleteDelegateBlock & Delegate)` <a id="classURH__MatchSubsystem_1a88ae0bc379ecc672dff718686ca8887b"></a>
