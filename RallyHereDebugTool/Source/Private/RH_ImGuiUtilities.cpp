@@ -204,14 +204,14 @@ void ImGuiDisplayProperty(const FString& Key, FProperty const* Property, FProper
 	else if (FEnumProperty const* EnumProperty = CastField<FEnumProperty>(Property))
 	{
 		FString	ValueStr;
-		Property->ExportText_Direct(ValueStr, Data, nullptr, nullptr, PPF_None);
+		Property->ExportText_Direct(ValueStr, Data, Data, nullptr, PPF_None);
 
 		ImGuiDisplayCopyableValue(Key, FString::Printf(TEXT("%s"), *ValueStr), ECopyMode::Value);
 	}
 	else if (FStrProperty const* StringProperty = CastField<FStrProperty>(Property))
 	{
 		FString	ValueStr;
-		Property->ExportText_Direct(ValueStr, Data, nullptr, nullptr, PPF_None);
+		Property->ExportText_Direct(ValueStr, Data, Data, nullptr, PPF_None);
 
 		FGuid TestGuid;
 
@@ -266,7 +266,7 @@ void ImGuiDisplayProperty(const FString& Key, FProperty const* Property, FProper
 		else
 		{
 			FString	ValueStr;
-			Property->ExportText_Direct(ValueStr, Data, nullptr, nullptr, PPF_None);
+			Property->ExportText_Direct(ValueStr, Data, Data, nullptr, PPF_None);
 
 			ImGuiDisplayCopyableValue(Key, FString::Printf(TEXT("%s"), *ValueStr), ECopyMode::Value);
 		}
