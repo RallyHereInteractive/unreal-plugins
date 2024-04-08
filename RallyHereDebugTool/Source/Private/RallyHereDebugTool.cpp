@@ -539,12 +539,23 @@ void URallyHereDebugTool::ImGuiPostInit()
 			{
 				// connect to localhost by default
 				FString ConnectIp = URallyHereDebugToolSettings::Get()->NetImguiDefaultConnectIP;
+				int32 ConnectPort = URallyHereDebugToolSettings::Get()->NetImguiDefaultConnectPort;
 				FParse::Value(FCommandLine::Get(), TEXT("rh.dtconnectip"), ConnectIp);
-				NetImgui::ConnectToApp(NetImguiAppName, TCHAR_TO_UTF8(*ConnectIp));
+				FParse::Value(FCommandLine::Get(), TEXT("rh.dtconnectport"), ConnectPort);
+
+				ConnectPort = ConnectPort > 0 ? ConnectPort : NetImgui::kDefaultServerPort;
+
+				NetImgui::ConnectToApp(NetImguiAppName, TCHAR_TO_UTF8(*ConnectIp), ConnectPort);
 			}
 			else if (Policy == ERH_NetImGuiPolicy::ConnectFromAppOnStartup)
 			{
-				NetImgui::ConnectFromApp(NetImguiAppName);
+				// connect to localhost by default
+				int32 ListenPort = URallyHereDebugToolSettings::Get()->NetImguiDefaultListenPort;
+				FParse::Value(FCommandLine::Get(), TEXT("rh.dtlistenport"), ListenPort);
+
+				ListenPort = ListenPort > 0 ? ListenPort : NetImgui::kDefaultClientPort;
+
+				NetImgui::ConnectFromApp(NetImguiAppName, ListenPort);
 			}
 		}
 #endif
@@ -663,15 +674,26 @@ void URallyHereDebugTool::DoImGui()
 				{
 					// connect to localhost by default
 					FString ConnectIp = URallyHereDebugToolSettings::Get()->NetImguiDefaultConnectIP;
+					int32 ConnectPort = URallyHereDebugToolSettings::Get()->NetImguiDefaultConnectPort;
 					FParse::Value(FCommandLine::Get(), TEXT("rh.dtconnectip"), ConnectIp);
-					NetImgui::ConnectToApp(NetImguiAppName, TCHAR_TO_UTF8(*ConnectIp));
+					FParse::Value(FCommandLine::Get(), TEXT("rh.dtconnectport"), ConnectPort);
+
+					ConnectPort = ConnectPort > 0 ? ConnectPort : NetImgui::kDefaultServerPort;
+
+					NetImgui::ConnectToApp(NetImguiAppName, TCHAR_TO_UTF8(*ConnectIp), ConnectPort);
 				}
 			}
 			else if (Policy == ERH_NetImGuiPolicy::ConnectFromApp || Policy == ERH_NetImGuiPolicy::ConnectFromAppOnStartup)
 			{
 				if (ImGui::Button("Allow NetImgui"))
 				{
-					NetImgui::ConnectFromApp(NetImguiAppName);
+					// connect to localhost by default
+					int32 ListenPort = URallyHereDebugToolSettings::Get()->NetImguiDefaultListenPort;
+					FParse::Value(FCommandLine::Get(), TEXT("rh.dtlistenport"), ListenPort);
+
+					ListenPort = ListenPort > 0 ? ListenPort : NetImgui::kDefaultClientPort;
+
+					NetImgui::ConnectFromApp(NetImguiAppName, ListenPort);
 				}
 			}
 		}
