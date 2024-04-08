@@ -517,6 +517,18 @@ public:
 	/** @brief Sets the request priority of Player Report calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Report API Priority", AdvancedDisplay)
 	int32 CreatePlayerReportPriority;
+	/** @brief Sets the request priority of File Upload calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "File API Priority", AdvancedDisplay)
+	int32 FileUploadPriority;
+	/** @brief Sets the request priority of File Download calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "File API Priority", AdvancedDisplay)
+	int32 FileDownloadPriority;
+	/** @brief Sets the request priority of File Browse calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "File API Priority", AdvancedDisplay)
+	int32 FileBrowsePriority;
+	/** @brief Sets the request priority of File Delete calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "File API Priority", AdvancedDisplay)
+	int32 FileDeletePriority;
 };
 
 /** @} */

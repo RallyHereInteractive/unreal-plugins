@@ -137,6 +137,10 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 	GetPlayerReportsSentPriority = 1000000;
 	GetPlayerReportsReceivedPriority = 1000000;
 	CreatePlayerReportPriority = 800000;
+	FileUploadPriority = 1000000;
+	FileDownloadPriority = 1000000;
+	FileBrowsePriority = 1000000;
+	FileDeletePriority = 1000000;
 }
 
 const FRH_EnvironmentConfiguration* URH_IntegrationSettings::GetEnvironmentConfiguration(const FString& EnvironmentId) const

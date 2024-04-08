@@ -16,35 +16,35 @@ struct FRH_MatchSearchParams
 	GENERATED_USTRUCT_BODY()
 
 	/** @brief The maximum number of elements to be returned per call, ignored if 0 */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Matchmaking|Search")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Match|Search")
 	int32 PageSize;
 	
 	/** @brief The instance id to search on, ignored if empty */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Matchmaking|Search")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Match|Search")
 	FString InstanceId;
 	
 	/** @brief The allocation id to search on, ignored if empty */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Matchmaking|Search")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Match|Search")
 	FString AllocationId;
 	
 	/** @brief The session id to search on, ignored if empty */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Matchmaking|Search")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Match|Search")
 	FString SessionId;
 	
 	/** @brief The host player id to search on, ignored if empty */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Matchmaking|Search")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Match|Search")
 	FString HostPlayerUuid;
 	
 	/** @brief The region id to search on, ignored if empty */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Matchmaking|Search")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Match|Search")
 	FString RegionId;
 
 	/** @brief The participant player id to search on, ignored if empty */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Matchmaking|Search")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Match|Search")
 	FString PlayerUuid;
 
 	/** @brief Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Matchmaking|Search")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Match|Search")
 	FString Cursor;
 
 	FRH_MatchSearchParams()
