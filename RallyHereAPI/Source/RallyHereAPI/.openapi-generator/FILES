@@ -66,6 +66,7 @@ Private/FastapicommonPlatformsPortal.cpp
 Private/FileAPI.cpp
 Private/FileListResponse.cpp
 Private/FileResponse.cpp
+Private/FileType.cpp
 Private/FriendRelationship.cpp
 Private/FriendRelationshipV1.cpp
 Private/Friends.cpp
@@ -397,6 +398,7 @@ Public/FastapicommonPlatformsPortal.h
 Public/FileAPI.h
 Public/FileListResponse.h
 Public/FileResponse.h
+Public/FileType.h
 Public/FriendRelationship.h
 Public/FriendRelationshipV1.h
 Public/Friends.h

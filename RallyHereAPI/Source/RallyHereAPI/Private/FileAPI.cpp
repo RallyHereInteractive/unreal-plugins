@@ -23,7 +23,7 @@ FFileAPI::FFileAPI() : FAPI()
 
 FFileAPI::~FFileAPI() {}
 
-FHttpRequestPtr FFileAPI::CreateMatchDirectoryDeveloperFile(const FRequest_CreateMatchDirectoryDeveloperFile& Request, const FDelegate_CreateMatchDirectoryDeveloperFile& Delegate /*= FDelegate_CreateMatchDirectoryDeveloperFile()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+FHttpRequestPtr FFileAPI::CreateEntityDirectoryFile(const FRequest_CreateEntityDirectoryFile& Request, const FDelegate_CreateEntityDirectoryFile& Delegate /*= FDelegate_CreateEntityDirectoryFile()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
 		return nullptr;
@@ -44,7 +44,7 @@ FHttpRequestPtr FFileAPI::CreateMatchDirectoryDeveloperFile(const FRequest_Creat
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FFileAPI::OnCreateMatchDirectoryDeveloperFileResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FFileAPI::OnCreateEntityDirectoryFileResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -55,7 +55,7 @@ FHttpRequestPtr FFileAPI::CreateMatchDirectoryDeveloperFile(const FRequest_Creat
 	return RequestData->HttpRequest;
 }
 
-void FFileAPI::OnCreateMatchDirectoryDeveloperFileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateMatchDirectoryDeveloperFile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+void FFileAPI::OnCreateEntityDirectoryFileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateEntityDirectoryFile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
 	FHttpRequestCompleteDelegate ResponseDelegate;
 
@@ -63,10 +63,10 @@ void FFileAPI::OnCreateMatchDirectoryDeveloperFileResponse(FHttpRequestPtr HttpR
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindSP(this, &FFileAPI::OnCreateMatchDirectoryDeveloperFileResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FFileAPI::OnCreateEntityDirectoryFileResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_CreateMatchDirectoryDeveloperFile Response{ RequestMetadata };
+	FResponse_CreateEntityDirectoryFile Response{ RequestMetadata };
 	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
 	{
@@ -81,51 +81,59 @@ void FFileAPI::OnCreateMatchDirectoryDeveloperFileResponse(FHttpRequestPtr HttpR
 	}
 }
 
-FRequest_CreateMatchDirectoryDeveloperFile::FRequest_CreateMatchDirectoryDeveloperFile()
+FRequest_CreateEntityDirectoryFile::FRequest_CreateEntityDirectoryFile()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 }
 
-FName FRequest_CreateMatchDirectoryDeveloperFile::GetSimplifiedPath() const
+FName FRequest_CreateEntityDirectoryFile::GetSimplifiedPath() const
 {
-	static FName Path = FName(TEXT("/file/v1/match/{match_id}/developer-files/{file_name}"));
+	static FName Path = FName(TEXT("/file/v1/{entity_type}/{entity_id}/{file_type}/{file_name}"));
 	return Path;
 }
 
-FString FRequest_CreateMatchDirectoryDeveloperFile::ComputePath() const
+FString FRequest_CreateEntityDirectoryFile::ComputePath() const
 {
 	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("file_type"), ToStringFormatArg(FileType) },
 		{ TEXT("file_name"), ToStringFormatArg(FileName) },
-		{ TEXT("match_id"), ToStringFormatArg(MatchId) }
+		{ TEXT("entity_type"), ToStringFormatArg(EntityType) },
+		{ TEXT("entity_id"), ToStringFormatArg(EntityId) }
 	};
 
-	FString Path = FString::Format(TEXT("/file/v1/match/{match_id}/developer-files/{file_name}"), PathParams);
+	FString Path = FString::Format(TEXT("/file/v1/{entity_type}/{entity_id}/{file_type}/{file_name}"), PathParams);
 
 	return Path;
 }
 
-bool FRequest_CreateMatchDirectoryDeveloperFile::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+bool FRequest_CreateEntityDirectoryFile::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
 	static const TArray<FString> Consumes = { TEXT("multipart/form-data") };
 	//static const TArray<FString> Produces = { TEXT("application/json") };
 
 	HttpRequest->SetVerb(TEXT("PUT"));
 
+	// Header parameters
+	if (Authorization.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("authorization"), Authorization.GetValue());
+	}
+
 	if (!AuthContext)
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateMatchDirectoryDeveloperFile - missing auth context"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateEntityDirectoryFile - missing auth context"));
 		return false;
 	}
 	if (!AuthContext->AddBearerToken(HttpRequest))
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateMatchDirectoryDeveloperFile - failed to add bearer token"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateEntityDirectoryFile - failed to add bearer token"));
 		return false;
 	}
 
 	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateMatchDirectoryDeveloperFile - Form parameter (file) was ignored, not supported in json"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateEntityDirectoryFile - Form parameter (file) was ignored, not supported in json"));
 	}
 	else if (Consumes.Contains(TEXT("multipart/form-data")))
 	{
@@ -137,21 +145,21 @@ bool FRequest_CreateMatchDirectoryDeveloperFile::SetupHttpRequest(const FHttpReq
 	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
 	{
 		TArray<FString> FormParams;
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateMatchDirectoryDeveloperFile - Form parameter (file) was ignored, Files are not supported in urlencoded requests"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateEntityDirectoryFile - Form parameter (file) was ignored, Files are not supported in urlencoded requests"));
 
 		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/x-www-form-urlencoded; charset=utf-8"));
 		HttpRequest->SetContentAsString(FString::Join(FormParams, TEXT("&")));
 	}
 	else
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateMatchDirectoryDeveloperFile - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateEntityDirectoryFile - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
 		return false;
 	}
 
 	return true;
 }
 
-FString FResponse_CreateMatchDirectoryDeveloperFile::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
+FString FResponse_CreateEntityDirectoryFile::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
 	switch ((int)InHttpResponseCode)
 	{
@@ -166,7 +174,7 @@ FString FResponse_CreateMatchDirectoryDeveloperFile::GetHttpResponseCodeDescript
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
-bool FResponse_CreateMatchDirectoryDeveloperFile::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_CreateEntityDirectoryFile::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -176,7 +184,7 @@ bool FResponse_CreateMatchDirectoryDeveloperFile::TryGetContentFor403(FRHAPI_HzA
 	return false;
 }
 
-bool FResponse_CreateMatchDirectoryDeveloperFile::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_CreateEntityDirectoryFile::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -186,19 +194,19 @@ bool FResponse_CreateMatchDirectoryDeveloperFile::TryGetContentFor422(FRHAPI_HTT
 	return false;
 }
 
-bool FResponse_CreateMatchDirectoryDeveloperFile::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FResponse_CreateEntityDirectoryFile::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
 	return true;
 }
 
-FResponse_CreateMatchDirectoryDeveloperFile::FResponse_CreateMatchDirectoryDeveloperFile(FRequestMetadata InRequestMetadata) :
+FResponse_CreateEntityDirectoryFile::FResponse_CreateEntityDirectoryFile(FRequestMetadata InRequestMetadata) :
 	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 
-FString Traits_CreateMatchDirectoryDeveloperFile::Name = TEXT("CreateMatchDirectoryDeveloperFile");
+FString Traits_CreateEntityDirectoryFile::Name = TEXT("CreateEntityDirectoryFile");
 
-FHttpRequestPtr FFileAPI::CreateMatchDirectoryFile(const FRequest_CreateMatchDirectoryFile& Request, const FDelegate_CreateMatchDirectoryFile& Delegate /*= FDelegate_CreateMatchDirectoryFile()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+FHttpRequestPtr FFileAPI::DeleteEntityDirectory(const FRequest_DeleteEntityDirectory& Request, const FDelegate_DeleteEntityDirectory& Delegate /*= FDelegate_DeleteEntityDirectory()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
 		return nullptr;
@@ -219,7 +227,7 @@ FHttpRequestPtr FFileAPI::CreateMatchDirectoryFile(const FRequest_CreateMatchDir
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FFileAPI::OnCreateMatchDirectoryFileResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FFileAPI::OnDeleteEntityDirectoryResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -230,7 +238,7 @@ FHttpRequestPtr FFileAPI::CreateMatchDirectoryFile(const FRequest_CreateMatchDir
 	return RequestData->HttpRequest;
 }
 
-void FFileAPI::OnCreateMatchDirectoryFileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateMatchDirectoryFile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+void FFileAPI::OnDeleteEntityDirectoryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteEntityDirectory Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
 	FHttpRequestCompleteDelegate ResponseDelegate;
 
@@ -238,10 +246,10 @@ void FFileAPI::OnCreateMatchDirectoryFileResponse(FHttpRequestPtr HttpRequest, F
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindSP(this, &FFileAPI::OnCreateMatchDirectoryFileResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FFileAPI::OnDeleteEntityDirectoryResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_CreateMatchDirectoryFile Response{ RequestMetadata };
+	FResponse_DeleteEntityDirectory Response{ RequestMetadata };
 	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
 	{
@@ -256,200 +264,30 @@ void FFileAPI::OnCreateMatchDirectoryFileResponse(FHttpRequestPtr HttpRequest, F
 	}
 }
 
-FRequest_CreateMatchDirectoryFile::FRequest_CreateMatchDirectoryFile()
+FRequest_DeleteEntityDirectory::FRequest_DeleteEntityDirectory()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 }
 
-FName FRequest_CreateMatchDirectoryFile::GetSimplifiedPath() const
+FName FRequest_DeleteEntityDirectory::GetSimplifiedPath() const
 {
-	static FName Path = FName(TEXT("/file/v1/match/{match_id}/files/{file_name}"));
+	static FName Path = FName(TEXT("/file/v1/{entity_type}"));
 	return Path;
 }
 
-FString FRequest_CreateMatchDirectoryFile::ComputePath() const
+FString FRequest_DeleteEntityDirectory::ComputePath() const
 {
 	TMap<FString, FStringFormatArg> PathParams = { 
-		{ TEXT("file_name"), ToStringFormatArg(FileName) },
-		{ TEXT("match_id"), ToStringFormatArg(MatchId) }
+		{ TEXT("entity_type"), ToStringFormatArg(EntityType) }
 	};
 
-	FString Path = FString::Format(TEXT("/file/v1/match/{match_id}/files/{file_name}"), PathParams);
+	FString Path = FString::Format(TEXT("/file/v1/{entity_type}"), PathParams);
 
 	return Path;
 }
 
-bool FRequest_CreateMatchDirectoryFile::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-	static const TArray<FString> Consumes = { TEXT("multipart/form-data") };
-	//static const TArray<FString> Produces = { TEXT("application/json") };
-
-	HttpRequest->SetVerb(TEXT("PUT"));
-
-	if (!AuthContext)
-	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateMatchDirectoryFile - missing auth context"));
-		return false;
-	}
-	if (!AuthContext->AddBearerToken(HttpRequest))
-	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateMatchDirectoryFile - failed to add bearer token"));
-		return false;
-	}
-
-	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateMatchDirectoryFile - Form parameter (file) was ignored, not supported in json"));
-	}
-	else if (Consumes.Contains(TEXT("multipart/form-data")))
-	{
-		FHttpMultipartFormData FormData;
-		FormData.AddFilePart(TEXT("file"), File);
-
-		FormData.SetupHttpRequest(HttpRequest);
-	}
-	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-	{
-		TArray<FString> FormParams;
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateMatchDirectoryFile - Form parameter (file) was ignored, Files are not supported in urlencoded requests"));
-
-		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/x-www-form-urlencoded; charset=utf-8"));
-		HttpRequest->SetContentAsString(FString::Join(FormParams, TEXT("&")));
-	}
-	else
-	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateMatchDirectoryFile - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-		return false;
-	}
-
-	return true;
-}
-
-FString FResponse_CreateMatchDirectoryFile::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
-{
-	switch ((int)InHttpResponseCode)
-	{
-	case 204:
-		return TEXT("Successful Response");
-	case 403:
-		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
-	case 422:
-		return TEXT("Validation Error");
-	}
-	
-	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
-}
-
-bool FResponse_CreateMatchDirectoryFile::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
-{
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
-	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
-	}
-	return false;
-}
-
-bool FResponse_CreateMatchDirectoryFile::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
-{
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
-	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
-	}
-	return false;
-}
-
-bool FResponse_CreateMatchDirectoryFile::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-	return true;
-}
-
-FResponse_CreateMatchDirectoryFile::FResponse_CreateMatchDirectoryFile(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_CreateMatchDirectoryFile::Name = TEXT("CreateMatchDirectoryFile");
-
-FHttpRequestPtr FFileAPI::DeleteMatchDirectory(const FRequest_DeleteMatchDirectory& Request, const FDelegate_DeleteMatchDirectory& Delegate /*= FDelegate_DeleteMatchDirectory()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
-{
-	if (!IsValid())
-		return nullptr;
-
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
-	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-	for(const auto& It : AdditionalHeaderParams)
-	{
-		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-	}
-
-	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-	{
-		return nullptr;
-	}
-
-	RequestData->SetMetadata(Request.GetRequestMetadata());
-
-	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FFileAPI::OnDeleteMatchDirectoryResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-	RequestData->SetDelegate(ResponseDelegate);
-
-	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
-	if (HttpRequester)
-	{
-		HttpRequester->EnqueueHttpRequest(RequestData);
-	}
-	return RequestData->HttpRequest;
-}
-
-void FFileAPI::OnDeleteMatchDirectoryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteMatchDirectory Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-	FHttpRequestCompleteDelegate ResponseDelegate;
-
-	if (AuthContextForRetry)
-	{
-		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindSP(this, &FFileAPI::OnDeleteMatchDirectoryResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-	}
-
-	FResponse_DeleteMatchDirectory Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
-	{
-		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
-}
-
-FRequest_DeleteMatchDirectory::FRequest_DeleteMatchDirectory()
-	: FRequest()
-{
-	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-}
-
-FName FRequest_DeleteMatchDirectory::GetSimplifiedPath() const
-{
-	static FName Path = FName(TEXT("/file/v1/match"));
-	return Path;
-}
-
-FString FRequest_DeleteMatchDirectory::ComputePath() const
-{
-	FString Path = GetSimplifiedPath().ToString();
-	return Path;
-}
-
-bool FRequest_DeleteMatchDirectory::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+bool FRequest_DeleteEntityDirectory::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
 	static const TArray<FString> Consumes = {  };
 	//static const TArray<FString> Produces = { TEXT("application/json") };
@@ -458,12 +296,12 @@ bool FRequest_DeleteMatchDirectory::SetupHttpRequest(const FHttpRequestRef& Http
 
 	if (!AuthContext)
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteMatchDirectory - missing auth context"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteEntityDirectory - missing auth context"));
 		return false;
 	}
 	if (!AuthContext->AddBearerToken(HttpRequest))
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteMatchDirectory - failed to add bearer token"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteEntityDirectory - failed to add bearer token"));
 		return false;
 	}
 
@@ -478,14 +316,14 @@ bool FRequest_DeleteMatchDirectory::SetupHttpRequest(const FHttpRequestRef& Http
 	}
 	else
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteMatchDirectory - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteEntityDirectory - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
 		return false;
 	}
 
 	return true;
 }
 
-FString FResponse_DeleteMatchDirectory::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
+FString FResponse_DeleteEntityDirectory::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
 	switch ((int)InHttpResponseCode)
 	{
@@ -493,12 +331,14 @@ FString FResponse_DeleteMatchDirectory::GetHttpResponseCodeDescription(EHttpResp
 		return TEXT("Successful Response");
 	case 403:
 		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 422:
+		return TEXT("Validation Error");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
-bool FResponse_DeleteMatchDirectory::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+bool FResponse_DeleteEntityDirectory::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -508,7 +348,7 @@ bool FResponse_DeleteMatchDirectory::TryGetContentFor200(FRHAPI_JsonValue& OutCo
 	return false;
 }
 
-bool FResponse_DeleteMatchDirectory::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_DeleteEntityDirectory::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -518,19 +358,29 @@ bool FResponse_DeleteMatchDirectory::TryGetContentFor403(FRHAPI_HzApiErrorModel&
 	return false;
 }
 
-bool FResponse_DeleteMatchDirectory::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FResponse_DeleteEntityDirectory::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
+}
+
+bool FResponse_DeleteEntityDirectory::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
 	return TryGetJsonValue(JsonValue, Content);
 }
 
-FResponse_DeleteMatchDirectory::FResponse_DeleteMatchDirectory(FRequestMetadata InRequestMetadata) :
+FResponse_DeleteEntityDirectory::FResponse_DeleteEntityDirectory(FRequestMetadata InRequestMetadata) :
 	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 
-FString Traits_DeleteMatchDirectory::Name = TEXT("DeleteMatchDirectory");
+FString Traits_DeleteEntityDirectory::Name = TEXT("DeleteEntityDirectory");
 
-FHttpRequestPtr FFileAPI::DeleteMatchDirectoryDeveloperFile(const FRequest_DeleteMatchDirectoryDeveloperFile& Request, const FDelegate_DeleteMatchDirectoryDeveloperFile& Delegate /*= FDelegate_DeleteMatchDirectoryDeveloperFile()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+FHttpRequestPtr FFileAPI::DeleteEntityDirectoryFile(const FRequest_DeleteEntityDirectoryFile& Request, const FDelegate_DeleteEntityDirectoryFile& Delegate /*= FDelegate_DeleteEntityDirectoryFile()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
 		return nullptr;
@@ -551,7 +401,7 @@ FHttpRequestPtr FFileAPI::DeleteMatchDirectoryDeveloperFile(const FRequest_Delet
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FFileAPI::OnDeleteMatchDirectoryDeveloperFileResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FFileAPI::OnDeleteEntityDirectoryFileResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -562,7 +412,7 @@ FHttpRequestPtr FFileAPI::DeleteMatchDirectoryDeveloperFile(const FRequest_Delet
 	return RequestData->HttpRequest;
 }
 
-void FFileAPI::OnDeleteMatchDirectoryDeveloperFileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteMatchDirectoryDeveloperFile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+void FFileAPI::OnDeleteEntityDirectoryFileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteEntityDirectoryFile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
 	FHttpRequestCompleteDelegate ResponseDelegate;
 
@@ -570,10 +420,10 @@ void FFileAPI::OnDeleteMatchDirectoryDeveloperFileResponse(FHttpRequestPtr HttpR
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindSP(this, &FFileAPI::OnDeleteMatchDirectoryDeveloperFileResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FFileAPI::OnDeleteEntityDirectoryFileResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_DeleteMatchDirectoryDeveloperFile Response{ RequestMetadata };
+	FResponse_DeleteEntityDirectoryFile Response{ RequestMetadata };
 	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
 	{
@@ -588,45 +438,53 @@ void FFileAPI::OnDeleteMatchDirectoryDeveloperFileResponse(FHttpRequestPtr HttpR
 	}
 }
 
-FRequest_DeleteMatchDirectoryDeveloperFile::FRequest_DeleteMatchDirectoryDeveloperFile()
+FRequest_DeleteEntityDirectoryFile::FRequest_DeleteEntityDirectoryFile()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 }
 
-FName FRequest_DeleteMatchDirectoryDeveloperFile::GetSimplifiedPath() const
+FName FRequest_DeleteEntityDirectoryFile::GetSimplifiedPath() const
 {
-	static FName Path = FName(TEXT("/file/v1/match/{match_id}/developer-files/{file_name}"));
+	static FName Path = FName(TEXT("/file/v1/{entity_type}/{entity_id}/{file_type}/{file_name}"));
 	return Path;
 }
 
-FString FRequest_DeleteMatchDirectoryDeveloperFile::ComputePath() const
+FString FRequest_DeleteEntityDirectoryFile::ComputePath() const
 {
 	TMap<FString, FStringFormatArg> PathParams = { 
-		{ TEXT("match_id"), ToStringFormatArg(MatchId) },
-		{ TEXT("file_name"), ToStringFormatArg(FileName) }
+		{ TEXT("entity_type"), ToStringFormatArg(EntityType) },
+		{ TEXT("entity_id"), ToStringFormatArg(EntityId) },
+		{ TEXT("file_name"), ToStringFormatArg(FileName) },
+		{ TEXT("file_type"), ToStringFormatArg(FileType) }
 	};
 
-	FString Path = FString::Format(TEXT("/file/v1/match/{match_id}/developer-files/{file_name}"), PathParams);
+	FString Path = FString::Format(TEXT("/file/v1/{entity_type}/{entity_id}/{file_type}/{file_name}"), PathParams);
 
 	return Path;
 }
 
-bool FRequest_DeleteMatchDirectoryDeveloperFile::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+bool FRequest_DeleteEntityDirectoryFile::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
 	static const TArray<FString> Consumes = {  };
 	//static const TArray<FString> Produces = { TEXT("application/json") };
 
 	HttpRequest->SetVerb(TEXT("DELETE"));
 
+	// Header parameters
+	if (Authorization.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("authorization"), Authorization.GetValue());
+	}
+
 	if (!AuthContext)
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteMatchDirectoryDeveloperFile - missing auth context"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteEntityDirectoryFile - missing auth context"));
 		return false;
 	}
 	if (!AuthContext->AddBearerToken(HttpRequest))
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteMatchDirectoryDeveloperFile - failed to add bearer token"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteEntityDirectoryFile - failed to add bearer token"));
 		return false;
 	}
 
@@ -641,14 +499,14 @@ bool FRequest_DeleteMatchDirectoryDeveloperFile::SetupHttpRequest(const FHttpReq
 	}
 	else
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteMatchDirectoryDeveloperFile - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteEntityDirectoryFile - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
 		return false;
 	}
 
 	return true;
 }
 
-FString FResponse_DeleteMatchDirectoryDeveloperFile::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
+FString FResponse_DeleteEntityDirectoryFile::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
 	switch ((int)InHttpResponseCode)
 	{
@@ -663,7 +521,7 @@ FString FResponse_DeleteMatchDirectoryDeveloperFile::GetHttpResponseCodeDescript
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
-bool FResponse_DeleteMatchDirectoryDeveloperFile::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_DeleteEntityDirectoryFile::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -673,7 +531,7 @@ bool FResponse_DeleteMatchDirectoryDeveloperFile::TryGetContentFor403(FRHAPI_HzA
 	return false;
 }
 
-bool FResponse_DeleteMatchDirectoryDeveloperFile::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_DeleteEntityDirectoryFile::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -683,19 +541,19 @@ bool FResponse_DeleteMatchDirectoryDeveloperFile::TryGetContentFor422(FRHAPI_HTT
 	return false;
 }
 
-bool FResponse_DeleteMatchDirectoryDeveloperFile::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FResponse_DeleteEntityDirectoryFile::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
 	return true;
 }
 
-FResponse_DeleteMatchDirectoryDeveloperFile::FResponse_DeleteMatchDirectoryDeveloperFile(FRequestMetadata InRequestMetadata) :
+FResponse_DeleteEntityDirectoryFile::FResponse_DeleteEntityDirectoryFile(FRequestMetadata InRequestMetadata) :
 	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 
-FString Traits_DeleteMatchDirectoryDeveloperFile::Name = TEXT("DeleteMatchDirectoryDeveloperFile");
+FString Traits_DeleteEntityDirectoryFile::Name = TEXT("DeleteEntityDirectoryFile");
 
-FHttpRequestPtr FFileAPI::DeleteMatchDirectoryFile(const FRequest_DeleteMatchDirectoryFile& Request, const FDelegate_DeleteMatchDirectoryFile& Delegate /*= FDelegate_DeleteMatchDirectoryFile()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+FHttpRequestPtr FFileAPI::DownloadEntityDirectoryFile(const FRequest_DownloadEntityDirectoryFile& Request, const FDelegate_DownloadEntityDirectoryFile& Delegate /*= FDelegate_DownloadEntityDirectoryFile()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
 		return nullptr;
@@ -716,7 +574,7 @@ FHttpRequestPtr FFileAPI::DeleteMatchDirectoryFile(const FRequest_DeleteMatchDir
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FFileAPI::OnDeleteMatchDirectoryFileResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FFileAPI::OnDownloadEntityDirectoryFileResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -727,7 +585,7 @@ FHttpRequestPtr FFileAPI::DeleteMatchDirectoryFile(const FRequest_DeleteMatchDir
 	return RequestData->HttpRequest;
 }
 
-void FFileAPI::OnDeleteMatchDirectoryFileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteMatchDirectoryFile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+void FFileAPI::OnDownloadEntityDirectoryFileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DownloadEntityDirectoryFile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
 	FHttpRequestCompleteDelegate ResponseDelegate;
 
@@ -735,10 +593,10 @@ void FFileAPI::OnDeleteMatchDirectoryFileResponse(FHttpRequestPtr HttpRequest, F
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindSP(this, &FFileAPI::OnDeleteMatchDirectoryFileResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FFileAPI::OnDownloadEntityDirectoryFileResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_DeleteMatchDirectoryFile Response{ RequestMetadata };
+	FResponse_DownloadEntityDirectoryFile Response{ RequestMetadata };
 	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
 	{
@@ -753,210 +611,53 @@ void FFileAPI::OnDeleteMatchDirectoryFileResponse(FHttpRequestPtr HttpRequest, F
 	}
 }
 
-FRequest_DeleteMatchDirectoryFile::FRequest_DeleteMatchDirectoryFile()
+FRequest_DownloadEntityDirectoryFile::FRequest_DownloadEntityDirectoryFile()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 }
 
-FName FRequest_DeleteMatchDirectoryFile::GetSimplifiedPath() const
+FName FRequest_DownloadEntityDirectoryFile::GetSimplifiedPath() const
 {
-	static FName Path = FName(TEXT("/file/v1/match/{match_id}/files/{file_name}"));
+	static FName Path = FName(TEXT("/file/v1/{entity_type}/{entity_id}/{file_type}/{file_name}"));
 	return Path;
 }
 
-FString FRequest_DeleteMatchDirectoryFile::ComputePath() const
+FString FRequest_DownloadEntityDirectoryFile::ComputePath() const
 {
 	TMap<FString, FStringFormatArg> PathParams = { 
-		{ TEXT("match_id"), ToStringFormatArg(MatchId) },
-		{ TEXT("file_name"), ToStringFormatArg(FileName) }
+		{ TEXT("entity_type"), ToStringFormatArg(EntityType) },
+		{ TEXT("entity_id"), ToStringFormatArg(EntityId) },
+		{ TEXT("file_name"), ToStringFormatArg(FileName) },
+		{ TEXT("file_type"), ToStringFormatArg(FileType) }
 	};
 
-	FString Path = FString::Format(TEXT("/file/v1/match/{match_id}/files/{file_name}"), PathParams);
+	FString Path = FString::Format(TEXT("/file/v1/{entity_type}/{entity_id}/{file_type}/{file_name}"), PathParams);
 
 	return Path;
 }
 
-bool FRequest_DeleteMatchDirectoryFile::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-	static const TArray<FString> Consumes = {  };
-	//static const TArray<FString> Produces = { TEXT("application/json") };
-
-	HttpRequest->SetVerb(TEXT("DELETE"));
-
-	if (!AuthContext)
-	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteMatchDirectoryFile - missing auth context"));
-		return false;
-	}
-	if (!AuthContext->AddBearerToken(HttpRequest))
-	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteMatchDirectoryFile - failed to add bearer token"));
-		return false;
-	}
-
-	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-	{
-	}
-	else if (Consumes.Contains(TEXT("multipart/form-data")))
-	{
-	}
-	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-	{
-	}
-	else
-	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteMatchDirectoryFile - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-		return false;
-	}
-
-	return true;
-}
-
-FString FResponse_DeleteMatchDirectoryFile::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
-{
-	switch ((int)InHttpResponseCode)
-	{
-	case 204:
-		return TEXT("Successful Response");
-	case 403:
-		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
-	case 422:
-		return TEXT("Validation Error");
-	}
-	
-	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
-}
-
-bool FResponse_DeleteMatchDirectoryFile::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
-{
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
-	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
-	}
-	return false;
-}
-
-bool FResponse_DeleteMatchDirectoryFile::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
-{
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
-	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
-	}
-	return false;
-}
-
-bool FResponse_DeleteMatchDirectoryFile::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-	return true;
-}
-
-FResponse_DeleteMatchDirectoryFile::FResponse_DeleteMatchDirectoryFile(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_DeleteMatchDirectoryFile::Name = TEXT("DeleteMatchDirectoryFile");
-
-FHttpRequestPtr FFileAPI::DownloadMatchDirectoryDeveloperFile(const FRequest_DownloadMatchDirectoryDeveloperFile& Request, const FDelegate_DownloadMatchDirectoryDeveloperFile& Delegate /*= FDelegate_DownloadMatchDirectoryDeveloperFile()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
-{
-	if (!IsValid())
-		return nullptr;
-
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
-	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-	for(const auto& It : AdditionalHeaderParams)
-	{
-		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-	}
-
-	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-	{
-		return nullptr;
-	}
-
-	RequestData->SetMetadata(Request.GetRequestMetadata());
-
-	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FFileAPI::OnDownloadMatchDirectoryDeveloperFileResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-	RequestData->SetDelegate(ResponseDelegate);
-
-	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
-	if (HttpRequester)
-	{
-		HttpRequester->EnqueueHttpRequest(RequestData);
-	}
-	return RequestData->HttpRequest;
-}
-
-void FFileAPI::OnDownloadMatchDirectoryDeveloperFileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DownloadMatchDirectoryDeveloperFile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-	FHttpRequestCompleteDelegate ResponseDelegate;
-
-	if (AuthContextForRetry)
-	{
-		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindSP(this, &FFileAPI::OnDownloadMatchDirectoryDeveloperFileResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-	}
-
-	FResponse_DownloadMatchDirectoryDeveloperFile Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
-	{
-		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
-}
-
-FRequest_DownloadMatchDirectoryDeveloperFile::FRequest_DownloadMatchDirectoryDeveloperFile()
-	: FRequest()
-{
-	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-}
-
-FName FRequest_DownloadMatchDirectoryDeveloperFile::GetSimplifiedPath() const
-{
-	static FName Path = FName(TEXT("/file/v1/match/{match_id}/developer-files/{file_name}"));
-	return Path;
-}
-
-FString FRequest_DownloadMatchDirectoryDeveloperFile::ComputePath() const
-{
-	TMap<FString, FStringFormatArg> PathParams = { 
-		{ TEXT("match_id"), ToStringFormatArg(MatchId) },
-		{ TEXT("file_name"), ToStringFormatArg(FileName) }
-	};
-
-	FString Path = FString::Format(TEXT("/file/v1/match/{match_id}/developer-files/{file_name}"), PathParams);
-
-	return Path;
-}
-
-bool FRequest_DownloadMatchDirectoryDeveloperFile::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+bool FRequest_DownloadEntityDirectoryFile::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
 	static const TArray<FString> Consumes = {  };
 	//static const TArray<FString> Produces = { TEXT("application/octet-stream"), TEXT("application/json") };
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
+	// Header parameters
+	if (Authorization.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("authorization"), Authorization.GetValue());
+	}
+
 	if (!AuthContext)
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DownloadMatchDirectoryDeveloperFile - missing auth context"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DownloadEntityDirectoryFile - missing auth context"));
 		return false;
 	}
 	if (!AuthContext->AddBearerToken(HttpRequest))
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DownloadMatchDirectoryDeveloperFile - failed to add bearer token"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DownloadEntityDirectoryFile - failed to add bearer token"));
 		return false;
 	}
 
@@ -971,14 +672,14 @@ bool FRequest_DownloadMatchDirectoryDeveloperFile::SetupHttpRequest(const FHttpR
 	}
 	else
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DownloadMatchDirectoryDeveloperFile - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DownloadEntityDirectoryFile - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
 		return false;
 	}
 
 	return true;
 }
 
-FString FResponse_DownloadMatchDirectoryDeveloperFile::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
+FString FResponse_DownloadEntityDirectoryFile::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
 	switch ((int)InHttpResponseCode)
 	{
@@ -995,7 +696,7 @@ FString FResponse_DownloadMatchDirectoryDeveloperFile::GetHttpResponseCodeDescri
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
-bool FResponse_DownloadMatchDirectoryDeveloperFile::TryGetContentFor200(FString& OutContent) const
+bool FResponse_DownloadEntityDirectoryFile::TryGetContentFor200(FString& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -1005,7 +706,7 @@ bool FResponse_DownloadMatchDirectoryDeveloperFile::TryGetContentFor200(FString&
 	return false;
 }
 
-bool FResponse_DownloadMatchDirectoryDeveloperFile::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_DownloadEntityDirectoryFile::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -1015,7 +716,7 @@ bool FResponse_DownloadMatchDirectoryDeveloperFile::TryGetContentFor403(FRHAPI_H
 	return false;
 }
 
-bool FResponse_DownloadMatchDirectoryDeveloperFile::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_DownloadEntityDirectoryFile::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -1025,7 +726,7 @@ bool FResponse_DownloadMatchDirectoryDeveloperFile::TryGetContentFor404(FRHAPI_H
 	return false;
 }
 
-bool FResponse_DownloadMatchDirectoryDeveloperFile::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_DownloadEntityDirectoryFile::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -1035,19 +736,19 @@ bool FResponse_DownloadMatchDirectoryDeveloperFile::TryGetContentFor422(FRHAPI_H
 	return false;
 }
 
-bool FResponse_DownloadMatchDirectoryDeveloperFile::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FResponse_DownloadEntityDirectoryFile::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
 	return TryGetJsonValue(JsonValue, Content);
 }
 
-FResponse_DownloadMatchDirectoryDeveloperFile::FResponse_DownloadMatchDirectoryDeveloperFile(FRequestMetadata InRequestMetadata) :
+FResponse_DownloadEntityDirectoryFile::FResponse_DownloadEntityDirectoryFile(FRequestMetadata InRequestMetadata) :
 	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 
-FString Traits_DownloadMatchDirectoryDeveloperFile::Name = TEXT("DownloadMatchDirectoryDeveloperFile");
+FString Traits_DownloadEntityDirectoryFile::Name = TEXT("DownloadEntityDirectoryFile");
 
-FHttpRequestPtr FFileAPI::DownloadMatchDirectoryFile(const FRequest_DownloadMatchDirectoryFile& Request, const FDelegate_DownloadMatchDirectoryFile& Delegate /*= FDelegate_DownloadMatchDirectoryFile()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+FHttpRequestPtr FFileAPI::GetEntityDirectoryInformation(const FRequest_GetEntityDirectoryInformation& Request, const FDelegate_GetEntityDirectoryInformation& Delegate /*= FDelegate_GetEntityDirectoryInformation()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
 		return nullptr;
@@ -1068,7 +769,7 @@ FHttpRequestPtr FFileAPI::DownloadMatchDirectoryFile(const FRequest_DownloadMatc
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FFileAPI::OnDownloadMatchDirectoryFileResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FFileAPI::OnGetEntityDirectoryInformationResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -1079,7 +780,7 @@ FHttpRequestPtr FFileAPI::DownloadMatchDirectoryFile(const FRequest_DownloadMatc
 	return RequestData->HttpRequest;
 }
 
-void FFileAPI::OnDownloadMatchDirectoryFileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DownloadMatchDirectoryFile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+void FFileAPI::OnGetEntityDirectoryInformationResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetEntityDirectoryInformation Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
 	FHttpRequestCompleteDelegate ResponseDelegate;
 
@@ -1087,10 +788,10 @@ void FFileAPI::OnDownloadMatchDirectoryFileResponse(FHttpRequestPtr HttpRequest,
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindSP(this, &FFileAPI::OnDownloadMatchDirectoryFileResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FFileAPI::OnGetEntityDirectoryInformationResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_DownloadMatchDirectoryFile Response{ RequestMetadata };
+	FResponse_GetEntityDirectoryInformation Response{ RequestMetadata };
 	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
 	{
@@ -1105,212 +806,30 @@ void FFileAPI::OnDownloadMatchDirectoryFileResponse(FHttpRequestPtr HttpRequest,
 	}
 }
 
-FRequest_DownloadMatchDirectoryFile::FRequest_DownloadMatchDirectoryFile()
+FRequest_GetEntityDirectoryInformation::FRequest_GetEntityDirectoryInformation()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 }
 
-FName FRequest_DownloadMatchDirectoryFile::GetSimplifiedPath() const
+FName FRequest_GetEntityDirectoryInformation::GetSimplifiedPath() const
 {
-	static FName Path = FName(TEXT("/file/v1/match/{match_id}/files/{file_name}"));
+	static FName Path = FName(TEXT("/file/v1/{entity_type}"));
 	return Path;
 }
 
-FString FRequest_DownloadMatchDirectoryFile::ComputePath() const
+FString FRequest_GetEntityDirectoryInformation::ComputePath() const
 {
 	TMap<FString, FStringFormatArg> PathParams = { 
-		{ TEXT("match_id"), ToStringFormatArg(MatchId) },
-		{ TEXT("file_name"), ToStringFormatArg(FileName) }
+		{ TEXT("entity_type"), ToStringFormatArg(EntityType) }
 	};
 
-	FString Path = FString::Format(TEXT("/file/v1/match/{match_id}/files/{file_name}"), PathParams);
+	FString Path = FString::Format(TEXT("/file/v1/{entity_type}"), PathParams);
 
 	return Path;
 }
 
-bool FRequest_DownloadMatchDirectoryFile::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-	static const TArray<FString> Consumes = {  };
-	//static const TArray<FString> Produces = { TEXT("application/octet-stream"), TEXT("application/json") };
-
-	HttpRequest->SetVerb(TEXT("GET"));
-
-	if (!AuthContext)
-	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DownloadMatchDirectoryFile - missing auth context"));
-		return false;
-	}
-	if (!AuthContext->AddBearerToken(HttpRequest))
-	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DownloadMatchDirectoryFile - failed to add bearer token"));
-		return false;
-	}
-
-	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-	{
-	}
-	else if (Consumes.Contains(TEXT("multipart/form-data")))
-	{
-	}
-	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-	{
-	}
-	else
-	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DownloadMatchDirectoryFile - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-		return false;
-	}
-
-	return true;
-}
-
-FString FResponse_DownloadMatchDirectoryFile::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
-{
-	switch ((int)InHttpResponseCode)
-	{
-	case 200:
-		return TEXT("Successful Response");
-	case 403:
-		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
-	case 404:
-		return TEXT(" Error Codes: - &#x60;file_not_found&#x60; - File not found. ");
-	case 422:
-		return TEXT("Validation Error");
-	}
-	
-	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
-}
-
-bool FResponse_DownloadMatchDirectoryFile::TryGetContentFor200(FString& OutContent) const
-{
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
-	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
-	}
-	return false;
-}
-
-bool FResponse_DownloadMatchDirectoryFile::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
-{
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
-	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
-	}
-	return false;
-}
-
-bool FResponse_DownloadMatchDirectoryFile::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
-{
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
-	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
-	}
-	return false;
-}
-
-bool FResponse_DownloadMatchDirectoryFile::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
-{
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
-	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
-	}
-	return false;
-}
-
-bool FResponse_DownloadMatchDirectoryFile::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-	return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_DownloadMatchDirectoryFile::FResponse_DownloadMatchDirectoryFile(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_DownloadMatchDirectoryFile::Name = TEXT("DownloadMatchDirectoryFile");
-
-FHttpRequestPtr FFileAPI::GetMatchDirectoryInformation(const FRequest_GetMatchDirectoryInformation& Request, const FDelegate_GetMatchDirectoryInformation& Delegate /*= FDelegate_GetMatchDirectoryInformation()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
-{
-	if (!IsValid())
-		return nullptr;
-
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
-	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-	for(const auto& It : AdditionalHeaderParams)
-	{
-		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-	}
-
-	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-	{
-		return nullptr;
-	}
-
-	RequestData->SetMetadata(Request.GetRequestMetadata());
-
-	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FFileAPI::OnGetMatchDirectoryInformationResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-	RequestData->SetDelegate(ResponseDelegate);
-
-	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
-	if (HttpRequester)
-	{
-		HttpRequester->EnqueueHttpRequest(RequestData);
-	}
-	return RequestData->HttpRequest;
-}
-
-void FFileAPI::OnGetMatchDirectoryInformationResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMatchDirectoryInformation Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-	FHttpRequestCompleteDelegate ResponseDelegate;
-
-	if (AuthContextForRetry)
-	{
-		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindSP(this, &FFileAPI::OnGetMatchDirectoryInformationResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-	}
-
-	FResponse_GetMatchDirectoryInformation Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
-	{
-		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
-}
-
-FRequest_GetMatchDirectoryInformation::FRequest_GetMatchDirectoryInformation()
-	: FRequest()
-{
-	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-}
-
-FName FRequest_GetMatchDirectoryInformation::GetSimplifiedPath() const
-{
-	static FName Path = FName(TEXT("/file/v1/match"));
-	return Path;
-}
-
-FString FRequest_GetMatchDirectoryInformation::ComputePath() const
-{
-	FString Path = GetSimplifiedPath().ToString();
-	return Path;
-}
-
-bool FRequest_GetMatchDirectoryInformation::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+bool FRequest_GetEntityDirectoryInformation::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
 	static const TArray<FString> Consumes = {  };
 	//static const TArray<FString> Produces = { TEXT("application/json") };
@@ -1319,12 +838,12 @@ bool FRequest_GetMatchDirectoryInformation::SetupHttpRequest(const FHttpRequestR
 
 	if (!AuthContext)
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetMatchDirectoryInformation - missing auth context"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetEntityDirectoryInformation - missing auth context"));
 		return false;
 	}
 	if (!AuthContext->AddBearerToken(HttpRequest))
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetMatchDirectoryInformation - failed to add bearer token"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetEntityDirectoryInformation - failed to add bearer token"));
 		return false;
 	}
 
@@ -1339,176 +858,14 @@ bool FRequest_GetMatchDirectoryInformation::SetupHttpRequest(const FHttpRequestR
 	}
 	else
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetMatchDirectoryInformation - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetEntityDirectoryInformation - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
 		return false;
 	}
 
 	return true;
 }
 
-FString FResponse_GetMatchDirectoryInformation::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
-{
-	switch ((int)InHttpResponseCode)
-	{
-	case 200:
-		return TEXT("Successful Response");
-	case 403:
-		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
-	}
-	
-	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
-}
-
-bool FResponse_GetMatchDirectoryInformation::TryGetContentFor200(FRHAPI_StorageInformation& OutContent) const
-{
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
-	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
-	}
-	return false;
-}
-
-bool FResponse_GetMatchDirectoryInformation::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
-{
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
-	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
-	}
-	return false;
-}
-
-bool FResponse_GetMatchDirectoryInformation::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-	return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_GetMatchDirectoryInformation::FResponse_GetMatchDirectoryInformation(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_GetMatchDirectoryInformation::Name = TEXT("GetMatchDirectoryInformation");
-
-FHttpRequestPtr FFileAPI::ListMatchDirectoryDeveloperFiles(const FRequest_ListMatchDirectoryDeveloperFiles& Request, const FDelegate_ListMatchDirectoryDeveloperFiles& Delegate /*= FDelegate_ListMatchDirectoryDeveloperFiles()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
-{
-	if (!IsValid())
-		return nullptr;
-
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
-	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-	for(const auto& It : AdditionalHeaderParams)
-	{
-		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-	}
-
-	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-	{
-		return nullptr;
-	}
-
-	RequestData->SetMetadata(Request.GetRequestMetadata());
-
-	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FFileAPI::OnListMatchDirectoryDeveloperFilesResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-	RequestData->SetDelegate(ResponseDelegate);
-
-	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
-	if (HttpRequester)
-	{
-		HttpRequester->EnqueueHttpRequest(RequestData);
-	}
-	return RequestData->HttpRequest;
-}
-
-void FFileAPI::OnListMatchDirectoryDeveloperFilesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ListMatchDirectoryDeveloperFiles Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-	FHttpRequestCompleteDelegate ResponseDelegate;
-
-	if (AuthContextForRetry)
-	{
-		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindSP(this, &FFileAPI::OnListMatchDirectoryDeveloperFilesResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-	}
-
-	FResponse_ListMatchDirectoryDeveloperFiles Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
-	{
-		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
-}
-
-FRequest_ListMatchDirectoryDeveloperFiles::FRequest_ListMatchDirectoryDeveloperFiles()
-	: FRequest()
-{
-	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-}
-
-FName FRequest_ListMatchDirectoryDeveloperFiles::GetSimplifiedPath() const
-{
-	static FName Path = FName(TEXT("/file/v1/match/{match_id}/developer-files"));
-	return Path;
-}
-
-FString FRequest_ListMatchDirectoryDeveloperFiles::ComputePath() const
-{
-	TMap<FString, FStringFormatArg> PathParams = { 
-		{ TEXT("match_id"), ToStringFormatArg(MatchId) }
-	};
-
-	FString Path = FString::Format(TEXT("/file/v1/match/{match_id}/developer-files"), PathParams);
-
-	return Path;
-}
-
-bool FRequest_ListMatchDirectoryDeveloperFiles::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-	static const TArray<FString> Consumes = {  };
-	//static const TArray<FString> Produces = { TEXT("application/json") };
-
-	HttpRequest->SetVerb(TEXT("GET"));
-
-	if (!AuthContext)
-	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_ListMatchDirectoryDeveloperFiles - missing auth context"));
-		return false;
-	}
-	if (!AuthContext->AddBearerToken(HttpRequest))
-	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_ListMatchDirectoryDeveloperFiles - failed to add bearer token"));
-		return false;
-	}
-
-	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-	{
-	}
-	else if (Consumes.Contains(TEXT("multipart/form-data")))
-	{
-	}
-	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-	{
-	}
-	else
-	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_ListMatchDirectoryDeveloperFiles - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-		return false;
-	}
-
-	return true;
-}
-
-FString FResponse_ListMatchDirectoryDeveloperFiles::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
+FString FResponse_GetEntityDirectoryInformation::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
 	switch ((int)InHttpResponseCode)
 	{
@@ -1523,7 +880,7 @@ FString FResponse_ListMatchDirectoryDeveloperFiles::GetHttpResponseCodeDescripti
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
-bool FResponse_ListMatchDirectoryDeveloperFiles::TryGetContentFor200(FRHAPI_FileListResponse& OutContent) const
+bool FResponse_GetEntityDirectoryInformation::TryGetContentFor200(FRHAPI_StorageInformation& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -1533,7 +890,7 @@ bool FResponse_ListMatchDirectoryDeveloperFiles::TryGetContentFor200(FRHAPI_File
 	return false;
 }
 
-bool FResponse_ListMatchDirectoryDeveloperFiles::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_GetEntityDirectoryInformation::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -1543,7 +900,7 @@ bool FResponse_ListMatchDirectoryDeveloperFiles::TryGetContentFor403(FRHAPI_HzAp
 	return false;
 }
 
-bool FResponse_ListMatchDirectoryDeveloperFiles::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_GetEntityDirectoryInformation::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -1553,19 +910,19 @@ bool FResponse_ListMatchDirectoryDeveloperFiles::TryGetContentFor422(FRHAPI_HTTP
 	return false;
 }
 
-bool FResponse_ListMatchDirectoryDeveloperFiles::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FResponse_GetEntityDirectoryInformation::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
 	return TryGetJsonValue(JsonValue, Content);
 }
 
-FResponse_ListMatchDirectoryDeveloperFiles::FResponse_ListMatchDirectoryDeveloperFiles(FRequestMetadata InRequestMetadata) :
+FResponse_GetEntityDirectoryInformation::FResponse_GetEntityDirectoryInformation(FRequestMetadata InRequestMetadata) :
 	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 
-FString Traits_ListMatchDirectoryDeveloperFiles::Name = TEXT("ListMatchDirectoryDeveloperFiles");
+FString Traits_GetEntityDirectoryInformation::Name = TEXT("GetEntityDirectoryInformation");
 
-FHttpRequestPtr FFileAPI::ListMatchDirectoryFiles(const FRequest_ListMatchDirectoryFiles& Request, const FDelegate_ListMatchDirectoryFiles& Delegate /*= FDelegate_ListMatchDirectoryFiles()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+FHttpRequestPtr FFileAPI::ListEntityDirectoryFiles(const FRequest_ListEntityDirectoryFiles& Request, const FDelegate_ListEntityDirectoryFiles& Delegate /*= FDelegate_ListEntityDirectoryFiles()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
 		return nullptr;
@@ -1586,7 +943,7 @@ FHttpRequestPtr FFileAPI::ListMatchDirectoryFiles(const FRequest_ListMatchDirect
 	RequestData->SetMetadata(Request.GetRequestMetadata());
 
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FFileAPI::OnListMatchDirectoryFilesResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FFileAPI::OnListEntityDirectoryFilesResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -1597,7 +954,7 @@ FHttpRequestPtr FFileAPI::ListMatchDirectoryFiles(const FRequest_ListMatchDirect
 	return RequestData->HttpRequest;
 }
 
-void FFileAPI::OnListMatchDirectoryFilesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ListMatchDirectoryFiles Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+void FFileAPI::OnListEntityDirectoryFilesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ListEntityDirectoryFiles Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
 	FHttpRequestCompleteDelegate ResponseDelegate;
 
@@ -1605,10 +962,10 @@ void FFileAPI::OnListMatchDirectoryFilesResponse(FHttpRequestPtr HttpRequest, FH
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindSP(this, &FFileAPI::OnListMatchDirectoryFilesResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FFileAPI::OnListEntityDirectoryFilesResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_ListMatchDirectoryFiles Response{ RequestMetadata };
+	FResponse_ListEntityDirectoryFiles Response{ RequestMetadata };
 	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
 	{
@@ -1623,44 +980,52 @@ void FFileAPI::OnListMatchDirectoryFilesResponse(FHttpRequestPtr HttpRequest, FH
 	}
 }
 
-FRequest_ListMatchDirectoryFiles::FRequest_ListMatchDirectoryFiles()
+FRequest_ListEntityDirectoryFiles::FRequest_ListEntityDirectoryFiles()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 }
 
-FName FRequest_ListMatchDirectoryFiles::GetSimplifiedPath() const
+FName FRequest_ListEntityDirectoryFiles::GetSimplifiedPath() const
 {
-	static FName Path = FName(TEXT("/file/v1/match/{match_id}/files"));
+	static FName Path = FName(TEXT("/file/v1/{entity_type}/{entity_id}/{file_type}"));
 	return Path;
 }
 
-FString FRequest_ListMatchDirectoryFiles::ComputePath() const
+FString FRequest_ListEntityDirectoryFiles::ComputePath() const
 {
 	TMap<FString, FStringFormatArg> PathParams = { 
-		{ TEXT("match_id"), ToStringFormatArg(MatchId) }
+		{ TEXT("entity_type"), ToStringFormatArg(EntityType) },
+		{ TEXT("entity_id"), ToStringFormatArg(EntityId) },
+		{ TEXT("file_type"), ToStringFormatArg(FileType) }
 	};
 
-	FString Path = FString::Format(TEXT("/file/v1/match/{match_id}/files"), PathParams);
+	FString Path = FString::Format(TEXT("/file/v1/{entity_type}/{entity_id}/{file_type}"), PathParams);
 
 	return Path;
 }
 
-bool FRequest_ListMatchDirectoryFiles::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+bool FRequest_ListEntityDirectoryFiles::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
 	static const TArray<FString> Consumes = {  };
 	//static const TArray<FString> Produces = { TEXT("application/json") };
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
+	// Header parameters
+	if (Authorization.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("authorization"), Authorization.GetValue());
+	}
+
 	if (!AuthContext)
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_ListMatchDirectoryFiles - missing auth context"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_ListEntityDirectoryFiles - missing auth context"));
 		return false;
 	}
 	if (!AuthContext->AddBearerToken(HttpRequest))
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_ListMatchDirectoryFiles - failed to add bearer token"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_ListEntityDirectoryFiles - failed to add bearer token"));
 		return false;
 	}
 
@@ -1675,14 +1040,14 @@ bool FRequest_ListMatchDirectoryFiles::SetupHttpRequest(const FHttpRequestRef& H
 	}
 	else
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_ListMatchDirectoryFiles - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_ListEntityDirectoryFiles - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
 		return false;
 	}
 
 	return true;
 }
 
-FString FResponse_ListMatchDirectoryFiles::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
+FString FResponse_ListEntityDirectoryFiles::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
 	switch ((int)InHttpResponseCode)
 	{
@@ -1697,7 +1062,7 @@ FString FResponse_ListMatchDirectoryFiles::GetHttpResponseCodeDescription(EHttpR
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
-bool FResponse_ListMatchDirectoryFiles::TryGetContentFor200(FRHAPI_FileListResponse& OutContent) const
+bool FResponse_ListEntityDirectoryFiles::TryGetContentFor200(FRHAPI_FileListResponse& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -1707,7 +1072,7 @@ bool FResponse_ListMatchDirectoryFiles::TryGetContentFor200(FRHAPI_FileListRespo
 	return false;
 }
 
-bool FResponse_ListMatchDirectoryFiles::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_ListEntityDirectoryFiles::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -1717,7 +1082,7 @@ bool FResponse_ListMatchDirectoryFiles::TryGetContentFor403(FRHAPI_HzApiErrorMod
 	return false;
 }
 
-bool FResponse_ListMatchDirectoryFiles::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_ListEntityDirectoryFiles::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -1727,17 +1092,17 @@ bool FResponse_ListMatchDirectoryFiles::TryGetContentFor422(FRHAPI_HTTPValidatio
 	return false;
 }
 
-bool FResponse_ListMatchDirectoryFiles::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FResponse_ListEntityDirectoryFiles::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
 	return TryGetJsonValue(JsonValue, Content);
 }
 
-FResponse_ListMatchDirectoryFiles::FResponse_ListMatchDirectoryFiles(FRequestMetadata InRequestMetadata) :
+FResponse_ListEntityDirectoryFiles::FResponse_ListEntityDirectoryFiles(FRequestMetadata InRequestMetadata) :
 	FResponse(MoveTemp(InRequestMetadata))
 {
 }
 
-FString Traits_ListMatchDirectoryFiles::Name = TEXT("ListMatchDirectoryFiles");
+FString Traits_ListEntityDirectoryFiles::Name = TEXT("ListEntityDirectoryFiles");
 
 
 }

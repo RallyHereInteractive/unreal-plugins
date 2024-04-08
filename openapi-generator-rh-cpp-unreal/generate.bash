@@ -55,8 +55,12 @@ java -cp "target/rh-cpp-ue4-openapi-generator-1.0.0.jar;bin/openapi-generator-cl
 
 
 ########################################
-# Download and convert the OpenAPI spec
-curl "$OPENAPI_SPEC_LOCATION" -o openapi.json
+# Download and convert the OpenAPI spec, or copy from local path
+if [[ $OPENAPI_SPEC_LOCATION == http* ]]; then
+    curl "$OPENAPI_SPEC_LOCATION" -o openapi.json
+else
+    cp "$OPENAPI_SPEC_LOCATION" openapi.json
+fi
 jq '.openapi = "3.0.3"' openapi.json > openapi_converted.json
 OPENAPI_SPEC_LOCATION="openapi_converted.json"
 

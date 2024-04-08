@@ -10,6 +10,7 @@
 #include "CoreMinimal.h"
 #include "RallyHereAPIAuthContext.h"
 #include "RallyHereAPIHelpers.h"
+#include "FileType.h"
 #include "FileListResponse.h"
 #include "HTTPValidationError.h"
 #include "HzApiErrorModel.h"
@@ -21,37 +22,25 @@ using RallyHereAPI::ToStringFormatArg;
 using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
-struct FRequest_CreateMatchDirectoryDeveloperFile;
-struct FResponse_CreateMatchDirectoryDeveloperFile;
-struct FRequest_CreateMatchDirectoryFile;
-struct FResponse_CreateMatchDirectoryFile;
-struct FRequest_DeleteMatchDirectory;
-struct FResponse_DeleteMatchDirectory;
-struct FRequest_DeleteMatchDirectoryDeveloperFile;
-struct FResponse_DeleteMatchDirectoryDeveloperFile;
-struct FRequest_DeleteMatchDirectoryFile;
-struct FResponse_DeleteMatchDirectoryFile;
-struct FRequest_DownloadMatchDirectoryDeveloperFile;
-struct FResponse_DownloadMatchDirectoryDeveloperFile;
-struct FRequest_DownloadMatchDirectoryFile;
-struct FResponse_DownloadMatchDirectoryFile;
-struct FRequest_GetMatchDirectoryInformation;
-struct FResponse_GetMatchDirectoryInformation;
-struct FRequest_ListMatchDirectoryDeveloperFiles;
-struct FResponse_ListMatchDirectoryDeveloperFiles;
-struct FRequest_ListMatchDirectoryFiles;
-struct FResponse_ListMatchDirectoryFiles;
+struct FRequest_CreateEntityDirectoryFile;
+struct FResponse_CreateEntityDirectoryFile;
+struct FRequest_DeleteEntityDirectory;
+struct FResponse_DeleteEntityDirectory;
+struct FRequest_DeleteEntityDirectoryFile;
+struct FResponse_DeleteEntityDirectoryFile;
+struct FRequest_DownloadEntityDirectoryFile;
+struct FResponse_DownloadEntityDirectoryFile;
+struct FRequest_GetEntityDirectoryInformation;
+struct FResponse_GetEntityDirectoryInformation;
+struct FRequest_ListEntityDirectoryFiles;
+struct FResponse_ListEntityDirectoryFiles;
 
-DECLARE_DELEGATE_OneParam(FDelegate_CreateMatchDirectoryDeveloperFile, const FResponse_CreateMatchDirectoryDeveloperFile&);
-DECLARE_DELEGATE_OneParam(FDelegate_CreateMatchDirectoryFile, const FResponse_CreateMatchDirectoryFile&);
-DECLARE_DELEGATE_OneParam(FDelegate_DeleteMatchDirectory, const FResponse_DeleteMatchDirectory&);
-DECLARE_DELEGATE_OneParam(FDelegate_DeleteMatchDirectoryDeveloperFile, const FResponse_DeleteMatchDirectoryDeveloperFile&);
-DECLARE_DELEGATE_OneParam(FDelegate_DeleteMatchDirectoryFile, const FResponse_DeleteMatchDirectoryFile&);
-DECLARE_DELEGATE_OneParam(FDelegate_DownloadMatchDirectoryDeveloperFile, const FResponse_DownloadMatchDirectoryDeveloperFile&);
-DECLARE_DELEGATE_OneParam(FDelegate_DownloadMatchDirectoryFile, const FResponse_DownloadMatchDirectoryFile&);
-DECLARE_DELEGATE_OneParam(FDelegate_GetMatchDirectoryInformation, const FResponse_GetMatchDirectoryInformation&);
-DECLARE_DELEGATE_OneParam(FDelegate_ListMatchDirectoryDeveloperFiles, const FResponse_ListMatchDirectoryDeveloperFiles&);
-DECLARE_DELEGATE_OneParam(FDelegate_ListMatchDirectoryFiles, const FResponse_ListMatchDirectoryFiles&);
+DECLARE_DELEGATE_OneParam(FDelegate_CreateEntityDirectoryFile, const FResponse_CreateEntityDirectoryFile&);
+DECLARE_DELEGATE_OneParam(FDelegate_DeleteEntityDirectory, const FResponse_DeleteEntityDirectory&);
+DECLARE_DELEGATE_OneParam(FDelegate_DeleteEntityDirectoryFile, const FResponse_DeleteEntityDirectoryFile&);
+DECLARE_DELEGATE_OneParam(FDelegate_DownloadEntityDirectoryFile, const FResponse_DownloadEntityDirectoryFile&);
+DECLARE_DELEGATE_OneParam(FDelegate_GetEntityDirectoryInformation, const FResponse_GetEntityDirectoryInformation&);
+DECLARE_DELEGATE_OneParam(FDelegate_ListEntityDirectoryFiles, const FResponse_ListEntityDirectoryFiles&);
 
 class RALLYHEREAPI_API FFileAPI : public FAPI
 {
@@ -59,54 +48,49 @@ public:
 	FFileAPI();
 	virtual ~FFileAPI();
 
-	FHttpRequestPtr CreateMatchDirectoryDeveloperFile(const FRequest_CreateMatchDirectoryDeveloperFile& Request, const FDelegate_CreateMatchDirectoryDeveloperFile& Delegate = FDelegate_CreateMatchDirectoryDeveloperFile(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr CreateMatchDirectoryFile(const FRequest_CreateMatchDirectoryFile& Request, const FDelegate_CreateMatchDirectoryFile& Delegate = FDelegate_CreateMatchDirectoryFile(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr DeleteMatchDirectory(const FRequest_DeleteMatchDirectory& Request, const FDelegate_DeleteMatchDirectory& Delegate = FDelegate_DeleteMatchDirectory(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr DeleteMatchDirectoryDeveloperFile(const FRequest_DeleteMatchDirectoryDeveloperFile& Request, const FDelegate_DeleteMatchDirectoryDeveloperFile& Delegate = FDelegate_DeleteMatchDirectoryDeveloperFile(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr DeleteMatchDirectoryFile(const FRequest_DeleteMatchDirectoryFile& Request, const FDelegate_DeleteMatchDirectoryFile& Delegate = FDelegate_DeleteMatchDirectoryFile(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr DownloadMatchDirectoryDeveloperFile(const FRequest_DownloadMatchDirectoryDeveloperFile& Request, const FDelegate_DownloadMatchDirectoryDeveloperFile& Delegate = FDelegate_DownloadMatchDirectoryDeveloperFile(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr DownloadMatchDirectoryFile(const FRequest_DownloadMatchDirectoryFile& Request, const FDelegate_DownloadMatchDirectoryFile& Delegate = FDelegate_DownloadMatchDirectoryFile(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr GetMatchDirectoryInformation(const FRequest_GetMatchDirectoryInformation& Request, const FDelegate_GetMatchDirectoryInformation& Delegate = FDelegate_GetMatchDirectoryInformation(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr ListMatchDirectoryDeveloperFiles(const FRequest_ListMatchDirectoryDeveloperFiles& Request, const FDelegate_ListMatchDirectoryDeveloperFiles& Delegate = FDelegate_ListMatchDirectoryDeveloperFiles(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr ListMatchDirectoryFiles(const FRequest_ListMatchDirectoryFiles& Request, const FDelegate_ListMatchDirectoryFiles& Delegate = FDelegate_ListMatchDirectoryFiles(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr CreateEntityDirectoryFile(const FRequest_CreateEntityDirectoryFile& Request, const FDelegate_CreateEntityDirectoryFile& Delegate = FDelegate_CreateEntityDirectoryFile(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr DeleteEntityDirectory(const FRequest_DeleteEntityDirectory& Request, const FDelegate_DeleteEntityDirectory& Delegate = FDelegate_DeleteEntityDirectory(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr DeleteEntityDirectoryFile(const FRequest_DeleteEntityDirectoryFile& Request, const FDelegate_DeleteEntityDirectoryFile& Delegate = FDelegate_DeleteEntityDirectoryFile(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr DownloadEntityDirectoryFile(const FRequest_DownloadEntityDirectoryFile& Request, const FDelegate_DownloadEntityDirectoryFile& Delegate = FDelegate_DownloadEntityDirectoryFile(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetEntityDirectoryInformation(const FRequest_GetEntityDirectoryInformation& Request, const FDelegate_GetEntityDirectoryInformation& Delegate = FDelegate_GetEntityDirectoryInformation(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr ListEntityDirectoryFiles(const FRequest_ListEntityDirectoryFiles& Request, const FDelegate_ListEntityDirectoryFiles& Delegate = FDelegate_ListEntityDirectoryFiles(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
-	void OnCreateMatchDirectoryDeveloperFileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateMatchDirectoryDeveloperFile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnCreateMatchDirectoryFileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateMatchDirectoryFile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnDeleteMatchDirectoryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteMatchDirectory Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnDeleteMatchDirectoryDeveloperFileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteMatchDirectoryDeveloperFile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnDeleteMatchDirectoryFileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteMatchDirectoryFile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnDownloadMatchDirectoryDeveloperFileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DownloadMatchDirectoryDeveloperFile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnDownloadMatchDirectoryFileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DownloadMatchDirectoryFile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnGetMatchDirectoryInformationResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMatchDirectoryInformation Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnListMatchDirectoryDeveloperFilesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ListMatchDirectoryDeveloperFiles Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnListMatchDirectoryFilesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ListMatchDirectoryFiles Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnCreateEntityDirectoryFileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateEntityDirectoryFile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnDeleteEntityDirectoryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteEntityDirectory Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnDeleteEntityDirectoryFileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteEntityDirectoryFile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnDownloadEntityDirectoryFileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DownloadEntityDirectoryFile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetEntityDirectoryInformationResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetEntityDirectoryInformation Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnListEntityDirectoryFilesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ListEntityDirectoryFiles Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
-/* Create Match Directory Developer File
+/* Create Entity Directory File
  *
- * Upload a file to match storage for provided match_id
+ * Upload a file to entity storage for provided entity_id
 */
-struct RALLYHEREAPI_API FRequest_CreateMatchDirectoryDeveloperFile : public FRequest
+struct RALLYHEREAPI_API FRequest_CreateEntityDirectoryFile : public FRequest
 {
-	FRequest_CreateMatchDirectoryDeveloperFile();
-	virtual ~FRequest_CreateMatchDirectoryDeveloperFile() = default;
+	FRequest_CreateEntityDirectoryFile();
+	virtual ~FRequest_CreateEntityDirectoryFile() = default;
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
 	FString ComputePath() const override;
 	FName GetSimplifiedPath() const override;
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
 	TSharedPtr<FAuthContext> AuthContext;
+	ERHAPI_FileType FileType;
 	FString FileName;
-	FString MatchId;
+	FString EntityType;
+	FString EntityId;
 	FHttpFileInput File;
+	TOptional<FString> Authorization;
 };
 
-struct RALLYHEREAPI_API FResponse_CreateMatchDirectoryDeveloperFile : public FResponse
+struct RALLYHEREAPI_API FResponse_CreateEntityDirectoryFile : public FResponse
 {
-	FResponse_CreateMatchDirectoryDeveloperFile(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_CreateMatchDirectoryDeveloperFile() = default;
+	FResponse_CreateEntityDirectoryFile(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_CreateEntityDirectoryFile() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -130,92 +114,36 @@ struct RALLYHEREAPI_API FResponse_CreateMatchDirectoryDeveloperFile : public FRe
 
 };
 
-struct RALLYHEREAPI_API Traits_CreateMatchDirectoryDeveloperFile
+struct RALLYHEREAPI_API Traits_CreateEntityDirectoryFile
 {
-	typedef FRequest_CreateMatchDirectoryDeveloperFile Request;
-	typedef FResponse_CreateMatchDirectoryDeveloperFile Response;
-	typedef FDelegate_CreateMatchDirectoryDeveloperFile Delegate;
+	typedef FRequest_CreateEntityDirectoryFile Request;
+	typedef FResponse_CreateEntityDirectoryFile Response;
+	typedef FDelegate_CreateEntityDirectoryFile Delegate;
 	typedef FFileAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->CreateMatchDirectoryDeveloperFile(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->CreateEntityDirectoryFile(InRequest, InDelegate, Priority); }
 };
 
-/* Create Match Directory File
- *
- * Upload a file to match storage for provided match_id
+/* Delete Entity Directory
 */
-struct RALLYHEREAPI_API FRequest_CreateMatchDirectoryFile : public FRequest
+struct RALLYHEREAPI_API FRequest_DeleteEntityDirectory : public FRequest
 {
-	FRequest_CreateMatchDirectoryFile();
-	virtual ~FRequest_CreateMatchDirectoryFile() = default;
+	FRequest_DeleteEntityDirectory();
+	virtual ~FRequest_DeleteEntityDirectory() = default;
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
 	FString ComputePath() const override;
 	FName GetSimplifiedPath() const override;
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
 	TSharedPtr<FAuthContext> AuthContext;
-	FString FileName;
-	FString MatchId;
-	FHttpFileInput File;
+	FString EntityType;
 };
 
-struct RALLYHEREAPI_API FResponse_CreateMatchDirectoryFile : public FResponse
+struct RALLYHEREAPI_API FResponse_DeleteEntityDirectory : public FResponse
 {
-	FResponse_CreateMatchDirectoryFile(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_CreateMatchDirectoryFile() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-	
-
-
-	// Manual Response Helpers
-	/* Response 204
-	Successful Response
-	*/
-
-	/* Response 403
-	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_CreateMatchDirectoryFile
-{
-	typedef FRequest_CreateMatchDirectoryFile Request;
-	typedef FResponse_CreateMatchDirectoryFile Response;
-	typedef FDelegate_CreateMatchDirectoryFile Delegate;
-	typedef FFileAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->CreateMatchDirectoryFile(InRequest, InDelegate, Priority); }
-};
-
-/* Delete Match Directory
-*/
-struct RALLYHEREAPI_API FRequest_DeleteMatchDirectory : public FRequest
-{
-	FRequest_DeleteMatchDirectory();
-	virtual ~FRequest_DeleteMatchDirectory() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-};
-
-struct RALLYHEREAPI_API FResponse_DeleteMatchDirectory : public FResponse
-{
-	FResponse_DeleteMatchDirectory(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_DeleteMatchDirectory() = default;
+	FResponse_DeleteEntityDirectory(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_DeleteEntityDirectory() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -233,39 +161,47 @@ struct RALLYHEREAPI_API FResponse_DeleteMatchDirectory : public FResponse
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
-struct RALLYHEREAPI_API Traits_DeleteMatchDirectory
+struct RALLYHEREAPI_API Traits_DeleteEntityDirectory
 {
-	typedef FRequest_DeleteMatchDirectory Request;
-	typedef FResponse_DeleteMatchDirectory Response;
-	typedef FDelegate_DeleteMatchDirectory Delegate;
+	typedef FRequest_DeleteEntityDirectory Request;
+	typedef FResponse_DeleteEntityDirectory Response;
+	typedef FDelegate_DeleteEntityDirectory Delegate;
 	typedef FFileAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DeleteMatchDirectory(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DeleteEntityDirectory(InRequest, InDelegate, Priority); }
 };
 
-/* Delete Match Directory Developer File
+/* Delete Entity Directory File
 */
-struct RALLYHEREAPI_API FRequest_DeleteMatchDirectoryDeveloperFile : public FRequest
+struct RALLYHEREAPI_API FRequest_DeleteEntityDirectoryFile : public FRequest
 {
-	FRequest_DeleteMatchDirectoryDeveloperFile();
-	virtual ~FRequest_DeleteMatchDirectoryDeveloperFile() = default;
+	FRequest_DeleteEntityDirectoryFile();
+	virtual ~FRequest_DeleteEntityDirectoryFile() = default;
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
 	FString ComputePath() const override;
 	FName GetSimplifiedPath() const override;
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
 	TSharedPtr<FAuthContext> AuthContext;
-	FString MatchId;
+	FString EntityType;
+	FString EntityId;
 	FString FileName;
+	ERHAPI_FileType FileType;
+	TOptional<FString> Authorization;
 };
 
-struct RALLYHEREAPI_API FResponse_DeleteMatchDirectoryDeveloperFile : public FResponse
+struct RALLYHEREAPI_API FResponse_DeleteEntityDirectoryFile : public FResponse
 {
-	FResponse_DeleteMatchDirectoryDeveloperFile(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_DeleteMatchDirectoryDeveloperFile() = default;
+	FResponse_DeleteEntityDirectoryFile(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_DeleteEntityDirectoryFile() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -289,91 +225,40 @@ struct RALLYHEREAPI_API FResponse_DeleteMatchDirectoryDeveloperFile : public FRe
 
 };
 
-struct RALLYHEREAPI_API Traits_DeleteMatchDirectoryDeveloperFile
+struct RALLYHEREAPI_API Traits_DeleteEntityDirectoryFile
 {
-	typedef FRequest_DeleteMatchDirectoryDeveloperFile Request;
-	typedef FResponse_DeleteMatchDirectoryDeveloperFile Response;
-	typedef FDelegate_DeleteMatchDirectoryDeveloperFile Delegate;
+	typedef FRequest_DeleteEntityDirectoryFile Request;
+	typedef FResponse_DeleteEntityDirectoryFile Response;
+	typedef FDelegate_DeleteEntityDirectoryFile Delegate;
 	typedef FFileAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DeleteMatchDirectoryDeveloperFile(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DeleteEntityDirectoryFile(InRequest, InDelegate, Priority); }
 };
 
-/* Delete Match Directory File
+/* Download Entity Directory File
 */
-struct RALLYHEREAPI_API FRequest_DeleteMatchDirectoryFile : public FRequest
+struct RALLYHEREAPI_API FRequest_DownloadEntityDirectoryFile : public FRequest
 {
-	FRequest_DeleteMatchDirectoryFile();
-	virtual ~FRequest_DeleteMatchDirectoryFile() = default;
+	FRequest_DownloadEntityDirectoryFile();
+	virtual ~FRequest_DownloadEntityDirectoryFile() = default;
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
 	FString ComputePath() const override;
 	FName GetSimplifiedPath() const override;
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
 	TSharedPtr<FAuthContext> AuthContext;
-	FString MatchId;
+	FString EntityType;
+	FString EntityId;
 	FString FileName;
+	ERHAPI_FileType FileType;
+	TOptional<FString> Authorization;
 };
 
-struct RALLYHEREAPI_API FResponse_DeleteMatchDirectoryFile : public FResponse
+struct RALLYHEREAPI_API FResponse_DownloadEntityDirectoryFile : public FResponse
 {
-	FResponse_DeleteMatchDirectoryFile(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_DeleteMatchDirectoryFile() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-	
-
-
-	// Manual Response Helpers
-	/* Response 204
-	Successful Response
-	*/
-
-	/* Response 403
-	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_DeleteMatchDirectoryFile
-{
-	typedef FRequest_DeleteMatchDirectoryFile Request;
-	typedef FResponse_DeleteMatchDirectoryFile Response;
-	typedef FDelegate_DeleteMatchDirectoryFile Delegate;
-	typedef FFileAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DeleteMatchDirectoryFile(InRequest, InDelegate, Priority); }
-};
-
-/* Download Match Directory Developer File
-*/
-struct RALLYHEREAPI_API FRequest_DownloadMatchDirectoryDeveloperFile : public FRequest
-{
-	FRequest_DownloadMatchDirectoryDeveloperFile();
-	virtual ~FRequest_DownloadMatchDirectoryDeveloperFile() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	FString MatchId;
-	FString FileName;
-};
-
-struct RALLYHEREAPI_API FResponse_DownloadMatchDirectoryDeveloperFile : public FResponse
-{
-	FResponse_DownloadMatchDirectoryDeveloperFile(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_DownloadMatchDirectoryDeveloperFile() = default;
+	FResponse_DownloadEntityDirectoryFile(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_DownloadEntityDirectoryFile() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -403,97 +288,38 @@ struct RALLYHEREAPI_API FResponse_DownloadMatchDirectoryDeveloperFile : public F
 
 };
 
-struct RALLYHEREAPI_API Traits_DownloadMatchDirectoryDeveloperFile
+struct RALLYHEREAPI_API Traits_DownloadEntityDirectoryFile
 {
-	typedef FRequest_DownloadMatchDirectoryDeveloperFile Request;
-	typedef FResponse_DownloadMatchDirectoryDeveloperFile Response;
-	typedef FDelegate_DownloadMatchDirectoryDeveloperFile Delegate;
+	typedef FRequest_DownloadEntityDirectoryFile Request;
+	typedef FResponse_DownloadEntityDirectoryFile Response;
+	typedef FDelegate_DownloadEntityDirectoryFile Delegate;
 	typedef FFileAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DownloadMatchDirectoryDeveloperFile(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DownloadEntityDirectoryFile(InRequest, InDelegate, Priority); }
 };
 
-/* Download Match Directory File
-*/
-struct RALLYHEREAPI_API FRequest_DownloadMatchDirectoryFile : public FRequest
-{
-	FRequest_DownloadMatchDirectoryFile();
-	virtual ~FRequest_DownloadMatchDirectoryFile() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	FString MatchId;
-	FString FileName;
-};
-
-struct RALLYHEREAPI_API FResponse_DownloadMatchDirectoryFile : public FResponse
-{
-	FResponse_DownloadMatchDirectoryFile(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_DownloadMatchDirectoryFile() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-	FString Content;
-
-
-	// Manual Response Helpers
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FString& OutContent) const;
-
-	/* Response 403
-	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	 Error Codes: - `file_not_found` - File not found. 
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_DownloadMatchDirectoryFile
-{
-	typedef FRequest_DownloadMatchDirectoryFile Request;
-	typedef FResponse_DownloadMatchDirectoryFile Response;
-	typedef FDelegate_DownloadMatchDirectoryFile Delegate;
-	typedef FFileAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DownloadMatchDirectoryFile(InRequest, InDelegate, Priority); }
-};
-
-/* Get Match Directory Information
+/* Get Entity Directory Information
  *
- * Get information about match storage
+ * Get information about a entity types storage container. Very resource intensive, use sparingly.
 */
-struct RALLYHEREAPI_API FRequest_GetMatchDirectoryInformation : public FRequest
+struct RALLYHEREAPI_API FRequest_GetEntityDirectoryInformation : public FRequest
 {
-	FRequest_GetMatchDirectoryInformation();
-	virtual ~FRequest_GetMatchDirectoryInformation() = default;
+	FRequest_GetEntityDirectoryInformation();
+	virtual ~FRequest_GetEntityDirectoryInformation() = default;
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
 	FString ComputePath() const override;
 	FName GetSimplifiedPath() const override;
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
 	TSharedPtr<FAuthContext> AuthContext;
+	FString EntityType;
 };
 
-struct RALLYHEREAPI_API FResponse_GetMatchDirectoryInformation : public FResponse
+struct RALLYHEREAPI_API FResponse_GetEntityDirectoryInformation : public FResponse
 {
-	FResponse_GetMatchDirectoryInformation(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_GetMatchDirectoryInformation() = default;
+	FResponse_GetEntityDirectoryInformation(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetEntityDirectoryInformation() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -511,38 +337,46 @@ struct RALLYHEREAPI_API FResponse_GetMatchDirectoryInformation : public FRespons
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
-struct RALLYHEREAPI_API Traits_GetMatchDirectoryInformation
+struct RALLYHEREAPI_API Traits_GetEntityDirectoryInformation
 {
-	typedef FRequest_GetMatchDirectoryInformation Request;
-	typedef FResponse_GetMatchDirectoryInformation Response;
-	typedef FDelegate_GetMatchDirectoryInformation Delegate;
+	typedef FRequest_GetEntityDirectoryInformation Request;
+	typedef FResponse_GetEntityDirectoryInformation Response;
+	typedef FDelegate_GetEntityDirectoryInformation Delegate;
 	typedef FFileAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetMatchDirectoryInformation(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetEntityDirectoryInformation(InRequest, InDelegate, Priority); }
 };
 
-/* List Match Directory Developer Files
+/* List Entity Directory Files
 */
-struct RALLYHEREAPI_API FRequest_ListMatchDirectoryDeveloperFiles : public FRequest
+struct RALLYHEREAPI_API FRequest_ListEntityDirectoryFiles : public FRequest
 {
-	FRequest_ListMatchDirectoryDeveloperFiles();
-	virtual ~FRequest_ListMatchDirectoryDeveloperFiles() = default;
+	FRequest_ListEntityDirectoryFiles();
+	virtual ~FRequest_ListEntityDirectoryFiles() = default;
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
 	FString ComputePath() const override;
 	FName GetSimplifiedPath() const override;
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
 	TSharedPtr<FAuthContext> AuthContext;
-	FString MatchId;
+	FString EntityType;
+	FString EntityId;
+	ERHAPI_FileType FileType;
+	TOptional<FString> Authorization;
 };
 
-struct RALLYHEREAPI_API FResponse_ListMatchDirectoryDeveloperFiles : public FResponse
+struct RALLYHEREAPI_API FResponse_ListEntityDirectoryFiles : public FResponse
 {
-	FResponse_ListMatchDirectoryDeveloperFiles(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_ListMatchDirectoryDeveloperFiles() = default;
+	FResponse_ListEntityDirectoryFiles(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_ListEntityDirectoryFiles() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -567,69 +401,15 @@ struct RALLYHEREAPI_API FResponse_ListMatchDirectoryDeveloperFiles : public FRes
 
 };
 
-struct RALLYHEREAPI_API Traits_ListMatchDirectoryDeveloperFiles
+struct RALLYHEREAPI_API Traits_ListEntityDirectoryFiles
 {
-	typedef FRequest_ListMatchDirectoryDeveloperFiles Request;
-	typedef FResponse_ListMatchDirectoryDeveloperFiles Response;
-	typedef FDelegate_ListMatchDirectoryDeveloperFiles Delegate;
+	typedef FRequest_ListEntityDirectoryFiles Request;
+	typedef FResponse_ListEntityDirectoryFiles Response;
+	typedef FDelegate_ListEntityDirectoryFiles Delegate;
 	typedef FFileAPI API;
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->ListMatchDirectoryDeveloperFiles(InRequest, InDelegate, Priority); }
-};
-
-/* List Match Directory Files
-*/
-struct RALLYHEREAPI_API FRequest_ListMatchDirectoryFiles : public FRequest
-{
-	FRequest_ListMatchDirectoryFiles();
-	virtual ~FRequest_ListMatchDirectoryFiles() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	FString MatchId;
-};
-
-struct RALLYHEREAPI_API FResponse_ListMatchDirectoryFiles : public FResponse
-{
-	FResponse_ListMatchDirectoryFiles(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_ListMatchDirectoryFiles() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-	FRHAPI_FileListResponse Content;
-
-
-	// Manual Response Helpers
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_FileListResponse& OutContent) const;
-
-	/* Response 403
-	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_ListMatchDirectoryFiles
-{
-	typedef FRequest_ListMatchDirectoryFiles Request;
-	typedef FResponse_ListMatchDirectoryFiles Response;
-	typedef FDelegate_ListMatchDirectoryFiles Delegate;
-	typedef FFileAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->ListMatchDirectoryFiles(InRequest, InDelegate, Priority); }
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->ListEntityDirectoryFiles(InRequest, InDelegate, Priority); }
 };
 
 
