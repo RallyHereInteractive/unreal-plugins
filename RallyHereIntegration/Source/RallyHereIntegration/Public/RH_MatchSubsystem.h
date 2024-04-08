@@ -7,8 +7,6 @@
 #include "RH_SubsystemPluginBase.h"
 #include "RH_MatchSubsystem.generated.h"
 
-class URH_SettingsSubsystem;
-
 /** @defgroup Match RallyHere Match
  *  @{
  */

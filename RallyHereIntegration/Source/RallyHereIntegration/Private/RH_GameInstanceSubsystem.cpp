@@ -19,6 +19,7 @@
 #include "RH_ConfigSubsystem.h"
 #include "RH_SettingsSubsystem.h"
 #include "RH_MatchSubsystem.h"
+#include "RH_FileSubsystem.h"
 
 #include "RH_SessionBrowser.h"
 #include "RH_MatchmakingBrowser.h"
@@ -60,6 +61,7 @@ void URH_GameInstanceSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 	ConfigSubsystem = AddSubsystemPlugin<URH_ConfigSubsystem>(Settings->ConfigSubsystemClass);
 	SettingsSubsystem = AddSubsystemPlugin<URH_SettingsSubsystem>(Settings->SettingsSubsystemClass);
 	MatchSubsystem = AddSubsystemPlugin<URH_MatchSubsystem>(Settings->MatchSubsystemClass);
+	FileSubsystem = AddSubsystemPlugin<URH_FileSubsystem>(Settings->FileSubsystemClass);
 
 	if (bEnableSessionBrowser)
 	{
@@ -96,6 +98,7 @@ void URH_GameInstanceSubsystem::Deinitialize()
 	ConfigSubsystem = nullptr;
 	SettingsSubsystem = nullptr;
 	MatchSubsystem = nullptr;
+	FileSubsystem = nullptr;
 	SessionSearchCache = nullptr;
 	MatchmakingCache = nullptr;
 
