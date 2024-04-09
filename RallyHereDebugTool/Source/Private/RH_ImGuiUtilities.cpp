@@ -436,6 +436,35 @@ void ImGuiDisplayJsonArray(const TArray<TSharedPtr<FJsonValue>> JsonArray)
 	}
 }
 
+FString ImGuiDisplayCombo(const FString& ComboLabel, const FString& CurrentValue, const TArray<FString>& PossibleValues, const TMap<FString, FString>* DisplayNames)
+{
+	FString NewValue = CurrentValue;
+	const FString& DisplayCurrentValue = DisplayNames != nullptr && DisplayNames->Contains(CurrentValue) ? DisplayNames->FindRef(CurrentValue) : CurrentValue;
+	if (ImGui::BeginCombo(TCHAR_TO_UTF8(*ComboLabel), TCHAR_TO_UTF8(*DisplayCurrentValue)))
+	{
+		for (auto& Value : PossibleValues)
+		{
+			const FString& DisplayValue = DisplayNames != nullptr && DisplayNames->Contains(Value) ? DisplayNames->FindRef(Value) : Value;
+
+			bool bIsSelected = CurrentValue == Value;
+
+			FTCHARToUTF8 UTF8DisplayValue(*DisplayValue);
+			if (ImGui::Selectable(UTF8DisplayValue.Get(), bIsSelected))
+			{
+				NewValue = Value;
+				bIsSelected = true;
+			}
+			if (bIsSelected)
+			{
+				ImGui::SetItemDefaultFocus();
+			}
+		}
+		ImGui::EndCombo();
+	}
+
+	return NewValue;
+}
+
 void FImGuiCustomDataStager::DisplayCustomDataStager(bool bDefaultOpen /*= true*/, const TMap<FString, FString>* CurrentState)
 {
 	ImGuiTreeNodeFlags flags = bDefaultOpen ? RH_DefaultTreeFlagsDefaultOpen : RH_DefaultTreeFlags;

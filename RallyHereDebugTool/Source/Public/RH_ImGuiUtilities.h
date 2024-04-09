@@ -147,6 +147,27 @@ void RALLYHEREDEBUGTOOL_API ImGuiCopyStringToTextInputBuffer(const FString& Stri
 
 FString RALLYHEREDEBUGTOOL_API ImGuiGetStringFromTextInputBuffer(TArray<ANSICHAR>& Buffer);
 
+// returns new value
+FString RALLYHEREDEBUGTOOL_API ImGuiDisplayCombo(const FString& ComboLabel, const FString& CurrentValue, const TArray<FString>& PossibleValues, const TMap<FString, FString>* DisplayNames);
+template<typename T>
+// returns new value
+T RALLYHEREDEBUGTOOL_API ImGuiDisplayEnumCombo(const FString& ComboLabel, const T CurrentValue, const T MaxValue, const T MinValue = (T)0)
+{
+	TArray<FString> Values;
+	for (int32 i = (int32)MinValue; i <= (int32)MaxValue; ++i)
+	{
+		Values.Add(EnumToString((T)i));
+	}
+	FString NewValue = ImGuiDisplayCombo(ComboLabel, EnumToString(CurrentValue), Values, nullptr);
+	T TypedNewValue;
+	if (EnumFromString(NewValue, TypedNewValue))
+	{
+		return TypedNewValue;
+	}
+	return CurrentValue;
+
+}
+
 struct RALLYHEREDEBUGTOOL_API FImGuiCustomDataStager
 {
 public:
