@@ -33,28 +33,42 @@ public class ImGui : ModuleRules
 		ShadowVariableWarningLevel = WarningLevel.Error;
 		bTreatAsEngineModule = true;
 #endif
-
-		PublicIncludePaths.AddRange(
+		// main imgui and docking branchs upport
+		{
+			PublicDefinitions.Add("WITH_IMGUI_DOCK_SUPPORT");
+			PublicDefinitions.Add("WITH_IMGUI_STRING_SUPPORT");
+			PublicIncludePaths.AddRange(
 			new string[] {
-				Path.Combine(ModuleDirectory, "../ThirdParty/ImGuiLibrary/Include")
+				Path.Combine(ModuleDirectory, "../ThirdParty/ImGuiLibrary/Public"),
+				Path.Combine(ModuleDirectory, "../ThirdParty/ImGuiStringLibrary/Public"),
 				// ... add public include paths required here ...
 			}
 			);
 
-		//$$ BEGIN ImPlot support
-		PublicDefinitions.Add("WITH_IMGUI_IMPLOT");
-		PublicDefinitions.Add("WITH_IMGUI_DOCK_SUPPORT");
-		//$$ END
-
-
-		PrivateIncludePaths.AddRange(
-			new string[] {
+			PrivateIncludePaths.AddRange(
+				new string[] {
 				"ImGui/Private",
-				"ThirdParty/ImGuiLibrary/Private"
+				Path.Combine(ModuleDirectory, "../ThirdParty/ImGuiLibrary/Private"),
+				Path.Combine(ModuleDirectory, "../ThirdParty/ImGuiStringLibrary/Private"),
 				// ... add other private include paths required here ...
 			}
 			);
+		}
 
+		// implot support
+		{
+			PublicDefinitions.Add("WITH_IMGUI_IMPLOT");
+			PublicIncludePaths.Add(Path.Combine(ModuleDirectory, "../ThirdParty/ImPlotLibrary/Public"));
+			PrivateIncludePaths.Add(Path.Combine(ModuleDirectory, "../ThirdParty/ImPlotLibrary/Private"));
+		}
+
+
+		// netimgui support
+		{
+			PublicDefinitions.Add("WITH_IMGUI_NETIMGUI");
+			PublicIncludePaths.Add(Path.Combine(ModuleDirectory, "../ThirdParty/NetImGuiLibrary/Public"));
+			PrivateIncludePaths.Add(Path.Combine(ModuleDirectory, "../ThirdParty/NetImGuiLibrary"));	//netimgui private files are already in a Private folder, and assume the include path to the containing folder
+		}
 
 		PublicDependencyModuleNames.AddRange(
 			new string[]
@@ -75,7 +89,8 @@ public class ImGui : ModuleRules
 				"Slate",
 				"SlateCore",
 				// ... add private dependencies that you statically link with here ...	
-				"PosixShim"
+				"PosixShim",
+				"Sockets"
 			}
 			);
 

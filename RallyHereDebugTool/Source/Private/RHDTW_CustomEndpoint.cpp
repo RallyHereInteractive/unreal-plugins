@@ -14,13 +14,7 @@
 
 FRHDTW_CustomEndpoint::FRHDTW_CustomEndpoint()
 {
-	EndpointId.Empty();
-	EndpointId.AddZeroed(256);
-
-	ImGuiCopyStringToTextInputBuffer(TEXT("application/json"), ContentType);
-
-	Body.Empty();
-	Body.AddZeroed(4096);
+	ContentType = TEXT("application/json");
 
 	Priority = DefaultRallyHereAPIPriority;
 }
@@ -33,20 +27,19 @@ void FRHDTW_CustomEndpoint::Do()
 {
 	ImGui::Text("Endpoint ID");
 	ImGui::SameLine();
-	ImGui::InputText("##EndpointId", EndpointId.GetData(), EndpointId.Num());
+	ImGui::InputText("##EndpointId", &EndpointId);
 	ImGui::Text("Content Type");
 	ImGui::SameLine();
-	ImGui::InputText("##ContentType", ContentType.GetData(), ContentType.Num());
+	ImGui::InputText("##ContentType", &ContentType);
 	ImGui::Text("Body");
 	ImGui::SameLine();
-	ImGui::InputTextMultiline("##Body", Body.GetData(), Body.Num(), ImVec2(0, ImGui::CalcTextSize(Body.GetData()).y + 6), ImGuiInputTextFlags_AllowTabInput);
+	ImGui::InputTextMultiline("##Body", &Body, ImVec2(0, ImGui::CalcTextSize(Body).y + 6), ImGuiInputTextFlags_AllowTabInput);
 	ImGui::Text("Priority");
 	ImGui::SameLine();
 	ImGui::InputInt("##Priority", &Priority);
 
 	// snap JSON value for body
-	const FString ValueAsFString = UTF8_TO_TCHAR(Body.GetData());
-	auto Reader = TJsonReaderFactory<>::Create(ValueAsFString);
+	auto Reader = TJsonReaderFactory<>::Create(Body);
 	TSharedPtr<FJsonValue> JsonValue;
 	if (FJsonSerializer::Deserialize(Reader, JsonValue) && JsonValue.IsValid())
 	{
@@ -54,7 +47,10 @@ void FRHDTW_CustomEndpoint::Do()
 		TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&OutJsonString);
 		FJsonSerializer::Serialize(JsonValue.ToSharedRef(), TEXT(""), Writer);
 
-		ImGuiCopyStringToTextInputBuffer(OutJsonString, Body);
+		if (Body != OutJsonString)
+		{
+			Body = OutJsonString;
+		}
 	}
 
 
@@ -63,8 +59,8 @@ void FRHDTW_CustomEndpoint::Do()
 		LastResults.Empty();
 
 		FRH_CustomEndpointRequestWrapper Request;
-		Request.EndpointId = ImGuiGetStringFromTextInputBuffer(EndpointId);
-		Request.ContentType = ImGuiGetStringFromTextInputBuffer(ContentType);
+		Request.EndpointId = EndpointId;
+		Request.ContentType = ContentType;
 		Request.Body = FRHAPI_JsonValue(JsonValue);
 		Request.Priority = Priority;
 		auto Delegate = FRH_CustomEndpointDelegate::CreateSP(SharedThis(this), &FRHDTW_CustomEndpoint::HandleCustomEndpointResult);
@@ -80,8 +76,8 @@ void FRHDTW_CustomEndpoint::Do()
 		LastResults.Empty();
 
 		FRH_CustomEndpointRequestWrapper Request;
-		Request.EndpointId = ImGuiGetStringFromTextInputBuffer(EndpointId);
-		Request.ContentType = ImGuiGetStringFromTextInputBuffer(ContentType);
+		Request.EndpointId = EndpointId;
+		Request.ContentType = ContentType;
 		Request.Body = FRHAPI_JsonValue(JsonValue);
 		Request.Priority = Priority;
 		auto Delegate = FRH_CustomEndpointDelegate::CreateSP(SharedThis(this), &FRHDTW_CustomEndpoint::HandleCustomEndpointResult);

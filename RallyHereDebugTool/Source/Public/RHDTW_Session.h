@@ -70,6 +70,7 @@ protected:
 
 	// session state tabs
 	void ImGuiDisplayLocalPlayerSessions(URH_GameInstanceSubsystem* pGISubsystem);
+	void ImGuiDisplayDedicatedServerSessions(URH_GameInstanceSubsystem* pGISubsystem);
 	void ImGuiDisplayPlayerSessions(URH_GameInstanceSubsystem* pGISubsystem);
 	void ImGuiDisplaySessionBrowser(URH_GameInstanceSubsystem* pGISubsystem);
 	

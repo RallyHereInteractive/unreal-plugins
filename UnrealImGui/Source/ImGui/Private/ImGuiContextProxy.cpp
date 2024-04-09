@@ -188,9 +188,9 @@ void FImGuiContextProxy::DrawDebug()
 void FImGuiContextProxy::Tick(float DeltaSeconds)
 {
 	// Making sure that we tick only once per frame.
-	if (LastFrameNumber < GFrameNumber)
+	if (LastFrameNumber < GFrameCounter)
 	{
-		LastFrameNumber = GFrameNumber;
+		LastFrameNumber = GFrameCounter;
 
 		SetAsCurrent();
 

@@ -160,6 +160,9 @@ public:
 	 */
 	virtual void ToggleShowDemo();
 
+	virtual bool IsViewportWidgetVisible(UGameViewportClient* GameViewport);
+	virtual void SetViewportWidgetVisibility(UGameViewportClient* GameViewport, bool bVisible);
+
 	/** IModuleInterface implementation */
 	virtual void StartupModule() override;
 	virtual void ShutdownModule() override;

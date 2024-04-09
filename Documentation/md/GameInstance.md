@@ -126,6 +126,7 @@ Server Bootstrapper for the Game Instance.
 `public virtual bool `[`GetTemplate`](#classURH__GameInstanceServerBootstrapper_1a62d69a1d7e7021f03557dff715e6179d)`(const FString & Type,`[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template) const` | Gets a session template by type.
 `public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classURH__GameInstanceServerBootstrapper_1aec9f89849a3865282935f12646e98255)`(const FString & SessionId) const` | Gets the platform synchronization object using the rally here session id.
 `public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classURH__GameInstanceServerBootstrapper_1a2c2d7c9b2b38fca62aba5ba8e642797b)`(const FUniqueNetIdRepl & PlatformSessionId) const` | Gets the platform synchronization object using the platform session id.
+`public inline const `[`FRH_BootstrappingResult`](GameInstance.md#structFRH__BootstrappingResult)` & `[`GetBootstrappingResult`](#classURH__GameInstanceServerBootstrapper_1aa61e1f51c28e5437d220362e652e4156)`() const` | Gets the bootstrapping result from this bootstrapper.
 `public inline virtual TOptional< FString > `[`GetBoundAllocationId`](#classURH__GameInstanceServerBootstrapper_1afc0a4f4f72556a0b713b0bf5f1442eb7)`() const` | Gets the allocation id this session owner is bound to, if any. Needed for some specific calls to ensure they are operating on the proper object regardless of our current session view.
 `public inline virtual TOptional< FString > `[`GetBoundInstanceId`](#classURH__GameInstanceServerBootstrapper_1a33402e7dd26b4a226f7615749184303b)`() const` | Gets the instance id this session owner is bound to, if any. Needed for some specific calls to ensure they are operating on the proper object regardless of our current session view.
 `protected `[`ERH_ServerBootstrapMode`](undefined.md#group__GameInstance_1ga9dd612a2285258b977ec4c21d7a64196)` `[`BootstrapMode`](#classURH__GameInstanceServerBootstrapper_1a437398cd4da11b39dbba5624ac0d4503) | Bootstrap Mode being used
@@ -363,6 +364,11 @@ Gets the platform synchronization object using the rally here session id.
 #### `public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classURH__GameInstanceServerBootstrapper_1a2c2d7c9b2b38fca62aba5ba8e642797b)`(const FUniqueNetIdRepl & PlatformSessionId) const` <a id="classURH__GameInstanceServerBootstrapper_1a2c2d7c9b2b38fca62aba5ba8e642797b"></a>
 
 Gets the platform synchronization object using the platform session id.
+
+<br>
+#### `public inline const `[`FRH_BootstrappingResult`](GameInstance.md#structFRH__BootstrappingResult)` & `[`GetBootstrappingResult`](#classURH__GameInstanceServerBootstrapper_1aa61e1f51c28e5437d220362e652e4156)`() const` <a id="classURH__GameInstanceServerBootstrapper_1aa61e1f51c28e5437d220362e652e4156"></a>
+
+Gets the bootstrapping result from this bootstrapper.
 
 <br>
 #### `public inline virtual TOptional< FString > `[`GetBoundAllocationId`](#classURH__GameInstanceServerBootstrapper_1afc0a4f4f72556a0b713b0bf5f1442eb7)`() const` <a id="classURH__GameInstanceServerBootstrapper_1afc0a4f4f72556a0b713b0bf5f1442eb7"></a>

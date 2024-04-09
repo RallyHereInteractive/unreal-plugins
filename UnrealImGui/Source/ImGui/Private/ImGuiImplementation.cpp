@@ -43,17 +43,33 @@ static FImGuiContextHandle ImGuiContextPtrHandle(ImGuiContextPtr);
 #endif // WITH_EDITOR
 
 #include "imgui.cpp"
-#include "imgui_stdlib.cpp"
 #include "imgui_demo.cpp"
-#include "imgui_tables.cpp" //$$ ImGui 1.89.5 upgrade
 #include "imgui_draw.cpp"
 #include "imgui_widgets.cpp"
 
+//$$ BEGIN - Support additional features
+#include "imgui_tables.cpp"
+//$$ END - Support additional features
+
+#ifdef WITH_IMGUI_STRING_SUPPORT
+#include "imgui_stdlib.cpp"
+#include "imgui_unrealstring.cpp"
+#endif
+
 //$$ BEGIN - Support ImPlot
+#ifdef WITH_IMGUI_IMPLOT
 #include "implot.cpp"
 #include "implot_items.cpp"
 #include "implot_demo.cpp"
+#endif
 //$$ END - Support ImPlot
+
+//$$ BEGIN - Support NetImGui
+#ifdef WITH_IMGUI_NETIMGUI
+#define NETIMGUI_IMPLEMENTATION
+#include "NetImgui_Api.h"
+#endif
+//$$ END - Support NetImGui
 
 #if PLATFORM_WINDOWS
 #include <Windows/HideWindowsPlatformTypes.h>

@@ -13,6 +13,10 @@
 #include "Editor/ImGuiEditor.h"
 #endif
 
+#ifdef WITH_IMGUI_NETIMGUI
+#include "NetImgui_Api.h"
+#endif
+
 #include <Interfaces/IPluginManager.h>
 
 
@@ -121,6 +125,11 @@ void FImGuiModule::StartupModule()
 	checkf(!ImGuiEditor, TEXT("Instance of the ImGui Editor already exists. Instance should be created only during module startup."));
 	ImGuiEditor = new FImGuiEditor();
 #endif
+
+#ifdef WITH_IMGUI_NETIMGUI
+	// Initialize NetImgui library.
+	NetImgui::Startup();
+#endif
 }
 
 void FImGuiModule::ShutdownModule()
@@ -143,6 +152,10 @@ void FImGuiModule::ShutdownModule()
 	checkf(ImGuiModuleManager, TEXT("Null ImGui Module Manager. Module manager instance should be deleted during module shutdown."));
 	delete ImGuiModuleManager;
 	ImGuiModuleManager = nullptr;
+
+#ifdef WITH_IMGUI_NETIMGUI
+	NetImgui::Shutdown();
+#endif
 
 #if WITH_EDITOR
 	// When shutting down we leave the global ImGui context pointer and handle pointing to resources that are already
@@ -242,6 +255,21 @@ void FImGuiModule::ToggleShowDemo()
 	}
 }
 
+bool FImGuiModule::IsViewportWidgetVisible(UGameViewportClient* GameViewport)
+{
+	if (GameViewport)
+	{
+		return ImGuiModuleManager->IsViewportWidgetVisible(GameViewport);
+	}
+	return false;
+}
+void FImGuiModule::SetViewportWidgetVisibility(UGameViewportClient* GameViewport, bool bVisible)
+{
+	if (GameViewport)
+	{
+		ImGuiModuleManager->SetViewportWidgetVisibility(GameViewport, bVisible);
+	}
+}
 
 //----------------------------------------------------------------------------------------------------
 // Runtime loader
