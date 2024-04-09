@@ -50,6 +50,10 @@
 
 #include "Runtime/Launch/Resources/Version.h"
 
+#ifdef WITH_IMGUI_NETIMGUI
+#include "NetImgui_Api.h"
+#endif
+
 URallyHereDebugTool::URallyHereDebugTool()
 	: Super()
 {
@@ -138,7 +142,22 @@ void URallyHereDebugTool::Initialize(FSubsystemCollectionBase& Collection)
 
 	IRallyHereDebugToolModule::Get().GetSpawnToolDelegate().Broadcast(this);
 
-	FWorldDelegates::OnWorldPostActorTick.AddUObject(this, &URallyHereDebugTool::OnPostActorTick);
+	// for now, toggle ui if dedicated server wants netimgui connections, so it renders the UI
+	// once we have ability to not render the local UI, can do something similar for client if needed
+	if (IsRunningDedicatedServer())
+	{
+		const auto Policy = IsRunningDedicatedServer() ? URallyHereDebugToolSettings::Get()->DedicatedServerNetImguiPolicy : URallyHereDebugToolSettings::Get()->NetImguiPolicy;
+		if (Policy == ERH_NetImGuiPolicy::ConnectToAppOnStartup || Policy == ERH_NetImGuiPolicy::ConnectFromAppOnStartup)
+		{
+			// defer the state change to the next frame
+			FTSTicker::GetCoreTicker().AddTicker(FTickerDelegate::CreateWeakLambda(this, [this](float)
+				{
+					ImGuiPostInit();
+					return false;
+				}), 0);
+			
+		}
+	}
 }
 
 /** Implement this for deinitialization of instances of the system */
@@ -155,22 +174,6 @@ void URallyHereDebugTool::Deinitialize()
 	IRallyHereDebugToolModule::Get().GetCleanupToolDelegate().Broadcast(this);
 
 	Super::Deinitialize();
-}
-
-void URallyHereDebugTool::OnPostActorTick(UWorld* World, ELevelTick TickType, float DeltaSeconds)
-{
-	if (bActive && TickType != ELevelTick::LEVELTICK_ViewportsOnly)
-	{
-#if RH_FROM_ENGINE_VERSION(5, 0)
-		if (IsValidChecked(this) && !this->IsUnreachable())
-#else
-		if (!this->IsPendingKillOrUnreachable())
-#endif
-		{
-			FScopeCycleCounterUObject Scope(this);
-			DoImGui();
-		}
-	}
 }
 
 void URallyHereDebugTool::RegisterWindow(const TSharedRef<FRH_DebugToolWindow>& InWindow)
@@ -483,7 +486,11 @@ void URallyHereDebugTool::UntargetAllPlayerInfos()
 
 bool URallyHereDebugTool::IsUIActive() const
 {
+#ifdef WITH_IMGUI_NETIMGUI
+	return bActive || NetImgui::IsConnected();
+#else
 	return bActive;
+#endif
 }
 
 void URallyHereDebugTool::ToggleUI()
@@ -491,25 +498,89 @@ void URallyHereDebugTool::ToggleUI()
 	bActive = !bActive;
 	IRallyHereDebugToolModule::Get().UpdateImGuiInputState();
 
+	// make sure we are initialized
+	ImGuiPostInit();
+
+	if (FSlateApplication::IsInitialized())
+	{
+		auto Viewport = GetWorld()->GetGameViewport();
+
+		if (Viewport != nullptr && FImGuiModule::IsAvailable())
+		{
+			FImGuiModule::Get().SetViewportWidgetVisibility(Viewport, bActive);
+		}
+
+		// Since ImGUI adds its root level widget on boot, but other widgets are added later, drawing order can be broken when invalidation is not enabled.
+		// as a temp fix, invalidate all widgets here, as even just invaliding the actual ImGUI widget may not be sufficient (though we should try that at some point)
+		FSlateApplication::Get().InvalidateAllWidgets(false);
+	}
+	OnActiveStateChanged.Broadcast();
+}
+
+void URallyHereDebugTool::ImGuiPostInit()
+{
 	static bool bDoOnce = true;
 
-	if (bActive && bDoOnce)
+	if (bDoOnce)
 	{
 #ifdef WITH_IMGUI_DOCK_SUPPORT
 		ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 #endif
 		FImGuiModule::Get().GetProperties().SetLayoutToLoad(URallyHereDebugToolSettings::Get()->DefaultWindowPositions, true);
 		bDoOnce = false;
-	}
 
-	// Since ImGUI adds its root level widget on boot, but other widgets are added later, drawing order can be broken when invalidation is not enabled.
-	// as a temp fix, invalidate all widgets here, as even just invaliding the actual ImGUI widget may not be sufficient (though we should try that at some point)
-	FSlateApplication::Get().InvalidateAllWidgets(false);
-	OnActiveStateChanged.Broadcast();
+		FImGuiDelegates::OnWorldDebug(GetWorld()).Add(FSimpleDelegate::CreateUObject(this, &URallyHereDebugTool::DoImGui));
+
+#ifdef WITH_IMGUI_NETIMGUI
+		{
+			const auto Policy = IsRunningDedicatedServer() ? URallyHereDebugToolSettings::Get()->DedicatedServerNetImguiPolicy : URallyHereDebugToolSettings::Get()->NetImguiPolicy;
+			const auto NetImguiAppName = IsRunningDedicatedServer() ? "rhdebugtool-server" : "rhdebugtool";
+			if (Policy == ERH_NetImGuiPolicy::ConnectToAppOnStartup)
+			{
+				// connect to localhost by default
+				FString ConnectIp = URallyHereDebugToolSettings::Get()->NetImguiDefaultConnectIP;
+				int32 ConnectPort = URallyHereDebugToolSettings::Get()->NetImguiDefaultConnectPort;
+				FParse::Value(FCommandLine::Get(), TEXT("rh.dtconnectip"), ConnectIp);
+				FParse::Value(FCommandLine::Get(), TEXT("rh.dtconnectport"), ConnectPort);
+
+				ConnectPort = ConnectPort > 0 ? ConnectPort : NetImgui::kDefaultServerPort;
+
+				NetImgui::ConnectToApp(NetImguiAppName, TCHAR_TO_UTF8(*ConnectIp), ConnectPort);
+			}
+			else if (Policy == ERH_NetImGuiPolicy::ConnectFromAppOnStartup)
+			{
+				// connect to localhost by default
+				int32 ListenPort = URallyHereDebugToolSettings::Get()->NetImguiDefaultListenPort;
+				FParse::Value(FCommandLine::Get(), TEXT("rh.dtlistenport"), ListenPort);
+
+				ListenPort = ListenPort > 0 ? ListenPort : NetImgui::kDefaultClientPort;
+
+				NetImgui::ConnectFromApp(NetImguiAppName, ListenPort);
+			}
+		}
+#endif
+	}
 }
 
 void URallyHereDebugTool::DoImGui()
 {
+	if (!FImGuiModule::IsAvailable())
+	{
+		return;
+	}
+	auto GameViewport = GetWorld()->GetGameViewport();
+	bool bVisibleInViewport = GameViewport != nullptr && FImGuiModule::Get().IsViewportWidgetVisible(GameViewport);
+#ifdef WITH_IMGUI_NETIMGUI
+	bool bVisibleInRemote = NetImgui::IsConnected();
+#else
+	bool bVisibleInRemote = false;
+#endif
+	if (!bVisibleInViewport && !bVisibleInRemote)
+	{
+		// not being viewed, do not render
+		return;
+	}
+
 #ifndef WITH_IMGUI_DOCK_SUPPORT
 	bool bAllowWindowViewSelection = true;
 #else
@@ -583,6 +654,50 @@ void URallyHereDebugTool::DoImGui()
 		{
 			FImGuiModule::Get().GetProperties().SetLayoutToLoad(URallyHereDebugToolSettings::Get()->DefaultWindowPositions, false);
 		}
+
+#ifdef WITH_IMGUI_NETIMGUI
+		const auto Policy = IsRunningDedicatedServer() ? URallyHereDebugToolSettings::Get()->DedicatedServerNetImguiPolicy : URallyHereDebugToolSettings::Get()->NetImguiPolicy;
+		const auto NetImguiAppName = IsRunningDedicatedServer() ? "rhdebugtool-server" : "rhdebugtool";
+		if (Policy != ERH_NetImGuiPolicy::Disabled)
+		{
+			ImGui::SameLine();
+			if (NetImgui::IsConnected() || NetImgui::IsConnectionPending())
+			{
+				if (ImGui::Button("Disconnect NetImgui"))
+				{
+					NetImgui::Disconnect();
+				}
+			}
+			else if (Policy == ERH_NetImGuiPolicy::ConnectToApp || Policy == ERH_NetImGuiPolicy::ConnectToAppOnStartup)
+			{
+				if (ImGui::Button("Connect NetImgui"))
+				{
+					// connect to localhost by default
+					FString ConnectIp = URallyHereDebugToolSettings::Get()->NetImguiDefaultConnectIP;
+					int32 ConnectPort = URallyHereDebugToolSettings::Get()->NetImguiDefaultConnectPort;
+					FParse::Value(FCommandLine::Get(), TEXT("rh.dtconnectip"), ConnectIp);
+					FParse::Value(FCommandLine::Get(), TEXT("rh.dtconnectport"), ConnectPort);
+
+					ConnectPort = ConnectPort > 0 ? ConnectPort : NetImgui::kDefaultServerPort;
+
+					NetImgui::ConnectToApp(NetImguiAppName, TCHAR_TO_UTF8(*ConnectIp), ConnectPort);
+				}
+			}
+			else if (Policy == ERH_NetImGuiPolicy::ConnectFromApp || Policy == ERH_NetImGuiPolicy::ConnectFromAppOnStartup)
+			{
+				if (ImGui::Button("Allow NetImgui"))
+				{
+					// connect to localhost by default
+					int32 ListenPort = URallyHereDebugToolSettings::Get()->NetImguiDefaultListenPort;
+					FParse::Value(FCommandLine::Get(), TEXT("rh.dtlistenport"), ListenPort);
+
+					ListenPort = ListenPort > 0 ? ListenPort : NetImgui::kDefaultClientPort;
+
+					NetImgui::ConnectFromApp(NetImguiAppName, ListenPort);
+				}
+			}
+		}
+#endif
 
 		if (FRallyHereIntegrationModule::IsAvailable())
 		{

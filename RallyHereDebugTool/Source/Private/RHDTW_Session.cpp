@@ -297,6 +297,8 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 		return;
 	}
 
+	auto SessionOwner = RHSession ? RHSession->GetSessionOwner() :nullptr;
+
 	FString HeaderString = FString::Printf(TEXT("Session: %s - %s"), *Session.SessionId, *Session.Type);
 
 	auto RHJoinedSession = Cast<URH_JoinedSession>(RHSession);
@@ -368,22 +370,22 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 		else if (Session.Joinable) // sessions that are freely joinable
 		{
 			// if pLPSessionSubsystem is valid, try to allow for easy joining if the session is public (ex: this is on server browser)
-			if (pLPSessionSubsystem != nullptr)
+			if (SessionOwner != nullptr)
 			{
-				if (pLPSessionSubsystem->GetSessionById(Session.SessionId) == nullptr)
+				if (SessionOwner->GetSessionById(Session.SessionId) == nullptr)
 				{
 					ImGui::SetNextItemWidth(150.f);
 					ImGui::InputInt("Team", &JoinByIdTeam, 1, 0);
 					ImGui::SameLine();
 
-					auto JoinDetails = URH_OnlineSession::GetJoinDetailDefaults(pLPSessionSubsystem);
+					auto JoinDetails = URH_OnlineSession::GetJoinDetailDefaults(SessionOwner);
 					JoinDetails.SetTeamId(JoinByIdTeam);
 
 
 
 					if (ImGui::Button("Join"))
 					{
-						URH_OnlineSession::JoinByIdEx(Session.SessionId, MoveTemp(JoinDetails), pLPSessionSubsystem);
+						URH_OnlineSession::JoinByIdEx(Session.SessionId, MoveTemp(JoinDetails), SessionOwner);
 						pLPSessionSubsystem->JoinSessionById(Session.SessionId);
 					}
 				}
@@ -398,7 +400,7 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 		{
 			Template = RHSession->GetTemplate();
 		}
-		else if (pLPSessionSubsystem != nullptr && pLPSessionSubsystem->GetTemplate(Session.Type, Template))
+		else if (SessionOwner != nullptr && SessionOwner->GetTemplate(Session.Type, Template))
 		{
 			// autofilled
 		}
@@ -426,45 +428,48 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 			{
 				bool bIsBeaconSession = RHJoinedSession->IsBeaconSession();
 
-				if (pGISessionSubsystem != nullptr && !bIsBeaconSession)
+				if (pLPSessionSubsystem != nullptr) // only support these operations when run by a local player
 				{
-					if (RHJoinedSession->IsActive())
+					if (pGISessionSubsystem != nullptr && !bIsBeaconSession)
 					{
-						if (ImGui::Button("Deactivate"))
+						if (RHJoinedSession->IsActive())
 						{
-							pGISessionSubsystem->SyncToSession(nullptr);
+							if (ImGui::Button("Deactivate"))
+							{
+								pGISessionSubsystem->SyncToSession(nullptr);
+							}
+						}
+						else
+						{
+							ImGui::BeginDisabled(!pGISessionSubsystem->IsReadyToJoinInstance(RHJoinedSession, false));
+							if (ImGui::Button("Activate"))
+							{
+								pGISessionSubsystem->SyncToSession(RHJoinedSession);
+							}
+							ImGui::EndDisabled();
 						}
 					}
-					else
+					else if (bIsBeaconSession)
 					{
-						ImGui::BeginDisabled(!pGISessionSubsystem->IsReadyToJoinInstance(RHJoinedSession, false));
-						if (ImGui::Button("Activate"))
+						auto* LastBeacon = Cast<ARH_TestBeaconClient>(RHOnlineSession->GetLastBeacon());
+						if (LastBeacon != nullptr)
 						{
-							pGISessionSubsystem->SyncToSession(RHJoinedSession);
+							if (ImGui::Button("Ping"))
+							{
+								LastBeacon->TestPing();
+							}
+							ImGui::SameLine();
+							if (ImGui::Button("Destroy Test Beacon"))
+							{
+								LastBeacon->DestroyBeacon();
+							}
 						}
-						ImGui::EndDisabled();
-					}
-				}
-				else if (bIsBeaconSession)
-				{
-					auto* LastBeacon = Cast<ARH_TestBeaconClient>(RHOnlineSession->GetLastBeacon());
-					if (LastBeacon != nullptr)
-					{
-						if (ImGui::Button("Ping"))
+						else
 						{
-							LastBeacon->TestPing();
-						}
-						ImGui::SameLine();
-						if (ImGui::Button("Destroy Test Beacon"))
-						{
-							LastBeacon->DestroyBeacon();
-						}
-					}
-					else
-					{
-						if (ImGui::Button("Connect Test Beacon"))
-						{
-							RHOnlineSession->CreateBeacon(pLPSessionSubsystem->GetLocalPlayerSubsystem()->GetLocalPlayer(), ARH_TestBeaconClient::StaticClass(), FEncryptionData());
+							if (ImGui::Button("Connect Test Beacon"))
+							{
+								RHOnlineSession->CreateBeacon(pLPSessionSubsystem->GetLocalPlayerSubsystem()->GetLocalPlayer(), ARH_TestBeaconClient::StaticClass(), FEncryptionData());
+							}
 						}
 					}
 				}
@@ -998,6 +1003,65 @@ void FRHDTW_Session::ImGuiDisplayLocalPlayerSessions(URH_GameInstanceSubsystem* 
 		{
 			pGISubsystem->GetClientBootstrapper()->CreateOfflineSession();
 		}
+	}
+}
+
+
+void FRHDTW_Session::ImGuiDisplayDedicatedServerSessions(URH_GameInstanceSubsystem* pGISubsystem)
+{
+	if (pGISubsystem == nullptr)
+	{
+		ImGui::Text("Game Instance Subsystem not available.");
+		return;
+	}
+
+	auto pServerBootstrapper = pGISubsystem->GetServerBootstrapper();
+	if (pServerBootstrapper == nullptr)
+	{
+		ImGui::Text("Server Bootstrapper unavailable.");
+		return;
+	}
+
+	ImGui::Separator();
+	auto BootstrappingResult = pServerBootstrapper->GetBootstrappingResult();
+	if (ImGui::TreeNodeEx("Bootstrapping Result", RH_DefaultTreeFlags))
+	{
+		ImGuiDisplayCopyableValue(TEXT("Allocation Id"), BootstrappingResult.AllocationInfo.AllocationId);
+		ImGuiDisplayCopyableValue(TEXT("Allocation Host"), BootstrappingResult.AllocationInfo.PublicHost);
+		ImGuiDisplayCopyableValue(TEXT("Allocation Port"), BootstrappingResult.AllocationInfo.PublicPort);
+		ImGuiDisplayCopyableValue(TEXT("Allocation Session Id"), BootstrappingResult.AllocationInfo.SessionId);
+		ImGui::Separator();
+		if (BootstrappingResult.Session.IsSet())
+		{
+			ImGuiDisplaySession(BootstrappingResult.Session.GetValue(), nullptr, nullptr, pGISubsystem->GetSessionSubsystem());
+		}
+		else
+		{
+			ImGui::Text("No Session");
+		}
+
+		ImGui::TreePop();
+	}
+	ImGui::Separator();
+
+	if (!SessionActionResult.IsEmpty())
+	{
+		if (ImGui::CollapsingHeader("Session Action Result", RH_DefaultTreeFlagsDefaultOpen))
+		{
+			ImGui::Text("%s", TCHAR_TO_UTF8(*SessionActionResult));
+		}
+	}
+
+	ImGui::Separator();
+	
+	auto Session = pServerBootstrapper->GetSession();
+	if (Session != nullptr)
+	{
+		ImGuiDisplaySession(Session->GetSessionWithETag(), Session, nullptr, pGISubsystem->GetSessionSubsystem());
+	}
+	else
+	{
+		ImGui::Text("No Session");
 	}
 }
 
@@ -1787,10 +1851,21 @@ void FRHDTW_Session::Do()
 	static ImGuiTabBarFlags tab_bar_flags = ImGuiTabBarFlags_FittingPolicyResizeDown | ImGuiTabBarFlags_FittingPolicyScroll;
 	if (ImGui::BeginTabBar("Sessions", tab_bar_flags))
 	{
-		if (ImGui::BeginTabItem("Selected Player(s)", nullptr, ImGuiTabItemFlags_None))
+		if (!IsRunningDedicatedServer())
 		{
-			ImGuiDisplayLocalPlayerSessions(pGISubsystem);
-			ImGui::EndTabItem();
+			if (ImGui::BeginTabItem("Selected Player(s)", nullptr, ImGuiTabItemFlags_None))
+			{
+				ImGuiDisplayLocalPlayerSessions(pGISubsystem);
+				ImGui::EndTabItem();
+			}
+		}
+		else
+		{
+			if (ImGui::BeginTabItem("Server", nullptr, ImGuiTabItemFlags_None))
+			{
+				ImGuiDisplayDedicatedServerSessions(pGISubsystem);
+				ImGui::EndTabItem();
+			}
 		}
 
 		if (ImGui::BeginTabItem("Target Player(s)", nullptr, ImGuiTabItemFlags_None))

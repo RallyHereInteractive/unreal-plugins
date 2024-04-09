@@ -141,16 +141,16 @@ You can read releases logs https://github.com/epezent/implot/releases for more d
 #define PLATFORM_SUPPORTS_TIMEGM PLATFORM_SUPPORTS_C23_TIME
 // sony platforms do not implement timegm
 #ifdef PLATFORM_PS4
-	#if PLATFORM_PS4
-		#undef PLATFORM_SUPPORTS_TIMEGM
-		#define PLATFORM_SUPPORTS_TIMEGM 0
-	#endif
+#if PLATFORM_PS4
+#undef PLATFORM_SUPPORTS_TIMEGM
+#define PLATFORM_SUPPORTS_TIMEGM 0
+#endif
 #endif
 #ifdef PLATFORM_PS5
-	#if PLATFORM_PS5
-	#undef PLATFORM_SUPPORTS_TIMEGM
-	#define PLATFORM_SUPPORTS_TIMEGM 0
-	#endif
+#if PLATFORM_PS5
+#undef PLATFORM_SUPPORTS_TIMEGM
+#define PLATFORM_SUPPORTS_TIMEGM 0
+#endif
 #endif
 //$$ END
 
@@ -916,15 +916,15 @@ inline int GetTimeStep(int max_divs, ImPlotTimeUnit unit) {
 
 ImPlotTime MkGmtTime(struct tm *ptm) {
     ImPlotTime t;
-	//$$ BEGIN - use platform time defines
+    //$$ BEGIN - use platform time defines
 #if PLATFORM_SUPPORTS_WINDOWS_TIME
     t.S = _mkgmtime(ptm);
 #elif PLATFORM_SUPPORTS_TIMEGM
-	t.S = timegm(ptm);
+    t.S = timegm(ptm);
 #else
-	return MkLocTime(ptm);
+    return MkLocTime(ptm);
 #endif
-	//$$ END
+    //$$ END
     if (t.S < 0)
         t.S = 0;
     return t;
@@ -932,7 +932,7 @@ ImPlotTime MkGmtTime(struct tm *ptm) {
 
 tm* GetGmtTime(const ImPlotTime& t, tm* ptm)
 {
-	//$$ BEGIN - use platform time defines
+    //$$ BEGIN - use platform time defines
 #if PLATFORM_SUPPORTS_WINDOWS_TIME
     if (gmtime_s(ptm, &t.S) == 0)
         return ptm;
@@ -943,7 +943,7 @@ tm* GetGmtTime(const ImPlotTime& t, tm* ptm)
 #else
     return gmtime_s(&t.S, ptm);
 #endif
-  //$$ END
+    //$$ END
 }
 
 ImPlotTime MkLocTime(struct tm *ptm) {
@@ -955,18 +955,18 @@ ImPlotTime MkLocTime(struct tm *ptm) {
 }
 
 tm* GetLocTime(const ImPlotTime& t, tm* ptm) {
-	//$$ BEGIN - use platform time defines
+    //$$ BEGIN - use platform time defines
 #if PLATFORM_SUPPORTS_WINDOWS_TIME
     if (localtime_s(ptm, &t.S) == 0)
         return ptm;
     else
         return nullptr;
 #elif PLATFORM_SUPPORTS_C23_TIME
-	return localtime_r(&t.S, ptm);
+    return localtime_r(&t.S, ptm);
 #else
-	return localtime_s(&t.S, ptm);
+    return localtime_s(&t.S, ptm);
 #endif
-	//$$ END
+    //$$ END
 }
 
 inline ImPlotTime MkTime(struct tm *ptm) {

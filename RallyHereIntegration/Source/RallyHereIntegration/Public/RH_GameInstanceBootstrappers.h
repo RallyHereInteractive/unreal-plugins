@@ -493,6 +493,11 @@ public:
 	virtual URH_PlatformSessionSyncer* GetPlatformSyncerByPlatformSessionId(const FUniqueNetIdRepl& PlatformSessionId) const override { return nullptr; }
 
 	/**
+	* @brief Gets the bootstrapping result from this bootstrapper
+	*/
+	const FRH_BootstrappingResult& GetBootstrappingResult() const { return BootstrappingResult; }
+
+	/**
 	* @brief Gets the allocation id this session owner is bound to, if any.  Needed for some specific calls to ensure they are operating on the proper object regardless of our current session view
 	*/
 	virtual TOptional<FString> GetBoundAllocationId() const { return BootstrappingResult.AllocationInfo.AllocationId; }

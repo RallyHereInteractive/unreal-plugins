@@ -23,6 +23,13 @@
 
 #define PLATFORM_ALLOWS_COPY (PLATFORM_DESKTOP)
 
+#ifdef WITH_IMGUI_STRING_SUPPORT
+#include "imgui_stdlib.h"
+#include "imgui_unrealstring.h"
+#else
+#error "The RallyHere Debug Tool assumes that imgui_stdlib.h and imgui_unrealstring.h are able to be included, see ImGuiStringLibrary module"
+#endif
+
 enum class ECopyMode : uint8
 {
 	Button,		// displays just a button saying "Copy"

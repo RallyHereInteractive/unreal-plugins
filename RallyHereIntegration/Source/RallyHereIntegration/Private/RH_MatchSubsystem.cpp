@@ -266,3 +266,359 @@ void URH_MatchSubsystem::UpdateMatchPlayer(const FString& MatchId, const FGuid& 
 
 	Helper->Start(RH_APIs::GetMatchAPI(), Request);
 }
+
+#if WITH_DEV_AUTOMATION_TESTS
+
+#include "RH_AutomationTests.h"
+#include "RH_GameInstanceSubsystem.h"
+#include "GameMapsSettings.h"
+
+FRHAPI_MatchPlayerRequest GenerateTestMatchPlayer()
+{
+	FRHAPI_MatchPlayerRequest PlayerRequest;
+	PlayerRequest.SetPlayerUuid(FGuid::NewGuid());
+	PlayerRequest.SetTeamId(FMath::RandBool() ? TEXT("Red") : TEXT("Blue"));
+	PlayerRequest.SetPartySessionId(FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphens));
+	PlayerRequest.SetPlacement(1);
+	const float Duration = 100;
+	PlayerRequest.SetJoinedMatchTimestamp(FDateTime::UtcNow());
+	PlayerRequest.SetLeftMatchTimestamp(FDateTime::UtcNow() + FTimespan::FromSeconds(Duration));
+	PlayerRequest.SetDurationSeconds(Duration);
+	PlayerRequest.SetStartingRank(TEXT("Last"));
+	PlayerRequest.SetFinishingRank(TEXT("First"));
+
+	TMap<FString, FString> CustomData;
+	CustomData.Add(TEXT("TestField"), TEXT("TestValue"));
+	CustomData.Add(TEXT("TestField2"), TEXT("TestValue2"));
+	PlayerRequest.SetCustomData(CustomData);
+
+	return PlayerRequest;
+}
+
+template <typename T>
+T GenerateTestMatchEntry()
+{
+	// create a match
+	T MatchRequest;
+	MatchRequest.SetType(TEXT("TestMatch"));
+	MatchRequest.SetState(ERHAPI_MatchState::Pending);
+	MatchRequest.SetStartTimestamp(FDateTime::UtcNow());
+	const float Duration = 200;
+	MatchRequest.SetEndTimestamp(FDateTime::UtcNow() + FTimespan::FromSeconds(Duration));
+	MatchRequest.SetDurationSeconds(Duration);
+
+	TMap<FString, FString> CustomData;
+	CustomData.Add(TEXT("TestField"), TEXT("TestValue"));
+	CustomData.Add(TEXT("TestField2"), TEXT("TestValue2"));
+	MatchRequest.SetCustomData(CustomData);
+
+	MatchRequest.SetCorrelationId(FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphens));
+
+	// players
+	TArray<FRHAPI_MatchPlayerRequest> Players;
+	{
+		for (auto i = 0; i < 4; i++)
+		{
+			Players.Add(GenerateTestMatchPlayer());
+		}
+		MatchRequest.SetPlayers(Players);
+	}
+
+	// sessions
+	TArray<FRHAPI_MatchSession> Sessions;
+	{
+		FRHAPI_MatchSession Session;
+		Session.SetMatchmakingProfileId(FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphens));
+		Session.SetSessionId(FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphens));
+		Sessions.Add(Session);
+
+		MatchRequest.SetSessions(Sessions);
+	}
+	
+	// instances
+	TArray<FRHAPI_MatchInstance> Instances;
+	{
+		FRHAPI_MatchInstance Instance;
+		Instance.SetInstanceId(FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphens));
+		Instance.SetHostPlayerUuid(Players[0].GetPlayerUuid());
+		Instance.SetRegionId(FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphens));
+		Instance.SetInstanceRequestTemplateId(FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphens));
+		Instance.SetMap(UGameMapsSettings::GetGameDefaultMap());
+		Instance.SetGameMode(UGameMapsSettings::GetGlobalDefaultGameMode());
+		Instance.SetHostType(ERHAPI_MatchHostType::Player);
+
+		Instances.Add(Instance);
+
+		MatchRequest.SetInstances(Instances);
+	}
+
+	// allocations
+	{
+		TArray<FRHAPI_MatchAllocation> Allocations;
+
+		FRHAPI_MatchAllocation Allocation;
+		Allocation.SetAllocationId(FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphens));
+		Allocations.Add(Allocation);
+
+		MatchRequest.SetAllocations(Allocations);
+	}
+
+
+
+	// segments are handled elsewhere, as not all types have them
+	//MatchRequest.SetSegments();
+
+	return MatchRequest;
+}
+
+BEGIN_DEFINE_SPEC(FRH_MatchCreateSimple, "RHAutomation.Match.Spec", EAutomationTestFlags::ClientContext | EAutomationTestFlags::RequiresUser | EAutomationTestFlags::ProductFilter | EAutomationTestFlags::MediumPriority)
+	FRHAPI_MatchRequest MatchRequest;
+	TWeakObjectPtr<URH_MatchSubsystem> Subsystem;
+
+	bool MatchTestBoilerplate()
+	{
+		auto GISubsystem = RHAutomationTestUtils::GetRHGameInstanceSubsystem(this);
+		UTEST_NOT_NULL(TEXT("GISubsystem"), GISubsystem);
+
+		Subsystem = GISubsystem->GetMatchSubsystem();
+		UTEST_NOT_NULL(TEXT("Subsystem"), Subsystem.Get());
+
+		UTEST_NOT_NULL(TEXT("Auth Context"), Subsystem->GetAuthContext().Get());
+
+		UTEST_TRUE(TEXT("Logged in"), Subsystem->GetAuthContext()->IsLoggedIn());
+
+		// clear the cache
+		Subsystem->ClearMatchesCache();
+		Subsystem->ClearActiveMatchId();
+
+		return true;
+	};
+
+	void GetAndValidateMatchRequest(const FDoneDelegate& Done)
+	{
+		// retrieve the match from the remote
+		if (!TestNotNull(TEXT("Validate Subsystem"), Subsystem.Get()))
+		{
+			Done.Execute();
+			return;
+		}
+
+		if (!TestTrue(TEXT("Validate ActiveMatchId"), !Subsystem->GetActiveMatchId().IsEmpty()))
+		{
+			Done.Execute();
+			return;
+		}
+
+		// Write locally stored request to json string
+		FString LocalJsonBody;
+		TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&LocalJsonBody);
+		MatchRequest.WriteJson(Writer);
+		Writer->Close();
+
+		// deserialize the string to a new json object
+		TSharedPtr<FJsonValue> LocalJsonValue;
+		if (!TestTrue(TEXT("Validate Local Deserialize Json"), FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(LocalJsonBody), LocalJsonValue)))
+		{
+			Done.Execute();
+			return;
+		}
+
+		Subsystem->GetMatchAsync(Subsystem->GetActiveMatchId(), true, FRH_OnMatchLookupCompleteDelegate::CreateLambda([this, LocalJsonBody, LocalJsonValue, Done](bool bSuccess, const FRHAPI_MatchWithPlayers& Match, const FRH_ErrorInfo& ErrorInfo)
+			{
+				if (!TestTrue(TEXT("Validate Success"), bSuccess))
+				{
+					Done.Execute();
+					return;
+				}
+
+				// Write locally stored request to json string
+				FString RemoteJsonBody;
+				TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&RemoteJsonBody);
+				Match.WriteJson(Writer);
+				Writer->Close();
+
+				// deserialize the string to a new json object
+				TSharedPtr<FJsonValue> RemoteJsonValue;
+				if (!TestTrue(TEXT("Validate Remote Deserialize Json"), FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(RemoteJsonBody), RemoteJsonValue)))
+				{
+					Done.Execute();
+					return;
+				}
+
+				AddInfo(FString::Printf(TEXT("Local Json: %s"), *LocalJsonBody));
+				AddInfo(FString::Printf(TEXT("Remote Json: %s"), *RemoteJsonBody));
+
+				// compare the json objects for equivalency
+				/* This does not work for a few reasons, but may be useful in the future
+				if (!FJsonValue::CompareEqual(*LocalJsonValue.Get(), *RemoteJsonValue.Get()))
+				{
+					AddError(FString::Printf(TEXT("Validate Json Mismatch:\nLocal:\n%s\n\nRemote:\n%s"), *LocalJsonBody, *RemoteJsonBody));
+					Done.Execute();
+					return;
+				}
+				*/
+
+				Done.Execute();
+			}));
+	}
+
+END_DEFINE_SPEC(FRH_MatchCreateSimple)
+void FRH_MatchCreateSimple::Define()
+{
+
+
+	Describe("Match Subsystem", [this]()
+		{
+			BeforeEach([this]()
+				{
+					MatchTestBoilerplate();
+				});
+
+			LatentIt("should create a match", [this](const FDoneDelegate& Done)
+				{
+					if (!TestNotNull(TEXT("LatentSubsystem"), Subsystem.Get()))
+					{
+						Done.Execute();
+						return;
+					}
+
+					// generate a match request
+					MatchRequest = GenerateTestMatchEntry<FRHAPI_MatchRequest>();
+
+					MatchRequest.SetState(ERHAPI_MatchState::Closed);
+
+					auto MatchSegment = GenerateTestMatchEntry<FRHAPI_MatchSegmentRequest>();
+					MatchSegment.SetMatchSegment("TestSegment");
+					TArray<FRHAPI_MatchSegmentRequest> MatchSegments;
+					MatchSegments.Add(MatchSegment);
+					MatchRequest.SetSegments(MatchSegments);
+
+					Subsystem->CreateMatch(MatchRequest, true, FRH_OnMatchUpdateCompleteDelegate::CreateLambda([this, Done](bool bSuccess, const FRHAPI_MatchWithPlayers& Match, const FRH_ErrorInfo& ErrorInfo)
+						{
+							if (!TestTrue(TEXT("Success"), bSuccess))
+							{
+								Done.Execute();
+								return;
+							}
+
+							GetAndValidateMatchRequest(Done);
+						}));
+				});
+
+			LatentIt("should create and patch match to be closed", [this](const FDoneDelegate& Done)
+				{
+					if (!TestNotNull(TEXT("LatentSubsystem"), Subsystem.Get()))
+					{
+						Done.Execute();
+						return;
+					}
+
+					// generate a match request
+					MatchRequest = GenerateTestMatchEntry<FRHAPI_MatchRequest>();
+
+					Subsystem->CreateMatch(MatchRequest, true, FRH_OnMatchUpdateCompleteDelegate::CreateLambda([this, Done](bool bSuccess, const FRHAPI_MatchWithPlayers& Match, const FRH_ErrorInfo& ErrorInfo)
+						{
+							if (!TestTrue(TEXT("Success"), bSuccess))
+							{
+								Done.Execute();
+								return;
+							}
+
+							if (!TestNotNull(TEXT("LatentSubsystem"), Subsystem.Get()))
+							{
+								Done.Execute();
+								return;
+							}
+
+							// generate a patch request to close the match
+							FRHAPI_MatchRequest PatchRequest;
+							PatchRequest.SetState(ERHAPI_MatchState::Closed);
+
+							// update the local match request object to match, for validation
+							MatchRequest.SetState(ERHAPI_MatchState::Closed);
+
+							Subsystem->UpdateMatch(Subsystem->GetActiveMatchId(), PatchRequest, FRH_OnMatchUpdateCompleteDelegate::CreateLambda([this, Done](bool bSuccess, const FRHAPI_MatchWithPlayers& Match, const FRH_ErrorInfo& ErrorInfo)
+								{
+									if (!TestTrue(TEXT("Success"), bSuccess))
+									{
+										Done.Execute();
+										return;
+									}
+									
+									GetAndValidateMatchRequest(Done);
+								}));
+						}));
+				});
+
+			LatentIt("should create match, add a player, and patch match to be closed", [this](const FDoneDelegate& Done)
+				{
+					if (!TestNotNull(TEXT("LatentSubsystem"), Subsystem.Get()))
+					{
+						Done.Execute();
+						return;
+					}
+
+					// generate a match request
+					MatchRequest = GenerateTestMatchEntry<FRHAPI_MatchRequest>();
+
+					Subsystem->CreateMatch(MatchRequest, true, FRH_OnMatchUpdateCompleteDelegate::CreateLambda([this, Done](bool bSuccess, const FRHAPI_MatchWithPlayers& Match, const FRH_ErrorInfo& ErrorInfo)
+						{
+							if (!TestTrue(TEXT("Success"), bSuccess))
+							{
+								Done.Execute();
+								return;
+							}
+
+							if (!TestNotNull(TEXT("LatentSubsystem"), Subsystem.Get()))
+							{
+								Done.Execute();
+								return;
+							}
+
+							// generate a player request
+							FRHAPI_MatchPlayerRequest PlayerRequest = GenerateTestMatchPlayer();
+
+							// update the local match request object to match, for validation
+							MatchRequest.Players_IsSet = true;
+							MatchRequest.Players_Optional.Add(PlayerRequest);
+
+							Subsystem->UpdateMatchPlayer(Subsystem->GetActiveMatchId(), PlayerRequest.GetPlayerUuid(), PlayerRequest, FRH_OnMatchPlayerUpdateCompleteDelegate::CreateLambda([this, Done](bool bSuccess, const FRHAPI_MatchPlayerWithMatch& Player, const FRH_ErrorInfo& ErrorInfo)
+								{
+									if (!TestTrue(TEXT("Success"), bSuccess))
+									{
+										Done.Execute();
+										return;
+									}
+
+									if (!TestNotNull(TEXT("LatentSubsystem"), Subsystem.Get()))
+									{
+										Done.Execute();
+										return;
+									}
+
+									// generate a patch request to close the match
+									FRHAPI_MatchRequest PatchRequest;
+									PatchRequest.SetState(ERHAPI_MatchState::Closed);
+
+									// update the local match request object to match, for validation
+									MatchRequest.SetState(ERHAPI_MatchState::Closed);
+
+									Subsystem->UpdateMatch(Subsystem->GetActiveMatchId(), PatchRequest, FRH_OnMatchUpdateCompleteDelegate::CreateLambda([this, Done](bool bSuccess, const FRHAPI_MatchWithPlayers& Match, const FRH_ErrorInfo& ErrorInfo)
+										{
+											if (!TestTrue(TEXT("Success"), bSuccess))
+											{
+												Done.Execute();
+												return;
+											}
+
+											GetAndValidateMatchRequest(Done);
+										}));
+								}));
+
+
+						}));
+				});
+		});
+}
+
+#endif
