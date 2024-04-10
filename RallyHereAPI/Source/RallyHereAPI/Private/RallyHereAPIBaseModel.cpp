@@ -81,7 +81,7 @@ bool FResponse::ParseContent()
 	}
 	else
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("Failed to recognize http response type: %s"), *ContentType);
+		UE_LOG(LogRallyHereAPI, Warning, TEXT("Failed to recognize http response type: %s"), *ContentType);
 		return ParseUnknownTypeContent();
 	}
 }

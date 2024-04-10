@@ -93,7 +93,7 @@ bool FResponse::ParseContent()
 	}
 	else
 	{
-		UE_LOG(Log{{unrealModuleName}}, Error, TEXT("Failed to recognize http response type: %s"), *ContentType);
+		UE_LOG(Log{{unrealModuleName}}, Warning, TEXT("Failed to recognize http response type: %s"), *ContentType);
 		return ParseUnknownTypeContent();
 	}
 }
