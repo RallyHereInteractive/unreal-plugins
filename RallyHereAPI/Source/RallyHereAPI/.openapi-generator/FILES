@@ -56,6 +56,7 @@ Private/EntitlementEventStatus.cpp
 Private/EntitlementStatus.cpp
 Private/EntitlementType.cpp
 Private/EntitlementsAPI.cpp
+Private/EntityType.cpp
 Private/EnvironmentAPI.cpp
 Private/EnvironmentConfig.cpp
 Private/EventList.cpp
@@ -388,6 +389,7 @@ Public/EntitlementEventStatus.h
 Public/EntitlementStatus.h
 Public/EntitlementType.h
 Public/EntitlementsAPI.h
+Public/EntityType.h
 Public/EnvironmentAPI.h
 Public/EnvironmentConfig.h
 Public/EventList.h

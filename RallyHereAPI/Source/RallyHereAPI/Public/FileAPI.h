@@ -10,6 +10,7 @@
 #include "CoreMinimal.h"
 #include "RallyHereAPIAuthContext.h"
 #include "RallyHereAPIHelpers.h"
+#include "EntityType.h"
 #include "FileType.h"
 #include "FileListResponse.h"
 #include "HTTPValidationError.h"
@@ -81,10 +82,9 @@ struct RALLYHEREAPI_API FRequest_CreateEntityDirectoryFile : public FRequest
 	TSharedPtr<FAuthContext> AuthContext;
 	ERHAPI_FileType FileType;
 	FString FileName;
-	FString EntityType;
+	ERHAPI_EntityType EntityType;
 	FString EntityId;
 	FHttpFileInput File;
-	TOptional<FString> Authorization;
 };
 
 struct RALLYHEREAPI_API FResponse_CreateEntityDirectoryFile : public FResponse
@@ -137,7 +137,7 @@ struct RALLYHEREAPI_API FRequest_DeleteEntityDirectory : public FRequest
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
 	TSharedPtr<FAuthContext> AuthContext;
-	FString EntityType;
+	ERHAPI_EntityType EntityType;
 };
 
 struct RALLYHEREAPI_API FResponse_DeleteEntityDirectory : public FResponse
@@ -191,11 +191,10 @@ struct RALLYHEREAPI_API FRequest_DeleteEntityDirectoryFile : public FRequest
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
 	TSharedPtr<FAuthContext> AuthContext;
-	FString EntityType;
+	ERHAPI_EntityType EntityType;
 	FString EntityId;
 	FString FileName;
 	ERHAPI_FileType FileType;
-	TOptional<FString> Authorization;
 };
 
 struct RALLYHEREAPI_API FResponse_DeleteEntityDirectoryFile : public FResponse
@@ -248,11 +247,10 @@ struct RALLYHEREAPI_API FRequest_DownloadEntityDirectoryFile : public FRequest
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
 	TSharedPtr<FAuthContext> AuthContext;
-	FString EntityType;
+	ERHAPI_EntityType EntityType;
 	FString EntityId;
 	FString FileName;
 	ERHAPI_FileType FileType;
-	TOptional<FString> Authorization;
 };
 
 struct RALLYHEREAPI_API FResponse_DownloadEntityDirectoryFile : public FResponse
@@ -313,7 +311,7 @@ struct RALLYHEREAPI_API FRequest_GetEntityDirectoryInformation : public FRequest
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
 	TSharedPtr<FAuthContext> AuthContext;
-	FString EntityType;
+	ERHAPI_EntityType EntityType;
 };
 
 struct RALLYHEREAPI_API FResponse_GetEntityDirectoryInformation : public FResponse
@@ -367,10 +365,9 @@ struct RALLYHEREAPI_API FRequest_ListEntityDirectoryFiles : public FRequest
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
 	TSharedPtr<FAuthContext> AuthContext;
-	FString EntityType;
+	ERHAPI_EntityType EntityType;
 	FString EntityId;
 	ERHAPI_FileType FileType;
-	TOptional<FString> Authorization;
 };
 
 struct RALLYHEREAPI_API FResponse_ListEntityDirectoryFiles : public FResponse

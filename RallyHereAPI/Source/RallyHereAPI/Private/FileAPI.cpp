@@ -114,12 +114,6 @@ bool FRequest_CreateEntityDirectoryFile::SetupHttpRequest(const FHttpRequestRef&
 
 	HttpRequest->SetVerb(TEXT("PUT"));
 
-	// Header parameters
-	if (Authorization.IsSet())
-	{
-		HttpRequest->SetHeader(TEXT("authorization"), Authorization.GetValue());
-	}
-
 	if (!AuthContext)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateEntityDirectoryFile - missing auth context"));
@@ -471,12 +465,6 @@ bool FRequest_DeleteEntityDirectoryFile::SetupHttpRequest(const FHttpRequestRef&
 
 	HttpRequest->SetVerb(TEXT("DELETE"));
 
-	// Header parameters
-	if (Authorization.IsSet())
-	{
-		HttpRequest->SetHeader(TEXT("authorization"), Authorization.GetValue());
-	}
-
 	if (!AuthContext)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteEntityDirectoryFile - missing auth context"));
@@ -643,12 +631,6 @@ bool FRequest_DownloadEntityDirectoryFile::SetupHttpRequest(const FHttpRequestRe
 	//static const TArray<FString> Produces = { TEXT("application/octet-stream"), TEXT("application/json") };
 
 	HttpRequest->SetVerb(TEXT("GET"));
-
-	// Header parameters
-	if (Authorization.IsSet())
-	{
-		HttpRequest->SetHeader(TEXT("authorization"), Authorization.GetValue());
-	}
 
 	if (!AuthContext)
 	{
@@ -1011,12 +993,6 @@ bool FRequest_ListEntityDirectoryFiles::SetupHttpRequest(const FHttpRequestRef& 
 	//static const TArray<FString> Produces = { TEXT("application/json") };
 
 	HttpRequest->SetVerb(TEXT("GET"));
-
-	// Header parameters
-	if (Authorization.IsSet())
-	{
-		HttpRequest->SetHeader(TEXT("authorization"), Authorization.GetValue());
-	}
 
 	if (!AuthContext)
 	{
