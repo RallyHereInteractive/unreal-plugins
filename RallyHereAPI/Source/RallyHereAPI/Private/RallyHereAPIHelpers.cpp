@@ -425,7 +425,6 @@ namespace RallyHereAPI
 
 FHttpFileInput::FHttpFileInput()
 {
-	SetFilePath(TEXT(""));
 }
 
 FHttpFileInput::FHttpFileInput(const TCHAR* InFilePath)
