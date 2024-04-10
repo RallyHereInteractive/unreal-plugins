@@ -166,6 +166,109 @@ void URH_FileSubsystem::DownloadFile(const FRH_FileApiDirectory& Directory, cons
 	Helper->Start(RH_APIs::GetFileAPI(), Request);
 }
 
+void URH_FileSubsystem::DownloadAllFiles(const FRH_FileApiDirectory& Directory, const FString& LocalDirectory, bool bUseCachedList, const FRH_FileDirectoryDownloadDelegateBlock Delegate)
+{
+	if (bUseCachedList)
+	{
+		auto List = FileListCache.Find(Directory);
+		if (List != nullptr)
+		{
+			TArray<FString> FileNames;
+			const auto FilesArray = List->GetFiles();
+			FileNames.Reserve(FilesArray.Num());
+			for (const auto& File : FilesArray)
+			{
+				FileNames.Add(File.GetName());
+			}
+
+			DownloadFileList(Directory, FileNames, LocalDirectory, Delegate);
+			return;
+		}
+	}
+
+	LookupFileList(Directory, FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Directory, LocalDirectory, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+		{
+			auto List = FileListCache.Find(Directory);
+			if (bSuccess && List != nullptr)
+			{
+				TArray<FString> FileNames;
+				const auto FilesArray = List->GetFiles();
+				FileNames.Reserve(FilesArray.Num());
+				for (const auto& File : FilesArray)
+				{
+					FileNames.Add(File.GetName());
+				}
+				DownloadFileList(Directory, FileNames, LocalDirectory, Delegate);
+			}
+			else
+			{
+				TArray<FRH_ErrorInfo> ErrorInfoArray;
+				ErrorInfoArray.Add(ErrorInfo);
+				Delegate.ExecuteIfBound(true, TArray<FString>(), TArray<FString>(), ErrorInfoArray);
+			}
+		}));
+}
+
+void URH_FileSubsystem::DownloadFileList(const FRH_FileApiDirectory& Directory, const TArray<FString>& RemoteFileNames, const FString& LocalDirectory, const FRH_FileDirectoryDownloadDelegateBlock Delegate)
+{
+	// trivial success case, no files to download
+	if (RemoteFileNames.IsEmpty())
+	{
+		Delegate.ExecuteIfBound(true, TArray<FString>(), TArray<FString>(), TArray<FRH_ErrorInfo>());
+		return;
+	}
+
+	struct FDownloadMultiFileContext
+	{
+		TArray<FString> FileNamesToDownload;
+		TArray<FString> FailedFileNames, DownloadedFileNames;
+		TArray<FRH_ErrorInfo> ErrorInfos;
+		FString LocalDirectory;
+
+		FRH_FileDirectoryDownloadDelegateBlock Delegate;
+	};
+
+	if (!FPaths::DirectoryExists(LocalDirectory))
+	{
+		UE_LOG(LogRallyHereIntegration, Log, TEXT("Creating directory %s"), *LocalDirectory);
+		FPlatformFileManager::Get().GetPlatformFile().CreateDirectoryTree(*LocalDirectory);
+	}
+
+	TSharedRef<FDownloadMultiFileContext> Context = MakeShared<FDownloadMultiFileContext>();
+	Context->FileNamesToDownload = RemoteFileNames;
+	Context->LocalDirectory = LocalDirectory;
+	Context->Delegate = Delegate;
+
+	// download in parallel
+	TSharedPtr<FDownloadMultiFileContext> ContextPtr = Context;
+	for (const auto File : RemoteFileNames)
+	{
+		DownloadFile(Directory, File, FPaths::Combine(LocalDirectory, File), FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [ContextPtr, File](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+			{
+				// record result
+				if (bSuccess)
+				{
+					ContextPtr->DownloadedFileNames.Add(File);
+					ContextPtr->ErrorInfos.Add(ErrorInfo);
+				}
+				else
+				{
+					ContextPtr->FailedFileNames.Add(File);
+					ContextPtr->ErrorInfos.Add(ErrorInfo);
+				}
+
+				// remove from processing list
+				ContextPtr->FileNamesToDownload.Remove(File);
+
+				// if this is the last file, fire the delegate
+				if (ContextPtr->FileNamesToDownload.IsEmpty())
+				{
+					ContextPtr->Delegate.ExecuteIfBound(ContextPtr->FailedFileNames.Num() == 0, ContextPtr->DownloadedFileNames, ContextPtr->FailedFileNames, ContextPtr->ErrorInfos);
+				}
+			}));
+	}
+}
+
 void URH_FileSubsystem::LookupFileList(const FRH_FileApiDirectory& Directory, const FRH_GenericSuccessWithErrorBlock Delegate)
 {
 	typedef RallyHereAPI::Traits_ListEntityDirectoryFiles BaseType;
@@ -181,13 +284,16 @@ void URH_FileSubsystem::LookupFileList(const FRH_FileApiDirectory& Directory, co
 			{
 				FileListCache.Add(Directory, Response.Content);
 			}),
-		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Directory](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Directory, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 			{
 				// if a directory was not found, remove it from the cache
 				if (!bSuccess && ErrorInfo.ResponseCode == EHttpResponseCodes::NotFound)
 				{
 					FileListCache.Remove(Directory);
 				}
+
+				// pass through the result
+				Delegate.ExecuteIfBound(bSuccess, ErrorInfo);
 			}),
 		GetDefault<URH_IntegrationSettings>()->FileBrowsePriority
 	);

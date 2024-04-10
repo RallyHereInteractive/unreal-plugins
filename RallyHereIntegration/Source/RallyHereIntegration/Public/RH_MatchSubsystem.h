@@ -5,6 +5,7 @@
 #include "MatchAPI.h"
 #include "RH_Common.h"
 #include "RH_SubsystemPluginBase.h"
+#include "RH_FileSubsystem.h"
 #include "RH_MatchSubsystem.generated.h"
 
 /** @defgroup Match RallyHere Match
@@ -303,6 +304,11 @@ public:
 	virtual void UpdateMatchPlayer(const FString& MatchId, const FGuid& PlayerId, const FRHAPI_MatchPlayerRequest& Player, const FRH_OnMatchPlayerUpdateCompleteDelegateBlock& Delegate = FRH_OnMatchPlayerUpdateCompleteDelegateBlock());
 	UFUNCTION(BlueprintCallable, Category = "Matches", meta = (DisplayName = "Update Match Player", AutoCreateRefTerm = "Player,Delegate"))
 	void BLUEPRINT_UpdateMatchPlayer(const FString& MatchId, const FGuid& PlayerId, const FRHAPI_MatchPlayerRequest& Player, const FRH_OnMatchPlayerUpdatedCompleteDynamicDelegate& Delegate) { UpdateMatchPlayer(MatchId, PlayerId, Player, Delegate); }
+
+	// Files
+	static FRH_FileApiDirectory GetMatchFileDirectory(const FString& MatchId) { return FRH_FileApiDirectory(ERHAPI_FileType::File, TEXT("match"), MatchId); }
+	static FRH_FileApiDirectory GetMatchDeveloperFileDirectory(const FString& MatchId) { return FRH_FileApiDirectory(ERHAPI_FileType::DeveloperFile, TEXT("match"), MatchId); }
+
 protected:
 
 	/** @brief Structure containing context information for match update calls */

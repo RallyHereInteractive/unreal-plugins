@@ -618,6 +618,118 @@ void FRH_MatchCreateSimple::Define()
 
 						}));
 				});
+
+			LatentIt("should create match in the closed state, create a local temporary file, upload it, and download it", [this](const FDoneDelegate& Done)
+				{
+					if (!TestNotNull(TEXT("LatentSubsystem"), Subsystem.Get()))
+					{
+						Done.Execute();
+						return;
+					}
+
+					// generate a match request
+					MatchRequest = GenerateTestMatchEntry<FRHAPI_MatchRequest>();
+					MatchRequest.SetState(ERHAPI_MatchState::Closed);
+
+					Subsystem->CreateMatch(MatchRequest, true, FRH_OnMatchUpdateCompleteDelegate::CreateLambda([this, Done](bool bSuccess, const FRHAPI_MatchWithPlayers& Match, const FRH_ErrorInfo& ErrorInfo)
+						{
+							if (!TestTrue(TEXT("Success"), bSuccess))
+							{
+								Done.Execute();
+								return;
+							}
+
+							if (!TestNotNull(TEXT("LatentSubsystem"), Subsystem.Get()))
+							{
+								Done.Execute();
+								return;
+							}
+
+							auto GISubsystem = RHAutomationTestUtils::GetRHGameInstanceSubsystem(this);
+							if (!TestNotNull(TEXT("GISubsystem"), GISubsystem))
+							{
+								Done.Execute();
+								return;
+							}
+
+							auto FileSubsystem = GISubsystem->GetFileSubsystem();
+							if (!TestNotNull(TEXT("FileSubsystem"), FileSubsystem))
+							{
+								Done.Execute();
+								return;
+							}
+
+							// generate a temporary file
+							const auto MatchId = Match.GetMatchId();
+							const FString UploadMatchDir = FPaths::ProjectSavedDir() / TEXT("Temp");
+							
+							FString TempFile = UploadMatchDir / FString::Printf(TEXT("Match_%s.tmp"), *MatchId);
+							FString TempFileContents = FString::Printf(TEXT("MatchId: %s"), *MatchId);
+							FFileHelper::SaveStringToFile(TempFileContents, *TempFile);
+
+							// upload the file
+							const auto RemoteFileDirectory = URH_MatchSubsystem::GetMatchFileDirectory(MatchId);
+							const auto RemoteFileName = TEXT("TestFile.txt");
+							FileSubsystem->UploadFile(RemoteFileDirectory, RemoteFileName, TempFile, 
+								FRH_GenericSuccessWithErrorDelegate::CreateLambda([this, RemoteFileDirectory, RemoteFileName, TempFileContents, MatchId, Done](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+								{
+									if (!TestTrue(TEXT("Success"), bSuccess))
+									{
+										Done.Execute();
+										return;
+									}
+
+									if (!TestNotNull(TEXT("LatentSubsystem"), Subsystem.Get()))
+									{
+										Done.Execute();
+										return;
+									}
+
+									auto GISubsystem = RHAutomationTestUtils::GetRHGameInstanceSubsystem(this);
+									if (!TestNotNull(TEXT("GISubsystem"), GISubsystem))
+									{
+										Done.Execute();
+										return;
+									}
+
+									auto FileSubsystem = GISubsystem->GetFileSubsystem();
+									if (!TestNotNull(TEXT("FileSubsystem"), FileSubsystem))
+									{
+										Done.Execute();
+										return;
+									}
+
+									const FString DownloadMatchDir = FPaths::ProjectPersistentDownloadDir();
+									FString DestFile = DownloadMatchDir / FString::Printf(TEXT("Match_%s.txt"), *MatchId);
+
+									FileSubsystem->DownloadFile(RemoteFileDirectory, RemoteFileName, DestFile, FRH_GenericSuccessWithErrorDelegate::CreateLambda([this, DestFile, TempFileContents, Done](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+										{
+											if (!TestTrue(TEXT("Success"), bSuccess))
+											{
+												Done.Execute();
+												return;
+											}
+
+											FString DownloadedContents;
+											if (!FFileHelper::LoadFileToString(DownloadedContents, *DestFile))
+											{
+												AddError(TEXT("Failed to load downloaded file"));
+												Done.Execute();
+												return;
+											}
+
+											if (!TestEqual(TEXT("Validate Downloaded File Contents"), DownloadedContents, TempFileContents))
+											{
+												Done.Execute();
+												return;
+											}
+
+											Done.Execute();
+										}));
+								}));
+
+						}));
+				});
 		});
 }
 

@@ -51,21 +51,110 @@ void FRHDTW_Match::Do()
 		return;
 	}
 
-	if (ImGui::BeginTabBar("Config"))
+	if (ImGui::BeginTabBar("Matches"))
 	{
-		if (ImGui::BeginTabItem("Local Player"))
+		if (ImGui::BeginTabItem("Player History"))
 		{
 			DoViewPlayerMatches();
 			ImGui::EndTabItem();
 		}
 
-		if (ImGui::BeginTabItem("Search"))
+		if (ImGui::BeginTabItem("View Match"))
+		{
+			DoViewMatch();
+			ImGui::EndTabItem();
+		}
+
+		if (ImGui::BeginTabItem("Search Matches"))
 		{
 			DoSearchMatches();
 			ImGui::EndTabItem();
 		}
 
 		ImGui::EndTabBar();
+	}
+}
+
+
+void FRHDTW_Match::DoViewMatch()
+{
+	URallyHereDebugTool* pOwner = GetOwner();
+	if (pOwner == nullptr)
+	{
+		ImGui::Text("URallyHereDebugTool not available.");
+		return;
+	}
+
+	auto pGameInstance = GetGameInstance();
+	if (pGameInstance == nullptr)
+	{
+		ImGui::Text("No Game Instance Found");
+		return;
+	}
+
+	auto pGISubsystem = pGameInstance->GetSubsystem<URH_GameInstanceSubsystem>();
+	auto pGIMatchSubsystem = pGISubsystem != nullptr ? pGISubsystem->GetMatchSubsystem() : nullptr;
+
+	if (pGIMatchSubsystem == nullptr)
+	{
+		ImGui::Text("No Match Subsystem Found");
+		return;
+	}
+
+	static int32 GuidFieldLength = 300;
+	ImGui::SetNextItemWidth(GuidFieldLength);
+	ImGui::InputText("Match Id", &SearchMatchId);
+
+	FRHAPI_MatchWithPlayers Match;
+	bool bInCache = pGIMatchSubsystem->GetMatch(SearchMatchId, Match);
+
+	if (bInCache)
+	{
+		if (ImGui::Button("Refresh"))
+		{
+			pGIMatchSubsystem->GetMatchAsync(SearchMatchId, true);
+		}
+	}
+	else
+	{
+		if (ImGui::Button("Lookup"))
+		{
+			pGIMatchSubsystem->GetMatchAsync(SearchMatchId, true);
+		}
+	}
+
+	ImGui::Separator();
+
+
+	if (bInCache)
+	{
+		const auto MatchId = Match.GetMatchId();
+		const FString MatchHeader = FString::Printf(TEXT("Match [%s]"), *MatchId);
+		if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*MatchHeader), RH_DefaultTreeFlagsDefaultOpen))
+		{
+			ImGuiDisplayModelData(Match);
+
+			auto FileSubsystem = pGISubsystem->GetFileSubsystem();
+			const FString DownloadDir = FPaths::HasProjectPersistentDownloadDir() ? FPaths::ProjectPersistentDownloadDir() : TEXT("");
+			if (FileSubsystem != nullptr && DownloadDir.Len() > 0)
+			{
+				if (ImGui::Button("Download Files"))
+				{
+					FileSubsystem->DownloadAllFiles(URH_MatchSubsystem::GetMatchFileDirectory(MatchId), DownloadDir);
+				}
+				ImGui::SameLine();
+				if (ImGui::Button("Download Developer Files"))
+				{
+					FileSubsystem->DownloadAllFiles(URH_MatchSubsystem::GetMatchDeveloperFileDirectory(MatchId), DownloadDir);
+				}
+			}
+
+			ImGui::TreePop();
+		}
+	}
+	else
+	{
+		ImGui::Text("Match not found in cache.");
 	}
 }
 
@@ -164,10 +253,27 @@ void FRHDTW_Match::DoSearchMatches()
 			{
 				for (const auto& Match : SearchResult.Result.Matches)
 				{
-					const FString MatchHeader = FString::Printf(TEXT("Match [%s]"), *Match.GetMatchId());
+					const auto MatchId = Match.GetMatchId();
+					const FString MatchHeader = FString::Printf(TEXT("Match [%s]"), *MatchId);
 					if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*MatchHeader), RH_DefaultTreeFlagsDefaultOpen))
 					{
 						ImGuiDisplayModelData(Match);
+
+						auto FileSubsystem = pGISubsystem->GetFileSubsystem();
+						const FString DownloadDir = FPaths::HasProjectPersistentDownloadDir() ? FPaths::ProjectPersistentDownloadDir() : TEXT("");
+						if (FileSubsystem != nullptr && DownloadDir.Len() > 0)
+						{
+							if (ImGui::Button("Download Files"))
+							{
+								FileSubsystem->DownloadAllFiles(URH_MatchSubsystem::GetMatchFileDirectory(MatchId), DownloadDir);
+							}
+							ImGui::SameLine();
+							if (ImGui::Button("Download Developer Files"))
+							{
+								FileSubsystem->DownloadAllFiles(URH_MatchSubsystem::GetMatchDeveloperFileDirectory(MatchId), DownloadDir);
+							}
+						}
+
 						ImGui::TreePop();
 					}
 				}
@@ -207,7 +313,24 @@ void FRHDTW_Match::DoSearchMatches()
 		if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*MatchHeader), RH_DefaultTreeFlags))
 		{
 			const auto& Match = MatchPair.Value;
+			const auto MatchId = Match.GetMatchId();
 			ImGuiDisplayModelData(Match);
+
+			auto FileSubsystem = pGISubsystem->GetFileSubsystem();
+			const FString DownloadDir = FPaths::HasProjectPersistentDownloadDir() ? FPaths::ProjectPersistentDownloadDir() : TEXT("");
+			if (FileSubsystem != nullptr && DownloadDir.Len() > 0)
+			{
+				if (ImGui::Button("Download Files"))
+				{
+					FileSubsystem->DownloadAllFiles(URH_MatchSubsystem::GetMatchFileDirectory(MatchId), DownloadDir);
+				}
+				ImGui::SameLine();
+				if (ImGui::Button("Download Developer Files"))
+				{
+					FileSubsystem->DownloadAllFiles(URH_MatchSubsystem::GetMatchDeveloperFileDirectory(MatchId), DownloadDir);
+				}
+			}
+
 			ImGui::TreePop();
 		}
 	}
@@ -292,7 +415,24 @@ void FRHDTW_Match::DoViewPlayerMatches()
 									{
 										if (ImGui::TreeNodeEx("Full Details", RH_DefaultTreeFlags))
 										{
+											const auto MatchId = MatchPair.Key;
 											ImGuiDisplayModelData(MatchWithPlayers);
+
+											auto FileSubsystem = pGISubsystem->GetFileSubsystem();
+											const FString DownloadDir = FPaths::HasProjectPersistentDownloadDir() ? FPaths::ProjectPersistentDownloadDir() : TEXT("");
+											if (FileSubsystem != nullptr && DownloadDir.Len() > 0)
+											{
+												if (ImGui::Button("Download Files"))
+												{
+													FileSubsystem->DownloadAllFiles(URH_MatchSubsystem::GetMatchFileDirectory(MatchId), DownloadDir);
+												}
+												ImGui::SameLine();
+												if (ImGui::Button("Download Developer Files"))
+												{
+													FileSubsystem->DownloadAllFiles(URH_MatchSubsystem::GetMatchDeveloperFileDirectory(MatchId), DownloadDir);
+												}
+											}
+
 											ImGui::TreePop();
 										}
 									}

@@ -15,10 +15,13 @@ public:
 
 	virtual void Do() override;
 
+	virtual void DoViewMatch();
 	virtual void DoSearchMatches();
 	virtual void DoViewPlayerMatches();
 
 protected:
+
+	FString SearchMatchId;
 
 	int32 SearchPageSize;
 	TArray<ANSICHAR> SearchInstanceId;
