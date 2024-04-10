@@ -310,12 +310,12 @@ public:
 	 * @brief Get the file directory structure to be used with File API requests for a given match id
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Matches")
-	static FRH_FileApiDirectory GetMatchFileDirectory(const FString& MatchId) { return FRH_FileApiDirectory(ERHAPI_FileType::File, TEXT("match"), MatchId); }
+	static FRH_FileApiDirectory GetMatchFileDirectory(const FString& MatchId) { return FRH_FileApiDirectory(ERHAPI_FileType::File, ERHAPI_EntityType::Match, MatchId); }
 	/**
 	 * @brief Get the file directory structure to be used with File API requests for a given match id (Developer Files)
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Matches")
-	static FRH_FileApiDirectory GetMatchDeveloperFileDirectory(const FString& MatchId) { return FRH_FileApiDirectory(ERHAPI_FileType::DeveloperFile, TEXT("match"), MatchId); }
+	static FRH_FileApiDirectory GetMatchDeveloperFileDirectory(const FString& MatchId) { return FRH_FileApiDirectory(ERHAPI_FileType::DeveloperFile, ERHAPI_EntityType::Match, MatchId); }
 
 protected:
 

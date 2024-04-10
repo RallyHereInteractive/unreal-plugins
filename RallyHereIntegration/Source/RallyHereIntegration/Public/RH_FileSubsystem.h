@@ -35,19 +35,19 @@ struct FRH_FileApiDirectory
 	ERHAPI_FileType FileType;
 	/** The type of entity the file is associated with */
 	UPROPERTY(BlueprintReadWrite, Category = "File")
-	FString EntityType;
+	ERHAPI_EntityType EntityType;
 	/** The id of the entity the file is associated with */
 	UPROPERTY(BlueprintReadWrite, Category = "File")
 	FString EntityId;
 
 	FRH_FileApiDirectory()
 		: FileType(ERHAPI_FileType::File)
-		, EntityType()
+		, EntityType(ERHAPI_EntityType::Unknown)
 		, EntityId()
 	{
 	}
 
-	FRH_FileApiDirectory(ERHAPI_FileType InFileType, const FString& InEntityType, const FString& InEntityId)
+	FRH_FileApiDirectory(ERHAPI_FileType InFileType, ERHAPI_EntityType InEntityType, const FString& InEntityId)
 		: FileType(InFileType)
 		, EntityType(InEntityType)
 		, EntityId(InEntityId)
@@ -65,7 +65,7 @@ struct FRH_FileApiDirectory
 
 	bool IsValid() const
 	{
-		return !EntityType.IsEmpty() && !EntityId.IsEmpty();
+		return EntityType != ERHAPI_EntityType::Unknown && !EntityId.IsEmpty();
 	}
 
 	/**
@@ -74,7 +74,7 @@ struct FRH_FileApiDirectory
 	 */
 	FString ToDescriptionString() const
 	{
-		return FString::Printf(TEXT("%s::%s::%s"), *EnumToString(FileType), *EntityType, *EntityId);
+		return FString::Printf(TEXT("%s::%s::%s"), *EnumToString(FileType), *EnumToString(EntityType), *EntityId);
 	}
 };
 
@@ -85,7 +85,7 @@ struct FRH_FileApiDirectory
  */
 FORCEINLINE uint32 GetTypeHash(const FRH_FileApiDirectory& Directory)
 {
-	return HashCombine((uint32)Directory.FileType, HashCombine(GetTypeHash(Directory.EntityType), GetTypeHash(Directory.EntityId)));
+	return HashCombine((uint32)Directory.FileType, HashCombine(GetTypeHash((uint32)Directory.EntityType), GetTypeHash(Directory.EntityId)));
 }
 
 /**

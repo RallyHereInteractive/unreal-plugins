@@ -45,9 +45,10 @@ void FRHDTW_RemoteFile::Do()
 
 	ImGui::Text("Directory");
 
-	ImGuiDisplayEnumCombo("File Type", RemoteDirectory.FileType, ERHAPI_FileType::DeveloperFile);
+	ImGuiDisplayEnumCombo("File Type", RemoteDirectory.FileType);
 
-	ImGui::InputText("Entity Type", &RemoteDirectory.EntityType);
+	ImGuiDisplayEnumCombo("Entity Type", RemoteDirectory.EntityType);
+
 	ImGui::InputText("Entity Id", &RemoteDirectory.EntityId);
 
 	ImGui::Separator();
