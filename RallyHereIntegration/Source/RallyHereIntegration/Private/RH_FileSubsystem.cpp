@@ -35,6 +35,11 @@ void URH_FileSubsystem::UploadFile(const FRH_FileApiDirectory& Directory, const 
 	Request.EntityId = Directory.EntityId;
 	Request.FileName = RemoteFileName;
 	Request.File.SetFilePath(*LocalFilePath);
+	// if type autodetection failed, treat as a binary stream
+	if (Request.File.GetContentType() == TEXT("application/unknown"))
+	{
+		Request.File.SetContentType(TEXT("application/octet-stream"));
+	}
 
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 		BaseType::Delegate::CreateWeakLambda(this, [this, Directory, RemoteFileName, LocalFilePath](const BaseType::Response& Response)
