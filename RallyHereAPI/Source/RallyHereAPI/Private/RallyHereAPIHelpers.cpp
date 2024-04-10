@@ -486,9 +486,9 @@ const FString& FHttpMultipartFormData::GetBoundary() const
 
 void FHttpMultipartFormData::SetupHttpRequest(const FHttpRequestRef& HttpRequest)
 {
-	if(HttpRequest->GetVerb() != TEXT("POST"))
+	if(HttpRequest->GetVerb() != TEXT("POST") && HttpRequest->GetVerb() != TEXT("PUT"))
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("Expected POST verb when using multipart form data"));
+		UE_LOG(LogRallyHereAPI, Warning, TEXT("Expected POST or PUT verb when using multipart form data"));
 	}
 
 	// Append final boundary
