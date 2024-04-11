@@ -35,7 +35,6 @@ public:
 	FRH_EntitlementProcessor(URH_EntitlementSubsystem* InEntitlementSubsystem,
 		IOnlineSubsystem* InOSS,
 		const IOnlinePurchasePtr& InPurchaseSubsystem,
-		const IOnlineStoreV2Ptr& InStoreSubsystem,
 		int32 InLocalUserNum,
 		FUniqueNetIdWrapper InPlatformUserId,
 		FTimerManager& InTimerManager,
@@ -46,7 +45,6 @@ public:
 		: EntitlementSubsystem(InEntitlementSubsystem)
 		, OSS(InOSS)
 		, PurchaseSubsystem(InPurchaseSubsystem)
-		, StoreSubsystem(InStoreSubsystem)
 		, LocalUserNum(InLocalUserNum)
 		, PlatformUserId(InPlatformUserId)
 		, TimerManager(InTimerManager)
@@ -56,11 +54,12 @@ public:
 	{
 		if (InOverridePlatform.IsSet())
 		{
-			IsOverride = true;
+			bIsOverride = true;
 			Platform = InOverridePlatform;
 		}
 		else
 		{
+			bIsOverride = false;
 			Platform = RH_GetPlatformFromOSSName(OSS->GetSubsystemName());
 		}
 		AuthContext = EntitlementSubsystem->GetAuthContext();
@@ -86,6 +85,11 @@ public:
 			Failed(TEXT("No valid platform"));
 			return;
 		}
+		if (!bIsOverride && PurchaseSubsystem == nullptr)
+		{
+			Failed(TEXT("No Purchase Subsystem"));
+			return;
+		}
 		QueryEntitlements();
 	}
 
@@ -95,7 +99,7 @@ protected:
 	 */
 	void QueryEntitlements()
 	{
-		if(PurchaseSubsystem != nullptr && !IsOverride)
+		if(PurchaseSubsystem != nullptr && !bIsOverride)
 		{
 			PurchaseSubsystem->QueryReceipts(*OSS->GetIdentityInterface()->GetUniquePlayerId(LocalUserNum), false,
 			FOnQueryReceiptsComplete::CreateSP(this, &FRH_EntitlementProcessor::QueryEntitlementsComplete, OSS));
@@ -224,13 +228,13 @@ protected:
 		entitlementRequest.SetEntitlements(ProcessEntitlementResult.GetClientEntitlements());
 		entitlementRequest.SetPlatformId(EnumToString(Platform.GetValue()));
 
-		if (OSS != nullptr && !IsOverride)
+		if (OSS != nullptr && !bIsOverride)
 		{
 			entitlementRequest.ClientType = RH_GetClientTypeFromOSSName(OSS->GetSubsystemName());
 			entitlementRequest.PlatformToken = OSS->GetIdentityInterface()->GetAuthToken(LocalUserNum);
 
 		}
-		else if (IsOverride && Platform.IsSet())
+		else if (bIsOverride && Platform.IsSet())
 		{
 			entitlementRequest.ClientType = RH_GetClientTypeFromOSSName(EntitlementSubsystem->GetEntitlementOSSName()); // note - use entitlement OSS, as platform overrides are not OSS based
 		}
@@ -408,7 +412,10 @@ protected:
 	void FinalizePurchase()
 	{
 		UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] - Process Platform Entitlements was success, calling finalize purchase on Transaction Id: %s"), ANSI_TO_TCHAR(__FUNCTION__), *ProcessEntitlementResult.TransactionId);
-		PurchaseSubsystem->FinalizePurchase(*OSS->GetIdentityInterface()->GetUniquePlayerId(LocalUserNum), *ProcessEntitlementResult.GetTransactionId());
+		if (PurchaseSubsystem != nullptr)
+		{
+			PurchaseSubsystem->FinalizePurchase(*OSS->GetIdentityInterface()->GetUniquePlayerId(LocalUserNum), *ProcessEntitlementResult.GetTransactionId());
+		}
 
 		Completed(true);
 	}
@@ -459,8 +466,6 @@ protected:
 	IOnlineSubsystem* OSS;
 	/** @brief Online Purchase Subsystem this processor is for. */
 	IOnlinePurchasePtr PurchaseSubsystem;
-	/** @brief Online Store Subsystem this processor is for. */
-	IOnlineStoreV2Ptr StoreSubsystem;
 	/** @brief Contorller Id of the user. */
 	int32 LocalUserNum;
 	/** @brief Platform User Id of the user. */
@@ -474,7 +479,7 @@ protected:
 	/** @brief Platform the entitlements are for. */
 	TOptional<ERHAPI_Platform> Platform;
 	/** @brief If set, the platform is an override of the main connection platform. */
-	bool IsOverride = false;
+	bool bIsOverride = false;
 	/** @brief Unique Id for the process task. */
 	const FString TaskId = FGuid::NewGuid().ToString();
 	/** @brief Result of the entitlement process. */
