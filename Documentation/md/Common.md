@@ -394,6 +394,7 @@ Generic handler for HTTP request errors.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
+`public FHttpResponsePtr `[`HttpResponse`](#structFRH__ErrorInfo_1aa84821f9c571e65c9268eece099bc7de) | The raw http response.
 `public int32 `[`ResponseCode`](#structFRH__ErrorInfo_1a390a2d3df6eb1eb30b8c45910beda439) | The Error Code of the HTTP request.
 `public FString `[`ResponseContent`](#structFRH__ErrorInfo_1a1a9cfc1398f93647a4409ed1e9712330) | Content of the HTTP request response.
 `public bool `[`bIsRHCommonError`](#structFRH__ErrorInfo_1a3dc04003818b7b61b32a1afcec580cf4) | Whether the response is a RallyHere common error.
@@ -408,6 +409,11 @@ Generic handler for HTTP request errors.
 
 #### Members
 
+#### `public FHttpResponsePtr `[`HttpResponse`](#structFRH__ErrorInfo_1aa84821f9c571e65c9268eece099bc7de) <a id="structFRH__ErrorInfo_1aa84821f9c571e65c9268eece099bc7de"></a>
+
+The raw http response.
+
+<br>
 #### `public int32 `[`ResponseCode`](#structFRH__ErrorInfo_1a390a2d3df6eb1eb30b8c45910beda439) <a id="structFRH__ErrorInfo_1a390a2d3df6eb1eb30b8c45910beda439"></a>
 
 The Error Code of the HTTP request.
