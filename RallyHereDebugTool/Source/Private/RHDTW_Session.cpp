@@ -1612,7 +1612,7 @@ void FRHDTW_Session::ImGuiDisplayMatchmakingProfile(const FRHAPI_MatchMakingProf
 	FString TemplateHeaderString = FString::Printf(TEXT("Profile: %s"), *Profile.GetMatchMakingProfileId());
 	if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*TemplateHeaderString), RH_DefaultTreeFlags))
 	{
-		ImGuiDisplayCopyableValue(TEXT("TemplateId"), Profile.GetMatchMakingProfileId());
+		ImGuiDisplayCopyableValue(TEXT("MatchMakingProfileId"), Profile.GetMatchMakingProfileId());
 
 		ImGuiDisplayCopyableEnumValue(TEXT("JoinMode"), Profile.GetJoinModeOrNull());
 
