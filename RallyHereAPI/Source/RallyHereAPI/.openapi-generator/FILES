@@ -46,6 +46,7 @@ Private/CrossplayInput.cpp
 Private/CrossplayPlatform.cpp
 Private/CrossplayPreferences.cpp
 Private/CustomAPI.cpp
+Private/CustomAudit.cpp
 Private/DeleteTicketReason.cpp
 Private/DependenciesSchemasPortal.cpp
 Private/Determiner.cpp
@@ -383,6 +384,7 @@ Public/CrossplayInput.h
 Public/CrossplayPlatform.h
 Public/CrossplayPreferences.h
 Public/CustomAPI.h
+Public/CustomAudit.h
 Public/DeleteTicketReason.h
 Public/DependenciesSchemasPortal.h
 Public/Determiner.h

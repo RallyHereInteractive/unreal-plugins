@@ -9,6 +9,7 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
+#include "CustomAudit.h"
 #include "AuditResponse.generated.h"
 
 /** @defgroup RHAPI_AuditResponse RallyHere API Model AuditResponse
@@ -41,24 +42,24 @@ struct RALLYHEREAPI_API FRHAPI_AuditResponse : public FRHAPI_Model
 
 	/** @brief List of audit events */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	TArray<FRHAPI_JsonObject> Events_Optional{  };
+	TArray<FRHAPI_CustomAudit> Events_Optional{  };
 	/** @brief true if Events_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Events_IsSet{ false };
 	/** @brief Gets the value of Events_Optional, regardless of it having been set */
-	TArray<FRHAPI_JsonObject>& GetEvents() { return Events_Optional; }
+	TArray<FRHAPI_CustomAudit>& GetEvents() { return Events_Optional; }
 	/** @brief Gets the value of Events_Optional, regardless of it having been set */
-	const TArray<FRHAPI_JsonObject>& GetEvents() const { return Events_Optional; }
+	const TArray<FRHAPI_CustomAudit>& GetEvents() const { return Events_Optional; }
 	/** @brief Gets the value of Events_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TArray<FRHAPI_JsonObject>& GetEvents(const TArray<FRHAPI_JsonObject>& DefaultValue) const { if (Events_IsSet) return Events_Optional; return DefaultValue; }
+	const TArray<FRHAPI_CustomAudit>& GetEvents(const TArray<FRHAPI_CustomAudit>& DefaultValue) const { if (Events_IsSet) return Events_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Events_Optional and returns true if it has been set, otherwise returns false */
-	bool GetEvents(TArray<FRHAPI_JsonObject>& OutValue) const { if (Events_IsSet) OutValue = Events_Optional; return Events_IsSet; }
+	bool GetEvents(TArray<FRHAPI_CustomAudit>& OutValue) const { if (Events_IsSet) OutValue = Events_Optional; return Events_IsSet; }
 	/** @brief Returns a pointer to Events_Optional, if it has been set, otherwise returns nullptr */
-	TArray<FRHAPI_JsonObject>* GetEventsOrNull() { if (Events_IsSet) return &Events_Optional; return nullptr; }
+	TArray<FRHAPI_CustomAudit>* GetEventsOrNull() { if (Events_IsSet) return &Events_Optional; return nullptr; }
 	/** @brief Returns a pointer to Events_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<FRHAPI_JsonObject>* GetEventsOrNull() const { if (Events_IsSet) return &Events_Optional; return nullptr; }
+	const TArray<FRHAPI_CustomAudit>* GetEventsOrNull() const { if (Events_IsSet) return &Events_Optional; return nullptr; }
 	/** @brief Sets the value of Events_Optional and also sets Events_IsSet to true */
-	void SetEvents(TArray<FRHAPI_JsonObject> NewValue) { Events_Optional = NewValue; Events_IsSet = true; }
+	void SetEvents(TArray<FRHAPI_CustomAudit> NewValue) { Events_Optional = NewValue; Events_IsSet = true; }
 	 /** @brief Clears the value of Events_Optional and sets Events_IsSet to false */
 	void ClearEvents() { Events_IsSet = false; }
 };
