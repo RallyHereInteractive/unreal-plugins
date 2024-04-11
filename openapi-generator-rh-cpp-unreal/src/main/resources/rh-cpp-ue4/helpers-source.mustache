@@ -578,7 +578,7 @@ void FHttpMultipartFormData::AddBinaryPart(const TCHAR* Name, const TArray<uint8
 void FHttpMultipartFormData::AddFilePart(const TCHAR* Name, const FHttpFileInput& File)
 {
 	TArray<uint8> FileContents;
-	if (!FFileHelper::LoadFileToArray(FileContents, *File.GetFilePath()))
+	if (!FFileHelper::LoadFileToArray(FileContents, *File.GetFilePath(), EFileRead::FILEREAD_AllowWrite))
 	{
 		UE_LOG(Log{{unrealModuleName}}, Error, TEXT("Failed to load file (%s)"), *File.GetFilePath());
 		return;
