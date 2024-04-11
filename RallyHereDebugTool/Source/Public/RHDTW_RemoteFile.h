@@ -24,6 +24,8 @@ protected:
 	FRH_FileApiDirectory RemoteDirectory;
 
 	FString BrowseDownloadDirectory;
+	FString PendingDeleteFileName;
+	FString PendingDeleteResult;
 
 	FString UploadRemoteFileName;
 	FString UploadLocalFilePath;

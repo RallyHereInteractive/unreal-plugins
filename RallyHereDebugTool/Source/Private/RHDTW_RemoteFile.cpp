@@ -93,6 +93,75 @@ void FRHDTW_RemoteFile::DoListFiles(URH_FileSubsystem* pFileSubsystem)
 	if (pFileSubsystem->ListFiles(RemoteDirectory, FileList))
 	{
 		ImGui::Text("%d Files Found", FileList.GetFiles().Num());
+
+		// define delete file modal, since it must be defined at each level of the hierarchy
+		auto DefineDeleteFileModal = [this, pFileSubsystem, FileList]() -> void
+			{
+				if (ImGui::BeginPopupModal("Confirm Delete File"))
+				{
+					if (PendingDeleteFileName.IsEmpty())
+					{
+						ImGui::CloseCurrentPopup();
+					}
+					else
+					{
+						FString ModalText = PendingDeleteFileName == TEXT("*") ? FString::Printf(TEXT("Are you sure you want to delete all files?")) : FString::Printf(TEXT("Are you sure you want to delete File %s?"), *PendingDeleteFileName);
+						ImGui::Text(TCHAR_TO_UTF8(*ModalText));
+						if (ImGui::Button("Yes"))
+						{
+							TWeakObjectPtr<URH_FileSubsystem> pFileSubsystemWeak = pFileSubsystem;
+							const auto RemoteDirectoryRef = RemoteDirectory;
+
+							auto OnComplete = FRH_GenericSuccessWithErrorDelegate::CreateSPLambda(this, [this, pFileSubsystemWeak, RemoteDirectoryRef](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+								{
+									// if we successfully deleted file the, refresh the list view to reflect it
+									PendingDeleteResult = bSuccess ? TEXT("Success") : ErrorInfo.ResponseContent;
+									if (bSuccess && pFileSubsystemWeak.IsValid())
+									{
+										pFileSubsystemWeak->LookupFileList(RemoteDirectoryRef);
+									}
+								});
+
+							// if deleting all files, loop through and delete each file, refresh on each completion (expensive)
+							if (PendingDeleteFileName == TEXT("*"))
+							{
+								for (auto& File : FileList.GetFiles())
+								{
+									pFileSubsystem->DeleteFile(RemoteDirectory, File.GetName(), OnComplete);
+								}
+							}
+							// otherwise, just delete the one file and refresh on completion
+							else
+							{
+								pFileSubsystem->DeleteFile(RemoteDirectory, PendingDeleteFileName, OnComplete);
+							}
+							PendingDeleteFileName.Empty();
+							ImGui::CloseCurrentPopup();
+						}
+						ImGui::SameLine();
+						if (ImGui::Button("No"))
+						{
+							PendingDeleteFileName.Empty();
+							ImGui::CloseCurrentPopup();
+						}
+					}
+					ImGui::EndPopup();
+				}
+			};
+
+		DefineDeleteFileModal();
+
+		if (ImGui::Button("Download All Files"))
+		{
+			// download all files specified by the cache
+			pFileSubsystem->DownloadAllFiles(RemoteDirectory, BrowseDownloadDirectory, true);
+		}
+		if (ImGui::Button("Delete All Files"))
+		{
+			PendingDeleteFileName = TEXT("*");
+			ImGui::OpenPopup("Confirm Delete File");
+		}
+
 		for (const auto& File : FileList.GetFiles())
 		{
 			if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*File.GetName()), RH_DefaultTreeFlagsDefaultOpen))
@@ -103,11 +172,20 @@ void FRHDTW_RemoteFile::DoListFiles(URH_FileSubsystem* pFileSubsystem)
 					pFileSubsystem->DownloadFile(RemoteDirectory, File.GetName(), BrowseDownloadDirectory / File.GetName());
 				}
 				ImGui::EndDisabled();
+				ImGui::SameLine();
+				if (ImGui::Button("Delete"))
+				{
+					PendingDeleteFileName = File.GetName();
+					ImGui::OpenPopup("Confirm Delete File");
+				}
+				DefineDeleteFileModal();
 
 				ImGuiDisplayModelData(File);
 				ImGui::TreePop();
 			}
 		}
+
+		ImGui::Text("Delete Result: %s", TCHAR_TO_UTF8(*PendingDeleteResult));
 	}
 	else
 	{
