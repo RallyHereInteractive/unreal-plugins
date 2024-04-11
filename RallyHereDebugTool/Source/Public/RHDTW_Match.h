@@ -20,7 +20,7 @@ public:
 	virtual void DoSearchMatches();
 	virtual void DoViewPlayerMatches();
 
-	virtual void DoFilesBlock(const FRH_FileApiDirectory& Directory, bool bDownload = true, bool bUpload = false);
+	virtual void DoFilesBlock(const FString& MatchId, bool bDownload = true, bool bUpload = false);
 
 protected:
 
