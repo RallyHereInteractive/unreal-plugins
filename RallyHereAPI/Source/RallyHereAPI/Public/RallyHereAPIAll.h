@@ -37,6 +37,7 @@
 #include "RankAPI.h"
 #include "RegionsAPI.h"
 #include "ReportsAPI.h"
+#include "SessionAuditAPI.h"
 #include "SessionsAPI.h"
 #include "SettingsAPI.h"
 #include "TimeAPI.h"
@@ -139,6 +140,9 @@ public:
 	TSharedRef<FReportsAPI> GetReports();
 	const TSharedRef<FReportsAPI> GetReports() const;
 
+	TSharedRef<FSessionAuditAPI> GetSessionAudit();
+	const TSharedRef<FSessionAuditAPI> GetSessionAudit() const;
+
 	TSharedRef<FSessionsAPI> GetSessions();
 	const TSharedRef<FSessionsAPI> GetSessions() const;
 
@@ -181,6 +185,7 @@ private:
 	TSharedRef<FRankAPI> Rank;
 	TSharedRef<FRegionsAPI> Regions;
 	TSharedRef<FReportsAPI> Reports;
+	TSharedRef<FSessionAuditAPI> SessionAudit;
 	TSharedRef<FSessionsAPI> Sessions;
 	TSharedRef<FSettingsAPI> Settings;
 	TSharedRef<FTimeAPI> Time;

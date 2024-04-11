@@ -7,6 +7,7 @@ Private/AdOpportunity.cpp
 Private/AdditionalJoinParams.cpp
 Private/AgreementMessage.cpp
 Private/AppSetting.cpp
+Private/AuditResponse.cpp
 Private/AuthAPI.cpp
 Private/BackfillInfo.cpp
 Private/BackfillSettingsResponse.cpp
@@ -35,6 +36,7 @@ Private/ClientVisibleSettings.cpp
 Private/ConfigAPI.cpp
 Private/ConfigurationV1API.cpp
 Private/ConnectionInfo.cpp
+Private/CreateAuditRequest.cpp
 Private/CreateInventoryRequest.cpp
 Private/CreateInventoryRequests.cpp
 Private/CreateInventoryType.cpp
@@ -111,6 +113,7 @@ Private/InventorySession.cpp
 Private/InventorySessionCreateRequest.cpp
 Private/InventorySessionCreateResponse.cpp
 Private/InventoryType.cpp
+Private/InviteSource.cpp
 Private/Item.cpp
 Private/ItemInventory.cpp
 Private/ItemType.cpp
@@ -291,6 +294,7 @@ Private/RuleType.cpp
 Private/SelfSessionPlayerUpdateRequest.cpp
 Private/SendInBlueContact.cpp
 Private/Session.cpp
+Private/SessionAuditAPI.cpp
 Private/SessionInviteRequest.cpp
 Private/SessionInviteResponse.cpp
 Private/SessionJoinResponse.cpp
@@ -340,6 +344,7 @@ Public/AdOpportunity.h
 Public/AdditionalJoinParams.h
 Public/AgreementMessage.h
 Public/AppSetting.h
+Public/AuditResponse.h
 Public/AuthAPI.h
 Public/BackfillInfo.h
 Public/BackfillSettingsResponse.h
@@ -368,6 +373,7 @@ Public/ClientVisibleSettings.h
 Public/ConfigAPI.h
 Public/ConfigurationV1API.h
 Public/ConnectionInfo.h
+Public/CreateAuditRequest.h
 Public/CreateInventoryRequest.h
 Public/CreateInventoryRequests.h
 Public/CreateInventoryType.h
@@ -444,6 +450,7 @@ Public/InventorySession.h
 Public/InventorySessionCreateRequest.h
 Public/InventorySessionCreateResponse.h
 Public/InventoryType.h
+Public/InviteSource.h
 Public/Item.h
 Public/ItemInventory.h
 Public/ItemType.h
@@ -624,6 +631,7 @@ Public/RuleType.h
 Public/SelfSessionPlayerUpdateRequest.h
 Public/SendInBlueContact.h
 Public/Session.h
+Public/SessionAuditAPI.h
 Public/SessionInviteRequest.h
 Public/SessionInviteResponse.h
 Public/SessionJoinResponse.h
