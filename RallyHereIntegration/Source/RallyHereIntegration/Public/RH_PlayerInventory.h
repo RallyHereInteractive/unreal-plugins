@@ -1066,7 +1066,7 @@ protected:
 					break;
 				}
 			}
-			return bDelegatesBound
+			return bDelegatesBound;
 		}
 		return false;
 	}
