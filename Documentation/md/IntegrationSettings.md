@@ -70,7 +70,8 @@ Main settings for the Integration.
 `public FSoftClassPath `[`SettingsSubsystemClass`](#classURH__IntegrationSettings_1a6115ed0ac4a35c8f131dc5a0fd56900f) | Extensible ConfigSubsystem class path.
 `public FSoftClassPath `[`SessionBrowserCacheClass`](#classURH__IntegrationSettings_1af5ecb3103ab065d38eed4634e6916817) | Extensible SessionBrowserCache class path.
 `public FSoftClassPath `[`MatchmakingBrowserCacheClass`](#classURH__IntegrationSettings_1a035a0b0d29e2ed12a2663446c60d811c) | Extensible MatchmakingBrowserCache class path.
-`public FSoftClassPath `[`MatchSubsystemClass`](#classURH__IntegrationSettings_1a2e753925aea5df2e1f47add2fa970097) | Extensible MatchSubsaystem class path.
+`public FSoftClassPath `[`MatchSubsystemClass`](#classURH__IntegrationSettings_1a2e753925aea5df2e1f47add2fa970097) | Extensible MatchSubsystem class path.
+`public FSoftClassPath `[`FileSubsystemClass`](#classURH__IntegrationSettings_1aa27b645522462f317a83eb154eaa9997) | Extensible FileSubsystem class path.
 `public bool `[`bLocalPlayerSubsystemSandboxing`](#classURH__IntegrationSettings_1a5826903f6e88cefabe7d9c2ede15e9af) | Flag to determine if the local player subsystem should use its own subsystems instead of relying on GameInstanceSubsystem shared caches.
 `public int32 `[`BeginNewAdSessionPriority`](#classURH__IntegrationSettings_1afc878742df435a86affa3c28c65da19a) | Sets the request priority of Begin New Session calls, lower number is higher priority.
 `public int32 `[`FindAdOppertunitiesPriority`](#classURH__IntegrationSettings_1a9e9a3b6b65a8ae71a7d5f7e985066f36) | Sets the request priority of Find Oppertunities calls, lower number is higher priority.
@@ -157,6 +158,10 @@ Main settings for the Integration.
 `public int32 `[`GetPlayerReportsSentPriority`](#classURH__IntegrationSettings_1a4ec711cf17691d176ef8b0e3b72b13c7) | Sets the request priority of Player Report calls, lower number is higher priority.
 `public int32 `[`GetPlayerReportsReceivedPriority`](#classURH__IntegrationSettings_1a2b63863ac05ffb58b7aac81941a37be2) | Sets the request priority of Player Report calls, lower number is higher priority.
 `public int32 `[`CreatePlayerReportPriority`](#classURH__IntegrationSettings_1aa434f7c18b7fbef17e6a94d98724cc72) | Sets the request priority of Player Report calls, lower number is higher priority.
+`public int32 `[`FileUploadPriority`](#classURH__IntegrationSettings_1ad0cec22fc70eed5be3e2968796bf3925) | Sets the request priority of File Upload calls, lower number is higher priority.
+`public int32 `[`FileDownloadPriority`](#classURH__IntegrationSettings_1aa72c3744230044e9e1c4b9244a8cb95e) | Sets the request priority of File Download calls, lower number is higher priority.
+`public int32 `[`FileBrowsePriority`](#classURH__IntegrationSettings_1a929cbfaa44cdf175fd06ec31b5b0185f) | Sets the request priority of File Browse calls, lower number is higher priority.
+`public int32 `[`FileDeletePriority`](#classURH__IntegrationSettings_1a9dbe268cceef1863637250a24d31dc2a) | Sets the request priority of File Delete calls, lower number is higher priority.
 `public const `[`FRH_EnvironmentConfiguration`](IntegrationSettings.md#structFRH__EnvironmentConfiguration)` * `[`GetEnvironmentConfiguration`](#classURH__IntegrationSettings_1a833c95a5c96e642faa2a3038d9c8f151)`(const FString & EnvironmentId) const` | Helper to get the configuration for a given environment by EnvironmentId.
 
 #### Members
@@ -413,7 +418,12 @@ Extensible MatchmakingBrowserCache class path.
 <br>
 #### `public FSoftClassPath `[`MatchSubsystemClass`](#classURH__IntegrationSettings_1a2e753925aea5df2e1f47add2fa970097) <a id="classURH__IntegrationSettings_1a2e753925aea5df2e1f47add2fa970097"></a>
 
-Extensible MatchSubsaystem class path.
+Extensible MatchSubsystem class path.
+
+<br>
+#### `public FSoftClassPath `[`FileSubsystemClass`](#classURH__IntegrationSettings_1aa27b645522462f317a83eb154eaa9997) <a id="classURH__IntegrationSettings_1aa27b645522462f317a83eb154eaa9997"></a>
+
+Extensible FileSubsystem class path.
 
 <br>
 #### `public bool `[`bLocalPlayerSubsystemSandboxing`](#classURH__IntegrationSettings_1a5826903f6e88cefabe7d9c2ede15e9af) <a id="classURH__IntegrationSettings_1a5826903f6e88cefabe7d9c2ede15e9af"></a>
@@ -844,6 +854,26 @@ Sets the request priority of Player Report calls, lower number is higher priorit
 #### `public int32 `[`CreatePlayerReportPriority`](#classURH__IntegrationSettings_1aa434f7c18b7fbef17e6a94d98724cc72) <a id="classURH__IntegrationSettings_1aa434f7c18b7fbef17e6a94d98724cc72"></a>
 
 Sets the request priority of Player Report calls, lower number is higher priority.
+
+<br>
+#### `public int32 `[`FileUploadPriority`](#classURH__IntegrationSettings_1ad0cec22fc70eed5be3e2968796bf3925) <a id="classURH__IntegrationSettings_1ad0cec22fc70eed5be3e2968796bf3925"></a>
+
+Sets the request priority of File Upload calls, lower number is higher priority.
+
+<br>
+#### `public int32 `[`FileDownloadPriority`](#classURH__IntegrationSettings_1aa72c3744230044e9e1c4b9244a8cb95e) <a id="classURH__IntegrationSettings_1aa72c3744230044e9e1c4b9244a8cb95e"></a>
+
+Sets the request priority of File Download calls, lower number is higher priority.
+
+<br>
+#### `public int32 `[`FileBrowsePriority`](#classURH__IntegrationSettings_1a929cbfaa44cdf175fd06ec31b5b0185f) <a id="classURH__IntegrationSettings_1a929cbfaa44cdf175fd06ec31b5b0185f"></a>
+
+Sets the request priority of File Browse calls, lower number is higher priority.
+
+<br>
+#### `public int32 `[`FileDeletePriority`](#classURH__IntegrationSettings_1a9dbe268cceef1863637250a24d31dc2a) <a id="classURH__IntegrationSettings_1a9dbe268cceef1863637250a24d31dc2a"></a>
+
+Sets the request priority of File Delete calls, lower number is higher priority.
 
 <br>
 #### `public const `[`FRH_EnvironmentConfiguration`](IntegrationSettings.md#structFRH__EnvironmentConfiguration)` * `[`GetEnvironmentConfiguration`](#classURH__IntegrationSettings_1a833c95a5c96e642faa2a3038d9c8f151)`(const FString & EnvironmentId) const` <a id="classURH__IntegrationSettings_1a833c95a5c96e642faa2a3038d9c8f151"></a>

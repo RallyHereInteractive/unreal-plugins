@@ -47,6 +47,7 @@
 #include "RHDTW_Analytics.h"
 #include "RHDTW_About.h"
 #include "RHDTW_Match.h"
+#include "RHDTW_RemoteFile.h"
 
 #include "Runtime/Launch/Resources/Version.h"
 
@@ -136,6 +137,9 @@ void URallyHereDebugTool::Initialize(FSubsystemCollectionBase& Collection)
 
 	MatchesWindow = MakeShared<FRHDTW_Match>();
 	MatchesWindow->Init(this, TEXT("Matches"));
+
+	RemoteFileWindow = MakeShared<FRHDTW_RemoteFile>();
+	RemoteFileWindow->Init(this, TEXT("Remote Files"));
 
 	SavedWindowVisibilities.Add(LoginWindow->Name, true);
 	SavedWindowVisibilities.Add(OutputLogWindow->Name, true);

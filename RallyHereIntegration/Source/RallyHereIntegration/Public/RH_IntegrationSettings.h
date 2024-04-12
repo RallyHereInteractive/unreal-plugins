@@ -246,9 +246,12 @@ public:
 	/** @brief Extensible MatchmakingBrowserCache class path. */
 	UPROPERTY(EditAnywhere, Config, Category="Subsystem Classes")
 	FSoftClassPath MatchmakingBrowserCacheClass;
-	/** @brief Extensible MatchSubsaystem class path */
+	/** @brief Extensible MatchSubsystem class path */
 	UPROPERTY(EditAnywhere, Config, Category = "Subsystem Classes")
 	FSoftClassPath MatchSubsystemClass;
+	/** @brief Extensible FileSubsystem class path */
+	UPROPERTY(EditAnywhere, Config, Category = "Subsystem Classes")
+	FSoftClassPath FileSubsystemClass;
 
 	/** @brief Flag to determine if the local player subsystem should use its own subsystems instead of relying on GameInstanceSubsystem shared caches. */
 	UPROPERTY(EditAnywhere, Config, Category = "Subsystem Classes")
@@ -514,6 +517,18 @@ public:
 	/** @brief Sets the request priority of Player Report calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Report API Priority", AdvancedDisplay)
 	int32 CreatePlayerReportPriority;
+	/** @brief Sets the request priority of File Upload calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "File API Priority", AdvancedDisplay)
+	int32 FileUploadPriority;
+	/** @brief Sets the request priority of File Download calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "File API Priority", AdvancedDisplay)
+	int32 FileDownloadPriority;
+	/** @brief Sets the request priority of File Browse calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "File API Priority", AdvancedDisplay)
+	int32 FileBrowsePriority;
+	/** @brief Sets the request priority of File Delete calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "File API Priority", AdvancedDisplay)
+	int32 FileDeletePriority;
 };
 
 /** @} */

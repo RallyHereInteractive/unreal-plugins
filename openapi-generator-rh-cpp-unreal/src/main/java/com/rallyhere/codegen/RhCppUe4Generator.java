@@ -148,7 +148,8 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
                         "FGuid",
                         "TArray",
                         "TArray<uint8>", // For byte arrays
-                        "TMap"));
+                        "TMap",
+                        "FHttpFileInput")); // For file input (defined in our helper file)
 
         // Maps C++ types during call to getSchemaType, see DefaultCodegen.getSchemaType
         // and not the types/formats
@@ -174,12 +175,11 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
         typeMapping.put("list", "TArray");
         typeMapping.put("map", "TMap");
         typeMapping.put("set", "TSet");
-        typeMapping.put("file", "HttpFileInput");
+        typeMapping.put("file", "FHttpFileInput");
         typeMapping.put("UUID", "FGuid");
         typeMapping.put("variant", "TVariant");
 
         importMapping = new HashMap<>();
-        importMapping.put("HttpFileInput", "#include \"" + modelNamePrefix + "Helpers.h\"");
         importMapping.put("TSet", "#include \"Containers/Set.h\"");
         importMapping.put("TVariant", "#include \"Misc/TVariant.h\"");
 

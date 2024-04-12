@@ -7,6 +7,7 @@ Private/AdOpportunity.cpp
 Private/AdditionalJoinParams.cpp
 Private/AgreementMessage.cpp
 Private/AppSetting.cpp
+Private/AuditResponse.cpp
 Private/AuthAPI.cpp
 Private/BackfillInfo.cpp
 Private/BackfillSettingsResponse.cpp
@@ -35,6 +36,7 @@ Private/ClientVisibleSettings.cpp
 Private/ConfigAPI.cpp
 Private/ConfigurationV1API.cpp
 Private/ConnectionInfo.cpp
+Private/CreateAuditRequest.cpp
 Private/CreateInventoryRequest.cpp
 Private/CreateInventoryRequests.cpp
 Private/CreateInventoryType.cpp
@@ -44,6 +46,7 @@ Private/CrossplayInput.cpp
 Private/CrossplayPlatform.cpp
 Private/CrossplayPreferences.cpp
 Private/CustomAPI.cpp
+Private/CustomAudit.cpp
 Private/DeleteTicketReason.cpp
 Private/DependenciesSchemasPortal.cpp
 Private/Determiner.cpp
@@ -56,6 +59,7 @@ Private/EntitlementEventStatus.cpp
 Private/EntitlementStatus.cpp
 Private/EntitlementType.cpp
 Private/EntitlementsAPI.cpp
+Private/EntityType.cpp
 Private/EnvironmentAPI.cpp
 Private/EnvironmentConfig.cpp
 Private/EventList.cpp
@@ -63,6 +67,10 @@ Private/EventParamsSchemaResponse.cpp
 Private/EventsAPI.cpp
 Private/ExternalKeyEntitlement.cpp
 Private/FastapicommonPlatformsPortal.cpp
+Private/FileAPI.cpp
+Private/FileListResponse.cpp
+Private/FileResponse.cpp
+Private/FileType.cpp
 Private/FriendRelationship.cpp
 Private/FriendRelationshipV1.cpp
 Private/Friends.cpp
@@ -106,6 +114,7 @@ Private/InventorySession.cpp
 Private/InventorySessionCreateRequest.cpp
 Private/InventorySessionCreateResponse.cpp
 Private/InventoryType.cpp
+Private/InviteSource.cpp
 Private/Item.cpp
 Private/ItemInventory.cpp
 Private/ItemType.cpp
@@ -286,6 +295,7 @@ Private/RuleType.cpp
 Private/SelfSessionPlayerUpdateRequest.cpp
 Private/SendInBlueContact.cpp
 Private/Session.cpp
+Private/SessionAuditAPI.cpp
 Private/SessionInviteRequest.cpp
 Private/SessionInviteResponse.cpp
 Private/SessionJoinResponse.cpp
@@ -305,6 +315,7 @@ Private/SettingTypeVersion.cpp
 Private/SettingsAPI.cpp
 Private/SortOrder.cpp
 Private/Source.cpp
+Private/StorageInformation.cpp
 Private/TeamOverflowAction.cpp
 Private/TeamUpdate.cpp
 Private/TimeAPI.cpp
@@ -334,6 +345,7 @@ Public/AdOpportunity.h
 Public/AdditionalJoinParams.h
 Public/AgreementMessage.h
 Public/AppSetting.h
+Public/AuditResponse.h
 Public/AuthAPI.h
 Public/BackfillInfo.h
 Public/BackfillSettingsResponse.h
@@ -362,6 +374,7 @@ Public/ClientVisibleSettings.h
 Public/ConfigAPI.h
 Public/ConfigurationV1API.h
 Public/ConnectionInfo.h
+Public/CreateAuditRequest.h
 Public/CreateInventoryRequest.h
 Public/CreateInventoryRequests.h
 Public/CreateInventoryType.h
@@ -371,6 +384,7 @@ Public/CrossplayInput.h
 Public/CrossplayPlatform.h
 Public/CrossplayPreferences.h
 Public/CustomAPI.h
+Public/CustomAudit.h
 Public/DeleteTicketReason.h
 Public/DependenciesSchemasPortal.h
 Public/Determiner.h
@@ -383,6 +397,7 @@ Public/EntitlementEventStatus.h
 Public/EntitlementStatus.h
 Public/EntitlementType.h
 Public/EntitlementsAPI.h
+Public/EntityType.h
 Public/EnvironmentAPI.h
 Public/EnvironmentConfig.h
 Public/EventList.h
@@ -390,6 +405,10 @@ Public/EventParamsSchemaResponse.h
 Public/EventsAPI.h
 Public/ExternalKeyEntitlement.h
 Public/FastapicommonPlatformsPortal.h
+Public/FileAPI.h
+Public/FileListResponse.h
+Public/FileResponse.h
+Public/FileType.h
 Public/FriendRelationship.h
 Public/FriendRelationshipV1.h
 Public/Friends.h
@@ -433,6 +452,7 @@ Public/InventorySession.h
 Public/InventorySessionCreateRequest.h
 Public/InventorySessionCreateResponse.h
 Public/InventoryType.h
+Public/InviteSource.h
 Public/Item.h
 Public/ItemInventory.h
 Public/ItemType.h
@@ -613,6 +633,7 @@ Public/RuleType.h
 Public/SelfSessionPlayerUpdateRequest.h
 Public/SendInBlueContact.h
 Public/Session.h
+Public/SessionAuditAPI.h
 Public/SessionInviteRequest.h
 Public/SessionInviteResponse.h
 Public/SessionJoinResponse.h
@@ -632,6 +653,7 @@ Public/SettingTypeVersion.h
 Public/SettingsAPI.h
 Public/SortOrder.h
 Public/Source.h
+Public/StorageInformation.h
 Public/TeamOverflowAction.h
 Public/TeamUpdate.h
 Public/TimeAPI.h

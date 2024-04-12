@@ -43,6 +43,7 @@ enum class ECopyMode : uint8
 void RALLYHEREDEBUGTOOL_API ImGuiDisplayCopyButton(const FString& Key, const FString& Value, bool bContentAsTooltip = false, bool bUseKeyAsLabel = false);
 
 void RALLYHEREDEBUGTOOL_API ImGuiDisplayCopyableValue(const FString& Key, const FString& Value, ECopyMode CopyMode = ECopyMode::KeyValue, bool bButtonOnLeftSide = false, bool bContentAsTooltip = false);
+void RALLYHEREDEBUGTOOL_API ImGuiDisplayCopyableValue(const FString& Key, const FText& Value, ECopyMode CopyMode = ECopyMode::KeyValue, bool bButtonOnLeftSide = false, bool bContentAsTooltip = false);
 void RALLYHEREDEBUGTOOL_API ImGuiDisplayCopyableValue(const FString& Key, const FGuid& Value, ECopyMode CopyMode = ECopyMode::KeyValue, bool bButtonOnLeftSide = false, bool bContentAsTooltip = false);
 void RALLYHEREDEBUGTOOL_API ImGuiDisplayCopyableValue(const FString& Key, const FDateTime& Value, ECopyMode CopyMode = ECopyMode::KeyValue, bool bButtonOnLeftSide = false, bool bContentAsTooltip = false);
 void RALLYHEREDEBUGTOOL_API ImGuiDisplayCopyableValue(const FString& Key, const FTimespan& Value, ECopyMode CopyMode = ECopyMode::KeyValue, bool bButtonOnLeftSide = false, bool bContentAsTooltip = false);
@@ -71,7 +72,7 @@ void RALLYHEREDEBUGTOOL_API ImGuiDisplayCopyableValue(const FString& Key, const 
 template<typename T>
 void RALLYHEREDEBUGTOOL_API ImGuiDisplayCopyableEnumValue(const FString& Key, const T& Value, ECopyMode CopyMode = ECopyMode::KeyValue, bool bButtonOnLeftSide = false, bool bContentAsTooltip = false)
 {
-	ImGuiDisplayCopyableValue(Key, EnumToString(Value), CopyMode, bButtonOnLeftSide, bContentAsTooltip);
+	ImGuiDisplayCopyableValue(Key, UEnum::GetDisplayValueAsText(Value), CopyMode, bButtonOnLeftSide, bContentAsTooltip);
 }
 
 template<typename T>
@@ -146,6 +147,54 @@ void RALLYHEREDEBUGTOOL_API ImGuiDisplayModelData(const FRHAPI_Model& Model, con
 void RALLYHEREDEBUGTOOL_API ImGuiCopyStringToTextInputBuffer(const FString& StringToCopy, TArray<ANSICHAR>& Buffer);
 
 FString RALLYHEREDEBUGTOOL_API ImGuiGetStringFromTextInputBuffer(TArray<ANSICHAR>& Buffer);
+
+// changes current value reference if changed, returns true if changed
+bool RALLYHEREDEBUGTOOL_API ImGuiDisplayCombo(const FString& ComboLabel, FString& CurrentValue, const TArray<FString>& PossibleValues, const TMap<FString, FString>* DisplayNames);
+// changes current value reference if changed, returns true if changed
+template<typename T>
+bool RALLYHEREDEBUGTOOL_API ImGuiDisplayEnumCombo(const FString& ComboLabel, T& CurrentValue)
+{
+	// look up the UEnum for the type
+	static_assert(TIsEnum<T>::Value, "Should only call this with enum types");
+	UEnum* EnumClass = StaticEnum<T>();
+	check(EnumClass != nullptr);
+	
+	// build value list
+	TArray<FString> Values;
+	TMap<FString, FString> DisplayNames;
+	Values.Reserve(EnumClass->NumEnums());
+	DisplayNames.Reserve(EnumClass->NumEnums());
+	for (int64 EnumIndex = 0; EnumIndex < EnumClass->NumEnums(); ++EnumIndex)
+	{
+		const auto ValueName = EnumClass->GetNameStringByIndex(EnumIndex);
+
+		// exclude the _MAX entry
+		bool bIndexIsMAXEntry = EnumClass->ContainsExistingMax() && (ValueName.EndsWith(TEXT("_MAX"), ESearchCase::CaseSensitive));
+		if (bIndexIsMAXEntry)
+		{
+			continue;
+		}
+
+		const auto ValueDisplayname = EnumClass->GetDisplayNameTextByIndex(EnumIndex).ToString();
+		Values.Add(ValueName);
+		DisplayNames.Add(ValueName, ValueDisplayname);
+	}
+
+	// look up current value
+	FString CurrentString = EnumClass->GetNameStringByValue((int64)CurrentValue);
+
+	// display combo
+	bool bChanged = ImGuiDisplayCombo(ComboLabel, CurrentString, Values, &DisplayNames);
+	if (bChanged)
+	{
+		int64 NewValueInt64 = EnumClass->GetValueByNameString(CurrentString);
+		if (NewValueInt64 != INDEX_NONE)
+		{
+			CurrentValue = (T)NewValueInt64;
+		}
+	}
+	return bChanged;
+}
 
 struct RALLYHEREDEBUGTOOL_API FImGuiCustomDataStager
 {

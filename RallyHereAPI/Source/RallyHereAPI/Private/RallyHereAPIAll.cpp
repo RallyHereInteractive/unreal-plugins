@@ -17,6 +17,7 @@ FRallyHereAPIAll::FRallyHereAPIAll()
 	, Entitlements(MakeShareable(new FEntitlementsAPI()))
 	, Environment(MakeShareable(new FEnvironmentAPI()))
 	, Events(MakeShareable(new FEventsAPI()))
+	, File(MakeShareable(new FFileAPI()))
 	, FriendsV1(MakeShareable(new FFriendsV1API()))
 	, FriendsV2(MakeShareable(new FFriendsV2API()))
 	, InstanceNotification(MakeShareable(new FInstanceNotificationAPI()))
@@ -33,6 +34,7 @@ FRallyHereAPIAll::FRallyHereAPIAll()
 	, Rank(MakeShareable(new FRankAPI()))
 	, Regions(MakeShareable(new FRegionsAPI()))
 	, Reports(MakeShareable(new FReportsAPI()))
+	, SessionAudit(MakeShareable(new FSessionAuditAPI()))
 	, Sessions(MakeShareable(new FSessionsAPI()))
 	, Settings(MakeShareable(new FSettingsAPI()))
 	, Time(MakeShareable(new FTimeAPI()))
@@ -50,6 +52,7 @@ FRallyHereAPIAll::FRallyHereAPIAll()
 	AllAPIs.Add(Entitlements);
 	AllAPIs.Add(Environment);
 	AllAPIs.Add(Events);
+	AllAPIs.Add(File);
 	AllAPIs.Add(FriendsV1);
 	AllAPIs.Add(FriendsV2);
 	AllAPIs.Add(InstanceNotification);
@@ -66,6 +69,7 @@ FRallyHereAPIAll::FRallyHereAPIAll()
 	AllAPIs.Add(Rank);
 	AllAPIs.Add(Regions);
 	AllAPIs.Add(Reports);
+	AllAPIs.Add(SessionAudit);
 	AllAPIs.Add(Sessions);
 	AllAPIs.Add(Settings);
 	AllAPIs.Add(Time);
@@ -185,6 +189,16 @@ TSharedRef<FEventsAPI> FRallyHereAPIAll::GetEvents()
 const TSharedRef<FEventsAPI> FRallyHereAPIAll::GetEvents() const
 {
 	return Events;
+}
+
+TSharedRef<FFileAPI> FRallyHereAPIAll::GetFile()
+{
+	return File;
+}
+
+const TSharedRef<FFileAPI> FRallyHereAPIAll::GetFile() const
+{
+	return File;
 }
 
 TSharedRef<FFriendsV1API> FRallyHereAPIAll::GetFriendsV1()
@@ -345,6 +359,16 @@ TSharedRef<FReportsAPI> FRallyHereAPIAll::GetReports()
 const TSharedRef<FReportsAPI> FRallyHereAPIAll::GetReports() const
 {
 	return Reports;
+}
+
+TSharedRef<FSessionAuditAPI> FRallyHereAPIAll::GetSessionAudit()
+{
+	return SessionAudit;
+}
+
+const TSharedRef<FSessionAuditAPI> FRallyHereAPIAll::GetSessionAudit() const
+{
+	return SessionAudit;
 }
 
 TSharedRef<FSessionsAPI> FRallyHereAPIAll::GetSessions()

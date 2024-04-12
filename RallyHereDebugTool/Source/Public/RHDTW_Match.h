@@ -15,10 +15,16 @@ public:
 
 	virtual void Do() override;
 
+	virtual void DoViewMatch();
+	virtual void DoViewActiveMatch();
 	virtual void DoSearchMatches();
 	virtual void DoViewPlayerMatches();
 
+	virtual void DoFilesBlock(const FString& MatchId, bool bDownload = true, bool bUpload = false);
+
 protected:
+
+	FString SearchMatchId;
 
 	int32 SearchPageSize;
 	TArray<ANSICHAR> SearchInstanceId;
@@ -36,6 +42,10 @@ protected:
 		FRH_ErrorInfo ErrorInfo;
 	};
 	TArray<FFullSearchResult> SearchResults;
+
+	FString DownloadDirectory;
+	FString UploadFilePath;
+	FString UploadRemoteFileName;
 
 	void OnSearchMatchesComplete(bool bSuccess, const FRH_MatchSearchResult& Result, const FRH_ErrorInfo& ErrorInfo);
 };

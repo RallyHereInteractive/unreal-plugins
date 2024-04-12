@@ -268,6 +268,10 @@ struct FRH_ErrorInfo
 {
 	GENERATED_BODY()
 	/**
+	 * @brief The raw http response
+	 */
+	FHttpResponsePtr HttpResponse;
+	/**
 	 * @brief The Error Code of the HTTP request.
 	 */
 	UPROPERTY(BlueprintReadOnly, Category = "Error")
@@ -304,7 +308,8 @@ struct FRH_ErrorInfo
 	 * @brief Default constructor.
 	 */
 	FRH_ErrorInfo()
-		: ResponseCode(0)
+		: HttpResponse(nullptr)
+		, ResponseCode(0)
 		, ResponseContent()
 		, bIsRHCommonError(false)
 		, RHCommonError()
@@ -341,6 +346,8 @@ struct FRH_ErrorInfo
 	{
 		if (Response.GetHttpResponse().IsValid())
 		{
+			HttpResponse = Response.GetHttpResponse();
+
 			const auto HttpResp = Response.GetHttpResponse();
 			ResponseCode = HttpResp->GetResponseCode();
 			ResponseContent = HttpResp->GetContentAsString();

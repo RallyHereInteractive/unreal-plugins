@@ -118,6 +118,7 @@ public:
 	TSharedPtr<struct FRHDTW_Analytics> AnalyticsWindow;
 	TSharedPtr<struct FRHDTW_About> AboutWindow;
 	TSharedPtr<struct FRHDTW_Match> MatchesWindow;
+	TSharedPtr<struct FRHDTW_RemoteFile> RemoteFileWindow;
 
 	TMap<FString, bool> SavedWindowVisibilities;
 

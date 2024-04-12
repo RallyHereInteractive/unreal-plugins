@@ -714,6 +714,7 @@ Subsystem for the Game Instance.
 `public inline `[`URH_ConfigSubsystem`](Config.md#classURH__ConfigSubsystem)` * `[`GetConfigSubsystem`](#classURH__GameInstanceSubsystem_1a7d68319809db5ea58fc8cd87eeeca7a7)`() const` | Gets the config subsystem on the instance.
 `public inline `[`URH_SettingsSubsystem`](Settings.md#classURH__SettingsSubsystem)` * `[`GetSettingsSubsystem`](#classURH__GameInstanceSubsystem_1afafed40a588921b712548ce5071bf4cb)`() const` | Gets the settings subsystem on the instance.
 `public inline `[`URH_MatchSubsystem`](Match.md#classURH__MatchSubsystem)` * `[`GetMatchSubsystem`](#classURH__GameInstanceSubsystem_1aa5048780cc5ed5836e03be9d7780706e)`() const` | Gets the match subsystem on the instance.
+`public inline `[`URH_FileSubsystem`](File.md#classURH__FileSubsystem)` * `[`GetFileSubsystem`](#classURH__GameInstanceSubsystem_1a83b23cbc8e10f6f11c3b44842cb47c18)`() const` | Gets the file subsystem on the instance.
 `public void `[`CustomEndpoint`](#classURH__GameInstanceSubsystem_1a1a8dcae5a5642315c8ba20f07aebd162)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const RallyHereAPI::FDelegate_CustomEndpointSend & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
 `public void `[`CustomEndpoint`](#classURH__GameInstanceSubsystem_1aeb1056507af99208ee7397e1b0d23112)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const FRH_CustomEndpointDelegateBlock & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
 `public inline void `[`BLUEPRINT_CustomEndpoint`](#classURH__GameInstanceSubsystem_1a42e7af944e181795ad0a71169e588e92)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const FRH_CustomEndpointDynamicDelegate & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
@@ -730,6 +731,7 @@ Subsystem for the Game Instance.
 `protected `[`URH_ConfigSubsystem`](Config.md#classURH__ConfigSubsystem)` * `[`ConfigSubsystem`](#classURH__GameInstanceSubsystem_1abe30d81653383a1aaf1a454ee67b27ce) | The Config Subsystem.
 `protected `[`URH_SettingsSubsystem`](Settings.md#classURH__SettingsSubsystem)` * `[`SettingsSubsystem`](#classURH__GameInstanceSubsystem_1a0faf95129232d8f19571e9ebdc7b13e1) | The Settings Subsystem.
 `protected `[`URH_MatchSubsystem`](Match.md#classURH__MatchSubsystem)` * `[`MatchSubsystem`](#classURH__GameInstanceSubsystem_1a3d15c09c7d7205f9e38ccc368ffaf62a) | The Match Subsystem.
+`protected `[`URH_FileSubsystem`](File.md#classURH__FileSubsystem)` * `[`FileSubsystem`](#classURH__GameInstanceSubsystem_1aee12d5be87908d3d3cba2884a2f53777) | The File Subsystem.
 `protected bool `[`bEnabled`](#classURH__GameInstanceSubsystem_1aec940d2a189827f2ffea8b8248f9be12) | If the Game Instance Subsystem is enabled.
 `protected bool `[`bEnableSessionBrowser`](#classURH__GameInstanceSubsystem_1a05992b3ee9dc7cc018f9f424069c4748) | If the Session Browser is enabled.
 `protected bool `[`bEnableMatchmakingBrowser`](#classURH__GameInstanceSubsystem_1a65744cd5c8afb2596503251f63a7cf0f) | If the Matchmaking Browser is enabled.
@@ -835,6 +837,11 @@ Gets the settings subsystem on the instance.
 Gets the match subsystem on the instance.
 
 <br>
+#### `public inline `[`URH_FileSubsystem`](File.md#classURH__FileSubsystem)` * `[`GetFileSubsystem`](#classURH__GameInstanceSubsystem_1a83b23cbc8e10f6f11c3b44842cb47c18)`() const` <a id="classURH__GameInstanceSubsystem_1a83b23cbc8e10f6f11c3b44842cb47c18"></a>
+
+Gets the file subsystem on the instance.
+
+<br>
 #### `public void `[`CustomEndpoint`](#classURH__GameInstanceSubsystem_1a1a8dcae5a5642315c8ba20f07aebd162)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const RallyHereAPI::FDelegate_CustomEndpointSend & Delegate)` <a id="classURH__GameInstanceSubsystem_1a1a8dcae5a5642315c8ba20f07aebd162"></a>
 
 Custom Endpoint wrapper (for custom endpoints that require authentication)
@@ -928,6 +935,11 @@ The Settings Subsystem.
 #### `protected `[`URH_MatchSubsystem`](Match.md#classURH__MatchSubsystem)` * `[`MatchSubsystem`](#classURH__GameInstanceSubsystem_1a3d15c09c7d7205f9e38ccc368ffaf62a) <a id="classURH__GameInstanceSubsystem_1a3d15c09c7d7205f9e38ccc368ffaf62a"></a>
 
 The Match Subsystem.
+
+<br>
+#### `protected `[`URH_FileSubsystem`](File.md#classURH__FileSubsystem)` * `[`FileSubsystem`](#classURH__GameInstanceSubsystem_1aee12d5be87908d3d3cba2884a2f53777) <a id="classURH__GameInstanceSubsystem_1aee12d5be87908d3d3cba2884a2f53777"></a>
+
+The File Subsystem.
 
 <br>
 #### `protected bool `[`bEnabled`](#classURH__GameInstanceSubsystem_1aec940d2a189827f2ffea8b8248f9be12) <a id="classURH__GameInstanceSubsystem_1aec940d2a189827f2ffea8b8248f9be12"></a>

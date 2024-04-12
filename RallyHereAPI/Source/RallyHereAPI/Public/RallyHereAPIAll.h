@@ -20,6 +20,7 @@
 #include "EntitlementsAPI.h"
 #include "EnvironmentAPI.h"
 #include "EventsAPI.h"
+#include "FileAPI.h"
 #include "FriendsV1API.h"
 #include "FriendsV2API.h"
 #include "InstanceNotificationAPI.h"
@@ -36,6 +37,7 @@
 #include "RankAPI.h"
 #include "RegionsAPI.h"
 #include "ReportsAPI.h"
+#include "SessionAuditAPI.h"
 #include "SessionsAPI.h"
 #include "SettingsAPI.h"
 #include "TimeAPI.h"
@@ -87,6 +89,9 @@ public:
 	TSharedRef<FEventsAPI> GetEvents();
 	const TSharedRef<FEventsAPI> GetEvents() const;
 
+	TSharedRef<FFileAPI> GetFile();
+	const TSharedRef<FFileAPI> GetFile() const;
+
 	TSharedRef<FFriendsV1API> GetFriendsV1();
 	const TSharedRef<FFriendsV1API> GetFriendsV1() const;
 
@@ -135,6 +140,9 @@ public:
 	TSharedRef<FReportsAPI> GetReports();
 	const TSharedRef<FReportsAPI> GetReports() const;
 
+	TSharedRef<FSessionAuditAPI> GetSessionAudit();
+	const TSharedRef<FSessionAuditAPI> GetSessionAudit() const;
+
 	TSharedRef<FSessionsAPI> GetSessions();
 	const TSharedRef<FSessionsAPI> GetSessions() const;
 
@@ -160,6 +168,7 @@ private:
 	TSharedRef<FEntitlementsAPI> Entitlements;
 	TSharedRef<FEnvironmentAPI> Environment;
 	TSharedRef<FEventsAPI> Events;
+	TSharedRef<FFileAPI> File;
 	TSharedRef<FFriendsV1API> FriendsV1;
 	TSharedRef<FFriendsV2API> FriendsV2;
 	TSharedRef<FInstanceNotificationAPI> InstanceNotification;
@@ -176,6 +185,7 @@ private:
 	TSharedRef<FRankAPI> Rank;
 	TSharedRef<FRegionsAPI> Regions;
 	TSharedRef<FReportsAPI> Reports;
+	TSharedRef<FSessionAuditAPI> SessionAudit;
 	TSharedRef<FSessionsAPI> Sessions;
 	TSharedRef<FSettingsAPI> Settings;
 	TSharedRef<FTimeAPI> Time;
