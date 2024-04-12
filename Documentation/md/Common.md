@@ -351,6 +351,8 @@ Templated helper class defining a native and blueprint friendly delegate as a si
 `public inline  `[`FRH_DelegateBlock`](#structFRH__DelegateBlock_1aedf66ff360f54e9124a5852f76d1e6b9)`(const DelegateType & InDelegate)` | Constructor for binding just the native-only version of the delegate.
 `public inline  `[`FRH_DelegateBlock`](#structFRH__DelegateBlock_1a8ef1217b61837b2e89eafb57c477a7df)`(const DynamicDelegateType & InDynDelegate)` | Constructor for binding just the blueprint friendly version of the delegate.
 `public inline void `[`ExecuteIfBound`](#structFRH__DelegateBlock_1aa9e2440fe1a84c83218ce48353ff6364)`(ParamList... params) const` | Executes both the native-only and blueprint friendly versions of the delegate, if they're bound.
+`public inline bool `[`IsBound`](#structFRH__DelegateBlock_1a648274dc80bd38cf4619abdcf90f0018)`() const` | 
+`public inline bool `[`IsBoundToObject`](#structFRH__DelegateBlock_1a0a618d127583f1e21937af6196062c76)`(const void * Object) const` | 
 
 #### Members
 
@@ -382,6 +384,12 @@ Constructor for binding just the blueprint friendly version of the delegate.
 #### `public inline void `[`ExecuteIfBound`](#structFRH__DelegateBlock_1aa9e2440fe1a84c83218ce48353ff6364)`(ParamList... params) const` <a id="structFRH__DelegateBlock_1aa9e2440fe1a84c83218ce48353ff6364"></a>
 
 Executes both the native-only and blueprint friendly versions of the delegate, if they're bound.
+
+<br>
+#### `public inline bool `[`IsBound`](#structFRH__DelegateBlock_1a648274dc80bd38cf4619abdcf90f0018)`() const` <a id="structFRH__DelegateBlock_1a648274dc80bd38cf4619abdcf90f0018"></a>
+
+<br>
+#### `public inline bool `[`IsBoundToObject`](#structFRH__DelegateBlock_1a0a618d127583f1e21937af6196062c76)`(const void * Object) const` <a id="structFRH__DelegateBlock_1a0a618d127583f1e21937af6196062c76"></a>
 
 <br>
 ## struct `FRH_ErrorInfo` <a id="structFRH__ErrorInfo"></a>
