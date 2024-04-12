@@ -2,8 +2,8 @@
 	"FileVersion" : 3,
 
 	"FriendlyName" : "RallyHere Debug Tool",
-	"Version" : 3,
-	"VersionName" : "14.0.0",
+	"Version" : 15,
+	"VersionName" : "15.0.0",
     "CreatedBy": "Rally Here Interactive, Inc.",
     "CreatedByURL": "rallyhere.gg",
 	"Description": "Contains tools for debugging the RallyHereIntegration plugin via a GUI implemented in Dear ImGui",

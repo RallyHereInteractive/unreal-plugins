@@ -247,6 +247,15 @@ struct FRH_DelegateBlock
 		Delegate.ExecuteIfBound(params...);
 		DynDelegate.ExecuteIfBound(params...);
 	}
+
+	bool IsBound() const
+	{
+		return Delegate.IsBound() || DynDelegate.IsBound();
+	}
+	bool IsBoundToObject(const void* Object) const
+	{
+		return Delegate.IsBoundToObject(Object) || DynDelegate.IsBoundToObject(Object);
+	}
 };
 /** @brief Helper for declaring FRH_DelegateBlock types */
 #define DECLARE_RH_DELEGATE_BLOCK(Type, DelegateType, DynamicDelegateType, ...) typedef FRH_DelegateBlock<DelegateType, DynamicDelegateType,  __VA_ARGS__> Type;

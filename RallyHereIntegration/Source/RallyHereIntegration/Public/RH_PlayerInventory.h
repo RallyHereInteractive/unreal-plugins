@@ -1055,7 +1055,20 @@ protected:
 	/** @brief Gets if the inventory should be polled due to an active watch. */
 	bool ShouldPollInventory() const
 	{
-		return OrderWatch != nullptr && OrderWatch->Delegates.Num() > 0;
+		if (OrderWatch != nullptr && OrderWatch->Delegates.Num() > 0)
+		{
+			bool bDelegatesBound = false;
+			for (const auto& Delegate : OrderWatch->Delegates)
+			{
+				if (Delegate.IsBound())
+				{
+					bDelegatesBound = true;
+					break;
+				}
+			}
+			return bDelegatesBound
+		}
+		return false;
 	}
 	/** @brief Gets if pending inventory should be polled due to outstanding orders. */
 	bool ShouldPollPendingInventory() const
