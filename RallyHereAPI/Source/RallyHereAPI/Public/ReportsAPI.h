@@ -64,8 +64,8 @@ private:
  *
  * Create a new report for a target player
  * Required Permissions:
- * If `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:self`, `sanction:*`, `sanction:report:create:any`
- * Otherwise: any of: `sanction:*`, `sanction:report:create:any`
+ * If `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:self`, `sanction:report:create:any`, `sanction:*`
+ * Otherwise: any of: `sanction:report:create:any`, `sanction:*`
 */
 struct RALLYHEREAPI_API FRequest_CreateReportForTargetPlayerUuid : public FRequest
 {
@@ -135,13 +135,13 @@ struct RALLYHEREAPI_API Traits_CreateReportForTargetPlayerUuid
  * Get reports for a target player
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `sanction:*`, `sanction:report:read:target-any`
+ * - For any player (including themselves) any of: `sanction:report:read:target-any`, `sanction:*`
  * 
  * - For the player themselves : `sanction:report:read:target-self`
  * 
  * Source players will be empty without the Required Permissions:
  * 
- * - For any player (including themselves) any of: `sanction:*`, `sanction:report:read:source-any`
+ * - For any player (including themselves) any of: `sanction:report:read:source-any`, `sanction:*`
  * 
  * - For the player themselves : `sanction:report:read:source-self`
 */
@@ -210,13 +210,13 @@ struct RALLYHEREAPI_API Traits_GetReportsForTargetPlayerUuid
  * Get reports for a target player
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `sanction:*`, `sanction:report:read:target-any`
+ * - For any player (including themselves) any of: `sanction:report:read:target-any`, `sanction:*`
  * 
  * - For the player themselves : `sanction:report:read:target-self`
  * 
  * Source players will be empty without the Required Permissions:
  * 
- * - For any player (including themselves) any of: `sanction:*`, `sanction:report:read:source-any`
+ * - For any player (including themselves) any of: `sanction:report:read:source-any`, `sanction:*`
  * 
  * - For the player themselves : `sanction:report:read:source-self`
 */
@@ -284,7 +284,7 @@ struct RALLYHEREAPI_API Traits_GetReportsForTargetPlayerUuidSelf
  * Get reports from a source player
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `sanction:*`, `sanction:report:read:source-any`
+ * - For any player (including themselves) any of: `sanction:report:read:source-any`, `sanction:*`
  * 
  * - For the player themselves : `sanction:report:read:source-self`
 */
@@ -353,7 +353,7 @@ struct RALLYHEREAPI_API Traits_GetReportsFromSourcePlayerUuid
  * Get reports from a source player
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `sanction:*`, `sanction:report:read:source-any`
+ * - For any player (including themselves) any of: `sanction:report:read:source-any`, `sanction:*`
  * 
  * - For the player themselves : `sanction:report:read:source-self`
 */

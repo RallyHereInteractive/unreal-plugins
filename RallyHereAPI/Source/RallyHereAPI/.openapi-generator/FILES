@@ -7,6 +7,7 @@ Private/AdOpportunity.cpp
 Private/AdditionalJoinParams.cpp
 Private/AgreementMessage.cpp
 Private/AppSetting.cpp
+Private/AuditEvent.cpp
 Private/AuditResponse.cpp
 Private/AuthAPI.cpp
 Private/BackfillInfo.cpp
@@ -46,7 +47,6 @@ Private/CrossplayInput.cpp
 Private/CrossplayPlatform.cpp
 Private/CrossplayPreferences.cpp
 Private/CustomAPI.cpp
-Private/CustomAudit.cpp
 Private/DeleteTicketReason.cpp
 Private/DependenciesSchemasPortal.cpp
 Private/Determiner.cpp
@@ -330,10 +330,17 @@ Private/UpdateInventoryRequestById.cpp
 Private/UpdateInventoryRequests.cpp
 Private/UpdatePersonInfoRequest.cpp
 Private/UsersAPI.cpp
+Private/VOIPAPI.cpp
 Private/ValidationError.cpp
 Private/Vendor.cpp
 Private/VendorType.cpp
 Private/Vendors.cpp
+Private/VivoxAction.cpp
+Private/VivoxGeneralAction.cpp
+Private/VivoxSessionActionOther.cpp
+Private/VivoxSessionActionSelf.cpp
+Private/VoipSessionType.cpp
+Private/VoipTokenResponse.cpp
 Private/XpQuantityTransform.cpp
 Private/XpTable.cpp
 Private/XpTables.cpp
@@ -345,6 +352,7 @@ Public/AdOpportunity.h
 Public/AdditionalJoinParams.h
 Public/AgreementMessage.h
 Public/AppSetting.h
+Public/AuditEvent.h
 Public/AuditResponse.h
 Public/AuthAPI.h
 Public/BackfillInfo.h
@@ -384,7 +392,6 @@ Public/CrossplayInput.h
 Public/CrossplayPlatform.h
 Public/CrossplayPreferences.h
 Public/CustomAPI.h
-Public/CustomAudit.h
 Public/DeleteTicketReason.h
 Public/DependenciesSchemasPortal.h
 Public/Determiner.h
@@ -668,10 +675,17 @@ Public/UpdateInventoryRequestById.h
 Public/UpdateInventoryRequests.h
 Public/UpdatePersonInfoRequest.h
 Public/UsersAPI.h
+Public/VOIPAPI.h
 Public/ValidationError.h
 Public/Vendor.h
 Public/VendorType.h
 Public/Vendors.h
+Public/VivoxAction.h
+Public/VivoxGeneralAction.h
+Public/VivoxSessionActionOther.h
+Public/VivoxSessionActionSelf.h
+Public/VoipSessionType.h
+Public/VoipTokenResponse.h
 Public/XpQuantityTransform.h
 Public/XpTable.h
 Public/XpTables.h
