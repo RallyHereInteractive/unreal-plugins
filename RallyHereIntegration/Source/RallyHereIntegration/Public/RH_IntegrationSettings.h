@@ -484,6 +484,9 @@ public:
 	/** @brief Sets the request priority of Get Site Settings calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Session API Priority", AdvancedDisplay)
 	int32 GetRegionsPriority;
+	/** @brief Sets the request priority of Session Audit calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Session API Priority", AdvancedDisplay)
+	int32 SessionAuditPriority;
 	/** @brief Sets the request priority of Lookup Users calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Users API Priority", AdvancedDisplay)
 	int32 UsersLookupPlayerPriority;
