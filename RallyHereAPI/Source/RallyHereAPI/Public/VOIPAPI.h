@@ -10,10 +10,10 @@
 #include "CoreMinimal.h"
 #include "RallyHereAPIAuthContext.h"
 #include "RallyHereAPIHelpers.h"
+#include "VivoxSessionActionSingle.h"
 #include "VoipSessionType.h"
 #include "HTTPValidationError.h"
 #include "HzApiErrorModel.h"
-#include "VivoxAction.h"
 #include "VoipTokenResponse.h"
 
 namespace RallyHereAPI
@@ -103,7 +103,7 @@ struct RALLYHEREAPI_API FRequest_GetVoipActionToken : public FRequest
 
 	TSharedPtr<FAuthContext> AuthContext;
 	FGuid PlayerUuid;
-	FRHAPI_VivoxAction VivoxAction;
+	ERHAPI_VivoxSessionActionSingle VivoxAction;
 	FString SessionId;
 	ERHAPI_VoipSessionType VoipSessionType;
 	TOptional<bool> RefreshTtl;
@@ -200,7 +200,7 @@ struct RALLYHEREAPI_API FRequest_GetVoipActionTokenMe : public FRequest
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
 	TSharedPtr<FAuthContext> AuthContext;
-	FRHAPI_VivoxAction VivoxAction;
+	ERHAPI_VivoxSessionActionSingle VivoxAction;
 	FString SessionId;
 	ERHAPI_VoipSessionType VoipSessionType;
 	TOptional<bool> RefreshTtl;

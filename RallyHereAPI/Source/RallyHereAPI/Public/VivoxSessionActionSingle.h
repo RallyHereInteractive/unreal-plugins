@@ -9,14 +9,14 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
-#include "VivoxSessionActionSelf.generated.h"
+#include "VivoxSessionActionSingle.generated.h"
 
 
 /**
  * @brief An enumeration.
  */
 UENUM(BlueprintType)
-enum class ERHAPI_VivoxSessionActionSelf : uint8
+enum class ERHAPI_VivoxSessionActionSingle : uint8
 {
 	Join UMETA(ToolTip="An enumeration."),
 	JoinMuted UMETA(ToolTip="An enumeration."),
@@ -24,8 +24,8 @@ enum class ERHAPI_VivoxSessionActionSelf : uint8
 	Mute UMETA(ToolTip="An enumeration."),
 	Transcribe UMETA(ToolTip="An enumeration."),
 };
-RALLYHEREAPI_API FString EnumToString(const ERHAPI_VivoxSessionActionSelf& EnumValue);
-RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_VivoxSessionActionSelf& EnumValue);
-RALLYHEREAPI_API FStringFormatArg ToStringFormatArg(const ERHAPI_VivoxSessionActionSelf& Value);
-RALLYHEREAPI_API void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const ERHAPI_VivoxSessionActionSelf& Value);
-RALLYHEREAPI_API bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, ERHAPI_VivoxSessionActionSelf& Value);
+RALLYHEREAPI_API FString EnumToString(const ERHAPI_VivoxSessionActionSingle& EnumValue);
+RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_VivoxSessionActionSingle& EnumValue);
+RALLYHEREAPI_API FStringFormatArg ToStringFormatArg(const ERHAPI_VivoxSessionActionSingle& Value);
+RALLYHEREAPI_API void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const ERHAPI_VivoxSessionActionSingle& Value);
+RALLYHEREAPI_API bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, ERHAPI_VivoxSessionActionSingle& Value);

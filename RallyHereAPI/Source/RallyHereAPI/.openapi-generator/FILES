@@ -335,10 +335,7 @@ Private/ValidationError.cpp
 Private/Vendor.cpp
 Private/VendorType.cpp
 Private/Vendors.cpp
-Private/VivoxAction.cpp
-Private/VivoxGeneralAction.cpp
-Private/VivoxSessionActionOther.cpp
-Private/VivoxSessionActionSelf.cpp
+Private/VivoxSessionActionSingle.cpp
 Private/VoipSessionType.cpp
 Private/VoipTokenResponse.cpp
 Private/XpQuantityTransform.cpp
@@ -680,10 +677,7 @@ Public/ValidationError.h
 Public/Vendor.h
 Public/VendorType.h
 Public/Vendors.h
-Public/VivoxAction.h
-Public/VivoxGeneralAction.h
-Public/VivoxSessionActionOther.h
-Public/VivoxSessionActionSelf.h
+Public/VivoxSessionActionSingle.h
 Public/VoipSessionType.h
 Public/VoipTokenResponse.h
 Public/XpQuantityTransform.h
