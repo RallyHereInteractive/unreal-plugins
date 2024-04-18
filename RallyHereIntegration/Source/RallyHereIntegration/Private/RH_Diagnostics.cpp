@@ -231,6 +231,39 @@ void FRH_DiagnosticReportGenerator::GenerateDeviceData()
 	StageComplete();
 }
 
+void FRH_DiagnosticReportGenerator::GenerateErrorsData()
+{
+	if (!Options.bIncludeErrors)
+	{
+		StageComplete();
+		return;
+	}
+
+	Errors = MakeShareable(new FJsonObject);
+
+	if (Options.DiagnosticsTracker.IsValid())
+	{
+		auto Tracker = Options.DiagnosticsTracker.Pin();
+		TArray<TSharedPtr<FJsonValue>> NetworkErrorsArray;
+		for (const auto& Error : Tracker->NetworkFailures)
+		{
+			TSharedRef<FJsonValueObject> ErrorValue = MakeShareable(new FJsonValueObject(Error.ToJsonObject()));
+			NetworkErrorsArray.Add(ErrorValue);
+		}
+		Errors->SetArrayField(TEXT("Network-Failures"), NetworkErrorsArray);
+
+		TArray<TSharedPtr<FJsonValue>> TravelErrorsArray;
+		for (const auto& Error : Tracker->TravelFailures)
+		{
+			TSharedRef<FJsonValueObject> ErrorValue = MakeShareable(new FJsonValueObject(Error.ToJsonObject()));
+			TravelErrorsArray.Add(ErrorValue);
+		}
+		Errors->SetArrayField(TEXT("Travel-Failures"), TravelErrorsArray);
+	}
+
+	StageComplete();
+}
+
 
 void FRH_DiagnosticReportGenerator::GenerateFinalReport()
 {
@@ -250,6 +283,11 @@ void FRH_DiagnosticReportGenerator::GenerateFinalReport()
 	if (DeviceData.IsValid())
 	{
 		FinalReport->SetObjectField(TEXT("Device-Data"), DeviceData);
+	}
+
+	if (Errors.IsValid())
+	{
+		FinalReport->SetObjectField(TEXT("Errors"), Errors);
 	}
 	
 	// serialize to string
@@ -318,22 +356,35 @@ void FRH_DiagnosticReportGenerator::WriteToCloud()
 
 FRH_Diagnostics::FRH_Diagnostics()
 {
-
+	ClearCache();
 }
 
 void FRH_Diagnostics::Initialize()
 {
+	if (GEngine != nullptr)
+	{
+		GEngine->OnNetworkFailure().AddSP(this, &FRH_Diagnostics::OnNetworkFailure);
+		GEngine->OnTravelFailure().AddSP(this, &FRH_Diagnostics::OnTravelFailure);
+	}
 }
 
 void FRH_Diagnostics::Uninitialize()
 {
+	if (GEngine != nullptr)
+	{
+		GEngine->OnNetworkFailure().RemoveAll(this);
+		GEngine->OnTravelFailure().RemoveAll(this);
+	}
 }
 
 void FRH_Diagnostics::GenerateReport(const FRH_DiagnosticReportOptions& Options) const
 {
 	auto Helper = MakeShared<FRH_DiagnosticReportGenerator>();
 
-	Helper->Start(Options);
+	auto OptionsCopy = Options;
+	OptionsCopy.DiagnosticsTracker = AsShared();
+
+	Helper->Start(OptionsCopy);
 }
 
 void URH_DiagnosticsBlueprintLibrary::GenerateReport(const FRH_DiagnosticReportOptions& Options)
