@@ -517,6 +517,22 @@ public:
 		return TOptional<FString>();
 	}
 
+	/**
+	* @brief Gets the directory to use for uploading files for this bootstrapper
+	*/
+	virtual bool CanAutoUploadServerFiles() const;
+	/**
+	* @brief Gets the directory to use for uploading files for this bootstrapper
+	*/
+	virtual FRH_FileApiDirectory GetAutoUploadDirectory() const;
+	/**
+	* @brief Capture and upload log file based on settings
+	*/
+	virtual void ConditionalAutoUploadLogFile() const;
+	/**
+	* @brief Capture and upload trace file based on settings
+	*/
+	virtual void ConditionalAutoUploadTraceFile(const FString& TraceFile) const;
 protected:
 	/** The auth context for this bootstrapper */
 	FAuthContextPtr AuthContext;

@@ -6,9 +6,10 @@
 #include "RH_GameInstanceSessionSubsystem.h"
 #include "RH_LocalPlayerSubsystem.h"
 #include "RH_LocalPlayerSessionSubsystem.h"
+#include "RH_FileSubsystem.h"
+#include "RH_MatchSubsystem.h"
 #include "RH_Events.h"
 #include "RH_PlayerInfoSubsystem.h"
-#include "RH_CatalogSubsystem.h"
 #include "RallyHereIntegrationModule.h"
 #include "RallyHereAPIHttpRequester.h"
 #include "RH_ConfigSubsystem.h"
@@ -16,7 +17,7 @@
 #include "Engine/LocalPlayer.h"
 #include "Misc/CoreDelegates.h"
 #include "Misc/CommandLine.h"
-
+#include "HAL/PlatformOutputDevices.h"
 #include "RH_SessionHelpers.h"
 #include "RH_BootstrappingHelpers.h"
 #include "OnlineSubsystemUtils.h"
@@ -24,6 +25,10 @@
 #include "GameFramework/GameModeBase.h"
 #include <IPAddress.h>
 #include "Interfaces/IPv4/IPv4Address.h"
+
+#if UE_TRACE_ENABLED
+#include "ProfilingDebugging/TraceAuxiliary.h"
+#endif
 
 #include "RH_GameHostProviderGHA.h"
 
@@ -139,6 +144,17 @@ void URH_GameInstanceServerBootstrapper::Initialize()
 	}
 
 	SetTerminationSignalHandler();
+
+#if UE_TRACE_ENABLED
+	FTraceAuxiliary::OnTraceStopped.AddWeakLambda(this, [this](FTraceAuxiliary::EConnectionType TraceType, const FString& TraceDestination)
+		{
+			if (TraceType == FTraceAuxiliary::EConnectionType::File)
+			{
+				// upload the trace file
+				ConditionalAutoUploadTraceFile(TraceDestination);
+			};
+		});
+#endif
 
 	UpdateBootstrapStep(ERH_ServerBootstrapFlowStep::Unstarted);
 
@@ -407,6 +423,9 @@ void URH_GameInstanceServerBootstrapper::OnBootstrappingFailed()
 	if (!bMultiSessionServerMode)
 	{
 		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Server bootstrapping failed - bootstrap error is fatal"), ANSI_TO_TCHAR(__FUNCTION__));
+
+		// make sure log file request is completed before flushing
+		ConditionalAutoUploadLogFile();
 
 		// attempt to fully flush HTTP system before we shut down
 		// flush requests to ensure we do not have any pending requests
@@ -1086,6 +1105,9 @@ void URH_GameInstanceServerBootstrapper::OnCleanupSessionSyncComplete(URH_Joined
 		}
 		else
 		{
+			// make sure log file request is completed before flushing
+			ConditionalAutoUploadLogFile();
+
 			// attempt to fully flush HTTP system before we shut down
 			// flush requests to ensure we do not have any pending requests
 			auto HttpRequester = RallyHereAPI::FRallyHereAPIHttpRequester::Get();
@@ -1391,6 +1413,71 @@ void URH_GameInstanceServerBootstrapper::ReconcileAPITemplates(const TArray<FStr
 	AllTemplatesETag = ETag;
 }
 
+bool URH_GameInstanceServerBootstrapper::CanAutoUploadServerFiles() const
+{
+	static bool bCommandlineParsed;
+	static TOptional<bool> bCommandlineFlag;
+	if (!bCommandlineParsed)
+	{
+		bCommandlineParsed = true;
+		if (FParse::Param(FCommandLine::Get(), TEXT("noautouploadserverfiles")))
+		{
+			bCommandlineFlag = false;
+		}
+		else if (FParse::Param(FCommandLine::Get(), TEXT("autouploadserverfiles")))
+		{
+			bCommandlineFlag = true;
+		}
+	}
+	if (bCommandlineFlag.IsSet())
+	{
+		return bCommandlineFlag.GetValue();
+	}
+
+	const auto Settings = GetDefault<URH_IntegrationSettings>();
+	return Settings->bAutoUploadServerFiles;
+}
+
+FRH_FileApiDirectory URH_GameInstanceServerBootstrapper::GetAutoUploadDirectory() const
+{
+	auto GISS = GetGameInstanceSubsystem();
+	if (GISS != nullptr && GISS->GetMatchSubsystem() != nullptr)
+	{
+		return GISS->GetMatchSubsystem()->GetMatchDeveloperFileDirectory(GISS->GetMatchSubsystem()->GetActiveMatchId());
+	}
+	return FRH_FileApiDirectory();
+}
+void URH_GameInstanceServerBootstrapper::ConditionalAutoUploadLogFile() const
+{
+	const auto Settings = GetDefault<URH_IntegrationSettings>();
+	if (CanAutoUploadServerFiles() && Settings->bAutoUploadLogFiles)
+	{
+		auto Directory = GetAutoUploadDirectory();
+		auto GISS = GetGameInstanceSubsystem();
+		if (GISS != nullptr && GISS->GetFileSubsystem() != nullptr)
+		{
+			const FString LogSrcAbsolute = FPlatformOutputDevices::GetAbsoluteLogFilename();
+			FString LogFilename = FPaths::GetCleanFilename(LogSrcAbsolute);
+
+			return GISS->GetFileSubsystem()->UploadFile(Directory, LogFilename, LogSrcAbsolute);
+		}
+	}
+}
+void URH_GameInstanceServerBootstrapper::ConditionalAutoUploadTraceFile(const FString& TraceFile) const
+{
+	const auto Settings = GetDefault<URH_IntegrationSettings>();
+	if (CanAutoUploadServerFiles() && Settings->bAutoUploadTraceFiles)
+	{
+		auto Directory = GetAutoUploadDirectory();
+		auto GISS = GetGameInstanceSubsystem();
+		if (GISS != nullptr && GISS->GetFileSubsystem() != nullptr)
+		{
+			FString LogFilename = FPaths::GetCleanFilename(TraceFile);
+
+			return GISS->GetFileSubsystem()->UploadFile(Directory, LogFilename, TraceFile);
+		}
+	}
+}
 
 //==================================================================
 
@@ -1506,3 +1593,5 @@ void URH_GameInstanceClientBootstrapper::CreateOfflineSession()
 		}
 	}
 }
+
+
