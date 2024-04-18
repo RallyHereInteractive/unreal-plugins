@@ -39,13 +39,10 @@ Config Subsystem used for interfacing with configuration coming from the core se
 `public inline const `[`FRH_ServerTimeCache`](Config.md#structFRH__ServerTimeCache)` & `[`GetServerTimeCache`](#classURH__ConfigSubsystem_1a15bf58f4b62f9d9f638c2ceae633c474)`() const` | Gets the server time cache object.
 `public inline bool `[`GetServerTime`](#classURH__ConfigSubsystem_1a946dd5b6f7306f98540241a22a02bb4a)`(FDateTime & Time) const` | Gets the approximate server time, if we have received one.
 `public inline bool `[`GetServerTimeDrift`](#classURH__ConfigSubsystem_1a8c858f002ca9de0d0c656e2dad1d08a8)`(FTimespan & Timespan) const` | Gets the approximate server time, if we have received one.
-`public inline bool `[`GetHotfixTestValue`](#classURH__ConfigSubsystem_1a36219ba1c46c10df675d0fe546fc31b4)`() const` | Gets if the hotfix system is enabled.
+`public bool `[`GetHotfixTestValue`](#classURH__ConfigSubsystem_1a36219ba1c46c10df675d0fe546fc31b4)`() const` | Gets if the hotfix system is enabled.
 `protected TMap< FString, FString > `[`AppSettings`](#classURH__ConfigSubsystem_1acbb61ccb593c2ab63b88e724af77ac7b) | Map of app settings by name.
 `protected FString `[`AppSettingsETag`](#classURH__ConfigSubsystem_1a8d386d5683aedd0d45ac56239f45eadd) | ETag of last Get App Settings call response.
 `protected FRH_AutoPollerPtr `[`AppSettingsPoller`](#classURH__ConfigSubsystem_1a3fa83db7018f68e8cb4f22733629df09) | Poller responsible for App Settings.
-`protected bool `[`bAutomaticallyPollConfigurationData`](#classURH__ConfigSubsystem_1aa0a4994a1e4728341c2c9d99cb23bf9f) | If set, automatically start the poller for App Settings.
-`protected bool `[`bAutomaticallyApplyHotfixData`](#classURH__ConfigSubsystem_1ae6a1ea4e7a62149e8742979bcc8ad4e8) | If set, automatically use hotfix data in App Settings to modify local data.
-`protected bool `[`bHotfixTestValue`](#classURH__ConfigSubsystem_1ad8f7a9544bd7e02d623c6706b26309d9) | debug value to test if the hotfix system is working properly.
 `protected `[`FRH_ServerTimeCache`](Config.md#structFRH__ServerTimeCache)` `[`ServerTimeCache`](#classURH__ConfigSubsystem_1a89412dc101f8e23d7715719f46ac079a) | Cache data for storing time information from the API.
 `protected virtual void `[`InitPropertiesWithDefaultValues`](#classURH__ConfigSubsystem_1ad979b4e471d7be71b35798bd79547e7b)`()` | Initializes the subsystem with defaults for its cached data.
 `protected virtual void `[`OnFetchAppSettings`](#classURH__ConfigSubsystem_1abdfe9bdb927724998ee14a9ca74fef80)`(const RallyHereAPI::FResponse_GetAppSettingsClient & Resp)` | Handles the response to a Fetch App Settings call.
@@ -170,7 +167,7 @@ Gets the approximate server time, if we have received one.
 True if we have received a server time, false otherwise.
 
 <br>
-#### `public inline bool `[`GetHotfixTestValue`](#classURH__ConfigSubsystem_1a36219ba1c46c10df675d0fe546fc31b4)`() const` <a id="classURH__ConfigSubsystem_1a36219ba1c46c10df675d0fe546fc31b4"></a>
+#### `public bool `[`GetHotfixTestValue`](#classURH__ConfigSubsystem_1a36219ba1c46c10df675d0fe546fc31b4)`() const` <a id="classURH__ConfigSubsystem_1a36219ba1c46c10df675d0fe546fc31b4"></a>
 
 Gets if the hotfix system is enabled.
 
@@ -191,21 +188,6 @@ ETag of last Get App Settings call response.
 #### `protected FRH_AutoPollerPtr `[`AppSettingsPoller`](#classURH__ConfigSubsystem_1a3fa83db7018f68e8cb4f22733629df09) <a id="classURH__ConfigSubsystem_1a3fa83db7018f68e8cb4f22733629df09"></a>
 
 Poller responsible for App Settings.
-
-<br>
-#### `protected bool `[`bAutomaticallyPollConfigurationData`](#classURH__ConfigSubsystem_1aa0a4994a1e4728341c2c9d99cb23bf9f) <a id="classURH__ConfigSubsystem_1aa0a4994a1e4728341c2c9d99cb23bf9f"></a>
-
-If set, automatically start the poller for App Settings.
-
-<br>
-#### `protected bool `[`bAutomaticallyApplyHotfixData`](#classURH__ConfigSubsystem_1ae6a1ea4e7a62149e8742979bcc8ad4e8) <a id="classURH__ConfigSubsystem_1ae6a1ea4e7a62149e8742979bcc8ad4e8"></a>
-
-If set, automatically use hotfix data in App Settings to modify local data.
-
-<br>
-#### `protected bool `[`bHotfixTestValue`](#classURH__ConfigSubsystem_1ad8f7a9544bd7e02d623c6706b26309d9) <a id="classURH__ConfigSubsystem_1ad8f7a9544bd7e02d623c6706b26309d9"></a>
-
-debug value to test if the hotfix system is working properly.
 
 <br>
 #### `protected `[`FRH_ServerTimeCache`](Config.md#structFRH__ServerTimeCache)` `[`ServerTimeCache`](#classURH__ConfigSubsystem_1a89412dc101f8e23d7715719f46ac079a) <a id="classURH__ConfigSubsystem_1a89412dc101f8e23d7715719f46ac079a"></a>

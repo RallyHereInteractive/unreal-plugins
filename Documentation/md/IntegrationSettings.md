@@ -33,6 +33,9 @@ Main settings for the Integration.
 `public TArray< FString > `[`ClientSecretCommandLineKeysInternal`](#classURH__IntegrationSettings_1aa64e26bb1f4e557c739237a12d25c516) | Internal/Hardcoded Keys to check for on the command line for an override to the default ClientSecret. These are potentially used by RallyHere's automation and internal processes.
 `public TArray< FString > `[`ClientSecretCommandLineKeys`](#classURH__IntegrationSettings_1af66963c6acda2ab28c6cf959a33ca65e) | Keys to check for on the command line for an override to the default ClientSecret.
 `public FName `[`EnvironmentOSSName`](#classURH__IntegrationSettings_1a6dcea31e94599c761b3616e62f0b65ab) | Online Subsystem to use for selecting the base URL environment. If not provided, will use the default OSS.
+`public bool `[`bAutomaticallyPollConfigurationData`](#classURH__IntegrationSettings_1a397cb8cd4139f97ef4407deb677064d2) | If set, automatically start the poller for App Settings.
+`public bool `[`bAutomaticallyApplyHotfixData`](#classURH__IntegrationSettings_1addb9eefae16afabde8d73e22ccc0d9ef) | If set, automatically use hotfix data in App Settings to modify local data.
+`public bool `[`bHotfixTestValue`](#classURH__IntegrationSettings_1a666a1ac437643dd797354489ee29eb91) | debug value to test if the hotfix system is working properly.
 `public bool `[`bAutoStartSessionsAfterJoin`](#classURH__IntegrationSettings_1a43e468e0d80e224c6fc7479940e0bcab) | Whether to automatically start platform sessions after joining them.
 `public bool `[`bAutoJoinPlatformSessionsAfterUserChange`](#classURH__IntegrationSettings_1a999a80d02b5974b5be5be331ac13682a) | Whether to automatically join platform sessions after a user change when invites were received while logged out.
 `public bool `[`bAutoMakeSessionsJoinableOnHostMapLoadComplete`](#classURH__IntegrationSettings_1a6776fe09a632de261d308f6402261675) | Whether to automatically mark hosted sessions as joinable after map load completes.
@@ -229,6 +232,21 @@ Keys to check for on the command line for an override to the default ClientSecre
 #### `public FName `[`EnvironmentOSSName`](#classURH__IntegrationSettings_1a6dcea31e94599c761b3616e62f0b65ab) <a id="classURH__IntegrationSettings_1a6dcea31e94599c761b3616e62f0b65ab"></a>
 
 Online Subsystem to use for selecting the base URL environment. If not provided, will use the default OSS.
+
+<br>
+#### `public bool `[`bAutomaticallyPollConfigurationData`](#classURH__IntegrationSettings_1a397cb8cd4139f97ef4407deb677064d2) <a id="classURH__IntegrationSettings_1a397cb8cd4139f97ef4407deb677064d2"></a>
+
+If set, automatically start the poller for App Settings.
+
+<br>
+#### `public bool `[`bAutomaticallyApplyHotfixData`](#classURH__IntegrationSettings_1addb9eefae16afabde8d73e22ccc0d9ef) <a id="classURH__IntegrationSettings_1addb9eefae16afabde8d73e22ccc0d9ef"></a>
+
+If set, automatically use hotfix data in App Settings to modify local data.
+
+<br>
+#### `public bool `[`bHotfixTestValue`](#classURH__IntegrationSettings_1a666a1ac437643dd797354489ee29eb91) <a id="classURH__IntegrationSettings_1a666a1ac437643dd797354489ee29eb91"></a>
+
+debug value to test if the hotfix system is working properly.
 
 <br>
 #### `public bool `[`bAutoStartSessionsAfterJoin`](#classURH__IntegrationSettings_1a43e468e0d80e224c6fc7479940e0bcab) <a id="classURH__IntegrationSettings_1a43e468e0d80e224c6fc7479940e0bcab"></a>
