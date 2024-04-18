@@ -26,6 +26,10 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 	SET_DEFAULT_INTERNAL_COMMANDLINE_KEYS(ClientIdCommandLineKeysInternal, "RallyHereClientId");
 	SET_DEFAULT_INTERNAL_COMMANDLINE_KEYS(ClientSecretCommandLineKeysInternal, "RallyHereClientSecret");
 
+	bAutomaticallyPollConfigurationData = true;
+	bAutomaticallyApplyHotfixData = false;
+	bHotfixTestValue = false;
+
 	bAutoStartSessionsAfterJoin = true;
 	bAutoJoinPlatformSessionsAfterUserChange = true;
 

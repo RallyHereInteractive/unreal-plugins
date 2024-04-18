@@ -206,7 +206,7 @@ public:
 	* @brief Gets if the hotfix system is enabled.
 	* @return Gets if enabled.
 	*/
-	bool GetHotfixTestValue() const { return bHotfixTestValue; }
+	bool GetHotfixTestValue() const;
 
 protected:
 	/** @brief Map of app settings by name. */
@@ -217,15 +217,7 @@ protected:
 	FString AppSettingsETag;
 	/** @brief Poller responsible for App Settings. */
 	FRH_AutoPollerPtr AppSettingsPoller;
-	/** @brief If set, automatically start the poller for App Settings. */
-	UPROPERTY(config)
-	bool bAutomaticallyPollConfigurationData;
-	/** @brief If set, automatically use hotfix data in App Settings to modify local data. */
-	UPROPERTY(config)
-	bool bAutomaticallyApplyHotfixData;
-	/** @brief debug value to test if the hotfix system is working properly. */
-	UPROPERTY(config)
-	bool bHotfixTestValue;
+
 	/** @brief Cache data for storing time information from the API */
 	UPROPERTY(VisibleInstanceOnly, BlueprintGetter = GetServerTimeCache, Category = "Config|Time", meta = (ShowOnlyInnerProperties))
 	FRH_ServerTimeCache ServerTimeCache;

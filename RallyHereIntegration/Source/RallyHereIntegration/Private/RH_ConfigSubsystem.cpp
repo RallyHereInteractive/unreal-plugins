@@ -15,9 +15,7 @@
 URH_ConfigSubsystem::URH_ConfigSubsystem(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
-	bAutomaticallyPollConfigurationData = true;
-	bAutomaticallyApplyHotfixData = false;
-	bHotfixTestValue = false;
+
 }
 
 void URH_ConfigSubsystem::Initialize()
@@ -29,7 +27,7 @@ void URH_ConfigSubsystem::Initialize()
 
 	AppSettingsPoller = FRH_PollControl::CreateAutoPoller();
 
-	if (bAutomaticallyPollConfigurationData)
+	if (GetDefault<URH_IntegrationSettings>()->bAutomaticallyPollConfigurationData)
 	{
 		// start timer to check for updates
 		StartAppSettingsRefreshTimer();
@@ -38,7 +36,7 @@ void URH_ConfigSubsystem::Initialize()
 	// bind callback that checks if we are automatically applying hotfix data on settings change.  Check is internal so it can itself be hotfixed
 	OnSettingsUpdated.AddLambda([](URH_ConfigSubsystem* pConfig)
 	{
-		if (pConfig->bAutomaticallyApplyHotfixData)
+		if (GetDefault<URH_IntegrationSettings>()->bAutomaticallyApplyHotfixData)
 		{
 			pConfig->TriggerHotfixProcessing();
 		}
@@ -134,7 +132,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 		// if we have not yet received a server time update, and we successfully retrieved appsettings, try to retrieve time.  This allows us to piggyback the time update on the appsettings update until it succeeds once
 		// and uses the appsettings success as a good indicator of API health (otherwise, an initial kickoff could fail once and leave us in a bad state)
 		FDateTime ServerTime;
-		if (bAutomaticallyPollConfigurationData && !GetServerTime(ServerTime))
+		if (GetDefault<URH_IntegrationSettings>()->bAutomaticallyPollConfigurationData && !GetServerTime(ServerTime))
 		{
 			// kick off time update
 			RefreshServerTimeCache();
@@ -198,7 +196,7 @@ void URH_ConfigSubsystem::TriggerHotfixProcessing()
 	// do not apply when running editor or commandlet, even if configured to apply automatically.  We do not want to accidentally change data the editor is using
 	if (!IsRunningDedicatedServer() || IsRunningGame())
 	{
-		bool bOldAutomaticallyApplyHotfixData = bAutomaticallyApplyHotfixData;
+		bool bOldAutomaticallyApplyHotfixData = GetDefault<URH_IntegrationSettings>()->bAutomaticallyApplyHotfixData;
 
 		UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 		URH_GameInstanceSubsystem* pGISS = GetGameInstanceSubsystem();
@@ -223,4 +221,9 @@ void URH_ConfigSubsystem::TriggerHotfixProcessing()
 			}
 		}
 	}
+}
+
+bool URH_ConfigSubsystem::GetHotfixTestValue() const
+{
+	return GetDefault<URH_IntegrationSettings>()->bHotfixTestValue;
 }
