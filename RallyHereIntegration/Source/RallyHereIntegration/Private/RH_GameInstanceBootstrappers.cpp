@@ -1420,11 +1420,11 @@ bool URH_GameInstanceServerBootstrapper::CanAutoUploadServerFiles() const
 	if (!bCommandlineParsed)
 	{
 		bCommandlineParsed = true;
-		if (FParse::Param(FCommandLine::Get(), TEXT("noautouploadserverfiles")))
+		if (FParse::Param(FCommandLine::Get(), TEXT("rh.noautouploadserverfiles")))
 		{
 			bCommandlineFlag = false;
 		}
-		else if (FParse::Param(FCommandLine::Get(), TEXT("autouploadserverfiles")))
+		else if (FParse::Param(FCommandLine::Get(), TEXT("rh.autouploadserverfiles")))
 		{
 			bCommandlineFlag = true;
 		}
