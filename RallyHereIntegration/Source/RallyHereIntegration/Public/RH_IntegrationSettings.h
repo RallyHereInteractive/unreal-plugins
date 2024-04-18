@@ -105,14 +105,14 @@ public:
 	// Config, KVs, and Hotfixing
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	/** @brief If set, automatically start the poller for App Settings. */
-	UPROPERTY(config)
+	/** @brief If set, automatically poll for KV data. */
+	UPROPERTY(EditAnywhere, Config, Category = "Config|Polling")
 	bool bAutomaticallyPollConfigurationData;
-	/** @brief If set, automatically use hotfix data in App Settings to modify local data. */
-	UPROPERTY(config)
+	/** @brief If set, automatically apply hotfix data from the config subystem. */
+	UPROPERTY(EditAnywhere, Config, Category = "Config|Hotfix")
 	bool bAutomaticallyApplyHotfixData;
-	/** @brief debug value to test if the hotfix system is working properly. */
-	UPROPERTY(config)
+	/** @brief debug value to test if the hotfix system is working properly.  Do not set! */
+	UPROPERTY(VisibleAnywhere, Config, Category = "Config|Hotfix")
 	bool bHotfixTestValue;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
