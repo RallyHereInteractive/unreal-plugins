@@ -335,6 +335,7 @@ public:
 		FString NetDriverName;
 		ENetworkFailure::Type Type;
 		FString ErrorString;
+		FDateTime TimeStamp;
 
 		FNetworkFailure(UWorld* InWorld, UNetDriver* InNetDriver, ENetworkFailure::Type InType, const FString& InErrorString)
 			: World(InWorld)
@@ -343,6 +344,7 @@ public:
 			, NetDriverName(InNetDriver != nullptr ? NetDriver->GetName() : TEXT(""))
 			, Type(InType)
 			, ErrorString(InErrorString)
+			, TimeStamp(FDateTime::UtcNow())
 		{}
 
 		TSharedRef<FJsonObject> ToJsonObject() const
@@ -352,6 +354,7 @@ public:
 			JsonObject->SetStringField(TEXT("NetDriver"), NetDriverName);
 			JsonObject->SetStringField(TEXT("Type"), ENetworkFailure::ToString(Type));
 			JsonObject->SetStringField(TEXT("ErrorString"), ErrorString);
+			JsonObject->SetStringField(TEXT("Timestamp"), TimeStamp.ToIso8601());
 			return JsonObject;
 		}
 	};
@@ -376,6 +379,7 @@ public:
 		FString WorldName;
 		ETravelFailure::Type Type;
 		FString ErrorString;
+		FDateTime TimeStamp;
 
 
 		FTravelFailure(UWorld* InWorld, ETravelFailure::Type InType, const FString& InErrorString)
@@ -383,6 +387,7 @@ public:
 			, WorldName(InWorld != nullptr ? World->GetName() : TEXT(""))
 			, Type(InType)
 			, ErrorString(InErrorString)
+			, TimeStamp(FDateTime::UtcNow())
 		{}
 
 		TSharedRef<FJsonObject> ToJsonObject() const
@@ -391,6 +396,7 @@ public:
 			JsonObject->SetStringField(TEXT("World"), WorldName);
 			JsonObject->SetStringField(TEXT("Type"), ETravelFailure::ToString(Type));
 			JsonObject->SetStringField(TEXT("ErrorString"), ErrorString);
+			JsonObject->SetStringField(TEXT("Timestamp"), TimeStamp.ToIso8601());
 			return JsonObject;
 		}
 	};

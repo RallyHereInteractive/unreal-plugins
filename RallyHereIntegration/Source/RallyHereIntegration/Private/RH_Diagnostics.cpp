@@ -247,16 +247,24 @@ void FRH_DiagnosticReportGenerator::GenerateErrorsData()
 		TArray<TSharedPtr<FJsonValue>> NetworkErrorsArray;
 		for (const auto& Error : Tracker->NetworkFailures)
 		{
-			TSharedRef<FJsonValueObject> ErrorValue = MakeShareable(new FJsonValueObject(Error.ToJsonObject()));
-			NetworkErrorsArray.Add(ErrorValue);
+			// do not check current world vs options world, as world is changed during travel and will likely mismatch on an error
+			//if (Options.World == Error.World)
+			{
+				TSharedRef<FJsonValueObject> ErrorValue = MakeShareable(new FJsonValueObject(Error.ToJsonObject()));
+				NetworkErrorsArray.Add(ErrorValue);
+			}
 		}
 		Errors->SetArrayField(TEXT("Network-Failures"), NetworkErrorsArray);
 
 		TArray<TSharedPtr<FJsonValue>> TravelErrorsArray;
 		for (const auto& Error : Tracker->TravelFailures)
 		{
-			TSharedRef<FJsonValueObject> ErrorValue = MakeShareable(new FJsonValueObject(Error.ToJsonObject()));
-			TravelErrorsArray.Add(ErrorValue);
+			// do not check current world vs options world, as world is changed during travel and will likely mismatch on an error
+			//if (Options.World == Error.World)
+			{
+				TSharedRef<FJsonValueObject> ErrorValue = MakeShareable(new FJsonValueObject(Error.ToJsonObject()));
+				TravelErrorsArray.Add(ErrorValue);
+			}
 		}
 		Errors->SetArrayField(TEXT("Travel-Failures"), TravelErrorsArray);
 	}
