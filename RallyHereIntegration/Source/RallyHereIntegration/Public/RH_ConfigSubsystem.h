@@ -132,7 +132,7 @@ public:
 	*/
 	virtual void Deinitialize() override;
 
-	typedef RallyHereAPI::Traits_GetAppSettingsAll GetKVsAPIType;
+	typedef RallyHereAPI::Traits_GetKvsV2 GetKVsAPIType;
 	/**
 	* @brief Requests the server for the latest KVs.
 	* @param [in] Delegate Delegate to call when the request is complete.
