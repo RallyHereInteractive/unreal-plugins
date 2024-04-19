@@ -9,6 +9,7 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
+#include "AdditionalJoinParams.h"
 #include "ClientSettings.h"
 #include "CrossplayPreferences.h"
 #include "HostType.h"
@@ -19,9 +20,9 @@
 #include "Platform.h"
 #include "SessionPlayerStatus.h"
 #include "TeamUpdate.h"
-#include "CustomAudit.generated.h"
+#include "AuditEvent.generated.h"
 
-/** @defgroup RHAPI_CustomAudit RallyHere API Model CustomAudit
+/** @defgroup RHAPI_AuditEvent RallyHere API Model AuditEvent
  *  @{
  */
 
@@ -29,7 +30,7 @@
  * @brief 
  */
 USTRUCT(BlueprintType)
-struct RALLYHEREAPI_API FRHAPI_CustomAudit : public FRHAPI_Model
+struct RALLYHEREAPI_API FRHAPI_AuditEvent : public FRHAPI_Model
 {
 	GENERATED_BODY()
 
@@ -698,29 +699,6 @@ struct RALLYHEREAPI_API FRHAPI_CustomAudit : public FRHAPI_Model
 	 /** @brief Clears the value of QueueId_Optional and sets QueueId_IsSet to false */
 	void ClearQueueId() { QueueId_IsSet = false; }
 
-	/** @brief List of players uuids that were effected in this event. Each player will get a unique event */
-	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	TArray<FGuid> Players_Optional{  };
-	/** @brief true if Players_Optional has been set to a value */
-	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool Players_IsSet{ false };
-	/** @brief Gets the value of Players_Optional, regardless of it having been set */
-	TArray<FGuid>& GetPlayers() { return Players_Optional; }
-	/** @brief Gets the value of Players_Optional, regardless of it having been set */
-	const TArray<FGuid>& GetPlayers() const { return Players_Optional; }
-	/** @brief Gets the value of Players_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TArray<FGuid>& GetPlayers(const TArray<FGuid>& DefaultValue) const { if (Players_IsSet) return Players_Optional; return DefaultValue; }
-	/** @brief Fills OutValue with the value of Players_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPlayers(TArray<FGuid>& OutValue) const { if (Players_IsSet) OutValue = Players_Optional; return Players_IsSet; }
-	/** @brief Returns a pointer to Players_Optional, if it has been set, otherwise returns nullptr */
-	TArray<FGuid>* GetPlayersOrNull() { if (Players_IsSet) return &Players_Optional; return nullptr; }
-	/** @brief Returns a pointer to Players_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<FGuid>* GetPlayersOrNull() const { if (Players_IsSet) return &Players_Optional; return nullptr; }
-	/** @brief Sets the value of Players_Optional and also sets Players_IsSet to true */
-	void SetPlayers(TArray<FGuid> NewValue) { Players_Optional = NewValue; Players_IsSet = true; }
-	 /** @brief Clears the value of Players_Optional and sets Players_IsSet to false */
-	void ClearPlayers() { Players_IsSet = false; }
-
 	/** @brief Matchmaking ticket id in this event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString TicketId_Optional{  };
@@ -746,24 +724,24 @@ struct RALLYHEREAPI_API FRHAPI_CustomAudit : public FRHAPI_Model
 
 	/** @brief Additional matchmaking parameters in this event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	TMap<FString, FString> AdditionalParams_Optional{  };
+	FRHAPI_AdditionalJoinParams AdditionalParams_Optional{  };
 	/** @brief true if AdditionalParams_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool AdditionalParams_IsSet{ false };
 	/** @brief Gets the value of AdditionalParams_Optional, regardless of it having been set */
-	TMap<FString, FString>& GetAdditionalParams() { return AdditionalParams_Optional; }
+	FRHAPI_AdditionalJoinParams& GetAdditionalParams() { return AdditionalParams_Optional; }
 	/** @brief Gets the value of AdditionalParams_Optional, regardless of it having been set */
-	const TMap<FString, FString>& GetAdditionalParams() const { return AdditionalParams_Optional; }
+	const FRHAPI_AdditionalJoinParams& GetAdditionalParams() const { return AdditionalParams_Optional; }
 	/** @brief Gets the value of AdditionalParams_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TMap<FString, FString>& GetAdditionalParams(const TMap<FString, FString>& DefaultValue) const { if (AdditionalParams_IsSet) return AdditionalParams_Optional; return DefaultValue; }
+	const FRHAPI_AdditionalJoinParams& GetAdditionalParams(const FRHAPI_AdditionalJoinParams& DefaultValue) const { if (AdditionalParams_IsSet) return AdditionalParams_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of AdditionalParams_Optional and returns true if it has been set, otherwise returns false */
-	bool GetAdditionalParams(TMap<FString, FString>& OutValue) const { if (AdditionalParams_IsSet) OutValue = AdditionalParams_Optional; return AdditionalParams_IsSet; }
+	bool GetAdditionalParams(FRHAPI_AdditionalJoinParams& OutValue) const { if (AdditionalParams_IsSet) OutValue = AdditionalParams_Optional; return AdditionalParams_IsSet; }
 	/** @brief Returns a pointer to AdditionalParams_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FString>* GetAdditionalParamsOrNull() { if (AdditionalParams_IsSet) return &AdditionalParams_Optional; return nullptr; }
+	FRHAPI_AdditionalJoinParams* GetAdditionalParamsOrNull() { if (AdditionalParams_IsSet) return &AdditionalParams_Optional; return nullptr; }
 	/** @brief Returns a pointer to AdditionalParams_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FString>* GetAdditionalParamsOrNull() const { if (AdditionalParams_IsSet) return &AdditionalParams_Optional; return nullptr; }
+	const FRHAPI_AdditionalJoinParams* GetAdditionalParamsOrNull() const { if (AdditionalParams_IsSet) return &AdditionalParams_Optional; return nullptr; }
 	/** @brief Sets the value of AdditionalParams_Optional and also sets AdditionalParams_IsSet to true */
-	void SetAdditionalParams(TMap<FString, FString> NewValue) { AdditionalParams_Optional = NewValue; AdditionalParams_IsSet = true; }
+	void SetAdditionalParams(FRHAPI_AdditionalJoinParams NewValue) { AdditionalParams_Optional = NewValue; AdditionalParams_IsSet = true; }
 	 /** @brief Clears the value of AdditionalParams_Optional and sets AdditionalParams_IsSet to false */
 	void ClearAdditionalParams() { AdditionalParams_IsSet = false; }
 
@@ -792,24 +770,24 @@ struct RALLYHEREAPI_API FRHAPI_CustomAudit : public FRHAPI_Model
 
 	/** @brief ID of the session that was/is in a matchmaking queue for this event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	TArray<FString> QueuedSessionId_Optional{  };
+	FString QueuedSessionId_Optional{  };
 	/** @brief true if QueuedSessionId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool QueuedSessionId_IsSet{ false };
 	/** @brief Gets the value of QueuedSessionId_Optional, regardless of it having been set */
-	TArray<FString>& GetQueuedSessionId() { return QueuedSessionId_Optional; }
+	FString& GetQueuedSessionId() { return QueuedSessionId_Optional; }
 	/** @brief Gets the value of QueuedSessionId_Optional, regardless of it having been set */
-	const TArray<FString>& GetQueuedSessionId() const { return QueuedSessionId_Optional; }
+	const FString& GetQueuedSessionId() const { return QueuedSessionId_Optional; }
 	/** @brief Gets the value of QueuedSessionId_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TArray<FString>& GetQueuedSessionId(const TArray<FString>& DefaultValue) const { if (QueuedSessionId_IsSet) return QueuedSessionId_Optional; return DefaultValue; }
+	const FString& GetQueuedSessionId(const FString& DefaultValue) const { if (QueuedSessionId_IsSet) return QueuedSessionId_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of QueuedSessionId_Optional and returns true if it has been set, otherwise returns false */
-	bool GetQueuedSessionId(TArray<FString>& OutValue) const { if (QueuedSessionId_IsSet) OutValue = QueuedSessionId_Optional; return QueuedSessionId_IsSet; }
+	bool GetQueuedSessionId(FString& OutValue) const { if (QueuedSessionId_IsSet) OutValue = QueuedSessionId_Optional; return QueuedSessionId_IsSet; }
 	/** @brief Returns a pointer to QueuedSessionId_Optional, if it has been set, otherwise returns nullptr */
-	TArray<FString>* GetQueuedSessionIdOrNull() { if (QueuedSessionId_IsSet) return &QueuedSessionId_Optional; return nullptr; }
+	FString* GetQueuedSessionIdOrNull() { if (QueuedSessionId_IsSet) return &QueuedSessionId_Optional; return nullptr; }
 	/** @brief Returns a pointer to QueuedSessionId_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<FString>* GetQueuedSessionIdOrNull() const { if (QueuedSessionId_IsSet) return &QueuedSessionId_Optional; return nullptr; }
+	const FString* GetQueuedSessionIdOrNull() const { if (QueuedSessionId_IsSet) return &QueuedSessionId_Optional; return nullptr; }
 	/** @brief Sets the value of QueuedSessionId_Optional and also sets QueuedSessionId_IsSet to true */
-	void SetQueuedSessionId(TArray<FString> NewValue) { QueuedSessionId_Optional = NewValue; QueuedSessionId_IsSet = true; }
+	void SetQueuedSessionId(FString NewValue) { QueuedSessionId_Optional = NewValue; QueuedSessionId_IsSet = true; }
 	 /** @brief Clears the value of QueuedSessionId_Optional and sets QueuedSessionId_IsSet to false */
 	void ClearQueuedSessionId() { QueuedSessionId_IsSet = false; }
 

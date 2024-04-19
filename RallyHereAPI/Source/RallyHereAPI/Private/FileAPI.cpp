@@ -102,7 +102,7 @@ FRequest_CreateEntityDirectoryFile::FRequest_CreateEntityDirectoryFile()
 
 FName FRequest_CreateEntityDirectoryFile::GetSimplifiedPath() const
 {
-	static FName Path = FName(TEXT("/file/v1/{entity_type}/{entity_id}/{file_type}/{file_name}"));
+	static FName Path = FName(TEXT("/file/v1/{file_type}/{entity_type}/{entity_id}/{file_name}"));
 	return Path;
 }
 
@@ -115,7 +115,7 @@ FString FRequest_CreateEntityDirectoryFile::ComputePath() const
 		{ TEXT("entity_id"), ToStringFormatArg(EntityId) }
 	};
 
-	FString Path = FString::Format(TEXT("/file/v1/{entity_type}/{entity_id}/{file_type}/{file_name}"), PathParams);
+	FString Path = FString::Format(TEXT("/file/v1/{file_type}/{entity_type}/{entity_id}/{file_name}"), PathParams);
 
 	return Path;
 }
@@ -292,17 +292,18 @@ FRequest_DeleteEntityDirectory::FRequest_DeleteEntityDirectory()
 
 FName FRequest_DeleteEntityDirectory::GetSimplifiedPath() const
 {
-	static FName Path = FName(TEXT("/file/v1/{entity_type}"));
+	static FName Path = FName(TEXT("/file/v1/{file_type}/{entity_type}"));
 	return Path;
 }
 
 FString FRequest_DeleteEntityDirectory::ComputePath() const
 {
 	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("file_type"), ToStringFormatArg(FileType) },
 		{ TEXT("entity_type"), ToStringFormatArg(EntityType) }
 	};
 
-	FString Path = FString::Format(TEXT("/file/v1/{entity_type}"), PathParams);
+	FString Path = FString::Format(TEXT("/file/v1/{file_type}/{entity_type}"), PathParams);
 
 	return Path;
 }
@@ -479,7 +480,7 @@ FRequest_DeleteEntityDirectoryFile::FRequest_DeleteEntityDirectoryFile()
 
 FName FRequest_DeleteEntityDirectoryFile::GetSimplifiedPath() const
 {
-	static FName Path = FName(TEXT("/file/v1/{entity_type}/{entity_id}/{file_type}/{file_name}"));
+	static FName Path = FName(TEXT("/file/v1/{file_type}/{entity_type}/{entity_id}/{file_name}"));
 	return Path;
 }
 
@@ -492,7 +493,7 @@ FString FRequest_DeleteEntityDirectoryFile::ComputePath() const
 		{ TEXT("file_type"), ToStringFormatArg(FileType) }
 	};
 
-	FString Path = FString::Format(TEXT("/file/v1/{entity_type}/{entity_id}/{file_type}/{file_name}"), PathParams);
+	FString Path = FString::Format(TEXT("/file/v1/{file_type}/{entity_type}/{entity_id}/{file_name}"), PathParams);
 
 	return Path;
 }
@@ -659,7 +660,7 @@ FRequest_DownloadEntityDirectoryFile::FRequest_DownloadEntityDirectoryFile()
 
 FName FRequest_DownloadEntityDirectoryFile::GetSimplifiedPath() const
 {
-	static FName Path = FName(TEXT("/file/v1/{entity_type}/{entity_id}/{file_type}/{file_name}"));
+	static FName Path = FName(TEXT("/file/v1/{file_type}/{entity_type}/{entity_id}/{file_name}"));
 	return Path;
 }
 
@@ -672,7 +673,7 @@ FString FRequest_DownloadEntityDirectoryFile::ComputePath() const
 		{ TEXT("file_type"), ToStringFormatArg(FileType) }
 	};
 
-	FString Path = FString::Format(TEXT("/file/v1/{entity_type}/{entity_id}/{file_type}/{file_name}"), PathParams);
+	FString Path = FString::Format(TEXT("/file/v1/{file_type}/{entity_type}/{entity_id}/{file_name}"), PathParams);
 
 	return Path;
 }
@@ -861,17 +862,18 @@ FRequest_GetEntityDirectoryInformation::FRequest_GetEntityDirectoryInformation()
 
 FName FRequest_GetEntityDirectoryInformation::GetSimplifiedPath() const
 {
-	static FName Path = FName(TEXT("/file/v1/{entity_type}"));
+	static FName Path = FName(TEXT("/file/v1/{file_type}/{entity_type}"));
 	return Path;
 }
 
 FString FRequest_GetEntityDirectoryInformation::ComputePath() const
 {
 	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("file_type"), ToStringFormatArg(FileType) },
 		{ TEXT("entity_type"), ToStringFormatArg(EntityType) }
 	};
 
-	FString Path = FString::Format(TEXT("/file/v1/{entity_type}"), PathParams);
+	FString Path = FString::Format(TEXT("/file/v1/{file_type}/{entity_type}"), PathParams);
 
 	return Path;
 }
@@ -1048,7 +1050,7 @@ FRequest_ListEntityDirectoryFiles::FRequest_ListEntityDirectoryFiles()
 
 FName FRequest_ListEntityDirectoryFiles::GetSimplifiedPath() const
 {
-	static FName Path = FName(TEXT("/file/v1/{entity_type}/{entity_id}/{file_type}"));
+	static FName Path = FName(TEXT("/file/v1/{file_type}/{entity_type}/{entity_id}"));
 	return Path;
 }
 
@@ -1060,7 +1062,7 @@ FString FRequest_ListEntityDirectoryFiles::ComputePath() const
 		{ TEXT("file_type"), ToStringFormatArg(FileType) }
 	};
 
-	FString Path = FString::Format(TEXT("/file/v1/{entity_type}/{entity_id}/{file_type}"), PathParams);
+	FString Path = FString::Format(TEXT("/file/v1/{file_type}/{entity_type}/{entity_id}"), PathParams);
 
 	return Path;
 }

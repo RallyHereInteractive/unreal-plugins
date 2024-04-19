@@ -6874,6 +6874,10 @@ FString FRequest_LeaveQueue::ComputePath() const
 	{
 		QueryParams.Add(FString(TEXT("reason=")) + ToUrlString(Reason.GetValue()));
 	}
+	if(RefreshTtl.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("refresh_ttl=")) + ToUrlString(RefreshTtl.GetValue()));
+	}
 	Path += TCHAR('?');
 	Path += FString::Join(QueryParams, TEXT("&"));
 
