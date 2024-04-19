@@ -122,6 +122,8 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 	SessionGetBySessionIdPriority = 700000;
 	SessionGetByTypePriority = 700000;
 	SessionsGetOtherPriority = 1000000;
+	SessionVoipLoginTokenPriority = 1000000;
+	SessionVoipActionTokenPriority = 1000000;
 	SettingsGetPriority = 800000;
 	SettingsGetTypesPriority = 1000000;
 	SettingsUpdatePriority = 800000;

@@ -954,6 +954,21 @@ void URH_OfflineSession::EndInstance(const FRH_OnSessionUpdatedDelegateBlock& De
 	Delegate.ExecuteIfBound(true, this, FRH_ErrorInfo());
 }
 
+void URH_OfflineSession::GenerateVoipLoginToken(const FRH_OnSessionGetVoipTokenDelegateBlock& Delegate)
+{
+	UE_LOG(LogRHSession, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	// offline sessions do not support voip
+	Delegate.ExecuteIfBound(false, FRHAPI_VoipTokenResponse(), FRH_ErrorInfo());
+}
+void URH_OfflineSession::GenerateVoipActionToken(ERHAPI_VivoxSessionActionSingle VivoxAction, ERHAPI_VoipSessionType VoipSessionType, const FRH_OnSessionGetVoipTokenDelegateBlock& Delegate)
+{
+	UE_LOG(LogRHSession, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	// offline sessions do not support voip
+	Delegate.ExecuteIfBound(false, FRHAPI_VoipTokenResponse(), FRH_ErrorInfo());
+}
+
 void URH_OfflineSession::UpdateSessionInfo(const FRHAPI_SessionUpdate& SessionInfoUpdate, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	UE_LOG(LogRHSession, Verbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
@@ -1332,6 +1347,79 @@ void URH_OnlineSession::RequestInstance(const FRHAPI_InstanceRequest& InstanceRe
 void URH_OnlineSession::EndInstance(const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	DoRequestViaHelper<RallyHereAPI::Traits_EndInstance>(GetSessionId(), GetSessionOwner(), Delegate, GetDefault<URH_IntegrationSettings>()->SessionEndInstancePriority);
+}
+
+void URH_OnlineSession::GenerateVoipLoginToken(const FRH_OnSessionGetVoipTokenDelegateBlock& Delegate)
+{
+	UE_LOG(LogRHSession, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+	
+	typedef RallyHereAPI::Traits_GetVoipLoginToken BaseType;
+	BaseType::Request Request;
+	Request.AuthContext = GetSessionOwner()->GetSessionAuthContext();
+	
+	struct FRH_VoipLoginTokenResponseContext
+	{
+		FRHAPI_VoipTokenResponse Resp;
+	};
+	auto ResponseContext = MakeShared<FRH_VoipLoginTokenResponseContext>();
+
+	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+		BaseType::Delegate::CreateLambda([ResponseContext](const BaseType::Response& Resp)
+		{
+			ResponseContext->Resp = Resp.Content;
+		}),
+		FRH_GenericSuccessWithErrorDelegate::CreateLambda([ResponseContext, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+		{
+			if (bSuccess)
+			{
+				Delegate.ExecuteIfBound(bSuccess, ResponseContext->Resp, ErrorInfo);
+			}
+			else
+			{
+				Delegate.ExecuteIfBound(false, FRHAPI_VoipTokenResponse(), ErrorInfo);
+			}
+		}),
+		GetDefault<URH_IntegrationSettings>()->SessionVoipLoginTokenPriority);
+
+	Helper->Start(RH_APIs::GetAPIs().GetVOIP(), Request);
+}
+
+void URH_OnlineSession::GenerateVoipActionToken(ERHAPI_VivoxSessionActionSingle VivoxAction, ERHAPI_VoipSessionType VoipSessionType, const FRH_OnSessionGetVoipTokenDelegateBlock& Delegate)
+{
+	UE_LOG(LogRHSession, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	typedef RallyHereAPI::Traits_GetVoipActionTokenMe BaseType;
+	BaseType::Request Request;
+	Request.AuthContext = GetSessionOwner()->GetSessionAuthContext();
+	Request.SessionId = GetSessionId();
+	Request.VivoxAction = VivoxAction;
+	Request.VoipSessionType = VoipSessionType;
+
+	struct FRH_VoipLoginTokenResponseContext
+	{
+		FRHAPI_VoipTokenResponse Resp;
+	};
+	auto ResponseContext = MakeShared<FRH_VoipLoginTokenResponseContext>();
+
+	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+		BaseType::Delegate::CreateLambda([ResponseContext](const BaseType::Response& Resp)
+			{
+				ResponseContext->Resp = Resp.Content;
+			}),
+		FRH_GenericSuccessWithErrorDelegate::CreateLambda([ResponseContext, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+			{
+				if (bSuccess)
+				{
+					Delegate.ExecuteIfBound(bSuccess, ResponseContext->Resp, ErrorInfo);
+				}
+				else
+				{
+					Delegate.ExecuteIfBound(false, FRHAPI_VoipTokenResponse(), ErrorInfo);
+				}
+			}),
+		GetDefault<URH_IntegrationSettings>()->SessionVoipActionTokenPriority);
+
+	Helper->Start(RH_APIs::GetAPIs().GetVOIP(), Request);
 }
 
 void URH_OnlineSession::UpdateSessionInfo(const FRHAPI_SessionUpdate& Update, const FRH_OnSessionUpdatedDelegateBlock& Delegate)

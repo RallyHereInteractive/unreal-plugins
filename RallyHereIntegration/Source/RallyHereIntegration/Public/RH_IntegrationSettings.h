@@ -472,6 +472,12 @@ public:
 	/** @brief Sets the request priority of Get Other Sessions calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Session API Priority", AdvancedDisplay)
 	int32 SessionsGetOtherPriority;
+	/** @brief Sets the request priority of VOIP Login calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Session API Priority", AdvancedDisplay)
+	int32 SessionVoipLoginTokenPriority;
+	/** @brief Sets the request priority of VOIP Action calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Session API Priority", AdvancedDisplay)
+	int32 SessionVoipActionTokenPriority;
 	/** @brief Sets the request priority of Get Settings calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Settings API Priority", AdvancedDisplay)
 	int32 SettingsGetPriority;
