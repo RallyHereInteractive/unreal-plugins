@@ -1536,3 +1536,116 @@ void URH_OnlineSession::AcknowledgeBackfill(bool bEnable, const FRH_OnSessionUpd
 		Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
 	}
 }
+
+//////////////////////////////////////////////////////////////////////////////////
+// Automation tests
+//////////////////////////////////////////////////////////////////////////////////
+
+#if WITH_DEV_AUTOMATION_TESTS
+
+#include "RH_AutomationTests.h"
+
+BEGIN_DEFINE_SPEC(FRH_SessionVoipSimple, "RHAutomation.Session.VOIP.Spec", EAutomationTestFlags::ClientContext | EAutomationTestFlags::RequiresUser | EAutomationTestFlags::ProductFilter | EAutomationTestFlags::MediumPriority)
+
+FRH_SessionOwnerPtr SessionOwner;
+TWeakObjectPtr<URH_SessionView> Session;
+TWeakObjectPtr<URH_JoinedSession> JoinedSession;
+
+bool SessionTestBoilerplate()
+{
+	SessionOwner.Reset();
+	Session.Reset();
+
+	auto LPSubsystem = RHAutomationTestUtils::GetRHLocalPlayerSubsystem(this);
+	if (LPSubsystem != nullptr)
+	{
+		SessionOwner = LPSubsystem->GetSessionSubsystem();
+	}
+	/*
+	if (!SessionOwner.IsValid())
+	{
+		auto GISubsystem = RHAutomationTestUtils::GetRHGameInstanceSubsystem();
+		if (GISubsystem.IsValid())
+		{
+			SessionOwner = GISubsystem->GetSessionSearchCache();
+		}
+	}
+	*/
+	UTEST_NOT_NULL(TEXT("Session Owner"), SessionOwner.Get());
+
+	UTEST_NOT_NULL(TEXT("Auth Context"), SessionOwner->GetSessionAuthContext().Get());
+
+	UTEST_TRUE(TEXT("Logged in"), SessionOwner->GetSessionAuthContext()->IsLoggedIn());
+
+	return true;
+};
+
+END_DEFINE_SPEC(FRH_SessionVoipSimple)
+
+void FRH_SessionVoipSimple::Define()
+{
+	Describe("Session VOIP", [this]()
+		{
+			BeforeEach([this]()
+				{
+					SessionTestBoilerplate();
+				});
+
+			LatentIt("should create a party session in region 1, request voip login, and request join token", [this](const FDoneDelegate& Done)
+				{					
+					FRHAPI_CreateOrJoinRequest Params = {};
+					Params.SetSessionType(TEXT("party"));
+					Params.SetRegionId(TEXT("1"));
+					Params.SetClientVersion(URH_JoinedSession::GetClientVersionForSession());
+
+					URH_OnlineSession::CreateOrJoinByType(Params, SessionOwner.GetObject(), FRH_OnSessionUpdatedDelegate::CreateLambda([this, Done](bool bSuccess, URH_SessionView* NewSession, const FRH_ErrorInfo& ErrorInfo)
+						{
+							if (!TestTrue(TEXT("CreateSession"), bSuccess))
+							{
+								Done.Execute();
+								return;
+							}
+							
+							Session = NewSession;
+							JoinedSession = Cast<URH_JoinedSession>(NewSession);
+							if (!TestNotNull(TEXT("Session"), Session.Get()) || !TestNotNull(TEXT("JoinedSession"), JoinedSession.Get()))
+							{
+								Done.Execute();
+								return;
+							}
+														
+							JoinedSession->GenerateVoipLoginToken(FRH_OnSessionGetVoipTokenDelegate::CreateLambda([this, Done](bool bSuccess, const FRHAPI_VoipTokenResponse& Token, const FRH_ErrorInfo& ErrorInfo)
+								{
+									if (!TestTrue(TEXT("GenerateVoipLoginToken"), bSuccess))
+									{
+										Done.Execute();
+										return;
+									}
+									if (!TestTrue(TEXT("TokenIsValid"), Token.GetToken().Len() > 0))
+									{
+										Done.Execute();
+										return;	
+									}
+
+									JoinedSession->GenerateVoipActionToken(ERHAPI_VivoxSessionActionSingle::Join, ERHAPI_VoipSessionType::Session, FRH_OnSessionGetVoipTokenDelegate::CreateLambda([this, Done](bool bSuccess, const FRHAPI_VoipTokenResponse& Token, const FRH_ErrorInfo& ErrorInfo)
+										{
+											if (!TestTrue(TEXT("GenerateVoipActionToken"), bSuccess))
+											{
+												Done.Execute();
+												return;
+											}
+											if (!TestTrue(TEXT("TokenIsValid"), Token.GetToken().Len() > 0))
+											{
+												Done.Execute();
+												return;
+											}
+
+											Done.Execute();
+										}));
+								}));
+						}));
+				});
+		});
+}
+
+#endif
