@@ -42,6 +42,7 @@
 #include "SettingsAPI.h"
 #include "TimeAPI.h"
 #include "UsersAPI.h"
+#include "VOIPAPI.h"
 
 namespace RallyHereAPI
 {
@@ -155,6 +156,9 @@ public:
 	TSharedRef<FUsersAPI> GetUsers();
 	const TSharedRef<FUsersAPI> GetUsers() const;
 
+	TSharedRef<FVOIPAPI> GetVOIP();
+	const TSharedRef<FVOIPAPI> GetVOIP() const;
+
 private:
 	TArray<TSharedRef<FAPI>> AllAPIs;
 	TSharedRef<FAdAPI> Ad;
@@ -190,5 +194,6 @@ private:
 	TSharedRef<FSettingsAPI> Settings;
 	TSharedRef<FTimeAPI> Time;
 	TSharedRef<FUsersAPI> Users;
+	TSharedRef<FVOIPAPI> VOIP;
 };
 }

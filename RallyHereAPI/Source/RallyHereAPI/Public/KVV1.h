@@ -9,9 +9,9 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
-#include "AppSetting.generated.h"
+#include "KVV1.generated.h"
 
-/** @defgroup RHAPI_AppSetting RallyHere API Model AppSetting
+/** @defgroup RHAPI_KVV1 RallyHere API Model KVV1
  *  @{
  */
 
@@ -19,7 +19,7 @@
  * @brief A key/value pair that represents a setting to be used by the client.
  */
 USTRUCT(BlueprintType)
-struct RALLYHEREAPI_API FRHAPI_AppSetting : public FRHAPI_Model
+struct RALLYHEREAPI_API FRHAPI_KVV1 : public FRHAPI_Model
 {
 	GENERATED_BODY()
 
@@ -59,7 +59,6 @@ struct RALLYHEREAPI_API FRHAPI_AppSetting : public FRHAPI_Model
 	/** @brief Sets the value of Value */
 	void SetValue(FString NewValue) { Value = NewValue;  }
 
-	/** @brief Notes to describe the key value pair */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Notes_Optional{  };
 	/** @brief true if Notes_Optional has been set to a value */

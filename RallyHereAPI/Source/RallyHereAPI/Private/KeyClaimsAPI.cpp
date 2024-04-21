@@ -28,25 +28,38 @@ FHttpRequestPtr FKeyClaimsAPI::ClaimPlayerUuidUnclaimedKeyClaim(const FRequest_C
 	if (!IsValid())
 		return nullptr;
 
+	// create the http request and tracking structure
 	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
+	// add headers to tracker
 	for(const auto& It : AdditionalHeaderParams)
 	{
 		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
 	}
 
+	// setup http request from custom request object
 	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
 	{
 		return nullptr;
 	}
+	
+	// allow a delegate to modify the http request (such as binding custom handling delegates)
+	Request.OnModifyRequest().Broadcast(Request, RequestData->HttpRequest);
+	
+	// update request metadata flags just before we store it in the tracking object
+	FRequestMetadata Metadata = Request.GetRequestMetadata();
+	Request.SetMetadataFlags(Metadata);
 
-	RequestData->SetMetadata(Request.GetRequestMetadata());
+	// store metadata in tracking object (last place used by request)
+	RequestData->SetMetadata(Metadata);
 
+	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
 	ResponseDelegate.BindSP(this, &FKeyClaimsAPI::OnClaimPlayerUuidUnclaimedKeyClaimResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
+	// submit request to http system
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
 	if (HttpRequester)
 	{
@@ -112,12 +125,12 @@ bool FRequest_ClaimPlayerUuidUnclaimedKeyClaim::SetupHttpRequest(const FHttpRequ
 
 	HttpRequest->SetVerb(TEXT("POST"));
 
-	if (!AuthContext)
+	if (!AuthContext && !bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_ClaimPlayerUuidUnclaimedKeyClaim - missing auth context"));
 		return false;
 	}
-	if (!AuthContext->AddBearerToken(HttpRequest))
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_ClaimPlayerUuidUnclaimedKeyClaim - failed to add bearer token"));
 		return false;
@@ -238,25 +251,38 @@ FHttpRequestPtr FKeyClaimsAPI::ClaimPlayerUuidUnclaimedKeyClaimForMe(const FRequ
 	if (!IsValid())
 		return nullptr;
 
+	// create the http request and tracking structure
 	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
+	// add headers to tracker
 	for(const auto& It : AdditionalHeaderParams)
 	{
 		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
 	}
 
+	// setup http request from custom request object
 	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
 	{
 		return nullptr;
 	}
+	
+	// allow a delegate to modify the http request (such as binding custom handling delegates)
+	Request.OnModifyRequest().Broadcast(Request, RequestData->HttpRequest);
+	
+	// update request metadata flags just before we store it in the tracking object
+	FRequestMetadata Metadata = Request.GetRequestMetadata();
+	Request.SetMetadataFlags(Metadata);
 
-	RequestData->SetMetadata(Request.GetRequestMetadata());
+	// store metadata in tracking object (last place used by request)
+	RequestData->SetMetadata(Metadata);
 
+	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
 	ResponseDelegate.BindSP(this, &FKeyClaimsAPI::OnClaimPlayerUuidUnclaimedKeyClaimForMeResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
+	// submit request to http system
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
 	if (HttpRequester)
 	{
@@ -321,12 +347,12 @@ bool FRequest_ClaimPlayerUuidUnclaimedKeyClaimForMe::SetupHttpRequest(const FHtt
 
 	HttpRequest->SetVerb(TEXT("POST"));
 
-	if (!AuthContext)
+	if (!AuthContext && !bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_ClaimPlayerUuidUnclaimedKeyClaimForMe - missing auth context"));
 		return false;
 	}
-	if (!AuthContext->AddBearerToken(HttpRequest))
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_ClaimPlayerUuidUnclaimedKeyClaimForMe - failed to add bearer token"));
 		return false;
@@ -447,25 +473,38 @@ FHttpRequestPtr FKeyClaimsAPI::ClaimUnclaimedKeyClaim(const FRequest_ClaimUnclai
 	if (!IsValid())
 		return nullptr;
 
+	// create the http request and tracking structure
 	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
+	// add headers to tracker
 	for(const auto& It : AdditionalHeaderParams)
 	{
 		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
 	}
 
+	// setup http request from custom request object
 	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
 	{
 		return nullptr;
 	}
+	
+	// allow a delegate to modify the http request (such as binding custom handling delegates)
+	Request.OnModifyRequest().Broadcast(Request, RequestData->HttpRequest);
+	
+	// update request metadata flags just before we store it in the tracking object
+	FRequestMetadata Metadata = Request.GetRequestMetadata();
+	Request.SetMetadataFlags(Metadata);
 
-	RequestData->SetMetadata(Request.GetRequestMetadata());
+	// store metadata in tracking object (last place used by request)
+	RequestData->SetMetadata(Metadata);
 
+	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
 	ResponseDelegate.BindSP(this, &FKeyClaimsAPI::OnClaimUnclaimedKeyClaimResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
+	// submit request to http system
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
 	if (HttpRequester)
 	{
@@ -531,12 +570,12 @@ bool FRequest_ClaimUnclaimedKeyClaim::SetupHttpRequest(const FHttpRequestRef& Ht
 
 	HttpRequest->SetVerb(TEXT("POST"));
 
-	if (!AuthContext)
+	if (!AuthContext && !bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_ClaimUnclaimedKeyClaim - missing auth context"));
 		return false;
 	}
-	if (!AuthContext->AddBearerToken(HttpRequest))
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_ClaimUnclaimedKeyClaim - failed to add bearer token"));
 		return false;
@@ -657,25 +696,38 @@ FHttpRequestPtr FKeyClaimsAPI::ClaimUnclaimedKeyClaimForMe(const FRequest_ClaimU
 	if (!IsValid())
 		return nullptr;
 
+	// create the http request and tracking structure
 	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
+	// add headers to tracker
 	for(const auto& It : AdditionalHeaderParams)
 	{
 		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
 	}
 
+	// setup http request from custom request object
 	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
 	{
 		return nullptr;
 	}
+	
+	// allow a delegate to modify the http request (such as binding custom handling delegates)
+	Request.OnModifyRequest().Broadcast(Request, RequestData->HttpRequest);
+	
+	// update request metadata flags just before we store it in the tracking object
+	FRequestMetadata Metadata = Request.GetRequestMetadata();
+	Request.SetMetadataFlags(Metadata);
 
-	RequestData->SetMetadata(Request.GetRequestMetadata());
+	// store metadata in tracking object (last place used by request)
+	RequestData->SetMetadata(Metadata);
 
+	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
 	ResponseDelegate.BindSP(this, &FKeyClaimsAPI::OnClaimUnclaimedKeyClaimForMeResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
+	// submit request to http system
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
 	if (HttpRequester)
 	{
@@ -740,12 +792,12 @@ bool FRequest_ClaimUnclaimedKeyClaimForMe::SetupHttpRequest(const FHttpRequestRe
 
 	HttpRequest->SetVerb(TEXT("POST"));
 
-	if (!AuthContext)
+	if (!AuthContext && !bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_ClaimUnclaimedKeyClaimForMe - missing auth context"));
 		return false;
 	}
-	if (!AuthContext->AddBearerToken(HttpRequest))
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_ClaimUnclaimedKeyClaimForMe - failed to add bearer token"));
 		return false;
@@ -866,25 +918,38 @@ FHttpRequestPtr FKeyClaimsAPI::GetKeyClaim(const FRequest_GetKeyClaim& Request, 
 	if (!IsValid())
 		return nullptr;
 
+	// create the http request and tracking structure
 	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
+	// add headers to tracker
 	for(const auto& It : AdditionalHeaderParams)
 	{
 		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
 	}
 
+	// setup http request from custom request object
 	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
 	{
 		return nullptr;
 	}
+	
+	// allow a delegate to modify the http request (such as binding custom handling delegates)
+	Request.OnModifyRequest().Broadcast(Request, RequestData->HttpRequest);
+	
+	// update request metadata flags just before we store it in the tracking object
+	FRequestMetadata Metadata = Request.GetRequestMetadata();
+	Request.SetMetadataFlags(Metadata);
 
-	RequestData->SetMetadata(Request.GetRequestMetadata());
+	// store metadata in tracking object (last place used by request)
+	RequestData->SetMetadata(Metadata);
 
+	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
 	ResponseDelegate.BindSP(this, &FKeyClaimsAPI::OnGetKeyClaimResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
+	// submit request to http system
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
 	if (HttpRequester)
 	{
@@ -950,12 +1015,12 @@ bool FRequest_GetKeyClaim::SetupHttpRequest(const FHttpRequestRef& HttpRequest) 
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
-	if (!AuthContext)
+	if (!AuthContext && !bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetKeyClaim - missing auth context"));
 		return false;
 	}
-	if (!AuthContext->AddBearerToken(HttpRequest))
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetKeyClaim - failed to add bearer token"));
 		return false;
@@ -1065,25 +1130,38 @@ FHttpRequestPtr FKeyClaimsAPI::GetKeyClaimForMe(const FRequest_GetKeyClaimForMe&
 	if (!IsValid())
 		return nullptr;
 
+	// create the http request and tracking structure
 	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
+	// add headers to tracker
 	for(const auto& It : AdditionalHeaderParams)
 	{
 		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
 	}
 
+	// setup http request from custom request object
 	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
 	{
 		return nullptr;
 	}
+	
+	// allow a delegate to modify the http request (such as binding custom handling delegates)
+	Request.OnModifyRequest().Broadcast(Request, RequestData->HttpRequest);
+	
+	// update request metadata flags just before we store it in the tracking object
+	FRequestMetadata Metadata = Request.GetRequestMetadata();
+	Request.SetMetadataFlags(Metadata);
 
-	RequestData->SetMetadata(Request.GetRequestMetadata());
+	// store metadata in tracking object (last place used by request)
+	RequestData->SetMetadata(Metadata);
 
+	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
 	ResponseDelegate.BindSP(this, &FKeyClaimsAPI::OnGetKeyClaimForMeResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
+	// submit request to http system
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
 	if (HttpRequester)
 	{
@@ -1148,12 +1226,12 @@ bool FRequest_GetKeyClaimForMe::SetupHttpRequest(const FHttpRequestRef& HttpRequ
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
-	if (!AuthContext)
+	if (!AuthContext && !bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetKeyClaimForMe - missing auth context"));
 		return false;
 	}
-	if (!AuthContext->AddBearerToken(HttpRequest))
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetKeyClaimForMe - failed to add bearer token"));
 		return false;
@@ -1263,25 +1341,38 @@ FHttpRequestPtr FKeyClaimsAPI::GetKeyClaims(const FRequest_GetKeyClaims& Request
 	if (!IsValid())
 		return nullptr;
 
+	// create the http request and tracking structure
 	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
+	// add headers to tracker
 	for(const auto& It : AdditionalHeaderParams)
 	{
 		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
 	}
 
+	// setup http request from custom request object
 	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
 	{
 		return nullptr;
 	}
+	
+	// allow a delegate to modify the http request (such as binding custom handling delegates)
+	Request.OnModifyRequest().Broadcast(Request, RequestData->HttpRequest);
+	
+	// update request metadata flags just before we store it in the tracking object
+	FRequestMetadata Metadata = Request.GetRequestMetadata();
+	Request.SetMetadataFlags(Metadata);
 
-	RequestData->SetMetadata(Request.GetRequestMetadata());
+	// store metadata in tracking object (last place used by request)
+	RequestData->SetMetadata(Metadata);
 
+	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
 	ResponseDelegate.BindSP(this, &FKeyClaimsAPI::OnGetKeyClaimsResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
+	// submit request to http system
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
 	if (HttpRequester)
 	{
@@ -1346,12 +1437,12 @@ bool FRequest_GetKeyClaims::SetupHttpRequest(const FHttpRequestRef& HttpRequest)
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
-	if (!AuthContext)
+	if (!AuthContext && !bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetKeyClaims - missing auth context"));
 		return false;
 	}
-	if (!AuthContext->AddBearerToken(HttpRequest))
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetKeyClaims - failed to add bearer token"));
 		return false;
@@ -1461,25 +1552,38 @@ FHttpRequestPtr FKeyClaimsAPI::GetKeyClaimsForMe(const FRequest_GetKeyClaimsForM
 	if (!IsValid())
 		return nullptr;
 
+	// create the http request and tracking structure
 	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
+	// add headers to tracker
 	for(const auto& It : AdditionalHeaderParams)
 	{
 		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
 	}
 
+	// setup http request from custom request object
 	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
 	{
 		return nullptr;
 	}
+	
+	// allow a delegate to modify the http request (such as binding custom handling delegates)
+	Request.OnModifyRequest().Broadcast(Request, RequestData->HttpRequest);
+	
+	// update request metadata flags just before we store it in the tracking object
+	FRequestMetadata Metadata = Request.GetRequestMetadata();
+	Request.SetMetadataFlags(Metadata);
 
-	RequestData->SetMetadata(Request.GetRequestMetadata());
+	// store metadata in tracking object (last place used by request)
+	RequestData->SetMetadata(Metadata);
 
+	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
 	ResponseDelegate.BindSP(this, &FKeyClaimsAPI::OnGetKeyClaimsForMeResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
+	// submit request to http system
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
 	if (HttpRequester)
 	{
@@ -1539,12 +1643,12 @@ bool FRequest_GetKeyClaimsForMe::SetupHttpRequest(const FHttpRequestRef& HttpReq
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
-	if (!AuthContext)
+	if (!AuthContext && !bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetKeyClaimsForMe - missing auth context"));
 		return false;
 	}
-	if (!AuthContext->AddBearerToken(HttpRequest))
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetKeyClaimsForMe - failed to add bearer token"));
 		return false;
@@ -1642,25 +1746,38 @@ FHttpRequestPtr FKeyClaimsAPI::GetKeyClaimsForMyUuid(const FRequest_GetKeyClaims
 	if (!IsValid())
 		return nullptr;
 
+	// create the http request and tracking structure
 	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
+	// add headers to tracker
 	for(const auto& It : AdditionalHeaderParams)
 	{
 		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
 	}
 
+	// setup http request from custom request object
 	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
 	{
 		return nullptr;
 	}
+	
+	// allow a delegate to modify the http request (such as binding custom handling delegates)
+	Request.OnModifyRequest().Broadcast(Request, RequestData->HttpRequest);
+	
+	// update request metadata flags just before we store it in the tracking object
+	FRequestMetadata Metadata = Request.GetRequestMetadata();
+	Request.SetMetadataFlags(Metadata);
 
-	RequestData->SetMetadata(Request.GetRequestMetadata());
+	// store metadata in tracking object (last place used by request)
+	RequestData->SetMetadata(Metadata);
 
+	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
 	ResponseDelegate.BindSP(this, &FKeyClaimsAPI::OnGetKeyClaimsForMyUuidResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
+	// submit request to http system
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
 	if (HttpRequester)
 	{
@@ -1720,12 +1837,12 @@ bool FRequest_GetKeyClaimsForMyUuid::SetupHttpRequest(const FHttpRequestRef& Htt
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
-	if (!AuthContext)
+	if (!AuthContext && !bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetKeyClaimsForMyUuid - missing auth context"));
 		return false;
 	}
-	if (!AuthContext->AddBearerToken(HttpRequest))
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetKeyClaimsForMyUuid - failed to add bearer token"));
 		return false;
@@ -1823,25 +1940,38 @@ FHttpRequestPtr FKeyClaimsAPI::GetPlayerUuidKeyClaim(const FRequest_GetPlayerUui
 	if (!IsValid())
 		return nullptr;
 
+	// create the http request and tracking structure
 	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
+	// add headers to tracker
 	for(const auto& It : AdditionalHeaderParams)
 	{
 		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
 	}
 
+	// setup http request from custom request object
 	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
 	{
 		return nullptr;
 	}
+	
+	// allow a delegate to modify the http request (such as binding custom handling delegates)
+	Request.OnModifyRequest().Broadcast(Request, RequestData->HttpRequest);
+	
+	// update request metadata flags just before we store it in the tracking object
+	FRequestMetadata Metadata = Request.GetRequestMetadata();
+	Request.SetMetadataFlags(Metadata);
 
-	RequestData->SetMetadata(Request.GetRequestMetadata());
+	// store metadata in tracking object (last place used by request)
+	RequestData->SetMetadata(Metadata);
 
+	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
 	ResponseDelegate.BindSP(this, &FKeyClaimsAPI::OnGetPlayerUuidKeyClaimResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
+	// submit request to http system
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
 	if (HttpRequester)
 	{
@@ -1907,12 +2037,12 @@ bool FRequest_GetPlayerUuidKeyClaim::SetupHttpRequest(const FHttpRequestRef& Htt
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
-	if (!AuthContext)
+	if (!AuthContext && !bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPlayerUuidKeyClaim - missing auth context"));
 		return false;
 	}
-	if (!AuthContext->AddBearerToken(HttpRequest))
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPlayerUuidKeyClaim - failed to add bearer token"));
 		return false;
@@ -2022,25 +2152,38 @@ FHttpRequestPtr FKeyClaimsAPI::GetPlayerUuidKeyClaimSelf(const FRequest_GetPlaye
 	if (!IsValid())
 		return nullptr;
 
+	// create the http request and tracking structure
 	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
+	// add headers to tracker
 	for(const auto& It : AdditionalHeaderParams)
 	{
 		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
 	}
 
+	// setup http request from custom request object
 	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
 	{
 		return nullptr;
 	}
+	
+	// allow a delegate to modify the http request (such as binding custom handling delegates)
+	Request.OnModifyRequest().Broadcast(Request, RequestData->HttpRequest);
+	
+	// update request metadata flags just before we store it in the tracking object
+	FRequestMetadata Metadata = Request.GetRequestMetadata();
+	Request.SetMetadataFlags(Metadata);
 
-	RequestData->SetMetadata(Request.GetRequestMetadata());
+	// store metadata in tracking object (last place used by request)
+	RequestData->SetMetadata(Metadata);
 
+	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
 	ResponseDelegate.BindSP(this, &FKeyClaimsAPI::OnGetPlayerUuidKeyClaimSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
+	// submit request to http system
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
 	if (HttpRequester)
 	{
@@ -2105,12 +2248,12 @@ bool FRequest_GetPlayerUuidKeyClaimSelf::SetupHttpRequest(const FHttpRequestRef&
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
-	if (!AuthContext)
+	if (!AuthContext && !bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPlayerUuidKeyClaimSelf - missing auth context"));
 		return false;
 	}
-	if (!AuthContext->AddBearerToken(HttpRequest))
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPlayerUuidKeyClaimSelf - failed to add bearer token"));
 		return false;
@@ -2220,25 +2363,38 @@ FHttpRequestPtr FKeyClaimsAPI::GetPlayerUuidKeyClaims(const FRequest_GetPlayerUu
 	if (!IsValid())
 		return nullptr;
 
+	// create the http request and tracking structure
 	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
+	// add headers to tracker
 	for(const auto& It : AdditionalHeaderParams)
 	{
 		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
 	}
 
+	// setup http request from custom request object
 	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
 	{
 		return nullptr;
 	}
+	
+	// allow a delegate to modify the http request (such as binding custom handling delegates)
+	Request.OnModifyRequest().Broadcast(Request, RequestData->HttpRequest);
+	
+	// update request metadata flags just before we store it in the tracking object
+	FRequestMetadata Metadata = Request.GetRequestMetadata();
+	Request.SetMetadataFlags(Metadata);
 
-	RequestData->SetMetadata(Request.GetRequestMetadata());
+	// store metadata in tracking object (last place used by request)
+	RequestData->SetMetadata(Metadata);
 
+	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
 	ResponseDelegate.BindSP(this, &FKeyClaimsAPI::OnGetPlayerUuidKeyClaimsResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
+	// submit request to http system
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
 	if (HttpRequester)
 	{
@@ -2303,12 +2459,12 @@ bool FRequest_GetPlayerUuidKeyClaims::SetupHttpRequest(const FHttpRequestRef& Ht
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
-	if (!AuthContext)
+	if (!AuthContext && !bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPlayerUuidKeyClaims - missing auth context"));
 		return false;
 	}
-	if (!AuthContext->AddBearerToken(HttpRequest))
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPlayerUuidKeyClaims - failed to add bearer token"));
 		return false;

@@ -116,10 +116,16 @@ struct RALLYHEREAPI_API FRequestMetadata
 	int32 RetryCount;
 	FDateTime CreateTimestamp, QueuedTimestamp, HttpQueuedTimestamp;
 	
+	// custom handling override flags tracking
+	bool bDisableAuthRequirement;
+	bool bModifyRequestDelegateIsBound;
+	
 	FRequestMetadata()
 		: Identifier(FGuid::NewGuid())
 		, RetryCount(0)
 		, CreateTimestamp(FDateTime::Now())
+		, bDisableAuthRequirement(false)
+		, bModifyRequestDelegateIsBound(false)
 	{}
 };
 
@@ -127,6 +133,7 @@ class RALLYHEREAPI_API FRequest
 {
 public:
 	FRequest()
+		: bDisableAuthRequirement(false)
 	{
 		// default to enabling retry
 		SetShouldRetry();
@@ -142,10 +149,26 @@ public:
 	void SetShouldRetry(const FHttpRetryParams& Params = FHttpRetryParams()) { RetryParams = Params; }
 	void ClearShouldRetry() { RetryParams.Reset(); }
 	const TOptional<FHttpRetryParams>& GetRetryParams() const { return RetryParams; }
+	
+	void SetDisableAuthRequirement(bool bInDisable) { bDisableAuthRequirement = bInDisable; }
+
+	DECLARE_MULTICAST_DELEGATE_TwoParams(ModifyHttpRequestBeforeSubmit, const FRequest&, FHttpRequestRef);
+	ModifyHttpRequestBeforeSubmit& OnModifyRequest() { return OnModifyRequestDelegate; }
+	const ModifyHttpRequestBeforeSubmit& OnModifyRequest() const { return OnModifyRequestDelegate; }
+	
+	/* Sets flags on the metadata based on the request at time it is sent (in case something modifies the metadata outside of this class) */
+	virtual void SetMetadataFlags(FRequestMetadata& Metadata) const
+	{
+		Metadata.bDisableAuthRequirement = bDisableAuthRequirement;
+		Metadata.bModifyRequestDelegateIsBound = OnModifyRequestDelegate.IsBound();
+	}
 
 protected:
 	FRequestMetadata RequestMetadata;
 	TOptional<FHttpRetryParams> RetryParams;
+	
+	bool bDisableAuthRequirement;
+	ModifyHttpRequestBeforeSubmit OnModifyRequestDelegate;
 };
 
 class RALLYHEREAPI_API FResponse

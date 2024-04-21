@@ -14,7 +14,6 @@
 
 FRHDTW_Config::FRHDTW_Config()
 {
-	AppSettingsActionResult.Empty();
 	DefaultPos = FVector2D(610, 20);
 }
 
@@ -50,28 +49,28 @@ void FRHDTW_Config::Do()
 		return;
 	}
 
-	if (ImGui::BeginTabItem("App Settings"))
+	if (ImGui::BeginTabItem("KVs"))
 	{
-		DoRhConfigTab(pRH_ConfigSubsystem);
+		DoKVsTab(pRH_ConfigSubsystem);
 		ImGui::EndTabItem();
 	}
 
 	if (ImGui::BeginTabItem("Time"))
 	{
-		DoRhTimeTab(pRH_ConfigSubsystem);
+		DoTimeTab(pRH_ConfigSubsystem);
 		ImGui::EndTabItem();
 	}
 
 	ImGui::EndTabBar();
 }
 
-void FRHDTW_Config::DoRhConfigTab(URH_ConfigSubsystem* pRH_ConfigSubsystem)
+void FRHDTW_Config::DoKVsTab(URH_ConfigSubsystem* pRH_ConfigSubsystem)
 {
 	if (ImGui::Button("Refresh"))
 	{
-		AppSettingsActionResult.Empty();
-		auto Delegate = FRH_GenericSuccessWithErrorDelegate::CreateSP(SharedThis(this), &FRHDTW_Config::HandleFetchAppSettings);
-		pRH_ConfigSubsystem->FetchAppSettings(Delegate);
+		KVsActionResult.Empty();
+		auto Delegate = FRH_GenericSuccessWithErrorDelegate::CreateSP(SharedThis(this), &FRHDTW_Config::HandleFetchKVs);
+		pRH_ConfigSubsystem->FetchKVs(Delegate);
 	}
 
 	if (ImGui::Button("Apply Hotfix"))
@@ -81,48 +80,69 @@ void FRHDTW_Config::DoRhConfigTab(URH_ConfigSubsystem* pRH_ConfigSubsystem)
 	ImGui::SameLine();
 	ImGui::Text("Hotfix test value: %s", pRH_ConfigSubsystem->GetHotfixTestValue() ? "true" : "false");
 
-	ImGui::Text("%s", TCHAR_TO_UTF8(*AppSettingsActionResult));
+	ImGui::Text("%s", TCHAR_TO_UTF8(*KVsActionResult));
 
 	ImGui::Separator();
 
-	if (ImGui::BeginTable("AppSettingsMapTable", 2, RH_TableFlagsPropSizing))
+	if (ImGui::BeginTable("KVssMapTable", 2, RH_TableFlagsPropSizing))
 	{
 		// Header
 		ImGui::TableSetupColumn("Key");
 		ImGui::TableSetupColumn("Value");
 		ImGui::TableHeadersRow();
 
-		for (const auto& AppSetting : pRH_ConfigSubsystem->GetAppSettings())
+		for (const auto& KV : pRH_ConfigSubsystem->GetKVs())
 		{
 			ImGui::TableNextRow();
 			ImGui::TableNextColumn();
-			ImGuiDisplayCopyableValue(AppSetting.Key, TEXT(""), ECopyMode::Key);
+			ImGuiDisplayCopyableValue(KV.Key, TEXT(""), ECopyMode::Key);
 			ImGui::TableNextColumn();
-			ImGuiDisplayCopyableValue(TEXT(""), AppSetting.Value, ECopyMode::Value);
+			ImGuiDisplayCopyableValue(TEXT(""), KV.Value, ECopyMode::Value);
+		}
+
+		ImGui::EndTable();
+	}
+
+	ImGui::Separator();
+
+	if (ImGui::BeginTable("SecetKVssMapTable", 2, RH_TableFlagsPropSizing))
+	{
+		// Header
+		ImGui::TableSetupColumn("Key");
+		ImGui::TableSetupColumn("Value");
+		ImGui::TableHeadersRow();
+
+		for (const auto& KV : pRH_ConfigSubsystem->GetSecretKVs())
+		{
+			ImGui::TableNextRow();
+			ImGui::TableNextColumn();
+			ImGuiDisplayCopyableValue(KV.Key, TEXT(""), ECopyMode::Key);
+			ImGui::TableNextColumn();
+			ImGuiDisplayCopyableValue(TEXT(""), KV.Value, ECopyMode::Value);
 		}
 
 		ImGui::EndTable();
 	}
 }
 
-void FRHDTW_Config::HandleFetchAppSettings(bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+void FRHDTW_Config::HandleFetchKVs(bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 {
 	if (bSuccess)
 	{
-		AppSettingsActionResult = FString::Printf(TEXT("Refresh App Settings succeeded."));
+		KVsActionResult = FString::Printf(TEXT("Refresh KVs succeeded."));
 	}
 	else
 	{
-		AppSettingsActionResult = FString::Printf(TEXT("Refresh App Settings failed"));
+		KVsActionResult = FString::Printf(TEXT("Refresh KVs failed"));
 	}
 }
 
 
-void FRHDTW_Config::DoRhTimeTab(URH_ConfigSubsystem* pRH_ConfigSubsystem)
+void FRHDTW_Config::DoTimeTab(URH_ConfigSubsystem* pRH_ConfigSubsystem)
 {
 	if (ImGui::Button("Refresh"))
 	{
-		AppSettingsActionResult.Empty();
+		TimeActionResult.Empty();
 		auto Delegate = FRH_GenericSuccessWithErrorDelegate::CreateSP(SharedThis(this), &FRHDTW_Config::HandleFetchTime);
 		pRH_ConfigSubsystem->RefreshServerTimeCache(Delegate);
 	}

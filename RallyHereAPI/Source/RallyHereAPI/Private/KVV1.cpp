@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 
-#include "AppSetting.h"
+#include "KVV1.h"
 #include "RallyHereAPIModule.h"
 #include "RallyHereAPIHelpers.h"
 #include "Templates/SharedPointer.h"
@@ -17,9 +17,9 @@ using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
 ////////////////////////////////////////////////////
-// Implementation for FRHAPI_AppSetting
+// Implementation for FRHAPI_KVV1
 
-void FRHAPI_AppSetting::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
+void FRHAPI_KVV1::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
 	Writer->WriteObjectStart();
 	Writer->WriteIdentifierPrefix(TEXT("key"));
@@ -34,7 +34,7 @@ void FRHAPI_AppSetting::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	Writer->WriteObjectEnd();
 }
 
-bool FRHAPI_AppSetting::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FRHAPI_KVV1::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
 	const TSharedPtr<FJsonObject>* Object;
 	if (!JsonValue->TryGetObject(Object))

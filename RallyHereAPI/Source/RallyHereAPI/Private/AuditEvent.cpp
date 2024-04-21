@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 
-#include "CustomAudit.h"
+#include "AuditEvent.h"
 #include "RallyHereAPIModule.h"
 #include "RallyHereAPIHelpers.h"
 #include "Templates/SharedPointer.h"
@@ -17,9 +17,9 @@ using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
 ////////////////////////////////////////////////////
-// Implementation for FRHAPI_CustomAudit
+// Implementation for FRHAPI_AuditEvent
 
-void FRHAPI_CustomAudit::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
+void FRHAPI_AuditEvent::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
 	Writer->WriteObjectStart();
 	Writer->WriteIdentifierPrefix(TEXT("event_name"));
@@ -161,11 +161,6 @@ void FRHAPI_CustomAudit::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 		Writer->WriteIdentifierPrefix(TEXT("queue_id"));
 		RallyHereAPI::WriteJsonValue(Writer, QueueId_Optional);
 	}
-	if (Players_IsSet)
-	{
-		Writer->WriteIdentifierPrefix(TEXT("players"));
-		RallyHereAPI::WriteJsonValue(Writer, Players_Optional);
-	}
 	if (TicketId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("ticket_id"));
@@ -196,7 +191,7 @@ void FRHAPI_CustomAudit::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	Writer->WriteObjectEnd();
 }
 
-bool FRHAPI_CustomAudit::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FRHAPI_AuditEvent::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
 	const TSharedPtr<FJsonObject>* Object;
 	if (!JsonValue->TryGetObject(Object))
@@ -369,12 +364,6 @@ bool FRHAPI_CustomAudit::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	{
 		QueueId_IsSet = TryGetJsonValue(JsonQueueIdField, QueueId_Optional);
 		ParseSuccess &= QueueId_IsSet;
-	}
-	const TSharedPtr<FJsonValue> JsonPlayersField = (*Object)->TryGetField(TEXT("players"));
-	if (JsonPlayersField.IsValid() && !JsonPlayersField->IsNull())
-	{
-		Players_IsSet = TryGetJsonValue(JsonPlayersField, Players_Optional);
-		ParseSuccess &= Players_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonTicketIdField = (*Object)->TryGetField(TEXT("ticket_id"));
 	if (JsonTicketIdField.IsValid() && !JsonTicketIdField->IsNull())
