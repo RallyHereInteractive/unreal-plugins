@@ -195,6 +195,11 @@ IOnlineMessagePtr FOnlineSubsystemSteamV2::GetMessageInterface() const
 	return nullptr;
 }
 
+IMessageSanitizerPtr FOnlineSubsystemSteamV2::GetMessageSanitizer(int32 LocalUserNum, FString& OutAuthTypeToExclude) const
+{
+	return MessageSanitizerInterface;
+}
+
 IOnlinePresencePtr FOnlineSubsystemSteamV2::GetPresenceInterface() const
 {
 	if (SteamSubsystem)
@@ -268,6 +273,9 @@ bool FOnlineSubsystemSteamV2::Init()
 		PurchaseInterface = MakeShareable(new FOnlinePurchaseSteam(this));
 		StoreInterface = MakeShareable(new FOnlineStoreSteam(this));
 		EntitlementsInterface = MakeShareable(new FOnlineEntitlementsSteam(this));
+
+		MessageSanitizerInterface = MakeShareable(new FMessageSanitizerSteam(this));
+		MessageSanitizerInterface->Initialize();
 	}
 
 	// Create the online async task thread, assume the Steam Subsystem connected
