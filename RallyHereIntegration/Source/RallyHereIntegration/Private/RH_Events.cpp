@@ -43,7 +43,7 @@ namespace RHStandardEvents
 
 		CorrelationStartEvent.PlatformName = FPlatformProperties::IniPlatformName();
 		CorrelationStartEvent.ClientBuildVersion = FApp::GetBuildVersion();
-		CorrelationStartEvent.EngineVersion = FEngineVersion::Current().ToString(EVersionComponent::Patch);
+		CorrelationStartEvent.EngineVersion = RH_VersionStrings::GetBuildVersion();
 
 		auto RHIntegrationPlugin = IPluginManager::Get().FindPlugin(TEXT("RallyHereIntegration"));
 		if (RHIntegrationPlugin != nullptr)

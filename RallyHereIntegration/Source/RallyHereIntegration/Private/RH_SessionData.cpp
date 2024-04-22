@@ -486,11 +486,7 @@ URH_PlatformSessionSyncer* URH_JoinedSession::GetPlatformSyncer() const
 
 FString URH_JoinedSession::GetClientVersionForSession()
 {
-	// TODO - make sample provider class that can be overridden at project level, that provides current string and checks compatibility
-
-	// put compatibility and current changelists first, to better conform to SymVer.
-	static FString SessionVersion = FString::Printf(TEXT("%d.%d.%d+%s"), FEngineVersion::CompatibleWith().GetChangelist(), FEngineVersion::Current().GetChangelist(), 0, *FEngineVersion::Current().ToString(EVersionComponent::Patch));
-	return SessionVersion;
+	return RH_VersionStrings::GetVersionForSession();
 }
 
 ERHAPI_Input URH_JoinedSession::GetClientInputTypeForSession()

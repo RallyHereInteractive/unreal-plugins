@@ -93,15 +93,20 @@ void FRH_DiagnosticReportGenerator::GenerateMetadata()
 	Metadata->SetStringField(TEXT("Cached-Local-Time-UTC"), hasLocalTime ? LocalTime.ToString() : FString());
 	Metadata->SetStringField(TEXT("Cached-Server-Time-UTC"), hasServerTime ? ServerTime.ToString() : FString());
 
+	// deep copy the input custom metadata so we can alter it
+	FRHAPI_JsonObject CustomMetadata;
+	FJsonObject::Duplicate(Options.CustomMetadata.GetObject(), CustomMetadata.GetObject());
+
+	// invoke global delegate to add more data
 	auto* Diagnostics = FRallyHereIntegrationModule::Get().GetDiagnostics();
-	if (Diagnostics != nullptr && Diagnostics->CustomDiagnosticMetadataDelegate.IsBound())
+	if (Diagnostics != nullptr)
 	{
-		auto CustomData = Diagnostics->CustomDiagnosticMetadataDelegate.Execute();
-		if (CustomData.IsValid())
-		{
-			Metadata->SetObjectField(TEXT("Custom-Data"), CustomData);
-		}
+		Diagnostics->CustomDiagnosticMetadataDelegate.ExecuteIfBound(CustomMetadata);
 	}
+
+	// add the custom metadata to the report
+	Metadata->SetObjectField(TEXT("Custom-Metadata"), CustomMetadata.GetObject());
+
 
 	StageComplete();
 }

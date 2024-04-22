@@ -4,8 +4,8 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public  `[`DECLARE_DELEGATE_RetVal`](#group__Diagnostics_1ga5c0e0f7ab52220c28ea3c2013a8d01ab)`(TSharedPtr< FJsonObject >,FGetCustomDiagnosticMetadata)`            | Bindable delegate to get custom metadata to add to diagnostic reports. Can be used by a project to add data to the Metadata section.
-`public  `[`DECLARE_DELEGATE_OneParam`](#group__Diagnostics_1gaca3c1dd67b5858439ff6ba89a1098a40)`(FRH_OnDiagnosticReportComplete,const TSharedRef< const `[`FRH_DiagnosticReportGenerator`](Diagnostics.md#classFRH__DiagnosticReportGenerator)` > &)`            | Bindable delegate to notify that a report generation is complete
+`public  `[`DECLARE_DELEGATE_OneParam`](#group__Diagnostics_1gabdd7421f147cc487faff21d812fbc9dc)`(FGetCustomDiagnosticMetadata,`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` &)`            | Bindable delegate to modify custom metadata to add to diagnostic reports. Can be used by a project to add data to the Metadata section.
+`public  `[`DECLARE_DELEGATE_OneParam`](#group__Diagnostics_1gaca3c1dd67b5858439ff6ba89a1098a40)`(FRH_OnDiagnosticReportComplete,const TSharedRef< const `[`FRH_DiagnosticReportGenerator`](Diagnostics.md#classFRH__DiagnosticReportGenerator)` > &)`            | Bindable delegate to notify that a report generation is complete.
 `class `[`FRH_DiagnosticReportGenerator`](#classFRH__DiagnosticReportGenerator) | Report generator worker, which is responsible for collecting information from various locations, organizing the report, and then writing it to a destination.
 `class `[`FRH_Diagnostics`](#classFRH__Diagnostics) | Class to handle initializing and running a diagnostic. Tracks and stores local state from the running engine for tracking previous errors.
 `class `[`URH_DiagnosticsBlueprintLibrary`](#classURH__DiagnosticsBlueprintLibrary) | Wrapper library to generate diagnostic reports via blueprint.
@@ -13,13 +13,13 @@
 
 ## Members
 
-#### `public  `[`DECLARE_DELEGATE_RetVal`](#group__Diagnostics_1ga5c0e0f7ab52220c28ea3c2013a8d01ab)`(TSharedPtr< FJsonObject >,FGetCustomDiagnosticMetadata)` <a id="group__Diagnostics_1ga5c0e0f7ab52220c28ea3c2013a8d01ab"></a>
+#### `public  `[`DECLARE_DELEGATE_OneParam`](#group__Diagnostics_1gabdd7421f147cc487faff21d812fbc9dc)`(FGetCustomDiagnosticMetadata,`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` &)` <a id="group__Diagnostics_1gabdd7421f147cc487faff21d812fbc9dc"></a>
 
-Bindable delegate to get custom metadata to add to diagnostic reports. Can be used by a project to add data to the Metadata section.
+Bindable delegate to modify custom metadata to add to diagnostic reports. Can be used by a project to add data to the Metadata section.
 
 #### `public  `[`DECLARE_DELEGATE_OneParam`](#group__Diagnostics_1gaca3c1dd67b5858439ff6ba89a1098a40)`(FRH_OnDiagnosticReportComplete,const TSharedRef< const `[`FRH_DiagnosticReportGenerator`](Diagnostics.md#classFRH__DiagnosticReportGenerator)` > &)` <a id="group__Diagnostics_1gaca3c1dd67b5858439ff6ba89a1098a40"></a>
 
-Bindable delegate to notify that a report generation is complete
+Bindable delegate to notify that a report generation is complete.
 
 ## class `FRH_DiagnosticReportGenerator` <a id="classFRH__DiagnosticReportGenerator"></a>
 
@@ -316,6 +316,7 @@ Options for generating a diagnostic report.
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public bool `[`bIncludeMetadata`](#structFRH__DiagnosticReportOptions_1a681cc68047b1cdb66c8f132f6c2e7ee7) | Whether to include metadata in the report
+`public `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` `[`CustomMetadata`](#structFRH__DiagnosticReportOptions_1aa157190317b06bce18f40c25795477f7) | Metadata to include in the report
 `public bool `[`bIncludeWebRequests`](#structFRH__DiagnosticReportOptions_1ab1ebb42b4f10ebd632720851eb654541) | Whether to include web request data in the report
 `public bool `[`bIncludeDeviceData`](#structFRH__DiagnosticReportOptions_1a260c471a4f8f96e1b636bae274bec475) | Whether to include device data in the report
 `public bool `[`bIncludeErrors`](#structFRH__DiagnosticReportOptions_1a101ac1b25465198a171e84d17ba301c1) | Whether to include errors data in the report
@@ -334,6 +335,11 @@ Options for generating a diagnostic report.
 #### `public bool `[`bIncludeMetadata`](#structFRH__DiagnosticReportOptions_1a681cc68047b1cdb66c8f132f6c2e7ee7) <a id="structFRH__DiagnosticReportOptions_1a681cc68047b1cdb66c8f132f6c2e7ee7"></a>
 
 Whether to include metadata in the report
+
+<br>
+#### `public `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` `[`CustomMetadata`](#structFRH__DiagnosticReportOptions_1aa157190317b06bce18f40c25795477f7) <a id="structFRH__DiagnosticReportOptions_1aa157190317b06bce18f40c25795477f7"></a>
+
+Metadata to include in the report
 
 <br>
 #### `public bool `[`bIncludeWebRequests`](#structFRH__DiagnosticReportOptions_1ab1ebb42b4f10ebd632720851eb654541) <a id="structFRH__DiagnosticReportOptions_1ab1ebb42b4f10ebd632720851eb654541"></a>
