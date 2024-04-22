@@ -102,6 +102,20 @@ public:
     FName EnvironmentOSSName;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// Config, KVs, and Hotfixing
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	/** @brief If set, automatically poll for KV data. */
+	UPROPERTY(EditAnywhere, Config, Category = "Config|Polling")
+	bool bAutomaticallyPollConfigurationData;
+	/** @brief If set, automatically apply hotfix data from the config subystem. */
+	UPROPERTY(EditAnywhere, Config, Category = "Config|Hotfix")
+	bool bAutomaticallyApplyHotfixData;
+	/** @brief debug value to test if the hotfix system is working properly.  Do not set! */
+	UPROPERTY(VisibleAnywhere, Config, Category = "Config|Hotfix")
+	bool bHotfixTestValue;
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Sessions & Matches
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
 
