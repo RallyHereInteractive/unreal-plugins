@@ -902,10 +902,35 @@ public:
 	 */
 	UFUNCTION(BlueprintPure, Category = "Friend Subsystem")
 	URH_RHFriendAndPlatformFriend* GetFriendByUuidOrPlatformId(const FGuid& PlayerUuid, const FRH_PlayerPlatformId& PlatformPlayerId) const;
-
+	/**
+	 * @brief Gets if the specified player is blocked via platform or Rally Here.
+	 * @param [in] Player Pointer to the friend representation of the player
+	 */
+	UFUNCTION(BlueprintPure, Category = "Friend Subsystem")
+	bool IsFriendBlocked(const URH_RHFriendAndPlatformFriend* Player) const
+	{
+		return IsValid(Player) && (IsPlayerRhBlocked(Player->GetRHPlayerUuid()) || IsFriendPlatformBlocked(Player));
+	}
+	/**
+	 * @brief Gets if the specified player is blocked via platform.
+	 * @param [in] Player Pointer to the friend representation of the player
+	 */
+	UFUNCTION(BlueprintPure, Category = "Friend Subsystem")
+	bool IsFriendPlatformBlocked(const URH_RHFriendAndPlatformFriend* Player) const
+	{
+		if (IsValid(Player))
+		{
+			return !!Player->PlatformFriends.FindByPredicate([](URH_PlatformFriend* PlatformFriend)
+				{
+					return PlatformFriend->IsBlocked();
+				});
+		}
+		return false;
+	}
 	/**
 	 * @brief Gets if the specified player is blocked via platform or Rally Here.
 	 * @param [in] PlayerUuid The unique player id of the player to check.
+	 * @note It's more accurate to call the URH_RHFriendAndPlatformFriend version of this function, as we may not have a Platform Friend's RallyHere UUID
 	 */
 	UFUNCTION(BlueprintPure, Category = "Friend Subsystem")
 	bool IsPlayerBlocked(const FGuid& PlayerUuid) const
@@ -915,16 +940,20 @@ public:
 	/**
 	 * @brief Gets if the specified player is blocked via platform.
 	 * @param [in] PlayerUuid The unique player id of the player to check.
+	 * @note It's more accurate to call the URH_RHFriendAndPlatformFriend version of this function, as we may not have a Platform Friend's RallyHere UUID
 	 */
 	UFUNCTION(BlueprintPure, Category = "Friend Subsystem")
 	bool IsPlayerPlatformBlocked(const FGuid& PlayerUuid) const
 	{
-		if (const auto* Friend = GetFriendByUuid(PlayerUuid))
+		if (PlayerUuid.IsValid())
 		{
-			return !!Friend->PlatformFriends.FindByPredicate([](URH_PlatformFriend* PlatformFriend)
-				{
-					return PlatformFriend->IsBlocked();
-				});
+			if (const auto* Friend = GetFriendByUuid(PlayerUuid))
+			{
+				return !!Friend->PlatformFriends.FindByPredicate([](URH_PlatformFriend* PlatformFriend)
+					{
+						return PlatformFriend->IsBlocked();
+					});
+			}
 		}
 		return false;
 	}

@@ -632,6 +632,8 @@ Friends Subsystem for handling a users relationships with other players.
 `public `[`URH_RHFriendAndPlatformFriend`](Friends.md#classURH__RHFriendAndPlatformFriend)` * `[`GetFriendByPlayerInfo`](#classURH__FriendSubsystem_1a0e8bfdf4e3dbff614e3931ec8e7fec30)`(`[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * PlayerInfo) const` | Gets the cached friend wrapper for the specified player.
 `public `[`URH_RHFriendAndPlatformFriend`](Friends.md#classURH__RHFriendAndPlatformFriend)` * `[`GetFriendByPlatformId`](#classURH__FriendSubsystem_1af97f126a67a75dd74416eadf099f4968)`(const `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` & PlatformPlayerId) const` | Gets the cached friend wrapper for the specified player.
 `public `[`URH_RHFriendAndPlatformFriend`](Friends.md#classURH__RHFriendAndPlatformFriend)` * `[`GetFriendByUuidOrPlatformId`](#classURH__FriendSubsystem_1af887af8839847c43703f0883912f9030)`(const FGuid & PlayerUuid,const `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` & PlatformPlayerId) const` | Gets the cached friend wrapper for the specified player.
+`public inline bool `[`IsFriendBlocked`](#classURH__FriendSubsystem_1aef429e16fb76c76f805ed37a2c8bb35d)`(const `[`URH_RHFriendAndPlatformFriend`](Friends.md#classURH__RHFriendAndPlatformFriend)` * Player) const` | Gets if the specified player is blocked via platform or Rally Here.
+`public inline bool `[`IsFriendPlatformBlocked`](#classURH__FriendSubsystem_1a0013b0ca7d5c98f0b20fed4d8d2f7649)`(const `[`URH_RHFriendAndPlatformFriend`](Friends.md#classURH__RHFriendAndPlatformFriend)` * Player) const` | Gets if the specified player is blocked via platform.
 `public inline bool `[`IsPlayerBlocked`](#classURH__FriendSubsystem_1a796323262a6d65dbd3871600ec67333a)`(const FGuid & PlayerUuid) const` | Gets if the specified player is blocked via platform or Rally Here.
 `public inline bool `[`IsPlayerPlatformBlocked`](#classURH__FriendSubsystem_1a5daea0768eab9487eb4d07b6eec7bcc0)`(const FGuid & PlayerUuid) const` | Gets if the specified player is blocked via platform.
 `public inline bool `[`IsPlayerRhBlocked`](#classURH__FriendSubsystem_1a7729188985902b5d94f5f0e6f4c5a99a)`(const FGuid & PlayerUuid) const` | Gets if the specified player is blocked via Rally Here.
@@ -989,12 +991,30 @@ Gets the cached friend wrapper for the specified player.
 * `PlatformPlayerId` The player platform id to get the friend wrapper for.
 
 <br>
+#### `public inline bool `[`IsFriendBlocked`](#classURH__FriendSubsystem_1aef429e16fb76c76f805ed37a2c8bb35d)`(const `[`URH_RHFriendAndPlatformFriend`](Friends.md#classURH__RHFriendAndPlatformFriend)` * Player) const` <a id="classURH__FriendSubsystem_1aef429e16fb76c76f805ed37a2c8bb35d"></a>
+
+Gets if the specified player is blocked via platform or Rally Here.
+
+#### Parameters
+* `Player` Pointer to the friend representation of the player
+
+<br>
+#### `public inline bool `[`IsFriendPlatformBlocked`](#classURH__FriendSubsystem_1a0013b0ca7d5c98f0b20fed4d8d2f7649)`(const `[`URH_RHFriendAndPlatformFriend`](Friends.md#classURH__RHFriendAndPlatformFriend)` * Player) const` <a id="classURH__FriendSubsystem_1a0013b0ca7d5c98f0b20fed4d8d2f7649"></a>
+
+Gets if the specified player is blocked via platform.
+
+#### Parameters
+* `Player` Pointer to the friend representation of the player
+
+<br>
 #### `public inline bool `[`IsPlayerBlocked`](#classURH__FriendSubsystem_1a796323262a6d65dbd3871600ec67333a)`(const FGuid & PlayerUuid) const` <a id="classURH__FriendSubsystem_1a796323262a6d65dbd3871600ec67333a"></a>
 
 Gets if the specified player is blocked via platform or Rally Here.
 
 #### Parameters
-* `PlayerUuid` The unique player id of the player to check.
+* `PlayerUuid` The unique player id of the player to check. 
+
+It's more accurate to call the [URH_RHFriendAndPlatformFriend](Friends.md#classURH__RHFriendAndPlatformFriend) version of this function, as we may not have a Platform Friend's RallyHere UUID
 
 <br>
 #### `public inline bool `[`IsPlayerPlatformBlocked`](#classURH__FriendSubsystem_1a5daea0768eab9487eb4d07b6eec7bcc0)`(const FGuid & PlayerUuid) const` <a id="classURH__FriendSubsystem_1a5daea0768eab9487eb4d07b6eec7bcc0"></a>
@@ -1002,7 +1022,9 @@ Gets if the specified player is blocked via platform or Rally Here.
 Gets if the specified player is blocked via platform.
 
 #### Parameters
-* `PlayerUuid` The unique player id of the player to check.
+* `PlayerUuid` The unique player id of the player to check. 
+
+It's more accurate to call the [URH_RHFriendAndPlatformFriend](Friends.md#classURH__RHFriendAndPlatformFriend) version of this function, as we may not have a Platform Friend's RallyHere UUID
 
 <br>
 #### `public inline bool `[`IsPlayerRhBlocked`](#classURH__FriendSubsystem_1a7729188985902b5d94f5f0e6f4c5a99a)`(const FGuid & PlayerUuid) const` <a id="classURH__FriendSubsystem_1a7729188985902b5d94f5f0e6f4c5a99a"></a>
