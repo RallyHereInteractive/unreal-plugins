@@ -10,10 +10,11 @@
 #include "CoreMinimal.h"
 #include "RallyHereAPIAuthContext.h"
 #include "RallyHereAPIHelpers.h"
-#include "AppSetting.h"
 #include "HTTPValidationError.h"
 #include "HzApiErrorModel.h"
-#include "KVsResponse.h"
+#include "KVV1.h"
+#include "KVsResponseV1.h"
+#include "KVsResponseV2.h"
 
 namespace RallyHereAPI
 {
@@ -27,10 +28,13 @@ struct FRequest_GetAppSettingsClient;
 struct FResponse_GetAppSettingsClient;
 struct FRequest_GetAppSettingsServer;
 struct FResponse_GetAppSettingsServer;
+struct FRequest_GetKvsV2;
+struct FResponse_GetKvsV2;
 
 DECLARE_DELEGATE_OneParam(FDelegate_GetAppSettingsAll, const FResponse_GetAppSettingsAll&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetAppSettingsClient, const FResponse_GetAppSettingsClient&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetAppSettingsServer, const FResponse_GetAppSettingsServer&);
+DECLARE_DELEGATE_OneParam(FDelegate_GetKvsV2, const FResponse_GetKvsV2&);
 
 class RALLYHEREAPI_API FConfigAPI : public FAPI
 {
@@ -41,16 +45,20 @@ public:
 	FHttpRequestPtr GetAppSettingsAll(const FRequest_GetAppSettingsAll& Request, const FDelegate_GetAppSettingsAll& Delegate = FDelegate_GetAppSettingsAll(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr GetAppSettingsClient(const FRequest_GetAppSettingsClient& Request, const FDelegate_GetAppSettingsClient& Delegate = FDelegate_GetAppSettingsClient(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr GetAppSettingsServer(const FRequest_GetAppSettingsServer& Request, const FDelegate_GetAppSettingsServer& Delegate = FDelegate_GetAppSettingsServer(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetKvsV2(const FRequest_GetKvsV2& Request, const FDelegate_GetKvsV2& Delegate = FDelegate_GetKvsV2(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
 	void OnGetAppSettingsAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAppSettingsAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnGetAppSettingsClientResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAppSettingsClient Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnGetAppSettingsServerResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAppSettingsServer Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetKvsV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetKvsV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
 /* Get App Settings All
  *
+ * ***DEPRECATED*** Please use /v2/kv instead.  
+ * 
  * If authenticated and with correct permissions, will return all KVs. Otherwise it will only return non secret KVs.
 */
 struct RALLYHEREAPI_API FRequest_GetAppSettingsAll : public FRequest
@@ -67,6 +75,8 @@ struct RALLYHEREAPI_API FRequest_GetAppSettingsAll : public FRequest
 	TOptional<TArray<FString>> KeysToInclude;
 	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
 	TOptional<FString> IfNoneMatch;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 412 response - indicating that the content has changed. */
+	TOptional<FString> IfMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetAppSettingsAll : public FResponse
@@ -77,7 +87,7 @@ struct RALLYHEREAPI_API FResponse_GetAppSettingsAll : public FResponse
 	bool ParseHeaders() override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-	FRHAPI_KVsResponse Content;
+	FRHAPI_KVsResponseV1 Content;
 	// Headers
 	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
 	TOptional<FString> ETag;
@@ -86,12 +96,16 @@ struct RALLYHEREAPI_API FResponse_GetAppSettingsAll : public FResponse
 	/* Response 200
 	Successful Response
 	*/
-	bool TryGetContentFor200(FRHAPI_KVsResponse& OutContent) const;
+	bool TryGetContentFor200(FRHAPI_KVsResponseV1& OutContent) const;
 	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
 	TOptional<FString> GetHeader200_ETag() const;
 
 	/* Response 304
 	Content still has the same etag and has not changed
+	*/
+
+	/* Response 412
+	Content has changed since the ETag was provided
 	*/
 
 	/* Response 422
@@ -114,6 +128,8 @@ struct RALLYHEREAPI_API Traits_GetAppSettingsAll
 
 /* Get App Settings Client
  *
+ * ***DEPRECATED*** Please use /v2/kv instead.  
+ * 
  * Returns app settings that are configured to be available to the client.
 */
 struct RALLYHEREAPI_API FRequest_GetAppSettingsClient : public FRequest
@@ -126,6 +142,8 @@ struct RALLYHEREAPI_API FRequest_GetAppSettingsClient : public FRequest
 
 	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
 	TOptional<FString> IfNoneMatch;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 412 response - indicating that the content has changed. */
+	TOptional<FString> IfMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetAppSettingsClient : public FResponse
@@ -136,7 +154,7 @@ struct RALLYHEREAPI_API FResponse_GetAppSettingsClient : public FResponse
 	bool ParseHeaders() override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-	TArray<FRHAPI_AppSetting> Content;
+	TArray<FRHAPI_KVV1> Content;
 	// Headers
 	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
 	TOptional<FString> ETag;
@@ -145,12 +163,16 @@ struct RALLYHEREAPI_API FResponse_GetAppSettingsClient : public FResponse
 	/* Response 200
 	Successful Response
 	*/
-	bool TryGetContentFor200(TArray<FRHAPI_AppSetting>& OutContent) const;
+	bool TryGetContentFor200(TArray<FRHAPI_KVV1>& OutContent) const;
 	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
 	TOptional<FString> GetHeader200_ETag() const;
 
 	/* Response 304
 	Content still has the same etag and has not changed
+	*/
+
+	/* Response 412
+	Content has changed since the ETag was provided
 	*/
 
 	/* Response 422
@@ -173,7 +195,11 @@ struct RALLYHEREAPI_API Traits_GetAppSettingsClient
 
 /* Get App Settings Server
  *
- * Returns app settings that are configured to be available to the server. Requires permission: config:app_settings:server:read
+ * ***DEPRECATED*** Please use /v2/kv instead.  
+ * 
+ * Returns app settings that are configured to be available to the server. 
+ * 
+ * Required Permissions: : `config:app_settings:server:read`
 */
 struct RALLYHEREAPI_API FRequest_GetAppSettingsServer : public FRequest
 {
@@ -187,6 +213,8 @@ struct RALLYHEREAPI_API FRequest_GetAppSettingsServer : public FRequest
 	TSharedPtr<FAuthContext> AuthContext;
 	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
 	TOptional<FString> IfNoneMatch;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 412 response - indicating that the content has changed. */
+	TOptional<FString> IfMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetAppSettingsServer : public FResponse
@@ -197,7 +225,7 @@ struct RALLYHEREAPI_API FResponse_GetAppSettingsServer : public FResponse
 	bool ParseHeaders() override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-	TArray<FRHAPI_AppSetting> Content;
+	TArray<FRHAPI_KVV1> Content;
 	// Headers
 	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
 	TOptional<FString> ETag;
@@ -206,7 +234,7 @@ struct RALLYHEREAPI_API FResponse_GetAppSettingsServer : public FResponse
 	/* Response 200
 	Successful Response
 	*/
-	bool TryGetContentFor200(TArray<FRHAPI_AppSetting>& OutContent) const;
+	bool TryGetContentFor200(TArray<FRHAPI_KVV1>& OutContent) const;
 	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
 	TOptional<FString> GetHeader200_ETag() const;
 
@@ -215,9 +243,13 @@ struct RALLYHEREAPI_API FResponse_GetAppSettingsServer : public FResponse
 	*/
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 412
+	Content has changed since the ETag was provided
+	*/
 
 	/* Response 422
 	Validation Error
@@ -235,6 +267,77 @@ struct RALLYHEREAPI_API Traits_GetAppSettingsServer
 	static FString Name;
 
 	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetAppSettingsServer(InRequest, InDelegate, Priority); }
+};
+
+/* Get Kvs V2
+ *
+ * Get All KVs and Secret KVs.  Regular KVs are always returned.
+ * 
+ * Required permissions for secret KVs: : `config:secret_kvs:read`
+*/
+struct RALLYHEREAPI_API FRequest_GetKvsV2 : public FRequest
+{
+	FRequest_GetKvsV2();
+	virtual ~FRequest_GetKvsV2() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	TSharedPtr<FAuthContext> AuthContext;
+	/* If specified, will only return the KVs with the specified keys */
+	TOptional<TArray<FString>> KeysToInclude;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 412 response - indicating that the content has changed. */
+	TOptional<FString> IfMatch;
+};
+
+struct RALLYHEREAPI_API FResponse_GetKvsV2 : public FResponse
+{
+	FResponse_GetKvsV2(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetKvsV2() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+	FRHAPI_KVsResponseV2 Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
+
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_KVsResponseV2& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
+
+	/* Response 412
+	Content has changed since the ETag was provided
+	*/
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+struct RALLYHEREAPI_API Traits_GetKvsV2
+{
+	typedef FRequest_GetKvsV2 Request;
+	typedef FResponse_GetKvsV2 Response;
+	typedef FDelegate_GetKvsV2 Delegate;
+	typedef FConfigAPI API;
+	static FString Name;
+
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetKvsV2(InRequest, InDelegate, Priority); }
 };
 
 

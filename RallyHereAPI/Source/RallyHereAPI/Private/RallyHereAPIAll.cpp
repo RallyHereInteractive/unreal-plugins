@@ -39,6 +39,7 @@ FRallyHereAPIAll::FRallyHereAPIAll()
 	, Settings(MakeShareable(new FSettingsAPI()))
 	, Time(MakeShareable(new FTimeAPI()))
 	, Users(MakeShareable(new FUsersAPI()))
+	, VOIP(MakeShareable(new FVOIPAPI()))
 
 {
 	AllAPIs.Add(Ad);
@@ -74,6 +75,7 @@ FRallyHereAPIAll::FRallyHereAPIAll()
 	AllAPIs.Add(Settings);
 	AllAPIs.Add(Time);
 	AllAPIs.Add(Users);
+	AllAPIs.Add(VOIP);
 }
 
 TArray<TSharedRef<FAPI>> FRallyHereAPIAll::GetAllAPIs() const
@@ -409,5 +411,15 @@ TSharedRef<FUsersAPI> FRallyHereAPIAll::GetUsers()
 const TSharedRef<FUsersAPI> FRallyHereAPIAll::GetUsers() const
 {
 	return Users;
+}
+
+TSharedRef<FVOIPAPI> FRallyHereAPIAll::GetVOIP()
+{
+	return VOIP;
+}
+
+const TSharedRef<FVOIPAPI> FRallyHereAPIAll::GetVOIP() const
+{
+	return VOIP;
 }
 }
