@@ -53,7 +53,7 @@ namespace
 
 	const TArray<FString>& GetSensitiveFieldsForRequest(const RallyHereAPI::FRequestMetadata& RequestMetadata)
 	{
-		static TArray<FString> StandardFields = { TEXT("platform_token") };
+		static TArray<FString> StandardFields = { TEXT("platform_token"), TEXT("token")};
 		static TArray<FString> LoginFields = { TEXT("portal_access_token"), TEXT("portal_parent_access_token"), TEXT("access_token"), TEXT("refresh_token") };
 		if (RequestMetadata.SimplifiedPath.ToString().Contains(TEXT("/login")) || RequestMetadata.SimplifiedPath.ToString().Contains(TEXT("/token")))
 		{
@@ -169,6 +169,11 @@ FRH_WebRequests::FRH_WebRequests()
 
 void FRH_WebRequests::Initialize(RallyHereAPI::FRallyHereAPIAll* InAPIs)
 {
+	if (FParse::Param(FCommandLine::Get(), TEXT("rh.RetainWebRequests")))
+	{
+		SetIsRetainingWebRequests(true);
+	}
+
 	APIs = InAPIs;
 	if (APIs)
 	{
