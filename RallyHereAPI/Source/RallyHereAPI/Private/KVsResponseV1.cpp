@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 
-#include "KVsResponse.h"
+#include "KVsResponseV1.h"
 #include "RallyHereAPIModule.h"
 #include "RallyHereAPIHelpers.h"
 #include "Templates/SharedPointer.h"
@@ -17,9 +17,9 @@ using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
 ////////////////////////////////////////////////////
-// Implementation for FRHAPI_KVsResponse
+// Implementation for FRHAPI_KVsResponseV1
 
-void FRHAPI_KVsResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
+void FRHAPI_KVsResponseV1::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
 	Writer->WriteObjectStart();
 	if (Kvs_IsSet)
@@ -35,7 +35,7 @@ void FRHAPI_KVsResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	Writer->WriteObjectEnd();
 }
 
-bool FRHAPI_KVsResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FRHAPI_KVsResponseV1::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
 	const TSharedPtr<FJsonObject>* Object;
 	if (!JsonValue->TryGetObject(Object))

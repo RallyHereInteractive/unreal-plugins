@@ -1,0 +1,73 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
+
+#include "MessageSanitizerSteamV2.h"
+#include "OnlineSubsystemSteamV2.h"
+
+void FMessageSanitizerSteam::Initialize()
+{
+	ISteamUtils* SteamUtilsPtr = SteamUtils();
+	check(SteamUtilsPtr);
+	const bool bInitialized = SteamUtilsPtr->InitFilterText();
+	UE_LOG_ONLINE(Log, TEXT("[%s] successful? %i"), ANSI_TO_TCHAR(__FUNCTION__), bInitialized);
+}
+
+FString FMessageSanitizerSteam::GetSanitizedDisplayName(const FString& DisplayName)
+{
+	if (const FString* FoundString = WordMap.Find(DisplayName))
+	{
+		UE_LOG_ONLINE(VeryVerbose, TEXT("[%s(%s)] returning FoundString %s"), ANSI_TO_TCHAR(__FUNCTION__), *DisplayName, **FoundString);
+		return *FoundString;
+	}
+
+	ISteamUtils* SteamUtilsPtr = SteamUtils();
+	check(SteamUtilsPtr);
+
+	const uint32 SanitizedBufferSize = DisplayName.Len() + 1;
+	char* SanitizedMessage = new char[SanitizedBufferSize];
+	SteamUtilsPtr->FilterText(k_ETextFilteringContextName, CSteamID(), TCHAR_TO_ANSI(*DisplayName), SanitizedMessage, SanitizedBufferSize);
+
+	const FString SanitizedString = ANSI_TO_TCHAR(SanitizedMessage);
+	delete [] SanitizedMessage;
+
+	UE_LOG_ONLINE(VeryVerbose, TEXT("[%s(%s)] returning %s"), ANSI_TO_TCHAR(__FUNCTION__), *DisplayName, *SanitizedString);
+	return WordMap.Add(DisplayName, SanitizedString);
+}
+
+void FMessageSanitizerSteam::SanitizeDisplayName(const FString& DisplayName, const FOnMessageProcessed& CompletionDelegate)
+{
+	FString SanitizedString = GetSanitizedDisplayName(DisplayName);
+	SteamV2Subsystem->ExecuteNextTick([SanitizedString, CompletionDelegate]()
+		{
+			CompletionDelegate.ExecuteIfBound(true, SanitizedString);
+		});
+}
+
+void FMessageSanitizerSteam::SanitizeDisplayNames(const TArray<FString>& DisplayNames, const FOnMessageArrayProcessed& CompletionDelegate)
+{
+	TArray<FString> SanitizedStrings;
+
+	for (const FString& DisplayName : DisplayNames)
+	{
+		SanitizedStrings.Add(GetSanitizedDisplayName(DisplayName));
+	}
+	
+	SteamV2Subsystem->ExecuteNextTick([SanitizedStrings, CompletionDelegate]()
+		{
+			CompletionDelegate.ExecuteIfBound(true, SanitizedStrings);
+		});
+}
+
+void FMessageSanitizerSteam::QueryBlockedUser(int32 LocalUserNum, const FString& FromUserIdStr, const FString& FromPlatform, const FOnQueryUserBlockedResponse& CompletionDelegate)
+{
+	FBlockedQueryResult Result;
+	Result.UserId = FromUserIdStr;
+	Result.bIsBlocked = false;
+	CompletionDelegate.ExecuteIfBound(Result);
+}
+
+void FMessageSanitizerSteam::ResetBlockedUserCache()
+{
+	//Not implemented
+	UE_LOG_ONLINE(Log, TEXT("FMessageSanitizerSteam::ResetBlockedUserCache is not implemented"));
+}

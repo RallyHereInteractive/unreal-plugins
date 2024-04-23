@@ -93,15 +93,20 @@ void FRH_DiagnosticReportGenerator::GenerateMetadata()
 	Metadata->SetStringField(TEXT("Cached-Local-Time-UTC"), hasLocalTime ? LocalTime.ToString() : FString());
 	Metadata->SetStringField(TEXT("Cached-Server-Time-UTC"), hasServerTime ? ServerTime.ToString() : FString());
 
+	// deep copy the input custom metadata so we can alter it
+	FRHAPI_JsonObject CustomMetadata;
+	FJsonObject::Duplicate(Options.CustomMetadata.GetObject(), CustomMetadata.GetObject());
+
+	// invoke global delegate to add more data
 	auto* Diagnostics = FRallyHereIntegrationModule::Get().GetDiagnostics();
-	if (Diagnostics != nullptr && Diagnostics->CustomDiagnosticMetadataDelegate.IsBound())
+	if (Diagnostics != nullptr)
 	{
-		auto CustomData = Diagnostics->CustomDiagnosticMetadataDelegate.Execute();
-		if (CustomData.IsValid())
-		{
-			Metadata->SetObjectField(TEXT("Custom-Data"), CustomData);
-		}
+		Diagnostics->CustomDiagnosticMetadataDelegate.ExecuteIfBound(CustomMetadata);
 	}
+
+	// add the custom metadata to the report
+	Metadata->SetObjectField(TEXT("Custom-Metadata"), CustomMetadata.GetObject());
+
 
 	StageComplete();
 }
@@ -231,6 +236,47 @@ void FRH_DiagnosticReportGenerator::GenerateDeviceData()
 	StageComplete();
 }
 
+void FRH_DiagnosticReportGenerator::GenerateErrorsData()
+{
+	if (!Options.bIncludeErrors)
+	{
+		StageComplete();
+		return;
+	}
+
+	Errors = MakeShareable(new FJsonObject);
+
+	if (Options.DiagnosticsTracker.IsValid())
+	{
+		auto Tracker = Options.DiagnosticsTracker.Pin();
+		TArray<TSharedPtr<FJsonValue>> NetworkErrorsArray;
+		for (const auto& Error : Tracker->NetworkFailures)
+		{
+			// do not check current world vs options world, as world is changed during travel and will likely mismatch on an error
+			//if (Options.World == Error.World)
+			{
+				TSharedRef<FJsonValueObject> ErrorValue = MakeShareable(new FJsonValueObject(Error.ToJsonObject()));
+				NetworkErrorsArray.Add(ErrorValue);
+			}
+		}
+		Errors->SetArrayField(TEXT("Network-Failures"), NetworkErrorsArray);
+
+		TArray<TSharedPtr<FJsonValue>> TravelErrorsArray;
+		for (const auto& Error : Tracker->TravelFailures)
+		{
+			// do not check current world vs options world, as world is changed during travel and will likely mismatch on an error
+			//if (Options.World == Error.World)
+			{
+				TSharedRef<FJsonValueObject> ErrorValue = MakeShareable(new FJsonValueObject(Error.ToJsonObject()));
+				TravelErrorsArray.Add(ErrorValue);
+			}
+		}
+		Errors->SetArrayField(TEXT("Travel-Failures"), TravelErrorsArray);
+	}
+
+	StageComplete();
+}
+
 
 void FRH_DiagnosticReportGenerator::GenerateFinalReport()
 {
@@ -250,6 +296,11 @@ void FRH_DiagnosticReportGenerator::GenerateFinalReport()
 	if (DeviceData.IsValid())
 	{
 		FinalReport->SetObjectField(TEXT("Device-Data"), DeviceData);
+	}
+
+	if (Errors.IsValid())
+	{
+		FinalReport->SetObjectField(TEXT("Errors"), Errors);
 	}
 	
 	// serialize to string
@@ -318,22 +369,35 @@ void FRH_DiagnosticReportGenerator::WriteToCloud()
 
 FRH_Diagnostics::FRH_Diagnostics()
 {
-
+	ClearCache();
 }
 
 void FRH_Diagnostics::Initialize()
 {
+	if (GEngine != nullptr)
+	{
+		GEngine->OnNetworkFailure().AddSP(this, &FRH_Diagnostics::OnNetworkFailure);
+		GEngine->OnTravelFailure().AddSP(this, &FRH_Diagnostics::OnTravelFailure);
+	}
 }
 
 void FRH_Diagnostics::Uninitialize()
 {
+	if (GEngine != nullptr)
+	{
+		GEngine->OnNetworkFailure().RemoveAll(this);
+		GEngine->OnTravelFailure().RemoveAll(this);
+	}
 }
 
 void FRH_Diagnostics::GenerateReport(const FRH_DiagnosticReportOptions& Options) const
 {
 	auto Helper = MakeShared<FRH_DiagnosticReportGenerator>();
 
-	Helper->Start(Options);
+	auto OptionsCopy = Options;
+	OptionsCopy.DiagnosticsTracker = AsShared();
+
+	Helper->Start(OptionsCopy);
 }
 
 void URH_DiagnosticsBlueprintLibrary::GenerateReport(const FRH_DiagnosticReportOptions& Options)

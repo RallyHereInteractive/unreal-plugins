@@ -6,7 +6,6 @@ Private/AdOpportunities.cpp
 Private/AdOpportunity.cpp
 Private/AdditionalJoinParams.cpp
 Private/AgreementMessage.cpp
-Private/AppSetting.cpp
 Private/AuditEvent.cpp
 Private/AuditResponse.cpp
 Private/AuthAPI.cpp
@@ -120,7 +119,9 @@ Private/ItemInventory.cpp
 Private/ItemType.cpp
 Private/Items.cpp
 Private/JoinParams.cpp
-Private/KVsResponse.cpp
+Private/KVV1.cpp
+Private/KVsResponseV1.cpp
+Private/KVsResponseV2.cpp
 Private/KeyClaim.cpp
 Private/KeyClaims.cpp
 Private/KeyClaimsAPI.cpp
@@ -348,7 +349,6 @@ Public/AdOpportunities.h
 Public/AdOpportunity.h
 Public/AdditionalJoinParams.h
 Public/AgreementMessage.h
-Public/AppSetting.h
 Public/AuditEvent.h
 Public/AuditResponse.h
 Public/AuthAPI.h
@@ -462,7 +462,9 @@ Public/ItemInventory.h
 Public/ItemType.h
 Public/Items.h
 Public/JoinParams.h
-Public/KVsResponse.h
+Public/KVV1.h
+Public/KVsResponseV1.h
+Public/KVsResponseV2.h
 Public/KeyClaim.h
 Public/KeyClaims.h
 Public/KeyClaimsAPI.h

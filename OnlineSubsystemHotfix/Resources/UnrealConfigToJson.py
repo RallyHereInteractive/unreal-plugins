@@ -4,22 +4,27 @@ import sys
 import json
 import os.path
 import configparser
+from glob import glob
 
 def main():
     JsonDict = {}
 
     i = 1
     while i < len(sys.argv):
-        GivenFileName = sys.argv[i];
-        if os.path.exists(GivenFileName):
-            BaseName = os.path.basename(GivenFileName)
-            JsonDict[BaseName] = CfgToJson(GivenFileName)
+        FileNames = glob(sys.argv[i]);
+        j = 0
+        while j < len(FileNames):
+            GivenFileName = FileNames[j]
+            if os.path.exists(GivenFileName):
+                BaseName = os.path.basename(GivenFileName)
+                JsonDict[BaseName] = CfgToJson(GivenFileName)
+            j+=1
         i+=1
 
     print(json.dumps(JsonDict))
 
 def CfgToJson(CfgFile):
-
+    print("Processing " + CfgFile)
 
     cfgparser = configparser.ConfigParser()
     cfgparser.optionxform = GfgOptXForm

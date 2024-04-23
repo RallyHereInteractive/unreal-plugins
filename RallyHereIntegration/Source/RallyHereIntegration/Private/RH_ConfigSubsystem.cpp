@@ -15,9 +15,7 @@
 URH_ConfigSubsystem::URH_ConfigSubsystem(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
-	bAutomaticallyPollConfigurationData = true;
-	bAutomaticallyApplyHotfixData = false;
-	bHotfixTestValue = false;
+
 }
 
 void URH_ConfigSubsystem::Initialize()
@@ -27,18 +25,18 @@ void URH_ConfigSubsystem::Initialize()
 
 	InitPropertiesWithDefaultValues();
 
-	AppSettingsPoller = FRH_PollControl::CreateAutoPoller();
+	KVsPoller = FRH_PollControl::CreateAutoPoller();
 
-	if (bAutomaticallyPollConfigurationData)
+	if (GetDefault<URH_IntegrationSettings>()->bAutomaticallyPollConfigurationData)
 	{
 		// start timer to check for updates
-		StartAppSettingsRefreshTimer();
+		StartKVsRefreshTimer();
 	}
 
-	// bind callback that checks if we are automatically applying hotfix data on settings change.  Check is internal so it can itself be hotfixed
-	OnSettingsUpdated.AddLambda([](URH_ConfigSubsystem* pConfig)
+	// bind callback that checks if we are automatically applying hotfix data on kvs change.  Check is internal so it can itself be hotfixed
+	OnKVsUpdated.AddLambda([](URH_ConfigSubsystem* pConfig)
 	{
-		if (pConfig->bAutomaticallyApplyHotfixData)
+		if (GetDefault<URH_IntegrationSettings>()->bAutomaticallyApplyHotfixData)
 		{
 			pConfig->TriggerHotfixProcessing();
 		}
@@ -52,89 +50,109 @@ void URH_ConfigSubsystem::Deinitialize()
 	Super::Deinitialize();
 	InitPropertiesWithDefaultValues();
 
-	if (AppSettingsPoller.IsValid())
+	if (KVsPoller.IsValid())
 	{
-		AppSettingsPoller->StopPoll();
-		AppSettingsPoller.Reset();
+		KVsPoller->StopPoll();
+		KVsPoller.Reset();
 	}
 }
 
 void URH_ConfigSubsystem::InitPropertiesWithDefaultValues()
 {
-	AppSettings.Empty();
+	KVs.Empty();
+	SecretKVs.Empty();
 
 	// Load Default Feature Flags
 	FKeyValueSink Visitor;
-	Visitor.BindLambda([&](const FString& Key, const FString& Value) { AppSettings.Add(Key, Value); });
+	Visitor.BindLambda([&](const FString& Key, const FString& Value) { KVs.Add(Key, Value); });
 	GConfig->ForEachEntry(Visitor, TEXT("RallyHereFeatures"), GRallyHereIntegrationIni);
 }
 
-void URH_ConfigSubsystem::FetchAppSettings(const FRH_GenericSuccessWithErrorBlock& Delegate)
+void URH_ConfigSubsystem::FetchKVs(const FRH_GenericSuccessWithErrorBlock& Delegate)
 {
 	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
-	typedef RallyHereAPI::Traits_GetAppSettingsClient BaseType;
+	GetKVsAPIType::Request Request;
+	Request.IfNoneMatch = KVsETag;
+	Request.AuthContext = GetAuthContext();
+	Request.SetDisableAuthRequirement(true);	// auth is optional for this request, but not passing a valid auth context will cause it to fail client side without this flag
 
-	BaseType::Request Request;
-	Request.IfNoneMatch = AppSettingsETag;
-
-	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
-		BaseType::Delegate::CreateUObject(this, &URH_ConfigSubsystem::OnFetchAppSettings),
+	auto Helper = MakeShared<FRH_SimpleQueryHelper<GetKVsAPIType>>(
+		GetKVsAPIType::Delegate::CreateUObject(this, &URH_ConfigSubsystem::OnFetchKVs),
 		Delegate,
 		GetDefault<URH_IntegrationSettings>()->FetchAppSettingsPriority);
 
 	Helper->Start(RH_APIs::GetConfigAPI(), Request);
 }
 
-void URH_ConfigSubsystem::PollAppSettings(const FRH_PollCompleteFunc& Delegate)
+void URH_ConfigSubsystem::PollKVs(const FRH_PollCompleteFunc& Delegate)
 {
 	// fetch with the above delegate wrappered into a lambda to convert the type
-	FetchAppSettings(FRH_GenericSuccessWithErrorDelegate::CreateLambda([Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo) {Delegate.ExecuteIfBound(bSuccess, true); }));
+	FetchKVs(FRH_GenericSuccessWithErrorDelegate::CreateLambda([Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo) {Delegate.ExecuteIfBound(bSuccess, true); }));
 }
 
 
-void URH_ConfigSubsystem::OnFetchAppSettings(const RallyHereAPI::FResponse_GetAppSettingsClient& Resp)
+void URH_ConfigSubsystem::OnFetchKVs(const GetKVsAPIType::Response& Resp)
 {
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
 	// todo - check for differences / use ETag
 	if (Resp.IsSuccessful())
 	{
-		// clear out old settings
-		AppSettings.Reset();
+		// clear out old KVs
+		KVs.Reset();
+		SecretKVs.Reset();
 
 		// Load Default Feature Flags
 		FKeyValueSink Visitor;
-		Visitor.BindLambda([&](const FString& Key, const FString& Value) { AppSettings.Add(Key, Value); });
+		Visitor.BindLambda([&](const FString& Key, const FString& Value) { KVs.Add(Key, Value); });
 		GConfig->ForEachEntry(Visitor, TEXT("RallyHereFeatures"), GRallyHereIntegrationIni);
 
-		for (const auto& AppSetting : Resp.Content)
+		// process KVs
+		const auto ResponseKVs = Resp.Content.GetKvsOrNull();
+		if (ResponseKVs != nullptr)
 		{
-			AppSettings.Add(AppSetting.Key, AppSetting.Value);
+			for (const auto& KV : *ResponseKVs)
+			{
+				KVs.Add(KV.Key, KV.Value);
+			}
+		}
+		// process Secret KVs
+		const auto ResponseSecretKVs = Resp.Content.GetSecretKvsOrNull();
+		if (ResponseSecretKVs != nullptr)
+		{
+			for (const auto& KV : *ResponseSecretKVs)
+			{
+				SecretKVs.Add(KV.Key, KV.Value);
+			}
 		}
 
-		AppSettingsETag = Resp.ETag.Get(TEXT(""));
+		KVsETag = Resp.ETag.Get(TEXT(""));
 
 		{
 			SCOPED_NAMED_EVENT(RallyHere_BroadcastAppSettingsUpdated, FColor::Purple);
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 			AppSettingsUpdatedDelegate.Broadcast(this);
-PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 			OnSettingsUpdated.Broadcast(this);
 			BLUEPRINT_OnSettingsUpdated.Broadcast(this);
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+
+			// broadcast to any listeners
+			OnKVsUpdated.Broadcast(this);
+			BLUEPRINT_OnKVsUpdated.Broadcast(this);
 		}
 
-		if (AppSettingsPoller.IsValid())
+		if (KVsPoller.IsValid())
 		{
-			AppSettingsPoller->DeferPollTimer();
+			KVsPoller->DeferPollTimer();
 		}
 
-		// if we have not yet received a server time update, and we successfully retrieved appsettings, try to retrieve time.  This allows us to piggyback the time update on the appsettings update until it succeeds once
-		// and uses the appsettings success as a good indicator of API health (otherwise, an initial kickoff could fail once and leave us in a bad state)
+		// if we have not yet received a server time update, and we successfully retrieved KVs, try to retrieve time.  This allows us to piggyback the time update on the kv update until it succeeds once
+		// and uses the kv success as a good indicator of API health (otherwise, an initial kickoff could fail once and leave us in a bad state)
 		FDateTime ServerTime;
-		if (bAutomaticallyPollConfigurationData && !GetServerTime(ServerTime))
+		if (GetDefault<URH_IntegrationSettings>()->bAutomaticallyPollConfigurationData && !GetServerTime(ServerTime))
 		{
 			// kick off time update
 			RefreshServerTimeCache();
@@ -142,24 +160,24 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	}
 }
 
-void URH_ConfigSubsystem::StartAppSettingsRefreshTimer()
+void URH_ConfigSubsystem::StartKVsRefreshTimer()
 {
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 	static FName PollTimerName(TEXT("AppSettings"));
 
-	if (AppSettingsPoller.IsValid())
+	if (KVsPoller.IsValid())
 	{
-		// immediate update, since app settings does not need to wait for login and we want it very early
-		AppSettingsPoller->StartPoll(FRH_PollFunc::CreateUObject(this, &URH_ConfigSubsystem::PollAppSettings), PollTimerName, true);
+		// immediate update, since KVs does not need to wait for login and we want it very early
+		KVsPoller->StartPoll(FRH_PollFunc::CreateUObject(this, &URH_ConfigSubsystem::PollKVs), PollTimerName, true);
 	}
 }
 
-void URH_ConfigSubsystem::StopAppSettingsRefreshTimer()
+void URH_ConfigSubsystem::StopKVsRefreshTimer()
 {
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
-	if (AppSettingsPoller.IsValid())
+	if (KVsPoller.IsValid())
 	{
-		AppSettingsPoller->StopPoll();
+		KVsPoller->StopPoll();
 	}
 }
 
@@ -198,7 +216,7 @@ void URH_ConfigSubsystem::TriggerHotfixProcessing()
 	// do not apply when running editor or commandlet, even if configured to apply automatically.  We do not want to accidentally change data the editor is using
 	if (!IsRunningDedicatedServer() || IsRunningGame())
 	{
-		bool bOldAutomaticallyApplyHotfixData = bAutomaticallyApplyHotfixData;
+		bool bOldAutomaticallyApplyHotfixData = GetDefault<URH_IntegrationSettings>()->bAutomaticallyApplyHotfixData;
 
 		UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 		URH_GameInstanceSubsystem* pGISS = GetGameInstanceSubsystem();
@@ -223,4 +241,9 @@ void URH_ConfigSubsystem::TriggerHotfixProcessing()
 			}
 		}
 	}
+}
+
+bool URH_ConfigSubsystem::GetHotfixTestValue() const
+{
+	return GetDefault<URH_IntegrationSettings>()->bHotfixTestValue;
 }
