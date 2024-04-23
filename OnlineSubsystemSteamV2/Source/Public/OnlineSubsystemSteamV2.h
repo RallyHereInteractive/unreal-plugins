@@ -7,6 +7,7 @@
 #include "OnlineSubsystemSteam.h"
 #include "OnlineAsyncTaskManagerSteamV2.h"
 #include "OnlineSubsystemSteamV2Names.h"
+#include "MessageSanitizerSteamV2.h"
 #include "OnlineSubsystemSteamV2Package.h"
 
 class FOnlinePurchaseSteam;
@@ -27,6 +28,7 @@ protected:
 	FOnlinePurchaseSteamPtr PurchaseInterface;
 	FOnlineStoreSteamPtr StoreInterface;
 	FOnlineEntitlementsSteamPtr EntitlementsInterface;
+	FMessageSanitizerSteamPtr MessageSanitizerInterface;
 
 	FOnlineSubsystemSteam* SteamSubsystem;
 
@@ -39,6 +41,7 @@ PACKAGE_SCOPE:
 		PurchaseInterface(nullptr),
 		StoreInterface(nullptr),
 		EntitlementsInterface(nullptr),
+		MessageSanitizerInterface(nullptr),
 		SteamSubsystem(nullptr),
 		OnlineAsyncTaskThreadRunnable(nullptr),
 		OnlineAsyncTaskThread(nullptr)
@@ -81,6 +84,7 @@ public:
 	virtual IOnlineSharingPtr GetSharingInterface() const override;
 	virtual IOnlineUserPtr GetUserInterface() const override;
 	virtual IOnlineMessagePtr GetMessageInterface() const override;
+	virtual IMessageSanitizerPtr GetMessageSanitizer(int32 LocalUserNum, FString& OutAuthTypeToExclude) const override;
 	virtual IOnlinePresencePtr GetPresenceInterface() const override;
 	virtual IOnlineChatPtr GetChatInterface() const override;
 	virtual IOnlineStatsPtr GetStatsInterface() const override;

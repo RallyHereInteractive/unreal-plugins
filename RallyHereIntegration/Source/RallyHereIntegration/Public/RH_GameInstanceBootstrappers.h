@@ -234,7 +234,7 @@ protected:
 	/**
 	* @brief Bootstrapping Flow [Failed] - trigger bootstrapping failure and handles failure logic
 	*/
-	virtual void OnBootstrappingFailed();
+	virtual void OnBootstrappingFailed(const FString& FailureReason);
 	/**
 	* @brief Bootstrapping Flow [Complete] - trigger bootstrapping complete and handles completion logic.  Note that recycling may start a new bootstrapping flow
 	*/

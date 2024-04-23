@@ -64,8 +64,8 @@ private:
  *
  * Create a new report for a target player
  * Required Permissions:
- * If `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:self`, `sanction:*`, `sanction:report:create:any`
- * Otherwise: any of: `sanction:*`, `sanction:report:create:any`
+ * If `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:any`, `sanction:*`, `sanction:report:create:self`
+ * Otherwise: any of: `sanction:report:create:any`, `sanction:*`
 */
 struct RALLYHEREAPI_API FRequest_CreateReportForTargetPlayerUuid : public FRequest
 {
@@ -135,7 +135,7 @@ struct RALLYHEREAPI_API Traits_CreateReportForTargetPlayerUuid
  * Get reports for a target player
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `sanction:*`, `sanction:report:read:target-any`
+ * - For any player (including themselves) any of: `sanction:report:read:target-any`, `sanction:*`
  * 
  * - For the player themselves : `sanction:report:read:target-self`
  * 
@@ -210,7 +210,7 @@ struct RALLYHEREAPI_API Traits_GetReportsForTargetPlayerUuid
  * Get reports for a target player
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `sanction:*`, `sanction:report:read:target-any`
+ * - For any player (including themselves) any of: `sanction:report:read:target-any`, `sanction:*`
  * 
  * - For the player themselves : `sanction:report:read:target-self`
  * 

@@ -2484,6 +2484,7 @@ struct RALLYHEREAPI_API FRequest_LeaveQueue : public FRequest
 	TSharedPtr<FAuthContext> AuthContext;
 	FString SessionId;
 	TOptional<ERHAPI_DeleteTicketReason> Reason;
+	TOptional<bool> RefreshTtl;
 };
 
 struct RALLYHEREAPI_API FResponse_LeaveQueue : public FResponse

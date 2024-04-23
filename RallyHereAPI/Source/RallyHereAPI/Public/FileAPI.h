@@ -137,6 +137,7 @@ struct RALLYHEREAPI_API FRequest_DeleteEntityDirectory : public FRequest
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
 	TSharedPtr<FAuthContext> AuthContext;
+	ERHAPI_FileType FileType;
 	ERHAPI_EntityType EntityType;
 };
 
@@ -311,6 +312,7 @@ struct RALLYHEREAPI_API FRequest_GetEntityDirectoryInformation : public FRequest
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
 	TSharedPtr<FAuthContext> AuthContext;
+	ERHAPI_FileType FileType;
 	ERHAPI_EntityType EntityType;
 };
 

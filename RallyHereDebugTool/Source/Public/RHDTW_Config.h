@@ -1,4 +1,4 @@
-﻿// Copyright 2022-2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 #pragma once
 
@@ -14,13 +14,13 @@ struct FRHDTW_Config : public FRH_DebugToolWindow
 	virtual ~FRHDTW_Config();
 
 	virtual void Do() override;
-	void DoRhConfigTab(URH_ConfigSubsystem* pRH_ConfigSubsystem);
-	void DoRhTimeTab(URH_ConfigSubsystem* pRH_ConfigSubsystem);
+	void DoKVsTab(URH_ConfigSubsystem* pRH_ConfigSubsystem);
+	void DoTimeTab(URH_ConfigSubsystem* pRH_ConfigSubsystem);
 
-	void HandleFetchAppSettings(bool bSuccess, const FRH_ErrorInfo& ErrorInfo);
+	void HandleFetchKVs(bool bSuccess, const FRH_ErrorInfo& ErrorInfo);
 	void HandleFetchTime(bool bSuccess, const FRH_ErrorInfo& ErrorInfo);
 
-	FString AppSettingsActionResult;
+	FString KVsActionResult;
 	FString TimeActionResult;
 
 };

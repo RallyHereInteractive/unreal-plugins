@@ -109,7 +109,7 @@ bool FOnlineTitleFileHotfix::EnumerateFiles(const FPagedQuery& Page /*= FPagedQu
 
 	bool bEnabled = false;
 	FString EnableValueString;
-	if (pConfig->GetAppSetting(strHotfixEnable, EnableValueString) && EnableValueString.ToBool())
+	if (pConfig->GetKV(strHotfixEnable, EnableValueString) && EnableValueString.ToBool())
 	{
 		bEnabled = true;
 	}
@@ -176,7 +176,18 @@ bool FOnlineTitleFileHotfix::EnumerateFiles(const FPagedQuery& Page /*= FPagedQu
         return true;
     };
 
-	for (const auto& SettingPair : pConfig->GetAppSettings())
+	for (const auto& SettingPair : pConfig->GetKVs())
+	{
+		if (SettingPair.Key.StartsWith(HotfixPrefix) && SettingPair.Key != strHotfixEnable && SettingPair.Value.Len() > 0)
+		{
+			FText OutErrorReason;
+			if (!ProcessHotfixSetting(SettingPair.Value, OutErrorReason))
+			{
+				UE_LOG(LogOnlineHotfix, Warning, TEXT("%s error: %s"), *SettingPair.Key, *OutErrorReason.ToString());
+			}
+		}
+	}
+	for (const auto& SettingPair : pConfig->GetSecretKVs())
 	{
 		if (SettingPair.Key.StartsWith(HotfixPrefix) && SettingPair.Key != strHotfixEnable && SettingPair.Value.Len() > 0)
 		{

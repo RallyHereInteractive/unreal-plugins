@@ -11,6 +11,8 @@
 #include "RH_Events.h"
 #include "RH_PlayerInfoSubsystem.h"
 #include "RallyHereIntegrationModule.h"
+#include "RH_Diagnostics.h"
+#include "RH_Integration.h"
 #include "RallyHereAPIHttpRequester.h"
 #include "RH_ConfigSubsystem.h"
 #include "Engine/GameInstance.h"
@@ -20,6 +22,7 @@
 #include "HAL/PlatformOutputDevices.h"
 #include "RH_SessionHelpers.h"
 #include "RH_BootstrappingHelpers.h"
+
 #include "OnlineSubsystemUtils.h"
 #include "HttpManager.h"
 #include "GameFramework/GameModeBase.h"
@@ -166,8 +169,7 @@ void URH_GameInstanceServerBootstrapper::Initialize()
 		auto* RHGameInstanceSubsystem = GetGameInstanceSubsystem();
 		if (!RHGameInstanceSubsystem->GetSessionSubsystem())
 		{
-			UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Could not find session subsystem"), ANSI_TO_TCHAR(__FUNCTION__));
-			OnBootstrappingFailed();
+			OnBootstrappingFailed(FString::Printf(TEXT("[%s] - Could not find session subsystem"), ANSI_TO_TCHAR(__FUNCTION__)));
 			return;
 		}
 
@@ -395,8 +397,10 @@ void URH_GameInstanceServerBootstrapper::UpdateBootstrapStep(ERH_ServerBootstrap
 	}
 }
 
-void URH_GameInstanceServerBootstrapper::OnBootstrappingFailed()
+void URH_GameInstanceServerBootstrapper::OnBootstrappingFailed(const FString& ErrorReason)
 {
+	UE_LOG(LogRallyHereIntegration, Error, TEXT("Bootstrapping Failure: %s"), *ErrorReason);
+
 	// only place we should ever set failed
 	UpdateBootstrapStep(ERH_ServerBootstrapFlowStep::Failed);
 
@@ -441,13 +445,72 @@ void URH_GameInstanceServerBootstrapper::OnBootstrappingFailed()
 		FHttpModule::Get().GetHttpManager().Flush(false);
 #endif
 
-		if (RallyHere::TermSignalHandler::ExitStatusOverride != 0)
+		auto GameInstance = GetGameInstanceSubsystem()->GetGameInstance();
+
+		auto ShutdownServer = []()
 		{
-			FPlatformMisc::RequestExitWithStatus(false, RallyHere::TermSignalHandler::ExitStatusOverride);
+			if (RallyHere::TermSignalHandler::ExitStatusOverride != 0)
+			{
+				FPlatformMisc::RequestExitWithStatus(false, RallyHere::TermSignalHandler::ExitStatusOverride);
+			}
+			else
+			{
+				RequestEngineExit(TEXT("Server bootstrapper failed"));
+			}
+		};
+
+		// write a diagnostic with potential information about the failure
+		if (GameInstance != nullptr)
+		{
+			UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Writing diagnostic report"), ANSI_TO_TCHAR(__FUNCTION__));
+			auto World = GameInstance != nullptr ? GameInstance->GetWorld() : nullptr;
+
+			FRH_DiagnosticReportOptions Options;
+			Options.World = World;
+			Options.bWriteToFile = true;
+
+			const FString BootstrapStepString = RH_GETENUMSTRING("/Script/RallyHereIntegration", "ERH_ServerBootstrapFlowStep", GetBootstrapStep());
+			Options.CustomMetadata.SetStringField(TEXT("shutdown_reason"), 
+				FString::Printf(TEXT("Bootstrapping Failure on %s: %s"), *BootstrapStepString, *ErrorReason)
+			);
+
+			if (BootstrappingResult.AllocationInfo.AllocationId.IsSet())
+			{
+				Options.CustomMetadata.SetStringField(TEXT("allocation_id"), BootstrappingResult.AllocationInfo.AllocationId.GetValue());
+			}
+			if (BootstrappingResult.Session.IsSet())
+			{
+				Options.CustomMetadata.SetStringField(TEXT("session_id"), BootstrappingResult.Session.GetValue().Data.GetSessionId());
+				const auto Instance = BootstrappingResult.Session.GetValue().Data.GetInstanceOrNull();
+				if (Instance)
+				{
+					Options.CustomMetadata.SetStringField(TEXT("instance_id"), Instance->GetInstanceId());
+				}
+			}
+
+			Options.OutputFilename = TEXT("BootstrapFailure-") + FDateTime::Now().ToString() + TEXT(".json");
+
+			// we want to exit once the report is complete
+			Options.OnReportComplete.BindLambda([ShutdownServer](const TSharedRef<const FRH_DiagnosticReportGenerator>& FinalReport)
+				{
+					ShutdownServer();
+				});
+
+			FRallyHereIntegrationModule::Get().GetDiagnostics()->GenerateReport(Options);
+
+			// set a 5 second backup timer to initiate shutdown in case report has an error itself
+			FTimerHandle DummyHandle;
+			GameInstance->GetTimerManager().SetTimer(DummyHandle, FTimerDelegate::CreateLambda([ShutdownServer]()
+				{
+					ShutdownServer();
+				}),
+				5.f, false);
 		}
 		else
 		{
-			RequestEngineExit(TEXT("Server bootstrapper failed"));
+			UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Could not write diagnostic report, no game instance"), ANSI_TO_TCHAR(__FUNCTION__));
+
+			ShutdownServer();
 		}
 	}
 	else
@@ -504,12 +567,11 @@ void URH_GameInstanceServerBootstrapper::OnServerLoginComplete(bool bSuccess, co
 	}
 	else
 	{
-		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - RallyHere login was unsuccessful (Error Code %d, Error Response: [%s]")
+		OnBootstrappingFailed(FString::Printf(TEXT("[%s] - RallyHere login was unsuccessful (Error Code %d, Error Response: [%s]")
 			, ANSI_TO_TCHAR(__FUNCTION__)
 			, ErrorInfo.ResponseCode
 			, *ErrorInfo.ResponseContent
-		);
-		OnBootstrappingFailed();
+		));
 	}
 }
 
@@ -602,8 +664,7 @@ void URH_GameInstanceServerBootstrapper::BeginRegistration()
 	if (!GameHostProvider.IsValid() || !GameHostProvider->IsValid())
 	{
 		GameHostProvider.Reset();
-		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Could not create game host provider"), ANSI_TO_TCHAR(__FUNCTION__));
-		OnBootstrappingFailed();
+		OnBootstrappingFailed(FString::Printf(TEXT("[%s] - Could not create game host provider"), ANSI_TO_TCHAR(__FUNCTION__)));
 		return;
 	}
 
@@ -611,8 +672,7 @@ void URH_GameInstanceServerBootstrapper::BeginRegistration()
 	GameHostProvider->OnProviderSoftStopRequested.BindStatic(&RallyHere::TermSignalHandler::ProviderTerminationSignalHandler);
 	GameHostProvider->OnProviderHardStopRequested.BindWeakLambda(this, [this]()
 		{
-			UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - hard stop requested from game host provider"), ANSI_TO_TCHAR(__FUNCTION__));
-			OnBootstrappingFailed();
+			OnBootstrappingFailed(FString::Printf(TEXT("[%s] - hard stop requested from game host provider"), ANSI_TO_TCHAR(__FUNCTION__)));
 		});
 
 	GameHostProvider->OnProviderConnectComplete.BindUObject(this, &URH_GameInstanceServerBootstrapper::OnConnectComplete);
@@ -634,8 +694,7 @@ void URH_GameInstanceServerBootstrapper::BeginConnecting()
 	}
 	else
 	{
-		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] attempting to connect without a valid game host provider"), ANSI_TO_TCHAR(__FUNCTION__));
-		OnBootstrappingFailed();
+		OnBootstrappingFailed(FString::Printf(TEXT("[%s] attempting to connect without a valid game host provider"), ANSI_TO_TCHAR(__FUNCTION__)));
 	}
 }
 
@@ -643,8 +702,7 @@ void URH_GameInstanceServerBootstrapper::OnConnectComplete(bool bSuccess)
 {
 	if (!bSuccess)
 	{
-		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] GameHostProvider Failed to connect to provider"), ANSI_TO_TCHAR(__FUNCTION__));
-		OnBootstrappingFailed();
+		OnBootstrappingFailed(FString::Printf(TEXT("[%s] GameHostProvider Failed to connect to provider"), ANSI_TO_TCHAR(__FUNCTION__)));
 		return;
 	}
 
@@ -666,8 +724,8 @@ void URH_GameInstanceServerBootstrapper::BeginRegister()
 	}
 	else
 	{
-		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] attempting to register without a valid game host provider"), ANSI_TO_TCHAR(__FUNCTION__));
-		OnBootstrappingFailed();
+		OnBootstrappingFailed(FString::Printf(TEXT("[%s] attempting to register without a valid game host provider"), ANSI_TO_TCHAR(__FUNCTION__)));
+		return;
 	}
 }
 
@@ -675,8 +733,7 @@ void URH_GameInstanceServerBootstrapper::OnRegisterComplete(bool bSuccess)
 {
 	if (!bSuccess)
 	{
-		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] GameHostProvider failed to register"), ANSI_TO_TCHAR(__FUNCTION__));
-		OnBootstrappingFailed();
+		OnBootstrappingFailed(FString::Printf(TEXT("[%s] GameHostProvider failed to register"), ANSI_TO_TCHAR(__FUNCTION__)));
 		return;
 	}
 }
@@ -693,8 +750,7 @@ void URH_GameInstanceServerBootstrapper::OnAllocationComplete(ERH_AllocationStat
 	{
 		if (BootstrapStep != ERH_ServerBootstrapFlowStep::Complete)
 		{
-			UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] GameHostProvider Failed to successfully get an allocation"), ANSI_TO_TCHAR(__FUNCTION__));
-			OnBootstrappingFailed();
+			OnBootstrappingFailed(FString::Printf(TEXT("[%s] GameHostProvider Failed to successfully get an allocation"), ANSI_TO_TCHAR(__FUNCTION__)));
 		}
 		else
 		{
@@ -704,15 +760,13 @@ void URH_GameInstanceServerBootstrapper::OnAllocationComplete(ERH_AllocationStat
 	}
 	else if (Status == ERH_AllocationStatus::TimedOut)
 	{
-		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] Exceeded maximum amount of time polling"), ANSI_TO_TCHAR(__FUNCTION__));
-		OnBootstrappingFailed();
+		OnBootstrappingFailed(FString::Printf(TEXT("[%s] Exceeded maximum amount of time polling"), ANSI_TO_TCHAR(__FUNCTION__)));
 		return;
 	}
 
 	if (!AllocationInfo.IsValid())
 	{
-		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] Invalid allocation info"), ANSI_TO_TCHAR(__FUNCTION__));
-		OnBootstrappingFailed();
+		OnBootstrappingFailed(FString::Printf(TEXT("[%s] Invalid allocation info"), ANSI_TO_TCHAR(__FUNCTION__)));
 		return;
 	}
 
@@ -734,8 +788,7 @@ void URH_GameInstanceServerBootstrapper::BeginReservation()
 	}
 	else
 	{
-		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] attempting to reserve without a valid game host provider"), ANSI_TO_TCHAR(__FUNCTION__));
-		OnBootstrappingFailed();
+		OnBootstrappingFailed(FString::Printf(TEXT("[%s] attempting to reserve without a valid game host provider"), ANSI_TO_TCHAR(__FUNCTION__)));
 	}
 }
 
@@ -743,8 +796,7 @@ void URH_GameInstanceServerBootstrapper::OnReservationComplete(bool bSuccess)
 {
 	if (!bSuccess)
 	{
-		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] GameHostProvider failed to reserve"), ANSI_TO_TCHAR(__FUNCTION__));
-		OnBootstrappingFailed();
+		OnBootstrappingFailed(FString::Printf(TEXT("[%s] GameHostProvider failed to reserve"), ANSI_TO_TCHAR(__FUNCTION__)));
 		return;
 	}
 
@@ -790,8 +842,7 @@ void URH_GameInstanceServerBootstrapper::OnReservationComplete(bool bSuccess)
 					}
 					else
 					{
-						UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - session creation failed"), ANSI_TO_TCHAR(__FUNCTION__));
-						OnBootstrappingFailed();
+						OnBootstrappingFailed(FString::Printf(TEXT("[%s] - session creation failed"), ANSI_TO_TCHAR(__FUNCTION__)));
 					}
 				}),
 			GetDefault<URH_IntegrationSettings>()->SessionJoinPriority
@@ -803,8 +854,8 @@ void URH_GameInstanceServerBootstrapper::OnReservationComplete(bool bSuccess)
 
 	if (!bStartedHelper)
 	{
-		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Could not start auto create bootstrapping finalizer helper"), ANSI_TO_TCHAR(__FUNCTION__));
-		OnBootstrappingFailed();
+		OnBootstrappingFailed(FString::Printf(TEXT("[%s] - Could not start auto create bootstrapping finalizer helper"), ANSI_TO_TCHAR(__FUNCTION__)));
+		return;
 	}
 }
 
@@ -816,8 +867,8 @@ void URH_GameInstanceServerBootstrapper::BeginSelfAllocate()
 	}
 	else
 	{
-		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] attempting to self allocate without a valid game host provider"), ANSI_TO_TCHAR(__FUNCTION__));
-		OnBootstrappingFailed();
+		OnBootstrappingFailed(FString::Printf(TEXT("[%s] attempting to self allocate without a valid game host provider"), ANSI_TO_TCHAR(__FUNCTION__)));
+		return;
 	}
 }
 
@@ -825,8 +876,7 @@ void URH_GameInstanceServerBootstrapper::OnSelfAllocateComplete(bool bSuccess)
 {
 	if (!bSuccess)
 	{
-		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] GameHostProvider failed to allocate"), ANSI_TO_TCHAR(__FUNCTION__));
-		OnBootstrappingFailed();
+		OnBootstrappingFailed(FString::Printf(TEXT("[%s] GameHostProvider failed to allocate"), ANSI_TO_TCHAR(__FUNCTION__)));
 		return;
 	}
 }
@@ -892,15 +942,15 @@ void URH_GameInstanceServerBootstrapper::OnRegistrationFinalizerComplete(bool bS
 		}
 		else
 		{
-			UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Bootstrapping finalizer returned valid FSession %s, but failed or does not match imported session %s"),
-				ANSI_TO_TCHAR(__FUNCTION__), *APISession.Data.SessionId, RHSession != nullptr ? *RHSession->GetSessionId() : TEXT("<UNKONWN>"));
-			OnBootstrappingFailed();
+			OnBootstrappingFailed(FString::Printf(TEXT("[%s] - Bootstrapping finalizer returned valid FSession %s, but failed or does not match imported session %s"),
+				ANSI_TO_TCHAR(__FUNCTION__), *APISession.Data.SessionId, RHSession != nullptr ? *RHSession->GetSessionId() : TEXT("<UNKONWN>")));
+			return;
 		}
 	}
 	else
 	{
-		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Bootstrapping finalizer failed"), ANSI_TO_TCHAR(__FUNCTION__));
-		OnBootstrappingFailed();
+		OnBootstrappingFailed(FString::Printf(TEXT("[%s] - Bootstrapping finalizer failed"), ANSI_TO_TCHAR(__FUNCTION__)));
+		return;
 	}
 }
 
@@ -923,8 +973,8 @@ void URH_GameInstanceServerBootstrapper::OnSessionInstanceCreationCompleted(bool
 	}
 	else
 	{
-		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Instance creation failed"), ANSI_TO_TCHAR(__FUNCTION__));
-		OnBootstrappingFailed();
+		OnBootstrappingFailed(FString::Printf(TEXT("[%s] - Instance creation failed"), ANSI_TO_TCHAR(__FUNCTION__)));
+		return;
 	}
 }
 
@@ -946,20 +996,20 @@ void URH_GameInstanceServerBootstrapper::SyncToSession()
 	else if (RHSession == nullptr)
 	{
 		// this should have been detected much earlier
-		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Session to sync to does not exist"), ANSI_TO_TCHAR(__FUNCTION__));
-		OnBootstrappingFailed();
+		OnBootstrappingFailed(FString::Printf(TEXT("[%s] - Session to sync to does not exist"), ANSI_TO_TCHAR(__FUNCTION__)));
+		return;
 	}
 	else
 	{
 		// this should have been detected much earlier
-		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Could not find session subsystem"), ANSI_TO_TCHAR(__FUNCTION__));
-		OnBootstrappingFailed();
+		OnBootstrappingFailed(FString::Printf(TEXT("[%s] - Could not find session subsystem"), ANSI_TO_TCHAR(__FUNCTION__)));
+		return;
 	}
 }
 
 void URH_GameInstanceServerBootstrapper::OnSyncToSessionComplete(URH_JoinedSession* Session, bool bSuccess, const FString& Error)
 {
-	UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] %s (%s - %s)"), 
+	const FString LogString = FString::Printf(TEXT("[%s] %s (%s - %s)"), 
 		ANSI_TO_TCHAR(__FUNCTION__), 
 		Session ? *Session->GetSessionId() : TEXT("<UNKNOWN>"), 
 		bSuccess ? TEXT("Success") : TEXT("Failure"),
@@ -968,11 +1018,13 @@ void URH_GameInstanceServerBootstrapper::OnSyncToSessionComplete(URH_JoinedSessi
 
 	if (bSuccess && Session == RHSession && RHSession->IsActive())
 	{
+		UE_LOG(LogRallyHereIntegration, Log, TEXT("%s"), *LogString);
 		OnBootstrappingComplete();
 	}
 	else
 	{
-		OnBootstrappingFailed();
+		OnBootstrappingFailed(LogString);
+		return;
 	}
 }
 

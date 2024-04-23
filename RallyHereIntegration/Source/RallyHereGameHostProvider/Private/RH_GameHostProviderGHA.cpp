@@ -42,7 +42,7 @@ FRH_GameHostProviderGHA::FRH_GameHostProviderGHA(const FString& Commandline)
 		FTCHARToUTF8 InstanceName((const TCHAR*)*FApp::GetInstanceId().ToString());
 		FTCHARToUTF8 LaunchDir((const TCHAR*)*FPaths::LaunchDir());
 		FTCHARToUTF8 ProjectName((const TCHAR*)FApp::GetProjectName());
-		FTCHARToUTF8 EngineVersion((const TCHAR*)*FEngineVersion::Current().ToString());
+		FTCHARToUTF8 BuildVersion((const TCHAR*)*FApp::GetBuildVersion());
 
 		stats.name = (ANSICHAR*)InstanceName.Get();
 		provided.set_name = true;
@@ -56,7 +56,7 @@ FRH_GameHostProviderGHA::FRH_GameHostProviderGHA(const FString& Commandline)
 		stats.visibility = 0;
 		provided.set_visibility = true;
 
-		stats.version = (ANSICHAR*)EngineVersion.Get();
+		stats.version = (ANSICHAR*)BuildVersion.Get();
 		provided.set_version = true;
 
 		stats.server_type = IsRunningDedicatedServer() ? 'd' : 'l';

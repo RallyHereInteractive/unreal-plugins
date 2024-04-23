@@ -28,6 +28,8 @@ FString EnumToString(const ERHAPI_DeleteTicketReason& Value)
 		return TEXT("left_queue");
 	case ERHAPI_DeleteTicketReason::Timeout:
 		return TEXT("timeout");
+	case ERHAPI_DeleteTicketReason::PartyChanged:
+		return TEXT("party_changed");
 	}
 
 	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_DeleteTicketReason::Values Value (%d)"), (int)Value);
@@ -39,7 +41,8 @@ bool EnumFromString(const FString& EnumAsString, ERHAPI_DeleteTicketReason& Valu
 	static TMap<FString, ERHAPI_DeleteTicketReason> StringToEnum = { 
 		{ TEXT("assigned"), ERHAPI_DeleteTicketReason::Assigned },
 		{ TEXT("left_queue"), ERHAPI_DeleteTicketReason::LeftQueue },
-		{ TEXT("timeout"), ERHAPI_DeleteTicketReason::Timeout },	};
+		{ TEXT("timeout"), ERHAPI_DeleteTicketReason::Timeout },
+		{ TEXT("party_changed"), ERHAPI_DeleteTicketReason::PartyChanged },	};
 
 	const auto Found = StringToEnum.Find(EnumAsString);
 	if(Found)

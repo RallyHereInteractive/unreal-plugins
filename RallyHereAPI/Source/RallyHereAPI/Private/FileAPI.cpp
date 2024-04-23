@@ -28,25 +28,38 @@ FHttpRequestPtr FFileAPI::CreateEntityDirectoryFile(const FRequest_CreateEntityD
 	if (!IsValid())
 		return nullptr;
 
+	// create the http request and tracking structure
 	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
+	// add headers to tracker
 	for(const auto& It : AdditionalHeaderParams)
 	{
 		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
 	}
 
+	// setup http request from custom request object
 	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
 	{
 		return nullptr;
 	}
+	
+	// allow a delegate to modify the http request (such as binding custom handling delegates)
+	Request.OnModifyRequest().Broadcast(Request, RequestData->HttpRequest);
+	
+	// update request metadata flags just before we store it in the tracking object
+	FRequestMetadata Metadata = Request.GetRequestMetadata();
+	Request.SetMetadataFlags(Metadata);
 
-	RequestData->SetMetadata(Request.GetRequestMetadata());
+	// store metadata in tracking object (last place used by request)
+	RequestData->SetMetadata(Metadata);
 
+	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
 	ResponseDelegate.BindSP(this, &FFileAPI::OnCreateEntityDirectoryFileResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
+	// submit request to http system
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
 	if (HttpRequester)
 	{
@@ -89,7 +102,7 @@ FRequest_CreateEntityDirectoryFile::FRequest_CreateEntityDirectoryFile()
 
 FName FRequest_CreateEntityDirectoryFile::GetSimplifiedPath() const
 {
-	static FName Path = FName(TEXT("/file/v1/{entity_type}/{entity_id}/{file_type}/{file_name}"));
+	static FName Path = FName(TEXT("/file/v1/{file_type}/{entity_type}/{entity_id}/{file_name}"));
 	return Path;
 }
 
@@ -102,7 +115,7 @@ FString FRequest_CreateEntityDirectoryFile::ComputePath() const
 		{ TEXT("entity_id"), ToStringFormatArg(EntityId) }
 	};
 
-	FString Path = FString::Format(TEXT("/file/v1/{entity_type}/{entity_id}/{file_type}/{file_name}"), PathParams);
+	FString Path = FString::Format(TEXT("/file/v1/{file_type}/{entity_type}/{entity_id}/{file_name}"), PathParams);
 
 	return Path;
 }
@@ -114,12 +127,12 @@ bool FRequest_CreateEntityDirectoryFile::SetupHttpRequest(const FHttpRequestRef&
 
 	HttpRequest->SetVerb(TEXT("PUT"));
 
-	if (!AuthContext)
+	if (!AuthContext && !bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateEntityDirectoryFile - missing auth context"));
 		return false;
 	}
-	if (!AuthContext->AddBearerToken(HttpRequest))
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateEntityDirectoryFile - failed to add bearer token"));
 		return false;
@@ -205,25 +218,38 @@ FHttpRequestPtr FFileAPI::DeleteEntityDirectory(const FRequest_DeleteEntityDirec
 	if (!IsValid())
 		return nullptr;
 
+	// create the http request and tracking structure
 	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
+	// add headers to tracker
 	for(const auto& It : AdditionalHeaderParams)
 	{
 		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
 	}
 
+	// setup http request from custom request object
 	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
 	{
 		return nullptr;
 	}
+	
+	// allow a delegate to modify the http request (such as binding custom handling delegates)
+	Request.OnModifyRequest().Broadcast(Request, RequestData->HttpRequest);
+	
+	// update request metadata flags just before we store it in the tracking object
+	FRequestMetadata Metadata = Request.GetRequestMetadata();
+	Request.SetMetadataFlags(Metadata);
 
-	RequestData->SetMetadata(Request.GetRequestMetadata());
+	// store metadata in tracking object (last place used by request)
+	RequestData->SetMetadata(Metadata);
 
+	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
 	ResponseDelegate.BindSP(this, &FFileAPI::OnDeleteEntityDirectoryResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
+	// submit request to http system
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
 	if (HttpRequester)
 	{
@@ -266,17 +292,18 @@ FRequest_DeleteEntityDirectory::FRequest_DeleteEntityDirectory()
 
 FName FRequest_DeleteEntityDirectory::GetSimplifiedPath() const
 {
-	static FName Path = FName(TEXT("/file/v1/{entity_type}"));
+	static FName Path = FName(TEXT("/file/v1/{file_type}/{entity_type}"));
 	return Path;
 }
 
 FString FRequest_DeleteEntityDirectory::ComputePath() const
 {
 	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("file_type"), ToStringFormatArg(FileType) },
 		{ TEXT("entity_type"), ToStringFormatArg(EntityType) }
 	};
 
-	FString Path = FString::Format(TEXT("/file/v1/{entity_type}"), PathParams);
+	FString Path = FString::Format(TEXT("/file/v1/{file_type}/{entity_type}"), PathParams);
 
 	return Path;
 }
@@ -288,12 +315,12 @@ bool FRequest_DeleteEntityDirectory::SetupHttpRequest(const FHttpRequestRef& Htt
 
 	HttpRequest->SetVerb(TEXT("DELETE"));
 
-	if (!AuthContext)
+	if (!AuthContext && !bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteEntityDirectory - missing auth context"));
 		return false;
 	}
-	if (!AuthContext->AddBearerToken(HttpRequest))
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteEntityDirectory - failed to add bearer token"));
 		return false;
@@ -379,25 +406,38 @@ FHttpRequestPtr FFileAPI::DeleteEntityDirectoryFile(const FRequest_DeleteEntityD
 	if (!IsValid())
 		return nullptr;
 
+	// create the http request and tracking structure
 	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
+	// add headers to tracker
 	for(const auto& It : AdditionalHeaderParams)
 	{
 		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
 	}
 
+	// setup http request from custom request object
 	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
 	{
 		return nullptr;
 	}
+	
+	// allow a delegate to modify the http request (such as binding custom handling delegates)
+	Request.OnModifyRequest().Broadcast(Request, RequestData->HttpRequest);
+	
+	// update request metadata flags just before we store it in the tracking object
+	FRequestMetadata Metadata = Request.GetRequestMetadata();
+	Request.SetMetadataFlags(Metadata);
 
-	RequestData->SetMetadata(Request.GetRequestMetadata());
+	// store metadata in tracking object (last place used by request)
+	RequestData->SetMetadata(Metadata);
 
+	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
 	ResponseDelegate.BindSP(this, &FFileAPI::OnDeleteEntityDirectoryFileResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
+	// submit request to http system
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
 	if (HttpRequester)
 	{
@@ -440,7 +480,7 @@ FRequest_DeleteEntityDirectoryFile::FRequest_DeleteEntityDirectoryFile()
 
 FName FRequest_DeleteEntityDirectoryFile::GetSimplifiedPath() const
 {
-	static FName Path = FName(TEXT("/file/v1/{entity_type}/{entity_id}/{file_type}/{file_name}"));
+	static FName Path = FName(TEXT("/file/v1/{file_type}/{entity_type}/{entity_id}/{file_name}"));
 	return Path;
 }
 
@@ -453,7 +493,7 @@ FString FRequest_DeleteEntityDirectoryFile::ComputePath() const
 		{ TEXT("file_type"), ToStringFormatArg(FileType) }
 	};
 
-	FString Path = FString::Format(TEXT("/file/v1/{entity_type}/{entity_id}/{file_type}/{file_name}"), PathParams);
+	FString Path = FString::Format(TEXT("/file/v1/{file_type}/{entity_type}/{entity_id}/{file_name}"), PathParams);
 
 	return Path;
 }
@@ -465,12 +505,12 @@ bool FRequest_DeleteEntityDirectoryFile::SetupHttpRequest(const FHttpRequestRef&
 
 	HttpRequest->SetVerb(TEXT("DELETE"));
 
-	if (!AuthContext)
+	if (!AuthContext && !bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteEntityDirectoryFile - missing auth context"));
 		return false;
 	}
-	if (!AuthContext->AddBearerToken(HttpRequest))
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteEntityDirectoryFile - failed to add bearer token"));
 		return false;
@@ -546,25 +586,38 @@ FHttpRequestPtr FFileAPI::DownloadEntityDirectoryFile(const FRequest_DownloadEnt
 	if (!IsValid())
 		return nullptr;
 
+	// create the http request and tracking structure
 	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
+	// add headers to tracker
 	for(const auto& It : AdditionalHeaderParams)
 	{
 		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
 	}
 
+	// setup http request from custom request object
 	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
 	{
 		return nullptr;
 	}
+	
+	// allow a delegate to modify the http request (such as binding custom handling delegates)
+	Request.OnModifyRequest().Broadcast(Request, RequestData->HttpRequest);
+	
+	// update request metadata flags just before we store it in the tracking object
+	FRequestMetadata Metadata = Request.GetRequestMetadata();
+	Request.SetMetadataFlags(Metadata);
 
-	RequestData->SetMetadata(Request.GetRequestMetadata());
+	// store metadata in tracking object (last place used by request)
+	RequestData->SetMetadata(Metadata);
 
+	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
 	ResponseDelegate.BindSP(this, &FFileAPI::OnDownloadEntityDirectoryFileResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
+	// submit request to http system
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
 	if (HttpRequester)
 	{
@@ -607,7 +660,7 @@ FRequest_DownloadEntityDirectoryFile::FRequest_DownloadEntityDirectoryFile()
 
 FName FRequest_DownloadEntityDirectoryFile::GetSimplifiedPath() const
 {
-	static FName Path = FName(TEXT("/file/v1/{entity_type}/{entity_id}/{file_type}/{file_name}"));
+	static FName Path = FName(TEXT("/file/v1/{file_type}/{entity_type}/{entity_id}/{file_name}"));
 	return Path;
 }
 
@@ -620,7 +673,7 @@ FString FRequest_DownloadEntityDirectoryFile::ComputePath() const
 		{ TEXT("file_type"), ToStringFormatArg(FileType) }
 	};
 
-	FString Path = FString::Format(TEXT("/file/v1/{entity_type}/{entity_id}/{file_type}/{file_name}"), PathParams);
+	FString Path = FString::Format(TEXT("/file/v1/{file_type}/{entity_type}/{entity_id}/{file_name}"), PathParams);
 
 	return Path;
 }
@@ -632,12 +685,12 @@ bool FRequest_DownloadEntityDirectoryFile::SetupHttpRequest(const FHttpRequestRe
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
-	if (!AuthContext)
+	if (!AuthContext && !bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DownloadEntityDirectoryFile - missing auth context"));
 		return false;
 	}
-	if (!AuthContext->AddBearerToken(HttpRequest))
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DownloadEntityDirectoryFile - failed to add bearer token"));
 		return false;
@@ -735,25 +788,38 @@ FHttpRequestPtr FFileAPI::GetEntityDirectoryInformation(const FRequest_GetEntity
 	if (!IsValid())
 		return nullptr;
 
+	// create the http request and tracking structure
 	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
+	// add headers to tracker
 	for(const auto& It : AdditionalHeaderParams)
 	{
 		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
 	}
 
+	// setup http request from custom request object
 	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
 	{
 		return nullptr;
 	}
+	
+	// allow a delegate to modify the http request (such as binding custom handling delegates)
+	Request.OnModifyRequest().Broadcast(Request, RequestData->HttpRequest);
+	
+	// update request metadata flags just before we store it in the tracking object
+	FRequestMetadata Metadata = Request.GetRequestMetadata();
+	Request.SetMetadataFlags(Metadata);
 
-	RequestData->SetMetadata(Request.GetRequestMetadata());
+	// store metadata in tracking object (last place used by request)
+	RequestData->SetMetadata(Metadata);
 
+	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
 	ResponseDelegate.BindSP(this, &FFileAPI::OnGetEntityDirectoryInformationResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
+	// submit request to http system
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
 	if (HttpRequester)
 	{
@@ -796,17 +862,18 @@ FRequest_GetEntityDirectoryInformation::FRequest_GetEntityDirectoryInformation()
 
 FName FRequest_GetEntityDirectoryInformation::GetSimplifiedPath() const
 {
-	static FName Path = FName(TEXT("/file/v1/{entity_type}"));
+	static FName Path = FName(TEXT("/file/v1/{file_type}/{entity_type}"));
 	return Path;
 }
 
 FString FRequest_GetEntityDirectoryInformation::ComputePath() const
 {
 	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("file_type"), ToStringFormatArg(FileType) },
 		{ TEXT("entity_type"), ToStringFormatArg(EntityType) }
 	};
 
-	FString Path = FString::Format(TEXT("/file/v1/{entity_type}"), PathParams);
+	FString Path = FString::Format(TEXT("/file/v1/{file_type}/{entity_type}"), PathParams);
 
 	return Path;
 }
@@ -818,12 +885,12 @@ bool FRequest_GetEntityDirectoryInformation::SetupHttpRequest(const FHttpRequest
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
-	if (!AuthContext)
+	if (!AuthContext && !bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetEntityDirectoryInformation - missing auth context"));
 		return false;
 	}
-	if (!AuthContext->AddBearerToken(HttpRequest))
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetEntityDirectoryInformation - failed to add bearer token"));
 		return false;
@@ -909,25 +976,38 @@ FHttpRequestPtr FFileAPI::ListEntityDirectoryFiles(const FRequest_ListEntityDire
 	if (!IsValid())
 		return nullptr;
 
+	// create the http request and tracking structure
 	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
 	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
+	// add headers to tracker
 	for(const auto& It : AdditionalHeaderParams)
 	{
 		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
 	}
 
+	// setup http request from custom request object
 	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
 	{
 		return nullptr;
 	}
+	
+	// allow a delegate to modify the http request (such as binding custom handling delegates)
+	Request.OnModifyRequest().Broadcast(Request, RequestData->HttpRequest);
+	
+	// update request metadata flags just before we store it in the tracking object
+	FRequestMetadata Metadata = Request.GetRequestMetadata();
+	Request.SetMetadataFlags(Metadata);
 
-	RequestData->SetMetadata(Request.GetRequestMetadata());
+	// store metadata in tracking object (last place used by request)
+	RequestData->SetMetadata(Metadata);
 
+	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
 	ResponseDelegate.BindSP(this, &FFileAPI::OnListEntityDirectoryFilesResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
+	// submit request to http system
 	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
 	if (HttpRequester)
 	{
@@ -970,7 +1050,7 @@ FRequest_ListEntityDirectoryFiles::FRequest_ListEntityDirectoryFiles()
 
 FName FRequest_ListEntityDirectoryFiles::GetSimplifiedPath() const
 {
-	static FName Path = FName(TEXT("/file/v1/{entity_type}/{entity_id}/{file_type}"));
+	static FName Path = FName(TEXT("/file/v1/{file_type}/{entity_type}/{entity_id}"));
 	return Path;
 }
 
@@ -982,7 +1062,7 @@ FString FRequest_ListEntityDirectoryFiles::ComputePath() const
 		{ TEXT("file_type"), ToStringFormatArg(FileType) }
 	};
 
-	FString Path = FString::Format(TEXT("/file/v1/{entity_type}/{entity_id}/{file_type}"), PathParams);
+	FString Path = FString::Format(TEXT("/file/v1/{file_type}/{entity_type}/{entity_id}"), PathParams);
 
 	return Path;
 }
@@ -994,12 +1074,12 @@ bool FRequest_ListEntityDirectoryFiles::SetupHttpRequest(const FHttpRequestRef& 
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
-	if (!AuthContext)
+	if (!AuthContext && !bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_ListEntityDirectoryFiles - missing auth context"));
 		return false;
 	}
-	if (!AuthContext->AddBearerToken(HttpRequest))
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_ListEntityDirectoryFiles - failed to add bearer token"));
 		return false;
