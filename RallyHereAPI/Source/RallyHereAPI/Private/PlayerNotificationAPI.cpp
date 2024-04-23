@@ -98,12 +98,19 @@ FRequest_PlayerCreateNotification::FRequest_PlayerCreateNotification()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_PlayerCreateNotification::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/notification/v1/player/{player_uuid}/notification"));
 	return Path;
+}
+
+FName FRequest_PlayerCreateNotification::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_PlayerCreateNotification::ComputePath() const
@@ -332,12 +339,19 @@ FRequest_PlayerCreateNotificationSelf::FRequest_PlayerCreateNotificationSelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_PlayerCreateNotificationSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/notification/v1/player/me/notification"));
 	return Path;
+}
+
+FName FRequest_PlayerCreateNotificationSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_PlayerCreateNotificationSelf::ComputePath() const
@@ -561,12 +575,19 @@ FRequest_PlayerGetNotificationById::FRequest_PlayerGetNotificationById()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_PlayerGetNotificationById::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/notification/v1/player/{player_uuid}/notification/{notification_id}"));
 	return Path;
+}
+
+FName FRequest_PlayerGetNotificationById::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_PlayerGetNotificationById::ComputePath() const
@@ -797,12 +818,19 @@ FRequest_PlayerGetNotificationByIdSelf::FRequest_PlayerGetNotificationByIdSelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_PlayerGetNotificationByIdSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/notification/v1/player/me/notification/{notification_id}"));
 	return Path;
+}
+
+FName FRequest_PlayerGetNotificationByIdSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_PlayerGetNotificationByIdSelf::ComputePath() const
@@ -1032,12 +1060,19 @@ FRequest_PlayerGetNotificationsPage::FRequest_PlayerGetNotificationsPage()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_PlayerGetNotificationsPage::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/notification/v1/player/{player_uuid}/notification"));
 	return Path;
+}
+
+FName FRequest_PlayerGetNotificationsPage::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_PlayerGetNotificationsPage::ComputePath() const
@@ -1279,12 +1314,19 @@ FRequest_PlayerGetNotificationsPageSelf::FRequest_PlayerGetNotificationsPageSelf
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_PlayerGetNotificationsPageSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/notification/v1/player/me/notification"));
 	return Path;
+}
+
+FName FRequest_PlayerGetNotificationsPageSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_PlayerGetNotificationsPageSelf::ComputePath() const
@@ -1521,12 +1563,19 @@ FRequest_PlayerLongPollForNotifications::FRequest_PlayerLongPollForNotifications
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_PlayerLongPollForNotifications::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/notification/v1/player/{player_uuid}/stream/notification/lp"));
 	return Path;
+}
+
+FName FRequest_PlayerLongPollForNotifications::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_PlayerLongPollForNotifications::ComputePath() const
@@ -1764,12 +1813,19 @@ FRequest_PlayerLongPollForNotificationsSelf::FRequest_PlayerLongPollForNotificat
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_PlayerLongPollForNotificationsSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/notification/v1/player/me/stream/notification/lp"));
 	return Path;
+}
+
+FName FRequest_PlayerLongPollForNotificationsSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_PlayerLongPollForNotificationsSelf::ComputePath() const

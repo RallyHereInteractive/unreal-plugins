@@ -98,12 +98,19 @@ FRequest_GetAllEventSchema::FRequest_GetAllEventSchema()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetAllEventSchema::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/events/v1/event-params-schema"));
 	return Path;
+}
+
+FName FRequest_GetAllEventSchema::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetAllEventSchema::ComputePath() const
@@ -245,12 +252,19 @@ FRequest_ReceiveEventsV1::FRequest_ReceiveEventsV1()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_ReceiveEventsV1::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/events/v1/events"));
 	return Path;
+}
+
+FName FRequest_ReceiveEventsV1::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_ReceiveEventsV1::ComputePath() const

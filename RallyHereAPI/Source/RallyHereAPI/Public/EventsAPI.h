@@ -56,6 +56,7 @@ struct RALLYHEREAPI_API FRequest_GetAllEventSchema : public FRequest
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
 	FString ComputePath() const override;
 	FName GetSimplifiedPath() const override;
+	FName GetSimplifiedPathWithVerb() const override;
 
 };
 
@@ -99,6 +100,7 @@ struct RALLYHEREAPI_API FRequest_ReceiveEventsV1 : public FRequest
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
 	FString ComputePath() const override;
 	FName GetSimplifiedPath() const override;
+	FName GetSimplifiedPathWithVerb() const override;
 
 	FRHAPI_EventList EventList;
 };

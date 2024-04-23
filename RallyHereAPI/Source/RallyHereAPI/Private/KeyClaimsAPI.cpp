@@ -98,12 +98,19 @@ FRequest_ClaimPlayerUuidUnclaimedKeyClaim::FRequest_ClaimPlayerUuidUnclaimedKeyC
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_ClaimPlayerUuidUnclaimedKeyClaim::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v2/player/{player_uuid}/keyClaim/{key_claim_uuid}"));
 	return Path;
+}
+
+FName FRequest_ClaimPlayerUuidUnclaimedKeyClaim::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_ClaimPlayerUuidUnclaimedKeyClaim::ComputePath() const
@@ -321,12 +328,19 @@ FRequest_ClaimPlayerUuidUnclaimedKeyClaimForMe::FRequest_ClaimPlayerUuidUnclaime
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_ClaimPlayerUuidUnclaimedKeyClaimForMe::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v2/player/me/keyClaim/{key_claim_uuid}"));
 	return Path;
+}
+
+FName FRequest_ClaimPlayerUuidUnclaimedKeyClaimForMe::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_ClaimPlayerUuidUnclaimedKeyClaimForMe::ComputePath() const
@@ -543,12 +557,19 @@ FRequest_ClaimUnclaimedKeyClaim::FRequest_ClaimUnclaimedKeyClaim()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_ClaimUnclaimedKeyClaim::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/player/{player_id}/keyClaim/{key_claim_uuid}"));
 	return Path;
+}
+
+FName FRequest_ClaimUnclaimedKeyClaim::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_ClaimUnclaimedKeyClaim::ComputePath() const
@@ -766,12 +787,19 @@ FRequest_ClaimUnclaimedKeyClaimForMe::FRequest_ClaimUnclaimedKeyClaimForMe()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_ClaimUnclaimedKeyClaimForMe::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/player/me/keyClaim/{key_claim_uuid}"));
 	return Path;
+}
+
+FName FRequest_ClaimUnclaimedKeyClaimForMe::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_ClaimUnclaimedKeyClaimForMe::ComputePath() const
@@ -988,12 +1016,19 @@ FRequest_GetKeyClaim::FRequest_GetKeyClaim()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetKeyClaim::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/player/{player_id}/keyClaim/{key_claim_uuid}"));
 	return Path;
+}
+
+FName FRequest_GetKeyClaim::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetKeyClaim::ComputePath() const
@@ -1200,12 +1235,19 @@ FRequest_GetKeyClaimForMe::FRequest_GetKeyClaimForMe()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetKeyClaimForMe::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/player/me/keyClaim/{key_claim_uuid}"));
 	return Path;
+}
+
+FName FRequest_GetKeyClaimForMe::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetKeyClaimForMe::ComputePath() const
@@ -1411,12 +1453,19 @@ FRequest_GetKeyClaims::FRequest_GetKeyClaims()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetKeyClaims::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/player/{player_id}/keyClaim"));
 	return Path;
+}
+
+FName FRequest_GetKeyClaims::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetKeyClaims::ComputePath() const
@@ -1622,12 +1671,19 @@ FRequest_GetKeyClaimsForMe::FRequest_GetKeyClaimsForMe()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetKeyClaimsForMe::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/player/me/keyClaim"));
 	return Path;
+}
+
+FName FRequest_GetKeyClaimsForMe::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetKeyClaimsForMe::ComputePath() const
@@ -1816,12 +1872,19 @@ FRequest_GetKeyClaimsForMyUuid::FRequest_GetKeyClaimsForMyUuid()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetKeyClaimsForMyUuid::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v2/player/me/keyClaim"));
 	return Path;
+}
+
+FName FRequest_GetKeyClaimsForMyUuid::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetKeyClaimsForMyUuid::ComputePath() const
@@ -2010,12 +2073,19 @@ FRequest_GetPlayerUuidKeyClaim::FRequest_GetPlayerUuidKeyClaim()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerUuidKeyClaim::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v2/player/{player_uuid}/keyClaim/{key_claim_uuid}"));
 	return Path;
+}
+
+FName FRequest_GetPlayerUuidKeyClaim::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerUuidKeyClaim::ComputePath() const
@@ -2222,12 +2292,19 @@ FRequest_GetPlayerUuidKeyClaimSelf::FRequest_GetPlayerUuidKeyClaimSelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerUuidKeyClaimSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v2/player/me/keyClaim/{key_claim_uuid}"));
 	return Path;
+}
+
+FName FRequest_GetPlayerUuidKeyClaimSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerUuidKeyClaimSelf::ComputePath() const
@@ -2433,12 +2510,19 @@ FRequest_GetPlayerUuidKeyClaims::FRequest_GetPlayerUuidKeyClaims()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerUuidKeyClaims::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v2/player/{player_uuid}/keyClaim"));
 	return Path;
+}
+
+FName FRequest_GetPlayerUuidKeyClaims::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerUuidKeyClaims::ComputePath() const

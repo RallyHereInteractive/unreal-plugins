@@ -98,12 +98,19 @@ FRequest_CreateNewInventorySession::FRequest_CreateNewInventorySession()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_CreateNewInventorySession::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/player/{player_id}/session"));
 	return Path;
+}
+
+FName FRequest_CreateNewInventorySession::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_CreateNewInventorySession::ComputePath() const
@@ -296,12 +303,19 @@ FRequest_CreateNewInventorySessionByPlayerUuid::FRequest_CreateNewInventorySessi
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_CreateNewInventorySessionByPlayerUuid::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v2/player/{player_uuid}/session"));
 	return Path;
+}
+
+FName FRequest_CreateNewInventorySessionByPlayerUuid::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_CreateNewInventorySessionByPlayerUuid::ComputePath() const
@@ -494,12 +508,19 @@ FRequest_CreateNewInventorySessionByPlayerUuidSelf::FRequest_CreateNewInventoryS
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_CreateNewInventorySessionByPlayerUuidSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v2/player/me/session"));
 	return Path;
+}
+
+FName FRequest_CreateNewInventorySessionByPlayerUuidSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_CreateNewInventorySessionByPlayerUuidSelf::ComputePath() const
@@ -687,12 +708,19 @@ FRequest_CreateNewInventorySessionSelf::FRequest_CreateNewInventorySessionSelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_CreateNewInventorySessionSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/player/me/session"));
 	return Path;
+}
+
+FName FRequest_CreateNewInventorySessionSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_CreateNewInventorySessionSelf::ComputePath() const
@@ -880,12 +908,19 @@ FRequest_CreateNewPlayerOrder::FRequest_CreateNewPlayerOrder()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_CreateNewPlayerOrder::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/player/{player_id}/order"));
 	return Path;
+}
+
+FName FRequest_CreateNewPlayerOrder::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_CreateNewPlayerOrder::ComputePath() const
@@ -1090,12 +1125,19 @@ FRequest_CreateNewPlayerOrderSelf::FRequest_CreateNewPlayerOrderSelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_CreateNewPlayerOrderSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/player/me/order"));
 	return Path;
+}
+
+FName FRequest_CreateNewPlayerOrderSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_CreateNewPlayerOrderSelf::ComputePath() const
@@ -1295,12 +1337,19 @@ FRequest_CreateNewPlayerUuidOrder::FRequest_CreateNewPlayerUuidOrder()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_CreateNewPlayerUuidOrder::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v2/player/{player_uuid}/order"));
 	return Path;
+}
+
+FName FRequest_CreateNewPlayerUuidOrder::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_CreateNewPlayerUuidOrder::ComputePath() const
@@ -1505,12 +1554,19 @@ FRequest_CreateNewPlayerUuidOrderSelf::FRequest_CreateNewPlayerUuidOrderSelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_CreateNewPlayerUuidOrderSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v2/player/me/order"));
 	return Path;
+}
+
+FName FRequest_CreateNewPlayerUuidOrderSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_CreateNewPlayerUuidOrderSelf::ComputePath() const
@@ -1710,12 +1766,19 @@ FRequest_CreatePlayerInventory::FRequest_CreatePlayerInventory()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_CreatePlayerInventory::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/player/{player_id}/inventory"));
 	return Path;
+}
+
+FName FRequest_CreatePlayerInventory::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_CreatePlayerInventory::ComputePath() const
@@ -1920,12 +1983,19 @@ FRequest_CreatePlayerInventorySelf::FRequest_CreatePlayerInventorySelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_CreatePlayerInventorySelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/player/me/inventory"));
 	return Path;
+}
+
+FName FRequest_CreatePlayerInventorySelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_CreatePlayerInventorySelf::ComputePath() const
@@ -2125,12 +2195,19 @@ FRequest_CreatePlayerInventoryUuid::FRequest_CreatePlayerInventoryUuid()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_CreatePlayerInventoryUuid::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v2/player/{player_uuid}/inventory"));
 	return Path;
+}
+
+FName FRequest_CreatePlayerInventoryUuid::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_CreatePlayerInventoryUuid::ComputePath() const
@@ -2335,12 +2412,19 @@ FRequest_CreatePlayerInventoryUuidSelf::FRequest_CreatePlayerInventoryUuidSelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_CreatePlayerInventoryUuidSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v2/player/me/inventory"));
 	return Path;
+}
+
+FName FRequest_CreatePlayerInventoryUuidSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_CreatePlayerInventoryUuidSelf::ComputePath() const
@@ -2540,12 +2624,19 @@ FRequest_GetInventorySessionInfo::FRequest_GetInventorySessionInfo()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetInventorySessionInfo::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/player/{player_id}/session"));
 	return Path;
+}
+
+FName FRequest_GetInventorySessionInfo::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetInventorySessionInfo::ComputePath() const
@@ -2727,12 +2818,19 @@ FRequest_GetInventorySessionInfoByPlayerUuid::FRequest_GetInventorySessionInfoBy
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetInventorySessionInfoByPlayerUuid::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v2/player/{player_uuid}/session"));
 	return Path;
+}
+
+FName FRequest_GetInventorySessionInfoByPlayerUuid::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetInventorySessionInfoByPlayerUuid::ComputePath() const
@@ -2914,12 +3012,19 @@ FRequest_GetInventorySessionInfoByPlayerUuidSelf::FRequest_GetInventorySessionIn
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetInventorySessionInfoByPlayerUuidSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v2/player/me/session"));
 	return Path;
+}
+
+FName FRequest_GetInventorySessionInfoByPlayerUuidSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetInventorySessionInfoByPlayerUuidSelf::ComputePath() const
@@ -3084,12 +3189,19 @@ FRequest_GetInventorySessionInfoSelf::FRequest_GetInventorySessionInfoSelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetInventorySessionInfoSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/player/me/session"));
 	return Path;
+}
+
+FName FRequest_GetInventorySessionInfoSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetInventorySessionInfoSelf::ComputePath() const
@@ -3254,12 +3366,19 @@ FRequest_GetPlayerInventory::FRequest_GetPlayerInventory()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerInventory::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/player/{player_id}/inventory"));
 	return Path;
+}
+
+FName FRequest_GetPlayerInventory::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerInventory::ComputePath() const
@@ -3475,12 +3594,19 @@ FRequest_GetPlayerInventorySelf::FRequest_GetPlayerInventorySelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerInventorySelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/player/me/inventory"));
 	return Path;
+}
+
+FName FRequest_GetPlayerInventorySelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerInventorySelf::ComputePath() const
@@ -3691,12 +3817,19 @@ FRequest_GetPlayerInventoryUuid::FRequest_GetPlayerInventoryUuid()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerInventoryUuid::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v2/player/{player_uuid}/inventory"));
 	return Path;
+}
+
+FName FRequest_GetPlayerInventoryUuid::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerInventoryUuid::ComputePath() const
@@ -3912,12 +4045,19 @@ FRequest_GetPlayerInventoryUuidSelf::FRequest_GetPlayerInventoryUuidSelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerInventoryUuidSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v2/player/me/inventory"));
 	return Path;
+}
+
+FName FRequest_GetPlayerInventoryUuidSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerInventoryUuidSelf::ComputePath() const
@@ -4128,12 +4268,19 @@ FRequest_GetPlayerOrderById::FRequest_GetPlayerOrderById()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerOrderById::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/player/{player_id}/order/{order_id}"));
 	return Path;
+}
+
+FName FRequest_GetPlayerOrderById::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerOrderById::ComputePath() const
@@ -4328,12 +4475,19 @@ FRequest_GetPlayerOrderByIdSelf::FRequest_GetPlayerOrderByIdSelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerOrderByIdSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/player/me/order/{order_id}"));
 	return Path;
+}
+
+FName FRequest_GetPlayerOrderByIdSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerOrderByIdSelf::ComputePath() const
@@ -4527,12 +4681,19 @@ FRequest_GetPlayerOrders::FRequest_GetPlayerOrders()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerOrders::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/player/{player_id}/order"));
 	return Path;
+}
+
+FName FRequest_GetPlayerOrders::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerOrders::ComputePath() const
@@ -4734,12 +4895,19 @@ FRequest_GetPlayerOrdersSelf::FRequest_GetPlayerOrdersSelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerOrdersSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/player/me/order"));
 	return Path;
+}
+
+FName FRequest_GetPlayerOrdersSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerOrdersSelf::ComputePath() const
@@ -4936,12 +5104,19 @@ FRequest_GetPlayerUuidOrderById::FRequest_GetPlayerUuidOrderById()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerUuidOrderById::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v2/player/{player_uuid}/order/{order_id}"));
 	return Path;
+}
+
+FName FRequest_GetPlayerUuidOrderById::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerUuidOrderById::ComputePath() const
@@ -5136,12 +5311,19 @@ FRequest_GetPlayerUuidOrderByIdSelf::FRequest_GetPlayerUuidOrderByIdSelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerUuidOrderByIdSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v2/player/me/order/{order_id}"));
 	return Path;
+}
+
+FName FRequest_GetPlayerUuidOrderByIdSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerUuidOrderByIdSelf::ComputePath() const
@@ -5335,12 +5517,19 @@ FRequest_GetPlayerUuidOrders::FRequest_GetPlayerUuidOrders()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerUuidOrders::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v2/player/{player_uuid}/order"));
 	return Path;
+}
+
+FName FRequest_GetPlayerUuidOrders::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerUuidOrders::ComputePath() const
@@ -5542,12 +5731,19 @@ FRequest_GetPlayerUuidOrdersSelf::FRequest_GetPlayerUuidOrdersSelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerUuidOrdersSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v2/player/me/order"));
 	return Path;
+}
+
+FName FRequest_GetPlayerUuidOrdersSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerUuidOrdersSelf::ComputePath() const
@@ -5744,12 +5940,19 @@ FRequest_ModifyManyPlayerInventory::FRequest_ModifyManyPlayerInventory()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_ModifyManyPlayerInventory::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/player/{player_id}/inventory"));
 	return Path;
+}
+
+FName FRequest_ModifyManyPlayerInventory::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("PUT %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_ModifyManyPlayerInventory::ComputePath() const
@@ -5954,12 +6157,19 @@ FRequest_ModifyManyPlayerInventorySelf::FRequest_ModifyManyPlayerInventorySelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_ModifyManyPlayerInventorySelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/player/me/inventory"));
 	return Path;
+}
+
+FName FRequest_ModifyManyPlayerInventorySelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("PUT %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_ModifyManyPlayerInventorySelf::ComputePath() const
@@ -6159,12 +6369,19 @@ FRequest_ModifyManyPlayerInventoryUuid::FRequest_ModifyManyPlayerInventoryUuid()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_ModifyManyPlayerInventoryUuid::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v2/player/{player_uuid}/inventory"));
 	return Path;
+}
+
+FName FRequest_ModifyManyPlayerInventoryUuid::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("PUT %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_ModifyManyPlayerInventoryUuid::ComputePath() const
@@ -6369,12 +6586,19 @@ FRequest_ModifyManyPlayerInventoryUuidSelf::FRequest_ModifyManyPlayerInventoryUu
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_ModifyManyPlayerInventoryUuidSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v2/player/me/inventory"));
 	return Path;
+}
+
+FName FRequest_ModifyManyPlayerInventoryUuidSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("PUT %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_ModifyManyPlayerInventoryUuidSelf::ComputePath() const
@@ -6574,12 +6798,19 @@ FRequest_ModifyPlayerInventory::FRequest_ModifyPlayerInventory()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_ModifyPlayerInventory::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/player/{player_id}/inventory/{inventory_id}"));
 	return Path;
+}
+
+FName FRequest_ModifyPlayerInventory::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("PUT %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_ModifyPlayerInventory::ComputePath() const
@@ -6785,12 +7016,19 @@ FRequest_ModifyPlayerInventorySelf::FRequest_ModifyPlayerInventorySelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_ModifyPlayerInventorySelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/player/me/inventory/{inventory_id}"));
 	return Path;
+}
+
+FName FRequest_ModifyPlayerInventorySelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("PUT %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_ModifyPlayerInventorySelf::ComputePath() const
@@ -6995,12 +7233,19 @@ FRequest_ModifyPlayerInventoryUuid::FRequest_ModifyPlayerInventoryUuid()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_ModifyPlayerInventoryUuid::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v2/player/{player_uuid}/inventory/{inventory_id}"));
 	return Path;
+}
+
+FName FRequest_ModifyPlayerInventoryUuid::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("PUT %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_ModifyPlayerInventoryUuid::ComputePath() const
@@ -7206,12 +7451,19 @@ FRequest_ModifyPlayerInventoryUuidSelf::FRequest_ModifyPlayerInventoryUuidSelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_ModifyPlayerInventoryUuidSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v2/player/me/inventory/{inventory_id}"));
 	return Path;
+}
+
+FName FRequest_ModifyPlayerInventoryUuidSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("PUT %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_ModifyPlayerInventoryUuidSelf::ComputePath() const

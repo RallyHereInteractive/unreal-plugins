@@ -98,12 +98,19 @@ FRequest_CreatePlatformUserById::FRequest_CreatePlatformUserById()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_CreatePlatformUserById::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/platform-user"));
 	return Path;
+}
+
+FName FRequest_CreatePlatformUserById::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_CreatePlatformUserById::ComputePath() const
@@ -303,12 +310,19 @@ FRequest_DequeueMeForPurge::FRequest_DequeueMeForPurge()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_DequeueMeForPurge::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/person/me/purge"));
 	return Path;
+}
+
+FName FRequest_DequeueMeForPurge::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("DELETE %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_DequeueMeForPurge::ComputePath() const
@@ -475,12 +489,19 @@ FRequest_DequeuePersonForPurge::FRequest_DequeuePersonForPurge()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_DequeuePersonForPurge::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/person/{person_id}/purge"));
 	return Path;
+}
+
+FName FRequest_DequeuePersonForPurge::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("DELETE %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_DequeuePersonForPurge::ComputePath() const
@@ -664,12 +685,19 @@ FRequest_DisableCrossProgression::FRequest_DisableCrossProgression()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_DisableCrossProgression::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/cross-progression/disable"));
 	return Path;
+}
+
+FName FRequest_DisableCrossProgression::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_DisableCrossProgression::ComputePath() const
@@ -824,12 +852,19 @@ FRequest_EnableCrossProgression::FRequest_EnableCrossProgression()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_EnableCrossProgression::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/cross-progression/enable"));
 	return Path;
+}
+
+FName FRequest_EnableCrossProgression::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_EnableCrossProgression::ComputePath() const
@@ -984,12 +1019,19 @@ FRequest_FindPlatformUserById::FRequest_FindPlatformUserById()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_FindPlatformUserById::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/platform-user"));
 	return Path;
+}
+
+FName FRequest_FindPlatformUserById::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_FindPlatformUserById::ComputePath() const
@@ -1184,12 +1226,19 @@ FRequest_GetAllRoles::FRequest_GetAllRoles()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetAllRoles::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/role"));
 	return Path;
+}
+
+FName FRequest_GetAllRoles::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetAllRoles::ComputePath() const
@@ -1366,12 +1415,19 @@ FRequest_GetPerson::FRequest_GetPerson()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPerson::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/person/{person_id}/info"));
 	return Path;
+}
+
+FName FRequest_GetPerson::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPerson::ComputePath() const
@@ -1565,12 +1621,19 @@ FRequest_GetPersonEmailList::FRequest_GetPersonEmailList()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPersonEmailList::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/person/{person_id}/email/list"));
 	return Path;
+}
+
+FName FRequest_GetPersonEmailList::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPersonEmailList::ComputePath() const
@@ -1764,12 +1827,19 @@ FRequest_GetPersonEmailListForSelf::FRequest_GetPersonEmailListForSelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPersonEmailListForSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/person/me/email/list"));
 	return Path;
+}
+
+FName FRequest_GetPersonEmailListForSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPersonEmailListForSelf::ComputePath() const
@@ -1946,12 +2016,19 @@ FRequest_GetPersonForSelf::FRequest_GetPersonForSelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPersonForSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/person/me/info"));
 	return Path;
+}
+
+FName FRequest_GetPersonForSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPersonForSelf::ComputePath() const
@@ -2128,12 +2205,19 @@ FRequest_GetPlayerIdFromPlayerUuid::FRequest_GetPlayerIdFromPlayerUuid()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerIdFromPlayerUuid::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v2/player/{player_uuid}/id"));
 	return Path;
+}
+
+FName FRequest_GetPlayerIdFromPlayerUuid::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerIdFromPlayerUuid::ComputePath() const
@@ -2351,12 +2435,19 @@ FRequest_GetPlayerIdFromPlayerUuidForSelf::FRequest_GetPlayerIdFromPlayerUuidFor
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerIdFromPlayerUuidForSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v2/player/me/id"));
 	return Path;
+}
+
+FName FRequest_GetPlayerIdFromPlayerUuidForSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerIdFromPlayerUuidForSelf::ComputePath() const
@@ -2557,12 +2648,19 @@ FRequest_GetPlayerLinkedPortals::FRequest_GetPlayerLinkedPortals()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerLinkedPortals::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/player/{player_id}/linked_portals"));
 	return Path;
+}
+
+FName FRequest_GetPlayerLinkedPortals::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerLinkedPortals::ComputePath() const
@@ -2768,12 +2866,19 @@ FRequest_GetPlayerLinks::FRequest_GetPlayerLinks()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerLinks::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v2/player/{player_uuid}/links"));
 	return Path;
+}
+
+FName FRequest_GetPlayerLinks::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerLinks::ComputePath() const
@@ -2979,12 +3084,19 @@ FRequest_GetPlayerLinksForSelf::FRequest_GetPlayerLinksForSelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerLinksForSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v2/player/me/links"));
 	return Path;
+}
+
+FName FRequest_GetPlayerLinksForSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerLinksForSelf::ComputePath() const
@@ -3173,12 +3285,19 @@ FRequest_GetPlayerUuidFromPlayerId::FRequest_GetPlayerUuidFromPlayerId()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerUuidFromPlayerId::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/player/{player_id}/uuid"));
 	return Path;
+}
+
+FName FRequest_GetPlayerUuidFromPlayerId::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerUuidFromPlayerId::ComputePath() const
@@ -3384,12 +3503,19 @@ FRequest_GetPlayerUuidFromPlayerIdForSelf::FRequest_GetPlayerUuidFromPlayerIdFor
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerUuidFromPlayerIdForSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/player/me/uuid"));
 	return Path;
+}
+
+FName FRequest_GetPlayerUuidFromPlayerIdForSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerUuidFromPlayerIdForSelf::ComputePath() const
@@ -3578,12 +3704,19 @@ FRequest_GetPlayerUuidFromPlayerIdForSelfV2::FRequest_GetPlayerUuidFromPlayerIdF
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerUuidFromPlayerIdForSelfV2::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v2/player/me/uuid"));
 	return Path;
+}
+
+FName FRequest_GetPlayerUuidFromPlayerIdForSelfV2::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerUuidFromPlayerIdForSelfV2::ComputePath() const
@@ -3772,12 +3905,19 @@ FRequest_GetPlayerUuidFromPlayerIdV2::FRequest_GetPlayerUuidFromPlayerIdV2()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerUuidFromPlayerIdV2::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v2/player/{player_id}/uuid"));
 	return Path;
+}
+
+FName FRequest_GetPlayerUuidFromPlayerIdV2::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerUuidFromPlayerIdV2::ComputePath() const
@@ -3983,12 +4123,19 @@ FRequest_GetPlayersPaged::FRequest_GetPlayersPaged()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayersPaged::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v2/player:iterate"));
 	return Path;
+}
+
+FName FRequest_GetPlayersPaged::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayersPaged::ComputePath() const
@@ -4201,12 +4348,19 @@ FRequest_GetQueuePurgeStatusForMe::FRequest_GetQueuePurgeStatusForMe()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetQueuePurgeStatusForMe::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/person/me/purge"));
 	return Path;
+}
+
+FName FRequest_GetQueuePurgeStatusForMe::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetQueuePurgeStatusForMe::ComputePath() const
@@ -4395,12 +4549,19 @@ FRequest_GetQueuePurgeStatusForPerson::FRequest_GetQueuePurgeStatusForPerson()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetQueuePurgeStatusForPerson::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/person/{person_id}/purge"));
 	return Path;
+}
+
+FName FRequest_GetQueuePurgeStatusForPerson::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetQueuePurgeStatusForPerson::ComputePath() const
@@ -4606,12 +4767,19 @@ FRequest_Link::FRequest_Link()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_Link::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/link"));
 	return Path;
+}
+
+FName FRequest_Link::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_Link::ComputePath() const
@@ -4789,12 +4957,19 @@ FRequest_LookupPlayerByPortal::FRequest_LookupPlayerByPortal()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_LookupPlayerByPortal::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/player"));
 	return Path;
+}
+
+FName FRequest_LookupPlayerByPortal::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_LookupPlayerByPortal::ComputePath() const
@@ -5003,12 +5178,19 @@ FRequest_QueueMeForPurge::FRequest_QueueMeForPurge()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_QueueMeForPurge::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/person/me/purge"));
 	return Path;
+}
+
+FName FRequest_QueueMeForPurge::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_QueueMeForPurge::ComputePath() const
@@ -5220,12 +5402,19 @@ FRequest_QueuePersonForPurge::FRequest_QueuePersonForPurge()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_QueuePersonForPurge::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/person/{person_id}/purge"));
 	return Path;
+}
+
+FName FRequest_QueuePersonForPurge::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_QueuePersonForPurge::ComputePath() const
@@ -5430,12 +5619,19 @@ FRequest_Unlink::FRequest_Unlink()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_Unlink::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/unlink"));
 	return Path;
+}
+
+FName FRequest_Unlink::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_Unlink::ComputePath() const
@@ -5590,12 +5786,19 @@ FRequest_UpdatePerson::FRequest_UpdatePerson()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_UpdatePerson::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/person/{person_id}/info"));
 	return Path;
+}
+
+FName FRequest_UpdatePerson::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_UpdatePerson::ComputePath() const
@@ -5800,12 +6003,19 @@ FRequest_UpdatePersonEmailList::FRequest_UpdatePersonEmailList()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_UpdatePersonEmailList::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/person/{person_id}/email/list"));
 	return Path;
+}
+
+FName FRequest_UpdatePersonEmailList::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_UpdatePersonEmailList::ComputePath() const
@@ -6010,12 +6220,19 @@ FRequest_UpdatePersonEmailListForSelf::FRequest_UpdatePersonEmailListForSelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_UpdatePersonEmailListForSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/person/me/email/list"));
 	return Path;
+}
+
+FName FRequest_UpdatePersonEmailListForSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_UpdatePersonEmailListForSelf::ComputePath() const
@@ -6215,12 +6432,19 @@ FRequest_UpdatePersonForSelf::FRequest_UpdatePersonForSelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_UpdatePersonForSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/person/me/info"));
 	return Path;
+}
+
+FName FRequest_UpdatePersonForSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_UpdatePersonForSelf::ComputePath() const
@@ -6420,12 +6644,19 @@ FRequest_UpsertContact::FRequest_UpsertContact()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_UpsertContact::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/sendinblue/contact"));
 	return Path;
+}
+
+FName FRequest_UpsertContact::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_UpsertContact::ComputePath() const

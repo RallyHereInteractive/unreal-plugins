@@ -98,12 +98,19 @@ FRequest_GenerateKey::FRequest_GenerateKey()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GenerateKey::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/generateKey"));
 	return Path;
+}
+
+FName FRequest_GenerateKey::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GenerateKey::ComputePath() const
@@ -245,12 +252,19 @@ FRequest_GetAllPublicKeys::FRequest_GetAllPublicKeys()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetAllPublicKeys::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/publickeys"));
 	return Path;
+}
+
+FName FRequest_GetAllPublicKeys::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetAllPublicKeys::ComputePath() const
@@ -392,12 +406,19 @@ FRequest_GetPortalTokenDetails::FRequest_GetPortalTokenDetails()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPortalTokenDetails::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/portaltoken/details"));
 	return Path;
+}
+
+FName FRequest_GetPortalTokenDetails::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPortalTokenDetails::ComputePath() const
@@ -584,12 +605,19 @@ FRequest_GetPublicKeyById::FRequest_GetPublicKeyById()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPublicKeyById::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/publickeys/{key_id}"));
 	return Path;
+}
+
+FName FRequest_GetPublicKeyById::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPublicKeyById::ComputePath() const
@@ -750,12 +778,19 @@ FRequest_Login::FRequest_Login()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_Login::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/login"));
 	return Path;
+}
+
+FName FRequest_Login::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_Login::ComputePath() const
@@ -989,12 +1024,19 @@ FRequest_Logout::FRequest_Logout()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_Logout::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/logout"));
 	return Path;
+}
+
+FName FRequest_Logout::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_Logout::ComputePath() const
@@ -1159,12 +1201,19 @@ FRequest_OauthLogin::FRequest_OauthLogin()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_OauthLogin::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/oauth/login/{platform}"));
 	return Path;
+}
+
+FName FRequest_OauthLogin::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_OauthLogin::ComputePath() const
@@ -1370,12 +1419,19 @@ FRequest_OauthResponse::FRequest_OauthResponse()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_OauthResponse::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/oauth/response/{platform}"));
 	return Path;
+}
+
+FName FRequest_OauthResponse::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_OauthResponse::ComputePath() const
@@ -1581,12 +1637,19 @@ FRequest_OauthTokenExchange::FRequest_OauthTokenExchange()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_OauthTokenExchange::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/oauth/token"));
 	return Path;
+}
+
+FName FRequest_OauthTokenExchange::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_OauthTokenExchange::ComputePath() const
@@ -1773,12 +1836,19 @@ FRequest_Token::FRequest_Token()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_Token::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v2/oauth/token"));
 	return Path;
+}
+
+FName FRequest_Token::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_Token::ComputePath() const
@@ -1964,12 +2034,19 @@ FRequest_Verify::FRequest_Verify()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_Verify::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/verify"));
 	return Path;
+}
+
+FName FRequest_Verify::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_Verify::ComputePath() const

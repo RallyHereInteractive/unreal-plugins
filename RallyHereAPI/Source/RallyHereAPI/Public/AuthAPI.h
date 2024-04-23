@@ -112,6 +112,7 @@ struct RALLYHEREAPI_API FRequest_GenerateKey : public FRequest
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
 	FString ComputePath() const override;
 	FName GetSimplifiedPath() const override;
+	FName GetSimplifiedPathWithVerb() const override;
 
 };
 
@@ -157,6 +158,7 @@ struct RALLYHEREAPI_API FRequest_GetAllPublicKeys : public FRequest
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
 	FString ComputePath() const override;
 	FName GetSimplifiedPath() const override;
+	FName GetSimplifiedPathWithVerb() const override;
 
 };
 
@@ -198,6 +200,7 @@ struct RALLYHEREAPI_API FRequest_GetPortalTokenDetails : public FRequest
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
 	FString ComputePath() const override;
 	FName GetSimplifiedPath() const override;
+	FName GetSimplifiedPathWithVerb() const override;
 
 	FRHAPI_PortalTokenDetailsRequest PortalTokenDetailsRequest;
 };
@@ -250,6 +253,7 @@ struct RALLYHEREAPI_API FRequest_GetPublicKeyById : public FRequest
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
 	FString ComputePath() const override;
 	FName GetSimplifiedPath() const override;
+	FName GetSimplifiedPathWithVerb() const override;
 
 	FString KeyId;
 };
@@ -305,6 +309,7 @@ struct RALLYHEREAPI_API FRequest_Login : public FRequest
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
 	FString ComputePath() const override;
 	FName GetSimplifiedPath() const override;
+	FName GetSimplifiedPathWithVerb() const override;
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
 	TSharedPtr<FAuthContext> AuthContext;
@@ -368,6 +373,7 @@ struct RALLYHEREAPI_API FRequest_Logout : public FRequest
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
 	FString ComputePath() const override;
 	FName GetSimplifiedPath() const override;
+	FName GetSimplifiedPathWithVerb() const override;
 
 	FRHAPI_LogoutRequest LogoutRequest;
 };
@@ -422,6 +428,7 @@ struct RALLYHEREAPI_API FRequest_OauthLogin : public FRequest
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
 	FString ComputePath() const override;
 	FName GetSimplifiedPath() const override;
+	FName GetSimplifiedPathWithVerb() const override;
 
 	/* The platform to use for authentication */
 	ERHAPI_OAuthPortal Platform;
@@ -482,6 +489,7 @@ struct RALLYHEREAPI_API FRequest_OauthResponse : public FRequest
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
 	FString ComputePath() const override;
 	FName GetSimplifiedPath() const override;
+	FName GetSimplifiedPathWithVerb() const override;
 
 	/* The platform to use for authentication */
 	ERHAPI_OAuthPortal Platform;
@@ -542,6 +550,7 @@ struct RALLYHEREAPI_API FRequest_OauthTokenExchange : public FRequest
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
 	FString ComputePath() const override;
 	FName GetSimplifiedPath() const override;
+	FName GetSimplifiedPathWithVerb() const override;
 
 	FRHAPI_OAuthTokenExchange OAuthTokenExchange;
 	TOptional<FString> UserAgent;
@@ -598,6 +607,7 @@ struct RALLYHEREAPI_API FRequest_Token : public FRequest
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
 	FString ComputePath() const override;
 	FName GetSimplifiedPath() const override;
+	FName GetSimplifiedPathWithVerb() const override;
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
 	TSharedPtr<FAuthContext> AuthContext;
@@ -649,6 +659,7 @@ struct RALLYHEREAPI_API FRequest_Verify : public FRequest
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
 	FString ComputePath() const override;
 	FName GetSimplifiedPath() const override;
+	FName GetSimplifiedPathWithVerb() const override;
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
 	TSharedPtr<FAuthContext> AuthContext;

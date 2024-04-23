@@ -98,12 +98,19 @@ FRequest_CalculateV2Ranks::FRequest_CalculateV2Ranks()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_CalculateV2Ranks::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/rank/v2/rank:calculate"));
 	return Path;
+}
+
+FName FRequest_CalculateV2Ranks::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_CalculateV2Ranks::ComputePath() const
@@ -291,12 +298,19 @@ FRequest_GetAllPlayerUuidRanks::FRequest_GetAllPlayerUuidRanks()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetAllPlayerUuidRanks::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/rank/v1/player/{player_uuid}/rank"));
 	return Path;
+}
+
+FName FRequest_GetAllPlayerUuidRanks::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetAllPlayerUuidRanks::ComputePath() const
@@ -478,12 +492,19 @@ FRequest_GetAllPlayerUuidRanksSelf::FRequest_GetAllPlayerUuidRanksSelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetAllPlayerUuidRanksSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/rank/v1/player/me/rank"));
 	return Path;
+}
+
+FName FRequest_GetAllPlayerUuidRanksSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetAllPlayerUuidRanksSelf::ComputePath() const
@@ -648,12 +669,19 @@ FRequest_GetAllPlayerUuidRanksSelfV2::FRequest_GetAllPlayerUuidRanksSelfV2()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetAllPlayerUuidRanksSelfV2::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/rank/v2/player/me/rank"));
 	return Path;
+}
+
+FName FRequest_GetAllPlayerUuidRanksSelfV2::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetAllPlayerUuidRanksSelfV2::ComputePath() const
@@ -818,12 +846,19 @@ FRequest_GetAllPlayerUuidRanksV2::FRequest_GetAllPlayerUuidRanksV2()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetAllPlayerUuidRanksV2::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/rank/v2/player/{player_uuid}/rank"));
 	return Path;
+}
+
+FName FRequest_GetAllPlayerUuidRanksV2::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetAllPlayerUuidRanksV2::ComputePath() const
@@ -1005,12 +1040,19 @@ FRequest_GetAllRankConfigV3::FRequest_GetAllRankConfigV3()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetAllRankConfigV3::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/rank/v3/rank"));
 	return Path;
+}
+
+FName FRequest_GetAllRankConfigV3::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetAllRankConfigV3::ComputePath() const
@@ -1175,12 +1217,19 @@ FRequest_GetPlayerUuidRank::FRequest_GetPlayerUuidRank()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerUuidRank::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/rank/v1/player/{player_uuid}/rank/{rank_id}"));
 	return Path;
+}
+
+FName FRequest_GetPlayerUuidRank::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerUuidRank::ComputePath() const
@@ -1363,12 +1412,19 @@ FRequest_GetPlayerUuidRankSelf::FRequest_GetPlayerUuidRankSelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerUuidRankSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/rank/v1/player/me/rank/{rank_id}"));
 	return Path;
+}
+
+FName FRequest_GetPlayerUuidRankSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerUuidRankSelf::ComputePath() const
@@ -1550,12 +1606,19 @@ FRequest_GetPlayerUuidRankSelfV2::FRequest_GetPlayerUuidRankSelfV2()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerUuidRankSelfV2::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/rank/v2/player/me/rank/{rank_id}"));
 	return Path;
+}
+
+FName FRequest_GetPlayerUuidRankSelfV2::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerUuidRankSelfV2::ComputePath() const
@@ -1737,12 +1800,19 @@ FRequest_GetPlayerUuidRankV2::FRequest_GetPlayerUuidRankV2()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerUuidRankV2::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/rank/v2/player/{player_uuid}/rank/{rank_id}"));
 	return Path;
+}
+
+FName FRequest_GetPlayerUuidRankV2::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerUuidRankV2::ComputePath() const
@@ -1925,12 +1995,19 @@ FRequest_GetRankConfigV3::FRequest_GetRankConfigV3()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetRankConfigV3::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/rank/v3/rank/{rank_id}"));
 	return Path;
+}
+
+FName FRequest_GetRankConfigV3::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetRankConfigV3::ComputePath() const
@@ -2112,12 +2189,19 @@ FRequest_UpdatePlayerUuidRank::FRequest_UpdatePlayerUuidRank()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_UpdatePlayerUuidRank::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/rank/v1/player/{player_uuid}/rank/{rank_id}"));
 	return Path;
+}
+
+FName FRequest_UpdatePlayerUuidRank::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_UpdatePlayerUuidRank::ComputePath() const
@@ -2311,12 +2395,19 @@ FRequest_UpdatePlayerUuidRankSelf::FRequest_UpdatePlayerUuidRankSelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_UpdatePlayerUuidRankSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/rank/v1/player/me/rank/{rank_id}"));
 	return Path;
+}
+
+FName FRequest_UpdatePlayerUuidRankSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_UpdatePlayerUuidRankSelf::ComputePath() const
@@ -2509,12 +2600,19 @@ FRequest_UpdatePlayerUuidRankSelfV2::FRequest_UpdatePlayerUuidRankSelfV2()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_UpdatePlayerUuidRankSelfV2::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/rank/v2/player/me/rank/{rank_id}"));
 	return Path;
+}
+
+FName FRequest_UpdatePlayerUuidRankSelfV2::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_UpdatePlayerUuidRankSelfV2::ComputePath() const
@@ -2707,12 +2805,19 @@ FRequest_UpdatePlayerUuidRankV2::FRequest_UpdatePlayerUuidRankV2()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_UpdatePlayerUuidRankV2::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/rank/v2/player/{player_uuid}/rank/{rank_id}"));
 	return Path;
+}
+
+FName FRequest_UpdatePlayerUuidRankV2::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_UpdatePlayerUuidRankV2::ComputePath() const
@@ -2906,12 +3011,19 @@ FRequest_UpdateRankingsV1::FRequest_UpdateRankingsV1()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_UpdateRankingsV1::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/rank/v1/rank:calculate"));
 	return Path;
+}
+
+FName FRequest_UpdateRankingsV1::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_UpdateRankingsV1::ComputePath() const

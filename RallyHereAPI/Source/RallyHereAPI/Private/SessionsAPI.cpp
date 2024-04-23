@@ -98,12 +98,19 @@ FRequest_AcknowledgeBackfillRequest::FRequest_AcknowledgeBackfillRequest()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_AcknowledgeBackfillRequest::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/backfill/session/{session_id}"));
 	return Path;
+}
+
+FName FRequest_AcknowledgeBackfillRequest::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_AcknowledgeBackfillRequest::ComputePath() const
@@ -316,12 +323,19 @@ FRequest_AddPlatformSessionToRallyHereSession::FRequest_AddPlatformSessionToRall
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_AddPlatformSessionToRallyHereSession::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/session/{session_id}"));
 	return Path;
+}
+
+FName FRequest_AddPlatformSessionToRallyHereSession::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_AddPlatformSessionToRallyHereSession::ComputePath() const
@@ -586,12 +600,19 @@ FRequest_BackfillConfig::FRequest_BackfillConfig()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_BackfillConfig::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/backfill/config"));
 	return Path;
+}
+
+FName FRequest_BackfillConfig::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_BackfillConfig::ComputePath() const
@@ -756,12 +777,19 @@ FRequest_CreateInstanceRequest::FRequest_CreateInstanceRequest()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_CreateInstanceRequest::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/session/{session_id}/instance"));
 	return Path;
+}
+
+FName FRequest_CreateInstanceRequest::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_CreateInstanceRequest::ComputePath() const
@@ -954,12 +982,19 @@ FRequest_CreateOrJoinSession::FRequest_CreateOrJoinSession()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_CreateOrJoinSession::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/session"));
 	return Path;
+}
+
+FName FRequest_CreateOrJoinSession::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_CreateOrJoinSession::ComputePath() const
@@ -1147,12 +1182,19 @@ FRequest_DeleteBackfillRequest::FRequest_DeleteBackfillRequest()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_DeleteBackfillRequest::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/backfill/session/{session_id}"));
 	return Path;
+}
+
+FName FRequest_DeleteBackfillRequest::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("DELETE %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_DeleteBackfillRequest::ComputePath() const
@@ -1355,12 +1397,19 @@ FRequest_DeleteBrowserInfo::FRequest_DeleteBrowserInfo()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_DeleteBrowserInfo::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/session/{session_id}/browser"));
 	return Path;
+}
+
+FName FRequest_DeleteBrowserInfo::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("DELETE %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_DeleteBrowserInfo::ComputePath() const
@@ -1532,12 +1581,19 @@ FRequest_DeletePlatformSessionFromRallyHereSession::FRequest_DeletePlatformSessi
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_DeletePlatformSessionFromRallyHereSession::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/session/{session_id}"));
 	return Path;
+}
+
+FName FRequest_DeletePlatformSessionFromRallyHereSession::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("DELETE %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_DeletePlatformSessionFromRallyHereSession::ComputePath() const
@@ -1757,12 +1813,19 @@ FRequest_EndInstance::FRequest_EndInstance()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_EndInstance::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/session/{session_id}/instance"));
 	return Path;
+}
+
+FName FRequest_EndInstance::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("DELETE %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_EndInstance::ComputePath() const
@@ -1969,12 +2032,19 @@ FRequest_GetAllSessionTemplates::FRequest_GetAllSessionTemplates()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetAllSessionTemplates::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/template"));
 	return Path;
+}
+
+FName FRequest_GetAllSessionTemplates::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetAllSessionTemplates::ComputePath() const
@@ -2192,12 +2262,19 @@ FRequest_GetBrowserSessionsByType::FRequest_GetBrowserSessionsByType()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetBrowserSessionsByType::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/browser"));
 	return Path;
+}
+
+FName FRequest_GetBrowserSessionsByType::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetBrowserSessionsByType::ComputePath() const
@@ -2426,12 +2503,19 @@ FRequest_GetConnectionInfoSelf::FRequest_GetConnectionInfoSelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetConnectionInfoSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/connection-info"));
 	return Path;
+}
+
+FName FRequest_GetConnectionInfoSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetConnectionInfoSelf::ComputePath() const
@@ -2614,12 +2698,19 @@ FRequest_GetPlatformSessionInfo::FRequest_GetPlatformSessionInfo()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlatformSessionInfo::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/platform/{platform}/platform-session/{platform_session_id_base64}"));
 	return Path;
+}
+
+FName FRequest_GetPlatformSessionInfo::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlatformSessionInfo::ComputePath() const
@@ -2855,12 +2946,19 @@ FRequest_GetPlayerSessions::FRequest_GetPlayerSessions()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerSessions::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/player/id/{player_id}/session"));
 	return Path;
+}
+
+FName FRequest_GetPlayerSessions::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerSessions::ComputePath() const
@@ -3042,12 +3140,19 @@ FRequest_GetPlayerSessionsByUuid::FRequest_GetPlayerSessionsByUuid()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerSessionsByUuid::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/player/uuid/{player_uuid}/session"));
 	return Path;
+}
+
+FName FRequest_GetPlayerSessionsByUuid::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerSessionsByUuid::ComputePath() const
@@ -3270,12 +3375,19 @@ FRequest_GetPlayerSessionsByUuidV2::FRequest_GetPlayerSessionsByUuidV2()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerSessionsByUuidV2::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/player/{player_uuid}/session"));
 	return Path;
+}
+
+FName FRequest_GetPlayerSessionsByUuidV2::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerSessionsByUuidV2::ComputePath() const
@@ -3498,12 +3610,19 @@ FRequest_GetPlayerSessionsSelf::FRequest_GetPlayerSessionsSelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerSessionsSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/player/me/session"));
 	return Path;
+}
+
+FName FRequest_GetPlayerSessionsSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerSessionsSelf::ComputePath() const
@@ -3721,12 +3840,19 @@ FRequest_GetSessionByAllocationId::FRequest_GetSessionByAllocationId()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetSessionByAllocationId::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/session/allocation/{allocation_id}"));
 	return Path;
+}
+
+FName FRequest_GetSessionByAllocationId::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetSessionByAllocationId::ComputePath() const
@@ -3949,12 +4075,19 @@ FRequest_GetSessionById::FRequest_GetSessionById()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetSessionById::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/session/{session_id}"));
 	return Path;
+}
+
+FName FRequest_GetSessionById::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetSessionById::ComputePath() const
@@ -4185,12 +4318,19 @@ FRequest_GetSessionTemplateByType::FRequest_GetSessionTemplateByType()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetSessionTemplateByType::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/template/{session_type}"));
 	return Path;
+}
+
+FName FRequest_GetSessionTemplateByType::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetSessionTemplateByType::ComputePath() const
@@ -4413,12 +4553,19 @@ FRequest_InstanceHealthCheck::FRequest_InstanceHealthCheck()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_InstanceHealthCheck::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/session/{session_id}/instance/health"));
 	return Path;
+}
+
+FName FRequest_InstanceHealthCheck::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_InstanceHealthCheck::ComputePath() const
@@ -4611,12 +4758,19 @@ FRequest_InstanceHealthConfig::FRequest_InstanceHealthConfig()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_InstanceHealthConfig::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/instance/health/config"));
 	return Path;
+}
+
+FName FRequest_InstanceHealthConfig::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_InstanceHealthConfig::ComputePath() const
@@ -4781,12 +4935,19 @@ FRequest_InviteSessionToSession::FRequest_InviteSessionToSession()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_InviteSessionToSession::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/session/{session_id}/invited-session/{invited_session_id}:invite"));
 	return Path;
+}
+
+FName FRequest_InviteSessionToSession::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_InviteSessionToSession::ComputePath() const
@@ -5027,12 +5188,19 @@ FRequest_JoinQueue::FRequest_JoinQueue()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_JoinQueue::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/session/{session_id}/queue"));
 	return Path;
+}
+
+FName FRequest_JoinQueue::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_JoinQueue::ComputePath() const
@@ -5225,12 +5393,19 @@ FRequest_JoinSessionByIdSelf::FRequest_JoinSessionByIdSelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_JoinSessionByIdSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/session/{session_id}/player/me"));
 	return Path;
+}
+
+FName FRequest_JoinSessionByIdSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_JoinSessionByIdSelf::ComputePath() const
@@ -5470,12 +5645,19 @@ FRequest_JoinSessionByPlatformSessionByUuid::FRequest_JoinSessionByPlatformSessi
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_JoinSessionByPlatformSessionByUuid::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/{player_uuid}"));
 	return Path;
+}
+
+FName FRequest_JoinSessionByPlatformSessionByUuid::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_JoinSessionByPlatformSessionByUuid::ComputePath() const
@@ -5751,12 +5933,19 @@ FRequest_JoinSessionByPlatformSessionIdSelf::FRequest_JoinSessionByPlatformSessi
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_JoinSessionByPlatformSessionIdSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/me"));
 	return Path;
+}
+
+FName FRequest_JoinSessionByPlatformSessionIdSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_JoinSessionByPlatformSessionIdSelf::ComputePath() const
@@ -6023,12 +6212,19 @@ FRequest_KickPlayerFromSessionById::FRequest_KickPlayerFromSessionById()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_KickPlayerFromSessionById::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/session/{session_id}/player/id/{player_id}"));
 	return Path;
+}
+
+FName FRequest_KickPlayerFromSessionById::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("DELETE %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_KickPlayerFromSessionById::ComputePath() const
@@ -6213,12 +6409,19 @@ FRequest_KickPlayerFromSessionByUuid::FRequest_KickPlayerFromSessionByUuid()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_KickPlayerFromSessionByUuid::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/session/{session_id}/player/uuid/{player_uuid}"));
 	return Path;
+}
+
+FName FRequest_KickPlayerFromSessionByUuid::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("DELETE %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_KickPlayerFromSessionByUuid::ComputePath() const
@@ -6438,12 +6641,19 @@ FRequest_KickPlayerFromSessionByUuidV2::FRequest_KickPlayerFromSessionByUuidV2()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_KickPlayerFromSessionByUuidV2::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/session/{session_id}/player/{player_uuid}"));
 	return Path;
+}
+
+FName FRequest_KickPlayerFromSessionByUuidV2::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("DELETE %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_KickPlayerFromSessionByUuidV2::ComputePath() const
@@ -6663,12 +6873,19 @@ FRequest_KickSessionFromSession::FRequest_KickSessionFromSession()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_KickSessionFromSession::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/session/{session_id}/kicked-session/{kicked_session_id}"));
 	return Path;
+}
+
+FName FRequest_KickSessionFromSession::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("DELETE %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_KickSessionFromSession::ComputePath() const
@@ -6853,12 +7070,19 @@ FRequest_LeaveQueue::FRequest_LeaveQueue()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_LeaveQueue::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/session/{session_id}/queue"));
 	return Path;
+}
+
+FName FRequest_LeaveQueue::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("DELETE %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_LeaveQueue::ComputePath() const
@@ -7054,12 +7278,19 @@ FRequest_LeaveSessionByIdSelf::FRequest_LeaveSessionByIdSelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_LeaveSessionByIdSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/session/{session_id}/player/me"));
 	return Path;
+}
+
+FName FRequest_LeaveSessionByIdSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("DELETE %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_LeaveSessionByIdSelf::ComputePath() const
@@ -7243,12 +7474,19 @@ FRequest_LeaveSessionByPlatformSessionByUuid::FRequest_LeaveSessionByPlatformSes
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_LeaveSessionByPlatformSessionByUuid::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/{player_uuid}"));
 	return Path;
+}
+
+FName FRequest_LeaveSessionByPlatformSessionByUuid::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("DELETE %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_LeaveSessionByPlatformSessionByUuid::ComputePath() const
@@ -7460,12 +7698,19 @@ FRequest_LeaveSessionByPlatformSessionSelf::FRequest_LeaveSessionByPlatformSessi
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_LeaveSessionByPlatformSessionSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/me"));
 	return Path;
+}
+
+FName FRequest_LeaveSessionByPlatformSessionSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("DELETE %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_LeaveSessionByPlatformSessionSelf::ComputePath() const
@@ -7676,12 +7921,19 @@ FRequest_PostBrowserInfo::FRequest_PostBrowserInfo()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_PostBrowserInfo::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/session/{session_id}/browser"));
 	return Path;
+}
+
+FName FRequest_PostBrowserInfo::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_PostBrowserInfo::ComputePath() const
@@ -7882,12 +8134,19 @@ FRequest_UpdateBackfillRequest::FRequest_UpdateBackfillRequest()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_UpdateBackfillRequest::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/backfill/session/{session_id}"));
 	return Path;
+}
+
+FName FRequest_UpdateBackfillRequest::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("PATCH %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_UpdateBackfillRequest::ComputePath() const
@@ -8090,12 +8349,19 @@ FRequest_UpdateBrowserInfo::FRequest_UpdateBrowserInfo()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_UpdateBrowserInfo::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/session/{session_id}/browser"));
 	return Path;
+}
+
+FName FRequest_UpdateBrowserInfo::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("PATCH %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_UpdateBrowserInfo::ComputePath() const
@@ -8288,12 +8554,19 @@ FRequest_UpdateInstanceInfo::FRequest_UpdateInstanceInfo()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_UpdateInstanceInfo::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/session/{session_id}/instance"));
 	return Path;
+}
+
+FName FRequest_UpdateInstanceInfo::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("PATCH %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_UpdateInstanceInfo::ComputePath() const
@@ -8486,12 +8759,19 @@ FRequest_UpdateSessionById::FRequest_UpdateSessionById()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_UpdateSessionById::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/session/{session_id}"));
 	return Path;
+}
+
+FName FRequest_UpdateSessionById::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("PATCH %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_UpdateSessionById::ComputePath() const
@@ -8719,12 +8999,19 @@ FRequest_UpdateSessionPlayerById::FRequest_UpdateSessionPlayerById()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_UpdateSessionPlayerById::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/session/{session_id}/player/id/{player_id}"));
 	return Path;
+}
+
+FName FRequest_UpdateSessionPlayerById::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_UpdateSessionPlayerById::ComputePath() const
@@ -8930,12 +9217,19 @@ FRequest_UpdateSessionPlayerByUuid::FRequest_UpdateSessionPlayerByUuid()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_UpdateSessionPlayerByUuid::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/session/{session_id}/player/uuid/{player_uuid}"));
 	return Path;
+}
+
+FName FRequest_UpdateSessionPlayerByUuid::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_UpdateSessionPlayerByUuid::ComputePath() const
@@ -9176,12 +9470,19 @@ FRequest_UpdateSessionPlayerByUuidV2::FRequest_UpdateSessionPlayerByUuidV2()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_UpdateSessionPlayerByUuidV2::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/session/{session_id}/player/{player_uuid}"));
 	return Path;
+}
+
+FName FRequest_UpdateSessionPlayerByUuidV2::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_UpdateSessionPlayerByUuidV2::ComputePath() const

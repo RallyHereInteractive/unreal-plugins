@@ -98,12 +98,19 @@ FRequest_GetFriendsAndBlockLimits::FRequest_GetFriendsAndBlockLimits()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetFriendsAndBlockLimits::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/friends/v1/configuration"));
 	return Path;
+}
+
+FName FRequest_GetFriendsAndBlockLimits::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetFriendsAndBlockLimits::ComputePath() const

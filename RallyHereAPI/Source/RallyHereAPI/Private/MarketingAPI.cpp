@@ -98,12 +98,19 @@ FRequest_GetMarketingCampaigns::FRequest_GetMarketingCampaigns()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetMarketingCampaigns::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/marketing/campaign"));
 	return Path;
+}
+
+FName FRequest_GetMarketingCampaigns::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetMarketingCampaigns::ComputePath() const

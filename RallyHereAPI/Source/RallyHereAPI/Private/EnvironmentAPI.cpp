@@ -98,12 +98,19 @@ FRequest_GetEnvironmentId::FRequest_GetEnvironmentId()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetEnvironmentId::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/config/v1/environment"));
 	return Path;
+}
+
+FName FRequest_GetEnvironmentId::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetEnvironmentId::ComputePath() const

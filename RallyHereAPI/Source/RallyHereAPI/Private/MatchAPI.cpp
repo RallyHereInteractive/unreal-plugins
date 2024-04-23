@@ -98,12 +98,19 @@ FRequest_CreateMatch::FRequest_CreateMatch()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_CreateMatch::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/match/v1/match"));
 	return Path;
+}
+
+FName FRequest_CreateMatch::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_CreateMatch::ComputePath() const
@@ -291,12 +298,19 @@ FRequest_CreateMatchPlayer::FRequest_CreateMatchPlayer()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_CreateMatchPlayer::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/match/v1/player/{player_uuid}/match/{match_id}"));
 	return Path;
+}
+
+FName FRequest_CreateMatchPlayer::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_CreateMatchPlayer::ComputePath() const
@@ -490,12 +504,19 @@ FRequest_DeleteMatch::FRequest_DeleteMatch()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_DeleteMatch::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/match/v1/match/{match_id}"));
 	return Path;
+}
+
+FName FRequest_DeleteMatch::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("DELETE %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_DeleteMatch::ComputePath() const
@@ -667,12 +688,19 @@ FRequest_DeleteMatchPlayer::FRequest_DeleteMatchPlayer()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_DeleteMatchPlayer::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/match/v1/player/{player_uuid}/match/{match_id}"));
 	return Path;
+}
+
+FName FRequest_DeleteMatchPlayer::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("DELETE %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_DeleteMatchPlayer::ComputePath() const
@@ -845,12 +873,19 @@ FRequest_GetMatch::FRequest_GetMatch()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetMatch::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/match/v1/match/{match_id}"));
 	return Path;
+}
+
+FName FRequest_GetMatch::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetMatch::ComputePath() const
@@ -1044,12 +1079,19 @@ FRequest_GetMatchPlayer::FRequest_GetMatchPlayer()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetMatchPlayer::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/match/v1/player/{player_uuid}/match/{match_id}"));
 	return Path;
+}
+
+FName FRequest_GetMatchPlayer::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetMatchPlayer::ComputePath() const
@@ -1232,12 +1274,19 @@ FRequest_GetMatches::FRequest_GetMatches()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetMatches::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/match/v1/match"));
 	return Path;
+}
+
+FName FRequest_GetMatches::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetMatches::ComputePath() const
@@ -1450,12 +1499,19 @@ FRequest_GetPlayerMatchesSelf::FRequest_GetPlayerMatchesSelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerMatchesSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/match/v1/player/me/match"));
 	return Path;
+}
+
+FName FRequest_GetPlayerMatchesSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerMatchesSelf::ComputePath() const
@@ -1644,12 +1700,19 @@ FRequest_GetPlayersMatches::FRequest_GetPlayersMatches()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayersMatches::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/match/v1/player/{player_uuid}/match"));
 	return Path;
+}
+
+FName FRequest_GetPlayersMatches::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayersMatches::ComputePath() const
@@ -1843,12 +1906,19 @@ FRequest_PatchMatch::FRequest_PatchMatch()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_PatchMatch::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/match/v1/match/{match_id}"));
 	return Path;
+}
+
+FName FRequest_PatchMatch::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("PATCH %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_PatchMatch::ComputePath() const
@@ -2041,12 +2111,19 @@ FRequest_PatchMatchPlayer::FRequest_PatchMatchPlayer()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_PatchMatchPlayer::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/match/v1/player/{player_uuid}/match/{match_id}"));
 	return Path;
+}
+
+FName FRequest_PatchMatchPlayer::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("PATCH %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_PatchMatchPlayer::ComputePath() const
@@ -2240,12 +2317,19 @@ FRequest_UpdateMatch::FRequest_UpdateMatch()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_UpdateMatch::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/match/v1/match/{match_id}"));
 	return Path;
+}
+
+FName FRequest_UpdateMatch::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("PUT %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_UpdateMatch::ComputePath() const
@@ -2438,12 +2522,19 @@ FRequest_UpdateMatchPlayer::FRequest_UpdateMatchPlayer()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_UpdateMatchPlayer::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/match/v1/player/{player_uuid}/match/{match_id}"));
 	return Path;
+}
+
+FName FRequest_UpdateMatchPlayer::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("PUT %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_UpdateMatchPlayer::ComputePath() const
