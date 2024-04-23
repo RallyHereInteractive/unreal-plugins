@@ -390,7 +390,7 @@ protected:
 		if (EntitlementsPoller.IsValid())
 		{
 			// poll immediately, as we have have entitlements pending
-			EntitlementsPoller->StartPoll(FRH_PollFunc::CreateSP(this, &FRH_EntitlementProcessor::PollEntitlements), PollTimerName, true);
+			EntitlementsPoller->StartPoll(FRH_PollFunc::CreateSP(this, &FRH_EntitlementProcessor::PollEntitlements), PollTimerName, true, false);
 		}
 	}
 	/**
