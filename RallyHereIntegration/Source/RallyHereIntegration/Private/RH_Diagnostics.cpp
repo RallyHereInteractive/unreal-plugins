@@ -90,8 +90,8 @@ void FRH_DiagnosticReportGenerator::GenerateMetadata()
 			}
 		}
 	}
-	Metadata->SetStringField(TEXT("Cached-Local-Time-UTC"), hasLocalTime ? LocalTime.ToString() : FString());
-	Metadata->SetStringField(TEXT("Cached-Server-Time-UTC"), hasServerTime ? ServerTime.ToString() : FString());
+	Metadata->SetStringField(TEXT("Cached-Local-Time-UTC"), hasLocalTime ? LocalTime.ToIso8601() : FString());
+	Metadata->SetStringField(TEXT("Cached-Server-Time-UTC"), hasServerTime ? ServerTime.ToIso8601() : FString());
 
 	// deep copy the input custom metadata so we can alter it
 	FRHAPI_JsonObject CustomMetadata;
