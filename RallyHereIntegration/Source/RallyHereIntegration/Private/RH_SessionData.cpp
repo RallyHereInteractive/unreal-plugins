@@ -1073,7 +1073,7 @@ void URH_OfflineSession::AcknowledgeBackfill(bool bEnable, const FRH_OnSessionUp
 	Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
 }
 
-void URH_OfflineSession::EmitAuditEvent(const FRHAPI_CreateAuditRequest& AuditEvent, const FRH_GenericSuccessWithErrorBlock& Delegate)
+void URH_OfflineSession::EmitAuditEvent(const FRHAPI_CreateAuditRequest& AuditEvent, const FRH_GenericSuccessWithErrorBlock& Delegate) const
 {
 	UE_LOG(LogRHSession, VeryVerbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
 	Delegate.ExecuteIfBound(false, FRH_ErrorInfo());
@@ -1456,7 +1456,7 @@ void URH_OnlineSession::AcknowledgeBackfill(bool bEnable, const FRH_OnSessionUpd
 	}
 }
 
-void URH_OnlineSession::EmitAuditEvent(const FRHAPI_CreateAuditRequest& AuditEvent, const FRH_GenericSuccessWithErrorBlock& Delegate)
+void URH_OnlineSession::EmitAuditEvent(const FRHAPI_CreateAuditRequest& AuditEvent, const FRH_GenericSuccessWithErrorBlock& Delegate) const
 {
 	UE_LOG(LogRHSession, Verbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
 	typedef RallyHereAPI::Traits_CreateSessionAudit BaseType;

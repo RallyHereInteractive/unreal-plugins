@@ -882,14 +882,14 @@ public:
 	* @param [in] AuditEvent The event to send
 	* @param [in] Delegate Callback delegate for the completion of the audit event
 	*/
-	virtual void EmitAuditEvent(const FRHAPI_CreateAuditRequest& AuditEvent, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock()) { PURE_VIRTUAL(URH_JoinedSession::EmitAuditEvent, ); };
+	virtual void EmitAuditEvent(const FRHAPI_CreateAuditRequest& AuditEvent, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock()) const { PURE_VIRTUAL(URH_JoinedSession::EmitAuditEvent, ); };
 	/**
 	* @brief Blueprint compatible version of EmitAuditEvent
 	* @param [in] AuditEvent The event to send
 	* @param [in] Delegate Callback delegate for the completion of the audit event
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Session|Host", meta = (DisplayName = "Update Browser Info", AutoCreateRefTerm = "CustomData,Delegate"))
-	void BLUEPRINT_EmitAuditEvent(const FRHAPI_CreateAuditRequest& AuditEvent, const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate) { EmitAuditEvent(AuditEvent, Delegate); };
+	void BLUEPRINT_EmitAuditEvent(const FRHAPI_CreateAuditRequest& AuditEvent, const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate) const { EmitAuditEvent(AuditEvent, Delegate); };
 	/**
 	* @brief Utility function for beacon connections - not exposed to blueprint so that it can have encryption data
 	* @param [in] Player Player the beacon is being created for, used for login credential passing
@@ -1032,7 +1032,7 @@ public:
 	* @param [in] AuditEvent The event to send
 	* @param [in] Delegate Callback delegate for the completion of the audit event
 	*/
-	virtual void EmitAuditEvent(const FRHAPI_CreateAuditRequest& AuditEvent, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock()) override;
+	virtual void EmitAuditEvent(const FRHAPI_CreateAuditRequest& AuditEvent, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock()) const override;
 
 protected:
 	void ImportSessionUpdateToAllPlayers(const FRH_APISessionWithETag& Update);
@@ -1268,7 +1268,7 @@ public:
 	* @param [in] AuditEvent The event to send
 	* @param [in] Delegate Callback delegate for the completion of the audit event
 	*/
-	virtual void EmitAuditEvent(const FRHAPI_CreateAuditRequest& AuditEvent, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock()) override;
+	virtual void EmitAuditEvent(const FRHAPI_CreateAuditRequest& AuditEvent, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock()) const override;
 };
 
 /** @ingroup Session
