@@ -1309,6 +1309,15 @@ URH_SessionView* URH_GameInstanceServerBootstrapper::GetSessionById(const FStrin
 	return nullptr;
 }
 
+void URH_GameInstanceServerBootstrapper::RemoveSessionById(const FString& SessionId)
+{
+	if (RHSession != nullptr && RHSession->GetSessionId() == SessionId)
+	{
+		// generally not valid for something to remove our session, trigger cleanup if something tried to remove it
+		CleanupAfterInstanceRemoval();
+	}
+}
+
 bool URH_GameInstanceServerBootstrapper::GetTemplate(const FString& Type, FRHAPI_SessionTemplate& Template) const
 {
 	auto ptr = Templates.Find(Type);

@@ -138,6 +138,15 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Session")
 	FORCEINLINE TArray<URH_SessionView*> GetSessions() const { TArray<URH_SessionView*> result; Sessions.GenerateValueArray(result); return result; }
 
+	// Note - Remove calls will attempt to remove the session without attempting to leave the RH session.  To leave a session, call the LeaveSession variants
+	// uses ID as the primary key rather than the Session object because we may need to remove something that was not fully joined
+	/**
+	 * @brief Removes a cached session for the local player, this does NOT try to leave it.
+	 * @param [in] SessionId The Session Id to remove.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Session")
+	virtual void RemoveSessionById(const FString& SessionId);
+
 	/**
 	* @brief Utility function to determine if local player is a member of that session
 	* @param [in] SessionId Session Id to check
@@ -424,14 +433,6 @@ protected:
 	 * @return True if the player is part of that session.
 	 */
 	virtual bool LocalPlayerStatusFromSession(const FRHAPI_Session& Session, ERHAPI_SessionPlayerStatus& Status) const;
-
-	// Note - Remove calls will attempt to remove the session without attempting to leave the RH session.  To leave a session, call the LeaveSession variants
-	// uses ID as the primary key rather than the Session object because we may need to remove something that was not fully joined
-	/**
-	 * @brief Removes a cached session for the local player, this does NOT try to leave it.
-	 * @param [in] SessionId The Session Id to remove.
-	 */
-	virtual void RemoveSessionById(const FString& SessionId);
 	/**
 	 * @brief Removes a cached session for the local player, this does NOT try to leave it.
 	 * @param [in] Session The Session to remove.
