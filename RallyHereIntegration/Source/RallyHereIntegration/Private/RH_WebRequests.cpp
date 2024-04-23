@@ -328,7 +328,7 @@ void FRH_WebRequests::OnWebRequestStarted_Log(const RallyHereAPI::FRequestMetada
 void FRH_WebRequests::OnWebRequestStarted_RecordTimestamp(const RallyHereAPI::FRequestMetadata& RequestMetadata, FHttpRequestRef HttpRequest, TSharedRef<RallyHereAPI::FAPI> API)
 {
 	APINameToCallCountMap.FindOrAdd(API->GetName())++;
-	SimplifiedPathToCallCountMap.FindOrAdd(RequestMetadata.SimplifiedPath)++;
+	SimplifiedPathToCallCountMap.FindOrAdd(RequestMetadata.SimplifiedPathWithVerb)++;
 }
 
 void FRH_WebRequests::OnWebRequestCompleted(const RallyHereAPI::FResponse& Response, FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSuccess, bool bWillRetryWithAuth, TSharedRef<RallyHereAPI::FAPI> API)
@@ -529,7 +529,7 @@ void FRH_WebRequests::GetRecentCallCountMaps(TMap<FName, int32>* OutAPIRecentCal
 			}
 			if (OutURLRecentCallCountMap)
 			{
-				OutURLRecentCallCountMap->FindOrAdd(request->Metadata.SimplifiedPath)++;
+				OutURLRecentCallCountMap->FindOrAdd(request->Metadata.SimplifiedPathWithVerb)++;
 			}
 		}
 	}
@@ -613,12 +613,12 @@ void FRH_WebRequests::DetectRecentBursts(TMap<FName, TTuple<int32, int32>>* OutB
 	// For URL map
 	auto IsMatchByURL = [](FRH_WebRequest* Request1, FRH_WebRequest* Request2) -> bool
 	{
-		return Request1->Metadata.SimplifiedPath == Request2->Metadata.SimplifiedPath;
+		return Request1->Metadata.SimplifiedPathWithVerb == Request2->Metadata.SimplifiedPathWithVerb;
 	};
 	// For URL map
 	auto GetURLFromRequest = [](FRH_WebRequest* Request) -> FName
 	{
-		return Request->Metadata.SimplifiedPath;
+		return Request->Metadata.SimplifiedPathWithVerb;
 	};
 
 	FDateTime TimeLimit = FDateTime::Now() - FTimespan(0, 1, 0);
