@@ -123,6 +123,7 @@ Server Bootstrapper for the Game Instance.
 `public inline virtual TOptional< FString > `[`GetETagForAllSessionsPoll`](#classURH__GameInstanceServerBootstrapper_1ae10409319fa6d2264e124e65a8c9bf8e)`() const` | Gets the etag to use for a "Get all Sessions" type query.
 `public inline virtual TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetAllSessionsForPolling`](#classURH__GameInstanceServerBootstrapper_1ac2f94216aa37e0981cbb72db9e8a9f10)`() const` | Used to get all sessions, primarily for get all sessions polling where etag matches.
 `public virtual `[`URH_SessionView`](Session.md#classURH__SessionView)` * `[`GetSessionById`](#classURH__GameInstanceServerBootstrapper_1abe0dcf495d31dfbd8876d63feab05ad5)`(const FString & SessionId) const` | Gets a session by its id.
+`public virtual void `[`RemoveSessionById`](#classURH__GameInstanceServerBootstrapper_1a493191c1aab0553e34f0dcf4c05f8f22)`(const FString & SessionId)` | Removes a cached session for the local player, this does NOT try to leave it.
 `public virtual bool `[`GetTemplate`](#classURH__GameInstanceServerBootstrapper_1a62d69a1d7e7021f03557dff715e6179d)`(const FString & Type,`[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template) const` | Gets a session template by type.
 `public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classURH__GameInstanceServerBootstrapper_1aec9f89849a3865282935f12646e98255)`(const FString & SessionId) const` | Gets the platform synchronization object using the rally here session id.
 `public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classURH__GameInstanceServerBootstrapper_1a2c2d7c9b2b38fca62aba5ba8e642797b)`(const FUniqueNetIdRepl & PlatformSessionId) const` | Gets the platform synchronization object using the platform session id.
@@ -341,6 +342,14 @@ Gets a session by its id.
 
 #### Returns
 The Session with the given Id.
+
+<br>
+#### `public virtual void `[`RemoveSessionById`](#classURH__GameInstanceServerBootstrapper_1a493191c1aab0553e34f0dcf4c05f8f22)`(const FString & SessionId)` <a id="classURH__GameInstanceServerBootstrapper_1a493191c1aab0553e34f0dcf4c05f8f22"></a>
+
+Removes a cached session for the local player, this does NOT try to leave it.
+
+#### Parameters
+* `SessionId` The Session Id to remove.
 
 <br>
 #### `public virtual bool `[`GetTemplate`](#classURH__GameInstanceServerBootstrapper_1a62d69a1d7e7021f03557dff715e6179d)`(const FString & Type,`[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template) const` <a id="classURH__GameInstanceServerBootstrapper_1a62d69a1d7e7021f03557dff715e6179d"></a>
@@ -1073,6 +1082,7 @@ Whether or not this result is complete (it has valid and matching session inform
 `public FDateTime `[`JoinedTime`](#structFRH__ActiveSessionStatePlayerContext_1a07fb65fb777e549fdc612c996deaae5f) | The time the player joined the server.
 `public FDateTime `[`LeaveTime`](#structFRH__ActiveSessionStatePlayerContext_1aaf8b1f18d4879ae9dfd81b1b015429d3) | The time the player left the server.
 `public float `[`DurationSeconds`](#structFRH__ActiveSessionStatePlayerContext_1a74f68c02960a1fa413eae8f6bee28f17) | The total time the player has been connected.
+`public inline  `[`FRH_ActiveSessionStatePlayerContext`](#structFRH__ActiveSessionStatePlayerContext_1a262b126ed6edc7c0882c51d3783e9ad1)`()` | 
 
 #### Members
 
@@ -1099,5 +1109,8 @@ The time the player left the server.
 #### `public float `[`DurationSeconds`](#structFRH__ActiveSessionStatePlayerContext_1a74f68c02960a1fa413eae8f6bee28f17) <a id="structFRH__ActiveSessionStatePlayerContext_1a74f68c02960a1fa413eae8f6bee28f17"></a>
 
 The total time the player has been connected.
+
+<br>
+#### `public inline  `[`FRH_ActiveSessionStatePlayerContext`](#structFRH__ActiveSessionStatePlayerContext_1a262b126ed6edc7c0882c51d3783e9ad1)`()` <a id="structFRH__ActiveSessionStatePlayerContext_1a262b126ed6edc7c0882c51d3783e9ad1"></a>
 
 <br>

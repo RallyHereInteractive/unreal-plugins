@@ -392,6 +392,7 @@ Simple container class to hold session view data, does not have its own auth con
 `public inline virtual TOptional< FString > `[`GetETagForAllSessionsPoll`](#classURH__SessionBrowserCache_1af673c57a58cd96f48687778033b0c9e4)`() const` | Gets the etag to use for a "Get all Sessions" type query.
 `public inline virtual TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetAllSessionsForPolling`](#classURH__SessionBrowserCache_1aa05dd036c2dacc629cbf2d55b90efcdf)`() const` | Used to get all sessions, primarily for get all sessions polling where etag matches.
 `public inline virtual `[`URH_SessionView`](Session.md#classURH__SessionView)` * `[`GetSessionById`](#classURH__SessionBrowserCache_1aa64b3bc0c50822dfc08403fa30416907)`(const FString & SessionId) const` | Gets a session by its id.
+`public virtual void `[`RemoveSessionById`](#classURH__SessionBrowserCache_1ac417818631c93603c294d653811d3948)`(const FString & SessionId)` | Removes a cached session for the local player, this does NOT try to leave it.
 `public virtual bool `[`GetTemplate`](#classURH__SessionBrowserCache_1aa529f70a678eb8569e794a9366d8e4fd)`(const FString & Type,`[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template) const` | Gets a session template by type.
 `public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classURH__SessionBrowserCache_1a7315ff647e9507c03a8e4b4b22657fed)`(const FString & SessionId) const` | Gets the platform synchronization object using the rally here session id.
 `public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classURH__SessionBrowserCache_1a363341b102359f9b6d90bfd1f3f73b3b)`(const FUniqueNetIdRepl & PlatformSessionId) const` | Gets the platform synchronization object using the platform session id.
@@ -509,6 +510,14 @@ Gets a session by its id.
 
 #### Returns
 The Session with the given Id.
+
+<br>
+#### `public virtual void `[`RemoveSessionById`](#classURH__SessionBrowserCache_1ac417818631c93603c294d653811d3948)`(const FString & SessionId)` <a id="classURH__SessionBrowserCache_1ac417818631c93603c294d653811d3948"></a>
+
+Removes a cached session for the local player, this does NOT try to leave it.
+
+#### Parameters
+* `SessionId` The Session Id to remove.
 
 <br>
 #### `public virtual bool `[`GetTemplate`](#classURH__SessionBrowserCache_1aa529f70a678eb8569e794a9366d8e4fd)`(const FString & Type,`[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template) const` <a id="classURH__SessionBrowserCache_1aa529f70a678eb8569e794a9366d8e4fd"></a>
@@ -998,6 +1007,8 @@ Offline Sessions are sessions the session owner is actively a member of that are
 `public virtual void `[`Leave`](#classURH__OfflineSession_1ac9879abe8ef573431669f5e4b2c99f14)`(bool bFromOSSSession,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Leaves the session.
 `public virtual void `[`RequestInstance`](#classURH__OfflineSession_1a15f9d178c350737ffd1c7315b174b9d3)`(const `[`FRHAPI_InstanceRequest`](models/RHAPI_InstanceRequest.md#structFRHAPI__InstanceRequest)` & InstanceRequest,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Attempt to create a new instance for the session.
 `public virtual void `[`EndInstance`](#classURH__OfflineSession_1a42d2adfee51e818244e98e0d0888f410)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Shutdown the existing instance for the session.
+`public virtual void `[`GenerateVoipLoginToken`](#classURH__OfflineSession_1ac27726a868507a3200bf8724f57270df)`(const FRH_OnSessionGetVoipTokenDelegateBlock & Delegate)` | Generate a VOIP login token.
+`public virtual void `[`GenerateVoipActionToken`](#classURH__OfflineSession_1ae1fb00699b03e13df973851ab5a293d0)`(ERHAPI_VivoxSessionActionSingle VivoxAction,ERHAPI_VoipSessionType VoipSessionType,const FRH_OnSessionGetVoipTokenDelegateBlock & Delegate)` | Generate a VOIP action token.
 `public virtual void `[`UpdateSessionInfo`](#classURH__OfflineSession_1a298d217d999690851348cb4041ff7599)`(const `[`FRHAPI_SessionUpdate`](models/RHAPI_SessionUpdate.md#structFRHAPI__SessionUpdate)` & Update,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Updates the session info.
 `public virtual void `[`UpdateInstanceInfo`](#classURH__OfflineSession_1a8b36aeef35d1acbe6e6af22d9a55cf0f)`(const `[`FRHAPI_InstanceInfoUpdate`](models/RHAPI_InstanceInfoUpdate.md#structFRHAPI__InstanceInfoUpdate)` & Update,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Updates the sessions instance info.
 `public virtual void `[`UpdateBrowserInfo`](#classURH__OfflineSession_1a1efa399f684ce083ce292c87717f22ad)`(bool bEnable,const TMap< FString, FString > & CustomData,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Updates the sessions browser info.
@@ -1080,6 +1091,26 @@ Shutdown the existing instance for the session.
 
 #### Parameters
 * `Delegate` Callback delegate for the session being updated with the instance ending.
+
+<br>
+#### `public virtual void `[`GenerateVoipLoginToken`](#classURH__OfflineSession_1ac27726a868507a3200bf8724f57270df)`(const FRH_OnSessionGetVoipTokenDelegateBlock & Delegate)` <a id="classURH__OfflineSession_1ac27726a868507a3200bf8724f57270df"></a>
+
+Generate a VOIP login token.
+
+#### Parameters
+* `Delegate` Callback delegate with the new voip token
+
+<br>
+#### `public virtual void `[`GenerateVoipActionToken`](#classURH__OfflineSession_1ae1fb00699b03e13df973851ab5a293d0)`(ERHAPI_VivoxSessionActionSingle VivoxAction,ERHAPI_VoipSessionType VoipSessionType,const FRH_OnSessionGetVoipTokenDelegateBlock & Delegate)` <a id="classURH__OfflineSession_1ae1fb00699b03e13df973851ab5a293d0"></a>
+
+Generate a VOIP action token.
+
+#### Parameters
+* `VivoxAction` The action to generate a token for 
+
+* `VoipSessionType` The type of voip session to generate a token for 
+
+* `Delegate` Callback delegate with the new voip token
 
 <br>
 #### `public virtual void `[`UpdateSessionInfo`](#classURH__OfflineSession_1a298d217d999690851348cb4041ff7599)`(const `[`FRHAPI_SessionUpdate`](models/RHAPI_SessionUpdate.md#structFRHAPI__SessionUpdate)` & Update,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__OfflineSession_1a298d217d999690851348cb4041ff7599"></a>
@@ -1174,6 +1205,8 @@ Online Sessions are sessions that are synchronized from the API (and since it is
 `public virtual void `[`Leave`](#classURH__OnlineSession_1abb7f5b8c9eaadd30166337a5dccebbbe)`(bool bFromOSSSession,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Leaves the session.
 `public virtual void `[`RequestInstance`](#classURH__OnlineSession_1aae906a67108cba268d73786229e8aa94)`(const `[`FRHAPI_InstanceRequest`](models/RHAPI_InstanceRequest.md#structFRHAPI__InstanceRequest)` & InstanceRequest,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Attempt to create a new instance for the session.
 `public virtual void `[`EndInstance`](#classURH__OnlineSession_1a38a05f415495a019c3f02fcae76317ec)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Shutdown the existing instance for the session.
+`public virtual void `[`GenerateVoipLoginToken`](#classURH__OnlineSession_1aada1d23777b026c76b7e7b5bb2669b95)`(const FRH_OnSessionGetVoipTokenDelegateBlock & Delegate)` | Generate a VOIP login token.
+`public virtual void `[`GenerateVoipActionToken`](#classURH__OnlineSession_1ab8b5a3517f9670f980c0dc60ad80e709)`(ERHAPI_VivoxSessionActionSingle VivoxAction,ERHAPI_VoipSessionType VoipSessionType,const FRH_OnSessionGetVoipTokenDelegateBlock & Delegate)` | Generate a VOIP action token.
 `public virtual void `[`UpdateSessionInfo`](#classURH__OnlineSession_1a21428e63a1268ef552d3186cd7df9d50)`(const `[`FRHAPI_SessionUpdate`](models/RHAPI_SessionUpdate.md#structFRHAPI__SessionUpdate)` & Update,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Updates the session info.
 `public virtual void `[`UpdateInstanceInfo`](#classURH__OnlineSession_1abdfc1e53b834da4afdfdce29de9b318b)`(const `[`FRHAPI_InstanceInfoUpdate`](models/RHAPI_InstanceInfoUpdate.md#structFRHAPI__InstanceInfoUpdate)` & Update,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Updates the sessions instance info.
 `public virtual void `[`UpdateBrowserInfo`](#classURH__OnlineSession_1a35197db28a89b5325ef4384dca5d76c8)`(bool bEnable,const TMap< FString, FString > & CustomData,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Updates the sessions browser info.
@@ -1397,6 +1430,26 @@ Shutdown the existing instance for the session.
 * `Delegate` Callback delegate for the session being updated with the instance ending.
 
 <br>
+#### `public virtual void `[`GenerateVoipLoginToken`](#classURH__OnlineSession_1aada1d23777b026c76b7e7b5bb2669b95)`(const FRH_OnSessionGetVoipTokenDelegateBlock & Delegate)` <a id="classURH__OnlineSession_1aada1d23777b026c76b7e7b5bb2669b95"></a>
+
+Generate a VOIP login token.
+
+#### Parameters
+* `Delegate` Callback delegate with the new voip token
+
+<br>
+#### `public virtual void `[`GenerateVoipActionToken`](#classURH__OnlineSession_1ab8b5a3517f9670f980c0dc60ad80e709)`(ERHAPI_VivoxSessionActionSingle VivoxAction,ERHAPI_VoipSessionType VoipSessionType,const FRH_OnSessionGetVoipTokenDelegateBlock & Delegate)` <a id="classURH__OnlineSession_1ab8b5a3517f9670f980c0dc60ad80e709"></a>
+
+Generate a VOIP action token.
+
+#### Parameters
+* `VivoxAction` The action to generate a token for 
+
+* `VoipSessionType` The type of voip session to generate a token for 
+
+* `Delegate` Callback delegate with the new voip token
+
+<br>
 #### `public virtual void `[`UpdateSessionInfo`](#classURH__OnlineSession_1a21428e63a1268ef552d3186cd7df9d50)`(const `[`FRHAPI_SessionUpdate`](models/RHAPI_SessionUpdate.md#structFRHAPI__SessionUpdate)` & Update,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__OnlineSession_1a21428e63a1268ef552d3186cd7df9d50"></a>
 
 Updates the session info.
@@ -1488,6 +1541,7 @@ Session Owner Interface.
 `public TOptional< FString > `[`GetETagForAllSessionsPoll`](#classIRH__SessionOwnerInterface_1a745015623671711254ef390ee9cb7802)`() const` | Gets the etag to use for a "Get all Sessions" type query.
 `public TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetAllSessionsForPolling`](#classIRH__SessionOwnerInterface_1a66e998565bf74dbfc85ea6247341b7a4)`() const` | Used to get all sessions, primarily for get all sessions polling where etag matches.
 `public `[`URH_SessionView`](Session.md#classURH__SessionView)` * `[`GetSessionById`](#classIRH__SessionOwnerInterface_1a094dc2179856a012677d16d9f6684c82)`(const FString & SessionId) const` | Gets a session by its id.
+`public void `[`RemoveSessionById`](#classIRH__SessionOwnerInterface_1acf42909a8b08c53d48ce3cca614348a5)`(const FString & SessionId)` | Removes a cached session for the local player, this does NOT try to leave it.
 `public bool `[`GetTemplate`](#classIRH__SessionOwnerInterface_1ae474fab73509d0a00372966f39ce216b)`(const FString & Type,`[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template) const` | Gets a session template by type.
 `public `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classIRH__SessionOwnerInterface_1ade9ca2876030b163a060e8f417889985)`(const FString & SessionId) const` | Gets the platform synchronization object using the rally here session id.
 `public `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classIRH__SessionOwnerInterface_1a47d9ac6d2c0326ddc79c563932a6754c)`(const FUniqueNetIdRepl & SessionId) const` | Gets the platform synchronization object using the platform session id.
@@ -1597,6 +1651,14 @@ Gets a session by its id.
 
 #### Returns
 The Session with the given Id.
+
+<br>
+#### `public void `[`RemoveSessionById`](#classIRH__SessionOwnerInterface_1acf42909a8b08c53d48ce3cca614348a5)`(const FString & SessionId)` <a id="classIRH__SessionOwnerInterface_1acf42909a8b08c53d48ce3cca614348a5"></a>
+
+Removes a cached session for the local player, this does NOT try to leave it.
+
+#### Parameters
+* `SessionId` The Session Id to remove.
 
 <br>
 #### `public bool `[`GetTemplate`](#classIRH__SessionOwnerInterface_1ae474fab73509d0a00372966f39ce216b)`(const FString & Type,`[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template) const` <a id="classIRH__SessionOwnerInterface_1ae474fab73509d0a00372966f39ce216b"></a>

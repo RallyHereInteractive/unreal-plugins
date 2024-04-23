@@ -880,6 +880,7 @@ Subsystem to manage sessions for the local player.
 `public inline FORCEINLINE `[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * `[`GetFirstJoinedSessionByType`](#classURH__LocalPlayerSessionSubsystem_1aa414c134992b703f331750fb0efe7ad6)`(const FString & Type) const` | Get first joined sessions by SessionType (useful for titles that ensure only one of a given session type will exist)
 `public `[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * `[`GetFirstActiveSession`](#classURH__LocalPlayerSessionSubsystem_1a520c98308877db871add24d0dd4b4b54)`() const` | Get first "active" session (session which is IsActive())
 `public inline FORCEINLINE TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetSessions`](#classURH__LocalPlayerSessionSubsystem_1ae82fb3ff0c18d5c55cc163b935ff56f8)`() const` | Get an array of all sessions controlled by this system.
+`public virtual void `[`RemoveSessionById`](#classURH__LocalPlayerSessionSubsystem_1a7e790f89c514d7210c5b58b947cebec2)`(const FString & SessionId)` | Removes a cached session for the local player, this does NOT try to leave it.
 `public inline FORCEINLINE bool `[`IsInSession`](#classURH__LocalPlayerSessionSubsystem_1ad5bfcc3b466927d7d92f94bff1ba31d5)`(const FString & SessionId)` | Utility function to determine if local player is a member of that session.
 `public virtual class `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__LocalPlayerSessionSubsystem_1a8978774a71778d9d5a9b4f20f1ee85f6)`() const` | Utility function to look up the player info subsystem ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
 `public virtual IOnlineSubsystem * `[`GetOSS`](#classURH__LocalPlayerSessionSubsystem_1a236725daa5e1b49d96c04a2da868be04)`() const` | Utility function to look up the OnlineSubsystem to use for session calls ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
@@ -921,7 +922,6 @@ Subsystem to manage sessions for the local player.
 `protected TMap< FString, `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * > `[`PlatformSyncers`](#classURH__LocalPlayerSessionSubsystem_1ab601abbf8833c31cb45ccde7d481d3de) | Map of Session Ids to their Platform Session Syncers.
 `protected virtual `[`URH_SessionView`](Session.md#classURH__SessionView)` * `[`CreateOrUpdateRHSession`](#classURH__LocalPlayerSessionSubsystem_1a2efe4a073341684f83e5da781df7a9f0)`(const `[`FRH_APISessionWithETag`](Session.md#structTRH__DataWithETagWrapper)` & Session,const ERHAPI_SessionPlayerStatus & LocalPlayerStatus)` | Creates or updates a specific session for the local player.
 `protected virtual bool `[`LocalPlayerStatusFromSession`](#classURH__LocalPlayerSessionSubsystem_1aa0bec72de8c9da10cb97e78730c5cb79)`(const `[`FRHAPI_Session`](models/RHAPI_Session.md#structFRHAPI__Session)` & Session,ERHAPI_SessionPlayerStatus & Status) const` | Gets the local player status in a specific session.
-`protected virtual void `[`RemoveSessionById`](#classURH__LocalPlayerSessionSubsystem_1a7e790f89c514d7210c5b58b947cebec2)`(const FString & SessionId)` | Removes a cached session for the local player, this does NOT try to leave it.
 `protected inline virtual void `[`RemoveSession`](#classURH__LocalPlayerSessionSubsystem_1ac956ad61bb35b46c9cb067e247e8b06f)`(const `[`URH_SessionView`](Session.md#classURH__SessionView)` * Session)` | Removes a cached session for the local player, this does NOT try to leave it.
 `protected virtual void `[`OnExpirationComplete`](#classURH__LocalPlayerSessionSubsystem_1ae8b9736ce9f79dd68014b3f01df9fd1f)`(`[`URH_SessionView`](Session.md#classURH__SessionView)` * Session)` | Called when a session the local player is part of expires.
 `protected virtual bool `[`PreprocessAPISessionImport`](#classURH__LocalPlayerSessionSubsystem_1a9c559f45b88f7a21f62dcdf6476fcbea)`(const `[`FRHAPI_Session`](models/RHAPI_Session.md#structFRHAPI__Session)` & Session,ERHAPI_SessionPlayerStatus & Status)` | Attepts to preprocess an API session.
@@ -1117,6 +1117,14 @@ Get an array of all sessions controlled by this system.
 
 #### Returns
 Array of session objects
+
+<br>
+#### `public virtual void `[`RemoveSessionById`](#classURH__LocalPlayerSessionSubsystem_1a7e790f89c514d7210c5b58b947cebec2)`(const FString & SessionId)` <a id="classURH__LocalPlayerSessionSubsystem_1a7e790f89c514d7210c5b58b947cebec2"></a>
+
+Removes a cached session for the local player, this does NOT try to leave it.
+
+#### Parameters
+* `SessionId` The Session Id to remove.
 
 <br>
 #### `public inline FORCEINLINE bool `[`IsInSession`](#classURH__LocalPlayerSessionSubsystem_1ad5bfcc3b466927d7d92f94bff1ba31d5)`(const FString & SessionId)` <a id="classURH__LocalPlayerSessionSubsystem_1ad5bfcc3b466927d7d92f94bff1ba31d5"></a>
@@ -1416,14 +1424,6 @@ Gets the local player status in a specific session.
 
 #### Returns
 True if the player is part of that session.
-
-<br>
-#### `protected virtual void `[`RemoveSessionById`](#classURH__LocalPlayerSessionSubsystem_1a7e790f89c514d7210c5b58b947cebec2)`(const FString & SessionId)` <a id="classURH__LocalPlayerSessionSubsystem_1a7e790f89c514d7210c5b58b947cebec2"></a>
-
-Removes a cached session for the local player, this does NOT try to leave it.
-
-#### Parameters
-* `SessionId` The Session Id to remove.
 
 <br>
 #### `protected inline virtual void `[`RemoveSession`](#classURH__LocalPlayerSessionSubsystem_1ac956ad61bb35b46c9cb067e247e8b06f)`(const `[`URH_SessionView`](Session.md#classURH__SessionView)` * Session)` <a id="classURH__LocalPlayerSessionSubsystem_1ac956ad61bb35b46c9cb067e247e8b06f"></a>

@@ -146,6 +146,8 @@ Main settings for the Integration.
 `public int32 `[`SessionGetBySessionIdPriority`](#classURH__IntegrationSettings_1a252127302ea79fe762255b0353809747) | Sets the request priority of Session By Session Id calls, lower number is higher priority.
 `public int32 `[`SessionGetByTypePriority`](#classURH__IntegrationSettings_1af20dfabda6e113f75816401bdaca2614) | Sets the request priority of Session By Type calls, lower number is higher priority.
 `public int32 `[`SessionsGetOtherPriority`](#classURH__IntegrationSettings_1a0504cbc9cd9338b377189d62daa790b9) | Sets the request priority of Get Other Sessions calls, lower number is higher priority.
+`public int32 `[`SessionVoipLoginTokenPriority`](#classURH__IntegrationSettings_1a15bcfe5af29a0d3ed84558a83758b556) | Sets the request priority of VOIP Login calls, lower number is higher priority.
+`public int32 `[`SessionVoipActionTokenPriority`](#classURH__IntegrationSettings_1a18de480c41ae3e6929bacd7f043ffec3) | Sets the request priority of VOIP Action calls, lower number is higher priority.
 `public int32 `[`SettingsGetPriority`](#classURH__IntegrationSettings_1ab3de492d46aeb771fc964cc02a00f048) | Sets the request priority of Get Settings calls, lower number is higher priority.
 `public int32 `[`SettingsGetTypesPriority`](#classURH__IntegrationSettings_1a96483b01899977de1c9c929e83ef0c71) | Sets the request priority of Get Settings Types calls, lower number is higher priority.
 `public int32 `[`SettingsUpdatePriority`](#classURH__IntegrationSettings_1aab7ca97767260ad27f6ab2ed2f991f35) | Sets the request priority of Update Settings calls, lower number is higher priority.
@@ -797,6 +799,16 @@ Sets the request priority of Session By Type calls, lower number is higher prior
 #### `public int32 `[`SessionsGetOtherPriority`](#classURH__IntegrationSettings_1a0504cbc9cd9338b377189d62daa790b9) <a id="classURH__IntegrationSettings_1a0504cbc9cd9338b377189d62daa790b9"></a>
 
 Sets the request priority of Get Other Sessions calls, lower number is higher priority.
+
+<br>
+#### `public int32 `[`SessionVoipLoginTokenPriority`](#classURH__IntegrationSettings_1a15bcfe5af29a0d3ed84558a83758b556) <a id="classURH__IntegrationSettings_1a15bcfe5af29a0d3ed84558a83758b556"></a>
+
+Sets the request priority of VOIP Login calls, lower number is higher priority.
+
+<br>
+#### `public int32 `[`SessionVoipActionTokenPriority`](#classURH__IntegrationSettings_1a18de480c41ae3e6929bacd7f043ffec3) <a id="classURH__IntegrationSettings_1a18de480c41ae3e6929bacd7f043ffec3"></a>
+
+Sets the request priority of VOIP Action calls, lower number is higher priority.
 
 <br>
 #### `public int32 `[`SettingsGetPriority`](#classURH__IntegrationSettings_1ab3de492d46aeb771fc964cc02a00f048) <a id="classURH__IntegrationSettings_1ab3de492d46aeb771fc964cc02a00f048"></a>
