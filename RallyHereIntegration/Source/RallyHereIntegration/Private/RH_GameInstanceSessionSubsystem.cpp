@@ -261,7 +261,10 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 	{
 		check(OldSession->IsActive());
 		OldSession->SetActive(false);
-		OldSession->SetWatchingPlayers(false); // TODO - maybe should be incrementing/decrementing watch counter?
+		if (Settings->bAutoWatchPlayersOnSessionActive)
+		{
+			OldSession->SetWatchingPlayers(false); // TODO - maybe should be incrementing/decrementing watch counter?
+		}
 		OldSession = nullptr;
 
 		if (InstanceHealthPoller.IsValid())
@@ -322,7 +325,10 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 		auto*& ActiveSession = ActiveSessionState.Session;
 
 		JoinedSession->SetActive(true);
-		JoinedSession->SetWatchingPlayers(true);
+		if (Settings->bAutoWatchPlayersOnSessionActive)
+		{
+			JoinedSession->SetWatchingPlayers(true);
+		}
 
 		// if this instance is locally hosted, set up host specific logic
 		if (ActiveSession->GetInstanceData() != nullptr && IsLocallyHostedInstance(*ActiveSession->GetInstanceData()))

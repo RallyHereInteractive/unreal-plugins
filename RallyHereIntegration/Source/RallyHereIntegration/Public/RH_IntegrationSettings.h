@@ -143,6 +143,10 @@ public:
 	/** @brief If set, the Player Id must be valid before being allowed to connect. */
 	bool bRequireValidPlayerIdsForJoining;
 
+	UPROPERTY(EditAnywhere, Config, Category = "Sessions|Joining")
+	/** @brief If set, automatically call SetWatchingPlayers() on the session when it is set as the active gameplay session, to enable presence polling for the session. */
+	bool bAutoWatchPlayersOnSessionActive;
+
 	/** @brief Sets the default page size when requesting a player's match history */
 	UPROPERTY(EditAnywhere, Config, Category = "Matches|Player History")
 	int32 PlayerMatchesPageSize;

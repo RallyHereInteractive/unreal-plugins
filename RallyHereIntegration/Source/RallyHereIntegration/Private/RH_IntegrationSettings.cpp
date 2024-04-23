@@ -32,6 +32,7 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 
 	bAutoStartSessionsAfterJoin = true;
 	bAutoJoinPlatformSessionsAfterUserChange = true;
+	bAutoWatchPlayersOnSessionActive = false;
 
 	bLocalPlayerSubsystemSandboxing = false;
 
