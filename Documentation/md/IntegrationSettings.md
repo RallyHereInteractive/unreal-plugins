@@ -64,7 +64,7 @@ Main settings for the Integration.
 `public FSoftClassPath `[`PurgeSubsystemClass`](#classURH__IntegrationSettings_1a1b99ec094d05b2b2daa8e83c2917e0e4) | Extensible PurgeSubsystem class path.
 `public FSoftClassPath `[`EntitlementSubsystemClass`](#classURH__IntegrationSettings_1a4c054d97c0884323627b2fdad7062da9) | Extensible EntitlementSubsystem class path.
 `public FSoftClassPath `[`GameInstanceSessionInfoSubsystemClass`](#classURH__IntegrationSettings_1a2a17243cca23933136ae9925cee7adc9) | Extensible GameInstanceSessionInfoSubsystem class path.
-`public FSoftClassPath `[`GameInstanceServerBootstrappermClass`](#classURH__IntegrationSettings_1a6153060e13b8e5fc5f03f4beb6233392) | Extensible GameInstanceServerBootstrapperm class path.
+`public FSoftClassPath `[`GameInstanceServerBootstrapperClass`](#classURH__IntegrationSettings_1a25b5a47234177fca90a71e107c304526) | Extensible GameInstanceServerBootstrapper class path.
 `public FSoftClassPath `[`GameInstanceClientBootstrapperClass`](#classURH__IntegrationSettings_1a1fab4344e7cae47f3dad36da33aa0d98) | Extensible GameInstanceClientBootstrapper class path.
 `public FSoftClassPath `[`PlayerInfoSubsystemClass`](#classURH__IntegrationSettings_1ac0a71beae9a83e6316787d8647d43f1a) | Extensible PlayerInfoSubsystem class path.
 `public FSoftClassPath `[`PlayerInfoClass`](#classURH__IntegrationSettings_1a6d45dfa55caf64da1b6b5beeaf559270) | Extensible PlayerInfo class path.
@@ -389,9 +389,9 @@ Extensible EntitlementSubsystem class path.
 Extensible GameInstanceSessionInfoSubsystem class path.
 
 <br>
-#### `public FSoftClassPath `[`GameInstanceServerBootstrappermClass`](#classURH__IntegrationSettings_1a6153060e13b8e5fc5f03f4beb6233392) <a id="classURH__IntegrationSettings_1a6153060e13b8e5fc5f03f4beb6233392"></a>
+#### `public FSoftClassPath `[`GameInstanceServerBootstrapperClass`](#classURH__IntegrationSettings_1a25b5a47234177fca90a71e107c304526) <a id="classURH__IntegrationSettings_1a25b5a47234177fca90a71e107c304526"></a>
 
-Extensible GameInstanceServerBootstrapperm class path.
+Extensible GameInstanceServerBootstrapper class path.
 
 <br>
 #### `public FSoftClassPath `[`GameInstanceClientBootstrapperClass`](#classURH__IntegrationSettings_1a1fab4344e7cae47f3dad36da33aa0d98) <a id="classURH__IntegrationSettings_1a1fab4344e7cae47f3dad36da33aa0d98"></a>
