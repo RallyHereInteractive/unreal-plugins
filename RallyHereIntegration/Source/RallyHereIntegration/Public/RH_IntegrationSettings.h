@@ -233,9 +233,9 @@ public:
 	/** @brief Extensible GameInstanceSessionInfoSubsystem class path. */
 	UPROPERTY(EditAnywhere, Config, Category="Subsystem Classes")
 	FSoftClassPath GameInstanceSessionInfoSubsystemClass;
-	/** @brief Extensible GameInstanceServerBootstrapperm class path. */
+	/** @brief Extensible GameInstanceServerBootstrapper class path. */
 	UPROPERTY(EditAnywhere, Config, Category="Subsystem Classes")
-	FSoftClassPath GameInstanceServerBootstrappermClass;
+	FSoftClassPath GameInstanceServerBootstrapperClass;
 	/** @brief Extensible GameInstanceClientBootstrapper class path. */
 	UPROPERTY(EditAnywhere, Config, Category="Subsystem Classes")
 	FSoftClassPath GameInstanceClientBootstrapperClass;
