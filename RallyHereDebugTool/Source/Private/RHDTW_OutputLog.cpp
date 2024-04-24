@@ -418,6 +418,15 @@ void FRHDTW_OutputLog::Do()
 	{
 		RequestForceScroll();
 	}
+	
+	ImGui::SameLine();
+	bool bSendConsoleCommand = ImGui::InputText("##ConsoleInput", &ConsoleInput, ImGuiInputTextFlags_EnterReturnsTrue);
+	ImGui::SameLine();
+	if (ImGui::Button("Send") || bSendConsoleCommand)
+	{
+		GEngine->Exec(GetWorld(), *ConsoleInput);
+		ConsoleInput.Empty();
+	}
 }
 
 bool FRHDTW_OutputLog::CreateLogMessages(const TCHAR* V, ELogVerbosity::Type Verbosity, const class FName& Category, TArray< TSharedPtr<RH_OutputLog::FOutputLogMessage> >& OutMessages)
