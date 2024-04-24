@@ -524,7 +524,7 @@ public:
 	/**
 	* @brief Gets the directory to use for uploading files for this bootstrapper
 	*/
-	virtual FRH_FileApiDirectory GetAutoUploadDirectory() const;
+	virtual FRH_FileApiDirectory GetAutoUploadDirectory(bool bDeveloperFile = true) const;
 	/**
 	* @brief Capture and upload log file based on settings
 	*/

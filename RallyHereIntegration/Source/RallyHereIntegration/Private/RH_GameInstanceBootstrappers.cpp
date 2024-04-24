@@ -141,7 +141,7 @@ void URH_GameInstanceServerBootstrapper::Initialize()
 			, *RH_GETENUMSTRING("/Script/RallyHereIntegration", "ERH_ServerBootstrapMode", BootstrapMode));
 	}
 
-	if (FParse::Value(FCommandLine::Get(), TEXT("rhmaxrecyclecount="), MaxRecycleCount))
+	if (FParse::Value(FCommandLine::Get(), TEXT("rh.maxrecyclecount="), MaxRecycleCount))
 	{
 		UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] - Max recycle count overridden by commandline to %d"), ANSI_TO_TCHAR(__FUNCTION__), MaxRecycleCount);
 	}
@@ -595,6 +595,13 @@ void URH_GameInstanceServerBootstrapper::Recycle()
 	// dispose of the previous game host adapter
 	GameHostProvider.Reset();
 
+	// if a match is marked as active in the match subsystem, clear it out so that we do not write any data to it on initialization
+	auto MatchSubsystem = GetGameInstanceSubsystem()->GetMatchSubsystem();
+	if (MatchSubsystem != nullptr && MatchSubsystem->HasActiveMatchId())
+	{
+		MatchSubsystem->SetActiveMatchId(TEXT(""));
+	}
+
 	// we have already logged in, restart registration
 	BeginRegistration();
 }
@@ -803,7 +810,7 @@ void URH_GameInstanceServerBootstrapper::OnReservationComplete(bool bSuccess)
 	bool bStartedHelper = false;
 	FString SessionType = DefaultAutoCreateSessionType;
 
-	if (FParse::Value(FCommandLine::Get(), TEXT("rhsessiontype="), SessionType))
+	if (FParse::Value(FCommandLine::Get(), TEXT("rh.sessiontype="), SessionType))
 	{
 		UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] - default session type overridden by commandline to %s"), ANSI_TO_TCHAR(__FUNCTION__), *SessionType);
 	}
@@ -1093,6 +1100,9 @@ void URH_GameInstanceServerBootstrapper::CleanupAfterInstanceRemoval()
 {
 	auto* SessionSubsystem = GetGameInstanceSubsystem()->GetSessionSubsystem();
 
+	// Last chance to auto upload log as the upload directory information may be lost when we unsync the session
+	ConditionalAutoUploadLogFile();
+
 	if (SessionSubsystem != nullptr && RHSession != nullptr)
 	{
 		UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] - Session no longer exists, cleaning up"), ANSI_TO_TCHAR(__FUNCTION__))
@@ -1157,9 +1167,6 @@ void URH_GameInstanceServerBootstrapper::OnCleanupSessionSyncComplete(URH_Joined
 		}
 		else
 		{
-			// make sure log file request is completed before flushing
-			ConditionalAutoUploadLogFile();
-
 			// attempt to fully flush HTTP system before we shut down
 			// flush requests to ensure we do not have any pending requests
 			auto HttpRequester = RallyHereAPI::FRallyHereAPIHttpRequester::Get();
@@ -1490,12 +1497,16 @@ bool URH_GameInstanceServerBootstrapper::CanAutoUploadServerFiles() const
 	return Settings->bAutoUploadServerFiles;
 }
 
-FRH_FileApiDirectory URH_GameInstanceServerBootstrapper::GetAutoUploadDirectory() const
+FRH_FileApiDirectory URH_GameInstanceServerBootstrapper::GetAutoUploadDirectory(bool bDeveloperFile) const
 {
 	auto GISS = GetGameInstanceSubsystem();
 	if (GISS != nullptr && GISS->GetMatchSubsystem() != nullptr)
 	{
-		return GISS->GetMatchSubsystem()->GetMatchDeveloperFileDirectory(GISS->GetMatchSubsystem()->GetActiveMatchId());
+		if (bDeveloperFile)
+		{
+			return GISS->GetMatchSubsystem()->GetMatchDeveloperFileDirectory(GISS->GetMatchSubsystem()->GetActiveMatchId());
+		}
+		return GISS->GetMatchSubsystem()->GetMatchFileDirectory(GISS->GetMatchSubsystem()->GetActiveMatchId());
 	}
 	return FRH_FileApiDirectory();
 }
@@ -1506,7 +1517,7 @@ void URH_GameInstanceServerBootstrapper::ConditionalAutoUploadLogFile() const
 	{
 		auto Directory = GetAutoUploadDirectory();
 		auto GISS = GetGameInstanceSubsystem();
-		if (GISS != nullptr && GISS->GetFileSubsystem() != nullptr)
+		if (GISS != nullptr && GISS->GetFileSubsystem() != nullptr && Directory.IsValid())
 		{
 			const FString LogSrcAbsolute = FPlatformOutputDevices::GetAbsoluteLogFilename();
 			FString LogFilename = FPaths::GetCleanFilename(LogSrcAbsolute);
@@ -1522,7 +1533,7 @@ void URH_GameInstanceServerBootstrapper::ConditionalAutoUploadTraceFile(const FS
 	{
 		auto Directory = GetAutoUploadDirectory();
 		auto GISS = GetGameInstanceSubsystem();
-		if (GISS != nullptr && GISS->GetFileSubsystem() != nullptr)
+		if (GISS != nullptr && GISS->GetFileSubsystem() != nullptr && Directory.IsValid())
 		{
 			FString LogFilename = FPaths::GetCleanFilename(TraceFile);
 
