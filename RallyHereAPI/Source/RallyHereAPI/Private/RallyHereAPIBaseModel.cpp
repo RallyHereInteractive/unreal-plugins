@@ -71,7 +71,7 @@ bool FResponse::ParseContent()
 	{
 		return ParseJsonTypeContent();
 	}
-	else if (ContentType.StartsWith(TEXT("text/plain")))
+	else if (ContentType.StartsWith(TEXT("text/")))
 	{
 		return ParseStringTypeContent();
 	}
