@@ -42,7 +42,7 @@ FRH_GameHostProviderGHA::FRH_GameHostProviderGHA(const FString& Commandline)
 		FTCHARToUTF8 InstanceName((const TCHAR*)*FApp::GetInstanceId().ToString());
 		FTCHARToUTF8 LaunchDir((const TCHAR*)*FPaths::LaunchDir());
 		FTCHARToUTF8 ProjectName((const TCHAR*)FApp::GetProjectName());
-		FTCHARToUTF8 BuildVersion((const TCHAR*)*FApp::GetBuildVersion());
+		FTCHARToUTF8 BuildVersion((const TCHAR*)FApp::GetBuildVersion());
 
 		stats.name = (ANSICHAR*)InstanceName.Get();
 		provided.set_name = true;
