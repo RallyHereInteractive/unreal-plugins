@@ -42,6 +42,7 @@ Main settings for the Integration.
 `public bool `[`bUseSecurityTokenForJoining`](#classURH__IntegrationSettings_1a782c0fd4f8a350128f7f686fad7e1af2) | If set, the connection attempt must have a valid security token to be allowed to connect.
 `public bool `[`bRequireImportedPlayerIdsForJoining`](#classURH__IntegrationSettings_1aa8eb456e2ac57561cf12b7c3c306327f) | If set, the Player Id must have been imported to the instance before being allowed to connect.
 `public bool `[`bRequireValidPlayerIdsForJoining`](#classURH__IntegrationSettings_1a6fad3a9359d98b325990c8723a48a4c9) | If set, the Player Id must be valid before being allowed to connect.
+`public bool `[`bAutoWatchPlayersOnSessionActive`](#classURH__IntegrationSettings_1aa4d71629822debb045583c01bbf2430a) | If set, automatically call SetWatchingPlayers() on the session when it is set as the active gameplay session, to enable presence polling for the session.
 `public int32 `[`PlayerMatchesPageSize`](#classURH__IntegrationSettings_1a5971d2f902ad05b49be9d9c21e20e6b1) | Sets the default page size when requesting a player's match history.
 `public int32 `[`PlayerMatchesMaxPageCount`](#classURH__IntegrationSettings_1a4a31dbbe3c82b41e88dcd3dfc9ff5ff4) | Sets the default page size when requesting a player's match history.
 `public FTimespan `[`PlayerMatchesMaxAge`](#classURH__IntegrationSettings_1a095b6baec0e5e9fb0be991db00ff975d) | Sets the default page size when requesting a player's match history.
@@ -277,6 +278,11 @@ If set, the Player Id must have been imported to the instance before being allow
 #### `public bool `[`bRequireValidPlayerIdsForJoining`](#classURH__IntegrationSettings_1a6fad3a9359d98b325990c8723a48a4c9) <a id="classURH__IntegrationSettings_1a6fad3a9359d98b325990c8723a48a4c9"></a>
 
 If set, the Player Id must be valid before being allowed to connect.
+
+<br>
+#### `public bool `[`bAutoWatchPlayersOnSessionActive`](#classURH__IntegrationSettings_1aa4d71629822debb045583c01bbf2430a) <a id="classURH__IntegrationSettings_1aa4d71629822debb045583c01bbf2430a"></a>
+
+If set, automatically call SetWatchingPlayers() on the session when it is set as the active gameplay session, to enable presence polling for the session.
 
 <br>
 #### `public int32 `[`PlayerMatchesPageSize`](#classURH__IntegrationSettings_1a5971d2f902ad05b49be9d9c21e20e6b1) <a id="classURH__IntegrationSettings_1a5971d2f902ad05b49be9d9c21e20e6b1"></a>
