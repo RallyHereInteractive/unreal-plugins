@@ -1683,6 +1683,15 @@ void FRH_SessionVoipSimple::Define()
 				const auto ChannelType = (ERHAPI_VoipSessionType)ChannelTypeEnum->GetValueByIndex(ChannelTypeEnumIndex);
 				const auto ChannelTypeName = ChannelTypeEnum->GetNameStringByIndex(ChannelTypeEnumIndex);
 
+				// exclude the _MAX entry
+				{
+					bool bIndexIsMAXEntry = ChannelTypeEnum->ContainsExistingMax() && (ChannelTypeName.EndsWith(TEXT("_MAX"), ESearchCase::CaseSensitive));
+					if (bIndexIsMAXEntry)
+					{
+						continue;
+					}
+				}
+
 				auto ActionEnum = StaticEnum<ERHAPI_VivoxSessionActionSingle>();
 				for (int64 ActionEnumIndex = 0; ActionEnumIndex < ActionEnum->NumEnums(); ++ActionEnumIndex)
 				{
@@ -1690,10 +1699,12 @@ void FRH_SessionVoipSimple::Define()
 					const auto ActionName = ActionEnum->GetNameStringByIndex(ActionEnumIndex);
 
 					// exclude the _MAX entry
-					bool bIndexIsMAXEntry = ActionEnum->ContainsExistingMax() && (ActionName.EndsWith(TEXT("_MAX"), ESearchCase::CaseSensitive));
-					if (bIndexIsMAXEntry)
 					{
-						continue;
+						bool bIndexIsMAXEntry = ActionEnum->ContainsExistingMax() && (ActionName.EndsWith(TEXT("_MAX"), ESearchCase::CaseSensitive));
+						if (bIndexIsMAXEntry)
+						{
+							continue;
+						}
 					}
 
 					LatentIt(FString::Printf(TEXT("should create a test session and request voip %s token for the %s channel"), *ActionName, *ChannelTypeName), [this, Action, ChannelType](const FDoneDelegate& Done)
