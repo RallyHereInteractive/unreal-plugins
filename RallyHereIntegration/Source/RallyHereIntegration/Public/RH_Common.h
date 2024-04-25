@@ -18,6 +18,8 @@
 #include "Logging/LogMacros.h"
 #include "Misc/EngineVersionComparison.h"
 
+#include "RH_JsonUtilities.h"
+
 #include "RH_Common.generated.h"
 
 #ifndef WITH_HIREZ_ENGINE

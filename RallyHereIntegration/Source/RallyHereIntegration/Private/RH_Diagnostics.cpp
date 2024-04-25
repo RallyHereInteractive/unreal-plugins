@@ -95,7 +95,7 @@ void FRH_DiagnosticReportGenerator::GenerateMetadata()
 
 	// deep copy the input custom metadata so we can alter it
 	FRHAPI_JsonObject CustomMetadata;
-	FJsonObject::Duplicate(Options.CustomMetadata.GetObject(), CustomMetadata.GetObject());
+	RHJsonUtilities::Duplicate(Options.CustomMetadata.GetObject(), CustomMetadata.GetObject());
 
 	// invoke global delegate to add more data
 	auto* Diagnostics = FRallyHereIntegrationModule::Get().GetDiagnostics();
