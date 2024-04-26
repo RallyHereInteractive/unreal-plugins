@@ -196,6 +196,21 @@ bool RALLYHEREDEBUGTOOL_API ImGuiDisplayEnumCombo(const FString& ComboLabel, T& 
 	return bChanged;
 }
 
+namespace ImGuiColors
+{
+	static const FColor Red_Base = FColor(121, 51, 70, 230);
+	static const FColor Red_Hovered = FColor(131, 49, 73, 230);
+	static const FColor Red_Active = FColor(155, 71, 93, 230);
+
+	static const FColor Yellow_Base = FColor(113, 111, 60, 230);
+	static const FColor Yellow_Hovered = FColor(132, 130, 63, 230);
+	static const FColor Yellow_Active = FColor(150, 148, 85, 230);
+
+	static const FColor Teal_Base = FColor(58, 107, 109, 230);
+	static const FColor Teal_Hovered = FColor(59, 123, 125, 230);
+	static const FColor Teal_Active = FColor(82, 142, 144, 230);
+}
+
 struct RALLYHEREDEBUGTOOL_API FImGuiCustomDataStager
 {
 public:

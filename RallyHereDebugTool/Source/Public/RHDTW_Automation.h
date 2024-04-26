@@ -13,6 +13,9 @@ struct FRHDTW_Automation : public FRH_DebugToolWindow
 	FRHDTW_Automation();
 	virtual ~FRHDTW_Automation();
 
+	virtual void Init(URallyHereDebugTool* InOwner, const FString& InName) override;
+	virtual void Uninit() override;
+
 	void Do() override;
 
 protected:
@@ -20,7 +23,13 @@ protected:
 	/** The automation controller running the tests */
 	TSharedPtr<class IAutomationControllerManager> AutomationController;
 
+	FString FilterString;
+	bool bHasInitializedFilter;
+
 	bool AreTestsRunning() const;
+
+	void DoRunTab();
+	void DoResultsTab();
 };
 
 #else
