@@ -177,6 +177,7 @@ Server Bootstrapper for the Game Instance.
 `protected virtual void `[`CleanupAfterInstanceRemoval`](#classURH__GameInstanceServerBootstrapper_1a9aab21c5a300e982d5216e04acdbf6f4)`()` | Utility function to clean up state after an instance removal and attempt to recycle.
 `protected virtual void `[`OnCleanupSessionSyncComplete`](#classURH__GameInstanceServerBootstrapper_1a38bf567f475e12b06eb5a16883165bb6)`(`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * Session,bool bSuccess,const FString & Error)` | Completion callback for session and instance cleanup.
 `protected virtual bool `[`ShouldRecycleAfterCleanup`](#classURH__GameInstanceServerBootstrapper_1a3841facd4998b2ceb4e4f48354c2f665)`() const` | Gets whether we should recycle the state after cleanup.
+`protected virtual void `[`OnLoggedOut`](#classURH__GameInstanceServerBootstrapper_1af6d9c3758a402b830393c531822f586b)`(bool bRefreshTokenExpired)` | Callback for when the server is logged out (effectively, authorization to the API is lost, and was not automatically recovered)
 `protected virtual void `[`OnRefreshTokenExpired`](#classURH__GameInstanceServerBootstrapper_1a5c36a506ed51f8694e9ea296ab4c1822)`(FSimpleDelegate CompleteCallback)` | Callback for when a refresh token expires.
 
 #### Members
@@ -667,6 +668,11 @@ Completion callback for session and instance cleanup.
 #### `protected virtual bool `[`ShouldRecycleAfterCleanup`](#classURH__GameInstanceServerBootstrapper_1a3841facd4998b2ceb4e4f48354c2f665)`() const` <a id="classURH__GameInstanceServerBootstrapper_1a3841facd4998b2ceb4e4f48354c2f665"></a>
 
 Gets whether we should recycle the state after cleanup.
+
+<br>
+#### `protected virtual void `[`OnLoggedOut`](#classURH__GameInstanceServerBootstrapper_1af6d9c3758a402b830393c531822f586b)`(bool bRefreshTokenExpired)` <a id="classURH__GameInstanceServerBootstrapper_1af6d9c3758a402b830393c531822f586b"></a>
+
+Callback for when the server is logged out (effectively, authorization to the API is lost, and was not automatically recovered)
 
 <br>
 #### `protected virtual void `[`OnRefreshTokenExpired`](#classURH__GameInstanceServerBootstrapper_1a5c36a506ed51f8694e9ea296ab4c1822)`(FSimpleDelegate CompleteCallback)` <a id="classURH__GameInstanceServerBootstrapper_1a5c36a506ed51f8694e9ea296ab4c1822"></a>
