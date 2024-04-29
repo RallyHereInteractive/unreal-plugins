@@ -1069,6 +1069,12 @@ void URH_OfflineSession::AcknowledgeBackfill(bool bEnable, const FRH_OnSessionUp
 	Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
 }
 
+void URH_OfflineSession::EmitAuditEvent(const FRHAPI_CreateAuditRequest& AuditEvent, const FRH_GenericSuccessWithErrorBlock& Delegate) const
+{
+	UE_LOG(LogRHSession, VeryVerbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
+	Delegate.ExecuteIfBound(false, FRH_ErrorInfo());
+}
+
 // this is necessary right now as each player stores session data separately
 void URH_OfflineSession::ImportSessionUpdateToAllPlayers(const FRH_APISessionWithETag& Update)
 {
@@ -1423,6 +1429,7 @@ void URH_OnlineSession::UpdateInstanceHealth(ERHAPI_InstanceHealthStatus HealthS
 
 void URH_OnlineSession::AcknowledgeBackfill(bool bEnable, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
+	UE_LOG(LogRHSession, VeryVerbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
 	if (bEnable)
 	{
 		typedef RallyHereAPI::Traits_AcknowledgeBackfillRequest BaseType;
@@ -1444,3 +1451,18 @@ void URH_OnlineSession::AcknowledgeBackfill(bool bEnable, const FRH_OnSessionUpd
 		Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
 	}
 }
+
+void URH_OnlineSession::EmitAuditEvent(const FRHAPI_CreateAuditRequest& AuditEvent, const FRH_GenericSuccessWithErrorBlock& Delegate) const
+{
+	UE_LOG(LogRHSession, Verbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
+	typedef RallyHereAPI::Traits_CreateSessionAudit BaseType;
+	BaseType::Request Request;
+	Request.AuthContext = GetSessionOwner()->GetSessionAuthContext();
+	Request.CreateAuditRequest = AuditEvent;
+
+	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(BaseType::Delegate(), Delegate, GetDefault<URH_IntegrationSettings>()->SessionAuditPriority);
+
+	Helper->Start(RH_APIs::GetSessionAuditAPI(), Request);
+}
+
+

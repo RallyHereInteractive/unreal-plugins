@@ -1003,6 +1003,7 @@ Offline Sessions are sessions the session owner is actively a member of that are
 `public virtual void `[`UpdateBrowserInfo`](#classURH__OfflineSession_1a1efa399f684ce083ce292c87717f22ad)`(bool bEnable,const TMap< FString, FString > & CustomData,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Updates the sessions browser info.
 `public virtual void `[`UpdateInstanceHealth`](#classURH__OfflineSession_1afeab096fde1a8c507aa1bb90403b9d81)`(ERHAPI_InstanceHealthStatus HealthStatus,const FRH_GenericSuccessWithErrorBlock & Delegate)` | Update the instance health of the session.
 `public virtual void `[`AcknowledgeBackfill`](#classURH__OfflineSession_1aa0472dab20c9193181b61a87f7175db2)`(bool bEnable,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Acknowledge backfill for the session, keeping it alive and processing updates.
+`public virtual void `[`EmitAuditEvent`](#classURH__OfflineSession_1afeb6450ec8e2bf8912f50f7066c23c80)`(const `[`FRHAPI_CreateAuditRequest`](models/RHAPI_CreateAuditRequest.md#structFRHAPI__CreateAuditRequest)` & AuditEvent,const FRH_GenericSuccessWithErrorBlock & Delegate) const` | Emit an event to the session audit log.
 `protected void `[`ImportSessionUpdateToAllPlayers`](#classURH__OfflineSession_1a662a10e6f117bb137f9d0d65b75171a8)`(const `[`FRH_APISessionWithETag`](Session.md#structTRH__DataWithETagWrapper)` & Update)` | 
 
 #### Members
@@ -1134,6 +1135,16 @@ Acknowledge backfill for the session, keeping it alive and processing updates.
 * `Delegate` Callback delegate for the session being updated with backfill data
 
 <br>
+#### `public virtual void `[`EmitAuditEvent`](#classURH__OfflineSession_1afeb6450ec8e2bf8912f50f7066c23c80)`(const `[`FRHAPI_CreateAuditRequest`](models/RHAPI_CreateAuditRequest.md#structFRHAPI__CreateAuditRequest)` & AuditEvent,const FRH_GenericSuccessWithErrorBlock & Delegate) const` <a id="classURH__OfflineSession_1afeb6450ec8e2bf8912f50f7066c23c80"></a>
+
+Emit an event to the session audit log.
+
+#### Parameters
+* `AuditEvent` The event to send 
+
+* `Delegate` Callback delegate for the completion of the audit event
+
+<br>
 #### `protected void `[`ImportSessionUpdateToAllPlayers`](#classURH__OfflineSession_1a662a10e6f117bb137f9d0d65b75171a8)`(const `[`FRH_APISessionWithETag`](Session.md#structTRH__DataWithETagWrapper)` & Update)` <a id="classURH__OfflineSession_1a662a10e6f117bb137f9d0d65b75171a8"></a>
 
 <br>
@@ -1179,6 +1190,7 @@ Online Sessions are sessions that are synchronized from the API (and since it is
 `public virtual void `[`UpdateBrowserInfo`](#classURH__OnlineSession_1a35197db28a89b5325ef4384dca5d76c8)`(bool bEnable,const TMap< FString, FString > & CustomData,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Updates the sessions browser info.
 `public virtual void `[`UpdateInstanceHealth`](#classURH__OnlineSession_1ac49edd6dd0b2987fc8b0dcb6f563f585)`(ERHAPI_InstanceHealthStatus HealthStatus,const FRH_GenericSuccessWithErrorBlock & Delegate)` | Update the instance health of the session.
 `public virtual void `[`AcknowledgeBackfill`](#classURH__OnlineSession_1aa087b6190e032b3d3c22c110498cd33a)`(bool bEnable,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Acknowledge backfill for the session, keeping it alive and processing updates.
+`public virtual void `[`EmitAuditEvent`](#classURH__OnlineSession_1a7bdff0e988bdaa1fb3e4be2d2c8b3513)`(const `[`FRHAPI_CreateAuditRequest`](models/RHAPI_CreateAuditRequest.md#structFRHAPI__CreateAuditRequest)` & AuditEvent,const FRH_GenericSuccessWithErrorBlock & Delegate) const` | Emit an event to the session audit log.
 
 #### Members
 
@@ -1447,6 +1459,16 @@ Acknowledge backfill for the session, keeping it alive and processing updates.
 * `bEnable` If true, keeps backfill enabled 
 
 * `Delegate` Callback delegate for the session being updated with backfill data
+
+<br>
+#### `public virtual void `[`EmitAuditEvent`](#classURH__OnlineSession_1a7bdff0e988bdaa1fb3e4be2d2c8b3513)`(const `[`FRHAPI_CreateAuditRequest`](models/RHAPI_CreateAuditRequest.md#structFRHAPI__CreateAuditRequest)` & AuditEvent,const FRH_GenericSuccessWithErrorBlock & Delegate) const` <a id="classURH__OnlineSession_1a7bdff0e988bdaa1fb3e4be2d2c8b3513"></a>
+
+Emit an event to the session audit log.
+
+#### Parameters
+* `AuditEvent` The event to send 
+
+* `Delegate` Callback delegate for the completion of the audit event
 
 <br>
 ## class `URH_SessionOwnerInterface` <a id="classURH__SessionOwnerInterface"></a>

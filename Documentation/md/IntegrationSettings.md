@@ -151,6 +151,7 @@ Main settings for the Integration.
 `public int32 `[`SettingsGetTypesPriority`](#classURH__IntegrationSettings_1a96483b01899977de1c9c929e83ef0c71) | Sets the request priority of Get Settings Types calls, lower number is higher priority.
 `public int32 `[`SettingsUpdatePriority`](#classURH__IntegrationSettings_1aab7ca97767260ad27f6ab2ed2f991f35) | Sets the request priority of Update Settings calls, lower number is higher priority.
 `public int32 `[`GetRegionsPriority`](#classURH__IntegrationSettings_1a97dde13b1e0bbc874333d9fa1d6dbec1) | Sets the request priority of Get Site Settings calls, lower number is higher priority.
+`public int32 `[`SessionAuditPriority`](#classURH__IntegrationSettings_1a8ab95aae271aa91d8406be63d5cd1bfb) | Sets the request priority of Session Audit calls, lower number is higher priority.
 `public int32 `[`UsersLookupPlayerPriority`](#classURH__IntegrationSettings_1a17589c62d53386508f41321e98bbfeeb) | Sets the request priority of Lookup Users calls, lower number is higher priority.
 `public int32 `[`UsersGetLinkedPlatformsPriority`](#classURH__IntegrationSettings_1a99b0ffa18f2f78923fdd46d4499588e1) | Sets the request priority of Get Linked Platforms calls, lower number is higher priority.
 `public int32 `[`EventsReceiveEventPriority`](#classURH__IntegrationSettings_1a47f81afe37f5fd5d8b49a8c5d5101e08) | Sets the request priority of ReceiveEvent, which is the GETS endpoint, lower number is higher priority.
@@ -823,6 +824,11 @@ Sets the request priority of Update Settings calls, lower number is higher prior
 #### `public int32 `[`GetRegionsPriority`](#classURH__IntegrationSettings_1a97dde13b1e0bbc874333d9fa1d6dbec1) <a id="classURH__IntegrationSettings_1a97dde13b1e0bbc874333d9fa1d6dbec1"></a>
 
 Sets the request priority of Get Site Settings calls, lower number is higher priority.
+
+<br>
+#### `public int32 `[`SessionAuditPriority`](#classURH__IntegrationSettings_1a8ab95aae271aa91d8406be63d5cd1bfb) <a id="classURH__IntegrationSettings_1a8ab95aae271aa91d8406be63d5cd1bfb"></a>
+
+Sets the request priority of Session Audit calls, lower number is higher priority.
 
 <br>
 #### `public int32 `[`UsersLookupPlayerPriority`](#classURH__IntegrationSettings_1a17589c62d53386508f41321e98bbfeeb) <a id="classURH__IntegrationSettings_1a17589c62d53386508f41321e98bbfeeb"></a>

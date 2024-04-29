@@ -1519,6 +1519,25 @@ void URH_GameInstanceSessionSubsystem::EmitJoinInstanceCompletedEvent(const URH_
 	Event.Reason = Error;
 
 	EmitEventToAllProvidersOnce(pGameInstance, Event);
+
+	if (!bSuccess && Session != nullptr)
+	{
+		FRHAPI_CreateAuditRequest Request;
+		if (Session->GetSessionOwner() != nullptr)
+		{
+			Request.SetPlayerUuid(Session->GetSessionOwner()->GetPlayerUuid());
+		}
+		Request.SetSessionId(Session->GetSessionId());
+		Request.SetInstanceId(Session->GetInstanceData()->GetInstanceId());
+
+		// make an event name that is recognizable and informative
+		FString EventName = FString::Printf(TEXT("instance_join_failed: %s"), *Error)
+			.Left(100); // make sure it will fit in the field length on the API
+
+		Request.SetEventName(EventName);
+
+		Session->EmitAuditEvent(Request);
+	}
 }
 
 void URH_GameInstanceSessionSubsystem::EmitLeaveInstanceEvent(const URH_JoinedSession* Session, const FString& Reason) const

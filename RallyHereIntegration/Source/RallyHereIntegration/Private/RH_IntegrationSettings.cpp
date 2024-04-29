@@ -130,6 +130,7 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 	SettingsGetPriority = 800000;
 	SettingsGetTypesPriority = 1000000;
 	SettingsUpdatePriority = 800000;
+	SessionAuditPriority = 900000;
 	GetRegionsPriority = 700000;
 	UsersLookupPlayerPriority = 1000000;
 	UsersGetLinkedPlatformsPriority = 900000;
