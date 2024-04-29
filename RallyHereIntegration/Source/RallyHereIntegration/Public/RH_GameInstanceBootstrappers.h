@@ -353,6 +353,10 @@ protected:
 	virtual bool ShouldRecycleAfterCleanup() const;
 
 	/**
+	* @brief Callback for when the server is logged out (effectively, authorization to the API is lost, and was not automatically recovered)
+	*/
+	virtual void OnLoggedOut(bool bRefreshTokenExpired);
+	/**
 	* @brief Callback for when a refresh token expires
 	*/
 	virtual void OnRefreshTokenExpired(FSimpleDelegate CompleteCallback);

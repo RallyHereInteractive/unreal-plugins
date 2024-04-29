@@ -178,6 +178,8 @@ void URH_GameInstanceServerBootstrapper::Initialize()
 		// create our auth context
 		{
 			AuthContext = MakeShared<RallyHereAPI::FAuthContext>(RH_APIs::GetAPIs().GetAuth());
+			AuthContext->OnLogout().AddUObject(this, &URH_GameInstanceServerBootstrapper::OnLoggedOut);
+			AuthContext->SetRefreshTokenExpiredDelegate(RallyHereAPI::FAuthContextLoginRefreshTokenExpired::CreateUObject(this, &URH_GameInstanceServerBootstrapper::OnRefreshTokenExpired));
 			GetGameInstanceSubsystem()->SetAuthContext(AuthContext);
 		}
 
@@ -1200,6 +1202,11 @@ bool URH_GameInstanceServerBootstrapper::ShouldRecycleAfterCleanup() const
 	return !RallyHere::TermSignalHandler::IsSoftStopRequested() && CurrentRecycleCount < MaxRecycleCount;
 }
 
+void URH_GameInstanceServerBootstrapper::OnLoggedOut(bool bRefreshTokenExpired)
+{
+	UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] - Lost authorization to API"), ANSI_TO_TCHAR(__FUNCTION__));
+}
+
 void URH_GameInstanceServerBootstrapper::OnRefreshTokenExpired(FSimpleDelegate CompletionCallback)
 {
 	UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
@@ -1248,6 +1255,7 @@ void URH_GameInstanceServerBootstrapper::OnRefreshTokenExpired(FSimpleDelegate C
 				}
 			}));
 
+	Helper->Start();
 }
 
 void URH_GameInstanceServerBootstrapper::Tick(float DeltaTime)
