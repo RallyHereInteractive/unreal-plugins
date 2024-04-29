@@ -280,10 +280,10 @@ public:
 	UPROPERTY(EditAnywhere, Config, Category = "File Uploads")
 	bool bAutoUploadServerFiles;
 	/** @brief Whether to automatically upload files to the RallyHere API.  Requires bAutoUploadServerFiles to have an effect */
-	UPROPERTY(EditAnywhere, Config, Category = "File Uploads", meta=(EditCondition=bAutoUploadFiles))
+	UPROPERTY(EditAnywhere, Config, Category = "File Uploads", meta=(EditCondition= bAutoUploadServerFiles))
 	bool bAutoUploadLogFiles;
 	/** @brief Whether to automatically upload files to the RallyHere API.  Requires bAutoUploadServerFiles to have an effect */
-	UPROPERTY(EditAnywhere, Config, Category = "File Uploads", meta = (EditCondition = bAutoUploadFiles))
+	UPROPERTY(EditAnywhere, Config, Category = "File Uploads", meta = (EditCondition = bAutoUploadServerFiles))
 	bool bAutoUploadTraceFiles;
 
 
