@@ -141,7 +141,7 @@ void URH_GameInstanceServerBootstrapper::Initialize()
 			, *RH_GETENUMSTRING("/Script/RallyHereIntegration", "ERH_ServerBootstrapMode", BootstrapMode));
 	}
 
-	if (FParse::Value(FCommandLine::Get(), TEXT("rh.maxrecyclecount="), MaxRecycleCount))
+	if (FParse::Value(FCommandLine::Get(), TEXT("rhmaxrecyclecount="), MaxRecycleCount))
 	{
 		UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] - Max recycle count overridden by commandline to %d"), ANSI_TO_TCHAR(__FUNCTION__), MaxRecycleCount);
 	}
@@ -812,7 +812,7 @@ void URH_GameInstanceServerBootstrapper::OnReservationComplete(bool bSuccess)
 	bool bStartedHelper = false;
 	FString SessionType = DefaultAutoCreateSessionType;
 
-	if (FParse::Value(FCommandLine::Get(), TEXT("rh.sessiontype="), SessionType))
+	if (FParse::Value(FCommandLine::Get(), TEXT("rhsessiontype="), SessionType))
 	{
 		UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] - default session type overridden by commandline to %s"), ANSI_TO_TCHAR(__FUNCTION__), *SessionType);
 	}
