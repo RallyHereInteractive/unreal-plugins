@@ -9,6 +9,9 @@
 
 #include "RH_Common.h"
 
+#include "Engine/World.h"
+#include "Engine/NetDriver.h"
+
 #include "RH_Diagnostics.generated.h"
 
 /** @defgroup Diagnostics RallyHere Diagnostics

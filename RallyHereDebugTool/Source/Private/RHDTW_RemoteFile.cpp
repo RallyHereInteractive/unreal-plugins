@@ -106,7 +106,7 @@ void FRHDTW_RemoteFile::DoListFiles(URH_FileSubsystem* pFileSubsystem)
 					else
 					{
 						FString ModalText = PendingDeleteFileName == TEXT("*") ? FString::Printf(TEXT("Are you sure you want to delete all files?")) : FString::Printf(TEXT("Are you sure you want to delete File %s?"), *PendingDeleteFileName);
-						ImGui::Text(TCHAR_TO_UTF8(*ModalText));
+						ImGui::Text("%s", TCHAR_TO_UTF8(*ModalText));
 						if (ImGui::Button("Yes"))
 						{
 							TWeakObjectPtr<URH_FileSubsystem> pFileSubsystemWeak = pFileSubsystem;

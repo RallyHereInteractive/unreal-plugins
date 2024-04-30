@@ -8,6 +8,7 @@
 #include "Engine/GameInstance.h"
 #include "RH_GameInstanceSubsystem.h"
 #include "RH_MatchSubsystem.h"
+#include "RH_FileSubsystem.h"
 #include "RH_PlayerInfoSubsystem.h"
 
 #include "RH_ImGuiUtilities.h"

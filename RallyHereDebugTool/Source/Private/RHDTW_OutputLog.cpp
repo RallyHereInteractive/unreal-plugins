@@ -3,6 +3,7 @@
 
 #include "RallyHereDebugToolModule.h"
 #include "RHDTW_OutputLog.h"
+#include "Engine/Engine.h"
 #include "Misc/OutputDeviceHelper.h"
 #include "Misc/CoreDelegates.h"
 #include "RallyHereDebugToolSettings.h"

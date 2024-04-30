@@ -6,6 +6,8 @@
 #include "RallyHereIntegrationModule.h"
 #include "RH_Common.h"
 #include "RH_IntegrationSettings.h"
+#include "Misc/FileHelper.h"
+#include "HAL/PlatformFileManager.h"
 
 
 URH_FileSubsystem::URH_FileSubsystem(const FObjectInitializer& ObjectInitializer)
@@ -246,7 +248,7 @@ void URH_FileSubsystem::DownloadFileList(const FRH_FileApiDirectory& Directory, 
 
 	// download in parallel
 	TSharedPtr<FDownloadMultiFileContext> ContextPtr = Context;
-	for (const auto File : RemoteFileNames)
+	for (const auto& File : RemoteFileNames)
 	{
 		DownloadFile(Directory, File, FPaths::Combine(LocalDirectory, File), FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [ContextPtr, File](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 			{

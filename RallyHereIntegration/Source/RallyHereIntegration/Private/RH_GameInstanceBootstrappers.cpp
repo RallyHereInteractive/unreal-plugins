@@ -25,6 +25,7 @@
 
 #include "OnlineSubsystemUtils.h"
 #include "HttpManager.h"
+#include "TimerManager.h"
 #include "GameFramework/GameModeBase.h"
 #include <IPAddress.h>
 #include "Interfaces/IPv4/IPv4Address.h"

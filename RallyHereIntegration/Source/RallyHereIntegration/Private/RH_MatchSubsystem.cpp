@@ -273,6 +273,7 @@ void URH_MatchSubsystem::UpdateMatchPlayer(const FString& MatchId, const FGuid& 
 #include "RH_AutomationTests.h"
 #include "RH_GameInstanceSubsystem.h"
 #include "GameMapsSettings.h"
+#include "Misc/FileHelper.h"
 
 FRHAPI_MatchPlayerRequest GenerateTestMatchPlayer()
 {
