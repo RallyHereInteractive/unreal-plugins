@@ -6,7 +6,7 @@
 #include "RH_GameInstanceSessionSubsystem.h"
 #include "RH_LocalPlayerSubsystem.h"
 #include "RH_LocalPlayerSessionSubsystem.h"
-#include "RH_FileSubsystem.h"
+#include "RH_RemoteFileSubsystem.h"
 #include "RH_MatchSubsystem.h"
 #include "RH_Events.h"
 #include "RH_PlayerInfoSubsystem.h"
@@ -1515,7 +1515,7 @@ bool URH_GameInstanceServerBootstrapper::CanAutoUploadServerFiles() const
 	return Settings->bAutoUploadServerFiles;
 }
 
-FRH_FileApiDirectory URH_GameInstanceServerBootstrapper::GetAutoUploadDirectory(bool bDeveloperFile) const
+FRH_RemoteFileApiDirectory URH_GameInstanceServerBootstrapper::GetAutoUploadDirectory(bool bDeveloperFile) const
 {
 	auto GISS = GetGameInstanceSubsystem();
 	if (GISS != nullptr && GISS->GetMatchSubsystem() != nullptr)
@@ -1526,7 +1526,7 @@ FRH_FileApiDirectory URH_GameInstanceServerBootstrapper::GetAutoUploadDirectory(
 		}
 		return GISS->GetMatchSubsystem()->GetMatchFileDirectory(GISS->GetMatchSubsystem()->GetActiveMatchId());
 	}
-	return FRH_FileApiDirectory();
+	return FRH_RemoteFileApiDirectory();
 }
 void URH_GameInstanceServerBootstrapper::ConditionalAutoUploadLogFile() const
 {
@@ -1535,12 +1535,12 @@ void URH_GameInstanceServerBootstrapper::ConditionalAutoUploadLogFile() const
 	{
 		auto Directory = GetAutoUploadDirectory();
 		auto GISS = GetGameInstanceSubsystem();
-		if (GISS != nullptr && GISS->GetFileSubsystem() != nullptr && Directory.IsValid())
+		if (GISS != nullptr && GISS->GetRemoteFileSubsystem() != nullptr && Directory.IsValid())
 		{
 			const FString LogSrcAbsolute = FPlatformOutputDevices::GetAbsoluteLogFilename();
 			FString LogFilename = FPaths::GetCleanFilename(LogSrcAbsolute);
 
-			return GISS->GetFileSubsystem()->UploadFile(Directory, LogFilename, LogSrcAbsolute);
+			return GISS->GetRemoteFileSubsystem()->UploadFile(Directory, LogFilename, LogSrcAbsolute);
 		}
 	}
 }
@@ -1551,11 +1551,11 @@ void URH_GameInstanceServerBootstrapper::ConditionalAutoUploadTraceFile(const FS
 	{
 		auto Directory = GetAutoUploadDirectory();
 		auto GISS = GetGameInstanceSubsystem();
-		if (GISS != nullptr && GISS->GetFileSubsystem() != nullptr && Directory.IsValid())
+		if (GISS != nullptr && GISS->GetRemoteFileSubsystem() != nullptr && Directory.IsValid())
 		{
 			FString LogFilename = FPaths::GetCleanFilename(TraceFile);
 
-			return GISS->GetFileSubsystem()->UploadFile(Directory, LogFilename, TraceFile);
+			return GISS->GetRemoteFileSubsystem()->UploadFile(Directory, LogFilename, TraceFile);
 		}
 	}
 }

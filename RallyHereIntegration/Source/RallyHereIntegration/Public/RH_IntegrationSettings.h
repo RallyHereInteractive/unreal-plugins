@@ -267,9 +267,9 @@ public:
 	/** @brief Extensible MatchSubsystem class path */
 	UPROPERTY(EditAnywhere, Config, Category = "Subsystem Classes")
 	FSoftClassPath MatchSubsystemClass;
-	/** @brief Extensible FileSubsystem class path */
+	/** @brief Extensible RemoteFileSubsystem class path */
 	UPROPERTY(EditAnywhere, Config, Category = "Subsystem Classes")
-	FSoftClassPath FileSubsystemClass;
+	FSoftClassPath RemoteFileSubsystemClass;
 
 	/** @brief Flag to determine if the local player subsystem should use its own subsystems instead of relying on GameInstanceSubsystem shared caches. */
 	UPROPERTY(EditAnywhere, Config, Category = "Subsystem Classes")

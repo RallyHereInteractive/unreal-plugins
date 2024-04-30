@@ -8,7 +8,7 @@
 #include "Engine/GameInstance.h"
 #include "RH_GameInstanceSubsystem.h"
 #include "RH_MatchSubsystem.h"
-#include "RH_FileSubsystem.h"
+#include "RH_RemoteFileSubsystem.h"
 #include "RH_PlayerInfoSubsystem.h"
 
 #include "RH_ImGuiUtilities.h"
@@ -502,7 +502,7 @@ void FRHDTW_Match::DoFilesBlock(const FString& MatchId, bool bDownload, bool bUp
 		return;
 	}
 
-	auto FileSubsystem = pGISS->GetFileSubsystem();
+	auto FileSubsystem = pGISS->GetRemoteFileSubsystem();
 
 	if (FileSubsystem != nullptr)
 	{
