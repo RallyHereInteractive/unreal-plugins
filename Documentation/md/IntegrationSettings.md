@@ -42,6 +42,7 @@ Main settings for the Integration.
 `public bool `[`bUseSecurityTokenForJoining`](#classURH__IntegrationSettings_1a782c0fd4f8a350128f7f686fad7e1af2) | If set, the connection attempt must have a valid security token to be allowed to connect.
 `public bool `[`bRequireImportedPlayerIdsForJoining`](#classURH__IntegrationSettings_1aa8eb456e2ac57561cf12b7c3c306327f) | If set, the Player Id must have been imported to the instance before being allowed to connect.
 `public bool `[`bRequireValidPlayerIdsForJoining`](#classURH__IntegrationSettings_1a6fad3a9359d98b325990c8723a48a4c9) | If set, the Player Id must be valid before being allowed to connect.
+`public bool `[`bAutoWatchPlayersOnSessionActive`](#classURH__IntegrationSettings_1aa4d71629822debb045583c01bbf2430a) | If set, automatically call SetWatchingPlayers() on the session when it is set as the active gameplay session, to enable presence polling for the session.
 `public int32 `[`PlayerMatchesPageSize`](#classURH__IntegrationSettings_1a5971d2f902ad05b49be9d9c21e20e6b1) | Sets the default page size when requesting a player's match history.
 `public int32 `[`PlayerMatchesMaxPageCount`](#classURH__IntegrationSettings_1a4a31dbbe3c82b41e88dcd3dfc9ff5ff4) | Sets the default page size when requesting a player's match history.
 `public FTimespan `[`PlayerMatchesMaxAge`](#classURH__IntegrationSettings_1a095b6baec0e5e9fb0be991db00ff975d) | Sets the default page size when requesting a player's match history.
@@ -64,7 +65,7 @@ Main settings for the Integration.
 `public FSoftClassPath `[`PurgeSubsystemClass`](#classURH__IntegrationSettings_1a1b99ec094d05b2b2daa8e83c2917e0e4) | Extensible PurgeSubsystem class path.
 `public FSoftClassPath `[`EntitlementSubsystemClass`](#classURH__IntegrationSettings_1a4c054d97c0884323627b2fdad7062da9) | Extensible EntitlementSubsystem class path.
 `public FSoftClassPath `[`GameInstanceSessionInfoSubsystemClass`](#classURH__IntegrationSettings_1a2a17243cca23933136ae9925cee7adc9) | Extensible GameInstanceSessionInfoSubsystem class path.
-`public FSoftClassPath `[`GameInstanceServerBootstrappermClass`](#classURH__IntegrationSettings_1a6153060e13b8e5fc5f03f4beb6233392) | Extensible GameInstanceServerBootstrapperm class path.
+`public FSoftClassPath `[`GameInstanceServerBootstrapperClass`](#classURH__IntegrationSettings_1a25b5a47234177fca90a71e107c304526) | Extensible GameInstanceServerBootstrapper class path.
 `public FSoftClassPath `[`GameInstanceClientBootstrapperClass`](#classURH__IntegrationSettings_1a1fab4344e7cae47f3dad36da33aa0d98) | Extensible GameInstanceClientBootstrapper class path.
 `public FSoftClassPath `[`PlayerInfoSubsystemClass`](#classURH__IntegrationSettings_1ac0a71beae9a83e6316787d8647d43f1a) | Extensible PlayerInfoSubsystem class path.
 `public FSoftClassPath `[`PlayerInfoClass`](#classURH__IntegrationSettings_1a6d45dfa55caf64da1b6b5beeaf559270) | Extensible PlayerInfo class path.
@@ -152,6 +153,7 @@ Main settings for the Integration.
 `public int32 `[`SettingsGetTypesPriority`](#classURH__IntegrationSettings_1a96483b01899977de1c9c929e83ef0c71) | Sets the request priority of Get Settings Types calls, lower number is higher priority.
 `public int32 `[`SettingsUpdatePriority`](#classURH__IntegrationSettings_1aab7ca97767260ad27f6ab2ed2f991f35) | Sets the request priority of Update Settings calls, lower number is higher priority.
 `public int32 `[`GetRegionsPriority`](#classURH__IntegrationSettings_1a97dde13b1e0bbc874333d9fa1d6dbec1) | Sets the request priority of Get Site Settings calls, lower number is higher priority.
+`public int32 `[`SessionAuditPriority`](#classURH__IntegrationSettings_1a8ab95aae271aa91d8406be63d5cd1bfb) | Sets the request priority of Session Audit calls, lower number is higher priority.
 `public int32 `[`UsersLookupPlayerPriority`](#classURH__IntegrationSettings_1a17589c62d53386508f41321e98bbfeeb) | Sets the request priority of Lookup Users calls, lower number is higher priority.
 `public int32 `[`UsersGetLinkedPlatformsPriority`](#classURH__IntegrationSettings_1a99b0ffa18f2f78923fdd46d4499588e1) | Sets the request priority of Get Linked Platforms calls, lower number is higher priority.
 `public int32 `[`EventsReceiveEventPriority`](#classURH__IntegrationSettings_1a47f81afe37f5fd5d8b49a8c5d5101e08) | Sets the request priority of ReceiveEvent, which is the GETS endpoint, lower number is higher priority.
@@ -281,6 +283,11 @@ If set, the Player Id must have been imported to the instance before being allow
 If set, the Player Id must be valid before being allowed to connect.
 
 <br>
+#### `public bool `[`bAutoWatchPlayersOnSessionActive`](#classURH__IntegrationSettings_1aa4d71629822debb045583c01bbf2430a) <a id="classURH__IntegrationSettings_1aa4d71629822debb045583c01bbf2430a"></a>
+
+If set, automatically call SetWatchingPlayers() on the session when it is set as the active gameplay session, to enable presence polling for the session.
+
+<br>
 #### `public int32 `[`PlayerMatchesPageSize`](#classURH__IntegrationSettings_1a5971d2f902ad05b49be9d9c21e20e6b1) <a id="classURH__IntegrationSettings_1a5971d2f902ad05b49be9d9c21e20e6b1"></a>
 
 Sets the default page size when requesting a player's match history.
@@ -391,9 +398,9 @@ Extensible EntitlementSubsystem class path.
 Extensible GameInstanceSessionInfoSubsystem class path.
 
 <br>
-#### `public FSoftClassPath `[`GameInstanceServerBootstrappermClass`](#classURH__IntegrationSettings_1a6153060e13b8e5fc5f03f4beb6233392) <a id="classURH__IntegrationSettings_1a6153060e13b8e5fc5f03f4beb6233392"></a>
+#### `public FSoftClassPath `[`GameInstanceServerBootstrapperClass`](#classURH__IntegrationSettings_1a25b5a47234177fca90a71e107c304526) <a id="classURH__IntegrationSettings_1a25b5a47234177fca90a71e107c304526"></a>
 
-Extensible GameInstanceServerBootstrapperm class path.
+Extensible GameInstanceServerBootstrapper class path.
 
 <br>
 #### `public FSoftClassPath `[`GameInstanceClientBootstrapperClass`](#classURH__IntegrationSettings_1a1fab4344e7cae47f3dad36da33aa0d98) <a id="classURH__IntegrationSettings_1a1fab4344e7cae47f3dad36da33aa0d98"></a>
@@ -829,6 +836,11 @@ Sets the request priority of Update Settings calls, lower number is higher prior
 #### `public int32 `[`GetRegionsPriority`](#classURH__IntegrationSettings_1a97dde13b1e0bbc874333d9fa1d6dbec1) <a id="classURH__IntegrationSettings_1a97dde13b1e0bbc874333d9fa1d6dbec1"></a>
 
 Sets the request priority of Get Site Settings calls, lower number is higher priority.
+
+<br>
+#### `public int32 `[`SessionAuditPriority`](#classURH__IntegrationSettings_1a8ab95aae271aa91d8406be63d5cd1bfb) <a id="classURH__IntegrationSettings_1a8ab95aae271aa91d8406be63d5cd1bfb"></a>
+
+Sets the request priority of Session Audit calls, lower number is higher priority.
 
 <br>
 #### `public int32 `[`UsersLookupPlayerPriority`](#classURH__IntegrationSettings_1a17589c62d53386508f41321e98bbfeeb) <a id="classURH__IntegrationSettings_1a17589c62d53386508f41321e98bbfeeb"></a>

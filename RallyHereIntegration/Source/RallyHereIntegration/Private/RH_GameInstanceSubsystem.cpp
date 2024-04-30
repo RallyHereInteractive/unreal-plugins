@@ -38,7 +38,7 @@ void URH_GameInstanceSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 
 		if (DEFAULT_IsServerBootstrappingEnabled())
 		{
-			ServerBootstrapper = AddSubsystemPlugin<URH_GameInstanceServerBootstrapper>(Settings->GameInstanceServerBootstrappermClass);
+			ServerBootstrapper = AddSubsystemPlugin<URH_GameInstanceServerBootstrapper>(Settings->GameInstanceServerBootstrapperClass);
 		}
 		else if (DEFAULT_IsClientBootstrappingEnabled())
 		{

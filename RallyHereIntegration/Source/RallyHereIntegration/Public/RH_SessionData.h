@@ -12,6 +12,7 @@
 #include "UObject/WeakInterfacePtr.h"
 #include "SessionsAPI.h"
 #include "VOIPAPI.h"
+#include "SessionAuditAPI.h"
 #include "Misc/EngineVersion.h"
 
 #include "RH_Common.h"
@@ -913,6 +914,19 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Session|Host", meta = (DisplayName = "Update Browser Info", AutoCreateRefTerm = "CustomData,Delegate"))
 	void BLUEPRINT_AcknowledgeBackfill(bool bEnable, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { AcknowledgeBackfill(bEnable, Delegate); };
 	/**
+	* @brief Emit an event to the session audit log
+	* @param [in] AuditEvent The event to send
+	* @param [in] Delegate Callback delegate for the completion of the audit event
+	*/
+	virtual void EmitAuditEvent(const FRHAPI_CreateAuditRequest& AuditEvent, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock()) const { PURE_VIRTUAL(URH_JoinedSession::EmitAuditEvent, ); };
+	/**
+	* @brief Blueprint compatible version of EmitAuditEvent
+	* @param [in] AuditEvent The event to send
+	* @param [in] Delegate Callback delegate for the completion of the audit event
+	*/
+	UFUNCTION(BlueprintCallable, Category = "Session|Host", meta = (DisplayName = "Update Browser Info", AutoCreateRefTerm = "CustomData,Delegate"))
+	void BLUEPRINT_EmitAuditEvent(const FRHAPI_CreateAuditRequest& AuditEvent, const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate) const { EmitAuditEvent(AuditEvent, Delegate); };
+	/**
 	* @brief Utility function for beacon connections - not exposed to blueprint so that it can have encryption data
 	* @param [in] Player Player the beacon is being created for, used for login credential passing
 	* @param [in] BeaconClass The type of beacon to create
@@ -1063,6 +1077,12 @@ public:
 	* @param [in] Delegate Callback delegate for the session being updated with backfill data
 	*/
 	virtual void AcknowledgeBackfill(bool bEnable, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	/**
+	* @brief Emit an event to the session audit log
+	* @param [in] AuditEvent The event to send
+	* @param [in] Delegate Callback delegate for the completion of the audit event
+	*/
+	virtual void EmitAuditEvent(const FRHAPI_CreateAuditRequest& AuditEvent, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock()) const override;
 
 protected:
 	void ImportSessionUpdateToAllPlayers(const FRH_APISessionWithETag& Update);
@@ -1307,6 +1327,12 @@ public:
 	* @param [in] Delegate Callback delegate for the session being updated with backfill data
 	*/
 	virtual void AcknowledgeBackfill(bool bEnable, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	/**
+	* @brief Emit an event to the session audit log
+	* @param [in] AuditEvent The event to send
+	* @param [in] Delegate Callback delegate for the completion of the audit event
+	*/
+	virtual void EmitAuditEvent(const FRHAPI_CreateAuditRequest& AuditEvent, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock()) const override;
 };
 
 /** @ingroup Session

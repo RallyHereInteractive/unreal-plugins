@@ -143,6 +143,10 @@ public:
 	/** @brief If set, the Player Id must be valid before being allowed to connect. */
 	bool bRequireValidPlayerIdsForJoining;
 
+	UPROPERTY(EditAnywhere, Config, Category = "Sessions|Joining")
+	/** @brief If set, automatically call SetWatchingPlayers() on the session when it is set as the active gameplay session, to enable presence polling for the session. */
+	bool bAutoWatchPlayersOnSessionActive;
+
 	/** @brief Sets the default page size when requesting a player's match history */
 	UPROPERTY(EditAnywhere, Config, Category = "Matches|Player History")
 	int32 PlayerMatchesPageSize;
@@ -233,9 +237,9 @@ public:
 	/** @brief Extensible GameInstanceSessionInfoSubsystem class path. */
 	UPROPERTY(EditAnywhere, Config, Category="Subsystem Classes")
 	FSoftClassPath GameInstanceSessionInfoSubsystemClass;
-	/** @brief Extensible GameInstanceServerBootstrapperm class path. */
+	/** @brief Extensible GameInstanceServerBootstrapper class path. */
 	UPROPERTY(EditAnywhere, Config, Category="Subsystem Classes")
-	FSoftClassPath GameInstanceServerBootstrappermClass;
+	FSoftClassPath GameInstanceServerBootstrapperClass;
 	/** @brief Extensible GameInstanceClientBootstrapper class path. */
 	UPROPERTY(EditAnywhere, Config, Category="Subsystem Classes")
 	FSoftClassPath GameInstanceClientBootstrapperClass;
@@ -504,6 +508,9 @@ public:
 	/** @brief Sets the request priority of Get Site Settings calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Session API Priority", AdvancedDisplay)
 	int32 GetRegionsPriority;
+	/** @brief Sets the request priority of Session Audit calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Session API Priority", AdvancedDisplay)
+	int32 SessionAuditPriority;
 	/** @brief Sets the request priority of Lookup Users calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Users API Priority", AdvancedDisplay)
 	int32 UsersLookupPlayerPriority;

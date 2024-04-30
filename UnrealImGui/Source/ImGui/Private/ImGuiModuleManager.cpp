@@ -12,7 +12,7 @@
 
 #ifdef WITH_IMGUI_NETIMGUI
 #include <NetImgui_Api.h>
-#endif //NETIMGUI_ENABLED
+#endif // WITH_IMGUI_NETIMGUI
 
 
 // High enough z-order guarantees that ImGui output is rendered on top of the game UI.
@@ -110,7 +110,7 @@ void FImGuiModuleManager::LoadTextures()
 			int Width, Height, Bpp;
 			Io.Fonts->GetTexDataAsAlpha8(&Pixels, &Width, &Height, &Bpp);
 			NetImgui::SendDataTexture(0, Pixels, Width, Height, NetImgui::eTexFormat::kTexFmtA8);
-#endif //NETIMGUI_ENABLED
+#endif // WITH_IMGUI_NETIMGUI
 		}
 	}
 }

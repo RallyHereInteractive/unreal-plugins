@@ -201,13 +201,23 @@ void FRH_AutoPoller::Unregister()
 	}
 }
 
-void FRH_AutoPoller::StartPoll(const FRH_PollFunc& InDelegate, FName InTimerName, bool bImmediate)
+void FRH_AutoPoller::StartPoll(const FRH_PollFunc& InDelegate, FName InTimerName, bool bImmediate, bool bCheckDisabledFlag)
 {
 	// make sure state is cleared out
 	StopPoll();
 
 	PollFunc = InDelegate;
 	TimerName = InTimerName;
+
+	// if poll is diabled, do not start
+	if (bCheckDisabledFlag)
+	{
+		auto* PollControl = FRH_PollControl::Get();
+		if (PollControl && PollControl->GetPollTimerSetting(TimerName).bDisabled)
+		{
+			return;
+		}
+	}
 
 	// if requested, execute immediately
 	if (bImmediate)

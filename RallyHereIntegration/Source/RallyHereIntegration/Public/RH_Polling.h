@@ -45,6 +45,9 @@ struct FRH_PollTimerSetting
 	/** @brief Name of the timer. */
 	UPROPERTY(EditAnywhere, Config, Category = "Timers")
 	FName TimerName;
+	/** @brief Name of the timer. */
+	UPROPERTY(EditAnywhere, Config, Category = "Timers")
+	bool bDisabled;
 	/** @brief Poll interval of the timer. */
 	UPROPERTY(EditAnywhere, Config, Category = "Timers")
 	float Interval;
@@ -57,6 +60,7 @@ struct FRH_PollTimerSetting
 	/** @brief Default constructor, 60 seconds timer. */
 	FRH_PollTimerSetting()
 		: TimerName(NAME_None)
+		, bDisabled(false)
 		, Interval(60.f)
 		, JitterPct(0.1f)
 		, JitterPctInitial(0.4f) // by default use a large initial jitter to desync timers
@@ -294,8 +298,9 @@ public:
 	 * @param [in] InDelegate Delegate to call when the poll timer fires.
 	 * @param [in] InTimerName Name of Timer to get interval from.
 	 * @param [in] bImmediate If the poll should start immediately.
+	 * @param [in] bCheckDisabledFlag If the poll should check the disabled flag before starting (in which case state will be set to inactive)
 	 */
-	void StartPoll(const FRH_PollFunc& InDelegate, const FName InTimerName, bool bImmediate = false);
+	void StartPoll(const FRH_PollFunc& InDelegate, const FName InTimerName, bool bImmediate = false, bool bCheckDisabledFlag = true);
 	/** @brief Stops the poller. */
 	void StopPoll();
 	/** @brief Manually defer the poll timer (ex: out of band update).  Safe to call at all times as it does not change state, only increments NextPollTime. */

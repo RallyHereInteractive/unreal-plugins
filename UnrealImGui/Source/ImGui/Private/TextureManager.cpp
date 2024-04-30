@@ -79,7 +79,7 @@ TextureIndex FTextureManager::CreateTextureInternal(const FName& Name, int32 Wid
 	else
 	{
 		texIndex = AddTextureEntry(Name, Texture, true);
-#if NETIMGUI_ENABLED
+#ifdef WITH_IMGUI_NETIMGUI
 		NetImgui::eTexFormat eFmt = SrcBpp == 1 ? NetImgui::eTexFormat::kTexFmtA8 :
 			SrcBpp == 4 ? NetImgui::eTexFormat::kTexFmtRGBA8 :
 			NetImgui::eTexFormat::kTexFmt_Invalid;
@@ -87,7 +87,7 @@ TextureIndex FTextureManager::CreateTextureInternal(const FName& Name, int32 Wid
 		{
 			NetImgui::SendDataTexture(ImGuiInterops::ToImTextureID(texIndex), SrcData, Width, Height, eFmt);
 		}
-#endif		
+#endif // WITH_IMGUI_NETIMGUI
 	}
 	return texIndex;
 }

@@ -61,6 +61,7 @@ namespace RH_APIs
 	FORCEINLINE static TSharedRef<RallyHereAPI::FFriendsV2API> GetFriendsV2API() { return GetAPIs().GetFriendsV2(); }
 	FORCEINLINE static TSharedRef<RallyHereAPI::FBlockedV2API> GetBlockedV2API() { return GetAPIs().GetBlockedV2(); }
 	FORCEINLINE static TSharedRef<RallyHereAPI::FSessionsAPI> GetSessionsAPI() { return GetAPIs().GetSessions(); }
+	FORCEINLINE static TSharedRef<RallyHereAPI::FSessionAuditAPI> GetSessionAuditAPI() { return GetAPIs().GetSessionAudit(); }
 	FORCEINLINE static TSharedRef<RallyHereAPI::FMatchAPI> GetMatchAPI() { return GetAPIs().GetMatch(); }
 	FORCEINLINE static TSharedRef<RallyHereAPI::FReportsAPI> GetReportsAPI() { return GetAPIs().GetReports(); }
 	FORCEINLINE static TSharedRef<RallyHereAPI::FRankAPI> GetRankAPI() { return GetAPIs().GetRank(); }

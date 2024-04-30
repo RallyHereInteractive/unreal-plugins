@@ -46,6 +46,7 @@ Settings for polling timers.
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public FName `[`TimerName`](#structFRH__PollTimerSetting_1a657d464298c1a5e7d22e7658203260d6) | Name of the timer.
+`public bool `[`bDisabled`](#structFRH__PollTimerSetting_1a793ee3bbfc055b1ad9f2b39b2cb0a6e8) | Name of the timer.
 `public float `[`Interval`](#structFRH__PollTimerSetting_1a55e6b906507f28b3ef6c77c075944e21) | Poll interval of the timer.
 `public float `[`JitterPct`](#structFRH__PollTimerSetting_1a55b5858c5df6f2db724599e6864dd191) | How much jitter to add to the timer.
 `public float `[`JitterPctInitial`](#structFRH__PollTimerSetting_1af7b21bff8f9266d642ff135dd80b8314) | How much jitter to add to the timer when started.
@@ -54,6 +55,11 @@ Settings for polling timers.
 #### Members
 
 #### `public FName `[`TimerName`](#structFRH__PollTimerSetting_1a657d464298c1a5e7d22e7658203260d6) <a id="structFRH__PollTimerSetting_1a657d464298c1a5e7d22e7658203260d6"></a>
+
+Name of the timer.
+
+<br>
+#### `public bool `[`bDisabled`](#structFRH__PollTimerSetting_1a793ee3bbfc055b1ad9f2b39b2cb0a6e8) <a id="structFRH__PollTimerSetting_1a793ee3bbfc055b1ad9f2b39b2cb0a6e8"></a>
 
 Name of the timer.
 
@@ -316,7 +322,7 @@ Auto Poller to poll at a given interval for updates.
 `public friend `[`FRH_PollControl`](#structFRH__AutoPoller_1a54996f25797ab347a029ec1247ff4819) | 
 `public  `[`FRH_AutoPoller`](#structFRH__AutoPoller_1ace8f443c029e897ee9ca524476cccc3a)`()` | Exposed for the shared pointer interface, please use CreateAutoPoller for construction.
 `public virtual  `[`~FRH_AutoPoller`](#structFRH__AutoPoller_1a00769b26af3c16c8dd0d1776782850ab)`()` | Default descrutor.
-`public void `[`StartPoll`](#structFRH__AutoPoller_1a7d958ab58d062ff6e8ff55b2cbbccbf3)`(const FRH_PollFunc & InDelegate,const FName InTimerName,bool bImmediate)` | Starts a poll, only stores timer name, restart will always query settings for that timer name.
+`public void `[`StartPoll`](#structFRH__AutoPoller_1a62e083464b64a21638917e4c432ae217)`(const FRH_PollFunc & InDelegate,const FName InTimerName,bool bImmediate,bool bCheckDisabledFlag)` | Starts a poll, only stores timer name, restart will always query settings for that timer name.
 `public void `[`StopPoll`](#structFRH__AutoPoller_1a5068e2702f7f5995734ac17fa861db6b)`()` | Stops the poller.
 `public void `[`DeferPollTimer`](#structFRH__AutoPoller_1a2ced322da767eaf7d6ac1ae9969e2ec2)`()` | Manually defer the poll timer (ex: out of band update). Safe to call at all times as it does not change state, only increments NextPollTime.
 `public void `[`ExecutePoll`](#structFRH__AutoPoller_1addc2a7551be1a441f17dce3f463142bd)`()` | Executes the poller.
@@ -350,7 +356,7 @@ Exposed for the shared pointer interface, please use CreateAutoPoller for constr
 Default descrutor.
 
 <br>
-#### `public void `[`StartPoll`](#structFRH__AutoPoller_1a7d958ab58d062ff6e8ff55b2cbbccbf3)`(const FRH_PollFunc & InDelegate,const FName InTimerName,bool bImmediate)` <a id="structFRH__AutoPoller_1a7d958ab58d062ff6e8ff55b2cbbccbf3"></a>
+#### `public void `[`StartPoll`](#structFRH__AutoPoller_1a62e083464b64a21638917e4c432ae217)`(const FRH_PollFunc & InDelegate,const FName InTimerName,bool bImmediate,bool bCheckDisabledFlag)` <a id="structFRH__AutoPoller_1a62e083464b64a21638917e4c432ae217"></a>
 
 Starts a poll, only stores timer name, restart will always query settings for that timer name.
 
@@ -359,7 +365,9 @@ Starts a poll, only stores timer name, restart will always query settings for th
 
 * `InTimerName` Name of Timer to get interval from. 
 
-* `bImmediate` If the poll should start immediately.
+* `bImmediate` If the poll should start immediately. 
+
+* `bCheckDisabledFlag` If the poll should check the disabled flag before starting (in which case state will be set to inactive)
 
 <br>
 #### `public void `[`StopPoll`](#structFRH__AutoPoller_1a5068e2702f7f5995734ac17fa861db6b)`()` <a id="structFRH__AutoPoller_1a5068e2702f7f5995734ac17fa861db6b"></a>
