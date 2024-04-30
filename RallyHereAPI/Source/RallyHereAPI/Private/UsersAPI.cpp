@@ -2273,16 +2273,12 @@ FString FResponse_GetPlayerIdFromPlayerUuid::GetHttpResponseCodeDescription(EHtt
 	{
 	case 200:
 		return TEXT("Successful Response");
-	case 400:
-		return TEXT("Bad Request");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
 		return TEXT("Not Found");
 	case 422:
 		return TEXT("Validation Error");
-	case 500:
-		return TEXT("Internal Server Error");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -2298,7 +2294,7 @@ bool FResponse_GetPlayerIdFromPlayerUuid::TryGetContentFor200(FRHAPI_PlayerIdWra
 	return false;
 }
 
-bool FResponse_GetPlayerIdFromPlayerUuid::TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPlayerIdFromPlayerUuid::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -2308,17 +2304,7 @@ bool FResponse_GetPlayerIdFromPlayerUuid::TryGetContentFor400(FRHAPI_MessageOnly
 	return false;
 }
 
-bool FResponse_GetPlayerIdFromPlayerUuid::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
-{
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
-	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
-	}
-	return false;
-}
-
-bool FResponse_GetPlayerIdFromPlayerUuid::TryGetContentFor404(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPlayerIdFromPlayerUuid::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -2329,16 +2315,6 @@ bool FResponse_GetPlayerIdFromPlayerUuid::TryGetContentFor404(FRHAPI_MessageOnly
 }
 
 bool FResponse_GetPlayerIdFromPlayerUuid::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
-{
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
-	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
-	}
-	return false;
-}
-
-bool FResponse_GetPlayerIdFromPlayerUuid::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -2498,14 +2474,10 @@ FString FResponse_GetPlayerIdFromPlayerUuidForSelf::GetHttpResponseCodeDescripti
 	{
 	case 200:
 		return TEXT("Successful Response");
-	case 400:
-		return TEXT("Bad Request");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
 		return TEXT("Not Found");
-	case 500:
-		return TEXT("Internal Server Error");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -2521,7 +2493,7 @@ bool FResponse_GetPlayerIdFromPlayerUuidForSelf::TryGetContentFor200(FRHAPI_Play
 	return false;
 }
 
-bool FResponse_GetPlayerIdFromPlayerUuidForSelf::TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPlayerIdFromPlayerUuidForSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -2531,27 +2503,7 @@ bool FResponse_GetPlayerIdFromPlayerUuidForSelf::TryGetContentFor400(FRHAPI_Mess
 	return false;
 }
 
-bool FResponse_GetPlayerIdFromPlayerUuidForSelf::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
-{
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
-	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
-	}
-	return false;
-}
-
-bool FResponse_GetPlayerIdFromPlayerUuidForSelf::TryGetContentFor404(FRHAPI_MessageOnly& OutContent) const
-{
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
-	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
-	}
-	return false;
-}
-
-bool FResponse_GetPlayerIdFromPlayerUuidForSelf::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPlayerIdFromPlayerUuidForSelf::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -2716,14 +2668,12 @@ FString FResponse_GetPlayerLinkedPortals::GetHttpResponseCodeDescription(EHttpRe
 	{
 	case 200:
 		return TEXT("Successful Response");
-	case 400:
-		return TEXT("Bad Request");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 404:
+		return TEXT("Not Found");
 	case 422:
 		return TEXT("Validation Error");
-	case 500:
-		return TEXT("Internal Server Error");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -2739,7 +2689,7 @@ bool FResponse_GetPlayerLinkedPortals::TryGetContentFor200(FRHAPI_PlayerLinkedPo
 	return false;
 }
 
-bool FResponse_GetPlayerLinkedPortals::TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPlayerLinkedPortals::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -2749,7 +2699,7 @@ bool FResponse_GetPlayerLinkedPortals::TryGetContentFor400(FRHAPI_MessageOnly& O
 	return false;
 }
 
-bool FResponse_GetPlayerLinkedPortals::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPlayerLinkedPortals::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -2760,16 +2710,6 @@ bool FResponse_GetPlayerLinkedPortals::TryGetContentFor403(FRHAPI_MessageOnly& O
 }
 
 bool FResponse_GetPlayerLinkedPortals::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
-{
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
-	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
-	}
-	return false;
-}
-
-bool FResponse_GetPlayerLinkedPortals::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -2934,14 +2874,12 @@ FString FResponse_GetPlayerLinks::GetHttpResponseCodeDescription(EHttpResponseCo
 	{
 	case 200:
 		return TEXT("Successful Response");
-	case 400:
-		return TEXT("Bad Request");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 404:
+		return TEXT("Not Found");
 	case 422:
 		return TEXT("Validation Error");
-	case 500:
-		return TEXT("Internal Server Error");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -2957,7 +2895,7 @@ bool FResponse_GetPlayerLinks::TryGetContentFor200(FRHAPI_PlayerLinkedPortalsRes
 	return false;
 }
 
-bool FResponse_GetPlayerLinks::TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPlayerLinks::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -2967,7 +2905,7 @@ bool FResponse_GetPlayerLinks::TryGetContentFor400(FRHAPI_MessageOnly& OutConten
 	return false;
 }
 
-bool FResponse_GetPlayerLinks::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPlayerLinks::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -2978,16 +2916,6 @@ bool FResponse_GetPlayerLinks::TryGetContentFor403(FRHAPI_MessageOnly& OutConten
 }
 
 bool FResponse_GetPlayerLinks::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
-{
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
-	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
-	}
-	return false;
-}
-
-bool FResponse_GetPlayerLinks::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -3147,12 +3075,10 @@ FString FResponse_GetPlayerLinksForSelf::GetHttpResponseCodeDescription(EHttpRes
 	{
 	case 200:
 		return TEXT("Successful Response");
-	case 400:
-		return TEXT("Bad Request");
 	case 403:
-		return TEXT("Forbidden");
-	case 500:
-		return TEXT("Internal Server Error");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 404:
+		return TEXT("Not Found");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -3168,7 +3094,7 @@ bool FResponse_GetPlayerLinksForSelf::TryGetContentFor200(FRHAPI_PlayerLinkedPor
 	return false;
 }
 
-bool FResponse_GetPlayerLinksForSelf::TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPlayerLinksForSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -3178,17 +3104,7 @@ bool FResponse_GetPlayerLinksForSelf::TryGetContentFor400(FRHAPI_MessageOnly& Ou
 	return false;
 }
 
-bool FResponse_GetPlayerLinksForSelf::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
-{
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
-	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
-	}
-	return false;
-}
-
-bool FResponse_GetPlayerLinksForSelf::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPlayerLinksForSelf::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -3353,14 +3269,12 @@ FString FResponse_GetPlayerUuidFromPlayerId::GetHttpResponseCodeDescription(EHtt
 	{
 	case 200:
 		return TEXT("Successful Response");
-	case 400:
-		return TEXT("Bad Request");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 404:
+		return TEXT("Not Found");
 	case 422:
 		return TEXT("Validation Error");
-	case 500:
-		return TEXT("Internal Server Error");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -3376,7 +3290,7 @@ bool FResponse_GetPlayerUuidFromPlayerId::TryGetContentFor200(FGuid& OutContent)
 	return false;
 }
 
-bool FResponse_GetPlayerUuidFromPlayerId::TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPlayerUuidFromPlayerId::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -3386,7 +3300,7 @@ bool FResponse_GetPlayerUuidFromPlayerId::TryGetContentFor400(FRHAPI_MessageOnly
 	return false;
 }
 
-bool FResponse_GetPlayerUuidFromPlayerId::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPlayerUuidFromPlayerId::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -3397,16 +3311,6 @@ bool FResponse_GetPlayerUuidFromPlayerId::TryGetContentFor403(FRHAPI_MessageOnly
 }
 
 bool FResponse_GetPlayerUuidFromPlayerId::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
-{
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
-	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
-	}
-	return false;
-}
-
-bool FResponse_GetPlayerUuidFromPlayerId::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -3566,12 +3470,10 @@ FString FResponse_GetPlayerUuidFromPlayerIdForSelf::GetHttpResponseCodeDescripti
 	{
 	case 200:
 		return TEXT("Successful Response");
-	case 400:
-		return TEXT("Bad Request");
 	case 403:
-		return TEXT("Forbidden");
-	case 500:
-		return TEXT("Internal Server Error");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 404:
+		return TEXT("Not Found");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -3587,7 +3489,7 @@ bool FResponse_GetPlayerUuidFromPlayerIdForSelf::TryGetContentFor200(FGuid& OutC
 	return false;
 }
 
-bool FResponse_GetPlayerUuidFromPlayerIdForSelf::TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPlayerUuidFromPlayerIdForSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -3597,17 +3499,7 @@ bool FResponse_GetPlayerUuidFromPlayerIdForSelf::TryGetContentFor400(FRHAPI_Mess
 	return false;
 }
 
-bool FResponse_GetPlayerUuidFromPlayerIdForSelf::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
-{
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
-	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
-	}
-	return false;
-}
-
-bool FResponse_GetPlayerUuidFromPlayerIdForSelf::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPlayerUuidFromPlayerIdForSelf::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -3767,12 +3659,10 @@ FString FResponse_GetPlayerUuidFromPlayerIdForSelfV2::GetHttpResponseCodeDescrip
 	{
 	case 200:
 		return TEXT("Successful Response");
-	case 400:
-		return TEXT("Bad Request");
 	case 403:
-		return TEXT("Forbidden");
-	case 500:
-		return TEXT("Internal Server Error");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 404:
+		return TEXT("Not Found");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -3788,7 +3678,7 @@ bool FResponse_GetPlayerUuidFromPlayerIdForSelfV2::TryGetContentFor200(FRHAPI_Pl
 	return false;
 }
 
-bool FResponse_GetPlayerUuidFromPlayerIdForSelfV2::TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPlayerUuidFromPlayerIdForSelfV2::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -3798,17 +3688,7 @@ bool FResponse_GetPlayerUuidFromPlayerIdForSelfV2::TryGetContentFor400(FRHAPI_Me
 	return false;
 }
 
-bool FResponse_GetPlayerUuidFromPlayerIdForSelfV2::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
-{
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
-	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
-	}
-	return false;
-}
-
-bool FResponse_GetPlayerUuidFromPlayerIdForSelfV2::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPlayerUuidFromPlayerIdForSelfV2::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -3973,14 +3853,12 @@ FString FResponse_GetPlayerUuidFromPlayerIdV2::GetHttpResponseCodeDescription(EH
 	{
 	case 200:
 		return TEXT("Successful Response");
-	case 400:
-		return TEXT("Bad Request");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 404:
+		return TEXT("Not Found");
 	case 422:
 		return TEXT("Validation Error");
-	case 500:
-		return TEXT("Internal Server Error");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -3996,7 +3874,7 @@ bool FResponse_GetPlayerUuidFromPlayerIdV2::TryGetContentFor200(FRHAPI_PlayerUui
 	return false;
 }
 
-bool FResponse_GetPlayerUuidFromPlayerIdV2::TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPlayerUuidFromPlayerIdV2::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -4006,7 +3884,7 @@ bool FResponse_GetPlayerUuidFromPlayerIdV2::TryGetContentFor400(FRHAPI_MessageOn
 	return false;
 }
 
-bool FResponse_GetPlayerUuidFromPlayerIdV2::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPlayerUuidFromPlayerIdV2::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -4017,16 +3895,6 @@ bool FResponse_GetPlayerUuidFromPlayerIdV2::TryGetContentFor403(FRHAPI_MessageOn
 }
 
 bool FResponse_GetPlayerUuidFromPlayerIdV2::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
-{
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
-	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
-	}
-	return false;
-}
-
-bool FResponse_GetPlayerUuidFromPlayerIdV2::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -5040,10 +4908,8 @@ FString FResponse_LookupPlayerByPortal::GetHttpResponseCodeDescription(EHttpResp
 	{
 	case 200:
 		return TEXT("Successful Response");
-	case 400:
-		return TEXT("Bad Request");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 422:
 		return TEXT("Validation Error");
 	}
@@ -5061,17 +4927,7 @@ bool FResponse_LookupPlayerByPortal::TryGetContentFor200(FRHAPI_LookupResults& O
 	return false;
 }
 
-bool FResponse_LookupPlayerByPortal::TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const
-{
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
-	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
-	}
-	return false;
-}
-
-bool FResponse_LookupPlayerByPortal::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_LookupPlayerByPortal::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
