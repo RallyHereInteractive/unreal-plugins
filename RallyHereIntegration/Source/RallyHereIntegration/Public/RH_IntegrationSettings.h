@@ -278,6 +278,20 @@ public:
 	static bool ShouldUseLocalPlayerSandboxing();
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// Automatic File Uploads
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/** @brief Whether to automatically upload files to the RallyHere API from Dedicated Servers */
+	UPROPERTY(EditAnywhere, Config, Category = "File Uploads")
+	bool bAutoUploadServerFiles;
+	/** @brief Whether to automatically upload files to the RallyHere API.  Requires bAutoUploadServerFiles to have an effect */
+	UPROPERTY(EditAnywhere, Config, Category = "File Uploads", meta=(EditCondition= bAutoUploadServerFiles))
+	bool bAutoUploadLogFiles;
+	/** @brief Whether to automatically upload files to the RallyHere API.  Requires bAutoUploadServerFiles to have an effect */
+	UPROPERTY(EditAnywhere, Config, Category = "File Uploads", meta = (EditCondition = bAutoUploadServerFiles))
+	bool bAutoUploadTraceFiles;
+
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// API Priorities
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/** @brief Sets the request priority of Begin New Session calls, lower number is higher priority */

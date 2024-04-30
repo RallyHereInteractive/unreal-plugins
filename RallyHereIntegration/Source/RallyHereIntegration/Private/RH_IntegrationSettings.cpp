@@ -57,6 +57,10 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 	PlayerMatchesMaxPageCount = 5;
 	PlayerMatchesMaxAge = FTimespan(30, 0, 0, 0);
 
+	bAutoUploadServerFiles = false;
+	bAutoUploadLogFiles = true;
+	bAutoUploadTraceFiles = true;
+
 	BeginNewAdSessionPriority = 1100000;
 	FindAdOppertunitiesPriority = 1100000;
 	UpdateAdOppertunitiesPriority = 900000;

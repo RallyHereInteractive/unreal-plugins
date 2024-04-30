@@ -233,6 +233,8 @@ protected:
 	/** For copying to clipboard */
 	FString CopyText;
 
+	FString ConsoleInput;
+
 private:
 	///** Called by Slate when the filter box changes text. */
 	//void OnFilterTextChanged(const FText& InFilterText);

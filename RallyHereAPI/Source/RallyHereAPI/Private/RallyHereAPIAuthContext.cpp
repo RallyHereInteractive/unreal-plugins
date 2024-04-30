@@ -138,6 +138,8 @@ void FAuthContext::ProcessLoginRefresh(const FResponse_Login& LoginResponse_)
 	// clear refreshing flag for consistency
 	bIsRefreshing = false;
 	OnRefreshTokenExpired();
+	
+	// do not emit login complete event, let refresh token expired handler handle it
 }
 
 void FAuthContext::OnRefreshTokenExpired()
@@ -169,10 +171,18 @@ void FAuthContext::OnRefreshTokenExpired()
 					// clear refreshing state, and auth context, which will trigger logout callback
 					StrongThis->bIsRefreshing = false;
 					StrongThis->ClearAuthContext(true);
+
+					// broadcast the login failure, to error out any waiting requests
+					{
+						SCOPED_NAMED_EVENT(RallyHere_BroadcastRefreshFailed, FColor::Purple);
+						StrongThis->LoginComplete.Broadcast(false);
+					}
 				}
 				else
 				{
 					UE_LOG(LogRallyHereAPI, Log, TEXT("FAuthContext::OnRefreshTokenExpired successfully resolved expired refresh token"));
+
+					// do not broadcast the login success, rely on the handler having restored login state to do so
 				}
 			}
 		}));
@@ -184,6 +194,12 @@ void FAuthContext::OnRefreshTokenExpired()
 		// no handler is bound for when the refresh token expires, so clear the auth context to log out
 		bIsRefreshing = false;
 		ClearAuthContext(true);
+
+		// broadcast the login failure, to error out any waiting requests
+		{
+			SCOPED_NAMED_EVENT(RallyHere_BroadcastRefreshFailed, FColor::Purple);
+			LoginComplete.Broadcast(false);
+		}
 	}
 }
 
@@ -218,7 +234,9 @@ bool FAuthContext::Refresh()
 		// Call the refresh token expiration handler, to do the refresh token expiration logic and attempt a full new login if possible.
 		// This is primarily for cases where a refresh token was not requested during login
 		OnRefreshTokenExpired();
-		return false;
+
+		// if we have entered the refreshing state, return true to indicate that a refresh is pending
+		return bIsRefreshing;
 	}
 
 	FDelegate_Login Delegate;
@@ -231,6 +249,8 @@ bool FAuthContext::Refresh()
 	auto submittedRequest = LoginAPI->Login(Request, std::move(Delegate));
 	bIsRefreshing = submittedRequest != nullptr;
 	UE_LOG(LogRallyHereAPI, Verbose, TEXT("FAuthContext::Refresh Submitted: %s"), bIsRefreshing ? TEXT("Yes") : TEXT("No"));
+	
+	// if we have entered the refreshing state, return true to indicate that a refresh is pending
 	return bIsRefreshing;
 }
 

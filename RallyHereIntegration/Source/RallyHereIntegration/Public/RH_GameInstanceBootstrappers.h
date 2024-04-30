@@ -353,6 +353,10 @@ protected:
 	virtual bool ShouldRecycleAfterCleanup() const;
 
 	/**
+	* @brief Callback for when the server is logged out (effectively, authorization to the API is lost, and was not automatically recovered)
+	*/
+	virtual void OnLoggedOut(bool bRefreshTokenExpired);
+	/**
 	* @brief Callback for when a refresh token expires
 	*/
 	virtual void OnRefreshTokenExpired(FSimpleDelegate CompleteCallback);
@@ -525,6 +529,22 @@ public:
 		return TOptional<FString>();
 	}
 
+	/**
+	* @brief Gets the directory to use for uploading files for this bootstrapper
+	*/
+	virtual bool CanAutoUploadServerFiles() const;
+	/**
+	* @brief Gets the directory to use for uploading files for this bootstrapper
+	*/
+	virtual FRH_FileApiDirectory GetAutoUploadDirectory(bool bDeveloperFile = true) const;
+	/**
+	* @brief Capture and upload log file based on settings
+	*/
+	virtual void ConditionalAutoUploadLogFile() const;
+	/**
+	* @brief Capture and upload trace file based on settings
+	*/
+	virtual void ConditionalAutoUploadTraceFile(const FString& TraceFile) const;
 protected:
 	/** The auth context for this bootstrapper */
 	FAuthContextPtr AuthContext;

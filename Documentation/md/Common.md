@@ -15,6 +15,7 @@
 `public  `[`DECLARE_DELEGATE_OneParam`](#group__Common_1ga5bba8beab7e3653c4bfa887eaec48a87)`(FRH_CustomEndpointDelegate,const `[`FRH_CustomEndpointResponseWrapper`](Common.md#structFRH__CustomEndpointResponseWrapper)` &)`            | Native delegate used for custom endpoint calls.
 `public FORCEINLINE uint32 `[`GetTypeHash`](#group__Common_1ga51b3d76527de2fccacb53501f14c7991)`(const `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` & PlatformId)`            | Helper function to convert an [FRH_PlayerPlatformId](Common.md#structFRH__PlayerPlatformId) into a hash value.
 `public static bool `[`RH_BreakApartURL`](#group__Common_1ga98aea8d69558cf3580e89e65d73256dd)`(const FString & URL,const FString & BaseURL,FString & APIName,TArray< FString > & APIParams)`            | Helper function to break a fully qualified URL into a base URL, API name, and an array of API parameters.
+`public FORCEINLINE uint32 `[`GetTypeHash`](#group__Common_1ga79b9226f7278d4943c4bb94982e4f78f)`(const `[`FRH_FileApiDirectory`](Common.md#structFRH__FileApiDirectory)` & Directory)`            | Helper function to convert an [FRH_FileApiDirectory](Common.md#structFRH__FileApiDirectory) into a hash value.
 `class `[`FRH_AsyncTaskHelper`](#classFRH__AsyncTaskHelper) | Base helper class for asynchronous RallyHere tasks.
 `class `[`FRH_SimpleQueryHelper`](#classFRH__SimpleQueryHelper) | Templated helper class for asynchronously executing basic RallyHere API queries.
 `struct `[`FRH_DelegateBlock`](#structFRH__DelegateBlock) | Templated helper class defining a native and blueprint friendly delegate as a single object.
@@ -22,6 +23,7 @@
 `struct `[`FRH_CustomEndpointRequestWrapper`](#structFRH__CustomEndpointRequestWrapper) | Wrapper calls for custom endpoint requests.
 `struct `[`FRH_CustomEndpointResponseWrapper`](#structFRH__CustomEndpointResponseWrapper) | Wrapper calls for custom endpoint responses.
 `struct `[`FRH_PlayerPlatformId`](#structFRH__PlayerPlatformId) | Common structure for identifying players on any known platform.
+`struct `[`FRH_FileApiDirectory`](#structFRH__FileApiDirectory) | A tuple specifying the directory of a file in the remote file storage.
 
 ## Members
 
@@ -126,6 +128,16 @@ Helper function to break a fully qualified URL into a base URL, API name, and an
 
 #### Returns
 Semi-unique hash value for the given platform id
+
+#### `public FORCEINLINE uint32 `[`GetTypeHash`](#group__Common_1ga79b9226f7278d4943c4bb94982e4f78f)`(const `[`FRH_FileApiDirectory`](Common.md#structFRH__FileApiDirectory)` & Directory)` <a id="group__Common_1ga79b9226f7278d4943c4bb94982e4f78f"></a>
+
+Helper function to convert an [FRH_FileApiDirectory](Common.md#structFRH__FileApiDirectory) into a hash value.
+
+#### Parameters
+* `Directory` The directory to generate a hash for 
+
+#### Returns
+Semi-unique hash value for the given directory
 
 ## class `FRH_AsyncTaskHelper` <a id="classFRH__AsyncTaskHelper"></a>
 
@@ -607,5 +619,65 @@ Default constructor that leaves the user ID empty and sets the platform type to 
 #### `public inline  `[`FRH_PlayerPlatformId`](#structFRH__PlayerPlatformId_1afa9903b50c919271e478b89f7a3c68dc)`(const FString & InUserId,ERHAPI_Platform InPlatformType)` <a id="structFRH__PlayerPlatformId_1afa9903b50c919271e478b89f7a3c68dc"></a>
 
 Constructor for specifying user ID and platform type.
+
+<br>
+## struct `FRH_FileApiDirectory` <a id="structFRH__FileApiDirectory"></a>
+
+A tuple specifying the directory of a file in the remote file storage.
+
+#### Summary
+
+ Members                        | Descriptions                                
+--------------------------------|---------------------------------------------
+`public ERHAPI_FileType `[`FileType`](#structFRH__FileApiDirectory_1a77323ab3538c7e32c8b56a412f268b46) | The type of file to upload/download
+`public ERHAPI_EntityType `[`EntityType`](#structFRH__FileApiDirectory_1aac99462459aa261273d91de0fb2b0dfd) | The type of entity the file is associated with
+`public FString `[`EntityId`](#structFRH__FileApiDirectory_1a8795141a686fa301e7581929fc380123) | The id of the entity the file is associated with
+`public  `[`GENERATED_USTRUCT_BODY`](#structFRH__FileApiDirectory_1abcf4c70c103ba0ddd3e575ab017fa2b4)`()` | 
+`public inline  `[`FRH_FileApiDirectory`](#structFRH__FileApiDirectory_1ace24851579074801f430c383a11b15c4)`()` | 
+`public inline  `[`FRH_FileApiDirectory`](#structFRH__FileApiDirectory_1a40fa7daa93cdd67ddd8bc39ebfbba930)`(ERHAPI_FileType InFileType,ERHAPI_EntityType InEntityType,const FString & InEntityId)` | 
+`public inline bool `[`operator==`](#structFRH__FileApiDirectory_1a38e70bc93869ceecfe41b230624cb107)`(const `[`FRH_FileApiDirectory`](#structFRH__FileApiDirectory)` & Other) const` | Comparison operator.
+`public inline bool `[`IsValid`](#structFRH__FileApiDirectory_1a4e4536b14585a6a60af55d9f0a9c376b)`() const` | 
+`public inline FString `[`ToDescriptionString`](#structFRH__FileApiDirectory_1a9a60e517b0bdce0be34c4084e8470724)`() const` | Get a string representation of the directory.
+
+#### Members
+
+#### `public ERHAPI_FileType `[`FileType`](#structFRH__FileApiDirectory_1a77323ab3538c7e32c8b56a412f268b46) <a id="structFRH__FileApiDirectory_1a77323ab3538c7e32c8b56a412f268b46"></a>
+
+The type of file to upload/download
+
+<br>
+#### `public ERHAPI_EntityType `[`EntityType`](#structFRH__FileApiDirectory_1aac99462459aa261273d91de0fb2b0dfd) <a id="structFRH__FileApiDirectory_1aac99462459aa261273d91de0fb2b0dfd"></a>
+
+The type of entity the file is associated with
+
+<br>
+#### `public FString `[`EntityId`](#structFRH__FileApiDirectory_1a8795141a686fa301e7581929fc380123) <a id="structFRH__FileApiDirectory_1a8795141a686fa301e7581929fc380123"></a>
+
+The id of the entity the file is associated with
+
+<br>
+#### `public  `[`GENERATED_USTRUCT_BODY`](#structFRH__FileApiDirectory_1abcf4c70c103ba0ddd3e575ab017fa2b4)`()` <a id="structFRH__FileApiDirectory_1abcf4c70c103ba0ddd3e575ab017fa2b4"></a>
+
+<br>
+#### `public inline  `[`FRH_FileApiDirectory`](#structFRH__FileApiDirectory_1ace24851579074801f430c383a11b15c4)`()` <a id="structFRH__FileApiDirectory_1ace24851579074801f430c383a11b15c4"></a>
+
+<br>
+#### `public inline  `[`FRH_FileApiDirectory`](#structFRH__FileApiDirectory_1a40fa7daa93cdd67ddd8bc39ebfbba930)`(ERHAPI_FileType InFileType,ERHAPI_EntityType InEntityType,const FString & InEntityId)` <a id="structFRH__FileApiDirectory_1a40fa7daa93cdd67ddd8bc39ebfbba930"></a>
+
+<br>
+#### `public inline bool `[`operator==`](#structFRH__FileApiDirectory_1a38e70bc93869ceecfe41b230624cb107)`(const `[`FRH_FileApiDirectory`](#structFRH__FileApiDirectory)` & Other) const` <a id="structFRH__FileApiDirectory_1a38e70bc93869ceecfe41b230624cb107"></a>
+
+Comparison operator.
+
+<br>
+#### `public inline bool `[`IsValid`](#structFRH__FileApiDirectory_1a4e4536b14585a6a60af55d9f0a9c376b)`() const` <a id="structFRH__FileApiDirectory_1a4e4536b14585a6a60af55d9f0a9c376b"></a>
+
+<br>
+#### `public inline FString `[`ToDescriptionString`](#structFRH__FileApiDirectory_1a9a60e517b0bdce0be34c4084e8470724)`() const` <a id="structFRH__FileApiDirectory_1a9a60e517b0bdce0be34c4084e8470724"></a>
+
+Get a string representation of the directory.
+
+#### Returns
+A string representation of the directory
 
 <br>

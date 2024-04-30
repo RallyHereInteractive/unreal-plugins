@@ -5,6 +5,7 @@
 
 #include "RallyHereIntegrationModule.h"
 #include "RH_Common.h"
+#include "RH_FileSubsystem.h"
 
 
 URH_MatchSubsystem::URH_MatchSubsystem(const FObjectInitializer& ObjectInitializer)

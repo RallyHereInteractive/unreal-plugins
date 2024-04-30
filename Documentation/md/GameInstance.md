@@ -130,6 +130,10 @@ Server Bootstrapper for the Game Instance.
 `public inline const `[`FRH_BootstrappingResult`](GameInstance.md#structFRH__BootstrappingResult)` & `[`GetBootstrappingResult`](#classURH__GameInstanceServerBootstrapper_1aa61e1f51c28e5437d220362e652e4156)`() const` | Gets the bootstrapping result from this bootstrapper.
 `public inline virtual TOptional< FString > `[`GetBoundAllocationId`](#classURH__GameInstanceServerBootstrapper_1afc0a4f4f72556a0b713b0bf5f1442eb7)`() const` | Gets the allocation id this session owner is bound to, if any. Needed for some specific calls to ensure they are operating on the proper object regardless of our current session view.
 `public inline virtual TOptional< FString > `[`GetBoundInstanceId`](#classURH__GameInstanceServerBootstrapper_1a33402e7dd26b4a226f7615749184303b)`() const` | Gets the instance id this session owner is bound to, if any. Needed for some specific calls to ensure they are operating on the proper object regardless of our current session view.
+`public virtual bool `[`CanAutoUploadServerFiles`](#classURH__GameInstanceServerBootstrapper_1a9cfd09c543c9435af1a994d400d5c564)`() const` | Gets the directory to use for uploading files for this bootstrapper.
+`public virtual `[`FRH_FileApiDirectory`](Common.md#structFRH__FileApiDirectory)` `[`GetAutoUploadDirectory`](#classURH__GameInstanceServerBootstrapper_1a2066c747ca1576959890b28020255072)`(bool bDeveloperFile) const` | Gets the directory to use for uploading files for this bootstrapper.
+`public virtual void `[`ConditionalAutoUploadLogFile`](#classURH__GameInstanceServerBootstrapper_1a77257d8a5d5c426286fbf301fec96171)`() const` | Capture and upload log file based on settings.
+`public virtual void `[`ConditionalAutoUploadTraceFile`](#classURH__GameInstanceServerBootstrapper_1af74b0fa8ecac1183cfd34c7c1b3f69ed)`(const FString & TraceFile) const` | Capture and upload trace file based on settings.
 `protected `[`ERH_ServerBootstrapMode`](undefined.md#group__GameInstance_1ga9dd612a2285258b977ec4c21d7a64196)` `[`BootstrapMode`](#classURH__GameInstanceServerBootstrapper_1a437398cd4da11b39dbba5624ac0d4503) | Bootstrap Mode being used
 `protected `[`ERH_ServerBootstrapFlowStep`](undefined.md#group__GameInstance_1ga70ec3ebac3b063bae8ad728c7cdd4d36)` `[`BootstrapStep`](#classURH__GameInstanceServerBootstrapper_1a0c41579ef8e737384ac8e1c82efb8d11) | Current Bootstrap Step
 `protected int32 `[`CurrentRecycleCount`](#classURH__GameInstanceServerBootstrapper_1a95d71262cc53a06cf14abb0e1c5ebd76) | The current recycle count (note that the initial boot is considered the first recycle, so this is effectively 1-based)
@@ -174,6 +178,7 @@ Server Bootstrapper for the Game Instance.
 `protected virtual void `[`CleanupAfterInstanceRemoval`](#classURH__GameInstanceServerBootstrapper_1a9aab21c5a300e982d5216e04acdbf6f4)`()` | Utility function to clean up state after an instance removal and attempt to recycle.
 `protected virtual void `[`OnCleanupSessionSyncComplete`](#classURH__GameInstanceServerBootstrapper_1a38bf567f475e12b06eb5a16883165bb6)`(`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * Session,bool bSuccess,const FString & Error)` | Completion callback for session and instance cleanup.
 `protected virtual bool `[`ShouldRecycleAfterCleanup`](#classURH__GameInstanceServerBootstrapper_1a3841facd4998b2ceb4e4f48354c2f665)`() const` | Gets whether we should recycle the state after cleanup.
+`protected virtual void `[`OnLoggedOut`](#classURH__GameInstanceServerBootstrapper_1af6d9c3758a402b830393c531822f586b)`(bool bRefreshTokenExpired)` | Callback for when the server is logged out (effectively, authorization to the API is lost, and was not automatically recovered)
 `protected virtual void `[`OnRefreshTokenExpired`](#classURH__GameInstanceServerBootstrapper_1a5c36a506ed51f8694e9ea296ab4c1822)`(FSimpleDelegate CompleteCallback)` | Callback for when a refresh token expires.
 
 #### Members
@@ -388,6 +393,26 @@ Gets the allocation id this session owner is bound to, if any. Needed for some s
 #### `public inline virtual TOptional< FString > `[`GetBoundInstanceId`](#classURH__GameInstanceServerBootstrapper_1a33402e7dd26b4a226f7615749184303b)`() const` <a id="classURH__GameInstanceServerBootstrapper_1a33402e7dd26b4a226f7615749184303b"></a>
 
 Gets the instance id this session owner is bound to, if any. Needed for some specific calls to ensure they are operating on the proper object regardless of our current session view.
+
+<br>
+#### `public virtual bool `[`CanAutoUploadServerFiles`](#classURH__GameInstanceServerBootstrapper_1a9cfd09c543c9435af1a994d400d5c564)`() const` <a id="classURH__GameInstanceServerBootstrapper_1a9cfd09c543c9435af1a994d400d5c564"></a>
+
+Gets the directory to use for uploading files for this bootstrapper.
+
+<br>
+#### `public virtual `[`FRH_FileApiDirectory`](Common.md#structFRH__FileApiDirectory)` `[`GetAutoUploadDirectory`](#classURH__GameInstanceServerBootstrapper_1a2066c747ca1576959890b28020255072)`(bool bDeveloperFile) const` <a id="classURH__GameInstanceServerBootstrapper_1a2066c747ca1576959890b28020255072"></a>
+
+Gets the directory to use for uploading files for this bootstrapper.
+
+<br>
+#### `public virtual void `[`ConditionalAutoUploadLogFile`](#classURH__GameInstanceServerBootstrapper_1a77257d8a5d5c426286fbf301fec96171)`() const` <a id="classURH__GameInstanceServerBootstrapper_1a77257d8a5d5c426286fbf301fec96171"></a>
+
+Capture and upload log file based on settings.
+
+<br>
+#### `public virtual void `[`ConditionalAutoUploadTraceFile`](#classURH__GameInstanceServerBootstrapper_1af74b0fa8ecac1183cfd34c7c1b3f69ed)`(const FString & TraceFile) const` <a id="classURH__GameInstanceServerBootstrapper_1af74b0fa8ecac1183cfd34c7c1b3f69ed"></a>
+
+Capture and upload trace file based on settings.
 
 <br>
 #### `protected `[`ERH_ServerBootstrapMode`](undefined.md#group__GameInstance_1ga9dd612a2285258b977ec4c21d7a64196)` `[`BootstrapMode`](#classURH__GameInstanceServerBootstrapper_1a437398cd4da11b39dbba5624ac0d4503) <a id="classURH__GameInstanceServerBootstrapper_1a437398cd4da11b39dbba5624ac0d4503"></a>
@@ -652,6 +677,11 @@ Completion callback for session and instance cleanup.
 #### `protected virtual bool `[`ShouldRecycleAfterCleanup`](#classURH__GameInstanceServerBootstrapper_1a3841facd4998b2ceb4e4f48354c2f665)`() const` <a id="classURH__GameInstanceServerBootstrapper_1a3841facd4998b2ceb4e4f48354c2f665"></a>
 
 Gets whether we should recycle the state after cleanup.
+
+<br>
+#### `protected virtual void `[`OnLoggedOut`](#classURH__GameInstanceServerBootstrapper_1af6d9c3758a402b830393c531822f586b)`(bool bRefreshTokenExpired)` <a id="classURH__GameInstanceServerBootstrapper_1af6d9c3758a402b830393c531822f586b"></a>
+
+Callback for when the server is logged out (effectively, authorization to the API is lost, and was not automatically recovered)
 
 <br>
 #### `protected virtual void `[`OnRefreshTokenExpired`](#classURH__GameInstanceServerBootstrapper_1a5c36a506ed51f8694e9ea296ab4c1822)`(FSimpleDelegate CompleteCallback)` <a id="classURH__GameInstanceServerBootstrapper_1a5c36a506ed51f8694e9ea296ab4c1822"></a>

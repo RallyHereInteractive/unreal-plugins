@@ -77,6 +77,9 @@ Main settings for the Integration.
 `public FSoftClassPath `[`MatchSubsystemClass`](#classURH__IntegrationSettings_1a2e753925aea5df2e1f47add2fa970097) | Extensible MatchSubsystem class path.
 `public FSoftClassPath `[`FileSubsystemClass`](#classURH__IntegrationSettings_1aa27b645522462f317a83eb154eaa9997) | Extensible FileSubsystem class path.
 `public bool `[`bLocalPlayerSubsystemSandboxing`](#classURH__IntegrationSettings_1a5826903f6e88cefabe7d9c2ede15e9af) | Flag to determine if the local player subsystem should use its own subsystems instead of relying on GameInstanceSubsystem shared caches.
+`public bool `[`bAutoUploadServerFiles`](#classURH__IntegrationSettings_1aad9767260d4d60a8f378c4543c03f92a) | Whether to automatically upload files to the RallyHere API from Dedicated Servers.
+`public bool `[`bAutoUploadLogFiles`](#classURH__IntegrationSettings_1a8adfac6c3249bca907a1fa051db8d0b5) | Whether to automatically upload files to the RallyHere API. Requires bAutoUploadServerFiles to have an effect.
+`public bool `[`bAutoUploadTraceFiles`](#classURH__IntegrationSettings_1ad678c18fb9996d66111ff4003326a656) | Whether to automatically upload files to the RallyHere API. Requires bAutoUploadServerFiles to have an effect.
 `public int32 `[`BeginNewAdSessionPriority`](#classURH__IntegrationSettings_1afc878742df435a86affa3c28c65da19a) | Sets the request priority of Begin New Session calls, lower number is higher priority.
 `public int32 `[`FindAdOppertunitiesPriority`](#classURH__IntegrationSettings_1a9e9a3b6b65a8ae71a7d5f7e985066f36) | Sets the request priority of Find Oppertunities calls, lower number is higher priority.
 `public int32 `[`UpdateAdOppertunitiesPriority`](#classURH__IntegrationSettings_1ab6514b00e3e6df87716cf78829c89e58) | Sets the request priority of Update Oppertunities calls, lower number is higher priority.
@@ -456,6 +459,21 @@ Extensible FileSubsystem class path.
 #### `public bool `[`bLocalPlayerSubsystemSandboxing`](#classURH__IntegrationSettings_1a5826903f6e88cefabe7d9c2ede15e9af) <a id="classURH__IntegrationSettings_1a5826903f6e88cefabe7d9c2ede15e9af"></a>
 
 Flag to determine if the local player subsystem should use its own subsystems instead of relying on GameInstanceSubsystem shared caches.
+
+<br>
+#### `public bool `[`bAutoUploadServerFiles`](#classURH__IntegrationSettings_1aad9767260d4d60a8f378c4543c03f92a) <a id="classURH__IntegrationSettings_1aad9767260d4d60a8f378c4543c03f92a"></a>
+
+Whether to automatically upload files to the RallyHere API from Dedicated Servers.
+
+<br>
+#### `public bool `[`bAutoUploadLogFiles`](#classURH__IntegrationSettings_1a8adfac6c3249bca907a1fa051db8d0b5) <a id="classURH__IntegrationSettings_1a8adfac6c3249bca907a1fa051db8d0b5"></a>
+
+Whether to automatically upload files to the RallyHere API. Requires bAutoUploadServerFiles to have an effect.
+
+<br>
+#### `public bool `[`bAutoUploadTraceFiles`](#classURH__IntegrationSettings_1ad678c18fb9996d66111ff4003326a656) <a id="classURH__IntegrationSettings_1ad678c18fb9996d66111ff4003326a656"></a>
+
+Whether to automatically upload files to the RallyHere API. Requires bAutoUploadServerFiles to have an effect.
 
 <br>
 #### `public int32 `[`BeginNewAdSessionPriority`](#classURH__IntegrationSettings_1afc878742df435a86affa3c28c65da19a) <a id="classURH__IntegrationSettings_1afc878742df435a86affa3c28c65da19a"></a>
