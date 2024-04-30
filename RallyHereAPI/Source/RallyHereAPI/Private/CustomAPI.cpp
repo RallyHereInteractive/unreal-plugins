@@ -98,12 +98,19 @@ FRequest_CustomEndpointSend::FRequest_CustomEndpointSend()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_CustomEndpointSend::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/custom/v1/custom/{endpoint_id}"));
 	return Path;
+}
+
+FName FRequest_CustomEndpointSend::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_CustomEndpointSend::ComputePath() const

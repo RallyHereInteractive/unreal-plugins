@@ -473,6 +473,14 @@ public:
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Session")
 	virtual URH_SessionView* GetSessionById(const FString& SessionId) const;
+	// Note - Remove calls will attempt to remove the session without attempting to leave the RH session.  To leave a session, call the LeaveSession variants
+	// uses ID as the primary key rather than the Session object because we may need to remove something that was not fully joined
+	/**
+	 * @brief Removes a cached session for the local player, this does NOT try to leave it.
+	 * @param [in] SessionId The Session Id to remove.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Session")
+	virtual void RemoveSessionById(const FString& SessionId) override;
 	/**
 	 * @brief Gets a session template by type
 	 * @param [in] Type the Type of template to get.

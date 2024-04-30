@@ -98,12 +98,19 @@ FRequest_BlockV2::FRequest_BlockV2()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_BlockV2::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/friends/v2/player/{player_uuid}/block/{other_player_uuid}"));
 	return Path;
+}
+
+FName FRequest_BlockV2::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("PUT %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_BlockV2::ComputePath() const
@@ -310,12 +317,19 @@ FRequest_GetBlockedListForPlayerV2::FRequest_GetBlockedListForPlayerV2()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetBlockedListForPlayerV2::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/friends/v2/player/{player_uuid}/block"));
 	return Path;
+}
+
+FName FRequest_GetBlockedListForPlayerV2::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetBlockedListForPlayerV2::ComputePath() const
@@ -576,12 +590,19 @@ FRequest_GetBlockedV2::FRequest_GetBlockedV2()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetBlockedV2::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/friends/v2/player/{player_uuid}/block/{other_player_uuid}"));
 	return Path;
+}
+
+FName FRequest_GetBlockedV2::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetBlockedV2::ComputePath() const
@@ -788,12 +809,19 @@ FRequest_UnblockV2::FRequest_UnblockV2()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_UnblockV2::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/friends/v2/player/{player_uuid}/block/{other_player_uuid}"));
 	return Path;
+}
+
+FName FRequest_UnblockV2::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("DELETE %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_UnblockV2::ComputePath() const

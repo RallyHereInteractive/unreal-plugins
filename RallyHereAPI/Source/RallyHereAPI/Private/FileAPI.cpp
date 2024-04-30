@@ -98,12 +98,19 @@ FRequest_CreateEntityDirectoryFile::FRequest_CreateEntityDirectoryFile()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_CreateEntityDirectoryFile::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/file/v1/{file_type}/{entity_type}/{entity_id}/{file_name}"));
 	return Path;
+}
+
+FName FRequest_CreateEntityDirectoryFile::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("PUT %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_CreateEntityDirectoryFile::ComputePath() const
@@ -288,12 +295,19 @@ FRequest_DeleteEntityDirectory::FRequest_DeleteEntityDirectory()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_DeleteEntityDirectory::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/file/v1/{file_type}/{entity_type}"));
 	return Path;
+}
+
+FName FRequest_DeleteEntityDirectory::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("DELETE %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_DeleteEntityDirectory::ComputePath() const
@@ -476,12 +490,19 @@ FRequest_DeleteEntityDirectoryFile::FRequest_DeleteEntityDirectoryFile()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_DeleteEntityDirectoryFile::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/file/v1/{file_type}/{entity_type}/{entity_id}/{file_name}"));
 	return Path;
+}
+
+FName FRequest_DeleteEntityDirectoryFile::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("DELETE %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_DeleteEntityDirectoryFile::ComputePath() const
@@ -656,12 +677,19 @@ FRequest_DownloadEntityDirectoryFile::FRequest_DownloadEntityDirectoryFile()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_DownloadEntityDirectoryFile::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/file/v1/{file_type}/{entity_type}/{entity_id}/{file_name}"));
 	return Path;
+}
+
+FName FRequest_DownloadEntityDirectoryFile::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_DownloadEntityDirectoryFile::ComputePath() const
@@ -858,12 +886,19 @@ FRequest_GetEntityDirectoryInformation::FRequest_GetEntityDirectoryInformation()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetEntityDirectoryInformation::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/file/v1/{file_type}/{entity_type}"));
 	return Path;
+}
+
+FName FRequest_GetEntityDirectoryInformation::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetEntityDirectoryInformation::ComputePath() const
@@ -1046,12 +1081,19 @@ FRequest_ListEntityDirectoryFiles::FRequest_ListEntityDirectoryFiles()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_ListEntityDirectoryFiles::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/file/v1/{file_type}/{entity_type}/{entity_id}"));
 	return Path;
+}
+
+FName FRequest_ListEntityDirectoryFiles::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_ListEntityDirectoryFiles::ComputePath() const

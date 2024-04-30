@@ -98,12 +98,19 @@ FRequest_GetCatalogAll::FRequest_GetCatalogAll()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetCatalogAll::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/catalog"));
 	return Path;
+}
+
+FName FRequest_GetCatalogAll::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetCatalogAll::ComputePath() const
@@ -335,12 +342,19 @@ FRequest_GetCatalogEntitlementSku::FRequest_GetCatalogEntitlementSku()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetCatalogEntitlementSku::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/catalog/entitlement-sku/{platform}/{sku}"));
 	return Path;
+}
+
+FName FRequest_GetCatalogEntitlementSku::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetCatalogEntitlementSku::ComputePath() const
@@ -578,12 +592,19 @@ FRequest_GetCatalogEntitlementSkuAll::FRequest_GetCatalogEntitlementSkuAll()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetCatalogEntitlementSkuAll::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/catalog/entitlement-sku"));
 	return Path;
+}
+
+FName FRequest_GetCatalogEntitlementSkuAll::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetCatalogEntitlementSkuAll::ComputePath() const
@@ -815,12 +836,19 @@ FRequest_GetCatalogInventoryBucketUseRuleSet::FRequest_GetCatalogInventoryBucket
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetCatalogInventoryBucketUseRuleSet::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/catalog/inventory-bucket-use-rule-set/{inventory_bucket_use_ruleset_id}"));
 	return Path;
+}
+
+FName FRequest_GetCatalogInventoryBucketUseRuleSet::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetCatalogInventoryBucketUseRuleSet::ComputePath() const
@@ -1057,12 +1085,19 @@ FRequest_GetCatalogInventoryBucketUseRuleSetsAll::FRequest_GetCatalogInventoryBu
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetCatalogInventoryBucketUseRuleSetsAll::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/catalog/inventory-bucket-use-rule-set"));
 	return Path;
+}
+
+FName FRequest_GetCatalogInventoryBucketUseRuleSetsAll::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetCatalogInventoryBucketUseRuleSetsAll::ComputePath() const
@@ -1294,12 +1329,19 @@ FRequest_GetCatalogItem::FRequest_GetCatalogItem()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetCatalogItem::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/catalog/item/{item_id}"));
 	return Path;
+}
+
+FName FRequest_GetCatalogItem::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetCatalogItem::ComputePath() const
@@ -1536,12 +1578,19 @@ FRequest_GetCatalogItemsAll::FRequest_GetCatalogItemsAll()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetCatalogItemsAll::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/catalog/item"));
 	return Path;
+}
+
+FName FRequest_GetCatalogItemsAll::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetCatalogItemsAll::ComputePath() const
@@ -1773,12 +1822,19 @@ FRequest_GetCatalogLoot::FRequest_GetCatalogLoot()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetCatalogLoot::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/catalog/loot/{loot_id}"));
 	return Path;
+}
+
+FName FRequest_GetCatalogLoot::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetCatalogLoot::ComputePath() const
@@ -2015,12 +2071,19 @@ FRequest_GetCatalogLootsAll::FRequest_GetCatalogLootsAll()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetCatalogLootsAll::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/catalog/loot"));
 	return Path;
+}
+
+FName FRequest_GetCatalogLootsAll::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetCatalogLootsAll::ComputePath() const
@@ -2252,12 +2315,19 @@ FRequest_GetCatalogPortalUseRuleset::FRequest_GetCatalogPortalUseRuleset()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetCatalogPortalUseRuleset::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/catalog/portal-use-ruleset/{portal_use_ruleset_id}"));
 	return Path;
+}
+
+FName FRequest_GetCatalogPortalUseRuleset::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetCatalogPortalUseRuleset::ComputePath() const
@@ -2494,12 +2564,19 @@ FRequest_GetCatalogPortalUseRulesetsAll::FRequest_GetCatalogPortalUseRulesetsAll
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetCatalogPortalUseRulesetsAll::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/catalog/portal-use-ruleset"));
 	return Path;
+}
+
+FName FRequest_GetCatalogPortalUseRulesetsAll::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetCatalogPortalUseRulesetsAll::ComputePath() const
@@ -2731,12 +2808,19 @@ FRequest_GetCatalogPricePoint::FRequest_GetCatalogPricePoint()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetCatalogPricePoint::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/catalog/price-point/{price_point_id}"));
 	return Path;
+}
+
+FName FRequest_GetCatalogPricePoint::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetCatalogPricePoint::ComputePath() const
@@ -2973,12 +3057,19 @@ FRequest_GetCatalogPricePointsAll::FRequest_GetCatalogPricePointsAll()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetCatalogPricePointsAll::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/catalog/price-point"));
 	return Path;
+}
+
+FName FRequest_GetCatalogPricePointsAll::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetCatalogPricePointsAll::ComputePath() const
@@ -3210,12 +3301,19 @@ FRequest_GetCatalogTimeFrame::FRequest_GetCatalogTimeFrame()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetCatalogTimeFrame::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/catalog/time-frame/{time_frame_id}"));
 	return Path;
+}
+
+FName FRequest_GetCatalogTimeFrame::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetCatalogTimeFrame::ComputePath() const
@@ -3452,12 +3550,19 @@ FRequest_GetCatalogTimeFramesAll::FRequest_GetCatalogTimeFramesAll()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetCatalogTimeFramesAll::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/catalog/time-frame"));
 	return Path;
+}
+
+FName FRequest_GetCatalogTimeFramesAll::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetCatalogTimeFramesAll::ComputePath() const
@@ -3689,12 +3794,19 @@ FRequest_GetCatalogVendor::FRequest_GetCatalogVendor()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetCatalogVendor::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/catalog/vendor/{vendor_id}"));
 	return Path;
+}
+
+FName FRequest_GetCatalogVendor::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetCatalogVendor::ComputePath() const
@@ -3931,12 +4043,19 @@ FRequest_GetCatalogVendorsAll::FRequest_GetCatalogVendorsAll()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetCatalogVendorsAll::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/catalog/vendor"));
 	return Path;
+}
+
+FName FRequest_GetCatalogVendorsAll::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetCatalogVendorsAll::ComputePath() const
@@ -4168,12 +4287,19 @@ FRequest_GetCatalogXpAll::FRequest_GetCatalogXpAll()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetCatalogXpAll::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/catalog/xp"));
 	return Path;
+}
+
+FName FRequest_GetCatalogXpAll::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetCatalogXpAll::ComputePath() const
@@ -4405,12 +4531,19 @@ FRequest_GetCatalogXpTable::FRequest_GetCatalogXpTable()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetCatalogXpTable::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/catalog/xp/{xp_table_id}"));
 	return Path;
+}
+
+FName FRequest_GetCatalogXpTable::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetCatalogXpTable::ComputePath() const

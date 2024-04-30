@@ -98,12 +98,19 @@ FRequest_CreateReportForTargetPlayerUuid::FRequest_CreateReportForTargetPlayerUu
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_CreateReportForTargetPlayerUuid::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/sanctions/v2/player/{player_uuid}/reports"));
 	return Path;
+}
+
+FName FRequest_CreateReportForTargetPlayerUuid::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_CreateReportForTargetPlayerUuid::ComputePath() const
@@ -320,12 +327,19 @@ FRequest_GetReportsForTargetPlayerUuid::FRequest_GetReportsForTargetPlayerUuid()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetReportsForTargetPlayerUuid::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/sanctions/v2/player/{player_uuid}/reports"));
 	return Path;
+}
+
+FName FRequest_GetReportsForTargetPlayerUuid::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetReportsForTargetPlayerUuid::ComputePath() const
@@ -531,12 +545,19 @@ FRequest_GetReportsForTargetPlayerUuidSelf::FRequest_GetReportsForTargetPlayerUu
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetReportsForTargetPlayerUuidSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/sanctions/v2/player/me/reports"));
 	return Path;
+}
+
+FName FRequest_GetReportsForTargetPlayerUuidSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetReportsForTargetPlayerUuidSelf::ComputePath() const
@@ -737,12 +758,19 @@ FRequest_GetReportsFromSourcePlayerUuid::FRequest_GetReportsFromSourcePlayerUuid
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetReportsFromSourcePlayerUuid::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/sanctions/v2/player/{player_uuid}/sent-reports"));
 	return Path;
+}
+
+FName FRequest_GetReportsFromSourcePlayerUuid::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetReportsFromSourcePlayerUuid::ComputePath() const
@@ -948,12 +976,19 @@ FRequest_GetReportsFromSourcePlayerUuidSelf::FRequest_GetReportsFromSourcePlayer
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetReportsFromSourcePlayerUuidSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/sanctions/v2/player/me/sent-reports"));
 	return Path;
+}
+
+FName FRequest_GetReportsFromSourcePlayerUuidSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetReportsFromSourcePlayerUuidSelf::ComputePath() const

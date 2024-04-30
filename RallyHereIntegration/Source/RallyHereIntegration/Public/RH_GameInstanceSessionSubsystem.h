@@ -71,6 +71,15 @@ public:
 	/** @brief The total time the player has been connected */
 	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
 	float DurationSeconds;
+
+FRH_ActiveSessionStatePlayerContext()
+		: RHPlayerId(FGuid())
+		, Controller(nullptr)
+		, JoinedTime(FDateTime())
+		, LeaveTime(FDateTime())
+		, DurationSeconds(0.0f)
+	{
+	}
 };
 
 USTRUCT(BlueprintType)

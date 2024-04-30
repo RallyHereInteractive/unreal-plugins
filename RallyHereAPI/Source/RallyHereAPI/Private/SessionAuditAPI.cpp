@@ -98,12 +98,19 @@ FRequest_CreateSessionAudit::FRequest_CreateSessionAudit()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_CreateSessionAudit::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/audit"));
 	return Path;
+}
+
+FName FRequest_CreateSessionAudit::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_CreateSessionAudit::ComputePath() const
@@ -303,12 +310,19 @@ FRequest_GetSessionAudit::FRequest_GetSessionAudit()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetSessionAudit::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/audit"));
 	return Path;
+}
+
+FName FRequest_GetSessionAudit::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetSessionAudit::ComputePath() const

@@ -98,12 +98,19 @@ FRequest_GetAllRegions::FRequest_GetAllRegions()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetAllRegions::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/regions"));
 	return Path;
+}
+
+FName FRequest_GetAllRegions::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetAllRegions::ComputePath() const

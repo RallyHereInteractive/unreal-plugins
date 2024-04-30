@@ -98,12 +98,19 @@ FRequest_DeleteAllPlayerIdSettingsForSettingType::FRequest_DeleteAllPlayerIdSett
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_DeleteAllPlayerIdSettingsForSettingType::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/settings/v1/player/{player_id}/setting_type/{setting_type_id}/key"));
 	return Path;
+}
+
+FName FRequest_DeleteAllPlayerIdSettingsForSettingType::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("DELETE %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_DeleteAllPlayerIdSettingsForSettingType::ComputePath() const
@@ -310,12 +317,19 @@ FRequest_DeleteAllPlayerUuidSettingsForSettingType::FRequest_DeleteAllPlayerUuid
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_DeleteAllPlayerUuidSettingsForSettingType::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key"));
 	return Path;
+}
+
+FName FRequest_DeleteAllPlayerUuidSettingsForSettingType::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("DELETE %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_DeleteAllPlayerUuidSettingsForSettingType::ComputePath() const
@@ -522,12 +536,19 @@ FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf::FRequest_DeleteAllPlayer
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/settings/v2/player/me/setting_type/{setting_type_id}/key"));
 	return Path;
+}
+
+FName FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("DELETE %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf::ComputePath() const
@@ -733,12 +754,19 @@ FRequest_DeleteSinglePlayerIdSetting::FRequest_DeleteSinglePlayerIdSetting()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_DeleteSinglePlayerIdSetting::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/settings/v1/player/{player_id}/setting_type/{setting_type_id}/key/{key}"));
 	return Path;
+}
+
+FName FRequest_DeleteSinglePlayerIdSetting::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("DELETE %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_DeleteSinglePlayerIdSetting::ComputePath() const
@@ -946,12 +974,19 @@ FRequest_DeleteSinglePlayerUuidSetting::FRequest_DeleteSinglePlayerUuidSetting()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_DeleteSinglePlayerUuidSetting::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key/{key}"));
 	return Path;
+}
+
+FName FRequest_DeleteSinglePlayerUuidSetting::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("DELETE %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_DeleteSinglePlayerUuidSetting::ComputePath() const
@@ -1159,12 +1194,19 @@ FRequest_DeleteSinglePlayerUuidSettingSelf::FRequest_DeleteSinglePlayerUuidSetti
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_DeleteSinglePlayerUuidSettingSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/settings/v2/player/me/setting_type/{setting_type_id}/key/{key}"));
 	return Path;
+}
+
+FName FRequest_DeleteSinglePlayerUuidSettingSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("DELETE %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_DeleteSinglePlayerUuidSettingSelf::ComputePath() const
@@ -1371,12 +1413,19 @@ FRequest_GetAllPlayerIdSettingsForSettingType::FRequest_GetAllPlayerIdSettingsFo
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetAllPlayerIdSettingsForSettingType::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/settings/v1/player/{player_id}/setting_type/{setting_type_id}/key"));
 	return Path;
+}
+
+FName FRequest_GetAllPlayerIdSettingsForSettingType::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetAllPlayerIdSettingsForSettingType::ComputePath() const
@@ -1591,12 +1640,19 @@ FRequest_GetAllPlayerUuidSettingsForSettingType::FRequest_GetAllPlayerUuidSettin
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetAllPlayerUuidSettingsForSettingType::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key"));
 	return Path;
+}
+
+FName FRequest_GetAllPlayerUuidSettingsForSettingType::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetAllPlayerUuidSettingsForSettingType::ComputePath() const
@@ -1811,12 +1867,19 @@ FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf::FRequest_GetAllPlayerUuidSe
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/settings/v2/player/me/setting_type/{setting_type_id}/key"));
 	return Path;
+}
+
+FName FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf::ComputePath() const
@@ -2030,12 +2093,19 @@ FRequest_GetConfigForAllSettingTypes::FRequest_GetConfigForAllSettingTypes()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetConfigForAllSettingTypes::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/settings/v1/setting_type"));
 	return Path;
+}
+
+FName FRequest_GetConfigForAllSettingTypes::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetConfigForAllSettingTypes::ComputePath() const
@@ -2188,12 +2258,19 @@ FRequest_GetConfigForSingleSettingTypeAllVersions::FRequest_GetConfigForSingleSe
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetConfigForSingleSettingTypeAllVersions::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/settings/v1/setting_type/{setting_type_id}/v"));
 	return Path;
+}
+
+FName FRequest_GetConfigForSingleSettingTypeAllVersions::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetConfigForSingleSettingTypeAllVersions::ComputePath() const
@@ -2387,12 +2464,19 @@ FRequest_GetConfigForSingleSettingTypeAndVersion::FRequest_GetConfigForSingleSet
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetConfigForSingleSettingTypeAndVersion::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/settings/v1/setting_type/{setting_type_id}/v/{setting_version_id}"));
 	return Path;
+}
+
+FName FRequest_GetConfigForSingleSettingTypeAndVersion::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetConfigForSingleSettingTypeAndVersion::ComputePath() const
@@ -2587,12 +2671,19 @@ FRequest_GetSinglePlayerIdSetting::FRequest_GetSinglePlayerIdSetting()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetSinglePlayerIdSetting::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/settings/v1/player/{player_id}/setting_type/{setting_type_id}/key/{key}"));
 	return Path;
+}
+
+FName FRequest_GetSinglePlayerIdSetting::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetSinglePlayerIdSetting::ComputePath() const
@@ -2800,12 +2891,19 @@ FRequest_GetSinglePlayerUuidSetting::FRequest_GetSinglePlayerUuidSetting()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetSinglePlayerUuidSetting::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key/{key}"));
 	return Path;
+}
+
+FName FRequest_GetSinglePlayerUuidSetting::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetSinglePlayerUuidSetting::ComputePath() const
@@ -3013,12 +3111,19 @@ FRequest_GetSinglePlayerUuidSettingSelf::FRequest_GetSinglePlayerUuidSettingSelf
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetSinglePlayerUuidSettingSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/settings/v2/player/me/setting_type/{setting_type_id}/key/{key}"));
 	return Path;
+}
+
+FName FRequest_GetSinglePlayerUuidSettingSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetSinglePlayerUuidSettingSelf::ComputePath() const
@@ -3225,12 +3330,19 @@ FRequest_SetSinglePlayerIdSetting::FRequest_SetSinglePlayerIdSetting()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_SetSinglePlayerIdSetting::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/settings/v1/player/{player_id}/setting_type/{setting_type_id}/key/{key}"));
 	return Path;
+}
+
+FName FRequest_SetSinglePlayerIdSetting::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("PUT %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_SetSinglePlayerIdSetting::ComputePath() const
@@ -3461,12 +3573,19 @@ FRequest_SetSinglePlayerUuidSetting::FRequest_SetSinglePlayerUuidSetting()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_SetSinglePlayerUuidSetting::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key/{key}"));
 	return Path;
+}
+
+FName FRequest_SetSinglePlayerUuidSetting::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("PUT %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_SetSinglePlayerUuidSetting::ComputePath() const
@@ -3697,12 +3816,19 @@ FRequest_SetSinglePlayerUuidSettingSelf::FRequest_SetSinglePlayerUuidSettingSelf
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_SetSinglePlayerUuidSettingSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/settings/v2/player/me/setting_type/{setting_type_id}/key/{key}"));
 	return Path;
+}
+
+FName FRequest_SetSinglePlayerUuidSettingSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("PUT %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_SetSinglePlayerUuidSettingSelf::ComputePath() const

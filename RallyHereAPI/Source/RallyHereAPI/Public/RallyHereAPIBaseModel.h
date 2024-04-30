@@ -112,7 +112,7 @@ public:
 struct RALLYHEREAPI_API FRequestMetadata
 {
 	FGuid Identifier;
-	FName SimplifiedPath;
+	FName SimplifiedPath, SimplifiedPathWithVerb;
 	int32 RetryCount;
 	FDateTime CreateTimestamp, QueuedTimestamp, HttpQueuedTimestamp;
 	
@@ -142,6 +142,7 @@ public:
 	virtual bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const = 0;
 	virtual FString ComputePath() const = 0;
 	virtual FName GetSimplifiedPath() const = 0;
+	virtual FName GetSimplifiedPathWithVerb() const = 0;
 	virtual TSharedPtr<FAuthContext> GetAuthContext() const { return nullptr; }
 	const FRequestMetadata& GetRequestMetadata() const { return RequestMetadata; }
 

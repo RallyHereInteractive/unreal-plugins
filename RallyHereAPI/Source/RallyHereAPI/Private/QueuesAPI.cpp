@@ -98,12 +98,19 @@ FRequest_GetAllMapGameInfo::FRequest_GetAllMapGameInfo()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetAllMapGameInfo::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/instance-launch-templates/{instance_launch_template_id}"));
 	return Path;
+}
+
+FName FRequest_GetAllMapGameInfo::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetAllMapGameInfo::ComputePath() const
@@ -326,12 +333,19 @@ FRequest_GetAllQueueInfo::FRequest_GetAllQueueInfo()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetAllQueueInfo::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/queues"));
 	return Path;
+}
+
+FName FRequest_GetAllQueueInfo::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetAllQueueInfo::ComputePath() const
@@ -561,12 +575,19 @@ FRequest_GetAllQueueInfoV2::FRequest_GetAllQueueInfoV2()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetAllQueueInfoV2::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v2/queues"));
 	return Path;
+}
+
+FName FRequest_GetAllQueueInfoV2::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetAllQueueInfoV2::ComputePath() const
@@ -796,12 +817,19 @@ FRequest_GetInstanceRequestTemplate::FRequest_GetInstanceRequestTemplate()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetInstanceRequestTemplate::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/instance-request-template/{instance_request_template_id}"));
 	return Path;
+}
+
+FName FRequest_GetInstanceRequestTemplate::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetInstanceRequestTemplate::ComputePath() const
@@ -1024,12 +1052,19 @@ FRequest_GetMatchMakingProfile::FRequest_GetMatchMakingProfile()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetMatchMakingProfile::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/match-making-profile/{match_making_profile_id}"));
 	return Path;
+}
+
+FName FRequest_GetMatchMakingProfile::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetMatchMakingProfile::ComputePath() const
@@ -1252,12 +1287,19 @@ FRequest_GetMatchMakingProfileV2::FRequest_GetMatchMakingProfileV2()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetMatchMakingProfileV2::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v2/match-making-profile/{match_making_profile_id}"));
 	return Path;
+}
+
+FName FRequest_GetMatchMakingProfileV2::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetMatchMakingProfileV2::ComputePath() const
@@ -1480,12 +1522,19 @@ FRequest_GetMatchMakingTemplates::FRequest_GetMatchMakingTemplates()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetMatchMakingTemplates::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/match-making-templates/{template_group_id}"));
 	return Path;
+}
+
+FName FRequest_GetMatchMakingTemplates::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetMatchMakingTemplates::ComputePath() const
@@ -1708,12 +1757,19 @@ FRequest_GetMatchMakingTemplatesV2::FRequest_GetMatchMakingTemplatesV2()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetMatchMakingTemplatesV2::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v2/match-making-templates/{template_group_id}"));
 	return Path;
+}
+
+FName FRequest_GetMatchMakingTemplatesV2::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetMatchMakingTemplatesV2::ComputePath() const

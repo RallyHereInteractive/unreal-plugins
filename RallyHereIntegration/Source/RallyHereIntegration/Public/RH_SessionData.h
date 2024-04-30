@@ -11,6 +11,7 @@
 #include "Templates/SharedPointer.h"
 #include "UObject/WeakInterfacePtr.h"
 #include "SessionsAPI.h"
+#include "VOIPAPI.h"
 #include "SessionAuditAPI.h"
 #include "Misc/EngineVersion.h"
 
@@ -45,6 +46,12 @@ UDELEGATE()
 DECLARE_DYNAMIC_DELEGATE_OneParam(FRH_OnSessionPlayerIsBlockedDynamicDelegate, bool, bIsBlocked);
 DECLARE_DELEGATE_OneParam(FRH_OnSessionPlayerIsBlockedDelegate, bool);
 DECLARE_RH_DELEGATE_BLOCK(FRH_OnSessionPlayerIsBlockedDelegateBlock, FRH_OnSessionPlayerIsBlockedDelegate, FRH_OnSessionPlayerIsBlockedDynamicDelegate, bool);
+
+// delegate for retrieving VOIP tokens
+UDELEGATE()
+DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_OnSessionGetVoipTokenDynamicDelegate, bool, bSuccess, const FRHAPI_VoipTokenResponse&, VoipToken, const FRH_ErrorInfo&, ErrorInfo);
+DECLARE_DELEGATE_ThreeParams(FRH_OnSessionGetVoipTokenDelegate, bool, const FRHAPI_VoipTokenResponse&, const FRH_ErrorInfo&);
+DECLARE_RH_DELEGATE_BLOCK(FRH_OnSessionGetVoipTokenDelegateBlock, FRH_OnSessionGetVoipTokenDelegate, FRH_OnSessionGetVoipTokenDynamicDelegate, bool, const FRHAPI_VoipTokenResponse&, const FRH_ErrorInfo&);
 
 /** @defgroup Session RallyHere Session
  *  @{
@@ -800,6 +807,35 @@ public:
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Session|Instance", meta = (DisplayName = "End Instance", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_EndInstance(const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { EndInstance(Delegate); };
+
+	// VOIP functions
+	/**
+	* @brief Generate a VOIP login token
+	* @param [in] Delegate Callback delegate with the new voip token
+	*/
+	virtual void GenerateVoipLoginToken(const FRH_OnSessionGetVoipTokenDelegateBlock& Delegate) { PURE_VIRTUAL(URH_JoinedSession::GenerateVoipLoginToken, ); }
+	/**
+	* @brief Blueprint compatible version of GenerateVoipLoginToken
+	* @param [in] Delegate Callback delegate with the new voip token
+	*/
+	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Generate Voip Login Token", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_GenerateVoipLoginToken(const FRH_OnSessionGetVoipTokenDynamicDelegate& Delegate) { GenerateVoipLoginToken(Delegate); }
+	/**
+	* @brief Generate a VOIP action token
+	* @param [in] VivoxAction The action to generate a token for
+	* @param [in] VoipSessionType The type of voip session to generate a token for
+	* @param [in] Delegate Callback delegate with the new voip token
+	*/
+	virtual void GenerateVoipActionToken(ERHAPI_VivoxSessionActionSingle VivoxAction, ERHAPI_VoipSessionType VoipSessionType, const FRH_OnSessionGetVoipTokenDelegateBlock& Delegate) { PURE_VIRTUAL(URH_JoinedSession::GenerateVoipActionToken, ); }
+	/**
+	* @brief Blueprint compatible version of GenerateVoipActionToken
+	* @param [in] VivoxAction The action to generate a token for
+	* @param [in] VoipSessionType The type of voip session to generate a token for
+	* @param [in] Delegate Callback delegate with the new voip token
+	*/
+	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Generate Voip Action Token", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_GenerateVoipActionToken(ERHAPI_VivoxSessionActionSingle VivoxAction, ERHAPI_VoipSessionType VoipSessionType, const FRH_OnSessionGetVoipTokenDynamicDelegate& Delegate) { GenerateVoipActionToken(VivoxAction, VoipSessionType, Delegate); }
+
 	/**
 	* @brief Updates the session info.
 	* @param [in] Update The session info for the update.
@@ -994,6 +1030,20 @@ public:
 	 * @param [in] Delegate Callback delegate for the session being updated with the instance ending.
 	 */
 	virtual void EndInstance(const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+
+	// VOIP functions
+	/**
+	* @brief Generate a VOIP login token
+	* @param [in] Delegate Callback delegate with the new voip token
+	*/
+	virtual void GenerateVoipLoginToken(const FRH_OnSessionGetVoipTokenDelegateBlock& Delegate) override;
+	/**
+	* @brief Generate a VOIP action token
+	* @param [in] VivoxAction The action to generate a token for
+	* @param [in] VoipSessionType The type of voip session to generate a token for
+	* @param [in] Delegate Callback delegate with the new voip token
+	*/
+	virtual void GenerateVoipActionToken(ERHAPI_VivoxSessionActionSingle VivoxAction, ERHAPI_VoipSessionType VoipSessionType, const FRH_OnSessionGetVoipTokenDelegateBlock& Delegate) override;
 
 	// Host only functions
 	/**
@@ -1231,6 +1281,20 @@ public:
 	 */
 	virtual void EndInstance(const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	
+	// VOIP functions
+	/**
+	* @brief Generate a VOIP login token
+	* @param [in] Delegate Callback delegate with the new voip token
+	*/
+	virtual void GenerateVoipLoginToken(const FRH_OnSessionGetVoipTokenDelegateBlock& Delegate) override;
+	/**
+	* @brief Generate a VOIP action token
+	* @param [in] VivoxAction The action to generate a token for
+	* @param [in] VoipSessionType The type of voip session to generate a token for
+	* @param [in] Delegate Callback delegate with the new voip token
+	*/
+	virtual void GenerateVoipActionToken(ERHAPI_VivoxSessionActionSingle VivoxAction, ERHAPI_VoipSessionType VoipSessionType, const FRH_OnSessionGetVoipTokenDelegateBlock& Delegate) override;
+
 	// Host only functions
 	/**
 	* @brief Updates the session info.
@@ -1373,6 +1437,14 @@ public:
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Session")
 	virtual URH_SessionView* GetSessionById(const FString& SessionId) const = 0;
+	// Note - Remove calls will attempt to remove the session without attempting to leave the RH session.  To leave a session, call the LeaveSession variants
+	// uses ID as the primary key rather than the Session object because we may need to remove something that was not fully joined
+	/**
+	 * @brief Removes a cached session for the local player, this does NOT try to leave it.
+	 * @param [in] SessionId The Session Id to remove.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Session")
+	virtual void RemoveSessionById(const FString& SessionId) = 0;
 	/**
 	 * @brief Gets a session template by type
 	 * @param [in] Type the Type of template to get.
