@@ -98,12 +98,19 @@ FRequest_GetUtcTime::FRequest_GetUtcTime()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetUtcTime::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/config/v1/time/utc"));
 	return Path;
+}
+
+FName FRequest_GetUtcTime::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetUtcTime::ComputePath() const

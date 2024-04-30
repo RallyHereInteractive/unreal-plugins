@@ -7,7 +7,7 @@
 #include "imgui.h"
 #include "Engine/GameInstance.h"
 #include "RH_GameInstanceSubsystem.h"
-#include "RH_FileSubsystem.h"
+#include "RH_RemoteFileSubsystem.h"
 
 #include "RH_ImGuiUtilities.h"
 
@@ -36,10 +36,10 @@ void FRHDTW_RemoteFile::Do()
 		return;
 	}
 
-	auto* pRH_FileSubsystem = pGISS->GetFileSubsystem();
-	if (pRH_FileSubsystem == nullptr)
+	auto* pRH_RemoteFileSubsystem = pGISS->GetRemoteFileSubsystem();
+	if (pRH_RemoteFileSubsystem == nullptr)
 	{
-		ImGui::Text("%s", "URH_FileSubsystem not available.");
+		ImGui::Text("%s", "URH_RemoteFileSubsystem not available.");
 		return;
 	}
 
@@ -59,19 +59,19 @@ void FRHDTW_RemoteFile::Do()
 	{
 		if (ImGui::BeginTabItem("List Files"))
 		{
-			DoListFiles(pRH_FileSubsystem);
+			DoListFiles(pRH_RemoteFileSubsystem);
 			ImGui::EndTabItem();
 		}
 
 		if (ImGui::BeginTabItem("Upload"))
 		{
-			DoUploadFile(pRH_FileSubsystem);
+			DoUploadFile(pRH_RemoteFileSubsystem);
 			ImGui::EndTabItem();
 		}
 
 		if (ImGui::BeginTabItem("Download"))
 		{
-			DoDownloadFile(pRH_FileSubsystem);
+			DoDownloadFile(pRH_RemoteFileSubsystem);
 			ImGui::EndTabItem();
 		}
 
@@ -80,22 +80,22 @@ void FRHDTW_RemoteFile::Do()
 }
 
 
-void FRHDTW_RemoteFile::DoListFiles(URH_FileSubsystem* pFileSubsystem)
+void FRHDTW_RemoteFile::DoListFiles(URH_RemoteFileSubsystem* pRemoteFileSubsystem)
 {
 	ImGui::InputText("(TO) Local Download Directory", &BrowseDownloadDirectory);
 
 	if (ImGui::Button("Lookup File List"))
 	{
-		pFileSubsystem->LookupFileList(RemoteDirectory);
+		pRemoteFileSubsystem->LookupFileList(RemoteDirectory);
 	}
 
 	FRHAPI_FileListResponse FileList;
-	if (pFileSubsystem->ListFiles(RemoteDirectory, FileList))
+	if (pRemoteFileSubsystem->ListFiles(RemoteDirectory, FileList))
 	{
 		ImGui::Text("%d Files Found", FileList.GetFiles().Num());
 
 		// define delete file modal, since it must be defined at each level of the hierarchy
-		auto DefineDeleteFileModal = [this, pFileSubsystem, FileList]() -> void
+		auto DefineDeleteFileModal = [this, pRemoteFileSubsystem, FileList]() -> void
 			{
 				if (ImGui::BeginPopupModal("Confirm Delete File"))
 				{
@@ -106,19 +106,19 @@ void FRHDTW_RemoteFile::DoListFiles(URH_FileSubsystem* pFileSubsystem)
 					else
 					{
 						FString ModalText = PendingDeleteFileName == TEXT("*") ? FString::Printf(TEXT("Are you sure you want to delete all files?")) : FString::Printf(TEXT("Are you sure you want to delete File %s?"), *PendingDeleteFileName);
-						ImGui::Text(TCHAR_TO_UTF8(*ModalText));
+						ImGui::Text("%s", TCHAR_TO_UTF8(*ModalText));
 						if (ImGui::Button("Yes"))
 						{
-							TWeakObjectPtr<URH_FileSubsystem> pFileSubsystemWeak = pFileSubsystem;
+							TWeakObjectPtr<URH_RemoteFileSubsystem> pRemoteFileSubsystemWeak = pRemoteFileSubsystem;
 							const auto RemoteDirectoryRef = RemoteDirectory;
 
-							auto OnComplete = FRH_GenericSuccessWithErrorDelegate::CreateSPLambda(this, [this, pFileSubsystemWeak, RemoteDirectoryRef](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+							auto OnComplete = FRH_GenericSuccessWithErrorDelegate::CreateSPLambda(this, [this, pRemoteFileSubsystemWeak, RemoteDirectoryRef](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 								{
 									// if we successfully deleted file the, refresh the list view to reflect it
 									PendingDeleteResult = bSuccess ? TEXT("Success") : ErrorInfo.ResponseContent;
-									if (bSuccess && pFileSubsystemWeak.IsValid())
+									if (bSuccess && pRemoteFileSubsystemWeak.IsValid())
 									{
-										pFileSubsystemWeak->LookupFileList(RemoteDirectoryRef);
+										pRemoteFileSubsystemWeak->LookupFileList(RemoteDirectoryRef);
 									}
 								});
 
@@ -127,13 +127,13 @@ void FRHDTW_RemoteFile::DoListFiles(URH_FileSubsystem* pFileSubsystem)
 							{
 								for (auto& File : FileList.GetFiles())
 								{
-									pFileSubsystem->DeleteFile(RemoteDirectory, File.GetName(), OnComplete);
+									pRemoteFileSubsystem->DeleteFile(RemoteDirectory, File.GetName(), OnComplete);
 								}
 							}
 							// otherwise, just delete the one file and refresh on completion
 							else
 							{
-								pFileSubsystem->DeleteFile(RemoteDirectory, PendingDeleteFileName, OnComplete);
+								pRemoteFileSubsystem->DeleteFile(RemoteDirectory, PendingDeleteFileName, OnComplete);
 							}
 							PendingDeleteFileName.Empty();
 							ImGui::CloseCurrentPopup();
@@ -154,7 +154,7 @@ void FRHDTW_RemoteFile::DoListFiles(URH_FileSubsystem* pFileSubsystem)
 		if (ImGui::Button("Download All Files"))
 		{
 			// download all files specified by the cache
-			pFileSubsystem->DownloadAllFiles(RemoteDirectory, BrowseDownloadDirectory, true);
+			pRemoteFileSubsystem->DownloadAllFiles(RemoteDirectory, BrowseDownloadDirectory, true);
 		}
 		if (ImGui::Button("Delete All Files"))
 		{
@@ -169,7 +169,7 @@ void FRHDTW_RemoteFile::DoListFiles(URH_FileSubsystem* pFileSubsystem)
 				ImGui::BeginDisabled(BrowseDownloadDirectory.IsEmpty());
 				if (ImGui::Button("Download"))
 				{
-					pFileSubsystem->DownloadFile(RemoteDirectory, File.GetName(), BrowseDownloadDirectory / File.GetName());
+					pRemoteFileSubsystem->DownloadFile(RemoteDirectory, File.GetName(), BrowseDownloadDirectory / File.GetName());
 				}
 				ImGui::EndDisabled();
 				ImGui::SameLine();
@@ -192,7 +192,7 @@ void FRHDTW_RemoteFile::DoListFiles(URH_FileSubsystem* pFileSubsystem)
 		ImGui::Text("RemoteDirectory not found in cache.");
 	}
 }
-void FRHDTW_RemoteFile::DoDownloadFile(URH_FileSubsystem* pFileSubsystem)
+void FRHDTW_RemoteFile::DoDownloadFile(URH_RemoteFileSubsystem* pRemoteFileSubsystem)
 {
 	ImGui::InputText("(FROM) Remote File Name", &DownloadRemoteFileName);
 	ImGui::InputText("(TO) Local File Path", &DownloadLocalFilePath);
@@ -200,7 +200,7 @@ void FRHDTW_RemoteFile::DoDownloadFile(URH_FileSubsystem* pFileSubsystem)
 	ImGui::BeginDisabled(!RemoteDirectory.IsValid() || DownloadRemoteFileName.IsEmpty() || DownloadLocalFilePath.IsEmpty());
 	if (ImGui::Button("Download"))
 	{
-		pFileSubsystem->DownloadFile(RemoteDirectory, DownloadRemoteFileName, DownloadLocalFilePath, FRH_GenericSuccessWithErrorDelegate::CreateSPLambda(this, [this](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+		pRemoteFileSubsystem->DownloadFile(RemoteDirectory, DownloadRemoteFileName, DownloadLocalFilePath, FRH_GenericSuccessWithErrorDelegate::CreateSPLambda(this, [this](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 			{
 				DownloadResult = bSuccess ? TEXT("Success") : ErrorInfo.ResponseContent;
 			})
@@ -210,7 +210,7 @@ void FRHDTW_RemoteFile::DoDownloadFile(URH_FileSubsystem* pFileSubsystem)
 
 	ImGui::Text("Result: %s", TCHAR_TO_UTF8(*DownloadResult));
 }
-void FRHDTW_RemoteFile::DoUploadFile(URH_FileSubsystem* pFileSubsystem)
+void FRHDTW_RemoteFile::DoUploadFile(URH_RemoteFileSubsystem* pRemoteFileSubsystem)
 {
 	ImGui::InputText("(FROM) Local File Path", &UploadLocalFilePath);
 	ImGui::InputText("(TO) Remote File Name", &UploadRemoteFileName);
@@ -218,7 +218,7 @@ void FRHDTW_RemoteFile::DoUploadFile(URH_FileSubsystem* pFileSubsystem)
 	ImGui::BeginDisabled(!RemoteDirectory.IsValid() || UploadLocalFilePath.IsEmpty() || UploadRemoteFileName.IsEmpty());
 	if (ImGui::Button("Upload"))
 	{
-		pFileSubsystem->UploadFile(RemoteDirectory, UploadRemoteFileName, UploadLocalFilePath, FRH_GenericSuccessWithErrorDelegate::CreateSPLambda(this, [this](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+		pRemoteFileSubsystem->UploadFile(RemoteDirectory, UploadRemoteFileName, UploadLocalFilePath, FRH_GenericSuccessWithErrorDelegate::CreateSPLambda(this, [this](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 			{
 				UploadResult = bSuccess ? TEXT("Success") : ErrorInfo.ResponseContent;
 			})

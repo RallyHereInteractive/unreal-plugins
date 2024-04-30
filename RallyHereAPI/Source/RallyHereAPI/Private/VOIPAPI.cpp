@@ -98,12 +98,19 @@ FRequest_GetVoipActionToken::FRequest_GetVoipActionToken()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetVoipActionToken::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/session/{session_id}/player/{player_uuid}/voip/vivox:{vivox_action}"));
 	return Path;
+}
+
+FName FRequest_GetVoipActionToken::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetVoipActionToken::ComputePath() const
@@ -296,12 +303,19 @@ FRequest_GetVoipActionTokenMe::FRequest_GetVoipActionTokenMe()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetVoipActionTokenMe::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/session/{session_id}/player/me/voip/vivox:{vivox_action}"));
 	return Path;
+}
+
+FName FRequest_GetVoipActionTokenMe::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetVoipActionTokenMe::ComputePath() const
@@ -493,12 +507,19 @@ FRequest_GetVoipLoginToken::FRequest_GetVoipLoginToken()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetVoipLoginToken::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/voip/vivox:login"));
 	return Path;
+}
+
+FName FRequest_GetVoipLoginToken::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetVoipLoginToken::ComputePath() const

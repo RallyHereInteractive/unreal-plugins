@@ -7,6 +7,7 @@
 #include "imgui.h"
 #include "ImGuiModule.h"
 #include "Misc/CString.h"
+#include "Misc/CommandLine.h"
 #include "Containers/StringConv.h"
 #include "ImGuiInputHandler.h"
 

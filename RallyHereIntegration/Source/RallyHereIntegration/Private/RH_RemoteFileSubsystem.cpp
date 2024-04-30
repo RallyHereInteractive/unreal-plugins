@@ -1,29 +1,31 @@
 // Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
-#include "RH_FileSubsystem.h"
+#include "RH_RemoteFileSubsystem.h"
 
 #include "RallyHereIntegrationModule.h"
 #include "RH_Common.h"
 #include "RH_IntegrationSettings.h"
+#include "Misc/FileHelper.h"
+#include "HAL/PlatformFileManager.h"
 
 
-URH_FileSubsystem::URH_FileSubsystem(const FObjectInitializer& ObjectInitializer)
+URH_RemoteFileSubsystem::URH_RemoteFileSubsystem(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
 }
 
-void URH_FileSubsystem::Initialize()
+void URH_RemoteFileSubsystem::Initialize()
 {
 	Super::Initialize();
 }
 
-void URH_FileSubsystem::Deinitialize()
+void URH_RemoteFileSubsystem::Deinitialize()
 {
 	Super::Deinitialize();
 }
 
-void URH_FileSubsystem::UploadFile(const FRH_FileApiDirectory& Directory, const FString& RemoteFileName, const FString& LocalFilePath, const FRH_GenericSuccessWithErrorBlock Delegate)
+void URH_RemoteFileSubsystem::UploadFile(const FRH_RemoteFileApiDirectory& Directory, const FString& RemoteFileName, const FString& LocalFilePath, const FRH_GenericSuccessWithErrorBlock Delegate)
 {
 	UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] Request to upload file %s to %s::%s"), ANSI_TO_TCHAR(__FUNCTION__), *LocalFilePath, *Directory.ToDescriptionString(), *RemoteFileName);
 	typedef RallyHereAPI::Traits_CreateEntityDirectoryFile BaseType;
@@ -57,10 +59,10 @@ void URH_FileSubsystem::UploadFile(const FRH_FileApiDirectory& Directory, const 
 		GetDefault<URH_IntegrationSettings>()->FileUploadPriority
 	);
 
-	Helper->Start(RH_APIs::GetFileAPI(), Request);
+	Helper->Start(RH_APIs::GetRemoteFileAPI(), Request);
 }
 
-void URH_FileSubsystem::DeleteFile(const FRH_FileApiDirectory& Directory, const FString& RemoteFileName, const FRH_GenericSuccessWithErrorBlock Delegate)
+void URH_RemoteFileSubsystem::DeleteFile(const FRH_RemoteFileApiDirectory& Directory, const FString& RemoteFileName, const FRH_GenericSuccessWithErrorBlock Delegate)
 {
 	UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] Request to delete file %s::%s"), ANSI_TO_TCHAR(__FUNCTION__), *Directory.ToDescriptionString(), *RemoteFileName);
 	typedef RallyHereAPI::Traits_DeleteEntityDirectoryFile BaseType;
@@ -89,10 +91,10 @@ void URH_FileSubsystem::DeleteFile(const FRH_FileApiDirectory& Directory, const 
 		GetDefault<URH_IntegrationSettings>()->FileDeletePriority
 	);
 
-	Helper->Start(RH_APIs::GetFileAPI(), Request);
+	Helper->Start(RH_APIs::GetRemoteFileAPI(), Request);
 }
 
-void URH_FileSubsystem::DownloadFile(const FRH_FileApiDirectory& Directory, const FString& RemoteFileName, const FString& LocalFilePath, const FRH_GenericSuccessWithErrorBlock Delegate)
+void URH_RemoteFileSubsystem::DownloadFile(const FRH_RemoteFileApiDirectory& Directory, const FString& RemoteFileName, const FString& LocalFilePath, const FRH_GenericSuccessWithErrorBlock Delegate)
 {
 	UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] Request to download file %s::%s to %s"), ANSI_TO_TCHAR(__FUNCTION__), *Directory.ToDescriptionString(), *RemoteFileName, *LocalFilePath);
 	typedef RallyHereAPI::Traits_DownloadEntityDirectoryFile BaseType;
@@ -133,11 +135,11 @@ void URH_FileSubsystem::DownloadFile(const FRH_FileApiDirectory& Directory, cons
 		GetDefault<URH_IntegrationSettings>()->FileDownloadPriority
 	);
 
-	Helper->Start(RH_APIs::GetFileAPI(), Request);
+	Helper->Start(RH_APIs::GetRemoteFileAPI(), Request);
 }
 
 
-void URH_FileSubsystem::DownloadFile(const FRH_FileApiDirectory& Directory, const FString& RemoteFileName, const FRH_FileDownloadDelegate Delegate)
+void URH_RemoteFileSubsystem::DownloadFile(const FRH_RemoteFileApiDirectory& Directory, const FString& RemoteFileName, const FRH_FileDownloadDelegate Delegate)
 {
 	UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] Request to download file %s::%s to memory"), ANSI_TO_TCHAR(__FUNCTION__), *Directory.ToDescriptionString(), *RemoteFileName);
 	typedef RallyHereAPI::Traits_DownloadEntityDirectoryFile BaseType;
@@ -168,10 +170,10 @@ void URH_FileSubsystem::DownloadFile(const FRH_FileApiDirectory& Directory, cons
 		GetDefault<URH_IntegrationSettings>()->FileDownloadPriority
 	);
 
-	Helper->Start(RH_APIs::GetFileAPI(), Request);
+	Helper->Start(RH_APIs::GetRemoteFileAPI(), Request);
 }
 
-void URH_FileSubsystem::DownloadAllFiles(const FRH_FileApiDirectory& Directory, const FString& LocalDirectory, bool bUseCachedList, const FRH_FileDirectoryDownloadDelegateBlock Delegate)
+void URH_RemoteFileSubsystem::DownloadAllFiles(const FRH_RemoteFileApiDirectory& Directory, const FString& LocalDirectory, bool bUseCachedList, const FRH_FileDirectoryDownloadDelegateBlock Delegate)
 {
 	if (bUseCachedList)
 	{
@@ -214,7 +216,7 @@ void URH_FileSubsystem::DownloadAllFiles(const FRH_FileApiDirectory& Directory, 
 		}));
 }
 
-void URH_FileSubsystem::DownloadFileList(const FRH_FileApiDirectory& Directory, const TArray<FString>& RemoteFileNames, const FString& LocalDirectory, const FRH_FileDirectoryDownloadDelegateBlock Delegate)
+void URH_RemoteFileSubsystem::DownloadFileList(const FRH_RemoteFileApiDirectory& Directory, const TArray<FString>& RemoteFileNames, const FString& LocalDirectory, const FRH_FileDirectoryDownloadDelegateBlock Delegate)
 {
 	// trivial success case, no files to download
 	if (RemoteFileNames.IsEmpty())
@@ -246,7 +248,7 @@ void URH_FileSubsystem::DownloadFileList(const FRH_FileApiDirectory& Directory, 
 
 	// download in parallel
 	TSharedPtr<FDownloadMultiFileContext> ContextPtr = Context;
-	for (const auto File : RemoteFileNames)
+	for (const auto& File : RemoteFileNames)
 	{
 		DownloadFile(Directory, File, FPaths::Combine(LocalDirectory, File), FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [ContextPtr, File](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 			{
@@ -274,7 +276,7 @@ void URH_FileSubsystem::DownloadFileList(const FRH_FileApiDirectory& Directory, 
 	}
 }
 
-void URH_FileSubsystem::LookupFileList(const FRH_FileApiDirectory& Directory, const FRH_GenericSuccessWithErrorBlock Delegate)
+void URH_RemoteFileSubsystem::LookupFileList(const FRH_RemoteFileApiDirectory& Directory, const FRH_GenericSuccessWithErrorBlock Delegate)
 {
 	typedef RallyHereAPI::Traits_ListEntityDirectoryFiles BaseType;
 
@@ -303,5 +305,5 @@ void URH_FileSubsystem::LookupFileList(const FRH_FileApiDirectory& Directory, co
 		GetDefault<URH_IntegrationSettings>()->FileBrowsePriority
 	);
 
-	Helper->Start(RH_APIs::GetFileAPI(), Request);
+	Helper->Start(RH_APIs::GetRemoteFileAPI(), Request);
 }

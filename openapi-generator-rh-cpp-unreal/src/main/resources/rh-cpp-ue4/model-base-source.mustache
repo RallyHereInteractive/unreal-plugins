@@ -83,7 +83,7 @@ bool FResponse::ParseContent()
 	{
 		return ParseJsonTypeContent();
 	}
-	else if (ContentType.StartsWith(TEXT("text/plain")))
+	else if (ContentType.StartsWith(TEXT("text/")))
 	{
 		return ParseStringTypeContent();
 	}
@@ -123,6 +123,13 @@ bool FResponse::ParseJsonTypeContent()
 
 	TSharedPtr<FJsonValue> JsonValue;
 	const FString ContentAsString = HttpResponse->GetContentAsString();
+
+	if (ContentAsString.Len() == 0 || ContentAsString.TrimStart().Len() == 0)
+	{
+		// if the response was empty or all whitespace, do not create a json object, but return as non-error
+		return true;
+	}
+
 	auto Reader = TJsonReaderFactory<>::Create(ContentAsString);
 
 	if (!FJsonSerializer::Deserialize(Reader, JsonValue))
@@ -299,25 +306,28 @@ bool FAPI::HandleResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResp
 			return false;
 		}
 		
-		// attempt reauth for certain error codes
-		if (InOutResponse.GetHttpResponseCode() == EHttpResponseCodes::Denied 
-			|| InOutResponse.GetHttpResponseCode() == EHttpResponseCodes::Forbidden) // some consoles forcibly retry 401 errors with a modified body, which can generate 403 errors, so check those for an auth success flag
+		// attempt reauth for certain error codes if an auth context was provided
+		if (AuthContext.IsValid())
 		{
-			auto Retry = MakeShared<FRequestPendingAuthRetry>();
-			Retry->HttpRequest = HttpRequest;
-			Retry->AuthContext = AuthContext;
-			
-			// set a callback handle
-			Retry->Handle = AuthContext->OnLoginComplete().AddSP(this, &FAPI::RetryRequestAfterAuth, Retry, ResponseDelegate, RequestMetadata, Priority);
-
-			if (AuthContext->ConditionalRefreshOnFailedResponse(InOutResponse))
+			if (InOutResponse.GetHttpResponseCode() == EHttpResponseCodes::Denied 
+				|| InOutResponse.GetHttpResponseCode() == EHttpResponseCodes::Forbidden) // some consoles forcibly retry 401 errors with a modified body, which can generate 403 errors, so check those for an auth success flag
 			{
-				return true; // Don't submit the response for this request, we are going to retry it.
+				auto Retry = MakeShared<FRequestPendingAuthRetry>();
+				Retry->HttpRequest = HttpRequest;
+				Retry->AuthContext = AuthContext;
+				
+				// set a callback handle
+				Retry->Handle = AuthContext->OnLoginComplete().AddSP(this, &FAPI::RetryRequestAfterAuth, Retry, ResponseDelegate, RequestMetadata, Priority);
+
+				if (AuthContext->ConditionalRefreshOnFailedResponse(InOutResponse))
+				{
+					return true; // Don't submit the response for this request, we are going to retry it.
+				}
+				
+				// failed to conditionally refresh, so remove the handle, and return completion
+				AuthContext->OnLoginComplete().Remove(Retry->Handle);
+				return false;
 			}
-			
-			// failed to conditionally refresh, so remove the handle, and return completion
-			AuthContext->OnLoginComplete().Remove(Retry->Handle);
-			return false;
 		}
 
 		// successfully parsed content

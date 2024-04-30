@@ -64,6 +64,7 @@ struct RALLYHEREAPI_API FRequest_ProcessKeyEntitlements : public FRequest
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
 	FString ComputePath() const override;
 	FName GetSimplifiedPath() const override;
+	FName GetSimplifiedPathWithVerb() const override;
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
 	TSharedPtr<FAuthContext> AuthContext;
@@ -126,6 +127,7 @@ struct RALLYHEREAPI_API FRequest_ProcessKeyEntitlementsPlayerUuid : public FRequ
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
 	FString ComputePath() const override;
 	FName GetSimplifiedPath() const override;
+	FName GetSimplifiedPathWithVerb() const override;
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
 	TSharedPtr<FAuthContext> AuthContext;
@@ -188,6 +190,7 @@ struct RALLYHEREAPI_API FRequest_ProcessKeyEntitlementsSelf : public FRequest
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
 	FString ComputePath() const override;
 	FName GetSimplifiedPath() const override;
+	FName GetSimplifiedPathWithVerb() const override;
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
 	TSharedPtr<FAuthContext> AuthContext;
@@ -249,6 +252,7 @@ struct RALLYHEREAPI_API FRequest_ProcessPlayerUuidEntitlementsSelf : public FReq
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
 	FString ComputePath() const override;
 	FName GetSimplifiedPath() const override;
+	FName GetSimplifiedPathWithVerb() const override;
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
 	TSharedPtr<FAuthContext> AuthContext;

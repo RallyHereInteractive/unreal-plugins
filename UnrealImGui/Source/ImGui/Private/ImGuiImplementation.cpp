@@ -67,6 +67,8 @@ static FImGuiContextHandle ImGuiContextPtrHandle(ImGuiContextPtr);
 //$$ BEGIN - Support NetImGui
 #ifdef WITH_IMGUI_NETIMGUI
 #define NETIMGUI_IMPLEMENTATION
+#define NETIMGUI_WINSOCKET_ENABLED 0
+#define NETIMGUI_POSIX_SOCKETS_ENABLED 0
 #include "NetImgui_Api.h"
 #endif
 //$$ END - Support NetImGui

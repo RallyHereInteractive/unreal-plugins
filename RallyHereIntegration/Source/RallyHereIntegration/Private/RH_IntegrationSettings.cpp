@@ -57,6 +57,10 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 	PlayerMatchesMaxPageCount = 5;
 	PlayerMatchesMaxAge = FTimespan(30, 0, 0, 0);
 
+	bAutoUploadServerFiles = false;
+	bAutoUploadLogFiles = true;
+	bAutoUploadTraceFiles = true;
+
 	BeginNewAdSessionPriority = 1100000;
 	FindAdOppertunitiesPriority = 1100000;
 	UpdateAdOppertunitiesPriority = 900000;
@@ -127,9 +131,12 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 	SessionGetBySessionIdPriority = 700000;
 	SessionGetByTypePriority = 700000;
 	SessionsGetOtherPriority = 1000000;
+	SessionVoipLoginTokenPriority = 1000000;
+	SessionVoipActionTokenPriority = 1000000;
 	SettingsGetPriority = 800000;
 	SettingsGetTypesPriority = 1000000;
 	SettingsUpdatePriority = 800000;
+	SessionAuditPriority = 900000;
 	GetRegionsPriority = 700000;
 	UsersLookupPlayerPriority = 1000000;
 	UsersGetLinkedPlatformsPriority = 900000;

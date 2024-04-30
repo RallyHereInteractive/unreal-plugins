@@ -337,6 +337,15 @@ URH_PlayerInfoSubsystem* URH_SessionBrowserCache::GetPlayerInfoSubsystem() const
 	return GetGameInstanceSubsystem()->GetPlayerInfoSubsystem();
 }
 
+void URH_SessionBrowserCache::RemoveSessionById(const FString& SessionId)
+{
+	URH_SessionView* Session;
+	if (Sessions.RemoveAndCopyValue(SessionId, Session))
+	{
+		Session->Expire(FRH_OnSessionExpiredDelegate());
+	}
+}
+
 bool URH_SessionBrowserCache::GetTemplate(const FString& Type, FRHAPI_SessionTemplate& Template) const
 {
 	auto ptr = Templates.Find(Type);

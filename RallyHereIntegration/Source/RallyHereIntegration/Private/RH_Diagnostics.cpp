@@ -11,7 +11,6 @@
 #include "Misc/App.h"
 #include "Misc/FileHelper.h"
 #include "Engine/Engine.h"
-#include "Engine/World.h"
 #include "Engine/GameInstance.h"
 #include "Engine/GameViewportClient.h"
 #include "Misc/DateTime.h"
@@ -95,7 +94,7 @@ void FRH_DiagnosticReportGenerator::GenerateMetadata()
 
 	// deep copy the input custom metadata so we can alter it
 	FRHAPI_JsonObject CustomMetadata;
-	FJsonObject::Duplicate(Options.CustomMetadata.GetObject(), CustomMetadata.GetObject());
+	RHJsonUtilities::Duplicate(Options.CustomMetadata.GetObject(), CustomMetadata.GetObject());
 
 	// invoke global delegate to add more data
 	auto* Diagnostics = FRallyHereIntegrationModule::Get().GetDiagnostics();

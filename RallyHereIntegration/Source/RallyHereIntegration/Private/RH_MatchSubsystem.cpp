@@ -5,6 +5,7 @@
 
 #include "RallyHereIntegrationModule.h"
 #include "RH_Common.h"
+#include "RH_RemoteFileSubsystem.h"
 
 
 URH_MatchSubsystem::URH_MatchSubsystem(const FObjectInitializer& ObjectInitializer)
@@ -272,6 +273,7 @@ void URH_MatchSubsystem::UpdateMatchPlayer(const FString& MatchId, const FGuid& 
 #include "RH_AutomationTests.h"
 #include "RH_GameInstanceSubsystem.h"
 #include "GameMapsSettings.h"
+#include "Misc/FileHelper.h"
 
 FRHAPI_MatchPlayerRequest GenerateTestMatchPlayer()
 {
@@ -652,8 +654,8 @@ void FRH_MatchCreateSimple::Define()
 								return;
 							}
 
-							auto FileSubsystem = GISubsystem->GetFileSubsystem();
-							if (!TestNotNull(TEXT("FileSubsystem"), FileSubsystem))
+							auto RemoteFileSubsystem = GISubsystem->GetRemoteFileSubsystem();
+							if (!TestNotNull(TEXT("RemoteFileSubsystem"), RemoteFileSubsystem))
 							{
 								Done.Execute();
 								return;
@@ -670,7 +672,7 @@ void FRH_MatchCreateSimple::Define()
 							// upload the file
 							const auto RemoteFileDirectory = URH_MatchSubsystem::GetMatchFileDirectory(MatchId);
 							const auto RemoteFileName = TEXT("TestFile.txt");
-							FileSubsystem->UploadFile(RemoteFileDirectory, RemoteFileName, TempFile, 
+							RemoteFileSubsystem->UploadFile(RemoteFileDirectory, RemoteFileName, TempFile,
 								FRH_GenericSuccessWithErrorDelegate::CreateLambda([this, RemoteFileDirectory, RemoteFileName, TempFileContents, MatchId, Done](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 								{
 									if (!TestTrue(TEXT("Success"), bSuccess))
@@ -692,8 +694,8 @@ void FRH_MatchCreateSimple::Define()
 										return;
 									}
 
-									auto FileSubsystem = GISubsystem->GetFileSubsystem();
-									if (!TestNotNull(TEXT("FileSubsystem"), FileSubsystem))
+									auto RemoteFileSubsystem = GISubsystem->GetRemoteFileSubsystem();
+									if (!TestNotNull(TEXT("RemoteFileSubsystem"), RemoteFileSubsystem))
 									{
 										Done.Execute();
 										return;
@@ -702,7 +704,7 @@ void FRH_MatchCreateSimple::Define()
 									const FString DownloadMatchDir = FPaths::ProjectPersistentDownloadDir();
 									FString DestFile = DownloadMatchDir / FString::Printf(TEXT("Match_%s.txt"), *MatchId);
 
-									FileSubsystem->DownloadFile(RemoteFileDirectory, RemoteFileName, DestFile, FRH_GenericSuccessWithErrorDelegate::CreateLambda([this, DestFile, TempFileContents, Done](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+									RemoteFileSubsystem->DownloadFile(RemoteFileDirectory, RemoteFileName, DestFile, FRH_GenericSuccessWithErrorDelegate::CreateLambda([this, DestFile, TempFileContents, Done](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 										{
 											if (!TestTrue(TEXT("Success"), bSuccess))
 											{

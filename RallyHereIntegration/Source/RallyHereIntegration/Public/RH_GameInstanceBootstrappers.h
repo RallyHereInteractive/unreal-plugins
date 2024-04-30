@@ -353,6 +353,10 @@ protected:
 	virtual bool ShouldRecycleAfterCleanup() const;
 
 	/**
+	* @brief Callback for when the server is logged out (effectively, authorization to the API is lost, and was not automatically recovered)
+	*/
+	virtual void OnLoggedOut(bool bRefreshTokenExpired);
+	/**
 	* @brief Callback for when a refresh token expires
 	*/
 	virtual void OnRefreshTokenExpired(FSimpleDelegate CompleteCallback);
@@ -473,6 +477,14 @@ public:
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Session")
 	virtual URH_SessionView* GetSessionById(const FString& SessionId) const;
+	// Note - Remove calls will attempt to remove the session without attempting to leave the RH session.  To leave a session, call the LeaveSession variants
+	// uses ID as the primary key rather than the Session object because we may need to remove something that was not fully joined
+	/**
+	 * @brief Removes a cached session for the local player, this does NOT try to leave it.
+	 * @param [in] SessionId The Session Id to remove.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Session")
+	virtual void RemoveSessionById(const FString& SessionId) override;
 	/**
 	 * @brief Gets a session template by type
 	 * @param [in] Type the Type of template to get.
@@ -517,6 +529,22 @@ public:
 		return TOptional<FString>();
 	}
 
+	/**
+	* @brief Gets the directory to use for uploading files for this bootstrapper
+	*/
+	virtual bool CanAutoUploadServerFiles() const;
+	/**
+	* @brief Gets the directory to use for uploading files for this bootstrapper
+	*/
+	virtual FRH_RemoteFileApiDirectory GetAutoUploadDirectory(bool bDeveloperFile = true) const;
+	/**
+	* @brief Capture and upload log file based on settings
+	*/
+	virtual void ConditionalAutoUploadLogFile() const;
+	/**
+	* @brief Capture and upload trace file based on settings
+	*/
+	virtual void ConditionalAutoUploadTraceFile(const FString& TraceFile) const;
 protected:
 	/** The auth context for this bootstrapper */
 	FAuthContextPtr AuthContext;

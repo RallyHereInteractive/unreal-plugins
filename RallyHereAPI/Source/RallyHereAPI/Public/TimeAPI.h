@@ -46,6 +46,7 @@ struct RALLYHEREAPI_API FRequest_GetUtcTime : public FRequest
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
 	FString ComputePath() const override;
 	FName GetSimplifiedPath() const override;
+	FName GetSimplifiedPathWithVerb() const override;
 
 };
 

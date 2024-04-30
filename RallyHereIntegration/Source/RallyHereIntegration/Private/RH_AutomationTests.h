@@ -7,9 +7,12 @@
 #include "RH_Common.h"
 #include "OnlineSubsystem.h"
 #include "Misc/AutomationTest.h"
+#include "Engine/Engine.h"
 #include "Engine/World.h"
 #include "Engine/GameInstance.h"
 #include "Engine/LocalPlayer.h"
+#include "RH_GameInstanceSubsystem.h"
+#include "RH_LocalPlayerSubsystem.h"
 
 namespace RHAutomationTestUtils
 {

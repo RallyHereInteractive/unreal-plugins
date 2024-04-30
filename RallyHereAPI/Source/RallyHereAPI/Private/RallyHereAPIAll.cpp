@@ -17,7 +17,7 @@ FRallyHereAPIAll::FRallyHereAPIAll()
 	, Entitlements(MakeShareable(new FEntitlementsAPI()))
 	, Environment(MakeShareable(new FEnvironmentAPI()))
 	, Events(MakeShareable(new FEventsAPI()))
-	, File(MakeShareable(new FFileAPI()))
+	, RemoteFile(MakeShareable(new FRemoteFileAPI()))
 	, FriendsV1(MakeShareable(new FFriendsV1API()))
 	, FriendsV2(MakeShareable(new FFriendsV2API()))
 	, InstanceNotification(MakeShareable(new FInstanceNotificationAPI()))
@@ -53,7 +53,7 @@ FRallyHereAPIAll::FRallyHereAPIAll()
 	AllAPIs.Add(Entitlements);
 	AllAPIs.Add(Environment);
 	AllAPIs.Add(Events);
-	AllAPIs.Add(File);
+	AllAPIs.Add(RemoteFile);
 	AllAPIs.Add(FriendsV1);
 	AllAPIs.Add(FriendsV2);
 	AllAPIs.Add(InstanceNotification);
@@ -193,14 +193,14 @@ const TSharedRef<FEventsAPI> FRallyHereAPIAll::GetEvents() const
 	return Events;
 }
 
-TSharedRef<FFileAPI> FRallyHereAPIAll::GetFile()
+TSharedRef<FRemoteFileAPI> FRallyHereAPIAll::GetRemoteFile()
 {
-	return File;
+	return RemoteFile;
 }
 
-const TSharedRef<FFileAPI> FRallyHereAPIAll::GetFile() const
+const TSharedRef<FRemoteFileAPI> FRallyHereAPIAll::GetRemoteFile() const
 {
-	return File;
+	return RemoteFile;
 }
 
 TSharedRef<FFriendsV1API> FRallyHereAPIAll::GetFriendsV1()

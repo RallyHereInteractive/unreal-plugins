@@ -98,12 +98,19 @@ FRequest_GetAppSettingsAll::FRequest_GetAppSettingsAll()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetAppSettingsAll::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/config/v1/kv"));
 	return Path;
+}
+
+FName FRequest_GetAppSettingsAll::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetAppSettingsAll::ComputePath() const
@@ -325,12 +332,19 @@ FRequest_GetAppSettingsClient::FRequest_GetAppSettingsClient()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetAppSettingsClient::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/config/v1/app_settings/client"));
 	return Path;
+}
+
+FName FRequest_GetAppSettingsClient::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetAppSettingsClient::ComputePath() const
@@ -533,12 +547,19 @@ FRequest_GetAppSettingsServer::FRequest_GetAppSettingsServer()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetAppSettingsServer::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/config/v1/app_settings/server"));
 	return Path;
+}
+
+FName FRequest_GetAppSettingsServer::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetAppSettingsServer::ComputePath() const
@@ -764,12 +785,19 @@ FRequest_GetKvsV2::FRequest_GetKvsV2()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetKvsV2::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/config/v2/kv"));
 	return Path;
+}
+
+FName FRequest_GetKvsV2::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetKvsV2::ComputePath() const

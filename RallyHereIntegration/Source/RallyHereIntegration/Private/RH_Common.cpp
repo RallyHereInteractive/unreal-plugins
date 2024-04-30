@@ -4,6 +4,8 @@
 #include "RH_Common.h"
 #include "RH_OnlineSubsystemNames.h"
 #include "Engine/LocalPlayer.h"
+#include "Misc/App.h"
+#include "Misc/EngineVersion.h"
 #include "Misc/ConfigCacheIni.h"
 #include "RH_LocalPlayerSubsystem.h"
 
@@ -184,7 +186,7 @@ namespace RH_VersionStrings
 		return FApp::GetBuildVersion();
 	}
 	/** @brief Retrieves a version number to use for session compatibility checks, not necessarily same as build version */
-	RALLYHEREINTEGRATION_API FString GetVersionForSession()
+	FString GetVersionForSession()
 	{
 		if (OnGetVersionForSession.IsBound())
 		{

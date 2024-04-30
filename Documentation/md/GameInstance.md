@@ -123,12 +123,17 @@ Server Bootstrapper for the Game Instance.
 `public inline virtual TOptional< FString > `[`GetETagForAllSessionsPoll`](#classURH__GameInstanceServerBootstrapper_1ae10409319fa6d2264e124e65a8c9bf8e)`() const` | Gets the etag to use for a "Get all Sessions" type query.
 `public inline virtual TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetAllSessionsForPolling`](#classURH__GameInstanceServerBootstrapper_1ac2f94216aa37e0981cbb72db9e8a9f10)`() const` | Used to get all sessions, primarily for get all sessions polling where etag matches.
 `public virtual `[`URH_SessionView`](Session.md#classURH__SessionView)` * `[`GetSessionById`](#classURH__GameInstanceServerBootstrapper_1abe0dcf495d31dfbd8876d63feab05ad5)`(const FString & SessionId) const` | Gets a session by its id.
+`public virtual void `[`RemoveSessionById`](#classURH__GameInstanceServerBootstrapper_1a493191c1aab0553e34f0dcf4c05f8f22)`(const FString & SessionId)` | Removes a cached session for the local player, this does NOT try to leave it.
 `public virtual bool `[`GetTemplate`](#classURH__GameInstanceServerBootstrapper_1a62d69a1d7e7021f03557dff715e6179d)`(const FString & Type,`[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template) const` | Gets a session template by type.
 `public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classURH__GameInstanceServerBootstrapper_1aec9f89849a3865282935f12646e98255)`(const FString & SessionId) const` | Gets the platform synchronization object using the rally here session id.
 `public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classURH__GameInstanceServerBootstrapper_1a2c2d7c9b2b38fca62aba5ba8e642797b)`(const FUniqueNetIdRepl & PlatformSessionId) const` | Gets the platform synchronization object using the platform session id.
 `public inline const `[`FRH_BootstrappingResult`](GameInstance.md#structFRH__BootstrappingResult)` & `[`GetBootstrappingResult`](#classURH__GameInstanceServerBootstrapper_1aa61e1f51c28e5437d220362e652e4156)`() const` | Gets the bootstrapping result from this bootstrapper.
 `public inline virtual TOptional< FString > `[`GetBoundAllocationId`](#classURH__GameInstanceServerBootstrapper_1afc0a4f4f72556a0b713b0bf5f1442eb7)`() const` | Gets the allocation id this session owner is bound to, if any. Needed for some specific calls to ensure they are operating on the proper object regardless of our current session view.
 `public inline virtual TOptional< FString > `[`GetBoundInstanceId`](#classURH__GameInstanceServerBootstrapper_1a33402e7dd26b4a226f7615749184303b)`() const` | Gets the instance id this session owner is bound to, if any. Needed for some specific calls to ensure they are operating on the proper object regardless of our current session view.
+`public virtual bool `[`CanAutoUploadServerFiles`](#classURH__GameInstanceServerBootstrapper_1a9cfd09c543c9435af1a994d400d5c564)`() const` | Gets the directory to use for uploading files for this bootstrapper.
+`public virtual `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` `[`GetAutoUploadDirectory`](#classURH__GameInstanceServerBootstrapper_1a482bf6b82fcc70879d897f4de4fbc21b)`(bool bDeveloperFile) const` | Gets the directory to use for uploading files for this bootstrapper.
+`public virtual void `[`ConditionalAutoUploadLogFile`](#classURH__GameInstanceServerBootstrapper_1a77257d8a5d5c426286fbf301fec96171)`() const` | Capture and upload log file based on settings.
+`public virtual void `[`ConditionalAutoUploadTraceFile`](#classURH__GameInstanceServerBootstrapper_1af74b0fa8ecac1183cfd34c7c1b3f69ed)`(const FString & TraceFile) const` | Capture and upload trace file based on settings.
 `protected `[`ERH_ServerBootstrapMode`](undefined.md#group__GameInstance_1ga9dd612a2285258b977ec4c21d7a64196)` `[`BootstrapMode`](#classURH__GameInstanceServerBootstrapper_1a437398cd4da11b39dbba5624ac0d4503) | Bootstrap Mode being used
 `protected `[`ERH_ServerBootstrapFlowStep`](undefined.md#group__GameInstance_1ga70ec3ebac3b063bae8ad728c7cdd4d36)` `[`BootstrapStep`](#classURH__GameInstanceServerBootstrapper_1a0c41579ef8e737384ac8e1c82efb8d11) | Current Bootstrap Step
 `protected int32 `[`CurrentRecycleCount`](#classURH__GameInstanceServerBootstrapper_1a95d71262cc53a06cf14abb0e1c5ebd76) | The current recycle count (note that the initial boot is considered the first recycle, so this is effectively 1-based)
@@ -173,6 +178,7 @@ Server Bootstrapper for the Game Instance.
 `protected virtual void `[`CleanupAfterInstanceRemoval`](#classURH__GameInstanceServerBootstrapper_1a9aab21c5a300e982d5216e04acdbf6f4)`()` | Utility function to clean up state after an instance removal and attempt to recycle.
 `protected virtual void `[`OnCleanupSessionSyncComplete`](#classURH__GameInstanceServerBootstrapper_1a38bf567f475e12b06eb5a16883165bb6)`(`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * Session,bool bSuccess,const FString & Error)` | Completion callback for session and instance cleanup.
 `protected virtual bool `[`ShouldRecycleAfterCleanup`](#classURH__GameInstanceServerBootstrapper_1a3841facd4998b2ceb4e4f48354c2f665)`() const` | Gets whether we should recycle the state after cleanup.
+`protected virtual void `[`OnLoggedOut`](#classURH__GameInstanceServerBootstrapper_1af6d9c3758a402b830393c531822f586b)`(bool bRefreshTokenExpired)` | Callback for when the server is logged out (effectively, authorization to the API is lost, and was not automatically recovered)
 `protected virtual void `[`OnRefreshTokenExpired`](#classURH__GameInstanceServerBootstrapper_1a5c36a506ed51f8694e9ea296ab4c1822)`(FSimpleDelegate CompleteCallback)` | Callback for when a refresh token expires.
 
 #### Members
@@ -343,6 +349,14 @@ Gets a session by its id.
 The Session with the given Id.
 
 <br>
+#### `public virtual void `[`RemoveSessionById`](#classURH__GameInstanceServerBootstrapper_1a493191c1aab0553e34f0dcf4c05f8f22)`(const FString & SessionId)` <a id="classURH__GameInstanceServerBootstrapper_1a493191c1aab0553e34f0dcf4c05f8f22"></a>
+
+Removes a cached session for the local player, this does NOT try to leave it.
+
+#### Parameters
+* `SessionId` The Session Id to remove.
+
+<br>
 #### `public virtual bool `[`GetTemplate`](#classURH__GameInstanceServerBootstrapper_1a62d69a1d7e7021f03557dff715e6179d)`(const FString & Type,`[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template) const` <a id="classURH__GameInstanceServerBootstrapper_1a62d69a1d7e7021f03557dff715e6179d"></a>
 
 Gets a session template by type.
@@ -379,6 +393,26 @@ Gets the allocation id this session owner is bound to, if any. Needed for some s
 #### `public inline virtual TOptional< FString > `[`GetBoundInstanceId`](#classURH__GameInstanceServerBootstrapper_1a33402e7dd26b4a226f7615749184303b)`() const` <a id="classURH__GameInstanceServerBootstrapper_1a33402e7dd26b4a226f7615749184303b"></a>
 
 Gets the instance id this session owner is bound to, if any. Needed for some specific calls to ensure they are operating on the proper object regardless of our current session view.
+
+<br>
+#### `public virtual bool `[`CanAutoUploadServerFiles`](#classURH__GameInstanceServerBootstrapper_1a9cfd09c543c9435af1a994d400d5c564)`() const` <a id="classURH__GameInstanceServerBootstrapper_1a9cfd09c543c9435af1a994d400d5c564"></a>
+
+Gets the directory to use for uploading files for this bootstrapper.
+
+<br>
+#### `public virtual `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` `[`GetAutoUploadDirectory`](#classURH__GameInstanceServerBootstrapper_1a482bf6b82fcc70879d897f4de4fbc21b)`(bool bDeveloperFile) const` <a id="classURH__GameInstanceServerBootstrapper_1a482bf6b82fcc70879d897f4de4fbc21b"></a>
+
+Gets the directory to use for uploading files for this bootstrapper.
+
+<br>
+#### `public virtual void `[`ConditionalAutoUploadLogFile`](#classURH__GameInstanceServerBootstrapper_1a77257d8a5d5c426286fbf301fec96171)`() const` <a id="classURH__GameInstanceServerBootstrapper_1a77257d8a5d5c426286fbf301fec96171"></a>
+
+Capture and upload log file based on settings.
+
+<br>
+#### `public virtual void `[`ConditionalAutoUploadTraceFile`](#classURH__GameInstanceServerBootstrapper_1af74b0fa8ecac1183cfd34c7c1b3f69ed)`(const FString & TraceFile) const` <a id="classURH__GameInstanceServerBootstrapper_1af74b0fa8ecac1183cfd34c7c1b3f69ed"></a>
+
+Capture and upload trace file based on settings.
 
 <br>
 #### `protected `[`ERH_ServerBootstrapMode`](undefined.md#group__GameInstance_1ga9dd612a2285258b977ec4c21d7a64196)` `[`BootstrapMode`](#classURH__GameInstanceServerBootstrapper_1a437398cd4da11b39dbba5624ac0d4503) <a id="classURH__GameInstanceServerBootstrapper_1a437398cd4da11b39dbba5624ac0d4503"></a>
@@ -645,6 +679,11 @@ Completion callback for session and instance cleanup.
 Gets whether we should recycle the state after cleanup.
 
 <br>
+#### `protected virtual void `[`OnLoggedOut`](#classURH__GameInstanceServerBootstrapper_1af6d9c3758a402b830393c531822f586b)`(bool bRefreshTokenExpired)` <a id="classURH__GameInstanceServerBootstrapper_1af6d9c3758a402b830393c531822f586b"></a>
+
+Callback for when the server is logged out (effectively, authorization to the API is lost, and was not automatically recovered)
+
+<br>
 #### `protected virtual void `[`OnRefreshTokenExpired`](#classURH__GameInstanceServerBootstrapper_1a5c36a506ed51f8694e9ea296ab4c1822)`(FSimpleDelegate CompleteCallback)` <a id="classURH__GameInstanceServerBootstrapper_1a5c36a506ed51f8694e9ea296ab4c1822"></a>
 
 Callback for when a refresh token expires.
@@ -714,7 +753,7 @@ Subsystem for the Game Instance.
 `public inline `[`URH_ConfigSubsystem`](Config.md#classURH__ConfigSubsystem)` * `[`GetConfigSubsystem`](#classURH__GameInstanceSubsystem_1a7d68319809db5ea58fc8cd87eeeca7a7)`() const` | Gets the config subsystem on the instance.
 `public inline `[`URH_SettingsSubsystem`](Settings.md#classURH__SettingsSubsystem)` * `[`GetSettingsSubsystem`](#classURH__GameInstanceSubsystem_1afafed40a588921b712548ce5071bf4cb)`() const` | Gets the settings subsystem on the instance.
 `public inline `[`URH_MatchSubsystem`](Match.md#classURH__MatchSubsystem)` * `[`GetMatchSubsystem`](#classURH__GameInstanceSubsystem_1aa5048780cc5ed5836e03be9d7780706e)`() const` | Gets the match subsystem on the instance.
-`public inline `[`URH_FileSubsystem`](File.md#classURH__FileSubsystem)` * `[`GetFileSubsystem`](#classURH__GameInstanceSubsystem_1a83b23cbc8e10f6f11c3b44842cb47c18)`() const` | Gets the file subsystem on the instance.
+`public inline `[`URH_RemoteFileSubsystem`](File.md#classURH__RemoteFileSubsystem)` * `[`GetRemoteFileSubsystem`](#classURH__GameInstanceSubsystem_1aafa066f39f2a1aedeb992a2b7c52164d)`() const` | Gets the remote file subsystem on the instance.
 `public void `[`CustomEndpoint`](#classURH__GameInstanceSubsystem_1a1a8dcae5a5642315c8ba20f07aebd162)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const RallyHereAPI::FDelegate_CustomEndpointSend & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
 `public void `[`CustomEndpoint`](#classURH__GameInstanceSubsystem_1aeb1056507af99208ee7397e1b0d23112)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const FRH_CustomEndpointDelegateBlock & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
 `public inline void `[`BLUEPRINT_CustomEndpoint`](#classURH__GameInstanceSubsystem_1a42e7af944e181795ad0a71169e588e92)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const FRH_CustomEndpointDynamicDelegate & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
@@ -731,7 +770,7 @@ Subsystem for the Game Instance.
 `protected `[`URH_ConfigSubsystem`](Config.md#classURH__ConfigSubsystem)` * `[`ConfigSubsystem`](#classURH__GameInstanceSubsystem_1abe30d81653383a1aaf1a454ee67b27ce) | The Config Subsystem.
 `protected `[`URH_SettingsSubsystem`](Settings.md#classURH__SettingsSubsystem)` * `[`SettingsSubsystem`](#classURH__GameInstanceSubsystem_1a0faf95129232d8f19571e9ebdc7b13e1) | The Settings Subsystem.
 `protected `[`URH_MatchSubsystem`](Match.md#classURH__MatchSubsystem)` * `[`MatchSubsystem`](#classURH__GameInstanceSubsystem_1a3d15c09c7d7205f9e38ccc368ffaf62a) | The Match Subsystem.
-`protected `[`URH_FileSubsystem`](File.md#classURH__FileSubsystem)` * `[`FileSubsystem`](#classURH__GameInstanceSubsystem_1aee12d5be87908d3d3cba2884a2f53777) | The File Subsystem.
+`protected `[`URH_RemoteFileSubsystem`](File.md#classURH__RemoteFileSubsystem)` * `[`RemoteFileSubsystem`](#classURH__GameInstanceSubsystem_1a02dcdefba948191414723ca5a5770190) | The File Subsystem.
 `protected bool `[`bEnabled`](#classURH__GameInstanceSubsystem_1aec940d2a189827f2ffea8b8248f9be12) | If the Game Instance Subsystem is enabled.
 `protected bool `[`bEnableSessionBrowser`](#classURH__GameInstanceSubsystem_1a05992b3ee9dc7cc018f9f424069c4748) | If the Session Browser is enabled.
 `protected bool `[`bEnableMatchmakingBrowser`](#classURH__GameInstanceSubsystem_1a65744cd5c8afb2596503251f63a7cf0f) | If the Matchmaking Browser is enabled.
@@ -837,9 +876,9 @@ Gets the settings subsystem on the instance.
 Gets the match subsystem on the instance.
 
 <br>
-#### `public inline `[`URH_FileSubsystem`](File.md#classURH__FileSubsystem)` * `[`GetFileSubsystem`](#classURH__GameInstanceSubsystem_1a83b23cbc8e10f6f11c3b44842cb47c18)`() const` <a id="classURH__GameInstanceSubsystem_1a83b23cbc8e10f6f11c3b44842cb47c18"></a>
+#### `public inline `[`URH_RemoteFileSubsystem`](File.md#classURH__RemoteFileSubsystem)` * `[`GetRemoteFileSubsystem`](#classURH__GameInstanceSubsystem_1aafa066f39f2a1aedeb992a2b7c52164d)`() const` <a id="classURH__GameInstanceSubsystem_1aafa066f39f2a1aedeb992a2b7c52164d"></a>
 
-Gets the file subsystem on the instance.
+Gets the remote file subsystem on the instance.
 
 <br>
 #### `public void `[`CustomEndpoint`](#classURH__GameInstanceSubsystem_1a1a8dcae5a5642315c8ba20f07aebd162)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const RallyHereAPI::FDelegate_CustomEndpointSend & Delegate)` <a id="classURH__GameInstanceSubsystem_1a1a8dcae5a5642315c8ba20f07aebd162"></a>
@@ -937,7 +976,7 @@ The Settings Subsystem.
 The Match Subsystem.
 
 <br>
-#### `protected `[`URH_FileSubsystem`](File.md#classURH__FileSubsystem)` * `[`FileSubsystem`](#classURH__GameInstanceSubsystem_1aee12d5be87908d3d3cba2884a2f53777) <a id="classURH__GameInstanceSubsystem_1aee12d5be87908d3d3cba2884a2f53777"></a>
+#### `protected `[`URH_RemoteFileSubsystem`](File.md#classURH__RemoteFileSubsystem)` * `[`RemoteFileSubsystem`](#classURH__GameInstanceSubsystem_1a02dcdefba948191414723ca5a5770190) <a id="classURH__GameInstanceSubsystem_1a02dcdefba948191414723ca5a5770190"></a>
 
 The File Subsystem.
 
@@ -1073,6 +1112,7 @@ Whether or not this result is complete (it has valid and matching session inform
 `public FDateTime `[`JoinedTime`](#structFRH__ActiveSessionStatePlayerContext_1a07fb65fb777e549fdc612c996deaae5f) | The time the player joined the server.
 `public FDateTime `[`LeaveTime`](#structFRH__ActiveSessionStatePlayerContext_1aaf8b1f18d4879ae9dfd81b1b015429d3) | The time the player left the server.
 `public float `[`DurationSeconds`](#structFRH__ActiveSessionStatePlayerContext_1a74f68c02960a1fa413eae8f6bee28f17) | The total time the player has been connected.
+`public inline  `[`FRH_ActiveSessionStatePlayerContext`](#structFRH__ActiveSessionStatePlayerContext_1a262b126ed6edc7c0882c51d3783e9ad1)`()` | 
 
 #### Members
 
@@ -1099,5 +1139,8 @@ The time the player left the server.
 #### `public float `[`DurationSeconds`](#structFRH__ActiveSessionStatePlayerContext_1a74f68c02960a1fa413eae8f6bee28f17) <a id="structFRH__ActiveSessionStatePlayerContext_1a74f68c02960a1fa413eae8f6bee28f17"></a>
 
 The total time the player has been connected.
+
+<br>
+#### `public inline  `[`FRH_ActiveSessionStatePlayerContext`](#structFRH__ActiveSessionStatePlayerContext_1a262b126ed6edc7c0882c51d3783e9ad1)`()` <a id="structFRH__ActiveSessionStatePlayerContext_1a262b126ed6edc7c0882c51d3783e9ad1"></a>
 
 <br>

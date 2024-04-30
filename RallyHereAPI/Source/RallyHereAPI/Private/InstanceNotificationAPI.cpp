@@ -98,12 +98,19 @@ FRequest_InstanceCreateNotification::FRequest_InstanceCreateNotification()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_InstanceCreateNotification::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/notification/v1/instance/{instance_id}/notification"));
 	return Path;
+}
+
+FName FRequest_InstanceCreateNotification::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_InstanceCreateNotification::ComputePath() const
@@ -173,7 +180,7 @@ FString FResponse_InstanceCreateNotification::GetHttpResponseCodeDescription(EHt
 	case 400:
 		return TEXT(" Error Codes: - bad_id - Passed client id is not a valid id ");
 	case 403:
-		return TEXT(" Error Codes: - auth_token_format - Invalid Authorization - {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_invalid_version - Invalid Authorization - version - auth_malformed_access - Invalid Authorization - malformed access token - insufficient_permissions - Insufficient Permissions - auth_not_jwt - Invalid Authorization - auth_token_expired - Token is expired - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_token_sig_invalid - Token Signature is invalid ");
+		return TEXT(" Error Codes: - auth_token_unknown - Failed to parse token - auth_token_sig_invalid - Token Signature is invalid - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_invalid_version - Invalid Authorization - version - auth_token_expired - Token is expired - auth_token_format - Invalid Authorization - {} - insufficient_permissions - Insufficient Permissions - auth_not_jwt - Invalid Authorization - auth_token_invalid_claim - Token contained invalid claim value: {} ");
 	case 409:
 		return TEXT(" Error Codes: - too_many_listening_to_single_client - An enumeration. ");
 	case 422:
@@ -332,12 +339,19 @@ FRequest_InstanceGetNotificationById::FRequest_InstanceGetNotificationById()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_InstanceGetNotificationById::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/notification/v1/instance/{instance_id}/notification/{notification_id}"));
 	return Path;
+}
+
+FName FRequest_InstanceGetNotificationById::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_InstanceGetNotificationById::ComputePath() const
@@ -397,7 +411,7 @@ FString FResponse_InstanceGetNotificationById::GetHttpResponseCodeDescription(EH
 	case 400:
 		return TEXT(" Error Codes: - bad_id - Passed client id is not a valid id ");
 	case 403:
-		return TEXT(" Error Codes: - auth_token_format - Invalid Authorization - {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_invalid_version - Invalid Authorization - version - auth_malformed_access - Invalid Authorization - malformed access token - insufficient_permissions - Insufficient Permissions - auth_not_jwt - Invalid Authorization - auth_token_expired - Token is expired - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_token_sig_invalid - Token Signature is invalid ");
+		return TEXT(" Error Codes: - auth_token_unknown - Failed to parse token - auth_token_sig_invalid - Token Signature is invalid - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_invalid_version - Invalid Authorization - version - auth_token_expired - Token is expired - auth_token_format - Invalid Authorization - {} - insufficient_permissions - Insufficient Permissions - auth_not_jwt - Invalid Authorization - auth_token_invalid_claim - Token contained invalid claim value: {} ");
 	case 404:
 		return TEXT(" Error Codes: - resource_not_found - Notification could not be found ");
 	case 409:
@@ -568,12 +582,19 @@ FRequest_InstanceGetNotificationsPage::FRequest_InstanceGetNotificationsPage()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_InstanceGetNotificationsPage::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/notification/v1/instance/{instance_id}/notification"));
 	return Path;
+}
+
+FName FRequest_InstanceGetNotificationsPage::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_InstanceGetNotificationsPage::ComputePath() const
@@ -656,7 +677,7 @@ FString FResponse_InstanceGetNotificationsPage::GetHttpResponseCodeDescription(E
 	case 400:
 		return TEXT(" Error Codes: - bad_id - Passed client id is not a valid id ");
 	case 403:
-		return TEXT(" Error Codes: - auth_token_format - Invalid Authorization - {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_invalid_version - Invalid Authorization - version - auth_malformed_access - Invalid Authorization - malformed access token - insufficient_permissions - Insufficient Permissions - auth_not_jwt - Invalid Authorization - auth_token_expired - Token is expired - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_token_sig_invalid - Token Signature is invalid ");
+		return TEXT(" Error Codes: - auth_token_unknown - Failed to parse token - auth_token_sig_invalid - Token Signature is invalid - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_invalid_version - Invalid Authorization - version - auth_token_expired - Token is expired - auth_token_format - Invalid Authorization - {} - insufficient_permissions - Insufficient Permissions - auth_not_jwt - Invalid Authorization - auth_token_invalid_claim - Token contained invalid claim value: {} ");
 	case 409:
 		return TEXT(" Error Codes: - too_many_listening_to_single_client - An enumeration. ");
 	case 422:
@@ -815,12 +836,19 @@ FRequest_InstanceLongPollForNotifications::FRequest_InstanceLongPollForNotificat
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_InstanceLongPollForNotifications::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/notification/v1/instance/{instance_id}/stream/notification/lp"));
 	return Path;
+}
+
+FName FRequest_InstanceLongPollForNotifications::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_InstanceLongPollForNotifications::ComputePath() const
@@ -899,7 +927,7 @@ FString FResponse_InstanceLongPollForNotifications::GetHttpResponseCodeDescripti
 	case 400:
 		return TEXT(" Error Codes: - bad_id - Passed client id is not a valid id ");
 	case 403:
-		return TEXT(" Error Codes: - auth_token_format - Invalid Authorization - {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_invalid_version - Invalid Authorization - version - auth_malformed_access - Invalid Authorization - malformed access token - insufficient_permissions - Insufficient Permissions - auth_not_jwt - Invalid Authorization - auth_token_expired - Token is expired - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_token_sig_invalid - Token Signature is invalid ");
+		return TEXT(" Error Codes: - auth_token_unknown - Failed to parse token - auth_token_sig_invalid - Token Signature is invalid - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_invalid_version - Invalid Authorization - version - auth_token_expired - Token is expired - auth_token_format - Invalid Authorization - {} - insufficient_permissions - Insufficient Permissions - auth_not_jwt - Invalid Authorization - auth_token_invalid_claim - Token contained invalid claim value: {} ");
 	case 409:
 		return TEXT(" Error Codes: - too_many_listening_to_single_client - An enumeration. ");
 	case 422:

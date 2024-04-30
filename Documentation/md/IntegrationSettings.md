@@ -75,8 +75,11 @@ Main settings for the Integration.
 `public FSoftClassPath `[`SessionBrowserCacheClass`](#classURH__IntegrationSettings_1af5ecb3103ab065d38eed4634e6916817) | Extensible SessionBrowserCache class path.
 `public FSoftClassPath `[`MatchmakingBrowserCacheClass`](#classURH__IntegrationSettings_1a035a0b0d29e2ed12a2663446c60d811c) | Extensible MatchmakingBrowserCache class path.
 `public FSoftClassPath `[`MatchSubsystemClass`](#classURH__IntegrationSettings_1a2e753925aea5df2e1f47add2fa970097) | Extensible MatchSubsystem class path.
-`public FSoftClassPath `[`FileSubsystemClass`](#classURH__IntegrationSettings_1aa27b645522462f317a83eb154eaa9997) | Extensible FileSubsystem class path.
+`public FSoftClassPath `[`RemoteFileSubsystemClass`](#classURH__IntegrationSettings_1a0388ca75a831a5c4873fe07dd8b638dc) | Extensible RemoteFileSubsystem class path.
 `public bool `[`bLocalPlayerSubsystemSandboxing`](#classURH__IntegrationSettings_1a5826903f6e88cefabe7d9c2ede15e9af) | Flag to determine if the local player subsystem should use its own subsystems instead of relying on GameInstanceSubsystem shared caches.
+`public bool `[`bAutoUploadServerFiles`](#classURH__IntegrationSettings_1aad9767260d4d60a8f378c4543c03f92a) | Whether to automatically upload files to the RallyHere API from Dedicated Servers.
+`public bool `[`bAutoUploadLogFiles`](#classURH__IntegrationSettings_1a8adfac6c3249bca907a1fa051db8d0b5) | Whether to automatically upload files to the RallyHere API. Requires bAutoUploadServerFiles to have an effect.
+`public bool `[`bAutoUploadTraceFiles`](#classURH__IntegrationSettings_1ad678c18fb9996d66111ff4003326a656) | Whether to automatically upload files to the RallyHere API. Requires bAutoUploadServerFiles to have an effect.
 `public int32 `[`BeginNewAdSessionPriority`](#classURH__IntegrationSettings_1afc878742df435a86affa3c28c65da19a) | Sets the request priority of Begin New Session calls, lower number is higher priority.
 `public int32 `[`FindAdOppertunitiesPriority`](#classURH__IntegrationSettings_1a9e9a3b6b65a8ae71a7d5f7e985066f36) | Sets the request priority of Find Oppertunities calls, lower number is higher priority.
 `public int32 `[`UpdateAdOppertunitiesPriority`](#classURH__IntegrationSettings_1ab6514b00e3e6df87716cf78829c89e58) | Sets the request priority of Update Oppertunities calls, lower number is higher priority.
@@ -147,10 +150,13 @@ Main settings for the Integration.
 `public int32 `[`SessionGetBySessionIdPriority`](#classURH__IntegrationSettings_1a252127302ea79fe762255b0353809747) | Sets the request priority of Session By Session Id calls, lower number is higher priority.
 `public int32 `[`SessionGetByTypePriority`](#classURH__IntegrationSettings_1af20dfabda6e113f75816401bdaca2614) | Sets the request priority of Session By Type calls, lower number is higher priority.
 `public int32 `[`SessionsGetOtherPriority`](#classURH__IntegrationSettings_1a0504cbc9cd9338b377189d62daa790b9) | Sets the request priority of Get Other Sessions calls, lower number is higher priority.
+`public int32 `[`SessionVoipLoginTokenPriority`](#classURH__IntegrationSettings_1a15bcfe5af29a0d3ed84558a83758b556) | Sets the request priority of VOIP Login calls, lower number is higher priority.
+`public int32 `[`SessionVoipActionTokenPriority`](#classURH__IntegrationSettings_1a18de480c41ae3e6929bacd7f043ffec3) | Sets the request priority of VOIP Action calls, lower number is higher priority.
 `public int32 `[`SettingsGetPriority`](#classURH__IntegrationSettings_1ab3de492d46aeb771fc964cc02a00f048) | Sets the request priority of Get Settings calls, lower number is higher priority.
 `public int32 `[`SettingsGetTypesPriority`](#classURH__IntegrationSettings_1a96483b01899977de1c9c929e83ef0c71) | Sets the request priority of Get Settings Types calls, lower number is higher priority.
 `public int32 `[`SettingsUpdatePriority`](#classURH__IntegrationSettings_1aab7ca97767260ad27f6ab2ed2f991f35) | Sets the request priority of Update Settings calls, lower number is higher priority.
 `public int32 `[`GetRegionsPriority`](#classURH__IntegrationSettings_1a97dde13b1e0bbc874333d9fa1d6dbec1) | Sets the request priority of Get Site Settings calls, lower number is higher priority.
+`public int32 `[`SessionAuditPriority`](#classURH__IntegrationSettings_1a8ab95aae271aa91d8406be63d5cd1bfb) | Sets the request priority of Session Audit calls, lower number is higher priority.
 `public int32 `[`UsersLookupPlayerPriority`](#classURH__IntegrationSettings_1a17589c62d53386508f41321e98bbfeeb) | Sets the request priority of Lookup Users calls, lower number is higher priority.
 `public int32 `[`UsersGetLinkedPlatformsPriority`](#classURH__IntegrationSettings_1a99b0ffa18f2f78923fdd46d4499588e1) | Sets the request priority of Get Linked Platforms calls, lower number is higher priority.
 `public int32 `[`EventsReceiveEventPriority`](#classURH__IntegrationSettings_1a47f81afe37f5fd5d8b49a8c5d5101e08) | Sets the request priority of ReceiveEvent, which is the GETS endpoint, lower number is higher priority.
@@ -445,14 +451,29 @@ Extensible MatchmakingBrowserCache class path.
 Extensible MatchSubsystem class path.
 
 <br>
-#### `public FSoftClassPath `[`FileSubsystemClass`](#classURH__IntegrationSettings_1aa27b645522462f317a83eb154eaa9997) <a id="classURH__IntegrationSettings_1aa27b645522462f317a83eb154eaa9997"></a>
+#### `public FSoftClassPath `[`RemoteFileSubsystemClass`](#classURH__IntegrationSettings_1a0388ca75a831a5c4873fe07dd8b638dc) <a id="classURH__IntegrationSettings_1a0388ca75a831a5c4873fe07dd8b638dc"></a>
 
-Extensible FileSubsystem class path.
+Extensible RemoteFileSubsystem class path.
 
 <br>
 #### `public bool `[`bLocalPlayerSubsystemSandboxing`](#classURH__IntegrationSettings_1a5826903f6e88cefabe7d9c2ede15e9af) <a id="classURH__IntegrationSettings_1a5826903f6e88cefabe7d9c2ede15e9af"></a>
 
 Flag to determine if the local player subsystem should use its own subsystems instead of relying on GameInstanceSubsystem shared caches.
+
+<br>
+#### `public bool `[`bAutoUploadServerFiles`](#classURH__IntegrationSettings_1aad9767260d4d60a8f378c4543c03f92a) <a id="classURH__IntegrationSettings_1aad9767260d4d60a8f378c4543c03f92a"></a>
+
+Whether to automatically upload files to the RallyHere API from Dedicated Servers.
+
+<br>
+#### `public bool `[`bAutoUploadLogFiles`](#classURH__IntegrationSettings_1a8adfac6c3249bca907a1fa051db8d0b5) <a id="classURH__IntegrationSettings_1a8adfac6c3249bca907a1fa051db8d0b5"></a>
+
+Whether to automatically upload files to the RallyHere API. Requires bAutoUploadServerFiles to have an effect.
+
+<br>
+#### `public bool `[`bAutoUploadTraceFiles`](#classURH__IntegrationSettings_1ad678c18fb9996d66111ff4003326a656) <a id="classURH__IntegrationSettings_1ad678c18fb9996d66111ff4003326a656"></a>
+
+Whether to automatically upload files to the RallyHere API. Requires bAutoUploadServerFiles to have an effect.
 
 <br>
 #### `public int32 `[`BeginNewAdSessionPriority`](#classURH__IntegrationSettings_1afc878742df435a86affa3c28c65da19a) <a id="classURH__IntegrationSettings_1afc878742df435a86affa3c28c65da19a"></a>
@@ -805,6 +826,16 @@ Sets the request priority of Session By Type calls, lower number is higher prior
 Sets the request priority of Get Other Sessions calls, lower number is higher priority.
 
 <br>
+#### `public int32 `[`SessionVoipLoginTokenPriority`](#classURH__IntegrationSettings_1a15bcfe5af29a0d3ed84558a83758b556) <a id="classURH__IntegrationSettings_1a15bcfe5af29a0d3ed84558a83758b556"></a>
+
+Sets the request priority of VOIP Login calls, lower number is higher priority.
+
+<br>
+#### `public int32 `[`SessionVoipActionTokenPriority`](#classURH__IntegrationSettings_1a18de480c41ae3e6929bacd7f043ffec3) <a id="classURH__IntegrationSettings_1a18de480c41ae3e6929bacd7f043ffec3"></a>
+
+Sets the request priority of VOIP Action calls, lower number is higher priority.
+
+<br>
 #### `public int32 `[`SettingsGetPriority`](#classURH__IntegrationSettings_1ab3de492d46aeb771fc964cc02a00f048) <a id="classURH__IntegrationSettings_1ab3de492d46aeb771fc964cc02a00f048"></a>
 
 Sets the request priority of Get Settings calls, lower number is higher priority.
@@ -823,6 +854,11 @@ Sets the request priority of Update Settings calls, lower number is higher prior
 #### `public int32 `[`GetRegionsPriority`](#classURH__IntegrationSettings_1a97dde13b1e0bbc874333d9fa1d6dbec1) <a id="classURH__IntegrationSettings_1a97dde13b1e0bbc874333d9fa1d6dbec1"></a>
 
 Sets the request priority of Get Site Settings calls, lower number is higher priority.
+
+<br>
+#### `public int32 `[`SessionAuditPriority`](#classURH__IntegrationSettings_1a8ab95aae271aa91d8406be63d5cd1bfb) <a id="classURH__IntegrationSettings_1a8ab95aae271aa91d8406be63d5cd1bfb"></a>
+
+Sets the request priority of Session Audit calls, lower number is higher priority.
 
 <br>
 #### `public int32 `[`UsersLookupPlayerPriority`](#classURH__IntegrationSettings_1a17589c62d53386508f41321e98bbfeeb) <a id="classURH__IntegrationSettings_1a17589c62d53386508f41321e98bbfeeb"></a>

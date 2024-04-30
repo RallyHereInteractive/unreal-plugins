@@ -451,7 +451,7 @@ protected:
 		LoginType::Request Request;
 		Request.SetShouldRetry();
 		Request.AuthContext = AuthContext;
-		Request.LoginRequestV1.SetIncludeRefresh(true);
+		Request.LoginRequestV1.SetIncludeRefresh(false);
 		Request.LoginRequestV1.SetAcceptEula(true);
 		Request.LoginRequestV1.SetAcceptTos(true);
 		Request.LoginRequestV1.SetAcceptPrivacyPolicy(true);
@@ -473,7 +473,7 @@ protected:
 		LoginType::Request Request;
 		Request.SetShouldRetry();
 		Request.AuthContext = AuthContext;
-		Request.LoginRequestV1.SetIncludeRefresh(true);
+		Request.LoginRequestV1.SetIncludeRefresh(false);
 		Request.LoginRequestV1.SetAcceptEula(true);
 		Request.LoginRequestV1.SetAcceptTos(true);
 		Request.LoginRequestV1.SetAcceptPrivacyPolicy(true);

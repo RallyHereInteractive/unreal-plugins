@@ -6,9 +6,10 @@
 #include "RH_GameInstanceSessionSubsystem.h"
 #include "RH_LocalPlayerSubsystem.h"
 #include "RH_LocalPlayerSessionSubsystem.h"
+#include "RH_RemoteFileSubsystem.h"
+#include "RH_MatchSubsystem.h"
 #include "RH_Events.h"
 #include "RH_PlayerInfoSubsystem.h"
-#include "RH_CatalogSubsystem.h"
 #include "RallyHereIntegrationModule.h"
 #include "RH_Diagnostics.h"
 #include "RH_Integration.h"
@@ -18,15 +19,20 @@
 #include "Engine/LocalPlayer.h"
 #include "Misc/CoreDelegates.h"
 #include "Misc/CommandLine.h"
-
+#include "HAL/PlatformOutputDevices.h"
 #include "RH_SessionHelpers.h"
 #include "RH_BootstrappingHelpers.h"
 
 #include "OnlineSubsystemUtils.h"
 #include "HttpManager.h"
+#include "TimerManager.h"
 #include "GameFramework/GameModeBase.h"
 #include <IPAddress.h>
 #include "Interfaces/IPv4/IPv4Address.h"
+
+#if UE_TRACE_ENABLED
+#include "ProfilingDebugging/TraceAuxiliary.h"
+#endif
 
 #include "RH_GameHostProviderGHA.h"
 
@@ -143,6 +149,17 @@ void URH_GameInstanceServerBootstrapper::Initialize()
 
 	SetTerminationSignalHandler();
 
+#if UE_TRACE_ENABLED
+	FTraceAuxiliary::OnTraceStopped.AddWeakLambda(this, [this](FTraceAuxiliary::EConnectionType TraceType, const FString& TraceDestination)
+		{
+			if (TraceType == FTraceAuxiliary::EConnectionType::File)
+			{
+				// upload the trace file
+				ConditionalAutoUploadTraceFile(TraceDestination);
+			};
+		});
+#endif
+
 	UpdateBootstrapStep(ERH_ServerBootstrapFlowStep::Unstarted);
 
 	// start login to API as a server
@@ -162,6 +179,8 @@ void URH_GameInstanceServerBootstrapper::Initialize()
 		// create our auth context
 		{
 			AuthContext = MakeShared<RallyHereAPI::FAuthContext>(RH_APIs::GetAPIs().GetAuth());
+			AuthContext->OnLogout().AddUObject(this, &URH_GameInstanceServerBootstrapper::OnLoggedOut);
+			AuthContext->SetRefreshTokenExpiredDelegate(RallyHereAPI::FAuthContextLoginRefreshTokenExpired::CreateUObject(this, &URH_GameInstanceServerBootstrapper::OnRefreshTokenExpired));
 			GetGameInstanceSubsystem()->SetAuthContext(AuthContext);
 		}
 
@@ -412,6 +431,9 @@ void URH_GameInstanceServerBootstrapper::OnBootstrappingFailed(const FString& Er
 	{
 		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Server bootstrapping failed - bootstrap error is fatal"), ANSI_TO_TCHAR(__FUNCTION__));
 
+		// make sure log file request is completed before flushing
+		ConditionalAutoUploadLogFile();
+
 		// attempt to fully flush HTTP system before we shut down
 		// flush requests to ensure we do not have any pending requests
 		auto HttpRequester = RallyHereAPI::FRallyHereAPIHttpRequester::Get();
@@ -575,6 +597,13 @@ void URH_GameInstanceServerBootstrapper::Recycle()
 
 	// dispose of the previous game host adapter
 	GameHostProvider.Reset();
+
+	// if a match is marked as active in the match subsystem, clear it out so that we do not write any data to it on initialization
+	auto MatchSubsystem = GetGameInstanceSubsystem()->GetMatchSubsystem();
+	if (MatchSubsystem != nullptr && MatchSubsystem->HasActiveMatchId())
+	{
+		MatchSubsystem->SetActiveMatchId(TEXT(""));
+	}
 
 	// we have already logged in, restart registration
 	BeginRegistration();
@@ -1074,6 +1103,9 @@ void URH_GameInstanceServerBootstrapper::CleanupAfterInstanceRemoval()
 {
 	auto* SessionSubsystem = GetGameInstanceSubsystem()->GetSessionSubsystem();
 
+	// Last chance to auto upload log as the upload directory information may be lost when we unsync the session
+	ConditionalAutoUploadLogFile();
+
 	if (SessionSubsystem != nullptr && RHSession != nullptr)
 	{
 		UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] - Session no longer exists, cleaning up"), ANSI_TO_TCHAR(__FUNCTION__))
@@ -1171,6 +1203,11 @@ bool URH_GameInstanceServerBootstrapper::ShouldRecycleAfterCleanup() const
 	return !RallyHere::TermSignalHandler::IsSoftStopRequested() && CurrentRecycleCount < MaxRecycleCount;
 }
 
+void URH_GameInstanceServerBootstrapper::OnLoggedOut(bool bRefreshTokenExpired)
+{
+	UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] - Lost authorization to API"), ANSI_TO_TCHAR(__FUNCTION__));
+}
+
 void URH_GameInstanceServerBootstrapper::OnRefreshTokenExpired(FSimpleDelegate CompletionCallback)
 {
 	UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
@@ -1219,6 +1256,7 @@ void URH_GameInstanceServerBootstrapper::OnRefreshTokenExpired(FSimpleDelegate C
 				}
 			}));
 
+	Helper->Start();
 }
 
 void URH_GameInstanceServerBootstrapper::Tick(float DeltaTime)
@@ -1307,6 +1345,15 @@ URH_SessionView* URH_GameInstanceServerBootstrapper::GetSessionById(const FStrin
 		return RHSession;
 	}
 	return nullptr;
+}
+
+void URH_GameInstanceServerBootstrapper::RemoveSessionById(const FString& SessionId)
+{
+	if (RHSession != nullptr && RHSession->GetSessionId() == SessionId)
+	{
+		// generally not valid for something to remove our session, trigger cleanup if something tried to remove it
+		CleanupAfterInstanceRemoval();
+	}
 }
 
 bool URH_GameInstanceServerBootstrapper::GetTemplate(const FString& Type, FRHAPI_SessionTemplate& Template) const
@@ -1443,6 +1490,75 @@ void URH_GameInstanceServerBootstrapper::ReconcileAPITemplates(const TArray<FStr
 	AllTemplatesETag = ETag;
 }
 
+bool URH_GameInstanceServerBootstrapper::CanAutoUploadServerFiles() const
+{
+	static bool bCommandlineParsed;
+	static TOptional<bool> bCommandlineFlag;
+	if (!bCommandlineParsed)
+	{
+		bCommandlineParsed = true;
+		if (FParse::Param(FCommandLine::Get(), TEXT("rh.noautouploadserverfiles")))
+		{
+			bCommandlineFlag = false;
+		}
+		else if (FParse::Param(FCommandLine::Get(), TEXT("rh.autouploadserverfiles")))
+		{
+			bCommandlineFlag = true;
+		}
+	}
+	if (bCommandlineFlag.IsSet())
+	{
+		return bCommandlineFlag.GetValue();
+	}
+
+	const auto Settings = GetDefault<URH_IntegrationSettings>();
+	return Settings->bAutoUploadServerFiles;
+}
+
+FRH_RemoteFileApiDirectory URH_GameInstanceServerBootstrapper::GetAutoUploadDirectory(bool bDeveloperFile) const
+{
+	auto GISS = GetGameInstanceSubsystem();
+	if (GISS != nullptr && GISS->GetMatchSubsystem() != nullptr)
+	{
+		if (bDeveloperFile)
+		{
+			return GISS->GetMatchSubsystem()->GetMatchDeveloperFileDirectory(GISS->GetMatchSubsystem()->GetActiveMatchId());
+		}
+		return GISS->GetMatchSubsystem()->GetMatchFileDirectory(GISS->GetMatchSubsystem()->GetActiveMatchId());
+	}
+	return FRH_RemoteFileApiDirectory();
+}
+void URH_GameInstanceServerBootstrapper::ConditionalAutoUploadLogFile() const
+{
+	const auto Settings = GetDefault<URH_IntegrationSettings>();
+	if (CanAutoUploadServerFiles() && Settings->bAutoUploadLogFiles)
+	{
+		auto Directory = GetAutoUploadDirectory();
+		auto GISS = GetGameInstanceSubsystem();
+		if (GISS != nullptr && GISS->GetRemoteFileSubsystem() != nullptr && Directory.IsValid())
+		{
+			const FString LogSrcAbsolute = FPlatformOutputDevices::GetAbsoluteLogFilename();
+			FString LogFilename = FPaths::GetCleanFilename(LogSrcAbsolute);
+
+			return GISS->GetRemoteFileSubsystem()->UploadFile(Directory, LogFilename, LogSrcAbsolute);
+		}
+	}
+}
+void URH_GameInstanceServerBootstrapper::ConditionalAutoUploadTraceFile(const FString& TraceFile) const
+{
+	const auto Settings = GetDefault<URH_IntegrationSettings>();
+	if (CanAutoUploadServerFiles() && Settings->bAutoUploadTraceFiles)
+	{
+		auto Directory = GetAutoUploadDirectory();
+		auto GISS = GetGameInstanceSubsystem();
+		if (GISS != nullptr && GISS->GetRemoteFileSubsystem() != nullptr && Directory.IsValid())
+		{
+			FString LogFilename = FPaths::GetCleanFilename(TraceFile);
+
+			return GISS->GetRemoteFileSubsystem()->UploadFile(Directory, LogFilename, TraceFile);
+		}
+	}
+}
 
 //==================================================================
 
@@ -1558,3 +1674,5 @@ void URH_GameInstanceClientBootstrapper::CreateOfflineSession()
 		}
 	}
 }
+
+

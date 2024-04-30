@@ -98,12 +98,19 @@ FRequest_GetPlayerPresencePublicById::FRequest_GetPlayerPresencePublicById()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerPresencePublicById::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/presence/v1/player/id/{player_id}/presence"));
 	return Path;
+}
+
+FName FRequest_GetPlayerPresencePublicById::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerPresencePublicById::ComputePath() const
@@ -346,12 +353,19 @@ FRequest_GetPlayerPresencePublicByUuid::FRequest_GetPlayerPresencePublicByUuid()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerPresencePublicByUuid::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/presence/v1/player/uuid/{player_uuid}/presence"));
 	return Path;
+}
+
+FName FRequest_GetPlayerPresencePublicByUuid::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerPresencePublicByUuid::ComputePath() const
@@ -594,12 +608,19 @@ FRequest_GetPlayerPresenceSelf::FRequest_GetPlayerPresenceSelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerPresenceSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/presence/v1/player/me/presence"));
 	return Path;
+}
+
+FName FRequest_GetPlayerPresenceSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerPresenceSelf::ComputePath() const
@@ -819,12 +840,19 @@ FRequest_GetPresenceSettings::FRequest_GetPresenceSettings()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPresenceSettings::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/presence/v1/settings"));
 	return Path;
+}
+
+FName FRequest_GetPresenceSettings::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPresenceSettings::ComputePath() const
@@ -966,12 +994,19 @@ FRequest_UpdatePlayerPresenceSelf::FRequest_UpdatePlayerPresenceSelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_UpdatePlayerPresenceSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/presence/v1/player/me/presence"));
 	return Path;
+}
+
+FName FRequest_UpdatePlayerPresenceSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("PATCH %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_UpdatePlayerPresenceSelf::ComputePath() const

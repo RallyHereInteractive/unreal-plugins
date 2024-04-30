@@ -18,6 +18,6 @@ struct FRHDTW_Players : public FRH_DebugToolWindow
 
 	virtual void Do() override;
 
-	TArray<ANSICHAR> PlayerUuidInput;
-	TArray<ANSICHAR> PlayerNameInput;
+	FString PlayerUuidInput;
+	FString PlayerNameInput;
 };

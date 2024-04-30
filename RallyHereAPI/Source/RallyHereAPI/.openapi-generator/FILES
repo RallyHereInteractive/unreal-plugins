@@ -66,7 +66,6 @@ Private/EventParamsSchemaResponse.cpp
 Private/EventsAPI.cpp
 Private/ExternalKeyEntitlement.cpp
 Private/FastapicommonPlatformsPortal.cpp
-Private/FileAPI.cpp
 Private/FileListResponse.cpp
 Private/FileResponse.cpp
 Private/FileType.cpp
@@ -285,6 +284,7 @@ Private/RankedTeam.cpp
 Private/Region.cpp
 Private/RegionsAPI.cpp
 Private/RegionsResponse.cpp
+Private/RemoteFileAPI.cpp
 Private/ReportReason.cpp
 Private/ReportsAPI.cpp
 Private/Restriction.cpp
@@ -409,7 +409,6 @@ Public/EventParamsSchemaResponse.h
 Public/EventsAPI.h
 Public/ExternalKeyEntitlement.h
 Public/FastapicommonPlatformsPortal.h
-Public/FileAPI.h
 Public/FileListResponse.h
 Public/FileResponse.h
 Public/FileType.h
@@ -628,6 +627,7 @@ Public/RankedTeam.h
 Public/Region.h
 Public/RegionsAPI.h
 Public/RegionsResponse.h
+Public/RemoteFileAPI.h
 Public/ReportReason.h
 Public/ReportsAPI.h
 Public/Restriction.h

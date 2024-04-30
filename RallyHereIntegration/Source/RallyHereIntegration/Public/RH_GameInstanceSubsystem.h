@@ -24,7 +24,7 @@ class URH_CatalogSubsystem;
 class URH_ConfigSubsystem;
 class URH_SettingsSubsystem;
 class URH_MatchSubsystem;
-class URH_FileSubsystem;
+class URH_RemoteFileSubsystem;
 
 /** @defgroup GameInstance RallyHere Game Instance
  *  @{
@@ -121,10 +121,10 @@ public:
 	UFUNCTION(BlueprintGetter, Category = "Match")
 	inline URH_MatchSubsystem* GetMatchSubsystem() const { return MatchSubsystem; };
 	/**
-	* @brief Gets the file subsystem on the instance.
+	* @brief Gets the remote file subsystem on the instance.
 	*/
 	UFUNCTION(BlueprintGetter, Category = "File")
-	inline URH_FileSubsystem* GetFileSubsystem() const { return FileSubsystem; };
+	inline URH_RemoteFileSubsystem* GetRemoteFileSubsystem() const { return RemoteFileSubsystem; };
 
 	/**
 	* @brief Gets if server boostrapping is enabled, by inspecting state of default object before game instance is initialized, once it is initialized use the above
@@ -225,8 +225,8 @@ protected:
 	UPROPERTY(VisibleInstanceOnly, BlueprintGetter = GetMatchSubsystem, Category = "Match")
 	URH_MatchSubsystem* MatchSubsystem;
 	/** @brief The File Subsystem */
-	UPROPERTY(VisibleInstanceOnly, BlueprintGetter = GetFileSubsystem, Category = "Match")
-	URH_FileSubsystem* FileSubsystem;
+	UPROPERTY(VisibleInstanceOnly, BlueprintGetter = GetRemoteFileSubsystem, Category = "Match")
+	URH_RemoteFileSubsystem* RemoteFileSubsystem;
 
 	// control flags
 	/** @brief If the Game Instance Subsystem is enabled. */

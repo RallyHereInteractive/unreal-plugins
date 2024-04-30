@@ -267,15 +267,29 @@ public:
 	/** @brief Extensible MatchSubsystem class path */
 	UPROPERTY(EditAnywhere, Config, Category = "Subsystem Classes")
 	FSoftClassPath MatchSubsystemClass;
-	/** @brief Extensible FileSubsystem class path */
+	/** @brief Extensible RemoteFileSubsystem class path */
 	UPROPERTY(EditAnywhere, Config, Category = "Subsystem Classes")
-	FSoftClassPath FileSubsystemClass;
+	FSoftClassPath RemoteFileSubsystemClass;
 
 	/** @brief Flag to determine if the local player subsystem should use its own subsystems instead of relying on GameInstanceSubsystem shared caches. */
 	UPROPERTY(EditAnywhere, Config, Category = "Subsystem Classes")
 	bool bLocalPlayerSubsystemSandboxing;
 
 	static bool ShouldUseLocalPlayerSandboxing();
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// Automatic File Uploads
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/** @brief Whether to automatically upload files to the RallyHere API from Dedicated Servers */
+	UPROPERTY(EditAnywhere, Config, Category = "File Uploads")
+	bool bAutoUploadServerFiles;
+	/** @brief Whether to automatically upload files to the RallyHere API.  Requires bAutoUploadServerFiles to have an effect */
+	UPROPERTY(EditAnywhere, Config, Category = "File Uploads", meta=(EditCondition= bAutoUploadServerFiles))
+	bool bAutoUploadLogFiles;
+	/** @brief Whether to automatically upload files to the RallyHere API.  Requires bAutoUploadServerFiles to have an effect */
+	UPROPERTY(EditAnywhere, Config, Category = "File Uploads", meta = (EditCondition = bAutoUploadServerFiles))
+	bool bAutoUploadTraceFiles;
+
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// API Priorities
@@ -490,6 +504,12 @@ public:
 	/** @brief Sets the request priority of Get Other Sessions calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Session API Priority", AdvancedDisplay)
 	int32 SessionsGetOtherPriority;
+	/** @brief Sets the request priority of VOIP Login calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Session API Priority", AdvancedDisplay)
+	int32 SessionVoipLoginTokenPriority;
+	/** @brief Sets the request priority of VOIP Action calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Session API Priority", AdvancedDisplay)
+	int32 SessionVoipActionTokenPriority;
 	/** @brief Sets the request priority of Get Settings calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Settings API Priority", AdvancedDisplay)
 	int32 SettingsGetPriority;
@@ -502,6 +522,9 @@ public:
 	/** @brief Sets the request priority of Get Site Settings calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Session API Priority", AdvancedDisplay)
 	int32 GetRegionsPriority;
+	/** @brief Sets the request priority of Session Audit calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Session API Priority", AdvancedDisplay)
+	int32 SessionAuditPriority;
 	/** @brief Sets the request priority of Lookup Users calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Users API Priority", AdvancedDisplay)
 	int32 UsersLookupPlayerPriority;

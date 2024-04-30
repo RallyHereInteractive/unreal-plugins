@@ -89,6 +89,7 @@ struct RALLYHEREAPI_API FRequest_AddFriendV2 : public FRequest
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
 	FString ComputePath() const override;
 	FName GetSimplifiedPath() const override;
+	FName GetSimplifiedPathWithVerb() const override;
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
 	TSharedPtr<FAuthContext> AuthContext;
@@ -170,6 +171,7 @@ struct RALLYHEREAPI_API FRequest_AddNotesV2 : public FRequest
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
 	FString ComputePath() const override;
 	FName GetSimplifiedPath() const override;
+	FName GetSimplifiedPathWithVerb() const override;
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
 	TSharedPtr<FAuthContext> AuthContext;
@@ -250,6 +252,7 @@ struct RALLYHEREAPI_API FRequest_DeleteFriendV2 : public FRequest
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
 	FString ComputePath() const override;
 	FName GetSimplifiedPath() const override;
+	FName GetSimplifiedPathWithVerb() const override;
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
 	TSharedPtr<FAuthContext> AuthContext;
@@ -327,6 +330,7 @@ struct RALLYHEREAPI_API FRequest_DeleteFriendsV2 : public FRequest
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
 	FString ComputePath() const override;
 	FName GetSimplifiedPath() const override;
+	FName GetSimplifiedPathWithVerb() const override;
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
 	TSharedPtr<FAuthContext> AuthContext;
@@ -395,6 +399,7 @@ struct RALLYHEREAPI_API FRequest_DeleteNotesV2 : public FRequest
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
 	FString ComputePath() const override;
 	FName GetSimplifiedPath() const override;
+	FName GetSimplifiedPathWithVerb() const override;
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
 	TSharedPtr<FAuthContext> AuthContext;
@@ -467,6 +472,7 @@ struct RALLYHEREAPI_API FRequest_GetFriendRelationshipV2 : public FRequest
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
 	FString ComputePath() const override;
 	FName GetSimplifiedPath() const override;
+	FName GetSimplifiedPathWithVerb() const override;
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
 	TSharedPtr<FAuthContext> AuthContext;
@@ -547,6 +553,7 @@ struct RALLYHEREAPI_API FRequest_GetFriendsListForPlayerV2 : public FRequest
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
 	FString ComputePath() const override;
 	FName GetSimplifiedPath() const override;
+	FName GetSimplifiedPathWithVerb() const override;
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
 	TSharedPtr<FAuthContext> AuthContext;

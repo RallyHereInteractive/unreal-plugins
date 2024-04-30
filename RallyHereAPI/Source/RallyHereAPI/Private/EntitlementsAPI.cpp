@@ -98,12 +98,19 @@ FRequest_GenerateEntitlementEvent::FRequest_GenerateEntitlementEvent()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GenerateEntitlementEvent::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/entitlement-event"));
 	return Path;
+}
+
+FName FRequest_GenerateEntitlementEvent::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GenerateEntitlementEvent::ComputePath() const
@@ -315,12 +322,19 @@ FRequest_GetEntitlementEvents::FRequest_GetEntitlementEvents()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetEntitlementEvents::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/entitlement-event"));
 	return Path;
+}
+
+FName FRequest_GetEntitlementEvents::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetEntitlementEvents::ComputePath() const
@@ -513,12 +527,19 @@ FRequest_ProcessPlatformEntitlementForMe::FRequest_ProcessPlatformEntitlementFor
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_ProcessPlatformEntitlementForMe::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v2/player/me/entitlement"));
 	return Path;
+}
+
+FName FRequest_ProcessPlatformEntitlementForMe::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_ProcessPlatformEntitlementForMe::ComputePath() const
@@ -706,12 +727,19 @@ FRequest_ProcessPlatformEntitlementsByPlayerUuid::FRequest_ProcessPlatformEntitl
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_ProcessPlatformEntitlementsByPlayerUuid::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v2/player/{player_uuid}/entitlement"));
 	return Path;
+}
+
+FName FRequest_ProcessPlatformEntitlementsByPlayerUuid::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_ProcessPlatformEntitlementsByPlayerUuid::ComputePath() const
@@ -904,12 +932,19 @@ FRequest_RetrieveEntitlementRequestByPlayerUuid::FRequest_RetrieveEntitlementReq
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_RetrieveEntitlementRequestByPlayerUuid::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v2/player/{player_uuid}/entitlement/request/{request_id}"));
 	return Path;
+}
+
+FName FRequest_RetrieveEntitlementRequestByPlayerUuid::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_RetrieveEntitlementRequestByPlayerUuid::ComputePath() const
@@ -1092,12 +1127,19 @@ FRequest_RetrieveEntitlementRequestForMe::FRequest_RetrieveEntitlementRequestFor
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_RetrieveEntitlementRequestForMe::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v2/player/me/entitlement/request/{request_id}"));
 	return Path;
+}
+
+FName FRequest_RetrieveEntitlementRequestForMe::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_RetrieveEntitlementRequestForMe::ComputePath() const

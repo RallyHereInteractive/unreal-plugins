@@ -98,12 +98,19 @@ FRequest_CreatePlatformUserById::FRequest_CreatePlatformUserById()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_CreatePlatformUserById::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/platform-user"));
 	return Path;
+}
+
+FName FRequest_CreatePlatformUserById::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_CreatePlatformUserById::ComputePath() const
@@ -303,12 +310,19 @@ FRequest_DequeueMeForPurge::FRequest_DequeueMeForPurge()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_DequeueMeForPurge::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/person/me/purge"));
 	return Path;
+}
+
+FName FRequest_DequeueMeForPurge::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("DELETE %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_DequeueMeForPurge::ComputePath() const
@@ -475,12 +489,19 @@ FRequest_DequeuePersonForPurge::FRequest_DequeuePersonForPurge()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_DequeuePersonForPurge::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/person/{person_id}/purge"));
 	return Path;
+}
+
+FName FRequest_DequeuePersonForPurge::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("DELETE %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_DequeuePersonForPurge::ComputePath() const
@@ -664,12 +685,19 @@ FRequest_DisableCrossProgression::FRequest_DisableCrossProgression()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_DisableCrossProgression::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/cross-progression/disable"));
 	return Path;
+}
+
+FName FRequest_DisableCrossProgression::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_DisableCrossProgression::ComputePath() const
@@ -824,12 +852,19 @@ FRequest_EnableCrossProgression::FRequest_EnableCrossProgression()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_EnableCrossProgression::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/cross-progression/enable"));
 	return Path;
+}
+
+FName FRequest_EnableCrossProgression::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_EnableCrossProgression::ComputePath() const
@@ -984,12 +1019,19 @@ FRequest_FindPlatformUserById::FRequest_FindPlatformUserById()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_FindPlatformUserById::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/platform-user"));
 	return Path;
+}
+
+FName FRequest_FindPlatformUserById::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_FindPlatformUserById::ComputePath() const
@@ -1184,12 +1226,19 @@ FRequest_GetAllRoles::FRequest_GetAllRoles()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetAllRoles::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/role"));
 	return Path;
+}
+
+FName FRequest_GetAllRoles::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetAllRoles::ComputePath() const
@@ -1366,12 +1415,19 @@ FRequest_GetPerson::FRequest_GetPerson()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPerson::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/person/{person_id}/info"));
 	return Path;
+}
+
+FName FRequest_GetPerson::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPerson::ComputePath() const
@@ -1565,12 +1621,19 @@ FRequest_GetPersonEmailList::FRequest_GetPersonEmailList()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPersonEmailList::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/person/{person_id}/email/list"));
 	return Path;
+}
+
+FName FRequest_GetPersonEmailList::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPersonEmailList::ComputePath() const
@@ -1764,12 +1827,19 @@ FRequest_GetPersonEmailListForSelf::FRequest_GetPersonEmailListForSelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPersonEmailListForSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/person/me/email/list"));
 	return Path;
+}
+
+FName FRequest_GetPersonEmailListForSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPersonEmailListForSelf::ComputePath() const
@@ -1946,12 +2016,19 @@ FRequest_GetPersonForSelf::FRequest_GetPersonForSelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPersonForSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/person/me/info"));
 	return Path;
+}
+
+FName FRequest_GetPersonForSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPersonForSelf::ComputePath() const
@@ -2128,12 +2205,19 @@ FRequest_GetPlayerIdFromPlayerUuid::FRequest_GetPlayerIdFromPlayerUuid()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerIdFromPlayerUuid::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v2/player/{player_uuid}/id"));
 	return Path;
+}
+
+FName FRequest_GetPlayerIdFromPlayerUuid::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerIdFromPlayerUuid::ComputePath() const
@@ -2189,16 +2273,12 @@ FString FResponse_GetPlayerIdFromPlayerUuid::GetHttpResponseCodeDescription(EHtt
 	{
 	case 200:
 		return TEXT("Successful Response");
-	case 400:
-		return TEXT("Bad Request");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
 		return TEXT("Not Found");
 	case 422:
 		return TEXT("Validation Error");
-	case 500:
-		return TEXT("Internal Server Error");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -2214,7 +2294,7 @@ bool FResponse_GetPlayerIdFromPlayerUuid::TryGetContentFor200(FRHAPI_PlayerIdWra
 	return false;
 }
 
-bool FResponse_GetPlayerIdFromPlayerUuid::TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPlayerIdFromPlayerUuid::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -2224,17 +2304,7 @@ bool FResponse_GetPlayerIdFromPlayerUuid::TryGetContentFor400(FRHAPI_MessageOnly
 	return false;
 }
 
-bool FResponse_GetPlayerIdFromPlayerUuid::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
-{
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
-	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
-	}
-	return false;
-}
-
-bool FResponse_GetPlayerIdFromPlayerUuid::TryGetContentFor404(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPlayerIdFromPlayerUuid::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -2245,16 +2315,6 @@ bool FResponse_GetPlayerIdFromPlayerUuid::TryGetContentFor404(FRHAPI_MessageOnly
 }
 
 bool FResponse_GetPlayerIdFromPlayerUuid::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
-{
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
-	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
-	}
-	return false;
-}
-
-bool FResponse_GetPlayerIdFromPlayerUuid::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -2351,12 +2411,19 @@ FRequest_GetPlayerIdFromPlayerUuidForSelf::FRequest_GetPlayerIdFromPlayerUuidFor
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerIdFromPlayerUuidForSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v2/player/me/id"));
 	return Path;
+}
+
+FName FRequest_GetPlayerIdFromPlayerUuidForSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerIdFromPlayerUuidForSelf::ComputePath() const
@@ -2407,14 +2474,10 @@ FString FResponse_GetPlayerIdFromPlayerUuidForSelf::GetHttpResponseCodeDescripti
 	{
 	case 200:
 		return TEXT("Successful Response");
-	case 400:
-		return TEXT("Bad Request");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
 		return TEXT("Not Found");
-	case 500:
-		return TEXT("Internal Server Error");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -2430,7 +2493,7 @@ bool FResponse_GetPlayerIdFromPlayerUuidForSelf::TryGetContentFor200(FRHAPI_Play
 	return false;
 }
 
-bool FResponse_GetPlayerIdFromPlayerUuidForSelf::TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPlayerIdFromPlayerUuidForSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -2440,27 +2503,7 @@ bool FResponse_GetPlayerIdFromPlayerUuidForSelf::TryGetContentFor400(FRHAPI_Mess
 	return false;
 }
 
-bool FResponse_GetPlayerIdFromPlayerUuidForSelf::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
-{
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
-	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
-	}
-	return false;
-}
-
-bool FResponse_GetPlayerIdFromPlayerUuidForSelf::TryGetContentFor404(FRHAPI_MessageOnly& OutContent) const
-{
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
-	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
-	}
-	return false;
-}
-
-bool FResponse_GetPlayerIdFromPlayerUuidForSelf::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPlayerIdFromPlayerUuidForSelf::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -2557,12 +2600,19 @@ FRequest_GetPlayerLinkedPortals::FRequest_GetPlayerLinkedPortals()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerLinkedPortals::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/player/{player_id}/linked_portals"));
 	return Path;
+}
+
+FName FRequest_GetPlayerLinkedPortals::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerLinkedPortals::ComputePath() const
@@ -2618,14 +2668,12 @@ FString FResponse_GetPlayerLinkedPortals::GetHttpResponseCodeDescription(EHttpRe
 	{
 	case 200:
 		return TEXT("Successful Response");
-	case 400:
-		return TEXT("Bad Request");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 404:
+		return TEXT("Not Found");
 	case 422:
 		return TEXT("Validation Error");
-	case 500:
-		return TEXT("Internal Server Error");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -2641,7 +2689,7 @@ bool FResponse_GetPlayerLinkedPortals::TryGetContentFor200(FRHAPI_PlayerLinkedPo
 	return false;
 }
 
-bool FResponse_GetPlayerLinkedPortals::TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPlayerLinkedPortals::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -2651,7 +2699,7 @@ bool FResponse_GetPlayerLinkedPortals::TryGetContentFor400(FRHAPI_MessageOnly& O
 	return false;
 }
 
-bool FResponse_GetPlayerLinkedPortals::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPlayerLinkedPortals::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -2662,16 +2710,6 @@ bool FResponse_GetPlayerLinkedPortals::TryGetContentFor403(FRHAPI_MessageOnly& O
 }
 
 bool FResponse_GetPlayerLinkedPortals::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
-{
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
-	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
-	}
-	return false;
-}
-
-bool FResponse_GetPlayerLinkedPortals::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -2768,12 +2806,19 @@ FRequest_GetPlayerLinks::FRequest_GetPlayerLinks()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerLinks::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v2/player/{player_uuid}/links"));
 	return Path;
+}
+
+FName FRequest_GetPlayerLinks::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerLinks::ComputePath() const
@@ -2829,14 +2874,12 @@ FString FResponse_GetPlayerLinks::GetHttpResponseCodeDescription(EHttpResponseCo
 	{
 	case 200:
 		return TEXT("Successful Response");
-	case 400:
-		return TEXT("Bad Request");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 404:
+		return TEXT("Not Found");
 	case 422:
 		return TEXT("Validation Error");
-	case 500:
-		return TEXT("Internal Server Error");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -2852,7 +2895,7 @@ bool FResponse_GetPlayerLinks::TryGetContentFor200(FRHAPI_PlayerLinkedPortalsRes
 	return false;
 }
 
-bool FResponse_GetPlayerLinks::TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPlayerLinks::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -2862,7 +2905,7 @@ bool FResponse_GetPlayerLinks::TryGetContentFor400(FRHAPI_MessageOnly& OutConten
 	return false;
 }
 
-bool FResponse_GetPlayerLinks::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPlayerLinks::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -2873,16 +2916,6 @@ bool FResponse_GetPlayerLinks::TryGetContentFor403(FRHAPI_MessageOnly& OutConten
 }
 
 bool FResponse_GetPlayerLinks::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
-{
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
-	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
-	}
-	return false;
-}
-
-bool FResponse_GetPlayerLinks::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -2979,12 +3012,19 @@ FRequest_GetPlayerLinksForSelf::FRequest_GetPlayerLinksForSelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerLinksForSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v2/player/me/links"));
 	return Path;
+}
+
+FName FRequest_GetPlayerLinksForSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerLinksForSelf::ComputePath() const
@@ -3035,12 +3075,10 @@ FString FResponse_GetPlayerLinksForSelf::GetHttpResponseCodeDescription(EHttpRes
 	{
 	case 200:
 		return TEXT("Successful Response");
-	case 400:
-		return TEXT("Bad Request");
 	case 403:
-		return TEXT("Forbidden");
-	case 500:
-		return TEXT("Internal Server Error");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 404:
+		return TEXT("Not Found");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -3056,7 +3094,7 @@ bool FResponse_GetPlayerLinksForSelf::TryGetContentFor200(FRHAPI_PlayerLinkedPor
 	return false;
 }
 
-bool FResponse_GetPlayerLinksForSelf::TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPlayerLinksForSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -3066,17 +3104,7 @@ bool FResponse_GetPlayerLinksForSelf::TryGetContentFor400(FRHAPI_MessageOnly& Ou
 	return false;
 }
 
-bool FResponse_GetPlayerLinksForSelf::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
-{
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
-	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
-	}
-	return false;
-}
-
-bool FResponse_GetPlayerLinksForSelf::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPlayerLinksForSelf::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -3173,12 +3201,19 @@ FRequest_GetPlayerUuidFromPlayerId::FRequest_GetPlayerUuidFromPlayerId()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerUuidFromPlayerId::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/player/{player_id}/uuid"));
 	return Path;
+}
+
+FName FRequest_GetPlayerUuidFromPlayerId::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerUuidFromPlayerId::ComputePath() const
@@ -3234,14 +3269,12 @@ FString FResponse_GetPlayerUuidFromPlayerId::GetHttpResponseCodeDescription(EHtt
 	{
 	case 200:
 		return TEXT("Successful Response");
-	case 400:
-		return TEXT("Bad Request");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 404:
+		return TEXT("Not Found");
 	case 422:
 		return TEXT("Validation Error");
-	case 500:
-		return TEXT("Internal Server Error");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -3257,7 +3290,7 @@ bool FResponse_GetPlayerUuidFromPlayerId::TryGetContentFor200(FGuid& OutContent)
 	return false;
 }
 
-bool FResponse_GetPlayerUuidFromPlayerId::TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPlayerUuidFromPlayerId::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -3267,7 +3300,7 @@ bool FResponse_GetPlayerUuidFromPlayerId::TryGetContentFor400(FRHAPI_MessageOnly
 	return false;
 }
 
-bool FResponse_GetPlayerUuidFromPlayerId::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPlayerUuidFromPlayerId::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -3278,16 +3311,6 @@ bool FResponse_GetPlayerUuidFromPlayerId::TryGetContentFor403(FRHAPI_MessageOnly
 }
 
 bool FResponse_GetPlayerUuidFromPlayerId::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
-{
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
-	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
-	}
-	return false;
-}
-
-bool FResponse_GetPlayerUuidFromPlayerId::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -3384,12 +3407,19 @@ FRequest_GetPlayerUuidFromPlayerIdForSelf::FRequest_GetPlayerUuidFromPlayerIdFor
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerUuidFromPlayerIdForSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/player/me/uuid"));
 	return Path;
+}
+
+FName FRequest_GetPlayerUuidFromPlayerIdForSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerUuidFromPlayerIdForSelf::ComputePath() const
@@ -3440,12 +3470,10 @@ FString FResponse_GetPlayerUuidFromPlayerIdForSelf::GetHttpResponseCodeDescripti
 	{
 	case 200:
 		return TEXT("Successful Response");
-	case 400:
-		return TEXT("Bad Request");
 	case 403:
-		return TEXT("Forbidden");
-	case 500:
-		return TEXT("Internal Server Error");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 404:
+		return TEXT("Not Found");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -3461,7 +3489,7 @@ bool FResponse_GetPlayerUuidFromPlayerIdForSelf::TryGetContentFor200(FGuid& OutC
 	return false;
 }
 
-bool FResponse_GetPlayerUuidFromPlayerIdForSelf::TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPlayerUuidFromPlayerIdForSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -3471,17 +3499,7 @@ bool FResponse_GetPlayerUuidFromPlayerIdForSelf::TryGetContentFor400(FRHAPI_Mess
 	return false;
 }
 
-bool FResponse_GetPlayerUuidFromPlayerIdForSelf::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
-{
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
-	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
-	}
-	return false;
-}
-
-bool FResponse_GetPlayerUuidFromPlayerIdForSelf::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPlayerUuidFromPlayerIdForSelf::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -3578,12 +3596,19 @@ FRequest_GetPlayerUuidFromPlayerIdForSelfV2::FRequest_GetPlayerUuidFromPlayerIdF
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerUuidFromPlayerIdForSelfV2::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v2/player/me/uuid"));
 	return Path;
+}
+
+FName FRequest_GetPlayerUuidFromPlayerIdForSelfV2::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerUuidFromPlayerIdForSelfV2::ComputePath() const
@@ -3634,12 +3659,10 @@ FString FResponse_GetPlayerUuidFromPlayerIdForSelfV2::GetHttpResponseCodeDescrip
 	{
 	case 200:
 		return TEXT("Successful Response");
-	case 400:
-		return TEXT("Bad Request");
 	case 403:
-		return TEXT("Forbidden");
-	case 500:
-		return TEXT("Internal Server Error");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 404:
+		return TEXT("Not Found");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -3655,7 +3678,7 @@ bool FResponse_GetPlayerUuidFromPlayerIdForSelfV2::TryGetContentFor200(FRHAPI_Pl
 	return false;
 }
 
-bool FResponse_GetPlayerUuidFromPlayerIdForSelfV2::TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPlayerUuidFromPlayerIdForSelfV2::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -3665,17 +3688,7 @@ bool FResponse_GetPlayerUuidFromPlayerIdForSelfV2::TryGetContentFor400(FRHAPI_Me
 	return false;
 }
 
-bool FResponse_GetPlayerUuidFromPlayerIdForSelfV2::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
-{
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
-	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
-	}
-	return false;
-}
-
-bool FResponse_GetPlayerUuidFromPlayerIdForSelfV2::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPlayerUuidFromPlayerIdForSelfV2::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -3772,12 +3785,19 @@ FRequest_GetPlayerUuidFromPlayerIdV2::FRequest_GetPlayerUuidFromPlayerIdV2()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayerUuidFromPlayerIdV2::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v2/player/{player_id}/uuid"));
 	return Path;
+}
+
+FName FRequest_GetPlayerUuidFromPlayerIdV2::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayerUuidFromPlayerIdV2::ComputePath() const
@@ -3833,14 +3853,12 @@ FString FResponse_GetPlayerUuidFromPlayerIdV2::GetHttpResponseCodeDescription(EH
 	{
 	case 200:
 		return TEXT("Successful Response");
-	case 400:
-		return TEXT("Bad Request");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 404:
+		return TEXT("Not Found");
 	case 422:
 		return TEXT("Validation Error");
-	case 500:
-		return TEXT("Internal Server Error");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -3856,7 +3874,7 @@ bool FResponse_GetPlayerUuidFromPlayerIdV2::TryGetContentFor200(FRHAPI_PlayerUui
 	return false;
 }
 
-bool FResponse_GetPlayerUuidFromPlayerIdV2::TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPlayerUuidFromPlayerIdV2::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -3866,7 +3884,7 @@ bool FResponse_GetPlayerUuidFromPlayerIdV2::TryGetContentFor400(FRHAPI_MessageOn
 	return false;
 }
 
-bool FResponse_GetPlayerUuidFromPlayerIdV2::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPlayerUuidFromPlayerIdV2::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -3877,16 +3895,6 @@ bool FResponse_GetPlayerUuidFromPlayerIdV2::TryGetContentFor403(FRHAPI_MessageOn
 }
 
 bool FResponse_GetPlayerUuidFromPlayerIdV2::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
-{
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
-	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
-	}
-	return false;
-}
-
-bool FResponse_GetPlayerUuidFromPlayerIdV2::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -3983,12 +3991,19 @@ FRequest_GetPlayersPaged::FRequest_GetPlayersPaged()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetPlayersPaged::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v2/player:iterate"));
 	return Path;
+}
+
+FName FRequest_GetPlayersPaged::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetPlayersPaged::ComputePath() const
@@ -4201,12 +4216,19 @@ FRequest_GetQueuePurgeStatusForMe::FRequest_GetQueuePurgeStatusForMe()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetQueuePurgeStatusForMe::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/person/me/purge"));
 	return Path;
+}
+
+FName FRequest_GetQueuePurgeStatusForMe::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetQueuePurgeStatusForMe::ComputePath() const
@@ -4395,12 +4417,19 @@ FRequest_GetQueuePurgeStatusForPerson::FRequest_GetQueuePurgeStatusForPerson()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetQueuePurgeStatusForPerson::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/person/{person_id}/purge"));
 	return Path;
+}
+
+FName FRequest_GetQueuePurgeStatusForPerson::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetQueuePurgeStatusForPerson::ComputePath() const
@@ -4606,12 +4635,19 @@ FRequest_Link::FRequest_Link()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_Link::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/link"));
 	return Path;
+}
+
+FName FRequest_Link::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_Link::ComputePath() const
@@ -4789,12 +4825,19 @@ FRequest_LookupPlayerByPortal::FRequest_LookupPlayerByPortal()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_LookupPlayerByPortal::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/player"));
 	return Path;
+}
+
+FName FRequest_LookupPlayerByPortal::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_LookupPlayerByPortal::ComputePath() const
@@ -4865,10 +4908,8 @@ FString FResponse_LookupPlayerByPortal::GetHttpResponseCodeDescription(EHttpResp
 	{
 	case 200:
 		return TEXT("Successful Response");
-	case 400:
-		return TEXT("Bad Request");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 422:
 		return TEXT("Validation Error");
 	}
@@ -4886,17 +4927,7 @@ bool FResponse_LookupPlayerByPortal::TryGetContentFor200(FRHAPI_LookupResults& O
 	return false;
 }
 
-bool FResponse_LookupPlayerByPortal::TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const
-{
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
-	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
-	}
-	return false;
-}
-
-bool FResponse_LookupPlayerByPortal::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_LookupPlayerByPortal::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -5003,12 +5034,19 @@ FRequest_QueueMeForPurge::FRequest_QueueMeForPurge()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_QueueMeForPurge::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/person/me/purge"));
 	return Path;
+}
+
+FName FRequest_QueueMeForPurge::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_QueueMeForPurge::ComputePath() const
@@ -5220,12 +5258,19 @@ FRequest_QueuePersonForPurge::FRequest_QueuePersonForPurge()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_QueuePersonForPurge::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/person/{person_id}/purge"));
 	return Path;
+}
+
+FName FRequest_QueuePersonForPurge::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_QueuePersonForPurge::ComputePath() const
@@ -5430,12 +5475,19 @@ FRequest_Unlink::FRequest_Unlink()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_Unlink::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/unlink"));
 	return Path;
+}
+
+FName FRequest_Unlink::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_Unlink::ComputePath() const
@@ -5590,12 +5642,19 @@ FRequest_UpdatePerson::FRequest_UpdatePerson()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_UpdatePerson::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/person/{person_id}/info"));
 	return Path;
+}
+
+FName FRequest_UpdatePerson::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_UpdatePerson::ComputePath() const
@@ -5800,12 +5859,19 @@ FRequest_UpdatePersonEmailList::FRequest_UpdatePersonEmailList()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_UpdatePersonEmailList::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/person/{person_id}/email/list"));
 	return Path;
+}
+
+FName FRequest_UpdatePersonEmailList::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_UpdatePersonEmailList::ComputePath() const
@@ -6010,12 +6076,19 @@ FRequest_UpdatePersonEmailListForSelf::FRequest_UpdatePersonEmailListForSelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_UpdatePersonEmailListForSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/person/me/email/list"));
 	return Path;
+}
+
+FName FRequest_UpdatePersonEmailListForSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_UpdatePersonEmailListForSelf::ComputePath() const
@@ -6215,12 +6288,19 @@ FRequest_UpdatePersonForSelf::FRequest_UpdatePersonForSelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_UpdatePersonForSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/person/me/info"));
 	return Path;
+}
+
+FName FRequest_UpdatePersonForSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_UpdatePersonForSelf::ComputePath() const
@@ -6420,12 +6500,19 @@ FRequest_UpsertContact::FRequest_UpsertContact()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_UpsertContact::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/users/v1/sendinblue/contact"));
 	return Path;
+}
+
+FName FRequest_UpsertContact::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_UpsertContact::ComputePath() const

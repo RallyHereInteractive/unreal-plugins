@@ -8,6 +8,8 @@
 #include "Utilities/WorldContext.h"
 #include "Utilities/WorldContextIndex.h"
 
+#include "Engine/GameViewportClient.h"
+
 #if WITH_EDITOR
 #include "ImGuiImplementation.h"
 #include "Editor/ImGuiEditor.h"

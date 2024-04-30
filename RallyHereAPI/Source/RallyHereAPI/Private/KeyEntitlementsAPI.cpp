@@ -98,12 +98,19 @@ FRequest_ProcessKeyEntitlements::FRequest_ProcessKeyEntitlements()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_ProcessKeyEntitlements::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/player/{player_id}/portal/{portal_id}/processKeyEntitlements"));
 	return Path;
+}
+
+FName FRequest_ProcessKeyEntitlements::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_ProcessKeyEntitlements::ComputePath() const
@@ -298,12 +305,19 @@ FRequest_ProcessKeyEntitlementsPlayerUuid::FRequest_ProcessKeyEntitlementsPlayer
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_ProcessKeyEntitlementsPlayerUuid::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v2/player/{player_uuid}/portal/{portal_id}/processKeyEntitlements"));
 	return Path;
+}
+
+FName FRequest_ProcessKeyEntitlementsPlayerUuid::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_ProcessKeyEntitlementsPlayerUuid::ComputePath() const
@@ -498,12 +512,19 @@ FRequest_ProcessKeyEntitlementsSelf::FRequest_ProcessKeyEntitlementsSelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_ProcessKeyEntitlementsSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v1/player/me/portal/{portal_id}/processKeyEntitlements"));
 	return Path;
+}
+
+FName FRequest_ProcessKeyEntitlementsSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_ProcessKeyEntitlementsSelf::ComputePath() const
@@ -697,12 +718,19 @@ FRequest_ProcessPlayerUuidEntitlementsSelf::FRequest_ProcessPlayerUuidEntitlemen
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_ProcessPlayerUuidEntitlementsSelf::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/inventory/v2/player/me/portal/{portal_id}/processKeyEntitlements"));
 	return Path;
+}
+
+FName FRequest_ProcessPlayerUuidEntitlementsSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_ProcessPlayerUuidEntitlementsSelf::ComputePath() const

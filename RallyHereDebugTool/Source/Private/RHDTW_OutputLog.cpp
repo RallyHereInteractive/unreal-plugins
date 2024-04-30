@@ -3,6 +3,7 @@
 
 #include "RallyHereDebugToolModule.h"
 #include "RHDTW_OutputLog.h"
+#include "Engine/Engine.h"
 #include "Misc/OutputDeviceHelper.h"
 #include "Misc/CoreDelegates.h"
 #include "RallyHereDebugToolSettings.h"
@@ -417,6 +418,15 @@ void FRHDTW_OutputLog::Do()
 	if (ImGui::Button("Scroll To Bottom"))
 	{
 		RequestForceScroll();
+	}
+	
+	ImGui::SameLine();
+	bool bSendConsoleCommand = ImGui::InputText("##ConsoleInput", &ConsoleInput, ImGuiInputTextFlags_EnterReturnsTrue);
+	ImGui::SameLine();
+	if (ImGui::Button("Send") || bSendConsoleCommand)
+	{
+		GEngine->Exec(GetWorld(), *ConsoleInput);
+		ConsoleInput.Empty();
 	}
 }
 

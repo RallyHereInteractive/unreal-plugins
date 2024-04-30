@@ -26,14 +26,14 @@ F{{unrealModuleName}}All::F{{unrealModuleName}}All()
 	: DummyValue(0)
 	{{#apiInfo}}
 	{{#apis}}
-	, {{{baseName}}}(MakeShareable(new {{{classname}}}()))
+	, {{{classVarName}}}(MakeShareable(new {{{classname}}}()))
 	{{/apis}}
 	{{/apiInfo}}
 
 {
 	{{#apiInfo}}
 	{{#apis}}
-	AllAPIs.Add({{{baseName}}});
+	AllAPIs.Add({{{classVarName}}});
 	{{/apis}}
 	{{/apiInfo}}
 }
@@ -45,14 +45,14 @@ TArray<TSharedRef<FAPI>> F{{unrealModuleName}}All::GetAllAPIs() const
 {{#apiInfo}}
 {{#apis}}
 
-TSharedRef<{{{classname}}}> F{{unrealModuleName}}All::Get{{{baseName}}}()
+TSharedRef<{{{classname}}}> F{{unrealModuleName}}All::Get{{{classVarName}}}()
 {
-	return {{{baseName}}};
+	return {{{classVarName}}};
 }
 
-const TSharedRef<{{{classname}}}> F{{unrealModuleName}}All::Get{{{baseName}}}() const
+const TSharedRef<{{{classname}}}> F{{unrealModuleName}}All::Get{{{classVarName}}}() const
 {
-	return {{{baseName}}};
+	return {{{classVarName}}};
 }
 {{/apis}}
 {{/apiInfo}}

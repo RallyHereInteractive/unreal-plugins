@@ -55,6 +55,7 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
     protected Set<String> systemIncludes = new HashSet<>();
     protected Set<String> prefixedModels = new HashSet<>();
     private Map<String, String> schemaKeyToModelNameCache = new HashMap<>();
+    protected Map<String, String> apiNameMapping = new HashMap<>();
 
     public RhCppUe4Generator() {
         super();
@@ -182,6 +183,9 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
         importMapping = new HashMap<>();
         importMapping.put("TSet", "#include \"Containers/Set.h\"");
         importMapping.put("TVariant", "#include \"Misc/TVariant.h\"");
+
+        apiNameMapping = new HashMap<>();
+        apiNameMapping.put("File", "RemoteFile");
 
         namespaces = new HashMap<>();
         prefixedModels = new HashSet<>();
@@ -723,11 +727,25 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
 
     @Override
     public String toApiName(String type) {
+        if (apiNameMapping.containsKey(type)) {
+            type = apiNameMapping.get(type);
+        }
         return "F" + camelize(type) + "API";
     }
 
     @Override
+    public String toApiVarName(String name) {
+        if (apiNameMapping.containsKey(name)) {
+            name = apiNameMapping.get(name);
+        }
+        return camelize(super.toApiVarName(name));
+    }
+
+    @Override
     public String toApiFilename(String name) {
+        if (apiNameMapping.containsKey(name)) {
+            name = apiNameMapping.get(name);
+        }
         return camelize(name) + "API";
     }
 

@@ -177,12 +177,19 @@ FRequest_{{operationIdCamelCase}}::FRequest_{{operationIdCamelCase}}()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_{{operationIdCamelCase}}::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("{{{path}}}"));
 	return Path;
+}
+
+FName FRequest_{{operationIdCamelCase}}::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("{{httpMethod}} %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_{{operationIdCamelCase}}::ComputePath() const

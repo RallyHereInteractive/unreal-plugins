@@ -950,6 +950,21 @@ void URH_OfflineSession::EndInstance(const FRH_OnSessionUpdatedDelegateBlock& De
 	Delegate.ExecuteIfBound(true, this, FRH_ErrorInfo());
 }
 
+void URH_OfflineSession::GenerateVoipLoginToken(const FRH_OnSessionGetVoipTokenDelegateBlock& Delegate)
+{
+	UE_LOG(LogRHSession, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	// offline sessions do not support voip
+	Delegate.ExecuteIfBound(false, FRHAPI_VoipTokenResponse(), FRH_ErrorInfo());
+}
+void URH_OfflineSession::GenerateVoipActionToken(ERHAPI_VivoxSessionActionSingle VivoxAction, ERHAPI_VoipSessionType VoipSessionType, const FRH_OnSessionGetVoipTokenDelegateBlock& Delegate)
+{
+	UE_LOG(LogRHSession, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	// offline sessions do not support voip
+	Delegate.ExecuteIfBound(false, FRHAPI_VoipTokenResponse(), FRH_ErrorInfo());
+}
+
 void URH_OfflineSession::UpdateSessionInfo(const FRHAPI_SessionUpdate& SessionInfoUpdate, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	UE_LOG(LogRHSession, Verbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
@@ -1067,6 +1082,12 @@ void URH_OfflineSession::AcknowledgeBackfill(bool bEnable, const FRH_OnSessionUp
 {
 	UE_LOG(LogRHSession, VeryVerbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
 	Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
+}
+
+void URH_OfflineSession::EmitAuditEvent(const FRHAPI_CreateAuditRequest& AuditEvent, const FRH_GenericSuccessWithErrorBlock& Delegate) const
+{
+	UE_LOG(LogRHSession, VeryVerbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
+	Delegate.ExecuteIfBound(false, FRH_ErrorInfo());
 }
 
 // this is necessary right now as each player stores session data separately
@@ -1330,6 +1351,79 @@ void URH_OnlineSession::EndInstance(const FRH_OnSessionUpdatedDelegateBlock& Del
 	DoRequestViaHelper<RallyHereAPI::Traits_EndInstance>(GetSessionId(), GetSessionOwner(), Delegate, GetDefault<URH_IntegrationSettings>()->SessionEndInstancePriority);
 }
 
+void URH_OnlineSession::GenerateVoipLoginToken(const FRH_OnSessionGetVoipTokenDelegateBlock& Delegate)
+{
+	UE_LOG(LogRHSession, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+	
+	typedef RallyHereAPI::Traits_GetVoipLoginToken BaseType;
+	BaseType::Request Request;
+	Request.AuthContext = GetSessionOwner()->GetSessionAuthContext();
+	
+	struct FRH_VoipLoginTokenResponseContext
+	{
+		FRHAPI_VoipTokenResponse Resp;
+	};
+	auto ResponseContext = MakeShared<FRH_VoipLoginTokenResponseContext>();
+
+	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+		BaseType::Delegate::CreateLambda([ResponseContext](const BaseType::Response& Resp)
+		{
+			ResponseContext->Resp = Resp.Content;
+		}),
+		FRH_GenericSuccessWithErrorDelegate::CreateLambda([ResponseContext, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+		{
+			if (bSuccess)
+			{
+				Delegate.ExecuteIfBound(bSuccess, ResponseContext->Resp, ErrorInfo);
+			}
+			else
+			{
+				Delegate.ExecuteIfBound(false, FRHAPI_VoipTokenResponse(), ErrorInfo);
+			}
+		}),
+		GetDefault<URH_IntegrationSettings>()->SessionVoipLoginTokenPriority);
+
+	Helper->Start(RH_APIs::GetAPIs().GetVOIP(), Request);
+}
+
+void URH_OnlineSession::GenerateVoipActionToken(ERHAPI_VivoxSessionActionSingle VivoxAction, ERHAPI_VoipSessionType VoipSessionType, const FRH_OnSessionGetVoipTokenDelegateBlock& Delegate)
+{
+	UE_LOG(LogRHSession, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	typedef RallyHereAPI::Traits_GetVoipActionTokenMe BaseType;
+	BaseType::Request Request;
+	Request.AuthContext = GetSessionOwner()->GetSessionAuthContext();
+	Request.SessionId = GetSessionId();
+	Request.VivoxAction = VivoxAction;
+	Request.VoipSessionType = VoipSessionType;
+
+	struct FRH_VoipLoginTokenResponseContext
+	{
+		FRHAPI_VoipTokenResponse Resp;
+	};
+	auto ResponseContext = MakeShared<FRH_VoipLoginTokenResponseContext>();
+
+	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+		BaseType::Delegate::CreateLambda([ResponseContext](const BaseType::Response& Resp)
+			{
+				ResponseContext->Resp = Resp.Content;
+			}),
+		FRH_GenericSuccessWithErrorDelegate::CreateLambda([ResponseContext, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+			{
+				if (bSuccess)
+				{
+					Delegate.ExecuteIfBound(bSuccess, ResponseContext->Resp, ErrorInfo);
+				}
+				else
+				{
+					Delegate.ExecuteIfBound(false, FRHAPI_VoipTokenResponse(), ErrorInfo);
+				}
+			}),
+		GetDefault<URH_IntegrationSettings>()->SessionVoipActionTokenPriority);
+
+	Helper->Start(RH_APIs::GetAPIs().GetVOIP(), Request);
+}
+
 void URH_OnlineSession::UpdateSessionInfo(const FRHAPI_SessionUpdate& Update, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	typedef RallyHereAPI::Traits_UpdateSessionById BaseType;
@@ -1423,6 +1517,7 @@ void URH_OnlineSession::UpdateInstanceHealth(ERHAPI_InstanceHealthStatus HealthS
 
 void URH_OnlineSession::AcknowledgeBackfill(bool bEnable, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
+	UE_LOG(LogRHSession, VeryVerbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
 	if (bEnable)
 	{
 		typedef RallyHereAPI::Traits_AcknowledgeBackfillRequest BaseType;
@@ -1444,3 +1539,241 @@ void URH_OnlineSession::AcknowledgeBackfill(bool bEnable, const FRH_OnSessionUpd
 		Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
 	}
 }
+
+void URH_OnlineSession::EmitAuditEvent(const FRHAPI_CreateAuditRequest& AuditEvent, const FRH_GenericSuccessWithErrorBlock& Delegate) const
+{
+	UE_LOG(LogRHSession, Verbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
+	typedef RallyHereAPI::Traits_CreateSessionAudit BaseType;
+	BaseType::Request Request;
+	Request.AuthContext = GetSessionOwner()->GetSessionAuthContext();
+	Request.CreateAuditRequest = AuditEvent;
+
+	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(BaseType::Delegate(), Delegate, GetDefault<URH_IntegrationSettings>()->SessionAuditPriority);
+
+	Helper->Start(RH_APIs::GetSessionAuditAPI(), Request);
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////
+// Automation tests
+//////////////////////////////////////////////////////////////////////////////////
+
+#if WITH_DEV_AUTOMATION_TESTS
+
+#include "RH_AutomationTests.h"
+
+struct FRH_SessionTestPayload
+{
+	FRH_SessionOwnerPtr SessionOwner;
+	TWeakObjectPtr<URH_SessionView> Session;
+	TWeakObjectPtr<URH_JoinedSession> JoinedSession;
+	FString SessionType;
+	FString RegionId;
+
+	FRH_SessionTestPayload()
+	{
+		SessionOwner.Reset();
+		Session.Reset();
+		JoinedSession.Reset();
+
+		SessionType = TEXT("party");
+		RegionId = TEXT("1");
+	}
+
+	bool BeginTestBoilerplate(FAutomationTestBase* Test)
+	{
+		SessionOwner.Reset();
+		Session.Reset();
+		JoinedSession.Reset();
+
+		auto LPSubsystem = RHAutomationTestUtils::GetRHLocalPlayerSubsystem(Test);
+		if (LPSubsystem != nullptr)
+		{
+			SessionOwner = LPSubsystem->GetSessionSubsystem();
+		}
+		/*
+		if (!SessionOwner.IsValid())
+		{
+			auto GISubsystem = RHAutomationTestUtils::GetRHGameInstanceSubsystem();
+			if (GISubsystem.IsValid())
+			{
+				SessionOwner = GISubsystem->GetSessionSearchCache();
+			}
+		}
+		*/
+		if (Test->TestNotNull(TEXT("Session Owner"), SessionOwner.Get()))
+		{
+			return false;
+		}
+		if (Test->TestNotNull(TEXT("Auth Context"), SessionOwner->GetSessionAuthContext().Get()))
+		{
+			return false;
+		}
+		if (Test->TestTrue(TEXT("Logged in"), SessionOwner->GetSessionAuthContext()->IsLoggedIn()))
+		{
+			return false;
+		}
+
+		return true;
+	}
+
+	void EndTestBoilerplate(FAutomationTestBase* Test)
+	{
+		// leave the joined session
+		if (JoinedSession.IsValid())
+		{
+			JoinedSession->Leave(false);
+		}
+
+		// remove the session from the owning manager
+		if (Session.IsValid() && SessionOwner.IsValid())
+		{
+			SessionOwner->RemoveSessionById(Session->GetSessionId());
+		}
+
+		SessionOwner.Reset();
+		Session.Reset();
+		JoinedSession.Reset();
+	}
+};
+
+BEGIN_DEFINE_SPEC(FRH_SessionVoipSimple, "RHAutomation.Session.VOIP.Spec", EAutomationTestFlags::ClientContext | EAutomationTestFlags::RequiresUser | EAutomationTestFlags::ProductFilter | EAutomationTestFlags::MediumPriority)
+
+FRH_SessionTestPayload TestPayload;
+
+END_DEFINE_SPEC(FRH_SessionVoipSimple)
+
+void FRH_SessionVoipSimple::Define()
+{
+	Describe("Session VOIP", [this]()
+		{
+			BeforeEach([this]()
+				{
+					TestPayload.BeginTestBoilerplate(this);
+				});
+
+			AfterEach([this]()
+				{
+					TestPayload.EndTestBoilerplate(this);
+				});
+
+			LatentIt("should create a test session and request voip login token", [this](const FDoneDelegate& Done)
+				{					
+					FRHAPI_CreateOrJoinRequest Params = {};
+					Params.SetSessionType(TestPayload.SessionType);
+					Params.SetRegionId(TestPayload.RegionId);
+					Params.SetClientVersion(URH_JoinedSession::GetClientVersionForSession());
+
+					URH_OnlineSession::CreateOrJoinByType(Params, TestPayload.SessionOwner.GetObject(), FRH_OnSessionUpdatedDelegate::CreateLambda([this, Done](bool bSuccess, URH_SessionView* NewSession, const FRH_ErrorInfo& ErrorInfo)
+						{
+							if (!TestTrue(TEXT("CreateSession"), bSuccess))
+							{
+								Done.Execute();
+								return;
+							}
+							
+							TestPayload.Session = NewSession;
+							TestPayload.JoinedSession = Cast<URH_JoinedSession>(NewSession);
+							if (!TestNotNull(TEXT("Session"), TestPayload.Session.Get()) || !TestNotNull(TEXT("JoinedSession"), TestPayload.JoinedSession.Get()))
+							{
+								Done.Execute();
+								return;
+							}
+														
+							TestPayload.JoinedSession->GenerateVoipLoginToken(FRH_OnSessionGetVoipTokenDelegate::CreateLambda([this, Done](bool bSuccess, const FRHAPI_VoipTokenResponse& Token, const FRH_ErrorInfo& ErrorInfo)
+								{
+									if (!TestTrue(TEXT("GenerateVoipLoginToken"), bSuccess))
+									{
+										Done.Execute();
+										return;
+									}
+									if (!TestTrue(TEXT("TokenIsValid"), Token.GetToken().Len() > 0))
+									{
+										Done.Execute();
+										return;	
+									}
+
+									Done.Execute();
+								}));
+						}));
+				});
+
+			auto ChannelTypeEnum = StaticEnum<ERHAPI_VoipSessionType>();
+			for (int64 ChannelTypeEnumIndex = 0; ChannelTypeEnumIndex < ChannelTypeEnum->NumEnums(); ++ChannelTypeEnumIndex)
+			{
+				const auto ChannelType = (ERHAPI_VoipSessionType)ChannelTypeEnum->GetValueByIndex(ChannelTypeEnumIndex);
+				const auto ChannelTypeName = ChannelTypeEnum->GetNameStringByIndex(ChannelTypeEnumIndex);
+
+				// exclude the _MAX entry
+				{
+					bool bIndexIsMAXEntry = ChannelTypeEnum->ContainsExistingMax() && (ChannelTypeName.EndsWith(TEXT("_MAX"), ESearchCase::CaseSensitive));
+					if (bIndexIsMAXEntry)
+					{
+						continue;
+					}
+				}
+
+				auto ActionEnum = StaticEnum<ERHAPI_VivoxSessionActionSingle>();
+				for (int64 ActionEnumIndex = 0; ActionEnumIndex < ActionEnum->NumEnums(); ++ActionEnumIndex)
+				{
+					const auto Action = (ERHAPI_VivoxSessionActionSingle)ActionEnum->GetValueByIndex(ActionEnumIndex);
+					const auto ActionName = ActionEnum->GetNameStringByIndex(ActionEnumIndex);
+
+					// exclude the _MAX entry
+					{
+						bool bIndexIsMAXEntry = ActionEnum->ContainsExistingMax() && (ActionName.EndsWith(TEXT("_MAX"), ESearchCase::CaseSensitive));
+						if (bIndexIsMAXEntry)
+						{
+							continue;
+						}
+					}
+
+					LatentIt(FString::Printf(TEXT("should create a test session and request voip %s token for the %s channel"), *ActionName, *ChannelTypeName), [this, Action, ChannelType](const FDoneDelegate& Done)
+						{
+							FRHAPI_CreateOrJoinRequest Params = {};
+							Params.SetSessionType(TestPayload.SessionType);
+							Params.SetRegionId(TestPayload.RegionId);
+							Params.SetClientVersion(URH_JoinedSession::GetClientVersionForSession());
+
+							URH_OnlineSession::CreateOrJoinByType(Params, TestPayload.SessionOwner.GetObject(), FRH_OnSessionUpdatedDelegate::CreateLambda([this, Action, ChannelType, Done](bool bSuccess, URH_SessionView* NewSession, const FRH_ErrorInfo& ErrorInfo)
+								{
+									if (!TestTrue(TEXT("CreateSession"), bSuccess))
+									{
+										Done.Execute();
+										return;
+									}
+
+									TestPayload.Session = NewSession;
+									TestPayload.JoinedSession = Cast<URH_JoinedSession>(NewSession);
+									if (!TestNotNull(TEXT("Session"), TestPayload.Session.Get()) || !TestNotNull(TEXT("JoinedSession"), TestPayload.JoinedSession.Get()))
+									{
+										Done.Execute();
+										return;
+									}
+
+									TestPayload.JoinedSession->GenerateVoipActionToken(Action, ChannelType, FRH_OnSessionGetVoipTokenDelegate::CreateLambda([this, Done](bool bSuccess, const FRHAPI_VoipTokenResponse& Token, const FRH_ErrorInfo& ErrorInfo)
+										{
+											if (!TestTrue(TEXT("GenerateVoipLoginToken"), bSuccess))
+											{
+												Done.Execute();
+												return;
+											}
+											if (!TestTrue(TEXT("TokenIsValid"), Token.GetToken().Len() > 0))
+											{
+												Done.Execute();
+												return;
+											}
+
+											Done.Execute();
+										}));
+								}));
+						});
+				}
+			}
+		});
+}
+
+#endif
+
+
+

@@ -5,7 +5,7 @@
 // Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
-#include "FileAPI.h"
+#include "RemoteFileAPI.h"
 #include "RallyHereAPIModule.h"
 #include "RallyHereAPIAuthContext.h"
 #include "RallyHereAPIHttpRequester.h"
@@ -15,15 +15,15 @@
 namespace RallyHereAPI
 {
 
-FFileAPI::FFileAPI() : FAPI()
+FRemoteFileAPI::FRemoteFileAPI() : FAPI()
 {
 	Url = TEXT("http://localhost");
 	Name = FName(TEXT("File"));
 }
 
-FFileAPI::~FFileAPI() {}
+FRemoteFileAPI::~FRemoteFileAPI() {}
 
-FHttpRequestPtr FFileAPI::CreateEntityDirectoryFile(const FRequest_CreateEntityDirectoryFile& Request, const FDelegate_CreateEntityDirectoryFile& Delegate /*= FDelegate_CreateEntityDirectoryFile()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+FHttpRequestPtr FRemoteFileAPI::CreateEntityDirectoryFile(const FRequest_CreateEntityDirectoryFile& Request, const FDelegate_CreateEntityDirectoryFile& Delegate /*= FDelegate_CreateEntityDirectoryFile()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
 		return nullptr;
@@ -56,7 +56,7 @@ FHttpRequestPtr FFileAPI::CreateEntityDirectoryFile(const FRequest_CreateEntityD
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FFileAPI::OnCreateEntityDirectoryFileResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FRemoteFileAPI::OnCreateEntityDirectoryFileResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -68,7 +68,7 @@ FHttpRequestPtr FFileAPI::CreateEntityDirectoryFile(const FRequest_CreateEntityD
 	return RequestData->HttpRequest;
 }
 
-void FFileAPI::OnCreateEntityDirectoryFileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateEntityDirectoryFile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+void FRemoteFileAPI::OnCreateEntityDirectoryFileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateEntityDirectoryFile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
 	FHttpRequestCompleteDelegate ResponseDelegate;
 
@@ -76,7 +76,7 @@ void FFileAPI::OnCreateEntityDirectoryFileResponse(FHttpRequestPtr HttpRequest, 
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindSP(this, &FFileAPI::OnCreateEntityDirectoryFileResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FRemoteFileAPI::OnCreateEntityDirectoryFileResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_CreateEntityDirectoryFile Response{ RequestMetadata };
@@ -98,12 +98,19 @@ FRequest_CreateEntityDirectoryFile::FRequest_CreateEntityDirectoryFile()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_CreateEntityDirectoryFile::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/file/v1/{file_type}/{entity_type}/{entity_id}/{file_name}"));
 	return Path;
+}
+
+FName FRequest_CreateEntityDirectoryFile::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("PUT %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_CreateEntityDirectoryFile::ComputePath() const
@@ -213,7 +220,7 @@ FResponse_CreateEntityDirectoryFile::FResponse_CreateEntityDirectoryFile(FReques
 
 FString Traits_CreateEntityDirectoryFile::Name = TEXT("CreateEntityDirectoryFile");
 
-FHttpRequestPtr FFileAPI::DeleteEntityDirectory(const FRequest_DeleteEntityDirectory& Request, const FDelegate_DeleteEntityDirectory& Delegate /*= FDelegate_DeleteEntityDirectory()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+FHttpRequestPtr FRemoteFileAPI::DeleteEntityDirectory(const FRequest_DeleteEntityDirectory& Request, const FDelegate_DeleteEntityDirectory& Delegate /*= FDelegate_DeleteEntityDirectory()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
 		return nullptr;
@@ -246,7 +253,7 @@ FHttpRequestPtr FFileAPI::DeleteEntityDirectory(const FRequest_DeleteEntityDirec
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FFileAPI::OnDeleteEntityDirectoryResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FRemoteFileAPI::OnDeleteEntityDirectoryResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -258,7 +265,7 @@ FHttpRequestPtr FFileAPI::DeleteEntityDirectory(const FRequest_DeleteEntityDirec
 	return RequestData->HttpRequest;
 }
 
-void FFileAPI::OnDeleteEntityDirectoryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteEntityDirectory Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+void FRemoteFileAPI::OnDeleteEntityDirectoryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteEntityDirectory Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
 	FHttpRequestCompleteDelegate ResponseDelegate;
 
@@ -266,7 +273,7 @@ void FFileAPI::OnDeleteEntityDirectoryResponse(FHttpRequestPtr HttpRequest, FHtt
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindSP(this, &FFileAPI::OnDeleteEntityDirectoryResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FRemoteFileAPI::OnDeleteEntityDirectoryResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_DeleteEntityDirectory Response{ RequestMetadata };
@@ -288,12 +295,19 @@ FRequest_DeleteEntityDirectory::FRequest_DeleteEntityDirectory()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_DeleteEntityDirectory::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/file/v1/{file_type}/{entity_type}"));
 	return Path;
+}
+
+FName FRequest_DeleteEntityDirectory::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("DELETE %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_DeleteEntityDirectory::ComputePath() const
@@ -401,7 +415,7 @@ FResponse_DeleteEntityDirectory::FResponse_DeleteEntityDirectory(FRequestMetadat
 
 FString Traits_DeleteEntityDirectory::Name = TEXT("DeleteEntityDirectory");
 
-FHttpRequestPtr FFileAPI::DeleteEntityDirectoryFile(const FRequest_DeleteEntityDirectoryFile& Request, const FDelegate_DeleteEntityDirectoryFile& Delegate /*= FDelegate_DeleteEntityDirectoryFile()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+FHttpRequestPtr FRemoteFileAPI::DeleteEntityDirectoryFile(const FRequest_DeleteEntityDirectoryFile& Request, const FDelegate_DeleteEntityDirectoryFile& Delegate /*= FDelegate_DeleteEntityDirectoryFile()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
 		return nullptr;
@@ -434,7 +448,7 @@ FHttpRequestPtr FFileAPI::DeleteEntityDirectoryFile(const FRequest_DeleteEntityD
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FFileAPI::OnDeleteEntityDirectoryFileResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FRemoteFileAPI::OnDeleteEntityDirectoryFileResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -446,7 +460,7 @@ FHttpRequestPtr FFileAPI::DeleteEntityDirectoryFile(const FRequest_DeleteEntityD
 	return RequestData->HttpRequest;
 }
 
-void FFileAPI::OnDeleteEntityDirectoryFileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteEntityDirectoryFile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+void FRemoteFileAPI::OnDeleteEntityDirectoryFileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteEntityDirectoryFile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
 	FHttpRequestCompleteDelegate ResponseDelegate;
 
@@ -454,7 +468,7 @@ void FFileAPI::OnDeleteEntityDirectoryFileResponse(FHttpRequestPtr HttpRequest, 
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindSP(this, &FFileAPI::OnDeleteEntityDirectoryFileResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FRemoteFileAPI::OnDeleteEntityDirectoryFileResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_DeleteEntityDirectoryFile Response{ RequestMetadata };
@@ -476,12 +490,19 @@ FRequest_DeleteEntityDirectoryFile::FRequest_DeleteEntityDirectoryFile()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_DeleteEntityDirectoryFile::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/file/v1/{file_type}/{entity_type}/{entity_id}/{file_name}"));
 	return Path;
+}
+
+FName FRequest_DeleteEntityDirectoryFile::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("DELETE %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_DeleteEntityDirectoryFile::ComputePath() const
@@ -581,7 +602,7 @@ FResponse_DeleteEntityDirectoryFile::FResponse_DeleteEntityDirectoryFile(FReques
 
 FString Traits_DeleteEntityDirectoryFile::Name = TEXT("DeleteEntityDirectoryFile");
 
-FHttpRequestPtr FFileAPI::DownloadEntityDirectoryFile(const FRequest_DownloadEntityDirectoryFile& Request, const FDelegate_DownloadEntityDirectoryFile& Delegate /*= FDelegate_DownloadEntityDirectoryFile()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+FHttpRequestPtr FRemoteFileAPI::DownloadEntityDirectoryFile(const FRequest_DownloadEntityDirectoryFile& Request, const FDelegate_DownloadEntityDirectoryFile& Delegate /*= FDelegate_DownloadEntityDirectoryFile()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
 		return nullptr;
@@ -614,7 +635,7 @@ FHttpRequestPtr FFileAPI::DownloadEntityDirectoryFile(const FRequest_DownloadEnt
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FFileAPI::OnDownloadEntityDirectoryFileResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FRemoteFileAPI::OnDownloadEntityDirectoryFileResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -626,7 +647,7 @@ FHttpRequestPtr FFileAPI::DownloadEntityDirectoryFile(const FRequest_DownloadEnt
 	return RequestData->HttpRequest;
 }
 
-void FFileAPI::OnDownloadEntityDirectoryFileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DownloadEntityDirectoryFile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+void FRemoteFileAPI::OnDownloadEntityDirectoryFileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DownloadEntityDirectoryFile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
 	FHttpRequestCompleteDelegate ResponseDelegate;
 
@@ -634,7 +655,7 @@ void FFileAPI::OnDownloadEntityDirectoryFileResponse(FHttpRequestPtr HttpRequest
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindSP(this, &FFileAPI::OnDownloadEntityDirectoryFileResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FRemoteFileAPI::OnDownloadEntityDirectoryFileResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_DownloadEntityDirectoryFile Response{ RequestMetadata };
@@ -656,12 +677,19 @@ FRequest_DownloadEntityDirectoryFile::FRequest_DownloadEntityDirectoryFile()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_DownloadEntityDirectoryFile::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/file/v1/{file_type}/{entity_type}/{entity_id}/{file_name}"));
 	return Path;
+}
+
+FName FRequest_DownloadEntityDirectoryFile::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_DownloadEntityDirectoryFile::ComputePath() const
@@ -783,7 +811,7 @@ FResponse_DownloadEntityDirectoryFile::FResponse_DownloadEntityDirectoryFile(FRe
 
 FString Traits_DownloadEntityDirectoryFile::Name = TEXT("DownloadEntityDirectoryFile");
 
-FHttpRequestPtr FFileAPI::GetEntityDirectoryInformation(const FRequest_GetEntityDirectoryInformation& Request, const FDelegate_GetEntityDirectoryInformation& Delegate /*= FDelegate_GetEntityDirectoryInformation()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+FHttpRequestPtr FRemoteFileAPI::GetEntityDirectoryInformation(const FRequest_GetEntityDirectoryInformation& Request, const FDelegate_GetEntityDirectoryInformation& Delegate /*= FDelegate_GetEntityDirectoryInformation()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
 		return nullptr;
@@ -816,7 +844,7 @@ FHttpRequestPtr FFileAPI::GetEntityDirectoryInformation(const FRequest_GetEntity
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FFileAPI::OnGetEntityDirectoryInformationResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FRemoteFileAPI::OnGetEntityDirectoryInformationResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -828,7 +856,7 @@ FHttpRequestPtr FFileAPI::GetEntityDirectoryInformation(const FRequest_GetEntity
 	return RequestData->HttpRequest;
 }
 
-void FFileAPI::OnGetEntityDirectoryInformationResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetEntityDirectoryInformation Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+void FRemoteFileAPI::OnGetEntityDirectoryInformationResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetEntityDirectoryInformation Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
 	FHttpRequestCompleteDelegate ResponseDelegate;
 
@@ -836,7 +864,7 @@ void FFileAPI::OnGetEntityDirectoryInformationResponse(FHttpRequestPtr HttpReque
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindSP(this, &FFileAPI::OnGetEntityDirectoryInformationResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FRemoteFileAPI::OnGetEntityDirectoryInformationResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_GetEntityDirectoryInformation Response{ RequestMetadata };
@@ -858,12 +886,19 @@ FRequest_GetEntityDirectoryInformation::FRequest_GetEntityDirectoryInformation()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetEntityDirectoryInformation::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/file/v1/{file_type}/{entity_type}"));
 	return Path;
+}
+
+FName FRequest_GetEntityDirectoryInformation::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetEntityDirectoryInformation::ComputePath() const
@@ -971,7 +1006,7 @@ FResponse_GetEntityDirectoryInformation::FResponse_GetEntityDirectoryInformation
 
 FString Traits_GetEntityDirectoryInformation::Name = TEXT("GetEntityDirectoryInformation");
 
-FHttpRequestPtr FFileAPI::ListEntityDirectoryFiles(const FRequest_ListEntityDirectoryFiles& Request, const FDelegate_ListEntityDirectoryFiles& Delegate /*= FDelegate_ListEntityDirectoryFiles()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+FHttpRequestPtr FRemoteFileAPI::ListEntityDirectoryFiles(const FRequest_ListEntityDirectoryFiles& Request, const FDelegate_ListEntityDirectoryFiles& Delegate /*= FDelegate_ListEntityDirectoryFiles()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
 		return nullptr;
@@ -1004,7 +1039,7 @@ FHttpRequestPtr FFileAPI::ListEntityDirectoryFiles(const FRequest_ListEntityDire
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FFileAPI::OnListEntityDirectoryFilesResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FRemoteFileAPI::OnListEntityDirectoryFilesResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -1016,7 +1051,7 @@ FHttpRequestPtr FFileAPI::ListEntityDirectoryFiles(const FRequest_ListEntityDire
 	return RequestData->HttpRequest;
 }
 
-void FFileAPI::OnListEntityDirectoryFilesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ListEntityDirectoryFiles Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+void FRemoteFileAPI::OnListEntityDirectoryFilesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ListEntityDirectoryFiles Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
 	FHttpRequestCompleteDelegate ResponseDelegate;
 
@@ -1024,7 +1059,7 @@ void FFileAPI::OnListEntityDirectoryFilesResponse(FHttpRequestPtr HttpRequest, F
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindSP(this, &FFileAPI::OnListEntityDirectoryFilesResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FRemoteFileAPI::OnListEntityDirectoryFilesResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	FResponse_ListEntityDirectoryFiles Response{ RequestMetadata };
@@ -1046,12 +1081,19 @@ FRequest_ListEntityDirectoryFiles::FRequest_ListEntityDirectoryFiles()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_ListEntityDirectoryFiles::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/file/v1/{file_type}/{entity_type}/{entity_id}"));
 	return Path;
+}
+
+FName FRequest_ListEntityDirectoryFiles::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_ListEntityDirectoryFiles::ComputePath() const

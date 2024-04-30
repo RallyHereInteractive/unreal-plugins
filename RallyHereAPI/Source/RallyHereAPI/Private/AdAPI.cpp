@@ -98,12 +98,19 @@ FRequest_BeginNewSession::FRequest_BeginNewSession()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_BeginNewSession::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/ad/v1/session"));
 	return Path;
+}
+
+FName FRequest_BeginNewSession::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_BeginNewSession::ComputePath() const
@@ -348,12 +355,19 @@ FRequest_FindOpportunities::FRequest_FindOpportunities()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_FindOpportunities::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/ad/v1/opportunity"));
 	return Path;
+}
+
+FName FRequest_FindOpportunities::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_FindOpportunities::ComputePath() const
@@ -598,12 +612,19 @@ FRequest_UnityAdWatched::FRequest_UnityAdWatched()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_UnityAdWatched::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/ad/v1/unity/ad/watched"));
 	return Path;
+}
+
+FName FRequest_UnityAdWatched::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_UnityAdWatched::ComputePath() const
@@ -765,12 +786,19 @@ FRequest_UnityMediationAdWatched::FRequest_UnityMediationAdWatched()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_UnityMediationAdWatched::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/ad/v1/unity/mediation/watched"));
 	return Path;
+}
+
+FName FRequest_UnityMediationAdWatched::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_UnityMediationAdWatched::ComputePath() const
@@ -933,12 +961,19 @@ FRequest_UpdateOpportunityById::FRequest_UpdateOpportunityById()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_UpdateOpportunityById::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/ad/v1/opportunity/{opportunity_id}"));
 	return Path;
+}
+
+FName FRequest_UpdateOpportunityById::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_UpdateOpportunityById::ComputePath() const

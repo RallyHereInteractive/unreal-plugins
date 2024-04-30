@@ -40,6 +40,14 @@ namespace
 		}
 	}
 
+	void LogHeaders(const TArray<FString>& Headers)
+	{
+		for (const FString& Header : Headers)
+		{
+			UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("Header: %s"), *Header);
+		}
+	}
+
 	const TArray<FString>& GetSensitiveHeadersForRequest(const RallyHereAPI::FRequestMetadata& RequestMetadata)
 	{
 		static TArray<FString> StandardFields = { TEXT("Authorization") };
@@ -53,7 +61,7 @@ namespace
 
 	const TArray<FString>& GetSensitiveFieldsForRequest(const RallyHereAPI::FRequestMetadata& RequestMetadata)
 	{
-		static TArray<FString> StandardFields = { TEXT("platform_token") };
+		static TArray<FString> StandardFields = { TEXT("platform_token"), TEXT("token")};
 		static TArray<FString> LoginFields = { TEXT("portal_access_token"), TEXT("portal_parent_access_token"), TEXT("access_token"), TEXT("refresh_token") };
 		if (RequestMetadata.SimplifiedPath.ToString().Contains(TEXT("/login")) || RequestMetadata.SimplifiedPath.ToString().Contains(TEXT("/token")))
 		{
@@ -113,6 +121,43 @@ namespace
 		return OutHeaders;
 	}
 
+	// Sanitize the content of a json value, hiding sensitive fields, and modify the input
+	void SanitizeJsonContentMutable(TSharedPtr<FJsonValue> JsonValue, const TArray<FString>& SensitiveFields, FString* OutString = nullptr)
+	{
+		// if there are no sensitive fields to check, just return input
+		if (SensitiveFields.Num() > 0)
+		{
+			const TSharedPtr<FJsonObject>* JsonObject;
+			if (JsonValue->TryGetObject(JsonObject) && JsonObject && JsonObject->IsValid())
+			{
+				for (const FString& Field : SensitiveFields)
+				{
+					if ((*JsonObject)->HasField(Field))
+					{
+						(*JsonObject)->SetStringField(Field, TEXT("****** Hidden sensitive info ******"));
+					}
+				}
+			}
+		}
+
+		// if an output string was requested, write to it
+		if (OutString != nullptr)
+		{
+			auto Writer = TJsonWriterFactory<>::Create(OutString);
+			FJsonSerializer::Serialize(JsonValue, TEXT(""), Writer);
+			Writer->Close();
+		}
+	}
+
+	// Sanitize the content of a json value, hiding sensitive fields, and do not modify the input, returns sanitized value as a string
+	FString SanitizeJsonContent(const TSharedPtr<FJsonValue>& JsonValue, const TArray<FString>& SensitiveFields)
+	{
+		FString OutputString;
+		auto JsonValueCopy = RHJsonUtilities::Duplicate(JsonValue);
+		SanitizeJsonContentMutable(JsonValueCopy, SensitiveFields, &OutputString);
+		return OutputString;
+	}
+
 	FString SanitizeContent(const FString& Content, const TArray<FString>& SensitiveFields)
 	{
 		// if there are no sensitive fields to check, just return input
@@ -123,21 +168,9 @@ namespace
 
 		auto Reader = TJsonReaderFactory<>::Create(Content);
 		TSharedPtr<FJsonValue> JsonValue;
-		const TSharedPtr<FJsonObject>* JsonObject;
-		if (FJsonSerializer::Deserialize(Reader, JsonValue) && JsonValue.IsValid() && JsonValue->TryGetObject(JsonObject) && JsonObject && JsonObject->IsValid())
+		if (FJsonSerializer::Deserialize(Reader, JsonValue) && JsonValue.IsValid())
 		{
-			for (const FString& Field : SensitiveFields)
-			{
-				if ((*JsonObject)->HasField(Field))
-				{
-					(*JsonObject)->SetStringField(Field, TEXT("****** Hidden sensitive info ******"));
-				}
-			}
-			FString JsonResult;
-			auto Writer = TJsonWriterFactory<>::Create(&JsonResult);
-			FJsonSerializer::Serialize(JsonValue, TEXT(""), Writer);
-			Writer->Close();
-			return JsonResult;
+			return SanitizeJsonContent(JsonValue, SensitiveFields);
 		}
 		else // We wanted to clear some fields, but failed to parse the contents, do not risk exposing a token and just print nothing
 		{
@@ -149,10 +182,7 @@ namespace
 	void LogHttpBase(IHttpBase& HttpBase, const FString& Prefix, const TArray<FString>& SensitiveHeaders = {}, const TArray<FString>& SensitiveFields = {})
 	{
 		const TArray<FString> Headers = SanitizeHeaders(HttpBase.GetAllHeaders(), SensitiveHeaders);
-		for (const FString& Header : Headers)
-		{
-			UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("%s Header: %s"), *Prefix, *Header);
-		}
+		LogHeaders(Headers);
 
 		const FUTF8ToTCHAR TCHARData(reinterpret_cast<const ANSICHAR*>(HttpBase.GetContent().GetData()), HttpBase.GetContent().Num());
 		const FString ContentTemp{ TCHARData.Length(), TCHARData.Get() };
@@ -169,6 +199,11 @@ FRH_WebRequests::FRH_WebRequests()
 
 void FRH_WebRequests::Initialize(RallyHereAPI::FRallyHereAPIAll* InAPIs)
 {
+	if (FParse::Param(FCommandLine::Get(), TEXT("rh.RetainWebRequests")))
+	{
+		SetIsRetainingWebRequests(true);
+	}
+
 	APIs = InAPIs;
 	if (APIs)
 	{
@@ -323,7 +358,7 @@ void FRH_WebRequests::OnWebRequestStarted_Log(const RallyHereAPI::FRequestMetada
 void FRH_WebRequests::OnWebRequestStarted_RecordTimestamp(const RallyHereAPI::FRequestMetadata& RequestMetadata, FHttpRequestRef HttpRequest, TSharedRef<RallyHereAPI::FAPI> API)
 {
 	APINameToCallCountMap.FindOrAdd(API->GetName())++;
-	SimplifiedPathToCallCountMap.FindOrAdd(RequestMetadata.SimplifiedPath)++;
+	SimplifiedPathToCallCountMap.FindOrAdd(RequestMetadata.SimplifiedPathWithVerb)++;
 }
 
 void FRH_WebRequests::OnWebRequestCompleted(const RallyHereAPI::FResponse& Response, FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSuccess, bool bWillRetryWithAuth, TSharedRef<RallyHereAPI::FAPI> API)
@@ -345,27 +380,49 @@ void FRH_WebRequests::OnWebRequestCompleted_Track(const RallyHereAPI::FResponse&
 	TrackedResponse.ResponseSuccess = bSuccess;
 	TrackedResponse.ResponseCode = Response.GetHttpResponseCode();
 	TrackedResponse.ReceivedTime = FDateTime::Now();
-	if (HttpResponse)
+
+	const auto& Payload = Response.GetPayload();
+	if (Payload.IsType<RallyHereAPI::FResponse::BinaryPayloadType>())
 	{
-		if (Response.GetPayload().IsType<RallyHereAPI::FResponse::BinaryPayloadType>())
+		const auto BinaryPayload = Payload.Get<RallyHereAPI::FResponse::BinaryPayloadType>();
+		// do not parse out binary content unless it is very small
+		if (BinaryPayload.Num() < 1024)
 		{
-			auto BinaryPayload = Response.GetPayload().Get<RallyHereAPI::FResponse::BinaryPayloadType>();
 			TrackedResponse.Content = FBase64::Encode(BinaryPayload.GetData(), BinaryPayload.Num());
 		}
 		else
 		{
-			TrackedResponse.Content = SanitizeContent(HttpResponse->GetContentAsString(), GetSensitiveFieldsForResponse(Response.GetRequestMetadata()));
+			TrackedResponse.Content = TEXT("****** Hidden Binary Data ******");
 		}
-		TArray<FString> Headers = SanitizeHeaders(HttpResponse->GetAllHeaders(), GetSensitiveHeadersForResponse(Response.GetRequestMetadata()));
-		for (const auto& headerStr : Headers)
+	}
+	else if (Payload.IsType<RallyHereAPI::FResponse::StringPayloadType>())
+	{
+		TrackedResponse.Content = SanitizeContent(Payload.Get<RallyHereAPI::FResponse::StringPayloadType>(), GetSensitiveFieldsForResponse(Response.GetRequestMetadata()));
+	}
+	else if (Payload.IsType<RallyHereAPI::FResponse::JsonPayloadType>())
+	{
+		const auto JsonContent = Payload.Get<RallyHereAPI::FResponse::JsonPayloadType>();
+		TrackedResponse.Content = SanitizeJsonContent(JsonContent, GetSensitiveFieldsForResponse(Response.GetRequestMetadata()));
+	}
+	else if (Payload.IsType<RallyHereAPI::FResponse::EmptyPayloadType>())
+	{
+		// no content, leave empty
+	}
+	else
+	{
+		TrackedResponse.Content = TEXT("****** Hidden Unknown Data ******");
+	}
+
+
+	TArray<FString> Headers = SanitizeHeaders(HttpResponse->GetAllHeaders(), GetSensitiveHeadersForResponse(Response.GetRequestMetadata()));
+	for (const auto& headerStr : Headers)
+	{
+		int32 index;
+		if (headerStr.FindChar(TEXT(':'), index))
 		{
-			int32 index;
-			if (headerStr.FindChar(TEXT(':'), index))
-			{
-				const FString name = headerStr.Mid(0, index);
-				const FString value = headerStr.Mid(index + 2); // skip the space after the colon as well
-				TrackedResponse.Headers.Emplace(name, value);
-			}
+			const FString name = headerStr.Mid(0, index);
+			const FString value = headerStr.Mid(index + 2); // skip the space after the colon as well
+			TrackedResponse.Headers.Emplace(name, value);
 		}
 	}
 }
@@ -381,10 +438,43 @@ void FRH_WebRequests::OnWebRequestCompleted_Log(const RallyHereAPI::FResponse& R
 	const FString Prefix = FString::Printf(TEXT("Resp [%s]:"), *Response.GetRequestMetadata().Identifier.ToString().Left(6));
 	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("%s Code=%d"), *Prefix, static_cast<int32>(Response.GetHttpResponseCode()));
 
-	if (HttpResponse)
+	FString ResponseContent;
+	const auto Payload = Response.GetPayload();
+
+	if (Payload.IsType<RallyHereAPI::FResponse::BinaryPayloadType>())
 	{
-		LogHttpBase(*HttpResponse, Prefix, GetSensitiveHeadersForResponse(Response.GetRequestMetadata()), GetSensitiveFieldsForResponse(Response.GetRequestMetadata()));
+		const auto BinaryPayload = Payload.Get<RallyHereAPI::FResponse::BinaryPayloadType>();
+		// do not parse out binary content unless it is very small
+		if (BinaryPayload.Num() < 1024)
+		{
+			ResponseContent = FBase64::Encode(BinaryPayload.GetData(), BinaryPayload.Num());
+		}
+		else
+		{
+			ResponseContent = TEXT("****** Hidden Binary Data ******");
+		}
 	}
+	else if (Payload.IsType<RallyHereAPI::FResponse::StringPayloadType>())
+	{
+		ResponseContent = SanitizeContent(Payload.Get<RallyHereAPI::FResponse::StringPayloadType>(), GetSensitiveFieldsForResponse(Response.GetRequestMetadata()));
+	}
+	else if (Payload.IsType<RallyHereAPI::FResponse::JsonPayloadType>())
+	{
+		const auto JsonContent = Payload.Get<RallyHereAPI::FResponse::JsonPayloadType>();
+		ResponseContent = SanitizeJsonContent(JsonContent, GetSensitiveFieldsForResponse(Response.GetRequestMetadata()));
+	}
+	else if (Payload.IsType<RallyHereAPI::FResponse::EmptyPayloadType>())
+	{
+		// no content, leave empty
+	}
+	else
+	{
+		ResponseContent = TEXT("****** Hidden Unknown Data ******");
+	}
+
+	LogHeaders(SanitizeHeaders(HttpResponse->GetAllHeaders(), GetSensitiveHeadersForResponse(Response.GetRequestMetadata())));
+
+	LogContent(ResponseContent, Prefix);
 }
 
 TSharedPtr<FJsonObject> FRH_WebRequests::LogTrackedWebRequestsToJSON() const
@@ -478,6 +568,10 @@ TSharedPtr<FJsonObject> FRH_WebRequests::CreateJsonObjectFromWebRequest(const FR
 		{
 			Response->SetField(TEXT("Content"), JsonValue);
 		}
+		else
+		{
+			Response->SetStringField(TEXT("Content"), request.Responses[x].Content);
+		}
 
 		TSharedPtr<FJsonObject> ResponseHeader = MakeShareable(new FJsonObject);
 		for (const auto& pair : request.Responses[x].Headers)
@@ -524,7 +618,7 @@ void FRH_WebRequests::GetRecentCallCountMaps(TMap<FName, int32>* OutAPIRecentCal
 			}
 			if (OutURLRecentCallCountMap)
 			{
-				OutURLRecentCallCountMap->FindOrAdd(request->Metadata.SimplifiedPath)++;
+				OutURLRecentCallCountMap->FindOrAdd(request->Metadata.SimplifiedPathWithVerb)++;
 			}
 		}
 	}
@@ -608,12 +702,12 @@ void FRH_WebRequests::DetectRecentBursts(TMap<FName, TTuple<int32, int32>>* OutB
 	// For URL map
 	auto IsMatchByURL = [](FRH_WebRequest* Request1, FRH_WebRequest* Request2) -> bool
 	{
-		return Request1->Metadata.SimplifiedPath == Request2->Metadata.SimplifiedPath;
+		return Request1->Metadata.SimplifiedPathWithVerb == Request2->Metadata.SimplifiedPathWithVerb;
 	};
 	// For URL map
 	auto GetURLFromRequest = [](FRH_WebRequest* Request) -> FName
 	{
-		return Request->Metadata.SimplifiedPath;
+		return Request->Metadata.SimplifiedPathWithVerb;
 	};
 
 	FDateTime TimeLimit = FDateTime::Now() - FTimespan(0, 1, 0);

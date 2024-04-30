@@ -11,6 +11,12 @@
 #if (ENGINE_MAJOR_VERSION > 5 || (ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 2))
 #include "RHITypes.h"
 #endif
+
+#ifdef WITH_IMGUI_NETIMGUI
+#include "ImGuiInteroperability.h"
+#include "NetImgui_Api.h"
+#endif
+
 //$$ END
 
 #include <algorithm>

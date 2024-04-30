@@ -98,12 +98,19 @@ FRequest_AddFriendV2::FRequest_AddFriendV2()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_AddFriendV2::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/friends/v2/player/{player_uuid}/friend/{other_player_uuid}"));
 	return Path;
+}
+
+FName FRequest_AddFriendV2::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("PUT %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_AddFriendV2::ComputePath() const
@@ -367,12 +374,19 @@ FRequest_AddNotesV2::FRequest_AddNotesV2()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_AddNotesV2::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/friends/v2/player/{player_uuid}/friend/{other_player_uuid}/notes"));
 	return Path;
+}
+
+FName FRequest_AddNotesV2::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("PUT %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_AddNotesV2::ComputePath() const
@@ -631,12 +645,19 @@ FRequest_DeleteFriendV2::FRequest_DeleteFriendV2()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_DeleteFriendV2::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/friends/v2/player/{player_uuid}/friend/{other_player_uuid}"));
 	return Path;
+}
+
+FName FRequest_DeleteFriendV2::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("DELETE %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_DeleteFriendV2::ComputePath() const
@@ -876,12 +897,19 @@ FRequest_DeleteFriendsV2::FRequest_DeleteFriendsV2()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_DeleteFriendsV2::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/friends/v2/player/{player_uuid}/friend"));
 	return Path;
+}
+
+FName FRequest_DeleteFriendsV2::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("DELETE %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_DeleteFriendsV2::ComputePath() const
@@ -1088,12 +1116,19 @@ FRequest_DeleteNotesV2::FRequest_DeleteNotesV2()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_DeleteNotesV2::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/friends/v2/player/{player_uuid}/friend/{other_player_uuid}/notes"));
 	return Path;
+}
+
+FName FRequest_DeleteNotesV2::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("DELETE %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_DeleteNotesV2::ComputePath() const
@@ -1296,12 +1331,19 @@ FRequest_GetFriendRelationshipV2::FRequest_GetFriendRelationshipV2()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetFriendRelationshipV2::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/friends/v2/player/{player_uuid}/friend/{other_player_uuid}"));
 	return Path;
+}
+
+FName FRequest_GetFriendRelationshipV2::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetFriendRelationshipV2::ComputePath() const
@@ -1551,12 +1593,19 @@ FRequest_GetFriendsListForPlayerV2::FRequest_GetFriendsListForPlayerV2()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
 FName FRequest_GetFriendsListForPlayerV2::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/friends/v2/player/{player_uuid}/friend"));
 	return Path;
+}
+
+FName FRequest_GetFriendsListForPlayerV2::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
 }
 
 FString FRequest_GetFriendsListForPlayerV2::ComputePath() const
