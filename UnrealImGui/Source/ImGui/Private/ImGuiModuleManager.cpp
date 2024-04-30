@@ -7,6 +7,7 @@
 
 #include <Framework/Application/SlateApplication.h>
 #include <Modules/ModuleManager.h>
+#include "Misc/App.h"
 
 #include <imgui.h>
 
