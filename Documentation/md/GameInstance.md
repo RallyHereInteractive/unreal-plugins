@@ -131,7 +131,7 @@ Server Bootstrapper for the Game Instance.
 `public inline virtual TOptional< FString > `[`GetBoundAllocationId`](#classURH__GameInstanceServerBootstrapper_1afc0a4f4f72556a0b713b0bf5f1442eb7)`() const` | Gets the allocation id this session owner is bound to, if any. Needed for some specific calls to ensure they are operating on the proper object regardless of our current session view.
 `public inline virtual TOptional< FString > `[`GetBoundInstanceId`](#classURH__GameInstanceServerBootstrapper_1a33402e7dd26b4a226f7615749184303b)`() const` | Gets the instance id this session owner is bound to, if any. Needed for some specific calls to ensure they are operating on the proper object regardless of our current session view.
 `public virtual bool `[`CanAutoUploadServerFiles`](#classURH__GameInstanceServerBootstrapper_1a9cfd09c543c9435af1a994d400d5c564)`() const` | Gets the directory to use for uploading files for this bootstrapper.
-`public virtual `[`FRH_FileApiDirectory`](Common.md#structFRH__FileApiDirectory)` `[`GetAutoUploadDirectory`](#classURH__GameInstanceServerBootstrapper_1a2066c747ca1576959890b28020255072)`(bool bDeveloperFile) const` | Gets the directory to use for uploading files for this bootstrapper.
+`public virtual `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` `[`GetAutoUploadDirectory`](#classURH__GameInstanceServerBootstrapper_1a482bf6b82fcc70879d897f4de4fbc21b)`(bool bDeveloperFile) const` | Gets the directory to use for uploading files for this bootstrapper.
 `public virtual void `[`ConditionalAutoUploadLogFile`](#classURH__GameInstanceServerBootstrapper_1a77257d8a5d5c426286fbf301fec96171)`() const` | Capture and upload log file based on settings.
 `public virtual void `[`ConditionalAutoUploadTraceFile`](#classURH__GameInstanceServerBootstrapper_1af74b0fa8ecac1183cfd34c7c1b3f69ed)`(const FString & TraceFile) const` | Capture and upload trace file based on settings.
 `protected `[`ERH_ServerBootstrapMode`](undefined.md#group__GameInstance_1ga9dd612a2285258b977ec4c21d7a64196)` `[`BootstrapMode`](#classURH__GameInstanceServerBootstrapper_1a437398cd4da11b39dbba5624ac0d4503) | Bootstrap Mode being used
@@ -400,7 +400,7 @@ Gets the instance id this session owner is bound to, if any. Needed for some spe
 Gets the directory to use for uploading files for this bootstrapper.
 
 <br>
-#### `public virtual `[`FRH_FileApiDirectory`](Common.md#structFRH__FileApiDirectory)` `[`GetAutoUploadDirectory`](#classURH__GameInstanceServerBootstrapper_1a2066c747ca1576959890b28020255072)`(bool bDeveloperFile) const` <a id="classURH__GameInstanceServerBootstrapper_1a2066c747ca1576959890b28020255072"></a>
+#### `public virtual `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` `[`GetAutoUploadDirectory`](#classURH__GameInstanceServerBootstrapper_1a482bf6b82fcc70879d897f4de4fbc21b)`(bool bDeveloperFile) const` <a id="classURH__GameInstanceServerBootstrapper_1a482bf6b82fcc70879d897f4de4fbc21b"></a>
 
 Gets the directory to use for uploading files for this bootstrapper.
 
@@ -753,7 +753,7 @@ Subsystem for the Game Instance.
 `public inline `[`URH_ConfigSubsystem`](Config.md#classURH__ConfigSubsystem)` * `[`GetConfigSubsystem`](#classURH__GameInstanceSubsystem_1a7d68319809db5ea58fc8cd87eeeca7a7)`() const` | Gets the config subsystem on the instance.
 `public inline `[`URH_SettingsSubsystem`](Settings.md#classURH__SettingsSubsystem)` * `[`GetSettingsSubsystem`](#classURH__GameInstanceSubsystem_1afafed40a588921b712548ce5071bf4cb)`() const` | Gets the settings subsystem on the instance.
 `public inline `[`URH_MatchSubsystem`](Match.md#classURH__MatchSubsystem)` * `[`GetMatchSubsystem`](#classURH__GameInstanceSubsystem_1aa5048780cc5ed5836e03be9d7780706e)`() const` | Gets the match subsystem on the instance.
-`public inline `[`URH_FileSubsystem`](File.md#classURH__FileSubsystem)` * `[`GetFileSubsystem`](#classURH__GameInstanceSubsystem_1a83b23cbc8e10f6f11c3b44842cb47c18)`() const` | Gets the file subsystem on the instance.
+`public inline `[`URH_RemoteFileSubsystem`](File.md#classURH__RemoteFileSubsystem)` * `[`GetRemoteFileSubsystem`](#classURH__GameInstanceSubsystem_1aafa066f39f2a1aedeb992a2b7c52164d)`() const` | Gets the remote file subsystem on the instance.
 `public void `[`CustomEndpoint`](#classURH__GameInstanceSubsystem_1a1a8dcae5a5642315c8ba20f07aebd162)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const RallyHereAPI::FDelegate_CustomEndpointSend & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
 `public void `[`CustomEndpoint`](#classURH__GameInstanceSubsystem_1aeb1056507af99208ee7397e1b0d23112)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const FRH_CustomEndpointDelegateBlock & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
 `public inline void `[`BLUEPRINT_CustomEndpoint`](#classURH__GameInstanceSubsystem_1a42e7af944e181795ad0a71169e588e92)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const FRH_CustomEndpointDynamicDelegate & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
@@ -770,7 +770,7 @@ Subsystem for the Game Instance.
 `protected `[`URH_ConfigSubsystem`](Config.md#classURH__ConfigSubsystem)` * `[`ConfigSubsystem`](#classURH__GameInstanceSubsystem_1abe30d81653383a1aaf1a454ee67b27ce) | The Config Subsystem.
 `protected `[`URH_SettingsSubsystem`](Settings.md#classURH__SettingsSubsystem)` * `[`SettingsSubsystem`](#classURH__GameInstanceSubsystem_1a0faf95129232d8f19571e9ebdc7b13e1) | The Settings Subsystem.
 `protected `[`URH_MatchSubsystem`](Match.md#classURH__MatchSubsystem)` * `[`MatchSubsystem`](#classURH__GameInstanceSubsystem_1a3d15c09c7d7205f9e38ccc368ffaf62a) | The Match Subsystem.
-`protected `[`URH_FileSubsystem`](File.md#classURH__FileSubsystem)` * `[`FileSubsystem`](#classURH__GameInstanceSubsystem_1aee12d5be87908d3d3cba2884a2f53777) | The File Subsystem.
+`protected `[`URH_RemoteFileSubsystem`](File.md#classURH__RemoteFileSubsystem)` * `[`RemoteFileSubsystem`](#classURH__GameInstanceSubsystem_1a02dcdefba948191414723ca5a5770190) | The File Subsystem.
 `protected bool `[`bEnabled`](#classURH__GameInstanceSubsystem_1aec940d2a189827f2ffea8b8248f9be12) | If the Game Instance Subsystem is enabled.
 `protected bool `[`bEnableSessionBrowser`](#classURH__GameInstanceSubsystem_1a05992b3ee9dc7cc018f9f424069c4748) | If the Session Browser is enabled.
 `protected bool `[`bEnableMatchmakingBrowser`](#classURH__GameInstanceSubsystem_1a65744cd5c8afb2596503251f63a7cf0f) | If the Matchmaking Browser is enabled.
@@ -876,9 +876,9 @@ Gets the settings subsystem on the instance.
 Gets the match subsystem on the instance.
 
 <br>
-#### `public inline `[`URH_FileSubsystem`](File.md#classURH__FileSubsystem)` * `[`GetFileSubsystem`](#classURH__GameInstanceSubsystem_1a83b23cbc8e10f6f11c3b44842cb47c18)`() const` <a id="classURH__GameInstanceSubsystem_1a83b23cbc8e10f6f11c3b44842cb47c18"></a>
+#### `public inline `[`URH_RemoteFileSubsystem`](File.md#classURH__RemoteFileSubsystem)` * `[`GetRemoteFileSubsystem`](#classURH__GameInstanceSubsystem_1aafa066f39f2a1aedeb992a2b7c52164d)`() const` <a id="classURH__GameInstanceSubsystem_1aafa066f39f2a1aedeb992a2b7c52164d"></a>
 
-Gets the file subsystem on the instance.
+Gets the remote file subsystem on the instance.
 
 <br>
 #### `public void `[`CustomEndpoint`](#classURH__GameInstanceSubsystem_1a1a8dcae5a5642315c8ba20f07aebd162)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const RallyHereAPI::FDelegate_CustomEndpointSend & Delegate)` <a id="classURH__GameInstanceSubsystem_1a1a8dcae5a5642315c8ba20f07aebd162"></a>
@@ -976,7 +976,7 @@ The Settings Subsystem.
 The Match Subsystem.
 
 <br>
-#### `protected `[`URH_FileSubsystem`](File.md#classURH__FileSubsystem)` * `[`FileSubsystem`](#classURH__GameInstanceSubsystem_1aee12d5be87908d3d3cba2884a2f53777) <a id="classURH__GameInstanceSubsystem_1aee12d5be87908d3d3cba2884a2f53777"></a>
+#### `protected `[`URH_RemoteFileSubsystem`](File.md#classURH__RemoteFileSubsystem)` * `[`RemoteFileSubsystem`](#classURH__GameInstanceSubsystem_1a02dcdefba948191414723ca5a5770190) <a id="classURH__GameInstanceSubsystem_1a02dcdefba948191414723ca5a5770190"></a>
 
 The File Subsystem.
 

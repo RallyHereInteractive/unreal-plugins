@@ -75,7 +75,7 @@ Main settings for the Integration.
 `public FSoftClassPath `[`SessionBrowserCacheClass`](#classURH__IntegrationSettings_1af5ecb3103ab065d38eed4634e6916817) | Extensible SessionBrowserCache class path.
 `public FSoftClassPath `[`MatchmakingBrowserCacheClass`](#classURH__IntegrationSettings_1a035a0b0d29e2ed12a2663446c60d811c) | Extensible MatchmakingBrowserCache class path.
 `public FSoftClassPath `[`MatchSubsystemClass`](#classURH__IntegrationSettings_1a2e753925aea5df2e1f47add2fa970097) | Extensible MatchSubsystem class path.
-`public FSoftClassPath `[`FileSubsystemClass`](#classURH__IntegrationSettings_1aa27b645522462f317a83eb154eaa9997) | Extensible FileSubsystem class path.
+`public FSoftClassPath `[`RemoteFileSubsystemClass`](#classURH__IntegrationSettings_1a0388ca75a831a5c4873fe07dd8b638dc) | Extensible RemoteFileSubsystem class path.
 `public bool `[`bLocalPlayerSubsystemSandboxing`](#classURH__IntegrationSettings_1a5826903f6e88cefabe7d9c2ede15e9af) | Flag to determine if the local player subsystem should use its own subsystems instead of relying on GameInstanceSubsystem shared caches.
 `public bool `[`bAutoUploadServerFiles`](#classURH__IntegrationSettings_1aad9767260d4d60a8f378c4543c03f92a) | Whether to automatically upload files to the RallyHere API from Dedicated Servers.
 `public bool `[`bAutoUploadLogFiles`](#classURH__IntegrationSettings_1a8adfac6c3249bca907a1fa051db8d0b5) | Whether to automatically upload files to the RallyHere API. Requires bAutoUploadServerFiles to have an effect.
@@ -451,9 +451,9 @@ Extensible MatchmakingBrowserCache class path.
 Extensible MatchSubsystem class path.
 
 <br>
-#### `public FSoftClassPath `[`FileSubsystemClass`](#classURH__IntegrationSettings_1aa27b645522462f317a83eb154eaa9997) <a id="classURH__IntegrationSettings_1aa27b645522462f317a83eb154eaa9997"></a>
+#### `public FSoftClassPath `[`RemoteFileSubsystemClass`](#classURH__IntegrationSettings_1a0388ca75a831a5c4873fe07dd8b638dc) <a id="classURH__IntegrationSettings_1a0388ca75a831a5c4873fe07dd8b638dc"></a>
 
-Extensible FileSubsystem class path.
+Extensible RemoteFileSubsystem class path.
 
 <br>
 #### `public bool `[`bLocalPlayerSubsystemSandboxing`](#classURH__IntegrationSettings_1a5826903f6e88cefabe7d9c2ede15e9af) <a id="classURH__IntegrationSettings_1a5826903f6e88cefabe7d9c2ede15e9af"></a>
