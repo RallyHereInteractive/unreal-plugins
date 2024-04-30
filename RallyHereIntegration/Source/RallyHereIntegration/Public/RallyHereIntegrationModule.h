@@ -72,7 +72,7 @@ namespace RH_APIs
 	FORCEINLINE static TSharedRef<RallyHereAPI::FInventoryAPI> GetInventoryAPI() { return GetAPIs().GetInventory(); }
 	FORCEINLINE static TSharedRef<RallyHereAPI::FCatalogAPI> GetCatalogAPI() { return GetAPIs().GetCatalog(); }
 	FORCEINLINE static TSharedRef<RallyHereAPI::FEventsAPI> GetEventsAPI() { return GetAPIs().GetEvents(); }
-	FORCEINLINE static TSharedRef<RallyHereAPI::FFileAPI> GetFileAPI() { return GetAPIs().GetFile(); }
+	FORCEINLINE static TSharedRef<RallyHereAPI::FRemoteFileAPI> GetRemoteFileAPI() { return GetAPIs().GetRemoteFile(); }
 }
 
 /** @} */

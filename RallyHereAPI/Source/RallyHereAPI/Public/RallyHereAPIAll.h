@@ -20,7 +20,7 @@
 #include "EntitlementsAPI.h"
 #include "EnvironmentAPI.h"
 #include "EventsAPI.h"
-#include "FileAPI.h"
+#include "RemoteFileAPI.h"
 #include "FriendsV1API.h"
 #include "FriendsV2API.h"
 #include "InstanceNotificationAPI.h"
@@ -90,8 +90,8 @@ public:
 	TSharedRef<FEventsAPI> GetEvents();
 	const TSharedRef<FEventsAPI> GetEvents() const;
 
-	TSharedRef<FFileAPI> GetFile();
-	const TSharedRef<FFileAPI> GetFile() const;
+	TSharedRef<FRemoteFileAPI> GetRemoteFile();
+	const TSharedRef<FRemoteFileAPI> GetRemoteFile() const;
 
 	TSharedRef<FFriendsV1API> GetFriendsV1();
 	const TSharedRef<FFriendsV1API> GetFriendsV1() const;
@@ -172,7 +172,7 @@ private:
 	TSharedRef<FEntitlementsAPI> Entitlements;
 	TSharedRef<FEnvironmentAPI> Environment;
 	TSharedRef<FEventsAPI> Events;
-	TSharedRef<FFileAPI> File;
+	TSharedRef<FRemoteFileAPI> RemoteFile;
 	TSharedRef<FFriendsV1API> FriendsV1;
 	TSharedRef<FFriendsV2API> FriendsV2;
 	TSharedRef<FInstanceNotificationAPI> InstanceNotification;

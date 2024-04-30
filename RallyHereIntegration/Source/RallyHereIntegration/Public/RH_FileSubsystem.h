@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 #pragma once
 
-#include "FileAPI.h"
+#include "RemoteFileAPI.h"
 #include "RH_Common.h"
 #include "RH_SubsystemPluginBase.h"
 #include "RH_FileSubsystem.generated.h"

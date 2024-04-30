@@ -43,11 +43,11 @@ DECLARE_DELEGATE_OneParam(FDelegate_DownloadEntityDirectoryFile, const FResponse
 DECLARE_DELEGATE_OneParam(FDelegate_GetEntityDirectoryInformation, const FResponse_GetEntityDirectoryInformation&);
 DECLARE_DELEGATE_OneParam(FDelegate_ListEntityDirectoryFiles, const FResponse_ListEntityDirectoryFiles&);
 
-class RALLYHEREAPI_API FFileAPI : public FAPI
+class RALLYHEREAPI_API FRemoteFileAPI : public FAPI
 {
 public:
-	FFileAPI();
-	virtual ~FFileAPI();
+	FRemoteFileAPI();
+	virtual ~FRemoteFileAPI();
 
 	FHttpRequestPtr CreateEntityDirectoryFile(const FRequest_CreateEntityDirectoryFile& Request, const FDelegate_CreateEntityDirectoryFile& Delegate = FDelegate_CreateEntityDirectoryFile(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr DeleteEntityDirectory(const FRequest_DeleteEntityDirectory& Request, const FDelegate_DeleteEntityDirectory& Delegate = FDelegate_DeleteEntityDirectory(), int32 Priority = DefaultRallyHereAPIPriority);
@@ -120,7 +120,7 @@ struct RALLYHEREAPI_API Traits_CreateEntityDirectoryFile
 	typedef FRequest_CreateEntityDirectoryFile Request;
 	typedef FResponse_CreateEntityDirectoryFile Response;
 	typedef FDelegate_CreateEntityDirectoryFile Delegate;
-	typedef FFileAPI API;
+	typedef FRemoteFileAPI API;
 	static FString Name;
 
 	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->CreateEntityDirectoryFile(InRequest, InDelegate, Priority); }
@@ -176,7 +176,7 @@ struct RALLYHEREAPI_API Traits_DeleteEntityDirectory
 	typedef FRequest_DeleteEntityDirectory Request;
 	typedef FResponse_DeleteEntityDirectory Response;
 	typedef FDelegate_DeleteEntityDirectory Delegate;
-	typedef FFileAPI API;
+	typedef FRemoteFileAPI API;
 	static FString Name;
 
 	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DeleteEntityDirectory(InRequest, InDelegate, Priority); }
@@ -233,7 +233,7 @@ struct RALLYHEREAPI_API Traits_DeleteEntityDirectoryFile
 	typedef FRequest_DeleteEntityDirectoryFile Request;
 	typedef FResponse_DeleteEntityDirectoryFile Response;
 	typedef FDelegate_DeleteEntityDirectoryFile Delegate;
-	typedef FFileAPI API;
+	typedef FRemoteFileAPI API;
 	static FString Name;
 
 	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DeleteEntityDirectoryFile(InRequest, InDelegate, Priority); }
@@ -296,7 +296,7 @@ struct RALLYHEREAPI_API Traits_DownloadEntityDirectoryFile
 	typedef FRequest_DownloadEntityDirectoryFile Request;
 	typedef FResponse_DownloadEntityDirectoryFile Response;
 	typedef FDelegate_DownloadEntityDirectoryFile Delegate;
-	typedef FFileAPI API;
+	typedef FRemoteFileAPI API;
 	static FString Name;
 
 	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DownloadEntityDirectoryFile(InRequest, InDelegate, Priority); }
@@ -354,7 +354,7 @@ struct RALLYHEREAPI_API Traits_GetEntityDirectoryInformation
 	typedef FRequest_GetEntityDirectoryInformation Request;
 	typedef FResponse_GetEntityDirectoryInformation Response;
 	typedef FDelegate_GetEntityDirectoryInformation Delegate;
-	typedef FFileAPI API;
+	typedef FRemoteFileAPI API;
 	static FString Name;
 
 	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetEntityDirectoryInformation(InRequest, InDelegate, Priority); }
@@ -411,7 +411,7 @@ struct RALLYHEREAPI_API Traits_ListEntityDirectoryFiles
 	typedef FRequest_ListEntityDirectoryFiles Request;
 	typedef FResponse_ListEntityDirectoryFiles Response;
 	typedef FDelegate_ListEntityDirectoryFiles Delegate;
-	typedef FFileAPI API;
+	typedef FRemoteFileAPI API;
 	static FString Name;
 
 	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->ListEntityDirectoryFiles(InRequest, InDelegate, Priority); }

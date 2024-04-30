@@ -723,11 +723,28 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
 
     @Override
     public String toApiName(String type) {
+        if (type.equals("File")) {
+			System.out.println("Overriding File to RemoteFile in toApiName("+type+")");
+            type = "RemoteFile";
+        }
         return "F" + camelize(type) + "API";
     }
 
     @Override
+    public String toApiVarName(String name) {
+        if (name.equals("File")) {
+			System.out.println("Overriding File to RemoteFile in toApiVarName("+name+")");
+            name = "RemoteFile";
+        }
+        return camelize(super.toApiVarName(name));
+    }
+
+    @Override
     public String toApiFilename(String name) {
+        if (name.equals("File")) {
+			System.out.println("Overriding File to RemoteFile in toApiFilename("+name+")");
+            name = "RemoteFile";
+        }
         return camelize(name) + "API";
     }
 

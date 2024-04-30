@@ -42,8 +42,8 @@ public:
 
 	{{#apiInfo}}
 	{{#apis}}
-	TSharedRef<{{{classname}}}> Get{{{baseName}}}();
-	const TSharedRef<{{{classname}}}> Get{{{baseName}}}() const;
+	TSharedRef<{{{classname}}}> Get{{{classVarName}}}();
+	const TSharedRef<{{{classname}}}> Get{{{classVarName}}}() const;
 
 	{{/apis}}
 	{{/apiInfo}}
@@ -51,7 +51,7 @@ private:
 	TArray<TSharedRef<FAPI>> AllAPIs;
 	{{#apiInfo}}
 	{{#apis}}
-	TSharedRef<{{{classname}}}> {{{baseName}}};
+	TSharedRef<{{{classname}}}> {{{classVarName}}};
 	{{/apis}}
 	{{/apiInfo}}
 };

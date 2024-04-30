@@ -59,7 +59,7 @@ void URH_FileSubsystem::UploadFile(const FRH_FileApiDirectory& Directory, const 
 		GetDefault<URH_IntegrationSettings>()->FileUploadPriority
 	);
 
-	Helper->Start(RH_APIs::GetFileAPI(), Request);
+	Helper->Start(RH_APIs::GetRemoteFileAPI(), Request);
 }
 
 void URH_FileSubsystem::DeleteFile(const FRH_FileApiDirectory& Directory, const FString& RemoteFileName, const FRH_GenericSuccessWithErrorBlock Delegate)
@@ -91,7 +91,7 @@ void URH_FileSubsystem::DeleteFile(const FRH_FileApiDirectory& Directory, const 
 		GetDefault<URH_IntegrationSettings>()->FileDeletePriority
 	);
 
-	Helper->Start(RH_APIs::GetFileAPI(), Request);
+	Helper->Start(RH_APIs::GetRemoteFileAPI(), Request);
 }
 
 void URH_FileSubsystem::DownloadFile(const FRH_FileApiDirectory& Directory, const FString& RemoteFileName, const FString& LocalFilePath, const FRH_GenericSuccessWithErrorBlock Delegate)
@@ -135,7 +135,7 @@ void URH_FileSubsystem::DownloadFile(const FRH_FileApiDirectory& Directory, cons
 		GetDefault<URH_IntegrationSettings>()->FileDownloadPriority
 	);
 
-	Helper->Start(RH_APIs::GetFileAPI(), Request);
+	Helper->Start(RH_APIs::GetRemoteFileAPI(), Request);
 }
 
 
@@ -170,7 +170,7 @@ void URH_FileSubsystem::DownloadFile(const FRH_FileApiDirectory& Directory, cons
 		GetDefault<URH_IntegrationSettings>()->FileDownloadPriority
 	);
 
-	Helper->Start(RH_APIs::GetFileAPI(), Request);
+	Helper->Start(RH_APIs::GetRemoteFileAPI(), Request);
 }
 
 void URH_FileSubsystem::DownloadAllFiles(const FRH_FileApiDirectory& Directory, const FString& LocalDirectory, bool bUseCachedList, const FRH_FileDirectoryDownloadDelegateBlock Delegate)
@@ -305,5 +305,5 @@ void URH_FileSubsystem::LookupFileList(const FRH_FileApiDirectory& Directory, co
 		GetDefault<URH_IntegrationSettings>()->FileBrowsePriority
 	);
 
-	Helper->Start(RH_APIs::GetFileAPI(), Request);
+	Helper->Start(RH_APIs::GetRemoteFileAPI(), Request);
 }
