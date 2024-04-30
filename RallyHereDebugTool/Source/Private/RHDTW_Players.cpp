@@ -206,8 +206,6 @@ FRHDTW_Players::FRHDTW_Players()
 	: Super()
 {
 	DefaultPos = FVector2D(0, 20);
-	PlayerUuidInput.SetNumZeroed(RH_STRINGENTRY_GUIDSIZE);
-	PlayerNameInput.SetNumZeroed(RH_STRINGENTRY_GUIDSIZE);
 }
 
 FRHDTW_Players::~FRHDTW_Players()
@@ -248,14 +246,13 @@ void FRHDTW_Players::Do()
 	BuildPlayerList(pOwner, Players);
 
 	ImGui::SetNextItemWidth(300.f);
-	ImGui::InputText("Player Uuid", PlayerUuidInput.GetData(), PlayerUuidInput.Num());
+	bool bSearchUuid = ImGui::InputText("Player Uuid", &PlayerUuidInput, ImGuiInputTextFlags_CharsNoBlank | ImGuiInputTextFlags_EnterReturnsTrue);
 
 	ImGui::SameLine();
-	if (ImGui::Button("Search##UUID"))
+	if (ImGui::Button("Search##UUID") || bSearchUuid)
 	{
-		FString InputAsString = UTF8_TO_TCHAR(PlayerUuidInput.GetData());
 		FGuid PlayerInfoId;
-		FGuid::Parse(InputAsString, PlayerInfoId);
+		FGuid::Parse(PlayerUuidInput, PlayerInfoId);
 
 		if (URH_PlayerInfo* pi = pRH_PlayerInfoSubsystem->GetOrCreatePlayerInfo(PlayerInfoId))
 		{
@@ -274,15 +271,14 @@ void FRHDTW_Players::Do()
 	}
 
 	ImGui::SetNextItemWidth(300.f);
-	ImGui::InputText("Player Display Name", PlayerNameInput.GetData(), PlayerNameInput.Num());
+	bool bSearchName = ImGui::InputText("Player Display Name", &PlayerNameInput, ImGuiInputTextFlags_EnterReturnsTrue);
 
 	ImGui::SameLine();
-	if (ImGui::Button("Search##Name"))
+	if (ImGui::Button("Search##Name") || bSearchName)
 	{
-		FString InputAsString = UTF8_TO_TCHAR(PlayerNameInput.GetData());
-		if (!InputAsString.IsEmpty())
+		if (!PlayerNameInput.IsEmpty())
 		{
-			pRH_PlayerInfoSubsystem->LookupPlayer(InputAsString, FRH_PlayerInfoLookupPlayerDelegate::CreateLambda([](bool bSuccess, const TArray<URH_PlayerInfo*>& PlayerInfos)
+			pRH_PlayerInfoSubsystem->LookupPlayer(PlayerNameInput, FRH_PlayerInfoLookupPlayerDelegate::CreateLambda([](bool bSuccess, const TArray<URH_PlayerInfo*>& PlayerInfos)
 				{
 					if (bSuccess)
 					{
