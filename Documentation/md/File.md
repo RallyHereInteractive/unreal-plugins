@@ -4,12 +4,12 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`class `[`URH_FileSubsystem`](#classURH__FileSubsystem) | File Subsystem used for file API calls.
+`class `[`URH_RemoteFileSubsystem`](#classURH__RemoteFileSubsystem) | File Subsystem used for file API calls.
 
-## class `URH_FileSubsystem` <a id="classURH__FileSubsystem"></a>
+## class `URH_RemoteFileSubsystem` <a id="classURH__RemoteFileSubsystem"></a>
 
 ```
-class URH_FileSubsystem
+class URH_RemoteFileSubsystem
   : public URH_GameInstanceSubsystemPlugin
 ```
 
@@ -19,37 +19,37 @@ File Subsystem used for file API calls.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public virtual void `[`Initialize`](#classURH__FileSubsystem_1a00d230496f246f5914d9d4a867a0990a)`()` | Initialize the subsystem.
-`public virtual void `[`Deinitialize`](#classURH__FileSubsystem_1a83c13fc9b586f6de3936cc83b44edd6e)`()` | Safely tears down the subsystem.
-`public virtual void `[`UploadFile`](#classURH__FileSubsystem_1aba2e99f3a712d90bc42cee92ee77192d)`(const `[`FRH_FileApiDirectory`](Common.md#structFRH__FileApiDirectory)` & Directory,const FString & RemoteFileName,const FString & LocalFilePath,const FRH_GenericSuccessWithErrorBlock Delegate)` | Upload a local file to the remote file storage.
-`public inline void `[`BLUEPRINT_UploadFile`](#classURH__FileSubsystem_1ae402c1d50344fab33959babf6b7460a9)`(const `[`FRH_FileApiDirectory`](Common.md#structFRH__FileApiDirectory)` & Directory,const FString & RemoteFileName,const FString & LocalFilePath,const FRH_GenericSuccessWithErrorDynamicDelegate & Delegate)` | Upload a local file to the remote file storage.
-`public virtual void `[`DeleteFile`](#classURH__FileSubsystem_1ad7b0fe2fe44ea07341c61f70068b2ce4)`(const `[`FRH_FileApiDirectory`](Common.md#structFRH__FileApiDirectory)` & Directory,const FString & RemoteFileName,const FRH_GenericSuccessWithErrorBlock Delegate)` | Delete a file from remote file storage.
-`public inline void `[`BLUEPRINT_DeleteFile`](#classURH__FileSubsystem_1aaa6da420a95028062b5c5253e1dbc05d)`(const `[`FRH_FileApiDirectory`](Common.md#structFRH__FileApiDirectory)` & Directory,const FString & RemoteFileName,const FRH_GenericSuccessWithErrorDynamicDelegate & Delegate)` | Upload a local file to the remote file storage.
-`public virtual void `[`DownloadFile`](#classURH__FileSubsystem_1a827f8ef2df88eb239b59dcfeb26e42ea)`(const `[`FRH_FileApiDirectory`](Common.md#structFRH__FileApiDirectory)` & Directory,const FString & RemoteFileName,const FString & LocalFilePath,const FRH_GenericSuccessWithErrorBlock Delegate)` | Download a remote file to local file storage.
-`public virtual void `[`DownloadFile`](#classURH__FileSubsystem_1a46b151ed6178edb9790ffadfecb5ff08)`(const `[`FRH_FileApiDirectory`](Common.md#structFRH__FileApiDirectory)` & Directory,const FString & RemoteFileName,const FRH_FileDownloadDelegate Delegate)` | Download a remote file to memory.
-`public inline void `[`BLUEPRINT_DownloadFile`](#classURH__FileSubsystem_1a0225e3d415c12e734787b8729eaeb864)`(const `[`FRH_FileApiDirectory`](Common.md#structFRH__FileApiDirectory)` & Directory,const FString & RemoteFileName,const FString & LocalFilePath,const FRH_GenericSuccessWithErrorDynamicDelegate & Delegate)` | Download a remote file to local file storage.
-`public virtual void `[`DownloadAllFiles`](#classURH__FileSubsystem_1af5c5e2bababfe5eef730974b183c8dab)`(const `[`FRH_FileApiDirectory`](Common.md#structFRH__FileApiDirectory)` & Directory,const FString & LocalDirectory,bool bUseCachedList,const FRH_FileDirectoryDownloadDelegateBlock Delegate)` | Downloads all discoverable files in a remote directory to a local file directory.
-`public inline void `[`BLUEPRINT_DownloadAllFiles`](#classURH__FileSubsystem_1a8442a05b21f5c6d45bf1cc50d67fa912)`(const `[`FRH_FileApiDirectory`](Common.md#structFRH__FileApiDirectory)` & Directory,const FString & LocalDirectory,bool bUseCachedList,const FRH_FileDirectoryDownloadDynamicDelegate & Delegate)` | Downloads all discoverable files in a remote directory to a local file directory.
-`public virtual void `[`LookupFileList`](#classURH__FileSubsystem_1a120827aa1ab74f82fd2641512695f1d9)`(const `[`FRH_FileApiDirectory`](Common.md#structFRH__FileApiDirectory)` & Directory,const FRH_GenericSuccessWithErrorBlock Delegate)` | List the available remote files for an entity from the API and store results in cache.
-`public inline void `[`BLUEPRINT_LookupFileList`](#classURH__FileSubsystem_1a8d3408b1fad196e052584507a288fe2f)`(const `[`FRH_FileApiDirectory`](Common.md#structFRH__FileApiDirectory)` & Directory,const FRH_GenericSuccessWithErrorDynamicDelegate & Delegate)` | List the available remote files for an entity from the API and store results in cache.
-`public inline const TMap< `[`FRH_FileApiDirectory](Common.md#structFRH__FileApiDirectory), [FRHAPI_FileListResponse`](models/RHAPI_FileListResponse.md#structFRHAPI__FileListResponse)` > & `[`GetFileListCache`](#classURH__FileSubsystem_1a2a8a714f3451d24bce82e5321218b7ae)`() const` | Get the entire file list cache.
-`public inline virtual bool `[`ListFiles`](#classURH__FileSubsystem_1a9c0b817aea1fd5bce65fce3ae4d1d987)`(const `[`FRH_FileApiDirectory`](Common.md#structFRH__FileApiDirectory)` & Directory,`[`FRHAPI_FileListResponse`](models/RHAPI_FileListResponse.md#structFRHAPI__FileListResponse)` & OutFileList)` | List the available remote files for an entity from the cache.
-`protected TMap< `[`FRH_FileApiDirectory](Common.md#structFRH__FileApiDirectory), [FRHAPI_FileListResponse`](models/RHAPI_FileListResponse.md#structFRHAPI__FileListResponse)` > `[`FileListCache`](#classURH__FileSubsystem_1a99fc59f1c9f4e173e6d014ffa84c445b) | 
-`protected virtual void `[`DownloadFileList`](#classURH__FileSubsystem_1a963feef939fd55f7930815bf4c435df2)`(const `[`FRH_FileApiDirectory`](Common.md#structFRH__FileApiDirectory)` & Directory,const TArray< FString > & RemoteFileNames,const FString & LocalDirectory,const FRH_FileDirectoryDownloadDelegateBlock Delegate)` | Downloads all discoverable files in a remote directory to a local file directory.
+`public virtual void `[`Initialize`](#classURH__RemoteFileSubsystem_1a249b11cac6ff5da3f516459532585108)`()` | Initialize the subsystem.
+`public virtual void `[`Deinitialize`](#classURH__RemoteFileSubsystem_1ab67cd31ba8af91bf5e23f9644770f495)`()` | Safely tears down the subsystem.
+`public virtual void `[`UploadFile`](#classURH__RemoteFileSubsystem_1a03467c88fad90070730fd59fd1e423b7)`(const `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` & Directory,const FString & RemoteFileName,const FString & LocalFilePath,const FRH_GenericSuccessWithErrorBlock Delegate)` | Upload a local file to the remote file storage.
+`public inline void `[`BLUEPRINT_UploadFile`](#classURH__RemoteFileSubsystem_1a1b0ce6d7fa455db7b234f52c3ef360b2)`(const `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` & Directory,const FString & RemoteFileName,const FString & LocalFilePath,const FRH_GenericSuccessWithErrorDynamicDelegate & Delegate)` | Upload a local file to the remote file storage.
+`public virtual void `[`DeleteFile`](#classURH__RemoteFileSubsystem_1a2f1ee08e22476c88dff1cdedcd7cf2ef)`(const `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` & Directory,const FString & RemoteFileName,const FRH_GenericSuccessWithErrorBlock Delegate)` | Delete a file from remote file storage.
+`public inline void `[`BLUEPRINT_DeleteFile`](#classURH__RemoteFileSubsystem_1a13eb10c56b835fe594e88f118c681174)`(const `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` & Directory,const FString & RemoteFileName,const FRH_GenericSuccessWithErrorDynamicDelegate & Delegate)` | Upload a local file to the remote file storage.
+`public virtual void `[`DownloadFile`](#classURH__RemoteFileSubsystem_1a700698d9f3f0cfa5c59312c67f7ae567)`(const `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` & Directory,const FString & RemoteFileName,const FString & LocalFilePath,const FRH_GenericSuccessWithErrorBlock Delegate)` | Download a remote file to local file storage.
+`public virtual void `[`DownloadFile`](#classURH__RemoteFileSubsystem_1a2c9407936abcef6097184a3634dbee46)`(const `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` & Directory,const FString & RemoteFileName,const FRH_FileDownloadDelegate Delegate)` | Download a remote file to memory.
+`public inline void `[`BLUEPRINT_DownloadFile`](#classURH__RemoteFileSubsystem_1a74b373397937c272b586d6785cc5e6b1)`(const `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` & Directory,const FString & RemoteFileName,const FString & LocalFilePath,const FRH_GenericSuccessWithErrorDynamicDelegate & Delegate)` | Download a remote file to local file storage.
+`public virtual void `[`DownloadAllFiles`](#classURH__RemoteFileSubsystem_1aae6267a8ad1d709fd57b9b6007fd0a68)`(const `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` & Directory,const FString & LocalDirectory,bool bUseCachedList,const FRH_FileDirectoryDownloadDelegateBlock Delegate)` | Downloads all discoverable files in a remote directory to a local file directory.
+`public inline void `[`BLUEPRINT_DownloadAllFiles`](#classURH__RemoteFileSubsystem_1a585db9eca7d95d6b68dd83a53527049d)`(const `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` & Directory,const FString & LocalDirectory,bool bUseCachedList,const FRH_FileDirectoryDownloadDynamicDelegate & Delegate)` | Downloads all discoverable files in a remote directory to a local file directory.
+`public virtual void `[`LookupFileList`](#classURH__RemoteFileSubsystem_1a36fea83617549e77ed8ae584a72510c7)`(const `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` & Directory,const FRH_GenericSuccessWithErrorBlock Delegate)` | List the available remote files for an entity from the API and store results in cache.
+`public inline void `[`BLUEPRINT_LookupFileList`](#classURH__RemoteFileSubsystem_1a6fe5fd4de179985acf299724bad96d07)`(const `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` & Directory,const FRH_GenericSuccessWithErrorDynamicDelegate & Delegate)` | List the available remote files for an entity from the API and store results in cache.
+`public inline const TMap< `[`FRH_RemoteFileApiDirectory](Common.md#structFRH__RemoteFileApiDirectory), [FRHAPI_FileListResponse`](models/RHAPI_FileListResponse.md#structFRHAPI__FileListResponse)` > & `[`GetFileListCache`](#classURH__RemoteFileSubsystem_1a10bf521503a066a0983a554b0011b412)`() const` | Get the entire file list cache.
+`public inline virtual bool `[`ListFiles`](#classURH__RemoteFileSubsystem_1a3d9dbd4f20220f82b8047db827c37777)`(const `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` & Directory,`[`FRHAPI_FileListResponse`](models/RHAPI_FileListResponse.md#structFRHAPI__FileListResponse)` & OutFileList)` | List the available remote files for an entity from the cache.
+`protected TMap< `[`FRH_RemoteFileApiDirectory](Common.md#structFRH__RemoteFileApiDirectory), [FRHAPI_FileListResponse`](models/RHAPI_FileListResponse.md#structFRHAPI__FileListResponse)` > `[`FileListCache`](#classURH__RemoteFileSubsystem_1ad6229657ea8ef6c417c9ced173eebe85) | 
+`protected virtual void `[`DownloadFileList`](#classURH__RemoteFileSubsystem_1ac8ee5bc68fb208fb9c329c897b93eab9)`(const `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` & Directory,const TArray< FString > & RemoteFileNames,const FString & LocalDirectory,const FRH_FileDirectoryDownloadDelegateBlock Delegate)` | Downloads all discoverable files in a remote directory to a local file directory.
 
 #### Members
 
-#### `public virtual void `[`Initialize`](#classURH__FileSubsystem_1a00d230496f246f5914d9d4a867a0990a)`()` <a id="classURH__FileSubsystem_1a00d230496f246f5914d9d4a867a0990a"></a>
+#### `public virtual void `[`Initialize`](#classURH__RemoteFileSubsystem_1a249b11cac6ff5da3f516459532585108)`()` <a id="classURH__RemoteFileSubsystem_1a249b11cac6ff5da3f516459532585108"></a>
 
 Initialize the subsystem.
 
 <br>
-#### `public virtual void `[`Deinitialize`](#classURH__FileSubsystem_1a83c13fc9b586f6de3936cc83b44edd6e)`()` <a id="classURH__FileSubsystem_1a83c13fc9b586f6de3936cc83b44edd6e"></a>
+#### `public virtual void `[`Deinitialize`](#classURH__RemoteFileSubsystem_1ab67cd31ba8af91bf5e23f9644770f495)`()` <a id="classURH__RemoteFileSubsystem_1ab67cd31ba8af91bf5e23f9644770f495"></a>
 
 Safely tears down the subsystem.
 
 <br>
-#### `public virtual void `[`UploadFile`](#classURH__FileSubsystem_1aba2e99f3a712d90bc42cee92ee77192d)`(const `[`FRH_FileApiDirectory`](Common.md#structFRH__FileApiDirectory)` & Directory,const FString & RemoteFileName,const FString & LocalFilePath,const FRH_GenericSuccessWithErrorBlock Delegate)` <a id="classURH__FileSubsystem_1aba2e99f3a712d90bc42cee92ee77192d"></a>
+#### `public virtual void `[`UploadFile`](#classURH__RemoteFileSubsystem_1a03467c88fad90070730fd59fd1e423b7)`(const `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` & Directory,const FString & RemoteFileName,const FString & LocalFilePath,const FRH_GenericSuccessWithErrorBlock Delegate)` <a id="classURH__RemoteFileSubsystem_1a03467c88fad90070730fd59fd1e423b7"></a>
 
 Upload a local file to the remote file storage.
 
@@ -63,7 +63,7 @@ Upload a local file to the remote file storage.
 * `Delegate` The delegate to call when the operation completes.
 
 <br>
-#### `public inline void `[`BLUEPRINT_UploadFile`](#classURH__FileSubsystem_1ae402c1d50344fab33959babf6b7460a9)`(const `[`FRH_FileApiDirectory`](Common.md#structFRH__FileApiDirectory)` & Directory,const FString & RemoteFileName,const FString & LocalFilePath,const FRH_GenericSuccessWithErrorDynamicDelegate & Delegate)` <a id="classURH__FileSubsystem_1ae402c1d50344fab33959babf6b7460a9"></a>
+#### `public inline void `[`BLUEPRINT_UploadFile`](#classURH__RemoteFileSubsystem_1a1b0ce6d7fa455db7b234f52c3ef360b2)`(const `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` & Directory,const FString & RemoteFileName,const FString & LocalFilePath,const FRH_GenericSuccessWithErrorDynamicDelegate & Delegate)` <a id="classURH__RemoteFileSubsystem_1a1b0ce6d7fa455db7b234f52c3ef360b2"></a>
 
 Upload a local file to the remote file storage.
 
@@ -77,7 +77,7 @@ Upload a local file to the remote file storage.
 * `Delegate` The delegate to call when the operation completes.
 
 <br>
-#### `public virtual void `[`DeleteFile`](#classURH__FileSubsystem_1ad7b0fe2fe44ea07341c61f70068b2ce4)`(const `[`FRH_FileApiDirectory`](Common.md#structFRH__FileApiDirectory)` & Directory,const FString & RemoteFileName,const FRH_GenericSuccessWithErrorBlock Delegate)` <a id="classURH__FileSubsystem_1ad7b0fe2fe44ea07341c61f70068b2ce4"></a>
+#### `public virtual void `[`DeleteFile`](#classURH__RemoteFileSubsystem_1a2f1ee08e22476c88dff1cdedcd7cf2ef)`(const `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` & Directory,const FString & RemoteFileName,const FRH_GenericSuccessWithErrorBlock Delegate)` <a id="classURH__RemoteFileSubsystem_1a2f1ee08e22476c88dff1cdedcd7cf2ef"></a>
 
 Delete a file from remote file storage.
 
@@ -89,7 +89,7 @@ Delete a file from remote file storage.
 * `Delegate` The delegate to call when the operation completes.
 
 <br>
-#### `public inline void `[`BLUEPRINT_DeleteFile`](#classURH__FileSubsystem_1aaa6da420a95028062b5c5253e1dbc05d)`(const `[`FRH_FileApiDirectory`](Common.md#structFRH__FileApiDirectory)` & Directory,const FString & RemoteFileName,const FRH_GenericSuccessWithErrorDynamicDelegate & Delegate)` <a id="classURH__FileSubsystem_1aaa6da420a95028062b5c5253e1dbc05d"></a>
+#### `public inline void `[`BLUEPRINT_DeleteFile`](#classURH__RemoteFileSubsystem_1a13eb10c56b835fe594e88f118c681174)`(const `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` & Directory,const FString & RemoteFileName,const FRH_GenericSuccessWithErrorDynamicDelegate & Delegate)` <a id="classURH__RemoteFileSubsystem_1a13eb10c56b835fe594e88f118c681174"></a>
 
 Upload a local file to the remote file storage.
 
@@ -101,7 +101,7 @@ Upload a local file to the remote file storage.
 * `Delegate` The delegate to call when the operation completes.
 
 <br>
-#### `public virtual void `[`DownloadFile`](#classURH__FileSubsystem_1a827f8ef2df88eb239b59dcfeb26e42ea)`(const `[`FRH_FileApiDirectory`](Common.md#structFRH__FileApiDirectory)` & Directory,const FString & RemoteFileName,const FString & LocalFilePath,const FRH_GenericSuccessWithErrorBlock Delegate)` <a id="classURH__FileSubsystem_1a827f8ef2df88eb239b59dcfeb26e42ea"></a>
+#### `public virtual void `[`DownloadFile`](#classURH__RemoteFileSubsystem_1a700698d9f3f0cfa5c59312c67f7ae567)`(const `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` & Directory,const FString & RemoteFileName,const FString & LocalFilePath,const FRH_GenericSuccessWithErrorBlock Delegate)` <a id="classURH__RemoteFileSubsystem_1a700698d9f3f0cfa5c59312c67f7ae567"></a>
 
 Download a remote file to local file storage.
 
@@ -115,7 +115,7 @@ Download a remote file to local file storage.
 * `Delegate` The delegate to call when the operation completes.
 
 <br>
-#### `public virtual void `[`DownloadFile`](#classURH__FileSubsystem_1a46b151ed6178edb9790ffadfecb5ff08)`(const `[`FRH_FileApiDirectory`](Common.md#structFRH__FileApiDirectory)` & Directory,const FString & RemoteFileName,const FRH_FileDownloadDelegate Delegate)` <a id="classURH__FileSubsystem_1a46b151ed6178edb9790ffadfecb5ff08"></a>
+#### `public virtual void `[`DownloadFile`](#classURH__RemoteFileSubsystem_1a2c9407936abcef6097184a3634dbee46)`(const `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` & Directory,const FString & RemoteFileName,const FRH_FileDownloadDelegate Delegate)` <a id="classURH__RemoteFileSubsystem_1a2c9407936abcef6097184a3634dbee46"></a>
 
 Download a remote file to memory.
 
@@ -127,7 +127,7 @@ Download a remote file to memory.
 * `Delegate` The delegate to call when the operation completes.
 
 <br>
-#### `public inline void `[`BLUEPRINT_DownloadFile`](#classURH__FileSubsystem_1a0225e3d415c12e734787b8729eaeb864)`(const `[`FRH_FileApiDirectory`](Common.md#structFRH__FileApiDirectory)` & Directory,const FString & RemoteFileName,const FString & LocalFilePath,const FRH_GenericSuccessWithErrorDynamicDelegate & Delegate)` <a id="classURH__FileSubsystem_1a0225e3d415c12e734787b8729eaeb864"></a>
+#### `public inline void `[`BLUEPRINT_DownloadFile`](#classURH__RemoteFileSubsystem_1a74b373397937c272b586d6785cc5e6b1)`(const `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` & Directory,const FString & RemoteFileName,const FString & LocalFilePath,const FRH_GenericSuccessWithErrorDynamicDelegate & Delegate)` <a id="classURH__RemoteFileSubsystem_1a74b373397937c272b586d6785cc5e6b1"></a>
 
 Download a remote file to local file storage.
 
@@ -141,7 +141,7 @@ Download a remote file to local file storage.
 * `Delegate` The delegate to call when the operation completes.
 
 <br>
-#### `public virtual void `[`DownloadAllFiles`](#classURH__FileSubsystem_1af5c5e2bababfe5eef730974b183c8dab)`(const `[`FRH_FileApiDirectory`](Common.md#structFRH__FileApiDirectory)` & Directory,const FString & LocalDirectory,bool bUseCachedList,const FRH_FileDirectoryDownloadDelegateBlock Delegate)` <a id="classURH__FileSubsystem_1af5c5e2bababfe5eef730974b183c8dab"></a>
+#### `public virtual void `[`DownloadAllFiles`](#classURH__RemoteFileSubsystem_1aae6267a8ad1d709fd57b9b6007fd0a68)`(const `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` & Directory,const FString & LocalDirectory,bool bUseCachedList,const FRH_FileDirectoryDownloadDelegateBlock Delegate)` <a id="classURH__RemoteFileSubsystem_1aae6267a8ad1d709fd57b9b6007fd0a68"></a>
 
 Downloads all discoverable files in a remote directory to a local file directory.
 
@@ -155,7 +155,7 @@ Downloads all discoverable files in a remote directory to a local file directory
 * `Delegate` The delegate to call when the operation completes.
 
 <br>
-#### `public inline void `[`BLUEPRINT_DownloadAllFiles`](#classURH__FileSubsystem_1a8442a05b21f5c6d45bf1cc50d67fa912)`(const `[`FRH_FileApiDirectory`](Common.md#structFRH__FileApiDirectory)` & Directory,const FString & LocalDirectory,bool bUseCachedList,const FRH_FileDirectoryDownloadDynamicDelegate & Delegate)` <a id="classURH__FileSubsystem_1a8442a05b21f5c6d45bf1cc50d67fa912"></a>
+#### `public inline void `[`BLUEPRINT_DownloadAllFiles`](#classURH__RemoteFileSubsystem_1a585db9eca7d95d6b68dd83a53527049d)`(const `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` & Directory,const FString & LocalDirectory,bool bUseCachedList,const FRH_FileDirectoryDownloadDynamicDelegate & Delegate)` <a id="classURH__RemoteFileSubsystem_1a585db9eca7d95d6b68dd83a53527049d"></a>
 
 Downloads all discoverable files in a remote directory to a local file directory.
 
@@ -169,7 +169,7 @@ Downloads all discoverable files in a remote directory to a local file directory
 * `Delegate` The delegate to call when the operation completes.
 
 <br>
-#### `public virtual void `[`LookupFileList`](#classURH__FileSubsystem_1a120827aa1ab74f82fd2641512695f1d9)`(const `[`FRH_FileApiDirectory`](Common.md#structFRH__FileApiDirectory)` & Directory,const FRH_GenericSuccessWithErrorBlock Delegate)` <a id="classURH__FileSubsystem_1a120827aa1ab74f82fd2641512695f1d9"></a>
+#### `public virtual void `[`LookupFileList`](#classURH__RemoteFileSubsystem_1a36fea83617549e77ed8ae584a72510c7)`(const `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` & Directory,const FRH_GenericSuccessWithErrorBlock Delegate)` <a id="classURH__RemoteFileSubsystem_1a36fea83617549e77ed8ae584a72510c7"></a>
 
 List the available remote files for an entity from the API and store results in cache.
 
@@ -179,7 +179,7 @@ List the available remote files for an entity from the API and store results in 
 * `Delegate` The delegate to call when the operation completes.
 
 <br>
-#### `public inline void `[`BLUEPRINT_LookupFileList`](#classURH__FileSubsystem_1a8d3408b1fad196e052584507a288fe2f)`(const `[`FRH_FileApiDirectory`](Common.md#structFRH__FileApiDirectory)` & Directory,const FRH_GenericSuccessWithErrorDynamicDelegate & Delegate)` <a id="classURH__FileSubsystem_1a8d3408b1fad196e052584507a288fe2f"></a>
+#### `public inline void `[`BLUEPRINT_LookupFileList`](#classURH__RemoteFileSubsystem_1a6fe5fd4de179985acf299724bad96d07)`(const `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` & Directory,const FRH_GenericSuccessWithErrorDynamicDelegate & Delegate)` <a id="classURH__RemoteFileSubsystem_1a6fe5fd4de179985acf299724bad96d07"></a>
 
 List the available remote files for an entity from the API and store results in cache.
 
@@ -189,12 +189,12 @@ List the available remote files for an entity from the API and store results in 
 * `Delegate` The delegate to call when the operation completes.
 
 <br>
-#### `public inline const TMap< `[`FRH_FileApiDirectory](Common.md#structFRH__FileApiDirectory), [FRHAPI_FileListResponse`](models/RHAPI_FileListResponse.md#structFRHAPI__FileListResponse)` > & `[`GetFileListCache`](#classURH__FileSubsystem_1a2a8a714f3451d24bce82e5321218b7ae)`() const` <a id="classURH__FileSubsystem_1a2a8a714f3451d24bce82e5321218b7ae"></a>
+#### `public inline const TMap< `[`FRH_RemoteFileApiDirectory](Common.md#structFRH__RemoteFileApiDirectory), [FRHAPI_FileListResponse`](models/RHAPI_FileListResponse.md#structFRHAPI__FileListResponse)` > & `[`GetFileListCache`](#classURH__RemoteFileSubsystem_1a10bf521503a066a0983a554b0011b412)`() const` <a id="classURH__RemoteFileSubsystem_1a10bf521503a066a0983a554b0011b412"></a>
 
 Get the entire file list cache.
 
 <br>
-#### `public inline virtual bool `[`ListFiles`](#classURH__FileSubsystem_1a9c0b817aea1fd5bce65fce3ae4d1d987)`(const `[`FRH_FileApiDirectory`](Common.md#structFRH__FileApiDirectory)` & Directory,`[`FRHAPI_FileListResponse`](models/RHAPI_FileListResponse.md#structFRHAPI__FileListResponse)` & OutFileList)` <a id="classURH__FileSubsystem_1a9c0b817aea1fd5bce65fce3ae4d1d987"></a>
+#### `public inline virtual bool `[`ListFiles`](#classURH__RemoteFileSubsystem_1a3d9dbd4f20220f82b8047db827c37777)`(const `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` & Directory,`[`FRHAPI_FileListResponse`](models/RHAPI_FileListResponse.md#structFRHAPI__FileListResponse)` & OutFileList)` <a id="classURH__RemoteFileSubsystem_1a3d9dbd4f20220f82b8047db827c37777"></a>
 
 List the available remote files for an entity from the cache.
 
@@ -202,10 +202,10 @@ List the available remote files for an entity from the cache.
 * `Directory` The directory of the file on the remote storage.
 
 <br>
-#### `protected TMap< `[`FRH_FileApiDirectory](Common.md#structFRH__FileApiDirectory), [FRHAPI_FileListResponse`](models/RHAPI_FileListResponse.md#structFRHAPI__FileListResponse)` > `[`FileListCache`](#classURH__FileSubsystem_1a99fc59f1c9f4e173e6d014ffa84c445b) <a id="classURH__FileSubsystem_1a99fc59f1c9f4e173e6d014ffa84c445b"></a>
+#### `protected TMap< `[`FRH_RemoteFileApiDirectory](Common.md#structFRH__RemoteFileApiDirectory), [FRHAPI_FileListResponse`](models/RHAPI_FileListResponse.md#structFRHAPI__FileListResponse)` > `[`FileListCache`](#classURH__RemoteFileSubsystem_1ad6229657ea8ef6c417c9ced173eebe85) <a id="classURH__RemoteFileSubsystem_1ad6229657ea8ef6c417c9ced173eebe85"></a>
 
 <br>
-#### `protected virtual void `[`DownloadFileList`](#classURH__FileSubsystem_1a963feef939fd55f7930815bf4c435df2)`(const `[`FRH_FileApiDirectory`](Common.md#structFRH__FileApiDirectory)` & Directory,const TArray< FString > & RemoteFileNames,const FString & LocalDirectory,const FRH_FileDirectoryDownloadDelegateBlock Delegate)` <a id="classURH__FileSubsystem_1a963feef939fd55f7930815bf4c435df2"></a>
+#### `protected virtual void `[`DownloadFileList`](#classURH__RemoteFileSubsystem_1ac8ee5bc68fb208fb9c329c897b93eab9)`(const `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` & Directory,const TArray< FString > & RemoteFileNames,const FString & LocalDirectory,const FRH_FileDirectoryDownloadDelegateBlock Delegate)` <a id="classURH__RemoteFileSubsystem_1ac8ee5bc68fb208fb9c329c897b93eab9"></a>
 
 Downloads all discoverable files in a remote directory to a local file directory.
 

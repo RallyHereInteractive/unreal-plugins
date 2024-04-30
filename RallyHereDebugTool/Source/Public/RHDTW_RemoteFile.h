@@ -3,7 +3,7 @@
 #pragma once
 
 #include "RH_DebugToolWindow.h"
-#include "RH_FileSubsystem.h"
+#include "RH_RemoteFileSubsystem.h"
 
 struct FRHDTW_RemoteFile : public FRH_DebugToolWindow
 {
@@ -15,13 +15,13 @@ public:
 
 	virtual void Do() override;
 
-	virtual void DoListFiles(URH_FileSubsystem* pFileSubsystem);
-	virtual void DoDownloadFile(URH_FileSubsystem* pFileSubsystem);
-	virtual void DoUploadFile(URH_FileSubsystem* pFileSubsystem);
+	virtual void DoListFiles(URH_RemoteFileSubsystem* pRemoteFileSubsystem);
+	virtual void DoDownloadFile(URH_RemoteFileSubsystem* pRemoteFileSubsystem);
+	virtual void DoUploadFile(URH_RemoteFileSubsystem* pRemoteFileSubsystem);
 
 protected:
 
-	FRH_FileApiDirectory RemoteDirectory;
+	FRH_RemoteFileApiDirectory RemoteDirectory;
 
 	FString BrowseDownloadDirectory;
 	FString PendingDeleteFileName;

@@ -753,7 +753,7 @@ static bool RH_BreakApartURL(const FString& URL, const FString& BaseURL, FString
  * @brief A tuple specifying the directory of a file in the remote file storage.
  */
 USTRUCT(BlueprintType)
-struct FRH_FileApiDirectory
+struct FRH_RemoteFileApiDirectory
 {
 	GENERATED_USTRUCT_BODY();
 
@@ -767,14 +767,14 @@ struct FRH_FileApiDirectory
 	UPROPERTY(BlueprintReadWrite, Category = "File")
 	FString EntityId;
 
-	FRH_FileApiDirectory()
+	FRH_RemoteFileApiDirectory()
 		: FileType(ERHAPI_FileType::File)
 		, EntityType(ERHAPI_EntityType::Unknown)
 		, EntityId()
 	{
 	}
 
-	FRH_FileApiDirectory(ERHAPI_FileType InFileType, ERHAPI_EntityType InEntityType, const FString& InEntityId)
+	FRH_RemoteFileApiDirectory(ERHAPI_FileType InFileType, ERHAPI_EntityType InEntityType, const FString& InEntityId)
 		: FileType(InFileType)
 		, EntityType(InEntityType)
 		, EntityId(InEntityId)
@@ -782,7 +782,7 @@ struct FRH_FileApiDirectory
 	}
 
 	/** @brief Comparison operator */
-	bool operator== (const FRH_FileApiDirectory& Other) const
+	bool operator== (const FRH_RemoteFileApiDirectory& Other) const
 	{
 		return	FileType == Other.FileType
 			&& EntityType == Other.EntityType
@@ -806,11 +806,11 @@ struct FRH_FileApiDirectory
 };
 
 /**
- * @brief Helper function to convert an FRH_FileApiDirectory into a hash value
+ * @brief Helper function to convert an FRH_RemoteFileApiDirectory into a hash value
  * @param [in] Directory The directory to generate a hash for
  * @return Semi-unique hash value for the given directory
  */
-FORCEINLINE uint32 GetTypeHash(const FRH_FileApiDirectory& Directory)
+FORCEINLINE uint32 GetTypeHash(const FRH_RemoteFileApiDirectory& Directory)
 {
 	return HashCombine((uint32)Directory.FileType, HashCombine(GetTypeHash((uint32)Directory.EntityType), GetTypeHash(Directory.EntityId)));
 }

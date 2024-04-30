@@ -111,7 +111,7 @@ bool FResponse::ParseJsonTypeContent()
 
 	TSharedPtr<FJsonValue> JsonValue;
 	const FString ContentAsString = HttpResponse->GetContentAsString();
-	
+
 	if (ContentAsString.Len() == 0 || ContentAsString.TrimStart().Len() == 0)
 	{
 		// if the response was empty or all whitespace, do not create a json object, but return as non-error
