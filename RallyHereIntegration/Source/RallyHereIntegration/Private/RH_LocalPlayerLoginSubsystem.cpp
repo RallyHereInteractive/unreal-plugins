@@ -78,7 +78,7 @@ void URH_LocalPlayerLoginSubsystem::HandleNotification(const FRHAPI_Notification
 	{
 		// the first API param should be the API version
 		// the second API param should be the object type
-		if (APIParams.Num() >= 3 && APIParams[0] == TEXT("v1") && APIParams[1] == TEXT("login"))
+		if (APIParams.Num() >= 2 && APIParams[0] == TEXT("v1") && APIParams[1] == TEXT("login"))
 		{
 			// if we got a login notification, we should refresh our login if logged in
 			auto AuthContext = GetAuthContext();
@@ -88,7 +88,7 @@ void URH_LocalPlayerLoginSubsystem::HandleNotification(const FRHAPI_Notification
 				AuthContext->Refresh();
 			}
 		}
-		else if (APIParams.Num() >= 3 && APIParams[0] == TEXT("v1") && APIParams[1] == TEXT("logout"))
+		else if (APIParams.Num() >= 2 && APIParams[0] == TEXT("v1") && APIParams[1] == TEXT("logout"))
 		{
 			// if we got a logout notification, we should log out
 			Logout();
