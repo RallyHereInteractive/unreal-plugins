@@ -96,14 +96,26 @@ void FRHDTW_Automation::DoRunTab()
 
 	ImGui::Separator();
 
-	if (ImGui::Button("Enable All Visible"))
+	if (ImGui::Button("Enable Visible"))
 	{
 		AutomationController->SetVisibleTestsEnabled(true);
 	}
 	ImGui::SameLine();
-	if (ImGui::Button("Disable All Visible"))
+	if (ImGui::Button("Disable Visible"))
 	{
 		AutomationController->SetVisibleTestsEnabled(false);
+	}
+	ImGui::SameLine();
+	if (ImGui::Button("Enable Only Visible"))
+	{
+		AutomationController->SetEnabledTests(TArray<FString>());
+		AutomationController->SetVisibleTestsEnabled(true);
+	}
+	
+	ImGui::SameLine();
+	if (ImGui::Button("Disable All"))
+	{
+		AutomationController->SetEnabledTests(TArray<FString>());
 	}
 
 	if (ImGui::InputText("Filter", &FilterString) || !bHasInitializedFilter)
@@ -234,14 +246,6 @@ void FRHDTW_Automation::DoResultsTab()
 {
 	auto EnabledReports = AutomationController->GetEnabledReports();
 
-	
-	auto StyleHeaderColor = [](FColor BaseColor, FColor HoveredColor, FColor ActiveColor)
-	{
-		ImGui::PushStyleColor(ImGuiCol_Header, BaseColor.ToPackedABGR());
-		ImGui::PushStyleColor(ImGuiCol_HeaderHovered, HoveredColor.ToPackedABGR());
-		ImGui::PushStyleColor(ImGuiCol_HeaderActive, ActiveColor.ToPackedABGR());
-	};
-
 	const uint32 LastPassIndex = AutomationController->GetNumPasses() - 1;
 
 	//Pull the data out of the reports
@@ -259,32 +263,32 @@ void FRHDTW_Automation::DoResultsTab()
 						const auto Report = EnabledReports[k];
 						const auto Result = Report->GetResults(i, LastPassIndex);
 
-						bool hasColorStyling = false;
+						ImGuiColors::HeaderStyle::HeaderStyleColor HeaderColor = ImGuiColors::HeaderStyle::GetDefault();
 
 						switch (Result.State)
 						{
 						case EAutomationState::NotRun:				// Automation test was not run
-							StyleHeaderColor(ImGuiColors::Yellow_Base, ImGuiColors::Yellow_Hovered, ImGuiColors::Yellow_Active);
-							hasColorStyling = true;
+							HeaderColor = ImGuiColors::HeaderStyle::Yellow;
 							break;
 						case EAutomationState::InProcess:			// Automation test is running now
-							StyleHeaderColor(ImGuiColors::Teal_Base, ImGuiColors::Teal_Hovered, ImGuiColors::Teal_Active);
-							hasColorStyling = true;
+							HeaderColor = ImGuiColors::HeaderStyle::Teal;
 							break;
 						case EAutomationState::Fail:				// Automation test was run and failed
-							StyleHeaderColor(ImGuiColors::Red_Base, ImGuiColors::Red_Hovered, ImGuiColors::Red_Active);
-							hasColorStyling = true;
-							break;
-						case EAutomationState::Success:				// Automation test was run and succeeded
-							// no custom styling, use default
+							HeaderColor = ImGuiColors::HeaderStyle::Red;
 							break;
 						case EAutomationState::Skipped:				// Automation test was skipped
-							StyleHeaderColor(ImGuiColors::Yellow_Base, ImGuiColors::Yellow_Hovered, ImGuiColors::Yellow_Active);
-							hasColorStyling = true;
+							HeaderColor = ImGuiColors::HeaderStyle::Yellow;
+							break;
+						case EAutomationState::Success:				// Automation test was run and succeeded
+						default:
+							// no custom styling, use default
+							HeaderColor = ImGuiColors::HeaderStyle::GetDefault();
 							break;
 						}
 
-						auto ReportName = Report->GetDisplayNameWithDecoration();
+						ImGuiColors::HeaderStyle::ScopedHeaderStyle ResultStyle(HeaderColor);
+
+						auto ReportName = Report->GetFullTestPath();
 						if (ImGui::TreeNodeEx(TCHAR_TO_ANSI(*ReportName), RH_DefaultTreeFlags))
 						{
 							FAutomationTestResults TestResults = Report->GetResults(i, LastPassIndex);
@@ -295,55 +299,41 @@ void FRHDTW_Automation::DoResultsTab()
 								ImGuiDisplayCopyableValue(TEXT("Duration"), TestResults.Duration);
 								ImGuiDisplayCopyableValue(TEXT("State:"), AutomationStateToString(TestResults.State));
 
-								if (TestResults.GetErrorTotal() > 0)
+								auto DisplayFilteredEvents = [&](EAutomationEventType Type, const FString& Title, const ImGuiColors::HeaderStyle::HeaderStyleColor& Color)
 								{
-									ImGui::Text("Errors: %d", TestResults.GetErrorTotal());
-
-									if (ImGui::TreeNodeEx("Errors", RH_DefaultTreeFlagsDefaultOpen))
-									{
-										int32 ErrorIndex = 0;
-										for (const auto& Error : TestResults.GetEntries())
+									auto FilteredEvents = TestResults.GetEntries().FilterByPredicate([Type](const FAutomationExecutionEntry& Event)
 										{
-											if (Error.Event.Type == EAutomationEventType::Error)
-											{
-												const auto Key = FString::Printf(TEXT("Error %d"), ErrorIndex++);
-												ImGuiDisplayCopyableValue(Key, *Error.ToString(), ECopyMode::Value);
-											}
-										}
+											return Event.Event.Type == Type;
+										});
 
-										ImGui::TreePop();
-									}
-								}
-
-								if (TestResults.GetWarningTotal() > 0)
-								{
-									ImGui::Text("Warnings: %d", TestResults.GetWarningTotal());
-
-									if (ImGui::TreeNodeEx("Warnings", RH_DefaultTreeFlags))
+									if (FilteredEvents.Num() > 0)
 									{
-										int32 WarningIndex = 0;
-										for (const auto& Warning : TestResults.GetEntries())
-										{
-											if (Warning.Event.Type == EAutomationEventType::Warning)
-											{
-												const auto Key = FString::Printf(TEXT("Warning %d"), WarningIndex++);
-												ImGuiDisplayCopyableValue(Key, *Warning.ToString(), ECopyMode::Value);
-											}
-										}
+										ImGuiColors::HeaderStyle::ScopedHeaderStyle EventStyle(Color);
+										FString FilteredEventsString = FString::Printf(TEXT("%s: %d"), *Title, FilteredEvents.Num());
 
-										ImGui::TreePop();
+										if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*FilteredEventsString), RH_DefaultTreeFlags))
+										{
+											int32 EventIndex = 0;
+											for (const auto& Event : FilteredEvents)
+											{
+												const auto Key = FString::Printf(TEXT("Event %d"), EventIndex++);
+												ImGuiDisplayCopyableValue(Key, Event.ToString(), ECopyMode::Value);
+											}
+
+											ImGui::TreePop();
+										}
 									}
-								}
+								};
+
+								DisplayFilteredEvents(EAutomationEventType::Error, TEXT("Errors"), ImGuiColors::HeaderStyle::Red);
+
+								DisplayFilteredEvents(EAutomationEventType::Warning, TEXT("Warnings"), ImGuiColors::HeaderStyle::Yellow);
+
+								DisplayFilteredEvents(EAutomationEventType::Info, TEXT("Logs"), ImGuiColors::HeaderStyle::Teal);
 							}
 
 							ImGui::TreePop();
 						}
-
-						if (hasColorStyling)
-						{
-							ImGui::PopStyleColor(3);
-						}
-
 					}
 
 					ImGui::TreePop();

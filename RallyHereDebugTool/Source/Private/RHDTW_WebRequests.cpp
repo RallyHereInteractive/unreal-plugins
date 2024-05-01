@@ -185,32 +185,25 @@ void FRHDTW_WebRequests::DoViewRequests(FRH_WebRequests* WebRequestsTracker)
 		label += "-";
 		label += std::to_string(request->Metadata.RetryCount);
 
-		auto StyleHeaderColor = [](FColor BaseColor, FColor HoveredColor, FColor ActiveColor)
-		{
-			ImGui::PushStyleColor(ImGuiCol_Header, BaseColor.ToPackedABGR());
-			ImGui::PushStyleColor(ImGuiCol_HeaderHovered, HoveredColor.ToPackedABGR());
-			ImGui::PushStyleColor(ImGuiCol_HeaderActive, ActiveColor.ToPackedABGR());
-		};
+		ImGuiColors::HeaderStyle::HeaderStyleColor ResultColor = ImGuiColors::HeaderStyle::GetDefault();
 
-		bool hasColorStyling = false;
 		if (request->Responses.Num() > 0)
 		{
 			if (request->Responses.Last().ResponseCode >= EHttpResponseCodes::ServerError) // 500s
 			{
-				StyleHeaderColor(ImGuiColors::Yellow_Base, ImGuiColors::Yellow_Hovered, ImGuiColors::Yellow_Active);
-				hasColorStyling = true;
+				ResultColor = ImGuiColors::HeaderStyle::Yellow;
 			}
 			else if (request->Responses.Last().ResponseCode >= EHttpResponseCodes::BadRequest) // 400s
 			{
-				StyleHeaderColor(ImGuiColors::Red_Base, ImGuiColors::Red_Hovered, ImGuiColors::Red_Active);
-				hasColorStyling = true;
+				ResultColor = ImGuiColors::HeaderStyle::Red;
 			}
 			else if (request->Responses.Last().ResponseCode >= EHttpResponseCodes::Ambiguous) // 300s
 			{
-				StyleHeaderColor(ImGuiColors::Teal_Base, ImGuiColors::Teal_Hovered, ImGuiColors::Teal_Active);
-				hasColorStyling = true;
+				ResultColor = ImGuiColors::HeaderStyle::Teal;
 			}
 		}
+
+		ImGuiColors::HeaderStyle::Push(ResultColor);
 
 		if (ImGui::CollapsingHeader(label.data()))
 		{
@@ -257,10 +250,6 @@ void FRHDTW_WebRequests::DoViewRequests(FRH_WebRequests* WebRequestsTracker)
 			}
 
 			ImGui::PopID();
-		}
-		if (hasColorStyling)
-		{
-			ImGui::PopStyleColor(3);
 		}
 		++indexId;
 	}

@@ -198,17 +198,109 @@ bool RALLYHEREDEBUGTOOL_API ImGuiDisplayEnumCombo(const FString& ComboLabel, T& 
 
 namespace ImGuiColors
 {
-	static const FColor Red_Base = FColor(121, 51, 70, 230);
-	static const FColor Red_Hovered = FColor(131, 49, 73, 230);
-	static const FColor Red_Active = FColor(155, 71, 93, 230);
+	FORCEINLINE static const ImGuiStyle& GetDefaultStyle()
+	{
+		static ImGuiStyle DefaultStyle = ImGuiStyle();
+		return DefaultStyle;
+	}
 
-	static const FColor Yellow_Base = FColor(113, 111, 60, 230);
-	static const FColor Yellow_Hovered = FColor(132, 130, 63, 230);
-	static const FColor Yellow_Active = FColor(150, 148, 85, 230);
+	FORCEINLINE ImVec4 FLinearColorToImColor(const FLinearColor& LinearColor)
+	{
+		return ImVec4(LinearColor.R, LinearColor.G, LinearColor.B, LinearColor.A);
+	}
+	FORCEINLINE ImVec4 LinearColorToImColor(float R, float G, float B, float A)
+	{
+		const FLinearColor LinearColor = FLinearColor(R, G, B, A);
+		return FLinearColorToImColor(LinearColor);
+	}
 
-	static const FColor Teal_Base = FColor(58, 107, 109, 230);
-	static const FColor Teal_Hovered = FColor(59, 123, 125, 230);
-	static const FColor Teal_Active = FColor(82, 142, 144, 230);
+	FORCEINLINE ImVec4 FColorToImColor(const FColor& InColor)
+	{
+		return FLinearColorToImColor(InColor.ReinterpretAsLinear());
+	}
+	FORCEINLINE ImVec4 ColorToImColor(uint8 R, uint8 G, uint8 B, uint8 A)
+	{
+		const FColor Color = FColor(R, G, B, A);
+		return FColorToImColor(Color);
+	}
+
+	namespace HeaderStyle
+	{
+		typedef TTuple<ImVec4, ImVec4, ImVec4> HeaderStyleColor;
+
+		static const ImVec4 Red_Base = ColorToImColor(121, 51, 70, 230);
+		static const ImVec4 Red_Hovered = ColorToImColor(131, 49, 73, 230);
+		static const ImVec4 Red_Active = ColorToImColor(155, 71, 93, 230);
+		static const HeaderStyleColor Red = { Red_Base, Red_Hovered, Red_Active };
+
+		static const ImVec4 Yellow_Base = ColorToImColor(113, 111, 60, 230);
+		static const ImVec4 Yellow_Hovered = ColorToImColor(132, 130, 63, 230);
+		static const ImVec4 Yellow_Active = ColorToImColor(150, 148, 85, 230);
+		static const HeaderStyleColor Yellow = { Yellow_Base, Yellow_Hovered, Yellow_Active };
+
+		static const ImVec4 Teal_Base = ColorToImColor(58, 107, 109, 230);
+		static const ImVec4 Teal_Hovered = ColorToImColor(59, 123, 125, 230);
+		static const ImVec4 Teal_Active = ColorToImColor(82, 142, 144, 230);
+		static const HeaderStyleColor Teal = { Teal_Base, Teal_Hovered, Teal_Active };
+
+		FORCEINLINE static HeaderStyleColor GetDefault()
+		{
+			const auto& DefaultStyle = GetDefaultStyle();
+			return HeaderStyleColor(DefaultStyle.Colors[ImGuiCol_Header], DefaultStyle.Colors[ImGuiCol_HeaderHovered], DefaultStyle.Colors[ImGuiCol_HeaderActive]);
+		}
+
+		static int32 HeaderStackCount = 0;
+
+		bool IsStyledHeaderActive() { return HeaderStackCount > 0; };
+
+		FORCEINLINE int32 Push(const ImVec4& BaseColor, const ImVec4& HoveredColor, const ImVec4& ActiveColor)
+		{
+			ImGui::PushStyleColor(ImGuiCol_Header, BaseColor);
+			ImGui::PushStyleColor(ImGuiCol_HeaderHovered, HoveredColor);
+			ImGui::PushStyleColor(ImGuiCol_HeaderActive, ActiveColor);
+
+			return ++HeaderStackCount;
+		}
+
+		FORCEINLINE int32 Push(const HeaderStyleColor& Style)
+		{
+			return Push(Style.Get<0>(), Style.Get<1>(), Style.Get<2>());
+		}
+
+		FORCEINLINE int32 Pop()
+		{
+			if (HeaderStackCount > 0)
+			{
+				ImGui::PopStyleColor(3);
+				--HeaderStackCount;
+			}
+			return HeaderStackCount;
+		}
+
+		FORCEINLINE void PopAll()
+		{
+			while (HeaderStackCount > 0)
+			{
+				Pop();
+			}
+		}
+
+		struct ScopedHeaderStyle
+		{
+			ScopedHeaderStyle(const HeaderStyleColor InStyle)
+				: Style(InStyle)
+			{
+				Push(Style);
+			}
+
+			~ScopedHeaderStyle()
+			{
+				Pop();
+			}
+
+			const HeaderStyleColor Style;
+		};
+	}
 }
 
 struct RALLYHEREDEBUGTOOL_API FImGuiCustomDataStager
