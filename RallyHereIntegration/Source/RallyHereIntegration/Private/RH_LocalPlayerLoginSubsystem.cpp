@@ -1,14 +1,19 @@
 // Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 #include "RH_LocalPlayerLoginSubsystem.h"
+#include "RH_PlayerInfoSubsystem.h"
+#include "RH_PlayerNotifications.h"
+#include "RH_LocalPlayerSubsystem.h"
+#include "RH_OnlineSubsystemNames.h"
+#include "RH_Events.h"
+
 #include "GenericPlatform/GenericPlatformChunkInstall.h"
 #include "Misc/ConfigCacheIni.h"
 #include "RallyHereIntegrationModule.h"
 #include "OnlineSubsystem.h"
 #include "Online.h"
 #include "Interfaces/OnlineIdentityInterface.h"
-#include "RH_LocalPlayerSubsystem.h"
-#include "RH_OnlineSubsystemNames.h"
+
 #include "WebAuthModule.h"
 #include "Engine/LocalPlayer.h"
 #include "Engine/World.h"
@@ -18,7 +23,6 @@
 #include "Async/TaskGraphInterfaces.h"
 #include "UObject/Package.h"
 #include "Interfaces/IAnalyticsProvider.h"
-#include "RH_Events.h"
 
 FString ToString(ERHAPI_LoginResult Val)
 {
@@ -39,7 +43,57 @@ void URH_LocalPlayerLoginSubsystem::Initialize()
 void URH_LocalPlayerLoginSubsystem::Deinitialize()
 {
     UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	// this should not be necessary in normal flow, but worth doing in case of abnormal cases
+	if (GetLocalPlayerSubsystem()->GetPlayerNotifications() != nullptr)
+	{
+		GetLocalPlayerSubsystem()->GetPlayerNotifications()->OnNotificationStreamedByAPI.FindOrAdd(TEXT("users")).RemoveAll(this);
+	}
+
 	Super::Deinitialize();
+}
+
+void URH_LocalPlayerLoginSubsystem::OnUserChanged(const FGuid& OldPlayerUuid, class URH_PlayerInfo* OldLocalPlayerInfo)
+{
+	UE_LOG(LogRHSession, Log, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+	Super::OnUserChanged(OldPlayerUuid, OldLocalPlayerInfo);
+
+	// clear out old notification binding
+	if (OldLocalPlayerInfo != nullptr)
+	{
+		OldLocalPlayerInfo->GetPlayerNotifications()->OnNotificationStreamedByAPI.FindOrAdd(TEXT("users")).RemoveAll(this);
+	}
+
+	// add new notification binding
+	if (GetLocalPlayerSubsystem()->GetPlayerNotifications() != nullptr)
+	{
+		GetLocalPlayerSubsystem()->GetPlayerNotifications()->OnNotificationStreamedByAPI.FindOrAdd(TEXT("users")).AddUObject(this, &URH_LocalPlayerLoginSubsystem::HandleNotification);
+	}
+}
+
+void URH_LocalPlayerLoginSubsystem::HandleNotification(const FRHAPI_Notification& Notification, const FString& APIName, const TArray<FString>& APIParams)
+{
+	UE_LOG(LogRHSession, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+	if (APIName == TEXT("users"))	// double checking, but this should be implied
+	{
+		// the first API param should be the API version
+		// the second API param should be the object type
+		if (APIParams.Num() >= 2 && APIParams[0] == TEXT("v1") && APIParams[1] == TEXT("login"))
+		{
+			// if we got a login notification, we should refresh our login if logged in
+			auto AuthContext = GetAuthContext();
+			if (AuthContext.IsValid() && AuthContext->IsLoggedIn())
+			{
+				UE_LOG(LogRHSession, Log, TEXT("[%s] Received login notification, refreshing login"), ANSI_TO_TCHAR(__FUNCTION__));
+				AuthContext->Refresh();
+			}
+		}
+		else if (APIParams.Num() >= 2 && APIParams[0] == TEXT("v1") && APIParams[1] == TEXT("logout"))
+		{
+			// if we got a logout notification, we should log out
+			Logout();
+		}
+	}
 }
 
 bool OSSCannotRelogin(FName OSSName)

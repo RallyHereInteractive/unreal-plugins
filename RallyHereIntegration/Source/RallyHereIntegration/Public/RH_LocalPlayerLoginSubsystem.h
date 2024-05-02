@@ -193,6 +193,21 @@ public:
 	*/
     virtual void Deinitialize() override;
 
+	/**
+	 * @brief Base handling when the local user changes, override to provide functionality
+	 * @param [in] OldPlayerUuid The old player Uuid.
+	 * @param [in] OldLocalPlayerInfo The old local player info.
+	 */
+	virtual void OnUserChanged(const FGuid& OldPlayerUuid, class URH_PlayerInfo* OldLocalPlayerInfo) override;
+
+	/**
+	* @brief Handle a notification from the notification API.
+	* @param [in] Notification The notification to handle.
+	* @param [in] APIName The name of the API that sent the notification.
+	* @param [in] APIParams The parameters for the API that sent the notification.
+	*/
+	virtual void HandleNotification(const struct FRHAPI_Notification& Notification, const FString& APIName, const TArray<FString>& APIParams);
+
     /** @brief Begins a complete multi-phased login to the OnlineSubsystem with the credentials provided on the command line,
       * checking if the user has appropriate permissions, and logging into RallyHere */
     void SubmitAutoLogin(bool bAcceptEULA = false,

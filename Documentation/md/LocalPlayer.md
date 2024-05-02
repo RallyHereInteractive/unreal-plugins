@@ -87,6 +87,8 @@ Login Subsystem for the local player.
 `public FString `[`SavedCredentialPrefix`](#classURH__LocalPlayerLoginSubsystem_1a5ff0051c770983ee18208136805b9754) | Prefix applied to the saved credentials on platforms that support storing the refresh token.
 `public virtual void `[`Initialize`](#classURH__LocalPlayerLoginSubsystem_1a938bd41c5c5fa6b5eacbeb43d0758a63)`()` | Initialize the subsystem.
 `public virtual void `[`Deinitialize`](#classURH__LocalPlayerLoginSubsystem_1a363bdf9386b7854ed44a03cfe6faea18)`()` | Safely tears down the subsystem.
+`public virtual void `[`OnUserChanged`](#classURH__LocalPlayerLoginSubsystem_1ab6d2f50070d3611329243a43e898785b)`(const FGuid & OldPlayerUuid,class `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * OldLocalPlayerInfo)` | Base handling when the local user changes, override to provide functionality.
+`public virtual void `[`HandleNotification`](#classURH__LocalPlayerLoginSubsystem_1ad80279dbf8a8ae3b3c1a022afb109985)`(const struct `[`FRHAPI_Notification`](models/RHAPI_Notification.md#structFRHAPI__Notification)` & Notification,const FString & APIName,const TArray< FString > & APIParams)` | Handle a notification from the notification API.
 `public void `[`SubmitAutoLogin`](#classURH__LocalPlayerLoginSubsystem_1aec27fd534d794470e4eb893de8d722c4)`(bool bAcceptEULA,bool bAcceptTOS,bool bAcceptPP,const FRH_OnLoginComplete & OnLoginCompleteDelegate)` | Begins a complete multi-phased login to the OnlineSubsystem with the credentials provided on the command line, checking if the user has appropriate permissions, and logging into RallyHere.
 `public void `[`ResubmitLastSuccessfulLogin`](#classURH__LocalPlayerLoginSubsystem_1a937e6ee9e5592c699ff28bbf89344532)`(const FRH_OnLoginComplete & OnLoginCompleteDelegate)` | Submits a complete multi-phased login using the last successful set of login parameters.
 `public void `[`SubmitLogin`](#classURH__LocalPlayerLoginSubsystem_1a8feda49ddf6a5f48448d4f989eca3d57)`(const FOnlineAccountCredentials & Credentials,FString CredentialRefreshToken,bool bAcceptEULA,bool bAcceptTOS,bool bAcceptPP,FRH_OnLoginComplete OnLoginCompleteDelegate)` | Begins a complete multi-phased login to the OnlineSubsystem with the provided credentials, checking if the user has appropriate permissions, and logging into RallyHere.
@@ -249,6 +251,28 @@ Initialize the subsystem.
 #### `public virtual void `[`Deinitialize`](#classURH__LocalPlayerLoginSubsystem_1a363bdf9386b7854ed44a03cfe6faea18)`()` <a id="classURH__LocalPlayerLoginSubsystem_1a363bdf9386b7854ed44a03cfe6faea18"></a>
 
 Safely tears down the subsystem.
+
+<br>
+#### `public virtual void `[`OnUserChanged`](#classURH__LocalPlayerLoginSubsystem_1ab6d2f50070d3611329243a43e898785b)`(const FGuid & OldPlayerUuid,class `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * OldLocalPlayerInfo)` <a id="classURH__LocalPlayerLoginSubsystem_1ab6d2f50070d3611329243a43e898785b"></a>
+
+Base handling when the local user changes, override to provide functionality.
+
+#### Parameters
+* `OldPlayerUuid` The old player Uuid. 
+
+* `OldLocalPlayerInfo` The old local player info.
+
+<br>
+#### `public virtual void `[`HandleNotification`](#classURH__LocalPlayerLoginSubsystem_1ad80279dbf8a8ae3b3c1a022afb109985)`(const struct `[`FRHAPI_Notification`](models/RHAPI_Notification.md#structFRHAPI__Notification)` & Notification,const FString & APIName,const TArray< FString > & APIParams)` <a id="classURH__LocalPlayerLoginSubsystem_1ad80279dbf8a8ae3b3c1a022afb109985"></a>
+
+Handle a notification from the notification API.
+
+#### Parameters
+* `Notification` The notification to handle. 
+
+* `APIName` The name of the API that sent the notification. 
+
+* `APIParams` The parameters for the API that sent the notification.
 
 <br>
 #### `public void `[`SubmitAutoLogin`](#classURH__LocalPlayerLoginSubsystem_1aec27fd534d794470e4eb893de8d722c4)`(bool bAcceptEULA,bool bAcceptTOS,bool bAcceptPP,const FRH_OnLoginComplete & OnLoginCompleteDelegate)` <a id="classURH__LocalPlayerLoginSubsystem_1aec27fd534d794470e4eb893de8d722c4"></a>
@@ -927,7 +951,7 @@ Subsystem to manage sessions for the local player.
 `protected virtual bool `[`PreprocessAPISessionImport`](#classURH__LocalPlayerSessionSubsystem_1a9c559f45b88f7a21f62dcdf6476fcbea)`(const `[`FRHAPI_Session`](models/RHAPI_Session.md#structFRHAPI__Session)` & Session,ERHAPI_SessionPlayerStatus & Status)` | Attepts to preprocess an API session.
 `protected virtual void `[`OnUserChanged`](#classURH__LocalPlayerSessionSubsystem_1a26fbf14bcba6e280614f699fb5e3711c)`(const FGuid & OldPlayerUuid,class `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * OldLocalPlayerInfo)` | Base handling when the local user changes, override to provide functionality.
 `protected virtual void `[`InitPropertiesWithDefaultValues`](#classURH__LocalPlayerSessionSubsystem_1a8d62c9d3f5c42d59b77fa894ce226ad4)`()` | Initializes the subsystem with defaults for its cached data.
-`protected virtual void `[`HandleNotification`](#classURH__LocalPlayerSessionSubsystem_1aaa005ba728065e1b159a4d61906eae89)`(const `[`FRHAPI_Notification`](models/RHAPI_Notification.md#structFRHAPI__Notification)` & Notification,const FString & APIName,const TArray< FString > & APIParams)` | Handle a notification from the notification API.
+`protected virtual void `[`HandleNotification`](#classURH__LocalPlayerSessionSubsystem_1aa1277f7aa4d99bb48c64153da9b8574f)`(const struct `[`FRHAPI_Notification`](models/RHAPI_Notification.md#structFRHAPI__Notification)` & Notification,const FString & APIName,const TArray< FString > & APIParams)` | Handle a notification from the notification API.
 `protected `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`CreatePlatformSyncer`](#classURH__LocalPlayerSessionSubsystem_1a689a1f5d6391c55118c8467e5fe2e9ce)`(`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * Session)` | Creates a Platform Session Syncer for the local player.
 `protected virtual bool `[`FilterOSSCallbackUser`](#classURH__LocalPlayerSessionSubsystem_1ac3f8a2189935d62ddee4f0c523028264)`(const int32 ControllerId)` | Checks if the online subsystem call is for the local user.
 `protected virtual bool `[`FilterOSSCallbackUser`](#classURH__LocalPlayerSessionSubsystem_1a499f53a4e277ea57c023eca530e7edd1)`(const FUniqueNetId & UniqueNetId)` | Checks if the online subsystem call is for the local user.
@@ -1470,7 +1494,7 @@ Base handling when the local user changes, override to provide functionality.
 Initializes the subsystem with defaults for its cached data.
 
 <br>
-#### `protected virtual void `[`HandleNotification`](#classURH__LocalPlayerSessionSubsystem_1aaa005ba728065e1b159a4d61906eae89)`(const `[`FRHAPI_Notification`](models/RHAPI_Notification.md#structFRHAPI__Notification)` & Notification,const FString & APIName,const TArray< FString > & APIParams)` <a id="classURH__LocalPlayerSessionSubsystem_1aaa005ba728065e1b159a4d61906eae89"></a>
+#### `protected virtual void `[`HandleNotification`](#classURH__LocalPlayerSessionSubsystem_1aa1277f7aa4d99bb48c64153da9b8574f)`(const struct `[`FRHAPI_Notification`](models/RHAPI_Notification.md#structFRHAPI__Notification)` & Notification,const FString & APIName,const TArray< FString > & APIParams)` <a id="classURH__LocalPlayerSessionSubsystem_1aa1277f7aa4d99bb48c64153da9b8574f"></a>
 
 Handle a notification from the notification API.
 

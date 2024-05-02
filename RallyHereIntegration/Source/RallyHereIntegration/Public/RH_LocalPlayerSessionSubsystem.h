@@ -465,7 +465,7 @@ protected:
 	* @param [in] APIName The name of the API that sent the notification.
 	* @param [in] APIParams The parameters for the API that sent the notification.
 	*/
-	virtual void HandleNotification(const FRHAPI_Notification& Notification, const FString& APIName, const TArray<FString>& APIParams);
+	virtual void HandleNotification(const struct FRHAPI_Notification& Notification, const FString& APIName, const TArray<FString>& APIParams);
 
 	// Platform session support
 	/**
