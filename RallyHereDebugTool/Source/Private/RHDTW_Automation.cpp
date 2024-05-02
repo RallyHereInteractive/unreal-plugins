@@ -65,6 +65,17 @@ void FRHDTW_Automation::Do()
 		return;
 	}
 
+	ImGui::Text("Tests are running: %s", AreTestsRunning() ? "true" : "false");
+
+	ImGui::BeginDisabled(AreTestsRunning() || AutomationController->GetEnabledTestsNum() == 0);
+	if (ImGui::Button("Run Tests"))
+	{
+		AutomationController->RunTests();
+	}
+	ImGui::EndDisabled();
+
+	ImGui::Separator();
+
 	if (ImGui::BeginTabBar("Automated Tests"))
 	{
 		if (ImGui::BeginTabItem("Run"))
@@ -85,17 +96,6 @@ void FRHDTW_Automation::Do()
 
 void FRHDTW_Automation::DoRunTab()
 {
-	ImGui::Text("Tests are running: %s", AreTestsRunning() ? "true" : "false");
-
-	ImGui::BeginDisabled(AreTestsRunning() || AutomationController->GetEnabledTestsNum() == 0);
-	if (ImGui::Button("Run Tests"))
-	{
-		AutomationController->RunTests();
-	}
-	ImGui::EndDisabled();
-
-	ImGui::Separator();
-
 	if (ImGui::Button("Enable Visible"))
 	{
 		AutomationController->SetVisibleTestsEnabled(true);
@@ -111,7 +111,7 @@ void FRHDTW_Automation::DoRunTab()
 		AutomationController->SetEnabledTests(TArray<FString>());
 		AutomationController->SetVisibleTestsEnabled(true);
 	}
-	
+
 	ImGui::SameLine();
 	if (ImGui::Button("Disable All"))
 	{
@@ -222,22 +222,96 @@ void FRHDTW_Automation::DoRunTab()
 
 	FilteredTestNames.Sort();
 
-	for (const auto& TestName : FilteredTestNames)
 	{
-		bool bIsEnabled = EnabledTestNames.Contains(TestName);
+		FString CurrentBucketName;
+		bool bCurrentBucketExpanded = false;
 
-		if (ImGui::Checkbox(TCHAR_TO_ANSI(*TestName), &bIsEnabled))
+		for (const auto& TestName : FilteredTestNames)
 		{
-			if (bIsEnabled)
+			bool bIsEnabled = EnabledTestNames.Contains(TestName);
+
+			FString BucketName;
+			TestName.Split(TEXT("."), &BucketName, nullptr, ESearchCase::IgnoreCase, ESearchDir::FromEnd);
+
+			if (BucketName != CurrentBucketName)
 			{
-				EnabledTestNames.Add(TestName);
-			}
-			else
-			{
-				EnabledTestNames.Remove(TestName);
+				if (bCurrentBucketExpanded)
+				{
+					CurrentBucketName = TEXT("");
+					bCurrentBucketExpanded = false;
+					ImGui::TreePop();
+				}
+
+				auto BucketTests = FilteredTestNames.FilterByPredicate([BucketName](const FString& TestName)
+					{
+						FString TestBucketName;
+						TestName.Split(TEXT("."), &TestBucketName, nullptr, ESearchCase::IgnoreCase, ESearchDir::FromEnd);
+						return TestBucketName == BucketName;
+					});
+
+				bool bAllEnabled = true;
+				bool bAllDisabled = true;
+				for (const auto& Test : BucketTests)
+				{
+					if (!EnabledTestNames.Contains(Test))
+					{
+						bAllEnabled = false;
+					}
+					else if (EnabledTestNames.Contains(Test))
+					{
+						bAllDisabled = false;
+					}
+				}
+
+				// using a flags array which allows for mixed result display
+				int flags = bAllEnabled ? 0xF : (bAllDisabled ? 0x0 : 0x1);
+				FString HiddenBucketName = FString::Printf(TEXT("##%s"), *BucketName);
+				if (ImGui::CheckboxFlags(TCHAR_TO_UTF8(*HiddenBucketName), &flags, 0xF))
+				{
+					if (flags == 0xF)
+					{
+						for (const auto& Test : BucketTests)
+						{
+							EnabledTestNames.Add(Test);
+						}
+						AutomationController->SetEnabledTests(EnabledTestNames);
+					}
+					else if (flags == 0x0)
+					{
+						for (const auto& Test : BucketTests)
+						{
+							EnabledTestNames.Remove(Test);
+						}
+						AutomationController->SetEnabledTests(EnabledTestNames);
+					}
+				}
+				ImGui::SameLine();
+
+				bCurrentBucketExpanded = ImGui::TreeNodeEx(TCHAR_TO_ANSI(*BucketName), RH_DefaultTreeFlagsDefaultOpen);
+				CurrentBucketName = BucketName;
 			}
 
-			AutomationController->SetEnabledTests(EnabledTestNames);
+			if (bCurrentBucketExpanded)
+			{
+				if (ImGui::Checkbox(TCHAR_TO_ANSI(*TestName), &bIsEnabled))
+				{
+					if (bIsEnabled)
+					{
+						EnabledTestNames.Add(TestName);
+					}
+					else
+					{
+						EnabledTestNames.Remove(TestName);
+					}
+
+					AutomationController->SetEnabledTests(EnabledTestNames);
+				}
+			}
+		}
+
+		if (bCurrentBucketExpanded)
+		{
+			ImGui::TreePop();
 		}
 	}
 }
@@ -245,6 +319,11 @@ void FRHDTW_Automation::DoRunTab()
 void FRHDTW_Automation::DoResultsTab()
 {
 	auto EnabledReports = AutomationController->GetEnabledReports();
+
+	EnabledReports.Sort([](const TSharedPtr<IAutomationReport>& A, const TSharedPtr<IAutomationReport>& B)
+		{
+			return A->GetFullTestPath() < B->GetFullTestPath();
+		});
 
 	const uint32 LastPassIndex = AutomationController->GetNumPasses() - 1;
 
@@ -258,82 +337,108 @@ void FRHDTW_Automation::DoResultsTab()
 				auto DeviceInstanceName = AutomationController->GetGameInstanceName(i, j);
 				if (ImGui::TreeNodeEx(TCHAR_TO_ANSI(*DeviceInstanceName), RH_DefaultTreeFlagsLeaf))
 				{
-					for (int k = 0; k < EnabledReports.Num(); ++k)
+					FString CurrentBucketName;
+					bool bCurrentBucketExpanded = false;
+
+					for (const auto& Report : EnabledReports)
 					{
-						const auto Report = EnabledReports[k];
-						const auto Result = Report->GetResults(i, LastPassIndex);
+						FString BucketName;
+						Report->GetFullTestPath().Split(TEXT("."), &BucketName, nullptr, ESearchCase::IgnoreCase, ESearchDir::FromEnd);
 
-						ImGuiColors::HeaderStyle::HeaderStyleColor HeaderColor = ImGuiColors::HeaderStyle::GetDefault();
-
-						switch (Result.State)
+						if (BucketName != CurrentBucketName)
 						{
-						case EAutomationState::NotRun:				// Automation test was not run
-							HeaderColor = ImGuiColors::HeaderStyle::Yellow;
-							break;
-						case EAutomationState::InProcess:			// Automation test is running now
-							HeaderColor = ImGuiColors::HeaderStyle::Teal;
-							break;
-						case EAutomationState::Fail:				// Automation test was run and failed
-							HeaderColor = ImGuiColors::HeaderStyle::Red;
-							break;
-						case EAutomationState::Skipped:				// Automation test was skipped
-							HeaderColor = ImGuiColors::HeaderStyle::Yellow;
-							break;
-						case EAutomationState::Success:				// Automation test was run and succeeded
-						default:
-							// no custom styling, use default
-							HeaderColor = ImGuiColors::HeaderStyle::GetDefault();
-							break;
-						}
-
-						ImGuiColors::HeaderStyle::ScopedHeaderStyle ResultStyle(HeaderColor);
-
-						auto ReportName = Report->GetFullTestPath();
-						if (ImGui::TreeNodeEx(TCHAR_TO_ANSI(*ReportName), RH_DefaultTreeFlags))
-						{
-							FAutomationTestResults TestResults = Report->GetResults(i, LastPassIndex);
-							if (TestResults.GameInstance == DeviceInstanceName)
+							if (bCurrentBucketExpanded)
 							{
-								// Display the test results
-
-								ImGuiDisplayCopyableValue(TEXT("Duration"), TestResults.Duration);
-								ImGuiDisplayCopyableValue(TEXT("State:"), AutomationStateToString(TestResults.State));
-
-								auto DisplayFilteredEvents = [&](EAutomationEventType Type, const FString& Title, const ImGuiColors::HeaderStyle::HeaderStyleColor& Color)
-								{
-									auto FilteredEvents = TestResults.GetEntries().FilterByPredicate([Type](const FAutomationExecutionEntry& Event)
-										{
-											return Event.Event.Type == Type;
-										});
-
-									if (FilteredEvents.Num() > 0)
-									{
-										ImGuiColors::HeaderStyle::ScopedHeaderStyle EventStyle(Color);
-										FString FilteredEventsString = FString::Printf(TEXT("%s: %d"), *Title, FilteredEvents.Num());
-
-										if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*FilteredEventsString), RH_DefaultTreeFlags))
-										{
-											int32 EventIndex = 0;
-											for (const auto& Event : FilteredEvents)
-											{
-												const auto Key = FString::Printf(TEXT("Event %d"), EventIndex++);
-												ImGuiDisplayCopyableValue(Key, Event.ToString(), ECopyMode::Value);
-											}
-
-											ImGui::TreePop();
-										}
-									}
-								};
-
-								DisplayFilteredEvents(EAutomationEventType::Error, TEXT("Errors"), ImGuiColors::HeaderStyle::Red);
-
-								DisplayFilteredEvents(EAutomationEventType::Warning, TEXT("Warnings"), ImGuiColors::HeaderStyle::Yellow);
-
-								DisplayFilteredEvents(EAutomationEventType::Info, TEXT("Logs"), ImGuiColors::HeaderStyle::Teal);
+								CurrentBucketName = TEXT("");
+								bCurrentBucketExpanded = false;
+								ImGui::TreePop();
 							}
 
-							ImGui::TreePop();
+							bCurrentBucketExpanded = ImGui::TreeNodeEx(TCHAR_TO_ANSI(*BucketName), RH_DefaultTreeFlagsDefaultOpen);
+							CurrentBucketName = BucketName;
 						}
+
+						if (bCurrentBucketExpanded)
+						{
+							const auto Result = Report->GetResults(i, LastPassIndex);
+
+							ImGuiColors::HeaderStyle::HeaderStyleColor HeaderColor = ImGuiColors::HeaderStyle::GetDefault();
+
+							switch (Result.State)
+							{
+							case EAutomationState::NotRun:				// Automation test was not run
+								HeaderColor = ImGuiColors::HeaderStyle::Yellow;
+								break;
+							case EAutomationState::InProcess:			// Automation test is running now
+								HeaderColor = ImGuiColors::HeaderStyle::Teal;
+								break;
+							case EAutomationState::Fail:				// Automation test was run and failed
+								HeaderColor = ImGuiColors::HeaderStyle::Red;
+								break;
+							case EAutomationState::Skipped:				// Automation test was skipped
+								HeaderColor = ImGuiColors::HeaderStyle::Yellow;
+								break;
+							case EAutomationState::Success:				// Automation test was run and succeeded
+							default:
+								// no custom styling, use default
+								HeaderColor = ImGuiColors::HeaderStyle::GetDefault();
+								break;
+							}
+
+							ImGuiColors::HeaderStyle::ScopedHeaderStyle ResultStyle(HeaderColor);
+
+							auto ReportName = Report->GetFullTestPath();
+							if (ImGui::TreeNodeEx(TCHAR_TO_ANSI(*ReportName), RH_DefaultTreeFlags))
+							{
+								FAutomationTestResults TestResults = Report->GetResults(i, LastPassIndex);
+								if (TestResults.GameInstance == DeviceInstanceName)
+								{
+									// Display the test results
+
+									ImGuiDisplayCopyableValue(TEXT("Duration"), TestResults.Duration);
+									ImGuiDisplayCopyableValue(TEXT("State:"), AutomationStateToString(TestResults.State));
+
+									auto DisplayFilteredEvents = [&](EAutomationEventType Type, const FString& Title, const ImGuiColors::HeaderStyle::HeaderStyleColor& Color)
+										{
+											auto FilteredEvents = TestResults.GetEntries().FilterByPredicate([Type](const FAutomationExecutionEntry& Event)
+												{
+													return Event.Event.Type == Type;
+												});
+
+											if (FilteredEvents.Num() > 0)
+											{
+												ImGuiColors::HeaderStyle::ScopedHeaderStyle EventStyle(Color);
+												FString FilteredEventsString = FString::Printf(TEXT("%s: %d"), *Title, FilteredEvents.Num());
+
+												if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*FilteredEventsString), RH_DefaultTreeFlags))
+												{
+													int32 EventIndex = 0;
+													for (const auto& Event : FilteredEvents)
+													{
+														const auto Key = FString::Printf(TEXT("Event %d"), EventIndex++);
+														ImGuiDisplayCopyableValue(Key, Event.ToString(), ECopyMode::Value);
+													}
+
+													ImGui::TreePop();
+												}
+											}
+										};
+
+									DisplayFilteredEvents(EAutomationEventType::Error, TEXT("Errors"), ImGuiColors::HeaderStyle::Red);
+
+									DisplayFilteredEvents(EAutomationEventType::Warning, TEXT("Warnings"), ImGuiColors::HeaderStyle::Yellow);
+
+									DisplayFilteredEvents(EAutomationEventType::Info, TEXT("Logs"), ImGuiColors::HeaderStyle::Teal);
+								}
+
+								ImGui::TreePop();
+							}
+						}
+					}
+
+					if (bCurrentBucketExpanded)
+					{
+						ImGui::TreePop();
 					}
 
 					ImGui::TreePop();
