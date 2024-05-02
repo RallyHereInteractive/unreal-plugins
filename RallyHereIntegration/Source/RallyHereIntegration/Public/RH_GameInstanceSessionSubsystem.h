@@ -266,7 +266,7 @@ public:
 	 * @brief Shuts down backfill handling for the current session, cannot be reversed
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Terminate Backfill"))
-	virtual void TerminateBackfill() { ActiveSessionState.bIsBackfillTerminated = true; }
+	virtual void TerminateBackfill();
 
 	/**
 	 * @brief Set the currently active session as joinable, and do any work necessary to make it so.  Automatically called if bAutoMakeSessionsJoinableOnHostMapLoadComplete is true

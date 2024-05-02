@@ -914,6 +914,17 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Session|Host", meta = (DisplayName = "Update Browser Info", AutoCreateRefTerm = "CustomData,Delegate"))
 	void BLUEPRINT_AcknowledgeBackfill(bool bEnable, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { AcknowledgeBackfill(bEnable, Delegate); };
 	/**
+	* @brief Delete active backfill request for the session
+	* @param [in] Delegate Callback delegate for the session being updated with backfill data
+	*/
+	virtual void DeleteBackfill(const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::DeleteBackfill, ); };
+	/**
+	* @brief Blueprint compatible version of DeleteBackfill
+	* @param [in] Delegate Callback delegate for the session being updated with new browser data.
+	*/
+	UFUNCTION(BlueprintCallable, Category = "Session|Host", meta = (DisplayName = "Update Browser Info", AutoCreateRefTerm = "CustomData,Delegate"))
+	void BLUEPRINT_DeleteBackfill(const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { DeleteBackfill(Delegate); };
+	/**
 	* @brief Emit an event to the session audit log
 	* @param [in] AuditEvent The event to send
 	* @param [in] Delegate Callback delegate for the completion of the audit event
@@ -1077,6 +1088,11 @@ public:
 	* @param [in] Delegate Callback delegate for the session being updated with backfill data
 	*/
 	virtual void AcknowledgeBackfill(bool bEnable, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	/**
+	* @brief Delete active backfill request for the session
+	* @param [in] Delegate Callback delegate for the session being updated with backfill data
+	*/
+	virtual void DeleteBackfill(const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
 	* @brief Emit an event to the session audit log
 	* @param [in] AuditEvent The event to send
@@ -1328,6 +1344,11 @@ public:
 	*/
 	virtual void AcknowledgeBackfill(bool bEnable, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
+	* @brief Delete active backfill request for the session
+	* @param [in] Delegate Callback delegate for the session being updated with backfill data
+	*/
+	virtual void DeleteBackfill(const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	/**
 	* @brief Emit an event to the session audit log
 	* @param [in] AuditEvent The event to send
 	* @param [in] Delegate Callback delegate for the completion of the audit event
@@ -1467,6 +1488,10 @@ public:
 	* @brief Gets the allocation id this session owner is bound to, if any.  Needed for some specific calls to ensure they are operating on the proper object regardless of our current session view
 	*/
 	virtual TOptional<FString> GetBoundAllocationId() const { return TOptional<FString>(); }
+	/**
+	* @brief Gets the session id this session owner is bound to, if any.  Needed for some specific calls to ensure they are operating on the proper object regardless of our current session view
+	*/
+	virtual TOptional<FString> GetBoundSessionId() const { return TOptional<FString>(); }
 	/**
 	* @brief Gets the instance id this session owner is bound to, if any.  Needed for some specific calls to ensure they are operating on the proper object regardless of our current session view
 	*/

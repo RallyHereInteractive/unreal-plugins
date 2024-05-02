@@ -603,6 +603,28 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 			ImGui::TreePop();
 		}
 
+		if (ImGui::TreeNodeEx("Backfill", RH_DefaultTreeFlags))
+		{
+			auto Backfill = Session.GetBackfillOrNull();
+			if (Backfill)
+			{
+				if (pGISessionSubsystem != nullptr)
+				{
+					ImGui::Text("Backfill Terminated: %s", pGISessionSubsystem->IsBackfillTerminated() ? "true" : "false");
+					ImGui::BeginDisabled(pGISessionSubsystem->IsBackfillTerminated());
+					if (ImGui::Button("Terminate Backfill"))
+					{
+						pGISessionSubsystem->TerminateBackfill();
+					}
+					ImGui::EndDisabled();
+				}
+				ImGuiDisplayCopyableValue(TEXT("BackfillId"), Backfill->GetBackfillId());
+				ImGuiDisplayCustomData(Backfill->GetExtensionsOrNull(), TEXT("Extensions"), TEXT("Extensions"));
+			}
+
+			ImGui::TreePop();
+		}
+
 		if (ImGui::TreeNodeEx("Browser", RH_DefaultTreeFlags))
 		{
 			auto BrowserData = Session.GetBrowserOrNull();

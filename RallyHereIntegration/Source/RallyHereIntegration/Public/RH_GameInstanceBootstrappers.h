@@ -513,6 +513,24 @@ public:
 	* @brief Gets the allocation id this session owner is bound to, if any.  Needed for some specific calls to ensure they are operating on the proper object regardless of our current session view
 	*/
 	virtual TOptional<FString> GetBoundAllocationId() const { return BootstrappingResult.AllocationInfo.AllocationId; }
+
+	/**
+	* @brief Gets the session id this session owner is bound to, if any.  Needed for some specific calls to ensure they are operating on the proper object regardless of our current session view
+	*/
+	virtual TOptional<FString> GetBoundSessionId() const
+	{
+		if (BootstrappingResult.Session.IsSet())
+		{
+			return BootstrappingResult.Session->Data.GetSessionId();
+		}
+		else if (BootstrappingResult.AllocationInfo.SessionId.IsSet())
+		{
+			return BootstrappingResult.AllocationInfo.SessionId;
+		}
+
+		return TOptional<FString>();
+	}
+
 	/**
 	* @brief Gets the instance id this session owner is bound to, if any.  Needed for some specific calls to ensure they are operating on the proper object regardless of our current session view
 	*/
