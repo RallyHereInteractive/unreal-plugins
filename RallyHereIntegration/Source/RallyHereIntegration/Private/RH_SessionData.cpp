@@ -1084,6 +1084,12 @@ void URH_OfflineSession::AcknowledgeBackfill(bool bEnable, const FRH_OnSessionUp
 	Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
 }
 
+void URH_OfflineSession::DeleteBackfill(const FRH_OnSessionUpdatedDelegateBlock& Delegate)
+{
+	UE_LOG(LogRHSession, VeryVerbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
+	Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
+}
+
 void URH_OfflineSession::EmitAuditEvent(const FRHAPI_CreateAuditRequest& AuditEvent, const FRH_GenericSuccessWithErrorBlock& Delegate) const
 {
 	UE_LOG(LogRHSession, VeryVerbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
@@ -1499,8 +1505,12 @@ void URH_OnlineSession::UpdateInstanceHealth(ERHAPI_InstanceHealthStatus HealthS
 	Request.SessionId = GetSessionId();
 	Request.InstanceHealthStatusUpdate.SetInstanceHealth(HealthStatus);
 
-	auto* Instance = GetInstanceData();
-	if (Instance != nullptr)
+	auto BoundInstanceId = GetSessionOwner()->GetBoundInstanceId();
+	if (BoundInstanceId.IsSet())
+	{
+		Request.InstanceHealthStatusUpdate.SetInstanceId(BoundInstanceId.GetValue());
+	}
+	else if (const auto* Instance = GetSessionData().GetInstanceOrNull())
 	{
 		Request.InstanceHealthStatusUpdate.SetInstanceId(Instance->GetInstanceId());
 	}
@@ -1525,8 +1535,12 @@ void URH_OnlineSession::AcknowledgeBackfill(bool bEnable, const FRH_OnSessionUpd
 		Request.AuthContext = GetSessionOwner()->GetSessionAuthContext();
 		Request.SessionId = GetSessionId();
 
-		const auto* Instance = GetSessionData().GetInstanceOrNull();
-		if (Instance != nullptr)
+		auto BoundInstanceId = GetSessionOwner()->GetBoundInstanceId();
+		if (BoundInstanceId.IsSet())
+		{
+			Request.AcknowledgeBackfillRequest.SetInstanceId(BoundInstanceId.GetValue());
+		}
+		else if (const auto* Instance = GetSessionData().GetInstanceOrNull())
 		{
 			Request.AcknowledgeBackfillRequest.SetInstanceId(Instance->GetInstanceId());
 		}
@@ -1538,6 +1552,27 @@ void URH_OnlineSession::AcknowledgeBackfill(bool bEnable, const FRH_OnSessionUpd
 	{
 		Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
 	}
+}
+
+void URH_OnlineSession::DeleteBackfill(const FRH_OnSessionUpdatedDelegateBlock& Delegate)
+{
+	typedef RallyHereAPI::Traits_DeleteBackfillRequest BaseType;
+	BaseType::Request Request;
+	Request.AuthContext = GetSessionOwner()->GetSessionAuthContext();
+	Request.SessionId = GetSessionId();
+
+	auto BoundInstanceId = GetSessionOwner()->GetBoundInstanceId();
+	if (BoundInstanceId.IsSet())
+	{
+		Request.BaseBackfillRequest.SetInstanceId(BoundInstanceId.GetValue());
+	}
+	else if (const auto* Instance = GetSessionData().GetInstanceOrNull())
+	{
+		Request.BaseBackfillRequest.SetInstanceId(Instance->GetInstanceId());
+	}
+
+	const auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(MakeWeakInterface(GetSessionOwner()), GetSessionId(), Delegate, GetDefault<URH_IntegrationSettings>()->SessionUpdateBrowserInfoPriority);
+	Helper->Start(Request);
 }
 
 void URH_OnlineSession::EmitAuditEvent(const FRHAPI_CreateAuditRequest& AuditEvent, const FRH_GenericSuccessWithErrorBlock& Delegate) const

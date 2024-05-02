@@ -1073,6 +1073,23 @@ void URH_GameInstanceSessionSubsystem::PollBackfill(const FRH_PollCompleteFunc& 
 	}
 }
 
+void URH_GameInstanceSessionSubsystem::TerminateBackfill()
+{
+	UE_LOG(LogRHSession, Log, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	if (!ActiveSessionState.bIsBackfillTerminated)
+	{
+		ActiveSessionState.bIsBackfillTerminated = true;
+
+		// attempt to delete the backfill request if able to
+		auto* ActiveSession = GetActiveSession();
+		if (ActiveSession != nullptr)
+		{
+			ActiveSession->DeleteBackfill();
+		}
+	}
+}
+
 ARH_OnlineBeaconHost* URH_GameInstanceSessionSubsystem::CreateBeaconHost(UWorld* pWorld, uint32 Port, bool bShutdownWorldNetDriver)
 {
 	if (pWorld == nullptr)
