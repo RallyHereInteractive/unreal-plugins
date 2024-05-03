@@ -11,6 +11,9 @@
 
 #if WITH_DEV_AUTOMATION_TESTS
 
+#include "Misc/App.h"
+#include "Misc/FilterCollection.h"
+
 #include "IAutomationControllerModule.h"
 #include "IAutomationControllerManager.h"
 #include "AutomationGroupFilter.h"

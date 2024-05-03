@@ -251,7 +251,7 @@ namespace ImGuiColors
 
 		static int32 HeaderStackCount = 0;
 
-		bool IsStyledHeaderActive() { return HeaderStackCount > 0; };
+		FORCEINLINE bool IsStyledHeaderActive() { return HeaderStackCount > 0; };
 
 		FORCEINLINE int32 Push(const ImVec4& BaseColor, const ImVec4& HoveredColor, const ImVec4& ActiveColor)
 		{
