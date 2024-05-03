@@ -49,6 +49,7 @@
 #include "RHDTW_About.h"
 #include "RHDTW_Match.h"
 #include "RHDTW_RemoteFile.h"
+#include "RHDTW_Automation.h"
 
 #include "Runtime/Launch/Resources/Version.h"
 
@@ -141,6 +142,11 @@ void URallyHereDebugTool::Initialize(FSubsystemCollectionBase& Collection)
 
 	RemoteFileWindow = MakeShared<FRHDTW_RemoteFile>();
 	RemoteFileWindow->Init(this, TEXT("Remote Files"));
+
+#if WITH_DEV_AUTOMATION_TESTS
+	AutomationWindow = MakeShared<FRHDTW_Automation>();
+	AutomationWindow->Init(this, TEXT("Automation"));
+#endif
 
 	SavedWindowVisibilities.Add(LoginWindow->Name, true);
 	SavedWindowVisibilities.Add(OutputLogWindow->Name, true);
