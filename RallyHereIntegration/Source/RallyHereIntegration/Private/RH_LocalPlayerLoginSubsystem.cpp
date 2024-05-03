@@ -988,6 +988,31 @@ void URH_LocalPlayerLoginSubsystem::RallyHereLoginComplete(const RallyHereAPI::F
     AuthContext->ProcessLogin(Resp);
     if (Resp.GetHttpResponseCode() == EHttpResponseCodes::Ok)
     {
+		// locally enforce client restrictions upon a successful login (this allows for cases like not allowing game logins but allowing website logins to manage account)
+		const auto Restrictions = Resp.Content.GetRestrictionsOrNull();
+		if (Restrictions)
+		{
+			bool bHasRestrictionBlockingGameLogin = false;
+			for (const auto& Restriction : *Restrictions)
+			{
+				switch (Restriction.GetType())
+				{
+				case ERHAPI_RestrictionType::AccountBan: // "Account is banned"
+				case ERHAPI_RestrictionType::AccountLockout: // "Account is locked out"
+				case ERHAPI_RestrictionType::AccountPendingDeletion: // "Account is pending deletion and will be deleted in the future"
+				case ERHAPI_RestrictionType::AccountDenyAuth: // "Account has been banned from authentication"
+					bHasRestrictionBlockingGameLogin = true;
+				}
+
+				if (bHasRestrictionBlockingGameLogin)
+				{
+					UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] Login restricted by server"), ANSI_TO_TCHAR(__FUNCTION__));
+					PostResults(Req, Req.CreateResult(ERHAPI_LoginResult::Fail_RHRestrictions));
+					return;
+				}
+			}
+		}
+
         if (ShouldUseSavedCredentials() && FWebAuthModule::Get().IsAvailable())
         {
             // Store the refresh token in secure storage for subsequent logins

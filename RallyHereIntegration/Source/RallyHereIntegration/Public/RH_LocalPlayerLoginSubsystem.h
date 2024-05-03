@@ -80,6 +80,9 @@ enum class ERHAPI_LoginResult : uint8
 	/** Relogin called without saved credentials */
 	Fail_ReloginWithoutSavedCredentials,
 
+	/** Login failed due to RH restrictions on authorization by clients. */
+	Fail_RHRestrictions,
+
     /** RH web login failed for an unknown reason.  This usually means there was a server error of some kind. */
     Fail_RHUnknown,
 };
