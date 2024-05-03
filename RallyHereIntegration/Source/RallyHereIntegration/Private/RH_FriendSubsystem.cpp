@@ -34,28 +34,56 @@ void URH_FriendSubsystem::Initialize()
 	FriendsListPoller = FRH_PollControl::CreateAutoPoller();
 	BlockedListPoller = FRH_PollControl::CreateAutoPoller();
 
-	StartFriendsRefreshTimer();
-	StartBlockedRefreshTimer();
-
 	InitPropertiesWithDefaultValues();
 }
 
 void URH_FriendSubsystem::Deinitialize()
 {
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
-	Super::Deinitialize();
 	InitPropertiesWithDefaultValues();
+
 	StopFriendsRefreshTimer();
 	StopBlockedRefreshTimer();
 
 	FriendsListPoller.Reset();
 	BlockedListPoller.Reset();
+
+	if (GetLocalPlayerSubsystem()->GetPlayerNotifications() != nullptr)
+	{
+		GetLocalPlayerSubsystem()->GetPlayerNotifications()->OnNotificationStreamedByAPI.FindOrAdd(TEXT("friends")).AddUObject(this, &URH_FriendSubsystem::HandleNotification);
+		GetLocalPlayerSubsystem()->GetPlayerNotifications()->OnNotificationStreamedByAPI.FindOrAdd(TEXT("blocked")).AddUObject(this, &URH_FriendSubsystem::HandleNotification);
+	}
+
+	Super::Deinitialize();
 }
 
-void URH_FriendSubsystem::OnUserChanged()
+void URH_FriendSubsystem::OnUserChanged(const FGuid& OldPlayerUuid, class URH_PlayerInfo* OldLocalPlayerInfo)
 {
-	Super::OnUserChanged();
+	UE_LOG(LogRHSession, Log, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+	Super::OnUserChanged(OldPlayerUuid, OldLocalPlayerInfo);
+
+	// clear out old notification binding
+	if (OldLocalPlayerInfo != nullptr)
+	{
+		OldLocalPlayerInfo->GetPlayerNotifications()->OnNotificationStreamedByAPI.FindOrAdd(TEXT("friends")).RemoveAll(this);
+		OldLocalPlayerInfo->GetPlayerNotifications()->OnNotificationStreamedByAPI.FindOrAdd(TEXT("blocked")).RemoveAll(this);
+
+		StopFriendsRefreshTimer();
+		StopBlockedRefreshTimer();
+	}
+
 	InitPropertiesWithDefaultValues();
+
+
+	// add new notification binding
+	if (GetLocalPlayerSubsystem()->GetPlayerNotifications() != nullptr)
+	{
+		GetLocalPlayerSubsystem()->GetPlayerNotifications()->OnNotificationStreamedByAPI.FindOrAdd(TEXT("friends")).AddUObject(this, &URH_FriendSubsystem::HandleNotification);
+		GetLocalPlayerSubsystem()->GetPlayerNotifications()->OnNotificationStreamedByAPI.FindOrAdd(TEXT("blocked")).AddUObject(this, &URH_FriendSubsystem::HandleNotification);
+
+		StartFriendsRefreshTimer();
+		StartBlockedRefreshTimer();
+	}
 }
 
 void URH_FriendSubsystem::InitPropertiesWithDefaultValues()
@@ -65,6 +93,31 @@ void URH_FriendSubsystem::InitPropertiesWithDefaultValues()
 	BlockedPlayersUUIDs.Empty();
 	BlockedPlayersETag = {};
 }
+
+void URH_FriendSubsystem::HandleNotification(const FRHAPI_Notification& Notification, const FString& APIName, const TArray<FString>& APIParams)
+{
+	UE_LOG(LogRHSession, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+	if (APIName == TEXT("friends"))	// double checking, but this should be implied
+	{
+		// the first API param should be the API version
+		// the second API param should be the object type
+		if (APIParams.Num() >= 2 && APIParams[0] == TEXT("v2") && APIParams[1] == TEXT("player"))
+		{
+			PollFriendsList(FRH_PollCompleteFunc());
+		}
+	}
+	else
+	if (APIName == TEXT("blocked"))	// double checking, but this should be implied
+	{
+		// the first API param should be the API version
+		// the second API param should be the object type
+		if (APIParams.Num() >= 2 && APIParams[0] == TEXT("v2") && APIParams[1] == TEXT("player"))
+		{
+			PollBlockedPlayers(FRH_PollCompleteFunc());
+		}
+	}
+}
+
 
 bool URH_FriendSubsystem::FetchFriendsList(const FRH_GenericFriendBlock& Delegate /* = FRH_GenericFriendBlock() */)
 {
@@ -1672,7 +1725,7 @@ void URH_FriendSubsystem::StartFriendsRefreshTimer()
 
 	if (FriendsListPoller.IsValid())
 	{
-		FriendsListPoller->StartPoll(FRH_PollFunc::CreateUObject(this, &URH_FriendSubsystem::PollFriendsList), PollTimerName);
+		FriendsListPoller->StartPoll(FRH_PollFunc::CreateUObject(this, &URH_FriendSubsystem::PollFriendsList), PollTimerName, true);
 	}
 }
 
@@ -1712,7 +1765,7 @@ void URH_FriendSubsystem::StartBlockedRefreshTimer()
 
 	if (BlockedListPoller.IsValid())
 	{
-		BlockedListPoller->StartPoll(FRH_PollFunc::CreateUObject(this, &URH_FriendSubsystem::PollBlockedPlayers), PollTimerName);
+		BlockedListPoller->StartPoll(FRH_PollFunc::CreateUObject(this, &URH_FriendSubsystem::PollBlockedPlayers), PollTimerName, true);
 	}
 }
 

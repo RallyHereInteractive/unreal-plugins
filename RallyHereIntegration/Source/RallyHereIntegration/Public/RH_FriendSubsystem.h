@@ -1038,7 +1038,14 @@ protected:
 	/** @brief Poller for getting blocked players list. */
 	FRH_AutoPollerPtr BlockedListPoller;
 	/** @brief Callback that occurs whenever the local player this subsystem is associated with changes. */
-    virtual void OnUserChanged();
+    virtual void OnUserChanged(const FGuid& OldPlayerUuid, class URH_PlayerInfo* OldLocalPlayerInfo);
+	/**
+	* @brief Handle a notification from the notification API.
+	* @param [in] Notification The notification to handle.
+	* @param [in] APIName The name of the API that sent the notification.
+	* @param [in] APIParams The parameters for the API that sent the notification.
+	*/
+	virtual void HandleNotification(const struct FRHAPI_Notification& Notification, const FString& APIName, const TArray<FString>& APIParams);
 	/** @brief Initializes the subsystem with defaults for its cached data. */
 	virtual void InitPropertiesWithDefaultValues();
 	/**

@@ -83,7 +83,7 @@ void URH_LocalPlayerPresenceSubsystem::StartRefreshTimer()
 
 	if (Poller.IsValid())
 	{
-		Poller->StartPoll(FRH_PollFunc::CreateUObject(this, &URH_LocalPlayerPresenceSubsystem::PollRefreshStatus), PollTimerName);
+		Poller->StartPoll(FRH_PollFunc::CreateUObject(this, &URH_LocalPlayerPresenceSubsystem::PollRefreshStatus), PollTimerName, true);
 	}
 }
 
