@@ -154,13 +154,7 @@ void URH_FriendSubsystem::OnFetchFriendsListResponse(const GetFriendsListType::R
 {
 	if (Resp.IsSuccessful())
 	{
-		if (Resp.ETag.IsSet() && !Resp.ETag->IsEmpty())
-		{
-			//TODO This not being set atm
-			FriendsETag = Resp.ETag.GetValue();
-		}
-		//TODO Remove once etag is fixed
-		FriendsETag = Resp.GetHttpResponse()->GetHeader("etag");
+		FriendsETag = Resp.ETag.Get(TEXT(""));
 
 		for (const auto Friend : Friends)
 		{
@@ -340,7 +334,7 @@ void URH_FriendSubsystem::OnFetchFriendResponse(const GetFriendRelationshipType:
 			}
 			ExistingFriend->RHFriendshipStatus = static_cast<FriendshipStatus>(NewFriend.Status);
 			ExistingFriend->LastModifiedOn = NewFriend.LastModifiedOn;
-			ExistingFriend->Etag = Resp.GetHttpResponse()->GetHeader("etag");
+			ExistingFriend->Etag = Resp.ETag.Get(TEXT(""));
 			NewFriend.GetNotes(ExistingFriend->Notes);
 		}
 		else
@@ -359,7 +353,7 @@ void URH_FriendSubsystem::OnFetchFriendResponse(const GetFriendRelationshipType:
 			}
 			newEntry->RHFriendshipStatus = static_cast<FriendshipStatus>(NewFriend.Status);
 			newEntry->LastModifiedOn = NewFriend.LastModifiedOn;
-			newEntry->Etag = Resp.GetHttpResponse()->GetHeader("etag");
+			newEntry->Etag = Resp.ETag.Get(TEXT(""));
 			NewFriend.GetNotes(newEntry->Notes);
 			Friends.Emplace(newEntry);
 		}
@@ -483,7 +477,7 @@ void URH_FriendSubsystem::OnAddFriendResponse(const AddFriendType::Response& Res
 			ExistingFriend->PreviousRHFriendshipStatus = ExistingFriend->RHFriendshipStatus;
 			ExistingFriend->RHFriendshipStatus = static_cast<FriendshipStatus>(NewFriend.Status);
 			ExistingFriend->LastModifiedOn = NewFriend.LastModifiedOn;
-			ExistingFriend->Etag = Resp.GetHttpResponse()->GetHeader("etag");
+			ExistingFriend->Etag = Resp.ETag.Get(TEXT(""));
 			NewFriend.GetNotes(ExistingFriend->Notes);
 		}
 		else
@@ -502,7 +496,7 @@ void URH_FriendSubsystem::OnAddFriendResponse(const AddFriendType::Response& Res
 			}
 			newEntry->RHFriendshipStatus = static_cast<FriendshipStatus>(NewFriend.Status);
 			newEntry->LastModifiedOn = NewFriend.LastModifiedOn;
-			newEntry->Etag = Resp.GetHttpResponse()->GetHeader("etag");
+			newEntry->Etag = Resp.ETag.Get(TEXT(""));
 			NewFriend.GetNotes(newEntry->Notes);
 			Friends.Emplace(newEntry);
 		}
@@ -716,7 +710,7 @@ void URH_FriendSubsystem::OnAddNotesResponse(const AddNotesType::Response& Resp,
 			Friend->PreviousRHFriendshipStatus = Friend->RHFriendshipStatus;
 			Friend->RHFriendshipStatus = static_cast<FriendshipStatus>(UpdatedFriend.Status);
 			Friend->LastModifiedOn = UpdatedFriend.LastModifiedOn;
-			Friend->Etag = Resp.GetHttpResponse()->GetHeader("etag");
+			Friend->Etag = Resp.ETag.Get(TEXT(""));
 
 			{
 				SCOPED_NAMED_EVENT(RallyHere_BroadcastFriendUpdated, FColor::Purple);
@@ -810,7 +804,7 @@ void URH_FriendSubsystem::OnDeleteNotesResponse(const DeleteNotesType::Response&
 			Friend->Notes.Empty();
  			Friend->PreviousRHFriendshipStatus = Friend->RHFriendshipStatus;
  			Friend->LastModifiedOn = FDateTime::Now();
-			Friend->Etag = Resp.GetHttpResponse()->GetHeader("etag");
+			Friend->Etag = TEXT(""); // etag no longer valid
 
 			{
 				SCOPED_NAMED_EVENT(RallyHere_BroadcastFriendUpdated, FColor::Purple);
@@ -1355,7 +1349,7 @@ void URH_FriendSubsystem::OnFetchFriendForAdd(const GetFriendRelationshipType::R
 {
 	if (Resp.IsSuccessful())
 	{
-		Request.IfMatch.Emplace(Resp.GetHttpResponse()->GetHeader("etag"));
+		Request.IfMatch.Emplace(Resp.ETag.Get(TEXT("")));
 	}
 	else if (Resp.GetHttpResponseCode() == EHttpResponseCodes::NotFound)
 	{
@@ -1374,7 +1368,7 @@ void URH_FriendSubsystem::OnFetchFriendForRemove(const GetFriendRelationshipType
 {
 	if (Resp.IsSuccessful())
 	{
-		Request.IfMatch.Emplace(Resp.GetHttpResponse()->GetHeader("etag"));
+		Request.IfMatch.Emplace(Resp.ETag.Get(TEXT("")));
 	}
 	else if (Resp.GetHttpResponseCode() == EHttpResponseCodes::NotFound)
 	{
@@ -1393,7 +1387,7 @@ void URH_FriendSubsystem::OnFetchFriendForAddNote(const GetFriendRelationshipTyp
 {
 	if (Resp.IsSuccessful())
 	{
-		Request.IfMatch.Emplace(Resp.GetHttpResponse()->GetHeader("etag"));
+		Request.IfMatch.Emplace(Resp.ETag.Get(TEXT("")));
 	}
 	else if (Resp.GetHttpResponseCode() == EHttpResponseCodes::NotFound)
 	{
@@ -1412,7 +1406,7 @@ void URH_FriendSubsystem::OnFetchFriendForDeleteNote(const GetFriendRelationship
 {
 	if (Resp.IsSuccessful())
 	{
-		Request.IfMatch.Emplace(Resp.GetHttpResponse()->GetHeader("etag"));
+		Request.IfMatch.Emplace(Resp.ETag.Get(TEXT("")));
 	}
 	else if (Resp.GetHttpResponseCode() == EHttpResponseCodes::NotFound)
 	{
@@ -1506,13 +1500,7 @@ void URH_FriendSubsystem::OnFetchBlockedListResponse(const GetBlockedListType::R
 {
 	if (Resp.IsSuccessful())
 	{
-		if (Resp.ETag.IsSet() && !Resp.ETag->IsEmpty())
-		{
-			//TODO This not being set atm or is it???
-			BlockedPlayersETag = Resp.ETag.GetValue();
-		}
-		//TODO Once it is fixed
-		BlockedPlayersETag = Resp.GetHttpResponse()->GetHeader("etag");
+		BlockedPlayersETag = Resp.ETag.Get(TEXT(""));
 
 		TArray<FGuid> OldEntries = BlockedPlayersUUIDs;
 		TArray<FRHAPI_BlockedPlayer> BroadcastingArray;
