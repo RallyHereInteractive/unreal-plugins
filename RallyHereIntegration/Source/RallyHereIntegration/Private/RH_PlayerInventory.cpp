@@ -1391,9 +1391,25 @@ void URH_PendingOrder::RequestOrdersResponse(const TGetOrderById::Response& Resp
 
 	if (Resp.IsSuccessful() && PlayerInventory != nullptr)
 	{
-		PlayerInventory->ParseOrderResult(Resp.Content);
-		BroadcastComplete(PlayerInventory, Resp.Content);
-		PlayerInventory->ClearPendingOrder(Resp.Content);
+		bool bAllEntriesHaveResults = true;
+
+		for (const auto& Entry : Resp.Content.GetEntries())
+		{
+			auto Result = Entry.GetResultOrNull();
+			if (!Result)
+			{
+				bAllEntriesHaveResults = false;
+				break;
+			}
+		}
+
+		// if all entries have results, consider the order complete and remove from pending list
+		if (bAllEntriesHaveResults)
+		{
+			PlayerInventory->ParseOrderResult(Resp.Content);
+			BroadcastComplete(PlayerInventory, Resp.Content);
+			PlayerInventory->ClearPendingOrder(Resp.Content);
+		}
 	}
 }
 
