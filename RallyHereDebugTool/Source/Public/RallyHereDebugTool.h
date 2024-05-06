@@ -91,7 +91,7 @@ public:
 	UPROPERTY(Transient)
 	TArray<TWeakObjectPtr<URH_PlayerInfo>> TargetedPlayerInfos;
 
-	bool bActive;
+	bool bActive, bWasUIActive;
 	FSimpleMulticastDelegate OnActiveStateChanged;
 	ImGuiKey ToggleUIKeyBindAsImGuiKey;
 
