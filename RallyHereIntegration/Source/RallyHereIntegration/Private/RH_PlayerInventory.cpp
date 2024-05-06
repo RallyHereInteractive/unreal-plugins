@@ -4,6 +4,8 @@
 #include "GenericPlatform/GenericPlatformChunkInstall.h"
 #include "RH_PlayerInfoSubsystem.h"
 #include "RH_GameInstanceSubsystem.h"
+#include "RH_GameInstanceSessionSubsystem.h"
+#include "RH_MatchSubsystem.h"
 #include "RallyHereIntegrationModule.h"
 #include "RallyHereAPIAuthContext.h"
 #include "RH_CatalogSubsystem.h"
@@ -1061,13 +1063,12 @@ void URH_PlayerInventory::PopulateInstanceData(FRHAPI_PlayerOrderCreate& PlayerO
 			{
 				PlayerOrderCreate.SetInstanceId(*InstanceInfo->GetInstanceId());
 			}
-
-			if (const URH_JoinedSession* ActiveSession = RHGISS->GetActiveSession())
+		}
+		if (const auto RHMSS = RHGI->GetMatchSubsystem())
+		{
+			if (RHMSS->HasActiveMatchId())
 			{
-				if (const auto* MatchInfo = ActiveSession->GetSessionData().GetMatchOrNull())
-				{
-					PlayerOrderCreate.SetMatchId(MatchInfo->GetMatchId());
-				}
+				PlayerOrderCreate.SetMatchId(RHMSS->GetActiveMatchId());
 			}
 		}
 	}
