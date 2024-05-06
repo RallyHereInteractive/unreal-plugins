@@ -610,17 +610,26 @@ void URH_PlayerInventory::CreateInventory(const TOptional<FGuid>& ClientOrderRef
 void URH_PlayerInventory::HandleCreateInventory(const RallyHereAPI::FResponse_CreatePlayerInventoryUuid& Response,
 	const FRH_OnInventoryUpdateDelegateBlock Delegate)
 {
-	if (Response.Content.OrderId.IsEmpty())
+	if (Response.GetHttpResponseCode() == EHttpResponseCodes::Accepted)
 	{
-		Delegate.ExecuteIfBound(false);
+		FRHAPI_PlayerOrderCreate Response202;
+		FString OrderId;
+		if (Response.TryGetContentFor202(Response202) && Response202.GetOrderId(OrderId))
+		{
+			auto* NewOrder = NewObject<URH_PendingInventoryUpdateOrder>(this);
+			NewOrder->Init(OrderId, Delegate);
+			PendingOrders.Push(NewOrder);
+		}
+		else
+		{
+			Delegate.ExecuteIfBound(false);
+		}
 		return;
 	}
 
-	if (Response.GetHttpResponseCode() == EHttpResponseCodes::Accepted)
+	if (Response.Content.OrderId.IsEmpty())
 	{
-		auto* NewOrder = NewObject<URH_PendingInventoryUpdateOrder>(this);
-		NewOrder->Init(Response.Content.OrderId, Delegate);
-		PendingOrders.Push(NewOrder);
+		Delegate.ExecuteIfBound(false);
 		return;
 	}
 
@@ -682,17 +691,26 @@ void URH_PlayerInventory::UpdateInventory(const TOptional<FGuid>& ClientOrderRef
 void URH_PlayerInventory::HandleUpdateInventory(const RallyHereAPI::FResponse_ModifyManyPlayerInventoryUuid& Response,
 	const FRH_OnInventoryUpdateDelegateBlock Delegate)
 {
+	if (Response.GetHttpResponseCode() == EHttpResponseCodes::Accepted)
+	{
+		FRHAPI_PlayerOrderCreate Response202;
+		FString OrderId;
+		if (Response.TryGetContentFor202(Response202) && Response202.GetOrderId(OrderId))
+		{
+			auto* NewOrder = NewObject<URH_PendingInventoryUpdateOrder>(this);
+			NewOrder->Init(OrderId, Delegate);
+			PendingOrders.Push(NewOrder);
+		}
+		else
+		{
+			Delegate.ExecuteIfBound(false);
+		}
+		return;
+	}
+	
 	if (Response.Content.OrderId.IsEmpty())
 	{
 		Delegate.ExecuteIfBound(false);
-		return;
-	}
-
-	if (Response.GetHttpResponseCode() == EHttpResponseCodes::Accepted)
-	{
-		auto* NewOrder = NewObject<URH_PendingInventoryUpdateOrder>(this);
-		NewOrder->Init(Response.Content.OrderId, Delegate);
-		PendingOrders.Push(NewOrder);
 		return;
 	}
 
@@ -883,30 +901,40 @@ void URH_PlayerInventory::RedeemPromoCode(const FString& PromoCode, const FRH_Pr
 	}
 }
 
-void URH_PlayerInventory::RedeemPromoCodeResponse(const TCreateOrder::Response& Resp, const FRH_PromoCodeResultBlock Delegate, const FString PromoCode)
+void URH_PlayerInventory::RedeemPromoCodeResponse(const TCreateOrder::Response& Response, const FRH_PromoCodeResultBlock Delegate, const FString PromoCode)
 {
-	if (Resp.Content.OrderId.IsEmpty())
+	if (Response.GetHttpResponseCode() == EHttpResponseCodes::Accepted)
+	{
+		FRHAPI_PlayerOrderCreate Response202;
+		FString OrderId;
+		if (Response.TryGetContentFor202(Response202) && Response202.GetOrderId(OrderId))
+		{
+			auto* NewOrder = NewObject<URH_PendingPromoCodeOrder>(this);
+			NewOrder->Init(OrderId, PromoCode, Delegate);
+			PendingOrders.Push(NewOrder);
+			return;
+		}
+		else
+		{
+			Delegate.ExecuteIfBound(GetPlayerInfo(), PromoCode, FRHAPI_PlayerOrder());
+		}
+		return;
+	}
+
+	if (Response.Content.OrderId.IsEmpty())
 	{
 		Delegate.ExecuteIfBound(GetPlayerInfo(), PromoCode, FRHAPI_PlayerOrder());
 		return;
 	}
 
-	if (Resp.GetHttpResponseCode() == EHttpResponseCodes::Accepted)
-	{
-		auto* NewOrder = NewObject<URH_PendingPromoCodeOrder>(this);
-		NewOrder->Init(Resp.Content.OrderId, PromoCode, Delegate);
-		PendingOrders.Push(NewOrder);
-		return;
-	}
-
-	if (!Resp.IsSuccessful())
+	if (!Response.IsSuccessful())
 	{
 		Delegate.ExecuteIfBound(GetPlayerInfo(), PromoCode, FRHAPI_PlayerOrder());
 		return;
 	}
 
-	ParseOrderResult(Resp.Content);
-	Delegate.ExecuteIfBound(GetPlayerInfo(), PromoCode, Resp.Content);
+	ParseOrderResult(Response.Content);
+	Delegate.ExecuteIfBound(GetPlayerInfo(), PromoCode, Response.Content);
 }
 
 void URH_PlayerInventory::ParseOrderResult(const FRHAPI_PlayerOrder& Content)
@@ -1154,30 +1182,40 @@ void URH_PlayerInventory::WriteOrderEntries(TArray<FRHAPI_PlayerOrderEntryCreate
 	}
 }
 
-void URH_PlayerInventory::CreatePlayerOrderResponse(const TCreateOrder::Response& Resp, const FRH_OrderResultBlock Delegate, const TArray<URH_PlayerOrderEntry*> OrderEntries)
+void URH_PlayerInventory::CreatePlayerOrderResponse(const TCreateOrder::Response& Response, const FRH_OrderResultBlock Delegate, const TArray<URH_PlayerOrderEntry*> OrderEntries)
 {
-	if (Resp.Content.OrderId.IsEmpty())
+	if (Response.GetHttpResponseCode() == EHttpResponseCodes::Accepted)
+	{
+		FRHAPI_PlayerOrderCreate Response202;
+		FString OrderId;
+		if (Response.TryGetContentFor202(Response202) && Response202.GetOrderId(OrderId))
+		{
+			auto* NewOrder = NewObject<URH_PendingPlayerOrder>(this);
+			NewOrder->Init(OrderId, OrderEntries, Delegate);
+			PendingOrders.Push(NewOrder);
+
+		}
+		else
+		{
+			Delegate.ExecuteIfBound(GetPlayerInfo(), OrderEntries, FRHAPI_PlayerOrder());
+		}
+		return;
+	}
+
+	if (Response.Content.OrderId.IsEmpty())
 	{
 		Delegate.ExecuteIfBound(GetPlayerInfo(), OrderEntries, FRHAPI_PlayerOrder());
 		return;
 	}
 
-	if (Resp.GetHttpResponseCode() == EHttpResponseCodes::Accepted)
-	{
-		auto* NewOrder = NewObject<URH_PendingPlayerOrder>(this);
-		NewOrder->Init(Resp.Content.OrderId, OrderEntries, Delegate);
-		PendingOrders.Push(NewOrder);
-		return;
-	}
-
-	if (!Resp.IsSuccessful())
+	if (!Response.IsSuccessful())
 	{
 		Delegate.ExecuteIfBound(GetPlayerInfo(), OrderEntries, FRHAPI_PlayerOrder());
 		return;
 	}
 
-	ParseOrderResult(Resp.Content);
-	Delegate.ExecuteIfBound(GetPlayerInfo(), OrderEntries, Resp.Content);
+	ParseOrderResult(Response.Content);
+	Delegate.ExecuteIfBound(GetPlayerInfo(), OrderEntries, Response.Content);
 }
 
 void URH_PlayerInventory::ClearPendingOrder(const FRHAPI_PlayerOrder& OrderResult)
