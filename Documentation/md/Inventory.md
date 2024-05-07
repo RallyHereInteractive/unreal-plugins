@@ -546,7 +546,8 @@ Inventory Subsystem created per player for tracking and updating player inventor
 `protected inline bool `[`ShouldPollPendingInventory`](#classURH__PlayerInventory_1a44bb8f812b678184d35450f313bca922)`() const` | Gets if pending inventory should be polled due to outstanding orders.
 `protected void `[`HandleNotification`](#classURH__PlayerInventory_1a6164fd974fa48e65497343d05285d371)`(const `[`FRHAPI_Notification`](models/RHAPI_Notification.md#structFRHAPI__Notification)` & Notification,const FString & APIName,const TArray< FString > & APIParams)` | Handles an incoming notification, checks if it is an invnetory notification, then operates if need be.
 `protected void `[`PollInventory`](#classURH__PlayerInventory_1afeaab6fb7057a5e3c481c06465887dcd)`(const FRH_PollCompleteFunc & Delegate)` | Start a poll for inventory updates.
-`protected void `[`PollPendingInventory`](#classURH__PlayerInventory_1ae1b0dd55006d28db5dfbef7b4ec27f5d)`(const FRH_PollCompleteFunc & Delegate)` | Start a poll for pending inventory updates.
+`protected virtual void `[`PollPendingInventory`](#classURH__PlayerInventory_1aca8c5064815bc09e16b01b631a182f17)`(const FRH_PollCompleteFunc & Delegate)` | Start a poll for pending inventory updates.
+`protected virtual void `[`PollPendingInventoryInternal`](#classURH__PlayerInventory_1a18874a5e4ae8348cb224f790ea9f9a90)`(TArray< `[`URH_PendingOrder`](Inventory.md#classURH__PendingOrder)` * > OrdersToProcess,const FRH_PollCompleteFunc & Delegate)` | Start a poll for pending inventory updates.
 `protected inline void `[`BroadcastOnInventoryCacheUpdated`](#classURH__PlayerInventory_1a549a0f5600fc0957e61dfa3b6b75b997)`(const TArray< int32 > & ItemIds)` | Helper function to broadcast inventory changes.
 `protected void `[`OnUserChanged`](#classURH__PlayerInventory_1ac429492f3cc9736fc88744dcd53fca03)`()` | Callback that occurs whenever the local player this subsystem is associated with changes.
 `protected void `[`InitPropertiesWithDefaultValues`](#classURH__PlayerInventory_1a98ee25be3e5fcdd1ccf481bf12b7d0a0)`()` | Initializes the subsystem with defaults for its cached data.
@@ -1057,7 +1058,15 @@ Start a poll for inventory updates.
 * `Delegate` Callback delegate for the polling.
 
 <br>
-#### `protected void `[`PollPendingInventory`](#classURH__PlayerInventory_1ae1b0dd55006d28db5dfbef7b4ec27f5d)`(const FRH_PollCompleteFunc & Delegate)` <a id="classURH__PlayerInventory_1ae1b0dd55006d28db5dfbef7b4ec27f5d"></a>
+#### `protected virtual void `[`PollPendingInventory`](#classURH__PlayerInventory_1aca8c5064815bc09e16b01b631a182f17)`(const FRH_PollCompleteFunc & Delegate)` <a id="classURH__PlayerInventory_1aca8c5064815bc09e16b01b631a182f17"></a>
+
+Start a poll for pending inventory updates.
+
+#### Parameters
+* `Delegate` Callback delegate for the polling.
+
+<br>
+#### `protected virtual void `[`PollPendingInventoryInternal`](#classURH__PlayerInventory_1a18874a5e4ae8348cb224f790ea9f9a90)`(TArray< `[`URH_PendingOrder`](Inventory.md#classURH__PendingOrder)` * > OrdersToProcess,const FRH_PollCompleteFunc & Delegate)` <a id="classURH__PlayerInventory_1a18874a5e4ae8348cb224f790ea9f9a90"></a>
 
 Start a poll for pending inventory updates.
 
