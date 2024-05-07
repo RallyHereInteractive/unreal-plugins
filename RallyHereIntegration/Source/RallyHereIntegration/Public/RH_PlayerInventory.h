@@ -1091,7 +1091,12 @@ protected:
 	 * @brief Start a poll for pending inventory updates.
 	 * @param Delegate Callback delegate for the polling.
 	 */
-	void PollPendingInventory(const FRH_PollCompleteFunc& Delegate);
+	virtual void PollPendingInventory(const FRH_PollCompleteFunc& Delegate);
+	/**
+	 * @brief Start a poll for pending inventory updates.
+	 * @param Delegate Callback delegate for the polling.
+	 */
+	virtual void PollPendingInventoryInternal(TArray<URH_PendingOrder*> OrdersToProcess, const FRH_PollCompleteFunc& Delegate);
 	/**
 	 * @brief Helper function to broadcast inventory changes.
 	 * @param ItemIds The item ids that have been updated.

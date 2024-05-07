@@ -729,7 +729,7 @@ void URH_PlayerInventory::CheckPollStatus()
 	if (!ShouldPollInventory())
 	{
 		// no one is listening, disable polling
-		if (InventoryPoller.IsValid())
+		if (InventoryPoller.IsValid() && !InventoryPoller->IsInactive())
 		{
 			InventoryPoller->StopPoll();
 		}
@@ -767,7 +767,7 @@ void URH_PlayerInventory::CheckPollStatus()
 	if (!ShouldPollPendingInventory())
 	{
 		// no one is listening, disable polling
-		if (PendingInventoryPoller.IsValid())
+		if (PendingInventoryPoller.IsValid() && !PendingInventoryPoller->IsInactive())
 		{
 			PendingInventoryPoller->StopPoll();
 		}
@@ -844,35 +844,41 @@ void URH_PlayerInventory::PollInventory(const FRH_PollCompleteFunc& Delegate)
 
 void URH_PlayerInventory::PollPendingInventory(const FRH_PollCompleteFunc& Delegate)
 {
-	// if no pending orders remain, stop polling (note - this function is effectively asynchronously recursive!
+	// clean any nullptr entries out of the array (they should not exist, but best to be sure)
+	PendingOrders.RemoveAll([](const URH_PendingOrder* Value) { return Value == nullptr; });
+
 	if (PendingOrders.Num() <= 0)
 	{
+		// if no orders remain to process, complete the poll and tell to not repoll
 		Delegate.ExecuteIfBound(true, false);
 		return;
 	}
 
-	auto CompletionDelegate = FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+	// process the list
+	PollPendingInventoryInternal(PendingOrders, Delegate);
+}
+
+void URH_PlayerInventory::PollPendingInventoryInternal(TArray<URH_PendingOrder*> OrdersToProcess, const FRH_PollCompleteFunc& Delegate)
+{
+	// if no orders remain to process, complete the poll
+	if (OrdersToProcess.Num() <= 0)
+	{
+		Delegate.ExecuteIfBound(true, true);
+		return;
+	}
+
+	// pop the next order from the list
+	auto PendingOrder = OrdersToProcess.Pop();
+
+	// set completion delegate to continue processing the list
+	auto CompletionDelegate = FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, OrdersToProcess, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 		{
-			if (bSuccess)
-			{
-				// poll any remaining orders, do not call final completion callback
-				PollPendingInventory(Delegate);
-			}
-			else
-			{
-				// call final completion delegate and tell it to keep polling as we did not fully clear all pending orders
-				Delegate.ExecuteIfBound(false, true);
-			}
+			// continue processing the list
+			PollPendingInventoryInternal(OrdersToProcess, Delegate);
 		});
 
-	// clean any nullptr entries out of the array (they should not exist, but best to be sure)
-	PendingOrders.RemoveAll([](const URH_PendingOrder* Value) { return Value == nullptr; });
-
-	// move the current pending order we are about to process to the back of the list before processing.  This ensures we wont get "stuck" on it if there is a fulfillment problem
-	auto* Pending = PendingOrders[0];
-	PendingOrders.RemoveAt(0);
-	PendingOrders.Add(Pending);
-	PendingOrders.Last()->RequestOrders(CompletionDelegate);
+	// process the order
+	PendingOrder->RequestOrders(CompletionDelegate);
 }
 
 void URH_PlayerInventory::RedeemPromoCode(const FString& PromoCode, const FRH_PromoCodeResultBlock& Delegate)
