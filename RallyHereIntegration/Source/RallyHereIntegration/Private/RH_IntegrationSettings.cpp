@@ -43,6 +43,8 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 	WebRequestsTrackedRequestsCountLimit = 200;
 	WebRequestsBurstCountThreshold = 5;
 	WebRequestsBurstTimeThresholdInSeconds = 5;
+	WebRequestsDefaultRetryCount = 6;
+	WebRequestsDefaultRetryTimeout = 60;
 
 	bAutoMakeSessionsJoinableOnHostMapLoadComplete = true;
 	bUseSecurityTokenForJoining = true;
