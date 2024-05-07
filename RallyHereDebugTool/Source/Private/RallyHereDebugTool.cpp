@@ -67,6 +67,7 @@ URallyHereDebugTool::URallyHereDebugTool()
 	OutputLogWindow = nullptr;
 
 	bActive = false;
+	bWasUIActive = false;
 
 	ToggleUIKeyBindAsImGuiKey = ImGuiKey_None;
 }
@@ -525,7 +526,6 @@ void URallyHereDebugTool::ToggleUI()
 		// as a temp fix, invalidate all widgets here, as even just invaliding the actual ImGUI widget may not be sufficient (though we should try that at some point)
 		FSlateApplication::Get().InvalidateAllWidgets(false);
 	}
-	OnActiveStateChanged.Broadcast();
 }
 
 void URallyHereDebugTool::ImGuiPostInit()
@@ -579,14 +579,18 @@ void URallyHereDebugTool::DoImGui()
 	{
 		return;
 	}
-	auto GameViewport = GetWorld()->GetGameViewport();
-	bool bVisibleInViewport = GameViewport != nullptr && FImGuiModule::Get().IsViewportWidgetVisible(GameViewport);
-#ifdef WITH_IMGUI_NETIMGUI
-	bool bVisibleInRemote = NetImgui::IsConnected();
-#else
-	bool bVisibleInRemote = false;
-#endif
-	if (!bVisibleInViewport && !bVisibleInRemote)
+
+	bool bNewIsUIActive = IsUIActive();
+
+	// if state changed, send event
+	if (bNewIsUIActive != bWasUIActive)
+	{
+		bWasUIActive = bNewIsUIActive;
+
+		OnActiveStateChanged.Broadcast();
+	}
+
+	if (!bNewIsUIActive)
 	{
 		// not being viewed, do not render
 		return;
