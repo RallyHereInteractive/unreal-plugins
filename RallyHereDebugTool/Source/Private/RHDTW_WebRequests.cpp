@@ -203,7 +203,7 @@ void FRHDTW_WebRequests::DoViewRequests(FRH_WebRequests* WebRequestsTracker)
 			}
 		}
 
-		ImGuiColors::HeaderStyle::Push(ResultColor);
+		ImGuiColors::HeaderStyle::ScopedHeaderStyle ScopedHeaderStyle(ResultColor);
 
 		if (ImGui::CollapsingHeader(label.data()))
 		{
