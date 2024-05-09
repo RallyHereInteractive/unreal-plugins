@@ -38,6 +38,7 @@ namespace
 			ImGuiDisplayCopyableValue(TEXT("Tenant UUID"), LoginResult.TenantUuid);
 			ImGuiDisplayCopyableValue(TEXT("Config Elector UUID"), LoginResult.ConfigElectorUuid);
 			ImGuiDisplayCopyableValue(TEXT("Client UUID"), LoginResult.ClientUuid);
+			ImGuiDisplayCopyableValue(TEXT("Client ID"), LoginResult.ClientId);
 
 			auto* Permissions = LoginResult.GetPermissionsOrNull();
 			if (Permissions != nullptr && ImGui::TreeNodeEx("Permissions", RH_DefaultTreeFlags))
