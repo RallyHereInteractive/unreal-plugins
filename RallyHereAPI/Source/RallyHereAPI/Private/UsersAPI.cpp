@@ -4709,8 +4709,10 @@ FString FResponse_Link::GetHttpResponseCodeDescription(EHttpResponseCodes::Type 
 	{
 	case 200:
 		return TEXT("Successful Response");
+	case 400:
+		return TEXT("Users cannot be linked due to user state.  See response for further details");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 422:
 		return TEXT("Validation Error");
 	}
@@ -4719,6 +4721,16 @@ FString FResponse_Link::GetHttpResponseCodeDescription(EHttpResponseCodes::Type 
 }
 
 bool FResponse_Link::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+{
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
+}
+
+bool FResponse_Link::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -5538,14 +5550,26 @@ FString FResponse_Unlink::GetHttpResponseCodeDescription(EHttpResponseCodes::Typ
 	{
 	case 200:
 		return TEXT("Successful Response");
+	case 400:
+		return TEXT("Users cannot be unlinked due to user state.  See response for further details");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
 bool FResponse_Unlink::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+{
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
+}
+
+bool FResponse_Unlink::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
