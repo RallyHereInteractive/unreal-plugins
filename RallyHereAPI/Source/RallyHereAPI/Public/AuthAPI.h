@@ -551,7 +551,9 @@ struct RALLYHEREAPI_API FRequest_OauthTokenExchange : public FRequest
 	FString ComputePath() const override;
 	FName GetSimplifiedPath() const override;
 	FName GetSimplifiedPathWithVerb() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	TSharedPtr<FAuthContext> AuthContext;
 	FRHAPI_OAuthTokenExchange OAuthTokenExchange;
 	TOptional<FString> UserAgent;
 	TOptional<FString> XForwardedFor;
