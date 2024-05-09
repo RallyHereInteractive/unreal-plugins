@@ -49,6 +49,7 @@ Login result.
 `public FGuid `[`TenantUuid`](#structFRHAPI__LoginResult_1a7421186147416414e5e5807959dc056f) | Tenant UUID.
 `public FGuid `[`ConfigElectorUuid`](#structFRHAPI__LoginResult_1a016a390d6851b1892d0829fbd8f0f116) | Config elector UUID.
 `public FGuid `[`ClientUuid`](#structFRHAPI__LoginResult_1aa28597bee651583c0631fcef0d952213) | Client UUID.
+`public FString `[`ClientId`](#structFRHAPI__LoginResult_1ac991183ac255ddd26e72105ae65dc0f3) | Client ID.
 `public FString `[`TokenType`](#structFRHAPI__LoginResult_1aa14a8a2d5dd54ac2622d936a977dd2c6) | Token type.
 `public int32 `[`ExpiresIn_Optional`](#structFRHAPI__LoginResult_1a7d1933cdc5be268381830d15f6c8a132) | Result access token expiration time in seconds.
 `public bool `[`ExpiresIn_IsSet`](#structFRHAPI__LoginResult_1a24059abe66a39f9e4eb782d00cb3fc8b) | true if ExpiresIn_Optional has been set to a value
@@ -178,6 +179,9 @@ Login result.
 `public inline FGuid & `[`GetClientUuid`](#structFRHAPI__LoginResult_1a21d4d933e77829f7871845271f4d5823)`()` | Gets the value of ClientUuid.
 `public inline const FGuid & `[`GetClientUuid`](#structFRHAPI__LoginResult_1ac3a78366de32fae402b409edafbee950)`() const` | Gets the value of ClientUuid.
 `public inline void `[`SetClientUuid`](#structFRHAPI__LoginResult_1ada7aa427ac3999a2dce454588d733676)`(FGuid NewValue)` | Sets the value of ClientUuid.
+`public inline FString & `[`GetClientId`](#structFRHAPI__LoginResult_1ac26cc51a567b70005be8b311d8187caf)`()` | Gets the value of ClientId.
+`public inline const FString & `[`GetClientId`](#structFRHAPI__LoginResult_1aff45562cba104effe5c7888565d4fe31)`() const` | Gets the value of ClientId.
+`public inline void `[`SetClientId`](#structFRHAPI__LoginResult_1a85124eb294a3ce16b1f903a84f9e0c13)`(FString NewValue)` | Sets the value of ClientId.
 `public inline FString & `[`GetTokenType`](#structFRHAPI__LoginResult_1a17ef1eb7cc1174968947d78939f557ed)`()` | Gets the value of TokenType.
 `public inline const FString & `[`GetTokenType`](#structFRHAPI__LoginResult_1a2fd401529903abef949fda4554b6079f)`() const` | Gets the value of TokenType.
 `public inline void `[`SetTokenType`](#structFRHAPI__LoginResult_1acbde832a361cf27225d9d753eb3f5b9c)`(FString NewValue)` | Sets the value of TokenType.
@@ -342,6 +346,11 @@ Config elector UUID.
 #### `public FGuid `[`ClientUuid`](#structFRHAPI__LoginResult_1aa28597bee651583c0631fcef0d952213) <a id="structFRHAPI__LoginResult_1aa28597bee651583c0631fcef0d952213"></a>
 
 Client UUID.
+
+<br>
+#### `public FString `[`ClientId`](#structFRHAPI__LoginResult_1ac991183ac255ddd26e72105ae65dc0f3) <a id="structFRHAPI__LoginResult_1ac991183ac255ddd26e72105ae65dc0f3"></a>
+
+Client ID.
 
 <br>
 #### `public FString `[`TokenType`](#structFRHAPI__LoginResult_1aa14a8a2d5dd54ac2622d936a977dd2c6) <a id="structFRHAPI__LoginResult_1aa14a8a2d5dd54ac2622d936a977dd2c6"></a>
@@ -996,6 +1005,21 @@ Gets the value of ClientUuid.
 #### `public inline void `[`SetClientUuid`](#structFRHAPI__LoginResult_1ada7aa427ac3999a2dce454588d733676)`(FGuid NewValue)` <a id="structFRHAPI__LoginResult_1ada7aa427ac3999a2dce454588d733676"></a>
 
 Sets the value of ClientUuid.
+
+<br>
+#### `public inline FString & `[`GetClientId`](#structFRHAPI__LoginResult_1ac26cc51a567b70005be8b311d8187caf)`()` <a id="structFRHAPI__LoginResult_1ac26cc51a567b70005be8b311d8187caf"></a>
+
+Gets the value of ClientId.
+
+<br>
+#### `public inline const FString & `[`GetClientId`](#structFRHAPI__LoginResult_1aff45562cba104effe5c7888565d4fe31)`() const` <a id="structFRHAPI__LoginResult_1aff45562cba104effe5c7888565d4fe31"></a>
+
+Gets the value of ClientId.
+
+<br>
+#### `public inline void `[`SetClientId`](#structFRHAPI__LoginResult_1a85124eb294a3ce16b1f903a84f9e0c13)`(FString NewValue)` <a id="structFRHAPI__LoginResult_1a85124eb294a3ce16b1f903a84f9e0c13"></a>
+
+Sets the value of ClientId.
 
 <br>
 #### `public inline FString & `[`GetTokenType`](#structFRHAPI__LoginResult_1a17ef1eb7cc1174968947d78939f557ed)`()` <a id="structFRHAPI__LoginResult_1a17ef1eb7cc1174968947d78939f557ed"></a>
