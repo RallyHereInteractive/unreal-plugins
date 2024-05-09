@@ -202,7 +202,7 @@ void FRHDTW_Notifications::Do()
 		{
 			ImGui::Separator();
 
-			ImGui::Text("Player: %s", *GetShortUuid(PlayerInfo->GetRHPlayerUuid()));
+			ImGui::Text("Player: %s", TCHAR_TO_UTF8(*GetShortUuid(PlayerInfo->GetRHPlayerUuid())));
 			ImGuiDisplayPlayerInfoNotifications(PlayerInfo);
 		}));
 }
