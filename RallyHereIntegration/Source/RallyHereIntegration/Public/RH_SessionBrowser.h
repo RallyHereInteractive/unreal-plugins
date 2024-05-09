@@ -106,7 +106,7 @@ struct RALLYHEREINTEGRATION_API FRH_SessionBrowserSearchResult
 	 */
 	FString GetDescription() const
 	{
-		return FString::Printf(TEXT("Session Count: %d, Search: {%s}"), Sessions.Num(), *SearchParams.GetDescription());
+		return FString::Printf(TEXT("Session Count: %d, Search: {%s}"), SessionInfos.Num(), *SearchParams.GetDescription());
 	}
 
 	FRH_SessionBrowserSearchResult()
