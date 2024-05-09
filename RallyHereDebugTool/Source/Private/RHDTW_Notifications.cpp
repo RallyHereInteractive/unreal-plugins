@@ -4,7 +4,7 @@
 #include "RHDTW_Notifications.h"
 #include "RallyHereDebugToolModule.h"
 #include "RallyHereIntegrationModule.h"
-#include "RH_LocalPlayerSubsystem.h"
+#include "RH_PlayerInfoSubsystem.h"
 #include "RallyHereDebugTool.h"
 #include "imgui.h"
 
@@ -14,24 +14,20 @@ FRHDTW_Notifications::FRHDTW_Notifications()
 	: Super()
 {
 	DefaultPos = FVector2D(610, 20);
-	URL.SetNumZeroed(256);
-	APIName.SetNumZeroed(256);
-	APIParams.SetNumZeroed(256);
-	Message.SetNumZeroed(256);
 }
 
 
-void ImGuiDisplayLocalPlayerNotifications(ULocalPlayer* SelectedLocalPlayer, URH_LocalPlayerSubsystem* LPSS)
+void ImGuiDisplayPlayerInfoNotifications(URH_PlayerInfo* SelectedPlayerInfo)
 {
-	if (SelectedLocalPlayer != nullptr)
+	if (SelectedPlayerInfo != nullptr)
 	{
-		FString Note = FString::Printf(TEXT("For first selected local player with Controller Id %d."), SelectedLocalPlayer->GetControllerId());
+		FString Note = FString::Printf(TEXT("For first selected local player %s."), *GetShortUuid(SelectedPlayerInfo->GetRHPlayerUuid()));
 		ImGui::Text("%s", TCHAR_TO_UTF8(*Note));
 	}
 
 	const FString BaseURL = FRallyHereIntegrationModule::Get().GetBaseURL();
 
-	if (LPSS == nullptr || LPSS->GetPlayerNotifications() == nullptr)
+	if (SelectedPlayerInfo == nullptr || SelectedPlayerInfo->GetPlayerNotifications() == nullptr)
 	{
 		return;
 	}
@@ -49,7 +45,7 @@ void ImGuiDisplayLocalPlayerNotifications(ULocalPlayer* SelectedLocalPlayer, URH
 		ImGui::TableHeadersRow();
 
 		// Content
-		for (const auto& Notification : LPSS->GetPlayerNotifications()->GetStreamingHistory())
+		for (const auto& Notification : SelectedPlayerInfo->GetPlayerNotifications()->GetStreamingHistory())
 		{
 			ImGui::PushID(TCHAR_TO_UTF8(*Notification.GetNotificationId()));
 
@@ -89,24 +85,23 @@ void FRHDTW_Notifications::Do()
 		return;
 	}
 
-	int NumSelectedPlayers = pOwner->GetAllSelectedLocalPlayers().Num();
+	int NumSelectedPlayers = pOwner->GetAllSelectedPlayerInfos().Num();
 	if (NumSelectedPlayers == 0)
 	{
-		ImGui::Text("Please select a local player (has Controller Id) in Player Repository.");
+		ImGui::Text("Please select a player in Player Repository.");
 		return;
 	}
 	else
 	{
-		ImGui::Text("For [%d] selected Local Players (with Controller Ids).", NumSelectedPlayers);
+		ImGui::Text("For [%d] selected Players.", NumSelectedPlayers);
 	}
 
 	bool someoneNotStreaming = false;
-	for (auto* LocalPlayer : pOwner->GetAllSelectedLocalPlayers())
+	for (auto* PlayerInfo : pOwner->GetAllSelectedPlayerInfos())
 	{
-		URH_LocalPlayerSubsystem* LPSS = LocalPlayer->GetSubsystem<URH_LocalPlayerSubsystem>();
-		if (LPSS && LPSS->GetPlayerNotifications() != nullptr)
+		if (PlayerInfo != nullptr && PlayerInfo->GetPlayerNotifications() != nullptr)
 		{
-			if (!LPSS->GetPlayerNotifications()->IsStreaming())
+			if (!PlayerInfo->GetPlayerNotifications()->IsStreaming())
 			{
 				someoneNotStreaming = true;
 				break;
@@ -118,11 +113,11 @@ void FRHDTW_Notifications::Do()
 	{
 		if (ImGui::Button("Start Streaming"))
 		{
-			ForEachSelectedLocalRHPlayer(FRHDT_RHLPAction::CreateLambda([](URH_LocalPlayerSubsystem* LPSS)
+			ForEachSelectedRHPlayer(FRHDT_RHPAction::CreateLambda([](URH_PlayerInfo* PlayerInfo)
 				{
-					if (LPSS && LPSS->GetPlayerNotifications() != nullptr)
+					if (PlayerInfo && PlayerInfo->GetPlayerNotifications() != nullptr)
 					{
-						LPSS->GetPlayerNotifications()->StartStreamingLatestNotifications();
+						PlayerInfo->GetPlayerNotifications()->StartStreamingLatestNotifications();
 					}
 				}));
 		}
@@ -131,11 +126,11 @@ void FRHDTW_Notifications::Do()
 	{
 		if (ImGui::Button("Stop Streaming"))
 		{
-			ForEachSelectedLocalRHPlayer(FRHDT_RHLPAction::CreateLambda([](URH_LocalPlayerSubsystem* LPSS)
+			ForEachSelectedRHPlayer(FRHDT_RHPAction::CreateLambda([](URH_PlayerInfo* PlayerInfo)
 				{
-					if (LPSS && LPSS->GetPlayerNotifications() != nullptr)
+					if (PlayerInfo && PlayerInfo->GetPlayerNotifications() != nullptr)
 					{
-						LPSS->GetPlayerNotifications()->StopStreamingLatestNotifications();
+						PlayerInfo->GetPlayerNotifications()->StopStreamingLatestNotifications();
 					}
 				}));
 		}
@@ -150,63 +145,64 @@ void FRHDTW_Notifications::Do()
 	ImGui::SameLine();
 	if (ImGui::Button("Apply"))
 	{
-		for (auto* LocalPlayer : pOwner->GetAllSelectedLocalPlayers())
+		ForEachSelectedRHPlayer(FRHDT_RHPAction::CreateLambda([NumNotifications](URH_PlayerInfo* PlayerInfo)
 		{
-			URH_LocalPlayerSubsystem* LPSS = LocalPlayer->GetSubsystem<URH_LocalPlayerSubsystem>();
-			if (LPSS && LPSS->GetPlayerNotifications() != nullptr)
+			if (PlayerInfo && PlayerInfo->GetPlayerNotifications() != nullptr)
 			{
-				LPSS->GetPlayerNotifications()->SetStreamingHistorySize(NumNotifications);
+				PlayerInfo->GetPlayerNotifications()->SetStreamingHistorySize(NumNotifications);
 			}
-		}
+		}));
 	}
 
 	const FString BaseURL = FRallyHereIntegrationModule::Get().GetBaseURL();
 
 	ImGui::Separator();
 	ImGui::SetNextItemWidth(100);	// API names are short, so reserve space on the line for the parameters
-	if (ImGui::InputText("API Name", APIName.GetData(), APIName.Num()))
+	if (ImGui::InputText("API Name", &APIName))
 	{
-		FString NewURL = BaseURL + TEXT("/") + UTF8_TO_TCHAR(APIName.GetData()) + UTF8_TO_TCHAR(APIParams.GetData());
-		FTCHARToUTF8 UTF8NewURL(*NewURL);
-
-		FMemory::Memcpy(URL.GetData(), UTF8NewURL.Get(), URL.Num());
+		URL = BaseURL + TEXT("/") + APIName + TEXT("/") + APIParams;
 	}
 	ImGui::SameLine();
-	if (ImGui::InputText("API Params", APIParams.GetData(), APIParams.Num()))
+	if (ImGui::InputText("API Params", &APIParams))
 	{
-		FString NewURL = BaseURL + TEXT("/") + UTF8_TO_TCHAR(APIName.GetData()) + TEXT("/") + UTF8_TO_TCHAR(APIParams.GetData());
-		FTCHARToUTF8 UTF8NewURL(*NewURL);
-
-		FMemory::Memcpy(URL.GetData(), UTF8NewURL.Get(), URL.Num());
+		URL = BaseURL + TEXT("/") + APIName + TEXT("/") + APIParams;
 	}
-	if (ImGui::InputText("URL", URL.GetData(), URL.Num()))
+	if (ImGui::InputText("URL", &URL))
 	{
-		FString NewURL = UTF8_TO_TCHAR(URL.GetData());
 		FString NewAPIName;
 		TArray<FString> NewAPIParams;
-		if (RH_BreakApartURL(NewURL, BaseURL, NewAPIName, NewAPIParams))
+		if (RH_BreakApartURL(URL, BaseURL, NewAPIName, NewAPIParams))
 		{
-			FTCHARToUTF8 UTF8APIName(*NewAPIName);
-			FTCHARToUTF8 UTF8APIParams(*FString::Join(NewAPIParams, TEXT("/")));
-			FMemory::Memcpy(APIName.GetData(), UTF8APIName.Get(), APIName.Num());
-			FMemory::Memcpy(APIParams.GetData(), UTF8APIParams.Get(), APIParams.Num());
+			APIName = NewAPIName;
+			APIParams = FString::Join(NewAPIParams, TEXT("/"));
 		}
 
 	}
-	ImGui::InputText("Message", Message.GetData(), Message.Num());
+	
+	ImGui::InputText("Message", &Message);
+
 	if (ImGui::Button("Create"))
 	{
+		ForEachSelectedRHPlayer(FRHDT_RHPAction::CreateLambda([this](URH_PlayerInfo* PlayerInfo)
+		{
+			if (PlayerInfo && PlayerInfo->GetPlayerNotifications() != nullptr)
+			{
+				PlayerInfo->GetPlayerNotifications()->CreateNotification(PlayerInfo->GetRHPlayerUuid(), Message, URL);
+			}
+		}));
+
 		for (auto* LocalPlayer : pOwner->GetAllSelectedLocalPlayers())
 		{
 			URH_LocalPlayerSubsystem* LPSS = LocalPlayer->GetSubsystem<URH_LocalPlayerSubsystem>();
-			if (LPSS && LPSS->GetPlayerNotifications() != nullptr)
-			{
-				LPSS->GetPlayerNotifications()->CreateNotification(LPSS->GetPlayerUuid(), UTF8_TO_TCHAR(Message.GetData()), UTF8_TO_TCHAR(URL.GetData()));
-			}
+
 		}
 	}
 
-	ImGui::Separator();
+	ForEachSelectedRHPlayer(FRHDT_RHPAction::CreateLambda([this](URH_PlayerInfo* PlayerInfo)
+		{
+			ImGui::Separator();
 
-	ImGuiDisplayLocalPlayerNotifications(GetFirstSelectedLocalPlayer(), GetSelectedRH_LocalPlayerSubsystem());
+			ImGui::Text("Player: %s", *GetShortUuid(PlayerInfo->GetRHPlayerUuid()));
+			ImGuiDisplayPlayerInfoNotifications(PlayerInfo);
+		}));
 }
