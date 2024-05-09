@@ -67,7 +67,8 @@ bool URH_GameInstanceServerBootstrapper::GetCommandlineBootstrapModeOverride(ERH
 {
 	// note - mirror changes to this function below in Initialize, which provides more error handling
 	FString BootstrapCommandlineModeString;
-	if (FParse::Value(FCommandLine::Get(), TEXT("rhbootstrapmode="), BootstrapCommandlineModeString))
+	if (FParse::Value(FCommandLine::Get(), TEXT("rhbootstrapmode="), BootstrapCommandlineModeString)
+		|| FParse::Value(FCommandLine::Get(), TEXT("rh.bootstrapmode="), BootstrapCommandlineModeString))
 	{
 		auto BootstrapCommandlineMode = RH_GETENUMFROMSTRING("/Script/RallyHereIntegration", "ERH_ServerBootstrapMode", BootstrapCommandlineModeString);
 		if (BootstrapCommandlineMode != INDEX_NONE)
@@ -142,7 +143,8 @@ void URH_GameInstanceServerBootstrapper::Initialize()
 			, *RH_GETENUMSTRING("/Script/RallyHereIntegration", "ERH_ServerBootstrapMode", BootstrapMode));
 	}
 
-	if (FParse::Value(FCommandLine::Get(), TEXT("rhmaxrecyclecount="), MaxRecycleCount))
+	if (FParse::Value(FCommandLine::Get(), TEXT("rhmaxrecyclecount="), MaxRecycleCount)
+		|| FParse::Value(FCommandLine::Get(), TEXT("rh.maxrecyclecount="), MaxRecycleCount))
 	{
 		UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] - Max recycle count overridden by commandline to %d"), ANSI_TO_TCHAR(__FUNCTION__), MaxRecycleCount);
 	}
@@ -813,7 +815,8 @@ void URH_GameInstanceServerBootstrapper::OnReservationComplete(bool bSuccess)
 	bool bStartedHelper = false;
 	FString SessionType = DefaultAutoCreateSessionType;
 
-	if (FParse::Value(FCommandLine::Get(), TEXT("rhsessiontype="), SessionType))
+	if (FParse::Value(FCommandLine::Get(), TEXT("rhsessiontype="), SessionType) 
+		|| FParse::Value(FCommandLine::Get(), TEXT("rh.sessiontype="), SessionType))
 	{
 		UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] - default session type overridden by commandline to %s"), ANSI_TO_TCHAR(__FUNCTION__), *SessionType);
 	}

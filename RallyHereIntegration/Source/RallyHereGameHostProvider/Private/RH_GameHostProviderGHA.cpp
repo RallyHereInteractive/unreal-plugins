@@ -14,7 +14,8 @@
 
 bool FRH_GameHostProviderGHA::IsAvailable()
 {
-	if (FParse::Param(FCommandLine::Get(), TEXT("ForceNoGHA")))
+	if (FParse::Param(FCommandLine::Get(), TEXT("ForceNoGHA"))
+		|| FParse::Param(FCommandLine::Get(), TEXT("rh.ForceNoGHA")))
 	{
 		return false;
 	}
