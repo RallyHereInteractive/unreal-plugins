@@ -316,12 +316,12 @@ void FRH_WebRequests::OnWebRequestStarted_Track(const RallyHereAPI::FRequestMeta
 		{
 			const FString name = headerStr.Mid(0, index);
 			const FString value = headerStr.Mid(index + 2); // skip the space after the colon as well
-			Request->Headers.Emplace(name, value);
+			Request->Headers.Add(name, value);
 		}
 	}
 
 	TrackedRequests.AddTail(Request);
-	TrackedRequestsById.Emplace(Request->Metadata.Identifier, Request);
+	TrackedRequestsById.Add(Request->Metadata.Identifier, Request);
 
 	if (!bRetainWebRequests)
 	{
@@ -413,16 +413,19 @@ void FRH_WebRequests::OnWebRequestCompleted_Track(const RallyHereAPI::FResponse&
 		TrackedResponse.Content = TEXT("****** Hidden Unknown Data ******");
 	}
 
-
-	TArray<FString> Headers = SanitizeHeaders(HttpResponse->GetAllHeaders(), GetSensitiveHeadersForResponse(Response.GetRequestMetadata()));
-	for (const auto& headerStr : Headers)
+	if (HttpResponse != nullptr)
 	{
-		int32 index;
-		if (headerStr.FindChar(TEXT(':'), index))
+		TArray<FString> Headers = SanitizeHeaders(HttpResponse->GetAllHeaders(), GetSensitiveHeadersForResponse(Response.GetRequestMetadata()));
+		TrackedResponse.Headers.Reserve(Headers.Num());
+		for (const auto& headerStr : Headers)
 		{
-			const FString name = headerStr.Mid(0, index);
-			const FString value = headerStr.Mid(index + 2); // skip the space after the colon as well
-			TrackedResponse.Headers.Emplace(name, value);
+			int32 index;
+			if (headerStr.FindChar(TEXT(':'), index))
+			{
+				const FString name = headerStr.Mid(0, index);
+				const FString value = headerStr.Mid(index + 2); // skip the space after the colon as well
+				TrackedResponse.Headers.Add(name, value);
+			}
 		}
 	}
 }
@@ -472,7 +475,10 @@ void FRH_WebRequests::OnWebRequestCompleted_Log(const RallyHereAPI::FResponse& R
 		ResponseContent = TEXT("****** Hidden Unknown Data ******");
 	}
 
-	LogHeaders(SanitizeHeaders(HttpResponse->GetAllHeaders(), GetSensitiveHeadersForResponse(Response.GetRequestMetadata())));
+	if (HttpResponse != nullptr)
+	{
+		LogHeaders(SanitizeHeaders(HttpResponse->GetAllHeaders(), GetSensitiveHeadersForResponse(Response.GetRequestMetadata())));
+	}
 
 	LogContent(ResponseContent, Prefix);
 }
