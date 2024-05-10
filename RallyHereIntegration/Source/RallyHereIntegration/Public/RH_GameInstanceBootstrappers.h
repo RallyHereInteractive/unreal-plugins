@@ -57,7 +57,10 @@ enum class ERH_ServerBootstrapFlowStep : uint8
 	/** Bootstrapping has retrieved the session, validated it, and is attempting to synchronize the GameInstanceSessionSubsystem to that session */
 	SyncingToSession,
 	/** Bootstrapping has completed (though may be recycled in the future) */
-	Complete
+	Complete,
+
+	/** Bootstrapping is cleaning up, and may potentially recycle */
+	Cleanup
 };
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FRH_OnBootstrapStepChangedDynamicDelegate, ERH_ServerBootstrapFlowStep, OldStep, ERH_ServerBootstrapFlowStep, NewStep);
@@ -342,6 +345,13 @@ protected:
 	virtual void OnSyncToSessionComplete(URH_JoinedSession* Session, bool bSuccess, const FString& Error);
 
 	/**
+	* @brief Notification callback that the session manager has had its active session changed
+	* @param [in] OldSession The old session that was active
+	* @param [in] NewSession The new session that is active
+	*/
+	virtual void OnActiveSessionChanged(URH_JoinedSession* OldSession, URH_JoinedSession* NewSession);
+
+	/**
 	* @brief Notification callback that the session we have synced to was updated
 	* @param [in] Session The updated session
 	*/
@@ -353,17 +363,33 @@ protected:
 	virtual void OnSessionNotFound(URH_SessionView* Session);
 
 	/**
-	* @brief Utility function to clean up state after an instance removal and attempt to recycle
+	* @brief Utility function to clean up state after a logout.
+	*/
+	virtual void CleanupAfterLogout();
+	/**
+	* @brief Utility function to clean up state after an the session became unsynced from the manager.
+	*/
+	virtual void CleanupAfterSessionUnsynced();
+	/**
+	* @brief Utility function to clean up state after an instance removal (or something else causing session data to become invalid).  Handles unsyncing session state, etc
 	*/
 	virtual void CleanupAfterInstanceRemoval();
 	/**
-	* @brief Completion callback for session and instance cleanup
+	* @brief Completion callback for session and instance cleanup, triggers Cleanup()
 	*/
 	virtual void OnCleanupSessionSyncComplete(URH_JoinedSession* Session, bool bSuccess, const FString& Error);
+	/**
+	* @brief Cleans up state, and prepares for a recycle if needed.  Assumes session has already been unsynced
+	*/
+	virtual void Cleanup();
 	/**
 	* @brief Gets whether we should recycle the state after cleanup
 	*/
 	virtual bool ShouldRecycleAfterCleanup() const;
+	/**
+	* @brief Conditionally triggers a recycle if we are allowed to recycle, otherwise shut down
+	*/
+	virtual void ConditionalRecycle();
 
 	/**
 	* @brief Callback for when the server is logged out (effectively, authorization to the API is lost, and was not automatically recovered)
