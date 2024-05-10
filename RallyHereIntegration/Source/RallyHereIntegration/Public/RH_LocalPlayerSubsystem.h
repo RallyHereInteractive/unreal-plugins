@@ -37,21 +37,27 @@ class RALLYHEREINTEGRATION_API URH_LocalPlayerSubsystem : public ULocalPlayerSub
 	GENERATED_BODY()
 public:
 	/**
+	* @brief Whether to create the subsystem (defaults to not creating if there are any derived subsystems).
+	*/
+	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
+
+	/**
 	* @brief Initialize the subsystem.
 	*/
-	void Initialize(FSubsystemCollectionBase& Collection);
+	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 	/**
 	* @brief Safely tears down the subsystem.
 	*/
-	void Deinitialize();
+	virtual void Deinitialize() override;
 	/**
 	* @brief Gets if the player is currently logged in.
 	*/
-	bool IsLoggedIn() const;
+	virtual bool IsLoggedIn() const;
+
 	/**
 	* @brief Gets the player's unique player id.
 	*/
-	FGuid GetPlayerUuid() const;
+	virtual FGuid GetPlayerUuid() const;
 	/**
 	* @brief Gets the platform type for the player if logged in.
 	*/
@@ -60,22 +66,22 @@ public:
 	/**
 	* @brief Gets the platform type for the player if logged in.
 	*/
-	ERHAPI_Platform GetLoggedInPlatform() const;
+	virtual ERHAPI_Platform GetLoggedInPlatform() const;
 	/**
 	* @brief Gets the player's OSS unique id.
 	*/
-	FUniqueNetIdWrapper GetOSSUniqueId() const;
+	virtual FUniqueNetIdWrapper GetOSSUniqueId() const;
 
 #if RH_FROM_ENGINE_VERSION(5,0)
 	/**
 	* @brief Gets the player's platform id.
 	*/
-	FPlatformUserId GetPlatformUserId() const;
+	virtual FPlatformUserId GetPlatformUserId() const;
 #else
 	/**
 	* @brief Gets the player's platform id.
 	*/
-	int32 GetPlatformUserId() const;
+	virtual int32 GetPlatformUserId() const;
 #endif
 
 	/**
@@ -91,20 +97,20 @@ public:
 	* @brief Gets the player's player info.
 	*/
 	UFUNCTION(BlueprintPure, Category = "RallyHere|LocalPlayerSubsystem")
-	URH_PlayerInfo* GetLocalPlayerInfo() const;
+	virtual URH_PlayerInfo* GetLocalPlayerInfo() const;
 	/**
 	* @brief Gets the player's platform id wrapped with platform type.
 	*/
 	UFUNCTION(BlueprintPure, Category = "RallyHere|LocalPlayerSubsystem")
-	FRH_PlayerPlatformId GetPlayerPlatformId() const;
+	virtual FRH_PlayerPlatformId GetPlayerPlatformId() const;
 	/**
 	* @brief Gets the player's auth context.
 	*/
-	FAuthContextPtr GetAuthContext() const { return AuthContext; }
+	FORCEINLINE FAuthContextPtr GetAuthContext() const { return AuthContext; }
 	/**
 	* @brief Get a specific OSS by name for this local player's world.  In editor, this allows each world/game instance to have a different OSS
 	*/
-	IOnlineSubsystem* GetOSS(const FName& SubsystemName = NAME_None) const;
+	virtual IOnlineSubsystem* GetOSS(const FName& SubsystemName = NAME_None) const;
 	/**
 	* @brief Gets the player's login subsystem.
 	*/
@@ -144,14 +150,14 @@ public:
 	* @brief Gets the player's notification subsystem.
 	*/
 	UFUNCTION(BlueprintGetter, Category = "RallyHere|LocalPlayerSubsystem")
-	URH_PlayerNotifications* GetPlayerNotifications() const;
+	virtual URH_PlayerNotifications* GetPlayerNotifications() const;
 
 	// Sandboxed plugins
 	/**
 	* @brief Gets the player's player info.
 	*/
 	UFUNCTION(BlueprintPure, Category = "RallyHere|LocalPlayerSubsystem")
-	URH_PlayerInfoSubsystem* GetPlayerInfoSubsystem() const;
+	virtual URH_PlayerInfoSubsystem* GetPlayerInfoSubsystem() const;
 
 
 	/**
@@ -159,13 +165,13 @@ public:
 	* @param [in] FRH_CustomEndpointRequestWrapper Wrapper struct containing call information
 	* @param [in] Delegate The delegate to call when the call is complete (contains raw response)
 	*/
-	void CustomEndpoint(const FRH_CustomEndpointRequestWrapper& Request, const RallyHereAPI::FDelegate_CustomEndpointSend& Delegate);
+	virtual void CustomEndpoint(const FRH_CustomEndpointRequestWrapper& Request, const RallyHereAPI::FDelegate_CustomEndpointSend& Delegate);
 	/**
 	* @brief Custom Endpoint wrapper (for custom endpoints that require authentication)
 	* @param [in] FRH_CustomEndpointRequestWrapper Wrapper struct containing call information
 	* @param [in] Delegate The delegate to call when the call is complete
 	*/
-	void CustomEndpoint(const FRH_CustomEndpointRequestWrapper& Request, const FRH_CustomEndpointDelegateBlock& Delegate = FRH_CustomEndpointDelegateBlock());
+	virtual void CustomEndpoint(const FRH_CustomEndpointRequestWrapper& Request, const FRH_CustomEndpointDelegateBlock& Delegate = FRH_CustomEndpointDelegateBlock());
 	/**
 	* @brief Custom Endpoint wrapper (for custom endpoints that require authentication)
 	* @param [in] FRH_CustomEndpointRequestWrapper Wrapper struct containing call information
@@ -188,7 +194,7 @@ protected:
 	UPROPERTY()
 	TArray<URH_LocalPlayerSubsystemPlugin*> SubsystemPlugins;
 	/**
-	 * @brief Adds a plugin to the Game Instance Subsystem.
+	 * @brief Adds a plugin to the Local Player Subsystem.
 	 * @param [in] SubsystemClassPath The class path of the plugin to add.
 	 * @return The plugin that was added.
 	 */
@@ -204,15 +210,24 @@ protected:
 		}
 
 		auto* Subsystem = NewObject<UClassToUse>(this, SubsystemClass);
-		SubsystemPlugins.Add(Subsystem);
+		AddSubsystemPlugin(Subsystem);
 		return Subsystem;
 	}
+	/**
+	 * @brief Adds a plugin to the Local Player Subsystem.
+	 * @param [in] SubsystemClassPath The class path of the plugin to add.
+	 * @return The plugin that was added.
+	 */
+	virtual void AddSubsystemPlugin(URH_LocalPlayerSubsystemPlugin* InPlugin)
+	{
+		SubsystemPlugins.Add(InPlugin);
+	}
 
-	/** @brief Array of plugins for the Local Player Subsystem. */
+	/** @brief Array of sandboxed plugins for the Local Player Subsystem. */
 	UPROPERTY()
 	TArray<URH_SandboxedSubsystemPlugin*> SandboxedSubsystemPlugins;
 	/**
-	 * @brief Adds a plugin to the Game Instance Subsystem.
+	 * @brief Adds a sandboxed plugin to the Local Player Subsystem.
 	 * @param [in] SubsystemClassPath The class path of the plugin to add.
 	 * @return The plugin that was added.
 	 */
@@ -228,8 +243,18 @@ protected:
 		}
 
 		auto* Subsystem = NewObject<UClassToUse>(this, SubsystemClass);
-		SandboxedSubsystemPlugins.Add(Subsystem);
+		AddSandboxedSubsystemPlugin(Subsystem);
 		return Subsystem;
+	}
+
+	/**
+	 * @brief Adds a plugin to the Local Player Subsystem.
+	 * @param [in] SubsystemClassPath The class path of the plugin to add.
+	 * @return The plugin that was added.
+	 */
+	virtual void AddSandboxedSubsystemPlugin(URH_SandboxedSubsystemPlugin* InPlugin)
+	{
+		SandboxedSubsystemPlugins.Add(InPlugin);
 	}
 
 	/**

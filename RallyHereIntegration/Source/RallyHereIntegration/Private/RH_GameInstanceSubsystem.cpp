@@ -25,6 +25,22 @@
 #include "RH_MatchmakingBrowser.h"
 
 
+bool URH_GameInstanceSubsystem::ShouldCreateSubsystem(UObject* Outer) const
+{
+	if (!bEnabled)
+	{
+		return false;
+	}
+
+	TArray<UClass*> ChildClasses;
+	GetDerivedClasses(GetClass(), ChildClasses, false);
+
+	UE_LOG(LogRallyHereIntegration, Display, TEXT("Found %i derived classes when attemping to create (%s), skipping creation"), ChildClasses.Num(), *GetClass()->GetName());
+
+	// Only create an instance if there is no override implementation defined elsewhere
+	return ChildClasses.Num() == 0;
+}
+
 void URH_GameInstanceSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {
     UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));

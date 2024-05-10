@@ -41,90 +41,90 @@ public:
 	/**
 	 * @brief Gets if the subsystem is enabled and should be created.
 	 */
-	bool ShouldCreateSubsystem(UObject* Outer) const override { return bEnabled; }
+	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
 	/**
 	* @brief Initialize the subsystem.
 	*/
-    void Initialize(FSubsystemCollectionBase& Collection);
+    virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 	/**
 	* @brief Safely tears down the subsystem.
 	*/
-    void Deinitialize();
+    virtual void Deinitialize() override;
 	/**
 	* @brief Sets the Auth Context for the subsystem.
 	* @param [in] InAuthContext The Auth Context to set with.
 	*/
-	void SetAuthContext(FAuthContextPtr InAuthContext) { AuthContext = InAuthContext; }
+	virtual void SetAuthContext(FAuthContextPtr InAuthContext) { AuthContext = InAuthContext; }
 	/**
 	* @brief Gets the subsystems designated auth context.
 	*/
-	FAuthContextPtr GetAuthContext() const { return AuthContext; }
+	FORCEINLINE FAuthContextPtr GetAuthContext() const { return AuthContext; }
 
 	/**
 	* @brief Sets the analytics provider for the subsystem.
 	* @param [in] InAnalyticsProvider The analytics provider to set with.
 	*/
-	void SetAnalyticsProvider(TSharedPtr<class IAnalyticsProvider> InAnalyticsProvider) { AnalyticsProvider = InAnalyticsProvider; }
+	virtual void SetAnalyticsProvider(TSharedPtr<class IAnalyticsProvider> InAnalyticsProvider) { AnalyticsProvider = InAnalyticsProvider; }
 	/**
 	* @brief Gets the instance's analytics provider to use
 	*/
-	virtual TSharedPtr<class IAnalyticsProvider> GetAnalyticsProvider() const { return AnalyticsProvider; }
+	FORCEINLINE TSharedPtr<class IAnalyticsProvider> GetAnalyticsProvider() const { return AnalyticsProvider; }
 
 	/**
 	* @brief Gets the session subsystem on the instance.
 	*/
 	UFUNCTION(BlueprintGetter, Category = "Session")
-	inline URH_GameInstanceSessionSubsystem* GetSessionSubsystem() const { return SessionSubsystem; };
+	FORCEINLINE URH_GameInstanceSessionSubsystem* GetSessionSubsystem() const { return SessionSubsystem; };
 	/**
 	* @brief Gets the session search cache on the instance.
 	*/
 	UFUNCTION(BlueprintGetter, Category = "Session")
-	inline URH_SessionBrowserCache* GetSessionSearchCache() const { return SessionSearchCache; };
+	FORCEINLINE URH_SessionBrowserCache* GetSessionSearchCache() const { return SessionSearchCache; };
 	/**
 	* @brief Gets the matchmaking cache on the instance.
 	*/
 	UFUNCTION(BlueprintGetter, Category = "Matchmaking")
-	inline URH_MatchmakingBrowserCache* GetMatchmakingCache() const { return MatchmakingCache; };
+	FORCEINLINE URH_MatchmakingBrowserCache* GetMatchmakingCache() const { return MatchmakingCache; };
 	/**
 	* @brief Gets the server bootstrapper on the instance.
 	*/
 	UFUNCTION(BlueprintGetter, Category = "Session")
-	inline URH_GameInstanceServerBootstrapper* GetServerBootstrapper() const { return ServerBootstrapper; };
+	FORCEINLINE URH_GameInstanceServerBootstrapper* GetServerBootstrapper() const { return ServerBootstrapper; };
 	/**
 	* @brief Gets the client boostrapper on the instance.
 	*/
 	UFUNCTION(BlueprintGetter, Category = "Session")
-	inline URH_GameInstanceClientBootstrapper* GetClientBootstrapper() const { return ClientBootstrapper; };
+	FORCEINLINE URH_GameInstanceClientBootstrapper* GetClientBootstrapper() const { return ClientBootstrapper; };
 	/**
 	* @brief Gets the player info subsystem on the instance.
 	*/
 	UFUNCTION(BlueprintGetter, Category = "PlayerInfo")
-	inline URH_PlayerInfoSubsystem* GetPlayerInfoSubsystem() const { return PlayerInfoSubsystem; };
+	FORCEINLINE URH_PlayerInfoSubsystem* GetPlayerInfoSubsystem() const { return PlayerInfoSubsystem; };
 	/**
 	* @brief Gets the catalog subsystem on the instance.
 	*/
 	UFUNCTION(BlueprintGetter, Category = "Catalog")
-	inline URH_CatalogSubsystem* GetCatalogSubsystem() const { return CatalogSubsystem; };
+	FORCEINLINE URH_CatalogSubsystem* GetCatalogSubsystem() const { return CatalogSubsystem; };
 	/**
 	* @brief Gets the config subsystem on the instance.
 	*/
 	UFUNCTION(BlueprintGetter, Category = "Config")
-	inline URH_ConfigSubsystem* GetConfigSubsystem() const { return ConfigSubsystem; };
+	FORCEINLINE URH_ConfigSubsystem* GetConfigSubsystem() const { return ConfigSubsystem; };
 	/**
 	* @brief Gets the settings subsystem on the instance.
 	*/
 	UFUNCTION(BlueprintGetter, Category = "Config")
-	inline URH_SettingsSubsystem* GetSettingsSubsystem() const { return SettingsSubsystem; };
+	FORCEINLINE URH_SettingsSubsystem* GetSettingsSubsystem() const { return SettingsSubsystem; };
 	/**
 	* @brief Gets the match subsystem on the instance.
 	*/
 	UFUNCTION(BlueprintGetter, Category = "Match")
-	inline URH_MatchSubsystem* GetMatchSubsystem() const { return MatchSubsystem; };
+	FORCEINLINE URH_MatchSubsystem* GetMatchSubsystem() const { return MatchSubsystem; };
 	/**
 	* @brief Gets the remote file subsystem on the instance.
 	*/
 	UFUNCTION(BlueprintGetter, Category = "File")
-	inline URH_RemoteFileSubsystem* GetRemoteFileSubsystem() const { return RemoteFileSubsystem; };
+	FORCEINLINE URH_RemoteFileSubsystem* GetRemoteFileSubsystem() const { return RemoteFileSubsystem; };
 
 	/**
 	* @brief Gets if server boostrapping is enabled, by inspecting state of default object before game instance is initialized, once it is initialized use the above
@@ -148,13 +148,13 @@ public:
 	* @param [in] FRH_CustomEndpointRequestWrapper Wrapper struct containing call information
 	* @param [in] Delegate The delegate to call when the call is complete (contains raw response)
 	*/
-	void CustomEndpoint(const FRH_CustomEndpointRequestWrapper& Request, const RallyHereAPI::FDelegate_CustomEndpointSend& Delegate);
+	virtual void CustomEndpoint(const FRH_CustomEndpointRequestWrapper& Request, const RallyHereAPI::FDelegate_CustomEndpointSend& Delegate);
 	/**
 	* @brief Custom Endpoint wrapper (for custom endpoints that require authentication)
 	* @param [in] FRH_CustomEndpointRequestWrapper Wrapper struct containing call information
 	* @param [in] Delegate The delegate to call when the call is complete
 	*/
-	void CustomEndpoint(const FRH_CustomEndpointRequestWrapper& Request, const FRH_CustomEndpointDelegateBlock& Delegate = FRH_CustomEndpointDelegateBlock());
+	virtual void CustomEndpoint(const FRH_CustomEndpointRequestWrapper& Request, const FRH_CustomEndpointDelegateBlock& Delegate = FRH_CustomEndpointDelegateBlock());
 	/**
 	* @brief Custom Endpoint wrapper (for custom endpoints that require authentication)
 	* @param [in] FRH_CustomEndpointRequestWrapper Wrapper struct containing call information
@@ -191,9 +191,19 @@ protected:
 		}
 
 		auto* Subsystem = NewObject<UClassToUse>(this, SubsystemClass);
-		SubsystemPlugins.Add(Subsystem);
+		AddSubsystemPlugin(Subsystem);
 		return Subsystem;
 	}
+	/**
+	 * @brief Adds a plugin to the Game Instance Subsystem.
+	 * @param [in] SubsystemClassPath The class path of the plugin to add.
+	 * @return The plugin that was added.
+	 */
+	virtual void AddSubsystemPlugin(URH_GameInstanceSubsystemPlugin* InPlugin)
+	{
+		SubsystemPlugins.Add(InPlugin);
+	}
+
 	/** @brief The Session Subsystem. */
 	UPROPERTY(VisibleInstanceOnly, BlueprintGetter = GetSessionSubsystem, Category = "Session")
 	URH_GameInstanceSessionSubsystem* SessionSubsystem;
