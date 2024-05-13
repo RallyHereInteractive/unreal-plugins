@@ -214,7 +214,7 @@ void URH_ConfigSubsystem::RefreshServerTimeCache(const FRH_GenericSuccessWithErr
 void URH_ConfigSubsystem::TriggerHotfixProcessing()
 {
 	// do not apply when running editor or commandlet, even if configured to apply automatically.  We do not want to accidentally change data the editor is using
-	if (!IsRunningDedicatedServer() || IsRunningGame())
+	if (IsRunningDedicatedServer() || IsRunningGame())
 	{
 		bool bOldAutomaticallyApplyHotfixData = GetDefault<URH_IntegrationSettings>()->bAutomaticallyApplyHotfixData;
 

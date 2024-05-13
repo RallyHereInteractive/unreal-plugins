@@ -39,7 +39,7 @@ enum class ERH_ServerBootstrapMode : uint8
 /** @ingroup GameInstance
  * @brief @brief An enum for the steps in the bootstrapping flow.
  */
-UENUM()
+UENUM(BlueprintType)
 enum class ERH_ServerBootstrapFlowStep : uint8
 {
 	/** Bootstrapping has not been started */
@@ -59,6 +59,9 @@ enum class ERH_ServerBootstrapFlowStep : uint8
 	/** Bootstrapping has completed (though may be recycled in the future) */
 	Complete
 };
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FRH_OnBootstrapStepChangedDynamicDelegate, ERH_ServerBootstrapFlowStep, OldStep, ERH_ServerBootstrapFlowStep, NewStep);
+DECLARE_MULTICAST_DELEGATE_TwoParams(FRH_OnBootstrapStepChangedDelegate, ERH_ServerBootstrapFlowStep, ERH_ServerBootstrapFlowStep);
 
 /** @ingroup GameInstance
  * @brief @brief An settings object that contains the settings for the bootstrapping flow.
@@ -175,6 +178,16 @@ public:
 	UFUNCTION(BlueprintGetter, Category = "Session|Bootstrapping")
 	FORCEINLINE ERH_ServerBootstrapMode GetBootstrapMode() const { return BootstrapMode; }
 	static bool GetCommandlineBootstrapModeOverride(ERH_ServerBootstrapMode& mode);
+
+	/**
+	* @brief Blueprint delegate for when bootstrap step changes
+	*/
+	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Session|Bootstrapping", meta = (DisplayName = "On Bootstrap Step Changed"))
+	FRH_OnBootstrapStepChangedDynamicDelegate BLUEPRINT_OnBootstrapStepChanged;
+	/**
+	* @brief Delegate for when bootstrap step changes
+	*/
+	FRH_OnBootstrapStepChangedDelegate OnBootstrapStepChanged;
 
 	/** @brief static helper to determine if bootstrapping is enabled */
 	FORCEINLINE static bool IsBootstrapModeEnabled()

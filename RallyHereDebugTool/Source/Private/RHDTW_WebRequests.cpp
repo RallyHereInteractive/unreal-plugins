@@ -20,21 +20,6 @@
 #include "HAL/PlatformApplicationMisc.h"
 #endif
 
-namespace
-{
-	static const FColor Red_Base = FColor(121, 51, 70, 230);
-	static const FColor Red_Hovered = FColor(131, 49, 73, 230);
-	static const FColor Red_Active = FColor(155, 71, 93, 230);
-
-	static const FColor Yellow_Base = FColor(113, 111, 60, 230);
-	static const FColor Yellow_Hovered = FColor(132, 130, 63, 230);
-	static const FColor Yellow_Active = FColor(150, 148, 85, 230);
-
-	static const FColor Teal_Base = FColor(58, 107, 109, 230);
-	static const FColor Teal_Hovered = FColor(59, 123, 125, 230);
-	static const FColor Teal_Active = FColor(82, 142, 144, 230);
-}
-
 FRHDTW_WebRequests::FRHDTW_WebRequests()
 	: Super()
 {
@@ -200,32 +185,25 @@ void FRHDTW_WebRequests::DoViewRequests(FRH_WebRequests* WebRequestsTracker)
 		label += "-";
 		label += std::to_string(request->Metadata.RetryCount);
 
-		auto StyleHeaderColor = [](FColor BaseColor, FColor HoveredColor, FColor ActiveColor)
-		{
-			ImGui::PushStyleColor(ImGuiCol_Header, BaseColor.ToPackedABGR());
-			ImGui::PushStyleColor(ImGuiCol_HeaderHovered, HoveredColor.ToPackedABGR());
-			ImGui::PushStyleColor(ImGuiCol_HeaderActive, ActiveColor.ToPackedABGR());
-		};
+		ImGuiColors::HeaderStyle::HeaderStyleColor ResultColor = ImGuiColors::HeaderStyle::GetDefault();
 
-		bool hasColorStyling = false;
 		if (request->Responses.Num() > 0)
 		{
 			if (request->Responses.Last().ResponseCode >= EHttpResponseCodes::ServerError) // 500s
 			{
-				StyleHeaderColor(Yellow_Base, Yellow_Hovered, Yellow_Active);
-				hasColorStyling = true;
+				ResultColor = ImGuiColors::HeaderStyle::Yellow;
 			}
 			else if (request->Responses.Last().ResponseCode >= EHttpResponseCodes::BadRequest) // 400s
 			{
-				StyleHeaderColor(Red_Base, Red_Hovered, Red_Active);
-				hasColorStyling = true;
+				ResultColor = ImGuiColors::HeaderStyle::Red;
 			}
 			else if (request->Responses.Last().ResponseCode >= EHttpResponseCodes::Ambiguous) // 300s
 			{
-				StyleHeaderColor(Teal_Base, Teal_Hovered, Teal_Active);
-				hasColorStyling = true;
+				ResultColor = ImGuiColors::HeaderStyle::Teal;
 			}
 		}
+
+		ImGuiColors::HeaderStyle::ScopedHeaderStyle ScopedHeaderStyle(ResultColor);
 
 		if (ImGui::CollapsingHeader(label.data()))
 		{
@@ -272,10 +250,6 @@ void FRHDTW_WebRequests::DoViewRequests(FRH_WebRequests* WebRequestsTracker)
 			}
 
 			ImGui::PopID();
-		}
-		if (hasColorStyling)
-		{
-			ImGui::PopStyleColor(3);
 		}
 		++indexId;
 	}

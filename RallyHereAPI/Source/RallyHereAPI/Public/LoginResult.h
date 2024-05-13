@@ -397,6 +397,16 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
 	/** @brief Sets the value of ClientUuid */
 	void SetClientUuid(FGuid NewValue) { ClientUuid = NewValue;  }
 
+	/** @brief Client ID */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString ClientId{  };
+	/** @brief Gets the value of ClientId */
+	FString& GetClientId() { return ClientId; }
+	/** @brief Gets the value of ClientId */
+	const FString& GetClientId() const { return ClientId; }
+	/** @brief Sets the value of ClientId */
+	void SetClientId(FString NewValue) { ClientId = NewValue;  }
+
 	/** @brief Token type */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString TokenType{  };

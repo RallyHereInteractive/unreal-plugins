@@ -274,7 +274,7 @@ void FRH_Integration::Initialize()
 	}
 
 	// Create Dependent objects
-	RetryManager = MakeShared<RallyHereAPI::FHttpRetryManager>(6, 60); // TODO load from ini
+	RetryManager = MakeShared<RallyHereAPI::FHttpRetryManager>(Settings->WebRequestsDefaultRetryCount, Settings->WebRequestsDefaultRetryTimeout);
 
 	// Initialize the APIs
 	for (auto& API : APIs.GetAllAPIs())

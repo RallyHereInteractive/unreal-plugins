@@ -41,6 +41,8 @@ public class RallyHereDebugTool : ModuleRules
 			"OnlineSubsystem",
 			"OnlineSubsystemUtils",
 			"DeveloperSettings",
-        });
+			"AutomationTest",
+			"AutomationController",
+		});
     }
 }

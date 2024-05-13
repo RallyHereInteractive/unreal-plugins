@@ -91,7 +91,7 @@ public:
 	UPROPERTY(Transient)
 	TArray<TWeakObjectPtr<URH_PlayerInfo>> TargetedPlayerInfos;
 
-	bool bActive;
+	bool bActive, bWasUIActive;
 	FSimpleMulticastDelegate OnActiveStateChanged;
 	ImGuiKey ToggleUIKeyBindAsImGuiKey;
 
@@ -119,6 +119,7 @@ public:
 	TSharedPtr<struct FRHDTW_About> AboutWindow;
 	TSharedPtr<struct FRHDTW_Match> MatchesWindow;
 	TSharedPtr<struct FRHDTW_RemoteFile> RemoteFileWindow;
+	TSharedPtr<struct FRHDTW_Automation> AutomationWindow;
 
 	TMap<FString, bool> SavedWindowVisibilities;
 

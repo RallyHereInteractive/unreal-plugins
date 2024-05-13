@@ -843,7 +843,7 @@ void URH_GameInstanceSessionSubsystem::CreateMatchForSession(const URH_JoinedSes
 				TArray<FRHAPI_MatchAllocation> Allocations;
 				{
 					FRHAPI_MatchAllocation NewAllocation;
-					NewAllocation.SetAllocationId(InstanceData->GetInstanceId());
+					NewAllocation.SetAllocationId(InstanceData->GetAllocationId());
 					Allocations.Add(NewAllocation);
 				}
 				UpdateRequest.SetAllocations(Allocations);

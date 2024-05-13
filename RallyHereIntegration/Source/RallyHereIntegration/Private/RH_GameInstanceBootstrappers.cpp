@@ -391,12 +391,15 @@ void URH_GameInstanceServerBootstrapper::UpdateBootstrapStep(ERH_ServerBootstrap
 	ERH_ServerBootstrapFlowStep OldStep = BootstrapStep;
 	BootstrapStep = NewStep;
 
-	if (OldStep != NewStep && UE_LOG_ACTIVE(LogRallyHereIntegration, Verbose))
+	if (OldStep != NewStep)
 	{
-		FString OldStepName = RH_GETENUMSTRING("/Script/RallyHereIntegration", "ERH_ServerBootstrapFlowStep", OldStep);
-		FString NewStepName = RH_GETENUMSTRING("/Script/RallyHereIntegration", "ERH_ServerBootstrapFlowStep", NewStep);
+		if (UE_LOG_ACTIVE(LogRallyHereIntegration, Verbose))
+		{
+			UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] - Updating bootstrap step [%s] -> [%s]"), ANSI_TO_TCHAR(__FUNCTION__), *UEnum::GetValueAsString(OldStep), *UEnum::GetValueAsString(NewStep));
+		}
 
-		UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] - Updating bootstrap step [%s] -> [%s]"), ANSI_TO_TCHAR(__FUNCTION__), *OldStepName, *NewStepName);
+		OnBootstrapStepChanged.Broadcast(OldStep, NewStep);
+		BLUEPRINT_OnBootstrapStepChanged.Broadcast(OldStep, NewStep);
 	}
 }
 

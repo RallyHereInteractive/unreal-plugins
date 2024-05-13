@@ -14,5 +14,5 @@ public:
 	virtual void Do() override;
 
 private:
-	TArray<ANSICHAR> URL, APIName, APIParams, Message;
+	FString URL, APIName, APIParams, Message;
 };

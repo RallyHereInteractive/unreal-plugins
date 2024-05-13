@@ -191,6 +191,14 @@ public:
 	UPROPERTY(EditAnywhere, Config, Category = "Web Requests")
 	int32 WebRequestsMaxSimultaneousRequests;
 
+	/** @brief Sets the number of retries that the retry manager uses. 0 = Do not set a limit */
+	UPROPERTY(EditAnywhere, Config, Category = "Web Requests")
+	int32 WebRequestsDefaultRetryCount;
+
+	/** @brief Sets the maximum number of Http Requests that can be made simultaneously. 0 = Do not set a limit */
+	UPROPERTY(EditAnywhere, Config, Category = "Web Requests")
+	int32 WebRequestsDefaultRetryTimeout;	
+
 	/** @brief Sets the maximum number of web requests for which tracking data is kept. */
 	UPROPERTY(EditAnywhere, Config, Category = "Web Requests")
 	int WebRequestsTrackedRequestsCountLimit;

@@ -1675,6 +1675,17 @@ bool FRequest_OauthTokenExchange::SetupHttpRequest(const FHttpRequestRef& HttpRe
 		HttpRequest->SetHeader(TEXT("x-forwarded-for"), XForwardedFor.GetValue());
 	}
 
+	if (!AuthContext && !bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_OauthTokenExchange - missing auth context"));
+		return false;
+	}
+	if (AuthContext && !AuthContext->AddClientCredentials(HttpRequest) && !bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_OauthTokenExchange - failed to add client credentials"));
+		return false;
+	}
+
 	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
 	{
 		// Body parameters

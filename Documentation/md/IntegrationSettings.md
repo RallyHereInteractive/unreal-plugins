@@ -52,6 +52,8 @@ Main settings for the Integration.
 `public bool `[`bAutoCreateInventorySessionOnLogin`](#classURH__IntegrationSettings_1a140069cc5be0f8410447d4d2caf68c1e) | Whether to automatically create an inventory session when a player logs in.
 `public bool `[`bAutoProcessPlatformEntitlementsOnLogin`](#classURH__IntegrationSettings_1a5f78f6a76f285af5862bcc93d612da3e) | Whether to automatically process platform entitlements on login (will wait for inventory session creation if using bAutoCreateInventorySessionOnLogin)
 `public int32 `[`WebRequestsMaxSimultaneousRequests`](#classURH__IntegrationSettings_1a86e14803734cde1b954191b437ceaafe) | Sets the maximum number of Http Requests that can be made simultaneously. 0 = No Limit.
+`public int32 `[`WebRequestsDefaultRetryCount`](#classURH__IntegrationSettings_1a0e7e2f5a2a2cb2981aafe6dee03c7ac4) | Sets the number of retries that the retry manager uses. 0 = Do not set a limit.
+`public int32 `[`WebRequestsDefaultRetryTimeout`](#classURH__IntegrationSettings_1a15ad237756a0d356ec11f82be51f6190) | Sets the maximum number of Http Requests that can be made simultaneously. 0 = Do not set a limit.
 `public int `[`WebRequestsTrackedRequestsCountLimit`](#classURH__IntegrationSettings_1a35b03db2758bd2f4e393fb1fb3c7aab4) | Sets the maximum number of web requests for which tracking data is kept.
 `public int32 `[`WebRequestsBurstCountThreshold`](#classURH__IntegrationSettings_1af81d481668affe4c87d3fb8c20cf239d) | Sets the count above which web traffic is considered a burst.
 `public int32 `[`WebRequestsBurstTimeThresholdInSeconds`](#classURH__IntegrationSettings_1abb0a83cebcc39ea7215e7207bca115cb) | Sets the time threshold for web traffic burst detection.
@@ -334,6 +336,16 @@ Whether to automatically process platform entitlements on login (will wait for i
 #### `public int32 `[`WebRequestsMaxSimultaneousRequests`](#classURH__IntegrationSettings_1a86e14803734cde1b954191b437ceaafe) <a id="classURH__IntegrationSettings_1a86e14803734cde1b954191b437ceaafe"></a>
 
 Sets the maximum number of Http Requests that can be made simultaneously. 0 = No Limit.
+
+<br>
+#### `public int32 `[`WebRequestsDefaultRetryCount`](#classURH__IntegrationSettings_1a0e7e2f5a2a2cb2981aafe6dee03c7ac4) <a id="classURH__IntegrationSettings_1a0e7e2f5a2a2cb2981aafe6dee03c7ac4"></a>
+
+Sets the number of retries that the retry manager uses. 0 = Do not set a limit.
+
+<br>
+#### `public int32 `[`WebRequestsDefaultRetryTimeout`](#classURH__IntegrationSettings_1a15ad237756a0d356ec11f82be51f6190) <a id="classURH__IntegrationSettings_1a15ad237756a0d356ec11f82be51f6190"></a>
+
+Sets the maximum number of Http Requests that can be made simultaneously. 0 = Do not set a limit.
 
 <br>
 #### `public int `[`WebRequestsTrackedRequestsCountLimit`](#classURH__IntegrationSettings_1a35b03db2758bd2f4e393fb1fb3c7aab4) <a id="classURH__IntegrationSettings_1a35b03db2758bd2f4e393fb1fb3c7aab4"></a>

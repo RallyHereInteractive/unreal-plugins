@@ -95,6 +95,8 @@ void FRHAPI_LoginResult::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	RallyHereAPI::WriteJsonValue(Writer, ConfigElectorUuid);
 	Writer->WriteIdentifierPrefix(TEXT("client_uuid"));
 	RallyHereAPI::WriteJsonValue(Writer, ClientUuid);
+	Writer->WriteIdentifierPrefix(TEXT("client_id"));
+	RallyHereAPI::WriteJsonValue(Writer, ClientId);
 	Writer->WriteIdentifierPrefix(TEXT("token_type"));
 	RallyHereAPI::WriteJsonValue(Writer, TokenType);
 	if (ExpiresIn_IsSet)
@@ -199,6 +201,8 @@ bool FRHAPI_LoginResult::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	ParseSuccess &= JsonConfigElectorUuidField.IsValid() && !JsonConfigElectorUuidField->IsNull() && TryGetJsonValue(JsonConfigElectorUuidField, ConfigElectorUuid);
 	const TSharedPtr<FJsonValue> JsonClientUuidField = (*Object)->TryGetField(TEXT("client_uuid"));
 	ParseSuccess &= JsonClientUuidField.IsValid() && !JsonClientUuidField->IsNull() && TryGetJsonValue(JsonClientUuidField, ClientUuid);
+	const TSharedPtr<FJsonValue> JsonClientIdField = (*Object)->TryGetField(TEXT("client_id"));
+	ParseSuccess &= JsonClientIdField.IsValid() && !JsonClientIdField->IsNull() && TryGetJsonValue(JsonClientIdField, ClientId);
 	const TSharedPtr<FJsonValue> JsonTokenTypeField = (*Object)->TryGetField(TEXT("token_type"));
 	ParseSuccess &= JsonTokenTypeField.IsValid() && !JsonTokenTypeField->IsNull() && TryGetJsonValue(JsonTokenTypeField, TokenType);
 	const TSharedPtr<FJsonValue> JsonExpiresInField = (*Object)->TryGetField(TEXT("expires_in"));
