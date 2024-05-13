@@ -32,6 +32,10 @@ extern FString GRallyHereIntegrationIni;
 #define RH_BELOW_ENGINE_VERSION(Major, Minor)  (ENGINE_MAJOR_VERSION < (Major) || (ENGINE_MAJOR_VERSION == (Major) && ENGINE_MINOR_VERSION < (Minor)))
 #define RH_FROM_ENGINE_VERSION(Major, Minor)   !RH_BELOW_ENGINE_VERSION(Major, Minor)
 
+#ifndef ALLOW_RH_COMMANDLINE_ARGS_WITHOUT_PREFIX
+	#define ALLOW_RH_COMMANDLINE_ARGS_WITHOUT_PREFIX 1
+#endif
+
 #ifndef RH_GETENUMSTRING
 #if RH_FROM_ENGINE_VERSION(5, 1)
 #define RH_GETENUMSTRING(package, etype, evalue) ( (FindObject<UEnum>(nullptr, TEXT(package) TEXT(".") TEXT(etype), true) != nullptr) ? FindObject<UEnum>(nullptr, TEXT(package) TEXT(".") TEXT(etype), true)->GetNameStringByValue((int32)evalue) : FString(TEXT("Invalid - are you sure enum uses UENUM() macro?")) )

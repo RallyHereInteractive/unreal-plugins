@@ -20,14 +20,18 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 	SettingName.Add(TEXT(CommandLineBase "Internal"));	/* internal variant (lowest priority, for automation defaults from build/package) */ \
 
 	// set the default internal commandline keys for each setting
+#if ALLOW_RH_COMMANDLINE_ARGS_WITHOUT_PREFIX
 	SET_DEFAULT_INTERNAL_COMMANDLINE_KEYS(BaseURLCommandLineKeysInternal, "RallyHereURL");
-	SET_DEFAULT_INTERNAL_COMMANDLINE_KEYS(BaseURLCommandLineKeysInternal, "rh.url");
 	SET_DEFAULT_INTERNAL_COMMANDLINE_KEYS(EnvironmentCommandLineKeysInternal, "RallyHereEnv");
-	SET_DEFAULT_INTERNAL_COMMANDLINE_KEYS(EnvironmentCommandLineKeysInternal, "rh.env");
-	SET_DEFAULT_INTERNAL_COMMANDLINE_KEYS(DefaultOSSCommandLineKeysInternal, "OSS");
 	SET_DEFAULT_INTERNAL_COMMANDLINE_KEYS(ClientIdCommandLineKeysInternal, "RallyHereClientId");
-	SET_DEFAULT_INTERNAL_COMMANDLINE_KEYS(ClientIdCommandLineKeysInternal, "rh.clientid");
 	SET_DEFAULT_INTERNAL_COMMANDLINE_KEYS(ClientSecretCommandLineKeysInternal, "RallyHereClientSecret");
+	SET_DEFAULT_INTERNAL_COMMANDLINE_KEYS(DefaultOSSCommandLineKeysInternal, "OSS");
+#endif
+
+	SET_DEFAULT_INTERNAL_COMMANDLINE_KEYS(BaseURLCommandLineKeysInternal, "rh.url");
+	SET_DEFAULT_INTERNAL_COMMANDLINE_KEYS(EnvironmentCommandLineKeysInternal, "rh.env");
+	SET_DEFAULT_INTERNAL_COMMANDLINE_KEYS(DefaultOSSCommandLineKeysInternal, "rh.OSS");
+	SET_DEFAULT_INTERNAL_COMMANDLINE_KEYS(ClientIdCommandLineKeysInternal, "rh.clientid");
 	SET_DEFAULT_INTERNAL_COMMANDLINE_KEYS(ClientSecretCommandLineKeysInternal, "rh.clientsecret");
 
 	bAutomaticallyPollConfigurationData = true;
