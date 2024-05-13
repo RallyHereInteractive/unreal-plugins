@@ -96,6 +96,8 @@ Server Bootstrapper for the Game Instance.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
+`public FRH_OnBootstrapStepChangedDynamicDelegate `[`BLUEPRINT_OnBootstrapStepChanged`](#classURH__GameInstanceServerBootstrapper_1a50df40a4de4df39969d9bdbd9076716a) | Blueprint delegate for when bootstrap step changes.
+`public FRH_OnBootstrapStepChangedDelegate `[`OnBootstrapStepChanged`](#classURH__GameInstanceServerBootstrapper_1a583ec820aa3d45df97c21045653f565b) | Delegate for when bootstrap step changes.
 `public FRH_GameHostProviderStatsRequested `[`OnGameHostProviderStatsRequested`](#classURH__GameInstanceServerBootstrapper_1ac3fec0c2d9228db884a97ea32c82ebc4) | callback triggered to request stats if default implementation is not sufficient
 `public  `[`URH_GameInstanceServerBootstrapper`](#classURH__GameInstanceServerBootstrapper_1a3da69fd930b5f05a1c46fac0b93d8cdb)`()` | 
 `public virtual void `[`Initialize`](#classURH__GameInstanceServerBootstrapper_1a432619f05655325816a804827d2628da)`()` | Initialize the bootstrapper.
@@ -184,6 +186,16 @@ Server Bootstrapper for the Game Instance.
 
 #### Members
 
+#### `public FRH_OnBootstrapStepChangedDynamicDelegate `[`BLUEPRINT_OnBootstrapStepChanged`](#classURH__GameInstanceServerBootstrapper_1a50df40a4de4df39969d9bdbd9076716a) <a id="classURH__GameInstanceServerBootstrapper_1a50df40a4de4df39969d9bdbd9076716a"></a>
+
+Blueprint delegate for when bootstrap step changes.
+
+<br>
+#### `public FRH_OnBootstrapStepChangedDelegate `[`OnBootstrapStepChanged`](#classURH__GameInstanceServerBootstrapper_1a583ec820aa3d45df97c21045653f565b) <a id="classURH__GameInstanceServerBootstrapper_1a583ec820aa3d45df97c21045653f565b"></a>
+
+Delegate for when bootstrap step changes.
+
+<br>
 #### `public FRH_GameHostProviderStatsRequested `[`OnGameHostProviderStatsRequested`](#classURH__GameInstanceServerBootstrapper_1ac3fec0c2d9228db884a97ea32c82ebc4) <a id="classURH__GameInstanceServerBootstrapper_1ac3fec0c2d9228db884a97ea32c82ebc4"></a>
 
 callback triggered to request stats if default implementation is not sufficient

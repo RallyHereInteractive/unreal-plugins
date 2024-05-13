@@ -43,6 +43,7 @@ struct RALLYHEREDEBUGTOOL_API FRH_DebugToolWindow : public TSharedFromThis<FRH_D
 	class UWorld* GetWorld() const;
 	class UGameInstance* GetGameInstance() const;
 	class ULocalPlayer* GetFirstSelectedLocalPlayer() const;
+	class URH_PlayerInfo* GetFirstSelectedPlayerInfo() const;
 	TArray<class ULocalPlayer*> GetAllSelectedLocalPlayers() const;
 	TArray<class URH_PlayerInfo*> GetAllSelectedPlayerInfos() const;
 	TArray<class URH_PlayerInfo*> GetAllTargetedPlayerInfos() const;

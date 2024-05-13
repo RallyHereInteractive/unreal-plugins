@@ -7,27 +7,33 @@
 #include "Containers/StringConv.h"
 #include "Engine/LocalPlayer.h"
 #include "RH_LocalPlayerSubsystem.h"
+#include "RH_PlayerInfoSubsystem.h"
 #include "Engine/World.h"
 
-class UWorld* FRH_DebugToolWindow::GetWorld() const
+UWorld* FRH_DebugToolWindow::GetWorld() const
 {
 	return Owner.IsValid() ? Owner->GetWorld() : nullptr;
 }
 
-class UGameInstance* FRH_DebugToolWindow::GetGameInstance() const
+UGameInstance* FRH_DebugToolWindow::GetGameInstance() const
 {
 	UWorld* MyWorld = GetWorld();
 	return MyWorld != nullptr ? MyWorld->GetGameInstance() : nullptr;
 }
 
-class ULocalPlayer* FRH_DebugToolWindow::GetFirstSelectedLocalPlayer() const
+ULocalPlayer* FRH_DebugToolWindow::GetFirstSelectedLocalPlayer() const
 {
 	return Owner.IsValid() ? Owner->GetFirstSelectedLocalPlayer() : nullptr;
 }
 
-TArray<class ULocalPlayer*> FRH_DebugToolWindow::GetAllSelectedLocalPlayers() const
+URH_PlayerInfo* FRH_DebugToolWindow::GetFirstSelectedPlayerInfo() const
 {
-	TArray<class ULocalPlayer*> Result;
+	return Owner.IsValid() ? Owner->GetFirstSelectedPlayerInfo() : nullptr;
+}
+
+TArray<ULocalPlayer*> FRH_DebugToolWindow::GetAllSelectedLocalPlayers() const
+{
+	TArray<ULocalPlayer*> Result;
 	if (Owner.IsValid())
 	{
 		Result = Owner->GetAllSelectedLocalPlayers();
@@ -35,9 +41,9 @@ TArray<class ULocalPlayer*> FRH_DebugToolWindow::GetAllSelectedLocalPlayers() co
 	return Result;
 }
 
-TArray<class URH_PlayerInfo*> FRH_DebugToolWindow::GetAllSelectedPlayerInfos() const
+TArray<URH_PlayerInfo*> FRH_DebugToolWindow::GetAllSelectedPlayerInfos() const
 {
-	TArray<class URH_PlayerInfo*> Result;
+	TArray<URH_PlayerInfo*> Result;
 	if (Owner.IsValid())
 	{
 		Result = Owner->GetAllSelectedPlayerInfos();
@@ -45,9 +51,9 @@ TArray<class URH_PlayerInfo*> FRH_DebugToolWindow::GetAllSelectedPlayerInfos() c
 	return Result;
 }
 
-TArray<class URH_PlayerInfo*> FRH_DebugToolWindow::GetAllTargetedPlayerInfos() const
+TArray<URH_PlayerInfo*> FRH_DebugToolWindow::GetAllTargetedPlayerInfos() const
 {
-	TArray<class URH_PlayerInfo*> Result;
+	TArray<URH_PlayerInfo*> Result;
 	if (Owner.IsValid())
 	{
 		Result = Owner->GetAllTargetedPlayerInfos();
@@ -55,7 +61,7 @@ TArray<class URH_PlayerInfo*> FRH_DebugToolWindow::GetAllTargetedPlayerInfos() c
 	return Result;
 }
 
-class URH_LocalPlayerSubsystem* FRH_DebugToolWindow::GetSelectedRH_LocalPlayerSubsystem() const
+URH_LocalPlayerSubsystem* FRH_DebugToolWindow::GetSelectedRH_LocalPlayerSubsystem() const
 {
 	return ULocalPlayer::GetSubsystem<URH_LocalPlayerSubsystem>(GetFirstSelectedLocalPlayer());
 }
