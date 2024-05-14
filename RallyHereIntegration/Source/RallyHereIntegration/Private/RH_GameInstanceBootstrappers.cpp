@@ -174,6 +174,8 @@ void URH_GameInstanceServerBootstrapper::Initialize()
 			return;
 		}
 
+		RHGameInstanceSubsystem->GetSessionSubsystem()->OnActiveSessionChanged.AddUObject(this, &URH_GameInstanceServerBootstrapper::OnActiveSessionChanged);
+
 		UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] - Beginning RH Server Bootstrapping"), ANSI_TO_TCHAR(__FUNCTION__));
 
 		// create our auth context
@@ -1041,6 +1043,20 @@ void URH_GameInstanceServerBootstrapper::OnSyncToSessionComplete(URH_JoinedSessi
 	}
 }
 
+void URH_GameInstanceServerBootstrapper::OnActiveSessionChanged(URH_JoinedSession* OldSession, URH_JoinedSession* NewSession)
+{
+	UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	// if the session we are managing is no longer the active session, we should cleanup
+	if (RHSession != nullptr && !RHSession->IsActive())
+	{
+		ensure(RHSession == OldSession);
+		ensure(NewSession == nullptr);
+
+		CleanupAfterSessionUnsynced();
+	}
+}
+
 void URH_GameInstanceServerBootstrapper::OnSessionUpdated(URH_SessionView* Session)
 {
 	check(Session == RHSession);
@@ -1102,23 +1118,58 @@ void URH_GameInstanceServerBootstrapper::OnSessionNotFound(URH_SessionView* Sess
 	}
 }
 
+void URH_GameInstanceServerBootstrapper::CleanupAfterLogout()
+{
+	UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	if (GetBootstrapStep() == ERH_ServerBootstrapFlowStep::Cleanup)
+	{
+		UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] - already in cleanup, ignoring"), ANSI_TO_TCHAR(__FUNCTION__));
+		return;
+	}
+
+	// reroute to instance removal cleanup to make sure session gets unsynced etc
+	CleanupAfterInstanceRemoval();
+}
+
+void URH_GameInstanceServerBootstrapper::CleanupAfterSessionUnsynced()
+{
+	if (GetBootstrapStep() == ERH_ServerBootstrapFlowStep::Cleanup)
+	{
+		UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] - already in cleanup, ignoring"), ANSI_TO_TCHAR(__FUNCTION__));
+		return;
+	}
+
+	UpdateBootstrapStep(ERH_ServerBootstrapFlowStep::Cleanup);
+
+	// we are no longer synced to the session, so can immediately call cleanup sync complete
+	OnCleanupSessionSyncComplete(nullptr, true, TEXT(""));
+}
+
 void URH_GameInstanceServerBootstrapper::CleanupAfterInstanceRemoval()
 {
-	auto* SessionSubsystem = GetGameInstanceSubsystem()->GetSessionSubsystem();
+	UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
-	// Last chance to auto upload log as the upload directory information may be lost when we unsync the session
-	ConditionalAutoUploadLogFile();
-
-	if (SessionSubsystem != nullptr && RHSession != nullptr)
+	if (GetBootstrapStep() == ERH_ServerBootstrapFlowStep::Cleanup)
 	{
-		UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] - Session no longer exists, cleaning up"), ANSI_TO_TCHAR(__FUNCTION__))
-		BestEffortLeaveSession();
+		UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] - already in cleanup, ignoring"), ANSI_TO_TCHAR(__FUNCTION__));
+		return;
+	}
+
+	UpdateBootstrapStep(ERH_ServerBootstrapFlowStep::Cleanup);
+
+	auto* SessionSubsystem = GetGameInstanceSubsystem()->GetSessionSubsystem();
+	if (RHSession != nullptr && RHSession->IsActive() && SessionSubsystem != nullptr)
+	{
+		UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] - session is active, unsyncing it and using unsync logic to trigger cleanup"), ANSI_TO_TCHAR(__FUNCTION__));
+		
+		// unsync the session and trigger cleanup on completion
 		SessionSubsystem->SyncToSession(nullptr, FRH_GameInstanceSessionSyncDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::OnCleanupSessionSyncComplete));
 	}
 	else
 	{
-		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Session subsystem invalid or did not have session"), ANSI_TO_TCHAR(__FUNCTION__));
-		OnCleanupSessionSyncComplete(nullptr, false, TEXT("No session to cleanup"));
+		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Session subsystem invalid or did not have session, moving to cleanup directly"), ANSI_TO_TCHAR(__FUNCTION__));
+		Cleanup();
 	}
 }
 
@@ -1130,6 +1181,27 @@ void URH_GameInstanceServerBootstrapper::OnCleanupSessionSyncComplete(URH_Joined
 		bSuccess ? TEXT("Success") : TEXT("Failure"),
 		*Error
 	);
+
+	// proceed with cleanup
+	Cleanup();
+}
+
+void URH_GameInstanceServerBootstrapper::Cleanup()
+{
+	UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	// some other function should have put us into cleanup step by now, this function should not be called directly as it does not guard against re-entry
+	ensure(GetBootstrapStep() == ERH_ServerBootstrapFlowStep::Cleanup);
+
+	auto SessionSubsystem = GetGameInstanceSubsystem()->GetSessionSubsystem();
+	if (SessionSubsystem != nullptr)
+	{
+		// make sure we are not synced to a session by this point
+		ensure(SessionSubsystem->GetActiveSession() == nullptr);
+	}
+
+	// if session is still valid, make sure it is cleaned up as much as possible
+	BestEffortLeaveSession();
 
 	// make sure game host dapter is cleaned up
 	GameHostProvider.Reset();
@@ -1159,6 +1231,18 @@ void URH_GameInstanceServerBootstrapper::OnCleanupSessionSyncComplete(URH_Joined
 
 		AnalyticsProvider.Reset();
 	}
+
+	ConditionalRecycle();
+}
+
+bool URH_GameInstanceServerBootstrapper::ShouldRecycleAfterCleanup() const
+{
+	return !RallyHere::TermSignalHandler::IsSoftStopRequested() && CurrentRecycleCount < MaxRecycleCount;
+}
+
+void URH_GameInstanceServerBootstrapper::ConditionalRecycle()
+{
+	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
 	// recycle if allowed, otherwise shut down
 	if (ShouldRecycleAfterCleanup())
@@ -1199,11 +1283,6 @@ void URH_GameInstanceServerBootstrapper::OnCleanupSessionSyncComplete(URH_Joined
 			}
 		}
 	}
-}
-
-bool URH_GameInstanceServerBootstrapper::ShouldRecycleAfterCleanup() const
-{
-	return !RallyHere::TermSignalHandler::IsSoftStopRequested() && CurrentRecycleCount < MaxRecycleCount;
 }
 
 void URH_GameInstanceServerBootstrapper::OnLoggedOut(bool bRefreshTokenExpired)
@@ -1254,7 +1333,7 @@ void URH_GameInstanceServerBootstrapper::OnRefreshTokenExpired(FSimpleDelegate C
 
 					if (BootstrapStep == ERH_ServerBootstrapFlowStep::Complete)
 					{
-						CleanupAfterInstanceRemoval();
+						CleanupAfterLogout();
 					}
 				}
 			}));
@@ -1542,6 +1621,13 @@ void URH_GameInstanceServerBootstrapper::ConditionalAutoUploadLogFile() const
 		{
 			const FString LogSrcAbsolute = FPlatformOutputDevices::GetAbsoluteLogFilename();
 			FString LogFilename = FPaths::GetCleanFilename(LogSrcAbsolute);
+
+			// flush the log before uploading
+			auto Log = FPlatformOutputDevices::GetLog();
+			if (Log != nullptr)
+			{
+				Log->Flush();
+			}
 
 			return GISS->GetRemoteFileSubsystem()->UploadFile(Directory, LogFilename, LogSrcAbsolute);
 		}

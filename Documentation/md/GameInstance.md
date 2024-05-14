@@ -38,6 +38,7 @@ Registration            | Bootstrapping is registering the server with the provi
 WaitingForSession            | Bootstrapping has received an allocation and is attempting to lookup the corresponding session
 SyncingToSession            | Bootstrapping has retrieved the session, validated it, and is attempting to synchronize the GameInstanceSessionSubsystem to that session
 Complete            | Bootstrapping has completed (though may be recycled in the future)
+Cleanup            | Bootstrapping is cleaning up, and may potentially recycle
 
 An enum for the steps in the bootstrapping flow.
 
@@ -176,11 +177,16 @@ Server Bootstrapper for the Game Instance.
 `protected virtual void `[`OnSessionInstanceCreationCompleted`](#classURH__GameInstanceServerBootstrapper_1a664cad446221aca95b830ddab2eadd3f)`(bool bSuccess,`[`URH_SessionView`](Session.md#classURH__SessionView)` * CreatedRHSession,const `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` & ErrorInfo)` | Bootstrapping Flow [WaitingForSession] - callback for when registration process has completed and produced a bootstrapping result.
 `protected virtual void `[`SyncToSession`](#classURH__GameInstanceServerBootstrapper_1a916ef7edd3eae169e87ac544ea2088c6)`()` | Bootstrapping Flow [SyncingToSession] - begin the process of synchronizing the session state into RH_GameInstanceSessionSubsystem.
 `protected virtual void `[`OnSyncToSessionComplete`](#classURH__GameInstanceServerBootstrapper_1a70667eca088ae8b5873b4f02281c7a94)`(`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * Session,bool bSuccess,const FString & Error)` | Bootstrapping Flow [SyncingToSession] - completiong callback for session sync.
+`protected virtual void `[`OnActiveSessionChanged`](#classURH__GameInstanceServerBootstrapper_1af1154f7c77d3003a619441e785dd6bba)`(`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * OldSession,`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * NewSession)` | Notification callback that the session manager has had its active session changed.
 `protected virtual void `[`OnSessionUpdated`](#classURH__GameInstanceServerBootstrapper_1a91273ca69e8e885b6b96f4fb594d3318)`(`[`URH_SessionView`](Session.md#classURH__SessionView)` * Session)` | Notification callback that the session we have synced to was updated.
 `protected virtual void `[`OnSessionNotFound`](#classURH__GameInstanceServerBootstrapper_1a98ef077ce4a34510a6ee988549acd753)`(`[`URH_SessionView`](Session.md#classURH__SessionView)` * Session)` | Notification callback that the session we have synced to was not found.
-`protected virtual void `[`CleanupAfterInstanceRemoval`](#classURH__GameInstanceServerBootstrapper_1a9aab21c5a300e982d5216e04acdbf6f4)`()` | Utility function to clean up state after an instance removal and attempt to recycle.
-`protected virtual void `[`OnCleanupSessionSyncComplete`](#classURH__GameInstanceServerBootstrapper_1a38bf567f475e12b06eb5a16883165bb6)`(`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * Session,bool bSuccess,const FString & Error)` | Completion callback for session and instance cleanup.
+`protected virtual void `[`CleanupAfterLogout`](#classURH__GameInstanceServerBootstrapper_1a7c5516a0f558c35e0200c0ec234499a8)`()` | Utility function to clean up state after a logout.
+`protected virtual void `[`CleanupAfterSessionUnsynced`](#classURH__GameInstanceServerBootstrapper_1a194646fe84a43b393f35ae0d6ed52b12)`()` | Utility function to clean up state after an the session became unsynced from the manager.
+`protected virtual void `[`CleanupAfterInstanceRemoval`](#classURH__GameInstanceServerBootstrapper_1a9aab21c5a300e982d5216e04acdbf6f4)`()` | Utility function to clean up state after an instance removal (or something else causing session data to become invalid). Handles unsyncing session state, etc.
+`protected virtual void `[`OnCleanupSessionSyncComplete`](#classURH__GameInstanceServerBootstrapper_1a38bf567f475e12b06eb5a16883165bb6)`(`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * Session,bool bSuccess,const FString & Error)` | Completion callback for session and instance cleanup, triggers [Cleanup()](GameInstance.md#classURH__GameInstanceServerBootstrapper_1a1a8ba04137895fb64e88b53959855601)
+`protected virtual void `[`Cleanup`](#classURH__GameInstanceServerBootstrapper_1a1a8ba04137895fb64e88b53959855601)`()` | Cleans up state, and prepares for a recycle if needed. Assumes session has already been unsynced.
 `protected virtual bool `[`ShouldRecycleAfterCleanup`](#classURH__GameInstanceServerBootstrapper_1a3841facd4998b2ceb4e4f48354c2f665)`() const` | Gets whether we should recycle the state after cleanup.
+`protected virtual void `[`ConditionalRecycle`](#classURH__GameInstanceServerBootstrapper_1af4905bc367896369f49fa2cfa16a1157)`()` | Conditionally triggers a recycle if we are allowed to recycle, otherwise shut down.
 `protected virtual void `[`OnLoggedOut`](#classURH__GameInstanceServerBootstrapper_1af6d9c3758a402b830393c531822f586b)`(bool bRefreshTokenExpired)` | Callback for when the server is logged out (effectively, authorization to the API is lost, and was not automatically recovered)
 `protected virtual void `[`OnRefreshTokenExpired`](#classURH__GameInstanceServerBootstrapper_1a5c36a506ed51f8694e9ea296ab4c1822)`(FSimpleDelegate CompleteCallback)` | Callback for when a refresh token expires.
 
@@ -666,6 +672,16 @@ Bootstrapping Flow [SyncingToSession] - completiong callback for session sync.
 * `bSuccess` Whether or not the session sync was successful
 
 <br>
+#### `protected virtual void `[`OnActiveSessionChanged`](#classURH__GameInstanceServerBootstrapper_1af1154f7c77d3003a619441e785dd6bba)`(`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * OldSession,`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * NewSession)` <a id="classURH__GameInstanceServerBootstrapper_1af1154f7c77d3003a619441e785dd6bba"></a>
+
+Notification callback that the session manager has had its active session changed.
+
+#### Parameters
+* `OldSession` The old session that was active 
+
+* `NewSession` The new session that is active
+
+<br>
 #### `protected virtual void `[`OnSessionUpdated`](#classURH__GameInstanceServerBootstrapper_1a91273ca69e8e885b6b96f4fb594d3318)`(`[`URH_SessionView`](Session.md#classURH__SessionView)` * Session)` <a id="classURH__GameInstanceServerBootstrapper_1a91273ca69e8e885b6b96f4fb594d3318"></a>
 
 Notification callback that the session we have synced to was updated.
@@ -682,19 +698,39 @@ Notification callback that the session we have synced to was not found.
 * `Session` The session that was not found
 
 <br>
+#### `protected virtual void `[`CleanupAfterLogout`](#classURH__GameInstanceServerBootstrapper_1a7c5516a0f558c35e0200c0ec234499a8)`()` <a id="classURH__GameInstanceServerBootstrapper_1a7c5516a0f558c35e0200c0ec234499a8"></a>
+
+Utility function to clean up state after a logout.
+
+<br>
+#### `protected virtual void `[`CleanupAfterSessionUnsynced`](#classURH__GameInstanceServerBootstrapper_1a194646fe84a43b393f35ae0d6ed52b12)`()` <a id="classURH__GameInstanceServerBootstrapper_1a194646fe84a43b393f35ae0d6ed52b12"></a>
+
+Utility function to clean up state after an the session became unsynced from the manager.
+
+<br>
 #### `protected virtual void `[`CleanupAfterInstanceRemoval`](#classURH__GameInstanceServerBootstrapper_1a9aab21c5a300e982d5216e04acdbf6f4)`()` <a id="classURH__GameInstanceServerBootstrapper_1a9aab21c5a300e982d5216e04acdbf6f4"></a>
 
-Utility function to clean up state after an instance removal and attempt to recycle.
+Utility function to clean up state after an instance removal (or something else causing session data to become invalid). Handles unsyncing session state, etc.
 
 <br>
 #### `protected virtual void `[`OnCleanupSessionSyncComplete`](#classURH__GameInstanceServerBootstrapper_1a38bf567f475e12b06eb5a16883165bb6)`(`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * Session,bool bSuccess,const FString & Error)` <a id="classURH__GameInstanceServerBootstrapper_1a38bf567f475e12b06eb5a16883165bb6"></a>
 
-Completion callback for session and instance cleanup.
+Completion callback for session and instance cleanup, triggers [Cleanup()](GameInstance.md#classURH__GameInstanceServerBootstrapper_1a1a8ba04137895fb64e88b53959855601)
+
+<br>
+#### `protected virtual void `[`Cleanup`](#classURH__GameInstanceServerBootstrapper_1a1a8ba04137895fb64e88b53959855601)`()` <a id="classURH__GameInstanceServerBootstrapper_1a1a8ba04137895fb64e88b53959855601"></a>
+
+Cleans up state, and prepares for a recycle if needed. Assumes session has already been unsynced.
 
 <br>
 #### `protected virtual bool `[`ShouldRecycleAfterCleanup`](#classURH__GameInstanceServerBootstrapper_1a3841facd4998b2ceb4e4f48354c2f665)`() const` <a id="classURH__GameInstanceServerBootstrapper_1a3841facd4998b2ceb4e4f48354c2f665"></a>
 
 Gets whether we should recycle the state after cleanup.
+
+<br>
+#### `protected virtual void `[`ConditionalRecycle`](#classURH__GameInstanceServerBootstrapper_1af4905bc367896369f49fa2cfa16a1157)`()` <a id="classURH__GameInstanceServerBootstrapper_1af4905bc367896369f49fa2cfa16a1157"></a>
+
+Conditionally triggers a recycle if we are allowed to recycle, otherwise shut down.
 
 <br>
 #### `protected virtual void `[`OnLoggedOut`](#classURH__GameInstanceServerBootstrapper_1af6d9c3758a402b830393c531822f586b)`(bool bRefreshTokenExpired)` <a id="classURH__GameInstanceServerBootstrapper_1af6d9c3758a402b830393c531822f586b"></a>

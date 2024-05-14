@@ -307,6 +307,12 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 
 				MatchSubsystem->UpdateMatch(MatchSubsystem->GetActiveMatchId(), UpdateRequest);
 
+				// Trigger the bootstrapper log file upload if configured
+				if (GetGameInstanceSubsystem()->GetServerBootstrapper() != nullptr)
+				{
+					GetGameInstanceSubsystem()->GetServerBootstrapper()->ConditionalAutoUploadLogFile();
+				}
+
 				// clear out the active match id
 				MatchSubsystem->SetActiveMatchId(FString());
 			}
