@@ -1537,7 +1537,7 @@ void URH_GameInstanceSessionSubsystem::EmitJoinInstanceCompletedEvent(const URH_
 
 	EmitEventToAllProvidersOnce(pGameInstance, Event);
 
-	if (!bSuccess && Session != nullptr)
+	if (Session != nullptr)
 	{
 		FRHAPI_CreateAuditRequest Request;
 		if (Session->GetSessionOwner() != nullptr)
@@ -1548,7 +1548,7 @@ void URH_GameInstanceSessionSubsystem::EmitJoinInstanceCompletedEvent(const URH_
 		Request.SetInstanceId(Session->GetInstanceData()->GetInstanceId());
 
 		// make an event name that is recognizable and informative
-		FString EventName = FString::Printf(TEXT("instance_join_failed: %s"), *Error)
+		FString EventName = FString::Printf(TEXT("instance_join_%s: %s"), bSuccess ? TEXT("success") : TEXT("failed"), *Error)
 			.Left(100); // make sure it will fit in the field length on the API
 
 		Request.SetEventName(EventName);
