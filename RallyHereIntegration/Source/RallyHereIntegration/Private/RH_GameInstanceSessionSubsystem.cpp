@@ -1548,10 +1548,13 @@ void URH_GameInstanceSessionSubsystem::EmitJoinInstanceCompletedEvent(const URH_
 		Request.SetInstanceId(Session->GetInstanceData()->GetInstanceId());
 
 		// make an event name that is recognizable and informative
-		FString EventName = FString::Printf(TEXT("instance_join_%s: %s"), bSuccess ? TEXT("success") : TEXT("failed"), *Error)
-			.Left(100); // make sure it will fit in the field length on the API
+		FString EventName = FString::Printf(TEXT("instance_join_%s"), bSuccess ? TEXT("success") : TEXT("failed"));
+		if (!Error.IsEmpty())
+		{
+			EventName += TEXT(": ") + Error;
+		}
 
-		Request.SetEventName(EventName);
+		Request.SetEventName(EventName.Left(100)); // make sure it will fit in the field length on the API
 
 		Session->EmitAuditEvent(Request);
 	}
