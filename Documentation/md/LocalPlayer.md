@@ -1672,20 +1672,21 @@ Subsystem to manage the local player.
 --------------------------------|---------------------------------------------
 `public FRH_AutoInventoryCompleteDelegate `[`OnAutoInventorySessionCreated`](#classURH__LocalPlayerSubsystem_1a07b265e2b34b7384507856b5039833cf) | Broadcast delegate for when intial inventory session is created, if using auto creation.
 `public FRH_AutoInventoryCompleteDelegate `[`OnAutoEntitlementsProcessed`](#classURH__LocalPlayerSubsystem_1af051878305aecdec83c71ea862099d47) | Broadcast delegate for when intial platform entitlements are processed, if using auto processing.
-`public void `[`Initialize`](#classURH__LocalPlayerSubsystem_1aa2c904ac8c9e4e1e89d2f44f56297f19)`(FSubsystemCollectionBase & Collection)` | Initialize the subsystem.
-`public void `[`Deinitialize`](#classURH__LocalPlayerSubsystem_1a2eb5553bdd14a18a7496048e4fd8de60)`()` | Safely tears down the subsystem.
-`public bool `[`IsLoggedIn`](#classURH__LocalPlayerSubsystem_1a3b7ce92eb8ce587f9da1bddd333d83a8)`() const` | Gets if the player is currently logged in.
-`public FGuid `[`GetPlayerUuid`](#classURH__LocalPlayerSubsystem_1aa4f9ff67952acaac6cff21344e009ab0)`() const` | Gets the player's unique player id.
+`public virtual bool `[`ShouldCreateSubsystem`](#classURH__LocalPlayerSubsystem_1a9d3cb31fe04f48ca91f2ff8dcb7dabda)`(UObject * Outer) const` | Whether to create the subsystem (defaults to not creating if there are any derived subsystems).
+`public virtual void `[`Initialize`](#classURH__LocalPlayerSubsystem_1a7b1163663e929dd2cad4688fb11fac02)`(FSubsystemCollectionBase & Collection)` | Initialize the subsystem.
+`public virtual void `[`Deinitialize`](#classURH__LocalPlayerSubsystem_1adfc8060ee2b1815d85009c5d9c61fb10)`()` | Safely tears down the subsystem.
+`public virtual bool `[`IsLoggedIn`](#classURH__LocalPlayerSubsystem_1aa87f996f6200f58e7bb5b1e76af85f78)`() const` | Gets if the player is currently logged in.
+`public virtual FGuid `[`GetPlayerUuid`](#classURH__LocalPlayerSubsystem_1a639688a2978cc465ad6576e100daffe4)`() const` | Gets the player's unique player id.
 `public `[`ERHAPI_PlatformTypes_DEPRECATED`](undefined.md#group__Common_1ga8d2aa1d87e398a5548531751e8cea759)` `[`GetLoggedInPlatformType`](#classURH__LocalPlayerSubsystem_1a42fa36a5163bc8f1000945c19f5efeb7)`() const` | Gets the platform type for the player if logged in.
-`public ERHAPI_Platform `[`GetLoggedInPlatform`](#classURH__LocalPlayerSubsystem_1a05e6f540d539db2c2e32711a71b3ea0d)`() const` | Gets the platform type for the player if logged in.
-`public FUniqueNetIdWrapper `[`GetOSSUniqueId`](#classURH__LocalPlayerSubsystem_1aaa4e0609a714252747d19e0bda2228de)`() const` | Gets the player's OSS unique id.
-`public int32 `[`GetPlatformUserId`](#classURH__LocalPlayerSubsystem_1af730a768c92209cd06f97b2ca3de6e2c)`() const` | Gets the player's platform id.
+`public virtual ERHAPI_Platform `[`GetLoggedInPlatform`](#classURH__LocalPlayerSubsystem_1a5e0f993799a9be841c52cb7198979d31)`() const` | Gets the platform type for the player if logged in.
+`public virtual FUniqueNetIdWrapper `[`GetOSSUniqueId`](#classURH__LocalPlayerSubsystem_1a4c35e09b4d1d7b9c2b1994ba26519509)`() const` | Gets the player's OSS unique id.
+`public virtual int32 `[`GetPlatformUserId`](#classURH__LocalPlayerSubsystem_1a67201c7ebaba8d4b7f72bb55064f518c)`() const` | Gets the player's platform id.
 `public inline virtual TSharedPtr< class IAnalyticsProvider > `[`GetAnalyticsProvider`](#classURH__LocalPlayerSubsystem_1a971e67d99251ee5a805fc339f48ab66d)`() const` | Gets the player's analytics provider.
 `public virtual TSharedPtr< class IAnalyticsProvider > `[`CreateAnalyticsProvider`](#classURH__LocalPlayerSubsystem_1a3b2f8337c43926cb688c16d15916ad03)`()` | Gets the player's analytics provider.
-`public `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`GetLocalPlayerInfo`](#classURH__LocalPlayerSubsystem_1a5d9ea1d7b17a08d3a5c887f1331871bd)`() const` | Gets the player's player info.
-`public `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` `[`GetPlayerPlatformId`](#classURH__LocalPlayerSubsystem_1ad821ccae7dc5dda771a939765510acf3)`() const` | Gets the player's platform id wrapped with platform type.
-`public inline FAuthContextPtr `[`GetAuthContext`](#classURH__LocalPlayerSubsystem_1a487eb72cbed66aac3e1673c06b1fefd1)`() const` | Gets the player's auth context.
-`public IOnlineSubsystem * `[`GetOSS`](#classURH__LocalPlayerSubsystem_1a411f7a0f814cd1df1fbd00e9fc277fc4)`(const FName & SubsystemName) const` | Get a specific OSS by name for this local player's world. In editor, this allows each world/game instance to have a different OSS.
+`public virtual `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`GetLocalPlayerInfo`](#classURH__LocalPlayerSubsystem_1ae7902af37f78a0a491c26b14ff448ac1)`() const` | Gets the player's player info.
+`public virtual `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` `[`GetPlayerPlatformId`](#classURH__LocalPlayerSubsystem_1a7a9c27b2728b01d3c9cf095af2533cd0)`() const` | Gets the player's platform id wrapped with platform type.
+`public inline FORCEINLINE FAuthContextPtr `[`GetAuthContext`](#classURH__LocalPlayerSubsystem_1aac6f2bd9809734eae11efd9cdfbb0738)`() const` | Gets the player's auth context.
+`public virtual IOnlineSubsystem * `[`GetOSS`](#classURH__LocalPlayerSubsystem_1a37e363ec5503a8c6341bdde27132bf8c)`(const FName & SubsystemName) const` | Get a specific OSS by name for this local player's world. In editor, this allows each world/game instance to have a different OSS.
 `public inline FORCEINLINE `[`URH_LocalPlayerLoginSubsystem`](LocalPlayer.md#classURH__LocalPlayerLoginSubsystem)` * `[`GetLoginSubsystem`](#classURH__LocalPlayerSubsystem_1aa6d9e0d8f6462d16b6c0eab3e8c445b9)`() const` | Gets the player's login subsystem.
 `public inline FORCEINLINE `[`URH_AdSubsystem`](Ads.md#classURH__AdSubsystem)` * `[`GetAdSubsystem`](#classURH__LocalPlayerSubsystem_1a4b0be8bb978e72e755f383b5ca519c5a)`() const` | Gets the player's ad subsystem.
 `public inline FORCEINLINE `[`URH_FriendSubsystem`](Friends.md#classURH__FriendSubsystem)` * `[`GetFriendSubsystem`](#classURH__LocalPlayerSubsystem_1ad49c347f8117e9c66f0c40564bbe9ad8)`() const` | Gets the player's friend subsystem.
@@ -1693,13 +1694,13 @@ Subsystem to manage the local player.
 `public inline FORCEINLINE `[`URH_LocalPlayerPresenceSubsystem`](LocalPlayer.md#classURH__LocalPlayerPresenceSubsystem)` * `[`GetPresenceSubsystem`](#classURH__LocalPlayerSubsystem_1ac43dba7fff9bf907ae5e17675cc65c77)`() const` | Gets the player's presence subsystem.
 `public inline FORCEINLINE `[`URH_PurgeSubsystem`](Purge.md#classURH__PurgeSubsystem)` * `[`GetPurgeSubsystem`](#classURH__LocalPlayerSubsystem_1a5c2884b8b405e18804009f8b8cfeb245)`() const` | Gets the player's purge subsystem.
 `public inline FORCEINLINE `[`URH_EntitlementSubsystem`](Entitlement.md#classURH__EntitlementSubsystem)` * `[`GetEntitlementSubsystem`](#classURH__LocalPlayerSubsystem_1a3553f6723f3c694a2bf15f3bfd647774)`() const` | Gets the player's entitlement subsystem.
-`public `[`URH_PlayerNotifications`](Notifications.md#classURH__PlayerNotifications)` * `[`GetPlayerNotifications`](#classURH__LocalPlayerSubsystem_1a690473c3123f603e2122e66ceb9f2e7f)`() const` | Gets the player's notification subsystem.
-`public `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__LocalPlayerSubsystem_1a83ad712487ec862359de2aad0cfdae27)`() const` | Gets the player's player info.
-`public void `[`CustomEndpoint`](#classURH__LocalPlayerSubsystem_1a12825ba4b3fc959d767fa24fdd42ac4a)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const RallyHereAPI::FDelegate_CustomEndpointSend & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
-`public void `[`CustomEndpoint`](#classURH__LocalPlayerSubsystem_1a0245b6c80572e106cdba6424306b4e5a)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const FRH_CustomEndpointDelegateBlock & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
+`public virtual `[`URH_PlayerNotifications`](Notifications.md#classURH__PlayerNotifications)` * `[`GetPlayerNotifications`](#classURH__LocalPlayerSubsystem_1a013ac5a0ad7a13bfe1c5e615d15ea8fd)`() const` | Gets the player's notification subsystem.
+`public virtual `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__LocalPlayerSubsystem_1a395c248cddf85f98ea9a993b4155ab58)`() const` | Gets the player's player info.
+`public virtual void `[`CustomEndpoint`](#classURH__LocalPlayerSubsystem_1a4b55e59b8d1f8dddbd2d91a8845e12dd)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const RallyHereAPI::FDelegate_CustomEndpointSend & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
+`public virtual void `[`CustomEndpoint`](#classURH__LocalPlayerSubsystem_1ad82004afa264f46a22441f80c6d27554)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const FRH_CustomEndpointDelegateBlock & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
 `public inline void `[`BLUEPRINT_CustomEndpoint`](#classURH__LocalPlayerSubsystem_1aa5c9cef7544050e91abe15452526fbd7)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const FRH_CustomEndpointDynamicDelegate & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
 `protected TArray< `[`URH_LocalPlayerSubsystemPlugin`](SubsystemBase.md#classURH__LocalPlayerSubsystemPlugin)` * > `[`SubsystemPlugins`](#classURH__LocalPlayerSubsystem_1aa1e0f18bd03b9082f4dfa3b87e294111) | Array of plugins for the Local Player Subsystem.
-`protected TArray< `[`URH_SandboxedSubsystemPlugin`](SubsystemBase.md#classURH__SandboxedSubsystemPlugin)` * > `[`SandboxedSubsystemPlugins`](#classURH__LocalPlayerSubsystem_1a17f7feb3081a6a9ddd60220806af4101) | Array of plugins for the Local Player Subsystem.
+`protected TArray< `[`URH_SandboxedSubsystemPlugin`](SubsystemBase.md#classURH__SandboxedSubsystemPlugin)` * > `[`SandboxedSubsystemPlugins`](#classURH__LocalPlayerSubsystem_1a17f7feb3081a6a9ddd60220806af4101) | Array of sandboxed plugins for the Local Player Subsystem.
 `protected `[`URH_LocalPlayerLoginSubsystem`](LocalPlayer.md#classURH__LocalPlayerLoginSubsystem)` * `[`LoginSubsystem`](#classURH__LocalPlayerSubsystem_1a4c91f163e0d3ce122ff5945e94fbfd42) | The Login Subsystem for the player.
 `protected `[`URH_AdSubsystem`](Ads.md#classURH__AdSubsystem)` * `[`AdSubsystem`](#classURH__LocalPlayerSubsystem_1a7828f1874dcd91a147856a6919086273) | The Ad Subsystem for the player.
 `protected `[`URH_FriendSubsystem`](Friends.md#classURH__FriendSubsystem)` * `[`FriendSubsystem`](#classURH__LocalPlayerSubsystem_1a71f593fae588e9f7afa7733eae6aafac) | The Friend Subsystem for the player.
@@ -1712,8 +1713,10 @@ Subsystem to manage the local player.
 `protected FAuthContextPtr `[`AuthContext`](#classURH__LocalPlayerSubsystem_1a7db0fee21f61da0729bba78d7a892430) | The Local Players auth context.
 `protected TSharedPtr< class IAnalyticsProvider > `[`AnalyticsProvider`](#classURH__LocalPlayerSubsystem_1a9ece424deff5492e8d400a01c3295514) | The Analytics Provider for the player.
 `protected TOptional< FDateTime > `[`AnalyticsStartTime`](#classURH__LocalPlayerSubsystem_1a4035dec7f2a4568acd091f0058fbf0b3) | The start time of the AnalyticsProvider
-`protected template<>`  <br/>`inline UClassToUse * `[`AddSubsystemPlugin`](#classURH__LocalPlayerSubsystem_1ab757058d891a562b63869377edf607bf)`(const FSoftClassPath & SubsystemClassPath)` | Adds a plugin to the Game Instance Subsystem.
-`protected template<>`  <br/>`inline UClassToUse * `[`AddSandboxedSubsystemPlugin`](#classURH__LocalPlayerSubsystem_1a2de7a5eafd696d509f653192edd9a09f)`(const FSoftClassPath & SubsystemClassPath)` | Adds a plugin to the Game Instance Subsystem.
+`protected template<>`  <br/>`inline UClassToUse * `[`AddSubsystemPlugin`](#classURH__LocalPlayerSubsystem_1ab757058d891a562b63869377edf607bf)`(const FSoftClassPath & SubsystemClassPath)` | Adds a plugin to the Local Player Subsystem.
+`protected inline virtual void `[`AddSubsystemPlugin`](#classURH__LocalPlayerSubsystem_1aae3af807f829d7481c4622a022753287)`(`[`URH_LocalPlayerSubsystemPlugin`](SubsystemBase.md#classURH__LocalPlayerSubsystemPlugin)` * InPlugin)` | Adds a plugin to the Local Player Subsystem.
+`protected template<>`  <br/>`inline UClassToUse * `[`AddSandboxedSubsystemPlugin`](#classURH__LocalPlayerSubsystem_1a2de7a5eafd696d509f653192edd9a09f)`(const FSoftClassPath & SubsystemClassPath)` | Adds a sandboxed plugin to the Local Player Subsystem.
+`protected inline virtual void `[`AddSandboxedSubsystemPlugin`](#classURH__LocalPlayerSubsystem_1a92a9fa258ca81bc42ceb380a9703f747)`(`[`URH_SandboxedSubsystemPlugin`](SubsystemBase.md#classURH__SandboxedSubsystemPlugin)` * InPlugin)` | Adds a plugin to the Local Player Subsystem.
 `protected virtual void `[`OnUserLoggedIn`](#classURH__LocalPlayerSubsystem_1a9ef1338417d75dfc9f463538e2515d72)`(bool bSuccess)` | Called whenever the user logs in.
 `protected virtual void `[`OnUserLoggedOut`](#classURH__LocalPlayerSubsystem_1a8486ce5ac38cd0baa2d1a3d8ed319fd5)`(bool bRefreshTokenExpired)` | Called whenever the user logs out explicitly.
 `protected virtual void `[`OnUserChanged`](#classURH__LocalPlayerSubsystem_1a8a159f043f9aaed47f06d7c6706cb6b7)`()` | Callback that occurs whenever the local player this subsystem is associated with changes.
@@ -1731,22 +1734,27 @@ Broadcast delegate for when intial inventory session is created, if using auto c
 Broadcast delegate for when intial platform entitlements are processed, if using auto processing.
 
 <br>
-#### `public void `[`Initialize`](#classURH__LocalPlayerSubsystem_1aa2c904ac8c9e4e1e89d2f44f56297f19)`(FSubsystemCollectionBase & Collection)` <a id="classURH__LocalPlayerSubsystem_1aa2c904ac8c9e4e1e89d2f44f56297f19"></a>
+#### `public virtual bool `[`ShouldCreateSubsystem`](#classURH__LocalPlayerSubsystem_1a9d3cb31fe04f48ca91f2ff8dcb7dabda)`(UObject * Outer) const` <a id="classURH__LocalPlayerSubsystem_1a9d3cb31fe04f48ca91f2ff8dcb7dabda"></a>
+
+Whether to create the subsystem (defaults to not creating if there are any derived subsystems).
+
+<br>
+#### `public virtual void `[`Initialize`](#classURH__LocalPlayerSubsystem_1a7b1163663e929dd2cad4688fb11fac02)`(FSubsystemCollectionBase & Collection)` <a id="classURH__LocalPlayerSubsystem_1a7b1163663e929dd2cad4688fb11fac02"></a>
 
 Initialize the subsystem.
 
 <br>
-#### `public void `[`Deinitialize`](#classURH__LocalPlayerSubsystem_1a2eb5553bdd14a18a7496048e4fd8de60)`()` <a id="classURH__LocalPlayerSubsystem_1a2eb5553bdd14a18a7496048e4fd8de60"></a>
+#### `public virtual void `[`Deinitialize`](#classURH__LocalPlayerSubsystem_1adfc8060ee2b1815d85009c5d9c61fb10)`()` <a id="classURH__LocalPlayerSubsystem_1adfc8060ee2b1815d85009c5d9c61fb10"></a>
 
 Safely tears down the subsystem.
 
 <br>
-#### `public bool `[`IsLoggedIn`](#classURH__LocalPlayerSubsystem_1a3b7ce92eb8ce587f9da1bddd333d83a8)`() const` <a id="classURH__LocalPlayerSubsystem_1a3b7ce92eb8ce587f9da1bddd333d83a8"></a>
+#### `public virtual bool `[`IsLoggedIn`](#classURH__LocalPlayerSubsystem_1aa87f996f6200f58e7bb5b1e76af85f78)`() const` <a id="classURH__LocalPlayerSubsystem_1aa87f996f6200f58e7bb5b1e76af85f78"></a>
 
 Gets if the player is currently logged in.
 
 <br>
-#### `public FGuid `[`GetPlayerUuid`](#classURH__LocalPlayerSubsystem_1aa4f9ff67952acaac6cff21344e009ab0)`() const` <a id="classURH__LocalPlayerSubsystem_1aa4f9ff67952acaac6cff21344e009ab0"></a>
+#### `public virtual FGuid `[`GetPlayerUuid`](#classURH__LocalPlayerSubsystem_1a639688a2978cc465ad6576e100daffe4)`() const` <a id="classURH__LocalPlayerSubsystem_1a639688a2978cc465ad6576e100daffe4"></a>
 
 Gets the player's unique player id.
 
@@ -1756,17 +1764,17 @@ Gets the player's unique player id.
 Gets the platform type for the player if logged in.
 
 <br>
-#### `public ERHAPI_Platform `[`GetLoggedInPlatform`](#classURH__LocalPlayerSubsystem_1a05e6f540d539db2c2e32711a71b3ea0d)`() const` <a id="classURH__LocalPlayerSubsystem_1a05e6f540d539db2c2e32711a71b3ea0d"></a>
+#### `public virtual ERHAPI_Platform `[`GetLoggedInPlatform`](#classURH__LocalPlayerSubsystem_1a5e0f993799a9be841c52cb7198979d31)`() const` <a id="classURH__LocalPlayerSubsystem_1a5e0f993799a9be841c52cb7198979d31"></a>
 
 Gets the platform type for the player if logged in.
 
 <br>
-#### `public FUniqueNetIdWrapper `[`GetOSSUniqueId`](#classURH__LocalPlayerSubsystem_1aaa4e0609a714252747d19e0bda2228de)`() const` <a id="classURH__LocalPlayerSubsystem_1aaa4e0609a714252747d19e0bda2228de"></a>
+#### `public virtual FUniqueNetIdWrapper `[`GetOSSUniqueId`](#classURH__LocalPlayerSubsystem_1a4c35e09b4d1d7b9c2b1994ba26519509)`() const` <a id="classURH__LocalPlayerSubsystem_1a4c35e09b4d1d7b9c2b1994ba26519509"></a>
 
 Gets the player's OSS unique id.
 
 <br>
-#### `public int32 `[`GetPlatformUserId`](#classURH__LocalPlayerSubsystem_1af730a768c92209cd06f97b2ca3de6e2c)`() const` <a id="classURH__LocalPlayerSubsystem_1af730a768c92209cd06f97b2ca3de6e2c"></a>
+#### `public virtual int32 `[`GetPlatformUserId`](#classURH__LocalPlayerSubsystem_1a67201c7ebaba8d4b7f72bb55064f518c)`() const` <a id="classURH__LocalPlayerSubsystem_1a67201c7ebaba8d4b7f72bb55064f518c"></a>
 
 Gets the player's platform id.
 
@@ -1781,22 +1789,22 @@ Gets the player's analytics provider.
 Gets the player's analytics provider.
 
 <br>
-#### `public `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`GetLocalPlayerInfo`](#classURH__LocalPlayerSubsystem_1a5d9ea1d7b17a08d3a5c887f1331871bd)`() const` <a id="classURH__LocalPlayerSubsystem_1a5d9ea1d7b17a08d3a5c887f1331871bd"></a>
+#### `public virtual `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`GetLocalPlayerInfo`](#classURH__LocalPlayerSubsystem_1ae7902af37f78a0a491c26b14ff448ac1)`() const` <a id="classURH__LocalPlayerSubsystem_1ae7902af37f78a0a491c26b14ff448ac1"></a>
 
 Gets the player's player info.
 
 <br>
-#### `public `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` `[`GetPlayerPlatformId`](#classURH__LocalPlayerSubsystem_1ad821ccae7dc5dda771a939765510acf3)`() const` <a id="classURH__LocalPlayerSubsystem_1ad821ccae7dc5dda771a939765510acf3"></a>
+#### `public virtual `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` `[`GetPlayerPlatformId`](#classURH__LocalPlayerSubsystem_1a7a9c27b2728b01d3c9cf095af2533cd0)`() const` <a id="classURH__LocalPlayerSubsystem_1a7a9c27b2728b01d3c9cf095af2533cd0"></a>
 
 Gets the player's platform id wrapped with platform type.
 
 <br>
-#### `public inline FAuthContextPtr `[`GetAuthContext`](#classURH__LocalPlayerSubsystem_1a487eb72cbed66aac3e1673c06b1fefd1)`() const` <a id="classURH__LocalPlayerSubsystem_1a487eb72cbed66aac3e1673c06b1fefd1"></a>
+#### `public inline FORCEINLINE FAuthContextPtr `[`GetAuthContext`](#classURH__LocalPlayerSubsystem_1aac6f2bd9809734eae11efd9cdfbb0738)`() const` <a id="classURH__LocalPlayerSubsystem_1aac6f2bd9809734eae11efd9cdfbb0738"></a>
 
 Gets the player's auth context.
 
 <br>
-#### `public IOnlineSubsystem * `[`GetOSS`](#classURH__LocalPlayerSubsystem_1a411f7a0f814cd1df1fbd00e9fc277fc4)`(const FName & SubsystemName) const` <a id="classURH__LocalPlayerSubsystem_1a411f7a0f814cd1df1fbd00e9fc277fc4"></a>
+#### `public virtual IOnlineSubsystem * `[`GetOSS`](#classURH__LocalPlayerSubsystem_1a37e363ec5503a8c6341bdde27132bf8c)`(const FName & SubsystemName) const` <a id="classURH__LocalPlayerSubsystem_1a37e363ec5503a8c6341bdde27132bf8c"></a>
 
 Get a specific OSS by name for this local player's world. In editor, this allows each world/game instance to have a different OSS.
 
@@ -1836,17 +1844,17 @@ Gets the player's purge subsystem.
 Gets the player's entitlement subsystem.
 
 <br>
-#### `public `[`URH_PlayerNotifications`](Notifications.md#classURH__PlayerNotifications)` * `[`GetPlayerNotifications`](#classURH__LocalPlayerSubsystem_1a690473c3123f603e2122e66ceb9f2e7f)`() const` <a id="classURH__LocalPlayerSubsystem_1a690473c3123f603e2122e66ceb9f2e7f"></a>
+#### `public virtual `[`URH_PlayerNotifications`](Notifications.md#classURH__PlayerNotifications)` * `[`GetPlayerNotifications`](#classURH__LocalPlayerSubsystem_1a013ac5a0ad7a13bfe1c5e615d15ea8fd)`() const` <a id="classURH__LocalPlayerSubsystem_1a013ac5a0ad7a13bfe1c5e615d15ea8fd"></a>
 
 Gets the player's notification subsystem.
 
 <br>
-#### `public `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__LocalPlayerSubsystem_1a83ad712487ec862359de2aad0cfdae27)`() const` <a id="classURH__LocalPlayerSubsystem_1a83ad712487ec862359de2aad0cfdae27"></a>
+#### `public virtual `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__LocalPlayerSubsystem_1a395c248cddf85f98ea9a993b4155ab58)`() const` <a id="classURH__LocalPlayerSubsystem_1a395c248cddf85f98ea9a993b4155ab58"></a>
 
 Gets the player's player info.
 
 <br>
-#### `public void `[`CustomEndpoint`](#classURH__LocalPlayerSubsystem_1a12825ba4b3fc959d767fa24fdd42ac4a)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const RallyHereAPI::FDelegate_CustomEndpointSend & Delegate)` <a id="classURH__LocalPlayerSubsystem_1a12825ba4b3fc959d767fa24fdd42ac4a"></a>
+#### `public virtual void `[`CustomEndpoint`](#classURH__LocalPlayerSubsystem_1a4b55e59b8d1f8dddbd2d91a8845e12dd)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const RallyHereAPI::FDelegate_CustomEndpointSend & Delegate)` <a id="classURH__LocalPlayerSubsystem_1a4b55e59b8d1f8dddbd2d91a8845e12dd"></a>
 
 Custom Endpoint wrapper (for custom endpoints that require authentication)
 
@@ -1856,7 +1864,7 @@ Custom Endpoint wrapper (for custom endpoints that require authentication)
 * `Delegate` The delegate to call when the call is complete (contains raw response)
 
 <br>
-#### `public void `[`CustomEndpoint`](#classURH__LocalPlayerSubsystem_1a0245b6c80572e106cdba6424306b4e5a)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const FRH_CustomEndpointDelegateBlock & Delegate)` <a id="classURH__LocalPlayerSubsystem_1a0245b6c80572e106cdba6424306b4e5a"></a>
+#### `public virtual void `[`CustomEndpoint`](#classURH__LocalPlayerSubsystem_1ad82004afa264f46a22441f80c6d27554)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const FRH_CustomEndpointDelegateBlock & Delegate)` <a id="classURH__LocalPlayerSubsystem_1ad82004afa264f46a22441f80c6d27554"></a>
 
 Custom Endpoint wrapper (for custom endpoints that require authentication)
 
@@ -1883,7 +1891,7 @@ Array of plugins for the Local Player Subsystem.
 <br>
 #### `protected TArray< `[`URH_SandboxedSubsystemPlugin`](SubsystemBase.md#classURH__SandboxedSubsystemPlugin)` * > `[`SandboxedSubsystemPlugins`](#classURH__LocalPlayerSubsystem_1a17f7feb3081a6a9ddd60220806af4101) <a id="classURH__LocalPlayerSubsystem_1a17f7feb3081a6a9ddd60220806af4101"></a>
 
-Array of plugins for the Local Player Subsystem.
+Array of sandboxed plugins for the Local Player Subsystem.
 
 <br>
 #### `protected `[`URH_LocalPlayerLoginSubsystem`](LocalPlayer.md#classURH__LocalPlayerLoginSubsystem)` * `[`LoginSubsystem`](#classURH__LocalPlayerSubsystem_1a4c91f163e0d3ce122ff5945e94fbfd42) <a id="classURH__LocalPlayerSubsystem_1a4c91f163e0d3ce122ff5945e94fbfd42"></a>
@@ -1948,7 +1956,18 @@ The start time of the AnalyticsProvider
 <br>
 #### `protected template<>`  <br/>`inline UClassToUse * `[`AddSubsystemPlugin`](#classURH__LocalPlayerSubsystem_1ab757058d891a562b63869377edf607bf)`(const FSoftClassPath & SubsystemClassPath)` <a id="classURH__LocalPlayerSubsystem_1ab757058d891a562b63869377edf607bf"></a>
 
-Adds a plugin to the Game Instance Subsystem.
+Adds a plugin to the Local Player Subsystem.
+
+#### Parameters
+* `SubsystemClassPath` The class path of the plugin to add. 
+
+#### Returns
+The plugin that was added.
+
+<br>
+#### `protected inline virtual void `[`AddSubsystemPlugin`](#classURH__LocalPlayerSubsystem_1aae3af807f829d7481c4622a022753287)`(`[`URH_LocalPlayerSubsystemPlugin`](SubsystemBase.md#classURH__LocalPlayerSubsystemPlugin)` * InPlugin)` <a id="classURH__LocalPlayerSubsystem_1aae3af807f829d7481c4622a022753287"></a>
+
+Adds a plugin to the Local Player Subsystem.
 
 #### Parameters
 * `SubsystemClassPath` The class path of the plugin to add. 
@@ -1959,7 +1978,18 @@ The plugin that was added.
 <br>
 #### `protected template<>`  <br/>`inline UClassToUse * `[`AddSandboxedSubsystemPlugin`](#classURH__LocalPlayerSubsystem_1a2de7a5eafd696d509f653192edd9a09f)`(const FSoftClassPath & SubsystemClassPath)` <a id="classURH__LocalPlayerSubsystem_1a2de7a5eafd696d509f653192edd9a09f"></a>
 
-Adds a plugin to the Game Instance Subsystem.
+Adds a sandboxed plugin to the Local Player Subsystem.
+
+#### Parameters
+* `SubsystemClassPath` The class path of the plugin to add. 
+
+#### Returns
+The plugin that was added.
+
+<br>
+#### `protected inline virtual void `[`AddSandboxedSubsystemPlugin`](#classURH__LocalPlayerSubsystem_1a92a9fa258ca81bc42ceb380a9703f747)`(`[`URH_SandboxedSubsystemPlugin`](SubsystemBase.md#classURH__SandboxedSubsystemPlugin)` * InPlugin)` <a id="classURH__LocalPlayerSubsystem_1a92a9fa258ca81bc42ceb380a9703f747"></a>
+
+Adds a plugin to the Local Player Subsystem.
 
 #### Parameters
 * `SubsystemClassPath` The class path of the plugin to add. 
