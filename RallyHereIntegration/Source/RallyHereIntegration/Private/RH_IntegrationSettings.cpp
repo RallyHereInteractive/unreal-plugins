@@ -14,7 +14,7 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 
 	// Set the default internal commandline keys.  Note that ORDER IS IMPORTANT, as it determines priority.
 #define SET_DEFAULT_INTERNAL_COMMANDLINE_KEYS(SettingName, CommandLineBase) \
-	SettingName.Reset(3); \
+	SettingName.Reserve(SettingName.Num() + 3); \
 	SettingName.Add(TEXT(CommandLineBase "X"));			/* override variant (highest priority, dev / user override) */ \
 	SettingName.Add(TEXT(CommandLineBase));				/* default variant (middle priority, for default from storefront/install) */ \
 	SettingName.Add(TEXT(CommandLineBase "Internal"));	/* internal variant (lowest priority, for automation defaults from build/package) */ \
