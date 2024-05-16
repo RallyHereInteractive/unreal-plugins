@@ -551,8 +551,8 @@ void URallyHereDebugTool::ImGuiPostInit()
 				// connect to localhost by default
 				FString ConnectIp = URallyHereDebugToolSettings::Get()->NetImguiDefaultConnectIP;
 				int32 ConnectPort = URallyHereDebugToolSettings::Get()->NetImguiDefaultConnectPort;
-				FParse::Value(FCommandLine::Get(), TEXT("rh.dtconnectip"), ConnectIp);
-				FParse::Value(FCommandLine::Get(), TEXT("rh.dtconnectport"), ConnectPort);
+				FParse::Value(FCommandLine::Get(), TEXT("rh.dtconnectip="), ConnectIp);
+				FParse::Value(FCommandLine::Get(), TEXT("rh.dtconnectport="), ConnectPort);
 
 				ConnectPort = ConnectPort > 0 ? ConnectPort : NetImgui::kDefaultServerPort;
 
@@ -562,7 +562,7 @@ void URallyHereDebugTool::ImGuiPostInit()
 			{
 				// connect to localhost by default
 				int32 ListenPort = URallyHereDebugToolSettings::Get()->NetImguiDefaultListenPort;
-				FParse::Value(FCommandLine::Get(), TEXT("rh.dtlistenport"), ListenPort);
+				FParse::Value(FCommandLine::Get(), TEXT("rh.dtlistenport="), ListenPort);
 
 				ListenPort = ListenPort > 0 ? ListenPort : NetImgui::kDefaultClientPort;
 
@@ -690,8 +690,8 @@ void URallyHereDebugTool::DoImGui()
 					// connect to localhost by default
 					FString ConnectIp = URallyHereDebugToolSettings::Get()->NetImguiDefaultConnectIP;
 					int32 ConnectPort = URallyHereDebugToolSettings::Get()->NetImguiDefaultConnectPort;
-					FParse::Value(FCommandLine::Get(), TEXT("rh.dtconnectip"), ConnectIp);
-					FParse::Value(FCommandLine::Get(), TEXT("rh.dtconnectport"), ConnectPort);
+					FParse::Value(FCommandLine::Get(), TEXT("rh.dtconnectip="), ConnectIp);
+					FParse::Value(FCommandLine::Get(), TEXT("rh.dtconnectport="), ConnectPort);
 
 					ConnectPort = ConnectPort > 0 ? ConnectPort : NetImgui::kDefaultServerPort;
 
@@ -704,7 +704,7 @@ void URallyHereDebugTool::DoImGui()
 				{
 					// connect to localhost by default
 					int32 ListenPort = URallyHereDebugToolSettings::Get()->NetImguiDefaultListenPort;
-					FParse::Value(FCommandLine::Get(), TEXT("rh.dtlistenport"), ListenPort);
+					FParse::Value(FCommandLine::Get(), TEXT("rh.dtlistenport="), ListenPort);
 
 					ListenPort = ListenPort > 0 ? ListenPort : NetImgui::kDefaultClientPort;
 
