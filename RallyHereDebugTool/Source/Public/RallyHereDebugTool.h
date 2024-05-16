@@ -68,6 +68,11 @@ public:
 	void ToggleUI();
 	void CloseUI();
 	virtual void DoImGui();
+#ifdef WITH_IMGUI_NETIMGUI
+	void ConnectNetImGui(bool bStartup = false);
+	void ListenNetImGui(bool bStartup = false);
+	void DisconnectNetImGui();
+#endif
 
 	/** The current selected local player we are inspecting */
 	UPROPERTY(Transient)

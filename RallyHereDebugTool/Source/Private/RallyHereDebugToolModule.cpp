@@ -26,12 +26,18 @@ class FRallyHereDebugToolModule : public IRallyHereDebugToolModule
 	void RegisterConsoleCommands();
 
 	void ToggleDebugTool(UWorld* InWorld);
+#ifdef WITH_IMGUI_NETIMGUI
+	void ConnectDebugTool(UWorld* InWorld);
+#endif
 	virtual URallyHereDebugTool* GetDebugTool(UWorld* InWorld) const override;
 	virtual void UpdateImGuiInputState() override;
 	virtual FRHDTSpawnTool& GetSpawnToolDelegate() override { return OnSpawnTool; }
 	virtual FRHDTCleanupTool& GetCleanupToolDelegate() override { return OnCleanupTool; }
 
 	TUniquePtr<FAutoConsoleCommandWithWorld> ToggleDebugToolCommand;
+#ifdef WITH_IMGUI_NETIMGUI
+	TUniquePtr<FAutoConsoleCommandWithWorld> ConnectDebugToolCommand;
+#endif
 	TUniquePtr<FRallyHereDebugToolKeyboardShortcuts> ShortcutHandler;
 	FRHDTSpawnTool OnSpawnTool;
 	FRHDTCleanupTool OnCleanupTool;
@@ -48,6 +54,10 @@ void FRallyHereDebugToolModule::ShutdownModule()
 {
 	FRHDTW_OutputLog::OutputLogHistory.Reset();
 
+#ifdef WITH_IMGUI_NETIMGUI
+	ConnectDebugToolCommand.Reset();
+#endif
+
 	ToggleDebugToolCommand.Reset();
 	ShortcutHandler.Reset();
 }
@@ -60,6 +70,14 @@ void FRallyHereDebugToolModule::RegisterConsoleCommands()
 		FConsoleCommandWithWorldDelegate::CreateRaw(this, &FRallyHereDebugToolModule::ToggleDebugTool)
 		);
 
+#ifdef WITH_IMGUI_NETIMGUI
+	ConnectDebugToolCommand = MakeUnique<FAutoConsoleCommandWithWorld>(
+		*URallyHereDebugToolSettings::strConnectDebugTool,
+		TEXT("Connect the Rally Here Debug UI via NetImGui"),
+		FConsoleCommandWithWorldDelegate::CreateRaw(this, &FRallyHereDebugToolModule::ConnectDebugTool)
+	);
+#endif
+
 	ShortcutHandler = MakeUnique<FRallyHereDebugToolKeyboardShortcuts>();
 }
 
@@ -70,6 +88,16 @@ void FRallyHereDebugToolModule::ToggleDebugTool(UWorld* InWorld)
 		pDebugToll->ToggleUI();
 	}
 }
+
+#ifdef WITH_IMGUI_NETIMGUI
+void FRallyHereDebugToolModule::ConnectDebugTool(UWorld* InWorld)
+{
+	if (URallyHereDebugTool* pDebugToll = GetDebugTool(InWorld))
+	{
+		pDebugToll->ConnectNetImGui();
+	}
+}
+#endif
 
 URallyHereDebugTool* FRallyHereDebugToolModule::GetDebugTool(UWorld* InWorld) const
 {
