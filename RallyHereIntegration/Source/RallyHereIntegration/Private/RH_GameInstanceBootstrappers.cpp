@@ -830,6 +830,7 @@ void URH_GameInstanceServerBootstrapper::OnReservationComplete(bool bSuccess)
 
 	bool bStartedHelper = false;
 	FString SessionType = DefaultAutoCreateSessionType;
+	FString SessionRegion = DefaultAutoCreateRegion;
 
 	if (
 #if ALLOW_RH_COMMANDLINE_ARGS_WITHOUT_PREFIX
@@ -840,6 +841,11 @@ void URH_GameInstanceServerBootstrapper::OnReservationComplete(bool bSuccess)
 		UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] - default session type overridden by commandline to %s"), ANSI_TO_TCHAR(__FUNCTION__), *SessionType);
 	}
 
+	if (FParse::Value(FCommandLine::Get(), TEXT("rh.sessionregion="), SessionRegion))
+	{
+		UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] - default session region overridden by commandline to %s"), ANSI_TO_TCHAR(__FUNCTION__), *SessionRegion);
+	}
+
 	if (SessionType.Len() > 0 && AuthContext.IsValid())
 	{
 		// create a session and return us the session id
@@ -847,6 +853,10 @@ void URH_GameInstanceServerBootstrapper::OnReservationComplete(bool bSuccess)
 		BaseType::Request Request;
 		Request.AuthContext = AuthContext;
 		Request.CreateOrJoinRequest.SetSessionType(SessionType);
+		if (!SessionRegion.IsEmpty())
+		{
+			Request.CreateOrJoinRequest.SetRegionId(SessionRegion);
+		}		
 		Request.CreateOrJoinRequest.SetClientVersion(URH_JoinedSession::GetClientVersionForSession());
 		Request.CreateOrJoinRequest.ClientSettings.SetPlatform(ERHAPI_Platform::Basic);
 		Request.CreateOrJoinRequest.ClientSettings.SetInput(URH_JoinedSession::GetClientInputTypeForSession());

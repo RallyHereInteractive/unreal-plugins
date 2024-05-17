@@ -633,6 +633,10 @@ protected:
 	UPROPERTY(VisibleInstanceOnly, Config, Category = "Session")
 	FString DefaultAutoCreateSessionType;
 
+	/** The default type of session to create when using AutoCreate bootstrapping mode */
+	UPROPERTY(VisibleInstanceOnly, Config, Category = "Session")
+	FString DefaultAutoCreateRegion;
+
 	/** The default type of bootstrapping mode (only supports Disabled and LoginOnly, as other session types require commandline injection) */
 	UPROPERTY(VisibleInstanceOnly, Config, Category = "Session")
 	ERH_ServerBootstrapMode DefaultBootstrapMode;
