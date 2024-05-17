@@ -1352,7 +1352,7 @@ void FRHDTW_Session::ImGuiDisplaySessionBrowser(URH_GameInstanceSubsystem* pGISu
 			{
 				for (auto SessionInfo : Result.SessionInfos)
 				{
-					FString SessionId = SessionInfo.SessionId;
+					const FString& SessionId = SessionInfo.SessionId;
 
 					// check if we have a cached session
 					auto Session = pGISessionSearchCache->GetSessionById(SessionId);
@@ -1362,21 +1362,28 @@ void FRHDTW_Session::ImGuiDisplaySessionBrowser(URH_GameInstanceSubsystem* pGISu
 					}
 					else
 					{
-						ImGuiDisplayCopyableValue(TEXT("Session Id"), SessionId);
-						ImGui::SameLine();
-						if (pGISessionSearchCache != nullptr)
+						// mimic header from session display
+						FString SessionHeaderString = FString::Printf(TEXT("Session: %s - %s"), *SessionId, *Result.SearchParams.SessionType);
+						if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*SessionHeaderString), RH_DefaultTreeFlags))
 						{
-							if (ImGui::SmallButton("Get Session Details"))
+							ImGuiDisplayCopyableValue(TEXT("Session Id"), SessionId);
+							ImGui::SameLine();
+							if (pGISessionSearchCache != nullptr)
 							{
-								URH_SessionView::PollSingleSession(SessionId, pGISessionSearchCache);
+								if (ImGui::SmallButton("Get Session Details"))
+								{
+									URH_SessionView::PollSingleSession(SessionId, pGISessionSearchCache);
+								}
 							}
+
+
+							ImGuiDisplayCopyableValue(TEXT("Player Count"), SessionInfo.GetPlayerCountOrNull());
+							ImGuiDisplayCopyableValue(TEXT("Max Player Count"), SessionInfo.GetMaxPlayerCountOrNull());
+
+							ImGuiDisplayCustomData(SessionInfo.GetCustomDataOrNull());
+
+							ImGui::TreePop();
 						}
-
-
-						ImGuiDisplayCopyableValue(TEXT("Player Count"), SessionInfo.GetPlayerCountOrNull());
-						ImGuiDisplayCopyableValue(TEXT("Max Player Count"), SessionInfo.GetMaxPlayerCountOrNull());
-
-						ImGuiDisplayCustomData(SessionInfo.GetCustomDataOrNull());
 					}
 				}
 			}
