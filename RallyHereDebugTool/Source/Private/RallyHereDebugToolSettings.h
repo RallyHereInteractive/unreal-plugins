@@ -149,6 +149,10 @@ public:
 
 	static const FString strToggleDebugTool;
 
+#ifdef WITH_IMGUI_NETIMGUI
+	static const FString strConnectDebugTool;
+#endif
+
 protected:
 	static URallyHereDebugToolSettings* DefaultInstance;
 };

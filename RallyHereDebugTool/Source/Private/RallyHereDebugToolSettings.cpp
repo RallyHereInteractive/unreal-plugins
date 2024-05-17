@@ -10,6 +10,9 @@
 #include "RH_Common.h"
 
 const FString URallyHereDebugToolSettings::strToggleDebugTool(TEXT("rh.ToggleDebugTool"));
+#ifdef WITH_IMGUI_NETIMGUI
+	const FString URallyHereDebugToolSettings::strConnectDebugTool(TEXT("rh.ConnectDebugTool"));
+#endif
 URallyHereDebugToolSettings* URallyHereDebugToolSettings::DefaultInstance = nullptr;
 FSimpleMulticastDelegate URallyHereDebugToolSettings::OnSettingsLoaded;
 

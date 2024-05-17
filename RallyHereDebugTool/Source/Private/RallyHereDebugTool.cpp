@@ -158,17 +158,12 @@ void URallyHereDebugTool::Initialize(FSubsystemCollectionBase& Collection)
 	// once we have ability to not render the local UI, can do something similar for client if needed
 	if (IsRunningDedicatedServer())
 	{
-		const auto Policy = IsRunningDedicatedServer() ? URallyHereDebugToolSettings::Get()->DedicatedServerNetImguiPolicy : URallyHereDebugToolSettings::Get()->NetImguiPolicy;
-		if (Policy == ERH_NetImGuiPolicy::ConnectToAppOnStartup || Policy == ERH_NetImGuiPolicy::ConnectFromAppOnStartup)
-		{
-			// defer the state change to the next frame
-			FTSTicker::GetCoreTicker().AddTicker(FTickerDelegate::CreateWeakLambda(this, [this](float)
-				{
-					ImGuiPostInit();
-					return false;
-				}), 0);
-			
-		}
+		// defer the state change to the next frame
+		FTSTicker::GetCoreTicker().AddTicker(FTickerDelegate::CreateWeakLambda(this, [this](float)
+			{
+				ImGuiPostInit();
+				return false;
+			}), 0);
 	}
 }
 
@@ -528,6 +523,41 @@ void URallyHereDebugTool::ToggleUI()
 	}
 }
 
+#ifdef WITH_IMGUI_NETIMGUI
+void URallyHereDebugTool::ConnectNetImGui(bool bStartup)
+{
+	const auto NetImguiAppName = IsRunningDedicatedServer() ? "rhdebugtool-server" : "rhdebugtool";
+
+	// connect to the specified ip and port
+	FString ConnectIp = URallyHereDebugToolSettings::Get()->NetImguiDefaultConnectIP;
+	int32 ConnectPort = URallyHereDebugToolSettings::Get()->NetImguiDefaultConnectPort;
+	FParse::Value(FCommandLine::Get(), TEXT("rh.dtconnectip="), ConnectIp);
+	FParse::Value(FCommandLine::Get(), TEXT("rh.dtconnectport="), ConnectPort);
+
+	ConnectPort = ConnectPort > 0 ? ConnectPort : NetImgui::kDefaultServerPort;
+
+	NetImgui::ConnectToApp(NetImguiAppName, TCHAR_TO_UTF8(*ConnectIp), ConnectPort);
+}
+
+void URallyHereDebugTool::ListenNetImGui(bool bStartup)
+{
+	const auto NetImguiAppName = IsRunningDedicatedServer() ? "rhdebugtool-server" : "rhdebugtool";
+	
+	// listen on the specified port
+	int32 ListenPort = URallyHereDebugToolSettings::Get()->NetImguiDefaultListenPort;
+	FParse::Value(FCommandLine::Get(), TEXT("rh.dtlistenport="), ListenPort);
+
+	ListenPort = ListenPort > 0 ? ListenPort : NetImgui::kDefaultClientPort;
+
+	NetImgui::ConnectFromApp(NetImguiAppName, ListenPort);
+}
+
+void URallyHereDebugTool::DisconnectNetImGui()
+{
+	NetImgui::Disconnect();
+}
+#endif
+
 void URallyHereDebugTool::ImGuiPostInit()
 {
 	static bool bDoOnce = true;
@@ -545,28 +575,13 @@ void URallyHereDebugTool::ImGuiPostInit()
 #ifdef WITH_IMGUI_NETIMGUI
 		{
 			const auto Policy = IsRunningDedicatedServer() ? URallyHereDebugToolSettings::Get()->DedicatedServerNetImguiPolicy : URallyHereDebugToolSettings::Get()->NetImguiPolicy;
-			const auto NetImguiAppName = IsRunningDedicatedServer() ? "rhdebugtool-server" : "rhdebugtool";
 			if (Policy == ERH_NetImGuiPolicy::ConnectToAppOnStartup)
 			{
-				// connect to localhost by default
-				FString ConnectIp = URallyHereDebugToolSettings::Get()->NetImguiDefaultConnectIP;
-				int32 ConnectPort = URallyHereDebugToolSettings::Get()->NetImguiDefaultConnectPort;
-				FParse::Value(FCommandLine::Get(), TEXT("rh.dtconnectip"), ConnectIp);
-				FParse::Value(FCommandLine::Get(), TEXT("rh.dtconnectport"), ConnectPort);
-
-				ConnectPort = ConnectPort > 0 ? ConnectPort : NetImgui::kDefaultServerPort;
-
-				NetImgui::ConnectToApp(NetImguiAppName, TCHAR_TO_UTF8(*ConnectIp), ConnectPort);
+				ConnectNetImGui(true);
 			}
 			else if (Policy == ERH_NetImGuiPolicy::ConnectFromAppOnStartup)
 			{
-				// connect to localhost by default
-				int32 ListenPort = URallyHereDebugToolSettings::Get()->NetImguiDefaultListenPort;
-				FParse::Value(FCommandLine::Get(), TEXT("rh.dtlistenport"), ListenPort);
-
-				ListenPort = ListenPort > 0 ? ListenPort : NetImgui::kDefaultClientPort;
-
-				NetImgui::ConnectFromApp(NetImguiAppName, ListenPort);
+				ListenNetImGui(true);
 			}
 		}
 #endif
@@ -672,7 +687,6 @@ void URallyHereDebugTool::DoImGui()
 
 #ifdef WITH_IMGUI_NETIMGUI
 		const auto Policy = IsRunningDedicatedServer() ? URallyHereDebugToolSettings::Get()->DedicatedServerNetImguiPolicy : URallyHereDebugToolSettings::Get()->NetImguiPolicy;
-		const auto NetImguiAppName = IsRunningDedicatedServer() ? "rhdebugtool-server" : "rhdebugtool";
 		if (Policy != ERH_NetImGuiPolicy::Disabled)
 		{
 			ImGui::SameLine();
@@ -680,35 +694,21 @@ void URallyHereDebugTool::DoImGui()
 			{
 				if (ImGui::Button("Disconnect NetImgui"))
 				{
-					NetImgui::Disconnect();
+					DisconnectNetImGui();
 				}
 			}
 			else if (Policy == ERH_NetImGuiPolicy::ConnectToApp || Policy == ERH_NetImGuiPolicy::ConnectToAppOnStartup)
 			{
 				if (ImGui::Button("Connect NetImgui"))
 				{
-					// connect to localhost by default
-					FString ConnectIp = URallyHereDebugToolSettings::Get()->NetImguiDefaultConnectIP;
-					int32 ConnectPort = URallyHereDebugToolSettings::Get()->NetImguiDefaultConnectPort;
-					FParse::Value(FCommandLine::Get(), TEXT("rh.dtconnectip"), ConnectIp);
-					FParse::Value(FCommandLine::Get(), TEXT("rh.dtconnectport"), ConnectPort);
-
-					ConnectPort = ConnectPort > 0 ? ConnectPort : NetImgui::kDefaultServerPort;
-
-					NetImgui::ConnectToApp(NetImguiAppName, TCHAR_TO_UTF8(*ConnectIp), ConnectPort);
+					ConnectNetImGui();
 				}
 			}
 			else if (Policy == ERH_NetImGuiPolicy::ConnectFromApp || Policy == ERH_NetImGuiPolicy::ConnectFromAppOnStartup)
 			{
 				if (ImGui::Button("Allow NetImgui"))
 				{
-					// connect to localhost by default
-					int32 ListenPort = URallyHereDebugToolSettings::Get()->NetImguiDefaultListenPort;
-					FParse::Value(FCommandLine::Get(), TEXT("rh.dtlistenport"), ListenPort);
-
-					ListenPort = ListenPort > 0 ? ListenPort : NetImgui::kDefaultClientPort;
-
-					NetImgui::ConnectFromApp(NetImguiAppName, ListenPort);
+					ListenNetImGui();
 				}
 			}
 		}
