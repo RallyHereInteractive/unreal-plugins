@@ -251,6 +251,11 @@ void URH_GameInstanceServerBootstrapper::BestEffortLeaveSession()
 		//RHSession->Leave(false);
 		// rather than leaving via the helper, invoke the API directly.
 		// This is to fix an assert on shutdown where the helper has its callback bindings removed, so it does not complete and release the reference to the http request object
+
+		// can only call the leave session by id self endpoint if we have an auth context with a player
+		if (	AuthContext.IsValid() && AuthContext->IsLoggedIn()
+			&&	AuthContext->GetLoginResult().IsSet() && AuthContext->GetLoginResult()->GetActivePlayerUuidOrNull() != nullptr
+			&&	RHSession->GetSessionId().Len() > 0)
 		{
 			RallyHereAPI::Traits_LeaveSessionByIdSelf::Request Request;
 			Request.AuthContext = GetAuthContext();

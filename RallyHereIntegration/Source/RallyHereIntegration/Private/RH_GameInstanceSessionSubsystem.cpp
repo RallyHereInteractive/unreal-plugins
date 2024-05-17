@@ -265,7 +265,6 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 		{
 			OldSession->SetWatchingPlayers(false); // TODO - maybe should be incrementing/decrementing watch counter?
 		}
-		OldSession = nullptr;
 
 		if (InstanceHealthPoller.IsValid())
 		{
