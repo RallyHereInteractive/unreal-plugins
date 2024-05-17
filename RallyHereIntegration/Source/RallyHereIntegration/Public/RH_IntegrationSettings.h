@@ -22,19 +22,19 @@ struct FRH_EnvironmentConfiguration
 {
 	GENERATED_BODY()
 	/** @brief Environment Name, for use with client side environment lookups and overrides. */
-	UPROPERTY(EditAnywhere, Config, Category = "Connectivity")
+	UPROPERTY(EditAnywhere, Config, Category = "Connectivity", meta = (DisplayName = "Preset Name"))
 	FString EnvironmentId;
 
 	/** @brief RallyHere BaseURL. Determines the base URL to use when connecting to the RallyHere API */
-	UPROPERTY(EditAnywhere, Config, Category = "Connectivity")
+	UPROPERTY(EditAnywhere, Config, Category = "Connectivity", meta = (DisplayName = "Base URL"))
 	FString BaseUrl;
 
 	/** @brief RallyHere Client ID. Determines the available permissions for RallyHere APIs */
-	UPROPERTY(EditAnywhere, Config, Category = "Connectivity")
+	UPROPERTY(EditAnywhere, Config, Category = "Connectivity", meta = (DisplayName = "Client Id"))
 	FString ClientId;
 
 	/** @brief RallyHere Client secret. Must be associated with the defined client ID */
-	UPROPERTY(EditAnywhere, Config, Category = "Connectivity")
+	UPROPERTY(EditAnywhere, Config, Category = "Connectivity", meta = (DisplayName = "Client Secret"))
 	FString ClientSecret;
 };
 
