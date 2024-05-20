@@ -150,6 +150,7 @@ Server Bootstrapper for the Game Instance.
 `protected TOptional< FString > `[`AllTemplatesETag`](#classURH__GameInstanceServerBootstrapper_1a98d6b5f7f29f0a05d3cfe1064de8e230) | ETag for the template list
 `protected `[`URH_OnlineSession`](Session.md#classURH__OnlineSession)` * `[`RHSession`](#classURH__GameInstanceServerBootstrapper_1ad302c0226ce41e487468265ce7ce3808) | The current session we are using
 `protected FString `[`DefaultAutoCreateSessionType`](#classURH__GameInstanceServerBootstrapper_1ade098c2efc90a5136ef64520677b72d2) | The default type of session to create when using AutoCreate bootstrapping mode
+`protected FString `[`DefaultAutoCreateRegion`](#classURH__GameInstanceServerBootstrapper_1a8b13906ca4b7c1144827bb39eba1d4ec) | The default region of session to create when using AutoCreate bootstrapping mode
 `protected `[`ERH_ServerBootstrapMode`](undefined.md#group__GameInstance_1ga9dd612a2285258b977ec4c21d7a64196)` `[`DefaultBootstrapMode`](#classURH__GameInstanceServerBootstrapper_1a925b503fbad705f2664c2d36e21fe9cb) | The default type of bootstrapping mode (only supports Disabled and LoginOnly, as other session types require commandline injection)
 `protected int32 `[`MaxRecycleCount`](#classURH__GameInstanceServerBootstrapper_1a9c0012cfc1a7b0441d76f276d34e654a) | The maximum number of times to recycle this bootstrapper (if less than one, implies 1), checked during cleanup
 `protected bool `[`bMultiSessionServerMode`](#classURH__GameInstanceServerBootstrapper_1afacb0c65022bf850926bc30885a92028) | Disables some checks that will cause the process to spin down, for use in cases where multiple game instances are running within a single process
@@ -497,6 +498,11 @@ The current session we are using
 #### `protected FString `[`DefaultAutoCreateSessionType`](#classURH__GameInstanceServerBootstrapper_1ade098c2efc90a5136ef64520677b72d2) <a id="classURH__GameInstanceServerBootstrapper_1ade098c2efc90a5136ef64520677b72d2"></a>
 
 The default type of session to create when using AutoCreate bootstrapping mode
+
+<br>
+#### `protected FString `[`DefaultAutoCreateRegion`](#classURH__GameInstanceServerBootstrapper_1a8b13906ca4b7c1144827bb39eba1d4ec) <a id="classURH__GameInstanceServerBootstrapper_1a8b13906ca4b7c1144827bb39eba1d4ec"></a>
+
+The default region of session to create when using AutoCreate bootstrapping mode
 
 <br>
 #### `protected `[`ERH_ServerBootstrapMode`](undefined.md#group__GameInstance_1ga9dd612a2285258b977ec4c21d7a64196)` `[`DefaultBootstrapMode`](#classURH__GameInstanceServerBootstrapper_1a925b503fbad705f2664c2d36e21fe9cb) <a id="classURH__GameInstanceServerBootstrapper_1a925b503fbad705f2664c2d36e21fe9cb"></a>
