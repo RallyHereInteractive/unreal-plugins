@@ -52,27 +52,22 @@ A request body to calculate and update players&#39; ratings from a match.
 
 ID for the instance the match took place on.
 
-<br>
 #### `public bool `[`InstanceId_IsSet`](#structFRHAPI__RankUpdateRequestV2_1afccfe640c8c1404cb359c5ac6c6c7b45) <a id="structFRHAPI__RankUpdateRequestV2_1afccfe640c8c1404cb359c5ac6c6c7b45"></a>
 
 true if InstanceId_Optional has been set to a value
 
-<br>
 #### `public FString `[`RankId`](#structFRHAPI__RankUpdateRequestV2_1a4471c36e5393b21c7eabf9f3b0c6bbc4) <a id="structFRHAPI__RankUpdateRequestV2_1a4471c36e5393b21c7eabf9f3b0c6bbc4"></a>
 
 ID for the rank type used in this match.
 
-<br>
 #### `public int32 `[`MatchLengthSeconds`](#structFRHAPI__RankUpdateRequestV2_1a91bf0f8e7fcd9eeef4368ca8bff338b4) <a id="structFRHAPI__RankUpdateRequestV2_1a91bf0f8e7fcd9eeef4368ca8bff338b4"></a>
 
 How many seconds the match lasted.
 
-<br>
 #### `public TArray< `[`FRHAPI_RankedTeam`](RHAPI_RankedTeam.md#structFRHAPI__RankedTeam)` > `[`Teams`](#structFRHAPI__RankUpdateRequestV2_1a58770a4cd45a001521437970c51f70aa) <a id="structFRHAPI__RankUpdateRequestV2_1a58770a4cd45a001521437970c51f70aa"></a>
 
 List of teams that participated in this match.
 
-<br>
 #### `public virtual bool `[`FromJson`](#structFRHAPI__RankUpdateRequestV2_1a5020149358d9579f4eb583bca8b1414e)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__RankUpdateRequestV2_1a5020149358d9579f4eb583bca8b1414e"></a>
 
 Fills this object with data from the passed in JSON.
@@ -83,7 +78,6 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-<br>
 #### `public virtual void `[`WriteJson`](#structFRHAPI__RankUpdateRequestV2_1ad235d4cde2797f0b64c5ccdc1b70f527)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__RankUpdateRequestV2_1ad235d4cde2797f0b64c5ccdc1b70f527"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
@@ -91,99 +85,79 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-<br>
 #### `public inline FString & `[`GetInstanceId`](#structFRHAPI__RankUpdateRequestV2_1a2b91761d385633e05c71230d3aa0d232)`()` <a id="structFRHAPI__RankUpdateRequestV2_1a2b91761d385633e05c71230d3aa0d232"></a>
 
 Gets the value of InstanceId_Optional, regardless of it having been set.
 
-<br>
 #### `public inline const FString & `[`GetInstanceId`](#structFRHAPI__RankUpdateRequestV2_1a5fefdaeebc736715c30f0a60598d72ba)`() const` <a id="structFRHAPI__RankUpdateRequestV2_1a5fefdaeebc736715c30f0a60598d72ba"></a>
 
 Gets the value of InstanceId_Optional, regardless of it having been set.
 
-<br>
 #### `public inline const FString & `[`GetInstanceId`](#structFRHAPI__RankUpdateRequestV2_1a371c5e0b52b7d6d5b481e9234270f7a2)`(const FString & DefaultValue) const` <a id="structFRHAPI__RankUpdateRequestV2_1a371c5e0b52b7d6d5b481e9234270f7a2"></a>
 
 Gets the value of InstanceId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-<br>
 #### `public inline bool `[`GetInstanceId`](#structFRHAPI__RankUpdateRequestV2_1ac1507852a0e0bb8f900e158a02108b57)`(FString & OutValue) const` <a id="structFRHAPI__RankUpdateRequestV2_1ac1507852a0e0bb8f900e158a02108b57"></a>
 
 Fills OutValue with the value of InstanceId_Optional and returns true if it has been set, otherwise returns false.
 
-<br>
 #### `public inline FString * `[`GetInstanceIdOrNull`](#structFRHAPI__RankUpdateRequestV2_1af80ede5be2a086fa86da0043e0188556)`()` <a id="structFRHAPI__RankUpdateRequestV2_1af80ede5be2a086fa86da0043e0188556"></a>
 
 Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr.
 
-<br>
 #### `public inline const FString * `[`GetInstanceIdOrNull`](#structFRHAPI__RankUpdateRequestV2_1aafb6ffbb2b2a373879d6f4b31956ed5a)`() const` <a id="structFRHAPI__RankUpdateRequestV2_1aafb6ffbb2b2a373879d6f4b31956ed5a"></a>
 
 Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr.
 
-<br>
 #### `public inline void `[`SetInstanceId`](#structFRHAPI__RankUpdateRequestV2_1ac65db021d86f4c0d9257d4f6529dc7ce)`(FString NewValue)` <a id="structFRHAPI__RankUpdateRequestV2_1ac65db021d86f4c0d9257d4f6529dc7ce"></a>
 
 Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true.
 
-<br>
 #### `public inline void `[`ClearInstanceId`](#structFRHAPI__RankUpdateRequestV2_1a184e19ae6e2689c66bb0ba3d9334325f)`()` <a id="structFRHAPI__RankUpdateRequestV2_1a184e19ae6e2689c66bb0ba3d9334325f"></a>
 
 Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false.
 
-<br>
 #### `public inline FString & `[`GetRankId`](#structFRHAPI__RankUpdateRequestV2_1a89af089c8dcc81c536459f872b1e7a03)`()` <a id="structFRHAPI__RankUpdateRequestV2_1a89af089c8dcc81c536459f872b1e7a03"></a>
 
 Gets the value of RankId.
 
-<br>
 #### `public inline const FString & `[`GetRankId`](#structFRHAPI__RankUpdateRequestV2_1a51b0c67f80ba51b707dd0289ebb8ae79)`() const` <a id="structFRHAPI__RankUpdateRequestV2_1a51b0c67f80ba51b707dd0289ebb8ae79"></a>
 
 Gets the value of RankId.
 
-<br>
 #### `public inline void `[`SetRankId`](#structFRHAPI__RankUpdateRequestV2_1abe81e1395b4f43cc9b1bd1d8f0207346)`(FString NewValue)` <a id="structFRHAPI__RankUpdateRequestV2_1abe81e1395b4f43cc9b1bd1d8f0207346"></a>
 
 Sets the value of RankId.
 
-<br>
 #### `public inline int32 & `[`GetMatchLengthSeconds`](#structFRHAPI__RankUpdateRequestV2_1a2a6d9e062fb0c98a8514354aef01e328)`()` <a id="structFRHAPI__RankUpdateRequestV2_1a2a6d9e062fb0c98a8514354aef01e328"></a>
 
 Gets the value of MatchLengthSeconds.
 
-<br>
 #### `public inline const int32 & `[`GetMatchLengthSeconds`](#structFRHAPI__RankUpdateRequestV2_1a15d186ef47d5eeb79911a2d694ba03c1)`() const` <a id="structFRHAPI__RankUpdateRequestV2_1a15d186ef47d5eeb79911a2d694ba03c1"></a>
 
 Gets the value of MatchLengthSeconds.
 
-<br>
 #### `public inline void `[`SetMatchLengthSeconds`](#structFRHAPI__RankUpdateRequestV2_1aefda24506618bfab93b74d2df4fc5104)`(int32 NewValue)` <a id="structFRHAPI__RankUpdateRequestV2_1aefda24506618bfab93b74d2df4fc5104"></a>
 
 Sets the value of MatchLengthSeconds.
 
-<br>
 #### `public inline bool `[`IsMatchLengthSecondsDefaultValue`](#structFRHAPI__RankUpdateRequestV2_1af0e25b4e70c4ce62e1111cb7d2d23021)`() const` <a id="structFRHAPI__RankUpdateRequestV2_1af0e25b4e70c4ce62e1111cb7d2d23021"></a>
 
 Returns true if MatchLengthSeconds matches the default value.
 
-<br>
 #### `public inline void `[`SetMatchLengthSecondsToDefault`](#structFRHAPI__RankUpdateRequestV2_1a51886b3f82c9ed12a88b4f732997b38c)`()` <a id="structFRHAPI__RankUpdateRequestV2_1a51886b3f82c9ed12a88b4f732997b38c"></a>
 
 Sets the value of MatchLengthSeconds to its default
 
-<br>
 #### `public inline TArray< `[`FRHAPI_RankedTeam`](RHAPI_RankedTeam.md#structFRHAPI__RankedTeam)` > & `[`GetTeams`](#structFRHAPI__RankUpdateRequestV2_1ad2c39c42c9dcd6140eb9f55680409733)`()` <a id="structFRHAPI__RankUpdateRequestV2_1ad2c39c42c9dcd6140eb9f55680409733"></a>
 
 Gets the value of Teams.
 
-<br>
 #### `public inline const TArray< `[`FRHAPI_RankedTeam`](RHAPI_RankedTeam.md#structFRHAPI__RankedTeam)` > & `[`GetTeams`](#structFRHAPI__RankUpdateRequestV2_1ac99f7c05920af593e0837ab937e8f6b6)`() const` <a id="structFRHAPI__RankUpdateRequestV2_1ac99f7c05920af593e0837ab937e8f6b6"></a>
 
 Gets the value of Teams.
 
-<br>
 #### `public inline void `[`SetTeams`](#structFRHAPI__RankUpdateRequestV2_1a04cd41756d8060c90206ebed41b44723)`(TArray< `[`FRHAPI_RankedTeam`](RHAPI_RankedTeam.md#structFRHAPI__RankedTeam)` > NewValue)` <a id="structFRHAPI__RankUpdateRequestV2_1a04cd41756d8060c90206ebed41b44723"></a>
 
 Sets the value of Teams.
 
-<br>

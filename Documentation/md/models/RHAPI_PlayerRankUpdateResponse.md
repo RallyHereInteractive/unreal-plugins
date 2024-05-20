@@ -32,7 +32,6 @@ DEPRECATED Response to successfully updating players&#39; ranks.
 
 List of players and their updated ranks.
 
-<br>
 #### `public virtual bool `[`FromJson`](#structFRHAPI__PlayerRankUpdateResponse_1a8c70e27184c2ed95c1687f0070de3a41)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlayerRankUpdateResponse_1a8c70e27184c2ed95c1687f0070de3a41"></a>
 
 Fills this object with data from the passed in JSON.
@@ -43,7 +42,6 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-<br>
 #### `public virtual void `[`WriteJson`](#structFRHAPI__PlayerRankUpdateResponse_1a47da0774dd217832f7b5ab5f20e70803)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PlayerRankUpdateResponse_1a47da0774dd217832f7b5ab5f20e70803"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
@@ -51,19 +49,15 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-<br>
 #### `public inline TArray< `[`FRHAPI_PlayerRankResponse`](RHAPI_PlayerRankResponse.md#structFRHAPI__PlayerRankResponse)` > & `[`GetUpdatedPlayers`](#structFRHAPI__PlayerRankUpdateResponse_1ac7213500ce83733148a448a808771080)`()` <a id="structFRHAPI__PlayerRankUpdateResponse_1ac7213500ce83733148a448a808771080"></a>
 
 Gets the value of UpdatedPlayers.
 
-<br>
 #### `public inline const TArray< `[`FRHAPI_PlayerRankResponse`](RHAPI_PlayerRankResponse.md#structFRHAPI__PlayerRankResponse)` > & `[`GetUpdatedPlayers`](#structFRHAPI__PlayerRankUpdateResponse_1a67c1363557897ce067efec035674b8c5)`() const` <a id="structFRHAPI__PlayerRankUpdateResponse_1a67c1363557897ce067efec035674b8c5"></a>
 
 Gets the value of UpdatedPlayers.
 
-<br>
 #### `public inline void `[`SetUpdatedPlayers`](#structFRHAPI__PlayerRankUpdateResponse_1a5199179dc905b15110e2e2ae0cda32a2)`(TArray< `[`FRHAPI_PlayerRankResponse`](RHAPI_PlayerRankResponse.md#structFRHAPI__PlayerRankResponse)` > NewValue)` <a id="structFRHAPI__PlayerRankUpdateResponse_1a5199179dc905b15110e2e2ae0cda32a2"></a>
 
 Sets the value of UpdatedPlayers.
 
-<br>

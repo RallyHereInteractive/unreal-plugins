@@ -32,7 +32,6 @@ A Key Type is a type of key that can be claimed from a Marketing Campaign.
 
 The type of key.
 
-<br>
 #### `public virtual bool `[`FromJson`](#structFRHAPI__KeyType_1af7191d475c90e3a0816b5d4bf43ae328)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__KeyType_1af7191d475c90e3a0816b5d4bf43ae328"></a>
 
 Fills this object with data from the passed in JSON.
@@ -43,7 +42,6 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-<br>
 #### `public virtual void `[`WriteJson`](#structFRHAPI__KeyType_1a2f8918a400e913e9034377d936692548)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__KeyType_1a2f8918a400e913e9034377d936692548"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
@@ -51,19 +49,15 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-<br>
 #### `public inline FString & `[`GetType`](#structFRHAPI__KeyType_1a6246f2efe400fcd0ef63b8cea89b836a)`()` <a id="structFRHAPI__KeyType_1a6246f2efe400fcd0ef63b8cea89b836a"></a>
 
 Gets the value of Type.
 
-<br>
 #### `public inline const FString & `[`GetType`](#structFRHAPI__KeyType_1ae2f4df1be8a30aa99befe068994848ed)`() const` <a id="structFRHAPI__KeyType_1ae2f4df1be8a30aa99befe068994848ed"></a>
 
 Gets the value of Type.
 
-<br>
 #### `public inline void `[`SetType`](#structFRHAPI__KeyType_1ada118d4aa3e8fea65f29cd198f50a5f2)`(FString NewValue)` <a id="structFRHAPI__KeyType_1ada118d4aa3e8fea65f29cd198f50a5f2"></a>
 
 Sets the value of Type.
 
-<br>

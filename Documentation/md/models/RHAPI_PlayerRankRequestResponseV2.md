@@ -32,7 +32,6 @@ Response to successfully requesting all of a player&#39;s ranks.
 
 List of player's ranks.
 
-<br>
 #### `public virtual bool `[`FromJson`](#structFRHAPI__PlayerRankRequestResponseV2_1a03712dedf7488733a2162a4b4cedc7d7)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlayerRankRequestResponseV2_1a03712dedf7488733a2162a4b4cedc7d7"></a>
 
 Fills this object with data from the passed in JSON.
@@ -43,7 +42,6 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-<br>
 #### `public virtual void `[`WriteJson`](#structFRHAPI__PlayerRankRequestResponseV2_1a038b46467170246424f5a188361d7cf1)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PlayerRankRequestResponseV2_1a038b46467170246424f5a188361d7cf1"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
@@ -51,19 +49,15 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-<br>
 #### `public inline TArray< `[`FRHAPI_PlayerRankResponseV2`](RHAPI_PlayerRankResponseV2.md#structFRHAPI__PlayerRankResponseV2)` > & `[`GetPlayerRanks`](#structFRHAPI__PlayerRankRequestResponseV2_1a4b0f64f6adb6b32e30d012eea8623b54)`()` <a id="structFRHAPI__PlayerRankRequestResponseV2_1a4b0f64f6adb6b32e30d012eea8623b54"></a>
 
 Gets the value of PlayerRanks.
 
-<br>
 #### `public inline const TArray< `[`FRHAPI_PlayerRankResponseV2`](RHAPI_PlayerRankResponseV2.md#structFRHAPI__PlayerRankResponseV2)` > & `[`GetPlayerRanks`](#structFRHAPI__PlayerRankRequestResponseV2_1ab5ce87761c241ccefaf1c5fe1ac0db82)`() const` <a id="structFRHAPI__PlayerRankRequestResponseV2_1ab5ce87761c241ccefaf1c5fe1ac0db82"></a>
 
 Gets the value of PlayerRanks.
 
-<br>
 #### `public inline void `[`SetPlayerRanks`](#structFRHAPI__PlayerRankRequestResponseV2_1acdf16df8acc6e2f1341971ea6d2c2fa5)`(TArray< `[`FRHAPI_PlayerRankResponseV2`](RHAPI_PlayerRankResponseV2.md#structFRHAPI__PlayerRankResponseV2)` > NewValue)` <a id="structFRHAPI__PlayerRankRequestResponseV2_1acdf16df8acc6e2f1341971ea6d2c2fa5"></a>
 
 Sets the value of PlayerRanks.
 
-<br>

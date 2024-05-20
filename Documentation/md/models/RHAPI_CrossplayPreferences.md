@@ -36,12 +36,10 @@ A session&#39;s or player&#39;s preferences around crossplay platforms and input
 
 The platform type that the client is allowed to play with (any, xbox-like only, playstation-like only etc.)
 
-<br>
 #### `public ERHAPI_CrossplayInput `[`PermittedInput`](#structFRHAPI__CrossplayPreferences_1a5813a58f2450a66cef55eae278165b25) <a id="structFRHAPI__CrossplayPreferences_1a5813a58f2450a66cef55eae278165b25"></a>
 
 The input type that the client is allowed to play with (keyboard and mouse, gamepad, touch input etc.)
 
-<br>
 #### `public virtual bool `[`FromJson`](#structFRHAPI__CrossplayPreferences_1a91388e37c3dc50e88f786a22a670f4b4)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__CrossplayPreferences_1a91388e37c3dc50e88f786a22a670f4b4"></a>
 
 Fills this object with data from the passed in JSON.
@@ -52,7 +50,6 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-<br>
 #### `public virtual void `[`WriteJson`](#structFRHAPI__CrossplayPreferences_1ad1acab088331e99ab2ff3fa42c9b1973)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__CrossplayPreferences_1ad1acab088331e99ab2ff3fa42c9b1973"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
@@ -60,34 +57,27 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-<br>
 #### `public inline ERHAPI_CrossplayPlatform & `[`GetPermittedPlatform`](#structFRHAPI__CrossplayPreferences_1a218dd80d52dd5a946464d85276a9712c)`()` <a id="structFRHAPI__CrossplayPreferences_1a218dd80d52dd5a946464d85276a9712c"></a>
 
 Gets the value of PermittedPlatform.
 
-<br>
 #### `public inline const ERHAPI_CrossplayPlatform & `[`GetPermittedPlatform`](#structFRHAPI__CrossplayPreferences_1aad1c87f3bf1cfd812a1fed142b7aed4f)`() const` <a id="structFRHAPI__CrossplayPreferences_1aad1c87f3bf1cfd812a1fed142b7aed4f"></a>
 
 Gets the value of PermittedPlatform.
 
-<br>
 #### `public inline void `[`SetPermittedPlatform`](#structFRHAPI__CrossplayPreferences_1ab3e97515aa5dabbdff8cdfa06bb22956)`(ERHAPI_CrossplayPlatform NewValue)` <a id="structFRHAPI__CrossplayPreferences_1ab3e97515aa5dabbdff8cdfa06bb22956"></a>
 
 Sets the value of PermittedPlatform.
 
-<br>
 #### `public inline ERHAPI_CrossplayInput & `[`GetPermittedInput`](#structFRHAPI__CrossplayPreferences_1abc3c6227e6e919f488cb27dfcba4ed45)`()` <a id="structFRHAPI__CrossplayPreferences_1abc3c6227e6e919f488cb27dfcba4ed45"></a>
 
 Gets the value of PermittedInput.
 
-<br>
 #### `public inline const ERHAPI_CrossplayInput & `[`GetPermittedInput`](#structFRHAPI__CrossplayPreferences_1ad54395727b7ccfff2b671b951362d0e0)`() const` <a id="structFRHAPI__CrossplayPreferences_1ad54395727b7ccfff2b671b951362d0e0"></a>
 
 Gets the value of PermittedInput.
 
-<br>
 #### `public inline void `[`SetPermittedInput`](#structFRHAPI__CrossplayPreferences_1a7b0065b5374b1708ecbefd784b6a1b1b)`(ERHAPI_CrossplayInput NewValue)` <a id="structFRHAPI__CrossplayPreferences_1a7b0065b5374b1708ecbefd784b6a1b1b"></a>
 
 Sets the value of PermittedInput.
 
-<br>
