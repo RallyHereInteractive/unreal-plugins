@@ -48,7 +48,6 @@ Notification Subsystem used for polling notifications of updates.
 `public inline const FString & `[`GetStreamingCursor`](#classURH__PlayerNotifications_1ab626106ca160ac09e3eebb8a02f04f24)`() const` | Gets the current cursor for streaming notifications.
 `public inline const FGuid & `[`GetStreamingPlayerUuid`](#classURH__PlayerNotifications_1ac4ce080fb03019b67f7f1534d5ac6239)`() const` | Gets the unique player id the notifications are being streamed for.
 `public bool `[`CreateNotification`](#classURH__PlayerNotifications_1a847a88d9756e4dd4e8f14358816d3711)`(const FGuid & PlayerUuid,const FString & Message,const FString & RhUrl,const TMap< FString, FString > & CustomData,const FRH_OnSingularNotificationIDDelegateBlock & Delegate)` | Creates a notification, mostly used for debugging as notifications generally originate from the core.
-`public inline bool `[`BLUEPRINT_CreateNotification`](#classURH__PlayerNotifications_1a3cc1b6c05ff93c67fb036d7628394593)`(const FGuid & PlayerUuid,const FString & Message,const FString & RhUrl,const TMap< FString, FString > & CustomData,const FRH_OnSingularNotificationIDDynamicDelegate & Delegate)` | 
 `protected `[`FRH_NotificationPollingTypes`](undefined.md#group__Notifications_1gace387863cbcb11c5932fc70080b2d724)` `[`PollingType`](#classURH__PlayerNotifications_1a40c95a52389181570358ef990ce84912) | The polling type to use, defaults to Long Poll.
 `protected TSharedPtr< class FRH_NotificationStreamingLongPollHelper > `[`LongPollHelper`](#classURH__PlayerNotifications_1a38ebff9ba57e162f812c688d60b48df0) | Helper for making long polling requests.
 `protected FGuid `[`StreamingPlayerUuid`](#classURH__PlayerNotifications_1a8eccac51c9d87601a7eaff31eda54c51) | Player Uuid for that the notifications are being polled for.
@@ -171,8 +170,6 @@ Creates a notification, mostly used for debugging as notifications generally ori
 
 #### Returns
 True, if the notification was created.
-
-#### `public inline bool `[`BLUEPRINT_CreateNotification`](#classURH__PlayerNotifications_1a3cc1b6c05ff93c67fb036d7628394593)`(const FGuid & PlayerUuid,const FString & Message,const FString & RhUrl,const TMap< FString, FString > & CustomData,const FRH_OnSingularNotificationIDDynamicDelegate & Delegate)` <a id="classURH__PlayerNotifications_1a3cc1b6c05ff93c67fb036d7628394593"></a>
 
 #### `protected `[`FRH_NotificationPollingTypes`](undefined.md#group__Notifications_1gace387863cbcb11c5932fc70080b2d724)` `[`PollingType`](#classURH__PlayerNotifications_1a40c95a52389181570358ef990ce84912) <a id="classURH__PlayerNotifications_1a40c95a52389181570358ef990ce84912"></a>
 

@@ -65,9 +65,7 @@ Login Subsystem for the local player.
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public FRH_OnLoginCompleteMulticast `[`OnLoginComplete`](#classURH__LocalPlayerLoginSubsystem_1a843a3800206848baa22ddf46eb997e04) | Multicast delegate that gets broadcasted on login complete.
-`public FRH_OnLoginCompleteDynamicMulticast `[`BLUEPRINT_OnLoginComplete`](#classURH__LocalPlayerLoginSubsystem_1a75fecc81fac520458fa441c2d06d09d2) | Multicast delegate that gets broadcasted on login complete.
 `public FRH_GeneralSettingChangedMulticast `[`OnCrossplaySettingChanged`](#classURH__LocalPlayerLoginSubsystem_1ab039522171ab500f9c26d0e224bde938) | Multicast delegate that gets broadcasted when a player's crossplay setting is changed.
-`public FRH_GeneralSettingChangedDynamicMulticast `[`BLUEPRINT_OnCrossplaySettingChanged`](#classURH__LocalPlayerLoginSubsystem_1ab0c4b2144b8fdc1abb63450117f16674) | Multicast delegate that gets broadcasted when a player's crossplay setting is changed.
 `public FName `[`LoginOSSName`](#classURH__LocalPlayerLoginSubsystem_1a01d07f25f0c0000420aeaa3a9a124a85) | Online Subsystem to use for login. If not provided, will use the default OSS.
 `public FName `[`NicknameOSSName`](#classURH__LocalPlayerLoginSubsystem_1a1328f2314ce4640fa291c3ea6722c286) | Online Subsystem to use for getting the user's display name for Rally Here. If not provided, will use the Login OSS.
 `public bool `[`bLoginAllowStoredRefreshToken`](#classURH__LocalPlayerLoginSubsystem_1a37770d7b5203f211cdbb6aa79147393a) | Is the login process allowed to load/store a refresh token for future login attempts?
@@ -142,15 +140,7 @@ Login Subsystem for the local player.
 
 Multicast delegate that gets broadcasted on login complete.
 
-#### `public FRH_OnLoginCompleteDynamicMulticast `[`BLUEPRINT_OnLoginComplete`](#classURH__LocalPlayerLoginSubsystem_1a75fecc81fac520458fa441c2d06d09d2) <a id="classURH__LocalPlayerLoginSubsystem_1a75fecc81fac520458fa441c2d06d09d2"></a>
-
-Multicast delegate that gets broadcasted on login complete.
-
 #### `public FRH_GeneralSettingChangedMulticast `[`OnCrossplaySettingChanged`](#classURH__LocalPlayerLoginSubsystem_1ab039522171ab500f9c26d0e224bde938) <a id="classURH__LocalPlayerLoginSubsystem_1ab039522171ab500f9c26d0e224bde938"></a>
-
-Multicast delegate that gets broadcasted when a player's crossplay setting is changed.
-
-#### `public FRH_GeneralSettingChangedDynamicMulticast `[`BLUEPRINT_OnCrossplaySettingChanged`](#classURH__LocalPlayerLoginSubsystem_1ab0c4b2144b8fdc1abb63450117f16674) <a id="classURH__LocalPlayerLoginSubsystem_1ab0c4b2144b8fdc1abb63450117f16674"></a>
 
 Multicast delegate that gets broadcasted when a player's crossplay setting is changed.
 
@@ -786,12 +776,6 @@ Subsystem to manage sessions for the local player.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public FRH_OnSessionUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnSessionUpdatedDelegate`](#classURH__LocalPlayerSessionSubsystem_1a28a48c4ed60e8b00ad9de1f9b39e1217) | Multicast delegate triggered when a session managed by this subsystem is updated.
-`public FRH_OnSessionUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnSessionAddedDelegate`](#classURH__LocalPlayerSessionSubsystem_1a612a36a3c5862b352bea9c20b157fb1e) | Multicast delegate triggered when a session managed by this subsystem is added.
-`public FRH_OnSessionUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnSessionRemovedDelegate`](#classURH__LocalPlayerSessionSubsystem_1a66e481e48c38b559766e07cf4b89b4f9) | Multicast delegate triggered when a session managed by this subsystem is removed.
-`public FRH_OnSessionUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnSessionExpirationCompleteDelegate`](#classURH__LocalPlayerSessionSubsystem_1a5eb7d010dfe8a9c83b977c694c3f8fd3) | Multicast delegate triggered when a session managed by this subsystem is fully expired (happens after removal)
-`public FRH_OnLoginPollSessionsCompleteMulticastDynamicDelegate `[`BLUEPRINT_OnLoginPollSessionsCompleteDelegate`](#classURH__LocalPlayerSessionSubsystem_1a4ad0823710a468816be02f3e600164ad) | Multicast delegate triggered when the initial poll after login is complete, to do first-time setup.
-`public FRH_OnFailedToJoinPlatformSessionMulticastDynamicDelegate `[`BLUEPRINT_OnFailedToJoinPlatformSessionDelegate`](#classURH__LocalPlayerSessionSubsystem_1a9c5890ac06e22e12e436ab439603a57a) | Multicast delegate triggered when we fail to join a platform session that we've accepted an invite to.
 `public FRH_OnSessionUpdatedMulticastDelegate `[`OnSessionUpdatedDelegate`](#classURH__LocalPlayerSessionSubsystem_1a87ec0a5447e17ebbbda133342770d960) | Multicast delegate triggered when a session managed by this subsystem is updated.
 `public FRH_OnSessionUpdatedMulticastDelegate `[`OnSessionAddedDelegate`](#classURH__LocalPlayerSessionSubsystem_1a34c015e300be4c0474addf8f6d6d947b) | Multicast delegate triggered when a session managed by this subsystem is added.
 `public FRH_OnSessionUpdatedMulticastDelegate `[`OnSessionRemovedDelegate`](#classURH__LocalPlayerSessionSubsystem_1af13b47604f229daf45aa56fdb25554cc) | Multicast delegate triggered when a session managed by this subsystem is removed.
@@ -823,9 +807,7 @@ Subsystem to manage sessions for the local player.
 `public inline virtual void `[`SetPlatformSessionToJoinOnUserChange`](#classURH__LocalPlayerSessionSubsystem_1a7b32f021e042bf401d2156764df2babc)`(const FOnlineSessionSearchResult & Session)` | Set a platform session to join upon the next user change.
 `public inline virtual void `[`ClearPlatformSessionToJoinOnUserChange`](#classURH__LocalPlayerSessionSubsystem_1afa5db7d0b7302957dd89c4a7b9f78cb5)`()` | Clear a platform session to join upon the next user change.
 `public inline void `[`CreateOrJoinSessionByType`](#classURH__LocalPlayerSessionSubsystem_1ae987d7bbdbc819106e7e00a06a08d918)`(const `[`FRHAPI_CreateOrJoinRequest`](models/RHAPI_CreateOrJoinRequest.md#structFRHAPI__CreateOrJoinRequest)` & CreateParams,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Utility function to Create or Join a session by a given SessionType (most times will create a session, but Hub join rules may do a Join instead)
-`public inline void `[`BLUEPRINT_CreateOrJoinSessionByType`](#classURH__LocalPlayerSessionSubsystem_1a3cd18e8fb059a7844a60c3deebd8acb5)`(const `[`FRHAPI_CreateOrJoinRequest`](models/RHAPI_CreateOrJoinRequest.md#structFRHAPI__CreateOrJoinRequest)` & CreateParams,const FRH_OnSessionUpdatedDynamicDelegate & Delegate)` | Blueprint compatible version of CreateOrJoinSessionByType.
 `public inline void `[`JoinSessionById`](#classURH__LocalPlayerSessionSubsystem_1a81439a14711f1519f5a4c109574d0527)`(const FString & SessionId,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Utility function to Join a session by SessionId.
-`public inline void `[`BLUEPRINT_JoinSessionById`](#classURH__LocalPlayerSessionSubsystem_1a1d00b98420ce2333f9f19313998a139d)`(const FString & SessionId,const FRH_OnSessionUpdatedDynamicDelegate & Delegate)` | Blueprint compatible version of JoinSessionById.
 `public virtual void `[`ImportAPISession`](#classURH__LocalPlayerSessionSubsystem_1a21c227f5c4a783adacd79c25714aa2e3)`(const `[`FRH_APISessionWithETag`](Session.md#structTRH__DataWithETagWrapper)` & Session)` | Imports a new or updated session from the API into this subsystem ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
 `public virtual void `[`ImportAPITemplate`](#classURH__LocalPlayerSessionSubsystem_1ae7616f99c6aa669e529aad3cd0a0451f)`(const `[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template)` | Imports a new session template from the API into this subsystem ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
 `public virtual void `[`ReconcileAPISessions`](#classURH__LocalPlayerSessionSubsystem_1aede0956db4c8e8626fa239c16cb3d61e)`(const TArray< FString > & SessionIds,const TOptional< FString > & ETag)` | Reconciles the list of session ids with this subsystem, removing any sessions that are no longer in the list, then updates the stored ETag for the local player's session list ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
@@ -836,7 +818,6 @@ Subsystem to manage sessions for the local player.
 `public inline virtual TOptional< FString > `[`GetETagForAllTemplatesPoll`](#classURH__LocalPlayerSessionSubsystem_1aa3e56b3a6b8466282f98f33fa444b814)`() const` | Looks up a ETag to use when querying for template information ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
 `public inline virtual TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetAllSessionsForPolling`](#classURH__LocalPlayerSessionSubsystem_1a4dbf97c53be79cdeced20be7d9176378)`() const` | Looks up all sessions to process when polling if ETags match ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
 `public void `[`SearchForSessions`](#classURH__LocalPlayerSessionSubsystem_1a2d981ffabd1a06a57e12cf2f64e991c5)`(const `[`FRH_SessionBrowserSearchParams`](Session.md#structFRH__SessionBrowserSearchParams)` & Params,const FRH_OnSessionSearchCompleteDelegateBlock & Delegate)` | Utility function that searches the session browser cache for information on browser sessions.
-`public inline void `[`BLUEPRINT_SearchForSessions`](#classURH__LocalPlayerSessionSubsystem_1a1fc6352551fdde138995e52ccdf9cb66)`(const `[`FRH_SessionBrowserSearchParams`](Session.md#structFRH__SessionBrowserSearchParams)` & Params,const FRH_OnSessionSearchCompleteDynamicDelegate & Delegate)` | Blueprint compatible version of SearchForSessions.
 `public void `[`StartPolling`](#classURH__LocalPlayerSessionSubsystem_1a46f1de5fd5535924cb742f82878b949a)`()` | Start polling for session template and membership updates.
 `public void `[`StopPolling`](#classURH__LocalPlayerSessionSubsystem_1ae11fbca181c0c52bd17cc06b701a12e1)`()` | Stop polling for session template and membership updates.
 `public void `[`PollForUpdate`](#classURH__LocalPlayerSessionSubsystem_1a1a13b1d7c4f1993e553f95ec10966c5b)`(const FRH_PollCompleteFunc & Delegate)` | Poll function for use with [FRH_AutoPoller](Polling.md#structFRH__AutoPoller).
@@ -875,30 +856,6 @@ Subsystem to manage sessions for the local player.
 `protected virtual void `[`HandlePollAllSessionsComplete`](#classURH__LocalPlayerSessionSubsystem_1a723518fadb2e8fb85f0a624debb53b91)`(bool bSuccess,const TArray< FString > & SessionIds)` | Handles the response of polling all sessions.
 
 #### Members
-
-#### `public FRH_OnSessionUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnSessionUpdatedDelegate`](#classURH__LocalPlayerSessionSubsystem_1a28a48c4ed60e8b00ad9de1f9b39e1217) <a id="classURH__LocalPlayerSessionSubsystem_1a28a48c4ed60e8b00ad9de1f9b39e1217"></a>
-
-Multicast delegate triggered when a session managed by this subsystem is updated.
-
-#### `public FRH_OnSessionUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnSessionAddedDelegate`](#classURH__LocalPlayerSessionSubsystem_1a612a36a3c5862b352bea9c20b157fb1e) <a id="classURH__LocalPlayerSessionSubsystem_1a612a36a3c5862b352bea9c20b157fb1e"></a>
-
-Multicast delegate triggered when a session managed by this subsystem is added.
-
-#### `public FRH_OnSessionUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnSessionRemovedDelegate`](#classURH__LocalPlayerSessionSubsystem_1a66e481e48c38b559766e07cf4b89b4f9) <a id="classURH__LocalPlayerSessionSubsystem_1a66e481e48c38b559766e07cf4b89b4f9"></a>
-
-Multicast delegate triggered when a session managed by this subsystem is removed.
-
-#### `public FRH_OnSessionUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnSessionExpirationCompleteDelegate`](#classURH__LocalPlayerSessionSubsystem_1a5eb7d010dfe8a9c83b977c694c3f8fd3) <a id="classURH__LocalPlayerSessionSubsystem_1a5eb7d010dfe8a9c83b977c694c3f8fd3"></a>
-
-Multicast delegate triggered when a session managed by this subsystem is fully expired (happens after removal)
-
-#### `public FRH_OnLoginPollSessionsCompleteMulticastDynamicDelegate `[`BLUEPRINT_OnLoginPollSessionsCompleteDelegate`](#classURH__LocalPlayerSessionSubsystem_1a4ad0823710a468816be02f3e600164ad) <a id="classURH__LocalPlayerSessionSubsystem_1a4ad0823710a468816be02f3e600164ad"></a>
-
-Multicast delegate triggered when the initial poll after login is complete, to do first-time setup.
-
-#### `public FRH_OnFailedToJoinPlatformSessionMulticastDynamicDelegate `[`BLUEPRINT_OnFailedToJoinPlatformSessionDelegate`](#classURH__LocalPlayerSessionSubsystem_1a9c5890ac06e22e12e436ab439603a57a) <a id="classURH__LocalPlayerSessionSubsystem_1a9c5890ac06e22e12e436ab439603a57a"></a>
-
-Multicast delegate triggered when we fail to join a platform session that we've accepted an invite to.
 
 #### `public FRH_OnSessionUpdatedMulticastDelegate `[`OnSessionUpdatedDelegate`](#classURH__LocalPlayerSessionSubsystem_1a87ec0a5447e17ebbbda133342770d960) <a id="classURH__LocalPlayerSessionSubsystem_1a87ec0a5447e17ebbbda133342770d960"></a>
 
@@ -1099,27 +1056,9 @@ Utility function to Create or Join a session by a given SessionType (most times 
 
 * `Delegate` delegate to trigger when complete
 
-#### `public inline void `[`BLUEPRINT_CreateOrJoinSessionByType`](#classURH__LocalPlayerSessionSubsystem_1a3cd18e8fb059a7844a60c3deebd8acb5)`(const `[`FRHAPI_CreateOrJoinRequest`](models/RHAPI_CreateOrJoinRequest.md#structFRHAPI__CreateOrJoinRequest)` & CreateParams,const FRH_OnSessionUpdatedDynamicDelegate & Delegate)` <a id="classURH__LocalPlayerSessionSubsystem_1a3cd18e8fb059a7844a60c3deebd8acb5"></a>
-
-Blueprint compatible version of CreateOrJoinSessionByType.
-
-#### Parameters
-* `CreateParams` Creation paramters for the session 
-
-* `Delegate` delegate to trigger when complete
-
 #### `public inline void `[`JoinSessionById`](#classURH__LocalPlayerSessionSubsystem_1a81439a14711f1519f5a4c109574d0527)`(const FString & SessionId,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__LocalPlayerSessionSubsystem_1a81439a14711f1519f5a4c109574d0527"></a>
 
 Utility function to Join a session by SessionId.
-
-#### Parameters
-* `SessionId` The session id to join 
-
-* `Delegate` delegate to trigger when complete
-
-#### `public inline void `[`BLUEPRINT_JoinSessionById`](#classURH__LocalPlayerSessionSubsystem_1a1d00b98420ce2333f9f19313998a139d)`(const FString & SessionId,const FRH_OnSessionUpdatedDynamicDelegate & Delegate)` <a id="classURH__LocalPlayerSessionSubsystem_1a1d00b98420ce2333f9f19313998a139d"></a>
-
-Blueprint compatible version of JoinSessionById.
 
 #### Parameters
 * `SessionId` The session id to join 
@@ -1192,15 +1131,6 @@ Looks up all sessions to process when polling if ETags match ([IRH_SessionOwnerI
 #### `public void `[`SearchForSessions`](#classURH__LocalPlayerSessionSubsystem_1a2d981ffabd1a06a57e12cf2f64e991c5)`(const `[`FRH_SessionBrowserSearchParams`](Session.md#structFRH__SessionBrowserSearchParams)` & Params,const FRH_OnSessionSearchCompleteDelegateBlock & Delegate)` <a id="classURH__LocalPlayerSessionSubsystem_1a2d981ffabd1a06a57e12cf2f64e991c5"></a>
 
 Utility function that searches the session browser cache for information on browser sessions.
-
-#### Parameters
-* `Params` Search parameters for the browser search 
-
-* `Delegate` Delegate to trigger once complete
-
-#### `public inline void `[`BLUEPRINT_SearchForSessions`](#classURH__LocalPlayerSessionSubsystem_1a1fc6352551fdde138995e52ccdf9cb66)`(const `[`FRH_SessionBrowserSearchParams`](Session.md#structFRH__SessionBrowserSearchParams)` & Params,const FRH_OnSessionSearchCompleteDynamicDelegate & Delegate)` <a id="classURH__LocalPlayerSessionSubsystem_1a1fc6352551fdde138995e52ccdf9cb66"></a>
-
-Blueprint compatible version of SearchForSessions.
 
 #### Parameters
 * `Params` Search parameters for the browser search 
@@ -1518,7 +1448,6 @@ Subsystem to manage the local player.
 `public virtual `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__LocalPlayerSubsystem_1a395c248cddf85f98ea9a993b4155ab58)`() const` | Gets the player's player info.
 `public virtual void `[`CustomEndpoint`](#classURH__LocalPlayerSubsystem_1a4b55e59b8d1f8dddbd2d91a8845e12dd)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const RallyHereAPI::FDelegate_CustomEndpointSend & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
 `public virtual void `[`CustomEndpoint`](#classURH__LocalPlayerSubsystem_1ad82004afa264f46a22441f80c6d27554)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const FRH_CustomEndpointDelegateBlock & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
-`public inline void `[`BLUEPRINT_CustomEndpoint`](#classURH__LocalPlayerSubsystem_1aa5c9cef7544050e91abe15452526fbd7)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const FRH_CustomEndpointDynamicDelegate & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
 `protected TArray< `[`URH_LocalPlayerSubsystemPlugin`](SubsystemBase.md#classURH__LocalPlayerSubsystemPlugin)` * > `[`SubsystemPlugins`](#classURH__LocalPlayerSubsystem_1aa1e0f18bd03b9082f4dfa3b87e294111) | Array of plugins for the Local Player Subsystem.
 `protected TArray< `[`URH_SandboxedSubsystemPlugin`](SubsystemBase.md#classURH__SandboxedSubsystemPlugin)` * > `[`SandboxedSubsystemPlugins`](#classURH__LocalPlayerSubsystem_1a17f7feb3081a6a9ddd60220806af4101) | Array of sandboxed plugins for the Local Player Subsystem.
 `protected `[`URH_LocalPlayerLoginSubsystem`](LocalPlayer.md#classURH__LocalPlayerLoginSubsystem)` * `[`LoginSubsystem`](#classURH__LocalPlayerSubsystem_1a4c91f163e0d3ce122ff5945e94fbfd42) | The Login Subsystem for the player.
@@ -1658,15 +1587,6 @@ Custom Endpoint wrapper (for custom endpoints that require authentication)
 * `Delegate` The delegate to call when the call is complete (contains raw response)
 
 #### `public virtual void `[`CustomEndpoint`](#classURH__LocalPlayerSubsystem_1ad82004afa264f46a22441f80c6d27554)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const FRH_CustomEndpointDelegateBlock & Delegate)` <a id="classURH__LocalPlayerSubsystem_1ad82004afa264f46a22441f80c6d27554"></a>
-
-Custom Endpoint wrapper (for custom endpoints that require authentication)
-
-#### Parameters
-* `[FRH_CustomEndpointRequestWrapper](Common.md#structFRH__CustomEndpointRequestWrapper)` Wrapper struct containing call information 
-
-* `Delegate` The delegate to call when the call is complete
-
-#### `public inline void `[`BLUEPRINT_CustomEndpoint`](#classURH__LocalPlayerSubsystem_1aa5c9cef7544050e91abe15452526fbd7)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const FRH_CustomEndpointDynamicDelegate & Delegate)` <a id="classURH__LocalPlayerSubsystem_1aa5c9cef7544050e91abe15452526fbd7"></a>
 
 Custom Endpoint wrapper (for custom endpoints that require authentication)
 

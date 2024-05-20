@@ -93,7 +93,6 @@ Server Bootstrapper for the Game Instance.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public FRH_OnBootstrapStepChangedDynamicDelegate `[`BLUEPRINT_OnBootstrapStepChanged`](#classURH__GameInstanceServerBootstrapper_1a50df40a4de4df39969d9bdbd9076716a) | Blueprint delegate for when bootstrap step changes.
 `public FRH_OnBootstrapStepChangedDelegate `[`OnBootstrapStepChanged`](#classURH__GameInstanceServerBootstrapper_1a583ec820aa3d45df97c21045653f565b) | Delegate for when bootstrap step changes.
 `public FRH_GameHostProviderStatsRequested `[`OnGameHostProviderStatsRequested`](#classURH__GameInstanceServerBootstrapper_1ac3fec0c2d9228db884a97ea32c82ebc4) | callback triggered to request stats if default implementation is not sufficient
 `public  `[`URH_GameInstanceServerBootstrapper`](#classURH__GameInstanceServerBootstrapper_1a3da69fd930b5f05a1c46fac0b93d8cdb)`()` | 
@@ -187,10 +186,6 @@ Server Bootstrapper for the Game Instance.
 `protected virtual void `[`OnRefreshTokenExpired`](#classURH__GameInstanceServerBootstrapper_1a5c36a506ed51f8694e9ea296ab4c1822)`(FSimpleDelegate CompleteCallback)` | Callback for when a refresh token expires.
 
 #### Members
-
-#### `public FRH_OnBootstrapStepChangedDynamicDelegate `[`BLUEPRINT_OnBootstrapStepChanged`](#classURH__GameInstanceServerBootstrapper_1a50df40a4de4df39969d9bdbd9076716a) <a id="classURH__GameInstanceServerBootstrapper_1a50df40a4de4df39969d9bdbd9076716a"></a>
-
-Blueprint delegate for when bootstrap step changes.
 
 #### `public FRH_OnBootstrapStepChangedDelegate `[`OnBootstrapStepChanged`](#classURH__GameInstanceServerBootstrapper_1a583ec820aa3d45df97c21045653f565b) <a id="classURH__GameInstanceServerBootstrapper_1a583ec820aa3d45df97c21045653f565b"></a>
 
@@ -711,7 +706,6 @@ Subsystem for the Game Instance.
 `public inline FORCEINLINE `[`URH_RemoteFileSubsystem`](File.md#classURH__RemoteFileSubsystem)` * `[`GetRemoteFileSubsystem`](#classURH__GameInstanceSubsystem_1aef4373b14ab4dbeddbd20ee256a4f775)`() const` | Gets the remote file subsystem on the instance.
 `public virtual void `[`CustomEndpoint`](#classURH__GameInstanceSubsystem_1a0a69062a00fa3638f34752c643bd1a79)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const RallyHereAPI::FDelegate_CustomEndpointSend & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
 `public virtual void `[`CustomEndpoint`](#classURH__GameInstanceSubsystem_1a9f80933f5977a68e1d88ceef046b1c80)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const FRH_CustomEndpointDelegateBlock & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
-`public inline void `[`BLUEPRINT_CustomEndpoint`](#classURH__GameInstanceSubsystem_1a42e7af944e181795ad0a71169e588e92)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const FRH_CustomEndpointDynamicDelegate & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
 `protected FAuthContextPtr `[`AuthContext`](#classURH__GameInstanceSubsystem_1a8836a0620d1de84cc1383f20b38ab775) | Auth context used by the Game Instance Subsystem.
 `protected TSharedPtr< class IAnalyticsProvider > `[`AnalyticsProvider`](#classURH__GameInstanceSubsystem_1aae5830efe955343c08f88ce79747be51) | Analytics provider used by the Game Instance Subsystem.
 `protected TArray< `[`URH_GameInstanceSubsystemPlugin`](SubsystemBase.md#classURH__GameInstanceSubsystemPlugin)` * > `[`SubsystemPlugins`](#classURH__GameInstanceSubsystem_1a6204638edcade74afc54e77e367b6078) | Array of plugins for the Game Instance Subsystem.
@@ -829,15 +823,6 @@ Custom Endpoint wrapper (for custom endpoints that require authentication)
 * `Delegate` The delegate to call when the call is complete (contains raw response)
 
 #### `public virtual void `[`CustomEndpoint`](#classURH__GameInstanceSubsystem_1a9f80933f5977a68e1d88ceef046b1c80)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const FRH_CustomEndpointDelegateBlock & Delegate)` <a id="classURH__GameInstanceSubsystem_1a9f80933f5977a68e1d88ceef046b1c80"></a>
-
-Custom Endpoint wrapper (for custom endpoints that require authentication)
-
-#### Parameters
-* `[FRH_CustomEndpointRequestWrapper](Common.md#structFRH__CustomEndpointRequestWrapper)` Wrapper struct containing call information 
-
-* `Delegate` The delegate to call when the call is complete
-
-#### `public inline void `[`BLUEPRINT_CustomEndpoint`](#classURH__GameInstanceSubsystem_1a42e7af944e181795ad0a71169e588e92)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const FRH_CustomEndpointDynamicDelegate & Delegate)` <a id="classURH__GameInstanceSubsystem_1a42e7af944e181795ad0a71169e588e92"></a>
 
 Custom Endpoint wrapper (for custom endpoints that require authentication)
 

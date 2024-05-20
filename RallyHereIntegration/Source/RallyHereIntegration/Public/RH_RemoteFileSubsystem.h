@@ -50,6 +50,7 @@ public:
 	 */
 	virtual void UploadFile(const FRH_RemoteFileApiDirectory& Directory, const FString& RemoteFileName, const FString& LocalFilePath, const FRH_GenericSuccessWithErrorBlock Delegate = FRH_GenericSuccessWithErrorBlock());
 	/**
+	 * @private
 	 * @brief Upload a local file to the remote file storage.
 	 * @param Directory The directory of the file on the remote storage.
 	 * @param RemoteFileName The name of the file on the remote storage.
@@ -70,6 +71,7 @@ public:
 	 */
 	virtual void DeleteFile(const FRH_RemoteFileApiDirectory& Directory, const FString& RemoteFileName, const FRH_GenericSuccessWithErrorBlock Delegate = FRH_GenericSuccessWithErrorBlock());
 	/**
+	 * @private
 	 * @brief Upload a local file to the remote file storage.
 	 * @param Directory The directory of the file on the remote storage.
 	 * @param RemoteFileName The name of the file on the remote storage.
@@ -97,6 +99,7 @@ public:
 	 */
 	virtual void DownloadFile(const FRH_RemoteFileApiDirectory& Directory, const FString& RemoteFileName, const FRH_FileDownloadDelegate Delegate);
 	/**
+	 * @private
 	 * @brief Download a remote file to local file storage.
 	 * @param Directory The directory of the file on the remote storage.
 	 * @param RemoteFileName The name of the file on the remote storage to download.
@@ -118,6 +121,7 @@ public:
 	 */
 	virtual void DownloadAllFiles(const FRH_RemoteFileApiDirectory& Directory, const FString& LocalDirectory, bool bUseCachedList = false, const FRH_FileDirectoryDownloadDelegateBlock Delegate = FRH_FileDirectoryDownloadDelegateBlock());
 	/**
+	 * @private
 	 * @brief Downloads all discoverable files in a remote directory to a local file directory.
 	 * @param Directory The directory of the file on the remote storage.
 	 * @param LocalDirectory The path of the directory on the local storage to save to.
@@ -137,6 +141,7 @@ public:
 	 */
 	virtual void LookupFileList(const FRH_RemoteFileApiDirectory& Directory, const FRH_GenericSuccessWithErrorBlock Delegate = FRH_GenericSuccessWithErrorBlock());
 	/**
+	 * @private
 	 * @brief List the available remote files for an entity from the API and store results in cache
 	 * @param Directory The directory of the file on the remote storage.
 	 * @param Delegate The delegate to call when the operation completes.

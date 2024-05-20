@@ -188,21 +188,13 @@ Class used to help track and interact with the catalog to get Items, Vendors, an
 `public virtual void `[`Initialize`](#classURH__CatalogSubsystem_1a4743c425eba445a9c55c5263b43605a9)`()` | Initialize the subsystem.
 `public virtual void `[`Deinitialize`](#classURH__CatalogSubsystem_1afef8ec5b86a36a604805bf32a279773c)`()` | Safely tears down the subsystem.
 `public void `[`GetCatalogAll`](#classURH__CatalogSubsystem_1ae79063c7c03378e80d0e14f24688df3e)`(const FRH_CatalogCallBlock & Delegate)` | Gets the entire catalog at once.
-`public inline void `[`BLUEPRINT_GetCatalogAll`](#classURH__CatalogSubsystem_1acbc947298516a5aa8f4676455cd0cb9a)`(const FRH_CatalogCallDynamicDelegate & Delegate)` | 
 `public void `[`GetCatalogXpAll`](#classURH__CatalogSubsystem_1a412ea83cfb2fb9aafcbefc2a49f6557d)`(const FRH_CatalogCallBlock & Delegate)` | Gets all of the xp tables in the catalog.
-`public inline void `[`BLUEPRINT_GetCatalogXpAll`](#classURH__CatalogSubsystem_1aaeb50b6cf551d93c71a1a47cf5a48ab1)`(const FRH_CatalogCallDynamicDelegate & Delegate)` | 
 `public void `[`GetCatalogItem`](#classURH__CatalogSubsystem_1a71028a2a6b3ea3eafddca54b677749e6)`(int32 ItemId,const FRH_CatalogCallBlock & Delegate)` | Gets a specific item from the catalog.
-`public inline void `[`BLUEPRINT_GetCatalogItem`](#classURH__CatalogSubsystem_1ab515a213b247b86c208cc44a53a22b53)`(int32 ItemId,const FRH_CatalogCallDynamicDelegate & Delegate)` | 
 `public void `[`GetCatalogInventoryBucketUseRuleSetsAll`](#classURH__CatalogSubsystem_1a7a231220866a163574c95c0191111608)`(const FRH_CatalogCallBlock & Delegate)` | Gets all of the inventory bucket rulesets from the catalog.
-`public inline void `[`BLUEPRINT_GetCatalogInventoryBucketUseRuleSetsAll`](#classURH__CatalogSubsystem_1a5a96fc774aa78d82e5cae3bfee4f79ca)`(const FRH_CatalogCallDynamicDelegate & Delegate)` | 
 `public void `[`GetCatalogPricePointsAll`](#classURH__CatalogSubsystem_1a1d664d4dfd15ef90b7d5f9eb4dd03d84)`(const FRH_CatalogCallBlock & Delegate)` | Gets all of the price points from the catalog.
-`public inline void `[`BLUEPRINT_GetCatalogPricePointsAll`](#classURH__CatalogSubsystem_1a7dc7c4eea69970ceb430a0885b3271fb)`(const FRH_CatalogCallDynamicDelegate & Delegate)` | 
 `public void `[`GetCatalogTimeFramesAll`](#classURH__CatalogSubsystem_1acc8cbc32148f99f291d6942fc06ff420)`(const FRH_CatalogCallBlock & Delegate)` | Gets all of the time frames from the catalog.
-`public inline void `[`BLUEPRINT_GetCatalogTimeFramesAll`](#classURH__CatalogSubsystem_1a654341730ac3a1daba3d48f1e5fac485)`(const FRH_CatalogCallDynamicDelegate & Delegate)` | 
 `public void `[`GetCatalogVendor`](#classURH__CatalogSubsystem_1a1c391d9be422da9d41cd9139184d082a)`(const `[`FRHVendorGetRequest`](Catalog.md#structFRHVendorGetRequest)` & VendorRequest)` | Gets the vendors requested as well as their sub vendors.
-`public inline void `[`BLUEPRINT_GetCatalogVendor`](#classURH__CatalogSubsystem_1a0fe827d5e1ee7a9a1bd4c767fa5324b0)`(const `[`FRHVendorGetRequest`](Catalog.md#structFRHVendorGetRequest)` & VendorRequest)` | 
 `public void `[`GetCatalogVendorsAll`](#classURH__CatalogSubsystem_1ab4903e2a1b6805d3e278b561882b09ad)`(const FRH_CatalogCallBlock & Delegate)` | Gets the all catalog vendors.
-`public inline void `[`BLUEPRINT_GetCatalogVendorsAll`](#classURH__CatalogSubsystem_1a27e271a1db43f7c5b0a8528fd43265c4)`(const FRH_CatalogCallDynamicDelegate & Delegate)` | 
 `public bool `[`GetXpTable`](#classURH__CatalogSubsystem_1ada2141a6424f5ac1b9260569040f107c)`(int32 XpTableId,`[`FRHAPI_XpTable`](models/RHAPI_XpTable.md#structFRHAPI__XpTable)` & XpTable) const` | Gets a cached Xp Table.
 `public inline bool `[`GetVendorItemByLootId`](#classURH__CatalogSubsystem_1a76b6de7e6855b091c7fb2c86c7b33739)`(int32 LootId,`[`FRHAPI_Loot`](models/RHAPI_Loot.md#structFRHAPI__Loot)` & LootItem) const` | Gets a cached vendor item by its loot id.
 `public inline `[`URH_CatalogItem`](Catalog.md#classURH__CatalogItem)` * `[`GetCatalogItemByItemId`](#classURH__CatalogSubsystem_1a04efb2db20d80225684bee54173f365b)`(int32 ItemId) const` | Gets a cached catalog item by its item id.
@@ -278,16 +270,12 @@ Gets the entire catalog at once.
 #### Parameters
 * `Delegate` Callback when the API call is complete.
 
-#### `public inline void `[`BLUEPRINT_GetCatalogAll`](#classURH__CatalogSubsystem_1acbc947298516a5aa8f4676455cd0cb9a)`(const FRH_CatalogCallDynamicDelegate & Delegate)` <a id="classURH__CatalogSubsystem_1acbc947298516a5aa8f4676455cd0cb9a"></a>
-
 #### `public void `[`GetCatalogXpAll`](#classURH__CatalogSubsystem_1a412ea83cfb2fb9aafcbefc2a49f6557d)`(const FRH_CatalogCallBlock & Delegate)` <a id="classURH__CatalogSubsystem_1a412ea83cfb2fb9aafcbefc2a49f6557d"></a>
 
 Gets all of the xp tables in the catalog.
 
 #### Parameters
 * `Delegate` Callback when the API call is complete.
-
-#### `public inline void `[`BLUEPRINT_GetCatalogXpAll`](#classURH__CatalogSubsystem_1aaeb50b6cf551d93c71a1a47cf5a48ab1)`(const FRH_CatalogCallDynamicDelegate & Delegate)` <a id="classURH__CatalogSubsystem_1aaeb50b6cf551d93c71a1a47cf5a48ab1"></a>
 
 #### `public void `[`GetCatalogItem`](#classURH__CatalogSubsystem_1a71028a2a6b3ea3eafddca54b677749e6)`(int32 ItemId,const FRH_CatalogCallBlock & Delegate)` <a id="classURH__CatalogSubsystem_1a71028a2a6b3ea3eafddca54b677749e6"></a>
 
@@ -298,16 +286,12 @@ Gets a specific item from the catalog.
 
 * `Delegate` Callback when the API call is complete.
 
-#### `public inline void `[`BLUEPRINT_GetCatalogItem`](#classURH__CatalogSubsystem_1ab515a213b247b86c208cc44a53a22b53)`(int32 ItemId,const FRH_CatalogCallDynamicDelegate & Delegate)` <a id="classURH__CatalogSubsystem_1ab515a213b247b86c208cc44a53a22b53"></a>
-
 #### `public void `[`GetCatalogInventoryBucketUseRuleSetsAll`](#classURH__CatalogSubsystem_1a7a231220866a163574c95c0191111608)`(const FRH_CatalogCallBlock & Delegate)` <a id="classURH__CatalogSubsystem_1a7a231220866a163574c95c0191111608"></a>
 
 Gets all of the inventory bucket rulesets from the catalog.
 
 #### Parameters
 * `Delegate` Callback when the API call is complete.
-
-#### `public inline void `[`BLUEPRINT_GetCatalogInventoryBucketUseRuleSetsAll`](#classURH__CatalogSubsystem_1a5a96fc774aa78d82e5cae3bfee4f79ca)`(const FRH_CatalogCallDynamicDelegate & Delegate)` <a id="classURH__CatalogSubsystem_1a5a96fc774aa78d82e5cae3bfee4f79ca"></a>
 
 #### `public void `[`GetCatalogPricePointsAll`](#classURH__CatalogSubsystem_1a1d664d4dfd15ef90b7d5f9eb4dd03d84)`(const FRH_CatalogCallBlock & Delegate)` <a id="classURH__CatalogSubsystem_1a1d664d4dfd15ef90b7d5f9eb4dd03d84"></a>
 
@@ -316,16 +300,12 @@ Gets all of the price points from the catalog.
 #### Parameters
 * `Delegate` Callback when the API call is complete.
 
-#### `public inline void `[`BLUEPRINT_GetCatalogPricePointsAll`](#classURH__CatalogSubsystem_1a7dc7c4eea69970ceb430a0885b3271fb)`(const FRH_CatalogCallDynamicDelegate & Delegate)` <a id="classURH__CatalogSubsystem_1a7dc7c4eea69970ceb430a0885b3271fb"></a>
-
 #### `public void `[`GetCatalogTimeFramesAll`](#classURH__CatalogSubsystem_1acc8cbc32148f99f291d6942fc06ff420)`(const FRH_CatalogCallBlock & Delegate)` <a id="classURH__CatalogSubsystem_1acc8cbc32148f99f291d6942fc06ff420"></a>
 
 Gets all of the time frames from the catalog.
 
 #### Parameters
 * `Delegate` Callback when the API call is complete.
-
-#### `public inline void `[`BLUEPRINT_GetCatalogTimeFramesAll`](#classURH__CatalogSubsystem_1a654341730ac3a1daba3d48f1e5fac485)`(const FRH_CatalogCallDynamicDelegate & Delegate)` <a id="classURH__CatalogSubsystem_1a654341730ac3a1daba3d48f1e5fac485"></a>
 
 #### `public void `[`GetCatalogVendor`](#classURH__CatalogSubsystem_1a1c391d9be422da9d41cd9139184d082a)`(const `[`FRHVendorGetRequest`](Catalog.md#structFRHVendorGetRequest)` & VendorRequest)` <a id="classURH__CatalogSubsystem_1a1c391d9be422da9d41cd9139184d082a"></a>
 
@@ -334,16 +314,12 @@ Gets the vendors requested as well as their sub vendors.
 #### Parameters
 * `VendorRequest` The vendor request data for the call with list of vendors and callback on complete.
 
-#### `public inline void `[`BLUEPRINT_GetCatalogVendor`](#classURH__CatalogSubsystem_1a0fe827d5e1ee7a9a1bd4c767fa5324b0)`(const `[`FRHVendorGetRequest`](Catalog.md#structFRHVendorGetRequest)` & VendorRequest)` <a id="classURH__CatalogSubsystem_1a0fe827d5e1ee7a9a1bd4c767fa5324b0"></a>
-
 #### `public void `[`GetCatalogVendorsAll`](#classURH__CatalogSubsystem_1ab4903e2a1b6805d3e278b561882b09ad)`(const FRH_CatalogCallBlock & Delegate)` <a id="classURH__CatalogSubsystem_1ab4903e2a1b6805d3e278b561882b09ad"></a>
 
 Gets the all catalog vendors.
 
 #### Parameters
 * `Delegate` Callback when the API call is complete.
-
-#### `public inline void `[`BLUEPRINT_GetCatalogVendorsAll`](#classURH__CatalogSubsystem_1a27e271a1db43f7c5b0a8528fd43265c4)`(const FRH_CatalogCallDynamicDelegate & Delegate)` <a id="classURH__CatalogSubsystem_1a27e271a1db43f7c5b0a8528fd43265c4"></a>
 
 #### `public bool `[`GetXpTable`](#classURH__CatalogSubsystem_1ada2141a6424f5ac1b9260569040f107c)`(int32 XpTableId,`[`FRHAPI_XpTable`](models/RHAPI_XpTable.md#structFRHAPI__XpTable)` & XpTable) const` <a id="classURH__CatalogSubsystem_1ada2141a6424f5ac1b9260569040f107c"></a>
 

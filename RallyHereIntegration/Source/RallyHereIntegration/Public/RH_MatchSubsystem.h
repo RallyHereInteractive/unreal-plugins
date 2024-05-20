@@ -189,6 +189,7 @@ public:
 	 * @param [in] Delegate Callback with the results of the search.
 	 */
 	virtual void SearchMatches(const FRH_MatchSearchParams& params, const FRH_OnMatchSearchCompleteDelegateBlock& Delegate = FRH_OnMatchSearchCompleteDelegateBlock());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Matches", meta = (DisplayName = "Search Matches", AutoCreateRefTerm = "params,Delegate"))
 	void BLUEPRINT_SearchMatches(const FRH_MatchSearchParams& params, const FRH_OnMatchSearchCompleteDynamicDelegate& Delegate) { SearchMatches(params, Delegate); }
 
@@ -196,6 +197,7 @@ public:
 	 * @brief Lookup a specific match
 	 */
 	virtual void GetMatchAsync(const FString& MatchId, bool bIgnoreCache = false, const FRH_OnMatchLookupCompleteDelegateBlock& Delegate = FRH_OnMatchLookupCompleteDelegateBlock());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Matches", meta = (DisplayName = "Get Match (Async)", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GetMatchAsync(const FString& MatchId, bool bIgnoreCache, const FRH_OnMatchLookupCompleteDynamicDelegate& Delegate) { GetMatchAsync(MatchId, bIgnoreCache, Delegate); }
 
@@ -280,6 +282,7 @@ public:
 	 * @param [in] Delegate Callback with the results of the match creation
 	 */
 	virtual void CreateMatch(const FRHAPI_MatchRequest& Match, bool bSetActive = true, const FRH_OnMatchUpdateCompleteDelegateBlock& Delegate = FRH_OnMatchUpdateCompleteDelegateBlock());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Matches", meta = (DisplayName = "Create Match", AutoCreateRefTerm = "Match,Delegate"))
 	void BLUEPRINT_CreateMatch(const FRHAPI_MatchRequest& Match, bool bSetActive, const FRH_OnMatchUpdateCompleteDynamicDelegate& Delegate) { CreateMatch(Match, bSetActive, Delegate); }
 
@@ -290,6 +293,7 @@ public:
 	 * @param [in] Delegate Callback with the results of the match update
 	 */
 	virtual void UpdateMatch(const FString& MatchId, const FRHAPI_MatchRequest& Match, const FRH_OnMatchUpdateCompleteDelegateBlock& Delegate = FRH_OnMatchUpdateCompleteDelegateBlock());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Matches", meta = (DisplayName = "Update Match", AutoCreateRefTerm = "Match,Delegate"))
 	void BLUEPRINT_UpdateMatch(const FString& MatchId, const FRHAPI_MatchRequest& Match, const FRH_OnMatchUpdateCompleteDynamicDelegate& Delegate) { UpdateMatch(MatchId, Match, Delegate); }
 
@@ -301,6 +305,7 @@ public:
 	 * @param [in] Delegate Callback with the results of the player update
 	 */
 	virtual void UpdateMatchPlayer(const FString& MatchId, const FGuid& PlayerId, const FRHAPI_MatchPlayerRequest& Player, const FRH_OnMatchPlayerUpdateCompleteDelegateBlock& Delegate = FRH_OnMatchPlayerUpdateCompleteDelegateBlock());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Matches", meta = (DisplayName = "Update Match Player", AutoCreateRefTerm = "Player,Delegate"))
 	void BLUEPRINT_UpdateMatchPlayer(const FString& MatchId, const FGuid& PlayerId, const FRHAPI_MatchPlayerRequest& Player, const FRH_OnMatchPlayerUpdatedCompleteDynamicDelegate& Delegate) { UpdateMatchPlayer(MatchId, PlayerId, Player, Delegate); }
 

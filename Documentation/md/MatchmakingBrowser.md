@@ -237,15 +237,10 @@ Simple container class to hold matchmaking data, does not have its own auth cont
 `public FRegionSettingsUpdatedDynamicDelegate `[`OnRegionsUpdated`](#classURH__MatchmakingBrowserCache_1a861943c4bbe2929594b1acc7b528974f) | 
 `public  `[`URH_MatchmakingBrowserCache`](#classURH__MatchmakingBrowserCache_1addfabfbe829a51e5974402f307f55090)`()` | Default constructor.
 `public void `[`SearchQueues`](#classURH__MatchmakingBrowserCache_1ac7e837d18b72c1870de9081fa2570872)`(const `[`FRH_QueueSearchParams`](MatchmakingBrowser.md#structFRH__QueueSearchParams)` & params,const FRH_OnQueueSearchCompleteDelegateBlock & Delegate)` | Search for queues.
-`public inline void `[`BLUEPRINT_SearchQueues`](#classURH__MatchmakingBrowserCache_1a9abc7b72ccdaf7221103a5672d912d82)`(const `[`FRH_QueueSearchParams`](MatchmakingBrowser.md#structFRH__QueueSearchParams)` & params,const FRH_OnQueueSearchCompleteDynamicDelegate & Delegate)` | 
 `public void `[`SearchMatchmakingTemplateGroup`](#classURH__MatchmakingBrowserCache_1ad03ac193720eba4073da3d52854d7360)`(const FGuid & TemplateId,const FRH_OnGetMatchmakingTemplateGroupCompleteDelegateBlock & Delegate)` | Search for a matchmaking template.
-`public inline void `[`BLUEPRINT_SearchMatchmakingTemplateGroup`](#classURH__MatchmakingBrowserCache_1a401e5ed7ec61a89b9c9bd9bfa711bd67)`(const FGuid & TemplateId,const FRH_OnGetMatchmakingTemplateGroupCompleteDynamicDelegate & Delegate)` | 
 `public void `[`SearchMatchmakingProfile`](#classURH__MatchmakingBrowserCache_1ad120b4e1486d486c43a63460e8f601dd)`(const FString & ProfileId,const FRH_OnGetMatchmakingProfileCompleteDelegateBlock & Delegate)` | Search for a matchmaking profiles.
-`public inline void `[`BLUEPRINT_SearchMatchmakingProfile`](#classURH__MatchmakingBrowserCache_1a820d21853c61f75ca4a9de6dbc6d60b5)`(const FString & ProfileId,const FRH_OnGetMatchmakingProfileCompleteDynamicDelegate & Delegate)` | 
 `public void `[`SearchInstanceRequestTemplate`](#classURH__MatchmakingBrowserCache_1a3f8201f2b4185755194cea5b084b60f2)`(const FGuid & TemplateId,const FRH_OnGetInstanceRequestTemplateCompleteDelegateBlock & Delegate)` | Search for an instance launch template.
-`public inline void `[`BLUEPRINT_SearchInstanceRequestTemplate`](#classURH__MatchmakingBrowserCache_1a8a33bdd8eaf6dd18cea26c877436f526)`(const FGuid & TemplateId,const FRH_OnGetInstanceRequestTemplateCompleteDynamicDelegate & Delegate)` | 
 `public void `[`SearchRegions`](#classURH__MatchmakingBrowserCache_1a53db11131e14e987ea8fa70e8d5571d0)`(int32 Cursor,const FRH_OnRegionSearchCompleteDelegateBlock & Delegate)` | Search for matchmaking regions.
-`public inline void `[`BLUEPRINT_SearchRegions`](#classURH__MatchmakingBrowserCache_1a0e5278bbaf6c50e0b6b9a1f619af860e)`(int32 Cursor,const FRH_OnRegionSearchCompleteDynamicDelegate & Delegate)` | 
 `public inline `[`URH_MatchmakingQueueInfo`](MatchmakingBrowser.md#classURH__MatchmakingQueueInfo)` * `[`GetQueue`](#classURH__MatchmakingBrowserCache_1ad5e5847ba5ab4fd96b6e8303bc757673)`(const FString & QueueId) const` | Get a cached queue by Queue Id.
 `public inline `[`URH_MatchmakingTemplateGroupInfo`](MatchmakingBrowser.md#classURH__MatchmakingTemplateGroupInfo)` * `[`GetMatchmakingTemplateGroup`](#classURH__MatchmakingBrowserCache_1a768be90ca3e0b3d27f489b3faffb0b97)`(const FGuid & TemplateGroupId) const` | Get a cached matchmaking template by Template Id.
 `public inline `[`URH_MatchmakingProfileInfo`](MatchmakingBrowser.md#classURH__MatchmakingProfileInfo)` * `[`GetMatchmakingProfile`](#classURH__MatchmakingBrowserCache_1a2866e2052e00350d9d8cdb93b5ea237a)`(const FString & ProfileId) const` | Get a cached matchmaking template by Template Id.
@@ -291,8 +286,6 @@ Search for queues.
 
 * `Delegate` Callback with the results of the search.
 
-#### `public inline void `[`BLUEPRINT_SearchQueues`](#classURH__MatchmakingBrowserCache_1a9abc7b72ccdaf7221103a5672d912d82)`(const `[`FRH_QueueSearchParams`](MatchmakingBrowser.md#structFRH__QueueSearchParams)` & params,const FRH_OnQueueSearchCompleteDynamicDelegate & Delegate)` <a id="classURH__MatchmakingBrowserCache_1a9abc7b72ccdaf7221103a5672d912d82"></a>
-
 #### `public void `[`SearchMatchmakingTemplateGroup`](#classURH__MatchmakingBrowserCache_1ad03ac193720eba4073da3d52854d7360)`(const FGuid & TemplateId,const FRH_OnGetMatchmakingTemplateGroupCompleteDelegateBlock & Delegate)` <a id="classURH__MatchmakingBrowserCache_1ad03ac193720eba4073da3d52854d7360"></a>
 
 Search for a matchmaking template.
@@ -301,8 +294,6 @@ Search for a matchmaking template.
 * `TemplateId` The matchmaking template to search for. 
 
 * `Delegate` Callback with the results of the search.
-
-#### `public inline void `[`BLUEPRINT_SearchMatchmakingTemplateGroup`](#classURH__MatchmakingBrowserCache_1a401e5ed7ec61a89b9c9bd9bfa711bd67)`(const FGuid & TemplateId,const FRH_OnGetMatchmakingTemplateGroupCompleteDynamicDelegate & Delegate)` <a id="classURH__MatchmakingBrowserCache_1a401e5ed7ec61a89b9c9bd9bfa711bd67"></a>
 
 #### `public void `[`SearchMatchmakingProfile`](#classURH__MatchmakingBrowserCache_1ad120b4e1486d486c43a63460e8f601dd)`(const FString & ProfileId,const FRH_OnGetMatchmakingProfileCompleteDelegateBlock & Delegate)` <a id="classURH__MatchmakingBrowserCache_1ad120b4e1486d486c43a63460e8f601dd"></a>
 
@@ -313,8 +304,6 @@ Search for a matchmaking profiles.
 
 * `Delegate` Callback with the results of the search.
 
-#### `public inline void `[`BLUEPRINT_SearchMatchmakingProfile`](#classURH__MatchmakingBrowserCache_1a820d21853c61f75ca4a9de6dbc6d60b5)`(const FString & ProfileId,const FRH_OnGetMatchmakingProfileCompleteDynamicDelegate & Delegate)` <a id="classURH__MatchmakingBrowserCache_1a820d21853c61f75ca4a9de6dbc6d60b5"></a>
-
 #### `public void `[`SearchInstanceRequestTemplate`](#classURH__MatchmakingBrowserCache_1a3f8201f2b4185755194cea5b084b60f2)`(const FGuid & TemplateId,const FRH_OnGetInstanceRequestTemplateCompleteDelegateBlock & Delegate)` <a id="classURH__MatchmakingBrowserCache_1a3f8201f2b4185755194cea5b084b60f2"></a>
 
 Search for an instance launch template.
@@ -324,16 +313,12 @@ Search for an instance launch template.
 
 * `Delegate` Callback with the results of the search.
 
-#### `public inline void `[`BLUEPRINT_SearchInstanceRequestTemplate`](#classURH__MatchmakingBrowserCache_1a8a33bdd8eaf6dd18cea26c877436f526)`(const FGuid & TemplateId,const FRH_OnGetInstanceRequestTemplateCompleteDynamicDelegate & Delegate)` <a id="classURH__MatchmakingBrowserCache_1a8a33bdd8eaf6dd18cea26c877436f526"></a>
-
 #### `public void `[`SearchRegions`](#classURH__MatchmakingBrowserCache_1a53db11131e14e987ea8fa70e8d5571d0)`(int32 Cursor,const FRH_OnRegionSearchCompleteDelegateBlock & Delegate)` <a id="classURH__MatchmakingBrowserCache_1a53db11131e14e987ea8fa70e8d5571d0"></a>
 
 Search for matchmaking regions.
 
 #### Parameters
 * `Delegate` Callback with the results of the search.
-
-#### `public inline void `[`BLUEPRINT_SearchRegions`](#classURH__MatchmakingBrowserCache_1a0e5278bbaf6c50e0b6b9a1f619af860e)`(int32 Cursor,const FRH_OnRegionSearchCompleteDynamicDelegate & Delegate)` <a id="classURH__MatchmakingBrowserCache_1a0e5278bbaf6c50e0b6b9a1f619af860e"></a>
 
 #### `public inline `[`URH_MatchmakingQueueInfo`](MatchmakingBrowser.md#classURH__MatchmakingQueueInfo)` * `[`GetQueue`](#classURH__MatchmakingBrowserCache_1ad5e5847ba5ab4fd96b6e8303bc757673)`(const FString & QueueId) const` <a id="classURH__MatchmakingBrowserCache_1ad5e5847ba5ab4fd96b6e8303bc757673"></a>
 

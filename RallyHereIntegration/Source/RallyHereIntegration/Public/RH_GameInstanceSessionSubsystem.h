@@ -143,6 +143,7 @@ public:
 	virtual void SyncToSession(URH_JoinedSession* SessionInfo, const FRH_GameInstanceSessionSyncBlock& Delegate = FRH_GameInstanceSessionSyncBlock());
 	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Sync to Session", AutoCreateRefTerm = "Delegate"))
 	/**
+	* @private
 	* @brief Blueprint compatible wrapper for SyncToSession
 	*/
 	void BLUEPRINT_SyncToSession(URH_JoinedSession* SessionInfo, const FRH_GameInstanceSessionSyncDynamicDelegate& Delegate) { SyncToSession(SessionInfo, Delegate); }
@@ -203,6 +204,7 @@ public:
 	*/
 	virtual bool StartJoinInstanceFlow(const FRH_GameInstanceSessionSyncBlock& Delegate = FRH_GameInstanceSessionSyncBlock());
 	/**
+	* @private
 	* @brief Blueprint compatible wrapper for StartJoinInstanceFlow
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Session|Instance", meta = (DisplayName = "Start Join Instance Flow", AutoCreateRefTerm = "Delegate"))
@@ -215,6 +217,7 @@ public:
 	*/
 	virtual void StartLeaveInstanceFlow(bool bAlreadyDisconnected = false, bool bCheckDesired = false, const FRH_GameInstanceSessionSyncBlock& Delegate = FRH_GameInstanceSessionSyncBlock());
 	/**
+	* @private
 	* @brief Blueprint compatible wrapper for StartLeaveInstanceFlow
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Session|Instance", meta = (DisplayName = "Start Leave Instance Flow", AutoCreateRefTerm = "Delegate"))
@@ -279,6 +282,7 @@ public:
 	 */
 	FRH_OnBeaconCreatedDelegate OnBeaconCreated;
 	/**
+	 * @private
 	 * @brief Multicast delegate fired when a beacon is created so that host objects can be registered.
 	 */
 	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Session|Instance", meta = (DisplayName = "On Beacon Created"))
@@ -289,6 +293,7 @@ public:
 	 */
 	FRH_OnActiveSessionChangedDelegate OnActiveSessionChanged;
 	/**
+	 * @private
 	 * @brief Multicast delegate fired when the active session is changed
 	 */
 	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Session|Instance", meta = (DisplayName = "On Active Session Changed"))

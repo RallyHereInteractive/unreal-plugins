@@ -134,6 +134,7 @@ public:
 	class URH_PlayerInfo* GetPlayerInfo() const;
 
 	/**
+	 * @private
 	 * @brief Blueprint delegate to listen for updates.
 	 */
 	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Player Info Subsystem | Player Presence", meta = (DisplayName = "On Presence Updated"))
@@ -173,6 +174,7 @@ public:
 		TemporaryRequestDelegates.Add(Delegate);
 		CheckPollStatus(bForceUpdate);
 	}
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Presence", meta = (DisplayName = "Get Presence Async", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_RequestUpdate(bool bForceUpdate, const FRH_OnRequestPlayerInfoSubobjectDynamicDelegate& Delegate) { RequestUpdate(bForceUpdate, Delegate); }
 
@@ -494,6 +496,7 @@ public:
 	virtual void GetReportsSentAsync(const FString& Cursor, const int32 PageSize = 0, const FRH_PlayerInfoGetPlayerReportsBlock& Delegate = FRH_PlayerInfoGetPlayerReportsBlock());
 
 	/**
+	 * @private
 	 * @brief Request a list of player reports send by this player
 	 * @param Cursor The cursor to use for the request.
 	 * @param PageSize The size of the pages to poll, if 0, uses default
@@ -517,6 +520,7 @@ public:
 	virtual void GetReportsReceivedAsync(const FString& Cursor, const int32 PageSize = 0, const FRH_PlayerInfoGetPlayerReportsBlock& Delegate = FRH_PlayerInfoGetPlayerReportsBlock());
 
 	/**
+	 * @private
 	 * @brief Request a list of player reports received by this player
 	 * @param Cursor The cursor to use for the request.
 	 * @param PageSize The size of the pages to poll, if 0, uses default
@@ -539,6 +543,7 @@ public:
 	virtual void CreateReport(const FRHAPI_PlayerReportCreate& Report, const FRH_PlayerInfoCreatePlayerReportBlock& Delegate = FRH_PlayerInfoCreatePlayerReportBlock());
 
 	/**
+	 * @private
 	 * @brief Create a new report for the target player
 	 * @param Report The report to create.
 	 * @param Delegate Callback delegate for the request.
@@ -764,6 +769,7 @@ public:
 	* @param [in] Delegate Callback with the players display name.
 	*/
 	virtual void GetLastKnownDisplayNameAsync(const FTimespan& StaleThreshold = FTimespan(), bool bForceRefresh = false, ERHAPI_Platform PreferredPlatformType = ERHAPI_Platform::Anon, const FRH_PlayerInfoGetDisplayNameBlock& Delegate = FRH_PlayerInfoGetDisplayNameBlock(), const class URH_LocalPlayerSubsystem* LocalPlayerSubsystem = nullptr);
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Get Display Name Async", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GetLastKnownDisplayNameAsync(const class URH_LocalPlayerSubsystem* LocalPlayerSubsystem, const FTimespan& StaleThreshold, bool bForceRefresh, ERHAPI_Platform PreferredPlatformType, const FRH_PlayerInfoGetDisplayNameDynamicDelegate& Delegate) { GetLastKnownDisplayNameAsync(StaleThreshold, bForceRefresh, PreferredPlatformType, Delegate, LocalPlayerSubsystem); }
 
@@ -774,6 +780,7 @@ public:
 	* @return If the call successfully found a display name for the player already stored on the client.
 	*/
 	virtual bool GetLastKnownDisplayName(FString& OutDisplayName, ERHAPI_Platform PreferredPlatformType = ERHAPI_Platform::Anon) const;
+	/** @private */
 	UFUNCTION(BlueprintPure, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Get Display Name"))
 	bool BLUEPRINT_GetLastKnownDisplayName(ERHAPI_Platform PreferredPlatformType, FString& OutDisplayName) const { return GetLastKnownDisplayName(OutDisplayName, PreferredPlatformType); }
 
@@ -784,6 +791,7 @@ public:
 	* @param [in] Delegate Callback with the players linked platforms.
 	*/
 	virtual void GetLinkedPlatformInfo(const FTimespan& StaleThreshold = FTimespan(), bool bForceRefresh = false, const FRH_PlayerInfoGetPlatformsBlock& Delegate = FRH_PlayerInfoGetPlatformsBlock());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Get Linked Platform Info", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GetLinkedPlatformInfo(const FTimespan& StaleThreshold, bool bForceRefresh, const FRH_PlayerInfoGetPlatformsDynamicDelegate& Delegate) { GetLinkedPlatformInfo(StaleThreshold, bForceRefresh, Delegate); }
 
@@ -795,6 +803,7 @@ public:
 	* @param [in] Delegate Callback with the players settings for the given type.
 	*/
 	virtual void GetPlayerSettings(const FString& SettingTypeId, const FTimespan& StaleThreshold = FTimespan(), bool bForceRefresh = false, const FRH_PlayerInfoGetPlayerSettingsBlock& Delegate = FRH_PlayerInfoGetPlayerSettingsBlock());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Get Player Settings", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GetPlayerSettings(const FString& SettingTypeId, const FTimespan& StaleThreshold, bool bForceRefresh, const FRH_PlayerInfoGetPlayerSettingsDynamicDelegate& Delegate) { GetPlayerSettings(SettingTypeId, StaleThreshold, bForceRefresh, Delegate); }
 
@@ -805,6 +814,7 @@ public:
 	* @param [in] Delegate Callback when the operation is complete with success information.
 	*/
 	virtual void SetPlayerSettings(const FString& SettingTypeId, FRH_PlayerSettingsDataWrapper& SettingsData, const FRH_PlayerInfoSetPlayerSettingsBlock& Delegate = FRH_PlayerInfoSetPlayerSettingsBlock());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Set Player Settings", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_SetPlayerSettings(const FString& SettingTypeId, FRH_PlayerSettingsDataWrapper SettingsData, const FRH_PlayerInfoSetPlayerSettingsDynamicDelegate& Delegate) { SetPlayerSettings(SettingTypeId, SettingsData, Delegate); }
 
@@ -815,6 +825,7 @@ public:
 	* @param [in] Delegate Callback with the players ranking for the given type.
 	*/
 	virtual void GetPlayerRankings(const FTimespan& StaleThreshold = FTimespan(), bool bForceRefresh = false, const FRH_PlayerInfoGetPlayerRankingsBlock& Delegate = FRH_PlayerInfoGetPlayerRankingsBlock());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Get Player Rankings", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GetPlayerRankings(const FTimespan& StaleThreshold, bool bForceRefresh, const FRH_PlayerInfoGetPlayerRankingsDynamicDelegate& Delegate) { GetPlayerRankings(StaleThreshold, bForceRefresh, Delegate); }
 
@@ -825,6 +836,7 @@ public:
 	* @param [in] Delegate Callback when the operation is complete with success information.
 	*/
 	virtual void UpdatePlayerRanking(const FString& RankId, const FRHAPI_PlayerRankUpdateRequest& RankData, const FRH_PlayerInfoGetPlayerRankingsBlock& Delegate = FRH_PlayerInfoGetPlayerRankingsBlock());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Update Player Ranking", AutoCreateRefTerm = "RankData,Delegate"))
 	void BLUEPRINT_UpdatePlayerRanking(const FString& RankId, const FRHAPI_PlayerRankUpdateRequest& RankData, const FRH_PlayerInfoGetPlayerRankingsDynamicDelegate& Delegate) { UpdatePlayerRanking(RankId, RankData, Delegate); }
 	/**
@@ -1069,6 +1081,7 @@ public:
 	* @param [in] Delegate Callback with the all PlayerInfos that are found with that display name
 	*/
 	virtual void LookupPlayer(FString PlayerName, const FRH_PlayerInfoLookupPlayerBlock& Delegate = FRH_PlayerInfoLookupPlayerBlock());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem", meta = (DisplayName = "Lookup Player", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_LookupPlayer(FString PlayerName, const FRH_PlayerInfoLookupPlayerDynamicDelegate& Delegate) { LookupPlayer(PlayerName, Delegate); }
 
@@ -1079,6 +1092,7 @@ public:
 	* @param [in] Delegate Callback with the all PlayerInfos that are found with that display name
 	*/
 	virtual void LookupPlayerByPlatformUserId(FRH_PlayerPlatformId PlayerPlatformId, const FRH_PlayerInfoLookupPlayerBlock& Delegate = FRH_PlayerInfoLookupPlayerBlock());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem", meta = (DisplayName = "Lookup Player By Platform Id", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_LookupPlayerByPlatformUserId(FRH_PlayerPlatformId PlayerPlatformId, const FRH_PlayerInfoLookupPlayerDynamicDelegate& Delegate) { LookupPlayerByPlatformUserId(PlayerPlatformId, Delegate); }
 

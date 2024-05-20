@@ -286,6 +286,7 @@ public:
 	* @param [in] Delegate Callback when the API call is complete.
 	*/
 	void GetCatalogAll(const FRH_CatalogCallBlock& Delegate = FRH_CatalogCallBlock());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Catalog Subsystem", meta = (DisplayName = "Get Catalog All", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GetCatalogAll(const FRH_CatalogCallDynamicDelegate& Delegate) { GetCatalogAll(Delegate); }
 	/**
@@ -293,6 +294,7 @@ public:
 	* @param [in] Delegate Callback when the API call is complete.
 	*/
 	void GetCatalogXpAll(const FRH_CatalogCallBlock& Delegate = FRH_CatalogCallBlock());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Catalog Subsystem", meta = (DisplayName = "Get Catalog Xp All", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GetCatalogXpAll(const FRH_CatalogCallDynamicDelegate& Delegate) { GetCatalogXpAll(Delegate); }
 	/**
@@ -301,6 +303,7 @@ public:
 	* @param [in] Delegate Callback when the API call is complete.
 	*/
 	void GetCatalogItem(int32 ItemId, const FRH_CatalogCallBlock& Delegate = FRH_CatalogCallBlock());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Catalog Subsystem", meta = (DisplayName = "Get Catalog Item", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GetCatalogItem(int32 ItemId, const FRH_CatalogCallDynamicDelegate& Delegate) { GetCatalogItem(ItemId, Delegate); }
 	/**
@@ -308,6 +311,7 @@ public:
 	* @param [in] Delegate Callback when the API call is complete.
 	*/
 	void GetCatalogInventoryBucketUseRuleSetsAll(const FRH_CatalogCallBlock& Delegate = FRH_CatalogCallBlock());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Catalog Subsystem", meta = (DisplayName = "Get Catalog Inventory Bucket Use Rulesets All", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GetCatalogInventoryBucketUseRuleSetsAll(const FRH_CatalogCallDynamicDelegate& Delegate) { GetCatalogInventoryBucketUseRuleSetsAll(Delegate); }
 	/**
@@ -315,6 +319,7 @@ public:
 	* @param [in] Delegate Callback when the API call is complete.
 	*/
 	void GetCatalogPricePointsAll(const FRH_CatalogCallBlock& Delegate = FRH_CatalogCallBlock());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Catalog Subsystem", meta = (DisplayName = "Get Catalog Price Points All", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GetCatalogPricePointsAll(const FRH_CatalogCallDynamicDelegate& Delegate) { GetCatalogPricePointsAll(Delegate); }
 	/**
@@ -322,6 +327,7 @@ public:
 	* @param [in] Delegate Callback when the API call is complete.
 	*/
 	void GetCatalogTimeFramesAll(const FRH_CatalogCallBlock& Delegate = FRH_CatalogCallBlock());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Catalog Subsystem", meta = (DisplayName = "Get Catalog Time Frames All", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GetCatalogTimeFramesAll(const FRH_CatalogCallDynamicDelegate& Delegate) { GetCatalogTimeFramesAll(Delegate); }
 	/**
@@ -329,6 +335,7 @@ public:
 	* @param [in] VendorRequest The vendor request data for the call with list of vendors and callback on complete.
 	*/
 	void GetCatalogVendor(const FRHVendorGetRequest& VendorRequest);
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Catalog Subsystem", meta = (DisplayName = "Get Catalog Vendor", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GetCatalogVendor(const FRHVendorGetRequest& VendorRequest) { GetCatalogVendor(VendorRequest); }
 	/**
@@ -336,6 +343,7 @@ public:
 	* @param [in] Delegate Callback when the API call is complete.
 	*/
 	void GetCatalogVendorsAll(const FRH_CatalogCallBlock& Delegate = FRH_CatalogCallBlock());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Catalog Subsystem", meta = (DisplayName = "Get Catalog Vendors All", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GetCatalogVendorsAll(const FRH_CatalogCallDynamicDelegate& Delegate) { GetCatalogVendorsAll(Delegate); }
 	/**

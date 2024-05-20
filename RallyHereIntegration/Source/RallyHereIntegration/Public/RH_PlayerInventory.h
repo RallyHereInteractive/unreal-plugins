@@ -731,6 +731,7 @@ public:
 	* @param [in] Delegate Callback with the count of the inventory item.
 	*/
 	void GetInventoryCount(const int32& ItemId, const FRH_GetInventoryCountBlock& Delegate = FRH_GetInventoryCountBlock()) const;
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Inventory Subsystem", meta = (DisplayName = "Get Inventory Count", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GetInventoryCount(const int32& ItemId, const FRH_GetInventoryCountDynamicDelegate& Delegate) { GetInventoryCount(ItemId, Delegate); }
 	/**
@@ -739,6 +740,7 @@ public:
 	* @param [in] Delegate Callback with the state of the items ownership.
 	*/
 	void IsInventoryItemOwned(const int32& ItemId, const FRH_GetInventoryStateBlock& Delegate = FRH_GetInventoryStateBlock()) const;
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Inventory Subsystem", meta = (DisplayName = "Is Inventory Item Owned", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_IsInventoryItemOwned(const int32& ItemId, const FRH_GetInventoryStateDynamicDelegate& Delegate) { IsInventoryItemOwned(ItemId, Delegate); }
 
@@ -748,6 +750,7 @@ public:
 	* @param [in] Delegate Callback with the state of the items rented status.
 	*/
 	void IsInventoryItemRented(const int32& ItemId, const FRH_GetInventoryStateBlock& Delegate = FRH_GetInventoryStateBlock()) const;
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Inventory Subsystem", meta = (DisplayName = "Is Inventory Item Rented", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_IsInventoryItemRented(const int32& ItemId, const FRH_GetInventoryStateDynamicDelegate& Delegate) { IsInventoryItemRented(ItemId, Delegate); }
 	/**
@@ -828,18 +831,23 @@ public:
 	* @param [in] Delegate Callback delegate for getting the players session.
 	*/
 	void GetInventorySession(const FRH_OnInventorySessionUpdateDelegateBlock& Delegate = FRH_OnInventorySessionUpdateDelegate());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Inventory Subsystem", meta = (DisplayName = "Get Inventory Session", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GetInventorySession(const FRH_OnInventorySessionUpdateDynamicDelegate& Delegate) { return GetInventorySession(Delegate); };
 
 	/**
 	* @brief Calls the Inventory API to get the create an Inventory Session for the player.
+	* @param [in] Platform The platform to create the session for.
 	* @param [in] Delegate Callback delegate for creating the players session.
 	*/
 	void CreateInventorySession(const TOptional<ERHAPI_Platform> Platform, const FRH_OnInventorySessionUpdateDelegateBlock& Delegate = FRH_OnInventorySessionUpdateDelegate());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Inventory Subsystem", meta = (DisplayName = "Create Inventory Session", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_CreateInventorySession(const FRH_OnInventorySessionUpdateDynamicDelegate& Delegate) { return CreateInventorySession({}, Delegate); };
 	/**
+	* @private
 	* @brief Calls the Inventory API to get the create an Inventory Session for the player for a given Platform.
+	* @param [in] Platform The platform to create the session for.
 	* @param [in] Delegate Callback delegate for creating the players session.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Inventory Subsystem", meta = (DisplayName = "Create Inventory Session For Platform", AutoCreateRefTerm = "PlatformName,Delegate"))
@@ -851,6 +859,7 @@ public:
 	* @param [in] Delegate Callback delegate for getting the inventory.
 	*/
 	void GetInventory(TArray<int32> ItemIds = TArray<int32>(), const FRH_OnInventoryUpdateDelegateBlock& Delegate = FRH_OnInventoryUpdateDelegate());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Inventory Subsystem", meta = (DisplayName = "Get Inventory", AutoCreateRefTerm = "ItemIds,Delegate"))
 	void BLUEPRINT_GetInventory(TArray<int32> ItemIds, const FRH_OnInventoryUpdateDynamicDelegate& Delegate) { return GetInventory(ItemIds, Delegate); };
 
@@ -870,6 +879,7 @@ public:
 		}
 		CreateNewPlayerOrder(OrderSource, false, OrderEntries, Delegate);
 	}
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Inventory Subsystem", meta = (DisplayName = "Create Player Order Deprecated", AutoCreateRefTerm = "Delegate", DeprecatedFunction, DeprecationMessage = "This function has been deprecated, use CreateNewPlayerOrder and set IsTransaction, as well as the FillType on the OrderEntries"))
 	void BLUEPRINT_CreatePlayerOrder(ERHAPI_PlayerOrderEntryType FillType, ERHAPI_Source OrderSource, const TArray<URH_PlayerOrderEntry*>& OrderEntries, const FRH_OrderResultDynamicDelegate& Delegate)
 	{
@@ -888,6 +898,7 @@ public:
 	*/
 	UE_DEPRECATED(5.0, "This function has been deprecated, use CreateNewPlayerOrder and set IsTransaction, as well as the FillType on the OrderEntries")
 	void CreateNewPlayerOrder(ERHAPI_Source OrderSource, const TArray<URH_PlayerOrderEntry*>& OrderEntries, const FRH_OrderResultBlock& Delegate = FRH_OrderResultBlock()) { CreateNewPlayerOrder(OrderSource, false, OrderEntries, Delegate); }
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Inventory Subsystem", meta = (DisplayName = "Create New Player Order Deprecated", AutoCreateRefTerm = "Delegate", DeprecatedFunction, DeprecationMessage = "This function has been deprecated, use CreateNewPlayerOrder and set IsTransaction, as well as the FillType on the OrderEntries"))
 	void BLUEPRINT_CreateNewPlayerOrder(ERHAPI_Source OrderSource, const TArray<URH_PlayerOrderEntry*>& OrderEntries, const FRH_OrderResultDynamicDelegate& Delegate) { CreateNewPlayerOrder(OrderSource, false, OrderEntries, Delegate); }
 
@@ -899,6 +910,7 @@ public:
 	* @param [in] Delegate Callback delegate for the completion of the order request.
 	*/
 	void CreateNewPlayerOrder(ERHAPI_Source OrderSource, bool IsTransaction, const TArray<URH_PlayerOrderEntry*>& OrderEntries, const FRH_OrderResultBlock& Delegate = FRH_OrderResultBlock());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Inventory Subsystem", meta = (DisplayName = "Create New Player Order", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_CreateNewPlayerOrder2(ERHAPI_Source OrderSource, bool IsTransaction, const TArray<URH_PlayerOrderEntry*>& OrderEntries, const FRH_OrderResultDynamicDelegate& Delegate) { CreateNewPlayerOrder(OrderSource, IsTransaction, OrderEntries, Delegate); }
 
@@ -908,6 +920,7 @@ public:
 	* @param [in] Delegate Callback delegate for the completion of the promo code redemption.
 	*/
 	void RedeemPromoCode(const FString& PromoCode, const FRH_PromoCodeResultBlock& Delegate = FRH_PromoCodeResultBlock());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Inventory Subsystem", meta = (DisplayName = "Redeem Promo Code", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_RedeemPromoCode(const FString& PromoCode, const FRH_PromoCodeResultDynamicDelegate& Delegate) { RedeemPromoCode(PromoCode, Delegate); }
 
@@ -916,6 +929,7 @@ public:
 	* @param [in] Delegate Callback delegate whenever the player has any orders.
 	*/
 	void SetOrderWatch(const FRH_OrderDetailsBlock& Delegate);
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Inventory Subsystem", meta = (DisplayName = "Set Order Watch", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_SetOrderWatch(const FRH_OrderDetailsDynamicDelegate& Delegate) { SetOrderWatch(Delegate); }
 
@@ -923,6 +937,7 @@ public:
 	* @brief Clears a watch for the player.
 	*/
 	void ClearOrderWatch(const FRH_OrderDetailsBlock& Delegate);
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Inventory Subsystem", meta = (DisplayName = "Clear Order Watch", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_ClearOrderWatch(const FRH_OrderDetailsDynamicDelegate& Delegate) { ClearOrderWatch(Delegate); }
 
@@ -932,6 +947,7 @@ public:
 	* @param [in] Delegate Callback delegate when the inventory update completes.
 	*/
 	void AddPendingOrdersFromEntitlementsArray(const TArray<FRHAPI_PlatformEntitlement>& Entitlements, const FRH_OrderDetailsBlock& Delegate);
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Inventory Subsystem", meta = (DisplayName = "Add Pending Orders From Entitlements Array", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_AddPendingOrdersFromEntitlementsArray(TArray<FRHAPI_PlatformEntitlement>& Entitlements, const FRH_OrderDetailsDynamicDelegate& Delegate) { AddPendingOrdersFromEntitlementsArray(Entitlements, Delegate); }
 
@@ -941,6 +957,7 @@ public:
 	* @param [in] Delegate Callback delegate when the inventory update completes.
 	*/
 	void AddPendingOrdersFromEntitlementResult(const FRHAPI_PlatformEntitlementProcessResult& EntitlementResult, const FRH_OrderDetailsBlock& Delegate);
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Inventory Subsystem", meta = (DisplayName = "Add Pending Orders From Entitlement Result", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_AddPendingOrdersFromEntitlementResult(const FRHAPI_PlatformEntitlementProcessResult& EntitlementResult, const FRH_OrderDetailsDynamicDelegate& Delegate) { AddPendingOrdersFromEntitlementResult(EntitlementResult, Delegate); }
 
@@ -958,6 +975,7 @@ public:
 	*/
 	void CreateInventory(const TOptional<FGuid>& ClientOrderReferenceId, const TArray<FRH_CreateInventory>& CreateInventories, const ERHAPI_Source Source = ERHAPI_Source::Client,
 		const FRH_OnInventoryUpdateDelegateBlock& Delegate = FRH_OnInventoryUpdateDelegate());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Inventory Subsystem", meta = (DisplayName = "Create Inventory", AutoCreateRefTerm = "ClientOrderReferenceId,CreateInventories,Source,Delegate"))
 	void BLUEPRINT_CreateInventory(const FGuid& ClientOrderReferenceId, const TArray<FRH_CreateInventory>& CreateInventories, const FRH_OnInventoryUpdateDynamicDelegate& Delegate, const ERHAPI_Source Source = ERHAPI_Source::Client)
 	{
@@ -965,6 +983,7 @@ public:
 	};
 
 	/**
+	* @private
 	* @brief Requests direct inventory creation to the players inventory.
 	* @param [in] CreateInventories Array of items to be created in the players inventory.
 	* @param [in] Source Where the order is being created from.
@@ -985,6 +1004,7 @@ public:
 	*/
 	void UpdateInventory(const TOptional<FGuid>& ClientOrderReferenceId, const TArray<FRH_UpdateInventory>& UpdateInventories, const ERHAPI_Source Source = ERHAPI_Source::Client,
 		const FRH_OnInventoryUpdateDelegateBlock& Delegate = FRH_OnInventoryUpdateDelegate());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Inventory Subsystem", meta = (DisplayName = "Update Inventory", AutoCreateRefTerm = "ClientOrderReferenceId,UpdateInventories,Source,Delegate"))
 	void BLUEPRINT_UpdateInventory(const FGuid& ClientOrderReferenceId, const TArray<FRH_UpdateInventory>& UpdateInventories, const FRH_OnInventoryUpdateDynamicDelegate& Delegate, const ERHAPI_Source Source = ERHAPI_Source::Client)
 	{
@@ -992,6 +1012,7 @@ public:
 	};
 
 	/**
+	* @private
 	* @brief Requests direct inventory modifications to the players inventory.
 	* @param [in] UpdateInventories Array of items to be created in the players inventory.
 	* @param [in] Source Where the order is being created from.

@@ -238,6 +238,7 @@ public:
 	* @brief Notification delegates for when cleanup of this object has completed
 	*/
 	FRH_PlatformSessionSyncerCleanupDelegate OnCleanupComplete;
+	/** @private */
 	UPROPERTY(EditAnywhere, BlueprintAssignable, Category = "Session", meta = (DisplayName = "On Cleanup Complete"))
 	FRH_PlatformSessionSyncerCleanupDynamicDelegate BLUEPRINT_OnCleanupComplete;
 
@@ -245,6 +246,7 @@ public:
 	* @brief Notification delegates for when cleanup of this object has completed
 	*/
 	FRH_PlatformSessionSyncerStateChangedDelegate OnStateChanged;
+	/** @private */
 	UPROPERTY(EditAnywhere, BlueprintAssignable, Category = "Session", meta = (DisplayName = "On State Changed"))
 	FRH_PlatformSessionSyncerStateChangedDynamicDelegate BLUEPRINT_OnStateChanged;
 

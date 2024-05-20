@@ -238,6 +238,7 @@ public:
 	FRH_OnLoginCompleteMulticast OnLoginComplete;
 
 	/**
+	 * @private
 	 * @brief Multicast delegate that gets broadcasted on login complete.
 	 */
 	UPROPERTY(BlueprintAssignable, Category = "Login")
@@ -249,6 +250,7 @@ public:
 	FRH_GeneralSettingChangedMulticast OnCrossplaySettingChanged;
 
 	/**
+	 * @private
 	 * @brief Multicast delegate that gets broadcasted when a player's crossplay setting is changed.
 	 */
 	UPROPERTY(BlueprintAssignable, Category = "Login")

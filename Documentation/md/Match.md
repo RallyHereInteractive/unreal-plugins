@@ -64,9 +64,7 @@ Match Subsystem used for match API calls.
 `public virtual void `[`Initialize`](#classURH__MatchSubsystem_1a6537937c7ca640348c2a564c1e17f3dc)`()` | Initialize the subsystem.
 `public virtual void `[`Deinitialize`](#classURH__MatchSubsystem_1ab7136837d1d9bf468d9be59cc33463b7)`()` | Safely tears down the subsystem.
 `public virtual void `[`SearchMatches`](#classURH__MatchSubsystem_1a23248c4305bc3aa2a6dfc4ef3aa93573)`(const `[`FRH_MatchSearchParams`](Match.md#structFRH__MatchSearchParams)` & params,const FRH_OnMatchSearchCompleteDelegateBlock & Delegate)` | Search for Matches.
-`public inline void `[`BLUEPRINT_SearchMatches`](#classURH__MatchSubsystem_1a3557ad010d1dc2a951c114699f4ab0a8)`(const `[`FRH_MatchSearchParams`](Match.md#structFRH__MatchSearchParams)` & params,const FRH_OnMatchSearchCompleteDynamicDelegate & Delegate)` | 
 `public virtual void `[`GetMatchAsync`](#classURH__MatchSubsystem_1ac5d211f2d31af98c42373828fad8d86b)`(const FString & MatchId,bool bIgnoreCache,const FRH_OnMatchLookupCompleteDelegateBlock & Delegate)` | Lookup a specific match.
-`public  `[`UFUNCTION`](#classURH__MatchSubsystem_1ab0fddd0741eb99997cf1fb3948c7f815)`(BlueprintCallable,Category,meta) const` | 
 `public inline bool `[`GetMatch`](#classURH__MatchSubsystem_1a893610997366c15dd53fa65e311ce1b8)`(const FString & MatchId,`[`FRHAPI_MatchWithPlayers`](models/RHAPI_MatchWithPlayers.md#structFRHAPI__MatchWithPlayers)` & OutMatch)` | Lookup a specific match from the cache.
 `public inline const TMap< FString, `[`FRHAPI_MatchWithPlayers`](models/RHAPI_MatchWithPlayers.md#structFRHAPI__MatchWithPlayers)` > & `[`GetAllMatches`](#classURH__MatchSubsystem_1a051681ea68418192d99aaffe1264b258)`() const` | Get all matches from the cache.
 `public inline void `[`ClearMatchesCache`](#classURH__MatchSubsystem_1abad303e288ec2208c57861a2c449b17b)`()` | Clear the match cache.
@@ -75,11 +73,8 @@ Match Subsystem used for match API calls.
 `public inline virtual bool `[`HasActiveMatchId`](#classURH__MatchSubsystem_1ae991c30b43b4dec38b4ed4fd5421928a)`() const` | Gets whether the active match exists.
 `public inline virtual void `[`ClearActiveMatchId`](#classURH__MatchSubsystem_1ae32c11a820e23c6048777b0c06435920)`()` | Clears the active match.
 `public virtual void `[`CreateMatch`](#classURH__MatchSubsystem_1a88ae0bc379ecc672dff718686ca8887b)`(const `[`FRHAPI_MatchRequest`](models/RHAPI_MatchRequest.md#structFRHAPI__MatchRequest)` & Match,bool bSetActive,const FRH_OnMatchUpdateCompleteDelegateBlock & Delegate)` | Create a match (POST)
-`public inline void `[`BLUEPRINT_CreateMatch`](#classURH__MatchSubsystem_1ab410c3b3372a427d1ef2284d609c9fb8)`(const `[`FRHAPI_MatchRequest`](models/RHAPI_MatchRequest.md#structFRHAPI__MatchRequest)` & Match,bool bSetActive,const FRH_OnMatchUpdateCompleteDynamicDelegate & Delegate)` | 
 `public virtual void `[`UpdateMatch`](#classURH__MatchSubsystem_1a3300d745ccd6c04a28a76895dfd7a6fd)`(const FString & MatchId,const `[`FRHAPI_MatchRequest`](models/RHAPI_MatchRequest.md#structFRHAPI__MatchRequest)` & Match,const FRH_OnMatchUpdateCompleteDelegateBlock & Delegate)` | Update a match (PATCH)
-`public inline void `[`BLUEPRINT_UpdateMatch`](#classURH__MatchSubsystem_1ae8d39ccaca77e3cb780fcde4189caa10)`(const FString & MatchId,const `[`FRHAPI_MatchRequest`](models/RHAPI_MatchRequest.md#structFRHAPI__MatchRequest)` & Match,const FRH_OnMatchUpdateCompleteDynamicDelegate & Delegate)` | 
 `public virtual void `[`UpdateMatchPlayer`](#classURH__MatchSubsystem_1a920e474a59dcdd94bc07bf58fc71f710)`(const FString & MatchId,const FGuid & PlayerId,const `[`FRHAPI_MatchPlayerRequest`](models/RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` & Player,const FRH_OnMatchPlayerUpdateCompleteDelegateBlock & Delegate)` | Update a player in a match (PATCH w/ UPSERT)
-`public inline void `[`BLUEPRINT_UpdateMatchPlayer`](#classURH__MatchSubsystem_1a9fd3f47fb61af076c88c24e2402863ec)`(const FString & MatchId,const FGuid & PlayerId,const `[`FRHAPI_MatchPlayerRequest`](models/RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` & Player,const FRH_OnMatchPlayerUpdatedCompleteDynamicDelegate & Delegate)` | 
 `protected TMap< FString, `[`FRHAPI_MatchWithPlayers`](models/RHAPI_MatchWithPlayers.md#structFRHAPI__MatchWithPlayers)` > `[`MatchesCache`](#classURH__MatchSubsystem_1af6ae949b60bac5983489fe295a5b914a) | 
 `protected TOptional< FString > `[`ActiveMatchId`](#classURH__MatchSubsystem_1aa6948be8c609b94e612435f7b0767e7b) | The last match created with bSetActive = true, for ease of use.
 
@@ -106,13 +101,9 @@ Search for Matches.
 
 * `Delegate` Callback with the results of the search.
 
-#### `public inline void `[`BLUEPRINT_SearchMatches`](#classURH__MatchSubsystem_1a3557ad010d1dc2a951c114699f4ab0a8)`(const `[`FRH_MatchSearchParams`](Match.md#structFRH__MatchSearchParams)` & params,const FRH_OnMatchSearchCompleteDynamicDelegate & Delegate)` <a id="classURH__MatchSubsystem_1a3557ad010d1dc2a951c114699f4ab0a8"></a>
-
 #### `public virtual void `[`GetMatchAsync`](#classURH__MatchSubsystem_1ac5d211f2d31af98c42373828fad8d86b)`(const FString & MatchId,bool bIgnoreCache,const FRH_OnMatchLookupCompleteDelegateBlock & Delegate)` <a id="classURH__MatchSubsystem_1ac5d211f2d31af98c42373828fad8d86b"></a>
 
 Lookup a specific match.
-
-#### `public  `[`UFUNCTION`](#classURH__MatchSubsystem_1ab0fddd0741eb99997cf1fb3948c7f815)`(BlueprintCallable,Category,meta) const` <a id="classURH__MatchSubsystem_1ab0fddd0741eb99997cf1fb3948c7f815"></a>
 
 #### `public inline bool `[`GetMatch`](#classURH__MatchSubsystem_1a893610997366c15dd53fa65e311ce1b8)`(const FString & MatchId,`[`FRHAPI_MatchWithPlayers`](models/RHAPI_MatchWithPlayers.md#structFRHAPI__MatchWithPlayers)` & OutMatch)` <a id="classURH__MatchSubsystem_1a893610997366c15dd53fa65e311ce1b8"></a>
 
@@ -155,8 +146,6 @@ Create a match (POST)
 
 * `Delegate` Callback with the results of the match creation
 
-#### `public inline void `[`BLUEPRINT_CreateMatch`](#classURH__MatchSubsystem_1ab410c3b3372a427d1ef2284d609c9fb8)`(const `[`FRHAPI_MatchRequest`](models/RHAPI_MatchRequest.md#structFRHAPI__MatchRequest)` & Match,bool bSetActive,const FRH_OnMatchUpdateCompleteDynamicDelegate & Delegate)` <a id="classURH__MatchSubsystem_1ab410c3b3372a427d1ef2284d609c9fb8"></a>
-
 #### `public virtual void `[`UpdateMatch`](#classURH__MatchSubsystem_1a3300d745ccd6c04a28a76895dfd7a6fd)`(const FString & MatchId,const `[`FRHAPI_MatchRequest`](models/RHAPI_MatchRequest.md#structFRHAPI__MatchRequest)` & Match,const FRH_OnMatchUpdateCompleteDelegateBlock & Delegate)` <a id="classURH__MatchSubsystem_1a3300d745ccd6c04a28a76895dfd7a6fd"></a>
 
 Update a match (PATCH)
@@ -167,8 +156,6 @@ Update a match (PATCH)
 * `Match` The match to update 
 
 * `Delegate` Callback with the results of the match update
-
-#### `public inline void `[`BLUEPRINT_UpdateMatch`](#classURH__MatchSubsystem_1ae8d39ccaca77e3cb780fcde4189caa10)`(const FString & MatchId,const `[`FRHAPI_MatchRequest`](models/RHAPI_MatchRequest.md#structFRHAPI__MatchRequest)` & Match,const FRH_OnMatchUpdateCompleteDynamicDelegate & Delegate)` <a id="classURH__MatchSubsystem_1ae8d39ccaca77e3cb780fcde4189caa10"></a>
 
 #### `public virtual void `[`UpdateMatchPlayer`](#classURH__MatchSubsystem_1a920e474a59dcdd94bc07bf58fc71f710)`(const FString & MatchId,const FGuid & PlayerId,const `[`FRHAPI_MatchPlayerRequest`](models/RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` & Player,const FRH_OnMatchPlayerUpdateCompleteDelegateBlock & Delegate)` <a id="classURH__MatchSubsystem_1a920e474a59dcdd94bc07bf58fc71f710"></a>
 
@@ -182,8 +169,6 @@ Update a player in a match (PATCH w/ UPSERT)
 * `Player` The player data request to update 
 
 * `Delegate` Callback with the results of the player update
-
-#### `public inline void `[`BLUEPRINT_UpdateMatchPlayer`](#classURH__MatchSubsystem_1a9fd3f47fb61af076c88c24e2402863ec)`(const FString & MatchId,const FGuid & PlayerId,const `[`FRHAPI_MatchPlayerRequest`](models/RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` & Player,const FRH_OnMatchPlayerUpdatedCompleteDynamicDelegate & Delegate)` <a id="classURH__MatchSubsystem_1a9fd3f47fb61af076c88c24e2402863ec"></a>
 
 #### `protected TMap< FString, `[`FRHAPI_MatchWithPlayers`](models/RHAPI_MatchWithPlayers.md#structFRHAPI__MatchWithPlayers)` > `[`MatchesCache`](#classURH__MatchSubsystem_1af6ae949b60bac5983489fe295a5b914a) <a id="classURH__MatchSubsystem_1af6ae949b60bac5983489fe295a5b914a"></a>
 

@@ -21,10 +21,8 @@ Config Subsystem used for interfacing with configuration coming from the core se
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public FKVsUpdatedDelegate `[`OnKVsUpdated`](#classURH__ConfigSubsystem_1a07bcba8c1fa8aac58b54bd8de6cd9211) | Delegate that can be listented to for whenever KVs get updated from polling.
-`public FKVsUpdatedDynamicDelegate `[`BLUEPRINT_OnKVsUpdated`](#classURH__ConfigSubsystem_1a2fd1907dfa2ad9b46876c98bb47e88bb) | Delegate that can be listented to for whenever KVs get updated from polling.
 `public FAppSettingsUpdatedDelegate `[`AppSettingsUpdatedDelegate`](#classURH__ConfigSubsystem_1a4a525f2ecb90941d1fc604cf9530f232) | Delegate that can be listented to for whenever App Settings get updated from polling.
 `public FSettingsUpdatedDelegate `[`OnSettingsUpdated`](#classURH__ConfigSubsystem_1ae1e142e7cd1617f8c6dfea4025da1f51) | Delegate that can be listented to for whenever Settings get updated from polling.
-`public FSettingsUpdatedDynamicDelegate `[`BLUEPRINT_OnSettingsUpdated`](#classURH__ConfigSubsystem_1a6cd9170e3b5adf90d10225eeaeeab310) | Delegate that can be listented to for whenever Settings get updated from polling.
 `public virtual void `[`Initialize`](#classURH__ConfigSubsystem_1a5b2aa7a3ec7d38edff89acd5419dea8f)`()` | Initialize the subsystem.
 `public virtual void `[`Deinitialize`](#classURH__ConfigSubsystem_1a3772586395855d20b68419525357d482)`()` | Safely tears down the subsystem.
 `public virtual void `[`FetchKVs`](#classURH__ConfigSubsystem_1a79d77433c4d5f4c671fc1ecadf1645bd)`(const FRH_GenericSuccessWithErrorBlock & Delegate)` | Requests the server for the latest KVs.
@@ -43,8 +41,6 @@ Config Subsystem used for interfacing with configuration coming from the core se
 `public void `[`StartKVsRefreshTimer`](#classURH__ConfigSubsystem_1a2159e9b6bb06f03fa2f53216672e46fe)`()` | Starts the polling for KVs.
 `public void `[`StopKVsRefreshTimer`](#classURH__ConfigSubsystem_1aba0146f1ca8686280cf28153330388bc)`()` | Stops the polling for KVs.
 `public void `[`RefreshServerTimeCache`](#classURH__ConfigSubsystem_1afeee33613fe6dfd83ad7b2a8b8a82397)`(const FRH_GenericSuccessWithErrorBlock & Delegate)` | Requests the server time cache to be updated.
-`public inline FORCEINLINE void `[`RefreshServerTimeCache`](#classURH__ConfigSubsystem_1a40ee1a749620c20841273b8ace40d721)`(const FRH_GenericSuccessBlock & Delegate)` | 
-`public inline void `[`BLUEPRINT_RefreshServerTimeCache`](#classURH__ConfigSubsystem_1a5c4610a7f6baf7d8b3d6b385b8318232)`(const FRH_GenericSuccessWithErrorDynamicDelegate & Delegate)` | 
 `public inline const `[`FRH_ServerTimeCache`](Config.md#structFRH__ServerTimeCache)` & `[`GetServerTimeCache`](#classURH__ConfigSubsystem_1a15bf58f4b62f9d9f638c2ceae633c474)`() const` | Gets the server time cache object.
 `public inline bool `[`GetServerTime`](#classURH__ConfigSubsystem_1a946dd5b6f7306f98540241a22a02bb4a)`(FDateTime & Time) const` | Gets the approximate server time, if we have received one.
 `public inline bool `[`GetServerTimeDrift`](#classURH__ConfigSubsystem_1a8c858f002ca9de0d0c656e2dad1d08a8)`(FTimespan & Timespan) const` | Gets the approximate server time, if we have received one.
@@ -64,19 +60,11 @@ Config Subsystem used for interfacing with configuration coming from the core se
 
 Delegate that can be listented to for whenever KVs get updated from polling.
 
-#### `public FKVsUpdatedDynamicDelegate `[`BLUEPRINT_OnKVsUpdated`](#classURH__ConfigSubsystem_1a2fd1907dfa2ad9b46876c98bb47e88bb) <a id="classURH__ConfigSubsystem_1a2fd1907dfa2ad9b46876c98bb47e88bb"></a>
-
-Delegate that can be listented to for whenever KVs get updated from polling.
-
 #### `public FAppSettingsUpdatedDelegate `[`AppSettingsUpdatedDelegate`](#classURH__ConfigSubsystem_1a4a525f2ecb90941d1fc604cf9530f232) <a id="classURH__ConfigSubsystem_1a4a525f2ecb90941d1fc604cf9530f232"></a>
 
 Delegate that can be listented to for whenever App Settings get updated from polling.
 
 #### `public FSettingsUpdatedDelegate `[`OnSettingsUpdated`](#classURH__ConfigSubsystem_1ae1e142e7cd1617f8c6dfea4025da1f51) <a id="classURH__ConfigSubsystem_1ae1e142e7cd1617f8c6dfea4025da1f51"></a>
-
-Delegate that can be listented to for whenever Settings get updated from polling.
-
-#### `public FSettingsUpdatedDynamicDelegate `[`BLUEPRINT_OnSettingsUpdated`](#classURH__ConfigSubsystem_1a6cd9170e3b5adf90d10225eeaeeab310) <a id="classURH__ConfigSubsystem_1a6cd9170e3b5adf90d10225eeaeeab310"></a>
 
 Delegate that can be listented to for whenever Settings get updated from polling.
 
@@ -202,10 +190,6 @@ Stops the polling for KVs.
 #### `public void `[`RefreshServerTimeCache`](#classURH__ConfigSubsystem_1afeee33613fe6dfd83ad7b2a8b8a82397)`(const FRH_GenericSuccessWithErrorBlock & Delegate)` <a id="classURH__ConfigSubsystem_1afeee33613fe6dfd83ad7b2a8b8a82397"></a>
 
 Requests the server time cache to be updated.
-
-#### `public inline FORCEINLINE void `[`RefreshServerTimeCache`](#classURH__ConfigSubsystem_1a40ee1a749620c20841273b8ace40d721)`(const FRH_GenericSuccessBlock & Delegate)` <a id="classURH__ConfigSubsystem_1a40ee1a749620c20841273b8ace40d721"></a>
-
-#### `public inline void `[`BLUEPRINT_RefreshServerTimeCache`](#classURH__ConfigSubsystem_1a5c4610a7f6baf7d8b3d6b385b8318232)`(const FRH_GenericSuccessWithErrorDynamicDelegate & Delegate)` <a id="classURH__ConfigSubsystem_1a5c4610a7f6baf7d8b3d6b385b8318232"></a>
 
 #### `public inline const `[`FRH_ServerTimeCache`](Config.md#structFRH__ServerTimeCache)` & `[`GetServerTimeCache`](#classURH__ConfigSubsystem_1a15bf58f4b62f9d9f638c2ceae633c474)`() const` <a id="classURH__ConfigSubsystem_1a15bf58f4b62f9d9f638c2ceae633c474"></a>
 
