@@ -1217,6 +1217,7 @@ public:
 	 */
 	virtual void LeaveQueue(const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock());
 	/**
+	 * @private
 	 * @brief Blueprint compatible version of LeaveQueue
 	 * @param [in] Delegate Callback delegate on the session being updated from leaving matchmaking.
 	 */
@@ -1237,6 +1238,7 @@ public:
 	 */
 	static void JoinById(const FString& SessionId, TScriptInterface<IRH_SessionOwnerInterface> SessionOwner, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { JoinByIdEx(SessionId, GetJoinDetailDefaults(SessionOwner), SessionOwner, Delegate); }
 	/**
+	 * @private
 	 * @brief Blueprint compatible version of JoinById
 	 * @param [in] SessionId Id of the session to join.
 	 * @param [in] SessionOwner Owner of the session to join.
@@ -1253,6 +1255,7 @@ public:
 	 */
 	static void JoinByIdEx(const FString& SessionId, const FRHAPI_SelfSessionPlayerUpdateRequest& JoinDetails, TScriptInterface<IRH_SessionOwnerInterface> SessionOwner, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock());
 	/**
+	 * @private
 	 * @brief Blueprint compatible version of JoinByIdEx
 	 * @param [in] SessionId Id of the session to join.
 	 * @param [in] JoinDetails Details for the player joining the session.

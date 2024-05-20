@@ -781,6 +781,7 @@ public:
 	* @return If true, the call was executed.
 	*/
 	bool FetchFriend(const FGuid& PlayerUUID, const FRH_GenericFriendWithUuidBlock& Delegate = FRH_GenericFriendWithUuidBlock());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Friend Subsystem", meta = (DisplayName = "Fetch Friend", AutoCreateRefTerm = "Delegate"))
 	bool BLUEPRINT_FetchFriend(UPARAM(ref) const FGuid& PlayerUUID, const FRH_GenericFriendWithUuidDynamicDelegate& Delegate) { return FetchFriend(PlayerUUID, Delegate); }
 	/**
@@ -790,6 +791,7 @@ public:
 	* @return If true, the call was executed.
 	*/
 	bool AddFriend(const FGuid& PlayerUuid, const FRH_AddFriendBlock& Delegate = FRH_AddFriendBlock());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Friend Subsystem", meta = (DisplayName = "Add Friend", AutoCreateRefTerm = "Delegate"))
 	bool BLUEPRINT_AddFriend(UPARAM(ref) const FGuid& PlayerUuid, const FRH_AddFriendDynamicDelegate& Delegate) { return AddFriend(PlayerUuid, Delegate); }
 	/**
@@ -799,6 +801,7 @@ public:
 	* @return If true, the call was executed.
 	*/
 	bool RemoveFriend(const FGuid& PlayerUuid, const FRH_GenericFriendWithUuidBlock& Delegate = FRH_GenericFriendWithUuidBlock());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Friend Subsystem", meta = (DisplayName = "Remove Friend", AutoCreateRefTerm = "Delegate"))
 	bool BLUEPRINT_RemoveFriend(UPARAM(ref) const FGuid& PlayerUuid, const FRH_GenericFriendWithUuidDynamicDelegate& Delegate) { return RemoveFriend(PlayerUuid, Delegate); }
 	/**
@@ -809,6 +812,7 @@ public:
 	* @return If true, the call was executed.
 	*/
 	bool AddNotes(const FGuid& PlayerUuid, const FString& Notes, const FRH_AddNotesBlock& Delegate = FRH_AddNotesBlock());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Friend Subsystem", meta = (DisplayName = "Add Notes", AutoCreateRefTerm = "Delegate"))
 	bool BLUEPRINT_AddNotes(UPARAM(ref) const FGuid& PlayerUuid, UPARAM(ref) const FString& Notes, const FRH_AddNotesDynamicDelegate& Delegate) { return AddNotes(PlayerUuid, Notes, Delegate); }
 	/**
@@ -818,6 +822,7 @@ public:
 	* @return If true, the call was executed.
 	*/
 	bool DeleteNotes(const FGuid& PlayerUuid, const FRH_GenericFriendWithUuidBlock& Delegate = FRH_GenericFriendWithUuidBlock());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Friend Subsystem", meta = (DisplayName = "Delete Notes", AutoCreateRefTerm = "Delegate"))
 	bool BLUEPRINT_DeleteNotes(UPARAM(ref) const FGuid& PlayerUuid, const FRH_GenericFriendWithUuidDynamicDelegate& Delegate) { return DeleteNotes(PlayerUuid, Delegate); }
 	/**
@@ -826,6 +831,7 @@ public:
 	* @return If true, the call was executed.
 	*/
 	bool FetchBlockedList(const FRH_GenericFriendBlock& Delegate = FRH_GenericFriendBlock());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Friend Subsystem", meta = (DisplayName = "Fetch Blocked List", AutoCreateRefTerm = "Delegate"))
 	bool BLUEPRINT_FetchBlockedList(const FRH_GenericFriendDynamicDelegate& Delegate) { return FetchBlockedList(Delegate); }
 	/**
@@ -835,6 +841,7 @@ public:
 	* @return If true, the call was executed.
 	*/
 	bool FetchBlockedPlayer(const FGuid& PlayerUuid, const FRH_GenericFriendWithUuidBlock& Delegate = FRH_GenericFriendWithUuidBlock());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Friend Subsystem", meta = (DisplayName = "Fetch Blocked Player", AutoCreateRefTerm = "Delegate"))
 	bool BLUEPRINT_FetchBlockedPlayer(UPARAM(ref) const FGuid& PlayerUuid, const FRH_GenericFriendWithUuidDynamicDelegate& Delegate) { return FetchBlockedPlayer(PlayerUuid, Delegate); };
 	/**
@@ -844,6 +851,7 @@ public:
 	* @return If true, the call was executed.
 	*/
 	bool BlockPlayer(const FGuid& PlayerUuid, const FRH_GenericFriendWithUuidBlock& Delegate = FRH_GenericFriendWithUuidBlock());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Friend Subsystem", meta = (DisplayName = "Block Player", AutoCreateRefTerm = "Delegate"))
 	bool BLUEPRINT_BlockPlayer(UPARAM(ref) const FGuid& PlayerUUID, const FRH_GenericFriendWithUuidDynamicDelegate& Delegate) { return BlockPlayer(PlayerUUID, Delegate); };
 	/**
@@ -853,6 +861,7 @@ public:
 	* @return If true, the call was executed.
 	*/
 	bool UnblockPlayer(const FGuid& PlayerUuid, const FRH_GenericFriendWithUuidBlock& Delegate = FRH_GenericFriendWithUuidBlock());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Friend Subsystem", meta = (DisplayName = "Unblock Player", AutoCreateRefTerm = "Delegate"))
 	bool BLUEPRINT_UnblockPlayer(UPARAM(ref) const FGuid& PlayerUuid, const FRH_GenericFriendWithUuidDynamicDelegate& Delegate) { return UnblockPlayer(PlayerUuid, Delegate); }
 
