@@ -172,6 +172,7 @@ public:
 		const FString& RhUrl,
 		const TMap<FString, FString>& CustomData = TMap <FString, FString>(),
 		const FRH_OnSingularNotificationIDDelegateBlock& Delegate = FRH_OnSingularNotificationIDDelegateBlock());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Notification|Create", meta = (DisplayName = "Create a Notification -- Mostly for debugging", AutoCreateRefTerm="CustomData,Delegate"))
 	bool BLUEPRINT_CreateNotification(const FGuid& PlayerUuid,
 	                                  const FString& Message,

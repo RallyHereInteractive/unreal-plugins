@@ -217,6 +217,7 @@ public:
 		URH_OnlineSession::CreateOrJoinByType(CreateParams, this, Delegate);
 	}
 	/**
+	* @private
 	* @brief Blueprint compatible version of CreateOrJoinSessionByType
 	* @param [in] CreateParams Creation paramters for the session
 	* @param [in] Delegate delegate to trigger when complete
@@ -236,6 +237,7 @@ public:
 		URH_OnlineSession::JoinById(SessionId, this, Delegate);
 	}
 	/**
+	* @private
 	* @brief Blueprint compatible version of JoinSessionById
 	* @param [in] SessionId The session id to join
 	* @param [in] Delegate delegate to trigger when complete
@@ -324,6 +326,7 @@ public:
 	*/
 	void SearchForSessions(const FRH_SessionBrowserSearchParams& Params, const FRH_OnSessionSearchCompleteDelegateBlock& Delegate = FRH_OnSessionSearchCompleteDelegateBlock());
 	/**
+	* @private
 	* @brief Blueprint compatible version of SearchForSessions
 	* @param [in] Params Search parameters for the browser search
 	* @param [in] Delegate Delegate to trigger once complete

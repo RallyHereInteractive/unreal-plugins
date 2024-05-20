@@ -320,6 +320,7 @@ public:
 	class URH_FriendSubsystem* GetFriendSubsystem() const;
 
 	/**
+	* @private
 	* @brief Blueprint delegate to listen for presence updates.
 	*/
 	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "RH And Platform Friend", meta = (DisplayName = "On Presence Updated"))
@@ -600,6 +601,7 @@ public:
 	* @param Delegate The delegate to call when the request is complete.
 	*/
 	void GetLastKnownDisplayNameAsync(const FTimespan& StaleThreshold = FTimespan(), bool bForceRefresh = false, ERHAPI_Platform PreferredPlatformType = ERHAPI_Platform::Anon, const FRH_PlayerInfoGetDisplayNameBlock& Delegate = FRH_PlayerInfoGetDisplayNameBlock()) const;
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Get Display Name Async", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GetLastKnownDisplayNameAsync(const FTimespan& StaleThreshold, bool bForceRefresh, ERHAPI_Platform PreferredPlatformType, const FRH_PlayerInfoGetDisplayNameDynamicDelegate& Delegate) { GetLastKnownDisplayNameAsync(StaleThreshold, bForceRefresh, PreferredPlatformType, Delegate); }
 	/**
@@ -607,6 +609,7 @@ public:
 	* @param Delegate The delegate to call when the request is complete.
 	*/
 	void GetRHPlayerUuidAsync(const FRH_GetRHPlayerUuidBlock& Delegate = FRH_GetRHPlayerUuidBlock());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Get RH Player UUID Name Async", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GetRHPlayerUuidAsync(const FRH_GetRHPlayerUuidDynamicDelegate& Delegate) { GetRHPlayerUuidAsync(Delegate); }
 
@@ -692,6 +695,7 @@ public:
 	 */
 	FRH_FriendListUpdatedDelegate FriendListUpdatedDelegate;
 	/**
+	 * @private
 	 * @brief Delegate that fires whenever the friends list is updated.
 	 */
 	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Friends Subsystem", meta = (DisplayName = "Friend List Updated"))
@@ -701,6 +705,7 @@ public:
 	 */
 	FRH_FriendUpdatedDelegate FriendUpdatedDelegate;
 	/**
+	 * @private
 	 * @brief Delegate that fires whenever a friend is updated.
 	 */
 	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Friends Subsystem", meta = (DisplayName = "Friend Player Updated"))
@@ -710,6 +715,7 @@ public:
 	 */
 	FRH_FriendUpdateErrorDelegate FriendUpdateErrorDelegate;
 	/**
+	 * @private
 	 * @brief Delegate that fires whenever a friend API call fails.
 	 */
 	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Friends Subsystem", meta = (DisplayName = "Friend Player Update Error"))
@@ -719,6 +725,7 @@ public:
 	 */
 	FRH_BlockedListUpdatedDelegate BlockedListUpdatedDelegate;
 	/**
+	 * @private
 	 * @brief Delegate that fires whenever blocked players list is updated.
 	 */
 	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Friends Subsystem", meta = (DisplayName = "Blocked List Updated"))
@@ -728,6 +735,7 @@ public:
 	 */
 	FRH_BlockedPlayerUpdatedDelegate BlockedPlayerUpdatedDelegate;
 	/**
+	 * @private
 	 * @brief Delegate that fires whenever a blocked player is updated.
 	 */
 	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Friends Subsystem", meta = (DisplayName = "Blocked Player Updated"))
@@ -737,6 +745,7 @@ public:
 	 */
 	FRH_BlockedPlayerUpdateErrorDelegate BlockedPlayerUpdateErrorDelegate;
 	/**
+	 * @private
 	 * @brief Delegate that fires whenever blocked player API call fails.
 	 */
 	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Friends Subsystem", meta = (DisplayName = "Blocked Player Update Error"))
@@ -762,6 +771,7 @@ public:
 	* @return If true, the call was executed.
 	*/
 	bool FetchFriendsList(const FRH_GenericFriendBlock& Delegate = FRH_GenericFriendBlock());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Friend Subsystem", meta = (DisplayName = "Fetch Friends List", AutoCreateRefTerm = "Delegate"))
 	bool BLUEPRINT_FetchFriendsList(const FRH_GenericFriendDynamicDelegate& Delegate) { return FetchFriendsList(Delegate); }
 	/**
