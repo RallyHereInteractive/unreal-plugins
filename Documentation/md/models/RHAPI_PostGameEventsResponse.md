@@ -1,4 +1,4 @@
-# RHAPI_PostGameEventsResponse <a id="group__RHAPI__PostGameEventsResponse"></a>
+# group `RHAPI_PostGameEventsResponse` <a id="group__RHAPI__PostGameEventsResponse"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_PostGameEventsResponse
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -36,7 +36,7 @@ struct FRHAPI_PostGameEventsResponse
 `public inline void `[`SetErrors`](#structFRHAPI__PostGameEventsResponse_1a25c25fc991dbbfa0bd1a9d4042835053)`(TArray< `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > NewValue)` | Sets the value of Errors_Optional and also sets Errors_IsSet to true.
 `public inline void `[`ClearErrors`](#structFRHAPI__PostGameEventsResponse_1afbb863db522201168db69a6f6c10e2af)`()` | Clears the value of Errors_Optional and sets Errors_IsSet to false.
 
-#### Members
+### Members
 
 #### `public int32 `[`PostedEvents`](#structFRHAPI__PostGameEventsResponse_1ab14cbee3111a9f8af4d2dc4a81b91a77) <a id="structFRHAPI__PostGameEventsResponse_1ab14cbee3111a9f8af4d2dc4a81b91a77"></a>
 

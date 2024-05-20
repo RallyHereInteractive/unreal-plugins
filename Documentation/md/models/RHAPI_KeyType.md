@@ -1,4 +1,4 @@
-# RHAPI_KeyType <a id="group__RHAPI__KeyType"></a>
+# group `RHAPI_KeyType` <a id="group__RHAPI__KeyType"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_KeyType
 
 A Key Type is a type of key that can be claimed from a Marketing Campaign.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -26,7 +26,7 @@ A Key Type is a type of key that can be claimed from a Marketing Campaign.
 `public inline const FString & `[`GetType`](#structFRHAPI__KeyType_1ae2f4df1be8a30aa99befe068994848ed)`() const` | Gets the value of Type.
 `public inline void `[`SetType`](#structFRHAPI__KeyType_1ada118d4aa3e8fea65f29cd198f50a5f2)`(FString NewValue)` | Sets the value of Type.
 
-#### Members
+### Members
 
 #### `public FString `[`Type`](#structFRHAPI__KeyType_1a2651c7c2d1777a2fc76694ce1d194fde) <a id="structFRHAPI__KeyType_1a2651c7c2d1777a2fc76694ce1d194fde"></a>
 

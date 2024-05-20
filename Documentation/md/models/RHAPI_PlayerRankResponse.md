@@ -1,4 +1,4 @@
-# RHAPI_PlayerRankResponse <a id="group__RHAPI__PlayerRankResponse"></a>
+# group `RHAPI_PlayerRankResponse` <a id="group__RHAPI__PlayerRankResponse"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_PlayerRankResponse
 
 DEPRECATED Response to successfully requesting a player&#39;s rank.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -36,7 +36,7 @@ DEPRECATED Response to successfully requesting a player&#39;s rank.
 `public inline bool `[`IsRankIdDefaultValue`](#structFRHAPI__PlayerRankResponse_1a876bc1f29e317513febb2030029f4b67)`() const` | Returns true if RankId matches the default value.
 `public inline void `[`SetRankIdToDefault`](#structFRHAPI__PlayerRankResponse_1a33d6cc9d2f0c07f8b349991d2319ab7a)`()` | Sets the value of RankId to its default
 
-#### Members
+### Members
 
 #### `public FGuid `[`PlayerUuid`](#structFRHAPI__PlayerRankResponse_1ad515f738c5f7ba86c3cc1cbc7aabb511) <a id="structFRHAPI__PlayerRankResponse_1ad515f738c5f7ba86c3cc1cbc7aabb511"></a>
 

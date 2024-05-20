@@ -1,4 +1,4 @@
-# RHAPI_XpTables <a id="group__RHAPI__XpTables"></a>
+# group `RHAPI_XpTables` <a id="group__RHAPI__XpTables"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_XpTables
 
 A collection of XP Tables. Each table is a collection of XP Levels from 1 to N. Each level has a minimum XP value.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -42,7 +42,7 @@ A collection of XP Tables. Each table is a collection of XP Levels from 1 to N. 
 `public inline void `[`SetCacheInfo`](#structFRHAPI__XpTables_1a3483a3c77324a4d50bee36cd5775be94)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__XpTables_1a95f676a52f3ffb25429170bd6b5977c1)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 
-#### Members
+### Members
 
 #### `public TMap< FString, `[`FRHAPI_XpTable`](RHAPI_XpTable.md#structFRHAPI__XpTable)` > `[`XpTables_Optional`](#structFRHAPI__XpTables_1a90ef438f2446120231d00b57631d3204) <a id="structFRHAPI__XpTables_1a90ef438f2446120231d00b57631d3204"></a>
 

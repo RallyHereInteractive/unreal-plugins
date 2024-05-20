@@ -1,4 +1,4 @@
-# RHAPI_PageMeta <a id="group__RHAPI__PageMeta"></a>
+# group `RHAPI_PageMeta` <a id="group__RHAPI__PageMeta"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_PageMeta
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -38,7 +38,7 @@ struct FRHAPI_PageMeta
 `public inline bool `[`IsTotalDefaultValue`](#structFRHAPI__PageMeta_1a999342514882e895d280ab861137cba1)`() const` | Returns true if Total matches the default value.
 `public inline void `[`SetTotalToDefault`](#structFRHAPI__PageMeta_1a32d285464f71b75b05be71450f894b97)`()` | Sets the value of Total to its default
 
-#### Members
+### Members
 
 #### `public int32 `[`Page`](#structFRHAPI__PageMeta_1a6cca0387aa38f6160e818ff8bad85a67) <a id="structFRHAPI__PageMeta_1a6cca0387aa38f6160e818ff8bad85a67"></a>
 

@@ -1,4 +1,4 @@
-# RHAPI_PlayerOrder <a id="group__RHAPI__PlayerOrder"></a>
+# group `RHAPI_PlayerOrder` <a id="group__RHAPI__PlayerOrder"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_PlayerOrder
 
 Represents a Player Order.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -110,7 +110,7 @@ Represents a Player Order.
 `public inline const TArray< `[`FRHAPI_PlayerOrderEntry`](RHAPI_PlayerOrderEntry.md#structFRHAPI__PlayerOrderEntry)` > & `[`GetEntries`](#structFRHAPI__PlayerOrder_1a569047af3f44f566bbda2ba88cee0a03)`() const` | Gets the value of Entries.
 `public inline void `[`SetEntries`](#structFRHAPI__PlayerOrder_1a12728b7e6371fbd2c1b6c72941c12f15)`(TArray< `[`FRHAPI_PlayerOrderEntry`](RHAPI_PlayerOrderEntry.md#structFRHAPI__PlayerOrderEntry)` > NewValue)` | Sets the value of Entries.
 
-#### Members
+### Members
 
 #### `public ERHAPI_Source `[`Source_Optional`](#structFRHAPI__PlayerOrder_1a3d6d687689aa3510deb1f1a6491bdc11) <a id="structFRHAPI__PlayerOrder_1a3d6d687689aa3510deb1f1a6491bdc11"></a>
 

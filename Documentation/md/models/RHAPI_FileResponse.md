@@ -1,4 +1,4 @@
-# RHAPI_FileResponse <a id="group__RHAPI__FileResponse"></a>
+# group `RHAPI_FileResponse` <a id="group__RHAPI__FileResponse"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_FileResponse
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -38,7 +38,7 @@ struct FRHAPI_FileResponse
 `public inline const FDateTime & `[`GetCreatedTimestamp`](#structFRHAPI__FileResponse_1ab7ee2e7c22aaaaee4ae4a0d74c03a096)`() const` | Gets the value of CreatedTimestamp.
 `public inline void `[`SetCreatedTimestamp`](#structFRHAPI__FileResponse_1a23fdd2e1c6198d73db3412400345d9bb)`(FDateTime NewValue)` | Sets the value of CreatedTimestamp.
 
-#### Members
+### Members
 
 #### `public FString `[`Name`](#structFRHAPI__FileResponse_1a435d253c1dedbfea366457c8eee9aca9) <a id="structFRHAPI__FileResponse_1a435d253c1dedbfea366457c8eee9aca9"></a>
 

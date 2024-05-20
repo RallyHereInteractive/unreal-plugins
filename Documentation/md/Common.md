@@ -1,4 +1,4 @@
-# Common <a id="group__Common"></a>
+# group `Common` <a id="group__Common"></a>
 
 ## Summary
 
@@ -148,7 +148,7 @@ class FRH_AsyncTaskHelper
 
 Base helper class for asynchronous RallyHere tasks.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -169,7 +169,7 @@ Base helper class for asynchronous RallyHere tasks.
 `protected inline virtual void `[`Cancel`](#classFRH__AsyncTaskHelper_1aaf29b289af9c82871e3814205d566e0b)`(const FString & CancelReason)` | Cancels the asynchronous task by failing it out.
 `protected inline void `[`Completed`](#classFRH__AsyncTaskHelper_1a6abf59b65bbdf0dbeaa526e96dac5784)`(bool bSuccess)` | Called when the asynchronous task has completed.
 
-#### Members
+### Members
 
 #### `public inline FORCEINLINE bool `[`IsRunning`](#classFRH__AsyncTaskHelper_1a4b4801b088f55346b372073749d2c193)`() const` <a id="classFRH__AsyncTaskHelper_1a4b4801b088f55346b372073749d2c193"></a>
 
@@ -246,7 +246,7 @@ class FRH_SimpleQueryHelper
 
 Templated helper class for asynchronously executing basic RallyHere API queries.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -261,7 +261,7 @@ Templated helper class for asynchronously executing basic RallyHere API queries.
 `protected FHttpRequestPtr `[`HttpRequest`](#classFRH__SimpleQueryHelper_1a9dec6a0aee9304e3f6e0a310afe97494) | The HTTP request object used to query the API.
 `protected `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` `[`ErrorInfo`](#classFRH__SimpleQueryHelper_1a33843e0102515af8f9576f1115d6911f) | Error Information
 
-#### Members
+### Members
 
 #### `public inline  `[`FRH_SimpleQueryHelper`](#classFRH__SimpleQueryHelper_1a6d5816682112de01ec950d228924d835)`(const typename BaseType::Delegate & InUpdateDelegate,const FRH_GenericSuccessWithErrorBlock & InCompleteDelegate,int32 InPriority)` <a id="classFRH__SimpleQueryHelper_1a6d5816682112de01ec950d228924d835"></a>
 
@@ -327,7 +327,7 @@ Error Information
 
 Templated helper class defining a native and blueprint friendly delegate as a single object.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -340,7 +340,7 @@ Templated helper class defining a native and blueprint friendly delegate as a si
 `public inline bool `[`IsBound`](#structFRH__DelegateBlock_1a648274dc80bd38cf4619abdcf90f0018)`() const` | 
 `public inline bool `[`IsBoundToObject`](#structFRH__DelegateBlock_1a0a618d127583f1e21937af6196062c76)`(const void * Object) const` | 
 
-#### Members
+### Members
 
 #### `public DelegateType `[`Delegate`](#structFRH__DelegateBlock_1ade37e773fba5432b7829f972421a0cae) <a id="structFRH__DelegateBlock_1ade37e773fba5432b7829f972421a0cae"></a>
 
@@ -376,7 +376,7 @@ Generic blueprint and native delegate used to report success or failure.
 
 Generic handler for HTTP request errors.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -393,7 +393,7 @@ Generic handler for HTTP request errors.
 `public virtual  `[`~FRH_ErrorInfo`](#structFRH__ErrorInfo_1ac9f4ab0234c74be322dba389a32e32cf)`() = default` | Default destructor.
 `public inline void `[`ImportErrorInfo`](#structFRH__ErrorInfo_1a26ac8bbbd57882588cc878b0ee7fa99d)`(const RallyHereAPI::FResponse & Response)` | Parses The HTTP response into the error info.
 
-#### Members
+### Members
 
 #### `public FHttpResponsePtr `[`HttpResponse`](#structFRH__ErrorInfo_1aa84821f9c571e65c9268eece099bc7de) <a id="structFRH__ErrorInfo_1aa84821f9c571e65c9268eece099bc7de"></a>
 
@@ -450,7 +450,7 @@ Parses The HTTP response into the error info.
 
 Wrapper calls for custom endpoint requests.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -460,7 +460,7 @@ Wrapper calls for custom endpoint requests.
 `public FString `[`ContentType`](#structFRH__CustomEndpointRequestWrapper_1a0c5a56270404d556c0d65ba873cdaef3) | Http Content Type
 `public inline  `[`FRH_CustomEndpointRequestWrapper`](#structFRH__CustomEndpointRequestWrapper_1a6334b30e571cdb5577794ea5ee1c9cb4)`()` | 
 
-#### Members
+### Members
 
 #### `public FString `[`EndpointId`](#structFRH__CustomEndpointRequestWrapper_1ad1250992238eb10948193a97597ac65b) <a id="structFRH__CustomEndpointRequestWrapper_1ad1250992238eb10948193a97597ac65b"></a>
 
@@ -484,7 +484,7 @@ Http Content Type
 
 Wrapper calls for custom endpoint responses.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -495,7 +495,7 @@ Wrapper calls for custom endpoint responses.
 `public inline  `[`FRH_CustomEndpointResponseWrapper`](#structFRH__CustomEndpointResponseWrapper_1aa44901d30ba89511ec625f6bfe297aa0)`()` | 
 `public inline  `[`FRH_CustomEndpointResponseWrapper`](#structFRH__CustomEndpointResponseWrapper_1ad3707751b28f8cd4eaafc8d9cd4f8556)`(const RallyHereAPI::FResponse_CustomEndpointSend & Resp)` | 
 
-#### Members
+### Members
 
 #### `public int32 `[`HttpResponseCode`](#structFRH__CustomEndpointResponseWrapper_1a523d0748b8c43562b244c5b443885819) <a id="structFRH__CustomEndpointResponseWrapper_1a523d0748b8c43562b244c5b443885819"></a>
 
@@ -521,7 +521,7 @@ Parsed RallyHere error
 
 Common structure for identifying players on any known platform.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -532,7 +532,7 @@ Common structure for identifying players on any known platform.
 `public inline  `[`FRH_PlayerPlatformId`](#structFRH__PlayerPlatformId_1a3e5948f39ab1702a82a8804dc458cc41)`()` | Default constructor that leaves the user ID empty and sets the platform type to "unknown".
 `public inline  `[`FRH_PlayerPlatformId`](#structFRH__PlayerPlatformId_1afa9903b50c919271e478b89f7a3c68dc)`(const FString & InUserId,ERHAPI_Platform InPlatformType)` | Constructor for specifying user ID and platform type.
 
-#### Members
+### Members
 
 #### `public FString `[`UserId`](#structFRH__PlayerPlatformId_1ab1b096a248e38084753556d23a99ccf3) <a id="structFRH__PlayerPlatformId_1ab1b096a248e38084753556d23a99ccf3"></a>
 
@@ -562,7 +562,7 @@ Constructor for specifying user ID and platform type.
 
 A tuple specifying the directory of a file in the remote file storage.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -576,7 +576,7 @@ A tuple specifying the directory of a file in the remote file storage.
 `public inline bool `[`IsValid`](#structFRH__RemoteFileApiDirectory_1aaae4e108ecd39fb74c4ce279e20304a3)`() const` | 
 `public inline FString `[`ToDescriptionString`](#structFRH__RemoteFileApiDirectory_1a2b39ae30546135d8802a1663893948bc)`() const` | Get a string representation of the directory.
 
-#### Members
+### Members
 
 #### `public ERHAPI_FileType `[`FileType`](#structFRH__RemoteFileApiDirectory_1a1986a05bf105acf8d7cb3ccb245c4b67) <a id="structFRH__RemoteFileApiDirectory_1a1986a05bf105acf8d7cb3ccb245c4b67"></a>
 

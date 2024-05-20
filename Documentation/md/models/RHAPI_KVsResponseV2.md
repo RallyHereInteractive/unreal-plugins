@@ -1,4 +1,4 @@
-# RHAPI_KVsResponseV2 <a id="group__RHAPI__KVsResponseV2"></a>
+# group `RHAPI_KVsResponseV2` <a id="group__RHAPI__KVsResponseV2"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_KVsResponseV2
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -40,7 +40,7 @@ struct FRHAPI_KVsResponseV2
 `public inline void `[`SetSecretKvs`](#structFRHAPI__KVsResponseV2_1a2de15bc30b0339a61ed24487624f3361)`(TMap< FString, FString > NewValue)` | Sets the value of SecretKvs_Optional and also sets SecretKvs_IsSet to true.
 `public inline void `[`ClearSecretKvs`](#structFRHAPI__KVsResponseV2_1aaa15339436ec513d1e51e1900394c473)`()` | Clears the value of SecretKvs_Optional and sets SecretKvs_IsSet to false.
 
-#### Members
+### Members
 
 #### `public TMap< FString, FString > `[`Kvs_Optional`](#structFRHAPI__KVsResponseV2_1a82becbf26311d31710b9a8565790b750) <a id="structFRHAPI__KVsResponseV2_1a82becbf26311d31710b9a8565790b750"></a>
 

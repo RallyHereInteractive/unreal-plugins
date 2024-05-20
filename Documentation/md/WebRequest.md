@@ -1,4 +1,4 @@
-# WebRequest <a id="group__WebRequest"></a>
+# group `WebRequest` <a id="group__WebRequest"></a>
 
 ## Summary
 
@@ -17,7 +17,7 @@ class FRH_WebRequests
 
 Class to handle executing and tracking low-level Http Web Requests.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -41,7 +41,7 @@ Class to handle executing and tracking low-level Http Web Requests.
 `public void `[`GetRecentCallCountMaps`](#classFRH__WebRequests_1ab93ed7476bba71269269d3d364189f86)`(TMap< FName, int32 > * OutAPIRecentCallCountMap,TMap< FName, int32 > * OutURLRecentCallCountMap) const` | Get the maps that track call counts in the last 60s.
 `public void `[`DetectRecentBursts`](#classFRH__WebRequests_1a64e8ecf52cf4760ab79f033ba0ef66e0)`(TMap< FName, TTuple< int32, int32 >> * OutBurstMapByAPIName,TMap< FName, TTuple< int32, int32 >> * OutBurstMapByURL) const` | Detects bursts in recent call counts (last 60s). The time and count thresholds for burst detection are specified by BurstCountThreshold and BurstTimeThreshold.
 
-#### Members
+### Members
 
 #### `public  `[`FRH_WebRequests`](#classFRH__WebRequests_1a6bd3f313618ea335e953e4ae73f2451e)`()` <a id="classFRH__WebRequests_1a6bd3f313618ea335e953e4ae73f2451e"></a>
 
@@ -163,7 +163,7 @@ Detects bursts in recent call counts (last 60s). The time and count thresholds f
 
 Web call response data.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -174,7 +174,7 @@ Web call response data.
 `public FDateTime `[`ReceivedTime`](#structFRH__WebResponse_1ab1e2b9ccc96780f6fc2ab86ad5c631fa) | The tiem the response was received.
 `public inline  `[`FRH_WebResponse`](#structFRH__WebResponse_1a330ebd43596c9c11d0acd83bbe3cc34f)`()` | 
 
-#### Members
+### Members
 
 #### `public TMap< FString, FString > `[`Headers`](#structFRH__WebResponse_1afea93fe8697cc30dabe0e63dcf9f7579) <a id="structFRH__WebResponse_1afea93fe8697cc30dabe0e63dcf9f7579"></a>
 
@@ -202,7 +202,7 @@ The tiem the response was received.
 
 Web call request data.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -216,7 +216,7 @@ Web call request data.
 `public TArray< `[`FRH_WebResponse`](WebRequest.md#structFRH__WebResponse)` > `[`Responses`](#structFRH__WebRequest_1aafe02329852f8883685dcd0f4714c3ed) | Response for the Web Request. Can contain multiple if the request had to be retried.
 `public inline  `[`FRH_WebRequest`](#structFRH__WebRequest_1aded51ff8b75b1483c6ee3fa664c0a5ff)`()` | 
 
-#### Members
+### Members
 
 #### `public RallyHereAPI::FRequestMetadata `[`Metadata`](#structFRH__WebRequest_1a899659b011ca74b4a674024e23ce85dd) <a id="structFRH__WebRequest_1a899659b011ca74b4a674024e23ce85dd"></a>
 

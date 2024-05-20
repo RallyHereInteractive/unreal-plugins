@@ -1,4 +1,4 @@
-# RHAPI_Notes <a id="group__RHAPI__Notes"></a>
+# group `RHAPI_Notes` <a id="group__RHAPI__Notes"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_Notes
 
 Notes to set for the Player&#39;s friend. If you don&#39;t want to modify notes, no not include in body when adding a friend.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -32,7 +32,7 @@ Notes to set for the Player&#39;s friend. If you don&#39;t want to modify notes,
 `public inline void `[`SetNotes`](#structFRHAPI__Notes_1a52e0bc03e9c1ff9f9ed51d99272d78ae)`(FString NewValue)` | Sets the value of Notes_Optional and also sets Notes_IsSet to true.
 `public inline void `[`ClearNotes`](#structFRHAPI__Notes_1ad4213f307363f5dbc56d292b16ef1b65)`()` | Clears the value of Notes_Optional and sets Notes_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FString `[`Notes_Optional`](#structFRHAPI__Notes_1af5e920428c55e9adcab7d93324814a92) <a id="structFRHAPI__Notes_1af5e920428c55e9adcab7d93324814a92"></a>
 

@@ -1,4 +1,4 @@
-# RHAPI_Loots <a id="group__RHAPI__Loots"></a>
+# group `RHAPI_Loots` <a id="group__RHAPI__Loots"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_Loots
 
 A collection of Loot by Loot ID.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -42,7 +42,7 @@ A collection of Loot by Loot ID.
 `public inline void `[`SetCacheInfo`](#structFRHAPI__Loots_1a37918b47950bb88d783269f5dd9e2454)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__Loots_1ab10398ad09e903163371c6cb2f3ad18d)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 
-#### Members
+### Members
 
 #### `public TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > `[`Loot_Optional`](#structFRHAPI__Loots_1a26353909383cc1ff90f30f8065f7aef1) <a id="structFRHAPI__Loots_1a26353909383cc1ff90f30f8065f7aef1"></a>
 

@@ -1,4 +1,4 @@
-# RHAPI_MatchMakingProfileV2 <a id="group__RHAPI__MatchMakingProfileV2"></a>
+# group `RHAPI_MatchMakingProfileV2` <a id="group__RHAPI__MatchMakingProfileV2"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_MatchMakingProfileV2
 
 A profile that describes what pools of players a session will be a part of when matchmaking.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -96,7 +96,7 @@ A profile that describes what pools of players a session will be a part of when 
 `public inline void `[`SetLegacyConfig`](#structFRHAPI__MatchMakingProfileV2_1a629a0a6f1cdfdc1fd1b53c33b01190b2)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` NewValue)` | Sets the value of LegacyConfig_Optional and also sets LegacyConfig_IsSet to true.
 `public inline void `[`ClearLegacyConfig`](#structFRHAPI__MatchMakingProfileV2_1aa51a7cf8d677bd0f57eed39122d5d6af)`()` | Clears the value of LegacyConfig_Optional and sets LegacyConfig_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FString `[`MatchMakingProfileId`](#structFRHAPI__MatchMakingProfileV2_1a1fac1d90d7052f77ed54c7ef0158d767) <a id="structFRHAPI__MatchMakingProfileV2_1a1fac1d90d7052f77ed54c7ef0158d767"></a>
 

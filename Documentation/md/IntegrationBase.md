@@ -1,4 +1,4 @@
-# IntegrationBase <a id="group__IntegrationBase"></a>
+# group `IntegrationBase` <a id="group__IntegrationBase"></a>
 
 ## Summary
 
@@ -16,7 +16,7 @@ class FRallyHereIntegrationModule
 
 Module for the Rally Here Integration Layer.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -25,7 +25,7 @@ Module for the Rally Here Integration Layer.
 `public void `[`ShutdownModule`](#classFRallyHereIntegrationModule_1a537c97b39e36b257d3499bb8f88b2aff)`()` | Safely ends the module.
 `public inline `[`FRH_Integration`](IntegrationBase.md#classFRH__Integration)` & `[`GetIntegration`](#classFRallyHereIntegrationModule_1ab428b2c8db543b36835a636472d55ed8)`() const` | Gets the Integration class fromt he module.
 
-#### Members
+### Members
 
 #### `public  `[`~FRallyHereIntegrationModule`](#classFRallyHereIntegrationModule_1a05fc3130408ed64a45219dfdaca29120)`() = default` <a id="classFRallyHereIntegrationModule_1a05fc3130408ed64a45219dfdaca29120"></a>
 
@@ -47,7 +47,7 @@ Gets the Integration class fromt he module.
 
 Main integration layer handler.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -75,7 +75,7 @@ Main integration layer handler.
 `public inline `[`FRH_WebRequests`](WebRequest.md#classFRH__WebRequests)` * `[`GetWebRequestTracker`](#classFRH__Integration_1a3b54823f537913d46a2266f9a4875a16)`() const` | Gets the Web Request Tracker.
 `public inline `[`FRH_Diagnostics`](Diagnostics.md#classFRH__Diagnostics)` * `[`GetDiagnostics`](#classFRH__Integration_1a0f7dc5599a89b010715dba506bb16288)`() const` | Gets the Diagnostic Reporter.
 
-#### Members
+### Members
 
 #### `public  `[`FRH_Integration`](#classFRH__Integration_1ad429ec1c11342e1a32bc418f9c527c7f)`()` <a id="classFRH__Integration_1ad429ec1c11342e1a32bc418f9c527c7f"></a>
 

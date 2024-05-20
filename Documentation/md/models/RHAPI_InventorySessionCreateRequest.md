@@ -1,4 +1,4 @@
-# RHAPI_InventorySessionCreateRequest <a id="group__RHAPI__InventorySessionCreateRequest"></a>
+# group `RHAPI_InventorySessionCreateRequest` <a id="group__RHAPI__InventorySessionCreateRequest"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_InventorySessionCreateRequest
 
 Request body for creating a new Inventory Session.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -32,7 +32,7 @@ Request body for creating a new Inventory Session.
 `public inline void `[`SetSessionPlatform`](#structFRHAPI__InventorySessionCreateRequest_1a851b5285b0f1ba825dd40d5d9b5eef43)`(ERHAPI_Platform NewValue)` | Sets the value of SessionPlatform_Optional and also sets SessionPlatform_IsSet to true.
 `public inline void `[`ClearSessionPlatform`](#structFRHAPI__InventorySessionCreateRequest_1aad55a63e039262d87c1dd0715bd54d71)`()` | Clears the value of SessionPlatform_Optional and sets SessionPlatform_IsSet to false.
 
-#### Members
+### Members
 
 #### `public ERHAPI_Platform `[`SessionPlatform_Optional`](#structFRHAPI__InventorySessionCreateRequest_1a3ce3d37c36fd64abb0c9f2ac71c7de0b) <a id="structFRHAPI__InventorySessionCreateRequest_1a3ce3d37c36fd64abb0c9f2ac71c7de0b"></a>
 

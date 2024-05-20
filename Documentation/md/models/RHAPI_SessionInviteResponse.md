@@ -1,4 +1,4 @@
-# RHAPI_SessionInviteResponse <a id="group__RHAPI__SessionInviteResponse"></a>
+# group `RHAPI_SessionInviteResponse` <a id="group__RHAPI__SessionInviteResponse"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_SessionInviteResponse
 
 Response to a request to update a session cohort.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -26,7 +26,7 @@ Response to a request to update a session cohort.
 `public inline const TArray< `[`FRHAPI_SessionPlayerUpdateResponse`](RHAPI_SessionPlayerUpdateResponse.md#structFRHAPI__SessionPlayerUpdateResponse)` > & `[`GetPlayers`](#structFRHAPI__SessionInviteResponse_1a28a656155eda1c1cb8ce3f5d43ed8907)`() const` | Gets the value of Players.
 `public inline void `[`SetPlayers`](#structFRHAPI__SessionInviteResponse_1ae6c0f9ed3f963ca3940fb554c19b847a)`(TArray< `[`FRHAPI_SessionPlayerUpdateResponse`](RHAPI_SessionPlayerUpdateResponse.md#structFRHAPI__SessionPlayerUpdateResponse)` > NewValue)` | Sets the value of Players.
 
-#### Members
+### Members
 
 #### `public TArray< `[`FRHAPI_SessionPlayerUpdateResponse`](RHAPI_SessionPlayerUpdateResponse.md#structFRHAPI__SessionPlayerUpdateResponse)` > `[`Players`](#structFRHAPI__SessionInviteResponse_1a54175b9a9824d8ad9049525d36f6d928) <a id="structFRHAPI__SessionInviteResponse_1a54175b9a9824d8ad9049525d36f6d928"></a>
 

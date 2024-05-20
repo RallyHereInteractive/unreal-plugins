@@ -1,4 +1,4 @@
-# RHAPI_PlayerOrderEntryCreate <a id="group__RHAPI__PlayerOrderEntryCreate"></a>
+# group `RHAPI_PlayerOrderEntryCreate` <a id="group__RHAPI__PlayerOrderEntryCreate"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_PlayerOrderEntryCreate
 
 Request to create a Player Order Entry.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -192,7 +192,7 @@ Request to create a Player Order Entry.
 `public inline void `[`SetEntryId`](#structFRHAPI__PlayerOrderEntryCreate_1ac0c8c9c6ca6eb0111b17b889ee6c773d)`(FString NewValue)` | Sets the value of EntryId_Optional and also sets EntryId_IsSet to true.
 `public inline void `[`ClearEntryId`](#structFRHAPI__PlayerOrderEntryCreate_1a77c1568093d12436f97287085abaf82e)`()` | Clears the value of EntryId_Optional and sets EntryId_IsSet to false.
 
-#### Members
+### Members
 
 #### `public ERHAPI_PlayerOrderEntryType `[`Type`](#structFRHAPI__PlayerOrderEntryCreate_1a1fa012706bd2946dcde63c1fa2977c47) <a id="structFRHAPI__PlayerOrderEntryCreate_1a1fa012706bd2946dcde63c1fa2977c47"></a>
 

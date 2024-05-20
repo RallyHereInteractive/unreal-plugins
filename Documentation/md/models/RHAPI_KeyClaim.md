@@ -1,4 +1,4 @@
-# RHAPI_KeyClaim <a id="group__RHAPI__KeyClaim"></a>
+# group `RHAPI_KeyClaim` <a id="group__RHAPI__KeyClaim"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_KeyClaim
 
 A KeyClaim is a reward a player for fulfilling requirements of an eternal marketing campaign. Once the player has completed the requirements of the campaign and have been assigned a sku of the campaign by the Platform, invoke Process Key Entitlements to consume the sku from the Platform for a Key Claim.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -108,7 +108,7 @@ A KeyClaim is a reward a player for fulfilling requirements of an eternal market
 `public inline void `[`SetLastModifiedOn`](#structFRHAPI__KeyClaim_1a2d3bcf43ed055b613868ec4525e04906)`(FString NewValue)` | Sets the value of LastModifiedOn_Optional and also sets LastModifiedOn_IsSet to true.
 `public inline void `[`ClearLastModifiedOn`](#structFRHAPI__KeyClaim_1a64310c25854349e6598803fdbc697908)`()` | Clears the value of LastModifiedOn_Optional and sets LastModifiedOn_IsSet to false.
 
-#### Members
+### Members
 
 #### `public ERHAPI_Portal `[`PortalId_Optional`](#structFRHAPI__KeyClaim_1a230d8f8464d3ff7466cdd4d785081567) <a id="structFRHAPI__KeyClaim_1a230d8f8464d3ff7466cdd4d785081567"></a>
 

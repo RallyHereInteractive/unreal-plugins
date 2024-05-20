@@ -1,4 +1,4 @@
-# RHAPI_CalculatedRank <a id="group__RHAPI__CalculatedRank"></a>
+# group `RHAPI_CalculatedRank` <a id="group__RHAPI__CalculatedRank"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_CalculatedRank
 
 Additional data about a specific player&#39;s rank and previous match in order to make rank calculations.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -36,7 +36,7 @@ Additional data about a specific player&#39;s rank and previous match in order t
 `public inline bool `[`IsSecondsInMatchDefaultValue`](#structFRHAPI__CalculatedRank_1a0420e2969a5244a9f0d698845ba1e8ac)`() const` | Returns true if SecondsInMatch matches the default value.
 `public inline void `[`SetSecondsInMatchToDefault`](#structFRHAPI__CalculatedRank_1a2e12a2273c581b7a43eaef6c5bb197d2)`()` | Sets the value of SecondsInMatch to its default
 
-#### Members
+### Members
 
 #### `public FGuid `[`PlayerUuid`](#structFRHAPI__CalculatedRank_1a825e0de2c44b5e14f630f275e013a71c) <a id="structFRHAPI__CalculatedRank_1a825e0de2c44b5e14f630f275e013a71c"></a>
 

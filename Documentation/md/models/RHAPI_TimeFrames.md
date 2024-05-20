@@ -1,4 +1,4 @@
-# RHAPI_TimeFrames <a id="group__RHAPI__TimeFrames"></a>
+# group `RHAPI_TimeFrames` <a id="group__RHAPI__TimeFrames"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_TimeFrames
 
 A collection of Time Frames by Time Frame ID.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -42,7 +42,7 @@ A collection of Time Frames by Time Frame ID.
 `public inline void `[`SetCacheInfo`](#structFRHAPI__TimeFrames_1a1f1b825a37d54eb121adfbde6148df66)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__TimeFrames_1a44c43ad3220c43980b0743df8de23078)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 
-#### Members
+### Members
 
 #### `public TMap< FString, `[`FRHAPI_TimeFrame`](RHAPI_TimeFrame.md#structFRHAPI__TimeFrame)` > `[`TimeFrames_Optional`](#structFRHAPI__TimeFrames_1abdb0572aae01bc3cf50cec8cd0388968) <a id="structFRHAPI__TimeFrames_1abdb0572aae01bc3cf50cec8cd0388968"></a>
 

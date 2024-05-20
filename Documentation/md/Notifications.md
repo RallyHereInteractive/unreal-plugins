@@ -1,4 +1,4 @@
-# Notifications <a id="group__Notifications"></a>
+# group `Notifications` <a id="group__Notifications"></a>
 
 ## Summary
 
@@ -26,7 +26,7 @@ class URH_PlayerNotifications
 
 Notification Subsystem used for polling notifications of updates.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -65,7 +65,7 @@ Notification Subsystem used for polling notifications of updates.
 `protected virtual void `[`OnNotificationCreated`](#classURH__PlayerNotifications_1a16ad788389a4551cfbb53c0899c27cdb)`(const RallyHereAPI::FResponse_PlayerCreateNotification & Resp,const FRH_OnSingularNotificationIDDelegateBlock Delegate)` | Handles the response to a Nofitication Creation call.
 `protected inline void `[`TrimStreamingHistory`](#classURH__PlayerNotifications_1a05dfd936492620353632b25f85c41055)`()` | Keeps the notification history size within the configured size for the cache.
 
-#### Members
+### Members
 
 #### `public FRH_OnNotificationStreamedDynamicDelegate `[`OnNotificationStreamedDynamic`](#classURH__PlayerNotifications_1aaf370914fbab7ae1e4d6d90cd1a7c17c) <a id="classURH__PlayerNotifications_1aaf370914fbab7ae1e4d6d90cd1a7c17c"></a>
 

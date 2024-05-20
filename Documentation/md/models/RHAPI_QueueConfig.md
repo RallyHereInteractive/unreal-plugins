@@ -1,4 +1,4 @@
-# RHAPI_QueueConfig <a id="group__RHAPI__QueueConfig"></a>
+# group `RHAPI_QueueConfig` <a id="group__RHAPI__QueueConfig"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_QueueConfig
 
 DEPRECATED - V1 Configuration about a specific queue.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -66,7 +66,7 @@ DEPRECATED - V1 Configuration about a specific queue.
 `public inline const FGuid & `[`GetMatchMakingTemplateGroupId`](#structFRHAPI__QueueConfig_1ac6f164a4fe9089bed47aa1833809a008)`() const` | Gets the value of MatchMakingTemplateGroupId.
 `public inline void `[`SetMatchMakingTemplateGroupId`](#structFRHAPI__QueueConfig_1a80b6c3ed4b3759e23b6c8f7a319e58e6)`(FGuid NewValue)` | Sets the value of MatchMakingTemplateGroupId.
 
-#### Members
+### Members
 
 #### `public FString `[`QueueId`](#structFRHAPI__QueueConfig_1a4b833d47c6113c72995546e724ae2b3d) <a id="structFRHAPI__QueueConfig_1a4b833d47c6113c72995546e724ae2b3d"></a>
 

@@ -1,4 +1,4 @@
-# RHAPI_Catalog <a id="group__RHAPI__Catalog"></a>
+# group `RHAPI_Catalog` <a id="group__RHAPI__Catalog"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_Catalog
 
 Full list of all loaded objects for the catalog. Organized in a normalized model.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -122,7 +122,7 @@ Full list of all loaded objects for the catalog. Organized in a normalized model
 `public inline void `[`SetCacheInfo`](#structFRHAPI__Catalog_1a7a3e2d4c14d4c2c99f7b0ed5c71ceef0)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__Catalog_1a06e23285bc21a8cbee8b3e247cfbf7a9)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 
-#### Members
+### Members
 
 #### `public `[`FRHAPI_XpTables`](RHAPI_XpTables.md#structFRHAPI__XpTables)` `[`XpTables_Optional`](#structFRHAPI__Catalog_1af4f0cd76a893a7e28a5434d8bcd18d23) <a id="structFRHAPI__Catalog_1af4f0cd76a893a7e28a5434d8bcd18d23"></a>
 

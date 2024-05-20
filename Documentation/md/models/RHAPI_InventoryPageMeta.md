@@ -1,4 +1,4 @@
-# RHAPI_InventoryPageMeta <a id="group__RHAPI__InventoryPageMeta"></a>
+# group `RHAPI_InventoryPageMeta` <a id="group__RHAPI__InventoryPageMeta"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_InventoryPageMeta
 
 Metadata about the page of results.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -64,7 +64,7 @@ Metadata about the page of results.
 `public inline bool `[`IsLimitDefaultValue`](#structFRHAPI__InventoryPageMeta_1a529f359142657cfc2dce6b0abf17667c)`() const` | Returns true if Limit_Optional is set and matches the default value.
 `public inline void `[`SetLimitToDefault`](#structFRHAPI__InventoryPageMeta_1a45a9cf3b2aa4fe2d80eb0d41c0a913d8)`()` | Sets the value of Limit_Optional to its default and also sets Limit_IsSet to true.
 
-#### Members
+### Members
 
 #### `public FDateTime `[`StartingPosition_Optional`](#structFRHAPI__InventoryPageMeta_1a5002d57ce2e74d5bda5b2ed3a467318e) <a id="structFRHAPI__InventoryPageMeta_1a5002d57ce2e74d5bda5b2ed3a467318e"></a>
 

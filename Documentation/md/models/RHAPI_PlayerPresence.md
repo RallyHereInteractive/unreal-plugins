@@ -1,4 +1,4 @@
-# RHAPI_PlayerPresence <a id="group__RHAPI__PlayerPresence"></a>
+# group `RHAPI_PlayerPresence` <a id="group__RHAPI__PlayerPresence"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_PlayerPresence
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -98,7 +98,7 @@ struct FRHAPI_PlayerPresence
 `public inline void `[`SetLastSeen`](#structFRHAPI__PlayerPresence_1a8f309150585037b7c1594436aac13ace)`(FDateTime NewValue)` | Sets the value of LastSeen_Optional and also sets LastSeen_IsSet to true.
 `public inline void `[`ClearLastSeen`](#structFRHAPI__PlayerPresence_1af3e5ba70c9564dadedcb60029e464844)`()` | Clears the value of LastSeen_Optional and sets LastSeen_IsSet to false.
 
-#### Members
+### Members
 
 #### `public ERHAPI_OnlineStatus `[`Status_Optional`](#structFRHAPI__PlayerPresence_1ab4245201b34187accfbca6aaf8ea939d) <a id="structFRHAPI__PlayerPresence_1ab4245201b34187accfbca6aaf8ea939d"></a>
 

@@ -1,4 +1,4 @@
-# RHAPI_PlayerSession <a id="group__RHAPI__PlayerSession"></a>
+# group `RHAPI_PlayerSession` <a id="group__RHAPI__PlayerSession"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_PlayerSession
 
 Information about the sessions of a specific type that a player is currently a member of, or invited to.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -46,7 +46,7 @@ Information about the sessions of a specific type that a player is currently a m
 `public inline void `[`SetPendingInvites`](#structFRHAPI__PlayerSession_1ace21c7105d0a173a71bebac0af8e4434)`(TMap< FString, `[`FRHAPI_PlayerSessionInvite`](RHAPI_PlayerSessionInvite.md#structFRHAPI__PlayerSessionInvite)` > NewValue)` | Sets the value of PendingInvites_Optional and also sets PendingInvites_IsSet to true.
 `public inline void `[`ClearPendingInvites`](#structFRHAPI__PlayerSession_1a00bfb8f183bf0c2da022701f403bc692)`()` | Clears the value of PendingInvites_Optional and sets PendingInvites_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FString `[`Type`](#structFRHAPI__PlayerSession_1ae6117a4b5a3ebc5b1185186eba5eaf25) <a id="structFRHAPI__PlayerSession_1ae6117a4b5a3ebc5b1185186eba5eaf25"></a>
 

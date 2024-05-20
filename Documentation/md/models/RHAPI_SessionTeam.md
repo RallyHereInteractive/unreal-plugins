@@ -1,4 +1,4 @@
-# RHAPI_SessionTeam <a id="group__RHAPI__SessionTeam"></a>
+# group `RHAPI_SessionTeam` <a id="group__RHAPI__SessionTeam"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_SessionTeam
 
 A team of SessionPlayers in a session.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -54,7 +54,7 @@ A team of SessionPlayers in a session.
 `public inline void `[`SetTicketIds`](#structFRHAPI__SessionTeam_1aae3e2e9c2349e8828e33ce34dc5689bf)`(TArray< FString > NewValue)` | Sets the value of TicketIds_Optional and also sets TicketIds_IsSet to true.
 `public inline void `[`ClearTicketIds`](#structFRHAPI__SessionTeam_1a9cf26123ef9afeb98d1b6a7f326f01d5)`()` | Clears the value of TicketIds_Optional and sets TicketIds_IsSet to false.
 
-#### Members
+### Members
 
 #### `public TArray< `[`FRHAPI_SessionPlayer`](RHAPI_SessionPlayer.md#structFRHAPI__SessionPlayer)` > `[`Players`](#structFRHAPI__SessionTeam_1a5b51da5e82a822358321d315683a5cdd) <a id="structFRHAPI__SessionTeam_1a5b51da5e82a822358321d315683a5cdd"></a>
 

@@ -1,4 +1,4 @@
-# RHAPI_Notification <a id="group__RHAPI__Notification"></a>
+# group `RHAPI_Notification` <a id="group__RHAPI__Notification"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_Notification
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -62,7 +62,7 @@ struct FRHAPI_Notification
 `public inline const FDateTime & `[`GetCreated`](#structFRHAPI__Notification_1a42ced56616701691473283c0ae354585)`() const` | Gets the value of Created.
 `public inline void `[`SetCreated`](#structFRHAPI__Notification_1ab4cc335883a8d39233891217087575d7)`(FDateTime NewValue)` | Sets the value of Created.
 
-#### Members
+### Members
 
 #### `public FString `[`Message`](#structFRHAPI__Notification_1ae4087f5fac717be76bd871f5d1eae466) <a id="structFRHAPI__Notification_1ae4087f5fac717be76bd871f5d1eae466"></a>
 

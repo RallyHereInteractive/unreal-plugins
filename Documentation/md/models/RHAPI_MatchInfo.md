@@ -1,4 +1,4 @@
-# RHAPI_MatchInfo <a id="group__RHAPI__MatchInfo"></a>
+# group `RHAPI_MatchInfo` <a id="group__RHAPI__MatchInfo"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_MatchInfo
 
 DEPRECATED Information about a match.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -50,7 +50,7 @@ DEPRECATED Information about a match.
 `public inline void `[`SetTicketIds`](#structFRHAPI__MatchInfo_1adf0731f95e38d4c13d0b981a88a91249)`(TArray< FString > NewValue)` | Sets the value of TicketIds_Optional and also sets TicketIds_IsSet to true.
 `public inline void `[`ClearTicketIds`](#structFRHAPI__MatchInfo_1a0222662660481f1f5beeb18231b94b39)`()` | Clears the value of TicketIds_Optional and sets TicketIds_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FString `[`MatchId`](#structFRHAPI__MatchInfo_1a7accea9f13f833a68b7a89a86de907b2) <a id="structFRHAPI__MatchInfo_1a7accea9f13f833a68b7a89a86de907b2"></a>
 

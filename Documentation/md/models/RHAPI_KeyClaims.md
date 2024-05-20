@@ -1,4 +1,4 @@
-# RHAPI_KeyClaims <a id="group__RHAPI__KeyClaims"></a>
+# group `RHAPI_KeyClaims` <a id="group__RHAPI__KeyClaims"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_KeyClaims
 
 List of Key Claims available to the player.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -26,7 +26,7 @@ List of Key Claims available to the player.
 `public inline const TArray< `[`FRHAPI_KeyClaim`](RHAPI_KeyClaim.md#structFRHAPI__KeyClaim)` > & `[`GetClaims`](#structFRHAPI__KeyClaims_1a54c92646bf5dd2ec2db58a29cafc1a49)`() const` | Gets the value of Claims.
 `public inline void `[`SetClaims`](#structFRHAPI__KeyClaims_1a63c11eaa09d0f26302c0ea044ec4a262)`(TArray< `[`FRHAPI_KeyClaim`](RHAPI_KeyClaim.md#structFRHAPI__KeyClaim)` > NewValue)` | Sets the value of Claims.
 
-#### Members
+### Members
 
 #### `public TArray< `[`FRHAPI_KeyClaim`](RHAPI_KeyClaim.md#structFRHAPI__KeyClaim)` > `[`Claims`](#structFRHAPI__KeyClaims_1adebd7612d1a529f391a1d643b58be263) <a id="structFRHAPI__KeyClaims_1adebd7612d1a529f391a1d643b58be263"></a>
 

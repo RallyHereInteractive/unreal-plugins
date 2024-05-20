@@ -1,4 +1,4 @@
-# RHAPI_SessionTemplate <a id="group__RHAPI__SessionTemplate"></a>
+# group `RHAPI_SessionTemplate` <a id="group__RHAPI__SessionTemplate"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_SessionTemplate
 
 Template used to create new RallyHere sessions of a specific type. Configurable in the developer portal.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -222,7 +222,7 @@ Template used to create new RallyHere sessions of a specific type. Configurable 
 `public inline bool `[`IsCanChangeOwnTeamDefaultValue`](#structFRHAPI__SessionTemplate_1a26a5ebe40250064f888d423e23531bfa)`() const` | Returns true if CanChangeOwnTeam_Optional is set and matches the default value.
 `public inline void `[`SetCanChangeOwnTeamToDefault`](#structFRHAPI__SessionTemplate_1ac1a42404ac65f492acfd7e7fe75e4afb)`()` | Sets the value of CanChangeOwnTeam_Optional to its default and also sets CanChangeOwnTeam_IsSet to true.
 
-#### Members
+### Members
 
 #### `public FString `[`SessionType`](#structFRHAPI__SessionTemplate_1a294a5c42b68d1960ade23eb2b8ebed03) <a id="structFRHAPI__SessionTemplate_1a294a5c42b68d1960ade23eb2b8ebed03"></a>
 

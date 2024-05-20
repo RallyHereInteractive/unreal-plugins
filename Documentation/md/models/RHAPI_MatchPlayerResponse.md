@@ -1,4 +1,4 @@
-# RHAPI_MatchPlayerResponse <a id="group__RHAPI__MatchPlayerResponse"></a>
+# group `RHAPI_MatchPlayerResponse` <a id="group__RHAPI__MatchPlayerResponse"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_MatchPlayerResponse
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -144,7 +144,7 @@ struct FRHAPI_MatchPlayerResponse
 `public inline void `[`SetCustomData`](#structFRHAPI__MatchPlayerResponse_1a89fd3b71d30af631cebe40316086ac66)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`ClearCustomData`](#structFRHAPI__MatchPlayerResponse_1a6e3f6713f85176398f037a160517bdf7)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FDateTime `[`LastModifiedTimestamp_Optional`](#structFRHAPI__MatchPlayerResponse_1a0c2af65bdec76b09730bfd57038e913e) <a id="structFRHAPI__MatchPlayerResponse_1a0c2af65bdec76b09730bfd57038e913e"></a>
 

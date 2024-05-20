@@ -1,4 +1,4 @@
-# RHAPI_InventorySession <a id="group__RHAPI__InventorySession"></a>
+# group `RHAPI_InventorySession` <a id="group__RHAPI__InventorySession"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_InventorySession
 
 Inventory Session for a Player.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -46,7 +46,7 @@ Inventory Session for a Player.
 `public inline void `[`SetAppliedDurableLoot`](#structFRHAPI__InventorySession_1a41c013be7c6b2d5d17464c1acd20d72d)`(TArray< int32 > NewValue)` | Sets the value of AppliedDurableLoot_Optional and also sets AppliedDurableLoot_IsSet to true.
 `public inline void `[`ClearAppliedDurableLoot`](#structFRHAPI__InventorySession_1a6b43aeccd15ffee5e76a5fde895610d5)`()` | Clears the value of AppliedDurableLoot_Optional and sets AppliedDurableLoot_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FString `[`SessionId`](#structFRHAPI__InventorySession_1ac32000025fb5fd4d9f376126e1819fd3) <a id="structFRHAPI__InventorySession_1ac32000025fb5fd4d9f376126e1819fd3"></a>
 

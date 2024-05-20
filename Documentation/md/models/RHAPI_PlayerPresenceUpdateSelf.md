@@ -1,4 +1,4 @@
-# RHAPI_PlayerPresenceUpdateSelf <a id="group__RHAPI__PlayerPresenceUpdateSelf"></a>
+# group `RHAPI_PlayerPresenceUpdateSelf` <a id="group__RHAPI__PlayerPresenceUpdateSelf"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_PlayerPresenceUpdateSelf
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -62,7 +62,7 @@ struct FRHAPI_PlayerPresenceUpdateSelf
 `public inline void `[`SetCustomData`](#structFRHAPI__PlayerPresenceUpdateSelf_1adabd33ad9a29af321e00c78cc4db53bf)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`ClearCustomData`](#structFRHAPI__PlayerPresenceUpdateSelf_1ae1e307673be664cb960223d05a50a70e)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
-#### Members
+### Members
 
 #### `public ERHAPI_OnlineStatus `[`Status_Optional`](#structFRHAPI__PlayerPresenceUpdateSelf_1ac48003854292c02a452bd0941631798b) <a id="structFRHAPI__PlayerPresenceUpdateSelf_1ac48003854292c02a452bd0941631798b"></a>
 

@@ -1,4 +1,4 @@
-# RHAPI_PurgeRequest <a id="group__RHAPI__PurgeRequest"></a>
+# group `RHAPI_PurgeRequest` <a id="group__RHAPI__PurgeRequest"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_PurgeRequest
 
 Purge request to purge a person from the system. This will remove all data about that player from the system.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -32,7 +32,7 @@ Purge request to purge a person from the system. This will remove all data about
 `public inline void `[`SetSuggestedPurgeTime`](#structFRHAPI__PurgeRequest_1a984eb6ce9ebd05540f22ef48a4481a66)`(FDateTime NewValue)` | Sets the value of SuggestedPurgeTime_Optional and also sets SuggestedPurgeTime_IsSet to true.
 `public inline void `[`ClearSuggestedPurgeTime`](#structFRHAPI__PurgeRequest_1a90e1c3b323ef9c0d6582d92a4ba4b990)`()` | Clears the value of SuggestedPurgeTime_Optional and sets SuggestedPurgeTime_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FDateTime `[`SuggestedPurgeTime_Optional`](#structFRHAPI__PurgeRequest_1a4bf9b1063d210902a3f01fcc374debef) <a id="structFRHAPI__PurgeRequest_1a4bf9b1063d210902a3f01fcc374debef"></a>
 

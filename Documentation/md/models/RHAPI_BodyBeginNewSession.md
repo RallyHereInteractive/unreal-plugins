@@ -1,4 +1,4 @@
-# RHAPI_BodyBeginNewSession <a id="group__RHAPI__BodyBeginNewSession"></a>
+# group `RHAPI_BodyBeginNewSession` <a id="group__RHAPI__BodyBeginNewSession"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_BodyBeginNewSession
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -34,7 +34,7 @@ struct FRHAPI_BodyBeginNewSession
 `public inline void `[`SetDeviceId`](#structFRHAPI__BodyBeginNewSession_1a4a8a729f2efb24d2e09caefe6ba8e25f)`(FString NewValue)` | Sets the value of DeviceId_Optional and also sets DeviceId_IsSet to true.
 `public inline void `[`ClearDeviceId`](#structFRHAPI__BodyBeginNewSession_1aae458d9179139e19b99c983ce6ba80c5)`()` | Clears the value of DeviceId_Optional and sets DeviceId_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FString `[`CountryCode`](#structFRHAPI__BodyBeginNewSession_1a870690b3e6af31e45215bbdaa0127596) <a id="structFRHAPI__BodyBeginNewSession_1a870690b3e6af31e45215bbdaa0127596"></a>
 

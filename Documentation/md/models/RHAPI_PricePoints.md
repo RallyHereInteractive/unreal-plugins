@@ -1,4 +1,4 @@
-# RHAPI_PricePoints <a id="group__RHAPI__PricePoints"></a>
+# group `RHAPI_PricePoints` <a id="group__RHAPI__PricePoints"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_PricePoints
 
 A collection of Price Points by Price Point ID.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -42,7 +42,7 @@ A collection of Price Points by Price Point ID.
 `public inline void `[`SetCacheInfo`](#structFRHAPI__PricePoints_1ab3b6b85d8519b6b269a2d3bb2b8c958c)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__PricePoints_1abfa1adc34f7db0417bb34ef01d64f158)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 
-#### Members
+### Members
 
 #### `public TMap< FString, `[`FRHAPI_PricePoint`](RHAPI_PricePoint.md#structFRHAPI__PricePoint)` > `[`PricePoints_Optional`](#structFRHAPI__PricePoints_1a70e82abf5cd08ddb7aa0d5fece697466) <a id="structFRHAPI__PricePoints_1a70e82abf5cd08ddb7aa0d5fece697466"></a>
 

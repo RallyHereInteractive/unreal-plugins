@@ -1,4 +1,4 @@
-# RHAPI_TeamUpdate <a id="group__RHAPI__TeamUpdate"></a>
+# group `RHAPI_TeamUpdate` <a id="group__RHAPI__TeamUpdate"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_TeamUpdate
 
 An update to a specific team&#39;s number of max players.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -28,7 +28,7 @@ An update to a specific team&#39;s number of max players.
 `public inline bool `[`IsMaxSizeDefaultValue`](#structFRHAPI__TeamUpdate_1aa8b9fad5404e4a3e396c566a2027357a)`() const` | Returns true if MaxSize matches the default value.
 `public inline void `[`SetMaxSizeToDefault`](#structFRHAPI__TeamUpdate_1ae7fd780e7a53bfee856cb41cadbc4049)`()` | Sets the value of MaxSize to its default
 
-#### Members
+### Members
 
 #### `public int32 `[`MaxSize`](#structFRHAPI__TeamUpdate_1a3c25e80c265f99a87d6506894dcaf8d0) <a id="structFRHAPI__TeamUpdate_1a3c25e80c265f99a87d6506894dcaf8d0"></a>
 

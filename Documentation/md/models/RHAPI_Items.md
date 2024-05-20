@@ -1,4 +1,4 @@
-# RHAPI_Items <a id="group__RHAPI__Items"></a>
+# group `RHAPI_Items` <a id="group__RHAPI__Items"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_Items
 
 A collections of Items by Item ID.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -42,7 +42,7 @@ A collections of Items by Item ID.
 `public inline void `[`SetCacheInfo`](#structFRHAPI__Items_1ab308c1803a753ea3b798d90e685592a5)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__Items_1a92bb319e2322768d4493dd851721c1ac)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 
-#### Members
+### Members
 
 #### `public TMap< FString, `[`FRHAPI_Item`](RHAPI_Item.md#structFRHAPI__Item)` > `[`Items_Optional`](#structFRHAPI__Items_1acb634134dc074f992328d8d87d1f9d62) <a id="structFRHAPI__Items_1acb634134dc074f992328d8d87d1f9d62"></a>
 

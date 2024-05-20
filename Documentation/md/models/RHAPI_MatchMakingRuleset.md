@@ -1,4 +1,4 @@
-# RHAPI_MatchMakingRuleset <a id="group__RHAPI__MatchMakingRuleset"></a>
+# group `RHAPI_MatchMakingRuleset` <a id="group__RHAPI__MatchMakingRuleset"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_MatchMakingRuleset
 
 A collection of rules that are used to determine whether a MatchMakingTemplate should be used.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -36,7 +36,7 @@ A collection of rules that are used to determine whether a MatchMakingTemplate s
 `public inline void `[`SetDeterminer`](#structFRHAPI__MatchMakingRuleset_1a30489b3b244e528dd7ec8ffefe49e1b7)`(ERHAPI_Determiner NewValue)` | Sets the value of Determiner_Optional and also sets Determiner_IsSet to true.
 `public inline void `[`ClearDeterminer`](#structFRHAPI__MatchMakingRuleset_1a48e9ee08c491fb294cc3167b406e7e41)`()` | Clears the value of Determiner_Optional and sets Determiner_IsSet to false.
 
-#### Members
+### Members
 
 #### `public TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > `[`Rules`](#structFRHAPI__MatchMakingRuleset_1a0af2817935346ffb9855da1f5618e851) <a id="structFRHAPI__MatchMakingRuleset_1a0af2817935346ffb9855da1f5618e851"></a>
 

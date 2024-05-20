@@ -1,4 +1,4 @@
-# RHAPI_QueuesResponse <a id="group__RHAPI__QueuesResponse"></a>
+# group `RHAPI_QueuesResponse` <a id="group__RHAPI__QueuesResponse"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_QueuesResponse
 
 DEPRECATED - A list of configuration about queues.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -26,7 +26,7 @@ DEPRECATED - A list of configuration about queues.
 `public inline const TArray< `[`FRHAPI_QueueConfig`](RHAPI_QueueConfig.md#structFRHAPI__QueueConfig)` > & `[`GetQueues`](#structFRHAPI__QueuesResponse_1abbf9ad5940f96346c4b7d96441f6550a)`() const` | Gets the value of Queues.
 `public inline void `[`SetQueues`](#structFRHAPI__QueuesResponse_1a405af745b536fbbd0005a21b77d8ede3)`(TArray< `[`FRHAPI_QueueConfig`](RHAPI_QueueConfig.md#structFRHAPI__QueueConfig)` > NewValue)` | Sets the value of Queues.
 
-#### Members
+### Members
 
 #### `public TArray< `[`FRHAPI_QueueConfig`](RHAPI_QueueConfig.md#structFRHAPI__QueueConfig)` > `[`Queues`](#structFRHAPI__QueuesResponse_1a53242423e1b15a69a599d22a44d5278b) <a id="structFRHAPI__QueuesResponse_1a53242423e1b15a69a599d22a44d5278b"></a>
 

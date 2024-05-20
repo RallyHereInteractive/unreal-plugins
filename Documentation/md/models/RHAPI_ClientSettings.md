@@ -1,4 +1,4 @@
-# RHAPI_ClientSettings <a id="group__RHAPI__ClientSettings"></a>
+# group `RHAPI_ClientSettings` <a id="group__RHAPI__ClientSettings"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_ClientSettings
 
 A player&#39;s platform and input settings.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -46,7 +46,7 @@ A player&#39;s platform and input settings.
 `public inline const ERHAPI_Input & `[`GetInput`](#structFRHAPI__ClientSettings_1a987756f572f84cc101ec31fef828a1b9)`() const` | Gets the value of Input.
 `public inline void `[`SetInput`](#structFRHAPI__ClientSettings_1aa5ac02634804e12780258a45e97e2d33)`(ERHAPI_Input NewValue)` | Sets the value of Input.
 
-#### Members
+### Members
 
 #### `public ERHAPI_PlatformID `[`PlatformId_Optional`](#structFRHAPI__ClientSettings_1ae9ccc7ffd86f7cb177884eabb4102e60) <a id="structFRHAPI__ClientSettings_1ae9ccc7ffd86f7cb177884eabb4102e60"></a>
 

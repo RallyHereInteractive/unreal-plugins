@@ -1,4 +1,4 @@
-# RHAPI_UpdateInventoryRequests <a id="group__RHAPI__UpdateInventoryRequests"></a>
+# group `RHAPI_UpdateInventoryRequests` <a id="group__RHAPI__UpdateInventoryRequests"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_UpdateInventoryRequests
 
 Collection of Update Inventory Requests. The Inventory referenced in the Update Inventory Requests must exist otherwise the request will fail. Each individual entry will be processed in the order they are specified in the collection. <b>Note: Partial success is possible as each request is processed individually.</b>.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -46,7 +46,7 @@ Collection of Update Inventory Requests. The Inventory referenced in the Update 
 `public inline const TArray< `[`FRHAPI_UpdateInventoryRequestById`](RHAPI_UpdateInventoryRequestById.md#structFRHAPI__UpdateInventoryRequestById)` > & `[`GetInventory`](#structFRHAPI__UpdateInventoryRequests_1a16236c2da82677b936d1e02d891c1009)`() const` | Gets the value of Inventory.
 `public inline void `[`SetInventory`](#structFRHAPI__UpdateInventoryRequests_1ad386c910446362cdba8b737245b2769f)`(TArray< `[`FRHAPI_UpdateInventoryRequestById`](RHAPI_UpdateInventoryRequestById.md#structFRHAPI__UpdateInventoryRequestById)` > NewValue)` | Sets the value of Inventory.
 
-#### Members
+### Members
 
 #### `public ERHAPI_Source `[`Source_Optional`](#structFRHAPI__UpdateInventoryRequests_1aeb907459f6fdd297e4c2a2965497c042) <a id="structFRHAPI__UpdateInventoryRequests_1aeb907459f6fdd297e4c2a2965497c042"></a>
 

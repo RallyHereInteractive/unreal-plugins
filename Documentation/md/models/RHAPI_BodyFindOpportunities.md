@@ -1,4 +1,4 @@
-# RHAPI_BodyFindOpportunities <a id="group__RHAPI__BodyFindOpportunities"></a>
+# group `RHAPI_BodyFindOpportunities` <a id="group__RHAPI__BodyFindOpportunities"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_BodyFindOpportunities
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -62,7 +62,7 @@ struct FRHAPI_BodyFindOpportunities
 `public inline void `[`SetDeviceId`](#structFRHAPI__BodyFindOpportunities_1a8d83231e709256660cd11cb262191ea8)`(FString NewValue)` | Sets the value of DeviceId_Optional and also sets DeviceId_IsSet to true.
 `public inline void `[`ClearDeviceId`](#structFRHAPI__BodyFindOpportunities_1a7188bb5fbcdd19a876c7928d7989d186)`()` | Clears the value of DeviceId_Optional and sets DeviceId_IsSet to false.
 
-#### Members
+### Members
 
 #### `public int32 `[`ScreenPixelWidth_Optional`](#structFRHAPI__BodyFindOpportunities_1a2f24ade1385dc3a8b41426ad2bac08a1) <a id="structFRHAPI__BodyFindOpportunities_1a2f24ade1385dc3a8b41426ad2bac08a1"></a>
 

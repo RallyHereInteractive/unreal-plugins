@@ -1,4 +1,4 @@
-# RHAPI_FriendsList <a id="group__RHAPI__FriendsList"></a>
+# group `RHAPI_FriendsList` <a id="group__RHAPI__FriendsList"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_FriendsList
 
 List of the player&#39;s friends. Includes sent friend requests and received friends requests.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -34,7 +34,7 @@ List of the player&#39;s friends. Includes sent friend requests and received fri
 `public inline const `[`FRHAPI_PageMeta`](RHAPI_PageMeta.md#structFRHAPI__PageMeta)` & `[`GetPage`](#structFRHAPI__FriendsList_1a3455d176b11020fba24c22f1dc29b674)`() const` | Gets the value of Page.
 `public inline void `[`SetPage`](#structFRHAPI__FriendsList_1aecdca26cc609cd3503c66bba009a2e58)`(`[`FRHAPI_PageMeta`](RHAPI_PageMeta.md#structFRHAPI__PageMeta)` NewValue)` | Sets the value of Page.
 
-#### Members
+### Members
 
 #### `public FGuid `[`PlayerUuid`](#structFRHAPI__FriendsList_1a00993f4b19d7fda1904312a3eb2a721b) <a id="structFRHAPI__FriendsList_1a00993f4b19d7fda1904312a3eb2a721b"></a>
 

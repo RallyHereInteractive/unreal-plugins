@@ -1,4 +1,4 @@
-# RHAPI_LoginResult <a id="group__RHAPI__LoginResult"></a>
+# group `RHAPI_LoginResult` <a id="group__RHAPI__LoginResult"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_LoginResult
 
 Login result.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -196,7 +196,7 @@ Login result.
 `public inline bool `[`IsExpiresInDefaultValue`](#structFRHAPI__LoginResult_1a2a984e7838336bff1cb832e105ddebaf)`() const` | Returns true if ExpiresIn_Optional is set and matches the default value.
 `public inline void `[`SetExpiresInToDefault`](#structFRHAPI__LoginResult_1a60c0277fb290298bc3c9c8d9ef6e4b82)`()` | Sets the value of ExpiresIn_Optional to its default and also sets ExpiresIn_IsSet to true.
 
-#### Members
+### Members
 
 #### `public `[`FRHAPI_PortalUserInfo`](RHAPI_PortalUserInfo.md#structFRHAPI__PortalUserInfo)` `[`PortalParentAuthResult_Optional`](#structFRHAPI__LoginResult_1aafa0221a83ff325e02182519fc6a664b) <a id="structFRHAPI__LoginResult_1aafa0221a83ff325e02182519fc6a664b"></a>
 

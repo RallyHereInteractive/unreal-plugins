@@ -1,4 +1,4 @@
-# RHAPI_QueueJoinResponse <a id="group__RHAPI__QueueJoinResponse"></a>
+# group `RHAPI_QueueJoinResponse` <a id="group__RHAPI__QueueJoinResponse"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_QueueJoinResponse
 
 A response for successfully joining a matchmaking queue.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -26,7 +26,7 @@ A response for successfully joining a matchmaking queue.
 `public inline const FString & `[`GetTicketId`](#structFRHAPI__QueueJoinResponse_1a8a65bbb1fee3afbadcc529088774aabe)`() const` | Gets the value of TicketId.
 `public inline void `[`SetTicketId`](#structFRHAPI__QueueJoinResponse_1a4efeb4ee24a01173a12baaa33d358cdd)`(FString NewValue)` | Sets the value of TicketId.
 
-#### Members
+### Members
 
 #### `public FString `[`TicketId`](#structFRHAPI__QueueJoinResponse_1af954b4ff6c24fb605858abbbe004cd09) <a id="structFRHAPI__QueueJoinResponse_1af954b4ff6c24fb605858abbbe004cd09"></a>
 

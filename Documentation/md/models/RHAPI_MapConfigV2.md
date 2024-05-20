@@ -1,4 +1,4 @@
-# RHAPI_MapConfigV2 <a id="group__RHAPI__MapConfigV2"></a>
+# group `RHAPI_MapConfigV2` <a id="group__RHAPI__MapConfigV2"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_MapConfigV2
 
 Configuration about a specific map for an instance to load into.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -74,7 +74,7 @@ Configuration about a specific map for an instance to load into.
 `public inline void `[`SetDescription`](#structFRHAPI__MapConfigV2_1a3e9012531e91b0c7c7754980041fe5f1)`(FString NewValue)` | Sets the value of Description_Optional and also sets Description_IsSet to true.
 `public inline void `[`ClearDescription`](#structFRHAPI__MapConfigV2_1a6887c09f5c3b4a23def578232720aede)`()` | Clears the value of Description_Optional and sets Description_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FString `[`MapId`](#structFRHAPI__MapConfigV2_1a5963a073f9b82dfcf58467aa017771d2) <a id="structFRHAPI__MapConfigV2_1a5963a073f9b82dfcf58467aa017771d2"></a>
 

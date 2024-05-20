@@ -1,4 +1,4 @@
-# RHAPI_InventoryBucketUseRuleSet <a id="group__RHAPI__InventoryBucketUseRuleSet"></a>
+# group `RHAPI_InventoryBucketUseRuleSet` <a id="group__RHAPI__InventoryBucketUseRuleSet"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_InventoryBucketUseRuleSet
 
 A collection of Inventory Bucket Use Rules.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -52,7 +52,7 @@ A collection of Inventory Bucket Use Rules.
 `public inline void `[`SetCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSet_1a13a4aab1936a8437f0dc71e81b90c77d)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSet_1ae67f10a6ce01ad498fd5ce97401c7c96)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 
-#### Members
+### Members
 
 #### `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__InventoryBucketUseRuleSet_1a4374570f7a6d6a2118db206d13102262) <a id="structFRHAPI__InventoryBucketUseRuleSet_1a4374570f7a6d6a2118db206d13102262"></a>
 

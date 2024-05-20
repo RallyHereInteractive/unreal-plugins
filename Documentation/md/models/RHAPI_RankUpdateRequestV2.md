@@ -1,4 +1,4 @@
-# RHAPI_RankUpdateRequestV2 <a id="group__RHAPI__RankUpdateRequestV2"></a>
+# group `RHAPI_RankUpdateRequestV2` <a id="group__RHAPI__RankUpdateRequestV2"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_RankUpdateRequestV2
 
 A request body to calculate and update players&#39; ratings from a match.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -46,7 +46,7 @@ A request body to calculate and update players&#39; ratings from a match.
 `public inline const TArray< `[`FRHAPI_RankedTeam`](RHAPI_RankedTeam.md#structFRHAPI__RankedTeam)` > & `[`GetTeams`](#structFRHAPI__RankUpdateRequestV2_1ac99f7c05920af593e0837ab937e8f6b6)`() const` | Gets the value of Teams.
 `public inline void `[`SetTeams`](#structFRHAPI__RankUpdateRequestV2_1a04cd41756d8060c90206ebed41b44723)`(TArray< `[`FRHAPI_RankedTeam`](RHAPI_RankedTeam.md#structFRHAPI__RankedTeam)` > NewValue)` | Sets the value of Teams.
 
-#### Members
+### Members
 
 #### `public FString `[`InstanceId_Optional`](#structFRHAPI__RankUpdateRequestV2_1a0703d762fce694979e46d12ed5ddab5c) <a id="structFRHAPI__RankUpdateRequestV2_1a0703d762fce694979e46d12ed5ddab5c"></a>
 

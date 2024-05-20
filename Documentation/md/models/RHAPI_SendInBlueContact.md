@@ -1,4 +1,4 @@
-# RHAPI_SendInBlueContact <a id="group__RHAPI__SendInBlueContact"></a>
+# group `RHAPI_SendInBlueContact` <a id="group__RHAPI__SendInBlueContact"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_SendInBlueContact
 
 SendInBlue contact.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -80,7 +80,7 @@ SendInBlue contact.
 `public inline bool `[`IsUpdateEnabledDefaultValue`](#structFRHAPI__SendInBlueContact_1ad02e90be12448e9da0e518d7bed8872a)`() const` | Returns true if UpdateEnabled_Optional is set and matches the default value.
 `public inline void `[`SetUpdateEnabledToDefault`](#structFRHAPI__SendInBlueContact_1af5524c67044a55e677378e61ff88f9e8)`()` | Sets the value of UpdateEnabled_Optional to its default and also sets UpdateEnabled_IsSet to true.
 
-#### Members
+### Members
 
 #### `public FString `[`Email`](#structFRHAPI__SendInBlueContact_1aa5f9c11c8565c4f5de86c3296bd82ec5) <a id="structFRHAPI__SendInBlueContact_1aa5f9c11c8565c4f5de86c3296bd82ec5"></a>
 

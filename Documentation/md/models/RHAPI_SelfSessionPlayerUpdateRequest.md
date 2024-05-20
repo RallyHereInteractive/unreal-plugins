@@ -1,4 +1,4 @@
-# RHAPI_SelfSessionPlayerUpdateRequest <a id="group__RHAPI__SelfSessionPlayerUpdateRequest"></a>
+# group `RHAPI_SelfSessionPlayerUpdateRequest` <a id="group__RHAPI__SelfSessionPlayerUpdateRequest"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_SelfSessionPlayerUpdateRequest
 
 A request body for a player updating information about themselves.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -66,7 +66,7 @@ A request body for a player updating information about themselves.
 `public inline void `[`SetCustomData`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1ae06caba5bb32425ee95705a6e8e05937)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`ClearCustomData`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1afc76499c6b23732fdd02a72402d7e752)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
-#### Members
+### Members
 
 #### `public ERHAPI_SessionPlayerStatus `[`Status_Optional`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a5f87ee029d69d0bc3ffd1f4983c27547) <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1a5f87ee029d69d0bc3ffd1f4983c27547"></a>
 

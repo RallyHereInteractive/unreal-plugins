@@ -1,4 +1,4 @@
-# RHAPI_AcknowledgeBackfillResponse <a id="group__RHAPI__AcknowledgeBackfillResponse"></a>
+# group `RHAPI_AcknowledgeBackfillResponse` <a id="group__RHAPI__AcknowledgeBackfillResponse"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_AcknowledgeBackfillResponse
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -30,7 +30,7 @@ struct FRHAPI_AcknowledgeBackfillResponse
 `public inline void `[`SetBackfilledPlayers`](#structFRHAPI__AcknowledgeBackfillResponse_1a9fd607d0415fb7f31f10434c109182ce)`(TArray< `[`FRHAPI_SessionPlayer`](RHAPI_SessionPlayer.md#structFRHAPI__SessionPlayer)` > NewValue)` | Sets the value of BackfilledPlayers_Optional and also sets BackfilledPlayers_IsSet to true.
 `public inline void `[`ClearBackfilledPlayers`](#structFRHAPI__AcknowledgeBackfillResponse_1a5df126a7e77babbaedc697a42980a889)`()` | Clears the value of BackfilledPlayers_Optional and sets BackfilledPlayers_IsSet to false.
 
-#### Members
+### Members
 
 #### `public TArray< `[`FRHAPI_SessionPlayer`](RHAPI_SessionPlayer.md#structFRHAPI__SessionPlayer)` > `[`BackfilledPlayers_Optional`](#structFRHAPI__AcknowledgeBackfillResponse_1a23be359898015fb69c972452087869b7) <a id="structFRHAPI__AcknowledgeBackfillResponse_1a23be359898015fb69c972452087869b7"></a>
 

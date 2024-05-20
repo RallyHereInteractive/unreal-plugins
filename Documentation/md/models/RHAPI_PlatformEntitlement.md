@@ -1,4 +1,4 @@
-# RHAPI_PlatformEntitlement <a id="group__RHAPI__PlatformEntitlement"></a>
+# group `RHAPI_PlatformEntitlement` <a id="group__RHAPI__PlatformEntitlement"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_PlatformEntitlement
 
 Entitlement for a platform. This takes in a sku and platform entitlement id and checks to see if the user has the entitlement on the platform.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -72,7 +72,7 @@ Entitlement for a platform. This takes in a sku and platform entitlement id and 
 `public inline void `[`SetOrderId`](#structFRHAPI__PlatformEntitlement_1ac0a69f4efbf33d8204f59c809393fea8)`(FString NewValue)` | Sets the value of OrderId_Optional and also sets OrderId_IsSet to true.
 `public inline void `[`ClearOrderId`](#structFRHAPI__PlatformEntitlement_1aced25565f90e25790e543b78dc85432f)`()` | Clears the value of OrderId_Optional and sets OrderId_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FString `[`PlatformSku`](#structFRHAPI__PlatformEntitlement_1afbc894e85f0ee1a0fbcec0c9406446be) <a id="structFRHAPI__PlatformEntitlement_1afbc894e85f0ee1a0fbcec0c9406446be"></a>
 

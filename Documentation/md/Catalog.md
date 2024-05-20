@@ -1,4 +1,4 @@
-# Catalog <a id="group__Catalog"></a>
+# group `Catalog` <a id="group__Catalog"></a>
 
 ## Summary
 
@@ -18,7 +18,7 @@ class URH_CatalogItem
 
 class used to define a Catalog Item.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -51,7 +51,7 @@ class used to define a Catalog Item.
 `protected FString `[`ItemInventoryBucketUseRuleSetId`](#classURH__CatalogItem_1a362245491036e7f9386962ebfeca2041) | The inventory use ruleset this item uses.
 `protected TArray< int32 > `[`CouponDiscountLoot`](#classURH__CatalogItem_1ab5baca34a2c43db4b6f03785904ffa77) | List of Loot Table Items this item can be used as a coupon for.
 
-#### Members
+### Members
 
 #### `public FString `[`ETag`](#classURH__CatalogItem_1a8c1dbd0b72804d0d46c41cd75108f53e) <a id="classURH__CatalogItem_1a8c1dbd0b72804d0d46c41cd75108f53e"></a>
 
@@ -180,7 +180,7 @@ class URH_CatalogSubsystem
 
 Class used to help track and interact with the catalog to get Items, Vendors, and their data.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -249,7 +249,7 @@ Class used to help track and interact with the catalog to get Items, Vendors, an
 `typedef `[`TGetCatalogVendorsAll`](#classURH__CatalogSubsystem_1aaf8a27ead9394b0bad26a875bef93a69) | Type Define for Get Catalog Vendor All calls.
 `typedef `[`TGetCatalogItem`](#classURH__CatalogSubsystem_1a81351c9b4871f7529a992d978cbc7f6d) | Type Define for Get Catalog Item calls.
 
-#### Members
+### Members
 
 #### `public FRH_CatalogItemUpdatedDelegate `[`OnCatalogItemAdded`](#classURH__CatalogSubsystem_1a60e2593b662b6023fda6401228bea592) <a id="classURH__CatalogSubsystem_1a60e2593b662b6023fda6401228bea592"></a>
 
@@ -657,18 +657,18 @@ class URH_CatalogBlueprintLibrary
 
 Catalog Blueprint Library with helper methods for API structs.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 
-#### Members
+### Members
 
 ## struct `FRHVendorGetRequest` <a id="structFRHVendorGetRequest"></a>
 
 Vendor Request struct used to encapsulate a request to get a vendors and the callback delegate.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -678,7 +678,7 @@ Vendor Request struct used to encapsulate a request to get a vendors and the cal
 `public inline  `[`FRHVendorGetRequest`](#structFRHVendorGetRequest_1a3ae63c4382710be88bac03888a0a1471)`(const TArray< int32 > & InVendorIds)` | Constructor with vendor Id List.
 `public inline  `[`FRHVendorGetRequest`](#structFRHVendorGetRequest_1a3db335a857c4d1ead61bb82410e2b0a6)`(const FRH_CatalogCallBlock & InDelegate,const TArray< int32 > & InVendorIds)` | Constructor with vendor Id List and callback delegate.
 
-#### Members
+### Members
 
 #### `public FRH_CatalogCallBlock `[`Delegate`](#structFRHVendorGetRequest_1ac3903422f9becf0ec9efbf01336b2e34) <a id="structFRHVendorGetRequest_1ac3903422f9becf0ec9efbf01336b2e34"></a>
 

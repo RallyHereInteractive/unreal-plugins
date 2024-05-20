@@ -1,4 +1,4 @@
-# RHAPI_PagedMatchResponse <a id="group__RHAPI__PagedMatchResponse"></a>
+# group `RHAPI_PagedMatchResponse` <a id="group__RHAPI__PagedMatchResponse"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_PagedMatchResponse
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -40,7 +40,7 @@ struct FRHAPI_PagedMatchResponse
 `public inline void `[`SetCursor`](#structFRHAPI__PagedMatchResponse_1a86cc1074efc7feea41724e6bb560c1e1)`(FString NewValue)` | Sets the value of Cursor_Optional and also sets Cursor_IsSet to true.
 `public inline void `[`ClearCursor`](#structFRHAPI__PagedMatchResponse_1a70914e8d6d2e7ee09981e16a71800f61)`()` | Clears the value of Cursor_Optional and sets Cursor_IsSet to false.
 
-#### Members
+### Members
 
 #### `public TArray< `[`FRHAPI_MatchWithPlayers`](RHAPI_MatchWithPlayers.md#structFRHAPI__MatchWithPlayers)` > `[`Matches_Optional`](#structFRHAPI__PagedMatchResponse_1ae75d56f03feaccaa0e8d037dd3edeed9) <a id="structFRHAPI__PagedMatchResponse_1ae75d56f03feaccaa0e8d037dd3edeed9"></a>
 

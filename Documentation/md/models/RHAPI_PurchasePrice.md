@@ -1,4 +1,4 @@
-# RHAPI_PurchasePrice <a id="group__RHAPI__PurchasePrice"></a>
+# group `RHAPI_PurchasePrice` <a id="group__RHAPI__PurchasePrice"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_PurchasePrice
 
 The purchase price of an Item.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -46,7 +46,7 @@ The purchase price of an Item.
 `public inline bool `[`IsPriceCouponItemIdDefaultValue`](#structFRHAPI__PurchasePrice_1a96c915426f89bd6a468c80e9d6c79440)`() const` | Returns true if PriceCouponItemId_Optional is set and matches the default value.
 `public inline void `[`SetPriceCouponItemIdToDefault`](#structFRHAPI__PurchasePrice_1a8a7053cacb8105cd2efc15a153c3ba78)`()` | Sets the value of PriceCouponItemId_Optional to its default and also sets PriceCouponItemId_IsSet to true.
 
-#### Members
+### Members
 
 #### `public int32 `[`PriceItemId`](#structFRHAPI__PurchasePrice_1a263df4cc3585b8910e465aad7d2610c9) <a id="structFRHAPI__PurchasePrice_1a263df4cc3585b8910e465aad7d2610c9"></a>
 

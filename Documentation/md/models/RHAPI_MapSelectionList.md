@@ -1,4 +1,4 @@
-# RHAPI_MapSelectionList <a id="group__RHAPI__MapSelectionList"></a>
+# group `RHAPI_MapSelectionList` <a id="group__RHAPI__MapSelectionList"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_MapSelectionList
 
 DEPRECATED A list of maps that can be chosen from when an instance is launching.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -30,7 +30,7 @@ DEPRECATED A list of maps that can be chosen from when an instance is launching.
 `public inline const TArray< `[`FRHAPI_MapConfig`](RHAPI_MapConfig.md#structFRHAPI__MapConfig)` > & `[`GetMaps`](#structFRHAPI__MapSelectionList_1acd9b43b6edd69821810f3ca13aca2395)`() const` | Gets the value of Maps.
 `public inline void `[`SetMaps`](#structFRHAPI__MapSelectionList_1a4aba4193810a93b9e65bf99c15a6e4c8)`(TArray< `[`FRHAPI_MapConfig`](RHAPI_MapConfig.md#structFRHAPI__MapConfig)` > NewValue)` | Sets the value of Maps.
 
-#### Members
+### Members
 
 #### `public FString `[`MapSelectionListId`](#structFRHAPI__MapSelectionList_1ac074b5068cab4beed3045279f51fe7f7) <a id="structFRHAPI__MapSelectionList_1ac074b5068cab4beed3045279f51fe7f7"></a>
 

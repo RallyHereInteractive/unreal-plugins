@@ -1,4 +1,4 @@
-# RHAPI_PlayerInventoryChange <a id="group__RHAPI__PlayerInventoryChange"></a>
+# group `RHAPI_PlayerInventoryChange` <a id="group__RHAPI__PlayerInventoryChange"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_PlayerInventoryChange
 
 Represents the change that occurred to an entry in the Player&#39;s Inventory. The before fields contain the state before the change, after fields contain the state after the change.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -66,7 +66,7 @@ Represents the change that occurred to an entry in the Player&#39;s Inventory. T
 `public inline void `[`SetAfter`](#structFRHAPI__PlayerInventoryChange_1a2b8f321a74ce91e14b5ff9a2fdfac4ca)`(`[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` NewValue)` | Sets the value of After_Optional and also sets After_IsSet to true.
 `public inline void `[`ClearAfter`](#structFRHAPI__PlayerInventoryChange_1a4ba64ef1e8e8cf43852f48e18ada18d3)`()` | Clears the value of After_Optional and sets After_IsSet to false.
 
-#### Members
+### Members
 
 #### `public int32 `[`BeforeItemId_Optional`](#structFRHAPI__PlayerInventoryChange_1a099b02773cb7d21b4c31a1b6b9cb7a5d) <a id="structFRHAPI__PlayerInventoryChange_1a099b02773cb7d21b4c31a1b6b9cb7a5d"></a>
 

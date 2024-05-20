@@ -1,4 +1,4 @@
-# RHAPI_NotificationCreateResult <a id="group__RHAPI__NotificationCreateResult"></a>
+# group `RHAPI_NotificationCreateResult` <a id="group__RHAPI__NotificationCreateResult"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_NotificationCreateResult
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -24,7 +24,7 @@ struct FRHAPI_NotificationCreateResult
 `public inline const FString & `[`GetNotificationId`](#structFRHAPI__NotificationCreateResult_1a0db393cd84c4b3a8858fcefc6eb6c04c)`() const` | Gets the value of NotificationId.
 `public inline void `[`SetNotificationId`](#structFRHAPI__NotificationCreateResult_1af3fd2cd980ce7c6400b136f878f15f67)`(FString NewValue)` | Sets the value of NotificationId.
 
-#### Members
+### Members
 
 #### `public FString `[`NotificationId`](#structFRHAPI__NotificationCreateResult_1a2470f8689b67650ca67a241f190d2cf5) <a id="structFRHAPI__NotificationCreateResult_1a2470f8689b67650ca67a241f190d2cf5"></a>
 

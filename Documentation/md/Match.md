@@ -1,4 +1,4 @@
-# Match <a id="group__Match"></a>
+# group `Match` <a id="group__Match"></a>
 
 ## Summary
 
@@ -55,7 +55,7 @@ class URH_MatchSubsystem
 
 Match Subsystem used for match API calls.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -78,7 +78,7 @@ Match Subsystem used for match API calls.
 `protected TMap< FString, `[`FRHAPI_MatchWithPlayers`](models/RHAPI_MatchWithPlayers.md#structFRHAPI__MatchWithPlayers)` > `[`MatchesCache`](#classURH__MatchSubsystem_1af6ae949b60bac5983489fe295a5b914a) | 
 `protected TOptional< FString > `[`ActiveMatchId`](#classURH__MatchSubsystem_1aa6948be8c609b94e612435f7b0767e7b) | The last match created with bSetActive = true, for ease of use.
 
-#### Members
+### Members
 
 #### `public bool `[`bIgnoreCache`](#classURH__MatchSubsystem_1acb0a1a94ae35e70fbec6f43cae7aca82) <a id="classURH__MatchSubsystem_1acb0a1a94ae35e70fbec6f43cae7aca82"></a>
 
@@ -178,7 +178,7 @@ The last match created with bSetActive = true, for ease of use.
 
 ## struct `FRH_MatchSearchParams` <a id="structFRH__MatchSearchParams"></a>
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -194,7 +194,7 @@ The last match created with bSetActive = true, for ease of use.
 `public inline FString `[`GetDescription`](#structFRH__MatchSearchParams_1a682aada2005d21246404e340217c4229)`() const` | Returns summary of params for tooling/logging.
 `public inline RallyHereAPI::FRequest_GetMatches `[`ToAPIRequest`](#structFRH__MatchSearchParams_1ad113cf34700d56985d289eebde6e4218)`(FAuthContextPtr AuthContext) const` | Converts the search params to an API request.
 
-#### Members
+### Members
 
 #### `public int32 `[`PageSize`](#structFRH__MatchSearchParams_1a8787383b63243d3a16b363172f116059) <a id="structFRH__MatchSearchParams_1a8787383b63243d3a16b363172f116059"></a>
 
@@ -242,7 +242,7 @@ Converts the search params to an API request.
 
 Struct containint the results of a Session Browser search.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -252,7 +252,7 @@ Struct containint the results of a Session Browser search.
 `public inline FString `[`GetDescription`](#structFRH__MatchSearchResult_1a3f3d4d70bda7f129f5d84ed5a695a309)`() const` | Returns summary of search results for tooling/logging.
 `public inline  `[`FRH_MatchSearchResult`](#structFRH__MatchSearchResult_1a44c964332575fef90c49b48a0cb0b6d1)`()` | 
 
-#### Members
+### Members
 
 #### `public `[`FRH_MatchSearchParams`](Match.md#structFRH__MatchSearchParams)` `[`SearchParams`](#structFRH__MatchSearchResult_1adf2167b41ab7c4f438765469795bf37f) <a id="structFRH__MatchSearchResult_1adf2167b41ab7c4f438765469795bf37f"></a>
 

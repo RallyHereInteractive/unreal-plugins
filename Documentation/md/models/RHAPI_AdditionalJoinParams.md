@@ -1,4 +1,4 @@
-# RHAPI_AdditionalJoinParams <a id="group__RHAPI__AdditionalJoinParams"></a>
+# group `RHAPI_AdditionalJoinParams` <a id="group__RHAPI__AdditionalJoinParams"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_AdditionalJoinParams
 
 Additional parameters to apply to a matchmaking ticket.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -62,7 +62,7 @@ Additional parameters to apply to a matchmaking ticket.
 `public inline void `[`SetExtensions`](#structFRHAPI__AdditionalJoinParams_1ae342550ce74edaad074ce99670188d23)`(TMap< FString, FString > NewValue)` | Sets the value of Extensions_Optional and also sets Extensions_IsSet to true.
 `public inline void `[`ClearExtensions`](#structFRHAPI__AdditionalJoinParams_1af4f1ea3d69193091aaf259a362f379c2)`()` | Clears the value of Extensions_Optional and sets Extensions_IsSet to false.
 
-#### Members
+### Members
 
 #### `public TMap< FString, float > `[`DoubleArgs_Optional`](#structFRHAPI__AdditionalJoinParams_1a4a7c882893185978589f4d5f0809dd83) <a id="structFRHAPI__AdditionalJoinParams_1a4a7c882893185978589f4d5f0809dd83"></a>
 

@@ -1,4 +1,4 @@
-# RHAPI_LogoutRequest <a id="group__RHAPI__LogoutRequest"></a>
+# group `RHAPI_LogoutRequest` <a id="group__RHAPI__LogoutRequest"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_LogoutRequest
 
 Logout request.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -26,7 +26,7 @@ Logout request.
 `public inline const FString & `[`GetRefreshToken`](#structFRHAPI__LogoutRequest_1a6764bdc3e83014b3521a4e98673ba2a7)`() const` | Gets the value of RefreshToken.
 `public inline void `[`SetRefreshToken`](#structFRHAPI__LogoutRequest_1aa24c1170bc154e85eb1151dc627ce6b0)`(FString NewValue)` | Sets the value of RefreshToken.
 
-#### Members
+### Members
 
 #### `public FString `[`RefreshToken`](#structFRHAPI__LogoutRequest_1abc7366e4cbef7e9714bad37ee03609ff) <a id="structFRHAPI__LogoutRequest_1abc7366e4cbef7e9714bad37ee03609ff"></a>
 

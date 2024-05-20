@@ -1,4 +1,4 @@
-# RHAPI_InstanceRequest <a id="group__RHAPI__InstanceRequest"></a>
+# group `RHAPI_InstanceRequest` <a id="group__RHAPI__InstanceRequest"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_InstanceRequest
 
 A request body to create an instance resource in a session.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -66,7 +66,7 @@ A request body to create an instance resource in a session.
 `public inline void `[`SetCustomData`](#structFRHAPI__InstanceRequest_1a5b0340ced10fd5813d796f1659d0960d)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`ClearCustomData`](#structFRHAPI__InstanceRequest_1a4121a0d0b10e936e6d0b4aae89f200fa)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FString `[`InstanceId_Optional`](#structFRHAPI__InstanceRequest_1ae2cd025e6006ed29f473eea7e99a5831) <a id="structFRHAPI__InstanceRequest_1ae2cd025e6006ed29f473eea7e99a5831"></a>
 

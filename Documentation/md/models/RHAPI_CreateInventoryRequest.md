@@ -1,4 +1,4 @@
-# RHAPI_CreateInventoryRequest <a id="group__RHAPI__CreateInventoryRequest"></a>
+# group `RHAPI_CreateInventoryRequest` <a id="group__RHAPI__CreateInventoryRequest"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_CreateInventoryRequest
 
 Request to Create a new Inventory.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -80,7 +80,7 @@ Request to Create a new Inventory.
 `public inline void `[`SetType`](#structFRHAPI__CreateInventoryRequest_1aef8ae330863b5cd5d64cf0997b225555)`(ERHAPI_CreateInventoryType NewValue)` | Sets the value of Type_Optional and also sets Type_IsSet to true.
 `public inline void `[`ClearType`](#structFRHAPI__CreateInventoryRequest_1a2dd897e1570b1b1cf4803f48f9e15759)`()` | Clears the value of Type_Optional and sets Type_IsSet to false.
 
-#### Members
+### Members
 
 #### `public ERHAPI_InventoryBucket `[`Bucket_Optional`](#structFRHAPI__CreateInventoryRequest_1a76f5a8d3c702966a17c7bc29e675ddf3) <a id="structFRHAPI__CreateInventoryRequest_1a76f5a8d3c702966a17c7bc29e675ddf3"></a>
 

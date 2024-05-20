@@ -1,4 +1,4 @@
-# RHAPI_PlayerSessionInvite <a id="group__RHAPI__PlayerSessionInvite"></a>
+# group `RHAPI_PlayerSessionInvite` <a id="group__RHAPI__PlayerSessionInvite"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_PlayerSessionInvite
 
 Information about an invite to a session that a player received.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -36,7 +36,7 @@ Information about an invite to a session that a player received.
 `public inline void `[`SetInvitingPlayerUuid`](#structFRHAPI__PlayerSessionInvite_1a1318d58c916503a97a85d5acce23ecf8)`(FGuid NewValue)` | Sets the value of InvitingPlayerUuid_Optional and also sets InvitingPlayerUuid_IsSet to true.
 `public inline void `[`ClearInvitingPlayerUuid`](#structFRHAPI__PlayerSessionInvite_1adb861db179ca0fe3fe9359a2f95aa1b8)`()` | Clears the value of InvitingPlayerUuid_Optional and sets InvitingPlayerUuid_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FString `[`SessionId`](#structFRHAPI__PlayerSessionInvite_1a5300727633e2fcef5067968f3027dc50) <a id="structFRHAPI__PlayerSessionInvite_1a5300727633e2fcef5067968f3027dc50"></a>
 

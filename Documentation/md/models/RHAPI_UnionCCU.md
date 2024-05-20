@@ -1,4 +1,4 @@
-# RHAPI_UnionCCU <a id="group__RHAPI__UnionCCU"></a>
+# group `RHAPI_UnionCCU` <a id="group__RHAPI__UnionCCU"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_UnionCCU
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -30,7 +30,7 @@ struct FRHAPI_UnionCCU
 `public inline const TArray< FDateTime > & `[`GetTimestamps`](#structFRHAPI__UnionCCU_1a47117df1eca9fadd348ef751ee922e4e)`() const` | Gets the value of Timestamps.
 `public inline void `[`SetTimestamps`](#structFRHAPI__UnionCCU_1ab545006632a4a8c3dcb7705d2aca1235)`(TArray< FDateTime > NewValue)` | Sets the value of Timestamps.
 
-#### Members
+### Members
 
 #### `public int32 `[`Count`](#structFRHAPI__UnionCCU_1a69841a2e7517f0c6b3eb9fc740b06c1e) <a id="structFRHAPI__UnionCCU_1a69841a2e7517f0c6b3eb9fc740b06c1e"></a>
 

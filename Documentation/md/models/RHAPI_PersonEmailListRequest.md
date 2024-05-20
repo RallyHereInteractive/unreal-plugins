@@ -1,4 +1,4 @@
-# RHAPI_PersonEmailListRequest <a id="group__RHAPI__PersonEmailListRequest"></a>
+# group `RHAPI_PersonEmailListRequest` <a id="group__RHAPI__PersonEmailListRequest"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_PersonEmailListRequest
 
 Request to update a person&#39;s email list subscriptions.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -32,7 +32,7 @@ Request to update a person&#39;s email list subscriptions.
 `public inline void `[`SetEmailListIds`](#structFRHAPI__PersonEmailListRequest_1a1a25e71e46276a364fd039ff924ab31c)`(TArray< int32 > NewValue)` | Sets the value of EmailListIds_Optional and also sets EmailListIds_IsSet to true.
 `public inline void `[`ClearEmailListIds`](#structFRHAPI__PersonEmailListRequest_1accf496a99915c0447482fb8e77b1dfb2)`()` | Clears the value of EmailListIds_Optional and sets EmailListIds_IsSet to false.
 
-#### Members
+### Members
 
 #### `public TArray< int32 > `[`EmailListIds_Optional`](#structFRHAPI__PersonEmailListRequest_1a40e9b3ec056a3c2567d794c697c7082d) <a id="structFRHAPI__PersonEmailListRequest_1a40e9b3ec056a3c2567d794c697c7082d"></a>
 

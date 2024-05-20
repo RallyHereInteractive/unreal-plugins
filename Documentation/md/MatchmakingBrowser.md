@@ -1,4 +1,4 @@
-# MatchmakingBrowser <a id="group__MatchmakingBrowser"></a>
+# group `MatchmakingBrowser` <a id="group__MatchmakingBrowser"></a>
 
 ## Summary
 
@@ -21,7 +21,7 @@ class URH_MatchmakingQueueInfo
 
 Class to define a matchmaking queue.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -32,7 +32,7 @@ Class to define a matchmaking queue.
 `public inline void `[`ImportAPIQueue`](#classURH__MatchmakingQueueInfo_1af33b1de1236961da0b910ee1710e3bc5)`(const `[`FRHAPI_QueueConfigV2`](models/RHAPI_QueueConfigV2.md#structFRHAPI__QueueConfigV2)` & APIQueue,const FString & InETag)` | Imports queue info from an API call.
 `public inline FString `[`GetDescription`](#classURH__MatchmakingQueueInfo_1ae7a5d3dd461eaa68dec8dada2e9ad3df)`() const` | Gets a description of the queue, display its id for debugging.
 
-#### Members
+### Members
 
 #### `public inline const `[`FRHAPI_QueueConfigV2`](models/RHAPI_QueueConfigV2.md#structFRHAPI__QueueConfigV2)` & `[`GetQueueInfo`](#classURH__MatchmakingQueueInfo_1ad82fa170d34736f8d053802b6460bf9e)`() const` <a id="classURH__MatchmakingQueueInfo_1ad82fa170d34736f8d053802b6460bf9e"></a>
 
@@ -72,7 +72,7 @@ class URH_MatchmakingTemplateGroupInfo
 
 Class to organize a matchmaking Templates information.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -84,7 +84,7 @@ Class to organize a matchmaking Templates information.
 `public inline void `[`ImportAPITemplateGroup`](#classURH__MatchmakingTemplateGroupInfo_1ab2f3a97cf393d864d4897981125e50c6)`(const `[`FRHAPI_MatchMakingTemplateGroupV2`](models/RHAPI_MatchMakingTemplateGroupV2.md#structFRHAPI__MatchMakingTemplateGroupV2)` & APITemplateGroup,const FString & InETag)` | Imports template info from an API call.
 `public inline FString `[`GetDescription`](#classURH__MatchmakingTemplateGroupInfo_1a7ac296d74658aeb6d4ef0f20bb227030)`() const` | Gets a description of the template, display its id for debugging.
 
-#### Members
+### Members
 
 #### `public inline const `[`FRHAPI_MatchMakingTemplateGroupV2`](models/RHAPI_MatchMakingTemplateGroupV2.md#structFRHAPI__MatchMakingTemplateGroupV2)` & `[`GetInfo`](#classURH__MatchmakingTemplateGroupInfo_1ad54dc36738496269ffd1c955e167803b)`() const` <a id="classURH__MatchmakingTemplateGroupInfo_1ad54dc36738496269ffd1c955e167803b"></a>
 
@@ -132,7 +132,7 @@ class URH_MatchmakingProfileInfo
 
 Class to organize a matchmaking Profiles information.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -142,7 +142,7 @@ Class to organize a matchmaking Profiles information.
 `public inline void `[`ImportAPIProfile`](#classURH__MatchmakingProfileInfo_1a9dd1be36d55cc15ef0ece4a15bcb94bd)`(const `[`FRHAPI_MatchMakingProfileV2`](models/RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` & APIProfile,const FString & InETag)` | Imports profile info from an API call.
 `public inline FString `[`GetDescription`](#classURH__MatchmakingProfileInfo_1a46ec1205f947cb0f88626d6f2c121c6f)`() const` | Gets a description of the template, display its id for debugging.
 
-#### Members
+### Members
 
 #### `public inline const `[`FRHAPI_MatchMakingProfileV2`](models/RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` & `[`GetProfile`](#classURH__MatchmakingProfileInfo_1a7e7bedc948b5df9807c65049887a9e94)`() const` <a id="classURH__MatchmakingProfileInfo_1a7e7bedc948b5df9807c65049887a9e94"></a>
 
@@ -178,7 +178,7 @@ class URH_InstanceRequestTemplate
 
 Class to organize a Instance Request Templates information.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -189,7 +189,7 @@ Class to organize a Instance Request Templates information.
 `public inline void `[`ImportAPIInstanceLaunchTemplate`](#classURH__InstanceRequestTemplate_1a15872173e96e3437b0eb2151cdbe8c1e)`(const `[`FRHAPI_InstanceRequestTemplate`](models/RHAPI_InstanceRequestTemplate.md#structFRHAPI__InstanceRequestTemplate)` & APITemplate,const FString & InETag)` | Imports template info from an API call.
 `public inline FString `[`GetDescription`](#classURH__InstanceRequestTemplate_1aefa7958ae9ac8f8f518660ddd3ff19fb)`() const` | Gets a description of the template, display its id for debugging.
 
-#### Members
+### Members
 
 #### `public inline const `[`FRHAPI_InstanceRequestTemplate`](models/RHAPI_InstanceRequestTemplate.md#structFRHAPI__InstanceRequestTemplate)` & `[`GetInfo`](#classURH__InstanceRequestTemplate_1aecf119da8d779218b9b3e855e356e7f9)`() const` <a id="classURH__InstanceRequestTemplate_1aecf119da8d779218b9b3e855e356e7f9"></a>
 
@@ -229,7 +229,7 @@ class URH_MatchmakingBrowserCache
 
 Simple container class to hold matchmaking data, does not have its own auth context, relies upon getting it from elsewhere during calls, so that it can be used to cache across multiple players.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -265,7 +265,7 @@ Simple container class to hold matchmaking data, does not have its own auth cont
 `protected TMap< FString, `[`FRHAPI_Region`](models/RHAPI_Region.md#structFRHAPI__Region)` > `[`RegionsCache`](#classURH__MatchmakingBrowserCache_1abde2017e9ec5d0dbb74255fc2f06d64e) | Array of Regions.
 `protected int32 `[`LastRegionCursor`](#classURH__MatchmakingBrowserCache_1a34230345f419f688cb9cddcacd78376b) | 
 
-#### Members
+### Members
 
 #### `public FRegionSettingsUpdatedDelegate `[`OnRegionsUpdatedNative`](#classURH__MatchmakingBrowserCache_1aade4d528b8dc3dd6ddb864280fd161c8) <a id="classURH__MatchmakingBrowserCache_1aade4d528b8dc3dd6ddb864280fd161c8"></a>
 
@@ -437,7 +437,7 @@ Array of Regions.
 
 Struct to define queue search parameters.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -446,7 +446,7 @@ Struct to define queue search parameters.
 `public inline  `[`FRH_QueueSearchParams`](#structFRH__QueueSearchParams_1a153cbb740b4d9dc1838bbdd78618bfd0)`()` | Defautl constructor.
 `public inline FString `[`GetDescription`](#structFRH__QueueSearchParams_1ab823674f218b51fae0b3407322c8b3a0)`() const` | Gets a description of the search params for debugging.
 
-#### Members
+### Members
 
 #### `public int32 `[`Cursor`](#structFRH__QueueSearchParams_1abf27a826b809bd35807aac0254deb878) <a id="structFRH__QueueSearchParams_1abf27a826b809bd35807aac0254deb878"></a>
 
@@ -468,7 +468,7 @@ Gets a description of the search params for debugging.
 
 Struct to define queue search results.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -476,7 +476,7 @@ Struct to define queue search results.
 `public TArray< TWeakObjectPtr< `[`URH_MatchmakingQueueInfo`](MatchmakingBrowser.md#classURH__MatchmakingQueueInfo)` > > `[`Queues`](#structFRH__QueueSearchResult_1a243723e5fdb3745da96443fd62daf81f) | The queues returned by the search request.
 `public inline FString `[`GetDescription`](#structFRH__QueueSearchResult_1ad218a7fbea6c2538e743d78b29084aba)`() const` | Gets a description of the search result for debugging.
 
-#### Members
+### Members
 
 #### `public `[`FRH_QueueSearchParams`](MatchmakingBrowser.md#structFRH__QueueSearchParams)` `[`SearchParams`](#structFRH__QueueSearchResult_1a690d7d697549e4bd88c191e32919f2e8) <a id="structFRH__QueueSearchResult_1a690d7d697549e4bd88c191e32919f2e8"></a>
 

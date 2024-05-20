@@ -1,4 +1,4 @@
-# RHAPI_PlatformSKUs <a id="group__RHAPI__PlatformSKUs"></a>
+# group `RHAPI_PlatformSKUs` <a id="group__RHAPI__PlatformSKUs"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_PlatformSKUs
 
 A collection of SKUs.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -42,7 +42,7 @@ A collection of SKUs.
 `public inline void `[`SetCacheInfo`](#structFRHAPI__PlatformSKUs_1a927ec923274add3e7377274d0e9486c4)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__PlatformSKUs_1ab850ddbfa9a2c1ea59ff31d5c08825e3)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 
-#### Members
+### Members
 
 #### `public TArray< `[`FRHAPI_PlatformSKU`](RHAPI_PlatformSKU.md#structFRHAPI__PlatformSKU)` > `[`Skus_Optional`](#structFRHAPI__PlatformSKUs_1a0a8a66e63cd86b4aa4a6ceead1affbc9) <a id="structFRHAPI__PlatformSKUs_1a0a8a66e63cd86b4aa4a6ceead1affbc9"></a>
 

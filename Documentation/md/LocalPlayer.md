@@ -1,4 +1,4 @@
-# LocalPlayer <a id="group__LocalPlayer"></a>
+# group `LocalPlayer` <a id="group__LocalPlayer"></a>
 
 ## Summary
 
@@ -60,7 +60,7 @@ class URH_LocalPlayerLoginSubsystem
 
 Login Subsystem for the local player.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -134,7 +134,7 @@ Login Subsystem for the local player.
 `protected virtual void `[`HandleAppReactivatedGameThread`](#classURH__LocalPlayerLoginSubsystem_1a60779ab08578f6978df960d7d3877782)`()` | Handles the app game thread being restored from being suspended.
 `typedef `[`TLogout`](#classURH__LocalPlayerLoginSubsystem_1a8eb4169e49a752b5334dbfb87e7d5c93) | Type Define for logout calls.
 
-#### Members
+### Members
 
 #### `public FRH_OnLoginCompleteMulticast `[`OnLoginComplete`](#classURH__LocalPlayerLoginSubsystem_1a843a3800206848baa22ddf46eb997e04) <a id="classURH__LocalPlayerLoginSubsystem_1a843a3800206848baa22ddf46eb997e04"></a>
 
@@ -618,7 +618,7 @@ class URH_LocalPlayerPresenceSubsystem
 
 Subsystem to manage the local players presence.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -645,7 +645,7 @@ Subsystem to manage the local players presence.
 `protected virtual void `[`InitPropertiesWithDefaultValues`](#classURH__LocalPlayerPresenceSubsystem_1a41e97dcb80554d54d25008f03d407e1f)`()` | Initializes the subsystem with defaults for its cached data.
 `protected void `[`PollRefreshStatus`](#classURH__LocalPlayerPresenceSubsystem_1a12037a7eca5aa1bd88eb909748cf1a8e)`(const FRH_PollCompleteFunc & Delegate)` | Polls the status of the players presence.
 
-#### Members
+### Members
 
 #### `public virtual void `[`Initialize`](#classURH__LocalPlayerPresenceSubsystem_1adff181e922e0327fa815a1c482058264)`()` <a id="classURH__LocalPlayerPresenceSubsystem_1adff181e922e0327fa815a1c482058264"></a>
 
@@ -772,7 +772,7 @@ class URH_LocalPlayerSessionSubsystem
 
 Subsystem to manage sessions for the local player.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -855,7 +855,7 @@ Subsystem to manage sessions for the local player.
 `protected virtual void `[`OnPlatformSessionParticipantRemoved`](#classURH__LocalPlayerSessionSubsystem_1a19fcc5c2c30710932f1757dbe0ce3666)`(FName SessionName,const FUniqueNetId & UniqueNetId)` | Handles the response of an online subsystem session participant remove.
 `protected virtual void `[`HandlePollAllSessionsComplete`](#classURH__LocalPlayerSessionSubsystem_1a723518fadb2e8fb85f0a624debb53b91)`(bool bSuccess,const TArray< FString > & SessionIds)` | Handles the response of polling all sessions.
 
-#### Members
+### Members
 
 #### `public FRH_OnSessionUpdatedMulticastDelegate `[`OnSessionUpdatedDelegate`](#classURH__LocalPlayerSessionSubsystem_1a87ec0a5447e17ebbbda133342770d960) <a id="classURH__LocalPlayerSessionSubsystem_1a87ec0a5447e17ebbbda133342770d960"></a>
 
@@ -1416,7 +1416,7 @@ class URH_LocalPlayerSubsystem
 
 Subsystem to manage the local player.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -1471,7 +1471,7 @@ Subsystem to manage the local player.
 `protected virtual void `[`OnUserChanged`](#classURH__LocalPlayerSubsystem_1a8a159f043f9aaed47f06d7c6706cb6b7)`()` | Callback that occurs whenever the local player this subsystem is associated with changes.
 `protected virtual void `[`OnUserRefreshTokenExpired`](#classURH__LocalPlayerSubsystem_1a822659671e98773c0c03a3eed95e5b56)`(FSimpleDelegate CompletionDelegate)` | Callback that occurs when the player's refresh token expires while logged in.
 
-#### Members
+### Members
 
 #### `public FRH_AutoInventoryCompleteDelegate `[`OnAutoInventorySessionCreated`](#classURH__LocalPlayerSubsystem_1a07b265e2b34b7384507856b5039833cf) <a id="classURH__LocalPlayerSubsystem_1a07b265e2b34b7384507856b5039833cf"></a>
 
@@ -1714,7 +1714,7 @@ Callback that occurs when the player's refresh token expires while logged in.
 
 Struct for the login results.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -1730,7 +1730,7 @@ Struct for the login results.
 `public bool `[`bMustAcceptPP`](#structFRH__LoginResult_1a0f6674180918672b79770379a8af937c) | If true, the user needs to accept the PP.
 `public inline  `[`FRH_LoginResult`](#structFRH__LoginResult_1ae2afa140ce5f64ea98bddda688ebc1b9)`()` | Default constructor.
 
-#### Members
+### Members
 
 #### `public `[`ERHAPI_LoginResult`](undefined.md#group__LocalPlayer_1ga5586f9656a43fac1030c013575a0f0c0)` `[`Result`](#structFRH__LoginResult_1a9080e046d94049f24ff36862a570ad08) <a id="structFRH__LoginResult_1a9080e046d94049f24ff36862a570ad08"></a>
 

@@ -1,4 +1,4 @@
-# RHAPI_Region <a id="group__RHAPI__Region"></a>
+# group `RHAPI_Region` <a id="group__RHAPI__Region"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_Region
 
 Information about a specific region.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -48,7 +48,7 @@ Information about a specific region.
 `public inline void `[`SetDescription`](#structFRHAPI__Region_1ae3ca8eb54748b345e2ba34811834ce7b)`(FString NewValue)` | Sets the value of Description_Optional and also sets Description_IsSet to true.
 `public inline void `[`ClearDescription`](#structFRHAPI__Region_1abc95d39d9739c796eb3a63017be045af)`()` | Clears the value of Description_Optional and sets Description_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FString `[`RegionId`](#structFRHAPI__Region_1a7fd253066a8d41958055f8655b7ad0a5) <a id="structFRHAPI__Region_1a7fd253066a8d41958055f8655b7ad0a5"></a>
 

@@ -1,4 +1,4 @@
-# RHAPI_Role <a id="group__RHAPI__Role"></a>
+# group `RHAPI_Role` <a id="group__RHAPI__Role"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_Role
 
 Role object that is used to define a role for a player.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -68,7 +68,7 @@ Role object that is used to define a role for a player.
 `public inline void `[`SetLoginLootRewards`](#structFRHAPI__Role_1af3decda574fe02425482d483127af130)`(TArray< `[`FRHAPI_LoginLootReward`](RHAPI_LoginLootReward.md#structFRHAPI__LoginLootReward)` > NewValue)` | Sets the value of LoginLootRewards_Optional and also sets LoginLootRewards_IsSet to true.
 `public inline void `[`ClearLoginLootRewards`](#structFRHAPI__Role_1aa842b6af31f9b729dc3d1783c58a143d)`()` | Clears the value of LoginLootRewards_Optional and sets LoginLootRewards_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FString `[`RoleId`](#structFRHAPI__Role_1a52f32f8c3152eec8e2eaba9bcfc8f8b5) <a id="structFRHAPI__Role_1a52f32f8c3152eec8e2eaba9bcfc8f8b5"></a>
 

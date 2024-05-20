@@ -1,4 +1,4 @@
-# File <a id="group__File"></a>
+# group `File` <a id="group__File"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ class URH_RemoteFileSubsystem
 
 File Subsystem used for file API calls.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -32,7 +32,7 @@ File Subsystem used for file API calls.
 `protected TMap< `[`FRH_RemoteFileApiDirectory](Common.md#structFRH__RemoteFileApiDirectory), [FRHAPI_FileListResponse`](models/RHAPI_FileListResponse.md#structFRHAPI__FileListResponse)` > `[`FileListCache`](#classURH__RemoteFileSubsystem_1ad6229657ea8ef6c417c9ced173eebe85) | 
 `protected virtual void `[`DownloadFileList`](#classURH__RemoteFileSubsystem_1ac8ee5bc68fb208fb9c329c897b93eab9)`(const `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` & Directory,const TArray< FString > & RemoteFileNames,const FString & LocalDirectory,const FRH_FileDirectoryDownloadDelegateBlock Delegate)` | Downloads all discoverable files in a remote directory to a local file directory.
 
-#### Members
+### Members
 
 #### `public virtual void `[`Initialize`](#classURH__RemoteFileSubsystem_1a249b11cac6ff5da3f516459532585108)`()` <a id="classURH__RemoteFileSubsystem_1a249b11cac6ff5da3f516459532585108"></a>
 

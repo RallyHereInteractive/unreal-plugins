@@ -1,4 +1,4 @@
-# RHAPI_Platforms <a id="group__RHAPI__Platforms"></a>
+# group `RHAPI_Platforms` <a id="group__RHAPI__Platforms"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_Platforms
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -24,7 +24,7 @@ struct FRHAPI_Platforms
 `public inline const TArray< FString > & `[`GetPlatforms`](#structFRHAPI__Platforms_1ab3d5d3d8ddcb4a1d3486c0706fffaf4a)`() const` | Gets the value of Platforms.
 `public inline void `[`SetPlatforms`](#structFRHAPI__Platforms_1a1451cc76b8f1d221dd8098449787c504)`(TArray< FString > NewValue)` | Sets the value of Platforms.
 
-#### Members
+### Members
 
 #### `public TArray< FString > `[`Platforms`](#structFRHAPI__Platforms_1ae4374248bbbde6844cb94ef9f12a4e93) <a id="structFRHAPI__Platforms_1ae4374248bbbde6844cb94ef9f12a4e93"></a>
 

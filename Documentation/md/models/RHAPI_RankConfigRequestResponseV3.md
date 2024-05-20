@@ -1,4 +1,4 @@
-# RHAPI_RankConfigRequestResponseV3 <a id="group__RHAPI__RankConfigRequestResponseV3"></a>
+# group `RHAPI_RankConfigRequestResponseV3` <a id="group__RHAPI__RankConfigRequestResponseV3"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_RankConfigRequestResponseV3
 
 Response to successfully requesting all rank config.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -26,7 +26,7 @@ Response to successfully requesting all rank config.
 `public inline const TArray< `[`FRHAPI_RankConfigV3`](RHAPI_RankConfigV3.md#structFRHAPI__RankConfigV3)` > & `[`GetRankConfigs`](#structFRHAPI__RankConfigRequestResponseV3_1ae064553522932fd8b0d176a865353986)`() const` | Gets the value of RankConfigs.
 `public inline void `[`SetRankConfigs`](#structFRHAPI__RankConfigRequestResponseV3_1af7ae457032ee4982f52fbed0c760dbae)`(TArray< `[`FRHAPI_RankConfigV3`](RHAPI_RankConfigV3.md#structFRHAPI__RankConfigV3)` > NewValue)` | Sets the value of RankConfigs.
 
-#### Members
+### Members
 
 #### `public TArray< `[`FRHAPI_RankConfigV3`](RHAPI_RankConfigV3.md#structFRHAPI__RankConfigV3)` > `[`RankConfigs`](#structFRHAPI__RankConfigRequestResponseV3_1a92555a184ff636b4eb462e7ca718f599) <a id="structFRHAPI__RankConfigRequestResponseV3_1a92555a184ff636b4eb462e7ca718f599"></a>
 

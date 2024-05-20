@@ -1,4 +1,4 @@
-# RHAPI_InstanceInfoUpdate <a id="group__RHAPI__InstanceInfoUpdate"></a>
+# group `RHAPI_InstanceInfoUpdate` <a id="group__RHAPI__InstanceInfoUpdate"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_InstanceInfoUpdate
 
 A request body to update the instance resource in a session.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -72,7 +72,7 @@ A request body to update the instance resource in a session.
 `public inline void `[`SetCustomData`](#structFRHAPI__InstanceInfoUpdate_1a230e53d731b7b798baef4958e2ce7ae9)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`ClearCustomData`](#structFRHAPI__InstanceInfoUpdate_1a9b87f305257195c6b1f5f2e407e94ff4)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FString `[`AllocationId_Optional`](#structFRHAPI__InstanceInfoUpdate_1a421c12a8cd1dda60260d36fa0ddfe4d4) <a id="structFRHAPI__InstanceInfoUpdate_1a421c12a8cd1dda60260d36fa0ddfe4d4"></a>
 

@@ -1,4 +1,4 @@
-# RHAPI_RegionsResponse <a id="group__RHAPI__RegionsResponse"></a>
+# group `RHAPI_RegionsResponse` <a id="group__RHAPI__RegionsResponse"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_RegionsResponse
 
 A list of regions and a cursor to continue iterating.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -32,7 +32,7 @@ A list of regions and a cursor to continue iterating.
 `public inline bool `[`IsCursorDefaultValue`](#structFRHAPI__RegionsResponse_1a1adf0f792485a9ab5e95f81fb7a104ad)`() const` | Returns true if Cursor matches the default value.
 `public inline void `[`SetCursorToDefault`](#structFRHAPI__RegionsResponse_1a8aee19a22a6a8ec675ac7582cde78b49)`()` | Sets the value of Cursor to its default
 
-#### Members
+### Members
 
 #### `public TArray< `[`FRHAPI_Region`](RHAPI_Region.md#structFRHAPI__Region)` > `[`Regions`](#structFRHAPI__RegionsResponse_1a39c6be57dffa81805ce0548a912e5159) <a id="structFRHAPI__RegionsResponse_1a39c6be57dffa81805ce0548a912e5159"></a>
 

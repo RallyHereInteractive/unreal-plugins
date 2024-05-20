@@ -1,4 +1,4 @@
-# SubsystemBase <a id="group__SubsystemBase"></a>
+# group `SubsystemBase` <a id="group__SubsystemBase"></a>
 
 ## Summary
 
@@ -18,7 +18,7 @@ class URH_SubsystemPluginBase
 
 Base class for subsystem plugins.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -26,7 +26,7 @@ Base class for subsystem plugins.
 `public virtual void `[`Initialize`](#classURH__SubsystemPluginBase_1a4b880c273e8ef942f0c640c7df6e8a79)`()` | Initialize the subsystem plugin.
 `public virtual void `[`Deinitialize`](#classURH__SubsystemPluginBase_1a0cc2784f9201bcf69a7f12ff9cb8de12)`()` | Safely tears down the subsystem plugin.
 
-#### Members
+### Members
 
 #### `public FAuthContextPtr `[`GetAuthContext`](#classURH__SubsystemPluginBase_1a29f5a8a69c5fe311c16ce529baebcbbe) <a id="classURH__SubsystemPluginBase_1a29f5a8a69c5fe311c16ce529baebcbbe"></a>
 
@@ -49,7 +49,7 @@ class URH_LocalPlayerSubsystemPlugin
 
 Local Player Subsystem Plugin.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -59,7 +59,7 @@ Local Player Subsystem Plugin.
 `public inline virtual void `[`OnUserChanged`](#classURH__LocalPlayerSubsystemPlugin_1a31753089540e2916c9c19925c4804f68)`()` | Base handling when the local user changes, override to provide functionality.
 `public inline virtual void `[`OnUserChanged`](#classURH__LocalPlayerSubsystemPlugin_1ad7c83133c0053de9a5cd4d58cf2af0bc)`(const FGuid & OldPlayerUuid,class `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * OldLocalPlayerInfo)` | Base handling when the local user changes, override to provide functionality.
 
-#### Members
+### Members
 
 #### `public virtual FAuthContextPtr `[`GetAuthContext`](#classURH__LocalPlayerSubsystemPlugin_1abac9a120d9ff77cf7971942c532c611e)`() const` <a id="classURH__LocalPlayerSubsystemPlugin_1abac9a120d9ff77cf7971942c532c611e"></a>
 
@@ -95,14 +95,14 @@ class URH_GameInstanceSubsystemPlugin
 
 Game Instace Subsystem Plugin.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public virtual FAuthContextPtr `[`GetAuthContext`](#classURH__GameInstanceSubsystemPlugin_1acd7dfc1bd22a1703de6a7eae16bb1652)`() const` | Gets the game instance Auth Context.
 `public virtual `[`URH_GameInstanceSubsystem`](GameInstance.md#classURH__GameInstanceSubsystem)` * `[`GetGameInstanceSubsystem`](#classURH__GameInstanceSubsystemPlugin_1a49c39e1714e1e281ef931a7bd92e32d6)`() const` | Get the Game Instance Subsystem.
 
-#### Members
+### Members
 
 #### `public virtual FAuthContextPtr `[`GetAuthContext`](#classURH__GameInstanceSubsystemPlugin_1acd7dfc1bd22a1703de6a7eae16bb1652)`() const` <a id="classURH__GameInstanceSubsystemPlugin_1acd7dfc1bd22a1703de6a7eae16bb1652"></a>
 
@@ -121,7 +121,7 @@ class URH_SandboxedSubsystemPlugin
 
 A plugin that can exist on the game instance as a global cache, or optionally on the local player as a sandboxed plugin.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -129,7 +129,7 @@ A plugin that can exist on the game instance as a global cache, or optionally on
 `public virtual `[`URH_GameInstanceSubsystem`](GameInstance.md#classURH__GameInstanceSubsystem)` * `[`GetGameInstanceSubsystem`](#classURH__SandboxedSubsystemPlugin_1adba25e1be3399c18148730efc0c9c9cb)`() const` | Get the Game Instance Subsystem.
 `protected virtual `[`URH_LocalPlayerSubsystem`](LocalPlayer.md#classURH__LocalPlayerSubsystem)` * `[`GetLocalPlayerSubsystem`](#classURH__SandboxedSubsystemPlugin_1a5b6ebbd31b25c5224ef36bdde19b9716)`() const` | Gets the Local Player Subsystem.
 
-#### Members
+### Members
 
 #### `public virtual FAuthContextPtr `[`GetAuthContext`](#classURH__SandboxedSubsystemPlugin_1a252d118412cc3ad05f804ab29b0067f0)`() const` <a id="classURH__SandboxedSubsystemPlugin_1a252d118412cc3ad05f804ab29b0067f0"></a>
 

@@ -1,4 +1,4 @@
-# RHAPI_PlayerReport <a id="group__RHAPI__PlayerReport"></a>
+# group `RHAPI_PlayerReport` <a id="group__RHAPI__PlayerReport"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_PlayerReport
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -146,7 +146,7 @@ struct FRHAPI_PlayerReport
 `public inline void `[`SetModified`](#structFRHAPI__PlayerReport_1a7082bfdf1169d3bedef923c9e9a880b1)`(FDateTime NewValue)` | Sets the value of Modified_Optional and also sets Modified_IsSet to true.
 `public inline void `[`ClearModified`](#structFRHAPI__PlayerReport_1a4fff49337b878205f0b1956483f42b25)`()` | Clears the value of Modified_Optional and sets Modified_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FString `[`ReportId`](#structFRHAPI__PlayerReport_1a93c9d12fc7e83a4a07602d3b3e58d8e5) <a id="structFRHAPI__PlayerReport_1a93c9d12fc7e83a4a07602d3b3e58d8e5"></a>
 

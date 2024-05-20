@@ -1,4 +1,4 @@
-# RHAPI_AdOpportunities <a id="group__RHAPI__AdOpportunities"></a>
+# group `RHAPI_AdOpportunities` <a id="group__RHAPI__AdOpportunities"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_AdOpportunities
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -24,7 +24,7 @@ struct FRHAPI_AdOpportunities
 `public inline const TArray< `[`FRHAPI_AdOpportunity`](RHAPI_AdOpportunity.md#structFRHAPI__AdOpportunity)` > & `[`GetOpportunities`](#structFRHAPI__AdOpportunities_1a9b93de1d671c38962e90f1963dc67272)`() const` | Gets the value of Opportunities.
 `public inline void `[`SetOpportunities`](#structFRHAPI__AdOpportunities_1af4812eab7243e147bd720ae6d2eca341)`(TArray< `[`FRHAPI_AdOpportunity`](RHAPI_AdOpportunity.md#structFRHAPI__AdOpportunity)` > NewValue)` | Sets the value of Opportunities.
 
-#### Members
+### Members
 
 #### `public TArray< `[`FRHAPI_AdOpportunity`](RHAPI_AdOpportunity.md#structFRHAPI__AdOpportunity)` > `[`Opportunities`](#structFRHAPI__AdOpportunities_1a505bce5e1973467c1d137f8640724ae0) <a id="structFRHAPI__AdOpportunities_1a505bce5e1973467c1d137f8640724ae0"></a>
 

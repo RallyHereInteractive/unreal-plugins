@@ -1,4 +1,4 @@
-# RHAPI_Rule <a id="group__RHAPI__Rule"></a>
+# group `RHAPI_Rule` <a id="group__RHAPI__Rule"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_Rule
 
 A rule to determine which MatchMakingTemplate should be used on a session entering matchmaking.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -48,7 +48,7 @@ A rule to determine which MatchMakingTemplate should be used on a session enteri
 `public inline bool `[`IsComparisonValueDefaultValue`](#structFRHAPI__Rule_1a043867ba71593f9cb656628b79aa9e85)`() const` | Returns true if ComparisonValue matches the default value.
 `public inline void `[`SetComparisonValueToDefault`](#structFRHAPI__Rule_1a7c172dda8feca246cf9050e08a565be1)`()` | Sets the value of ComparisonValue to its default
 
-#### Members
+### Members
 
 #### `public ERHAPI_RuleType `[`RuleType`](#structFRHAPI__Rule_1a4a2e3de3c2a5b24506ee6fbb049a47e5) <a id="structFRHAPI__Rule_1a4a2e3de3c2a5b24506ee6fbb049a47e5"></a>
 

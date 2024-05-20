@@ -1,4 +1,4 @@
-# RHAPI_KVV1 <a id="group__RHAPI__KVV1"></a>
+# group `RHAPI_KVV1` <a id="group__RHAPI__KVV1"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_KVV1
 
 A key/value pair that represents a setting to be used by the client.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -40,7 +40,7 @@ A key/value pair that represents a setting to be used by the client.
 `public inline void `[`SetNotes`](#structFRHAPI__KVV1_1a3dc7f59d7e6160327ab676ffa4a86988)`(FString NewValue)` | Sets the value of Notes_Optional and also sets Notes_IsSet to true.
 `public inline void `[`ClearNotes`](#structFRHAPI__KVV1_1af6138e37d8c64331aa5f9877e5fd3bab)`()` | Clears the value of Notes_Optional and sets Notes_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FString `[`Key`](#structFRHAPI__KVV1_1a4032dad7defb4a7069362c1164c8c7db) <a id="structFRHAPI__KVV1_1a4032dad7defb4a7069362c1164c8c7db"></a>
 

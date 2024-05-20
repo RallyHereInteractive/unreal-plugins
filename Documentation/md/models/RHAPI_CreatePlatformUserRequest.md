@@ -1,4 +1,4 @@
-# RHAPI_CreatePlatformUserRequest <a id="group__RHAPI__CreatePlatformUserRequest"></a>
+# group `RHAPI_CreatePlatformUserRequest` <a id="group__RHAPI__CreatePlatformUserRequest"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_CreatePlatformUserRequest
 
 Request parameters to create a user exists.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -40,7 +40,7 @@ Request parameters to create a user exists.
 `public inline void `[`SetDisplayName`](#structFRHAPI__CreatePlatformUserRequest_1a65efbce7ad58e6dbff1906c4fc600af7)`(FString NewValue)` | Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true.
 `public inline void `[`ClearDisplayName`](#structFRHAPI__CreatePlatformUserRequest_1a83baecca1ac4b53502cb573269d0aae2)`()` | Clears the value of DisplayName_Optional and sets DisplayName_IsSet to false.
 
-#### Members
+### Members
 
 #### `public ERHAPI_Platform `[`Platform`](#structFRHAPI__CreatePlatformUserRequest_1aa6e466a9fd3fd5f601e125c155efec21) <a id="structFRHAPI__CreatePlatformUserRequest_1aa6e466a9fd3fd5f601e125c155efec21"></a>
 

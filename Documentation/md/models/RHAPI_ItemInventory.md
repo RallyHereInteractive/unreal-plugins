@@ -1,4 +1,4 @@
-# RHAPI_ItemInventory <a id="group__RHAPI__ItemInventory"></a>
+# group `RHAPI_ItemInventory` <a id="group__RHAPI__ItemInventory"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_ItemInventory
 
 Inventory of a particular Item for a Player organized by Inventory ID.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -42,7 +42,7 @@ Inventory of a particular Item for a Player organized by Inventory ID.
 `public inline void `[`SetCacheInfo`](#structFRHAPI__ItemInventory_1aa4236321b4102d43964a36d984236e79)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__ItemInventory_1ab687f12dbfe18e1624272af2066d0437)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 
-#### Members
+### Members
 
 #### `public TMap< FString, `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` > `[`Records_Optional`](#structFRHAPI__ItemInventory_1a548463781c0d9871f74200a6315d626e) <a id="structFRHAPI__ItemInventory_1a548463781c0d9871f74200a6315d626e"></a>
 

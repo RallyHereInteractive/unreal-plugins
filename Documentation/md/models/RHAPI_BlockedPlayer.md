@@ -1,4 +1,4 @@
-# RHAPI_BlockedPlayer <a id="group__RHAPI__BlockedPlayer"></a>
+# group `RHAPI_BlockedPlayer` <a id="group__RHAPI__BlockedPlayer"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_BlockedPlayer
 
 The player that is being blocked.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -30,7 +30,7 @@ The player that is being blocked.
 `public inline const FDateTime & `[`GetLastModifiedOn`](#structFRHAPI__BlockedPlayer_1a1fde10dd3b7b0c4a4900aedebff87713)`() const` | Gets the value of LastModifiedOn.
 `public inline void `[`SetLastModifiedOn`](#structFRHAPI__BlockedPlayer_1ac53ba9d483ec1f43c39fcc34203b9bc7)`(FDateTime NewValue)` | Sets the value of LastModifiedOn.
 
-#### Members
+### Members
 
 #### `public FGuid `[`BlockedPlayerUuid`](#structFRHAPI__BlockedPlayer_1a25926c09c253b77621025b03a36ddaa3) <a id="structFRHAPI__BlockedPlayer_1a25926c09c253b77621025b03a36ddaa3"></a>
 

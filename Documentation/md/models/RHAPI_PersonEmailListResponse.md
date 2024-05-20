@@ -1,4 +1,4 @@
-# RHAPI_PersonEmailListResponse <a id="group__RHAPI__PersonEmailListResponse"></a>
+# group `RHAPI_PersonEmailListResponse` <a id="group__RHAPI__PersonEmailListResponse"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_PersonEmailListResponse
 
 Response for updating a person&#39;s email list subscriptions.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -26,7 +26,7 @@ Response for updating a person&#39;s email list subscriptions.
 `public inline const TArray< int32 > & `[`GetEmailListIds`](#structFRHAPI__PersonEmailListResponse_1a3079634ec6743a9b7b8dfb7e43fae8cd)`() const` | Gets the value of EmailListIds.
 `public inline void `[`SetEmailListIds`](#structFRHAPI__PersonEmailListResponse_1a7b238ecadcb0b5dc5633901d06601a99)`(TArray< int32 > NewValue)` | Sets the value of EmailListIds.
 
-#### Members
+### Members
 
 #### `public TArray< int32 > `[`EmailListIds`](#structFRHAPI__PersonEmailListResponse_1a6b053260a7b3d82a55364c10e6eeaa1d) <a id="structFRHAPI__PersonEmailListResponse_1a6b053260a7b3d82a55364c10e6eeaa1d"></a>
 

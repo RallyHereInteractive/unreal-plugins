@@ -1,4 +1,4 @@
-# RHAPI_MarketingCampaigns <a id="group__RHAPI__MarketingCampaigns"></a>
+# group `RHAPI_MarketingCampaigns` <a id="group__RHAPI__MarketingCampaigns"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_MarketingCampaigns
 
 List of external Marketing Campaigns.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -26,7 +26,7 @@ List of external Marketing Campaigns.
 `public inline const TArray< `[`FRHAPI_MarketingCampaign`](RHAPI_MarketingCampaign.md#structFRHAPI__MarketingCampaign)` > & `[`GetCampaigns`](#structFRHAPI__MarketingCampaigns_1a6b519767e3a90b23702d0ee5a31f2199)`() const` | Gets the value of Campaigns.
 `public inline void `[`SetCampaigns`](#structFRHAPI__MarketingCampaigns_1ae487365fbea2f2a3e37f5c639c16d6c1)`(TArray< `[`FRHAPI_MarketingCampaign`](RHAPI_MarketingCampaign.md#structFRHAPI__MarketingCampaign)` > NewValue)` | Sets the value of Campaigns.
 
-#### Members
+### Members
 
 #### `public TArray< `[`FRHAPI_MarketingCampaign`](RHAPI_MarketingCampaign.md#structFRHAPI__MarketingCampaign)` > `[`Campaigns`](#structFRHAPI__MarketingCampaigns_1a88d6c9da15ac877b420b90278678d505) <a id="structFRHAPI__MarketingCampaigns_1a88d6c9da15ac877b420b90278678d505"></a>
 

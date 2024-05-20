@@ -1,4 +1,4 @@
-# RHAPI_SessionJoinResponse <a id="group__RHAPI__SessionJoinResponse"></a>
+# group `RHAPI_SessionJoinResponse` <a id="group__RHAPI__SessionJoinResponse"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_SessionJoinResponse
 
 Response when a player successfully joins a session.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -26,7 +26,7 @@ Response when a player successfully joins a session.
 `public inline const FString & `[`GetSessionId`](#structFRHAPI__SessionJoinResponse_1a5864fade9558dad663e8f6cccf769468)`() const` | Gets the value of SessionId.
 `public inline void `[`SetSessionId`](#structFRHAPI__SessionJoinResponse_1ae84390873c78919f4076dbe7834e197c)`(FString NewValue)` | Sets the value of SessionId.
 
-#### Members
+### Members
 
 #### `public FString `[`SessionId`](#structFRHAPI__SessionJoinResponse_1a78b2bc9860f7b5620c9968d290884257) <a id="structFRHAPI__SessionJoinResponse_1a78b2bc9860f7b5620c9968d290884257"></a>
 

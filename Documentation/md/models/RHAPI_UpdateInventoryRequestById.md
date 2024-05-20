@@ -1,4 +1,4 @@
-# RHAPI_UpdateInventoryRequestById <a id="group__RHAPI__UpdateInventoryRequestById"></a>
+# group `RHAPI_UpdateInventoryRequestById` <a id="group__RHAPI__UpdateInventoryRequestById"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_UpdateInventoryRequestById
 
 Request to Update Inventory by an existing Inventory ID. If the Inventory entry does not exist, then the request will fail.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -80,7 +80,7 @@ Request to Update Inventory by an existing Inventory ID. If the Inventory entry 
 `public inline const FGuid & `[`GetInventoryId`](#structFRHAPI__UpdateInventoryRequestById_1a8188f1c447a71c52e68def190a728bb8)`() const` | Gets the value of InventoryId.
 `public inline void `[`SetInventoryId`](#structFRHAPI__UpdateInventoryRequestById_1a88895f69039a245b443bd4094bf91b7b)`(FGuid NewValue)` | Sets the value of InventoryId.
 
-#### Members
+### Members
 
 #### `public ERHAPI_InventoryBucket `[`Bucket_Optional`](#structFRHAPI__UpdateInventoryRequestById_1a8ca857e89d25ca0e98daf13f06a6efab) <a id="structFRHAPI__UpdateInventoryRequestById_1a8ca857e89d25ca0e98daf13f06a6efab"></a>
 

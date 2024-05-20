@@ -1,4 +1,4 @@
-# RHAPI_TokenResponse <a id="group__RHAPI__TokenResponse"></a>
+# group `RHAPI_TokenResponse` <a id="group__RHAPI__TokenResponse"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_TokenResponse
 
 OAuth2 Token Response.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -46,7 +46,7 @@ OAuth2 Token Response.
 `public inline bool `[`IsExpiresInDefaultValue`](#structFRHAPI__TokenResponse_1aaa2d99ce14af9262ac9c281daa9dd414)`() const` | Returns true if ExpiresIn matches the default value.
 `public inline void `[`SetExpiresInToDefault`](#structFRHAPI__TokenResponse_1a22b23057ad1e9278d2e1d605bd3edaae)`()` | Sets the value of ExpiresIn to its default
 
-#### Members
+### Members
 
 #### `public FString `[`AccessToken`](#structFRHAPI__TokenResponse_1ae69b45cbeec5ccbc80e3ea2374d5397c) <a id="structFRHAPI__TokenResponse_1ae69b45cbeec5ccbc80e3ea2374d5397c"></a>
 

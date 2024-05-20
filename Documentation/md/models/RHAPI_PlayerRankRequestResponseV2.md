@@ -1,4 +1,4 @@
-# RHAPI_PlayerRankRequestResponseV2 <a id="group__RHAPI__PlayerRankRequestResponseV2"></a>
+# group `RHAPI_PlayerRankRequestResponseV2` <a id="group__RHAPI__PlayerRankRequestResponseV2"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_PlayerRankRequestResponseV2
 
 Response to successfully requesting all of a player&#39;s ranks.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -26,7 +26,7 @@ Response to successfully requesting all of a player&#39;s ranks.
 `public inline const TArray< `[`FRHAPI_PlayerRankResponseV2`](RHAPI_PlayerRankResponseV2.md#structFRHAPI__PlayerRankResponseV2)` > & `[`GetPlayerRanks`](#structFRHAPI__PlayerRankRequestResponseV2_1ab5ce87761c241ccefaf1c5fe1ac0db82)`() const` | Gets the value of PlayerRanks.
 `public inline void `[`SetPlayerRanks`](#structFRHAPI__PlayerRankRequestResponseV2_1acdf16df8acc6e2f1341971ea6d2c2fa5)`(TArray< `[`FRHAPI_PlayerRankResponseV2`](RHAPI_PlayerRankResponseV2.md#structFRHAPI__PlayerRankResponseV2)` > NewValue)` | Sets the value of PlayerRanks.
 
-#### Members
+### Members
 
 #### `public TArray< `[`FRHAPI_PlayerRankResponseV2`](RHAPI_PlayerRankResponseV2.md#structFRHAPI__PlayerRankResponseV2)` > `[`PlayerRanks`](#structFRHAPI__PlayerRankRequestResponseV2_1a44950e643e4498db070573af06af91d3) <a id="structFRHAPI__PlayerRankRequestResponseV2_1a44950e643e4498db070573af06af91d3"></a>
 

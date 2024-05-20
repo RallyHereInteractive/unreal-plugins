@@ -1,4 +1,4 @@
-# PlayerInfo <a id="group__PlayerInfo"></a>
+# group `PlayerInfo` <a id="group__PlayerInfo"></a>
 
 ## Summary
 
@@ -24,7 +24,7 @@ class URH_PlayerInfoSubobject
 
 Player Info Subobject base class used to store player data.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -48,7 +48,7 @@ Player Info Subobject base class used to store player data.
 `protected inline virtual void `[`PollComplete`](#classURH__PlayerInfoSubobject_1a25950945c3f6bfd0122858aa944a2bac)`(bool bSuccess,const FRH_PollCompleteFunc & Delegate)` | Starts a poll of the object data.
 `protected virtual void `[`ExecuteUpdatedDelegates`](#classURH__PlayerInfoSubobject_1a38d53acfed235ac77964549ec780a2d4)`(bool bSuccess)` | Handles executing any delegate listeners for the update.
 
-#### Members
+### Members
 
 #### `public bool `[`bInitialized`](#classURH__PlayerInfoSubobject_1ad175e37aa5147360d2e216a70d5390ce) <a id="classURH__PlayerInfoSubobject_1ad175e37aa5147360d2e216a70d5390ce"></a>
 
@@ -158,7 +158,7 @@ class URH_PlayerPresence
 
 Player Presence class used to store player presence data.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -171,7 +171,7 @@ Player Presence class used to store player presence data.
 `protected inline virtual void `[`Update`](#classURH__PlayerPresence_1aa6ef217e8b96b79fa309824e8bd73520)`(const GetPresenceType::Response & Other)` | Stores the response data from an API presence request.
 `typedef `[`GetPresenceType`](#classURH__PlayerPresence_1a08e8229618b324bafea2d8195b6b9214) | 
 
-#### Members
+### Members
 
 #### `public ERHAPI_OnlineStatus `[`Status`](#classURH__PlayerPresence_1a51af6d5a0caf4f5e47e4498a7bb3e456) <a id="classURH__PlayerPresence_1a51af6d5a0caf4f5e47e4498a7bb3e456"></a>
 
@@ -218,7 +218,7 @@ class URH_PlayerSessions
 
 Player Sessions class used to store player session membership information.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -227,7 +227,7 @@ Player Sessions class used to store player session membership information.
 `protected inline virtual void `[`Update`](#classURH__PlayerSessions_1aec7d221dfaac8ca3386fc25280a9817e)`(const GetSessionsType::Response & Other)` | Stores the response data from an API request.
 `typedef `[`GetSessionsType`](#classURH__PlayerSessions_1afa8a5657954ca5d686f07cea03b23b92) | 
 
-#### Members
+### Members
 
 #### `public `[`FRHAPI_PlayerSessions`](models/RHAPI_PlayerSessions.md#structFRHAPI__PlayerSessions)` `[`Sessions`](#classURH__PlayerSessions_1ac1c23232b2bb48fc13ea1b7fd438f2ab) <a id="classURH__PlayerSessions_1ac1c23232b2bb48fc13ea1b7fd438f2ab"></a>
 
@@ -258,7 +258,7 @@ class URH_PlayerMatches
 
 Player Matches class used to store player match history information.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -271,7 +271,7 @@ Player Matches class used to store player match history information.
 `protected inline virtual void `[`Update`](#classURH__PlayerMatches_1a2d718f1945307bc4570e9b6fc1a10a27)`(const GetMatchesType::Response & Other,TSharedPtr< `[`FPollContext`](undefined.md#structURH__PlayerMatches_1_1FPollContext)` > Context)` | Stores the response data from an API presence request.
 `typedef `[`GetMatchesType`](#classURH__PlayerMatches_1a13c41a6b6f28555aa13c6536c706c8b9) | 
 
-#### Members
+### Members
 
 #### `public int32 `[`PollPageSize`](#classURH__PlayerMatches_1a5d396c7fa4ed1186a1e88fc848571be2) <a id="classURH__PlayerMatches_1a5d396c7fa4ed1186a1e88fc848571be2"></a>
 
@@ -325,7 +325,7 @@ class URH_PlayerReports
 
 Player Reports class used to store and send player report information.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -341,7 +341,7 @@ Player Reports class used to store and send player report information.
 `typedef `[`GetReportsReceivedType`](#classURH__PlayerReports_1a2bebbdb949cccf80084b2e5b3cb99951) | 
 `typedef `[`CreateReportType`](#classURH__PlayerReports_1a6b101fa42b9857a05a752b07cade837d) | 
 
-#### Members
+### Members
 
 #### `public virtual void `[`GetReportsSentAsync`](#classURH__PlayerReports_1a8286167a68b0b8f0dc9e57c394fd29fd)`(const FString & Cursor,const int32 PageSize,const FRH_PlayerInfoGetPlayerReportsBlock & Delegate)` <a id="classURH__PlayerReports_1a8286167a68b0b8f0dc9e57c394fd29fd"></a>
 
@@ -412,7 +412,7 @@ class URH_PlayerPlatformInfo
 
 Stores information a specific platform the player has linked to their account.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -423,7 +423,7 @@ Stores information a specific platform the player has linked to their account.
 `public inline virtual ERHAPI_Platform `[`GetPlatform`](#classURH__PlayerPlatformInfo_1ae004f09524c3e8be17dedc18ab220e51)`() const` | Gets the Platform Type for the player.
 `public inline virtual FString `[`GetLastKnownDisplayName`](#classURH__PlayerPlatformInfo_1a285f132c06d72cdb4876115765de9af2)`() const` | Gets the display name stored the last time this player logged in to the Rally Here server.
 
-#### Members
+### Members
 
 #### `public `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` `[`PlayerPlatformId`](#classURH__PlayerPlatformInfo_1ac0ef7725316040314b2488260850eabb) <a id="classURH__PlayerPlatformInfo_1ac0ef7725316040314b2488260850eabb"></a>
 
@@ -470,7 +470,7 @@ class URH_PlayerInfo
 
 Stores and fetchs all the information about a given player.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -528,7 +528,7 @@ Stores and fetchs all the information about a given player.
 `typedef `[`GetRankings`](#classURH__PlayerInfo_1ae1180995c5f25cb946b6f47e44886c46) | 
 `typedef `[`UpdateRanking`](#classURH__PlayerInfo_1a0dde72a36a43d91264f8dc89aafcd5de) | 
 
-#### Members
+### Members
 
 #### `public inline FORCEINLINE FGuid & `[`GetRHPlayerUuid`](#classURH__PlayerInfo_1ab4bac7a190b2e5fec6d242c25f7672f4)`()` <a id="classURH__PlayerInfo_1ab4bac7a190b2e5fec6d242c25f7672f4"></a>
 
@@ -908,7 +908,7 @@ class URH_PlayerInfoSubsystem
 
 Subsystem used to track and request information about players.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -937,7 +937,7 @@ Subsystem used to track and request information about players.
 `protected virtual void `[`OnLookupPlayerByPlatformUserIdResponse`](#classURH__PlayerInfoSubsystem_1a0cd6b58da263387aead9c9d17729cb27)`(const TLookupPlayer::Response & Response,const FRH_PlayerInfoLookupPlayerBlock Delegate)` | Handles the response to a Lookup Player By Platform User Id call.
 `typedef `[`TLookupPlayer`](#classURH__PlayerInfoSubsystem_1a221cacf49cc61a7df9b7e791befbb312) | 
 
-#### Members
+### Members
 
 #### `public virtual void `[`Initialize`](#classURH__PlayerInfoSubsystem_1a572d4ae155b61530e30fdf4943313228)`()` <a id="classURH__PlayerInfoSubsystem_1a572d4ae155b61530e30fdf4943313228"></a>
 
@@ -1103,14 +1103,14 @@ Handles the response to a Lookup Player By Platform User Id call.
 
 Wrapper to help with setting keys for player settings.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public TSet< FString > `[`SettingKeySet`](#structFRH__PlayerSettingKeySetWrapper_1a2857ee7d7522d7cfa86e1fd44fed229c) | Set of keys being set by the settings update.
 `public inline  `[`FRH_PlayerSettingKeySetWrapper`](#structFRH__PlayerSettingKeySetWrapper_1a67aefafe77cd84f15942f74a220f93a8)`()` | Default constructor.
 
-#### Members
+### Members
 
 #### `public TSet< FString > `[`SettingKeySet`](#structFRH__PlayerSettingKeySetWrapper_1a2857ee7d7522d7cfa86e1fd44fed229c) <a id="structFRH__PlayerSettingKeySetWrapper_1a2857ee7d7522d7cfa86e1fd44fed229c"></a>
 
@@ -1124,7 +1124,7 @@ Default constructor.
 
 Wrapper to pair a players Unique Player Id and their current logged in Platform Id.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -1132,7 +1132,7 @@ Wrapper to pair a players Unique Player Id and their current logged in Platform 
 `public `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` `[`PlayerPlatformId`](#structFRH__PlayerAndPlatformInfo_1a3e37b7de18225d02a405d03901b2f9a2) | The players logged in Platform Id.
 `public inline  `[`FRH_PlayerAndPlatformInfo`](#structFRH__PlayerAndPlatformInfo_1a06195fa8f09f200dba4da24a838bc58e)`()` | Default Constructor.
 
-#### Members
+### Members
 
 #### `public FGuid `[`PlayerUuid`](#structFRH__PlayerAndPlatformInfo_1a15d2eb292a9d24de619281272e0dbd3d) <a id="structFRH__PlayerAndPlatformInfo_1a15d2eb292a9d24de619281272e0dbd3d"></a>
 

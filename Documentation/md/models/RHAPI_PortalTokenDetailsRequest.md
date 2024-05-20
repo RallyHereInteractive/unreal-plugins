@@ -1,4 +1,4 @@
-# RHAPI_PortalTokenDetailsRequest <a id="group__RHAPI__PortalTokenDetailsRequest"></a>
+# group `RHAPI_PortalTokenDetailsRequest` <a id="group__RHAPI__PortalTokenDetailsRequest"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_PortalTokenDetailsRequest
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -28,7 +28,7 @@ struct FRHAPI_PortalTokenDetailsRequest
 `public inline const FString & `[`GetPortalAccessToken`](#structFRHAPI__PortalTokenDetailsRequest_1ae1acdc8fd0cc19806a085b2059dd6271)`() const` | Gets the value of PortalAccessToken.
 `public inline void `[`SetPortalAccessToken`](#structFRHAPI__PortalTokenDetailsRequest_1ab9e79f2af1ff269ead537aebedb7017f)`(FString NewValue)` | Sets the value of PortalAccessToken.
 
-#### Members
+### Members
 
 #### `public ERHAPI_PortalTokenDetailsGrantType `[`GrantType`](#structFRHAPI__PortalTokenDetailsRequest_1a548d6c8ee9cc94951d52dad3126cf369) <a id="structFRHAPI__PortalTokenDetailsRequest_1a548d6c8ee9cc94951d52dad3126cf369"></a>
 

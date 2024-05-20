@@ -1,4 +1,4 @@
-# Friends <a id="group__Friends"></a>
+# group `Friends` <a id="group__Friends"></a>
 
 ## Summary
 
@@ -32,7 +32,7 @@ class URH_PlatformFriend
 
 Platform Friend class tracks all the information for a user you have a relationship with on your platform.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -73,7 +73,7 @@ Platform Friend class tracks all the information for a user you have a relations
 `protected bool `[`PendingFriendRequestToYou`](#classURH__PlatformFriend_1a3f81ed5d899ca081e83bda98ca0d6c94) | If the player is requesting your friendship via platform.
 `protected bool `[`PendingFriendRequestFromYou`](#classURH__PlatformFriend_1a27df17201ec44564399d2c7f65c3f091) | If the player has a pendinf friendship request via platform.
 
-#### Members
+### Members
 
 #### `public inline const FString & `[`GetClientDisplayName`](#classURH__PlatformFriend_1ac89430bd4d2963ba69e5cf08e7d810cd)`() const` <a id="classURH__PlatformFriend_1ac89430bd4d2963ba69e5cf08e7d810cd"></a>
 
@@ -226,7 +226,7 @@ class URH_RHFriendAndPlatformFriend
 
 RH Friend and Platform Friend class that wraps a Rally Here Friend and Platform Friend together.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -276,7 +276,7 @@ RH Friend and Platform Friend class that wraps a Rally Here Friend and Platform 
 `protected inline virtual void `[`ClearRHFriendStatus`](#classURH__RHFriendAndPlatformFriend_1a192552b9a61592ae648c4e50afafeca0)`()` | Clears the cached friendship status for the player.
 `protected inline virtual void `[`ClearPlatformFriendStatus`](#classURH__RHFriendAndPlatformFriend_1a2868052b24a6cf21af2ba2ce0aab026b)`()` | Clears cached data for the platform friends for this player.
 
-#### Members
+### Members
 
 #### `public FRH_OnPlayerInfoSubobjectUpdatedMulticastDelegate `[`OnPresenceUpdatedDelegate`](#classURH__RHFriendAndPlatformFriend_1a8a0e044ae90e40b27535bb747f7dbda0) <a id="classURH__RHFriendAndPlatformFriend_1a8a0e044ae90e40b27535bb747f7dbda0"></a>
 
@@ -491,7 +491,7 @@ class URH_FriendSubsystem
 
 Friends Subsystem for handling a users relationships with other players.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -586,7 +586,7 @@ Friends Subsystem for handling a users relationships with other players.
 `typedef `[`AddNotesType`](#classURH__FriendSubsystem_1aab7335b06d00faaa339a13b0d555047e) | Type Define for Add Friend Notes calls.
 `typedef `[`DeleteNotesType`](#classURH__FriendSubsystem_1a6552555d4071e1f7272104a44aa0ac60) | Type Define for Delete Friend Notes calls.
 
-#### Members
+### Members
 
 #### `public FRH_FriendListUpdatedDelegate `[`FriendListUpdatedDelegate`](#classURH__FriendSubsystem_1a20e7154a76895c2064838778968ab251) <a id="classURH__FriendSubsystem_1a20e7154a76895c2064838778968ab251"></a>
 

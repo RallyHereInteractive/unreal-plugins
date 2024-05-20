@@ -1,4 +1,4 @@
-# Ads <a id="group__Ads"></a>
+# group `Ads` <a id="group__Ads"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ class URH_AdSubsystem
 
 Ad Subsystem used for serving and responging to ad operrtunities for players.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -33,7 +33,7 @@ Ad Subsystem used for serving and responging to ad operrtunities for players.
 `protected virtual void `[`OnFindOpportunities`](#classURH__AdSubsystem_1a7316e20d30a52695a728f73103f0d7f9)`(const RallyHereAPI::FResponse_FindOpportunities & Resp,const RallyHereAPI::FDelegate_FindOpportunities Delegate)` | Handles the response to a Find Ad Oppertunities call.
 `protected virtual void `[`OnUpdateOpportunityById`](#classURH__AdSubsystem_1a46dbf8e114f6f7a5f166811fbd05a064)`(const RallyHereAPI::FResponse_UpdateOpportunityById & Resp,const RallyHereAPI::FDelegate_UpdateOpportunityById Delegate)` | Handles the response to a Update Ad Oppertunities call.
 
-#### Members
+### Members
 
 #### `public virtual void `[`Initialize`](#classURH__AdSubsystem_1a6bba9b21c9089c0f1cc0e9af2e9b6ee3)`()` <a id="classURH__AdSubsystem_1a6bba9b21c9089c0f1cc0e9af2e9b6ee3"></a>
 

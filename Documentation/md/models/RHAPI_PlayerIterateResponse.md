@@ -1,4 +1,4 @@
-# RHAPI_PlayerIterateResponse <a id="group__RHAPI__PlayerIterateResponse"></a>
+# group `RHAPI_PlayerIterateResponse` <a id="group__RHAPI__PlayerIterateResponse"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_PlayerIterateResponse
 
 Response from the player iteration API.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -44,7 +44,7 @@ Response from the player iteration API.
 `public inline bool `[`IsCursorDefaultValue`](#structFRHAPI__PlayerIterateResponse_1a676a735136b1e24c677f033f0b39a2ea)`() const` | Returns true if Cursor_Optional is set and matches the default value.
 `public inline void `[`SetCursorToDefault`](#structFRHAPI__PlayerIterateResponse_1aaac64e56a63411ad63385a486d4bf1fa)`()` | Sets the value of Cursor_Optional to its default and also sets Cursor_IsSet to true.
 
-#### Members
+### Members
 
 #### `public TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > `[`Players_Optional`](#structFRHAPI__PlayerIterateResponse_1a895663738640e3f67d3d20211adcd661) <a id="structFRHAPI__PlayerIterateResponse_1a895663738640e3f67d3d20211adcd661"></a>
 

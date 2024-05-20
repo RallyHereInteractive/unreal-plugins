@@ -1,4 +1,4 @@
-# RHAPI_LoginLootReward <a id="group__RHAPI__LoginLootReward"></a>
+# group `RHAPI_LoginLootReward` <a id="group__RHAPI__LoginLootReward"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_LoginLootReward
 
 Login loot reward.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -38,7 +38,7 @@ Login loot reward.
 `public inline bool `[`IsLegacyLootIdDefaultValue`](#structFRHAPI__LoginLootReward_1a99d9388054b1d602c2ef9bcd3d622bc1)`() const` | Returns true if LegacyLootId matches the default value.
 `public inline void `[`SetLegacyLootIdToDefault`](#structFRHAPI__LoginLootReward_1a40a3b736b38673701743f9da9423f553)`()` | Sets the value of LegacyLootId to its default
 
-#### Members
+### Members
 
 #### `public FString `[`LootId_Optional`](#structFRHAPI__LoginLootReward_1a3c7355b5ae7afadb19fd186467d9b659) <a id="structFRHAPI__LoginLootReward_1a3c7355b5ae7afadb19fd186467d9b659"></a>
 

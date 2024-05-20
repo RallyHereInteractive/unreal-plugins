@@ -1,4 +1,4 @@
-# RHAPI_ClaimKeyRequest <a id="group__RHAPI__ClaimKeyRequest"></a>
+# group `RHAPI_ClaimKeyRequest` <a id="group__RHAPI__ClaimKeyRequest"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_ClaimKeyRequest
 
 Attempt to claim a Key Claim from a Marketing Campaign.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -34,7 +34,7 @@ Attempt to claim a Key Claim from a Marketing Campaign.
 `public inline bool `[`IsExternalKeyTypeDefaultValue`](#structFRHAPI__ClaimKeyRequest_1a0b7fb3f3756d8af98f56ae9da22036a7)`() const` | Returns true if ExternalKeyType_Optional is set and matches the default value.
 `public inline void `[`SetExternalKeyTypeToDefault`](#structFRHAPI__ClaimKeyRequest_1a9c5278e971b44e220a33a63bc9361bbd)`()` | Sets the value of ExternalKeyType_Optional to its default and also sets ExternalKeyType_IsSet to true.
 
-#### Members
+### Members
 
 #### `public FString `[`ExternalKeyType_Optional`](#structFRHAPI__ClaimKeyRequest_1a3a9418a3a1acb441401f18cec5077d78) <a id="structFRHAPI__ClaimKeyRequest_1a3a9418a3a1acb441401f18cec5077d78"></a>
 

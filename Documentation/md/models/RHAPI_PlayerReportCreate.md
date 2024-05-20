@@ -1,4 +1,4 @@
-# RHAPI_PlayerReportCreate <a id="group__RHAPI__PlayerReportCreate"></a>
+# group `RHAPI_PlayerReportCreate` <a id="group__RHAPI__PlayerReportCreate"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_PlayerReportCreate
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -94,7 +94,7 @@ struct FRHAPI_PlayerReportCreate
 `public inline void `[`SetCustomData`](#structFRHAPI__PlayerReportCreate_1a3738c112af537c3eedf2aa08c3c02246)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`ClearCustomData`](#structFRHAPI__PlayerReportCreate_1aeb04e4a3eab4d12fe85d012865e7240a)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FGuid `[`SourcePlayerUuid_Optional`](#structFRHAPI__PlayerReportCreate_1a0a22b9c85850e2c6ca36c962b0c82b8a) <a id="structFRHAPI__PlayerReportCreate_1a0a22b9c85850e2c6ca36c962b0c82b8a"></a>
 

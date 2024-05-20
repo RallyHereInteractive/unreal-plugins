@@ -1,4 +1,4 @@
-# RHAPI_MatchMakingTemplateV2 <a id="group__RHAPI__MatchMakingTemplateV2"></a>
+# group `RHAPI_MatchMakingTemplateV2` <a id="group__RHAPI__MatchMakingTemplateV2"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_MatchMakingTemplateV2
 
 Configuration about what rules must be satisfied to use this template, and what matchmaking profiles the ticket will be a part of.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -50,7 +50,7 @@ Configuration about what rules must be satisfied to use this template, and what 
 `public inline const TArray< `[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` > & `[`GetProfiles`](#structFRHAPI__MatchMakingTemplateV2_1a0d19cee62ef89941b197361270feae87)`() const` | Gets the value of Profiles.
 `public inline void `[`SetProfiles`](#structFRHAPI__MatchMakingTemplateV2_1af1fb3a4356072620d82518cc7b2c856a)`(TArray< `[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` > NewValue)` | Sets the value of Profiles.
 
-#### Members
+### Members
 
 #### `public FGuid `[`MatchMakingTemplateId_Optional`](#structFRHAPI__MatchMakingTemplateV2_1a3295d654d889fe7043ad146896039b4b) <a id="structFRHAPI__MatchMakingTemplateV2_1a3295d654d889fe7043ad146896039b4b"></a>
 

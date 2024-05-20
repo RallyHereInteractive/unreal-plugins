@@ -1,4 +1,4 @@
-# RHAPI_PlayerRankUpdateRequest <a id="group__RHAPI__PlayerRankUpdateRequest"></a>
+# group `RHAPI_PlayerRankUpdateRequest` <a id="group__RHAPI__PlayerRankUpdateRequest"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_PlayerRankUpdateRequest
 
 Request body to update generic rank data.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -36,7 +36,7 @@ Request body to update generic rank data.
 `public inline const `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` & `[`GetRank`](#structFRHAPI__PlayerRankUpdateRequest_1aea27448b12b90f63f81a75da57a130bb)`() const` | Gets the value of Rank.
 `public inline void `[`SetRank`](#structFRHAPI__PlayerRankUpdateRequest_1ae767c2f7ca88b15553b58f13278ed525)`(`[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` NewValue)` | Sets the value of Rank.
 
-#### Members
+### Members
 
 #### `public FString `[`InstanceId_Optional`](#structFRHAPI__PlayerRankUpdateRequest_1af38fcda3794f6b94dd00fba499d1360b) <a id="structFRHAPI__PlayerRankUpdateRequest_1af38fcda3794f6b94dd00fba499d1360b"></a>
 

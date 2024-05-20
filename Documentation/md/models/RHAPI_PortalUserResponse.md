@@ -1,4 +1,4 @@
-# RHAPI_PortalUserResponse <a id="group__RHAPI__PortalUserResponse"></a>
+# group `RHAPI_PortalUserResponse` <a id="group__RHAPI__PortalUserResponse"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_PortalUserResponse
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -60,7 +60,7 @@ struct FRHAPI_PortalUserResponse
 `public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__PortalUserResponse_1a3a17830e9cc7e41204af3a10bf02605e)`() const` | Gets the value of PlayerUuid.
 `public inline void `[`SetPlayerUuid`](#structFRHAPI__PortalUserResponse_1a6e312e1bb840629566da0c3c3c06f8b4)`(FGuid NewValue)` | Sets the value of PlayerUuid.
 
-#### Members
+### Members
 
 #### `public FString `[`PortalUserId_Optional`](#structFRHAPI__PortalUserResponse_1aa4044be39cec42ef3d95b808606ca2ae) <a id="structFRHAPI__PortalUserResponse_1aa4044be39cec42ef3d95b808606ca2ae"></a>
 

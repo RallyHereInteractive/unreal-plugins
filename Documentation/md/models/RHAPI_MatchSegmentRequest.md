@@ -1,4 +1,4 @@
-# RHAPI_MatchSegmentRequest <a id="group__RHAPI__MatchSegmentRequest"></a>
+# group `RHAPI_MatchSegmentRequest` <a id="group__RHAPI__MatchSegmentRequest"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_MatchSegmentRequest
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -136,7 +136,7 @@ struct FRHAPI_MatchSegmentRequest
 `public inline void `[`SetPlayers`](#structFRHAPI__MatchSegmentRequest_1a5005a6c888c78cbc678ce725741cbe26)`(TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > NewValue)` | Sets the value of Players_Optional and also sets Players_IsSet to true.
 `public inline void `[`ClearPlayers`](#structFRHAPI__MatchSegmentRequest_1a82789e62a1025e16304f51dce9461f75)`()` | Clears the value of Players_Optional and sets Players_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FString `[`MatchSegment`](#structFRHAPI__MatchSegmentRequest_1a89e1688873b68a9d18fd23b1b586788d) <a id="structFRHAPI__MatchSegmentRequest_1a89e1688873b68a9d18fd23b1b586788d"></a>
 

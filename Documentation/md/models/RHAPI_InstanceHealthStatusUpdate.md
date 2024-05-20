@@ -1,4 +1,4 @@
-# RHAPI_InstanceHealthStatusUpdate <a id="group__RHAPI__InstanceHealthStatusUpdate"></a>
+# group `RHAPI_InstanceHealthStatusUpdate` <a id="group__RHAPI__InstanceHealthStatusUpdate"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_InstanceHealthStatusUpdate
 
 A request body for an instances health check.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -30,7 +30,7 @@ A request body for an instances health check.
 `public inline const FString & `[`GetInstanceId`](#structFRHAPI__InstanceHealthStatusUpdate_1adb98c332bf94570d61b2cc7be9466370)`() const` | Gets the value of InstanceId.
 `public inline void `[`SetInstanceId`](#structFRHAPI__InstanceHealthStatusUpdate_1a03b4d45807ee5dd20addf7a1a35c6166)`(FString NewValue)` | Sets the value of InstanceId.
 
-#### Members
+### Members
 
 #### `public ERHAPI_InstanceHealthStatus `[`InstanceHealth`](#structFRHAPI__InstanceHealthStatusUpdate_1a22014dd48fb92af16e5c96500b5ecd2e) <a id="structFRHAPI__InstanceHealthStatusUpdate_1a22014dd48fb92af16e5c96500b5ecd2e"></a>
 

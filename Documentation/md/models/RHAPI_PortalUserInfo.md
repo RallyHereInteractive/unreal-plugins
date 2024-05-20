@@ -1,4 +1,4 @@
-# RHAPI_PortalUserInfo <a id="group__RHAPI__PortalUserInfo"></a>
+# group `RHAPI_PortalUserInfo` <a id="group__RHAPI__PortalUserInfo"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_PortalUserInfo
 
 Portal user info.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -38,7 +38,7 @@ Portal user info.
 `public inline const FString & `[`GetDisplayName`](#structFRHAPI__PortalUserInfo_1a3748a4f9b1fe44030fc16bce07e5f092)`() const` | Gets the value of DisplayName.
 `public inline void `[`SetDisplayName`](#structFRHAPI__PortalUserInfo_1a21b0a04d9950ed600c1b0b76d3863475)`(FString NewValue)` | Sets the value of DisplayName.
 
-#### Members
+### Members
 
 #### `public ERHAPI_Platform `[`Platform`](#structFRHAPI__PortalUserInfo_1aa73e914e330ab525ca2662631fe1cc06) <a id="structFRHAPI__PortalUserInfo_1aa73e914e330ab525ca2662631fe1cc06"></a>
 

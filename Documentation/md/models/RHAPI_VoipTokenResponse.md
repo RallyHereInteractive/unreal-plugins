@@ -1,4 +1,4 @@
-# RHAPI_VoipTokenResponse <a id="group__RHAPI__VoipTokenResponse"></a>
+# group `RHAPI_VoipTokenResponse` <a id="group__RHAPI__VoipTokenResponse"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_VoipTokenResponse
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -32,7 +32,7 @@ struct FRHAPI_VoipTokenResponse
 `public inline const FString & `[`GetServer`](#structFRHAPI__VoipTokenResponse_1ae9b0e0324a69c2077d86956aa58f9b5e)`() const` | Gets the value of Server.
 `public inline void `[`SetServer`](#structFRHAPI__VoipTokenResponse_1a7f61b8dd1e96291621b54ef1faee72e5)`(FString NewValue)` | Sets the value of Server.
 
-#### Members
+### Members
 
 #### `public FString `[`Token`](#structFRHAPI__VoipTokenResponse_1ae6904f560d8ec1c2b0c90866fe0d43a4) <a id="structFRHAPI__VoipTokenResponse_1ae6904f560d8ec1c2b0c90866fe0d43a4"></a>
 

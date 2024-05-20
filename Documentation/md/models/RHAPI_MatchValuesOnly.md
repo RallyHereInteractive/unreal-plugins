@@ -1,4 +1,4 @@
-# RHAPI_MatchValuesOnly <a id="group__RHAPI__MatchValuesOnly"></a>
+# group `RHAPI_MatchValuesOnly` <a id="group__RHAPI__MatchValuesOnly"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_MatchValuesOnly
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -152,7 +152,7 @@ struct FRHAPI_MatchValuesOnly
 `public inline void `[`SetMatchId`](#structFRHAPI__MatchValuesOnly_1a52174aadcb943edbaa7591a007e6cd07)`(FString NewValue)` | Sets the value of MatchId_Optional and also sets MatchId_IsSet to true.
 `public inline void `[`ClearMatchId`](#structFRHAPI__MatchValuesOnly_1a971698d330b984c677f48a4e35dd9efd)`()` | Clears the value of MatchId_Optional and sets MatchId_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FDateTime `[`LastModifiedTimestamp_Optional`](#structFRHAPI__MatchValuesOnly_1a680efe478538b00b84863d7ece52bbf1) <a id="structFRHAPI__MatchValuesOnly_1a680efe478538b00b84863d7ece52bbf1"></a>
 

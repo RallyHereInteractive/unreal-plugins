@@ -1,4 +1,4 @@
-# RHAPI_ClientVisibleSettings <a id="group__RHAPI__ClientVisibleSettings"></a>
+# group `RHAPI_ClientVisibleSettings` <a id="group__RHAPI__ClientVisibleSettings"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_ClientVisibleSettings
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -44,7 +44,7 @@ struct FRHAPI_ClientVisibleSettings
 `public inline bool `[`IsLastSeenAgeConsideredOfflineSecondsDefaultValue`](#structFRHAPI__ClientVisibleSettings_1aa3e05d3f534bb08e0d5179551dc8766b)`() const` | Returns true if LastSeenAgeConsideredOfflineSeconds_Optional is set and matches the default value.
 `public inline void `[`SetLastSeenAgeConsideredOfflineSecondsToDefault`](#structFRHAPI__ClientVisibleSettings_1a34afe649f51b3772bd802d3e4982d686)`()` | Sets the value of LastSeenAgeConsideredOfflineSeconds_Optional to its default and also sets LastSeenAgeConsideredOfflineSeconds_IsSet to true.
 
-#### Members
+### Members
 
 #### `public int32 `[`SelfPingIntervalSeconds_Optional`](#structFRHAPI__ClientVisibleSettings_1a828c993abb6fdc42104faec4caf421e2) <a id="structFRHAPI__ClientVisibleSettings_1a828c993abb6fdc42104faec4caf421e2"></a>
 

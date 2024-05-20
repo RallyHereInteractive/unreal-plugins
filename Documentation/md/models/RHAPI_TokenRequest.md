@@ -1,4 +1,4 @@
-# RHAPI_TokenRequest <a id="group__RHAPI__TokenRequest"></a>
+# group `RHAPI_TokenRequest` <a id="group__RHAPI__TokenRequest"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_TokenRequest
 
 OAuth2 Token Request.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -26,7 +26,7 @@ OAuth2 Token Request.
 `public inline const ERHAPI_OAuthGrantType & `[`GetGrantType`](#structFRHAPI__TokenRequest_1a42354cce6c75b41d7a086d04e271e4b3)`() const` | Gets the value of GrantType.
 `public inline void `[`SetGrantType`](#structFRHAPI__TokenRequest_1afa21d677b63a9882f3ec72522fcbee5e)`(ERHAPI_OAuthGrantType NewValue)` | Sets the value of GrantType.
 
-#### Members
+### Members
 
 #### `public ERHAPI_OAuthGrantType `[`GrantType`](#structFRHAPI__TokenRequest_1a45139537ed91d6ab4f23f2e92475fcde) <a id="structFRHAPI__TokenRequest_1a45139537ed91d6ab4f23f2e92475fcde"></a>
 

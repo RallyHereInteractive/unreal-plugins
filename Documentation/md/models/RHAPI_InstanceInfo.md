@@ -1,4 +1,4 @@
-# RHAPI_InstanceInfo <a id="group__RHAPI__InstanceInfo"></a>
+# group `RHAPI_InstanceInfo` <a id="group__RHAPI__InstanceInfo"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_InstanceInfo
 
 Information about the instance resource in a session.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -150,7 +150,7 @@ Information about the instance resource in a session.
 `public inline void `[`SetMatchMakingProfileId`](#structFRHAPI__InstanceInfo_1a46c7764d5f97cbb15ca8d536ab5d2c59)`(FString NewValue)` | Sets the value of MatchMakingProfileId_Optional and also sets MatchMakingProfileId_IsSet to true.
 `public inline void `[`ClearMatchMakingProfileId`](#structFRHAPI__InstanceInfo_1ae29004885f4edeb474dbee20fd20eaba)`()` | Clears the value of MatchMakingProfileId_Optional and sets MatchMakingProfileId_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FString `[`AllocationId_Optional`](#structFRHAPI__InstanceInfo_1a670c84ac627eb0148e3b2a094d2a563f) <a id="structFRHAPI__InstanceInfo_1a670c84ac627eb0148e3b2a094d2a563f"></a>
 

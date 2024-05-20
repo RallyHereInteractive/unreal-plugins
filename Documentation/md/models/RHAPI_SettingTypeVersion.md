@@ -1,4 +1,4 @@
-# RHAPI_SettingTypeVersion <a id="group__RHAPI__SettingTypeVersion"></a>
+# group `RHAPI_SettingTypeVersion` <a id="group__RHAPI__SettingTypeVersion"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_SettingTypeVersion
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -58,7 +58,7 @@ struct FRHAPI_SettingTypeVersion
 `public inline void `[`SetCustomData`](#structFRHAPI__SettingTypeVersion_1a662dff9af912202577d78e2f1dd3b19a)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`ClearCustomData`](#structFRHAPI__SettingTypeVersion_1a87ffa31269dfdc6b9737d3f8653735bc)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
-#### Members
+### Members
 
 #### `public bool `[`AllowUpdate_Optional`](#structFRHAPI__SettingTypeVersion_1a7cde63d5e798189074a83f5e9b24a3e8) <a id="structFRHAPI__SettingTypeVersion_1a7cde63d5e798189074a83f5e9b24a3e8"></a>
 

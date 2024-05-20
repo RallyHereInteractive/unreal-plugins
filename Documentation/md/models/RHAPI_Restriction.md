@@ -1,4 +1,4 @@
-# RHAPI_Restriction <a id="group__RHAPI__Restriction"></a>
+# group `RHAPI_Restriction` <a id="group__RHAPI__Restriction"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_Restriction
 
 Restriction applied to a player.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -46,7 +46,7 @@ Restriction applied to a player.
 `public inline void `[`SetExpiration`](#structFRHAPI__Restriction_1a6ac12c65ddd67ce353226d6acf29e559)`(FDateTime NewValue)` | Sets the value of Expiration_Optional and also sets Expiration_IsSet to true.
 `public inline void `[`ClearExpiration`](#structFRHAPI__Restriction_1a0d5fdc4f552874f065336b803cef5eb3)`()` | Clears the value of Expiration_Optional and sets Expiration_IsSet to false.
 
-#### Members
+### Members
 
 #### `public ERHAPI_RestrictionType `[`Type`](#structFRHAPI__Restriction_1a4563f4ef4361eacf1e83acde5aa9e9b1) <a id="structFRHAPI__Restriction_1a4563f4ef4361eacf1e83acde5aa9e9b1"></a>
 

@@ -1,4 +1,4 @@
-# RHAPI_StorageInformation <a id="group__RHAPI__StorageInformation"></a>
+# group `RHAPI_StorageInformation` <a id="group__RHAPI__StorageInformation"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_StorageInformation
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -56,7 +56,7 @@ struct FRHAPI_StorageInformation
 `public inline bool `[`IsTotalSizeMbDefaultValue`](#structFRHAPI__StorageInformation_1a44b5ab38e3f863a6b1b430490fa2a3de)`() const` | Returns true if TotalSizeMb_Optional is set and matches the default value.
 `public inline void `[`SetTotalSizeMbToDefault`](#structFRHAPI__StorageInformation_1a9682073ededa502cb652a0d8557a8f7f)`()` | Sets the value of TotalSizeMb_Optional to its default and also sets TotalSizeMb_IsSet to true.
 
-#### Members
+### Members
 
 #### `public int32 `[`TotalFiles_Optional`](#structFRHAPI__StorageInformation_1af91d4d2226d8ddcd59770c05238cb53d) <a id="structFRHAPI__StorageInformation_1af91d4d2226d8ddcd59770c05238cb53d"></a>
 

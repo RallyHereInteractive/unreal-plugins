@@ -1,4 +1,4 @@
-# RHAPI_RankData <a id="group__RHAPI__RankData"></a>
+# group `RHAPI_RankData` <a id="group__RHAPI__RankData"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_RankData
 
 Ranked data about a player&#39;s skill and confidence levels.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -40,7 +40,7 @@ Ranked data about a player&#39;s skill and confidence levels.
 `public inline void `[`SetCustomData`](#structFRHAPI__RankData_1a276200d7bad57cad50071060f3be8eab)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`ClearCustomData`](#structFRHAPI__RankData_1ae6fdd574b4aa03a955e0d73368021c63)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
-#### Members
+### Members
 
 #### `public float `[`Mu`](#structFRHAPI__RankData_1a93050be6e5e700a4df0ce7653e9b4661) <a id="structFRHAPI__RankData_1a93050be6e5e700a4df0ce7653e9b4661"></a>
 

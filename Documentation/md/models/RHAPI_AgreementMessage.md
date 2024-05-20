@@ -1,4 +1,4 @@
-# RHAPI_AgreementMessage <a id="group__RHAPI__AgreementMessage"></a>
+# group `RHAPI_AgreementMessage` <a id="group__RHAPI__AgreementMessage"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_AgreementMessage
 
 Error message for when a user has not agreed to the EULA, TOS, or Privacy Policy.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -78,7 +78,7 @@ Error message for when a user has not agreed to the EULA, TOS, or Privacy Policy
 `public inline bool `[`IsNeedsPrivacyPolicyDefaultValue`](#structFRHAPI__AgreementMessage_1a21c366b675bc08ace0486b94122e0a4b)`() const` | Returns true if NeedsPrivacyPolicy_Optional is set and matches the default value.
 `public inline void `[`SetNeedsPrivacyPolicyToDefault`](#structFRHAPI__AgreementMessage_1a5dc593776c4406f97a3fa94ad20adfc4)`()` | Sets the value of NeedsPrivacyPolicy_Optional to its default and also sets NeedsPrivacyPolicy_IsSet to true.
 
-#### Members
+### Members
 
 #### `public bool `[`AuthSuccess_Optional`](#structFRHAPI__AgreementMessage_1aa8d209e82da7a456005582c2badbf561) <a id="structFRHAPI__AgreementMessage_1aa8d209e82da7a456005582c2badbf561"></a>
 

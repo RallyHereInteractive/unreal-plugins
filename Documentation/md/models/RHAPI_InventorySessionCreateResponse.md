@@ -1,4 +1,4 @@
-# RHAPI_InventorySessionCreateResponse <a id="group__RHAPI__InventorySessionCreateResponse"></a>
+# group `RHAPI_InventorySessionCreateResponse` <a id="group__RHAPI__InventorySessionCreateResponse"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_InventorySessionCreateResponse
 
 Response body for creating a new Inventory Session.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -46,7 +46,7 @@ Response body for creating a new Inventory Session.
 `public inline void `[`SetOrderId`](#structFRHAPI__InventorySessionCreateResponse_1a379ae7d16cc532c43049ef0fb2f1f307)`(FString NewValue)` | Sets the value of OrderId_Optional and also sets OrderId_IsSet to true.
 `public inline void `[`ClearOrderId`](#structFRHAPI__InventorySessionCreateResponse_1a4153c08a7d83d6edff4c3368e7685910)`()` | Clears the value of OrderId_Optional and sets OrderId_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FString `[`SessionId`](#structFRHAPI__InventorySessionCreateResponse_1a160a748950f52bf2d4dc9c750835512d) <a id="structFRHAPI__InventorySessionCreateResponse_1a160a748950f52bf2d4dc9c750835512d"></a>
 

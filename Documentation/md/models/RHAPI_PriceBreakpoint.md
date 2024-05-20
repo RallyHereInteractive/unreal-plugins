@@ -1,4 +1,4 @@
-# RHAPI_PriceBreakpoint <a id="group__RHAPI__PriceBreakpoint"></a>
+# group `RHAPI_PriceBreakpoint` <a id="group__RHAPI__PriceBreakpoint"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_PriceBreakpoint
 
 Price based on quantity and the Item ID of the currency used.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -40,7 +40,7 @@ Price based on quantity and the Item ID of the currency used.
 `public inline bool `[`IsPriceDefaultValue`](#structFRHAPI__PriceBreakpoint_1acba31cb60495ec62df014196748c0bc2)`() const` | Returns true if Price matches the default value.
 `public inline void `[`SetPriceToDefault`](#structFRHAPI__PriceBreakpoint_1a8d69abade8883a96954226982fb02162)`()` | Sets the value of Price to its default
 
-#### Members
+### Members
 
 #### `public int32 `[`PriceItemId`](#structFRHAPI__PriceBreakpoint_1aea8d374cdca8847dad17d68ca00567c4) <a id="structFRHAPI__PriceBreakpoint_1aea8d374cdca8847dad17d68ca00567c4"></a>
 

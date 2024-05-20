@@ -1,4 +1,4 @@
-# RHAPI_MatchAllocation <a id="group__RHAPI__MatchAllocation"></a>
+# group `RHAPI_MatchAllocation` <a id="group__RHAPI__MatchAllocation"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_MatchAllocation
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -24,7 +24,7 @@ struct FRHAPI_MatchAllocation
 `public inline const FString & `[`GetAllocationId`](#structFRHAPI__MatchAllocation_1a1914dff0951bd239fc38b0c943432842)`() const` | Gets the value of AllocationId.
 `public inline void `[`SetAllocationId`](#structFRHAPI__MatchAllocation_1a81566654cc39d8728c1b8215506c7b9f)`(FString NewValue)` | Sets the value of AllocationId.
 
-#### Members
+### Members
 
 #### `public FString `[`AllocationId`](#structFRHAPI__MatchAllocation_1a7246bc5564bcd98726ff94a1f212fbb4) <a id="structFRHAPI__MatchAllocation_1a7246bc5564bcd98726ff94a1f212fbb4"></a>
 

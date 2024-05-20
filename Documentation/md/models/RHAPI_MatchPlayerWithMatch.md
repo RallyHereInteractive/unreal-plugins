@@ -1,4 +1,4 @@
-# RHAPI_MatchPlayerWithMatch <a id="group__RHAPI__MatchPlayerWithMatch"></a>
+# group `RHAPI_MatchPlayerWithMatch` <a id="group__RHAPI__MatchPlayerWithMatch"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_MatchPlayerWithMatch
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -148,7 +148,7 @@ struct FRHAPI_MatchPlayerWithMatch
 `public inline const `[`FRHAPI_MatchValuesOnly`](RHAPI_MatchValuesOnly.md#structFRHAPI__MatchValuesOnly)` & `[`GetMatch`](#structFRHAPI__MatchPlayerWithMatch_1a8353a40289beee854be294896714878e)`() const` | Gets the value of Match.
 `public inline void `[`SetMatch`](#structFRHAPI__MatchPlayerWithMatch_1a9218553977c7c9661613f43ff8d56a3d)`(`[`FRHAPI_MatchValuesOnly`](RHAPI_MatchValuesOnly.md#structFRHAPI__MatchValuesOnly)` NewValue)` | Sets the value of Match.
 
-#### Members
+### Members
 
 #### `public FDateTime `[`LastModifiedTimestamp_Optional`](#structFRHAPI__MatchPlayerWithMatch_1a8f3d72b757e8cdc329c00eef6c84adbf) <a id="structFRHAPI__MatchPlayerWithMatch_1a8f3d72b757e8cdc329c00eef6c84adbf"></a>
 

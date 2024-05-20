@@ -1,4 +1,4 @@
-# RHAPI_FriendsApiConfig <a id="group__RHAPI__FriendsApiConfig"></a>
+# group `RHAPI_FriendsApiConfig` <a id="group__RHAPI__FriendsApiConfig"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_FriendsApiConfig
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -44,7 +44,7 @@ struct FRHAPI_FriendsApiConfig
 `public inline bool `[`IsBlockLimitDefaultValue`](#structFRHAPI__FriendsApiConfig_1ace5bbfa806e7314b7b8781eec0fdac77)`() const` | Returns true if BlockLimit_Optional is set and matches the default value.
 `public inline void `[`SetBlockLimitToDefault`](#structFRHAPI__FriendsApiConfig_1a31550ce0b44294881608c3f7caf124cf)`()` | Sets the value of BlockLimit_Optional to its default and also sets BlockLimit_IsSet to true.
 
-#### Members
+### Members
 
 #### `public int32 `[`FriendLimit_Optional`](#structFRHAPI__FriendsApiConfig_1a1b1dcb1ea05e871ddb0e9aff8c1e53b8) <a id="structFRHAPI__FriendsApiConfig_1a1b1dcb1ea05e871ddb0e9aff8c1e53b8"></a>
 
