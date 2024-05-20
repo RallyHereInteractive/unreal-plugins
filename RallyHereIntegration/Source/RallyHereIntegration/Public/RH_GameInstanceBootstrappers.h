@@ -633,7 +633,7 @@ protected:
 	UPROPERTY(VisibleInstanceOnly, Config, Category = "Session")
 	FString DefaultAutoCreateSessionType;
 
-	/** The default type of session to create when using AutoCreate bootstrapping mode */
+	/** The default region of session to create when using AutoCreate bootstrapping mode */
 	UPROPERTY(VisibleInstanceOnly, Config, Category = "Session")
 	FString DefaultAutoCreateRegion;
 
