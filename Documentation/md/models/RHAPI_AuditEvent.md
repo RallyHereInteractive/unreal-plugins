@@ -1,4 +1,4 @@
-# RHAPI_AuditEvent <a id="group__RHAPI__AuditEvent"></a>
+# group `RHAPI_AuditEvent` <a id="group__RHAPI__AuditEvent"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_AuditEvent
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -356,7 +356,7 @@ struct FRHAPI_AuditEvent
 `public inline const FDateTime & `[`GetEventDatetime`](#structFRHAPI__AuditEvent_1a28830a7a894b9ab55814bad91ae87390)`() const` | Gets the value of EventDatetime.
 `public inline void `[`SetEventDatetime`](#structFRHAPI__AuditEvent_1aa2c20100e542b7df27a4e3291b5fc1eb)`(FDateTime NewValue)` | Sets the value of EventDatetime.
 
-#### Members
+### Members
 
 #### `public FString `[`EventName`](#structFRHAPI__AuditEvent_1a0e11dca6739b8cd51e77938830d9bc34) <a id="structFRHAPI__AuditEvent_1a0e11dca6739b8cd51e77938830d9bc34"></a>
 

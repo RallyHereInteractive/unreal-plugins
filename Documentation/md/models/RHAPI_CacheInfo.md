@@ -1,4 +1,4 @@
-# RHAPI_CacheInfo <a id="group__RHAPI__CacheInfo"></a>
+# group `RHAPI_CacheInfo` <a id="group__RHAPI__CacheInfo"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_CacheInfo
 
 Cache information for the resource it is attached to. The etag value can be used with the If-None-Match and If-Match headers.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -36,7 +36,7 @@ Cache information for the resource it is attached to. The etag value can be used
 `public inline void `[`SetStrRep`](#structFRHAPI__CacheInfo_1a664234243e3f6949edc29a3b46726d82)`(FString NewValue)` | Sets the value of StrRep_Optional and also sets StrRep_IsSet to true.
 `public inline void `[`ClearStrRep`](#structFRHAPI__CacheInfo_1a961e7ae4d42f98b5708fa842a80bb990)`()` | Clears the value of StrRep_Optional and sets StrRep_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FString `[`Etag`](#structFRHAPI__CacheInfo_1a3865c393796a7c19f6d7a654189fabaf) <a id="structFRHAPI__CacheInfo_1a3865c393796a7c19f6d7a654189fabaf"></a>
 

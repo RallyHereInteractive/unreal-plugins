@@ -1,4 +1,4 @@
-# RHAPI_PlayerPersonResponse <a id="group__RHAPI__PlayerPersonResponse"></a>
+# group `RHAPI_PlayerPersonResponse` <a id="group__RHAPI__PlayerPersonResponse"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_PlayerPersonResponse
 
 Response for getting a player&#39;s info.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -58,7 +58,7 @@ Response for getting a player&#39;s info.
 `public inline const FGuid & `[`GetPersonId`](#structFRHAPI__PlayerPersonResponse_1a8881ca097d22c79931874d8334478bbc)`() const` | Gets the value of PersonId.
 `public inline void `[`SetPersonId`](#structFRHAPI__PlayerPersonResponse_1a78b38719bfeb0006e3534537428820ff)`(FGuid NewValue)` | Sets the value of PersonId.
 
-#### Members
+### Members
 
 #### `public int32 `[`PlayerId`](#structFRHAPI__PlayerPersonResponse_1a280f3f2e11117ce512ad294bb77b986a) <a id="structFRHAPI__PlayerPersonResponse_1a280f3f2e11117ce512ad294bb77b986a"></a>
 

@@ -1,4 +1,4 @@
-# RHAPI_Vendors <a id="group__RHAPI__Vendors"></a>
+# group `RHAPI_Vendors` <a id="group__RHAPI__Vendors"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_Vendors
 
 A collection of Vendors by Vendor ID.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -42,7 +42,7 @@ A collection of Vendors by Vendor ID.
 `public inline void `[`SetCacheInfo`](#structFRHAPI__Vendors_1ab8a4b8ef4f2b0dd91046eecc58feffd2)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__Vendors_1ae62d7b93e3f17f45b54c1d61b666a0c7)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 
-#### Members
+### Members
 
 #### `public TMap< FString, `[`FRHAPI_Vendor`](RHAPI_Vendor.md#structFRHAPI__Vendor)` > `[`Vendors_Optional`](#structFRHAPI__Vendors_1aa0932323dd37de9240161ecfe54b90f7) <a id="structFRHAPI__Vendors_1aa0932323dd37de9240161ecfe54b90f7"></a>
 

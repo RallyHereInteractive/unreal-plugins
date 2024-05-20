@@ -1,4 +1,4 @@
-# RHAPI_SessionTemplates <a id="group__RHAPI__SessionTemplates"></a>
+# group `RHAPI_SessionTemplates` <a id="group__RHAPI__SessionTemplates"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_SessionTemplates
 
 A mapping of RallyHere session template types to the templates.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -32,7 +32,7 @@ A mapping of RallyHere session template types to the templates.
 `public inline void `[`SetTemplates`](#structFRHAPI__SessionTemplates_1a371255f9f30c3b980c055c01ff674948)`(TMap< FString, `[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > NewValue)` | Sets the value of Templates_Optional and also sets Templates_IsSet to true.
 `public inline void `[`ClearTemplates`](#structFRHAPI__SessionTemplates_1a131f21d340cfc955ef693695785df14a)`()` | Clears the value of Templates_Optional and sets Templates_IsSet to false.
 
-#### Members
+### Members
 
 #### `public TMap< FString, `[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > `[`Templates_Optional`](#structFRHAPI__SessionTemplates_1ab83f2a56e2b367da2d7abfbfc5ab6f43) <a id="structFRHAPI__SessionTemplates_1ab83f2a56e2b367da2d7abfbfc5ab6f43"></a>
 

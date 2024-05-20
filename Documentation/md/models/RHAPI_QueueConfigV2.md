@@ -1,4 +1,4 @@
-# RHAPI_QueueConfigV2 <a id="group__RHAPI__QueueConfigV2"></a>
+# group `RHAPI_QueueConfigV2` <a id="group__RHAPI__QueueConfigV2"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_QueueConfigV2
 
 V2 Configuration about a specific queue.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -52,7 +52,7 @@ V2 Configuration about a specific queue.
 `public inline void `[`SetLegacyConfig`](#structFRHAPI__QueueConfigV2_1a65ea9aee6bf74c93a8733fed52f62670)`(TMap< FString, FString > NewValue)` | Sets the value of LegacyConfig_Optional and also sets LegacyConfig_IsSet to true.
 `public inline void `[`ClearLegacyConfig`](#structFRHAPI__QueueConfigV2_1a704de45777e119ee8c297892b3bfdc32)`()` | Clears the value of LegacyConfig_Optional and sets LegacyConfig_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FString `[`QueueId`](#structFRHAPI__QueueConfigV2_1a8b7df88e8e7e78f9829f996390f23c0c) <a id="structFRHAPI__QueueConfigV2_1a8b7df88e8e7e78f9829f996390f23c0c"></a>
 

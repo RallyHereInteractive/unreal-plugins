@@ -1,4 +1,4 @@
-# RHAPI_SessionPlayer <a id="group__RHAPI__SessionPlayer"></a>
+# group `RHAPI_SessionPlayer` <a id="group__RHAPI__SessionPlayer"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_SessionPlayer
 
 A player resource in a session.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -122,7 +122,7 @@ A player resource in a session.
 `public inline void `[`SetJoined`](#structFRHAPI__SessionPlayer_1a4d113ac251cab541e6a0f442aeb6ce50)`(FDateTime NewValue)` | Sets the value of Joined_Optional and also sets Joined_IsSet to true.
 `public inline void `[`ClearJoined`](#structFRHAPI__SessionPlayer_1a8b9c20d24a494d6a9c252112833d06e2)`()` | Clears the value of Joined_Optional and sets Joined_IsSet to false.
 
-#### Members
+### Members
 
 #### `public int32 `[`PlayerId_Optional`](#structFRHAPI__SessionPlayer_1ada45674d5ad30eda5058ff64a5cb105f) <a id="structFRHAPI__SessionPlayer_1ada45674d5ad30eda5058ff64a5cb105f"></a>
 

@@ -1,4 +1,4 @@
-# RHAPI_UpdateInventoryRequest <a id="group__RHAPI__UpdateInventoryRequest"></a>
+# group `RHAPI_UpdateInventoryRequest` <a id="group__RHAPI__UpdateInventoryRequest"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_UpdateInventoryRequest
 
 Request to Update an existing Inventory entry. If the Inventory entry does not exist, then the request will fail.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -96,7 +96,7 @@ Request to Update an existing Inventory entry. If the Inventory entry does not e
 `public inline bool `[`IsItemIdDefaultValue`](#structFRHAPI__UpdateInventoryRequest_1a3d1b3d8f181533b01ecb89b627949b5f)`() const` | Returns true if ItemId_Optional is set and matches the default value.
 `public inline void `[`SetItemIdToDefault`](#structFRHAPI__UpdateInventoryRequest_1ac994fb467690e1e6b6f00bf32ccd390d)`()` | Sets the value of ItemId_Optional to its default and also sets ItemId_IsSet to true.
 
-#### Members
+### Members
 
 #### `public ERHAPI_Source `[`Source_Optional`](#structFRHAPI__UpdateInventoryRequest_1a572870eb8d72f3f11e19d10a1b715054) <a id="structFRHAPI__UpdateInventoryRequest_1a572870eb8d72f3f11e19d10a1b715054"></a>
 

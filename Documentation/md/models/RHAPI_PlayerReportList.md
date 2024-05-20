@@ -1,4 +1,4 @@
-# RHAPI_PlayerReportList <a id="group__RHAPI__PlayerReportList"></a>
+# group `RHAPI_PlayerReportList` <a id="group__RHAPI__PlayerReportList"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_PlayerReportList
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -34,7 +34,7 @@ struct FRHAPI_PlayerReportList
 `public inline void `[`SetNextCursor`](#structFRHAPI__PlayerReportList_1a6bf44e6a15a68509892cb923918e6f0b)`(FString NewValue)` | Sets the value of NextCursor_Optional and also sets NextCursor_IsSet to true.
 `public inline void `[`ClearNextCursor`](#structFRHAPI__PlayerReportList_1ac1b15032630eadb1e319eebebaa19127)`()` | Clears the value of NextCursor_Optional and sets NextCursor_IsSet to false.
 
-#### Members
+### Members
 
 #### `public TArray< `[`FRHAPI_PlayerReport`](RHAPI_PlayerReport.md#structFRHAPI__PlayerReport)` > `[`Reports`](#structFRHAPI__PlayerReportList_1a2aa38535b7e7f169fe8618b8f73f6b23) <a id="structFRHAPI__PlayerReportList_1a2aa38535b7e7f169fe8618b8f73f6b23"></a>
 

@@ -1,4 +1,4 @@
-# RHAPI_LookupResults <a id="group__RHAPI__LookupResults"></a>
+# group `RHAPI_LookupResults` <a id="group__RHAPI__LookupResults"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_LookupResults
 
 Lookup results for a player query.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -52,7 +52,7 @@ Lookup results for a player query.
 `public inline void `[`SetIdentityPlatformsByPlatform`](#structFRHAPI__LookupResults_1a2640d5921ef0f91c9ef47f263c247236)`(TMap< FString, TArray< `[`FRHAPI_PlatformIdentityLookupResults`](RHAPI_PlatformIdentityLookupResults.md#structFRHAPI__PlatformIdentityLookupResults)` >> NewValue)` | Sets the value of IdentityPlatformsByPlatform_Optional and also sets IdentityPlatformsByPlatform_IsSet to true.
 `public inline void `[`ClearIdentityPlatformsByPlatform`](#structFRHAPI__LookupResults_1a519fd549d39056274491c78a5a4bb929)`()` | Clears the value of IdentityPlatformsByPlatform_Optional and sets IdentityPlatformsByPlatform_IsSet to false.
 
-#### Members
+### Members
 
 #### `public TArray< TMap< FString, TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > > > `[`DisplayNames_Optional`](#structFRHAPI__LookupResults_1a2792e7ea1c67e9bc83be3cc6f8d8f160) <a id="structFRHAPI__LookupResults_1a2792e7ea1c67e9bc83be3cc6f8d8f160"></a>
 

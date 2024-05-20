@@ -1,4 +1,4 @@
-# Inventory <a id="group__Inventory"></a>
+# group `Inventory` <a id="group__Inventory"></a>
 
 ## Summary
 
@@ -28,7 +28,7 @@ class URH_PendingOrder
 
 Base class to handle pending orders waiting for a final response.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -39,7 +39,7 @@ Base class to handle pending orders waiting for a final response.
 `protected virtual void `[`RequestOrdersResponse`](#classURH__PendingOrder_1a803ce919c79362b8053b81abef0cc13e)`(const TGetOrderById::Response & Resp)` | Handles the response to a Get Player Order call.
 `protected `[`URH_PlayerInventory`](Inventory.md#classURH__PlayerInventory)` * `[`GetPlayerInventory`](#classURH__PendingOrder_1a3c1cb4a28a04ff48aa50a4c4e8c2250d)`() const` | Gets the Player Inventory.
 
-#### Members
+### Members
 
 #### `public FString `[`OrderId`](#classURH__PendingOrder_1a83c5e4bd5c467fc44bec8737feba31aa) <a id="classURH__PendingOrder_1a83c5e4bd5c467fc44bec8737feba31aa"></a>
 
@@ -86,7 +86,7 @@ class URH_PendingPromoCodeOrder
 
 Class to handle pending promo code redemptions.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -95,7 +95,7 @@ Class to handle pending promo code redemptions.
 `public inline void `[`Init`](#classURH__PendingPromoCodeOrder_1a8293b2c6e26e85785d237210e598e997)`(const FString & InOrderId,const FString & InPromoCode,const FRH_PromoCodeResultBlock & InPromoCodeDelegate)` | Initalized the pending request.
 `protected virtual void `[`BroadcastComplete`](#classURH__PendingPromoCodeOrder_1a4629f03754616a4c81733bc54d8d9c1f)`(`[`URH_PlayerInventory`](Inventory.md#classURH__PlayerInventory)` * PlayerInventory,const `[`FRHAPI_PlayerOrder`](models/RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` & Content)` | Triggers a broadcasts when the order is sucessfully processed.
 
-#### Members
+### Members
 
 #### `public FString `[`PromoCode`](#classURH__PendingPromoCodeOrder_1a85cdc37b5bbec7ac8d2df0dbdf0d087f) <a id="classURH__PendingPromoCodeOrder_1a85cdc37b5bbec7ac8d2df0dbdf0d087f"></a>
 
@@ -134,7 +134,7 @@ class URH_PendingInventoryUpdateOrder
 
 Class to handle pending inventory update calls.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -142,7 +142,7 @@ Class to handle pending inventory update calls.
 `public inline void `[`Init`](#classURH__PendingInventoryUpdateOrder_1afa0d467f72eecb32302bb507673f0165)`(const FString & InOrderId,const FRH_OnInventoryUpdateDelegateBlock & InInventoryUpdateDelegate)` | Initalized the pending request.
 `protected virtual void `[`BroadcastComplete`](#classURH__PendingInventoryUpdateOrder_1a97bbd4a1825b41a8ba5cb150fa5e8b80)`(`[`URH_PlayerInventory`](Inventory.md#classURH__PlayerInventory)` * PlayerInventory,const `[`FRHAPI_PlayerOrder`](models/RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` & Content)` | Triggers a broadcasts when the order is sucessfully processed.
 
-#### Members
+### Members
 
 #### `public FRH_OnInventoryUpdateDelegateBlock `[`InventoryUpdateDelegate`](#classURH__PendingInventoryUpdateOrder_1a20bd6332b5aba3f967a9d7c0970340fc) <a id="classURH__PendingInventoryUpdateOrder_1a20bd6332b5aba3f967a9d7c0970340fc"></a>
 
@@ -175,7 +175,7 @@ class URH_PendingPlayerOrder
 
 Class to handle pending player orders.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -184,7 +184,7 @@ Class to handle pending player orders.
 `public inline void `[`Init`](#classURH__PendingPlayerOrder_1a72bb10bf44aff3eb38a48e6e01e886fd)`(const FString & InOrderId,const TArray< `[`URH_PlayerOrderEntry`](Inventory.md#classURH__PlayerOrderEntry)` * > & InOrderEntries,const FRH_OrderResultBlock & InOrderResultDelegate)` | Initalized the pending request.
 `protected virtual void `[`BroadcastComplete`](#classURH__PendingPlayerOrder_1aad3d587d8b58f21c3c873644165e646d)`(`[`URH_PlayerInventory`](Inventory.md#classURH__PlayerInventory)` * PlayerInventory,const `[`FRHAPI_PlayerOrder`](models/RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` & Content)` | Triggers a broadcasts when the order is sucessfully processed.
 
-#### Members
+### Members
 
 #### `public FRH_OrderResultBlock `[`OrderResultDelegate`](#classURH__PendingPlayerOrder_1a07d7f652f1b01bd3d29f691efa72b573) <a id="classURH__PendingPlayerOrder_1a07d7f652f1b01bd3d29f691efa72b573"></a>
 
@@ -223,7 +223,7 @@ class URH_PendingOrderDetailsOrder
 
 Class to handle pending order details orders.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -231,7 +231,7 @@ Class to handle pending order details orders.
 `public inline void `[`Init`](#classURH__PendingOrderDetailsOrder_1a3ed85df7842d29e831c2c2d29df23014)`(const FString & InOrderId,const FRH_OrderDetailsBlock & InOrderDetailDelegate)` | Initalized the pending request.
 `protected virtual void `[`BroadcastComplete`](#classURH__PendingOrderDetailsOrder_1a756eeacc251fdc5cccab7bf7299662d3)`(`[`URH_PlayerInventory`](Inventory.md#classURH__PlayerInventory)` * PlayerInventory,const `[`FRHAPI_PlayerOrder`](models/RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` & Content)` | Triggers a broadcasts when the order is sucessfully processed.
 
-#### Members
+### Members
 
 #### `public FRH_OrderDetailsBlock `[`OrderDetailsDelegate`](#classURH__PendingOrderDetailsOrder_1a2f55d2a898c76ba950a0a40231afed7d) <a id="classURH__PendingOrderDetailsOrder_1a2f55d2a898c76ba950a0a40231afed7d"></a>
 
@@ -264,7 +264,7 @@ class URH_PlayerOrderWatch
 
 Class to track watches on players orders.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -275,7 +275,7 @@ Class to track watches on players orders.
 `protected virtual void `[`RequestOrdersResponse`](#classURH__PlayerOrderWatch_1a156cada0b20a90e20017c618b28b1723)`(const TGetOrders::Response & Resp)` | Handles the response to a Get Player Order call.
 `protected `[`URH_PlayerInventory`](Inventory.md#classURH__PlayerInventory)` * `[`GetPlayerInventory`](#classURH__PlayerOrderWatch_1a49c22be3b3f0b9e3ef8170766cb1b392)`() const` | Gets the Player Inventory.
 
-#### Members
+### Members
 
 #### `public TArray< FRH_OrderDetailsBlock > `[`Delegates`](#classURH__PlayerOrderWatch_1a478e3d65d0b3ef1816a434fab2a2434e) <a id="classURH__PlayerOrderWatch_1a478e3d65d0b3ef1816a434fab2a2434e"></a>
 
@@ -317,7 +317,7 @@ class URH_PlayerOrderEntry
 
 Player Order Entry class defines the data of an Order used to submit one to the InventoryAPI.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -340,7 +340,7 @@ Player Order Entry class defines the data of an Order used to submit one to the 
 `public inline const int32 & `[`GetCouponItemId`](#classURH__PlayerOrderEntry_1a0db41c510ffc7be86684f03d6ff26367)`() const` | Gets the item id of a coupon item being used if one is being applied for an item discount.
 `public inline void `[`AddCustomData`](#classURH__PlayerOrderEntry_1a61764974114c2ae68fc78d64bd9e692b)`(const FString & Key,const FString & Value)` | Adds custom data to the order entry.
 
-#### Members
+### Members
 
 #### `public ERHAPI_PlayerOrderEntryType `[`FillType`](#classURH__PlayerOrderEntry_1a6324972122c3e217ef2f30b502f6be96) <a id="classURH__PlayerOrderEntry_1a6324972122c3e217ef2f30b502f6be96"></a>
 
@@ -428,7 +428,7 @@ class URH_PlayerInventory
 
 Inventory Subsystem created per player for tracking and updating player inventory.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -505,7 +505,7 @@ Inventory Subsystem created per player for tracking and updating player inventor
 `protected `[`URH_CatalogSubsystem`](Catalog.md#classURH__CatalogSubsystem)` * `[`GetCatalogSubsystem`](#classURH__PlayerInventory_1aa92f2f13128661b503c07ccd6de70540)`() const` | Helper function to get Catalog Subsystem.
 `typedef `[`TCreateOrder`](#classURH__PlayerInventory_1a946da8328c5ead7256bcf01d73ba342c) | 
 
-#### Members
+### Members
 
 #### `public FRH_InventoryUpdatedDelegate `[`OnInventoryCacheUpdated`](#classURH__PlayerInventory_1aec143589873017eac01355a01c5ad0f5) <a id="classURH__PlayerInventory_1aec143589873017eac01355a01c5ad0f5"></a>
 
@@ -1033,18 +1033,18 @@ class URH_InventoryBlueprintLibrary
 
 Inventory Blueprint Library with helper methods for inventory item struct.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 
-#### Members
+### Members
 
 ## struct `FRH_InventorySession` <a id="structFRH__InventorySession"></a>
 
 Struct for tracking an inventory session.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -1054,7 +1054,7 @@ Struct for tracking an inventory session.
 `public TArray< int32 > `[`AppliedDurableLoot`](#structFRH__InventorySession_1a0da0d0385b4703e6d2ca0cd666eda224) | Array of durable loot that was applied to the inventory by the session.
 `public inline  `[`FRH_InventorySession`](#structFRH__InventorySession_1a042cdfe82bab92315f5e6e1bd4e461be)`()` | Default constructor.
 
-#### Members
+### Members
 
 #### `public FString `[`SessionId`](#structFRH__InventorySession_1a24cbb7a17c13037c75e24731da912bb8) <a id="structFRH__InventorySession_1a24cbb7a17c13037c75e24731da912bb8"></a>
 
@@ -1080,7 +1080,7 @@ Default constructor.
 
 Inventory Item struct for defining cached inventory items and making inventory write calls.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -1099,7 +1099,7 @@ Inventory Item struct for defining cached inventory items and making inventory w
 `public inline void `[`Init`](#structFRH__ItemInventory_1ae0ef931fa1341db81394d6a25ef0fde3)`(const int32 & ItemIdOfInventory,const `[`FRHAPI_InventoryRecord`](models/RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & Inventory)` | Initializes an inventory record from an Inventory Record API response.
 `public inline bool `[`operator==`](#structFRH__ItemInventory_1a90397dbaf2c27ccbca10ed24d9e8ab17)`(const `[`FRH_ItemInventory`](#structFRH__ItemInventory)` & Other) const` | Equals operator override for comparison.
 
-#### Members
+### Members
 
 #### `public FGuid `[`InventoryId`](#structFRH__ItemInventory_1ae433fc841de8bdb91d58ea8e4e3f874f) <a id="structFRH__ItemInventory_1ae433fc841de8bdb91d58ea8e4e3f874f"></a>
 
@@ -1183,7 +1183,7 @@ Equals operator override for comparison.
 
 Base Inventory Operation struct for defining shared input data for Inventory Modification API calls.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -1196,7 +1196,7 @@ Base Inventory Operation struct for defining shared input data for Inventory Mod
 `public inline  `[`FRH_BaseInventoryOperation`](#structFRH__BaseInventoryOperation_1aa718ffb220e49e5821c75764838e94d7)`()` | Default constructor.
 `public inline bool `[`InitFromItemInventory`](#structFRH__BaseInventoryOperation_1a8dca78d16cced1969fa5955e30b47071)`(const `[`FRH_ItemInventory`](Inventory.md#structFRH__ItemInventory)` & ItemInventory)` | Initializes an inventory operation with the data from an Inventory Item. @params [in] ItemInventory The item inventory to initialize the operation with.
 
-#### Members
+### Members
 
 #### `public int32 `[`Count`](#structFRH__BaseInventoryOperation_1aa4d84c54e1ee0bf2813ab1026b764c01) <a id="structFRH__BaseInventoryOperation_1aa4d84c54e1ee0bf2813ab1026b764c01"></a>
 
@@ -1242,7 +1242,7 @@ struct FRH_CreateInventory
 
 Create Inventory Operation struct for setting up data to Create an Inventory record.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -1250,7 +1250,7 @@ Create Inventory Operation struct for setting up data to Create an Inventory rec
 `public ERHAPI_CreateInventoryType `[`InventoryType`](#structFRH__CreateInventory_1aaf9b8cdb0208933622a7da151c35b76a) | The item id for the inventory operation, defaults to Persistent.
 `public inline bool `[`InitFromItemInventory`](#structFRH__CreateInventory_1ab22e9d4a705d3dcd2147629478673043)`(const `[`FRH_ItemInventory`](Inventory.md#structFRH__ItemInventory)` & ItemInventory)` | Initializes an inventory operation with the data from an Inventory Item. @params [in] ItemInventory The item inventory to initialize the operation with.
 
-#### Members
+### Members
 
 #### `public int32 `[`Count`](#structFRH__CreateInventory_1ae35d25742e5090f59dce4451e597ae94) <a id="structFRH__CreateInventory_1ae35d25742e5090f59dce4451e597ae94"></a>
 
@@ -1276,7 +1276,7 @@ struct FRH_UpdateInventory
 
 Update Inventory Operation struct for setting up data to Update an Inventory record.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -1284,7 +1284,7 @@ Update Inventory Operation struct for setting up data to Update an Inventory rec
 `public int32 `[`Count`](#structFRH__UpdateInventory_1afe4138f30fa8b11f449af55f944f9552) | The amount of the inventory operation, defaults to 0.
 `public inline bool `[`InitFromItemInventory`](#structFRH__UpdateInventory_1aff31e7fc1bf79da3f6fcdc58210bd3ed)`(const `[`FRH_ItemInventory`](Inventory.md#structFRH__ItemInventory)` & ItemInventory)` | Initializes an inventory operation with the data from an Inventory Item. @params [in] ItemInventory The item inventory to initialize the operation with.
 
-#### Members
+### Members
 
 #### `public FGuid `[`InventoryId`](#structFRH__UpdateInventory_1a12dcae9ffba97bf3612c579efab5bc48) <a id="structFRH__UpdateInventory_1a12dcae9ffba97bf3612c579efab5bc48"></a>
 

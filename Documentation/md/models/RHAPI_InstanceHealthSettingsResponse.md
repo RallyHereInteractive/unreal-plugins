@@ -1,4 +1,4 @@
-# RHAPI_InstanceHealthSettingsResponse <a id="group__RHAPI__InstanceHealthSettingsResponse"></a>
+# group `RHAPI_InstanceHealthSettingsResponse` <a id="group__RHAPI__InstanceHealthSettingsResponse"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_InstanceHealthSettingsResponse
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -36,7 +36,7 @@ struct FRHAPI_InstanceHealthSettingsResponse
 `public inline bool `[`IsMissedChecksBeforeUnknownDefaultValue`](#structFRHAPI__InstanceHealthSettingsResponse_1ac5c50dad723924530c69a0ea7166fcc3)`() const` | Returns true if MissedChecksBeforeUnknown matches the default value.
 `public inline void `[`SetMissedChecksBeforeUnknownToDefault`](#structFRHAPI__InstanceHealthSettingsResponse_1a8664689c37913f913401736f03a9df95)`()` | Sets the value of MissedChecksBeforeUnknown to its default
 
-#### Members
+### Members
 
 #### `public int32 `[`CadenceSeconds`](#structFRHAPI__InstanceHealthSettingsResponse_1a331b8938443e0f395989821e67608268) <a id="structFRHAPI__InstanceHealthSettingsResponse_1a331b8938443e0f395989821e67608268"></a>
 

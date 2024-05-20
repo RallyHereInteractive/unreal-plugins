@@ -1,4 +1,4 @@
-# RHAPI_EventParamsSchemaResponse <a id="group__RHAPI__EventParamsSchemaResponse"></a>
+# group `RHAPI_EventParamsSchemaResponse` <a id="group__RHAPI__EventParamsSchemaResponse"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_EventParamsSchemaResponse
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -24,7 +24,7 @@ struct FRHAPI_EventParamsSchemaResponse
 `public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetEventParamSchemas`](#structFRHAPI__EventParamsSchemaResponse_1a19f51b10761cc867c81d2ed06fd61b02)`() const` | Gets the value of EventParamSchemas.
 `public inline void `[`SetEventParamSchemas`](#structFRHAPI__EventParamsSchemaResponse_1a280eb9bd68257147c78af5c9b5ae113f)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` NewValue)` | Sets the value of EventParamSchemas.
 
-#### Members
+### Members
 
 #### `public `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` `[`EventParamSchemas`](#structFRHAPI__EventParamsSchemaResponse_1aa40d8c50e528ce8456a35b58e44c7bbe) <a id="structFRHAPI__EventParamsSchemaResponse_1aa40d8c50e528ce8456a35b58e44c7bbe"></a>
 

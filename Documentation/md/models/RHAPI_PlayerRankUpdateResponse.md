@@ -1,4 +1,4 @@
-# RHAPI_PlayerRankUpdateResponse <a id="group__RHAPI__PlayerRankUpdateResponse"></a>
+# group `RHAPI_PlayerRankUpdateResponse` <a id="group__RHAPI__PlayerRankUpdateResponse"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_PlayerRankUpdateResponse
 
 DEPRECATED Response to successfully updating players&#39; ranks.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -26,7 +26,7 @@ DEPRECATED Response to successfully updating players&#39; ranks.
 `public inline const TArray< `[`FRHAPI_PlayerRankResponse`](RHAPI_PlayerRankResponse.md#structFRHAPI__PlayerRankResponse)` > & `[`GetUpdatedPlayers`](#structFRHAPI__PlayerRankUpdateResponse_1a67c1363557897ce067efec035674b8c5)`() const` | Gets the value of UpdatedPlayers.
 `public inline void `[`SetUpdatedPlayers`](#structFRHAPI__PlayerRankUpdateResponse_1a5199179dc905b15110e2e2ae0cda32a2)`(TArray< `[`FRHAPI_PlayerRankResponse`](RHAPI_PlayerRankResponse.md#structFRHAPI__PlayerRankResponse)` > NewValue)` | Sets the value of UpdatedPlayers.
 
-#### Members
+### Members
 
 #### `public TArray< `[`FRHAPI_PlayerRankResponse`](RHAPI_PlayerRankResponse.md#structFRHAPI__PlayerRankResponse)` > `[`UpdatedPlayers`](#structFRHAPI__PlayerRankUpdateResponse_1a7f6d7817320d4a24ba83cdbdb5f5acaf) <a id="structFRHAPI__PlayerRankUpdateResponse_1a7f6d7817320d4a24ba83cdbdb5f5acaf"></a>
 

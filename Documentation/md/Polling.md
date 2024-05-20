@@ -1,4 +1,4 @@
-# Polling <a id="group__Polling"></a>
+# group `Polling` <a id="group__Polling"></a>
 
 ## Summary
 
@@ -18,14 +18,14 @@ class URH_PollingSettings
 
 Settings for polling.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public TArray< `[`FRH_PollTimerSetting`](Polling.md#structFRH__PollTimerSetting)` > `[`PollingIntervals`](#classURH__PollingSettings_1afa32af0887367bdda75461ba6ac6ee84) | Array of all polling timers.
 `public `[`FRH_PollTimerSetting`](Polling.md#structFRH__PollTimerSetting)` `[`DefaultPollingTimer`](#classURH__PollingSettings_1a313312890d1d7c3d52da57de091f55cc) | Default polling time.
 
-#### Members
+### Members
 
 #### `public TArray< `[`FRH_PollTimerSetting`](Polling.md#structFRH__PollTimerSetting)` > `[`PollingIntervals`](#classURH__PollingSettings_1afa32af0887367bdda75461ba6ac6ee84) <a id="classURH__PollingSettings_1afa32af0887367bdda75461ba6ac6ee84"></a>
 
@@ -39,7 +39,7 @@ Default polling time.
 
 Settings for polling timers.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -50,7 +50,7 @@ Settings for polling timers.
 `public float `[`JitterPctInitial`](#structFRH__PollTimerSetting_1af7b21bff8f9266d642ff135dd80b8314) | How much jitter to add to the timer when started.
 `public inline  `[`FRH_PollTimerSetting`](#structFRH__PollTimerSetting_1a121012c1be4a6708d43d5158130b6233)`()` | Default constructor, 60 seconds timer.
 
-#### Members
+### Members
 
 #### `public FName `[`TimerName`](#structFRH__PollTimerSetting_1a657d464298c1a5e7d22e7658203260d6) <a id="structFRH__PollTimerSetting_1a657d464298c1a5e7d22e7658203260d6"></a>
 
@@ -85,7 +85,7 @@ struct FRH_PollControl
 
 Controller for the polling.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -115,7 +115,7 @@ Controller for the polling.
 `protected TArray< `[`FRH_PollTimerSetting`](Polling.md#structFRH__PollTimerSetting)` > `[`PollingIntervalOverrides`](#structFRH__PollControl_1a8d9206a531b9addcea6fc1fb85e6e786) | Array of all polling timers (overrides PollingIntervals).
 `protected void `[`SortWaitingPolls`](#structFRH__PollControl_1adf3e88c4d6c1ce6f7759c4f62eb7e98f)`()` | Sorts the waiting pollers for by their next poll time.
 
-#### Members
+### Members
 
 #### `public  `[`FRH_PollControl`](#structFRH__PollControl_1ace8a8fbca0f6d5b799036fd5a65a95c4)`()` <a id="structFRH__PollControl_1ace8a8fbca0f6d5b799036fd5a65a95c4"></a>
 
@@ -282,7 +282,7 @@ struct FRH_AutoPoller
 
 Auto Poller to poll at a given interval for updates.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -308,7 +308,7 @@ Auto Poller to poll at a given interval for updates.
 `protected void `[`Register`](#structFRH__AutoPoller_1aa2c0d3621f9e073cb84b7d06b516e6aa)`()` | Registers with poll control (does not start timer).
 `protected void `[`Unregister`](#structFRH__AutoPoller_1ae6af4c99cfef6203d6d754f481af8ca3)`()` | Unregisters with poll control.
 
-#### Members
+### Members
 
 #### `public friend `[`FRH_PollControl`](#structFRH__AutoPoller_1a54996f25797ab347a029ec1247ff4819) <a id="structFRH__AutoPoller_1a54996f25797ab347a029ec1247ff4819"></a>
 

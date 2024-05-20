@@ -1,4 +1,4 @@
-# RHAPI_PlatformSessionPlayer <a id="group__RHAPI__PlatformSessionPlayer"></a>
+# group `RHAPI_PlatformSessionPlayer` <a id="group__RHAPI__PlatformSessionPlayer"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_PlatformSessionPlayer
 
 A platform player resource in a platform session.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -50,7 +50,7 @@ A platform player resource in a platform session.
 `public inline bool `[`IsLeaderDefaultValue`](#structFRHAPI__PlatformSessionPlayer_1a3b18105fa390a5974fc04aad4472abad)`() const` | Returns true if Leader_Optional is set and matches the default value.
 `public inline void `[`SetLeaderToDefault`](#structFRHAPI__PlatformSessionPlayer_1a8d7d302ebb8566e204633630192a6a74)`()` | Sets the value of Leader_Optional to its default and also sets Leader_IsSet to true.
 
-#### Members
+### Members
 
 #### `public int32 `[`PlayerId_Optional`](#structFRHAPI__PlatformSessionPlayer_1aa583360e52aae06e68cc240b4828b1c6) <a id="structFRHAPI__PlatformSessionPlayer_1aa583360e52aae06e68cc240b4828b1c6"></a>
 

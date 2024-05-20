@@ -1,4 +1,4 @@
-# RHAPI_UpdatePersonInfoRequest <a id="group__RHAPI__UpdatePersonInfoRequest"></a>
+# group `RHAPI_UpdatePersonInfoRequest` <a id="group__RHAPI__UpdatePersonInfoRequest"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_UpdatePersonInfoRequest
 
 Request to update a person&#39;s info.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -26,7 +26,7 @@ Request to update a person&#39;s info.
 `public inline const FString & `[`GetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1a45d6be43aae6a507a369fcd3a7bf6501)`() const` | Gets the value of Email.
 `public inline void `[`SetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1a247522d48abf10f07a16f29e31b95c36)`(FString NewValue)` | Sets the value of Email.
 
-#### Members
+### Members
 
 #### `public FString `[`Email`](#structFRHAPI__UpdatePersonInfoRequest_1af5a820fdad3bb4e59df07be959c7858e) <a id="structFRHAPI__UpdatePersonInfoRequest_1af5a820fdad3bb4e59df07be959c7858e"></a>
 

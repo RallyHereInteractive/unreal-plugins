@@ -1,4 +1,4 @@
-# RHAPI_AuditResponse <a id="group__RHAPI__AuditResponse"></a>
+# group `RHAPI_AuditResponse` <a id="group__RHAPI__AuditResponse"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_AuditResponse
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -30,7 +30,7 @@ struct FRHAPI_AuditResponse
 `public inline void `[`SetEvents`](#structFRHAPI__AuditResponse_1a9e2bb99293575fdbf783c14ceee024e6)`(TArray< `[`FRHAPI_AuditEvent`](RHAPI_AuditEvent.md#structFRHAPI__AuditEvent)` > NewValue)` | Sets the value of Events_Optional and also sets Events_IsSet to true.
 `public inline void `[`ClearEvents`](#structFRHAPI__AuditResponse_1a528133fb879ffc3d42ea118bd82c83c2)`()` | Clears the value of Events_Optional and sets Events_IsSet to false.
 
-#### Members
+### Members
 
 #### `public TArray< `[`FRHAPI_AuditEvent`](RHAPI_AuditEvent.md#structFRHAPI__AuditEvent)` > `[`Events_Optional`](#structFRHAPI__AuditResponse_1a02de7d3d634e988f405364ecf4d469b6) <a id="structFRHAPI__AuditResponse_1a02de7d3d634e988f405364ecf4d469b6"></a>
 

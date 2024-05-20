@@ -1,4 +1,4 @@
-# RHAPI_ExternalKeyEntitlement <a id="group__RHAPI__ExternalKeyEntitlement"></a>
+# group `RHAPI_ExternalKeyEntitlement` <a id="group__RHAPI__ExternalKeyEntitlement"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_ExternalKeyEntitlement
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -30,7 +30,7 @@ struct FRHAPI_ExternalKeyEntitlement
 `public inline bool `[`IsQuantityDefaultValue`](#structFRHAPI__ExternalKeyEntitlement_1a28fabc8019a38a4095a253b47a95ba85)`() const` | Returns true if Quantity matches the default value.
 `public inline void `[`SetQuantityToDefault`](#structFRHAPI__ExternalKeyEntitlement_1a78d3992451251c7886a18365176d6a10)`()` | Sets the value of Quantity to its default
 
-#### Members
+### Members
 
 #### `public FGuid `[`ExternalKeyCampaignId`](#structFRHAPI__ExternalKeyEntitlement_1abce6e9b546cabed58bef65fe84f251e0) <a id="structFRHAPI__ExternalKeyEntitlement_1abce6e9b546cabed58bef65fe84f251e0"></a>
 

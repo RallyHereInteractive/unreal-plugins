@@ -1,4 +1,4 @@
-# RHAPI_PublicKey <a id="group__RHAPI__PublicKey"></a>
+# group `RHAPI_PublicKey` <a id="group__RHAPI__PublicKey"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_PublicKey
 
 Public key for verifying Access Token JWTs This is in the JWK format as defined in [https://datatracker.ietf.org/doc/html/rfc7517#section-4](https://datatracker.ietf.org/doc/html/rfc7517#section-4).
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -38,7 +38,7 @@ Public key for verifying Access Token JWTs This is in the JWK format as defined 
 `public inline const FString & `[`GetE`](#structFRHAPI__PublicKey_1ad6e984160eb9de3a3fe4cda34b837827)`() const` | Gets the value of E.
 `public inline void `[`SetE`](#structFRHAPI__PublicKey_1aff75e812a3346e9fc253048d7c40a42a)`(FString NewValue)` | Sets the value of E.
 
-#### Members
+### Members
 
 #### `public FString `[`Kid`](#structFRHAPI__PublicKey_1a985410114ab7cd588e0d558f7fbfbf9a) <a id="structFRHAPI__PublicKey_1a985410114ab7cd588e0d558f7fbfbf9a"></a>
 

@@ -1,4 +1,4 @@
-# RHAPI_SessionPlayerUpdateResponse <a id="group__RHAPI__SessionPlayerUpdateResponse"></a>
+# group `RHAPI_SessionPlayerUpdateResponse` <a id="group__RHAPI__SessionPlayerUpdateResponse"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_SessionPlayerUpdateResponse
 
 Response to a request to update a player in a session.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -52,7 +52,7 @@ Response to a request to update a player in a session.
 `public inline void `[`SetCustomData`](#structFRHAPI__SessionPlayerUpdateResponse_1a2ff7004bde77929d76718821735ee5cb)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`ClearCustomData`](#structFRHAPI__SessionPlayerUpdateResponse_1a10c6e7f878de0a38058d2d3cf42b90dc)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FGuid `[`PlayerUuid_Optional`](#structFRHAPI__SessionPlayerUpdateResponse_1ad1366b614ec9bcf8718329a3f2305f20) <a id="structFRHAPI__SessionPlayerUpdateResponse_1ad1366b614ec9bcf8718329a3f2305f20"></a>
 

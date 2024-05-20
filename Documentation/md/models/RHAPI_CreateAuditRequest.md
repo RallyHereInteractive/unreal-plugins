@@ -1,4 +1,4 @@
-# RHAPI_CreateAuditRequest <a id="group__RHAPI__CreateAuditRequest"></a>
+# group `RHAPI_CreateAuditRequest` <a id="group__RHAPI__CreateAuditRequest"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_CreateAuditRequest
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -352,7 +352,7 @@ struct FRHAPI_CreateAuditRequest
 `public inline void `[`SetPlayers`](#structFRHAPI__CreateAuditRequest_1a94247061ed3667973d238b6941bfce07)`(TArray< FGuid > NewValue)` | Sets the value of Players_Optional and also sets Players_IsSet to true.
 `public inline void `[`ClearPlayers`](#structFRHAPI__CreateAuditRequest_1a69f092c9a60a172af8618766f7946567)`()` | Clears the value of Players_Optional and sets Players_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FString `[`EventName`](#structFRHAPI__CreateAuditRequest_1ae34f7ce8c8b4026dac0e127a26675792) <a id="structFRHAPI__CreateAuditRequest_1ae34f7ce8c8b4026dac0e127a26675792"></a>
 

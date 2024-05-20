@@ -1,4 +1,4 @@
-# RHAPI_LootEntitlement <a id="group__RHAPI__LootEntitlement"></a>
+# group `RHAPI_LootEntitlement` <a id="group__RHAPI__LootEntitlement"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_LootEntitlement
 
 How a Platform SKU will be converted into Loot for a player.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -68,7 +68,7 @@ How a Platform SKU will be converted into Loot for a player.
 `public inline bool `[`IsChargebackReversalLootIdDefaultValue`](#structFRHAPI__LootEntitlement_1aa0ba1b30005e46a5d6dc1d970308b1a7)`() const` | Returns true if ChargebackReversalLootId_Optional is set and matches the default value.
 `public inline void `[`SetChargebackReversalLootIdToDefault`](#structFRHAPI__LootEntitlement_1a742527a3389dffb53537bed7a00a6749)`()` | Sets the value of ChargebackReversalLootId_Optional to its default and also sets ChargebackReversalLootId_IsSet to true.
 
-#### Members
+### Members
 
 #### `public ERHAPI_EntitlementType `[`Type`](#structFRHAPI__LootEntitlement_1a5bb7423ffa834e3ed248ccffca0fe6dc) <a id="structFRHAPI__LootEntitlement_1a5bb7423ffa834e3ed248ccffca0fe6dc"></a>
 

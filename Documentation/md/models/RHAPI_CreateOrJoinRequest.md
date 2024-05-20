@@ -1,4 +1,4 @@
-# RHAPI_CreateOrJoinRequest <a id="group__RHAPI__CreateOrJoinRequest"></a>
+# group `RHAPI_CreateOrJoinRequest` <a id="group__RHAPI__CreateOrJoinRequest"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_CreateOrJoinRequest
 
 A request body for a player to join a session.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -64,7 +64,7 @@ A request body for a player to join a session.
 `public inline void `[`SetPlayer`](#structFRHAPI__CreateOrJoinRequest_1aea6bf2b7e381cc0e2d0df3e4ab3ecca5)`(`[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` NewValue)` | Sets the value of Player_Optional and also sets Player_IsSet to true.
 `public inline void `[`ClearPlayer`](#structFRHAPI__CreateOrJoinRequest_1a3714ab0adfecec9485860c63165f7977)`()` | Clears the value of Player_Optional and sets Player_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FString `[`ClientVersion`](#structFRHAPI__CreateOrJoinRequest_1a9fe6d696d707ca8e0e5c2713e9a59ee5) <a id="structFRHAPI__CreateOrJoinRequest_1a9fe6d696d707ca8e0e5c2713e9a59ee5"></a>
 

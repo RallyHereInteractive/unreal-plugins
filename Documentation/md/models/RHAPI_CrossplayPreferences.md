@@ -1,4 +1,4 @@
-# RHAPI_CrossplayPreferences <a id="group__RHAPI__CrossplayPreferences"></a>
+# group `RHAPI_CrossplayPreferences` <a id="group__RHAPI__CrossplayPreferences"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_CrossplayPreferences
 
 A session&#39;s or player&#39;s preferences around crossplay platforms and inputs. Permitted platforms and inputs will be checked when new players attempt to join a session.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -30,7 +30,7 @@ A session&#39;s or player&#39;s preferences around crossplay platforms and input
 `public inline const ERHAPI_CrossplayInput & `[`GetPermittedInput`](#structFRHAPI__CrossplayPreferences_1ad54395727b7ccfff2b671b951362d0e0)`() const` | Gets the value of PermittedInput.
 `public inline void `[`SetPermittedInput`](#structFRHAPI__CrossplayPreferences_1a7b0065b5374b1708ecbefd784b6a1b1b)`(ERHAPI_CrossplayInput NewValue)` | Sets the value of PermittedInput.
 
-#### Members
+### Members
 
 #### `public ERHAPI_CrossplayPlatform `[`PermittedPlatform`](#structFRHAPI__CrossplayPreferences_1a647bcd2529106e841d692fb555865051) <a id="structFRHAPI__CrossplayPreferences_1a647bcd2529106e841d692fb555865051"></a>
 

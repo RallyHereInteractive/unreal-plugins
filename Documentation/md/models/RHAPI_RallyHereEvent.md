@@ -1,4 +1,4 @@
-# RHAPI_RallyHereEvent <a id="group__RHAPI__RallyHereEvent"></a>
+# group `RHAPI_RallyHereEvent` <a id="group__RHAPI__RallyHereEvent"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_RallyHereEvent
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -76,7 +76,7 @@ struct FRHAPI_RallyHereEvent
 `public inline void `[`SetCorrelationId`](#structFRHAPI__RallyHereEvent_1a5494f9ff1e4cd6b341d55663c201009d)`(FString NewValue)` | Sets the value of CorrelationId_Optional and also sets CorrelationId_IsSet to true.
 `public inline void `[`ClearCorrelationId`](#structFRHAPI__RallyHereEvent_1a68b08b6136ad6f5fd85300d15478de1a)`()` | Clears the value of CorrelationId_Optional and sets CorrelationId_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FGuid `[`EventUuid`](#structFRHAPI__RallyHereEvent_1a54e4abe43d72d55ebce435082e4c667b) <a id="structFRHAPI__RallyHereEvent_1a54e4abe43d72d55ebce435082e4c667b"></a>
 

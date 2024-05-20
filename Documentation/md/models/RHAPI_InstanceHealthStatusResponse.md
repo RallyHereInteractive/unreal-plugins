@@ -1,4 +1,4 @@
-# RHAPI_InstanceHealthStatusResponse <a id="group__RHAPI__InstanceHealthStatusResponse"></a>
+# group `RHAPI_InstanceHealthStatusResponse` <a id="group__RHAPI__InstanceHealthStatusResponse"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_InstanceHealthStatusResponse
 
 Response body for an instance health check.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -26,7 +26,7 @@ Response body for an instance health check.
 `public inline const ERHAPI_InstanceHealthStatus & `[`GetUpdatedInstanceHealth`](#structFRHAPI__InstanceHealthStatusResponse_1a5ce08ac2c8e4fb15ac43a8ff6f15f258)`() const` | Gets the value of UpdatedInstanceHealth.
 `public inline void `[`SetUpdatedInstanceHealth`](#structFRHAPI__InstanceHealthStatusResponse_1a889b418b61dbfee55a2e52804fcd3215)`(ERHAPI_InstanceHealthStatus NewValue)` | Sets the value of UpdatedInstanceHealth.
 
-#### Members
+### Members
 
 #### `public ERHAPI_InstanceHealthStatus `[`UpdatedInstanceHealth`](#structFRHAPI__InstanceHealthStatusResponse_1a5353d047babab8d0085993f33d3a82a8) <a id="structFRHAPI__InstanceHealthStatusResponse_1a5353d047babab8d0085993f33d3a82a8"></a>
 

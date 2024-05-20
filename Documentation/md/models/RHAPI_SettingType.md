@@ -1,4 +1,4 @@
-# RHAPI_SettingType <a id="group__RHAPI__SettingType"></a>
+# group `RHAPI_SettingType` <a id="group__RHAPI__SettingType"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_SettingType
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -24,7 +24,7 @@ struct FRHAPI_SettingType
 `public inline const TMap< FString, `[`FRHAPI_SettingTypeVersion`](RHAPI_SettingTypeVersion.md#structFRHAPI__SettingTypeVersion)` > & `[`GetVersions`](#structFRHAPI__SettingType_1a0e2c33862b30c54b7acc43560f9eff0c)`() const` | Gets the value of Versions.
 `public inline void `[`SetVersions`](#structFRHAPI__SettingType_1a5f3c6c20cd553b0601ec0ac82c709b76)`(TMap< FString, `[`FRHAPI_SettingTypeVersion`](RHAPI_SettingTypeVersion.md#structFRHAPI__SettingTypeVersion)` > NewValue)` | Sets the value of Versions.
 
-#### Members
+### Members
 
 #### `public TMap< FString, `[`FRHAPI_SettingTypeVersion`](RHAPI_SettingTypeVersion.md#structFRHAPI__SettingTypeVersion)` > `[`Versions`](#structFRHAPI__SettingType_1ab890cf6c935d2cd691a9b5c4caac7cc1) <a id="structFRHAPI__SettingType_1ab890cf6c935d2cd691a9b5c4caac7cc1"></a>
 

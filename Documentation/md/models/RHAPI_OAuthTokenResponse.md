@@ -1,4 +1,4 @@
-# RHAPI_OAuthTokenResponse <a id="group__RHAPI__OAuthTokenResponse"></a>
+# group `RHAPI_OAuthTokenResponse` <a id="group__RHAPI__OAuthTokenResponse"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_OAuthTokenResponse
 
 OAuth token exchange response. Successful response will contain an access_token and refresh_token. If the user has not accepted all required agreements, the response will contain the appropriate needs_* flags and a regenerated_code. The regenerated_code is an authorization_code that can be used after the user has accepted the required agreements.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -98,7 +98,7 @@ OAuth token exchange response. Successful response will contain an access_token 
 `public inline void `[`SetErrorMessage`](#structFRHAPI__OAuthTokenResponse_1a9b3deaad5aff42f75ca1b8d92a88e854)`(FString NewValue)` | Sets the value of ErrorMessage_Optional and also sets ErrorMessage_IsSet to true.
 `public inline void `[`ClearErrorMessage`](#structFRHAPI__OAuthTokenResponse_1a80ef23c341b72eb8297c8accfdbc2c91)`()` | Clears the value of ErrorMessage_Optional and sets ErrorMessage_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FString `[`AccessToken_Optional`](#structFRHAPI__OAuthTokenResponse_1adde232680fa32875137ce7f9163f3aa0) <a id="structFRHAPI__OAuthTokenResponse_1adde232680fa32875137ce7f9163f3aa0"></a>
 

@@ -1,4 +1,4 @@
-# RHAPI_MatchInstance <a id="group__RHAPI__MatchInstance"></a>
+# group `RHAPI_MatchInstance` <a id="group__RHAPI__MatchInstance"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_MatchInstance
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -90,7 +90,7 @@ struct FRHAPI_MatchInstance
 `public inline void `[`SetHostType`](#structFRHAPI__MatchInstance_1a5b8a1ba45e5b526cd992d7c571a81524)`(ERHAPI_MatchHostType NewValue)` | Sets the value of HostType_Optional and also sets HostType_IsSet to true.
 `public inline void `[`ClearHostType`](#structFRHAPI__MatchInstance_1a2cdc7dda631bde64222f3ec32d9417c9)`()` | Clears the value of HostType_Optional and sets HostType_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FString `[`InstanceId_Optional`](#structFRHAPI__MatchInstance_1a377ab6c8dae9f8665a729d42723f1fb3) <a id="structFRHAPI__MatchInstance_1a377ab6c8dae9f8665a729d42723f1fb3"></a>
 

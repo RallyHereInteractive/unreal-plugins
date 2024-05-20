@@ -1,4 +1,4 @@
-# RHAPI_MapConfig <a id="group__RHAPI__MapConfig"></a>
+# group `RHAPI_MapConfig` <a id="group__RHAPI__MapConfig"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_MapConfig
 
 DEPRECATED Configuration about a specific map for an instance to load into.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -68,7 +68,7 @@ DEPRECATED Configuration about a specific map for an instance to load into.
 `public inline void `[`SetCustomData`](#structFRHAPI__MapConfig_1ae7a5fe2266db4784b236b2ce9a39e4e8)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`ClearCustomData`](#structFRHAPI__MapConfig_1ab2a70607f4490b6fc462260b8b91a693)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
-#### Members
+### Members
 
 #### `public int32 `[`MapGameId_Optional`](#structFRHAPI__MapConfig_1a0216f5bb2b3caf91e9e0c586f3bacad3) <a id="structFRHAPI__MapConfig_1a0216f5bb2b3caf91e9e0c586f3bacad3"></a>
 

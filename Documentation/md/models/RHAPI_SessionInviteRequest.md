@@ -1,4 +1,4 @@
-# RHAPI_SessionInviteRequest <a id="group__RHAPI__SessionInviteRequest"></a>
+# group `RHAPI_SessionInviteRequest` <a id="group__RHAPI__SessionInviteRequest"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_SessionInviteRequest
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -52,7 +52,7 @@ struct FRHAPI_SessionInviteRequest
 `public inline void `[`SetCustomData`](#structFRHAPI__SessionInviteRequest_1a3e89858749deba8535a5ed21cfb7d6c8)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`ClearCustomData`](#structFRHAPI__SessionInviteRequest_1abf043838cd5ee967422e9bac37825728)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
-#### Members
+### Members
 
 #### `public int32 `[`TeamId_Optional`](#structFRHAPI__SessionInviteRequest_1a6960c5dd86375d9d05584b631333667c) <a id="structFRHAPI__SessionInviteRequest_1a6960c5dd86375d9d05584b631333667c"></a>
 

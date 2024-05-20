@@ -1,4 +1,4 @@
-# RHAPI_TimeFrame <a id="group__RHAPI__TimeFrame"></a>
+# group `RHAPI_TimeFrame` <a id="group__RHAPI__TimeFrame"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_TimeFrame
 
 Time Frames are used to calculate the expiration of Inventory.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -98,7 +98,7 @@ Time Frames are used to calculate the expiration of Inventory.
 `public inline void `[`SetCacheInfo`](#structFRHAPI__TimeFrame_1aa780f7c451501bb1488d8264f68e141f)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__TimeFrame_1a38a9e13c08ae05b91dd35621c129a2d1)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FString `[`Name_Optional`](#structFRHAPI__TimeFrame_1a9f98d9b63bc7ed584b19f122871a6fce) <a id="structFRHAPI__TimeFrame_1a9f98d9b63bc7ed584b19f122871a6fce"></a>
 

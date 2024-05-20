@@ -1,4 +1,4 @@
-# RHAPI_MatchmakingInfo <a id="group__RHAPI__MatchmakingInfo"></a>
+# group `RHAPI_MatchmakingInfo` <a id="group__RHAPI__MatchmakingInfo"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_MatchmakingInfo
 
 Info about the matchmaking status in a session.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -46,7 +46,7 @@ Info about the matchmaking status in a session.
 `public inline void `[`SetQueueId`](#structFRHAPI__MatchmakingInfo_1a11debe1f627cb103447728a5bebafe57)`(FString NewValue)` | Sets the value of QueueId_Optional and also sets QueueId_IsSet to true.
 `public inline void `[`ClearQueueId`](#structFRHAPI__MatchmakingInfo_1a21d733a35471ef1059b550b810e33b31)`()` | Clears the value of QueueId_Optional and sets QueueId_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FString `[`TicketId`](#structFRHAPI__MatchmakingInfo_1a18cee065a4d780d93d1cd2a9bfde1886) <a id="structFRHAPI__MatchmakingInfo_1a18cee065a4d780d93d1cd2a9bfde1886"></a>
 

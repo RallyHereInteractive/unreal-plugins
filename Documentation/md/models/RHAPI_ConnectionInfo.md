@@ -1,4 +1,4 @@
-# RHAPI_ConnectionInfo <a id="group__RHAPI__ConnectionInfo"></a>
+# group `RHAPI_ConnectionInfo` <a id="group__RHAPI__ConnectionInfo"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_ConnectionInfo
 
 Connection info about the requesting client.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -26,7 +26,7 @@ Connection info about the requesting client.
 `public inline const FString & `[`GetIp`](#structFRHAPI__ConnectionInfo_1add13d7706711b691a3dbf9bbd504a749)`() const` | Gets the value of Ip.
 `public inline void `[`SetIp`](#structFRHAPI__ConnectionInfo_1ab2a203deb1501471c2ff86bcfd6ae3b3)`(FString NewValue)` | Sets the value of Ip.
 
-#### Members
+### Members
 
 #### `public FString `[`Ip`](#structFRHAPI__ConnectionInfo_1a77c50f9776e44b93e60bf4b8c5e2c3b6) <a id="structFRHAPI__ConnectionInfo_1a77c50f9776e44b93e60bf4b8c5e2c3b6"></a>
 

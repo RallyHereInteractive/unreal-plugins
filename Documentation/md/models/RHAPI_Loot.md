@@ -1,4 +1,4 @@
-# RHAPI_Loot <a id="group__RHAPI__Loot"></a>
+# group `RHAPI_Loot` <a id="group__RHAPI__Loot"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_Loot
 
 Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is granted to the player or the Sub Vendor is fulfilled but not both.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -396,7 +396,7 @@ Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is grant
 `public inline bool `[`IsHardQuantityMaximumDefaultValue`](#structFRHAPI__Loot_1a1dcf73ab36076f3fe98df72496ac7ae1)`() const` | Returns true if HardQuantityMaximum_Optional is set and matches the default value.
 `public inline void `[`SetHardQuantityMaximumToDefault`](#structFRHAPI__Loot_1ae75d4313ecf4e431d50d1a6defb18831)`()` | Sets the value of HardQuantityMaximum_Optional to its default and also sets HardQuantityMaximum_IsSet to true.
 
-#### Members
+### Members
 
 #### `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__Loot_1a3ac4b8fa1534ddc987f9809a78b0f573) <a id="structFRHAPI__Loot_1a3ac4b8fa1534ddc987f9809a78b0f573"></a>
 

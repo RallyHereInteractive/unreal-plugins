@@ -1,4 +1,4 @@
-# RHAPI_SetSinglePlayerSettingRequest <a id="group__RHAPI__SetSinglePlayerSettingRequest"></a>
+# group `RHAPI_SetSinglePlayerSettingRequest` <a id="group__RHAPI__SetSinglePlayerSettingRequest"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_SetSinglePlayerSettingRequest
 
 Updatable contents of a setting for a player.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -32,7 +32,7 @@ Updatable contents of a setting for a player.
 `public inline const `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` & `[`GetValue`](#structFRHAPI__SetSinglePlayerSettingRequest_1aaa2c2551ebb2f201f7fcdf9e6e8adfc7)`() const` | Gets the value of Value.
 `public inline void `[`SetValue`](#structFRHAPI__SetSinglePlayerSettingRequest_1a74b0b55e594aa836bbfc55c5673fad40)`(`[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` NewValue)` | Sets the value of Value.
 
-#### Members
+### Members
 
 #### `public int32 `[`V`](#structFRHAPI__SetSinglePlayerSettingRequest_1ac1b3bbda4460108115c091b7c069ec5d) <a id="structFRHAPI__SetSinglePlayerSettingRequest_1ac1b3bbda4460108115c091b7c069ec5d"></a>
 

@@ -1,4 +1,4 @@
-# RHAPI_BodyUpdateOpportunityById <a id="group__RHAPI__BodyUpdateOpportunityById"></a>
+# group `RHAPI_BodyUpdateOpportunityById` <a id="group__RHAPI__BodyUpdateOpportunityById"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_BodyUpdateOpportunityById
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -46,7 +46,7 @@ struct FRHAPI_BodyUpdateOpportunityById
 `public inline bool `[`IsAbortSecondsDefaultValue`](#structFRHAPI__BodyUpdateOpportunityById_1a36f8b9127d7f5d7f0d84f54449b27ee5)`() const` | Returns true if AbortSeconds_Optional is set and matches the default value.
 `public inline void `[`SetAbortSecondsToDefault`](#structFRHAPI__BodyUpdateOpportunityById_1a8df7404741bbab7707ac20df7fd1d782)`()` | Sets the value of AbortSeconds_Optional to its default and also sets AbortSeconds_IsSet to true.
 
-#### Members
+### Members
 
 #### `public ERHAPI_OpportunityState `[`State`](#structFRHAPI__BodyUpdateOpportunityById_1a34aec65b8dce5bc71caa0e851c6249fa) <a id="structFRHAPI__BodyUpdateOpportunityById_1a34aec65b8dce5bc71caa0e851c6249fa"></a>
 

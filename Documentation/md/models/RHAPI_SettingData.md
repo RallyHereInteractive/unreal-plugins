@@ -1,4 +1,4 @@
-# RHAPI_SettingData <a id="group__RHAPI__SettingData"></a>
+# group `RHAPI_SettingData` <a id="group__RHAPI__SettingData"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_SettingData
 
 Setting version/value data from a specific setting type/key for a player.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -38,7 +38,7 @@ Setting version/value data from a specific setting type/key for a player.
 `public inline void `[`SetValue`](#structFRHAPI__SettingData_1a829c0a3854f445ef75d87d45802fdeea)`(`[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` NewValue)` | Sets the value of Value_Optional and also sets Value_IsSet to true.
 `public inline void `[`ClearValue`](#structFRHAPI__SettingData_1ae921409b065fd1a162494dbf3f9906ab)`()` | Clears the value of Value_Optional and sets Value_IsSet to false.
 
-#### Members
+### Members
 
 #### `public int32 `[`V`](#structFRHAPI__SettingData_1a2512594c15d94a1fb5d9f3265fe2959b) <a id="structFRHAPI__SettingData_1a2512594c15d94a1fb5d9f3265fe2959b"></a>
 

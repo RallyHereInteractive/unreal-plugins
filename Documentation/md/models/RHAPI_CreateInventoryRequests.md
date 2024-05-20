@@ -1,4 +1,4 @@
-# RHAPI_CreateInventoryRequests <a id="group__RHAPI__CreateInventoryRequests"></a>
+# group `RHAPI_CreateInventoryRequests` <a id="group__RHAPI__CreateInventoryRequests"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_CreateInventoryRequests
 
 Collection of Create Inventory Requests. This will create new Inventory for each request. Each individual entry will be processed in the order they are specified in the collection. <b>Note: Partial success is possible as each request is processed individually.</b>.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -46,7 +46,7 @@ Collection of Create Inventory Requests. This will create new Inventory for each
 `public inline const TArray< `[`FRHAPI_CreateInventoryRequest`](RHAPI_CreateInventoryRequest.md#structFRHAPI__CreateInventoryRequest)` > & `[`GetInventory`](#structFRHAPI__CreateInventoryRequests_1a3e03c3090869f269a876a2aebc5ecae9)`() const` | Gets the value of Inventory.
 `public inline void `[`SetInventory`](#structFRHAPI__CreateInventoryRequests_1ae6e1d27accc25ddc56041bf6ac6af78a)`(TArray< `[`FRHAPI_CreateInventoryRequest`](RHAPI_CreateInventoryRequest.md#structFRHAPI__CreateInventoryRequest)` > NewValue)` | Sets the value of Inventory.
 
-#### Members
+### Members
 
 #### `public ERHAPI_Source `[`Source_Optional`](#structFRHAPI__CreateInventoryRequests_1a5b4aab4ca2903df59450ecbd606a6738) <a id="structFRHAPI__CreateInventoryRequests_1a5b4aab4ca2903df59450ecbd606a6738"></a>
 

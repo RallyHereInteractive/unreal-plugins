@@ -1,4 +1,4 @@
-# RHAPI_InventoryRecord <a id="group__RHAPI__InventoryRecord"></a>
+# group `RHAPI_InventoryRecord` <a id="group__RHAPI__InventoryRecord"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_InventoryRecord
 
 Inventory Record for a Player.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -82,7 +82,7 @@ Inventory Record for a Player.
 `public inline void `[`SetCustomData`](#structFRHAPI__InventoryRecord_1a4d512c49c6baa3295b90513f8cbe17a8)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`ClearCustomData`](#structFRHAPI__InventoryRecord_1adef59732fd95e39cd8699d8fae251ec7)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FGuid `[`InventoryId`](#structFRHAPI__InventoryRecord_1a3066d9f5f0c8542ce6c146c8bffe52d7) <a id="structFRHAPI__InventoryRecord_1a3066d9f5f0c8542ce6c146c8bffe52d7"></a>
 

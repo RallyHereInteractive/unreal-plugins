@@ -1,4 +1,4 @@
-# RHAPI_JoinParams <a id="group__RHAPI__JoinParams"></a>
+# group `RHAPI_JoinParams` <a id="group__RHAPI__JoinParams"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_JoinParams
 
 Parameters provided by the allocation system or an instance on how to connect.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -40,7 +40,7 @@ Parameters provided by the allocation system or an instance on how to connect.
 `public inline void `[`SetCustomData`](#structFRHAPI__JoinParams_1a105e13210dd92f34682e6f504c7a8f4a)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`ClearCustomData`](#structFRHAPI__JoinParams_1acbe843cc9336e24b9b7ac3dbeac3bccb)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FString `[`PublicConnStr`](#structFRHAPI__JoinParams_1ace1ac4405d1488da7611d0c6ee4dcc00) <a id="structFRHAPI__JoinParams_1ace1ac4405d1488da7611d0c6ee4dcc00"></a>
 

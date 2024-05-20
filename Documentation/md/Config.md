@@ -1,4 +1,4 @@
-# Config <a id="group__Config"></a>
+# group `Config` <a id="group__Config"></a>
 
 ## Summary
 
@@ -16,7 +16,7 @@ class URH_ConfigSubsystem
 
 Config Subsystem used for interfacing with configuration coming from the core servers.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -54,7 +54,7 @@ Config Subsystem used for interfacing with configuration coming from the core se
 `protected virtual void `[`OnFetchKVs`](#classURH__ConfigSubsystem_1ae09c88d61a5e98e23756a2abc6f6ebb3)`(const GetKVsAPIType::Response & Resp)` | Handles the response to a FetchKVs call.
 `typedef `[`GetKVsAPIType`](#classURH__ConfigSubsystem_1abb6be8f99a9217fb5704e5e4ad9de8cb) | 
 
-#### Members
+### Members
 
 #### `public FKVsUpdatedDelegate `[`OnKVsUpdated`](#classURH__ConfigSubsystem_1a07bcba8c1fa8aac58b54bd8de6cd9211) <a id="classURH__ConfigSubsystem_1a07bcba8c1fa8aac58b54bd8de6cd9211"></a>
 
@@ -261,7 +261,7 @@ Handles the response to a FetchKVs call.
 
 An object that caches information about server time and differences.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -272,7 +272,7 @@ An object that caches information about server time and differences.
 `public inline bool `[`GetServerTimeDrift`](#structFRH__ServerTimeCache_1a777a359d346cb75f394b622844fa6f68)`(FTimespan & Timespan) const` | Gets the approximate server time, if we have received one.
 `public inline void `[`ImportAPITime`](#structFRH__ServerTimeCache_1a5b805808b827d56da61fe16ecd38cf20)`(const RallyHereAPI::FResponse_GetUtcTime & Time)` | Imports data from the server response.
 
-#### Members
+### Members
 
 #### `public FDateTime `[`LastReceivedServerDateTime`](#structFRH__ServerTimeCache_1a63f0350b41f3722399766db10f11366e) <a id="structFRH__ServerTimeCache_1a63f0350b41f3722399766db10f11366e"></a>
 

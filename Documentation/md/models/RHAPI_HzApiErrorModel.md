@@ -1,4 +1,4 @@
-# RHAPI_HzApiErrorModel <a id="group__RHAPI__HzApiErrorModel"></a>
+# group `RHAPI_HzApiErrorModel` <a id="group__RHAPI__HzApiErrorModel"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_HzApiErrorModel
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -40,7 +40,7 @@ struct FRHAPI_HzApiErrorModel
 `public inline const FString & `[`GetDesc`](#structFRHAPI__HzApiErrorModel_1a65965171338907af99cdae71df426171)`() const` | Gets the value of Desc.
 `public inline void `[`SetDesc`](#structFRHAPI__HzApiErrorModel_1af32229f3c1dc37276045d5221e905d27)`(FString NewValue)` | Sets the value of Desc.
 
-#### Members
+### Members
 
 #### `public bool `[`AuthSuccess_Optional`](#structFRHAPI__HzApiErrorModel_1a9a5418359a128a7d076782f4a2363ab6) <a id="structFRHAPI__HzApiErrorModel_1a9a5418359a128a7d076782f4a2363ab6"></a>
 

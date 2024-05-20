@@ -1,4 +1,4 @@
-# RHAPI_InventoryContextResponse <a id="group__RHAPI__InventoryContextResponse"></a>
+# group `RHAPI_InventoryContextResponse` <a id="group__RHAPI__InventoryContextResponse"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_InventoryContextResponse
 
 Inventory Context for a Player.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -32,7 +32,7 @@ Inventory Context for a Player.
 `public inline void `[`SetInventory`](#structFRHAPI__InventoryContextResponse_1a55bde5b6a680c3b5985044755a31d1f3)`(`[`FRHAPI_Inventory`](RHAPI_Inventory.md#structFRHAPI__Inventory)` NewValue)` | Sets the value of Inventory_Optional and also sets Inventory_IsSet to true.
 `public inline void `[`ClearInventory`](#structFRHAPI__InventoryContextResponse_1a41cea14fe48b16820fe86c112069ede4)`()` | Clears the value of Inventory_Optional and sets Inventory_IsSet to false.
 
-#### Members
+### Members
 
 #### `public `[`FRHAPI_Inventory`](RHAPI_Inventory.md#structFRHAPI__Inventory)` `[`Inventory_Optional`](#structFRHAPI__InventoryContextResponse_1adf1766726cd900f692cdab6e1816713c) <a id="structFRHAPI__InventoryContextResponse_1adf1766726cd900f692cdab6e1816713c"></a>
 

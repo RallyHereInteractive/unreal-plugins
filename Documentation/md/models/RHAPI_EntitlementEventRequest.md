@@ -1,4 +1,4 @@
-# RHAPI_EntitlementEventRequest <a id="group__RHAPI__EntitlementEventRequest"></a>
+# group `RHAPI_EntitlementEventRequest` <a id="group__RHAPI__EntitlementEventRequest"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_EntitlementEventRequest
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -82,7 +82,7 @@ struct FRHAPI_EntitlementEventRequest
 `public inline void `[`SetPlatformData`](#structFRHAPI__EntitlementEventRequest_1a9f9b0e6896a3d27b1d59acc7b72f7d97)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` NewValue)` | Sets the value of PlatformData_Optional and also sets PlatformData_IsSet to true.
 `public inline void `[`ClearPlatformData`](#structFRHAPI__EntitlementEventRequest_1a2c87d43e88c16674be4f11149059b822)`()` | Clears the value of PlatformData_Optional and sets PlatformData_IsSet to false.
 
-#### Members
+### Members
 
 #### `public ERHAPI_EntitlementActionType `[`ActionType`](#structFRHAPI__EntitlementEventRequest_1abe0be0d3e0fdf772ade0349a74a6785e) <a id="structFRHAPI__EntitlementEventRequest_1abe0be0d3e0fdf772ade0349a74a6785e"></a>
 

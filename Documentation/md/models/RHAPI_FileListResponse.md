@@ -1,4 +1,4 @@
-# RHAPI_FileListResponse <a id="group__RHAPI__FileListResponse"></a>
+# group `RHAPI_FileListResponse` <a id="group__RHAPI__FileListResponse"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_FileListResponse
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -24,7 +24,7 @@ struct FRHAPI_FileListResponse
 `public inline const TArray< `[`FRHAPI_FileResponse`](RHAPI_FileResponse.md#structFRHAPI__FileResponse)` > & `[`GetFiles`](#structFRHAPI__FileListResponse_1ae35c95ec77215e43c48170d1359998bd)`() const` | Gets the value of Files.
 `public inline void `[`SetFiles`](#structFRHAPI__FileListResponse_1af9d165899f5c358c51bd9d04b023d0c2)`(TArray< `[`FRHAPI_FileResponse`](RHAPI_FileResponse.md#structFRHAPI__FileResponse)` > NewValue)` | Sets the value of Files.
 
-#### Members
+### Members
 
 #### `public TArray< `[`FRHAPI_FileResponse`](RHAPI_FileResponse.md#structFRHAPI__FileResponse)` > `[`Files`](#structFRHAPI__FileListResponse_1a63b019ed0ecc338c10bc3cdb9a280212) <a id="structFRHAPI__FileListResponse_1a63b019ed0ecc338c10bc3cdb9a280212"></a>
 

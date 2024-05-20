@@ -1,4 +1,4 @@
-# RHAPI_PlayerResponse <a id="group__RHAPI__PlayerResponse"></a>
+# group `RHAPI_PlayerResponse` <a id="group__RHAPI__PlayerResponse"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_PlayerResponse
 
 Response for getting a player&#39;s info.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -32,7 +32,7 @@ Response for getting a player&#39;s info.
 `public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__PlayerResponse_1a75fb0b696a3523f43cc84316c727f559)`() const` | Gets the value of PlayerUuid.
 `public inline void `[`SetPlayerUuid`](#structFRHAPI__PlayerResponse_1a9a02552a86853550af3ed132f5392167)`(FGuid NewValue)` | Sets the value of PlayerUuid.
 
-#### Members
+### Members
 
 #### `public int32 `[`PlayerId`](#structFRHAPI__PlayerResponse_1ad310dc7254bc7601cb78f946655b4896) <a id="structFRHAPI__PlayerResponse_1ad310dc7254bc7601cb78f946655b4896"></a>
 

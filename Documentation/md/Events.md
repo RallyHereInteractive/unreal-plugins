@@ -1,4 +1,4 @@
-# Events <a id="group__Events"></a>
+# group `Events` <a id="group__Events"></a>
 
 ## Summary
 
@@ -38,7 +38,7 @@ Event that is triggered at the start of the application and when we have generat
 
 rh.correlation_start
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -55,7 +55,7 @@ rh.correlation_start
 `public inline  `[`FCorrelationStartEvent`](#structRHStandardEvents_1_1FCorrelationStartEvent_1a1a51eff01e7eb9d12b21c31bf06b8070)`()` | 
 `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FCorrelationStartEvent_1aa06c42ce5f4bb34ad9f481c14c2e806d)`(TSharedPtr< IAnalyticsProvider > Provider) const` | 
 
-#### Members
+### Members
 
 #### `public FString `[`PlatformName`](#structRHStandardEvents_1_1FCorrelationStartEvent_1a8e604b52ad66462ed3bfeed0d636db82) <a id="structRHStandardEvents_1_1FCorrelationStartEvent_1a8e604b52ad66462ed3bfeed0d636db82"></a>
 
@@ -107,7 +107,7 @@ This event is triggered to mark the end of tracking events. Typically triggered 
 
 rh.correlation_end
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -117,7 +117,7 @@ rh.correlation_end
 `public inline  `[`FCorrelationEndEvent`](#structRHStandardEvents_1_1FCorrelationEndEvent_1ab67461755e3ea773980869285b599e8d)`()` | 
 `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FCorrelationEndEvent_1acbe26340b20e312185ca15cb63410c52)`(TSharedPtr< IAnalyticsProvider > Provider) const` | 
 
-#### Members
+### Members
 
 #### `public TOptional< FString > `[`Reason`](#structRHStandardEvents_1_1FCorrelationEndEvent_1a13520150a2320beaa4d3fb6e711e942c) <a id="structRHStandardEvents_1_1FCorrelationEndEvent_1a13520150a2320beaa4d3fb6e711e942c"></a>
 
@@ -141,7 +141,7 @@ Records the first time a user launches an app and when device information change
 
 rh.client_device
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -158,7 +158,7 @@ rh.client_device
 `public inline  `[`FClientDeviceEvent`](#structRHStandardEvents_1_1FClientDeviceEvent_1ad549fc630bc30c9f77f2d5f1a6c39ac3)`()` | 
 `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FClientDeviceEvent_1a54f90bffb25c8b36caf77e901b7f32ed)`(TSharedPtr< IAnalyticsProvider > Provider) const` | 
 
-#### Members
+### Members
 
 #### `public TOptional< FString > `[`CpuType`](#structRHStandardEvents_1_1FClientDeviceEvent_1a8a9cb7125da22db2fca5e9f37b577a8c) <a id="structRHStandardEvents_1_1FClientDeviceEvent_1a8a9cb7125da22db2fca5e9f37b577a8c"></a>
 
@@ -210,7 +210,7 @@ This event is triggered when the player / game client has an instance to connect
 
 rh.instance_join_start
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -221,7 +221,7 @@ rh.instance_join_start
 `public inline  `[`FInstanceJoinStartEvent`](#structRHStandardEvents_1_1FInstanceJoinStartEvent_1a9fe9145048ff3fc4d3c3c951d8a1f2ec)`()` | 
 `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceJoinStartEvent_1a18aae3f8bfeeb923bfcf877511d26cc9)`(TSharedPtr< IAnalyticsProvider > Provider) const` | 
 
-#### Members
+### Members
 
 #### `public TOptional< FString > `[`SessionId`](#structRHStandardEvents_1_1FInstanceJoinStartEvent_1ac697b9f001444fb9d7485ecfe41630b0) <a id="structRHStandardEvents_1_1FInstanceJoinStartEvent_1ac697b9f001444fb9d7485ecfe41630b0"></a>
 
@@ -249,7 +249,7 @@ This event is triggered when the player / game client has attempted to connect t
 
 rh.instnace_join_complete
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -261,7 +261,7 @@ rh.instnace_join_complete
 `public inline  `[`FInstanceJoinCompleteEvent`](#structRHStandardEvents_1_1FInstanceJoinCompleteEvent_1a90fc553eeebc4e89006ed2709011fc10)`()` | 
 `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceJoinCompleteEvent_1a2b9f43b23fb6ea4254f6cdb3dd5d03b0)`(TSharedPtr< IAnalyticsProvider > Provider) const` | 
 
-#### Members
+### Members
 
 #### `public bool `[`IsSuccess`](#structRHStandardEvents_1_1FInstanceJoinCompleteEvent_1a7f22215472927a1e1560f110957b381a) <a id="structRHStandardEvents_1_1FInstanceJoinCompleteEvent_1a7f22215472927a1e1560f110957b381a"></a>
 
@@ -293,7 +293,7 @@ This event is triggered when a player / game client has disconnected from the in
 
 rh.instance_left
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -304,7 +304,7 @@ rh.instance_left
 `public inline  `[`FInstanceLeftEvent`](#structRHStandardEvents_1_1FInstanceLeftEvent_1a698bd9d2e86ef8f5956b84286c677ba6)`()` | 
 `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceLeftEvent_1adeafad021ed9b7fe7ea6c07237a4e5e0)`(TSharedPtr< IAnalyticsProvider > Provider) const` | 
 
-#### Members
+### Members
 
 #### `public TOptional< FString > `[`SessionId`](#structRHStandardEvents_1_1FInstanceLeftEvent_1a137db99dea205b6820ee4012be508b8d) <a id="structRHStandardEvents_1_1FInstanceLeftEvent_1a137db99dea205b6820ee4012be508b8d"></a>
 
@@ -332,7 +332,7 @@ This event is triggered when the host detects a hello signal from a player / gam
 
 rh.instance_hello_received
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -344,7 +344,7 @@ rh.instance_hello_received
 `public inline  `[`FInstanceHelloReceivedEvent`](#structRHStandardEvents_1_1FInstanceHelloReceivedEvent_1acf31d6acaee497ce21e28d13c868d677)`()` | 
 `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceHelloReceivedEvent_1acb3da06c8a8e2a674b37513cc8225f5c)`(TSharedPtr< IAnalyticsProvider > Provider) const` | 
 
-#### Members
+### Members
 
 #### `public TOptional< FString > `[`SessionId`](#structRHStandardEvents_1_1FInstanceHelloReceivedEvent_1a62b4a2a6d6cce74d720b1fdf3a14b53e) <a id="structRHStandardEvents_1_1FInstanceHelloReceivedEvent_1a62b4a2a6d6cce74d720b1fdf3a14b53e"></a>
 
@@ -376,7 +376,7 @@ This event is triggered when the host receives a login signal from a player / ga
 
 rh.instance_login_received
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -392,7 +392,7 @@ rh.instance_login_received
 `public inline  `[`FInstanceLoginReceivedEvent`](#structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1ab9cf4514ca3affaad4f8a8d637fae248)`()` | 
 `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1a636bc78d31cc71600065a000f9ef4920)`(TSharedPtr< IAnalyticsProvider > Provider) const` | 
 
-#### Members
+### Members
 
 #### `public bool `[`IsSuccess`](#structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1a3e6b3f4fafeb7250ff18b2e642bb26c7) <a id="structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1a3e6b3f4fafeb7250ff18b2e642bb26c7"></a>
 
@@ -438,7 +438,7 @@ This event is triggered when the host receives a join signal from a player / gam
 
 rh.instance_join_received
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -450,7 +450,7 @@ rh.instance_join_received
 `public inline  `[`FInstanceJoinReceivedEvent`](#structRHStandardEvents_1_1FInstanceJoinReceivedEvent_1ad9f191b94536fd1a693453b5b04aa7db)`()` | 
 `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceJoinReceivedEvent_1a5346d8d8bfaf1197ead639cfe58ba231)`(TSharedPtr< IAnalyticsProvider > Provider) const` | 
 
-#### Members
+### Members
 
 #### `public bool `[`IsSuccess`](#structRHStandardEvents_1_1FInstanceJoinReceivedEvent_1a4dd1e3633ac01bc8321a2c4c0186d4e2) <a id="structRHStandardEvents_1_1FInstanceJoinReceivedEvent_1a4dd1e3633ac01bc8321a2c4c0186d4e2"></a>
 
@@ -480,7 +480,7 @@ This event is triggered when the host detects a client disconnection (either cau
 
 rh.instance_client_disconnect
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -492,7 +492,7 @@ rh.instance_client_disconnect
 `public inline  `[`FInstanceClientDisconnectEvent`](#structRHStandardEvents_1_1FInstanceClientDisconnectEvent_1a66881d90ba7836f59ffdbaf86058ab76)`()` | 
 `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceClientDisconnectEvent_1a518754aa3e41452b87a617ba74047d2f)`(TSharedPtr< IAnalyticsProvider > Provider) const` | 
 
-#### Members
+### Members
 
 #### `public TOptional< FString > `[`SessionId`](#structRHStandardEvents_1_1FInstanceClientDisconnectEvent_1acc115067d56487b45cb1781af2394049) <a id="structRHStandardEvents_1_1FInstanceClientDisconnectEvent_1acc115067d56487b45cb1781af2394049"></a>
 
@@ -524,7 +524,7 @@ This event is triggered at the start of the client login process.
 
 rh.login_start
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -533,7 +533,7 @@ rh.login_start
 `public inline  `[`FLoginStartEvent`](#structRHStandardEvents_1_1FLoginStartEvent_1ade639811664eb76689e326042f554bca)`()` | 
 `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FLoginStartEvent_1af024329f3908140ea3739f1a21e6f968)`(TSharedPtr< IAnalyticsProvider > Provider) const` | 
 
-#### Members
+### Members
 
 #### `public TOptional< FString > `[`PlatformDisplayName`](#structRHStandardEvents_1_1FLoginStartEvent_1ad86dab7ee24d5268c6a919f4bd940bee) <a id="structRHStandardEvents_1_1FLoginStartEvent_1ad86dab7ee24d5268c6a919f4bd940bee"></a>
 
@@ -553,7 +553,7 @@ This event is triggered when the login process has completed.This event is meant
 
 rh.login_complete
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -570,7 +570,7 @@ rh.login_complete
 `public inline  `[`FLoginCompleteEvent`](#structRHStandardEvents_1_1FLoginCompleteEvent_1a54e374804cb72bc28f8de6152169e08c)`()` | 
 `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FLoginCompleteEvent_1abde8b2f4341c987eb3517d4886eb4a11)`(TSharedPtr< IAnalyticsProvider > Provider) const` | 
 
-#### Members
+### Members
 
 #### `public FString `[`PlatformUserId`](#structRHStandardEvents_1_1FLoginCompleteEvent_1a9f82c4ff7a06a6301e5008b9d5e77bef) <a id="structRHStandardEvents_1_1FLoginCompleteEvent_1a9f82c4ff7a06a6301e5008b9d5e77bef"></a>
 
@@ -622,7 +622,7 @@ This event is meant to be triggered when a player has earned progress on an obje
 
 rh.objective_progress
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -645,7 +645,7 @@ rh.objective_progress
 `public inline  `[`FObjectiveProgressEvent`](#structRHStandardEvents_1_1FObjectiveProgressEvent_1ae4ae09439045f64f41c15068bd296729)`()` | 
 `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FObjectiveProgressEvent_1a4d6366be8ce37f2622f2b4902051a58c)`(TSharedPtr< IAnalyticsProvider > Provider) const` | 
 
-#### Members
+### Members
 
 #### `public FString `[`Category`](#structRHStandardEvents_1_1FObjectiveProgressEvent_1a599682d21697df42de766247514cf56a) <a id="structRHStandardEvents_1_1FObjectiveProgressEvent_1a599682d21697df42de766247514cf56a"></a>
 
@@ -721,7 +721,7 @@ This event is meant to capture high level information about a completed match.
 
 rh.player_game_result
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -739,7 +739,7 @@ rh.player_game_result
 `public inline  `[`FPlayerGameResultEvent`](#structRHStandardEvents_1_1FPlayerGameResultEvent_1a63ed113be1c84b80b0d193dbf3faead0)`()` | 
 `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FPlayerGameResultEvent_1a6b9c96a90cfbbd0572315f8b80166868)`(TSharedPtr< IAnalyticsProvider > Provider) const` | 
 
-#### Members
+### Members
 
 #### `public TOptional< int32 > `[`Placement`](#structRHStandardEvents_1_1FPlayerGameResultEvent_1a7df827b68e03a2ce139139162dc8101b) <a id="structRHStandardEvents_1_1FPlayerGameResultEvent_1a7df827b68e03a2ce139139162dc8101b"></a>
 
@@ -795,7 +795,7 @@ This event is triggered when processing of a real money purchase has been comple
 
 rh.platform_purchase
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -806,7 +806,7 @@ rh.platform_purchase
 `public inline  `[`FPlatformPurchaseEvent`](#structRHStandardEvents_1_1FPlatformPurchaseEvent_1a1b772cdc5a20dc0eac0f5b71f24531d7)`()` | 
 `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FPlatformPurchaseEvent_1ae736aa93ea8284152324d901169d459c)`(TSharedPtr< IAnalyticsProvider > Provider) const` | 
 
-#### Members
+### Members
 
 #### `public `[`FCheckoutData`](undefined.md#structRHStandardEvents_1_1FPlatformPurchaseEvent_1_1FCheckoutData)` `[`Checkout`](#structRHStandardEvents_1_1FPlatformPurchaseEvent_1aea4d2e7889aa801abadf580c0bba9102) <a id="structRHStandardEvents_1_1FPlatformPurchaseEvent_1aea4d2e7889aa801abadf580c0bba9102"></a>
 
@@ -832,7 +832,7 @@ custom data fields (will be auto-prefixed with custom data prefix)
 
 This is a wrapper for providing custom event data.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -842,7 +842,7 @@ This is a wrapper for providing custom event data.
 `public inline  `[`FCustomEvent`](#structRHStandardEvents_1_1FCustomEvent_1add4d8214b9316a09b1974046126b6787)`()` | 
 `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FCustomEvent_1a591d2bf1b9de8aee79e92e94e74b1d0b)`(TSharedPtr< IAnalyticsProvider > Provider) const` | 
 
-#### Members
+### Members
 
 #### `public FString `[`EventName`](#structRHStandardEvents_1_1FCustomEvent_1ab04513a6304068186509da1913a2896a) <a id="structRHStandardEvents_1_1FCustomEvent_1ab04513a6304068186509da1913a2896a"></a>
 

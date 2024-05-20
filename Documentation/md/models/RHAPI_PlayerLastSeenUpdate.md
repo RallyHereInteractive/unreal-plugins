@@ -1,4 +1,4 @@
-# RHAPI_PlayerLastSeenUpdate <a id="group__RHAPI__PlayerLastSeenUpdate"></a>
+# group `RHAPI_PlayerLastSeenUpdate` <a id="group__RHAPI__PlayerLastSeenUpdate"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_PlayerLastSeenUpdate
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -44,7 +44,7 @@ struct FRHAPI_PlayerLastSeenUpdate
 `public inline void `[`SetDisplayName`](#structFRHAPI__PlayerLastSeenUpdate_1ac582ecace3194202efe69422236169ae)`(FString NewValue)` | Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true.
 `public inline void `[`ClearDisplayName`](#structFRHAPI__PlayerLastSeenUpdate_1a808a56f9cf76cfde9abcf2bb0c5bd9c4)`()` | Clears the value of DisplayName_Optional and sets DisplayName_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FDateTime `[`Time`](#structFRHAPI__PlayerLastSeenUpdate_1ac52ac599410a5675a0052148618eb994) <a id="structFRHAPI__PlayerLastSeenUpdate_1ac52ac599410a5675a0052148618eb994"></a>
 

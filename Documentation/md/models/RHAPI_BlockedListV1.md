@@ -1,4 +1,4 @@
-# RHAPI_BlockedListV1 <a id="group__RHAPI__BlockedListV1"></a>
+# group `RHAPI_BlockedListV1` <a id="group__RHAPI__BlockedListV1"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_BlockedListV1
 
 The list of players that is blocked. V1 includes player_id and player_uuid.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -40,7 +40,7 @@ The list of players that is blocked. V1 includes player_id and player_uuid.
 `public inline const `[`FRHAPI_PageMeta`](RHAPI_PageMeta.md#structFRHAPI__PageMeta)` & `[`GetPage`](#structFRHAPI__BlockedListV1_1a3b976a1089c4eaf000ccb7b282866322)`() const` | Gets the value of Page.
 `public inline void `[`SetPage`](#structFRHAPI__BlockedListV1_1a259100b6a9f9fa2f868fcd41465902f1)`(`[`FRHAPI_PageMeta`](RHAPI_PageMeta.md#structFRHAPI__PageMeta)` NewValue)` | Sets the value of Page.
 
-#### Members
+### Members
 
 #### `public int32 `[`PlayerId`](#structFRHAPI__BlockedListV1_1ade9caa9b10824edf6926d3b8469100ab) <a id="structFRHAPI__BlockedListV1_1ade9caa9b10824edf6926d3b8469100ab"></a>
 

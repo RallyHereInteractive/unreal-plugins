@@ -1,4 +1,4 @@
-# RHAPI_Notifications <a id="group__RHAPI__Notifications"></a>
+# group `RHAPI_Notifications` <a id="group__RHAPI__Notifications"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_Notifications
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -34,7 +34,7 @@ struct FRHAPI_Notifications
 `public inline const FString & `[`GetCursor`](#structFRHAPI__Notifications_1a35aceb22cd3df426a3b5f6b0bef10636)`() const` | Gets the value of Cursor.
 `public inline void `[`SetCursor`](#structFRHAPI__Notifications_1ac0e1d984335fbae47d6201af59d4b834)`(FString NewValue)` | Sets the value of Cursor.
 
-#### Members
+### Members
 
 #### `public TArray< `[`FRHAPI_Notification`](RHAPI_Notification.md#structFRHAPI__Notification)` > `[`Notifications_Optional`](#structFRHAPI__Notifications_1a0bf3aa9ba6d2b3e4edb9fe9349833122) <a id="structFRHAPI__Notifications_1a0bf3aa9ba6d2b3e4edb9fe9349833122"></a>
 

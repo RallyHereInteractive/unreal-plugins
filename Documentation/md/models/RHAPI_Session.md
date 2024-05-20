@@ -1,4 +1,4 @@
-# RHAPI_Session <a id="group__RHAPI__Session"></a>
+# group `RHAPI_Session` <a id="group__RHAPI__Session"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_Session
 
 A session resource.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -146,7 +146,7 @@ A session resource.
 `public inline bool `[`IsCreatedByMatchmakingDefaultValue`](#structFRHAPI__Session_1a4497fa87bd0e35ecdf5b09b0714d36ad)`() const` | Returns true if CreatedByMatchmaking_Optional is set and matches the default value.
 `public inline void `[`SetCreatedByMatchmakingToDefault`](#structFRHAPI__Session_1ac89a96065989ec35f4c1e11ca9bc81c6)`()` | Sets the value of CreatedByMatchmaking_Optional to its default and also sets CreatedByMatchmaking_IsSet to true.
 
-#### Members
+### Members
 
 #### `public FString `[`Type`](#structFRHAPI__Session_1aa99c74b9cc52640a6c132b3517d7fcf1) <a id="structFRHAPI__Session_1aa99c74b9cc52640a6c132b3517d7fcf1"></a>
 

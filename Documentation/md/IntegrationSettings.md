@@ -1,4 +1,4 @@
-# IntegrationSettings <a id="group__IntegrationSettings"></a>
+# group `IntegrationSettings` <a id="group__IntegrationSettings"></a>
 
 ## Summary
 
@@ -16,7 +16,7 @@ class URH_IntegrationSettings
 
 Main settings for the Integration.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -176,7 +176,7 @@ Main settings for the Integration.
 `public int32 `[`FileDeletePriority`](#classURH__IntegrationSettings_1a9dbe268cceef1863637250a24d31dc2a) | Sets the request priority of File Delete calls, lower number is higher priority.
 `public const `[`FRH_EnvironmentConfiguration`](IntegrationSettings.md#structFRH__EnvironmentConfiguration)` * `[`GetEnvironmentConfiguration`](#classURH__IntegrationSettings_1a833c95a5c96e642faa2a3038d9c8f151)`(const FString & EnvironmentId) const` | Helper to get the configuration for a given environment by EnvironmentId.
 
-#### Members
+### Members
 
 #### `public `[`FRH_EnvironmentConfiguration`](IntegrationSettings.md#structFRH__EnvironmentConfiguration)` `[`DefaultEnvironmentConfiguration`](#classURH__IntegrationSettings_1a90c5352a4e6761eb17d6368c839f2b72) <a id="classURH__IntegrationSettings_1a90c5352a4e6761eb17d6368c839f2b72"></a>
 
@@ -802,7 +802,7 @@ Helper to get the configuration for a given environment by EnvironmentId.
 
 Settings for Environment Configuration. If set, these override the defaults when the EnvironmentId matches the specified environment id.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -811,7 +811,7 @@ Settings for Environment Configuration. If set, these override the defaults when
 `public FString `[`ClientId`](#structFRH__EnvironmentConfiguration_1ad89cebe1e08c49b87a7132acb5ad8da4) | RallyHere Client ID. Determines the available permissions for RallyHere APIs.
 `public FString `[`ClientSecret`](#structFRH__EnvironmentConfiguration_1a92ac23bcd32f8ec70f2d361594e4a666) | RallyHere Client secret. Must be associated with the defined client ID.
 
-#### Members
+### Members
 
 #### `public FString `[`EnvironmentId`](#structFRH__EnvironmentConfiguration_1af7a0c896b818f1a844a2e49db24c7993) <a id="structFRH__EnvironmentConfiguration_1af7a0c896b818f1a844a2e49db24c7993"></a>
 

@@ -1,4 +1,4 @@
-# RHAPI_PersonInfoResponse <a id="group__RHAPI__PersonInfoResponse"></a>
+# group `RHAPI_PersonInfoResponse` <a id="group__RHAPI__PersonInfoResponse"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_PersonInfoResponse
 
 Response for getting a person&#39;s info.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -54,7 +54,7 @@ Response for getting a person&#39;s info.
 `public inline void `[`SetEmail`](#structFRHAPI__PersonInfoResponse_1ae300cc4f31ac61b1ab1ef71795201184)`(FString NewValue)` | Sets the value of Email_Optional and also sets Email_IsSet to true.
 `public inline void `[`ClearEmail`](#structFRHAPI__PersonInfoResponse_1ae7e95f48a6604663a002c86dd219fee6)`()` | Clears the value of Email_Optional and sets Email_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FGuid `[`PersonId_Optional`](#structFRHAPI__PersonInfoResponse_1a15fb6d340c496b10078584551091b39c) <a id="structFRHAPI__PersonInfoResponse_1a15fb6d340c496b10078584551091b39c"></a>
 

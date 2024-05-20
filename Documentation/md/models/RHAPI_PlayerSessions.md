@@ -1,4 +1,4 @@
-# RHAPI_PlayerSessions <a id="group__RHAPI__PlayerSessions"></a>
+# group `RHAPI_PlayerSessions` <a id="group__RHAPI__PlayerSessions"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_PlayerSessions
 
 Information about all sessions that a player is currently a member of, or invited to.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -42,7 +42,7 @@ Information about all sessions that a player is currently a member of, or invite
 `public inline void `[`SetLastUpdatedTimestamp`](#structFRHAPI__PlayerSessions_1a890896cdf1ba717ef7c12b11f7a540ba)`(FDateTime NewValue)` | Sets the value of LastUpdatedTimestamp_Optional and also sets LastUpdatedTimestamp_IsSet to true.
 `public inline void `[`ClearLastUpdatedTimestamp`](#structFRHAPI__PlayerSessions_1a158685391d310a57b456883520d177d0)`()` | Clears the value of LastUpdatedTimestamp_Optional and sets LastUpdatedTimestamp_IsSet to false.
 
-#### Members
+### Members
 
 #### `public TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > `[`Sessions_Optional`](#structFRHAPI__PlayerSessions_1ac0452090142cdd25a70291a47731e4ed) <a id="structFRHAPI__PlayerSessions_1ac0452090142cdd25a70291a47731e4ed"></a>
 

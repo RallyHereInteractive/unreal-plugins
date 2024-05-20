@@ -1,4 +1,4 @@
-# RHAPI_BrowserResponse <a id="group__RHAPI__BrowserResponse"></a>
+# group `RHAPI_BrowserResponse` <a id="group__RHAPI__BrowserResponse"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_BrowserResponse
 
 A response with a list of browsers, and a cursor to continue iterating through them.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -32,7 +32,7 @@ A response with a list of browsers, and a cursor to continue iterating through t
 `public inline const TArray< `[`FRHAPI_BrowserSessionInfo`](RHAPI_BrowserSessionInfo.md#structFRHAPI__BrowserSessionInfo)` > & `[`GetBrowserSessions`](#structFRHAPI__BrowserResponse_1a0773c81ab098d690680418a8073a9d01)`() const` | Gets the value of BrowserSessions.
 `public inline void `[`SetBrowserSessions`](#structFRHAPI__BrowserResponse_1a1569ecc727e6360c7c126f2ab6007a8a)`(TArray< `[`FRHAPI_BrowserSessionInfo`](RHAPI_BrowserSessionInfo.md#structFRHAPI__BrowserSessionInfo)` > NewValue)` | Sets the value of BrowserSessions.
 
-#### Members
+### Members
 
 #### `public int32 `[`Cursor`](#structFRHAPI__BrowserResponse_1a55cb074f32c3933d116ba9d8314aa968) <a id="structFRHAPI__BrowserResponse_1a55cb074f32c3933d116ba9d8314aa968"></a>
 

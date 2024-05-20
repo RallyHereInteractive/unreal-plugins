@@ -1,4 +1,4 @@
-# RHAPI_Vendor <a id="group__RHAPI__Vendor"></a>
+# group `RHAPI_Vendor` <a id="group__RHAPI__Vendor"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_Vendor
 
 A collection of Loot and how to fulfill them.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -96,7 +96,7 @@ A collection of Loot and how to fulfill them.
 `public inline void `[`SetCacheInfo`](#structFRHAPI__Vendor_1a93b22eb2618b002b78d3a5ab68b088f0)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__Vendor_1aab46ead254eea4bde0f552f352c5e2ad)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 
-#### Members
+### Members
 
 #### `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__Vendor_1ad1fd7d01d6c9003ad84a5e58e8b638f5) <a id="structFRHAPI__Vendor_1ad1fd7d01d6c9003ad84a5e58e8b638f5"></a>
 

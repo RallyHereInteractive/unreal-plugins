@@ -1,4 +1,4 @@
-# Settings <a id="group__Settings"></a>
+# group `Settings` <a id="group__Settings"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ class URH_SettingsSubsystem
 
 Settings Subsystem used for settings API calls.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -24,7 +24,7 @@ Settings Subsystem used for settings API calls.
 `protected TMap< FString, `[`FRHAPI_SettingType`](models/RHAPI_SettingType.md#structFRHAPI__SettingType)` > `[`CachedSettingsTypes`](#classURH__SettingsSubsystem_1ab978c2c24f56b7723acdc0c5fb7264d5) | Map of settings types by name.
 `typedef `[`TGetConfigSettings`](#classURH__SettingsSubsystem_1a38cbf40b30111c905cd3926ac5c9d368) | Type Define for Get Config FO All Setting Types calls.
 
-#### Members
+### Members
 
 #### `public void `[`GetSettingTypes`](#classURH__SettingsSubsystem_1a9baeabf8f6c627f0aeb372d167860dbb)`(const FRH_GenericSuccessWithErrorBlock & Delegate)` <a id="classURH__SettingsSubsystem_1a9baeabf8f6c627f0aeb372d167860dbb"></a>
 

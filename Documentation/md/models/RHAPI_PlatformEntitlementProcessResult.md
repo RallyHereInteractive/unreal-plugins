@@ -1,4 +1,4 @@
-# RHAPI_PlatformEntitlementProcessResult <a id="group__RHAPI__PlatformEntitlementProcessResult"></a>
+# group `RHAPI_PlatformEntitlementProcessResult` <a id="group__RHAPI__PlatformEntitlementProcessResult"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_PlatformEntitlementProcessResult
 
 Result of processing a platform entitlement.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -90,7 +90,7 @@ Result of processing a platform entitlement.
 `public inline bool `[`IsSkippedServerEntitlementsDefaultValue`](#structFRHAPI__PlatformEntitlementProcessResult_1ae124e63567ad85ca72f9ef7297f9dd4a)`() const` | Returns true if SkippedServerEntitlements_Optional is set and matches the default value.
 `public inline void `[`SetSkippedServerEntitlementsToDefault`](#structFRHAPI__PlatformEntitlementProcessResult_1ac278ece6c8d1a8180f643b6f342f5a96)`()` | Sets the value of SkippedServerEntitlements_Optional to its default and also sets SkippedServerEntitlements_IsSet to true.
 
-#### Members
+### Members
 
 #### `public FString `[`RequestId`](#structFRHAPI__PlatformEntitlementProcessResult_1ae996578068367b465028369b1e127b3e) <a id="structFRHAPI__PlatformEntitlementProcessResult_1ae996578068367b465028369b1e127b3e"></a>
 

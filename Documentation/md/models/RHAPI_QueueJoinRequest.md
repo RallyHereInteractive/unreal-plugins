@@ -1,4 +1,4 @@
-# RHAPI_QueueJoinRequest <a id="group__RHAPI__QueueJoinRequest"></a>
+# group `RHAPI_QueueJoinRequest` <a id="group__RHAPI__QueueJoinRequest"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_QueueJoinRequest
 
 A request body to enter into a matchmaking queue.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -46,7 +46,7 @@ A request body to enter into a matchmaking queue.
 `public inline void `[`SetMapPreferences`](#structFRHAPI__QueueJoinRequest_1a473a1e40872aa37c1c2bb1e05589d673)`(TArray< FString > NewValue)` | Sets the value of MapPreferences_Optional and also sets MapPreferences_IsSet to true.
 `public inline void `[`ClearMapPreferences`](#structFRHAPI__QueueJoinRequest_1a60ee35ca85529854b6ecc140d872194a)`()` | Clears the value of MapPreferences_Optional and sets MapPreferences_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FString `[`QueueId`](#structFRHAPI__QueueJoinRequest_1a763c48b62bd3fb1caa989e3398be38da) <a id="structFRHAPI__QueueJoinRequest_1a763c48b62bd3fb1caa989e3398be38da"></a>
 

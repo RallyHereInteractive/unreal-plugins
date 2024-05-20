@@ -1,4 +1,4 @@
-# RHAPI_MatchSession <a id="group__RHAPI__MatchSession"></a>
+# group `RHAPI_MatchSession` <a id="group__RHAPI__MatchSession"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_MatchSession
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -34,7 +34,7 @@ struct FRHAPI_MatchSession
 `public inline void `[`SetMatchmakingProfileId`](#structFRHAPI__MatchSession_1a1b504817d4aba4032009f4fd5088d5c5)`(FString NewValue)` | Sets the value of MatchmakingProfileId_Optional and also sets MatchmakingProfileId_IsSet to true.
 `public inline void `[`ClearMatchmakingProfileId`](#structFRHAPI__MatchSession_1a619a8b5b4a2c7348fd5a26f7c4b10caf)`()` | Clears the value of MatchmakingProfileId_Optional and sets MatchmakingProfileId_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FString `[`SessionId`](#structFRHAPI__MatchSession_1a8b77d2997c9e8510dba7a59c146d84d0) <a id="structFRHAPI__MatchSession_1a8b77d2997c9e8510dba7a59c146d84d0"></a>
 

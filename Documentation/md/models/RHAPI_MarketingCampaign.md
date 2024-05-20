@@ -1,4 +1,4 @@
-# RHAPI_MarketingCampaign <a id="group__RHAPI__MarketingCampaign"></a>
+# group `RHAPI_MarketingCampaign` <a id="group__RHAPI__MarketingCampaign"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_MarketingCampaign
 
 A Marketing Campaign is a set of external keys that can be claimed by players.The key claims are assigned to the player based on.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -64,7 +64,7 @@ A Marketing Campaign is a set of external keys that can be claimed by players.Th
 `public inline void `[`SetLastModifiedOn`](#structFRHAPI__MarketingCampaign_1aafd70fa05b108d3c8919031a75ff0e9b)`(FString NewValue)` | Sets the value of LastModifiedOn_Optional and also sets LastModifiedOn_IsSet to true.
 `public inline void `[`ClearLastModifiedOn`](#structFRHAPI__MarketingCampaign_1aa16796a166b316f0d75b6a9f6f667d21)`()` | Clears the value of LastModifiedOn_Optional and sets LastModifiedOn_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FGuid `[`Uuid`](#structFRHAPI__MarketingCampaign_1a589be2b0982738de14e8d98b16436a64) <a id="structFRHAPI__MarketingCampaign_1a589be2b0982738de14e8d98b16436a64"></a>
 

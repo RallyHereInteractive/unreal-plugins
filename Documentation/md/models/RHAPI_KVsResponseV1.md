@@ -1,4 +1,4 @@
-# RHAPI_KVsResponseV1 <a id="group__RHAPI__KVsResponseV1"></a>
+# group `RHAPI_KVsResponseV1` <a id="group__RHAPI__KVsResponseV1"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_KVsResponseV1
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -40,7 +40,7 @@ struct FRHAPI_KVsResponseV1
 `public inline void `[`SetSecretKvs`](#structFRHAPI__KVsResponseV1_1ab8d0668b23d1be38f82a048c4189ae58)`(TArray< `[`FRHAPI_KVV1`](RHAPI_KVV1.md#structFRHAPI__KVV1)` > NewValue)` | Sets the value of SecretKvs_Optional and also sets SecretKvs_IsSet to true.
 `public inline void `[`ClearSecretKvs`](#structFRHAPI__KVsResponseV1_1a025ac2d03f64ce986ac5b4ea9acd4902)`()` | Clears the value of SecretKvs_Optional and sets SecretKvs_IsSet to false.
 
-#### Members
+### Members
 
 #### `public TArray< `[`FRHAPI_KVV1`](RHAPI_KVV1.md#structFRHAPI__KVV1)` > `[`Kvs_Optional`](#structFRHAPI__KVsResponseV1_1a0c81cf618408d139c5e2a32521ee2d86) <a id="structFRHAPI__KVsResponseV1_1a0c81cf618408d139c5e2a32521ee2d86"></a>
 

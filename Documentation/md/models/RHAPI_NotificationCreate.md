@@ -1,4 +1,4 @@
-# RHAPI_NotificationCreate <a id="group__RHAPI__NotificationCreate"></a>
+# group `RHAPI_NotificationCreate` <a id="group__RHAPI__NotificationCreate"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_NotificationCreate
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -54,7 +54,7 @@ struct FRHAPI_NotificationCreate
 `public inline void `[`SetEtag`](#structFRHAPI__NotificationCreate_1a9e407e790330d460b78af078c64b823b)`(FString NewValue)` | Sets the value of Etag_Optional and also sets Etag_IsSet to true.
 `public inline void `[`ClearEtag`](#structFRHAPI__NotificationCreate_1a3db358e09781131cc09ab950f6f7f3f6)`()` | Clears the value of Etag_Optional and sets Etag_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FString `[`Message`](#structFRHAPI__NotificationCreate_1aa0b36df125568c5a818f6d912e68026b) <a id="structFRHAPI__NotificationCreate_1aa0b36df125568c5a818f6d912e68026b"></a>
 

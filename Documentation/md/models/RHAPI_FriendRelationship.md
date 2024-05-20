@@ -1,4 +1,4 @@
-# RHAPI_FriendRelationship <a id="group__RHAPI__FriendRelationship"></a>
+# group `RHAPI_FriendRelationship` <a id="group__RHAPI__FriendRelationship"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_FriendRelationship
 
 Represents the relationship with a potential friend.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -44,7 +44,7 @@ Represents the relationship with a potential friend.
 `public inline const FDateTime & `[`GetLastModifiedOn`](#structFRHAPI__FriendRelationship_1a7ee0bbea10de5dafb4f1714b5639587f)`() const` | Gets the value of LastModifiedOn.
 `public inline void `[`SetLastModifiedOn`](#structFRHAPI__FriendRelationship_1af7fdb53b511ed604ba48b9b20ea2f27a)`(FDateTime NewValue)` | Sets the value of LastModifiedOn.
 
-#### Members
+### Members
 
 #### `public FGuid `[`FriendsPlayerUuid`](#structFRHAPI__FriendRelationship_1a961b5be56ed676a68023c50909ccc61a) <a id="structFRHAPI__FriendRelationship_1a961b5be56ed676a68023c50909ccc61a"></a>
 

@@ -1,4 +1,4 @@
-# RHAPI_PlatformSessionTemplate <a id="group__RHAPI__PlatformSessionTemplate"></a>
+# group `RHAPI_PlatformSessionTemplate` <a id="group__RHAPI__PlatformSessionTemplate"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_PlatformSessionTemplate
 
 Template used to create new platform sessions for a specific type of platform. Configurable in the developer portal.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -56,7 +56,7 @@ Template used to create new platform sessions for a specific type of platform. C
 `public inline void `[`SetCustomData`](#structFRHAPI__PlatformSessionTemplate_1a7bbcfbaaf9edbe5d6d9dc50669b33ff9)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`ClearCustomData`](#structFRHAPI__PlatformSessionTemplate_1a1bab29f42e2c1c50068349c69c644583)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
-#### Members
+### Members
 
 #### `public ERHAPI_PlatformID `[`PlatformId`](#structFRHAPI__PlatformSessionTemplate_1afe926a18175ccb2a9c1efa37abab36ac) <a id="structFRHAPI__PlatformSessionTemplate_1afe926a18175ccb2a9c1efa37abab36ac"></a>
 

@@ -1,4 +1,4 @@
-# RHAPI_MatchMakingTemplateGroupV2 <a id="group__RHAPI__MatchMakingTemplateGroupV2"></a>
+# group `RHAPI_MatchMakingTemplateGroupV2` <a id="group__RHAPI__MatchMakingTemplateGroupV2"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_MatchMakingTemplateGroupV2
 
 A collection of MatchMakingTemplates that may be used when a session enters a queue. The first template that satisfies the necessary rules will be used.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -40,7 +40,7 @@ A collection of MatchMakingTemplates that may be used when a session enters a qu
 `public inline void `[`SetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroupV2_1a1619a5f41fcd839b5ca83adedae56979)`(TSet< int32 > NewValue)` | Sets the value of RequiredItemIds_Optional and also sets RequiredItemIds_IsSet to true.
 `public inline void `[`ClearRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroupV2_1a2cfe134d15ff3ce519d7be4a1a681055)`()` | Clears the value of RequiredItemIds_Optional and sets RequiredItemIds_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FGuid `[`MatchMakingTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroupV2_1ab6ac4a6cc076fa58e61f71f0b74c6da2) <a id="structFRHAPI__MatchMakingTemplateGroupV2_1ab6ac4a6cc076fa58e61f71f0b74c6da2"></a>
 

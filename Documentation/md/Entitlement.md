@@ -1,4 +1,4 @@
-# Entitlement <a id="group__Entitlement"></a>
+# group `Entitlement` <a id="group__Entitlement"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ class URH_EntitlementSubsystem
 
 Subsystem for handling requesting and processing entitlements from the online subsystem.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -39,7 +39,7 @@ Subsystem for handling requesting and processing entitlements from the online su
 `protected IOnlineSubsystem * `[`GetOSS`](#classURH__EntitlementSubsystem_1a9d4639fe82b8dad3e126519ac79f579b)`() const` | Helper to the online subsystem.
 `protected IOnlinePurchasePtr `[`GetPurchaseSubsystem`](#classURH__EntitlementSubsystem_1a68e068e84180db974ab6b29444847399)`() const` | Helper to the online purchase subsystem.
 
-#### Members
+### Members
 
 #### `public virtual void `[`Initialize`](#classURH__EntitlementSubsystem_1a84d5e948fe867f75a92f47b8ddd139fb)`()` <a id="classURH__EntitlementSubsystem_1a84d5e948fe867f75a92f47b8ddd139fb"></a>
 

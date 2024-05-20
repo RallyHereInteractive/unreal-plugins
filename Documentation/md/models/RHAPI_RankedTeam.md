@@ -1,4 +1,4 @@
-# RHAPI_RankedTeam <a id="group__RHAPI__RankedTeam"></a>
+# group `RHAPI_RankedTeam` <a id="group__RHAPI__RankedTeam"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_RankedTeam
 
 One team of players from a match along with their placement in the match, and previous rank data about all of the players.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -32,7 +32,7 @@ One team of players from a match along with their placement in the match, and pr
 `public inline bool `[`IsTeamRankDefaultValue`](#structFRHAPI__RankedTeam_1a81c6e9168a4af88040ede0753bf266db)`() const` | Returns true if TeamRank matches the default value.
 `public inline void `[`SetTeamRankToDefault`](#structFRHAPI__RankedTeam_1a4a1cdb05a5c8edbcb41d60ba86b2c872)`()` | Sets the value of TeamRank to its default
 
-#### Members
+### Members
 
 #### `public TArray< `[`FRHAPI_CalculatedRank`](RHAPI_CalculatedRank.md#structFRHAPI__CalculatedRank)` > `[`Players`](#structFRHAPI__RankedTeam_1ab1dfafc29c7642f9c16484f0cdb9908b) <a id="structFRHAPI__RankedTeam_1ab1dfafc29c7642f9c16484f0cdb9908b"></a>
 

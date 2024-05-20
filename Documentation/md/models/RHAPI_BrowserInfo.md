@@ -1,4 +1,4 @@
-# RHAPI_BrowserInfo <a id="group__RHAPI__BrowserInfo"></a>
+# group `RHAPI_BrowserInfo` <a id="group__RHAPI__BrowserInfo"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_BrowserInfo
 
 Information about the browser resource in a session.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -32,7 +32,7 @@ Information about the browser resource in a session.
 `public inline void `[`SetCustomData`](#structFRHAPI__BrowserInfo_1a6fe9c0b681f3646f18791398c90206a7)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`ClearCustomData`](#structFRHAPI__BrowserInfo_1ae8f8398bbf009d658cf121b7734c9ba0)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
-#### Members
+### Members
 
 #### `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__BrowserInfo_1a1ad770cf3fe97c92dab9795e64b4a8ed) <a id="structFRHAPI__BrowserInfo_1a1ad770cf3fe97c92dab9795e64b4a8ed"></a>
 

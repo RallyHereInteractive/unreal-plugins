@@ -1,4 +1,4 @@
-# RHAPI_SessionPlayerUpdateRequest <a id="group__RHAPI__SessionPlayerUpdateRequest"></a>
+# group `RHAPI_SessionPlayerUpdateRequest` <a id="group__RHAPI__SessionPlayerUpdateRequest"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_SessionPlayerUpdateRequest
 
 A request body to update information about a player in a session.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -58,7 +58,7 @@ A request body to update information about a player in a session.
 `public inline void `[`SetOverflowAction`](#structFRHAPI__SessionPlayerUpdateRequest_1a2dd0c3ba91633a87d6dd757308b78de1)`(ERHAPI_TeamOverflowAction NewValue)` | Sets the value of OverflowAction_Optional and also sets OverflowAction_IsSet to true.
 `public inline void `[`ClearOverflowAction`](#structFRHAPI__SessionPlayerUpdateRequest_1a99c41fad98394fd5ee4d5a01a480de16)`()` | Clears the value of OverflowAction_Optional and sets OverflowAction_IsSet to false.
 
-#### Members
+### Members
 
 #### `public ERHAPI_SessionPlayerStatus `[`Status_Optional`](#structFRHAPI__SessionPlayerUpdateRequest_1acf48279847beabc2877dcbdd6cd6267c) <a id="structFRHAPI__SessionPlayerUpdateRequest_1acf48279847beabc2877dcbdd6cd6267c"></a>
 

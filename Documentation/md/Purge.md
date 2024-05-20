@@ -1,4 +1,4 @@
-# Purge <a id="group__Purge"></a>
+# group `Purge` <a id="group__Purge"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ class URH_PurgeSubsystem
 
 Subsystem to manage purging a players account.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -34,7 +34,7 @@ Subsystem to manage purging a players account.
 `protected virtual void `[`OnDequeueMe`](#classURH__PurgeSubsystem_1a7dba320ada118b170cb0105973569a95)`(const RallyHereAPI::FResponse_DequeueMeForPurge & Resp,const FRH_OnPurgeStatusUpdatedDelegateBlock Delegate)` | Handles the response to a Dequeue Me For Purge call.
 `protected virtual void `[`OnGetMyPurgeStatus`](#classURH__PurgeSubsystem_1a4c9d03ed71e864b0ecdf732a356518ff)`(const RallyHereAPI::FResponse_GetQueuePurgeStatusForMe & Resp,const FRH_OnPurgeStatusUpdatedDelegateBlock Delegate)` | Handles the response to a Get Purge Status call.
 
-#### Members
+### Members
 
 #### `public virtual void `[`Initialize`](#classURH__PurgeSubsystem_1a25cba13b4d4a0932f57b87c8aa1b7aca)`()` <a id="classURH__PurgeSubsystem_1a25cba13b4d4a0932f57b87c8aa1b7aca"></a>
 

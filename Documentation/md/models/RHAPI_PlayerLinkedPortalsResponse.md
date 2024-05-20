@@ -1,4 +1,4 @@
-# RHAPI_PlayerLinkedPortalsResponse <a id="group__RHAPI__PlayerLinkedPortalsResponse"></a>
+# group `RHAPI_PlayerLinkedPortalsResponse` <a id="group__RHAPI__PlayerLinkedPortalsResponse"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_PlayerLinkedPortalsResponse
 
 Response for getting a player&#39;s linked portals.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -30,7 +30,7 @@ Response for getting a player&#39;s linked portals.
 `public inline const TArray< `[`FRHAPI_PortalUserResponse`](RHAPI_PortalUserResponse.md#structFRHAPI__PortalUserResponse)` > & `[`GetLinkedPortals`](#structFRHAPI__PlayerLinkedPortalsResponse_1aee0bbbacb0df667a9e2e819eace01a64)`() const` | Gets the value of LinkedPortals.
 `public inline void `[`SetLinkedPortals`](#structFRHAPI__PlayerLinkedPortalsResponse_1a686c98afb13ebd719d23e4383f92de5c)`(TArray< `[`FRHAPI_PortalUserResponse`](RHAPI_PortalUserResponse.md#structFRHAPI__PortalUserResponse)` > NewValue)` | Sets the value of LinkedPortals.
 
-#### Members
+### Members
 
 #### `public `[`FRHAPI_PlayerPersonResponse`](RHAPI_PlayerPersonResponse.md#structFRHAPI__PlayerPersonResponse)` `[`Player`](#structFRHAPI__PlayerLinkedPortalsResponse_1acac06fcdbf166e78fa8fe536a4c55708) <a id="structFRHAPI__PlayerLinkedPortalsResponse_1acac06fcdbf166e78fa8fe536a4c55708"></a>
 

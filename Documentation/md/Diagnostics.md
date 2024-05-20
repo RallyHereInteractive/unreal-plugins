@@ -1,4 +1,4 @@
-# Diagnostics <a id="group__Diagnostics"></a>
+# group `Diagnostics` <a id="group__Diagnostics"></a>
 
 ## Summary
 
@@ -30,7 +30,7 @@ class FRH_DiagnosticReportGenerator
 
 Report generator worker, which is responsible for collecting information from various locations, organizing the report, and then writing it to a destination.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -59,7 +59,7 @@ Report generator worker, which is responsible for collecting information from va
 `protected inline virtual void `[`ExecuteCallback`](#classFRH__DiagnosticReportGenerator_1a3710264b20ae073909f0e7b458b8669b)`(bool bSuccess) const` | Execute completion callback.
 `enum `[`ReportGenerationStage`](#classFRH__DiagnosticReportGenerator_1a5c19847194bbebf1a2063c7923fff956) | Generation stage for report generation
 
-#### Members
+### Members
 
 #### `public TSharedPtr< FJsonObject > `[`Metadata`](#classFRH__DiagnosticReportGenerator_1aa04d4dcef3affcb13c1ba988285ed317) <a id="classFRH__DiagnosticReportGenerator_1aa04d4dcef3affcb13c1ba988285ed317"></a>
 
@@ -178,7 +178,7 @@ class FRH_Diagnostics
 
 Class to handle initializing and running a diagnostic. Tracks and stores local state from the running engine for tracking previous errors.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -194,7 +194,7 @@ Class to handle initializing and running a diagnostic. Tracks and stores local s
 `public inline virtual void `[`OnNetworkFailure`](#classFRH__Diagnostics_1a6ed138b2ee30fd4f3a8e83a4acf819c5)`(UWorld * World,UNetDriver * NetDriver,ENetworkFailure::Type FailureType,const FString & ErrorString)` | Called when there was a network failure trying to connect to the instance.
 `public inline virtual void `[`OnTravelFailure`](#classFRH__Diagnostics_1a23b83f0976297684bc0b553c0cccaf22)`(UWorld * pWorld,ETravelFailure::Type FailureType,const FString & ErrorString)` | Called when there is a travel failure to the instance map.
 
-#### Members
+### Members
 
 #### `public FGetCustomDiagnosticMetadata `[`CustomDiagnosticMetadataDelegate`](#classFRH__Diagnostics_1ac8e8b53c27e0c2f4d437654551cf235b) <a id="classFRH__Diagnostics_1ac8e8b53c27e0c2f4d437654551cf235b"></a>
 
@@ -265,18 +265,18 @@ class URH_DiagnosticsBlueprintLibrary
 
 Wrapper library to generate diagnostic reports via blueprint.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 
-#### Members
+### Members
 
 ## struct `FRH_DiagnosticReportOptions` <a id="structFRH__DiagnosticReportOptions"></a>
 
 Options for generating a diagnostic report.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -295,7 +295,7 @@ Options for generating a diagnostic report.
 `public inline  `[`FRH_DiagnosticReportOptions`](#structFRH__DiagnosticReportOptions_1a19bb2c3d86a3a1b362865d8d6113f584)`(`[`DiagnosticReportPreset`](Diagnostics.md#structFRH__DiagnosticReportOptions_1aead5a36dfae81a332c860b913bce9b98)` Preset)` | Preset constructor, for ease of use
 `enum `[`DiagnosticReportPreset`](#structFRH__DiagnosticReportOptions_1aead5a36dfae81a332c860b913bce9b98) | Preset for enabling/disabling various diagnostic report options
 
-#### Members
+### Members
 
 #### `public bool `[`bIncludeMetadata`](#structFRH__DiagnosticReportOptions_1a681cc68047b1cdb66c8f132f6c2e7ee7) <a id="structFRH__DiagnosticReportOptions_1a681cc68047b1cdb66c8f132f6c2e7ee7"></a>
 

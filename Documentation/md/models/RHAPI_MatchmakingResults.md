@@ -1,4 +1,4 @@
-# RHAPI_MatchmakingResults <a id="group__RHAPI__MatchmakingResults"></a>
+# group `RHAPI_MatchmakingResults` <a id="group__RHAPI__MatchmakingResults"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_MatchmakingResults
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -60,7 +60,7 @@ struct FRHAPI_MatchmakingResults
 `public inline bool `[`IsTicketsAssignedDefaultValue`](#structFRHAPI__MatchmakingResults_1a5c8749120aa46ca1db37523cbd44a784)`() const` | Returns true if TicketsAssigned_Optional is set and matches the default value.
 `public inline void `[`SetTicketsAssignedToDefault`](#structFRHAPI__MatchmakingResults_1a9d944457f3d11276df11f7ae3deba0ce)`()` | Sets the value of TicketsAssigned_Optional to its default and also sets TicketsAssigned_IsSet to true.
 
-#### Members
+### Members
 
 #### `public FString `[`MatchMakingId`](#structFRHAPI__MatchmakingResults_1a2d42bc189e932217b41b963cac3062fd) <a id="structFRHAPI__MatchmakingResults_1a2d42bc189e932217b41b963cac3062fd"></a>
 

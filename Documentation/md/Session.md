@@ -1,4 +1,4 @@
-# Session <a id="group__Session"></a>
+# group `Session` <a id="group__Session"></a>
 
 ## Summary
 
@@ -26,7 +26,7 @@ class URH_PlatformSessionSyncer
 
 Synchronization object to sync state between a Rally Here Session and a Platform Session (such as a Steam session)
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -78,7 +78,7 @@ Synchronization object to sync state between a Rally Here Session and a Platform
 `protected virtual FUniqueNetIdWrapper `[`GetOSSUniqueId`](#classURH__PlatformSessionSyncer_1aebf1a29ac22a2919aed0b76d15f4bd51)`() const` | Get the unique net id of the session owner.
 `protected virtual IOnlineSessionPtr `[`GetOSSSessionInterface`](#classURH__PlatformSessionSyncer_1addd7c5606ca5ca5d95d9d78cd89c7bd1)`() const` | Get the online subsystem session interface for the platform session.
 
-#### Members
+### Members
 
 #### `public FRH_PlatformSessionSyncerCleanupDelegate `[`OnCleanupComplete`](#classURH__PlatformSessionSyncer_1acca86ac7134db510dd4dcb00658374dd) <a id="classURH__PlatformSessionSyncer_1acca86ac7134db510dd4dcb00658374dd"></a>
 
@@ -316,7 +316,7 @@ class URH_SessionBrowserCache
 
 Simple container class to hold session view data, does not have its own auth context, relies upon getting it from elsewhere during calls, so that it can be used to cache across multiple players.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -341,7 +341,7 @@ Simple container class to hold session view data, does not have its own auth con
 `public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classURH__SessionBrowserCache_1a7315ff647e9507c03a8e4b4b22657fed)`(const FString & SessionId) const` | Gets the platform synchronization object using the rally here session id.
 `public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classURH__SessionBrowserCache_1a363341b102359f9b6d90bfd1f3f73b3b)`(const FUniqueNetIdRepl & PlatformSessionId) const` | Gets the platform synchronization object using the platform session id.
 
-#### Members
+### Members
 
 #### `public  `[`URH_SessionBrowserCache`](#classURH__SessionBrowserCache_1a62c14a0d2d7a4319ffdb92ad829e6ba0)`()` <a id="classURH__SessionBrowserCache_1a62c14a0d2d7a4319ffdb92ad829e6ba0"></a>
 
@@ -473,7 +473,7 @@ class URH_SessionView
 
 Base class providing functionality for viewing session data and interacting with it from blueprint. Specifically does not have an "owner" meaning it cannot do "work" - it is read only. The subclasses have owners.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -522,7 +522,7 @@ Base class providing functionality for viewing session data and interacting with
 `protected TArray< `[`FRH_DeferredSessionPoll`](Session.md#structFRH__DeferredSessionPoll)` > `[`WaitingPolls`](#classURH__SessionView_1ae0ea80e3394fe77f996d00bc692169c6) | Array of stored poll requests that are waiting on the result of the current poll.
 `protected void `[`PollForUpdate`](#classURH__SessionView_1a4ccf0aaf6734e2e5638ab257c1451480)`(const FRH_PollCompleteFunc & Delegate)` | Triggers a poll for a session update, automatically called as part of the polling loop.
 
-#### Members
+### Members
 
 #### `public FRH_OnSessionUpdatedMulticastDelegate `[`OnSessionUpdatedDelegate`](#classURH__SessionView_1a1e2288d1a6ad082498edbe4168d6b8a4) <a id="classURH__SessionView_1a1e2288d1a6ad082498edbe4168d6b8a4"></a>
 
@@ -775,7 +775,7 @@ class URH_InvitedSession
 
 Invited Sessions are sessions that the player has been invited to.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -784,7 +784,7 @@ Invited Sessions are sessions that the player has been invited to.
 `public virtual void `[`Leave`](#classURH__InvitedSession_1ac9e1131d672b7e6f7dd4a476d54e80aa)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Declines to join the session.
 `public virtual void `[`QueryInviterBlockedOnPlatformAsync`](#classURH__InvitedSession_1a3caca59784784c406ee3df3a800492e6)`(const FRH_OnSessionPlayerIsBlockedDelegateBlock & Delegate)` | Determines if the Inviter of this session is blocked by the player on their current platform.
 
-#### Members
+### Members
 
 #### `public inline virtual bool `[`IsOffline`](#classURH__InvitedSession_1af877279192bb132ceb1128b5fc5f6f2b)`() const` <a id="classURH__InvitedSession_1af877279192bb132ceb1128b5fc5f6f2b"></a>
 
@@ -820,7 +820,7 @@ class URH_OfflineSession
 
 Offline Sessions are sessions the session owner is actively a member of that are unsynchronized with the API. This is primarily intended as a utility class to allow for the session flow to be used globally, even when not running API based sessions (ex: tutorial / practice area before login).
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -846,7 +846,7 @@ Offline Sessions are sessions the session owner is actively a member of that are
 `public virtual void `[`EmitAuditEvent`](#classURH__OfflineSession_1afeb6450ec8e2bf8912f50f7066c23c80)`(const `[`FRHAPI_CreateAuditRequest`](models/RHAPI_CreateAuditRequest.md#structFRHAPI__CreateAuditRequest)` & AuditEvent,const FRH_GenericSuccessWithErrorBlock & Delegate) const` | Emit an event to the session audit log.
 `protected void `[`ImportSessionUpdateToAllPlayers`](#classURH__OfflineSession_1a662a10e6f117bb137f9d0d65b75171a8)`(const `[`FRH_APISessionWithETag`](Session.md#structTRH__DataWithETagWrapper)` & Update)` | 
 
-#### Members
+### Members
 
 #### `public inline virtual bool `[`IsOffline`](#classURH__OfflineSession_1afb29afef2455da0af98c31af0ac31f92)`() const` <a id="classURH__OfflineSession_1afb29afef2455da0af98c31af0ac31f92"></a>
 
@@ -1004,7 +1004,7 @@ class URH_OnlineSession
 
 Online Sessions are sessions that are synchronized from the API (and since it is a joined session, the Session Owner is a member)
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -1040,7 +1040,7 @@ Online Sessions are sessions that are synchronized from the API (and since it is
 `public virtual void `[`DeleteBackfill`](#classURH__OnlineSession_1a0e98bf0b3e205c2102364daccb7bb610)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Delete active backfill request for the session.
 `public virtual void `[`EmitAuditEvent`](#classURH__OnlineSession_1a7bdff0e988bdaa1fb3e4be2d2c8b3513)`(const `[`FRHAPI_CreateAuditRequest`](models/RHAPI_CreateAuditRequest.md#structFRHAPI__CreateAuditRequest)` & AuditEvent,const FRH_GenericSuccessWithErrorBlock & Delegate) const` | Emit an event to the session audit log.
 
-#### Members
+### Members
 
 #### `public const TArray< FString > & `[`MatchmakingTags`](#classURH__OnlineSession_1a3d02eff30ffd63efd45ba406a77a095c) <a id="classURH__OnlineSession_1a3d02eff30ffd63efd45ba406a77a095c"></a>
 
@@ -1305,18 +1305,18 @@ class URH_SessionOwnerInterface
 
 Session Owner Interface class.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 
-#### Members
+### Members
 
 ## class `IRH_SessionOwnerInterface` <a id="classIRH__SessionOwnerInterface"></a>
 
 Session Owner Interface.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -1343,7 +1343,7 @@ Session Owner Interface.
 `public inline virtual TOptional< FString > `[`GetBoundSessionId`](#classIRH__SessionOwnerInterface_1a38a2d02fd9a0acac8fb6211cae79fe20)`() const` | Gets the session id this session owner is bound to, if any. Needed for some specific calls to ensure they are operating on the proper object regardless of our current session view.
 `public inline virtual TOptional< FString > `[`GetBoundInstanceId`](#classIRH__SessionOwnerInterface_1a9c6431597880a47737b20b12c48ee697)`() const` | Gets the instance id this session owner is bound to, if any. Needed for some specific calls to ensure they are operating on the proper object regardless of our current session view.
 
-#### Members
+### Members
 
 #### `public FAuthContextPtr `[`GetSessionAuthContext`](#classIRH__SessionOwnerInterface_1aa1ed294ad1925cb314ae59c3b9ae7a69)`() const` <a id="classIRH__SessionOwnerInterface_1aa1ed294ad1925cb314ae59c3b9ae7a69"></a>
 
@@ -1476,7 +1476,7 @@ Gets the instance id this session owner is bound to, if any. Needed for some spe
 
 Struct containing the search paramaters for Session Browsers.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -1489,7 +1489,7 @@ Struct containing the search paramaters for Session Browsers.
 `public inline  `[`FRH_SessionBrowserSearchParams`](#structFRH__SessionBrowserSearchParams_1ac8b5657a750ea3b355f344334f9048c0)`()` | Default constructor.
 `public inline FString `[`GetDescription`](#structFRH__SessionBrowserSearchParams_1af1c20cb69cc90ba84f385b67489bae24)`() const` | Returns display of search params for toolings/logging.
 
-#### Members
+### Members
 
 #### `public FString `[`SessionType`](#structFRH__SessionBrowserSearchParams_1a25ef289d60be155f1caeaddd19c5cc0a) <a id="structFRH__SessionBrowserSearchParams_1a25ef289d60be155f1caeaddd19c5cc0a"></a>
 
@@ -1527,7 +1527,7 @@ Returns display of search params for toolings/logging.
 
 Utility struct to wrapper a player state for a player state update change.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -1539,7 +1539,7 @@ Utility struct to wrapper a player state for a player state update change.
 `public inline FORCEINLINE bool `[`operator==`](#structFRH__SessionMemberStatusState_1ae90f45dc88b07c0f189043b55d5aedd6)`(const `[`FRH_SessionMemberStatusState`](#structFRH__SessionMemberStatusState)` & Comparator) const` | Equivalence check used to determine if a notification should be dispatched.
 `public inline FORCEINLINE bool `[`operator!=`](#structFRH__SessionMemberStatusState_1ad1dc9f123f6021dfe08d8edb2b37bd56)`(const `[`FRH_SessionMemberStatusState`](#structFRH__SessionMemberStatusState)` & Comparator) const` | Inequivalence check used to determine if a notification should be dispatched.
 
-#### Members
+### Members
 
 #### `public FGuid `[`PlayerUuid`](#structFRH__SessionMemberStatusState_1a76d37d922b396d305d81cb664474f6fe) <a id="structFRH__SessionMemberStatusState_1a76d37d922b396d305d81cb664474f6fe"></a>
 
@@ -1573,7 +1573,7 @@ Inequivalence check used to determine if a notification should be dispatched.
 
 Utility struct to wrapper the tuple of a data typeand etag.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -1587,7 +1587,7 @@ Utility struct to wrapper the tuple of a data typeand etag.
 `public inline  `[`TRH_DataWithETagWrapper`](#structTRH__DataWithETagWrapper_1ae98dfaed26e4adcff0f40c9130c8d654)`(const T & InData,const TOptional< FString > & InETag)` | Various constructors for ease of use.
 `public inline  `[`TRH_DataWithETagWrapper`](#structTRH__DataWithETagWrapper_1a66563f74c8068348407e8a1635e5a3f0)`(T && InData,TOptional< FString > && InETag)` | Various constructors for ease of use.
 
-#### Members
+### Members
 
 #### `public T `[`Data`](#structTRH__DataWithETagWrapper_1a2960467e896ec054570d055fdaa49ca6) <a id="structTRH__DataWithETagWrapper_1a2960467e896ec054570d055fdaa49ca6"></a>
 
@@ -1629,7 +1629,7 @@ Various constructors for ease of use.
 
 Poll for deferred sessions.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -1639,7 +1639,7 @@ Poll for deferred sessions.
 `public inline  `[`FRH_DeferredSessionPoll`](#structFRH__DeferredSessionPoll_1af7f09aea5ebde9c12e52431272c8470b)`(Type InPollType,const FRH_PollCompleteFunc & InDelegate,const TOptional< FString > & InETag)` | 
 `enum `[`Type`](#structFRH__DeferredSessionPoll_1aea2383ee336ab25c2f43466ea767a4b1) | 
 
-#### Members
+### Members
 
 #### `public Type `[`PollType`](#structFRH__DeferredSessionPoll_1a1b6e4728b244a5a51a57a24f9b7980f7) <a id="structFRH__DeferredSessionPoll_1a1b6e4728b244a5a51a57a24f9b7980f7"></a>
 

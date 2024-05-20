@@ -1,4 +1,4 @@
-# RHAPI_PortalUseRulesets <a id="group__RHAPI__PortalUseRulesets"></a>
+# group `RHAPI_PortalUseRulesets` <a id="group__RHAPI__PortalUseRulesets"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_PortalUseRulesets
 
 A collection of Portal Use Rulesets. A ruleset determine how item can be used across portals.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -52,7 +52,7 @@ A collection of Portal Use Rulesets. A ruleset determine how item can be used ac
 `public inline void `[`SetCacheInfo`](#structFRHAPI__PortalUseRulesets_1a166dfd8b16aa62dc183614759f2bf0e6)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__PortalUseRulesets_1ad3d47a08a4ef6b99d014dae32e2158a0)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 
-#### Members
+### Members
 
 #### `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__PortalUseRulesets_1a1f7145c8d4fd517a4ee77a4f6df60133) <a id="structFRHAPI__PortalUseRulesets_1a1f7145c8d4fd517a4ee77a4f6df60133"></a>
 

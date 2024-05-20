@@ -1,4 +1,4 @@
-# RHAPI_BackfillSettingsResponse <a id="group__RHAPI__BackfillSettingsResponse"></a>
+# group `RHAPI_BackfillSettingsResponse` <a id="group__RHAPI__BackfillSettingsResponse"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_BackfillSettingsResponse
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -24,7 +24,7 @@ struct FRHAPI_BackfillSettingsResponse
 `public inline const float & `[`GetTimeout`](#structFRHAPI__BackfillSettingsResponse_1ad8af373f0c08c40fe4bd1dc8a7ac81a7)`() const` | Gets the value of Timeout.
 `public inline void `[`SetTimeout`](#structFRHAPI__BackfillSettingsResponse_1ad12bb0eb9309bce3b1a4219d916842bf)`(float NewValue)` | Sets the value of Timeout.
 
-#### Members
+### Members
 
 #### `public float `[`Timeout`](#structFRHAPI__BackfillSettingsResponse_1abe93a6bdf962bab45bb4767a775b8849) <a id="structFRHAPI__BackfillSettingsResponse_1abe93a6bdf962bab45bb4767a775b8849"></a>
 

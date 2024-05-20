@@ -1,4 +1,4 @@
-# GameInstance <a id="group__GameInstance"></a>
+# group `GameInstance` <a id="group__GameInstance"></a>
 
 ## Summary
 
@@ -51,7 +51,7 @@ class URH_BootstrappingSettings
 
 An settings object that contains the settings for the bootstrapping flow.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -60,7 +60,7 @@ An settings object that contains the settings for the bootstrapping flow.
 `public int32 `[`MaxPollCountFinalizer`](#classURH__BootstrappingSettings_1ae8418e097feff2568ddc0e4ad6ac76d1) | Maximum number of polls on the finalizer before it is determined to be a failure.
 `public  `[`URH_BootstrappingSettings`](#classURH__BootstrappingSettings_1a1b522130db5c6b74641876e3b2e95391)`(const FObjectInitializer & ObjectInitializer)` | Default constructor.
 
-#### Members
+### Members
 
 #### `public float `[`PollIntervalFinalizer`](#classURH__BootstrappingSettings_1a903a527a78d195bda791d3649c56b17d) <a id="classURH__BootstrappingSettings_1a903a527a78d195bda791d3649c56b17d"></a>
 
@@ -89,7 +89,7 @@ class URH_GameInstanceServerBootstrapper
 
 Server Bootstrapper for the Game Instance.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -185,7 +185,7 @@ Server Bootstrapper for the Game Instance.
 `protected virtual void `[`OnLoggedOut`](#classURH__GameInstanceServerBootstrapper_1af6d9c3758a402b830393c531822f586b)`(bool bRefreshTokenExpired)` | Callback for when the server is logged out (effectively, authorization to the API is lost, and was not automatically recovered)
 `protected virtual void `[`OnRefreshTokenExpired`](#classURH__GameInstanceServerBootstrapper_1a5c36a506ed51f8694e9ea296ab4c1822)`(FSimpleDelegate CompleteCallback)` | Callback for when a refresh token expires.
 
-#### Members
+### Members
 
 #### `public FRH_OnBootstrapStepChangedDelegate `[`OnBootstrapStepChanged`](#classURH__GameInstanceServerBootstrapper_1a583ec820aa3d45df97c21045653f565b) <a id="classURH__GameInstanceServerBootstrapper_1a583ec820aa3d45df97c21045653f565b"></a>
 
@@ -651,7 +651,7 @@ class URH_GameInstanceClientBootstrapper
 
 Client Boostrapper for the Game Instance.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -659,7 +659,7 @@ Client Boostrapper for the Game Instance.
 `public virtual void `[`Deinitialize`](#classURH__GameInstanceClientBootstrapper_1ad42dfc555261d18e0e76eb25bc78726e)`()` | Deinitialize the bootstrapper.
 `public virtual void `[`CreateOfflineSession`](#classURH__GameInstanceClientBootstrapper_1ab258f384bc8485234a07af9c65f1489c)`()` | Utility function to create an offline session
 
-#### Members
+### Members
 
 #### `public virtual void `[`Initialize`](#classURH__GameInstanceClientBootstrapper_1a8f9da19fce337aff49def7e901911d1d)`()` <a id="classURH__GameInstanceClientBootstrapper_1a8f9da19fce337aff49def7e901911d1d"></a>
 
@@ -682,7 +682,7 @@ class URH_GameInstanceSubsystem
 
 Subsystem for the Game Instance.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -733,7 +733,7 @@ Subsystem for the Game Instance.
 `protected virtual void `[`AppDeactivatedCallbackInGameThread`](#classURH__GameInstanceSubsystem_1ad3d5d9832895928a55823981b222a746)`()` | Handle application deactivating (these involve the game shutting down and pausing (such as when a console is put to sleep)).
 `protected virtual void `[`AppReactivatedCallbackInGameThread`](#classURH__GameInstanceSubsystem_1ae3d080074efa0bfdb7633ad71da2c3d7)`()` | Handle application reactivating (these involve the game shutting down and pausing (such as when a console is put to sleep)).
 
-#### Members
+### Members
 
 #### `public virtual bool `[`ShouldCreateSubsystem`](#classURH__GameInstanceSubsystem_1a73e0f754a5a07a3535077edc5062597c)`(UObject * Outer) const` <a id="classURH__GameInstanceSubsystem_1a73e0f754a5a07a3535077edc5062597c"></a>
 
@@ -951,7 +951,7 @@ Handle application reactivating (these involve the game shutting down and pausin
 
 An result object that contains the accumulated results for the bootstrapping flow.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -964,7 +964,7 @@ An result object that contains the accumulated results for the bootstrapping flo
 `public inline FORCEINLINE bool `[`IsValid`](#structFRH__BootstrappingResult_1a2c15ea10bd2944064a94f6623a605c53)`() const` | Whether or not this result is valid (it has the required IDs to be finalized)
 `public inline FORCEINLINE bool `[`IsComplete`](#structFRH__BootstrappingResult_1adf13be05a51ab5276b77474e92fe2bd6)`() const` | Whether or not this result is complete (it has valid and matching session information)
 
-#### Members
+### Members
 
 #### `public FRH_GameHostAllocationInfo `[`AllocationInfo`](#structFRH__BootstrappingResult_1adec6488272e42a9e0b06af3ab6d59d21) <a id="structFRH__BootstrappingResult_1adec6488272e42a9e0b06af3ab6d59d21"></a>
 
@@ -1000,7 +1000,7 @@ Whether or not this result is complete (it has valid and matching session inform
 
 ## struct `FRH_ActiveSessionStatePlayerContext` <a id="structFRH__ActiveSessionStatePlayerContext"></a>
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -1011,7 +1011,7 @@ Whether or not this result is complete (it has valid and matching session inform
 `public float `[`DurationSeconds`](#structFRH__ActiveSessionStatePlayerContext_1a74f68c02960a1fa413eae8f6bee28f17) | The total time the player has been connected.
 `public inline  `[`FRH_ActiveSessionStatePlayerContext`](#structFRH__ActiveSessionStatePlayerContext_1a262b126ed6edc7c0882c51d3783e9ad1)`()` | 
 
-#### Members
+### Members
 
 #### `public FGuid `[`RHPlayerId`](#structFRH__ActiveSessionStatePlayerContext_1afbdc565f33bd535631bfbc9c2b20c088) <a id="structFRH__ActiveSessionStatePlayerContext_1afbdc565f33bd535631bfbc9c2b20c088"></a>
 

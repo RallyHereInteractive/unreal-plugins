@@ -1,4 +1,4 @@
-# RHAPI_PlatformUserResponse <a id="group__RHAPI__PlatformUserResponse"></a>
+# group `RHAPI_PlatformUserResponse` <a id="group__RHAPI__PlatformUserResponse"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_PlatformUserResponse
 
 Response for successfully creating a platform user.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -76,7 +76,7 @@ Response for successfully creating a platform user.
 `public inline void `[`SetActivePlayerUuid`](#structFRHAPI__PlatformUserResponse_1a4d2e69c1d2dedb90e5f033b6d1671a75)`(FGuid NewValue)` | Sets the value of ActivePlayerUuid_Optional and also sets ActivePlayerUuid_IsSet to true.
 `public inline void `[`ClearActivePlayerUuid`](#structFRHAPI__PlatformUserResponse_1ac732875511b55956fcd144638593c3f0)`()` | Clears the value of ActivePlayerUuid_Optional and sets ActivePlayerUuid_IsSet to false.
 
-#### Members
+### Members
 
 #### `public ERHAPI_Platform `[`Platform`](#structFRHAPI__PlatformUserResponse_1a726f48e174bf6a68a8540489134b9d94) <a id="structFRHAPI__PlatformUserResponse_1a726f48e174bf6a68a8540489134b9d94"></a>
 

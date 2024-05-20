@@ -1,4 +1,4 @@
-# RHAPI_PlatformSession <a id="group__RHAPI__PlatformSession"></a>
+# group `RHAPI_PlatformSession` <a id="group__RHAPI__PlatformSession"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_PlatformSession
 
 A platform session resource in a RallyHere session.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -48,7 +48,7 @@ A platform session resource in a RallyHere session.
 `public inline void `[`SetCustomData`](#structFRHAPI__PlatformSession_1a1fbf4271a911d3ecbb3392121c8cf8a0)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`ClearCustomData`](#structFRHAPI__PlatformSession_1a27df4527314de6e07dd805631af23b14)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
-#### Members
+### Members
 
 #### `public ERHAPI_Platform `[`Platform`](#structFRHAPI__PlatformSession_1a2bae055e3f10ff588cd9f272f218503b) <a id="structFRHAPI__PlatformSession_1a2bae055e3f10ff588cd9f272f218503b"></a>
 

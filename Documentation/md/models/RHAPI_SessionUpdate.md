@@ -1,4 +1,4 @@
-# RHAPI_SessionUpdate <a id="group__RHAPI__SessionUpdate"></a>
+# group `RHAPI_SessionUpdate` <a id="group__RHAPI__SessionUpdate"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_SessionUpdate
 
 A request body to update information about a session resource.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -64,7 +64,7 @@ A request body to update information about a session resource.
 `public inline void `[`SetTeams`](#structFRHAPI__SessionUpdate_1a99e5ed74bda523a9f8cddb1adb380822)`(TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > NewValue)` | Sets the value of Teams_Optional and also sets Teams_IsSet to true.
 `public inline void `[`ClearTeams`](#structFRHAPI__SessionUpdate_1a25c2f946c12657cbf3ecd48755f2b141)`()` | Clears the value of Teams_Optional and sets Teams_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FString `[`RegionId_Optional`](#structFRHAPI__SessionUpdate_1aa6a8ea4e32122c33643902ccae72a6cb) <a id="structFRHAPI__SessionUpdate_1aa6a8ea4e32122c33643902ccae72a6cb"></a>
 

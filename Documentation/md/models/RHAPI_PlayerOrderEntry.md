@@ -1,4 +1,4 @@
-# RHAPI_PlayerOrderEntry <a id="group__RHAPI__PlayerOrderEntry"></a>
+# group `RHAPI_PlayerOrderEntry` <a id="group__RHAPI__PlayerOrderEntry"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_PlayerOrderEntry
 
 Represents a line item in the Player Order and the results of the line item.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -206,7 +206,7 @@ Represents a line item in the Player Order and the results of the line item.
 `public inline void `[`SetDetails`](#structFRHAPI__PlayerOrderEntry_1ae66fd15d79f4c954382854d192b60d7e)`(TArray< `[`FRHAPI_PlayerOrderDetail`](RHAPI_PlayerOrderDetail.md#structFRHAPI__PlayerOrderDetail)` > NewValue)` | Sets the value of Details_Optional and also sets Details_IsSet to true.
 `public inline void `[`ClearDetails`](#structFRHAPI__PlayerOrderEntry_1a8a6459beef5e0f7622a768e8a880ee38)`()` | Clears the value of Details_Optional and sets Details_IsSet to false.
 
-#### Members
+### Members
 
 #### `public ERHAPI_PlayerOrderEntryType `[`Type`](#structFRHAPI__PlayerOrderEntry_1a37c9f172a892e0dd233755e8ab8f2890) <a id="structFRHAPI__PlayerOrderEntry_1a37c9f172a892e0dd233755e8ab8f2890"></a>
 

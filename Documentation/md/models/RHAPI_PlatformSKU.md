@@ -1,4 +1,4 @@
-# RHAPI_PlatformSKU <a id="group__RHAPI__PlatformSKU"></a>
+# group `RHAPI_PlatformSKU` <a id="group__RHAPI__PlatformSKU"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_PlatformSKU
 
 Platform SKU that can be converted to inventory or keys.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -70,7 +70,7 @@ Platform SKU that can be converted to inventory or keys.
 `public inline void `[`SetCacheInfo`](#structFRHAPI__PlatformSKU_1af2fa59520b237df64881f54d3064b14c)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__PlatformSKU_1a2eb6371d0f542e17466b83ab32efca14)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 
-#### Members
+### Members
 
 #### `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__PlatformSKU_1ab26debe0ff1c24b61599980b44812b2b) <a id="structFRHAPI__PlatformSKU_1ab26debe0ff1c24b61599980b44812b2b"></a>
 

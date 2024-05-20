@@ -1,4 +1,4 @@
-# RHAPI_InstanceStartupParams <a id="group__RHAPI__InstanceStartupParams"></a>
+# group `RHAPI_InstanceStartupParams` <a id="group__RHAPI__InstanceStartupParams"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_InstanceStartupParams
 
 Parameters given to an instance to change what map and mode it loads, and other gameplay behavior.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -50,7 +50,7 @@ Parameters given to an instance to change what map and mode it loads, and other 
 `public inline void `[`SetCustomData`](#structFRHAPI__InstanceStartupParams_1ac68dc80a0412fc437a9b72d11ecec523)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`ClearCustomData`](#structFRHAPI__InstanceStartupParams_1ad5cd20ad691851348dd54afdf981b84b)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FString `[`Map`](#structFRHAPI__InstanceStartupParams_1a8a0711c1dee8bd4388903f0f0f8163da) <a id="structFRHAPI__InstanceStartupParams_1a8a0711c1dee8bd4388903f0f0f8163da"></a>
 

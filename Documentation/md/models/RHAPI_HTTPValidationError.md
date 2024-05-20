@@ -1,4 +1,4 @@
-# RHAPI_HTTPValidationError <a id="group__RHAPI__HTTPValidationError"></a>
+# group `RHAPI_HTTPValidationError` <a id="group__RHAPI__HTTPValidationError"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_HTTPValidationError
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -30,7 +30,7 @@ struct FRHAPI_HTTPValidationError
 `public inline void `[`SetDetail`](#structFRHAPI__HTTPValidationError_1ab5da2c3ae56e603b3f130829b8fbabb5)`(TArray< `[`FRHAPI_ValidationError`](RHAPI_ValidationError.md#structFRHAPI__ValidationError)` > NewValue)` | Sets the value of Detail_Optional and also sets Detail_IsSet to true.
 `public inline void `[`ClearDetail`](#structFRHAPI__HTTPValidationError_1a12352d19408f341b50d0c3235fc78cab)`()` | Clears the value of Detail_Optional and sets Detail_IsSet to false.
 
-#### Members
+### Members
 
 #### `public TArray< `[`FRHAPI_ValidationError`](RHAPI_ValidationError.md#structFRHAPI__ValidationError)` > `[`Detail_Optional`](#structFRHAPI__HTTPValidationError_1a17b75a583ce83c3bce0f5380c72440b9) <a id="structFRHAPI__HTTPValidationError_1a17b75a583ce83c3bce0f5380c72440b9"></a>
 

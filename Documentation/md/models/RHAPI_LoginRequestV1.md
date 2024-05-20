@@ -1,4 +1,4 @@
-# RHAPI_LoginRequestV1 <a id="group__RHAPI__LoginRequestV1"></a>
+# group `RHAPI_LoginRequestV1` <a id="group__RHAPI__LoginRequestV1"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_LoginRequestV1
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -120,7 +120,7 @@ struct FRHAPI_LoginRequestV1
 `public inline bool `[`IsAcceptPrivacyPolicyDefaultValue`](#structFRHAPI__LoginRequestV1_1ad54685034fe9ad2ab281134c099d2f9e)`() const` | Returns true if AcceptPrivacyPolicy_Optional is set and matches the default value.
 `public inline void `[`SetAcceptPrivacyPolicyToDefault`](#structFRHAPI__LoginRequestV1_1acd55a9f76eddf263489516ccf5bb712d)`()` | Sets the value of AcceptPrivacyPolicy_Optional to its default and also sets AcceptPrivacyPolicy_IsSet to true.
 
-#### Members
+### Members
 
 #### `public ERHAPI_GrantType `[`GrantType`](#structFRHAPI__LoginRequestV1_1a5652f06d62aeb59dbb1b27481aef0f75) <a id="structFRHAPI__LoginRequestV1_1a5652f06d62aeb59dbb1b27481aef0f75"></a>
 

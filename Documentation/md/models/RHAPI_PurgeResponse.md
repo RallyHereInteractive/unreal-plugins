@@ -1,4 +1,4 @@
-# RHAPI_PurgeResponse <a id="group__RHAPI__PurgeResponse"></a>
+# group `RHAPI_PurgeResponse` <a id="group__RHAPI__PurgeResponse"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_PurgeResponse
 
 Purge response from a purge request.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -42,7 +42,7 @@ Purge response from a purge request.
 `public inline const FString & `[`GetStatus`](#structFRHAPI__PurgeResponse_1a8c598d34431dd1f38a663ab8955d9904)`() const` | Gets the value of Status.
 `public inline void `[`SetStatus`](#structFRHAPI__PurgeResponse_1a637ce446f6575e52ed0dd2c6b61424da)`(FString NewValue)` | Sets the value of Status.
 
-#### Members
+### Members
 
 #### `public FGuid `[`PersonId`](#structFRHAPI__PurgeResponse_1a5c1a68cb15784ef97033f8fdef69752f) <a id="structFRHAPI__PurgeResponse_1a5c1a68cb15784ef97033f8fdef69752f"></a>
 

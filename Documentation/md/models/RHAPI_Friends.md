@@ -1,4 +1,4 @@
-# RHAPI_Friends <a id="group__RHAPI__Friends"></a>
+# group `RHAPI_Friends` <a id="group__RHAPI__Friends"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_Friends
 
 List of player_uuids to operate on.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -26,7 +26,7 @@ List of player_uuids to operate on.
 `public inline const TArray< FGuid > & `[`GetFriends`](#structFRHAPI__Friends_1ac3c7f96b76e832180c243bc2ea2827d8)`() const` | Gets the value of Friends.
 `public inline void `[`SetFriends`](#structFRHAPI__Friends_1a861988577c02b9cc1249c56736dab122)`(TArray< FGuid > NewValue)` | Sets the value of Friends.
 
-#### Members
+### Members
 
 #### `public TArray< FGuid > `[`Friends`](#structFRHAPI__Friends_1ac8e4a2e4be8a82c1c69c0e756eb0b874) <a id="structFRHAPI__Friends_1ac8e4a2e4be8a82c1c69c0e756eb0b874"></a>
 

@@ -1,4 +1,4 @@
-# RHAPI_BackfillInfo <a id="group__RHAPI__BackfillInfo"></a>
+# group `RHAPI_BackfillInfo` <a id="group__RHAPI__BackfillInfo"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_BackfillInfo
 
 Info about the open-match backfill object in a session.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -36,7 +36,7 @@ Info about the open-match backfill object in a session.
 `public inline void `[`SetExtensions`](#structFRHAPI__BackfillInfo_1a952fe467e266ffc96f347779cf49b12d)`(TMap< FString, FString > NewValue)` | Sets the value of Extensions_Optional and also sets Extensions_IsSet to true.
 `public inline void `[`ClearExtensions`](#structFRHAPI__BackfillInfo_1a13c1c5696be1196b66b1706a090c59ee)`()` | Clears the value of Extensions_Optional and sets Extensions_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FString `[`BackfillId`](#structFRHAPI__BackfillInfo_1a01c5dc7289f87b6f57bbb0783f183b83) <a id="structFRHAPI__BackfillInfo_1a01c5dc7289f87b6f57bbb0783f183b83"></a>
 

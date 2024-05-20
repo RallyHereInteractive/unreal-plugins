@@ -1,4 +1,4 @@
-# RHAPI_EntitlementEvent <a id="group__RHAPI__EntitlementEvent"></a>
+# group `RHAPI_EntitlementEvent` <a id="group__RHAPI__EntitlementEvent"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_EntitlementEvent
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -136,7 +136,7 @@ struct FRHAPI_EntitlementEvent
 `public inline const FDateTime & `[`GetLastModified`](#structFRHAPI__EntitlementEvent_1a057ae60105f8c9224a6eb5234006aac7)`() const` | Gets the value of LastModified.
 `public inline void `[`SetLastModified`](#structFRHAPI__EntitlementEvent_1aef72cd737bf344719c8f971591699d0a)`(FDateTime NewValue)` | Sets the value of LastModified.
 
-#### Members
+### Members
 
 #### `public FString `[`EventId`](#structFRHAPI__EntitlementEvent_1a50b0008a25315847be0862b33a201872) <a id="structFRHAPI__EntitlementEvent_1a50b0008a25315847be0862b33a201872"></a>
 

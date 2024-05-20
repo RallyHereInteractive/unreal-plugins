@@ -1,4 +1,4 @@
-# RHAPI_OAuthTokenExchange <a id="group__RHAPI__OAuthTokenExchange"></a>
+# group `RHAPI_OAuthTokenExchange` <a id="group__RHAPI__OAuthTokenExchange"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_OAuthTokenExchange
 
 OAuth token exchange request.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -66,7 +66,7 @@ OAuth token exchange request.
 `public inline bool `[`IsAcceptedPrivacyPolicyDefaultValue`](#structFRHAPI__OAuthTokenExchange_1ae5beea9b982bdfe51052d2b1ed011776)`() const` | Returns true if AcceptedPrivacyPolicy_Optional is set and matches the default value.
 `public inline void `[`SetAcceptedPrivacyPolicyToDefault`](#structFRHAPI__OAuthTokenExchange_1a3523911676aa77a4facdfba9699a4355)`()` | Sets the value of AcceptedPrivacyPolicy_Optional to its default and also sets AcceptedPrivacyPolicy_IsSet to true.
 
-#### Members
+### Members
 
 #### `public ERHAPI_OAuthTokenEchangeGrantType `[`GrantType`](#structFRHAPI__OAuthTokenExchange_1aa86abe58af5adeae744bdd18e4913983) <a id="structFRHAPI__OAuthTokenExchange_1aa86abe58af5adeae744bdd18e4913983"></a>
 

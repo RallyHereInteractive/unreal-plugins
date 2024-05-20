@@ -1,4 +1,4 @@
-# RHAPI_EntitlementEventList <a id="group__RHAPI__EntitlementEventList"></a>
+# group `RHAPI_EntitlementEventList` <a id="group__RHAPI__EntitlementEventList"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_EntitlementEventList
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -34,7 +34,7 @@ struct FRHAPI_EntitlementEventList
 `public inline void `[`SetCursor`](#structFRHAPI__EntitlementEventList_1a41fe69ccfab4f352f26140dd77855164)`(FString NewValue)` | Sets the value of Cursor_Optional and also sets Cursor_IsSet to true.
 `public inline void `[`ClearCursor`](#structFRHAPI__EntitlementEventList_1ad53ca1646a6b5f74c4fcc9fd64d63c0f)`()` | Clears the value of Cursor_Optional and sets Cursor_IsSet to false.
 
-#### Members
+### Members
 
 #### `public TArray< `[`FRHAPI_EntitlementEvent`](RHAPI_EntitlementEvent.md#structFRHAPI__EntitlementEvent)` > `[`Events`](#structFRHAPI__EntitlementEventList_1a3f05027a0a92306457e4e110ac0bb94f) <a id="structFRHAPI__EntitlementEventList_1a3f05027a0a92306457e4e110ac0bb94f"></a>
 

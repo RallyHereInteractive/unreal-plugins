@@ -1,4 +1,4 @@
-# RHAPI_PlayerOrderCreate <a id="group__RHAPI__PlayerOrderCreate"></a>
+# group `RHAPI_PlayerOrderCreate` <a id="group__RHAPI__PlayerOrderCreate"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_PlayerOrderCreate
 
 Create a new Player Order. <b>Note: &#x60;use_inventory_bucket&#x60; will be ignored on the PlayerOrderEntryCreate if the &#x60;source&#x60; equals &#x60;CLIENT&#x60;.</b>.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -108,7 +108,7 @@ Create a new Player Order. <b>Note: &#x60;use_inventory_bucket&#x60; will be ign
 `public inline const TArray< `[`FRHAPI_PlayerOrderEntryCreate`](RHAPI_PlayerOrderEntryCreate.md#structFRHAPI__PlayerOrderEntryCreate)` > & `[`GetEntries`](#structFRHAPI__PlayerOrderCreate_1a59d30bb8ac929176b0dd2c3b5ebbce1c)`() const` | Gets the value of Entries.
 `public inline void `[`SetEntries`](#structFRHAPI__PlayerOrderCreate_1a3f9e2c60c88c52a0456340871e3caafe)`(TArray< `[`FRHAPI_PlayerOrderEntryCreate`](RHAPI_PlayerOrderEntryCreate.md#structFRHAPI__PlayerOrderEntryCreate)` > NewValue)` | Sets the value of Entries.
 
-#### Members
+### Members
 
 #### `public ERHAPI_Source `[`Source_Optional`](#structFRHAPI__PlayerOrderCreate_1ab01397cfe2bb64ed9a5cdeafe156acef) <a id="structFRHAPI__PlayerOrderCreate_1ab01397cfe2bb64ed9a5cdeafe156acef"></a>
 

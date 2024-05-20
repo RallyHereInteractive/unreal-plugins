@@ -1,4 +1,4 @@
-# RHAPI_PlayerIdWrapper <a id="group__RHAPI__PlayerIdWrapper"></a>
+# group `RHAPI_PlayerIdWrapper` <a id="group__RHAPI__PlayerIdWrapper"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_PlayerIdWrapper
 
 Model for getting a player ID from a player UUID.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -28,7 +28,7 @@ Model for getting a player ID from a player UUID.
 `public inline bool `[`IsPlayerIdDefaultValue`](#structFRHAPI__PlayerIdWrapper_1a4ead20a497424bd20af5cf9770c34df4)`() const` | Returns true if PlayerId matches the default value.
 `public inline void `[`SetPlayerIdToDefault`](#structFRHAPI__PlayerIdWrapper_1af09d4ca3ce7197ff58f5cd4608f51eaa)`()` | Sets the value of PlayerId to its default
 
-#### Members
+### Members
 
 #### `public int32 `[`PlayerId`](#structFRHAPI__PlayerIdWrapper_1a9d3517523183b4512a3e4335470be60a) <a id="structFRHAPI__PlayerIdWrapper_1a9d3517523183b4512a3e4335470be60a"></a>
 

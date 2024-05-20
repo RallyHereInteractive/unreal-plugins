@@ -1,4 +1,4 @@
-# RHAPI_PlatformEntitlementProcessRequest <a id="group__RHAPI__PlatformEntitlementProcessRequest"></a>
+# group `RHAPI_PlatformEntitlementProcessRequest` <a id="group__RHAPI__PlatformEntitlementProcessRequest"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_PlatformEntitlementProcessRequest
 
 Request to process a platform entitlement.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -52,7 +52,7 @@ Request to process a platform entitlement.
 `public inline void `[`SetEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1add57dd436f6402d835ebe33e4d76305b)`(TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > NewValue)` | Sets the value of Entitlements_Optional and also sets Entitlements_IsSet to true.
 `public inline void `[`ClearEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1a9493313ad553516ff62bf102065e1344)`()` | Clears the value of Entitlements_Optional and sets Entitlements_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FString `[`TransactionId`](#structFRHAPI__PlatformEntitlementProcessRequest_1a4100419f0f52a6eb4762beac516b783d) <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a4100419f0f52a6eb4762beac516b783d"></a>
 
