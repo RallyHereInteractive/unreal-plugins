@@ -506,23 +506,14 @@ Friends Subsystem for handling a users relationships with other players.
 `public `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetRH_PlayerInfoSubsystem`](#classURH__FriendSubsystem_1ad113da46527b010c8f09a5419c5fa425)`() const` | Helper function to get the Player Info Subsystem that owns this.
 `public bool `[`FetchFriendsList`](#classURH__FriendSubsystem_1af9e36bd8e6a590aa0eb34e507aaf52cb)`(const FRH_GenericFriendBlock & Delegate)` | Calls the Friends API to get the players friends list.
 `public bool `[`FetchFriend`](#classURH__FriendSubsystem_1a515eb3d9d965b33473efd7380a5df246)`(const FGuid & PlayerUUID,const FRH_GenericFriendWithUuidBlock & Delegate)` | Calls the Friends API to get data for a specific friend.
-`public inline bool `[`BLUEPRINT_FetchFriend`](#classURH__FriendSubsystem_1ace3b5156215342fde35c681c7222693b)`(UPARAM(ref) const FGuid & PlayerUUID,const FRH_GenericFriendWithUuidDynamicDelegate & Delegate)` | 
 `public bool `[`AddFriend`](#classURH__FriendSubsystem_1ad700daa801bab689d87f4b630a5282c5)`(const FGuid & PlayerUuid,const FRH_AddFriendBlock & Delegate)` | Calls the Friends API to create a new friendship relationship with another player.
-`public inline bool `[`BLUEPRINT_AddFriend`](#classURH__FriendSubsystem_1a0981e250c763c837b221fa679ae9b711)`(UPARAM(ref) const FGuid & PlayerUuid,const FRH_AddFriendDynamicDelegate & Delegate)` | 
 `public bool `[`RemoveFriend`](#classURH__FriendSubsystem_1af6e442d6353bde8467777b267422ea0d)`(const FGuid & PlayerUuid,const FRH_GenericFriendWithUuidBlock & Delegate)` | Calls the Friends API to remove a friend relationship with another player.
-`public inline bool `[`BLUEPRINT_RemoveFriend`](#classURH__FriendSubsystem_1a3f6078048c0446d85d60437b02e5b7c3)`(UPARAM(ref) const FGuid & PlayerUuid,const FRH_GenericFriendWithUuidDynamicDelegate & Delegate)` | 
 `public bool `[`AddNotes`](#classURH__FriendSubsystem_1a10beb339453283fe44aa2c3f71602d7a)`(const FGuid & PlayerUuid,const FString & Notes,const FRH_AddNotesBlock & Delegate)` | Calls the Friends API to set/modify personal notes for another player.
-`public inline bool `[`BLUEPRINT_AddNotes`](#classURH__FriendSubsystem_1aff6e4e3d7280fe2da1c43b5450393035)`(UPARAM(ref) const FGuid & PlayerUuid,UPARAM(ref) const FString & Notes,const FRH_AddNotesDynamicDelegate & Delegate)` | 
 `public bool `[`DeleteNotes`](#classURH__FriendSubsystem_1a6fe36017bb483c85248c4311e9e01972)`(const FGuid & PlayerUuid,const FRH_GenericFriendWithUuidBlock & Delegate)` | Calls the Friends API to delete personal notes for another player.
-`public inline bool `[`BLUEPRINT_DeleteNotes`](#classURH__FriendSubsystem_1acb2f583d7e1662b3554e5ac162d25969)`(UPARAM(ref) const FGuid & PlayerUuid,const FRH_GenericFriendWithUuidDynamicDelegate & Delegate)` | 
 `public bool `[`FetchBlockedList`](#classURH__FriendSubsystem_1ae5920534783b3289cd79af44eb93ac9a)`(const FRH_GenericFriendBlock & Delegate)` | Calls the Friends API to get the list of players you have blocked.
-`public inline bool `[`BLUEPRINT_FetchBlockedList`](#classURH__FriendSubsystem_1a586d0224a947d926c86b7ee4383b7aad)`(const FRH_GenericFriendDynamicDelegate & Delegate)` | 
 `public bool `[`FetchBlockedPlayer`](#classURH__FriendSubsystem_1a1d00d3d9d75ec1d1ee47b4985d09dbf1)`(const FGuid & PlayerUuid,const FRH_GenericFriendWithUuidBlock & Delegate)` | Calls the Friends API to get data for a specific blocked player.
-`public inline bool `[`BLUEPRINT_FetchBlockedPlayer`](#classURH__FriendSubsystem_1a5e7db1366da35064c80bafb05167848a)`(UPARAM(ref) const FGuid & PlayerUuid,const FRH_GenericFriendWithUuidDynamicDelegate & Delegate)` | 
 `public bool `[`BlockPlayer`](#classURH__FriendSubsystem_1afaf34fd0bab40279aad46eed4ee17989)`(const FGuid & PlayerUuid,const FRH_GenericFriendWithUuidBlock & Delegate)` | Calls the Friends API to create a new block relationship with another player.
-`public inline bool `[`BLUEPRINT_BlockPlayer`](#classURH__FriendSubsystem_1a6c07284e45881126b8975b3d92f02900)`(UPARAM(ref) const FGuid & PlayerUUID,const FRH_GenericFriendWithUuidDynamicDelegate & Delegate)` | 
 `public bool `[`UnblockPlayer`](#classURH__FriendSubsystem_1ae912cce935704be005779cd45d4bf84e)`(const FGuid & PlayerUuid,const FRH_GenericFriendWithUuidBlock & Delegate)` | Calls the Friends API to remove a block relationship with another player.
-`public inline bool `[`BLUEPRINT_UnblockPlayer`](#classURH__FriendSubsystem_1acb1949519c95d83ddc15ca9885e5423f)`(UPARAM(ref) const FGuid & PlayerUuid,const FRH_GenericFriendWithUuidDynamicDelegate & Delegate)` | 
 `public void `[`UpdateRecentPlayerForOSS`](#classURH__FriendSubsystem_1ae3fda9069196b472db23598bc8bfbcee)`(const `[`URH_LocalPlayerSubsystem`](LocalPlayer.md#classURH__LocalPlayerSubsystem)` * LocalPlayerSubsystem,const FGuid & PlayerUuid)` | Updates the platform OSS with a player you have recently played with.
 `public void `[`OSSReadFriendsList`](#classURH__FriendSubsystem_1a1d67c41ac34ab52852236256994d545d)`(const FString & ListName)` | Triggers the OSS call to get platform friends.
 `public `[`URH_RHFriendAndPlatformFriend`](Friends.md#classURH__RHFriendAndPlatformFriend)` * `[`GetOrCreateFriend`](#classURH__FriendSubsystem_1afdd65b2cb3b5c2dcfb41af247426d39e)`(`[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * PlayerInfo)` | Gets if the specified players friend wrapper, or creates one if it doesn't exist yet.
@@ -655,8 +646,6 @@ Calls the Friends API to get data for a specific friend.
 #### Returns
 If true, the call was executed.
 
-#### `public inline bool `[`BLUEPRINT_FetchFriend`](#classURH__FriendSubsystem_1ace3b5156215342fde35c681c7222693b)`(UPARAM(ref) const FGuid & PlayerUUID,const FRH_GenericFriendWithUuidDynamicDelegate & Delegate)` <a id="classURH__FriendSubsystem_1ace3b5156215342fde35c681c7222693b"></a>
-
 #### `public bool `[`AddFriend`](#classURH__FriendSubsystem_1ad700daa801bab689d87f4b630a5282c5)`(const FGuid & PlayerUuid,const FRH_AddFriendBlock & Delegate)` <a id="classURH__FriendSubsystem_1ad700daa801bab689d87f4b630a5282c5"></a>
 
 Calls the Friends API to create a new friendship relationship with another player.
@@ -669,8 +658,6 @@ Calls the Friends API to create a new friendship relationship with another playe
 #### Returns
 If true, the call was executed.
 
-#### `public inline bool `[`BLUEPRINT_AddFriend`](#classURH__FriendSubsystem_1a0981e250c763c837b221fa679ae9b711)`(UPARAM(ref) const FGuid & PlayerUuid,const FRH_AddFriendDynamicDelegate & Delegate)` <a id="classURH__FriendSubsystem_1a0981e250c763c837b221fa679ae9b711"></a>
-
 #### `public bool `[`RemoveFriend`](#classURH__FriendSubsystem_1af6e442d6353bde8467777b267422ea0d)`(const FGuid & PlayerUuid,const FRH_GenericFriendWithUuidBlock & Delegate)` <a id="classURH__FriendSubsystem_1af6e442d6353bde8467777b267422ea0d"></a>
 
 Calls the Friends API to remove a friend relationship with another player.
@@ -682,8 +669,6 @@ Calls the Friends API to remove a friend relationship with another player.
 
 #### Returns
 If true, the call was executed.
-
-#### `public inline bool `[`BLUEPRINT_RemoveFriend`](#classURH__FriendSubsystem_1a3f6078048c0446d85d60437b02e5b7c3)`(UPARAM(ref) const FGuid & PlayerUuid,const FRH_GenericFriendWithUuidDynamicDelegate & Delegate)` <a id="classURH__FriendSubsystem_1a3f6078048c0446d85d60437b02e5b7c3"></a>
 
 #### `public bool `[`AddNotes`](#classURH__FriendSubsystem_1a10beb339453283fe44aa2c3f71602d7a)`(const FGuid & PlayerUuid,const FString & Notes,const FRH_AddNotesBlock & Delegate)` <a id="classURH__FriendSubsystem_1a10beb339453283fe44aa2c3f71602d7a"></a>
 
@@ -699,8 +684,6 @@ Calls the Friends API to set/modify personal notes for another player.
 #### Returns
 If true, the call was executed.
 
-#### `public inline bool `[`BLUEPRINT_AddNotes`](#classURH__FriendSubsystem_1aff6e4e3d7280fe2da1c43b5450393035)`(UPARAM(ref) const FGuid & PlayerUuid,UPARAM(ref) const FString & Notes,const FRH_AddNotesDynamicDelegate & Delegate)` <a id="classURH__FriendSubsystem_1aff6e4e3d7280fe2da1c43b5450393035"></a>
-
 #### `public bool `[`DeleteNotes`](#classURH__FriendSubsystem_1a6fe36017bb483c85248c4311e9e01972)`(const FGuid & PlayerUuid,const FRH_GenericFriendWithUuidBlock & Delegate)` <a id="classURH__FriendSubsystem_1a6fe36017bb483c85248c4311e9e01972"></a>
 
 Calls the Friends API to delete personal notes for another player.
@@ -713,8 +696,6 @@ Calls the Friends API to delete personal notes for another player.
 #### Returns
 If true, the call was executed.
 
-#### `public inline bool `[`BLUEPRINT_DeleteNotes`](#classURH__FriendSubsystem_1acb2f583d7e1662b3554e5ac162d25969)`(UPARAM(ref) const FGuid & PlayerUuid,const FRH_GenericFriendWithUuidDynamicDelegate & Delegate)` <a id="classURH__FriendSubsystem_1acb2f583d7e1662b3554e5ac162d25969"></a>
-
 #### `public bool `[`FetchBlockedList`](#classURH__FriendSubsystem_1ae5920534783b3289cd79af44eb93ac9a)`(const FRH_GenericFriendBlock & Delegate)` <a id="classURH__FriendSubsystem_1ae5920534783b3289cd79af44eb93ac9a"></a>
 
 Calls the Friends API to get the list of players you have blocked.
@@ -724,8 +705,6 @@ Calls the Friends API to get the list of players you have blocked.
 
 #### Returns
 If true, the call was executed.
-
-#### `public inline bool `[`BLUEPRINT_FetchBlockedList`](#classURH__FriendSubsystem_1a586d0224a947d926c86b7ee4383b7aad)`(const FRH_GenericFriendDynamicDelegate & Delegate)` <a id="classURH__FriendSubsystem_1a586d0224a947d926c86b7ee4383b7aad"></a>
 
 #### `public bool `[`FetchBlockedPlayer`](#classURH__FriendSubsystem_1a1d00d3d9d75ec1d1ee47b4985d09dbf1)`(const FGuid & PlayerUuid,const FRH_GenericFriendWithUuidBlock & Delegate)` <a id="classURH__FriendSubsystem_1a1d00d3d9d75ec1d1ee47b4985d09dbf1"></a>
 
@@ -739,8 +718,6 @@ Calls the Friends API to get data for a specific blocked player.
 #### Returns
 If true, the call was executed.
 
-#### `public inline bool `[`BLUEPRINT_FetchBlockedPlayer`](#classURH__FriendSubsystem_1a5e7db1366da35064c80bafb05167848a)`(UPARAM(ref) const FGuid & PlayerUuid,const FRH_GenericFriendWithUuidDynamicDelegate & Delegate)` <a id="classURH__FriendSubsystem_1a5e7db1366da35064c80bafb05167848a"></a>
-
 #### `public bool `[`BlockPlayer`](#classURH__FriendSubsystem_1afaf34fd0bab40279aad46eed4ee17989)`(const FGuid & PlayerUuid,const FRH_GenericFriendWithUuidBlock & Delegate)` <a id="classURH__FriendSubsystem_1afaf34fd0bab40279aad46eed4ee17989"></a>
 
 Calls the Friends API to create a new block relationship with another player.
@@ -753,8 +730,6 @@ Calls the Friends API to create a new block relationship with another player.
 #### Returns
 If true, the call was executed.
 
-#### `public inline bool `[`BLUEPRINT_BlockPlayer`](#classURH__FriendSubsystem_1a6c07284e45881126b8975b3d92f02900)`(UPARAM(ref) const FGuid & PlayerUUID,const FRH_GenericFriendWithUuidDynamicDelegate & Delegate)` <a id="classURH__FriendSubsystem_1a6c07284e45881126b8975b3d92f02900"></a>
-
 #### `public bool `[`UnblockPlayer`](#classURH__FriendSubsystem_1ae912cce935704be005779cd45d4bf84e)`(const FGuid & PlayerUuid,const FRH_GenericFriendWithUuidBlock & Delegate)` <a id="classURH__FriendSubsystem_1ae912cce935704be005779cd45d4bf84e"></a>
 
 Calls the Friends API to remove a block relationship with another player.
@@ -766,8 +741,6 @@ Calls the Friends API to remove a block relationship with another player.
 
 #### Returns
 If true, the call was executed.
-
-#### `public inline bool `[`BLUEPRINT_UnblockPlayer`](#classURH__FriendSubsystem_1acb1949519c95d83ddc15ca9885e5423f)`(UPARAM(ref) const FGuid & PlayerUuid,const FRH_GenericFriendWithUuidDynamicDelegate & Delegate)` <a id="classURH__FriendSubsystem_1acb1949519c95d83ddc15ca9885e5423f"></a>
 
 #### `public void `[`UpdateRecentPlayerForOSS`](#classURH__FriendSubsystem_1ae3fda9069196b472db23598bc8bfbcee)`(const `[`URH_LocalPlayerSubsystem`](LocalPlayer.md#classURH__LocalPlayerSubsystem)` * LocalPlayerSubsystem,const FGuid & PlayerUuid)` <a id="classURH__FriendSubsystem_1ae3fda9069196b472db23598bc8bfbcee"></a>
 

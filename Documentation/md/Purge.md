@@ -22,15 +22,10 @@ Subsystem to manage purging a players account.
 `public virtual void `[`Initialize`](#classURH__PurgeSubsystem_1a25cba13b4d4a0932f57b87c8aa1b7aca)`()` | Initialize the subsystem.
 `public virtual void `[`Deinitialize`](#classURH__PurgeSubsystem_1a3fb30c02b0d09f30507f7273d59cf349)`()` | Safely tears down the subsystem.
 `public inline bool `[`EnqueueMeForPurge`](#classURH__PurgeSubsystem_1a02e0aa94099eebfeeb1b597ff07738cc)`(const FDateTime & PurgeTime,const FRH_OnPurgeStatusUpdatedDelegateBlock & Delegate)` | Requests a purge for the local player at a specific time.
-`public inline bool `[`BLUEPRINT_EnqueueMeForPurgeWithPurgeTime`](#classURH__PurgeSubsystem_1a4e9014c02e850570123fde3e2ddd9518)`(FDateTime PurgeTime,const FRH_OnPurgeStatusUpdatedDynamicDelegate & Delegate)` | 
 `public inline bool `[`EnqueueMeForPurge`](#classURH__PurgeSubsystem_1addf20225a61f48ebdc5bbf8bc32d8263)`(const FRH_OnPurgeStatusUpdatedDelegateBlock & Delegate)` | Requests a purge for the local player, uses a configured default amount of time til purge from request.
-`public inline bool `[`BLUEPRINT_EnqueueMeForPurge`](#classURH__PurgeSubsystem_1a4ae7b5c639fe1dcd128557b1fd69b072)`(const FRH_OnPurgeStatusUpdatedDynamicDelegate & Delegate)` | 
 `public inline bool `[`PurgeMeImmediately`](#classURH__PurgeSubsystem_1a0bb785444b4d09ce1cafeea8d59b4c1c)`(const FRH_OnPurgeStatusUpdatedDelegateBlock & Delegate)` | Requests a purge for the local player that will be resolved immediately.
-`public inline bool `[`BLUEPRINT_PurgeMeImmediately`](#classURH__PurgeSubsystem_1aa5406090b8740e63e2a7fc7d80afc135)`(const FRH_OnPurgeStatusUpdatedDynamicDelegate & Delegate)` | 
 `public bool `[`DequeueMeForPurge`](#classURH__PurgeSubsystem_1a4b2219391a24ee4dca3967817f39d86e)`(const FRH_OnPurgeStatusUpdatedDelegateBlock & Delegate)` | Requests to clear the purge request for the local play.
-`public inline bool `[`BLUEPRINT_DequeueMeForPurge`](#classURH__PurgeSubsystem_1aedf8bff50126ffdcee03903974bd2c6b)`(const FRH_OnPurgeStatusUpdatedDynamicDelegate & Delegate)` | 
 `public bool `[`QueryMyPurgeStatus`](#classURH__PurgeSubsystem_1a22d6f35bec5e9d367606523ed3bcb36d)`(const FRH_OnPurgeStatusUpdatedDelegateBlock & Delegate)` | Requests the status of a purge for the local player.
-`public inline bool `[`BLUEPRINT_QueryMyPurgeStatus`](#classURH__PurgeSubsystem_1aeda5a4776e1ad2c9145aacf3f6b876ba)`(const FRH_OnPurgeStatusUpdatedDynamicDelegate & Delegate)` | 
 `public inline `[`FRHAPI_PurgeResponse`](models/RHAPI_PurgeResponse.md#structFRHAPI__PurgeResponse)` `[`GetMyPurgeStatus`](#classURH__PurgeSubsystem_1a6a62e3627282c0f74b215fa3e07afa40)`() const` | Gets the local players Purge Status.
 `protected `[`FRHAPI_PurgeResponse`](models/RHAPI_PurgeResponse.md#structFRHAPI__PurgeResponse)` `[`PurgeStatus`](#classURH__PurgeSubsystem_1ac05f63f95cfb89fe33d8298047fced58) | Current Purge Status.
 `protected virtual void `[`OnUserChanged`](#classURH__PurgeSubsystem_1a4d78dff96da837bbe7ed8ea6f089546e)`()` | Callback that occurs whenever the local player this subsystem is associated with changes.
@@ -58,16 +53,12 @@ Requests a purge for the local player at a specific time.
 
 * `Delegate` Callback with the current status of the purge request.
 
-#### `public inline bool `[`BLUEPRINT_EnqueueMeForPurgeWithPurgeTime`](#classURH__PurgeSubsystem_1a4e9014c02e850570123fde3e2ddd9518)`(FDateTime PurgeTime,const FRH_OnPurgeStatusUpdatedDynamicDelegate & Delegate)` <a id="classURH__PurgeSubsystem_1a4e9014c02e850570123fde3e2ddd9518"></a>
-
 #### `public inline bool `[`EnqueueMeForPurge`](#classURH__PurgeSubsystem_1addf20225a61f48ebdc5bbf8bc32d8263)`(const FRH_OnPurgeStatusUpdatedDelegateBlock & Delegate)` <a id="classURH__PurgeSubsystem_1addf20225a61f48ebdc5bbf8bc32d8263"></a>
 
 Requests a purge for the local player, uses a configured default amount of time til purge from request.
 
 #### Parameters
 * `Delegate` Callback with the current status of the purge request.
-
-#### `public inline bool `[`BLUEPRINT_EnqueueMeForPurge`](#classURH__PurgeSubsystem_1a4ae7b5c639fe1dcd128557b1fd69b072)`(const FRH_OnPurgeStatusUpdatedDynamicDelegate & Delegate)` <a id="classURH__PurgeSubsystem_1a4ae7b5c639fe1dcd128557b1fd69b072"></a>
 
 #### `public inline bool `[`PurgeMeImmediately`](#classURH__PurgeSubsystem_1a0bb785444b4d09ce1cafeea8d59b4c1c)`(const FRH_OnPurgeStatusUpdatedDelegateBlock & Delegate)` <a id="classURH__PurgeSubsystem_1a0bb785444b4d09ce1cafeea8d59b4c1c"></a>
 
@@ -76,8 +67,6 @@ Requests a purge for the local player that will be resolved immediately.
 #### Parameters
 * `Delegate` Callback with the current status of the purge request.
 
-#### `public inline bool `[`BLUEPRINT_PurgeMeImmediately`](#classURH__PurgeSubsystem_1aa5406090b8740e63e2a7fc7d80afc135)`(const FRH_OnPurgeStatusUpdatedDynamicDelegate & Delegate)` <a id="classURH__PurgeSubsystem_1aa5406090b8740e63e2a7fc7d80afc135"></a>
-
 #### `public bool `[`DequeueMeForPurge`](#classURH__PurgeSubsystem_1a4b2219391a24ee4dca3967817f39d86e)`(const FRH_OnPurgeStatusUpdatedDelegateBlock & Delegate)` <a id="classURH__PurgeSubsystem_1a4b2219391a24ee4dca3967817f39d86e"></a>
 
 Requests to clear the purge request for the local play.
@@ -85,16 +74,12 @@ Requests to clear the purge request for the local play.
 #### Parameters
 * `Delegate` Callback with the current status of the purge request.
 
-#### `public inline bool `[`BLUEPRINT_DequeueMeForPurge`](#classURH__PurgeSubsystem_1aedf8bff50126ffdcee03903974bd2c6b)`(const FRH_OnPurgeStatusUpdatedDynamicDelegate & Delegate)` <a id="classURH__PurgeSubsystem_1aedf8bff50126ffdcee03903974bd2c6b"></a>
-
 #### `public bool `[`QueryMyPurgeStatus`](#classURH__PurgeSubsystem_1a22d6f35bec5e9d367606523ed3bcb36d)`(const FRH_OnPurgeStatusUpdatedDelegateBlock & Delegate)` <a id="classURH__PurgeSubsystem_1a22d6f35bec5e9d367606523ed3bcb36d"></a>
 
 Requests the status of a purge for the local player.
 
 #### Parameters
 * `Delegate` Callback with the current status of the purge request.
-
-#### `public inline bool `[`BLUEPRINT_QueryMyPurgeStatus`](#classURH__PurgeSubsystem_1aeda5a4776e1ad2c9145aacf3f6b876ba)`(const FRH_OnPurgeStatusUpdatedDynamicDelegate & Delegate)` <a id="classURH__PurgeSubsystem_1aeda5a4776e1ad2c9145aacf3f6b876ba"></a>
 
 #### `public inline `[`FRHAPI_PurgeResponse`](models/RHAPI_PurgeResponse.md#structFRHAPI__PurgeResponse)` `[`GetMyPurgeStatus`](#classURH__PurgeSubsystem_1a6a62e3627282c0f74b215fa3e07afa40)`() const` <a id="classURH__PurgeSubsystem_1a6a62e3627282c0f74b215fa3e07afa40"></a>
 

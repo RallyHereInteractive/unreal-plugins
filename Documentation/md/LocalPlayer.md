@@ -776,12 +776,6 @@ Subsystem to manage sessions for the local player.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public FRH_OnSessionUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnSessionUpdatedDelegate`](#classURH__LocalPlayerSessionSubsystem_1a28a48c4ed60e8b00ad9de1f9b39e1217) | Multicast delegate triggered when a session managed by this subsystem is updated.
-`public FRH_OnSessionUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnSessionAddedDelegate`](#classURH__LocalPlayerSessionSubsystem_1a612a36a3c5862b352bea9c20b157fb1e) | Multicast delegate triggered when a session managed by this subsystem is added.
-`public FRH_OnSessionUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnSessionRemovedDelegate`](#classURH__LocalPlayerSessionSubsystem_1a66e481e48c38b559766e07cf4b89b4f9) | Multicast delegate triggered when a session managed by this subsystem is removed.
-`public FRH_OnSessionUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnSessionExpirationCompleteDelegate`](#classURH__LocalPlayerSessionSubsystem_1a5eb7d010dfe8a9c83b977c694c3f8fd3) | Multicast delegate triggered when a session managed by this subsystem is fully expired (happens after removal)
-`public FRH_OnLoginPollSessionsCompleteMulticastDynamicDelegate `[`BLUEPRINT_OnLoginPollSessionsCompleteDelegate`](#classURH__LocalPlayerSessionSubsystem_1a4ad0823710a468816be02f3e600164ad) | Multicast delegate triggered when the initial poll after login is complete, to do first-time setup.
-`public FRH_OnFailedToJoinPlatformSessionMulticastDynamicDelegate `[`BLUEPRINT_OnFailedToJoinPlatformSessionDelegate`](#classURH__LocalPlayerSessionSubsystem_1a9c5890ac06e22e12e436ab439603a57a) | Multicast delegate triggered when we fail to join a platform session that we've accepted an invite to.
 `public FRH_OnSessionUpdatedMulticastDelegate `[`OnSessionUpdatedDelegate`](#classURH__LocalPlayerSessionSubsystem_1a87ec0a5447e17ebbbda133342770d960) | Multicast delegate triggered when a session managed by this subsystem is updated.
 `public FRH_OnSessionUpdatedMulticastDelegate `[`OnSessionAddedDelegate`](#classURH__LocalPlayerSessionSubsystem_1a34c015e300be4c0474addf8f6d6d947b) | Multicast delegate triggered when a session managed by this subsystem is added.
 `public FRH_OnSessionUpdatedMulticastDelegate `[`OnSessionRemovedDelegate`](#classURH__LocalPlayerSessionSubsystem_1af13b47604f229daf45aa56fdb25554cc) | Multicast delegate triggered when a session managed by this subsystem is removed.
@@ -862,30 +856,6 @@ Subsystem to manage sessions for the local player.
 `protected virtual void `[`HandlePollAllSessionsComplete`](#classURH__LocalPlayerSessionSubsystem_1a723518fadb2e8fb85f0a624debb53b91)`(bool bSuccess,const TArray< FString > & SessionIds)` | Handles the response of polling all sessions.
 
 #### Members
-
-#### `public FRH_OnSessionUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnSessionUpdatedDelegate`](#classURH__LocalPlayerSessionSubsystem_1a28a48c4ed60e8b00ad9de1f9b39e1217) <a id="classURH__LocalPlayerSessionSubsystem_1a28a48c4ed60e8b00ad9de1f9b39e1217"></a>
-
-Multicast delegate triggered when a session managed by this subsystem is updated.
-
-#### `public FRH_OnSessionUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnSessionAddedDelegate`](#classURH__LocalPlayerSessionSubsystem_1a612a36a3c5862b352bea9c20b157fb1e) <a id="classURH__LocalPlayerSessionSubsystem_1a612a36a3c5862b352bea9c20b157fb1e"></a>
-
-Multicast delegate triggered when a session managed by this subsystem is added.
-
-#### `public FRH_OnSessionUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnSessionRemovedDelegate`](#classURH__LocalPlayerSessionSubsystem_1a66e481e48c38b559766e07cf4b89b4f9) <a id="classURH__LocalPlayerSessionSubsystem_1a66e481e48c38b559766e07cf4b89b4f9"></a>
-
-Multicast delegate triggered when a session managed by this subsystem is removed.
-
-#### `public FRH_OnSessionUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnSessionExpirationCompleteDelegate`](#classURH__LocalPlayerSessionSubsystem_1a5eb7d010dfe8a9c83b977c694c3f8fd3) <a id="classURH__LocalPlayerSessionSubsystem_1a5eb7d010dfe8a9c83b977c694c3f8fd3"></a>
-
-Multicast delegate triggered when a session managed by this subsystem is fully expired (happens after removal)
-
-#### `public FRH_OnLoginPollSessionsCompleteMulticastDynamicDelegate `[`BLUEPRINT_OnLoginPollSessionsCompleteDelegate`](#classURH__LocalPlayerSessionSubsystem_1a4ad0823710a468816be02f3e600164ad) <a id="classURH__LocalPlayerSessionSubsystem_1a4ad0823710a468816be02f3e600164ad"></a>
-
-Multicast delegate triggered when the initial poll after login is complete, to do first-time setup.
-
-#### `public FRH_OnFailedToJoinPlatformSessionMulticastDynamicDelegate `[`BLUEPRINT_OnFailedToJoinPlatformSessionDelegate`](#classURH__LocalPlayerSessionSubsystem_1a9c5890ac06e22e12e436ab439603a57a) <a id="classURH__LocalPlayerSessionSubsystem_1a9c5890ac06e22e12e436ab439603a57a"></a>
-
-Multicast delegate triggered when we fail to join a platform session that we've accepted an invite to.
 
 #### `public FRH_OnSessionUpdatedMulticastDelegate `[`OnSessionUpdatedDelegate`](#classURH__LocalPlayerSessionSubsystem_1a87ec0a5447e17ebbbda133342770d960) <a id="classURH__LocalPlayerSessionSubsystem_1a87ec0a5447e17ebbbda133342770d960"></a>
 

@@ -322,7 +322,6 @@ Simple container class to hold session view data, does not have its own auth con
 --------------------------------|---------------------------------------------
 `public  `[`URH_SessionBrowserCache`](#classURH__SessionBrowserCache_1a62c14a0d2d7a4319ffdb92ad829e6ba0)`()` | Default constructor.
 `public void `[`Search`](#classURH__SessionBrowserCache_1a7c3c586c5d3de3fb1511be825c8840c9)`(const `[`FRH_SessionBrowserSearchParams`](Session.md#structFRH__SessionBrowserSearchParams)` & params,const FRH_OnSessionSearchCompleteDelegateBlock & Delegate)` | Makes a call to search for session browsers.
-`public inline void `[`BLUEPRINT_Search`](#classURH__SessionBrowserCache_1aef57a504c6238f35f6040a3c8b0f2b13)`(const `[`FRH_SessionBrowserSearchParams`](Session.md#structFRH__SessionBrowserSearchParams)` & params,FRH_OnSessionSearchCompleteDynamicDelegate Delegate)` | 
 `public inline void `[`ClearCache`](#classURH__SessionBrowserCache_1ab6fc51bbfa94876b68dc96846fe3c920)`(bool bClearTemplates)` | Clears the cached sessions, and optionally the cached templates.
 `public virtual FAuthContextPtr `[`GetSessionAuthContext`](#classURH__SessionBrowserCache_1a097ea9b50702c214574c512697427337)`() const` | Gets the auth context to use for API calls for the session owner.
 `public virtual void `[`ImportAPISession`](#classURH__SessionBrowserCache_1ad7879d7762f0c548483d4b0f04558b97)`(const `[`FRH_APISessionWithETag`](Session.md#structTRH__DataWithETagWrapper)` & Session)` | Adds a session into the session cache.
@@ -356,8 +355,6 @@ Makes a call to search for session browsers.
 * `params` The search paramaters to use. 
 
 * `Delegate` Callback delegate for when the search is completed.
-
-#### `public inline void `[`BLUEPRINT_Search`](#classURH__SessionBrowserCache_1aef57a504c6238f35f6040a3c8b0f2b13)`(const `[`FRH_SessionBrowserSearchParams`](Session.md#structFRH__SessionBrowserSearchParams)` & params,FRH_OnSessionSearchCompleteDynamicDelegate Delegate)` <a id="classURH__SessionBrowserCache_1aef57a504c6238f35f6040a3c8b0f2b13"></a>
 
 #### `public inline void `[`ClearCache`](#classURH__SessionBrowserCache_1ab6fc51bbfa94876b68dc96846fe3c920)`(bool bClearTemplates)` <a id="classURH__SessionBrowserCache_1ab6fc51bbfa94876b68dc96846fe3c920"></a>
 
@@ -1023,8 +1020,6 @@ Online Sessions are sessions that are synchronized from the API (and since it is
 `public  `[`UFUNCTION`](#classURH__OnlineSession_1a4e4d322afa4582235311cf5c2c0ba763)`(BlueprintCallable,Category,meta) const` | Blueprint compatible version of JoinQueue.
 `public inline void `[`BLUEPRINT_JoinQueueEx`](#classURH__OnlineSession_1a077e94f81edf865ddc55168c9ce2a353)`(const `[`FRHAPI_QueueJoinRequest`](models/RHAPI_QueueJoinRequest.md#structFRHAPI__QueueJoinRequest)` & Request,const FRH_OnSessionUpdatedDynamicDelegate & Delegate)` | Blueprint compatible version of JoinQueue.
 `public virtual void `[`LeaveQueue`](#classURH__OnlineSession_1a580de5cf705209f24551008caf72151c)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Leaves the currently active matchmaking queue.
-`public inline void `[`BLUEPRINT_LeaveQueue`](#classURH__OnlineSession_1a3c807b01d9d8b0f4f7be9b492dc3e991)`(const FRH_OnSessionUpdatedDynamicDelegate & Delegate)` | Blueprint compatible version of LeaveQueue.
-`public  `[`UFUNCTION`](#classURH__OnlineSession_1ae6998ea8e5f2265f71c2b7d201ebb738)`(BlueprintCallable,Category,meta) const` | Blueprint compatible version of JoinById.
 `public virtual void `[`InvitePlayer`](#classURH__OnlineSession_1a8bf3c389551cbdf8ecf5112c8af151cf)`(const FGuid & PlayerUuid,int32 Team,const TMap< FString, FString > & CustomData,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Invites a player to the session.
 `public virtual void `[`KickPlayer`](#classURH__OnlineSession_1a4f8560ffb8ac393738907307ed2225bd)`(const FGuid & PlayerUuid,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Kicks a player from the session.
 `public virtual void `[`InviteOtherSession`](#classURH__OnlineSession_1af7389a57edef2dfb81103c950d10c5d8)`(const FString & InvitedSessionId,const `[`FRHAPI_SessionInviteRequest`](models/RHAPI_SessionInviteRequest.md#structFRHAPI__SessionInviteRequest)` & SessionInviteRequest,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Invites a different session to this session.
@@ -1121,24 +1116,6 @@ Leaves the currently active matchmaking queue.
 
 #### Parameters
 * `Delegate` Callback delegate on the session being updated from leaving matchmaking.
-
-#### `public inline void `[`BLUEPRINT_LeaveQueue`](#classURH__OnlineSession_1a3c807b01d9d8b0f4f7be9b492dc3e991)`(const FRH_OnSessionUpdatedDynamicDelegate & Delegate)` <a id="classURH__OnlineSession_1a3c807b01d9d8b0f4f7be9b492dc3e991"></a>
-
-Blueprint compatible version of LeaveQueue.
-
-#### Parameters
-* `Delegate` Callback delegate on the session being updated from leaving matchmaking.
-
-#### `public  `[`UFUNCTION`](#classURH__OnlineSession_1ae6998ea8e5f2265f71c2b7d201ebb738)`(BlueprintCallable,Category,meta) const` <a id="classURH__OnlineSession_1ae6998ea8e5f2265f71c2b7d201ebb738"></a>
-
-Blueprint compatible version of JoinById.
-
-#### Parameters
-* `SessionId` Id of the session to join. 
-
-* `SessionOwner` Owner of the session to join. 
-
-* `Delegate` Callback deledate with an update of the session being joined.
 
 #### `public virtual void `[`InvitePlayer`](#classURH__OnlineSession_1a8bf3c389551cbdf8ecf5112c8af151cf)`(const FGuid & PlayerUuid,int32 Team,const TMap< FString, FString > & CustomData,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__OnlineSession_1a8bf3c389551cbdf8ecf5112c8af151cf"></a>
 
