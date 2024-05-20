@@ -43,12 +43,22 @@ struct FRH_MatchSearchParams
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Match|Search")
 	FString PlayerUuid;
 
+	/** @brief Whether to include segments in the search results */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Match|Search")
+	bool bIncludeSegments;
+
+	/** @brief Whether to include players in the search results */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Match|Search")
+	bool bIncludePlayers;
+
 	/** @brief Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Match|Search")
 	FString Cursor;
 
 	FRH_MatchSearchParams()
 		: PageSize(0)
+		, bIncludeSegments(false)
+		, bIncludePlayers(false)
 	{}
 
 	/**
@@ -56,8 +66,13 @@ struct FRH_MatchSearchParams
 	 */
 	FString GetDescription() const
 	{
-		return FString::Printf(TEXT("PageSize: %d, InstanceId: %s, AllocationId: %s, SessionId: %s, HostPlayerUuid: %s, RegionId: %s, PlayerUuid: %s, Cursor: %s"),
-						PageSize, *InstanceId, *AllocationId, *SessionId, *HostPlayerUuid, *RegionId, *Cursor, *PlayerUuid);
+		return FString::Printf(TEXT("PageSize: %d, InstanceId: %s, AllocationId: %s, SessionId: %s, HostPlayerUuid: %s, RegionId: %s, PlayerUuid: %s, bIncludeSegments: %d, bIncludePlayers: %d, Cursor: %s"),
+						PageSize, *InstanceId, *AllocationId, *SessionId, *HostPlayerUuid, *RegionId, bIncludeSegments ? 1 : 0, bIncludePlayers ? 1 : 0, *Cursor, *PlayerUuid);
+	}
+
+	bool CanCacheResults() const
+	{
+		return bIncludePlayers && bIncludeSegments;
 	}
 
 	/**
@@ -95,6 +110,10 @@ struct FRH_MatchSearchParams
 		{
 			Request.PlayerUuid = PlayerUuid;
 		}
+
+		Request.IncludeSegments = bIncludeSegments;
+		Request.IncludePlayers = bIncludePlayers;
+
 		if (!Cursor.IsEmpty())
 		{
 			Request.Cursor = Cursor;

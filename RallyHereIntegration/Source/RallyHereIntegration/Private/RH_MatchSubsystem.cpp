@@ -34,8 +34,10 @@ void URH_MatchSubsystem::SearchMatches(const FRH_MatchSearchParams& params, cons
 	TSharedRef<FRH_MatchSearchResult> Result = MakeShared<FRH_MatchSearchResult>();
 	Result->SearchParams = params;
 
+	bool bUpdateCache = params.CanCacheResults();
+
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
-		BaseType::Delegate::CreateWeakLambda(this, [this, Result](const BaseType::Response& Resp)
+		BaseType::Delegate::CreateWeakLambda(this, [this, bUpdateCache, Result](const BaseType::Response& Resp)
 			{
 				if (Resp.IsSuccessful())
 				{
@@ -43,10 +45,13 @@ void URH_MatchSubsystem::SearchMatches(const FRH_MatchSearchParams& params, cons
 					Result->Matches = Resp.Content.GetMatches();
 					Result->NextPageCursor = Resp.Content.GetCursor(FString());
 
-					// merge into the cache
-					for (const auto& Match : Resp.Content.GetMatches())
+					// merge into the cache if allowed
+					if (bUpdateCache)
 					{
-						MatchesCache.Add(Match.GetMatchId(), Match);
+						for (const auto& Match : Resp.Content.GetMatches())
+						{
+							MatchesCache.Add(Match.GetMatchId(), Match);
+						}
 					}
 				}
 			}),
