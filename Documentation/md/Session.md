@@ -31,9 +31,7 @@ Synchronization object to sync state between a Rally Here Session and a Platform
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public FRH_PlatformSessionSyncerCleanupDelegate `[`OnCleanupComplete`](#classURH__PlatformSessionSyncer_1acca86ac7134db510dd4dcb00658374dd) | Notification delegates for when cleanup of this object has completed.
-`public FRH_PlatformSessionSyncerCleanupDynamicDelegate `[`BLUEPRINT_OnCleanupComplete`](#classURH__PlatformSessionSyncer_1a3be5a8c4afc63c37631b32ab867af2ba) | 
 `public FRH_PlatformSessionSyncerStateChangedDelegate `[`OnStateChanged`](#classURH__PlatformSessionSyncer_1a1a1ded57262ed2320eeb66e852cb8e21) | Notification delegates for when cleanup of this object has completed.
-`public FRH_PlatformSessionSyncerStateChangedDynamicDelegate `[`BLUEPRINT_OnStateChanged`](#classURH__PlatformSessionSyncer_1a22f87dbe7cf96e477c6b91ff686d203a) | 
 `public bool `[`Initialize`](#classURH__PlatformSessionSyncer_1a672a8526678c8c22c968c2eb5d5f1334)`(const FString & InSessionId,FRH_SessionOwnerPtr InOwner)` | Initialize the sycnrhonization object with a RallyHere session id and a session owner - requires that the owner contain that session.
 `public void `[`Cleanup`](#classURH__PlatformSessionSyncer_1ac45a6144ac79b3024c9a5eb0c63ab981)`(const FSimpleDelegate & CompletionDelegate)` | Clean up the synchronization object, typically used when the RallyHere session is expired.
 `public inline FORCEINLINE FString `[`GetRHSessionId`](#classURH__PlatformSessionSyncer_1aa02905d5d2f2951c693d6ff1ac9a9e08)`() const` | Get the RallyHere session id that this object is synchronizing to.
@@ -86,13 +84,9 @@ Synchronization object to sync state between a Rally Here Session and a Platform
 
 Notification delegates for when cleanup of this object has completed.
 
-#### `public FRH_PlatformSessionSyncerCleanupDynamicDelegate `[`BLUEPRINT_OnCleanupComplete`](#classURH__PlatformSessionSyncer_1a3be5a8c4afc63c37631b32ab867af2ba) <a id="classURH__PlatformSessionSyncer_1a3be5a8c4afc63c37631b32ab867af2ba"></a>
-
 #### `public FRH_PlatformSessionSyncerStateChangedDelegate `[`OnStateChanged`](#classURH__PlatformSessionSyncer_1a1a1ded57262ed2320eeb66e852cb8e21) <a id="classURH__PlatformSessionSyncer_1a1a1ded57262ed2320eeb66e852cb8e21"></a>
 
 Notification delegates for when cleanup of this object has completed.
-
-#### `public FRH_PlatformSessionSyncerStateChangedDynamicDelegate `[`BLUEPRINT_OnStateChanged`](#classURH__PlatformSessionSyncer_1a22f87dbe7cf96e477c6b91ff686d203a) <a id="classURH__PlatformSessionSyncer_1a22f87dbe7cf96e477c6b91ff686d203a"></a>
 
 #### `public bool `[`Initialize`](#classURH__PlatformSessionSyncer_1a672a8526678c8c22c968c2eb5d5f1334)`(const FString & InSessionId,FRH_SessionOwnerPtr InOwner)` <a id="classURH__PlatformSessionSyncer_1a672a8526678c8c22c968c2eb5d5f1334"></a>
 
@@ -487,11 +481,8 @@ Base class providing functionality for viewing session data and interacting with
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public FRH_OnSessionUpdatedMulticastDelegate `[`OnSessionUpdatedDelegate`](#classURH__SessionView_1a1e2288d1a6ad082498edbe4168d6b8a4) | Delegate fired whenever the session is updated.
-`public FRH_OnSessionUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnSessionUpdatedDelegate`](#classURH__SessionView_1ad4bcea359be2cf5f8083d27088c6db7a) | Blueprint compatible delegate fired whenever the session is updated.
 `public FRH_OnSessionUpdatedMulticastDelegate `[`OnSessionNotFoundDelegate`](#classURH__SessionView_1a8426fe031d4f2711140ce31aa5eaf0a0) | Delegate fired whenever the session is not found.
-`public FRH_OnSessionUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnSessionNotFoundDelegate`](#classURH__SessionView_1a6672874c5fffb498ed5f19cfa6805751) | Blueprint compatible delegate fired whenever the session is not found.
 `public FRH_OnSessionMemberStateChangedDelegate `[`OnSessionMemberStateChangedDelegate`](#classURH__SessionView_1aaab8a60729077d368e1cabf44c10167f) | Delegate fired whenever the session member list changes with details about the change.
-`public FRH_OnSessionMemberStateChangedDynamicDelegate `[`BLUEPRINT_OnSessionMemberStateChangedDelegate`](#classURH__SessionView_1aa2d2de09bbcdd4b464f7f144f5f90920) | Blueprint compatible delegate fired whenever the session member list changes with details about the change.
 `public inline FORCEINLINE const `[`FRH_APISessionWithETag`](Session.md#structTRH__DataWithETagWrapper)` & `[`GetSessionWithETag`](#classURH__SessionView_1a82784931fa5147876f93a3096d38417f)`() const` | Gets the Session Data and its ETag.
 `public inline const `[`FRHAPI_Session`](models/RHAPI_Session.md#structFRHAPI__Session)` & `[`GetSessionData`](#classURH__SessionView_1adc1e64df9d89153b96f912abaf54ed4f)`() const` | Gets the Session Data.
 `public inline const `[`FRHAPI_InstanceInfo`](models/RHAPI_InstanceInfo.md#structFRHAPI__InstanceInfo)` * `[`GetInstanceData`](#classURH__SessionView_1aa41fa4e0e20493b0b89ca0976c72330e)`() const` | Gets the Instance Data.
@@ -540,25 +531,13 @@ Base class providing functionality for viewing session data and interacting with
 
 Delegate fired whenever the session is updated.
 
-#### `public FRH_OnSessionUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnSessionUpdatedDelegate`](#classURH__SessionView_1ad4bcea359be2cf5f8083d27088c6db7a) <a id="classURH__SessionView_1ad4bcea359be2cf5f8083d27088c6db7a"></a>
-
-Blueprint compatible delegate fired whenever the session is updated.
-
 #### `public FRH_OnSessionUpdatedMulticastDelegate `[`OnSessionNotFoundDelegate`](#classURH__SessionView_1a8426fe031d4f2711140ce31aa5eaf0a0) <a id="classURH__SessionView_1a8426fe031d4f2711140ce31aa5eaf0a0"></a>
 
 Delegate fired whenever the session is not found.
 
-#### `public FRH_OnSessionUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnSessionNotFoundDelegate`](#classURH__SessionView_1a6672874c5fffb498ed5f19cfa6805751) <a id="classURH__SessionView_1a6672874c5fffb498ed5f19cfa6805751"></a>
-
-Blueprint compatible delegate fired whenever the session is not found.
-
 #### `public FRH_OnSessionMemberStateChangedDelegate `[`OnSessionMemberStateChangedDelegate`](#classURH__SessionView_1aaab8a60729077d368e1cabf44c10167f) <a id="classURH__SessionView_1aaab8a60729077d368e1cabf44c10167f"></a>
 
 Delegate fired whenever the session member list changes with details about the change.
-
-#### `public FRH_OnSessionMemberStateChangedDynamicDelegate `[`BLUEPRINT_OnSessionMemberStateChangedDelegate`](#classURH__SessionView_1aa2d2de09bbcdd4b464f7f144f5f90920) <a id="classURH__SessionView_1aa2d2de09bbcdd4b464f7f144f5f90920"></a>
-
-Blueprint compatible delegate fired whenever the session member list changes with details about the change.
 
 #### `public inline FORCEINLINE const `[`FRH_APISessionWithETag`](Session.md#structTRH__DataWithETagWrapper)` & `[`GetSessionWithETag`](#classURH__SessionView_1a82784931fa5147876f93a3096d38417f)`() const` <a id="classURH__SessionView_1a82784931fa5147876f93a3096d38417f"></a>
 
@@ -805,11 +784,8 @@ Invited Sessions are sessions that the player has been invited to.
 --------------------------------|---------------------------------------------
 `public inline virtual bool `[`IsOffline`](#classURH__InvitedSession_1af877279192bb132ceb1128b5fc5f6f2b)`() const` | Gets that an invited session is not an offline session.
 `public virtual void `[`Join`](#classURH__InvitedSession_1a533ddfa3135881b4b4ed6b7f57cb809e)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Accepts to join the session.
-`public inline void `[`BLUEPRINT_Join`](#classURH__InvitedSession_1ae695534cc3653e4cf7374b54a030133b)`(const FRH_OnSessionUpdatedDynamicDelegate & Delegate)` | Blueprint compatible version of Join.
 `public virtual void `[`Leave`](#classURH__InvitedSession_1ac9e1131d672b7e6f7dd4a476d54e80aa)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Declines to join the session.
-`public inline void `[`BLUEPRINT_Leave`](#classURH__InvitedSession_1a5710f9c6987179ca0489029cb3bced79)`(const FRH_OnSessionUpdatedDynamicDelegate & Delegate)` | Blueprint compatible version of Leave.
 `public virtual void `[`QueryInviterBlockedOnPlatformAsync`](#classURH__InvitedSession_1a3caca59784784c406ee3df3a800492e6)`(const FRH_OnSessionPlayerIsBlockedDelegateBlock & Delegate)` | Determines if the Inviter of this session is blocked by the player on their current platform.
-`public inline void `[`BLUEPRINT_QueryInviterBlockedOnPlatformAsync`](#classURH__InvitedSession_1a44a414d25a7a6581a2de28c861ffa0d7)`(const FRH_OnSessionPlayerIsBlockedDynamicDelegate & Delegate)` | Blueprint compatible version of QueryInviterBlockedOnPlatformAsync.
 
 #### Members
 
@@ -824,13 +800,6 @@ Accepts to join the session.
 #### Parameters
 * `Delegate` The callback delegate for the session being updated by the join.
 
-#### `public inline void `[`BLUEPRINT_Join`](#classURH__InvitedSession_1ae695534cc3653e4cf7374b54a030133b)`(const FRH_OnSessionUpdatedDynamicDelegate & Delegate)` <a id="classURH__InvitedSession_1ae695534cc3653e4cf7374b54a030133b"></a>
-
-Blueprint compatible version of Join.
-
-#### Parameters
-* `Delegate` The callback delegate for the session being updated by the join.
-
 #### `public virtual void `[`Leave`](#classURH__InvitedSession_1ac9e1131d672b7e6f7dd4a476d54e80aa)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__InvitedSession_1ac9e1131d672b7e6f7dd4a476d54e80aa"></a>
 
 Declines to join the session.
@@ -838,23 +807,9 @@ Declines to join the session.
 #### Parameters
 * `Delegate` The callback delegate for the session being updated by the leave.
 
-#### `public inline void `[`BLUEPRINT_Leave`](#classURH__InvitedSession_1a5710f9c6987179ca0489029cb3bced79)`(const FRH_OnSessionUpdatedDynamicDelegate & Delegate)` <a id="classURH__InvitedSession_1a5710f9c6987179ca0489029cb3bced79"></a>
-
-Blueprint compatible version of Leave.
-
-#### Parameters
-* `Delegate` The callback delegate for the session being updated by the leave.
-
 #### `public virtual void `[`QueryInviterBlockedOnPlatformAsync`](#classURH__InvitedSession_1a3caca59784784c406ee3df3a800492e6)`(const FRH_OnSessionPlayerIsBlockedDelegateBlock & Delegate)` <a id="classURH__InvitedSession_1a3caca59784784c406ee3df3a800492e6"></a>
 
 Determines if the Inviter of this session is blocked by the player on their current platform.
-
-#### Parameters
-* `Delegate` The callback delegate for the results of querying if the inviter is blocked on the current platform
-
-#### `public inline void `[`BLUEPRINT_QueryInviterBlockedOnPlatformAsync`](#classURH__InvitedSession_1a44a414d25a7a6581a2de28c861ffa0d7)`(const FRH_OnSessionPlayerIsBlockedDynamicDelegate & Delegate)` <a id="classURH__InvitedSession_1a44a414d25a7a6581a2de28c861ffa0d7"></a>
-
-Blueprint compatible version of QueryInviterBlockedOnPlatformAsync.
 
 #### Parameters
 * `Delegate` The callback delegate for the results of querying if the inviter is blocked on the current platform

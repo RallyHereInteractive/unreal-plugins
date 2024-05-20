@@ -440,11 +440,8 @@ Inventory Subsystem created per player for tracking and updating player inventor
 `public const FAuthContextPtr `[`GetAuthContext`](#classURH__PlayerInventory_1ae6585ec255e5cd5fc4fd4bcb32c662fb)`() const` | Gets the Auth Context that has authority to operate on this players inventory.
 `public inline void `[`SetPlayerInfo`](#classURH__PlayerInventory_1a76b4f19b926a83f287c3515acd8b9150)`(`[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * InPlayerInfo)` | Sets the Player Info owner of the subsystem.
 `public void `[`GetInventoryCount`](#classURH__PlayerInventory_1addb1cf44dbc4684f4bef23c51a012bb5)`(const int32 & ItemId,const FRH_GetInventoryCountBlock & Delegate) const` | Gets the Players Inventory Count of the item for the connected platform, async pulls needed item data if it isn't already cached.
-`public inline void `[`BLUEPRINT_GetInventoryCount`](#classURH__PlayerInventory_1a254fc6a64aed8728a0dcf9c01ca2296d)`(const int32 & ItemId,const FRH_GetInventoryCountDynamicDelegate & Delegate)` | 
 `public void `[`IsInventoryItemOwned`](#classURH__PlayerInventory_1ab6843d485cb715c42e3c84dbf542c179)`(const int32 & ItemId,const FRH_GetInventoryStateBlock & Delegate) const` | Gets if the player owns at least one of the item for the connected platform, async pulls needed item data if it isn't already cached.
-`public inline void `[`BLUEPRINT_IsInventoryItemOwned`](#classURH__PlayerInventory_1afa90ae8b66a60239929ef05d5337cafe)`(const int32 & ItemId,const FRH_GetInventoryStateDynamicDelegate & Delegate)` | 
 `public void `[`IsInventoryItemRented`](#classURH__PlayerInventory_1a82cfc3b4a12f0d7ce7774ff6100a4245)`(const int32 & ItemId,const FRH_GetInventoryStateBlock & Delegate) const` | Gets if the player has rented at least one of the item for the connected platform, async pulls needed item data if it isn't already cached.
-`public inline void `[`BLUEPRINT_IsInventoryItemRented`](#classURH__PlayerInventory_1ab36d5d81ad11652bf2b8c2a334f56926)`(const int32 & ItemId,const FRH_GetInventoryStateDynamicDelegate & Delegate)` | 
 `public inline const `[`FRH_InventorySession`](Inventory.md#structFRH__InventorySession)` & `[`GetCachedInventorySession`](#classURH__PlayerInventory_1a87fe7bf18012b4073c42a31c3ed04df2)`() const` | Gets the active inventory session for the player.
 `public const TArray< `[`FRH_ItemInventory`](Inventory.md#structFRH__ItemInventory)` > `[`GetAllCachedInventory`](#classURH__PlayerInventory_1a1fffa503b99fca22815fb14ccebbb06b)`() const` | Gets the cached inventory for the player.
 `public const TArray< `[`FRH_ItemInventory`](Inventory.md#structFRH__ItemInventory)` > `[`GetCachedInventoryForItem`](#classURH__PlayerInventory_1a29c034f35b2ca574e942996e58f3fd2d)`(const int32 & ItemId) const` | Gets the cached inventory records for an item id for the player.
@@ -456,35 +453,19 @@ Inventory Subsystem created per player for tracking and updating player inventor
 `public inline void `[`ClearCachedInventory`](#classURH__PlayerInventory_1abfe1776646639ec37f10b74ad3dee8e5)`()` | Clears all cached inventory for the player.
 `public inline void `[`ClearOrderCache`](#classURH__PlayerInventory_1a5387581632c52d10ec6464099ade2b3b)`()` | Clears all cached order results for the player.
 `public void `[`GetInventorySession`](#classURH__PlayerInventory_1a00d805080c0941cf004bfbc77b8942cb)`(const FRH_OnInventorySessionUpdateDelegateBlock & Delegate)` | Calls the Inventory API to get the players active Inventory Session.
-`public inline void `[`BLUEPRINT_GetInventorySession`](#classURH__PlayerInventory_1ad739b4c33a305945c102f6bb450a789e)`(const FRH_OnInventorySessionUpdateDynamicDelegate & Delegate)` | 
 `public void `[`CreateInventorySession`](#classURH__PlayerInventory_1a02fb814effbd191eb96c26ed91a6642d)`(const TOptional< ERHAPI_Platform > Platform,const FRH_OnInventorySessionUpdateDelegateBlock & Delegate)` | Calls the Inventory API to get the create an Inventory Session for the player.
-`public inline void `[`BLUEPRINT_CreateInventorySession`](#classURH__PlayerInventory_1a08d3630b94e3773b91f4dab72fd5538b)`(const FRH_OnInventorySessionUpdateDynamicDelegate & Delegate)` | 
-`public inline void `[`BLUEPRINT_CreateInventorySessionForPlatform`](#classURH__PlayerInventory_1a8c2fee2331e9b749386e050edf242aa1)`(const ERHAPI_Platform Platform,const FRH_OnInventorySessionUpdateDynamicDelegate & Delegate)` | Calls the Inventory API to get the create an Inventory Session for the player for a given Platform.
 `public void `[`GetInventory`](#classURH__PlayerInventory_1aa39e94993d051196093f8eb69f6a8e5e)`(TArray< int32 > ItemIds,const FRH_OnInventoryUpdateDelegateBlock & Delegate)` | Calls the Inventory API to get the the inventory for the player.
-`public inline void `[`BLUEPRINT_GetInventory`](#classURH__PlayerInventory_1a59fda737d3bb2ae67d9e28d0fb5ab1b0)`(TArray< int32 > ItemIds,const FRH_OnInventoryUpdateDynamicDelegate & Delegate)` | 
 `public inline void `[`CreatePlayerOrder`](#classURH__PlayerInventory_1a25a32d0d801bfe8460c9fd5ffcc8a5e3)`(ERHAPI_PlayerOrderEntryType FillType,ERHAPI_Source OrderSource,const TArray< `[`URH_PlayerOrderEntry`](Inventory.md#classURH__PlayerOrderEntry)` * > & OrderEntries,FRH_OrderResultBlock Delegate)` | Creates an order for the player, used for purchasing and other loot related actions.
-`public inline void `[`BLUEPRINT_CreatePlayerOrder`](#classURH__PlayerInventory_1a45ff165c5a2c1d954408febb0a15f3a9)`(ERHAPI_PlayerOrderEntryType FillType,ERHAPI_Source OrderSource,const TArray< `[`URH_PlayerOrderEntry`](Inventory.md#classURH__PlayerOrderEntry)` * > & OrderEntries,const FRH_OrderResultDynamicDelegate & Delegate)` | 
 `public inline void `[`CreateNewPlayerOrder`](#classURH__PlayerInventory_1a383ffde7d88402ff420fd3b76a1145ab)`(ERHAPI_Source OrderSource,const TArray< `[`URH_PlayerOrderEntry`](Inventory.md#classURH__PlayerOrderEntry)` * > & OrderEntries,const FRH_OrderResultBlock & Delegate)` | Creates an order for the player, used for purchasing and other loot related actions.
-`public inline void `[`BLUEPRINT_CreateNewPlayerOrder`](#classURH__PlayerInventory_1a8cbcaaabc8e09039fac1db47a63cda77)`(ERHAPI_Source OrderSource,const TArray< `[`URH_PlayerOrderEntry`](Inventory.md#classURH__PlayerOrderEntry)` * > & OrderEntries,const FRH_OrderResultDynamicDelegate & Delegate)` | 
 `public void `[`CreateNewPlayerOrder`](#classURH__PlayerInventory_1abbc28af90b1624685bcc4d2a7aba6cd4)`(ERHAPI_Source OrderSource,bool IsTransaction,const TArray< `[`URH_PlayerOrderEntry`](Inventory.md#classURH__PlayerOrderEntry)` * > & OrderEntries,const FRH_OrderResultBlock & Delegate)` | Creates an order for the player, used for purchasing and other loot related actions.
-`public inline void `[`BLUEPRINT_CreateNewPlayerOrder2`](#classURH__PlayerInventory_1aa276a3fef62cd3e0083e3a9d433c4c01)`(ERHAPI_Source OrderSource,bool IsTransaction,const TArray< `[`URH_PlayerOrderEntry`](Inventory.md#classURH__PlayerOrderEntry)` * > & OrderEntries,const FRH_OrderResultDynamicDelegate & Delegate)` | 
 `public void `[`RedeemPromoCode`](#classURH__PlayerInventory_1a44a7384919f2fee13552699a96cd1708)`(const FString & PromoCode,const FRH_PromoCodeResultBlock & Delegate)` | Creates an order for the player that redeems a promotion code.
-`public inline void `[`BLUEPRINT_RedeemPromoCode`](#classURH__PlayerInventory_1a4098703781291ed8e38971f3f5e60bbc)`(const FString & PromoCode,const FRH_PromoCodeResultDynamicDelegate & Delegate)` | 
 `public void `[`SetOrderWatch`](#classURH__PlayerInventory_1abfaceae0c3ccd3613308f113f12d3087)`(const FRH_OrderDetailsBlock & Delegate)` | Sets a watch to start polling for orders for the player.
-`public inline void `[`BLUEPRINT_SetOrderWatch`](#classURH__PlayerInventory_1a0c72781ba04a8dc362a87de084930ae9)`(const FRH_OrderDetailsDynamicDelegate & Delegate)` | 
 `public void `[`ClearOrderWatch`](#classURH__PlayerInventory_1af95c3474ca75c146c11e1894f9493a3e)`(const FRH_OrderDetailsBlock & Delegate)` | Clears a watch for the player.
-`public inline void `[`BLUEPRINT_ClearOrderWatch`](#classURH__PlayerInventory_1a767dd017770b37fcec8dac7b8f30f89c)`(const FRH_OrderDetailsDynamicDelegate & Delegate)` | 
 `public void `[`AddPendingOrdersFromEntitlementsArray`](#classURH__PlayerInventory_1a41d3c4ca0a289b28935ab7496bd7fe74)`(const TArray< `[`FRHAPI_PlatformEntitlement`](models/RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & Entitlements,const FRH_OrderDetailsBlock & Delegate)` | Adds pending order monitoring for each processed entitlement.
-`public inline void `[`BLUEPRINT_AddPendingOrdersFromEntitlementsArray`](#classURH__PlayerInventory_1ab9f3e51843aa4ac292ca7602aeee0913)`(TArray< `[`FRHAPI_PlatformEntitlement`](models/RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & Entitlements,const FRH_OrderDetailsDynamicDelegate & Delegate)` | 
 `public void `[`AddPendingOrdersFromEntitlementResult`](#classURH__PlayerInventory_1a1fe3ba028e7fe6e9e923abf5a3fc6eba)`(const `[`FRHAPI_PlatformEntitlementProcessResult`](models/RHAPI_PlatformEntitlementProcessResult.md#structFRHAPI__PlatformEntitlementProcessResult)` & EntitlementResult,const FRH_OrderDetailsBlock & Delegate)` | Adds pending order monitoring for each processed entitlement.
-`public inline void `[`BLUEPRINT_AddPendingOrdersFromEntitlementResult`](#classURH__PlayerInventory_1ac6024a68a966486865f311b89fa42c62)`(const `[`FRHAPI_PlatformEntitlementProcessResult`](models/RHAPI_PlatformEntitlementProcessResult.md#structFRHAPI__PlatformEntitlementProcessResult)` & EntitlementResult,const FRH_OrderDetailsDynamicDelegate & Delegate)` | 
 `public void `[`CheckPollStatus`](#classURH__PlayerInventory_1a451359cb11acdeb358d924eff9c36c59)`()` | Used to pulse polling of watches and pending purchases.
 `public void `[`CreateInventory`](#classURH__PlayerInventory_1afb0227615c4db71e3c02484d7c59b53b)`(const TOptional< FGuid > & ClientOrderReferenceId,const TArray< `[`FRH_CreateInventory`](Inventory.md#structFRH__CreateInventory)` > & CreateInventories,const ERHAPI_Source Source,const FRH_OnInventoryUpdateDelegateBlock & Delegate)` | Requests direct inventory creation to the players inventory.
-`public inline void `[`BLUEPRINT_CreateInventory`](#classURH__PlayerInventory_1a2779b3a5195b92bae3d8da552f8c47e0)`(const FGuid & ClientOrderReferenceId,const TArray< `[`FRH_CreateInventory`](Inventory.md#structFRH__CreateInventory)` > & CreateInventories,const FRH_OnInventoryUpdateDynamicDelegate & Delegate,const ERHAPI_Source Source)` | 
-`public inline void `[`BLUEPRINT_CreateInventoryWithoutClientOrderRefId`](#classURH__PlayerInventory_1a93674f3c5a360675e42a4a5750da7399)`(const TArray< `[`FRH_CreateInventory`](Inventory.md#structFRH__CreateInventory)` > & CreateInventories,const FRH_OnInventoryUpdateDynamicDelegate & Delegate,const ERHAPI_Source Source)` | Requests direct inventory creation to the players inventory.
 `public void `[`UpdateInventory`](#classURH__PlayerInventory_1af6944787996721ab352942ea487b23ca)`(const TOptional< FGuid > & ClientOrderReferenceId,const TArray< `[`FRH_UpdateInventory`](Inventory.md#structFRH__UpdateInventory)` > & UpdateInventories,const ERHAPI_Source Source,const FRH_OnInventoryUpdateDelegateBlock & Delegate)` | Requests direct inventory modifications to the players inventory.
-`public inline void `[`BLUEPRINT_UpdateInventory`](#classURH__PlayerInventory_1a7ad5e5b926fa2823474afd5db311dc35)`(const FGuid & ClientOrderReferenceId,const TArray< `[`FRH_UpdateInventory`](Inventory.md#structFRH__UpdateInventory)` > & UpdateInventories,const FRH_OnInventoryUpdateDynamicDelegate & Delegate,const ERHAPI_Source Source)` | 
-`public inline void `[`BLUEPRINT_UpdateInventoryWithoutClientOrderRefId`](#classURH__PlayerInventory_1ab3cc6d1da91538527adbfc39503e2018)`(const TArray< `[`FRH_UpdateInventory`](Inventory.md#structFRH__UpdateInventory)` > & UpdateInventories,const FRH_OnInventoryUpdateDynamicDelegate & Delegate,const ERHAPI_Source Source)` | Requests direct inventory modifications to the players inventory.
 `public void `[`ClearPendingOrder`](#classURH__PlayerInventory_1a1023ef83a9e1d7a88d3da06246aa7637)`(const `[`FRHAPI_PlayerOrder`](models/RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` & OrderResult)` | Used by the PendingOrder to clear itself from the pending order list when it completes.
 `public void `[`ParseOrderResult`](#classURH__PlayerInventory_1a0a3af764f187ffbd05955fb16a8bd5d7)`(const `[`FRHAPI_PlayerOrder`](models/RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` & Content)` | Parses a player order result API into a [URH_PlayerOrderEntry](Inventory.md#classURH__PlayerOrderEntry).
 `protected TMap< int32, TArray< `[`FRH_ItemInventory`](Inventory.md#structFRH__ItemInventory)` > > `[`InventoryCache`](#classURH__PlayerInventory_1a5d5179ccce89d685f086005d1b907ad8) | Inventory cache map of Item Id to inventory records.
@@ -570,8 +551,6 @@ Gets the Players Inventory Count of the item for the connected platform, async p
 
 * `Delegate` Callback with the count of the inventory item.
 
-#### `public inline void `[`BLUEPRINT_GetInventoryCount`](#classURH__PlayerInventory_1a254fc6a64aed8728a0dcf9c01ca2296d)`(const int32 & ItemId,const FRH_GetInventoryCountDynamicDelegate & Delegate)` <a id="classURH__PlayerInventory_1a254fc6a64aed8728a0dcf9c01ca2296d"></a>
-
 #### `public void `[`IsInventoryItemOwned`](#classURH__PlayerInventory_1ab6843d485cb715c42e3c84dbf542c179)`(const int32 & ItemId,const FRH_GetInventoryStateBlock & Delegate) const` <a id="classURH__PlayerInventory_1ab6843d485cb715c42e3c84dbf542c179"></a>
 
 Gets if the player owns at least one of the item for the connected platform, async pulls needed item data if it isn't already cached.
@@ -581,8 +560,6 @@ Gets if the player owns at least one of the item for the connected platform, asy
 
 * `Delegate` Callback with the state of the items ownership.
 
-#### `public inline void `[`BLUEPRINT_IsInventoryItemOwned`](#classURH__PlayerInventory_1afa90ae8b66a60239929ef05d5337cafe)`(const int32 & ItemId,const FRH_GetInventoryStateDynamicDelegate & Delegate)` <a id="classURH__PlayerInventory_1afa90ae8b66a60239929ef05d5337cafe"></a>
-
 #### `public void `[`IsInventoryItemRented`](#classURH__PlayerInventory_1a82cfc3b4a12f0d7ce7774ff6100a4245)`(const int32 & ItemId,const FRH_GetInventoryStateBlock & Delegate) const` <a id="classURH__PlayerInventory_1a82cfc3b4a12f0d7ce7774ff6100a4245"></a>
 
 Gets if the player has rented at least one of the item for the connected platform, async pulls needed item data if it isn't already cached.
@@ -591,8 +568,6 @@ Gets if the player has rented at least one of the item for the connected platfor
 * `ItemId` The id of the item requesting count of. 
 
 * `Delegate` Callback with the state of the items rented status.
-
-#### `public inline void `[`BLUEPRINT_IsInventoryItemRented`](#classURH__PlayerInventory_1ab36d5d81ad11652bf2b8c2a334f56926)`(const int32 & ItemId,const FRH_GetInventoryStateDynamicDelegate & Delegate)` <a id="classURH__PlayerInventory_1ab36d5d81ad11652bf2b8c2a334f56926"></a>
 
 #### `public inline const `[`FRH_InventorySession`](Inventory.md#structFRH__InventorySession)` & `[`GetCachedInventorySession`](#classURH__PlayerInventory_1a87fe7bf18012b4073c42a31c3ed04df2)`() const` <a id="classURH__PlayerInventory_1a87fe7bf18012b4073c42a31c3ed04df2"></a>
 
@@ -684,22 +659,13 @@ Calls the Inventory API to get the players active Inventory Session.
 #### Parameters
 * `Delegate` Callback delegate for getting the players session.
 
-#### `public inline void `[`BLUEPRINT_GetInventorySession`](#classURH__PlayerInventory_1ad739b4c33a305945c102f6bb450a789e)`(const FRH_OnInventorySessionUpdateDynamicDelegate & Delegate)` <a id="classURH__PlayerInventory_1ad739b4c33a305945c102f6bb450a789e"></a>
-
 #### `public void `[`CreateInventorySession`](#classURH__PlayerInventory_1a02fb814effbd191eb96c26ed91a6642d)`(const TOptional< ERHAPI_Platform > Platform,const FRH_OnInventorySessionUpdateDelegateBlock & Delegate)` <a id="classURH__PlayerInventory_1a02fb814effbd191eb96c26ed91a6642d"></a>
 
 Calls the Inventory API to get the create an Inventory Session for the player.
 
 #### Parameters
-* `Delegate` Callback delegate for creating the players session.
+* `Platform` The platform to create the session for. 
 
-#### `public inline void `[`BLUEPRINT_CreateInventorySession`](#classURH__PlayerInventory_1a08d3630b94e3773b91f4dab72fd5538b)`(const FRH_OnInventorySessionUpdateDynamicDelegate & Delegate)` <a id="classURH__PlayerInventory_1a08d3630b94e3773b91f4dab72fd5538b"></a>
-
-#### `public inline void `[`BLUEPRINT_CreateInventorySessionForPlatform`](#classURH__PlayerInventory_1a8c2fee2331e9b749386e050edf242aa1)`(const ERHAPI_Platform Platform,const FRH_OnInventorySessionUpdateDynamicDelegate & Delegate)` <a id="classURH__PlayerInventory_1a8c2fee2331e9b749386e050edf242aa1"></a>
-
-Calls the Inventory API to get the create an Inventory Session for the player for a given Platform.
-
-#### Parameters
 * `Delegate` Callback delegate for creating the players session.
 
 #### `public void `[`GetInventory`](#classURH__PlayerInventory_1aa39e94993d051196093f8eb69f6a8e5e)`(TArray< int32 > ItemIds,const FRH_OnInventoryUpdateDelegateBlock & Delegate)` <a id="classURH__PlayerInventory_1aa39e94993d051196093f8eb69f6a8e5e"></a>
@@ -710,8 +676,6 @@ Calls the Inventory API to get the the inventory for the player.
 * `ItemIds` The Item Ids of inventory requested, if empty all inventory will be returned. 
 
 * `Delegate` Callback delegate for getting the inventory.
-
-#### `public inline void `[`BLUEPRINT_GetInventory`](#classURH__PlayerInventory_1a59fda737d3bb2ae67d9e28d0fb5ab1b0)`(TArray< int32 > ItemIds,const FRH_OnInventoryUpdateDynamicDelegate & Delegate)` <a id="classURH__PlayerInventory_1a59fda737d3bb2ae67d9e28d0fb5ab1b0"></a>
 
 #### `public inline void `[`CreatePlayerOrder`](#classURH__PlayerInventory_1a25a32d0d801bfe8460c9fd5ffcc8a5e3)`(ERHAPI_PlayerOrderEntryType FillType,ERHAPI_Source OrderSource,const TArray< `[`URH_PlayerOrderEntry`](Inventory.md#classURH__PlayerOrderEntry)` * > & OrderEntries,FRH_OrderResultBlock Delegate)` <a id="classURH__PlayerInventory_1a25a32d0d801bfe8460c9fd5ffcc8a5e3"></a>
 
@@ -726,8 +690,6 @@ Creates an order for the player, used for purchasing and other loot related acti
 
 * `Delegate` Callback delegate for the completion of the order request
 
-#### `public inline void `[`BLUEPRINT_CreatePlayerOrder`](#classURH__PlayerInventory_1a45ff165c5a2c1d954408febb0a15f3a9)`(ERHAPI_PlayerOrderEntryType FillType,ERHAPI_Source OrderSource,const TArray< `[`URH_PlayerOrderEntry`](Inventory.md#classURH__PlayerOrderEntry)` * > & OrderEntries,const FRH_OrderResultDynamicDelegate & Delegate)` <a id="classURH__PlayerInventory_1a45ff165c5a2c1d954408febb0a15f3a9"></a>
-
 #### `public inline void `[`CreateNewPlayerOrder`](#classURH__PlayerInventory_1a383ffde7d88402ff420fd3b76a1145ab)`(ERHAPI_Source OrderSource,const TArray< `[`URH_PlayerOrderEntry`](Inventory.md#classURH__PlayerOrderEntry)` * > & OrderEntries,const FRH_OrderResultBlock & Delegate)` <a id="classURH__PlayerInventory_1a383ffde7d88402ff420fd3b76a1145ab"></a>
 
 Creates an order for the player, used for purchasing and other loot related actions.
@@ -738,8 +700,6 @@ Creates an order for the player, used for purchasing and other loot related acti
 * `OrderEntries` Array of orders being requested. 
 
 * `Delegate` Callback delegate for the completion of the order request.
-
-#### `public inline void `[`BLUEPRINT_CreateNewPlayerOrder`](#classURH__PlayerInventory_1a8cbcaaabc8e09039fac1db47a63cda77)`(ERHAPI_Source OrderSource,const TArray< `[`URH_PlayerOrderEntry`](Inventory.md#classURH__PlayerOrderEntry)` * > & OrderEntries,const FRH_OrderResultDynamicDelegate & Delegate)` <a id="classURH__PlayerInventory_1a8cbcaaabc8e09039fac1db47a63cda77"></a>
 
 #### `public void `[`CreateNewPlayerOrder`](#classURH__PlayerInventory_1abbc28af90b1624685bcc4d2a7aba6cd4)`(ERHAPI_Source OrderSource,bool IsTransaction,const TArray< `[`URH_PlayerOrderEntry`](Inventory.md#classURH__PlayerOrderEntry)` * > & OrderEntries,const FRH_OrderResultBlock & Delegate)` <a id="classURH__PlayerInventory_1abbc28af90b1624685bcc4d2a7aba6cd4"></a>
 
@@ -754,8 +714,6 @@ Creates an order for the player, used for purchasing and other loot related acti
 
 * `Delegate` Callback delegate for the completion of the order request.
 
-#### `public inline void `[`BLUEPRINT_CreateNewPlayerOrder2`](#classURH__PlayerInventory_1aa276a3fef62cd3e0083e3a9d433c4c01)`(ERHAPI_Source OrderSource,bool IsTransaction,const TArray< `[`URH_PlayerOrderEntry`](Inventory.md#classURH__PlayerOrderEntry)` * > & OrderEntries,const FRH_OrderResultDynamicDelegate & Delegate)` <a id="classURH__PlayerInventory_1aa276a3fef62cd3e0083e3a9d433c4c01"></a>
-
 #### `public void `[`RedeemPromoCode`](#classURH__PlayerInventory_1a44a7384919f2fee13552699a96cd1708)`(const FString & PromoCode,const FRH_PromoCodeResultBlock & Delegate)` <a id="classURH__PlayerInventory_1a44a7384919f2fee13552699a96cd1708"></a>
 
 Creates an order for the player that redeems a promotion code.
@@ -765,8 +723,6 @@ Creates an order for the player that redeems a promotion code.
 
 * `Delegate` Callback delegate for the completion of the promo code redemption.
 
-#### `public inline void `[`BLUEPRINT_RedeemPromoCode`](#classURH__PlayerInventory_1a4098703781291ed8e38971f3f5e60bbc)`(const FString & PromoCode,const FRH_PromoCodeResultDynamicDelegate & Delegate)` <a id="classURH__PlayerInventory_1a4098703781291ed8e38971f3f5e60bbc"></a>
-
 #### `public void `[`SetOrderWatch`](#classURH__PlayerInventory_1abfaceae0c3ccd3613308f113f12d3087)`(const FRH_OrderDetailsBlock & Delegate)` <a id="classURH__PlayerInventory_1abfaceae0c3ccd3613308f113f12d3087"></a>
 
 Sets a watch to start polling for orders for the player.
@@ -774,13 +730,9 @@ Sets a watch to start polling for orders for the player.
 #### Parameters
 * `Delegate` Callback delegate whenever the player has any orders.
 
-#### `public inline void `[`BLUEPRINT_SetOrderWatch`](#classURH__PlayerInventory_1a0c72781ba04a8dc362a87de084930ae9)`(const FRH_OrderDetailsDynamicDelegate & Delegate)` <a id="classURH__PlayerInventory_1a0c72781ba04a8dc362a87de084930ae9"></a>
-
 #### `public void `[`ClearOrderWatch`](#classURH__PlayerInventory_1af95c3474ca75c146c11e1894f9493a3e)`(const FRH_OrderDetailsBlock & Delegate)` <a id="classURH__PlayerInventory_1af95c3474ca75c146c11e1894f9493a3e"></a>
 
 Clears a watch for the player.
-
-#### `public inline void `[`BLUEPRINT_ClearOrderWatch`](#classURH__PlayerInventory_1a767dd017770b37fcec8dac7b8f30f89c)`(const FRH_OrderDetailsDynamicDelegate & Delegate)` <a id="classURH__PlayerInventory_1a767dd017770b37fcec8dac7b8f30f89c"></a>
 
 #### `public void `[`AddPendingOrdersFromEntitlementsArray`](#classURH__PlayerInventory_1a41d3c4ca0a289b28935ab7496bd7fe74)`(const TArray< `[`FRHAPI_PlatformEntitlement`](models/RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & Entitlements,const FRH_OrderDetailsBlock & Delegate)` <a id="classURH__PlayerInventory_1a41d3c4ca0a289b28935ab7496bd7fe74"></a>
 
@@ -791,8 +743,6 @@ Adds pending order monitoring for each processed entitlement.
 
 * `Delegate` Callback delegate when the inventory update completes.
 
-#### `public inline void `[`BLUEPRINT_AddPendingOrdersFromEntitlementsArray`](#classURH__PlayerInventory_1ab9f3e51843aa4ac292ca7602aeee0913)`(TArray< `[`FRHAPI_PlatformEntitlement`](models/RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & Entitlements,const FRH_OrderDetailsDynamicDelegate & Delegate)` <a id="classURH__PlayerInventory_1ab9f3e51843aa4ac292ca7602aeee0913"></a>
-
 #### `public void `[`AddPendingOrdersFromEntitlementResult`](#classURH__PlayerInventory_1a1fe3ba028e7fe6e9e923abf5a3fc6eba)`(const `[`FRHAPI_PlatformEntitlementProcessResult`](models/RHAPI_PlatformEntitlementProcessResult.md#structFRHAPI__PlatformEntitlementProcessResult)` & EntitlementResult,const FRH_OrderDetailsBlock & Delegate)` <a id="classURH__PlayerInventory_1a1fe3ba028e7fe6e9e923abf5a3fc6eba"></a>
 
 Adds pending order monitoring for each processed entitlement.
@@ -801,8 +751,6 @@ Adds pending order monitoring for each processed entitlement.
 * `EntitlementResult` Result from entitlement processing that needs monitoring. 
 
 * `Delegate` Callback delegate when the inventory update completes.
-
-#### `public inline void `[`BLUEPRINT_AddPendingOrdersFromEntitlementResult`](#classURH__PlayerInventory_1ac6024a68a966486865f311b89fa42c62)`(const `[`FRHAPI_PlatformEntitlementProcessResult`](models/RHAPI_PlatformEntitlementProcessResult.md#structFRHAPI__PlatformEntitlementProcessResult)` & EntitlementResult,const FRH_OrderDetailsDynamicDelegate & Delegate)` <a id="classURH__PlayerInventory_1ac6024a68a966486865f311b89fa42c62"></a>
 
 #### `public void `[`CheckPollStatus`](#classURH__PlayerInventory_1a451359cb11acdeb358d924eff9c36c59)`()` <a id="classURH__PlayerInventory_1a451359cb11acdeb358d924eff9c36c59"></a>
 
@@ -821,19 +769,6 @@ Requests direct inventory creation to the players inventory.
 
 * `Delegate` Callback delegate when the inventory creation completes.
 
-#### `public inline void `[`BLUEPRINT_CreateInventory`](#classURH__PlayerInventory_1a2779b3a5195b92bae3d8da552f8c47e0)`(const FGuid & ClientOrderReferenceId,const TArray< `[`FRH_CreateInventory`](Inventory.md#structFRH__CreateInventory)` > & CreateInventories,const FRH_OnInventoryUpdateDynamicDelegate & Delegate,const ERHAPI_Source Source)` <a id="classURH__PlayerInventory_1a2779b3a5195b92bae3d8da552f8c47e0"></a>
-
-#### `public inline void `[`BLUEPRINT_CreateInventoryWithoutClientOrderRefId`](#classURH__PlayerInventory_1a93674f3c5a360675e42a4a5750da7399)`(const TArray< `[`FRH_CreateInventory`](Inventory.md#structFRH__CreateInventory)` > & CreateInventories,const FRH_OnInventoryUpdateDynamicDelegate & Delegate,const ERHAPI_Source Source)` <a id="classURH__PlayerInventory_1a93674f3c5a360675e42a4a5750da7399"></a>
-
-Requests direct inventory creation to the players inventory.
-
-#### Parameters
-* `CreateInventories` Array of items to be created in the players inventory. 
-
-* `Source` Where the order is being created from. 
-
-* `Delegate` Callback delegate when the inventory creation completes.
-
 #### `public void `[`UpdateInventory`](#classURH__PlayerInventory_1af6944787996721ab352942ea487b23ca)`(const TOptional< FGuid > & ClientOrderReferenceId,const TArray< `[`FRH_UpdateInventory`](Inventory.md#structFRH__UpdateInventory)` > & UpdateInventories,const ERHAPI_Source Source,const FRH_OnInventoryUpdateDelegateBlock & Delegate)` <a id="classURH__PlayerInventory_1af6944787996721ab352942ea487b23ca"></a>
 
 Requests direct inventory modifications to the players inventory.
@@ -841,19 +776,6 @@ Requests direct inventory modifications to the players inventory.
 #### Parameters
 * `ClientOrderReferenceId` Client specified ref id for an inventory change. 
 
-* `UpdateInventories` Array of items to be created in the players inventory. 
-
-* `Source` Where the order is being created from. 
-
-* `Delegate` Callback delegate when the inventory modification completes.
-
-#### `public inline void `[`BLUEPRINT_UpdateInventory`](#classURH__PlayerInventory_1a7ad5e5b926fa2823474afd5db311dc35)`(const FGuid & ClientOrderReferenceId,const TArray< `[`FRH_UpdateInventory`](Inventory.md#structFRH__UpdateInventory)` > & UpdateInventories,const FRH_OnInventoryUpdateDynamicDelegate & Delegate,const ERHAPI_Source Source)` <a id="classURH__PlayerInventory_1a7ad5e5b926fa2823474afd5db311dc35"></a>
-
-#### `public inline void `[`BLUEPRINT_UpdateInventoryWithoutClientOrderRefId`](#classURH__PlayerInventory_1ab3cc6d1da91538527adbfc39503e2018)`(const TArray< `[`FRH_UpdateInventory`](Inventory.md#structFRH__UpdateInventory)` > & UpdateInventories,const FRH_OnInventoryUpdateDynamicDelegate & Delegate,const ERHAPI_Source Source)` <a id="classURH__PlayerInventory_1ab3cc6d1da91538527adbfc39503e2018"></a>
-
-Requests direct inventory modifications to the players inventory.
-
-#### Parameters
 * `UpdateInventories` Array of items to be created in the players inventory. 
 
 * `Source` Where the order is being created from. 
