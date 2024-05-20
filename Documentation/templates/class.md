@@ -45,5 +45,4 @@
 
 {{detaileddescription}}
 
-<br>
 {{/each}}
