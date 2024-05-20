@@ -45,17 +45,14 @@ Subsystem for handling requesting and processing entitlements from the online su
 
 Initialize the subsystem.
 
-<br>
 #### `public virtual void `[`Deinitialize`](#classURH__EntitlementSubsystem_1af3e449d4538d7e01532ab1b55e5d937c)`()` <a id="classURH__EntitlementSubsystem_1af3e449d4538d7e01532ab1b55e5d937c"></a>
 
 Safely tears down the subsystem.
 
-<br>
 #### `public virtual void `[`OnUserChanged`](#classURH__EntitlementSubsystem_1a5fd25cdb4e40bdf432b51bc96802b351)`(const FGuid & OldPlayerUuid,class `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * OldLocalPlayerInfo)` <a id="classURH__EntitlementSubsystem_1a5fd25cdb4e40bdf432b51bc96802b351"></a>
 
 Notification that the user changed for the owning local player subsystem.
 
-<br>
 #### `public void `[`HandleNotification`](#classURH__EntitlementSubsystem_1a79e18971cbc52e3206cc1a3c6e56ab05)`(const `[`FRHAPI_Notification`](models/RHAPI_Notification.md#structFRHAPI__Notification)` & Notification,const FString & APIName,const TArray< FString > & APIParams)` <a id="classURH__EntitlementSubsystem_1a79e18971cbc52e3206cc1a3c6e56ab05"></a>
 
 Handle a notification from the inventory API.
@@ -67,7 +64,6 @@ Handle a notification from the inventory API.
 
 * `APIParams` The parameters for the API that sent the notification
 
-<br>
 #### `public void `[`SubmitEntitlementsForLoggedInOSS`](#classURH__EntitlementSubsystem_1a9dc31d9240e19268dbb67f71b3ef81ef)`(const FRH_ProcessEntitlementCompletedDelegate & EntitlementProcessorCompleteDelegate,const FRH_GetPlatformRegionDelegate & PlatformRegionDelegate)` <a id="classURH__EntitlementSubsystem_1a9dc31d9240e19268dbb67f71b3ef81ef"></a>
 
 Start Async Task to Process Entitlements for the users connected OSS.
@@ -77,7 +73,6 @@ Start Async Task to Process Entitlements for the users connected OSS.
 
 * `PlatformRegionDelegate` Delegate callback for getting the platform region.
 
-<br>
 #### `public void `[`SubmitEntitlementsForPlatform`](#classURH__EntitlementSubsystem_1a04aadee8f206b0ace23ddb55575d80bd)`(ERHAPI_Platform Platform,const FRH_ProcessEntitlementCompletedDelegate & EntitlementProcessorCompleteDelegate,const FRH_GetPlatformRegionDelegate & PlatformRegionDelegate)` <a id="classURH__EntitlementSubsystem_1a04aadee8f206b0ace23ddb55575d80bd"></a>
 
 Start Async Task to Process Entitlements for a specific platform (non-OSS based)
@@ -89,7 +84,6 @@ Start Async Task to Process Entitlements for a specific platform (non-OSS based)
 
 * `PlatformRegionDelegate` Delegate callback for getting the platform region.
 
-<br>
 #### `public void `[`QueryStoreOffersById`](#classURH__EntitlementSubsystem_1a4a419cf977152a129ea1be9158ce07be)`(const TArray< FString > & OfferIds,const FRH_GenericSuccessBlock & Delegate)` <a id="classURH__EntitlementSubsystem_1a4a419cf977152a129ea1be9158ce07be"></a>
 
 Queries the OSS to get the store offers for the given offer ids.
@@ -99,7 +93,6 @@ Queries the OSS to get the store offers for the given offer ids.
 
 * `Delegate` callback for getting offers.
 
-<br>
 #### `public void `[`OnQueryStoreOffersById`](#classURH__EntitlementSubsystem_1aba4dca826031b87f3f932436009622a6)`(bool bSuccess,const TArray< FUniqueOfferId > & Offers,const FString & Error,const FRH_GenericSuccessBlock Delegate)` <a id="classURH__EntitlementSubsystem_1aba4dca826031b87f3f932436009622a6"></a>
 
 Response from OSS for Store Offer By Id Query.
@@ -113,7 +106,6 @@ Response from OSS for Store Offer By Id Query.
 
 * `Delegate` callback for getting offers.
 
-<br>
 #### `public void `[`GetCachedStoreOffers`](#classURH__EntitlementSubsystem_1ac8d1546132a1bc76ef72d7b9f462a947)`(TArray< FOnlineStoreOfferRef > & OutOffers)` <a id="classURH__EntitlementSubsystem_1ac8d1546132a1bc76ef72d7b9f462a947"></a>
 
 Helper function to get the cached store offers from the OSS.
@@ -121,12 +113,10 @@ Helper function to get the cached store offers from the OSS.
 #### Parameters
 * `OutOffers` The offers cached in the store OSS.
 
-<br>
 #### `public TMap< FString, `[`FRHAPI_PlatformEntitlementProcessResult`](models/RHAPI_PlatformEntitlementProcessResult.md#structFRHAPI__PlatformEntitlementProcessResult)` > * `[`GetEntitlementResults`](#classURH__EntitlementSubsystem_1ac478a330f287a564dd51e49a430e2809)`()` <a id="classURH__EntitlementSubsystem_1ac478a330f287a564dd51e49a430e2809"></a>
 
 Gets the map of all processed entitlement results.
 
-<br>
 #### `public void `[`SetEntitlementOSSName`](#classURH__EntitlementSubsystem_1afb94ef35894b136c1a51c6695e24c06c)`(const FName & InEntitlementOSSName)` <a id="classURH__EntitlementSubsystem_1afb94ef35894b136c1a51c6695e24c06c"></a>
 
 Sets the entitlement OSS Name.
@@ -134,44 +124,35 @@ Sets the entitlement OSS Name.
 #### Parameters
 * `InEntitlementOSSName` The OSS name to use for entitlements.
 
-<br>
 #### `public FName `[`GetEntitlementOSSName`](#classURH__EntitlementSubsystem_1a8aa48ac9424aea1058540ca316d1e426)`()` <a id="classURH__EntitlementSubsystem_1a8aa48ac9424aea1058540ca316d1e426"></a>
 
 Gets the set entitlement OSS Name.
 
-<br>
 #### `public IOnlineStoreV2Ptr `[`GetStoreSubsystem`](#classURH__EntitlementSubsystem_1a35d47446e0d8e8ff9c03c66ac8a90002)`() const` <a id="classURH__EntitlementSubsystem_1a35d47446e0d8e8ff9c03c66ac8a90002"></a>
 
 Helper to the store subsystem subsystem.
 
-<br>
 #### `protected TMap< FString, `[`FRHAPI_PlatformEntitlementProcessResult`](models/RHAPI_PlatformEntitlementProcessResult.md#structFRHAPI__PlatformEntitlementProcessResult)` > `[`EntitlementProcessResultMap`](#classURH__EntitlementSubsystem_1ae694a08037debcf46c6c8cbefd33b0b3) <a id="classURH__EntitlementSubsystem_1ae694a08037debcf46c6c8cbefd33b0b3"></a>
 
 Map of results from Entitlement Process calls.
 
-<br>
 #### `protected FName `[`EntitlementOSSName`](#classURH__EntitlementSubsystem_1a3a1c18058080e0dc894e3f986f9f4230) <a id="classURH__EntitlementSubsystem_1a3a1c18058080e0dc894e3f986f9f4230"></a>
 
 Online Subsystem to use for entitlements. If not provided, will use the default OSS.
 
-<br>
 #### `protected FTimerManager & `[`GetTimerManager`](#classURH__EntitlementSubsystem_1a3ac920200686b3ec67e976322e2913db)`()` <a id="classURH__EntitlementSubsystem_1a3ac920200686b3ec67e976322e2913db"></a>
 
 Helper to get the engines Timer Manager.
 
-<br>
 #### `protected `[`URH_LocalPlayerSubsystem`](LocalPlayer.md#classURH__LocalPlayerSubsystem)` * `[`GetRH_LocalPlayerSubsystem`](#classURH__EntitlementSubsystem_1ab1f1a051a4db3625191e529a6536a14a)`() const` <a id="classURH__EntitlementSubsystem_1ab1f1a051a4db3625191e529a6536a14a"></a>
 
 Helper to the local player subsystem.
 
-<br>
 #### `protected IOnlineSubsystem * `[`GetOSS`](#classURH__EntitlementSubsystem_1a9d4639fe82b8dad3e126519ac79f579b)`() const` <a id="classURH__EntitlementSubsystem_1a9d4639fe82b8dad3e126519ac79f579b"></a>
 
 Helper to the online subsystem.
 
-<br>
 #### `protected IOnlinePurchasePtr `[`GetPurchaseSubsystem`](#classURH__EntitlementSubsystem_1a68e068e84180db974ab6b29444847399)`() const` <a id="classURH__EntitlementSubsystem_1a68e068e84180db974ab6b29444847399"></a>
 
 Helper to the online purchase subsystem.
 
-<br>

@@ -32,7 +32,6 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-<br>
 #### `public virtual void `[`WriteJson`](#structFRHAPI__LocationInner_1acaf7c6e061dc4b9b3d8d87a1500cf695)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__LocationInner_1acaf7c6e061dc4b9b3d8d87a1500cf695"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
@@ -40,4 +39,3 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-<br>

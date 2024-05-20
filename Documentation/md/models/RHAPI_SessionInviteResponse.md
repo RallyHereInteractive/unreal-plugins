@@ -32,7 +32,6 @@ Response to a request to update a session cohort.
 
 List of players that were updated.
 
-<br>
 #### `public virtual bool `[`FromJson`](#structFRHAPI__SessionInviteResponse_1a0aa90122cafc1d49cb41d64bc3443341)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__SessionInviteResponse_1a0aa90122cafc1d49cb41d64bc3443341"></a>
 
 Fills this object with data from the passed in JSON.
@@ -43,7 +42,6 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-<br>
 #### `public virtual void `[`WriteJson`](#structFRHAPI__SessionInviteResponse_1a5747dd40cd7f706702775f798f6f5886)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__SessionInviteResponse_1a5747dd40cd7f706702775f798f6f5886"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
@@ -51,19 +49,15 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-<br>
 #### `public inline TArray< `[`FRHAPI_SessionPlayerUpdateResponse`](RHAPI_SessionPlayerUpdateResponse.md#structFRHAPI__SessionPlayerUpdateResponse)` > & `[`GetPlayers`](#structFRHAPI__SessionInviteResponse_1a532edad73af915371846c13fe829b3bf)`()` <a id="structFRHAPI__SessionInviteResponse_1a532edad73af915371846c13fe829b3bf"></a>
 
 Gets the value of Players.
 
-<br>
 #### `public inline const TArray< `[`FRHAPI_SessionPlayerUpdateResponse`](RHAPI_SessionPlayerUpdateResponse.md#structFRHAPI__SessionPlayerUpdateResponse)` > & `[`GetPlayers`](#structFRHAPI__SessionInviteResponse_1a28a656155eda1c1cb8ce3f5d43ed8907)`() const` <a id="structFRHAPI__SessionInviteResponse_1a28a656155eda1c1cb8ce3f5d43ed8907"></a>
 
 Gets the value of Players.
 
-<br>
 #### `public inline void `[`SetPlayers`](#structFRHAPI__SessionInviteResponse_1ae6c0f9ed3f963ca3940fb554c19b847a)`(TArray< `[`FRHAPI_SessionPlayerUpdateResponse`](RHAPI_SessionPlayerUpdateResponse.md#structFRHAPI__SessionPlayerUpdateResponse)` > NewValue)` <a id="structFRHAPI__SessionInviteResponse_1ae6c0f9ed3f963ca3940fb554c19b847a"></a>
 
 Sets the value of Players.
 
-<br>

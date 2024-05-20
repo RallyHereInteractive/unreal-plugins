@@ -44,22 +44,18 @@ Portal user info.
 
 Platform for the user.
 
-<br>
 #### `public ERHAPI_DependenciesSchemasPortal `[`PortalId`](#structFRHAPI__PortalUserInfo_1af0233dbd7f509062dcf36313611ea286) <a id="structFRHAPI__PortalUserInfo_1af0233dbd7f509062dcf36313611ea286"></a>
 
 Portal ID. *DEPRECATED* use `platform` instead.
 
-<br>
 #### `public FString `[`PortalUserId`](#structFRHAPI__PortalUserInfo_1a6733dd0ddc41200cf750f32de0b83dab) <a id="structFRHAPI__PortalUserInfo_1a6733dd0ddc41200cf750f32de0b83dab"></a>
 
 Platform User ID.
 
-<br>
 #### `public FString `[`DisplayName`](#structFRHAPI__PortalUserInfo_1a0ba620f7ad0e76fa03651b52221672d0) <a id="structFRHAPI__PortalUserInfo_1a0ba620f7ad0e76fa03651b52221672d0"></a>
 
 Display name.
 
-<br>
 #### `public virtual bool `[`FromJson`](#structFRHAPI__PortalUserInfo_1a157222df92a9e58a8a7f4e86a8451e6e)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PortalUserInfo_1a157222df92a9e58a8a7f4e86a8451e6e"></a>
 
 Fills this object with data from the passed in JSON.
@@ -70,7 +66,6 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-<br>
 #### `public virtual void `[`WriteJson`](#structFRHAPI__PortalUserInfo_1a2344390b2002ec9ee2cfcb5fc80d346d)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PortalUserInfo_1a2344390b2002ec9ee2cfcb5fc80d346d"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
@@ -78,64 +73,51 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-<br>
 #### `public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PortalUserInfo_1a3f453744df9708c61b8d4cbc145eb71a)`()` <a id="structFRHAPI__PortalUserInfo_1a3f453744df9708c61b8d4cbc145eb71a"></a>
 
 Gets the value of Platform.
 
-<br>
 #### `public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PortalUserInfo_1a40e45a21d723e554b55aa7a41b4af6d1)`() const` <a id="structFRHAPI__PortalUserInfo_1a40e45a21d723e554b55aa7a41b4af6d1"></a>
 
 Gets the value of Platform.
 
-<br>
 #### `public inline void `[`SetPlatform`](#structFRHAPI__PortalUserInfo_1aa5016a42a179303e547de00d3d6a1134)`(ERHAPI_Platform NewValue)` <a id="structFRHAPI__PortalUserInfo_1aa5016a42a179303e547de00d3d6a1134"></a>
 
 Sets the value of Platform.
 
-<br>
 #### `public inline ERHAPI_DependenciesSchemasPortal & `[`GetPortalId`](#structFRHAPI__PortalUserInfo_1a9d1356770916296ce708f009273a37eb)`()` <a id="structFRHAPI__PortalUserInfo_1a9d1356770916296ce708f009273a37eb"></a>
 
 Gets the value of PortalId.
 
-<br>
 #### `public inline const ERHAPI_DependenciesSchemasPortal & `[`GetPortalId`](#structFRHAPI__PortalUserInfo_1af6f98c6f6ac2cf9e5de6510e2217681a)`() const` <a id="structFRHAPI__PortalUserInfo_1af6f98c6f6ac2cf9e5de6510e2217681a"></a>
 
 Gets the value of PortalId.
 
-<br>
 #### `public inline void `[`SetPortalId`](#structFRHAPI__PortalUserInfo_1af0b57cfbb402e0ff9a4c90a27203f43a)`(ERHAPI_DependenciesSchemasPortal NewValue)` <a id="structFRHAPI__PortalUserInfo_1af0b57cfbb402e0ff9a4c90a27203f43a"></a>
 
 Sets the value of PortalId.
 
-<br>
 #### `public inline FString & `[`GetPortalUserId`](#structFRHAPI__PortalUserInfo_1a02293533e662c590c4d1434fa698c8e8)`()` <a id="structFRHAPI__PortalUserInfo_1a02293533e662c590c4d1434fa698c8e8"></a>
 
 Gets the value of PortalUserId.
 
-<br>
 #### `public inline const FString & `[`GetPortalUserId`](#structFRHAPI__PortalUserInfo_1add30541439590b909bdcff70ceaed762)`() const` <a id="structFRHAPI__PortalUserInfo_1add30541439590b909bdcff70ceaed762"></a>
 
 Gets the value of PortalUserId.
 
-<br>
 #### `public inline void `[`SetPortalUserId`](#structFRHAPI__PortalUserInfo_1a94df2aa5c3d86b04e197424b6c87aef4)`(FString NewValue)` <a id="structFRHAPI__PortalUserInfo_1a94df2aa5c3d86b04e197424b6c87aef4"></a>
 
 Sets the value of PortalUserId.
 
-<br>
 #### `public inline FString & `[`GetDisplayName`](#structFRHAPI__PortalUserInfo_1a2db99b60ec4b0ee6d486bfcc92499af1)`()` <a id="structFRHAPI__PortalUserInfo_1a2db99b60ec4b0ee6d486bfcc92499af1"></a>
 
 Gets the value of DisplayName.
 
-<br>
 #### `public inline const FString & `[`GetDisplayName`](#structFRHAPI__PortalUserInfo_1a3748a4f9b1fe44030fc16bce07e5f092)`() const` <a id="structFRHAPI__PortalUserInfo_1a3748a4f9b1fe44030fc16bce07e5f092"></a>
 
 Gets the value of DisplayName.
 
-<br>
 #### `public inline void `[`SetDisplayName`](#structFRHAPI__PortalUserInfo_1a21b0a04d9950ed600c1b0b76d3863475)`(FString NewValue)` <a id="structFRHAPI__PortalUserInfo_1a21b0a04d9950ed600c1b0b76d3863475"></a>
 
 Sets the value of DisplayName.
 
-<br>

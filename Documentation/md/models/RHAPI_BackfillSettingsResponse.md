@@ -30,7 +30,6 @@ struct FRHAPI_BackfillSettingsResponse
 
 How often we expect backfill heartbeats to occur.
 
-<br>
 #### `public virtual bool `[`FromJson`](#structFRHAPI__BackfillSettingsResponse_1ae24dfc7555827dcaf381240f4ce6729c)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__BackfillSettingsResponse_1ae24dfc7555827dcaf381240f4ce6729c"></a>
 
 Fills this object with data from the passed in JSON.
@@ -41,7 +40,6 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-<br>
 #### `public virtual void `[`WriteJson`](#structFRHAPI__BackfillSettingsResponse_1a8bc2efddc2eeccb95e310cd81d818b1a)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__BackfillSettingsResponse_1a8bc2efddc2eeccb95e310cd81d818b1a"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
@@ -49,19 +47,15 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-<br>
 #### `public inline float & `[`GetTimeout`](#structFRHAPI__BackfillSettingsResponse_1ac079c953b4903b9cffc824a5672d01c1)`()` <a id="structFRHAPI__BackfillSettingsResponse_1ac079c953b4903b9cffc824a5672d01c1"></a>
 
 Gets the value of Timeout.
 
-<br>
 #### `public inline const float & `[`GetTimeout`](#structFRHAPI__BackfillSettingsResponse_1ad8af373f0c08c40fe4bd1dc8a7ac81a7)`() const` <a id="structFRHAPI__BackfillSettingsResponse_1ad8af373f0c08c40fe4bd1dc8a7ac81a7"></a>
 
 Gets the value of Timeout.
 
-<br>
 #### `public inline void `[`SetTimeout`](#structFRHAPI__BackfillSettingsResponse_1ad12bb0eb9309bce3b1a4219d916842bf)`(float NewValue)` <a id="structFRHAPI__BackfillSettingsResponse_1ad12bb0eb9309bce3b1a4219d916842bf"></a>
 
 Sets the value of Timeout.
 
-<br>

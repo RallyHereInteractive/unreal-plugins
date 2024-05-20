@@ -32,7 +32,6 @@ Connection info about the requesting client.
 
 IP that sent the request.
 
-<br>
 #### `public virtual bool `[`FromJson`](#structFRHAPI__ConnectionInfo_1a8163d13a92ed5ca0a8292e3269a5b7d1)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__ConnectionInfo_1a8163d13a92ed5ca0a8292e3269a5b7d1"></a>
 
 Fills this object with data from the passed in JSON.
@@ -43,7 +42,6 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-<br>
 #### `public virtual void `[`WriteJson`](#structFRHAPI__ConnectionInfo_1a194e39da068ff951effe98a6b0a36a56)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__ConnectionInfo_1a194e39da068ff951effe98a6b0a36a56"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
@@ -51,19 +49,15 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-<br>
 #### `public inline FString & `[`GetIp`](#structFRHAPI__ConnectionInfo_1a35cdcfa371719695f1ad4fe00c86db75)`()` <a id="structFRHAPI__ConnectionInfo_1a35cdcfa371719695f1ad4fe00c86db75"></a>
 
 Gets the value of Ip.
 
-<br>
 #### `public inline const FString & `[`GetIp`](#structFRHAPI__ConnectionInfo_1add13d7706711b691a3dbf9bbd504a749)`() const` <a id="structFRHAPI__ConnectionInfo_1add13d7706711b691a3dbf9bbd504a749"></a>
 
 Gets the value of Ip.
 
-<br>
 #### `public inline void `[`SetIp`](#structFRHAPI__ConnectionInfo_1ab2a203deb1501471c2ff86bcfd6ae3b3)`(FString NewValue)` <a id="structFRHAPI__ConnectionInfo_1ab2a203deb1501471c2ff86bcfd6ae3b3"></a>
 
 Sets the value of Ip.
 
-<br>
