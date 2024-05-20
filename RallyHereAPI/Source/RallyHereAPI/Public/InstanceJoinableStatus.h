@@ -22,6 +22,7 @@ enum class ERHAPI_InstanceJoinableStatus : uint8
 	Allocated UMETA(ToolTip="Host has been found, and is loading its session information"),
 	Pending UMETA(ToolTip="Host has arrived and is loading"),
 	Joinable UMETA(ToolTip="Host is ready to accept players"),
+	Unjoinable UMETA(ToolTip="Host has marked itself as no longer ready to accept players, but may transition back to joinable"),
 	Closed UMETA(ToolTip="Host has left, been timed out, or could not be found"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_InstanceJoinableStatus& EnumValue);

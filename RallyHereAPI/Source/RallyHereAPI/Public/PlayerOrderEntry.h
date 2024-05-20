@@ -168,7 +168,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntry : public FRHAPI_Model
 	 /** @brief Clears the value of DynamicBundleLootIds_Optional and sets DynamicBundleLootIds_IsSet to false */
 	void ClearDynamicBundleLootIds() { DynamicBundleLootIds_IsSet = false; }
 
-	/** @brief The purchase price of the Loot. */
+	/** @brief The purchase price of the Loot. Deprecated. Use the purchase_prices field instead */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_PurchasePrice PurchasePrice_Optional{  };
 	/** @brief true if PurchasePrice_Optional has been set to a value */

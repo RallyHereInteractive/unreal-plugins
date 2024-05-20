@@ -30,6 +30,8 @@ FString EnumToString(const ERHAPI_InstanceJoinableStatus& Value)
 		return TEXT("pending");
 	case ERHAPI_InstanceJoinableStatus::Joinable:
 		return TEXT("joinable");
+	case ERHAPI_InstanceJoinableStatus::Unjoinable:
+		return TEXT("unjoinable");
 	case ERHAPI_InstanceJoinableStatus::Closed:
 		return TEXT("closed");
 	}
@@ -45,6 +47,7 @@ bool EnumFromString(const FString& EnumAsString, ERHAPI_InstanceJoinableStatus& 
 		{ TEXT("allocated"), ERHAPI_InstanceJoinableStatus::Allocated },
 		{ TEXT("pending"), ERHAPI_InstanceJoinableStatus::Pending },
 		{ TEXT("joinable"), ERHAPI_InstanceJoinableStatus::Joinable },
+		{ TEXT("unjoinable"), ERHAPI_InstanceJoinableStatus::Unjoinable },
 		{ TEXT("closed"), ERHAPI_InstanceJoinableStatus::Closed },	};
 
 	const auto Found = StringToEnum.Find(EnumAsString);

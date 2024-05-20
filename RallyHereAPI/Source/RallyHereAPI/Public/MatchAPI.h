@@ -476,6 +476,8 @@ struct RALLYHEREAPI_API FRequest_GetMatches : public FRequest
 	TOptional<FString> HostPlayerUuid;
 	TOptional<FString> RegionId;
 	TOptional<FString> PlayerUuid;
+	TOptional<bool> IncludeSegments;
+	TOptional<bool> IncludePlayers;
 };
 
 struct RALLYHEREAPI_API FResponse_GetMatches : public FResponse
