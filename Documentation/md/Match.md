@@ -189,9 +189,12 @@ The last match created with bSetActive = true, for ease of use.
 `public FString `[`HostPlayerUuid`](#structFRH__MatchSearchParams_1a067924a1c1a542270163b0ba5b9ca541) | The host player id to search on, ignored if empty.
 `public FString `[`RegionId`](#structFRH__MatchSearchParams_1a8874651d0cadc4ed51898c0987be697a) | The region id to search on, ignored if empty.
 `public FString `[`PlayerUuid`](#structFRH__MatchSearchParams_1a08a9351cd2ac8f2483e0e49c44b286f1) | The participant player id to search on, ignored if empty.
+`public bool `[`bIncludeSegments`](#structFRH__MatchSearchParams_1aa71b2ea4e11d1a945dbcd4e96498d3a0) | Whether to include segments in the search results.
+`public bool `[`bIncludePlayers`](#structFRH__MatchSearchParams_1aaab82b65d09567a6bbc4cb9a622b4a42) | Whether to include players in the search results.
 `public FString `[`Cursor`](#structFRH__MatchSearchParams_1a2b3af805c98580faddaa3495131c2eb6) | Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration.
 `public inline  `[`FRH_MatchSearchParams`](#structFRH__MatchSearchParams_1a703357c85c089fd0675e83eaa69ca12c)`()` | 
 `public inline FString `[`GetDescription`](#structFRH__MatchSearchParams_1a682aada2005d21246404e340217c4229)`() const` | Returns summary of params for tooling/logging.
+`public inline bool `[`CanCacheResults`](#structFRH__MatchSearchParams_1ac35b105d1aeafb1c9adfceeeb3e018bb)`() const` | 
 `public inline RallyHereAPI::FRequest_GetMatches `[`ToAPIRequest`](#structFRH__MatchSearchParams_1ad113cf34700d56985d289eebde6e4218)`(FAuthContextPtr AuthContext) const` | Converts the search params to an API request.
 
 ### Members
@@ -224,6 +227,14 @@ The region id to search on, ignored if empty.
 
 The participant player id to search on, ignored if empty.
 
+#### `public bool `[`bIncludeSegments`](#structFRH__MatchSearchParams_1aa71b2ea4e11d1a945dbcd4e96498d3a0) <a id="structFRH__MatchSearchParams_1aa71b2ea4e11d1a945dbcd4e96498d3a0"></a>
+
+Whether to include segments in the search results.
+
+#### `public bool `[`bIncludePlayers`](#structFRH__MatchSearchParams_1aaab82b65d09567a6bbc4cb9a622b4a42) <a id="structFRH__MatchSearchParams_1aaab82b65d09567a6bbc4cb9a622b4a42"></a>
+
+Whether to include players in the search results.
+
 #### `public FString `[`Cursor`](#structFRH__MatchSearchParams_1a2b3af805c98580faddaa3495131c2eb6) <a id="structFRH__MatchSearchParams_1a2b3af805c98580faddaa3495131c2eb6"></a>
 
 Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration.
@@ -233,6 +244,8 @@ Cursor to designate where you are in iterating through values. Start with '0', a
 #### `public inline FString `[`GetDescription`](#structFRH__MatchSearchParams_1a682aada2005d21246404e340217c4229)`() const` <a id="structFRH__MatchSearchParams_1a682aada2005d21246404e340217c4229"></a>
 
 Returns summary of params for tooling/logging.
+
+#### `public inline bool `[`CanCacheResults`](#structFRH__MatchSearchParams_1ac35b105d1aeafb1c9adfceeeb3e018bb)`() const` <a id="structFRH__MatchSearchParams_1ac35b105d1aeafb1c9adfceeeb3e018bb"></a>
 
 #### `public inline RallyHereAPI::FRequest_GetMatches `[`ToAPIRequest`](#structFRH__MatchSearchParams_1ad113cf34700d56985d289eebde6e4218)`(FAuthContextPtr AuthContext) const` <a id="structFRH__MatchSearchParams_1ad113cf34700d56985d289eebde6e4218"></a>
 
