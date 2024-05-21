@@ -916,7 +916,7 @@ void URH_PlatformSessionSyncer::JoinPlatformSession()
 	FUniqueNetIdRepl RHPlatformSessionId;
 	if (!GetPlatformSessionIdFromRHSession(RHPlatformSessionId))
 	{
-		UE_LOG(LogRHSession, Log, TEXT("[%s] - Cannot find platform session id to join %s"), ANSI_TO_TCHAR(__FUNCTION__));
+		UE_LOG(LogRHSession, Log, TEXT("[%s] - Cannot find platform session id to join"), ANSI_TO_TCHAR(__FUNCTION__));
 	}
 
 	auto OSSSessionInterface = GetOSSSessionInterface();

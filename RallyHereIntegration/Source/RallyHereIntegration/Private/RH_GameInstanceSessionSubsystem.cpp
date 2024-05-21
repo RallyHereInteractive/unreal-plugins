@@ -217,7 +217,7 @@ bool URH_GameInstanceSessionSubsystem::MakeActiveSessionJoinable(UWorld* pWorld)
 	}
 	else
 	{
-		UE_LOG(LogRallyHereIntegration, Error, TEXT("Session %d could not find a valid connection string on the host"));
+		UE_LOG(LogRallyHereIntegration, Error, TEXT("Session %s could not find a valid connection string on the host"), *ActiveSession->GetSessionId());
 
 		return false;
 	}
@@ -1547,7 +1547,11 @@ void URH_GameInstanceSessionSubsystem::EmitJoinInstanceCompletedEvent(const URH_
 		FRHAPI_CreateAuditRequest Request;
 		if (Session->GetSessionOwner() != nullptr)
 		{
-			Request.SetPlayerUuid(Session->GetSessionOwner()->GetPlayerUuid());
+			auto PlayerUuid = Session->GetSessionOwner()->GetPlayerUuid();
+			if (PlayerUuid.IsValid())
+			{
+				Request.SetPlayerUuid(PlayerUuid);
+			}
 		}
 		Request.SetSessionId(Session->GetSessionId());
 		Request.SetInstanceId(Session->GetInstanceData()->GetInstanceId());
@@ -1584,4 +1588,30 @@ void URH_GameInstanceSessionSubsystem::EmitLeaveInstanceEvent(const URH_JoinedSe
 	Event.Reason = Reason;
 
 	EmitEventToAllProvidersOnce(pGameInstance, Event);
+
+	if (Session != nullptr)
+	{
+		FRHAPI_CreateAuditRequest Request;
+		if (Session->GetSessionOwner() != nullptr)
+		{
+			auto PlayerUuid = Session->GetSessionOwner()->GetPlayerUuid();
+			if (PlayerUuid.IsValid())
+			{
+				Request.SetPlayerUuid(PlayerUuid);
+			}
+		}
+		Request.SetSessionId(Session->GetSessionId());
+		Request.SetInstanceId(Session->GetInstanceData()->GetInstanceId());
+
+		// make an event name that is recognizable and informative
+		FString EventName = FString::Printf(TEXT("instance_leave"));
+		if (!Reason.IsEmpty())
+		{
+			EventName += TEXT(": ") + Reason;
+		}
+
+		Request.SetEventName(EventName.Left(100)); // make sure it will fit in the field length on the API
+
+		Session->EmitAuditEvent(Request);
+	}
 }
