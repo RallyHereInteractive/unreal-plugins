@@ -734,6 +734,8 @@ void URH_GameInstanceServerBootstrapper::OnConnectComplete(bool bSuccess)
 		return;
 	}
 
+	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] GameHostProvider connection complete"), ANSI_TO_TCHAR(__FUNCTION__));
+
 	if (BootstrapMode == ERH_ServerBootstrapMode::AutoCreate)
 	{
 		BeginReservation();
@@ -763,6 +765,10 @@ void URH_GameInstanceServerBootstrapper::OnRegisterComplete(bool bSuccess)
 	{
 		OnBootstrappingFailed(FString::Printf(TEXT("[%s] GameHostProvider failed to register"), ANSI_TO_TCHAR(__FUNCTION__)));
 		return;
+	}
+	else
+	{
+		UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] GameHostProvider registration complete"), ANSI_TO_TCHAR(__FUNCTION__));
 	}
 }
 
@@ -827,6 +833,8 @@ void URH_GameInstanceServerBootstrapper::OnReservationComplete(bool bSuccess)
 		OnBootstrappingFailed(FString::Printf(TEXT("[%s] GameHostProvider failed to reserve"), ANSI_TO_TCHAR(__FUNCTION__)));
 		return;
 	}
+
+	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] GameHostProvider reservation complete"), ANSI_TO_TCHAR(__FUNCTION__));
 
 	bool bStartedHelper = false;
 	FString SessionType = DefaultAutoCreateSessionType;
