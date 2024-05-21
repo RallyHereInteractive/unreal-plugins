@@ -847,12 +847,12 @@ void URH_LocalPlayerSessionSubsystem::OnPlatformActivityActivation(const FUnique
 	// validate that this is for our user
 	if (FilterOSSCallbackUser(LocalUserId))
 	{
-		UE_LOG(LogRHSession, VeryVerbose, TEXT("[%s] : Ignoring invite to %s because user is filtered"), ANSI_TO_TCHAR(__FUNCTION__));
+		UE_LOG(LogRHSession, VeryVerbose, TEXT("[%s] : Ignoring invite to %s because user is filtered"), ANSI_TO_TCHAR(__FUNCTION__), *ActivityId);
 		return;
 	}
 	if (!SessionInfo)
 	{
-		UE_LOG(LogRHSession, VeryVerbose, TEXT("[%s] : Ignoring invite to %s because it has no session dat"), ANSI_TO_TCHAR(__FUNCTION__));
+		UE_LOG(LogRHSession, VeryVerbose, TEXT("[%s] : Ignoring invite to %s because it has no session dat"), ANSI_TO_TCHAR(__FUNCTION__), *ActivityId);
 		return;
 	}
 
