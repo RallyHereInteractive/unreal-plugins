@@ -1542,7 +1542,11 @@ void URH_GameInstanceSessionSubsystem::EmitJoinInstanceCompletedEvent(const URH_
 		FRHAPI_CreateAuditRequest Request;
 		if (Session->GetSessionOwner() != nullptr)
 		{
-			Request.SetPlayerUuid(Session->GetSessionOwner()->GetPlayerUuid());
+			auto PlayerUuid = Session->GetSessionOwner()->GetPlayerUuid();
+			if (PlayerUuid.IsValid())
+			{
+				Request.SetPlayerUuid(PlayerUuid);
+			}
 		}
 		Request.SetSessionId(Session->GetSessionId());
 		Request.SetInstanceId(Session->GetInstanceData()->GetInstanceId());
