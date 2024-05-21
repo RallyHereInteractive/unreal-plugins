@@ -45,6 +45,7 @@ public:
 	 * @param [in] Delegate Callback with the current status of the purge request.
 	 */
 	bool EnqueueMeForPurge(const FDateTime& PurgeTime, const FRH_OnPurgeStatusUpdatedDelegateBlock& Delegate = FRH_OnPurgeStatusUpdatedDelegate()) { return EnqueueMeForPurge(TOptional<FDateTime>(PurgeTime), Delegate); };
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Purge", meta = (DisplayName = "Enqueue Me for Purge with Purge Time", AutoCreateRefTerm = "Delegate"))
 	bool BLUEPRINT_EnqueueMeForPurgeWithPurgeTime(FDateTime PurgeTime, const FRH_OnPurgeStatusUpdatedDynamicDelegate& Delegate) { return EnqueueMeForPurge(PurgeTime, Delegate); };
 	/**
@@ -52,6 +53,7 @@ public:
 	 * @param [in] Delegate Callback with the current status of the purge request.
 	 */
 	bool EnqueueMeForPurge(const FRH_OnPurgeStatusUpdatedDelegateBlock& Delegate = FRH_OnPurgeStatusUpdatedDelegate()) { return EnqueueMeForPurge(TOptional<FDateTime>(), Delegate); };
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Purge", meta = (DisplayName = "Enqueue Me for Purge", AutoCreateRefTerm = "Delegate"))
 	bool BLUEPRINT_EnqueueMeForPurge(const FRH_OnPurgeStatusUpdatedDynamicDelegate& Delegate) { return EnqueueMeForPurge(Delegate); };
 	/**
@@ -59,6 +61,7 @@ public:
 	 * @param [in] Delegate Callback with the current status of the purge request.
 	 */
 	bool PurgeMeImmediately(const FRH_OnPurgeStatusUpdatedDelegateBlock& Delegate = FRH_OnPurgeStatusUpdatedDelegate()) { return EnqueueMeForPurge(FDateTime::UtcNow() - FTimespan::FromHours(HOURS_TO_ACCOUNT_FOR_CLOCK_DRIFT), Delegate); };
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Purge", meta = (DisplayName = "Purge Me Immediately", AutoCreateRefTerm = "Delegate"))
 	bool BLUEPRINT_PurgeMeImmediately(const FRH_OnPurgeStatusUpdatedDynamicDelegate& Delegate) { return PurgeMeImmediately(Delegate); };
 	/**
@@ -66,6 +69,7 @@ public:
 	 * @param [in] Delegate Callback with the current status of the purge request.
 	 */
 	bool DequeueMeForPurge(const FRH_OnPurgeStatusUpdatedDelegateBlock& Delegate = FRH_OnPurgeStatusUpdatedDelegate());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Purge", meta = (DisplayName = "Dequeue Me for Purge", AutoCreateRefTerm = "Delegate"))
 	bool BLUEPRINT_DequeueMeForPurge(const FRH_OnPurgeStatusUpdatedDynamicDelegate& Delegate) { return DequeueMeForPurge(Delegate); };
 	/**
@@ -73,6 +77,7 @@ public:
 	 * @param [in] Delegate Callback with the current status of the purge request.
 	 */
 	bool QueryMyPurgeStatus(const FRH_OnPurgeStatusUpdatedDelegateBlock& Delegate = FRH_OnPurgeStatusUpdatedDelegate());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Purge", meta = (DisplayName = "Get My Purge Status", AutoCreateRefTerm = "Delegate"))
 	bool BLUEPRINT_QueryMyPurgeStatus(const FRH_OnPurgeStatusUpdatedDynamicDelegate& Delegate) { return QueryMyPurgeStatus(Delegate); };
 	/**

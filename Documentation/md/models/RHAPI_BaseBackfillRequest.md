@@ -1,4 +1,4 @@
-# RHAPI_BaseBackfillRequest <a id="group__RHAPI__BaseBackfillRequest"></a>
+# group `RHAPI_BaseBackfillRequest` <a id="group__RHAPI__BaseBackfillRequest"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_BaseBackfillRequest
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -24,13 +24,12 @@ struct FRHAPI_BaseBackfillRequest
 `public inline const FString & `[`GetInstanceId`](#structFRHAPI__BaseBackfillRequest_1af82ecb8b5005dcf3034bec2eb1252274)`() const` | Gets the value of InstanceId.
 `public inline void `[`SetInstanceId`](#structFRHAPI__BaseBackfillRequest_1a9277a4122e794833f96741e2d4be6e2e)`(FString NewValue)` | Sets the value of InstanceId.
 
-#### Members
+### Members
 
 #### `public FString `[`InstanceId`](#structFRHAPI__BaseBackfillRequest_1adee922d59de20684afd702734bd49d34) <a id="structFRHAPI__BaseBackfillRequest_1adee922d59de20684afd702734bd49d34"></a>
 
 The instance ID for this backfill request.
 
-<br>
 #### `public virtual bool `[`FromJson`](#structFRHAPI__BaseBackfillRequest_1aae23daef4fab59c9b078e5f5fbec19db)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__BaseBackfillRequest_1aae23daef4fab59c9b078e5f5fbec19db"></a>
 
 Fills this object with data from the passed in JSON.
@@ -41,7 +40,6 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-<br>
 #### `public virtual void `[`WriteJson`](#structFRHAPI__BaseBackfillRequest_1a1cd261028157e2e554bb3ce0c030dd49)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__BaseBackfillRequest_1a1cd261028157e2e554bb3ce0c030dd49"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
@@ -49,19 +47,15 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-<br>
 #### `public inline FString & `[`GetInstanceId`](#structFRHAPI__BaseBackfillRequest_1a1c9a904f6c5187a9e57f8334f21257d7)`()` <a id="structFRHAPI__BaseBackfillRequest_1a1c9a904f6c5187a9e57f8334f21257d7"></a>
 
 Gets the value of InstanceId.
 
-<br>
 #### `public inline const FString & `[`GetInstanceId`](#structFRHAPI__BaseBackfillRequest_1af82ecb8b5005dcf3034bec2eb1252274)`() const` <a id="structFRHAPI__BaseBackfillRequest_1af82ecb8b5005dcf3034bec2eb1252274"></a>
 
 Gets the value of InstanceId.
 
-<br>
 #### `public inline void `[`SetInstanceId`](#structFRHAPI__BaseBackfillRequest_1a9277a4122e794833f96741e2d4be6e2e)`(FString NewValue)` <a id="structFRHAPI__BaseBackfillRequest_1a9277a4122e794833f96741e2d4be6e2e"></a>
 
 Sets the value of InstanceId.
 
-<br>

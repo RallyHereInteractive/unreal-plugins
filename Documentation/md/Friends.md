@@ -1,4 +1,4 @@
-# Friends <a id="group__Friends"></a>
+# group `Friends` <a id="group__Friends"></a>
 
 ## Summary
 
@@ -32,7 +32,7 @@ class URH_PlatformFriend
 
 Platform Friend class tracks all the information for a user you have a relationship with on your platform.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -73,186 +73,150 @@ Platform Friend class tracks all the information for a user you have a relations
 `protected bool `[`PendingFriendRequestToYou`](#classURH__PlatformFriend_1a3f81ed5d899ca081e83bda98ca0d6c94) | If the player is requesting your friendship via platform.
 `protected bool `[`PendingFriendRequestFromYou`](#classURH__PlatformFriend_1a27df17201ec44564399d2c7f65c3f091) | If the player has a pendinf friendship request via platform.
 
-#### Members
+### Members
 
 #### `public inline const FString & `[`GetClientDisplayName`](#classURH__PlatformFriend_1ac89430bd4d2963ba69e5cf08e7d810cd)`() const` <a id="classURH__PlatformFriend_1ac89430bd4d2963ba69e5cf08e7d810cd"></a>
 
 Gets the display name of the user on their platform.
 
-<br>
 #### `public inline const FString & `[`GetRichPresenceInfo`](#classURH__PlatformFriend_1a967b91abc74e03388029589d91e8fd43)`() const` <a id="classURH__PlatformFriend_1a967b91abc74e03388029589d91e8fd43"></a>
 
 Gets the rich presence of the user on their platform.
 
-<br>
 #### `public inline const `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` & `[`GetPlayerPlatformId`](#classURH__PlatformFriend_1a6eaf359b230a173d585617720b72cf91)`() const` <a id="classURH__PlatformFriend_1a6eaf359b230a173d585617720b72cf91"></a>
 
 Gets a struct of the players platform and unique platform player id.
 
-<br>
 #### `public inline ERHAPI_Platform `[`GetPlatform`](#classURH__PlatformFriend_1ad7c328a55f4d92b976946b4765be8776)`() const` <a id="classURH__PlatformFriend_1ad7c328a55f4d92b976946b4765be8776"></a>
 
 Gets the type of platform.
 
-<br>
 #### `public inline  `[`UE_DEPRECATED`](#classURH__PlatformFriend_1a9852e7171ecffc5a91fdd50cbbd89880)`(5. 0,"Use `[`GetPlatform`](Friends.md#classURH__PlatformFriend_1ad7c328a55f4d92b976946b4765be8776)() instead of GetPlatformBase()`") const` <a id="classURH__PlatformFriend_1a9852e7171ecffc5a91fdd50cbbd89880"></a>
 
 Gets the type of platform.
 
-<br>
 #### `public inline const FString & `[`GetPlatformUserId`](#classURH__PlatformFriend_1a32e5b86cc9568d927f2cf98ee4442ddf)`() const` <a id="classURH__PlatformFriend_1a32e5b86cc9568d927f2cf98ee4442ddf"></a>
 
 Gets the users unique platform player id.
 
-<br>
 #### `public inline bool `[`IsJoinable`](#classURH__PlatformFriend_1a471e1426cd5693912fa3ebf57fd4540a)`() const` <a id="classURH__PlatformFriend_1a471e1426cd5693912fa3ebf57fd4540a"></a>
 
 Gets if you are able to join the user in their gaming session.
 
-<br>
 #### `public inline bool `[`IsPlayingGame`](#classURH__PlatformFriend_1adcbf4c48ec43e2c3db5df0423cb14f37)`() const` <a id="classURH__PlatformFriend_1adcbf4c48ec43e2c3db5df0423cb14f37"></a>
 
 Gets if the user is playing any game.
 
-<br>
 #### `public inline bool `[`IsPlayingThisGame`](#classURH__PlatformFriend_1aeb207b249b7ebcbd994dfce117b85e63)`() const` <a id="classURH__PlatformFriend_1aeb207b249b7ebcbd994dfce117b85e63"></a>
 
 Gets if the user is playing this game.
 
-<br>
 #### `public inline bool `[`IsOnline`](#classURH__PlatformFriend_1a762df48ad7d203526a11ed0ebcca591d)`() const` <a id="classURH__PlatformFriend_1a762df48ad7d203526a11ed0ebcca591d"></a>
 
 Gets if the user is online on their platform.
 
-<br>
 #### `public inline bool `[`IsDND`](#classURH__PlatformFriend_1ae31c8b2976c5fdba8997ed86741c32b6)`() const` <a id="classURH__PlatformFriend_1ae31c8b2976c5fdba8997ed86741c32b6"></a>
 
 Gets if the user has set Do Non Disturb mode on their platform.
 
-<br>
 #### `public inline bool `[`IsFriend`](#classURH__PlatformFriend_1ad80512a9aeb07dcfb8dfea738c03c3b3)`() const` <a id="classURH__PlatformFriend_1ad80512a9aeb07dcfb8dfea738c03c3b3"></a>
 
 Gets if the user is your friend on their platform.
 
-<br>
 #### `public inline bool `[`IsBlocked`](#classURH__PlatformFriend_1af3d470d61dcec1e4c7b6e9620d116ebc)`() const` <a id="classURH__PlatformFriend_1af3d470d61dcec1e4c7b6e9620d116ebc"></a>
 
 Gets if the user is blocked by you on their platform.
 
-<br>
 #### `public inline void `[`SetBlocked`](#classURH__PlatformFriend_1ab73257e39abdce7f98f284db6da8440f)`(bool bNewBlocked)` <a id="classURH__PlatformFriend_1ab73257e39abdce7f98f284db6da8440f"></a>
 
 Sets this player as blocked by you on their platform.
 
-<br>
 #### `public inline bool `[`HasPendingFriendRequestToYou`](#classURH__PlatformFriend_1a28f23d7a48b451795262b407a4b9e1e8)`() const` <a id="classURH__PlatformFriend_1a28f23d7a48b451795262b407a4b9e1e8"></a>
 
 Gets if the user has sent a friend request to you on their platform.
 
-<br>
 #### `public inline bool `[`HasPendingFriendRequestFromYou`](#classURH__PlatformFriend_1a0f1be6edfeebb8bbc73b4a06adfc0707)`() const` <a id="classURH__PlatformFriend_1a0f1be6edfeebb8bbc73b4a06adfc0707"></a>
 
 Gets if the user has been sent a friend request by you on their platform.
 
-<br>
 #### `public inline bool `[`HasAnyRelationship`](#classURH__PlatformFriend_1affa1328c8735c3e1cad102186a8ca688)`() const` <a id="classURH__PlatformFriend_1affa1328c8735c3e1cad102186a8ca688"></a>
 
 Gets if the user is a friend or has been sent or has sent a friend request on their platform with you.
 
-<br>
 #### `public inline void `[`Clear`](#classURH__PlatformFriend_1a8b646f0d1117da0268e55a6c6d4c1934)`()` <a id="classURH__PlatformFriend_1a8b646f0d1117da0268e55a6c6d4c1934"></a>
 
 Clears all the info.
 
-<br>
 #### `public inline void `[`ClearFriendAndStatusInfo`](#classURH__PlatformFriend_1a684d343b73ed3fc6bc79a1fdd5e5cd2f)`()` <a id="classURH__PlatformFriend_1a684d343b73ed3fc6bc79a1fdd5e5cd2f"></a>
 
 Clears all the status information but not the users id.
 
-<br>
 #### `public inline void `[`Init`](#classURH__PlatformFriend_1a6aaf6ce557dedb468ce8b471424886fb)`(`[`URH_PlatformFriend`](#classURH__PlatformFriend)` * other)` <a id="classURH__PlatformFriend_1a6aaf6ce557dedb468ce8b471424886fb"></a>
 
 Initializes a Platform Friend with another Platform Friend.
 
-<br>
 #### `public inline void `[`Init`](#classURH__PlatformFriend_1a82b31de1b0055a764e97b6f5f0348617)`(const FOnlineFriend & OnlineFriend,const FOnlineUserPresence & Presence,IOnlineSubsystem * OSS,bool bBlocked)` <a id="classURH__PlatformFriend_1a82b31de1b0055a764e97b6f5f0348617"></a>
 
 Initializes a Platform Friend from online information from their platform.
 
-<br>
 #### `public inline void `[`Init`](#classURH__PlatformFriend_1a291f7161ae50b02048ab68f6a703a26c)`(const `[`URH_PlayerPlatformInfo`](PlayerInfo.md#classURH__PlayerPlatformInfo)` * PlayerPlatformInfo)` <a id="classURH__PlatformFriend_1a291f7161ae50b02048ab68f6a703a26c"></a>
 
 Initializes a Platform Friend from linked player platform information.
 
-<br>
 #### `public inline void `[`InitBlocked`](#classURH__PlatformFriend_1a3dba0aff016b1fc7ee86fc8bc5c3c5a9)`(`[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` InPlatformId)` <a id="classURH__PlatformFriend_1a3dba0aff016b1fc7ee86fc8bc5c3c5a9"></a>
 
 Initializes a Blocked Platform Player with minimal information.
 
-<br>
 #### `public inline void `[`UpdatePresence`](#classURH__PlatformFriend_1a55dde9ee7ba023fc5b09e8a1e68322d9)`(const FOnlineUserPresence & Presence)` <a id="classURH__PlatformFriend_1a55dde9ee7ba023fc5b09e8a1e68322d9"></a>
 
-<br>
 #### `protected `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` `[`PlayerPlatformId`](#classURH__PlatformFriend_1a1eca8d8c1f024dbb754aff1ecc7e7ff0) <a id="classURH__PlatformFriend_1a1eca8d8c1f024dbb754aff1ecc7e7ff0"></a>
 
 The players Platform Id.
 
-<br>
 #### `protected FString `[`DisplayName`](#classURH__PlatformFriend_1a6ffdcb673470361a4eb3f67436219ac9) <a id="classURH__PlatformFriend_1a6ffdcb673470361a4eb3f67436219ac9"></a>
 
 The players Display Name for the platform.
 
-<br>
 #### `protected FString `[`RichPresenceInfo`](#classURH__PlatformFriend_1a9656106e79de89728f5dd29b02f87432) <a id="classURH__PlatformFriend_1a9656106e79de89728f5dd29b02f87432"></a>
 
 The players Rich Presence on the platform.
 
-<br>
 #### `protected bool `[`Joinable`](#classURH__PlatformFriend_1adf43f5e6425ce44836e406c6fb3c18ef) <a id="classURH__PlatformFriend_1adf43f5e6425ce44836e406c6fb3c18ef"></a>
 
 If the player is currently joinable.
 
-<br>
 #### `protected bool `[`PlayingGame`](#classURH__PlatformFriend_1ae47a2802d826185a6e409b1bc7839cb9) <a id="classURH__PlatformFriend_1ae47a2802d826185a6e409b1bc7839cb9"></a>
 
 If the player is currently playering a game.
 
-<br>
 #### `protected bool `[`PlayingThisGame`](#classURH__PlatformFriend_1a6533963934e5cdd342e6bdf75486f039) <a id="classURH__PlatformFriend_1a6533963934e5cdd342e6bdf75486f039"></a>
 
 If the player is currently playing this game.
 
-<br>
 #### `protected bool `[`Online`](#classURH__PlatformFriend_1a52a160091ccf388919ef4cc23450d617) <a id="classURH__PlatformFriend_1a52a160091ccf388919ef4cc23450d617"></a>
 
 If the player is online.
 
-<br>
 #### `protected bool `[`DoNotDisturb`](#classURH__PlatformFriend_1a2dff3ff7e95ab89d203ba0489c618688) <a id="classURH__PlatformFriend_1a2dff3ff7e95ab89d203ba0489c618688"></a>
 
 If the player has do not disturb on.
 
-<br>
 #### `protected bool `[`Friend`](#classURH__PlatformFriend_1afd2199ee1c085ee9be41d687cf55eb3e) <a id="classURH__PlatformFriend_1afd2199ee1c085ee9be41d687cf55eb3e"></a>
 
 If the player is a platform friend.
 
-<br>
 #### `protected bool `[`Blocked`](#classURH__PlatformFriend_1a790eb947fad2442e857a2aa08487fb53) <a id="classURH__PlatformFriend_1a790eb947fad2442e857a2aa08487fb53"></a>
 
 If the player is blocked by you by platform.
 
-<br>
 #### `protected bool `[`PendingFriendRequestToYou`](#classURH__PlatformFriend_1a3f81ed5d899ca081e83bda98ca0d6c94) <a id="classURH__PlatformFriend_1a3f81ed5d899ca081e83bda98ca0d6c94"></a>
 
 If the player is requesting your friendship via platform.
 
-<br>
 #### `protected bool `[`PendingFriendRequestFromYou`](#classURH__PlatformFriend_1a27df17201ec44564399d2c7f65c3f091) <a id="classURH__PlatformFriend_1a27df17201ec44564399d2c7f65c3f091"></a>
 
 If the player has a pendinf friendship request via platform.
 
-<br>
 ## class `URH_RHFriendAndPlatformFriend` <a id="classURH__RHFriendAndPlatformFriend"></a>
 
 ```
@@ -262,11 +226,10 @@ class URH_RHFriendAndPlatformFriend
 
 RH Friend and Platform Friend class that wraps a Rally Here Friend and Platform Friend together.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public FRH_OnPlayerInfoSubobjectUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnPresenceUpdatedDelegate`](#classURH__RHFriendAndPlatformFriend_1a4e582df1e970de8d0320132f789a05ba) | Blueprint delegate to listen for presence updates.
 `public FRH_OnPlayerInfoSubobjectUpdatedMulticastDelegate `[`OnPresenceUpdatedDelegate`](#classURH__RHFriendAndPlatformFriend_1a8a0e044ae90e40b27535bb747f7dbda0) | Native delegate to listen for presence updates.
 `public class `[`URH_FriendSubsystem`](Friends.md#classURH__FriendSubsystem)` * `[`GetFriendSubsystem`](#classURH__RHFriendAndPlatformFriend_1afca989ff581d5d013cfac12722f5f4ee)`() const` | 
 `public inline bool `[`AreFriends`](#classURH__RHFriendAndPlatformFriend_1a3614d4c1ddb543c6f262dd27b65ab67b)`() const` | Gets if the player is a friend through Rally Here systems or their platform.
@@ -301,9 +264,7 @@ RH Friend and Platform Friend class that wraps a Rally Here Friend and Platform 
 `public class `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`GetPlayerInfo`](#classURH__RHFriendAndPlatformFriend_1a18ff72f08c02d890a3c82c61689ec93d)`() const` | Attempts to get the player info.
 `public FString `[`GetLastKnownDisplayName`](#classURH__RHFriendAndPlatformFriend_1acd73b58468f7e35971e820244372ae84)`(ERHAPI_Platform PreferredPlatformType) const` | Gets the last known cached display name for the player.
 `public void `[`GetLastKnownDisplayNameAsync`](#classURH__RHFriendAndPlatformFriend_1a3b8bf590fdccb5b793ed98b52918656d)`(const FTimespan & StaleThreshold,bool bForceRefresh,ERHAPI_Platform PreferredPlatformType,const FRH_PlayerInfoGetDisplayNameBlock & Delegate) const` | Gets the last known display name for the player, will request from API as needed.
-`public inline void `[`BLUEPRINT_GetLastKnownDisplayNameAsync`](#classURH__RHFriendAndPlatformFriend_1a271e31fc4527a2b1d8c2ba97342104b0)`(const FTimespan & StaleThreshold,bool bForceRefresh,ERHAPI_Platform PreferredPlatformType,const FRH_PlayerInfoGetDisplayNameDynamicDelegate & Delegate)` | 
 `public void `[`GetRHPlayerUuidAsync`](#classURH__RHFriendAndPlatformFriend_1a26d3a5a15aaf4b8787910b1a83927a82)`(const FRH_GetRHPlayerUuidBlock & Delegate)` | Gets the RH Player UUID for the player, will request from API as needed. As a side effect, it will update the RH Player Uuid on PlayerAndPlatformInfo.
-`public inline void `[`BLUEPRINT_GetRHPlayerUuidAsync`](#classURH__RHFriendAndPlatformFriend_1af1e785415f790f58ad334064b341dfd0)`(const FRH_GetRHPlayerUuidDynamicDelegate & Delegate)` | 
 `protected `[`FRH_PlayerAndPlatformInfo`](PlayerInfo.md#structFRH__PlayerAndPlatformInfo)` `[`PlayerAndPlatformInfo`](#classURH__RHFriendAndPlatformFriend_1a85603f6ad7e4c8402012642ba70df5d3) | Player Info and Platform Info combined.
 `protected `[`FriendshipStatus`](undefined.md#group__Friends_1gaa62b73aa8acc62ee0551d83f8da13244)` `[`RHFriendshipStatus`](#classURH__RHFriendAndPlatformFriend_1a048470b3c114f6379667149ea0a1328b) | Core friendship status.
 `protected `[`FriendshipStatus`](undefined.md#group__Friends_1gaa62b73aa8acc62ee0551d83f8da13244)` `[`PreviousRHFriendshipStatus`](#classURH__RHFriendAndPlatformFriend_1aa86a3555aa8881bcf2a4d6af5a8dffc4) | cached previous core friendship status.
@@ -315,161 +276,126 @@ RH Friend and Platform Friend class that wraps a Rally Here Friend and Platform 
 `protected inline virtual void `[`ClearRHFriendStatus`](#classURH__RHFriendAndPlatformFriend_1a192552b9a61592ae648c4e50afafeca0)`()` | Clears the cached friendship status for the player.
 `protected inline virtual void `[`ClearPlatformFriendStatus`](#classURH__RHFriendAndPlatformFriend_1a2868052b24a6cf21af2ba2ce0aab026b)`()` | Clears cached data for the platform friends for this player.
 
-#### Members
+### Members
 
-#### `public FRH_OnPlayerInfoSubobjectUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnPresenceUpdatedDelegate`](#classURH__RHFriendAndPlatformFriend_1a4e582df1e970de8d0320132f789a05ba) <a id="classURH__RHFriendAndPlatformFriend_1a4e582df1e970de8d0320132f789a05ba"></a>
-
-Blueprint delegate to listen for presence updates.
-
-<br>
 #### `public FRH_OnPlayerInfoSubobjectUpdatedMulticastDelegate `[`OnPresenceUpdatedDelegate`](#classURH__RHFriendAndPlatformFriend_1a8a0e044ae90e40b27535bb747f7dbda0) <a id="classURH__RHFriendAndPlatformFriend_1a8a0e044ae90e40b27535bb747f7dbda0"></a>
 
 Native delegate to listen for presence updates.
 
-<br>
 #### `public class `[`URH_FriendSubsystem`](Friends.md#classURH__FriendSubsystem)` * `[`GetFriendSubsystem`](#classURH__RHFriendAndPlatformFriend_1afca989ff581d5d013cfac12722f5f4ee)`() const` <a id="classURH__RHFriendAndPlatformFriend_1afca989ff581d5d013cfac12722f5f4ee"></a>
 
-<br>
 #### `public inline bool `[`AreFriends`](#classURH__RHFriendAndPlatformFriend_1a3614d4c1ddb543c6f262dd27b65ab67b)`() const` <a id="classURH__RHFriendAndPlatformFriend_1a3614d4c1ddb543c6f262dd27b65ab67b"></a>
 
 Gets if the player is a friend through Rally Here systems or their platform.
 
-<br>
 #### `public inline bool `[`AreRHFriends`](#classURH__RHFriendAndPlatformFriend_1a4fe2dc0a23755f8069aa7adac470b79b)`() const` <a id="classURH__RHFriendAndPlatformFriend_1a4fe2dc0a23755f8069aa7adac470b79b"></a>
 
 Gets if the player is a friend through Rally Here.
 
-<br>
 #### `public inline bool `[`ArePlatformFriends`](#classURH__RHFriendAndPlatformFriend_1aff5cffa84cf22c06bfdb6fdbf6c86d42)`() const` <a id="classURH__RHFriendAndPlatformFriend_1aff5cffa84cf22c06bfdb6fdbf6c86d42"></a>
 
 Gets if the player is a friend through their platform.
 
-<br>
 #### `public inline bool `[`FriendRequestSent`](#classURH__RHFriendAndPlatformFriend_1afb2d64ae40c67ff9be8e05dc3efee08f)`() const` <a id="classURH__RHFriendAndPlatformFriend_1afb2d64ae40c67ff9be8e05dc3efee08f"></a>
 
 Gets if you have sent a friend request to the player through Rally Here or their platform.
 
-<br>
 #### `public inline bool `[`RHFriendRequestSent`](#classURH__RHFriendAndPlatformFriend_1a01322359b249aa216ec7cdd237f94efd)`() const` <a id="classURH__RHFriendAndPlatformFriend_1a01322359b249aa216ec7cdd237f94efd"></a>
 
 Gets if you have sent a friend request to the player through Rally Here.
 
-<br>
 #### `public inline bool `[`PendingFriendRequest`](#classURH__RHFriendAndPlatformFriend_1ab84f7920479877917a2251fb16c38a19)`() const` <a id="classURH__RHFriendAndPlatformFriend_1ab84f7920479877917a2251fb16c38a19"></a>
 
 Gets if the player has sent you a friend through Rally Here or their platform.
 
-<br>
 #### `public inline bool `[`RhPendingFriendRequest`](#classURH__RHFriendAndPlatformFriend_1a6a93c886ade405ce778fa54621dcd455)`() const` <a id="classURH__RHFriendAndPlatformFriend_1a6a93c886ade405ce778fa54621dcd455"></a>
 
 Gets if the player has sent you a friend through Rally Here.
 
-<br>
 #### `public inline bool `[`HaveRhRelationship`](#classURH__RHFriendAndPlatformFriend_1a3d80d9734091740fe541d6057c07955d)`() const` <a id="classURH__RHFriendAndPlatformFriend_1a3d80d9734091740fe541d6057c07955d"></a>
 
 Gets if the player has any sort of relationship with you through Rally Here.
 
-<br>
 #### `public inline bool `[`HaveAnyRelationship`](#classURH__RHFriendAndPlatformFriend_1a5f7fb5fb59474fa3ad7126a64d2b7adb)`() const` <a id="classURH__RHFriendAndPlatformFriend_1a5f7fb5fb59474fa3ad7126a64d2b7adb"></a>
 
 Gets if the player has any sort of relationship with you through Rally Here or their platform.
 
-<br>
 #### `public inline bool `[`HavePlatformRelationship`](#classURH__RHFriendAndPlatformFriend_1a00b3960652a313fd9c4bd8a99e53c36b)`() const` <a id="classURH__RHFriendAndPlatformFriend_1a00b3960652a313fd9c4bd8a99e53c36b"></a>
 
 Gets if the player has any sort of relationship with you through their platform.
 
-<br>
 #### `public inline bool `[`IsOnline`](#classURH__RHFriendAndPlatformFriend_1aa0abd090b067cdd78cc511467853e9c9)`() const` <a id="classURH__RHFriendAndPlatformFriend_1aa0abd090b067cdd78cc511467853e9c9"></a>
 
 Gets if the player is online on their platform.
 
-<br>
 #### `public inline bool `[`IsPlayingThisGame`](#classURH__RHFriendAndPlatformFriend_1a75e1425a51bddff614302a10c83b9189)`() const` <a id="classURH__RHFriendAndPlatformFriend_1a75e1425a51bddff614302a10c83b9189"></a>
 
 Gets if the player is playing this game.
 
-<br>
 #### `public inline bool `[`IsDnD`](#classURH__RHFriendAndPlatformFriend_1a063eb82f35f76b18578a22451fee6cfd)`() const` <a id="classURH__RHFriendAndPlatformFriend_1a063eb82f35f76b18578a22451fee6cfd"></a>
 
 Gets if the player is set to Do Not Distrub on their platform.
 
-<br>
 #### `public inline bool `[`OtherDeclinedFriendship`](#classURH__RHFriendAndPlatformFriend_1aee6f1bc6d1278a9503910c4a1460f86e)`() const` <a id="classURH__RHFriendAndPlatformFriend_1aee6f1bc6d1278a9503910c4a1460f86e"></a>
 
 Gets if the player has declined your Rally Here friend request.
 
-<br>
 #### `public inline bool `[`AwaitingFriendshipResponse`](#classURH__RHFriendAndPlatformFriend_1a32a0502bbb92dd01ae3ca862c3e81bd5)`() const` <a id="classURH__RHFriendAndPlatformFriend_1a32a0502bbb92dd01ae3ca862c3e81bd5"></a>
 
 Gets if the player has an outstanding Rally Here friend request by you.
 
-<br>
 #### `public inline bool `[`OtherIsAwaitingFriendshipResponse`](#classURH__RHFriendAndPlatformFriend_1a23f36830cbe8e74cf296cf14894113e2)`() const` <a id="classURH__RHFriendAndPlatformFriend_1a23f36830cbe8e74cf296cf14894113e2"></a>
 
 Gets if the player has sent you a Rally Here friend request.
 
-<br>
 #### `public inline const FGuid & `[`GetRHPlayerUuid`](#classURH__RHFriendAndPlatformFriend_1ab1154a1e521acfa23059fc0951e383f1)`() const` <a id="classURH__RHFriendAndPlatformFriend_1ab1154a1e521acfa23059fc0951e383f1"></a>
 
 Gets the players unique player id.
 
-<br>
 #### `public inline `[`FriendshipStatus`](undefined.md#group__Friends_1gaa62b73aa8acc62ee0551d83f8da13244)` `[`GetStatus`](#classURH__RHFriendAndPlatformFriend_1acda68106fa1cc559ea680e947c7736a9)`() const` <a id="classURH__RHFriendAndPlatformFriend_1acda68106fa1cc559ea680e947c7736a9"></a>
 
 Gets the current Rally Here relationship status with the player.
 
-<br>
 #### `public inline `[`FriendshipStatus`](undefined.md#group__Friends_1gaa62b73aa8acc62ee0551d83f8da13244)` `[`GetPreviousStatus`](#classURH__RHFriendAndPlatformFriend_1a962b43450e40b0482021894c55e09c3a)`() const` <a id="classURH__RHFriendAndPlatformFriend_1a962b43450e40b0482021894c55e09c3a"></a>
 
 Gets the previous Rally Here relationship status with the player prior to the most recent update.
 
-<br>
 #### `public inline void `[`AcknowledgeFriendUpdate`](#classURH__RHFriendAndPlatformFriend_1ad1c88009e392036b8864a68673cd570f)`()` <a id="classURH__RHFriendAndPlatformFriend_1ad1c88009e392036b8864a68673cd570f"></a>
 
 Updates the Previous friendship status to the current friendship status for this friend.
 
-<br>
 #### `public inline const FDateTime & `[`GetLastModifiedOn`](#classURH__RHFriendAndPlatformFriend_1a58a687696ffbd4c36e0e1cca516afa87)`() const` <a id="classURH__RHFriendAndPlatformFriend_1a58a687696ffbd4c36e0e1cca516afa87"></a>
 
 Gets the last time the players friend data was modified.
 
-<br>
 #### `public inline const FString & `[`GetNotes`](#classURH__RHFriendAndPlatformFriend_1a8b8d26c7b6e55b23969aaff582890668)`() const` <a id="classURH__RHFriendAndPlatformFriend_1a8b8d26c7b6e55b23969aaff582890668"></a>
 
 Gets any notes the player has set for this player.
 
-<br>
 #### `public inline `[`URH_PlatformFriend`](Friends.md#classURH__PlatformFriend)` * `[`GetPlatformFriendAtIndex`](#classURH__RHFriendAndPlatformFriend_1a5e3dc00a2cea69ce8b96ba1308727eb1)`(int32 Index) const` <a id="classURH__RHFriendAndPlatformFriend_1a5e3dc00a2cea69ce8b96ba1308727eb1"></a>
 
 Gets a platform friend at given index for iterating plaform Friends.
 
-<br>
 #### `public inline `[`URH_PlatformFriend`](Friends.md#classURH__PlatformFriend)` * `[`GetPlatformFriend`](#classURH__RHFriendAndPlatformFriend_1a9cdc1d50958adff822d9d2f01932061f)`(ERHAPI_Platform Platform) const` <a id="classURH__RHFriendAndPlatformFriend_1a9cdc1d50958adff822d9d2f01932061f"></a>
 
 Gets a platform friend object for the specified platform if it exists.
 
-<br>
 #### `public inline `[`URH_PlatformFriend`](Friends.md#classURH__PlatformFriend)` * `[`GetPlatformFriendBase`](#classURH__RHFriendAndPlatformFriend_1a0ba8a124c68354881afeb15a4344d71a)`(ERHAPI_Platform Platform) const` <a id="classURH__RHFriendAndPlatformFriend_1a0ba8a124c68354881afeb15a4344d71a"></a>
 
 Gets a platform friend object for the specified platform if it exists.
 
-<br>
 #### `public inline const TArray< `[`URH_PlatformFriend`](Friends.md#classURH__PlatformFriend)` * > & `[`GetPlatformFriends`](#classURH__RHFriendAndPlatformFriend_1a7a4011046e26ffd080a5946c972a33e7)`() const` <a id="classURH__RHFriendAndPlatformFriend_1a7a4011046e26ffd080a5946c972a33e7"></a>
 
 Gets all of the players platform friend entries.
 
-<br>
 #### `public inline const `[`FRH_PlayerAndPlatformInfo`](PlayerInfo.md#structFRH__PlayerAndPlatformInfo)` & `[`GetPlayerAndPlatformInfo`](#classURH__RHFriendAndPlatformFriend_1a8e94f074e512e3c62569ba135c2a68db)`() const` <a id="classURH__RHFriendAndPlatformFriend_1a8e94f074e512e3c62569ba135c2a68db"></a>
 
 Gets the wrapper of the players RH and platform info.
 
-<br>
 #### `public bool `[`CanViewPlatformProfile`](#classURH__RHFriendAndPlatformFriend_1ac88f7e3d20355a574680d93412219864)`() const` <a id="classURH__RHFriendAndPlatformFriend_1ac88f7e3d20355a574680d93412219864"></a>
 
 Determines if the local player can view this player's platform profile (i.e. Gamercard on Xbox)
 
-<br>
 #### `public bool `[`ViewPlatformProfile`](#classURH__RHFriendAndPlatformFriend_1ac806bbe4d0f6e71ca8c97d7fadc34caa)`() const` <a id="classURH__RHFriendAndPlatformFriend_1ac806bbe4d0f6e71ca8c97d7fadc34caa"></a>
 
 Attempts to show this player's platform profile.
@@ -477,12 +403,10 @@ Attempts to show this player's platform profile.
 #### Returns
 true if successfully requested the OSS to show the player's platform profile
 
-<br>
 #### `public class `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`GetPlayerInfo`](#classURH__RHFriendAndPlatformFriend_1a18ff72f08c02d890a3c82c61689ec93d)`() const` <a id="classURH__RHFriendAndPlatformFriend_1a18ff72f08c02d890a3c82c61689ec93d"></a>
 
 Attempts to get the player info.
 
-<br>
 #### `public FString `[`GetLastKnownDisplayName`](#classURH__RHFriendAndPlatformFriend_1acd73b58468f7e35971e820244372ae84)`(ERHAPI_Platform PreferredPlatformType) const` <a id="classURH__RHFriendAndPlatformFriend_1acd73b58468f7e35971e820244372ae84"></a>
 
 Gets the last known cached display name for the player.
@@ -493,7 +417,6 @@ Gets the last known cached display name for the player.
 #### Returns
 The players last seen display name, will try to find a valid display name even if on a different platform than the preferred.
 
-<br>
 #### `public void `[`GetLastKnownDisplayNameAsync`](#classURH__RHFriendAndPlatformFriend_1a3b8bf590fdccb5b793ed98b52918656d)`(const FTimespan & StaleThreshold,bool bForceRefresh,ERHAPI_Platform PreferredPlatformType,const FRH_PlayerInfoGetDisplayNameBlock & Delegate) const` <a id="classURH__RHFriendAndPlatformFriend_1a3b8bf590fdccb5b793ed98b52918656d"></a>
 
 Gets the last known display name for the player, will request from API as needed.
@@ -509,10 +432,6 @@ Gets the last known display name for the player, will request from API as needed
 
 * `Delegate` The delegate to call when the request is complete.
 
-<br>
-#### `public inline void `[`BLUEPRINT_GetLastKnownDisplayNameAsync`](#classURH__RHFriendAndPlatformFriend_1a271e31fc4527a2b1d8c2ba97342104b0)`(const FTimespan & StaleThreshold,bool bForceRefresh,ERHAPI_Platform PreferredPlatformType,const FRH_PlayerInfoGetDisplayNameDynamicDelegate & Delegate)` <a id="classURH__RHFriendAndPlatformFriend_1a271e31fc4527a2b1d8c2ba97342104b0"></a>
-
-<br>
 #### `public void `[`GetRHPlayerUuidAsync`](#classURH__RHFriendAndPlatformFriend_1a26d3a5a15aaf4b8787910b1a83927a82)`(const FRH_GetRHPlayerUuidBlock & Delegate)` <a id="classURH__RHFriendAndPlatformFriend_1a26d3a5a15aaf4b8787910b1a83927a82"></a>
 
 Gets the RH Player UUID for the player, will request from API as needed. As a side effect, it will update the RH Player Uuid on PlayerAndPlatformInfo.
@@ -520,45 +439,34 @@ Gets the RH Player UUID for the player, will request from API as needed. As a si
 #### Parameters
 * `Delegate` The delegate to call when the request is complete.
 
-<br>
-#### `public inline void `[`BLUEPRINT_GetRHPlayerUuidAsync`](#classURH__RHFriendAndPlatformFriend_1af1e785415f790f58ad334064b341dfd0)`(const FRH_GetRHPlayerUuidDynamicDelegate & Delegate)` <a id="classURH__RHFriendAndPlatformFriend_1af1e785415f790f58ad334064b341dfd0"></a>
-
-<br>
 #### `protected `[`FRH_PlayerAndPlatformInfo`](PlayerInfo.md#structFRH__PlayerAndPlatformInfo)` `[`PlayerAndPlatformInfo`](#classURH__RHFriendAndPlatformFriend_1a85603f6ad7e4c8402012642ba70df5d3) <a id="classURH__RHFriendAndPlatformFriend_1a85603f6ad7e4c8402012642ba70df5d3"></a>
 
 Player Info and Platform Info combined.
 
-<br>
 #### `protected `[`FriendshipStatus`](undefined.md#group__Friends_1gaa62b73aa8acc62ee0551d83f8da13244)` `[`RHFriendshipStatus`](#classURH__RHFriendAndPlatformFriend_1a048470b3c114f6379667149ea0a1328b) <a id="classURH__RHFriendAndPlatformFriend_1a048470b3c114f6379667149ea0a1328b"></a>
 
 Core friendship status.
 
-<br>
 #### `protected `[`FriendshipStatus`](undefined.md#group__Friends_1gaa62b73aa8acc62ee0551d83f8da13244)` `[`PreviousRHFriendshipStatus`](#classURH__RHFriendAndPlatformFriend_1aa86a3555aa8881bcf2a4d6af5a8dffc4) <a id="classURH__RHFriendAndPlatformFriend_1aa86a3555aa8881bcf2a4d6af5a8dffc4"></a>
 
 cached previous core friendship status.
 
-<br>
 #### `protected FDateTime `[`LastModifiedOn`](#classURH__RHFriendAndPlatformFriend_1a5dc5734dfba3cba698486e514727c79a) <a id="classURH__RHFriendAndPlatformFriend_1a5dc5734dfba3cba698486e514727c79a"></a>
 
 Last update of the current friend information.
 
-<br>
 #### `protected FString `[`Notes`](#classURH__RHFriendAndPlatformFriend_1a66cefbb47f0cad7d59bd18df980022c5) <a id="classURH__RHFriendAndPlatformFriend_1a66cefbb47f0cad7d59bd18df980022c5"></a>
 
 Notes set for the friend.
 
-<br>
 #### `protected TArray< `[`URH_PlatformFriend`](Friends.md#classURH__PlatformFriend)` * > `[`PlatformFriends`](#classURH__RHFriendAndPlatformFriend_1a2a7cea15c536d6f1dc0e372bd75a7dc3) <a id="classURH__RHFriendAndPlatformFriend_1a2a7cea15c536d6f1dc0e372bd75a7dc3"></a>
 
 Array of platforms the player has linked to their account.
 
-<br>
 #### `protected FString `[`Etag`](#classURH__RHFriendAndPlatformFriend_1ab4bca6808ed022b3d72edf548745c04c) <a id="classURH__RHFriendAndPlatformFriend_1ab4bca6808ed022b3d72edf548745c04c"></a>
 
 ETag of last friend update response.
 
-<br>
 #### `protected inline virtual void `[`OnPresenceUpdated`](#classURH__RHFriendAndPlatformFriend_1a4621cd567a8229bce29ab035bb3fc469)`(`[`URH_PlayerInfoSubobject`](PlayerInfo.md#classURH__PlayerInfoSubobject)` * PlayerPresence)` <a id="classURH__RHFriendAndPlatformFriend_1a4621cd567a8229bce29ab035bb3fc469"></a>
 
 Passes presence updates of the player on through internal delgates.
@@ -566,17 +474,14 @@ Passes presence updates of the player on through internal delgates.
 #### Parameters
 * `PlayerPresence` The players precence information.
 
-<br>
 #### `protected inline virtual void `[`ClearRHFriendStatus`](#classURH__RHFriendAndPlatformFriend_1a192552b9a61592ae648c4e50afafeca0)`()` <a id="classURH__RHFriendAndPlatformFriend_1a192552b9a61592ae648c4e50afafeca0"></a>
 
 Clears the cached friendship status for the player.
 
-<br>
 #### `protected inline virtual void `[`ClearPlatformFriendStatus`](#classURH__RHFriendAndPlatformFriend_1a2868052b24a6cf21af2ba2ce0aab026b)`()` <a id="classURH__RHFriendAndPlatformFriend_1a2868052b24a6cf21af2ba2ce0aab026b"></a>
 
 Clears cached data for the platform friends for this player.
 
-<br>
 ## class `URH_FriendSubsystem` <a id="classURH__FriendSubsystem"></a>
 
 ```
@@ -586,45 +491,29 @@ class URH_FriendSubsystem
 
 Friends Subsystem for handling a users relationships with other players.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public FRH_FriendListUpdatedDelegate `[`FriendListUpdatedDelegate`](#classURH__FriendSubsystem_1a20e7154a76895c2064838778968ab251) | Delegate that fires whenever the friends list is updated.
-`public FRH_FriendListUpdatedDynamicDelegate `[`BLUEPRINT_FriendListUpdatedDelegate`](#classURH__FriendSubsystem_1a1a8d45aa42a25338045992d167892f0b) | Delegate that fires whenever the friends list is updated.
 `public FRH_FriendUpdatedDelegate `[`FriendUpdatedDelegate`](#classURH__FriendSubsystem_1aa33bf82a4a48bdaf7319262dbcceb3a8) | Delegate that fires whenever a friend is updated.
-`public FRH_FriendUpdatedDynamicDelegate `[`BLUEPRINT_FriendUpdatedDelegate`](#classURH__FriendSubsystem_1a561772a8df3c609d9c2728e060fc9181) | Delegate that fires whenever a friend is updated.
 `public FRH_FriendUpdateErrorDelegate `[`FriendUpdateErrorDelegate`](#classURH__FriendSubsystem_1ada2af14fd3ef58b25becd1540231c5c1) | Delegate that fires whenever a friend API call fails.
-`public FRH_FriendUpdateErrorDynamicDelegate `[`BLUEPRINT_FriendUpdateErrorDelegate`](#classURH__FriendSubsystem_1a834d874dd7faf3296c9a15698c4ff079) | Delegate that fires whenever a friend API call fails.
 `public FRH_BlockedListUpdatedDelegate `[`BlockedListUpdatedDelegate`](#classURH__FriendSubsystem_1a02a3d66606f6ff33dcb23251ef3e6480) | Delegate that fires whenever blocked players list is updated.
-`public FRH_BlockedListUpdatedDynamicDelegate `[`BLUEPRINT_BlockedListUpdatedDelegate`](#classURH__FriendSubsystem_1a0699d29f63c7a4c7e0e9175226027418) | Delegate that fires whenever blocked players list is updated.
 `public FRH_BlockedPlayerUpdatedDelegate `[`BlockedPlayerUpdatedDelegate`](#classURH__FriendSubsystem_1a5390905f22179f57e83cfe3957134594) | Delegate that fires whenever a blocked player is updated.
-`public FRH_BlockedPlayerUpdatedDynamicDelegate `[`BLUEPRINT_BlockedPlayerUpdatedDelegate`](#classURH__FriendSubsystem_1aa42084497997dcdeeba00584e436f902) | Delegate that fires whenever a blocked player is updated.
 `public FRH_BlockedPlayerUpdateErrorDelegate `[`BlockedPlayerUpdateErrorDelegate`](#classURH__FriendSubsystem_1a1847f636c942cbc0e6d9e3d6b90fe817) | Delegate that fires whenever blocked player API call fails.
-`public FRH_BlockedPlayerUpdateErrorDynamicDelegate `[`BLUEPRINT_BlockedPlayerUpdateErrorDelegate`](#classURH__FriendSubsystem_1adff0fc8d07ac00aaabf057e555913a32) | Delegate that fires whenever blocked player API call fails.
 `public virtual void `[`Initialize`](#classURH__FriendSubsystem_1aa7d2fe1ad8d807af77c3432cecd68882)`()` | Initialize the subsystem.
 `public virtual void `[`Deinitialize`](#classURH__FriendSubsystem_1a22ad8844b9c65a3ae173d4df9dc2a6a3)`()` | Safely tears down the subsystem.
 `public `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetRH_PlayerInfoSubsystem`](#classURH__FriendSubsystem_1ad113da46527b010c8f09a5419c5fa425)`() const` | Helper function to get the Player Info Subsystem that owns this.
 `public bool `[`FetchFriendsList`](#classURH__FriendSubsystem_1af9e36bd8e6a590aa0eb34e507aaf52cb)`(const FRH_GenericFriendBlock & Delegate)` | Calls the Friends API to get the players friends list.
-`public inline bool `[`BLUEPRINT_FetchFriendsList`](#classURH__FriendSubsystem_1ae106f27a44bb1f4845c431889b0fb88c)`(const FRH_GenericFriendDynamicDelegate & Delegate)` | 
 `public bool `[`FetchFriend`](#classURH__FriendSubsystem_1a515eb3d9d965b33473efd7380a5df246)`(const FGuid & PlayerUUID,const FRH_GenericFriendWithUuidBlock & Delegate)` | Calls the Friends API to get data for a specific friend.
-`public inline bool `[`BLUEPRINT_FetchFriend`](#classURH__FriendSubsystem_1ace3b5156215342fde35c681c7222693b)`(UPARAM(ref) const FGuid & PlayerUUID,const FRH_GenericFriendWithUuidDynamicDelegate & Delegate)` | 
 `public bool `[`AddFriend`](#classURH__FriendSubsystem_1ad700daa801bab689d87f4b630a5282c5)`(const FGuid & PlayerUuid,const FRH_AddFriendBlock & Delegate)` | Calls the Friends API to create a new friendship relationship with another player.
-`public inline bool `[`BLUEPRINT_AddFriend`](#classURH__FriendSubsystem_1a0981e250c763c837b221fa679ae9b711)`(UPARAM(ref) const FGuid & PlayerUuid,const FRH_AddFriendDynamicDelegate & Delegate)` | 
 `public bool `[`RemoveFriend`](#classURH__FriendSubsystem_1af6e442d6353bde8467777b267422ea0d)`(const FGuid & PlayerUuid,const FRH_GenericFriendWithUuidBlock & Delegate)` | Calls the Friends API to remove a friend relationship with another player.
-`public inline bool `[`BLUEPRINT_RemoveFriend`](#classURH__FriendSubsystem_1a3f6078048c0446d85d60437b02e5b7c3)`(UPARAM(ref) const FGuid & PlayerUuid,const FRH_GenericFriendWithUuidDynamicDelegate & Delegate)` | 
 `public bool `[`AddNotes`](#classURH__FriendSubsystem_1a10beb339453283fe44aa2c3f71602d7a)`(const FGuid & PlayerUuid,const FString & Notes,const FRH_AddNotesBlock & Delegate)` | Calls the Friends API to set/modify personal notes for another player.
-`public inline bool `[`BLUEPRINT_AddNotes`](#classURH__FriendSubsystem_1aff6e4e3d7280fe2da1c43b5450393035)`(UPARAM(ref) const FGuid & PlayerUuid,UPARAM(ref) const FString & Notes,const FRH_AddNotesDynamicDelegate & Delegate)` | 
 `public bool `[`DeleteNotes`](#classURH__FriendSubsystem_1a6fe36017bb483c85248c4311e9e01972)`(const FGuid & PlayerUuid,const FRH_GenericFriendWithUuidBlock & Delegate)` | Calls the Friends API to delete personal notes for another player.
-`public inline bool `[`BLUEPRINT_DeleteNotes`](#classURH__FriendSubsystem_1acb2f583d7e1662b3554e5ac162d25969)`(UPARAM(ref) const FGuid & PlayerUuid,const FRH_GenericFriendWithUuidDynamicDelegate & Delegate)` | 
 `public bool `[`FetchBlockedList`](#classURH__FriendSubsystem_1ae5920534783b3289cd79af44eb93ac9a)`(const FRH_GenericFriendBlock & Delegate)` | Calls the Friends API to get the list of players you have blocked.
-`public inline bool `[`BLUEPRINT_FetchBlockedList`](#classURH__FriendSubsystem_1a586d0224a947d926c86b7ee4383b7aad)`(const FRH_GenericFriendDynamicDelegate & Delegate)` | 
 `public bool `[`FetchBlockedPlayer`](#classURH__FriendSubsystem_1a1d00d3d9d75ec1d1ee47b4985d09dbf1)`(const FGuid & PlayerUuid,const FRH_GenericFriendWithUuidBlock & Delegate)` | Calls the Friends API to get data for a specific blocked player.
-`public inline bool `[`BLUEPRINT_FetchBlockedPlayer`](#classURH__FriendSubsystem_1a5e7db1366da35064c80bafb05167848a)`(UPARAM(ref) const FGuid & PlayerUuid,const FRH_GenericFriendWithUuidDynamicDelegate & Delegate)` | 
 `public bool `[`BlockPlayer`](#classURH__FriendSubsystem_1afaf34fd0bab40279aad46eed4ee17989)`(const FGuid & PlayerUuid,const FRH_GenericFriendWithUuidBlock & Delegate)` | Calls the Friends API to create a new block relationship with another player.
-`public inline bool `[`BLUEPRINT_BlockPlayer`](#classURH__FriendSubsystem_1a6c07284e45881126b8975b3d92f02900)`(UPARAM(ref) const FGuid & PlayerUUID,const FRH_GenericFriendWithUuidDynamicDelegate & Delegate)` | 
 `public bool `[`UnblockPlayer`](#classURH__FriendSubsystem_1ae912cce935704be005779cd45d4bf84e)`(const FGuid & PlayerUuid,const FRH_GenericFriendWithUuidBlock & Delegate)` | Calls the Friends API to remove a block relationship with another player.
-`public inline bool `[`BLUEPRINT_UnblockPlayer`](#classURH__FriendSubsystem_1acb1949519c95d83ddc15ca9885e5423f)`(UPARAM(ref) const FGuid & PlayerUuid,const FRH_GenericFriendWithUuidDynamicDelegate & Delegate)` | 
 `public void `[`UpdateRecentPlayerForOSS`](#classURH__FriendSubsystem_1ae3fda9069196b472db23598bc8bfbcee)`(const `[`URH_LocalPlayerSubsystem`](LocalPlayer.md#classURH__LocalPlayerSubsystem)` * LocalPlayerSubsystem,const FGuid & PlayerUuid)` | Updates the platform OSS with a player you have recently played with.
 `public void `[`OSSReadFriendsList`](#classURH__FriendSubsystem_1a1d67c41ac34ab52852236256994d545d)`(const FString & ListName)` | Triggers the OSS call to get platform friends.
 `public `[`URH_RHFriendAndPlatformFriend`](Friends.md#classURH__RHFriendAndPlatformFriend)` * `[`GetOrCreateFriend`](#classURH__FriendSubsystem_1afdd65b2cb3b5c2dcfb41af247426d39e)`(`[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * PlayerInfo)` | Gets if the specified players friend wrapper, or creates one if it doesn't exist yet.
@@ -697,83 +586,44 @@ Friends Subsystem for handling a users relationships with other players.
 `typedef `[`AddNotesType`](#classURH__FriendSubsystem_1aab7335b06d00faaa339a13b0d555047e) | Type Define for Add Friend Notes calls.
 `typedef `[`DeleteNotesType`](#classURH__FriendSubsystem_1a6552555d4071e1f7272104a44aa0ac60) | Type Define for Delete Friend Notes calls.
 
-#### Members
+### Members
 
 #### `public FRH_FriendListUpdatedDelegate `[`FriendListUpdatedDelegate`](#classURH__FriendSubsystem_1a20e7154a76895c2064838778968ab251) <a id="classURH__FriendSubsystem_1a20e7154a76895c2064838778968ab251"></a>
 
 Delegate that fires whenever the friends list is updated.
 
-<br>
-#### `public FRH_FriendListUpdatedDynamicDelegate `[`BLUEPRINT_FriendListUpdatedDelegate`](#classURH__FriendSubsystem_1a1a8d45aa42a25338045992d167892f0b) <a id="classURH__FriendSubsystem_1a1a8d45aa42a25338045992d167892f0b"></a>
-
-Delegate that fires whenever the friends list is updated.
-
-<br>
 #### `public FRH_FriendUpdatedDelegate `[`FriendUpdatedDelegate`](#classURH__FriendSubsystem_1aa33bf82a4a48bdaf7319262dbcceb3a8) <a id="classURH__FriendSubsystem_1aa33bf82a4a48bdaf7319262dbcceb3a8"></a>
 
 Delegate that fires whenever a friend is updated.
 
-<br>
-#### `public FRH_FriendUpdatedDynamicDelegate `[`BLUEPRINT_FriendUpdatedDelegate`](#classURH__FriendSubsystem_1a561772a8df3c609d9c2728e060fc9181) <a id="classURH__FriendSubsystem_1a561772a8df3c609d9c2728e060fc9181"></a>
-
-Delegate that fires whenever a friend is updated.
-
-<br>
 #### `public FRH_FriendUpdateErrorDelegate `[`FriendUpdateErrorDelegate`](#classURH__FriendSubsystem_1ada2af14fd3ef58b25becd1540231c5c1) <a id="classURH__FriendSubsystem_1ada2af14fd3ef58b25becd1540231c5c1"></a>
 
 Delegate that fires whenever a friend API call fails.
 
-<br>
-#### `public FRH_FriendUpdateErrorDynamicDelegate `[`BLUEPRINT_FriendUpdateErrorDelegate`](#classURH__FriendSubsystem_1a834d874dd7faf3296c9a15698c4ff079) <a id="classURH__FriendSubsystem_1a834d874dd7faf3296c9a15698c4ff079"></a>
-
-Delegate that fires whenever a friend API call fails.
-
-<br>
 #### `public FRH_BlockedListUpdatedDelegate `[`BlockedListUpdatedDelegate`](#classURH__FriendSubsystem_1a02a3d66606f6ff33dcb23251ef3e6480) <a id="classURH__FriendSubsystem_1a02a3d66606f6ff33dcb23251ef3e6480"></a>
 
 Delegate that fires whenever blocked players list is updated.
 
-<br>
-#### `public FRH_BlockedListUpdatedDynamicDelegate `[`BLUEPRINT_BlockedListUpdatedDelegate`](#classURH__FriendSubsystem_1a0699d29f63c7a4c7e0e9175226027418) <a id="classURH__FriendSubsystem_1a0699d29f63c7a4c7e0e9175226027418"></a>
-
-Delegate that fires whenever blocked players list is updated.
-
-<br>
 #### `public FRH_BlockedPlayerUpdatedDelegate `[`BlockedPlayerUpdatedDelegate`](#classURH__FriendSubsystem_1a5390905f22179f57e83cfe3957134594) <a id="classURH__FriendSubsystem_1a5390905f22179f57e83cfe3957134594"></a>
 
 Delegate that fires whenever a blocked player is updated.
 
-<br>
-#### `public FRH_BlockedPlayerUpdatedDynamicDelegate `[`BLUEPRINT_BlockedPlayerUpdatedDelegate`](#classURH__FriendSubsystem_1aa42084497997dcdeeba00584e436f902) <a id="classURH__FriendSubsystem_1aa42084497997dcdeeba00584e436f902"></a>
-
-Delegate that fires whenever a blocked player is updated.
-
-<br>
 #### `public FRH_BlockedPlayerUpdateErrorDelegate `[`BlockedPlayerUpdateErrorDelegate`](#classURH__FriendSubsystem_1a1847f636c942cbc0e6d9e3d6b90fe817) <a id="classURH__FriendSubsystem_1a1847f636c942cbc0e6d9e3d6b90fe817"></a>
 
 Delegate that fires whenever blocked player API call fails.
 
-<br>
-#### `public FRH_BlockedPlayerUpdateErrorDynamicDelegate `[`BLUEPRINT_BlockedPlayerUpdateErrorDelegate`](#classURH__FriendSubsystem_1adff0fc8d07ac00aaabf057e555913a32) <a id="classURH__FriendSubsystem_1adff0fc8d07ac00aaabf057e555913a32"></a>
-
-Delegate that fires whenever blocked player API call fails.
-
-<br>
 #### `public virtual void `[`Initialize`](#classURH__FriendSubsystem_1aa7d2fe1ad8d807af77c3432cecd68882)`()` <a id="classURH__FriendSubsystem_1aa7d2fe1ad8d807af77c3432cecd68882"></a>
 
 Initialize the subsystem.
 
-<br>
 #### `public virtual void `[`Deinitialize`](#classURH__FriendSubsystem_1a22ad8844b9c65a3ae173d4df9dc2a6a3)`()` <a id="classURH__FriendSubsystem_1a22ad8844b9c65a3ae173d4df9dc2a6a3"></a>
 
 Safely tears down the subsystem.
 
-<br>
 #### `public `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetRH_PlayerInfoSubsystem`](#classURH__FriendSubsystem_1ad113da46527b010c8f09a5419c5fa425)`() const` <a id="classURH__FriendSubsystem_1ad113da46527b010c8f09a5419c5fa425"></a>
 
 Helper function to get the Player Info Subsystem that owns this.
 
-<br>
 #### `public bool `[`FetchFriendsList`](#classURH__FriendSubsystem_1af9e36bd8e6a590aa0eb34e507aaf52cb)`(const FRH_GenericFriendBlock & Delegate)` <a id="classURH__FriendSubsystem_1af9e36bd8e6a590aa0eb34e507aaf52cb"></a>
 
 Calls the Friends API to get the players friends list.
@@ -784,10 +634,6 @@ Calls the Friends API to get the players friends list.
 #### Returns
 If true, the call was executed.
 
-<br>
-#### `public inline bool `[`BLUEPRINT_FetchFriendsList`](#classURH__FriendSubsystem_1ae106f27a44bb1f4845c431889b0fb88c)`(const FRH_GenericFriendDynamicDelegate & Delegate)` <a id="classURH__FriendSubsystem_1ae106f27a44bb1f4845c431889b0fb88c"></a>
-
-<br>
 #### `public bool `[`FetchFriend`](#classURH__FriendSubsystem_1a515eb3d9d965b33473efd7380a5df246)`(const FGuid & PlayerUUID,const FRH_GenericFriendWithUuidBlock & Delegate)` <a id="classURH__FriendSubsystem_1a515eb3d9d965b33473efd7380a5df246"></a>
 
 Calls the Friends API to get data for a specific friend.
@@ -800,10 +646,6 @@ Calls the Friends API to get data for a specific friend.
 #### Returns
 If true, the call was executed.
 
-<br>
-#### `public inline bool `[`BLUEPRINT_FetchFriend`](#classURH__FriendSubsystem_1ace3b5156215342fde35c681c7222693b)`(UPARAM(ref) const FGuid & PlayerUUID,const FRH_GenericFriendWithUuidDynamicDelegate & Delegate)` <a id="classURH__FriendSubsystem_1ace3b5156215342fde35c681c7222693b"></a>
-
-<br>
 #### `public bool `[`AddFriend`](#classURH__FriendSubsystem_1ad700daa801bab689d87f4b630a5282c5)`(const FGuid & PlayerUuid,const FRH_AddFriendBlock & Delegate)` <a id="classURH__FriendSubsystem_1ad700daa801bab689d87f4b630a5282c5"></a>
 
 Calls the Friends API to create a new friendship relationship with another player.
@@ -816,10 +658,6 @@ Calls the Friends API to create a new friendship relationship with another playe
 #### Returns
 If true, the call was executed.
 
-<br>
-#### `public inline bool `[`BLUEPRINT_AddFriend`](#classURH__FriendSubsystem_1a0981e250c763c837b221fa679ae9b711)`(UPARAM(ref) const FGuid & PlayerUuid,const FRH_AddFriendDynamicDelegate & Delegate)` <a id="classURH__FriendSubsystem_1a0981e250c763c837b221fa679ae9b711"></a>
-
-<br>
 #### `public bool `[`RemoveFriend`](#classURH__FriendSubsystem_1af6e442d6353bde8467777b267422ea0d)`(const FGuid & PlayerUuid,const FRH_GenericFriendWithUuidBlock & Delegate)` <a id="classURH__FriendSubsystem_1af6e442d6353bde8467777b267422ea0d"></a>
 
 Calls the Friends API to remove a friend relationship with another player.
@@ -832,10 +670,6 @@ Calls the Friends API to remove a friend relationship with another player.
 #### Returns
 If true, the call was executed.
 
-<br>
-#### `public inline bool `[`BLUEPRINT_RemoveFriend`](#classURH__FriendSubsystem_1a3f6078048c0446d85d60437b02e5b7c3)`(UPARAM(ref) const FGuid & PlayerUuid,const FRH_GenericFriendWithUuidDynamicDelegate & Delegate)` <a id="classURH__FriendSubsystem_1a3f6078048c0446d85d60437b02e5b7c3"></a>
-
-<br>
 #### `public bool `[`AddNotes`](#classURH__FriendSubsystem_1a10beb339453283fe44aa2c3f71602d7a)`(const FGuid & PlayerUuid,const FString & Notes,const FRH_AddNotesBlock & Delegate)` <a id="classURH__FriendSubsystem_1a10beb339453283fe44aa2c3f71602d7a"></a>
 
 Calls the Friends API to set/modify personal notes for another player.
@@ -850,10 +684,6 @@ Calls the Friends API to set/modify personal notes for another player.
 #### Returns
 If true, the call was executed.
 
-<br>
-#### `public inline bool `[`BLUEPRINT_AddNotes`](#classURH__FriendSubsystem_1aff6e4e3d7280fe2da1c43b5450393035)`(UPARAM(ref) const FGuid & PlayerUuid,UPARAM(ref) const FString & Notes,const FRH_AddNotesDynamicDelegate & Delegate)` <a id="classURH__FriendSubsystem_1aff6e4e3d7280fe2da1c43b5450393035"></a>
-
-<br>
 #### `public bool `[`DeleteNotes`](#classURH__FriendSubsystem_1a6fe36017bb483c85248c4311e9e01972)`(const FGuid & PlayerUuid,const FRH_GenericFriendWithUuidBlock & Delegate)` <a id="classURH__FriendSubsystem_1a6fe36017bb483c85248c4311e9e01972"></a>
 
 Calls the Friends API to delete personal notes for another player.
@@ -866,10 +696,6 @@ Calls the Friends API to delete personal notes for another player.
 #### Returns
 If true, the call was executed.
 
-<br>
-#### `public inline bool `[`BLUEPRINT_DeleteNotes`](#classURH__FriendSubsystem_1acb2f583d7e1662b3554e5ac162d25969)`(UPARAM(ref) const FGuid & PlayerUuid,const FRH_GenericFriendWithUuidDynamicDelegate & Delegate)` <a id="classURH__FriendSubsystem_1acb2f583d7e1662b3554e5ac162d25969"></a>
-
-<br>
 #### `public bool `[`FetchBlockedList`](#classURH__FriendSubsystem_1ae5920534783b3289cd79af44eb93ac9a)`(const FRH_GenericFriendBlock & Delegate)` <a id="classURH__FriendSubsystem_1ae5920534783b3289cd79af44eb93ac9a"></a>
 
 Calls the Friends API to get the list of players you have blocked.
@@ -880,10 +706,6 @@ Calls the Friends API to get the list of players you have blocked.
 #### Returns
 If true, the call was executed.
 
-<br>
-#### `public inline bool `[`BLUEPRINT_FetchBlockedList`](#classURH__FriendSubsystem_1a586d0224a947d926c86b7ee4383b7aad)`(const FRH_GenericFriendDynamicDelegate & Delegate)` <a id="classURH__FriendSubsystem_1a586d0224a947d926c86b7ee4383b7aad"></a>
-
-<br>
 #### `public bool `[`FetchBlockedPlayer`](#classURH__FriendSubsystem_1a1d00d3d9d75ec1d1ee47b4985d09dbf1)`(const FGuid & PlayerUuid,const FRH_GenericFriendWithUuidBlock & Delegate)` <a id="classURH__FriendSubsystem_1a1d00d3d9d75ec1d1ee47b4985d09dbf1"></a>
 
 Calls the Friends API to get data for a specific blocked player.
@@ -896,10 +718,6 @@ Calls the Friends API to get data for a specific blocked player.
 #### Returns
 If true, the call was executed.
 
-<br>
-#### `public inline bool `[`BLUEPRINT_FetchBlockedPlayer`](#classURH__FriendSubsystem_1a5e7db1366da35064c80bafb05167848a)`(UPARAM(ref) const FGuid & PlayerUuid,const FRH_GenericFriendWithUuidDynamicDelegate & Delegate)` <a id="classURH__FriendSubsystem_1a5e7db1366da35064c80bafb05167848a"></a>
-
-<br>
 #### `public bool `[`BlockPlayer`](#classURH__FriendSubsystem_1afaf34fd0bab40279aad46eed4ee17989)`(const FGuid & PlayerUuid,const FRH_GenericFriendWithUuidBlock & Delegate)` <a id="classURH__FriendSubsystem_1afaf34fd0bab40279aad46eed4ee17989"></a>
 
 Calls the Friends API to create a new block relationship with another player.
@@ -912,10 +730,6 @@ Calls the Friends API to create a new block relationship with another player.
 #### Returns
 If true, the call was executed.
 
-<br>
-#### `public inline bool `[`BLUEPRINT_BlockPlayer`](#classURH__FriendSubsystem_1a6c07284e45881126b8975b3d92f02900)`(UPARAM(ref) const FGuid & PlayerUUID,const FRH_GenericFriendWithUuidDynamicDelegate & Delegate)` <a id="classURH__FriendSubsystem_1a6c07284e45881126b8975b3d92f02900"></a>
-
-<br>
 #### `public bool `[`UnblockPlayer`](#classURH__FriendSubsystem_1ae912cce935704be005779cd45d4bf84e)`(const FGuid & PlayerUuid,const FRH_GenericFriendWithUuidBlock & Delegate)` <a id="classURH__FriendSubsystem_1ae912cce935704be005779cd45d4bf84e"></a>
 
 Calls the Friends API to remove a block relationship with another player.
@@ -928,10 +742,6 @@ Calls the Friends API to remove a block relationship with another player.
 #### Returns
 If true, the call was executed.
 
-<br>
-#### `public inline bool `[`BLUEPRINT_UnblockPlayer`](#classURH__FriendSubsystem_1acb1949519c95d83ddc15ca9885e5423f)`(UPARAM(ref) const FGuid & PlayerUuid,const FRH_GenericFriendWithUuidDynamicDelegate & Delegate)` <a id="classURH__FriendSubsystem_1acb1949519c95d83ddc15ca9885e5423f"></a>
-
-<br>
 #### `public void `[`UpdateRecentPlayerForOSS`](#classURH__FriendSubsystem_1ae3fda9069196b472db23598bc8bfbcee)`(const `[`URH_LocalPlayerSubsystem`](LocalPlayer.md#classURH__LocalPlayerSubsystem)` * LocalPlayerSubsystem,const FGuid & PlayerUuid)` <a id="classURH__FriendSubsystem_1ae3fda9069196b472db23598bc8bfbcee"></a>
 
 Updates the platform OSS with a player you have recently played with.
@@ -941,12 +751,10 @@ Updates the platform OSS with a player you have recently played with.
 
 * `PlayerUuid` The recently player with players Unique Player Id.
 
-<br>
 #### `public void `[`OSSReadFriendsList`](#classURH__FriendSubsystem_1a1d67c41ac34ab52852236256994d545d)`(const FString & ListName)` <a id="classURH__FriendSubsystem_1a1d67c41ac34ab52852236256994d545d"></a>
 
 Triggers the OSS call to get platform friends.
 
-<br>
 #### `public `[`URH_RHFriendAndPlatformFriend`](Friends.md#classURH__RHFriendAndPlatformFriend)` * `[`GetOrCreateFriend`](#classURH__FriendSubsystem_1afdd65b2cb3b5c2dcfb41af247426d39e)`(`[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * PlayerInfo)` <a id="classURH__FriendSubsystem_1afdd65b2cb3b5c2dcfb41af247426d39e"></a>
 
 Gets if the specified players friend wrapper, or creates one if it doesn't exist yet.
@@ -957,7 +765,6 @@ Gets if the specified players friend wrapper, or creates one if it doesn't exist
 #### Returns
 The friend wrapper for the specified player.
 
-<br>
 #### `public `[`URH_RHFriendAndPlatformFriend`](Friends.md#classURH__RHFriendAndPlatformFriend)` * `[`GetFriendByUuid`](#classURH__FriendSubsystem_1a4b30486cb9175913ba77702f9148b3b6)`(const FGuid & PlayerUuid) const` <a id="classURH__FriendSubsystem_1a4b30486cb9175913ba77702f9148b3b6"></a>
 
 Gets the cached friend wrapper for the specified player.
@@ -965,7 +772,6 @@ Gets the cached friend wrapper for the specified player.
 #### Parameters
 * `PlayerUuid` The unique player Id for the requested friend wrapper.
 
-<br>
 #### `public `[`URH_RHFriendAndPlatformFriend`](Friends.md#classURH__RHFriendAndPlatformFriend)` * `[`GetFriendByPlayerInfo`](#classURH__FriendSubsystem_1a0e8bfdf4e3dbff614e3931ec8e7fec30)`(`[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * PlayerInfo) const` <a id="classURH__FriendSubsystem_1a0e8bfdf4e3dbff614e3931ec8e7fec30"></a>
 
 Gets the cached friend wrapper for the specified player.
@@ -973,7 +779,6 @@ Gets the cached friend wrapper for the specified player.
 #### Parameters
 * `PlayerInfo` The player info to get the friend wrapper for.
 
-<br>
 #### `public `[`URH_RHFriendAndPlatformFriend`](Friends.md#classURH__RHFriendAndPlatformFriend)` * `[`GetFriendByPlatformId`](#classURH__FriendSubsystem_1af97f126a67a75dd74416eadf099f4968)`(const `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` & PlatformPlayerId) const` <a id="classURH__FriendSubsystem_1af97f126a67a75dd74416eadf099f4968"></a>
 
 Gets the cached friend wrapper for the specified player.
@@ -981,7 +786,6 @@ Gets the cached friend wrapper for the specified player.
 #### Parameters
 * `PlatformPlayerId` The player platform id to get the friend wrapper for.
 
-<br>
 #### `public `[`URH_RHFriendAndPlatformFriend`](Friends.md#classURH__RHFriendAndPlatformFriend)` * `[`GetFriendByUuidOrPlatformId`](#classURH__FriendSubsystem_1af887af8839847c43703f0883912f9030)`(const FGuid & PlayerUuid,const `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` & PlatformPlayerId) const` <a id="classURH__FriendSubsystem_1af887af8839847c43703f0883912f9030"></a>
 
 Gets the cached friend wrapper for the specified player.
@@ -991,7 +795,6 @@ Gets the cached friend wrapper for the specified player.
 
 * `PlatformPlayerId` The player platform id to get the friend wrapper for.
 
-<br>
 #### `public inline bool `[`IsFriendBlocked`](#classURH__FriendSubsystem_1aef429e16fb76c76f805ed37a2c8bb35d)`(const `[`URH_RHFriendAndPlatformFriend`](Friends.md#classURH__RHFriendAndPlatformFriend)` * Player) const` <a id="classURH__FriendSubsystem_1aef429e16fb76c76f805ed37a2c8bb35d"></a>
 
 Gets if the specified player is blocked via platform or Rally Here.
@@ -999,7 +802,6 @@ Gets if the specified player is blocked via platform or Rally Here.
 #### Parameters
 * `Player` Pointer to the friend representation of the player
 
-<br>
 #### `public inline bool `[`IsFriendPlatformBlocked`](#classURH__FriendSubsystem_1a0013b0ca7d5c98f0b20fed4d8d2f7649)`(const `[`URH_RHFriendAndPlatformFriend`](Friends.md#classURH__RHFriendAndPlatformFriend)` * Player) const` <a id="classURH__FriendSubsystem_1a0013b0ca7d5c98f0b20fed4d8d2f7649"></a>
 
 Gets if the specified player is blocked via platform.
@@ -1007,7 +809,6 @@ Gets if the specified player is blocked via platform.
 #### Parameters
 * `Player` Pointer to the friend representation of the player
 
-<br>
 #### `public inline bool `[`IsPlayerBlocked`](#classURH__FriendSubsystem_1a796323262a6d65dbd3871600ec67333a)`(const FGuid & PlayerUuid) const` <a id="classURH__FriendSubsystem_1a796323262a6d65dbd3871600ec67333a"></a>
 
 Gets if the specified player is blocked via platform or Rally Here.
@@ -1017,7 +818,6 @@ Gets if the specified player is blocked via platform or Rally Here.
 
 It's more accurate to call the [URH_RHFriendAndPlatformFriend](Friends.md#classURH__RHFriendAndPlatformFriend) version of this function, as we may not have a Platform Friend's RallyHere UUID
 
-<br>
 #### `public inline bool `[`IsPlayerPlatformBlocked`](#classURH__FriendSubsystem_1a5daea0768eab9487eb4d07b6eec7bcc0)`(const FGuid & PlayerUuid) const` <a id="classURH__FriendSubsystem_1a5daea0768eab9487eb4d07b6eec7bcc0"></a>
 
 Gets if the specified player is blocked via platform.
@@ -1027,7 +827,6 @@ Gets if the specified player is blocked via platform.
 
 It's more accurate to call the [URH_RHFriendAndPlatformFriend](Friends.md#classURH__RHFriendAndPlatformFriend) version of this function, as we may not have a Platform Friend's RallyHere UUID
 
-<br>
 #### `public inline bool `[`IsPlayerRhBlocked`](#classURH__FriendSubsystem_1a7729188985902b5d94f5f0e6f4c5a99a)`(const FGuid & PlayerUuid) const` <a id="classURH__FriendSubsystem_1a7729188985902b5d94f5f0e6f4c5a99a"></a>
 
 Gets if the specified player is blocked via Rally Here.
@@ -1035,107 +834,86 @@ Gets if the specified player is blocked via Rally Here.
 #### Parameters
 * `PlayerUuid` The unique player id of the player to check.
 
-<br>
 #### `public void `[`StartFriendsRefreshTimer`](#classURH__FriendSubsystem_1a712bf02500dd9805476827baac779bf9)`()` <a id="classURH__FriendSubsystem_1a712bf02500dd9805476827baac779bf9"></a>
 
 Starts the polling for Rally Here friends.
 
-<br>
 #### `public void `[`StopFriendsRefreshTimer`](#classURH__FriendSubsystem_1a498526405f2fafda302f2bebf8d19211)`()` <a id="classURH__FriendSubsystem_1a498526405f2fafda302f2bebf8d19211"></a>
 
 Stops the polling for Rally Here friends.
 
-<br>
 #### `public void `[`StartBlockedRefreshTimer`](#classURH__FriendSubsystem_1acaa7395b257ae7cd83b95613d7782740)`()` <a id="classURH__FriendSubsystem_1acaa7395b257ae7cd83b95613d7782740"></a>
 
 Starts the polling for blocked players.
 
-<br>
 #### `public void `[`StopBlockedRefreshTimer`](#classURH__FriendSubsystem_1a99e71815f47abc452ab5e0961e660d8d)`()` <a id="classURH__FriendSubsystem_1a99e71815f47abc452ab5e0961e660d8d"></a>
 
 Stops the polling for blocked players.
 
-<br>
 #### `public void `[`ClearBlockedCache`](#classURH__FriendSubsystem_1a725db30767e3f7c8ff1a8c7bb8622d30)`()` <a id="classURH__FriendSubsystem_1a725db30767e3f7c8ff1a8c7bb8622d30"></a>
 
 Clears the cache of blocked players.
 
-<br>
 #### `public void `[`ClearRHFriendCache`](#classURH__FriendSubsystem_1aac6111bfbf9164250b79c60ee7377353)`()` <a id="classURH__FriendSubsystem_1aac6111bfbf9164250b79c60ee7377353"></a>
 
 Clears the cache of Rally Here friends.
 
-<br>
 #### `public inline const TArray< `[`URH_RHFriendAndPlatformFriend`](Friends.md#classURH__RHFriendAndPlatformFriend)` * > & `[`GetFriends`](#classURH__FriendSubsystem_1a159b2f037e79aa087404d2834a4e89a5)`() const` <a id="classURH__FriendSubsystem_1a159b2f037e79aa087404d2834a4e89a5"></a>
 
 Gets an array of your friends.
 
-<br>
 #### `public inline const TArray< FGuid > & `[`GetBlocked`](#classURH__FriendSubsystem_1a794939965ac249a8a073584b4bb61e29)`() const` <a id="classURH__FriendSubsystem_1a794939965ac249a8a073584b4bb61e29"></a>
 
 Gets an array of blocked player ids.
 
-<br>
 #### `public inline bool `[`HasFriendsCached`](#classURH__FriendSubsystem_1a73865b1583b1952540939321fd19fbda)`() const` <a id="classURH__FriendSubsystem_1a73865b1583b1952540939321fd19fbda"></a>
 
 Gets if the subsystem has cached friend data.
 
-<br>
 #### `protected TArray< `[`URH_RHFriendAndPlatformFriend`](Friends.md#classURH__RHFriendAndPlatformFriend)` * > `[`Friends`](#classURH__FriendSubsystem_1a5ba094d058031c840feeb5ed2271bac7) <a id="classURH__FriendSubsystem_1a5ba094d058031c840feeb5ed2271bac7"></a>
 
 Cached array of all friends.
 
-<br>
 #### `protected TArray< FGuid > `[`BlockedPlayersUUIDs`](#classURH__FriendSubsystem_1a8cea9f39f35a8c7c8249105f8cdb8c3c) <a id="classURH__FriendSubsystem_1a8cea9f39f35a8c7c8249105f8cdb8c3c"></a>
 
 Array of blocked player ids.
 
-<br>
 #### `protected TArray< FString > `[`PlatformBlockedPlayers`](#classURH__FriendSubsystem_1abb8c329e6f9d3aa78a094a037bf4a0ec) <a id="classURH__FriendSubsystem_1abb8c329e6f9d3aa78a094a037bf4a0ec"></a>
 
 Array of blocked platform player ids.
 
-<br>
 #### `protected FString `[`FriendsETag`](#classURH__FriendSubsystem_1ad31945d455f553d20b46e14884b0058c) <a id="classURH__FriendSubsystem_1ad31945d455f553d20b46e14884b0058c"></a>
 
 ETag of last Get Friends List call response.
 
-<br>
 #### `protected FString `[`BlockedPlayersETag`](#classURH__FriendSubsystem_1a4c140df2e72bb201c437ec7cadd5104d) <a id="classURH__FriendSubsystem_1a4c140df2e72bb201c437ec7cadd5104d"></a>
 
 ETag of last Get Blocked Players call response.
 
-<br>
 #### `protected bool `[`FriendsCached`](#classURH__FriendSubsystem_1a34673d7332ff081ffbc0e67d11fad742) <a id="classURH__FriendSubsystem_1a34673d7332ff081ffbc0e67d11fad742"></a>
 
 Tracks if friends are currently cached.
 
-<br>
 #### `protected FRH_AutoPollerPtr `[`FriendsListPoller`](#classURH__FriendSubsystem_1ae4e279605cefbf9699c08c1f9a56a190) <a id="classURH__FriendSubsystem_1ae4e279605cefbf9699c08c1f9a56a190"></a>
 
 Poller for getting friends list.
 
-<br>
 #### `protected FRH_AutoPollerPtr `[`BlockedListPoller`](#classURH__FriendSubsystem_1a702f1614a6893998c654fd7ee5f340b0) <a id="classURH__FriendSubsystem_1a702f1614a6893998c654fd7ee5f340b0"></a>
 
 Poller for getting blocked players list.
 
-<br>
 #### `protected FDelegateHandle `[`OnOSSPresenceReceivedHandle`](#classURH__FriendSubsystem_1af4dee5d7db87903fc77a81214efdda36) <a id="classURH__FriendSubsystem_1af4dee5d7db87903fc77a81214efdda36"></a>
 
 Delegate to be fired when online subsystem presence is received.
 
-<br>
 #### `protected FDelegateHandle `[`OnOSSBlockListReceivedHandle`](#classURH__FriendSubsystem_1aa34a363f7ba27902f860e261910f01aa) <a id="classURH__FriendSubsystem_1aa34a363f7ba27902f860e261910f01aa"></a>
 
 Delegate to be fired when online subsystem blocked list is received.
 
-<br>
 #### `protected virtual void `[`OnUserChanged`](#classURH__FriendSubsystem_1ace5e8036219386fc48ec8ec89f391e36)`(const FGuid & OldPlayerUuid,class `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * OldLocalPlayerInfo)` <a id="classURH__FriendSubsystem_1ace5e8036219386fc48ec8ec89f391e36"></a>
 
 Callback that occurs whenever the local player this subsystem is associated with changes.
 
-<br>
 #### `protected virtual void `[`HandleNotification`](#classURH__FriendSubsystem_1a7e151250348a53e5ea59bd3b1e46621c)`(const struct `[`FRHAPI_Notification`](models/RHAPI_Notification.md#structFRHAPI__Notification)` & Notification,const FString & APIName,const TArray< FString > & APIParams)` <a id="classURH__FriendSubsystem_1a7e151250348a53e5ea59bd3b1e46621c"></a>
 
 Handle a notification from the notification API.
@@ -1147,12 +925,10 @@ Handle a notification from the notification API.
 
 * `APIParams` The parameters for the API that sent the notification.
 
-<br>
 #### `protected virtual void `[`InitPropertiesWithDefaultValues`](#classURH__FriendSubsystem_1a329dc919c010125a81f508eaf83f3d74)`()` <a id="classURH__FriendSubsystem_1a329dc919c010125a81f508eaf83f3d74"></a>
 
 Initializes the subsystem with defaults for its cached data.
 
-<br>
 #### `protected virtual bool `[`SetDefaultParamsForGetFriendRequest`](#classURH__FriendSubsystem_1ac4a8491381ccb8bcc26a031048d628b9)`(GetFriendRelationshipType::Request & Request) const` <a id="classURH__FriendSubsystem_1ac4a8491381ccb8bcc26a031048d628b9"></a>
 
 Fills our a Get Friend request.
@@ -1163,7 +939,6 @@ Fills our a Get Friend request.
 #### Returns
 True, if the request was filled out successfully.
 
-<br>
 #### `protected virtual void `[`PostReloadConfig`](#classURH__FriendSubsystem_1ad94ca4a65eeae28cd4fde373c4035d8d)`(class FProperty * PropertyThatWasLoaded)` <a id="classURH__FriendSubsystem_1ad94ca4a65eeae28cd4fde373c4035d8d"></a>
 
 Called from ReloadConfig after the object has reloaded its configuration data.
@@ -1171,7 +946,6 @@ Called from ReloadConfig after the object has reloaded its configuration data.
 #### Parameters
 * `PropertyThatWasLoaded` The property loaded.
 
-<br>
 #### `protected inline virtual void `[`OnPresenceUpdated`](#classURH__FriendSubsystem_1af43a2ad8bee539b08cb56d1d5800755d)`(`[`URH_PlayerInfoSubobject`](PlayerInfo.md#classURH__PlayerInfoSubobject)` * PlayerPresence)` <a id="classURH__FriendSubsystem_1af43a2ad8bee539b08cb56d1d5800755d"></a>
 
 Helper function to push out presence updates on delegates on this system.
@@ -1179,7 +953,6 @@ Helper function to push out presence updates on delegates on this system.
 #### Parameters
 * `PlayerPresence` The Player Presence updated.
 
-<br>
 #### `protected virtual void `[`OnFetchFriendsListResponse`](#classURH__FriendSubsystem_1a1f31555fd208d81eaddc8f9fc1aadb17)`(const GetFriendsListType::Response & Resp,const FRH_GenericFriendBlock Delegate)` <a id="classURH__FriendSubsystem_1a1f31555fd208d81eaddc8f9fc1aadb17"></a>
 
 Handles the response to a Fetch Friend List call.
@@ -1189,7 +962,6 @@ Handles the response to a Fetch Friend List call.
 
 * `Delegate` Delegate passed in for original call to respond to when call completes.
 
-<br>
 #### `protected virtual void `[`OnFetchFriendResponse`](#classURH__FriendSubsystem_1a095efd57afb8653f4deccfd1ca6da1c5)`(const GetFriendRelationshipType::Response & Resp,const FRH_GenericFriendWithUuidBlock Delegate)` <a id="classURH__FriendSubsystem_1a095efd57afb8653f4deccfd1ca6da1c5"></a>
 
 Handles the response to a Fetch Friend call.
@@ -1199,7 +971,6 @@ Handles the response to a Fetch Friend call.
 
 * `Delegate` Delegate passed in for original call to respond to when call completes.
 
-<br>
 #### `protected virtual void `[`OnAddFriendResponse`](#classURH__FriendSubsystem_1a193027a404185d6cb776bca21dcdd9b9)`(const AddFriendType::Response & Resp,const FRH_AddFriendBlock Delegate,const AddFriendType::Request Request,int32 RetryEtagFailureCount)` <a id="classURH__FriendSubsystem_1a193027a404185d6cb776bca21dcdd9b9"></a>
 
 Handles the response to a Add Friend call.
@@ -1211,7 +982,6 @@ Handles the response to a Add Friend call.
 
 * `RetryEtagFailureCount` Number of times this has failed, to determine course of action.
 
-<br>
 #### `protected virtual void `[`OnRemoveFriendResponse`](#classURH__FriendSubsystem_1a59902f0693136bb2c965aaafd3f05c6d)`(const DeleteFriendType::Response & Resp,const FRH_GenericFriendWithUuidBlock Delegate,const DeleteFriendType::Request Request,int32 RetryEtagFailureCount)` <a id="classURH__FriendSubsystem_1a59902f0693136bb2c965aaafd3f05c6d"></a>
 
 Handles the response to a Remove Friend call.
@@ -1225,7 +995,6 @@ Handles the response to a Remove Friend call.
 
 * `RetryEtagFailureCount` Number of times this has failed, to determine course of action.
 
-<br>
 #### `protected virtual void `[`OnAddNotesResponse`](#classURH__FriendSubsystem_1a027d507e6a10d61a0cd3dd8afdbfd4b7)`(const AddNotesType::Response & Resp,const FRH_AddNotesBlock Delegate,const AddNotesType::Request Request,int32 RetryEtagFailureCount)` <a id="classURH__FriendSubsystem_1a027d507e6a10d61a0cd3dd8afdbfd4b7"></a>
 
 Handles the response to a Add Friend Notes call.
@@ -1237,7 +1006,6 @@ Handles the response to a Add Friend Notes call.
 
 * `RetryEtagFailureCount` Number of times this has failed, to determine course of action.
 
-<br>
 #### `protected virtual void `[`OnDeleteNotesResponse`](#classURH__FriendSubsystem_1aadb0f0d8b011cf2ac33f422043cde58e)`(const DeleteNotesType::Response & Resp,const FRH_GenericFriendWithUuidBlock Delegate,const DeleteNotesType::Request Request,int32 RetryEtagFailureCount)` <a id="classURH__FriendSubsystem_1aadb0f0d8b011cf2ac33f422043cde58e"></a>
 
 Handles the response to a Delete Friend Notes call.
@@ -1249,7 +1017,6 @@ Handles the response to a Delete Friend Notes call.
 
 * `RetryEtagFailureCount` Number of times this has failed, to determine course of action.
 
-<br>
 #### `protected virtual void `[`OnFetchBlockedListResponse`](#classURH__FriendSubsystem_1a767b8f66ab46b1d2d9f1eaf81aa67755)`(const GetBlockedListType::Response & Resp,const FRH_GenericFriendBlock Delegate)` <a id="classURH__FriendSubsystem_1a767b8f66ab46b1d2d9f1eaf81aa67755"></a>
 
 Handles the response to a Get Blocked List call.
@@ -1259,7 +1026,6 @@ Handles the response to a Get Blocked List call.
 
 * `Delegate` Delegate passed in for original call to respond to when call completes.
 
-<br>
 #### `protected virtual void `[`OnFetchBlockedPlayerResponse`](#classURH__FriendSubsystem_1aa59af9e5e4e2f41bf6f620e0fd54c915)`(const GetBlockedType::Response & Resp,const FRH_GenericFriendWithUuidBlock Delegate,const FGuid PlayerUuid)` <a id="classURH__FriendSubsystem_1aa59af9e5e4e2f41bf6f620e0fd54c915"></a>
 
 Handles the response to a Get Blocked Player call.
@@ -1271,7 +1037,6 @@ Handles the response to a Get Blocked Player call.
 
 * `PlayerUuid` The UUID of the player that is being requested.
 
-<br>
 #### `protected virtual void `[`OnBlockPlayerResponse`](#classURH__FriendSubsystem_1ad0274f1f8b5311b8f6bdbdf8fba419c4)`(const BlockType::Response & Resp,const FRH_GenericFriendWithUuidBlock Delegate,const FGuid PlayerUuid)` <a id="classURH__FriendSubsystem_1ad0274f1f8b5311b8f6bdbdf8fba419c4"></a>
 
 Handles the response to a Block Player call.
@@ -1283,7 +1048,6 @@ Handles the response to a Block Player call.
 
 * `PlayerUuid` The UUID of the player that is being blocked.
 
-<br>
 #### `protected virtual void `[`OnUnblockPlayerResponse`](#classURH__FriendSubsystem_1abda83155f03fdc2ebd3cdcf48af081b2)`(const UnblockType::Response & Resp,const FRH_GenericFriendWithUuidBlock Delegate,const FGuid PlayerUuid)` <a id="classURH__FriendSubsystem_1abda83155f03fdc2ebd3cdcf48af081b2"></a>
 
 Handles the response to a Unblock Player call.
@@ -1295,7 +1059,6 @@ Handles the response to a Unblock Player call.
 
 * `PlayerUuid` The UUID of the player that is being unblocked.
 
-<br>
 #### `protected virtual void `[`OnFetchFriendForAdd`](#classURH__FriendSubsystem_1a8f23c7d98799cf5719444b9fca5f5257)`(const GetFriendRelationshipType::Response & Resp,const FRH_AddFriendBlock Delegate,AddFriendType::Request Request,int32 RetryEtagFailureCount)` <a id="classURH__FriendSubsystem_1a8f23c7d98799cf5719444b9fca5f5257"></a>
 
 Handles the response to a Fetch Friend For Add call.
@@ -1309,7 +1072,6 @@ Handles the response to a Fetch Friend For Add call.
 
 * `RetryEtagFailureCount` Number of times this has failed, to determine course of action.
 
-<br>
 #### `protected virtual void `[`OnFetchFriendForAddNote`](#classURH__FriendSubsystem_1ada9967c9cafff1902cd8495a9bba096d)`(const GetFriendRelationshipType::Response & Resp,const FRH_AddNotesBlock Delegate,AddNotesType::Request Request,int32 RetryEtagFailureCount)` <a id="classURH__FriendSubsystem_1ada9967c9cafff1902cd8495a9bba096d"></a>
 
 Handles the response to a Fetch Friend For Add Note call.
@@ -1323,7 +1085,6 @@ Handles the response to a Fetch Friend For Add Note call.
 
 * `RetryEtagFailureCount` Number of times this has failed, to determine course of action.
 
-<br>
 #### `protected virtual void `[`OnFetchFriendForDeleteNote`](#classURH__FriendSubsystem_1ac5785416b739e7c4ac9f35d2de199b05)`(const GetFriendRelationshipType::Response & Resp,const FRH_GenericFriendWithUuidBlock Delegate,DeleteNotesType::Request Request,int32 RetryEtagFailureCount)` <a id="classURH__FriendSubsystem_1ac5785416b739e7c4ac9f35d2de199b05"></a>
 
 Handles the response to a Fetch Friend For Delete Note call.
@@ -1337,7 +1098,6 @@ Handles the response to a Fetch Friend For Delete Note call.
 
 * `RetryEtagFailureCount` Number of times this has failed, to determine course of action.
 
-<br>
 #### `protected virtual void `[`OnFetchFriendForRemove`](#classURH__FriendSubsystem_1a2dff0a78994ba66003dd4fd8a4f3db78)`(const GetFriendRelationshipType::Response & Resp,const FRH_GenericFriendWithUuidBlock Delegate,DeleteFriendType::Request Request,int32 RetryEtagFailureCount)` <a id="classURH__FriendSubsystem_1a2dff0a78994ba66003dd4fd8a4f3db78"></a>
 
 Handles the response to a Fetch Friend For Remove call.
@@ -1351,7 +1111,6 @@ Handles the response to a Fetch Friend For Remove call.
 
 * `RetryEtagFailureCount` Number of times this has failed, to determine course of action.
 
-<br>
 #### `protected void `[`UpdatePlatformFriends`](#classURH__FriendSubsystem_1a69aae2ad8b7200bf3dc0d51fbb59b3e6)`(const TArray< `[`URH_PlatformFriend`](Friends.md#classURH__PlatformFriend)` * > & NewFriends)` <a id="classURH__FriendSubsystem_1a69aae2ad8b7200bf3dc0d51fbb59b3e6"></a>
 
 Updates the cached Platforms friends with the new set of friends data.
@@ -1359,7 +1118,6 @@ Updates the cached Platforms friends with the new set of friends data.
 #### Parameters
 * `NewFriends` New platform friend data.
 
-<br>
 #### `protected void `[`RemoveAllFriendsWithNoRelationships`](#classURH__FriendSubsystem_1a8e2baea2c4b27a854894385976495cb2)`(TArray< `[`URH_RHFriendAndPlatformFriend`](Friends.md#classURH__RHFriendAndPlatformFriend)` * > & OutArray)` <a id="classURH__FriendSubsystem_1a8e2baea2c4b27a854894385976495cb2"></a>
 
 Removes all friends from the cached data that have no relationship to the player the subsystem is for.
@@ -1367,7 +1125,6 @@ Removes all friends from the cached data that have no relationship to the player
 #### Parameters
 * `OutArray` Array of players that were removed.
 
-<br>
 #### `protected void `[`PollFriendsList`](#classURH__FriendSubsystem_1ac09b6bec4ef50e2e2c7bc9daee98cc9b)`(const FRH_PollCompleteFunc & Delegate)` <a id="classURH__FriendSubsystem_1ac09b6bec4ef50e2e2c7bc9daee98cc9b"></a>
 
 Executes a poll of the players friends list.
@@ -1375,7 +1132,6 @@ Executes a poll of the players friends list.
 #### Parameters
 * `Delegate` Callback delegate for the poll.
 
-<br>
 #### `protected void `[`PollBlockedPlayers`](#classURH__FriendSubsystem_1a3eb26a11fae901e018b1a1863c576f3b)`(const FRH_PollCompleteFunc & Delegate)` <a id="classURH__FriendSubsystem_1a3eb26a11fae901e018b1a1863c576f3b"></a>
 
 Executes a poll of the players blocked list.
@@ -1383,7 +1139,6 @@ Executes a poll of the players blocked list.
 #### Parameters
 * `Delegate` Callback delegate for the poll.
 
-<br>
 #### `protected FName `[`ExtractErrorCodeFromResponse`](#classURH__FriendSubsystem_1a132d8e0a874d1f686f085ab4b3a6e68f)`(const FHttpResponsePtr & Response) const` <a id="classURH__FriendSubsystem_1a132d8e0a874d1f686f085ab4b3a6e68f"></a>
 
 Gets the error code response name from a http request.
@@ -1394,7 +1149,6 @@ Gets the error code response name from a http request.
 #### Returns
 The error code.
 
-<br>
 #### `protected virtual void `[`OnReadOSSFriendsComplete`](#classURH__FriendSubsystem_1a28e2e549632ea1cde658e352a74e5e71)`(int32 LocalUserNum,bool bWasSuccessful,const FString & ListName,const FString & ErrorStr)` <a id="classURH__FriendSubsystem_1a28e2e549632ea1cde658e352a74e5e71"></a>
 
 Handles the response from the online subsystem call to get friends.
@@ -1408,7 +1162,6 @@ Handles the response from the online subsystem call to get friends.
 
 * `ErrorStr` Error string if the call failed.
 
-<br>
 #### `protected void `[`OnOSSQueryBlockListComplete`](#classURH__FriendSubsystem_1ab8eb49f42a52b3cb1e6a1ae6c1663d3d)`(const FUniqueNetId & UserId,bool bWasSuccessful,const FString & ErrorStr)` <a id="classURH__FriendSubsystem_1ab8eb49f42a52b3cb1e6a1ae6c1663d3d"></a>
 
 Handles the response from the online subsystem call to get blocked list.
@@ -1420,7 +1173,6 @@ Handles the response from the online subsystem call to get blocked list.
 
 * `ErrorStr` Error string if the call failed.
 
-<br>
 #### `protected virtual void `[`OnOSSBlockListChanged`](#classURH__FriendSubsystem_1ac118c76788b362e16e3c254372921074)`(int32 LocalUserNum,const FString & ListName)` <a id="classURH__FriendSubsystem_1ac118c76788b362e16e3c254372921074"></a>
 
 Handles the response from the online subsystem call to get list of blocked players.
@@ -1430,7 +1182,6 @@ Handles the response from the online subsystem call to get list of blocked playe
 
 * `ListName` The name of the list that was returned.
 
-<br>
 #### `protected virtual void `[`UpdateWithOSSFriends`](#classURH__FriendSubsystem_1ac1ec831e3a17301014fd02b08cd786e6)`(const FString & ListName)` <a id="classURH__FriendSubsystem_1ac1ec831e3a17301014fd02b08cd786e6"></a>
 
 Updates the system with the friends from the online subsystem.
@@ -1438,7 +1189,6 @@ Updates the system with the friends from the online subsystem.
 #### Parameters
 * `ListName` The list name where the friends are stored.
 
-<br>
 #### `protected virtual void `[`OnOSSPresenceReceived`](#classURH__FriendSubsystem_1a96025e788f843e3af281e4a35bc67f2d)`(const FUniqueNetId & UserId,const TSharedRef< FOnlineUserPresence > & NewPresence)` <a id="classURH__FriendSubsystem_1a96025e788f843e3af281e4a35bc67f2d"></a>
 
 Handles the response from the online subsystem call to get presence.
@@ -1448,54 +1198,43 @@ Handles the response from the online subsystem call to get presence.
 
 * `NewPresence` The presence information from the online subsystem.
 
-<br>
 #### `typedef `[`GetBlockedListType`](#classURH__FriendSubsystem_1a86947a66ea21048117d78b043f66c2a4) <a id="classURH__FriendSubsystem_1a86947a66ea21048117d78b043f66c2a4"></a>
 
 Type Define for Get Blocked List calls.
 
-<br>
 #### `typedef `[`GetBlockedType`](#classURH__FriendSubsystem_1abf3d2913b2440d3ccf90f73e5466b667) <a id="classURH__FriendSubsystem_1abf3d2913b2440d3ccf90f73e5466b667"></a>
 
 Type Define for Get Blocked calls.
 
-<br>
 #### `typedef `[`BlockType`](#classURH__FriendSubsystem_1afde127473ff38097c2158547c884c12c) <a id="classURH__FriendSubsystem_1afde127473ff38097c2158547c884c12c"></a>
 
 Type Define for Block Player calls.
 
-<br>
 #### `typedef `[`UnblockType`](#classURH__FriendSubsystem_1a873630d80c6b2ec588a0f5057beb4029) <a id="classURH__FriendSubsystem_1a873630d80c6b2ec588a0f5057beb4029"></a>
 
 Type Define for Unblock Player calls.
 
-<br>
 #### `typedef `[`GetFriendsListType`](#classURH__FriendSubsystem_1a5ea265c6a3d4410edef249077f7a29fc) <a id="classURH__FriendSubsystem_1a5ea265c6a3d4410edef249077f7a29fc"></a>
 
 Type Define for Get Friends List calls.
 
-<br>
 #### `typedef `[`GetFriendRelationshipType`](#classURH__FriendSubsystem_1abbd85d9a95318bfa9be709e5e98ab6ac) <a id="classURH__FriendSubsystem_1abbd85d9a95318bfa9be709e5e98ab6ac"></a>
 
 Type Define for Get Friend Relationship calls.
 
-<br>
 #### `typedef `[`AddFriendType`](#classURH__FriendSubsystem_1a5b292ddb94cace20f504e49490cdd640) <a id="classURH__FriendSubsystem_1a5b292ddb94cace20f504e49490cdd640"></a>
 
 Type Define for Add Friend calls.
 
-<br>
 #### `typedef `[`DeleteFriendType`](#classURH__FriendSubsystem_1a03a40c4622679a1506a77ff5f33d16e1) <a id="classURH__FriendSubsystem_1a03a40c4622679a1506a77ff5f33d16e1"></a>
 
 Type Define for Remove Friend calls.
 
-<br>
 #### `typedef `[`AddNotesType`](#classURH__FriendSubsystem_1aab7335b06d00faaa339a13b0d555047e) <a id="classURH__FriendSubsystem_1aab7335b06d00faaa339a13b0d555047e"></a>
 
 Type Define for Add Friend Notes calls.
 
-<br>
 #### `typedef `[`DeleteNotesType`](#classURH__FriendSubsystem_1a6552555d4071e1f7272104a44aa0ac60) <a id="classURH__FriendSubsystem_1a6552555d4071e1f7272104a44aa0ac60"></a>
 
 Type Define for Delete Friend Notes calls.
 
-<br>

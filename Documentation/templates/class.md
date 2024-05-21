@@ -13,7 +13,7 @@
 
 {{detaileddescription}}
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -21,7 +21,7 @@
 {{/each}}{{#each filtered.members}}{{cell proto}} | {{cell summary}}
 {{/each}}
 
-#### Members
+### Members
 
 {{#each filtered.compounds}}
 #### {{title proto}} {{anchor refid}}
@@ -45,5 +45,4 @@
 
 {{detaileddescription}}
 
-<br>
 {{/each}}

@@ -103,6 +103,7 @@ public:
 	 */
 	FKVsUpdatedDelegate OnKVsUpdated;
 	/**
+	 * @private
 	 * @brief Delegate that can be listented to for whenever KVs get updated from polling.
 	 */
 	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Config", meta = (DisplayName = "On KVs Updated"))
@@ -118,6 +119,7 @@ public:
 	UE_DEPRECATED(5.0, "Please use the OnKVsUpdatedDelegate instead")
 	FSettingsUpdatedDelegate OnSettingsUpdated;
 	/**
+	 * @private
 	 * @brief Delegate that can be listented to for whenever Settings get updated from polling.
 	 */
 	UE_DEPRECATED(5.0, "Please use the OnKVsUpdatedDelegate instead")
@@ -272,11 +274,13 @@ public:
 	* @brief Requests the server time cache to be updated
 	*/
 	void RefreshServerTimeCache(const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock());
+	/** @private */
 	UE_DEPRECATED(5.0, "Please use the version with the error delegate")
 	FORCEINLINE void RefreshServerTimeCache(const FRH_GenericSuccessBlock& Delegate)
 	{
 		RefreshServerTimeCache(RH_ConvertGenericSucessDelegateBlock(Delegate));
 	}
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Config", meta = (DisplayName = "Refresh Server Time Cache", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_RefreshServerTimeCache(const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate) { return RefreshServerTimeCache(Delegate); };
 	/**

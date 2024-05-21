@@ -1,4 +1,4 @@
-# RHAPI_EventList <a id="group__RHAPI__EventList"></a>
+# group `RHAPI_EventList` <a id="group__RHAPI__EventList"></a>
 
 ## Summary
 
@@ -13,7 +13,7 @@ struct FRHAPI_EventList
   : public FRHAPI_Model
 ```
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -24,13 +24,12 @@ struct FRHAPI_EventList
 `public inline const TArray< `[`FRHAPI_RallyHereEvent`](RHAPI_RallyHereEvent.md#structFRHAPI__RallyHereEvent)` > & `[`GetEventList`](#structFRHAPI__EventList_1a93799dde50ffba542b135d905641c5ae)`() const` | Gets the value of EventList.
 `public inline void `[`SetEventList`](#structFRHAPI__EventList_1a9e6a338f4cbcbfc0d25d93a1e130853f)`(TArray< `[`FRHAPI_RallyHereEvent`](RHAPI_RallyHereEvent.md#structFRHAPI__RallyHereEvent)` > NewValue)` | Sets the value of EventList.
 
-#### Members
+### Members
 
 #### `public TArray< `[`FRHAPI_RallyHereEvent`](RHAPI_RallyHereEvent.md#structFRHAPI__RallyHereEvent)` > `[`EventList`](#structFRHAPI__EventList_1ab40741de69839cb60db398e340ec2da7) <a id="structFRHAPI__EventList_1ab40741de69839cb60db398e340ec2da7"></a>
 
 List of events.
 
-<br>
 #### `public virtual bool `[`FromJson`](#structFRHAPI__EventList_1a27fccb2ee3f7cc4403c9ac51d1a9e924)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__EventList_1a27fccb2ee3f7cc4403c9ac51d1a9e924"></a>
 
 Fills this object with data from the passed in JSON.
@@ -41,7 +40,6 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-<br>
 #### `public virtual void `[`WriteJson`](#structFRHAPI__EventList_1af2eb5752d7bff14073f7062f6568e6f3)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__EventList_1af2eb5752d7bff14073f7062f6568e6f3"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
@@ -49,19 +47,15 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-<br>
 #### `public inline TArray< `[`FRHAPI_RallyHereEvent`](RHAPI_RallyHereEvent.md#structFRHAPI__RallyHereEvent)` > & `[`GetEventList`](#structFRHAPI__EventList_1aee65131c89751011cb94fb7d13e025fb)`()` <a id="structFRHAPI__EventList_1aee65131c89751011cb94fb7d13e025fb"></a>
 
 Gets the value of EventList.
 
-<br>
 #### `public inline const TArray< `[`FRHAPI_RallyHereEvent`](RHAPI_RallyHereEvent.md#structFRHAPI__RallyHereEvent)` > & `[`GetEventList`](#structFRHAPI__EventList_1a93799dde50ffba542b135d905641c5ae)`() const` <a id="structFRHAPI__EventList_1a93799dde50ffba542b135d905641c5ae"></a>
 
 Gets the value of EventList.
 
-<br>
 #### `public inline void `[`SetEventList`](#structFRHAPI__EventList_1a9e6a338f4cbcbfc0d25d93a1e130853f)`(TArray< `[`FRHAPI_RallyHereEvent`](RHAPI_RallyHereEvent.md#structFRHAPI__RallyHereEvent)` > NewValue)` <a id="structFRHAPI__EventList_1a9e6a338f4cbcbfc0d25d93a1e130853f"></a>
 
 Sets the value of EventList.
 
-<br>

@@ -183,6 +183,7 @@ public:
 	static bool GetCommandlineBootstrapModeOverride(ERH_ServerBootstrapMode& mode);
 
 	/**
+	* @private
 	* @brief Blueprint delegate for when bootstrap step changes
 	*/
 	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Session|Bootstrapping", meta = (DisplayName = "On Bootstrap Step Changed"))

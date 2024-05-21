@@ -1,4 +1,4 @@
-# RHAPI_PublicKeyList <a id="group__RHAPI__PublicKeyList"></a>
+# group `RHAPI_PublicKeyList` <a id="group__RHAPI__PublicKeyList"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_PublicKeyList
 
 List of public keys for verifying Access Token JWTs. This is in the JWK Set format as defined in [https://datatracker.ietf.org/doc/html/rfc7517#section-5](https://datatracker.ietf.org/doc/html/rfc7517#section-5).
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -26,13 +26,12 @@ List of public keys for verifying Access Token JWTs. This is in the JWK Set form
 `public inline const TArray< `[`FRHAPI_PublicKey`](RHAPI_PublicKey.md#structFRHAPI__PublicKey)` > & `[`GetKeys`](#structFRHAPI__PublicKeyList_1a13568df60d8f7252b26a2e5b3806b170)`() const` | Gets the value of Keys.
 `public inline void `[`SetKeys`](#structFRHAPI__PublicKeyList_1a9b847760e848f640d554806ff6d163e0)`(TArray< `[`FRHAPI_PublicKey`](RHAPI_PublicKey.md#structFRHAPI__PublicKey)` > NewValue)` | Sets the value of Keys.
 
-#### Members
+### Members
 
 #### `public TArray< `[`FRHAPI_PublicKey`](RHAPI_PublicKey.md#structFRHAPI__PublicKey)` > `[`Keys`](#structFRHAPI__PublicKeyList_1a9f2304e8a8edbb03597d352a4a60415a) <a id="structFRHAPI__PublicKeyList_1a9f2304e8a8edbb03597d352a4a60415a"></a>
 
 List of public keys for verifying Access Token JWTs.
 
-<br>
 #### `public virtual bool `[`FromJson`](#structFRHAPI__PublicKeyList_1a18900c214f8cb8ca4164d3f2a2f31012)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PublicKeyList_1a18900c214f8cb8ca4164d3f2a2f31012"></a>
 
 Fills this object with data from the passed in JSON.
@@ -43,7 +42,6 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-<br>
 #### `public virtual void `[`WriteJson`](#structFRHAPI__PublicKeyList_1a8c25ebaf73ef9daefeab572798243793)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PublicKeyList_1a8c25ebaf73ef9daefeab572798243793"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
@@ -51,19 +49,15 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-<br>
 #### `public inline TArray< `[`FRHAPI_PublicKey`](RHAPI_PublicKey.md#structFRHAPI__PublicKey)` > & `[`GetKeys`](#structFRHAPI__PublicKeyList_1a28b2056cffd0315aa4069ff32bc02e2b)`()` <a id="structFRHAPI__PublicKeyList_1a28b2056cffd0315aa4069ff32bc02e2b"></a>
 
 Gets the value of Keys.
 
-<br>
 #### `public inline const TArray< `[`FRHAPI_PublicKey`](RHAPI_PublicKey.md#structFRHAPI__PublicKey)` > & `[`GetKeys`](#structFRHAPI__PublicKeyList_1a13568df60d8f7252b26a2e5b3806b170)`() const` <a id="structFRHAPI__PublicKeyList_1a13568df60d8f7252b26a2e5b3806b170"></a>
 
 Gets the value of Keys.
 
-<br>
 #### `public inline void `[`SetKeys`](#structFRHAPI__PublicKeyList_1a9b847760e848f640d554806ff6d163e0)`(TArray< `[`FRHAPI_PublicKey`](RHAPI_PublicKey.md#structFRHAPI__PublicKey)` > NewValue)` <a id="structFRHAPI__PublicKeyList_1a9b847760e848f640d554806ff6d163e0"></a>
 
 Sets the value of Keys.
 
-<br>

@@ -217,6 +217,7 @@ public:
 		URH_OnlineSession::CreateOrJoinByType(CreateParams, this, Delegate);
 	}
 	/**
+	* @private
 	* @brief Blueprint compatible version of CreateOrJoinSessionByType
 	* @param [in] CreateParams Creation paramters for the session
 	* @param [in] Delegate delegate to trigger when complete
@@ -236,6 +237,7 @@ public:
 		URH_OnlineSession::JoinById(SessionId, this, Delegate);
 	}
 	/**
+	* @private
 	* @brief Blueprint compatible version of JoinSessionById
 	* @param [in] SessionId The session id to join
 	* @param [in] Delegate delegate to trigger when complete
@@ -324,6 +326,7 @@ public:
 	*/
 	void SearchForSessions(const FRH_SessionBrowserSearchParams& Params, const FRH_OnSessionSearchCompleteDelegateBlock& Delegate = FRH_OnSessionSearchCompleteDelegateBlock());
 	/**
+	* @private
 	* @brief Blueprint compatible version of SearchForSessions
 	* @param [in] Params Search parameters for the browser search
 	* @param [in] Delegate Delegate to trigger once complete
@@ -361,33 +364,39 @@ public:
 	float GetPollTimeRemaining() const;
 
 	/**
+	* @private
 	* @brief Multicast delegate triggered when a session managed by this subsystem is updated
 	*/
 	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Session", meta = (DisplayName = "On Session Updated"))
 	FRH_OnSessionUpdatedMulticastDynamicDelegate BLUEPRINT_OnSessionUpdatedDelegate;
 	/**
+	* @private
 	* @brief Multicast delegate triggered when a session managed by this subsystem is added
 	*/
 	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Session", meta = (DisplayName = "On Session Added"))
 	FRH_OnSessionUpdatedMulticastDynamicDelegate BLUEPRINT_OnSessionAddedDelegate;
 	/**
+	* @private
 	* @brief Multicast delegate triggered when a session managed by this subsystem is removed
 	*/
 	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Session", meta = (DisplayName = "On Session Removed"))
 	FRH_OnSessionUpdatedMulticastDynamicDelegate BLUEPRINT_OnSessionRemovedDelegate;
 	/**
+	* @private
 	* @brief Multicast delegate triggered when a session managed by this subsystem is fully expired (happens after removal)
 	*/
 	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Session", meta = (DisplayName = "On Session Expiration Complete"))
 	FRH_OnSessionUpdatedMulticastDynamicDelegate BLUEPRINT_OnSessionExpirationCompleteDelegate;
 
 	/**
+	* @private
 	* @brief Multicast delegate triggered when the initial poll after login is complete, to do first-time setup
 	*/
 	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Session", meta = (DisplayName = "On Login Poll Sessions Complete"))
 	FRH_OnLoginPollSessionsCompleteMulticastDynamicDelegate BLUEPRINT_OnLoginPollSessionsCompleteDelegate;
 
 	/**
+	* @private
 	* @brief Multicast delegate triggered when we fail to join a platform session that we've accepted an invite to
 	*/
 	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Session", meta = (DisplayName = "On Failed To Join Platform Session"))

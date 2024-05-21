@@ -1,4 +1,4 @@
-# RHAPI_QueuesResponse <a id="group__RHAPI__QueuesResponse"></a>
+# group `RHAPI_QueuesResponse` <a id="group__RHAPI__QueuesResponse"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_QueuesResponse
 
 DEPRECATED - A list of configuration about queues.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -26,13 +26,12 @@ DEPRECATED - A list of configuration about queues.
 `public inline const TArray< `[`FRHAPI_QueueConfig`](RHAPI_QueueConfig.md#structFRHAPI__QueueConfig)` > & `[`GetQueues`](#structFRHAPI__QueuesResponse_1abbf9ad5940f96346c4b7d96441f6550a)`() const` | Gets the value of Queues.
 `public inline void `[`SetQueues`](#structFRHAPI__QueuesResponse_1a405af745b536fbbd0005a21b77d8ede3)`(TArray< `[`FRHAPI_QueueConfig`](RHAPI_QueueConfig.md#structFRHAPI__QueueConfig)` > NewValue)` | Sets the value of Queues.
 
-#### Members
+### Members
 
 #### `public TArray< `[`FRHAPI_QueueConfig`](RHAPI_QueueConfig.md#structFRHAPI__QueueConfig)` > `[`Queues`](#structFRHAPI__QueuesResponse_1a53242423e1b15a69a599d22a44d5278b) <a id="structFRHAPI__QueuesResponse_1a53242423e1b15a69a599d22a44d5278b"></a>
 
 List of queues.
 
-<br>
 #### `public virtual bool `[`FromJson`](#structFRHAPI__QueuesResponse_1a98ca32e4913ca7eb9f1ccb5e4857ff8c)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__QueuesResponse_1a98ca32e4913ca7eb9f1ccb5e4857ff8c"></a>
 
 Fills this object with data from the passed in JSON.
@@ -43,7 +42,6 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-<br>
 #### `public virtual void `[`WriteJson`](#structFRHAPI__QueuesResponse_1a289b372fa0e1ddbd7d273cd30e49cfeb)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__QueuesResponse_1a289b372fa0e1ddbd7d273cd30e49cfeb"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
@@ -51,19 +49,15 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-<br>
 #### `public inline TArray< `[`FRHAPI_QueueConfig`](RHAPI_QueueConfig.md#structFRHAPI__QueueConfig)` > & `[`GetQueues`](#structFRHAPI__QueuesResponse_1ad64eb9a9701424f3d57c6345f22936d2)`()` <a id="structFRHAPI__QueuesResponse_1ad64eb9a9701424f3d57c6345f22936d2"></a>
 
 Gets the value of Queues.
 
-<br>
 #### `public inline const TArray< `[`FRHAPI_QueueConfig`](RHAPI_QueueConfig.md#structFRHAPI__QueueConfig)` > & `[`GetQueues`](#structFRHAPI__QueuesResponse_1abbf9ad5940f96346c4b7d96441f6550a)`() const` <a id="structFRHAPI__QueuesResponse_1abbf9ad5940f96346c4b7d96441f6550a"></a>
 
 Gets the value of Queues.
 
-<br>
 #### `public inline void `[`SetQueues`](#structFRHAPI__QueuesResponse_1a405af745b536fbbd0005a21b77d8ede3)`(TArray< `[`FRHAPI_QueueConfig`](RHAPI_QueueConfig.md#structFRHAPI__QueueConfig)` > NewValue)` <a id="structFRHAPI__QueuesResponse_1a405af745b536fbbd0005a21b77d8ede3"></a>
 
 Sets the value of Queues.
 
-<br>

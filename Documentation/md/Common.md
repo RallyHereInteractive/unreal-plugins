@@ -1,4 +1,4 @@
-# Common <a id="group__Common"></a>
+# group `Common` <a id="group__Common"></a>
 
 ## Summary
 
@@ -148,7 +148,7 @@ class FRH_AsyncTaskHelper
 
 Base helper class for asynchronous RallyHere tasks.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -169,72 +169,58 @@ Base helper class for asynchronous RallyHere tasks.
 `protected inline virtual void `[`Cancel`](#classFRH__AsyncTaskHelper_1aaf29b289af9c82871e3814205d566e0b)`(const FString & CancelReason)` | Cancels the asynchronous task by failing it out.
 `protected inline void `[`Completed`](#classFRH__AsyncTaskHelper_1a6abf59b65bbdf0dbeaa526e96dac5784)`(bool bSuccess)` | Called when the asynchronous task has completed.
 
-#### Members
+### Members
 
 #### `public inline FORCEINLINE bool `[`IsRunning`](#classFRH__AsyncTaskHelper_1a4b4801b088f55346b372073749d2c193)`() const` <a id="classFRH__AsyncTaskHelper_1a4b4801b088f55346b372073749d2c193"></a>
 
 Returns whether or not the task is currently executing.
 
-<br>
 #### `public FString `[`GetName`](#classFRH__AsyncTaskHelper_1a80428a85b9e421342c26cfc89d9999af)`() const` <a id="classFRH__AsyncTaskHelper_1a80428a85b9e421342c26cfc89d9999af"></a>
 
 Abstract function for fetching the name of the asynchronous task.
 
-<br>
 #### `public inline FORCEINLINE int32 `[`GetTaskPriority`](#classFRH__AsyncTaskHelper_1a8ba7451dcebfaafd9baa86269e5731b4)`() const` <a id="classFRH__AsyncTaskHelper_1a8ba7451dcebfaafd9baa86269e5731b4"></a>
 
 Gets the TaskPriority.
 
-<br>
 #### `public inline FORCEINLINE FTimespan `[`GetDuration`](#classFRH__AsyncTaskHelper_1a5254f3c8ff8b85769fb7e236fd0911e7)`() const` <a id="classFRH__AsyncTaskHelper_1a5254f3c8ff8b85769fb7e236fd0911e7"></a>
 
 Gets the Duration the task has been running for.
 
-<br>
 #### `protected int32 `[`TaskPriority`](#classFRH__AsyncTaskHelper_1a3cd0f6d0bc966c1d11babe6c0e55c3a2) <a id="classFRH__AsyncTaskHelper_1a3cd0f6d0bc966c1d11babe6c0e55c3a2"></a>
 
-<br>
 #### `protected FDateTime `[`StartedTime`](#classFRH__AsyncTaskHelper_1a03029966e286906faf052d41f377dfde) <a id="classFRH__AsyncTaskHelper_1a03029966e286906faf052d41f377dfde"></a>
 
-<br>
 #### `protected FDateTime `[`EndedTime`](#classFRH__AsyncTaskHelper_1adbb5e6fbcb188eaa3b73a810fe2ad024) <a id="classFRH__AsyncTaskHelper_1adbb5e6fbcb188eaa3b73a810fe2ad024"></a>
 
-<br>
 #### `protected inline  `[`FRH_AsyncTaskHelper`](#classFRH__AsyncTaskHelper_1ac536499bcb1447a61c1532d52f79712b)`()` <a id="classFRH__AsyncTaskHelper_1ac536499bcb1447a61c1532d52f79712b"></a>
 
 Default constructor.
 
-<br>
 #### `protected inline  `[`FRH_AsyncTaskHelper`](#classFRH__AsyncTaskHelper_1a5301b60fab1a7a9c0cb2753390a4bd34)`(int32 InPriority)` <a id="classFRH__AsyncTaskHelper_1a5301b60fab1a7a9c0cb2753390a4bd34"></a>
 
 Constructor with a priority for the task helper.
 
-<br>
 #### `protected virtual  `[`~FRH_AsyncTaskHelper`](#classFRH__AsyncTaskHelper_1af13727ce18a5652f71d9bc7aaf1c8345)`() = default` <a id="classFRH__AsyncTaskHelper_1af13727ce18a5652f71d9bc7aaf1c8345"></a>
 
 Default destructor.
 
-<br>
 #### `protected void `[`ExecuteCallback`](#classFRH__AsyncTaskHelper_1ad697e43c14f4bb6d7a490e790cb9c1a6)`(bool bSuccess) const` <a id="classFRH__AsyncTaskHelper_1ad697e43c14f4bb6d7a490e790cb9c1a6"></a>
 
 Abstract function called when the asynchronous tasks completes regardless of success or failure.
 
-<br>
 #### `protected inline virtual void `[`Cleanup`](#classFRH__AsyncTaskHelper_1a4b440306f400ffe304aa77d48fb9d57c)`()` <a id="classFRH__AsyncTaskHelper_1a4b440306f400ffe304aa77d48fb9d57c"></a>
 
 Function called to do cleanup when the asynchronous tasks is about to be deleted.
 
-<br>
 #### `protected inline void `[`Started`](#classFRH__AsyncTaskHelper_1a08f17e94ab3f155d4834ce5f6f2e18aa)`()` <a id="classFRH__AsyncTaskHelper_1a08f17e94ab3f155d4834ce5f6f2e18aa"></a>
 
 Function called when the asynchronous task has started.
 
-<br>
 #### `protected inline void `[`Failed`](#classFRH__AsyncTaskHelper_1a0715db32b4969b9ade04459ae80df8a7)`(const FString & FailureReason)` <a id="classFRH__AsyncTaskHelper_1a0715db32b4969b9ade04459ae80df8a7"></a>
 
 Function called in the event that the asynchronous task has failed.
 
-<br>
 #### `protected inline virtual void `[`Cancel`](#classFRH__AsyncTaskHelper_1aaf29b289af9c82871e3814205d566e0b)`(const FString & CancelReason)` <a id="classFRH__AsyncTaskHelper_1aaf29b289af9c82871e3814205d566e0b"></a>
 
 Cancels the asynchronous task by failing it out.
@@ -244,7 +230,6 @@ Cancels the asynchronous task by failing it out.
 
 This is intended to be called from external code, not from within the task itself. It will just immediately fail, but this is virtual in case any locking etc needs to be done for safety.
 
-<br>
 #### `protected inline void `[`Completed`](#classFRH__AsyncTaskHelper_1a6abf59b65bbdf0dbeaa526e96dac5784)`(bool bSuccess)` <a id="classFRH__AsyncTaskHelper_1a6abf59b65bbdf0dbeaa526e96dac5784"></a>
 
 Called when the asynchronous task has completed.
@@ -252,7 +237,6 @@ Called when the asynchronous task has completed.
 #### Parameters
 * `bSuccess` Whether or not the task completed successfully.
 
-<br>
 ## class `FRH_SimpleQueryHelper` <a id="classFRH__SimpleQueryHelper"></a>
 
 ```
@@ -262,7 +246,7 @@ class FRH_SimpleQueryHelper
 
 Templated helper class for asynchronously executing basic RallyHere API queries.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -277,7 +261,7 @@ Templated helper class for asynchronously executing basic RallyHere API queries.
 `protected FHttpRequestPtr `[`HttpRequest`](#classFRH__SimpleQueryHelper_1a9dec6a0aee9304e3f6e0a310afe97494) | The HTTP request object used to query the API.
 `protected `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` `[`ErrorInfo`](#classFRH__SimpleQueryHelper_1a33843e0102515af8f9576f1115d6911f) | Error Information
 
-#### Members
+### Members
 
 #### `public inline  `[`FRH_SimpleQueryHelper`](#classFRH__SimpleQueryHelper_1a6d5816682112de01ec950d228924d835)`(const typename BaseType::Delegate & InUpdateDelegate,const FRH_GenericSuccessWithErrorBlock & InCompleteDelegate,int32 InPriority)` <a id="classFRH__SimpleQueryHelper_1a6d5816682112de01ec950d228924d835"></a>
 
@@ -288,7 +272,6 @@ Constructor allowing for the specification of callback delegates.
 
 * `InCompleteDelegate` Generic completion delegate called regardless of success or failure
 
-<br>
 #### `public inline  `[`FRH_SimpleQueryHelper`](#classFRH__SimpleQueryHelper_1af6c2dbc3abf92fc2972831a9b8edcd7f)`(const typename BaseType::Delegate & InUpdateDelegate,const FRH_GenericSuccessBlock & InCompleteDelegate,int32 InPriority)` <a id="classFRH__SimpleQueryHelper_1af6c2dbc3abf92fc2972831a9b8edcd7f"></a>
 
 Constructor allowing for the specification of callback delegates.
@@ -298,7 +281,6 @@ Constructor allowing for the specification of callback delegates.
 
 * `InCompleteDelegate` Generic completion delegate called regardless of success or failure
 
-<br>
 #### `public inline virtual void `[`Start`](#classFRH__SimpleQueryHelper_1a503dfcc4b3226e4e8d2d7dc7b34b8eb8)`(TSharedRef< typename BaseType::API > API,const typename BaseType::Request & Request)` <a id="classFRH__SimpleQueryHelper_1a503dfcc4b3226e4e8d2d7dc7b34b8eb8"></a>
 
 Begins the task of asynchronously querying the API.
@@ -310,7 +292,6 @@ Begins the task of asynchronously querying the API.
 
 * `Priority` The Priority of the call, lower is higher priority
 
-<br>
 #### `public inline void `[`OnQueryComplete`](#classFRH__SimpleQueryHelper_1aa31bbdb22654a1396b93497dcd2ae1e8)`(const typename BaseType::Response & Resp)` <a id="classFRH__SimpleQueryHelper_1aa31bbdb22654a1396b93497dcd2ae1e8"></a>
 
 Called once the asynchronous query has returned a response.
@@ -318,42 +299,35 @@ Called once the asynchronous query has returned a response.
 #### Parameters
 * `Resp` Templated response data for the query
 
-<br>
 #### `public inline virtual FString `[`GetName`](#classFRH__SimpleQueryHelper_1a6084b0d198a8ebd51d3ca5d8699fb7ec)`() const` <a id="classFRH__SimpleQueryHelper_1a6084b0d198a8ebd51d3ca5d8699fb7ec"></a>
 
 Gets the templated name for this object.
 
-<br>
 #### `public inline virtual void `[`ExecuteCallback`](#classFRH__SimpleQueryHelper_1abd7b0c6ff2ee89e535370844cbd30331)`(bool bSuccess) const` <a id="classFRH__SimpleQueryHelper_1abd7b0c6ff2ee89e535370844cbd30331"></a>
 
 Executes the generic delegate associated with this asynchronous task forwarding bSuccess.
 
-<br>
 #### `protected BaseType::Delegate `[`UpdateDelegate`](#classFRH__SimpleQueryHelper_1a8a472b78bd02d5b7f009fd03d66985be) <a id="classFRH__SimpleQueryHelper_1a8a472b78bd02d5b7f009fd03d66985be"></a>
 
 Templated delegate to call with the API's response if query successfully completes.
 
-<br>
 #### `protected FRH_GenericSuccessWithErrorBlock `[`Delegate`](#classFRH__SimpleQueryHelper_1abcfae661faa10bc182cc4882a8446b54) <a id="classFRH__SimpleQueryHelper_1abcfae661faa10bc182cc4882a8446b54"></a>
 
 Generic completion delegate called regardless of success or failure.
 
-<br>
 #### `protected FHttpRequestPtr `[`HttpRequest`](#classFRH__SimpleQueryHelper_1a9dec6a0aee9304e3f6e0a310afe97494) <a id="classFRH__SimpleQueryHelper_1a9dec6a0aee9304e3f6e0a310afe97494"></a>
 
 The HTTP request object used to query the API.
 
-<br>
 #### `protected `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` `[`ErrorInfo`](#classFRH__SimpleQueryHelper_1a33843e0102515af8f9576f1115d6911f) <a id="classFRH__SimpleQueryHelper_1a33843e0102515af8f9576f1115d6911f"></a>
 
 Error Information
 
-<br>
 ## struct `FRH_DelegateBlock` <a id="structFRH__DelegateBlock"></a>
 
 Templated helper class defining a native and blueprint friendly delegate as a single object.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -366,51 +340,43 @@ Templated helper class defining a native and blueprint friendly delegate as a si
 `public inline bool `[`IsBound`](#structFRH__DelegateBlock_1a648274dc80bd38cf4619abdcf90f0018)`() const` | 
 `public inline bool `[`IsBoundToObject`](#structFRH__DelegateBlock_1a0a618d127583f1e21937af6196062c76)`(const void * Object) const` | 
 
-#### Members
+### Members
 
 #### `public DelegateType `[`Delegate`](#structFRH__DelegateBlock_1ade37e773fba5432b7829f972421a0cae) <a id="structFRH__DelegateBlock_1ade37e773fba5432b7829f972421a0cae"></a>
 
 Native-only version of the delegate.
 
-<br>
 #### `public DynamicDelegateType `[`DynDelegate`](#structFRH__DelegateBlock_1aff13841baef762eb21d87b0119a22ebc) <a id="structFRH__DelegateBlock_1aff13841baef762eb21d87b0119a22ebc"></a>
 
 Blueprint friendly version of the delegate.
 
-<br>
 #### `public inline  `[`FRH_DelegateBlock`](#structFRH__DelegateBlock_1a9cc53216276cfd3e6ec1aa0addae1638)`()` <a id="structFRH__DelegateBlock_1a9cc53216276cfd3e6ec1aa0addae1638"></a>
 
 Default constructor leaving both delegates unbound.
 
-<br>
 #### `public inline  `[`FRH_DelegateBlock`](#structFRH__DelegateBlock_1aedf66ff360f54e9124a5852f76d1e6b9)`(const DelegateType & InDelegate)` <a id="structFRH__DelegateBlock_1aedf66ff360f54e9124a5852f76d1e6b9"></a>
 
 Constructor for binding just the native-only version of the delegate.
 
-<br>
 #### `public inline  `[`FRH_DelegateBlock`](#structFRH__DelegateBlock_1a8ef1217b61837b2e89eafb57c477a7df)`(const DynamicDelegateType & InDynDelegate)` <a id="structFRH__DelegateBlock_1a8ef1217b61837b2e89eafb57c477a7df"></a>
 
 Constructor for binding just the blueprint friendly version of the delegate.
 
-<br>
 #### `public inline void `[`ExecuteIfBound`](#structFRH__DelegateBlock_1aa9e2440fe1a84c83218ce48353ff6364)`(ParamList... params) const` <a id="structFRH__DelegateBlock_1aa9e2440fe1a84c83218ce48353ff6364"></a>
 
 Executes both the native-only and blueprint friendly versions of the delegate, if they're bound.
 
-<br>
 #### `public inline bool `[`IsBound`](#structFRH__DelegateBlock_1a648274dc80bd38cf4619abdcf90f0018)`() const` <a id="structFRH__DelegateBlock_1a648274dc80bd38cf4619abdcf90f0018"></a>
 
-<br>
 #### `public inline bool `[`IsBoundToObject`](#structFRH__DelegateBlock_1a0a618d127583f1e21937af6196062c76)`(const void * Object) const` <a id="structFRH__DelegateBlock_1a0a618d127583f1e21937af6196062c76"></a>
 
-<br>
 ## struct `FRH_ErrorInfo` <a id="structFRH__ErrorInfo"></a>
 
 Generic blueprint and native delegate used to report success or failure.
 
 Generic handler for HTTP request errors.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -427,63 +393,52 @@ Generic handler for HTTP request errors.
 `public virtual  `[`~FRH_ErrorInfo`](#structFRH__ErrorInfo_1ac9f4ab0234c74be322dba389a32e32cf)`() = default` | Default destructor.
 `public inline void `[`ImportErrorInfo`](#structFRH__ErrorInfo_1a26ac8bbbd57882588cc878b0ee7fa99d)`(const RallyHereAPI::FResponse & Response)` | Parses The HTTP response into the error info.
 
-#### Members
+### Members
 
 #### `public FHttpResponsePtr `[`HttpResponse`](#structFRH__ErrorInfo_1aa84821f9c571e65c9268eece099bc7de) <a id="structFRH__ErrorInfo_1aa84821f9c571e65c9268eece099bc7de"></a>
 
 The raw http response.
 
-<br>
 #### `public int32 `[`ResponseCode`](#structFRH__ErrorInfo_1a390a2d3df6eb1eb30b8c45910beda439) <a id="structFRH__ErrorInfo_1a390a2d3df6eb1eb30b8c45910beda439"></a>
 
 The Error Code of the HTTP request.
 
-<br>
 #### `public FString `[`ResponseContent`](#structFRH__ErrorInfo_1a1a9cfc1398f93647a4409ed1e9712330) <a id="structFRH__ErrorInfo_1a1a9cfc1398f93647a4409ed1e9712330"></a>
 
 Content of the HTTP request response.
 
-<br>
 #### `public bool `[`bIsRHCommonError`](#structFRH__ErrorInfo_1a3dc04003818b7b61b32a1afcec580cf4) <a id="structFRH__ErrorInfo_1a3dc04003818b7b61b32a1afcec580cf4"></a>
 
 Whether the response is a RallyHere common error.
 
-<br>
 #### `public `[`FRHAPI_HzApiErrorModel`](models/RHAPI_HzApiErrorModel.md#structFRHAPI__HzApiErrorModel)` `[`RHCommonError`](#structFRH__ErrorInfo_1ae3439276423c4db34a8178f0382c4f27) <a id="structFRH__ErrorInfo_1ae3439276423c4db34a8178f0382c4f27"></a>
 
 The response as a RallyHere common error.
 
-<br>
 #### `public bool `[`bIsRHValidationError`](#structFRH__ErrorInfo_1a8c5a433b1d62e3562a010bda5376521a) <a id="structFRH__ErrorInfo_1a8c5a433b1d62e3562a010bda5376521a"></a>
 
 Whether the response is a RallyHere validation error.
 
-<br>
 #### `public `[`FRHAPI_ValidationError`](models/RHAPI_ValidationError.md#structFRHAPI__ValidationError)` `[`RHValidationError`](#structFRH__ErrorInfo_1a5d714aa9f92485faeca2e6985de7363d) <a id="structFRH__ErrorInfo_1a5d714aa9f92485faeca2e6985de7363d"></a>
 
 The response as a RallyHere validation error.
 
-<br>
 #### `public inline  `[`FRH_ErrorInfo`](#structFRH__ErrorInfo_1a73f5665c8b3d1e58d64e035d6dc0d141)`()` <a id="structFRH__ErrorInfo_1a73f5665c8b3d1e58d64e035d6dc0d141"></a>
 
 Default constructor.
 
-<br>
 #### `public inline  `[`FRH_ErrorInfo`](#structFRH__ErrorInfo_1a3aa352c4f719437558b1ad1e9bb2ca12)`(const RallyHereAPI::FResponse * Response)` <a id="structFRH__ErrorInfo_1a3aa352c4f719437558b1ad1e9bb2ca12"></a>
 
 Construct from Response Ptr.
 
-<br>
 #### `public inline  `[`FRH_ErrorInfo`](#structFRH__ErrorInfo_1aeb95360beb4cd80cc13d261d67cec516)`(const RallyHereAPI::FResponse & Response)` <a id="structFRH__ErrorInfo_1aeb95360beb4cd80cc13d261d67cec516"></a>
 
 Construct from Response Ref.
 
-<br>
 #### `public virtual  `[`~FRH_ErrorInfo`](#structFRH__ErrorInfo_1ac9f4ab0234c74be322dba389a32e32cf)`() = default` <a id="structFRH__ErrorInfo_1ac9f4ab0234c74be322dba389a32e32cf"></a>
 
 Default destructor.
 
-<br>
 #### `public inline void `[`ImportErrorInfo`](#structFRH__ErrorInfo_1a26ac8bbbd57882588cc878b0ee7fa99d)`(const RallyHereAPI::FResponse & Response)` <a id="structFRH__ErrorInfo_1a26ac8bbbd57882588cc878b0ee7fa99d"></a>
 
 Parses The HTTP response into the error info.
@@ -491,12 +446,11 @@ Parses The HTTP response into the error info.
 #### Parameters
 * `Response` The response to parse.
 
-<br>
 ## struct `FRH_CustomEndpointRequestWrapper` <a id="structFRH__CustomEndpointRequestWrapper"></a>
 
 Wrapper calls for custom endpoint requests.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -506,36 +460,31 @@ Wrapper calls for custom endpoint requests.
 `public FString `[`ContentType`](#structFRH__CustomEndpointRequestWrapper_1a0c5a56270404d556c0d65ba873cdaef3) | Http Content Type
 `public inline  `[`FRH_CustomEndpointRequestWrapper`](#structFRH__CustomEndpointRequestWrapper_1a6334b30e571cdb5577794ea5ee1c9cb4)`()` | 
 
-#### Members
+### Members
 
 #### `public FString `[`EndpointId`](#structFRH__CustomEndpointRequestWrapper_1ad1250992238eb10948193a97597ac65b) <a id="structFRH__CustomEndpointRequestWrapper_1ad1250992238eb10948193a97597ac65b"></a>
 
 Http Endpoint ID that is mapped to a URL
 
-<br>
 #### `public int32 `[`Priority`](#structFRH__CustomEndpointRequestWrapper_1a6b6460e53c2672f18efe9fea5cd36b2b) <a id="structFRH__CustomEndpointRequestWrapper_1a6b6460e53c2672f18efe9fea5cd36b2b"></a>
 
 Call Priority
 
-<br>
 #### `public `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` `[`Body`](#structFRH__CustomEndpointRequestWrapper_1ad733b4395528d978c61320f1d06d23db) <a id="structFRH__CustomEndpointRequestWrapper_1ad733b4395528d978c61320f1d06d23db"></a>
 
 Http Body as Json
 
-<br>
 #### `public FString `[`ContentType`](#structFRH__CustomEndpointRequestWrapper_1a0c5a56270404d556c0d65ba873cdaef3) <a id="structFRH__CustomEndpointRequestWrapper_1a0c5a56270404d556c0d65ba873cdaef3"></a>
 
 Http Content Type
 
-<br>
 #### `public inline  `[`FRH_CustomEndpointRequestWrapper`](#structFRH__CustomEndpointRequestWrapper_1a6334b30e571cdb5577794ea5ee1c9cb4)`()` <a id="structFRH__CustomEndpointRequestWrapper_1a6334b30e571cdb5577794ea5ee1c9cb4"></a>
 
-<br>
 ## struct `FRH_CustomEndpointResponseWrapper` <a id="structFRH__CustomEndpointResponseWrapper"></a>
 
 Wrapper calls for custom endpoint responses.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -546,39 +495,33 @@ Wrapper calls for custom endpoint responses.
 `public inline  `[`FRH_CustomEndpointResponseWrapper`](#structFRH__CustomEndpointResponseWrapper_1aa44901d30ba89511ec625f6bfe297aa0)`()` | 
 `public inline  `[`FRH_CustomEndpointResponseWrapper`](#structFRH__CustomEndpointResponseWrapper_1ad3707751b28f8cd4eaafc8d9cd4f8556)`(const RallyHereAPI::FResponse_CustomEndpointSend & Resp)` | 
 
-#### Members
+### Members
 
 #### `public int32 `[`HttpResponseCode`](#structFRH__CustomEndpointResponseWrapper_1a523d0748b8c43562b244c5b443885819) <a id="structFRH__CustomEndpointResponseWrapper_1a523d0748b8c43562b244c5b443885819"></a>
 
 Http Response Code
 
-<br>
 #### `public TArray< FString > `[`HttpHeaders`](#structFRH__CustomEndpointResponseWrapper_1a59c48808e9357fd64aa2de14d6369a7a) <a id="structFRH__CustomEndpointResponseWrapper_1a59c48808e9357fd64aa2de14d6369a7a"></a>
 
 Http Headers
 
-<br>
 #### `public `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` `[`HttpBody`](#structFRH__CustomEndpointResponseWrapper_1a791bfd7b371c5a8c49745dc4736fd045) <a id="structFRH__CustomEndpointResponseWrapper_1a791bfd7b371c5a8c49745dc4736fd045"></a>
 
 Http Body as Json
 
-<br>
 #### `public `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` `[`RHErrorInfo`](#structFRH__CustomEndpointResponseWrapper_1a5bc7706d93244411d0652b495030b2fd) <a id="structFRH__CustomEndpointResponseWrapper_1a5bc7706d93244411d0652b495030b2fd"></a>
 
 Parsed RallyHere error
 
-<br>
 #### `public inline  `[`FRH_CustomEndpointResponseWrapper`](#structFRH__CustomEndpointResponseWrapper_1aa44901d30ba89511ec625f6bfe297aa0)`()` <a id="structFRH__CustomEndpointResponseWrapper_1aa44901d30ba89511ec625f6bfe297aa0"></a>
 
-<br>
 #### `public inline  `[`FRH_CustomEndpointResponseWrapper`](#structFRH__CustomEndpointResponseWrapper_1ad3707751b28f8cd4eaafc8d9cd4f8556)`(const RallyHereAPI::FResponse_CustomEndpointSend & Resp)` <a id="structFRH__CustomEndpointResponseWrapper_1ad3707751b28f8cd4eaafc8d9cd4f8556"></a>
 
-<br>
 ## struct `FRH_PlayerPlatformId` <a id="structFRH__PlayerPlatformId"></a>
 
 Common structure for identifying players on any known platform.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -589,43 +532,37 @@ Common structure for identifying players on any known platform.
 `public inline  `[`FRH_PlayerPlatformId`](#structFRH__PlayerPlatformId_1a3e5948f39ab1702a82a8804dc458cc41)`()` | Default constructor that leaves the user ID empty and sets the platform type to "unknown".
 `public inline  `[`FRH_PlayerPlatformId`](#structFRH__PlayerPlatformId_1afa9903b50c919271e478b89f7a3c68dc)`(const FString & InUserId,ERHAPI_Platform InPlatformType)` | Constructor for specifying user ID and platform type.
 
-#### Members
+### Members
 
 #### `public FString `[`UserId`](#structFRH__PlayerPlatformId_1ab1b096a248e38084753556d23a99ccf3) <a id="structFRH__PlayerPlatformId_1ab1b096a248e38084753556d23a99ccf3"></a>
 
 Player identifier for the given platform type.
 
-<br>
 #### `public ERHAPI_Platform `[`PlatformType`](#structFRH__PlayerPlatformId_1a16ea8acca5079ee72ef5633463f84cab) <a id="structFRH__PlayerPlatformId_1a16ea8acca5079ee72ef5633463f84cab"></a>
 
 Platform type of this identifier.
 
-<br>
 #### `public inline FORCEINLINE bool `[`IsValid`](#structFRH__PlayerPlatformId_1a093b1a390755ba0891d56117e281d51e)`() const` <a id="structFRH__PlayerPlatformId_1a093b1a390755ba0891d56117e281d51e"></a>
 
 Returns whether or not this player platform ID has been filled with sensible data.
 
-<br>
 #### `public inline bool `[`operator==`](#structFRH__PlayerPlatformId_1a1632682be2ed79e28b8b29c185377efa)`(const `[`FRH_PlayerPlatformId`](#structFRH__PlayerPlatformId)` & Other) const` <a id="structFRH__PlayerPlatformId_1a1632682be2ed79e28b8b29c185377efa"></a>
 
 Returns whether or not this player platform ID exactly matches the given player platform ID.
 
-<br>
 #### `public inline  `[`FRH_PlayerPlatformId`](#structFRH__PlayerPlatformId_1a3e5948f39ab1702a82a8804dc458cc41)`()` <a id="structFRH__PlayerPlatformId_1a3e5948f39ab1702a82a8804dc458cc41"></a>
 
 Default constructor that leaves the user ID empty and sets the platform type to "unknown".
 
-<br>
 #### `public inline  `[`FRH_PlayerPlatformId`](#structFRH__PlayerPlatformId_1afa9903b50c919271e478b89f7a3c68dc)`(const FString & InUserId,ERHAPI_Platform InPlatformType)` <a id="structFRH__PlayerPlatformId_1afa9903b50c919271e478b89f7a3c68dc"></a>
 
 Constructor for specifying user ID and platform type.
 
-<br>
 ## struct `FRH_RemoteFileApiDirectory` <a id="structFRH__RemoteFileApiDirectory"></a>
 
 A tuple specifying the directory of a file in the remote file storage.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -639,40 +576,32 @@ A tuple specifying the directory of a file in the remote file storage.
 `public inline bool `[`IsValid`](#structFRH__RemoteFileApiDirectory_1aaae4e108ecd39fb74c4ce279e20304a3)`() const` | 
 `public inline FString `[`ToDescriptionString`](#structFRH__RemoteFileApiDirectory_1a2b39ae30546135d8802a1663893948bc)`() const` | Get a string representation of the directory.
 
-#### Members
+### Members
 
 #### `public ERHAPI_FileType `[`FileType`](#structFRH__RemoteFileApiDirectory_1a1986a05bf105acf8d7cb3ccb245c4b67) <a id="structFRH__RemoteFileApiDirectory_1a1986a05bf105acf8d7cb3ccb245c4b67"></a>
 
 The type of file to upload/download
 
-<br>
 #### `public ERHAPI_EntityType `[`EntityType`](#structFRH__RemoteFileApiDirectory_1ac1fbbf236dd5683c0189b58ace4c546b) <a id="structFRH__RemoteFileApiDirectory_1ac1fbbf236dd5683c0189b58ace4c546b"></a>
 
 The type of entity the file is associated with
 
-<br>
 #### `public FString `[`EntityId`](#structFRH__RemoteFileApiDirectory_1a4065838f5ba174048afd65330a29409d) <a id="structFRH__RemoteFileApiDirectory_1a4065838f5ba174048afd65330a29409d"></a>
 
 The id of the entity the file is associated with
 
-<br>
 #### `public  `[`GENERATED_USTRUCT_BODY`](#structFRH__RemoteFileApiDirectory_1acd97265b9b2a315fbe5eb2aa63c5e67d)`()` <a id="structFRH__RemoteFileApiDirectory_1acd97265b9b2a315fbe5eb2aa63c5e67d"></a>
 
-<br>
 #### `public inline  `[`FRH_RemoteFileApiDirectory`](#structFRH__RemoteFileApiDirectory_1a56911df486ef89c7096aed2c11cbf837)`()` <a id="structFRH__RemoteFileApiDirectory_1a56911df486ef89c7096aed2c11cbf837"></a>
 
-<br>
 #### `public inline  `[`FRH_RemoteFileApiDirectory`](#structFRH__RemoteFileApiDirectory_1a2098f9e4b8b8b88060886f87d8e394d2)`(ERHAPI_FileType InFileType,ERHAPI_EntityType InEntityType,const FString & InEntityId)` <a id="structFRH__RemoteFileApiDirectory_1a2098f9e4b8b8b88060886f87d8e394d2"></a>
 
-<br>
 #### `public inline bool `[`operator==`](#structFRH__RemoteFileApiDirectory_1a96fe3372945cbf4ffef30c1519bd1432)`(const `[`FRH_RemoteFileApiDirectory`](#structFRH__RemoteFileApiDirectory)` & Other) const` <a id="structFRH__RemoteFileApiDirectory_1a96fe3372945cbf4ffef30c1519bd1432"></a>
 
 Comparison operator.
 
-<br>
 #### `public inline bool `[`IsValid`](#structFRH__RemoteFileApiDirectory_1aaae4e108ecd39fb74c4ce279e20304a3)`() const` <a id="structFRH__RemoteFileApiDirectory_1aaae4e108ecd39fb74c4ce279e20304a3"></a>
 
-<br>
 #### `public inline FString `[`ToDescriptionString`](#structFRH__RemoteFileApiDirectory_1a2b39ae30546135d8802a1663893948bc)`() const` <a id="structFRH__RemoteFileApiDirectory_1a2b39ae30546135d8802a1663893948bc"></a>
 
 Get a string representation of the directory.
@@ -680,4 +609,3 @@ Get a string representation of the directory.
 #### Returns
 A string representation of the directory
 
-<br>

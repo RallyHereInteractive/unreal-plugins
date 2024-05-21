@@ -1,4 +1,4 @@
-# RHAPI_BaseModel <a id="group__RHAPI__BaseModel"></a>
+# group `RHAPI_BaseModel` <a id="group__RHAPI__BaseModel"></a>
 
 ## Summary
 
@@ -10,7 +10,7 @@
 
 Base class for all RallyHereAPI data models.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -19,14 +19,12 @@ Base class for all RallyHereAPI data models.
 `public inline virtual bool `[`FromJson`](#structFRHAPI__Model_1a96477760fd6707ecca6b56b8d151beab)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public inline virtual void `[`WriteJson`](#structFRHAPI__Model_1a1571819a105ad9b51e09b51d134c2d0a)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 
-#### Members
+### Members
 
 #### `public  `[`GENERATED_BODY`](#structFRHAPI__Model_1aa903e87a078f9bf7d2bb37b08d1a535a)`(WithNoDestructor)` <a id="structFRHAPI__Model_1aa903e87a078f9bf7d2bb37b08d1a535a"></a>
 
-<br>
 #### `public inline virtual  `[`~FRHAPI_Model`](#structFRHAPI__Model_1ace9ebc0be8edfb46766c86c756630ee4)`()` <a id="structFRHAPI__Model_1ace9ebc0be8edfb46766c86c756630ee4"></a>
 
-<br>
 #### `public inline virtual bool `[`FromJson`](#structFRHAPI__Model_1a96477760fd6707ecca6b56b8d151beab)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__Model_1a96477760fd6707ecca6b56b8d151beab"></a>
 
 Fills this object with data from the passed in JSON.
@@ -37,7 +35,6 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-<br>
 #### `public inline virtual void `[`WriteJson`](#structFRHAPI__Model_1a1571819a105ad9b51e09b51d134c2d0a)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__Model_1a1571819a105ad9b51e09b51d134c2d0a"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
@@ -45,4 +42,3 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-<br>

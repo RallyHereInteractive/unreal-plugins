@@ -1,4 +1,4 @@
-# RHAPI_PortalUseRuleset <a id="group__RHAPI__PortalUseRuleset"></a>
+# group `RHAPI_PortalUseRuleset` <a id="group__RHAPI__PortalUseRuleset"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_PortalUseRuleset
 
 A collection of Portal Use Rules.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -52,34 +52,28 @@ A collection of Portal Use Rules.
 `public inline void `[`SetCacheInfo`](#structFRHAPI__PortalUseRuleset_1a54d60f54ae600b984fbd0e637c89cfd4)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__PortalUseRuleset_1a5ae2c6f9376d8697d0b23b3b029666e3)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 
-#### Members
+### Members
 
 #### `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__PortalUseRuleset_1a6adcf1faeab36224d7427c77ee7fb53b) <a id="structFRHAPI__PortalUseRuleset_1a6adcf1faeab36224d7427c77ee7fb53b"></a>
 
 Custom data associated with the resource.
 
-<br>
 #### `public bool `[`CustomData_IsSet`](#structFRHAPI__PortalUseRuleset_1a9e434691c833dbf6415957cb7dc083a2) <a id="structFRHAPI__PortalUseRuleset_1a9e434691c833dbf6415957cb7dc083a2"></a>
 
 true if CustomData_Optional has been set to a value
 
-<br>
 #### `public TMap< FString, TArray< ERHAPI_Portal > > `[`Rules_Optional`](#structFRHAPI__PortalUseRuleset_1a7200c3625c738dc8c7ab7ebc473332b6) <a id="structFRHAPI__PortalUseRuleset_1a7200c3625c738dc8c7ab7ebc473332b6"></a>
 
-<br>
 #### `public bool `[`Rules_IsSet`](#structFRHAPI__PortalUseRuleset_1a4b92c8c7449f8bf0d67daad6a98b75bf) <a id="structFRHAPI__PortalUseRuleset_1a4b92c8c7449f8bf0d67daad6a98b75bf"></a>
 
 true if Rules_Optional has been set to a value
 
-<br>
 #### `public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__PortalUseRuleset_1ab7077b18224b06098343e0764e593b91) <a id="structFRHAPI__PortalUseRuleset_1ab7077b18224b06098343e0764e593b91"></a>
 
-<br>
 #### `public bool `[`CacheInfo_IsSet`](#structFRHAPI__PortalUseRuleset_1ab75284e0d03bb879671ab86cfc3c39c6) <a id="structFRHAPI__PortalUseRuleset_1ab75284e0d03bb879671ab86cfc3c39c6"></a>
 
 true if CacheInfo_Optional has been set to a value
 
-<br>
 #### `public virtual bool `[`FromJson`](#structFRHAPI__PortalUseRuleset_1a65364871150a621def88d653d1fbe84f)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PortalUseRuleset_1a65364871150a621def88d653d1fbe84f"></a>
 
 Fills this object with data from the passed in JSON.
@@ -90,7 +84,6 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-<br>
 #### `public virtual void `[`WriteJson`](#structFRHAPI__PortalUseRuleset_1a3f150d25c90a137c73a99bcb87d824b8)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PortalUseRuleset_1a3f150d25c90a137c73a99bcb87d824b8"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
@@ -98,124 +91,99 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-<br>
 #### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PortalUseRuleset_1a01a9fcf5353c6eef969894dd35f9c254)`()` <a id="structFRHAPI__PortalUseRuleset_1a01a9fcf5353c6eef969894dd35f9c254"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-<br>
 #### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PortalUseRuleset_1a40009a1a966a268ad234894f655668e2)`() const` <a id="structFRHAPI__PortalUseRuleset_1a40009a1a966a268ad234894f655668e2"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-<br>
 #### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PortalUseRuleset_1a315ccfdf0a394c8af1c33484efe7a69e)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__PortalUseRuleset_1a315ccfdf0a394c8af1c33484efe7a69e"></a>
 
 Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
 
-<br>
 #### `public inline bool `[`GetCustomData`](#structFRHAPI__PortalUseRuleset_1ae02e9b64b7890d604ab536729fa8de43)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__PortalUseRuleset_1ae02e9b64b7890d604ab536729fa8de43"></a>
 
 Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 
-<br>
 #### `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PortalUseRuleset_1a1eaacc7180f1b8c2e0783e4498ee1bb3)`()` <a id="structFRHAPI__PortalUseRuleset_1a1eaacc7180f1b8c2e0783e4498ee1bb3"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-<br>
 #### `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PortalUseRuleset_1a6916d73cee5a641a1e30b2b0543dcf59)`() const` <a id="structFRHAPI__PortalUseRuleset_1a6916d73cee5a641a1e30b2b0543dcf59"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-<br>
 #### `public inline void `[`SetCustomData`](#structFRHAPI__PortalUseRuleset_1af1ba3ac076609280a06bf2eea6db94e6)`(TMap< FString, FString > NewValue)` <a id="structFRHAPI__PortalUseRuleset_1af1ba3ac076609280a06bf2eea6db94e6"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 
-<br>
 #### `public inline void `[`ClearCustomData`](#structFRHAPI__PortalUseRuleset_1a0e624bd83b3ca823a2ba9f7f570e0ccc)`()` <a id="structFRHAPI__PortalUseRuleset_1a0e624bd83b3ca823a2ba9f7f570e0ccc"></a>
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
-<br>
 #### `public inline TMap< FString, TArray< ERHAPI_Portal > > & `[`GetRules`](#structFRHAPI__PortalUseRuleset_1aa8fc4d305977b2209386c2d9a48e86c7)`()` <a id="structFRHAPI__PortalUseRuleset_1aa8fc4d305977b2209386c2d9a48e86c7"></a>
 
 Gets the value of Rules_Optional, regardless of it having been set.
 
-<br>
 #### `public inline const TMap< FString, TArray< ERHAPI_Portal > > & `[`GetRules`](#structFRHAPI__PortalUseRuleset_1a4189d99701bd4c0f4f94d865b82cfd2c)`() const` <a id="structFRHAPI__PortalUseRuleset_1a4189d99701bd4c0f4f94d865b82cfd2c"></a>
 
 Gets the value of Rules_Optional, regardless of it having been set.
 
-<br>
 #### `public inline const TMap< FString, TArray< ERHAPI_Portal > > & `[`GetRules`](#structFRHAPI__PortalUseRuleset_1a1dd3daa01cc3500b640e5bbb8644cee3)`(const TMap< FString, TArray< ERHAPI_Portal >> & DefaultValue) const` <a id="structFRHAPI__PortalUseRuleset_1a1dd3daa01cc3500b640e5bbb8644cee3"></a>
 
 Gets the value of Rules_Optional, if it has been set, otherwise it returns DefaultValue.
 
-<br>
 #### `public inline bool `[`GetRules`](#structFRHAPI__PortalUseRuleset_1a48db5c7623fd3023afd9d722c47d495f)`(TMap< FString, TArray< ERHAPI_Portal >> & OutValue) const` <a id="structFRHAPI__PortalUseRuleset_1a48db5c7623fd3023afd9d722c47d495f"></a>
 
 Fills OutValue with the value of Rules_Optional and returns true if it has been set, otherwise returns false.
 
-<br>
 #### `public inline TMap< FString, TArray< ERHAPI_Portal > > * `[`GetRulesOrNull`](#structFRHAPI__PortalUseRuleset_1a1d7ccc8cefda25573a8cfdaa2555bdfb)`()` <a id="structFRHAPI__PortalUseRuleset_1a1d7ccc8cefda25573a8cfdaa2555bdfb"></a>
 
 Returns a pointer to Rules_Optional, if it has been set, otherwise returns nullptr.
 
-<br>
 #### `public inline const TMap< FString, TArray< ERHAPI_Portal > > * `[`GetRulesOrNull`](#structFRHAPI__PortalUseRuleset_1acaa6cc07f5fdeb506840fcf1a6511c3a)`() const` <a id="structFRHAPI__PortalUseRuleset_1acaa6cc07f5fdeb506840fcf1a6511c3a"></a>
 
 Returns a pointer to Rules_Optional, if it has been set, otherwise returns nullptr.
 
-<br>
 #### `public inline void `[`SetRules`](#structFRHAPI__PortalUseRuleset_1a742daae463cec2657b7d426e1c3287cf)`(TMap< FString, TArray< ERHAPI_Portal >> NewValue)` <a id="structFRHAPI__PortalUseRuleset_1a742daae463cec2657b7d426e1c3287cf"></a>
 
 Sets the value of Rules_Optional and also sets Rules_IsSet to true.
 
-<br>
 #### `public inline void `[`ClearRules`](#structFRHAPI__PortalUseRuleset_1a38ee7a5b93aff6ea5030f958048f659a)`()` <a id="structFRHAPI__PortalUseRuleset_1a38ee7a5b93aff6ea5030f958048f659a"></a>
 
 Clears the value of Rules_Optional and sets Rules_IsSet to false.
 
-<br>
 #### `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__PortalUseRuleset_1aac077b206dbaae186847763a14aeacca)`()` <a id="structFRHAPI__PortalUseRuleset_1aac077b206dbaae186847763a14aeacca"></a>
 
 Gets the value of CacheInfo_Optional, regardless of it having been set.
 
-<br>
 #### `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__PortalUseRuleset_1aee6cbc1d50ef03d3b634e722e4197f50)`() const` <a id="structFRHAPI__PortalUseRuleset_1aee6cbc1d50ef03d3b634e722e4197f50"></a>
 
 Gets the value of CacheInfo_Optional, regardless of it having been set.
 
-<br>
 #### `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__PortalUseRuleset_1ac9f2c10a981c13ac21cc340a56851c75)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` <a id="structFRHAPI__PortalUseRuleset_1ac9f2c10a981c13ac21cc340a56851c75"></a>
 
 Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue.
 
-<br>
 #### `public inline bool `[`GetCacheInfo`](#structFRHAPI__PortalUseRuleset_1a95234561f173380061e5cd93b291cdc0)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & OutValue) const` <a id="structFRHAPI__PortalUseRuleset_1a95234561f173380061e5cd93b291cdc0"></a>
 
 Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false.
 
-<br>
 #### `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__PortalUseRuleset_1ac427dedc5c87e6863d3c623d660c497b)`()` <a id="structFRHAPI__PortalUseRuleset_1ac427dedc5c87e6863d3c623d660c497b"></a>
 
 Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
 
-<br>
 #### `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__PortalUseRuleset_1a196c5c6b2b0c78c7b37aa95ff4eb6fbf)`() const` <a id="structFRHAPI__PortalUseRuleset_1a196c5c6b2b0c78c7b37aa95ff4eb6fbf"></a>
 
 Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
 
-<br>
 #### `public inline void `[`SetCacheInfo`](#structFRHAPI__PortalUseRuleset_1a54d60f54ae600b984fbd0e637c89cfd4)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` NewValue)` <a id="structFRHAPI__PortalUseRuleset_1a54d60f54ae600b984fbd0e637c89cfd4"></a>
 
 Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
 
-<br>
 #### `public inline void `[`ClearCacheInfo`](#structFRHAPI__PortalUseRuleset_1a5ae2c6f9376d8697d0b23b3b029666e3)`()` <a id="structFRHAPI__PortalUseRuleset_1a5ae2c6f9376d8697d0b23b3b029666e3"></a>
 
 Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 
-<br>

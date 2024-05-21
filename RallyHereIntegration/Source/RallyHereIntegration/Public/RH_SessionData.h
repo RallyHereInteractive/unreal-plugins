@@ -429,6 +429,7 @@ public:
 	 */
 	FRH_OnSessionUpdatedMulticastDelegate OnSessionUpdatedDelegate;
 	/**
+	 * @private
 	 * @brief Blueprint compatible delegate fired whenever the session is updated.
 	 */
 	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Session", meta = (DisplayName = "On Session Updated"))
@@ -438,6 +439,7 @@ public:
 	 */
 	FRH_OnSessionUpdatedMulticastDelegate OnSessionNotFoundDelegate;
 	/**
+	 * @private
 	 * @brief Blueprint compatible delegate fired whenever the session is not found.
 	 */
 	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Session", meta = (DisplayName = "On Session Not Found"))
@@ -447,6 +449,7 @@ public:
 	 */
 	FRH_OnSessionMemberStateChangedDelegate OnSessionMemberStateChangedDelegate;
 	/**
+	 * @private
 	 * @brief Blueprint compatible delegate fired whenever the session member list changes with details about the change
 	 */
 	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Session", meta = (DisplayName = "On Session Member Changed"))
@@ -559,6 +562,7 @@ public:
 	 */
 	virtual void Join(const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock());
 	/**
+	 * @private
 	 * @brief Blueprint compatible version of Join
 	 * @param [in] Delegate The callback delegate for the session being updated by the join.
 	 */
@@ -570,6 +574,7 @@ public:
 	 */
 	virtual void Leave(const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock());
 	/**
+	 * @private
 	 * @brief Blueprint compatible version of Leave
 	 * @param [in] Delegate The callback delegate for the session being updated by the leave.
 	 */
@@ -582,6 +587,7 @@ public:
 	 */
 	virtual void QueryInviterBlockedOnPlatformAsync(const FRH_OnSessionPlayerIsBlockedDelegateBlock& Delegate);
 	/**
+	 * @private
 	 * @brief Blueprint compatible version of QueryInviterBlockedOnPlatformAsync
 	 * @param [in] Delegate The callback delegate for the results of querying if the inviter is blocked on the current platform
 	 */
@@ -661,12 +667,13 @@ public:
 	 */
 	virtual void QueryPlayerBlockedOnPlatformAsync(const FGuid& PlayerUuid, const FRH_OnSessionPlayerIsBlockedDelegateBlock& Delegate);
 	/**
+	 * @private
 	 * @brief helper function to determine if a player is blocked on a given platform (useful to prevent inviting a player that you have blocked)
 	 * @param [in] PlayerUuid The unique player Id to query if they are blocked on the platform
 	 * @param [in] Delegate Callback delegate for the results of querying if the player is blocked on the platform
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Is Player Blocked For Inviting", AutoCreateRefTerm = "Delegate"))
-	virtual void BLUEPRINT_QueryPlayerBlockedOnPlatformAsync(const FGuid& PlayerUuid, const FRH_OnSessionPlayerIsBlockedDynamicDelegate& Delegate) { QueryPlayerBlockedOnPlatformAsync(PlayerUuid, Delegate); }
+	void BLUEPRINT_QueryPlayerBlockedOnPlatformAsync(const FGuid& PlayerUuid, const FRH_OnSessionPlayerIsBlockedDynamicDelegate& Delegate) { QueryPlayerBlockedOnPlatformAsync(PlayerUuid, Delegate); }
 	/**
 	 * @brief Invites a player to the session.
 	 * @param [in] PlayerUuid The unique player Id to invite to the session.
@@ -676,6 +683,7 @@ public:
 	 */
 	virtual void InvitePlayer(const FGuid& PlayerUuid, int32 Team = 0, const TMap<FString, FString>& CustomData = TMap<FString, FString>(), const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::InvitePlayer, ); }
 	/**
+	 * @private
 	 * @brief Blueprint compatible version of InvitePlayer
 	 * @param [in] PlayerUuid The unique player Id to invite to the session.
 	 * @param [in] Team The target team that the player will be associated with in the session.
@@ -691,6 +699,7 @@ public:
 	 */
 	virtual void KickPlayer(const FGuid& PlayerUuid, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::KickPlayer, ); }
 	/**
+	 * @private
 	 * @brief Blueprint compatible version of KickPlayer
 	 * @param [in] PlayerUuid The unique player Id to kick from the session.
 	 * @param [in] Delegate Callback delegate for the session being updated by the kick.
@@ -706,6 +715,7 @@ public:
 	 */
 	virtual void InviteOtherSession(const FString& InvitedSessionId, const FRHAPI_SessionInviteRequest& SessionInviteRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::InviteOtherSession, ); }
 	/**
+	 * @private
 	 * @brief Blueprint compatible version of InviteOtherSession
 	 * @param [in] InvitedSessionId The session id to send the invite to
 	 * @param [in] SessionInviteRequest Information about the invite being sent, including team information
@@ -720,6 +730,7 @@ public:
 	 */
 	virtual void KickOtherSession(const FString& KickedSessionId, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::KickOtherSession, ); }
 	/**
+	 * @private
 	 * @brief Blueprint compatible version of KickOtherSession
 	 * @param [in] KickedSessionId The session Id to kick from this session.
 	 * @param [in] Delegate Callback delegate for the session being updated by the kick.
@@ -734,6 +745,7 @@ public:
 	 */
 	virtual void SetLeader(const FGuid& PlayerUuid, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::SetLeader, ); }
 	/**
+	 * @private
 	 * @brief Blueprint compatible version of SetLeader
 	 * @param [in] PlayerUuid The unique player Id to become the session leader.
 	 * @param [in] Delegate Callback delegate for the session being updated by the leader change.
@@ -748,6 +760,7 @@ public:
 	 */
 	virtual void ChangePlayerTeam(const FGuid& PlayerUuid, int32 Team, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::ChangePlayerTeam, ); }
 	/**
+	 * @private
 	 * @brief Blueprint compatible version of ChangePlayerTeam
 	 * @param [in] PlayerUuid The unique player Id to invite to the session.
 	 * @param [in] Team The target team that the player will be associated with in the session.
@@ -763,6 +776,7 @@ public:
 	 */
 	virtual void UpdatePlayerCustomData(const FGuid& PlayerUuid, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::UpdatePlayerCustomData, ); }
 	/**
+	 * @private
 	 * @brief Blueprint compatible version of UpdatePlayerCustomData.
 	 * @param [in] PlayerUuid The unique player Id whose custom data will be updated
 	 * @param [in] CustomData The custom data map to set the player's to
@@ -777,6 +791,7 @@ public:
 	 */
 	virtual void Leave(bool bFromOSSSession, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::Leave, ); }
 	/**
+	 * @private
 	 * @brief Blueprint compatible version of Leave
 	 * @param [in] bFromOSSSession If true, then leave the OSS Session. Otherwise, just leave the session.
 	 * @param [in] Delegate Callback delegate for the session being updated by the leave.
@@ -790,6 +805,7 @@ public:
 	 */
 	virtual void RequestInstance(const FRHAPI_InstanceRequest& InstanceRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::RequestInstance, ); }
 	/**
+	 * @private
 	 * @brief Blueprint compatible version of RequestInstance
 	 * @param [in] InstanceRequest Details for the instance being requested.
 	 * @param [in] Delegate Callback delegate for the session being updated with the instance creation, or failure.
@@ -802,6 +818,7 @@ public:
 	 */
 	virtual void EndInstance(const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::EndInstance, ); };
 	/**
+	 * @private
 	 * @brief Blueprint compatible version of EndInstance
 	 * @param [in] Delegate Callback delegate for the session being updated with the instance ending.
 	 */
@@ -810,148 +827,158 @@ public:
 
 	// VOIP functions
 	/**
-	* @brief Generate a VOIP login token
-	* @param [in] Delegate Callback delegate with the new voip token
-	*/
+	 * @brief Generate a VOIP login token
+	 * @param [in] Delegate Callback delegate with the new voip token
+	 */
 	virtual void GenerateVoipLoginToken(const FRH_OnSessionGetVoipTokenDelegateBlock& Delegate) { PURE_VIRTUAL(URH_JoinedSession::GenerateVoipLoginToken, ); }
 	/**
-	* @brief Blueprint compatible version of GenerateVoipLoginToken
-	* @param [in] Delegate Callback delegate with the new voip token
-	*/
+	 * @private
+	 * @brief Blueprint compatible version of GenerateVoipLoginToken
+	 * @param [in] Delegate Callback delegate with the new voip token
+	 */
 	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Generate Voip Login Token", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GenerateVoipLoginToken(const FRH_OnSessionGetVoipTokenDynamicDelegate& Delegate) { GenerateVoipLoginToken(Delegate); }
 	/**
-	* @brief Generate a VOIP action token
-	* @param [in] VivoxAction The action to generate a token for
-	* @param [in] VoipSessionType The type of voip session to generate a token for
-	* @param [in] Delegate Callback delegate with the new voip token
-	*/
+	 * @brief Generate a VOIP action token
+	 * @param [in] VivoxAction The action to generate a token for
+	 * @param [in] VoipSessionType The type of voip session to generate a token for
+	 * @param [in] Delegate Callback delegate with the new voip token
+	 */
 	virtual void GenerateVoipActionToken(ERHAPI_VivoxSessionActionSingle VivoxAction, ERHAPI_VoipSessionType VoipSessionType, const FRH_OnSessionGetVoipTokenDelegateBlock& Delegate) { PURE_VIRTUAL(URH_JoinedSession::GenerateVoipActionToken, ); }
 	/**
-	* @brief Blueprint compatible version of GenerateVoipActionToken
-	* @param [in] VivoxAction The action to generate a token for
-	* @param [in] VoipSessionType The type of voip session to generate a token for
-	* @param [in] Delegate Callback delegate with the new voip token
-	*/
+	 * @private
+	 * @brief Blueprint compatible version of GenerateVoipActionToken
+	 * @param [in] VivoxAction The action to generate a token for
+	 * @param [in] VoipSessionType The type of voip session to generate a token for
+	 * @param [in] Delegate Callback delegate with the new voip token
+	 */
 	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Generate Voip Action Token", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GenerateVoipActionToken(ERHAPI_VivoxSessionActionSingle VivoxAction, ERHAPI_VoipSessionType VoipSessionType, const FRH_OnSessionGetVoipTokenDynamicDelegate& Delegate) { GenerateVoipActionToken(VivoxAction, VoipSessionType, Delegate); }
 
 	/**
-	* @brief Updates the session info.
-	* @param [in] Update The session info for the update.
-	* @param [in] Delegate Callback delegate for the session being updated with new session data.
-	*/
+	 * @brief Updates the session info.
+	 * @param [in] Update The session info for the update.
+	 * @param [in] Delegate Callback delegate for the session being updated with new session data.
+	 */
 	virtual void UpdateSessionInfo(const FRHAPI_SessionUpdate& Update, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::UpdateSessionInfo, ); };
 	/**
-	* @brief Blueprint compatible of UpdateSessionInfo
-	* @param [in] Update The session info for the update.
-	* @param [in] Delegate Callback delegate for the session being updated with new session data.
-	*/
+	 * @private
+	 * @brief Blueprint compatible of UpdateSessionInfo
+	 * @param [in] Update The session info for the update.
+	 * @param [in] Delegate Callback delegate for the session being updated with new session data.
+	 */
 	UFUNCTION(BlueprintCallable, Category = "Session|Host", meta = (DisplayName = "Update Session Info", AutoCreateRefTerm = "Update,Delegate"))
 	void BLUEPRINT_UpdateSessionInfo(const FRHAPI_SessionUpdate& Update, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { UpdateSessionInfo(Update, Delegate); };
 	/**
-	* @brief Gets a struct with a copy of the session state, so that it can be modified and passed to UpdateSessionInfo.
-	*/
+	 * @brief Gets a struct with a copy of the session state, so that it can be modified and passed to UpdateSessionInfo.
+	 */
 	UFUNCTION(BlueprintPure, Category = "Session|Host")
 	FRHAPI_SessionUpdate GetSessionUpdateInfoDefaults() const;
 	/**
-	* @brief Updates the sessions instance info.
-	* @param [in] Update The instance info for the update.
-	* @param [in] Delegate Callback delegate for the session being updated with new instance data.
-	*/
+	 * @brief Updates the sessions instance info.
+	 * @param [in] Update The instance info for the update.
+	 * @param [in] Delegate Callback delegate for the session being updated with new instance data.
+	 */
 	virtual void UpdateInstanceInfo(const FRHAPI_InstanceInfoUpdate& Update, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::UpdateInstanceInfo, ); };
 	/**
-	* @brief Blueprint compatible version of UpdateInstanceInfo
-	* @param [in] Update The instance info for the update.
-	* @param [in] Delegate Callback delegate for the session being updated with new instance data.
-	*/
+	 * @private
+	 * @brief Blueprint compatible version of UpdateInstanceInfo
+	 * @param [in] Update The instance info for the update.
+	 * @param [in] Delegate Callback delegate for the session being updated with new instance data.
+	 */
 	UFUNCTION(BlueprintCallable, Category = "Session|Host", meta = (DisplayName = "Update Instance Info", AutoCreateRefTerm = "Update,Delegate"))
 	void BLUEPRINT_UpdateInstanceInfo(const FRHAPI_InstanceInfoUpdate& Update, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { UpdateInstanceInfo(Update, Delegate); };
 	/**
-	* @brief Gets a struct with a copy of the instance state, so that it can be modified and passed to UpdateInstanceInfo.
-	*/
+	 * @brief Gets a struct with a copy of the instance state, so that it can be modified and passed to UpdateInstanceInfo.
+	 */
 	UFUNCTION(BlueprintPure, Category = "Session|Host")
 	FRHAPI_InstanceInfoUpdate GetInstanceUpdateInfoDefaults() const;
 	/**
-	* @brief Updates the sessions browser info.
-	* @param [in] bEnable If true, sets the browser info. Otherwise, clear it out.
-	* @param [in] CustomData The new browser data for the update.
-	* @param [in] Delegate Callback delegate for the session being updated with new browser data.
-	*/
+	 * @brief Updates the sessions browser info.
+	 * @param [in] bEnable If true, sets the browser info. Otherwise, clear it out.
+	 * @param [in] CustomData The new browser data for the update.
+	 * @param [in] Delegate Callback delegate for the session being updated with new browser data.
+	 */
 	virtual void UpdateBrowserInfo(bool bEnable, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::UpdateBrowserInfo, ); };
 	/**
-	* @brief Blueprint compatible version of UpdateBrowserInfo
-	* @param [in] bEnable If true, sets the browser info. Otherwise, clear it out.
-	* @param [in] CustomData The new browser data for the update.
-	* @param [in] Delegate Callback delegate for the session being updated with new browser data.
-	*/
+	 * @private
+	 * @brief Blueprint compatible version of UpdateBrowserInfo
+	 * @param [in] bEnable If true, sets the browser info. Otherwise, clear it out.
+	 * @param [in] CustomData The new browser data for the update.
+	 * @param [in] Delegate Callback delegate for the session being updated with new browser data.
+	 */
 	UFUNCTION(BlueprintCallable, Category = "Session|Host", meta = (DisplayName = "Update Browser Info", AutoCreateRefTerm = "CustomData,Delegate"))
 	void BLUEPRINT_UpdateBrowserInfo(bool bEnable, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { UpdateBrowserInfo(bEnable, CustomData, Delegate); };
 	/**
-	* @brief Update the instance health of the session
-	* @param [in] HealthStatus The new health status of the instance
-	* @param [in] Delegate Callback delegate for completion (note - local session is not modified on health update for efficiency reasons!)
-	*/
+	 * @brief Update the instance health of the session
+	 * @param [in] HealthStatus The new health status of the instance
+	 * @param [in] Delegate Callback delegate for completion (note - local session is not modified on health update for efficiency reasons!)
+	 */
 	virtual void UpdateInstanceHealth(ERHAPI_InstanceHealthStatus HealthStatus, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock()) { PURE_VIRTUAL(URH_JoinedSession::UpdateInstanceHealth, ); };
 	/**
-	* @brief Blueprint compatible version of UpdateInstanceHealth
-	* @param [in] HealthStatus The new health status of the instance
-	* @param [in] Delegate Callback delegate for completion (note - local session is not modified on health update for efficiency reasons!)
-	*/
+	 * @private
+	 * @brief Blueprint compatible version of UpdateInstanceHealth
+	 * @param [in] HealthStatus The new health status of the instance
+	 * @param [in] Delegate Callback delegate for completion (note - local session is not modified on health update for efficiency reasons!)
+	 */
 	UFUNCTION(BlueprintCallable, Category = "Session|Host", meta = (DisplayName = "Update Instance Health", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_UpdateInstanceHealth(ERHAPI_InstanceHealthStatus HealthStatus, const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate) { UpdateInstanceHealth(HealthStatus, Delegate); };
 	/**
-	* @brief Acknowledge backfill for the session, keeping it alive and processing updates
-	* @param [in] bEnable If true, keeps backfill enabled
-	* @param [in] Delegate Callback delegate for the session being updated with backfill data
-	*/
+	 * @brief Acknowledge backfill for the session, keeping it alive and processing updates
+	 * @param [in] bEnable If true, keeps backfill enabled
+	 * @param [in] Delegate Callback delegate for the session being updated with backfill data
+	 */
 	virtual void AcknowledgeBackfill(bool bEnable, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::AcknowledgeBackfill, ); };
 	/**
-	* @brief Blueprint compatible version of AcknowledgeBackfill
-	* @param [in] bEnable If true, sets the browser info. Otherwise, clear it out.
-	* @param [in] Delegate Callback delegate for the session being updated with new browser data.
-	*/
+	 * @private
+	 * @brief Blueprint compatible version of AcknowledgeBackfill
+	 * @param [in] bEnable If true, sets the browser info. Otherwise, clear it out.
+	 * @param [in] Delegate Callback delegate for the session being updated with new browser data.
+	 */
 	UFUNCTION(BlueprintCallable, Category = "Session|Host", meta = (DisplayName = "Update Browser Info", AutoCreateRefTerm = "CustomData,Delegate"))
 	void BLUEPRINT_AcknowledgeBackfill(bool bEnable, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { AcknowledgeBackfill(bEnable, Delegate); };
 	/**
-	* @brief Delete active backfill request for the session
-	* @param [in] Delegate Callback delegate for the session being updated with backfill data
-	*/
+	 * @brief Delete active backfill request for the session
+	 * @param [in] Delegate Callback delegate for the session being updated with backfill data
+	 */
 	virtual void DeleteBackfill(const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::DeleteBackfill, ); };
 	/**
-	* @brief Blueprint compatible version of DeleteBackfill
-	* @param [in] Delegate Callback delegate for the session being updated with new browser data.
-	*/
+	 * @private
+	 * @brief Blueprint compatible version of DeleteBackfill
+	 * @param [in] Delegate Callback delegate for the session being updated with new browser data.
+	 */
 	UFUNCTION(BlueprintCallable, Category = "Session|Host", meta = (DisplayName = "Update Browser Info", AutoCreateRefTerm = "CustomData,Delegate"))
 	void BLUEPRINT_DeleteBackfill(const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { DeleteBackfill(Delegate); };
 	/**
-	* @brief Emit an event to the session audit log
-	* @param [in] AuditEvent The event to send
-	* @param [in] Delegate Callback delegate for the completion of the audit event
-	*/
+	 * @brief Emit an event to the session audit log
+	 * @param [in] AuditEvent The event to send
+	 * @param [in] Delegate Callback delegate for the completion of the audit event
+	 */
 	virtual void EmitAuditEvent(const FRHAPI_CreateAuditRequest& AuditEvent, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock()) const { PURE_VIRTUAL(URH_JoinedSession::EmitAuditEvent, ); };
 	/**
-	* @brief Blueprint compatible version of EmitAuditEvent
-	* @param [in] AuditEvent The event to send
-	* @param [in] Delegate Callback delegate for the completion of the audit event
-	*/
+	 * @private
+	 * @brief Blueprint compatible version of EmitAuditEvent
+	 * @param [in] AuditEvent The event to send
+	 * @param [in] Delegate Callback delegate for the completion of the audit event
+	 */
 	UFUNCTION(BlueprintCallable, Category = "Session|Host", meta = (DisplayName = "Update Browser Info", AutoCreateRefTerm = "CustomData,Delegate"))
 	void BLUEPRINT_EmitAuditEvent(const FRHAPI_CreateAuditRequest& AuditEvent, const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate) const { EmitAuditEvent(AuditEvent, Delegate); };
 	/**
-	* @brief Utility function for beacon connections - not exposed to blueprint so that it can have encryption data
-	* @param [in] Player Player the beacon is being created for, used for login credential passing
-	* @param [in] BeaconClass The type of beacon to create
-	* @param [in] EncryptionData Encryption credentials, if required
-	* @return The created client, for which a connection attempt is being made
-	*/
+	 * @brief Utility function for beacon connections - not exposed to blueprint so that it can have encryption data
+	 * @param [in] Player Player the beacon is being created for, used for login credential passing
+	 * @param [in] BeaconClass The type of beacon to create
+	 * @param [in] EncryptionData Encryption credentials, if required
+	 * @return The created client, for which a connection attempt is being made
+	 */
 	AOnlineBeaconClient* CreateBeacon(class ULocalPlayer* Player, TSubclassOf<AOnlineBeaconClient> BeaconClass, const FEncryptionData& EncryptionData);
 	/**
-	* @brief Blueprint compatible version of CreateBeacon
-	* @param [in] Player Player the beacon is being created for, used for login credential passing
-	* @param [in] BeaconClass The type of beacon to create
-	* @param [in] EncryptionData Encryption credentials, if required
-	* @return The created client, for which a connection attempt is being made
-	*/
+	 * @private
+	 * @brief Blueprint compatible version of CreateBeacon
+	 * @param [in] Player Player the beacon is being created for, used for login credential passing
+	 * @param [in] BeaconClass The type of beacon to create
+	 * @param [in] EncryptionData Encryption credentials, if required
+	 * @return The created client, for which a connection attempt is being made
+	 */
 	UFUNCTION(BlueprintCallable, Category = "Session|Host")
 	AOnlineBeaconClient* BLUEPRINT_CreateBeacon(class ULocalPlayer* Player, TSubclassOf<AOnlineBeaconClient> BeaconClass) { return CreateBeacon(Player, BeaconClass, FEncryptionData()); }
 	/**
@@ -969,6 +996,7 @@ public:
 	 */
 	FRH_OnSessionMemberPresenceChangedDelegate OnSessionMemberPresenceChangedDelegate;
 	/**
+	 * @private
 	 * @brief Blueprint compatible delegate fired when presence information for a member of session is updated (requires SetWatchingPlayers(true))
 	 */
 	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Session", meta = (DisplayName = "On Session Member Presence Changed"))
@@ -1137,11 +1165,12 @@ public:
 	static void CreateOrJoinByType(const FRHAPI_CreateOrJoinRequest& CreateParams, TScriptInterface<IRH_SessionOwnerInterface> SessionOwner, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock());
 	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Create Or Join By Type", AutoCreateRefTerm = "CreateParams,Delegate"))
 	/**
-	* @brief Blueprint compatible version of CreateOrJoinByType
-	* @param [in] CreateParams The parameters for the session creation or joining.
-	* @param [in] SessionOwner The owner of the session.
-	* @param [in] Delegate Callback delegate on the session being updated from create/join.
-	*/
+	 * @private
+	 * @brief Blueprint compatible version of CreateOrJoinByType
+	 * @param [in] CreateParams The parameters for the session creation or joining.
+	 * @param [in] SessionOwner The owner of the session.
+	 * @param [in] Delegate Callback delegate on the session being updated from create/join.
+	 */
 	static void BLUEPRINT_CreateOrJoinByType(const FRHAPI_CreateOrJoinRequest& CreateParams, TScriptInterface<IRH_SessionOwnerInterface> SessionOwner, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { CreateOrJoinByType(CreateParams, SessionOwner, Delegate); }
 	/**
 	 * @brief Joins a specific queue with the session to be matchmade with others.
@@ -1188,6 +1217,7 @@ public:
 	 */
 	virtual void LeaveQueue(const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock());
 	/**
+	 * @private
 	 * @brief Blueprint compatible version of LeaveQueue
 	 * @param [in] Delegate Callback delegate on the session being updated from leaving matchmaking.
 	 */
@@ -1208,6 +1238,7 @@ public:
 	 */
 	static void JoinById(const FString& SessionId, TScriptInterface<IRH_SessionOwnerInterface> SessionOwner, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { JoinByIdEx(SessionId, GetJoinDetailDefaults(SessionOwner), SessionOwner, Delegate); }
 	/**
+	 * @private
 	 * @brief Blueprint compatible version of JoinById
 	 * @param [in] SessionId Id of the session to join.
 	 * @param [in] SessionOwner Owner of the session to join.
@@ -1224,6 +1255,7 @@ public:
 	 */
 	static void JoinByIdEx(const FString& SessionId, const FRHAPI_SelfSessionPlayerUpdateRequest& JoinDetails, TScriptInterface<IRH_SessionOwnerInterface> SessionOwner, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock());
 	/**
+	 * @private
 	 * @brief Blueprint compatible version of JoinByIdEx
 	 * @param [in] SessionId Id of the session to join.
 	 * @param [in] JoinDetails Details for the player joining the session.

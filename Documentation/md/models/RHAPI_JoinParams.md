@@ -1,4 +1,4 @@
-# RHAPI_JoinParams <a id="group__RHAPI__JoinParams"></a>
+# group `RHAPI_JoinParams` <a id="group__RHAPI__JoinParams"></a>
 
 ## Summary
 
@@ -15,7 +15,7 @@ struct FRHAPI_JoinParams
 
 Parameters provided by the allocation system or an instance on how to connect.
 
-#### Summary
+### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
@@ -40,28 +40,24 @@ Parameters provided by the allocation system or an instance on how to connect.
 `public inline void `[`SetCustomData`](#structFRHAPI__JoinParams_1a105e13210dd92f34682e6f504c7a8f4a)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`ClearCustomData`](#structFRHAPI__JoinParams_1acbe843cc9336e24b9b7ac3dbeac3bccb)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
-#### Members
+### Members
 
 #### `public FString `[`PublicConnStr`](#structFRHAPI__JoinParams_1ace1ac4405d1488da7611d0c6ee4dcc00) <a id="structFRHAPI__JoinParams_1ace1ac4405d1488da7611d0c6ee4dcc00"></a>
 
 Public connection string for instance.
 
-<br>
 #### `public FString `[`PrivateConnStr`](#structFRHAPI__JoinParams_1a9c469f021b97b98b3a193479771dd3a8) <a id="structFRHAPI__JoinParams_1a9c469f021b97b98b3a193479771dd3a8"></a>
 
 Private connection string for instance.
 
-<br>
 #### `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__JoinParams_1aa1a3af1c48b41dc686ba9ac09ba84328) <a id="structFRHAPI__JoinParams_1aa1a3af1c48b41dc686ba9ac09ba84328"></a>
 
 Custom data to join a instance.
 
-<br>
 #### `public bool `[`CustomData_IsSet`](#structFRHAPI__JoinParams_1ad502760dd98a7e62abb7ec030f2c209f) <a id="structFRHAPI__JoinParams_1ad502760dd98a7e62abb7ec030f2c209f"></a>
 
 true if CustomData_Optional has been set to a value
 
-<br>
 #### `public virtual bool `[`FromJson`](#structFRHAPI__JoinParams_1acb519a5577d5d523125b841bf14e4da3)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__JoinParams_1acb519a5577d5d523125b841bf14e4da3"></a>
 
 Fills this object with data from the passed in JSON.
@@ -72,7 +68,6 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-<br>
 #### `public virtual void `[`WriteJson`](#structFRHAPI__JoinParams_1acefadc7ec44a0de7c8fe330a2d76e277)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__JoinParams_1acefadc7ec44a0de7c8fe330a2d76e277"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
@@ -80,74 +75,59 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-<br>
 #### `public inline FString & `[`GetPublicConnStr`](#structFRHAPI__JoinParams_1a4ec632af38b7cd9bc53e077cf4ace8ea)`()` <a id="structFRHAPI__JoinParams_1a4ec632af38b7cd9bc53e077cf4ace8ea"></a>
 
 Gets the value of PublicConnStr.
 
-<br>
 #### `public inline const FString & `[`GetPublicConnStr`](#structFRHAPI__JoinParams_1a8680b3b0b87b12b65a68a5aed1400b54)`() const` <a id="structFRHAPI__JoinParams_1a8680b3b0b87b12b65a68a5aed1400b54"></a>
 
 Gets the value of PublicConnStr.
 
-<br>
 #### `public inline void `[`SetPublicConnStr`](#structFRHAPI__JoinParams_1acc10f54fdb728ff101063d50af68f8f1)`(FString NewValue)` <a id="structFRHAPI__JoinParams_1acc10f54fdb728ff101063d50af68f8f1"></a>
 
 Sets the value of PublicConnStr.
 
-<br>
 #### `public inline FString & `[`GetPrivateConnStr`](#structFRHAPI__JoinParams_1ab42d65ff834f0042b7be14f8885084af)`()` <a id="structFRHAPI__JoinParams_1ab42d65ff834f0042b7be14f8885084af"></a>
 
 Gets the value of PrivateConnStr.
 
-<br>
 #### `public inline const FString & `[`GetPrivateConnStr`](#structFRHAPI__JoinParams_1a0f026e2b942b25eec8716836b13cce65)`() const` <a id="structFRHAPI__JoinParams_1a0f026e2b942b25eec8716836b13cce65"></a>
 
 Gets the value of PrivateConnStr.
 
-<br>
 #### `public inline void `[`SetPrivateConnStr`](#structFRHAPI__JoinParams_1afc83d42aac4255029be482748818362e)`(FString NewValue)` <a id="structFRHAPI__JoinParams_1afc83d42aac4255029be482748818362e"></a>
 
 Sets the value of PrivateConnStr.
 
-<br>
 #### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__JoinParams_1ad39c342be0d41373c63ee3475055d017)`()` <a id="structFRHAPI__JoinParams_1ad39c342be0d41373c63ee3475055d017"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-<br>
 #### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__JoinParams_1a58610ea35f15c1667b022ad90a495699)`() const` <a id="structFRHAPI__JoinParams_1a58610ea35f15c1667b022ad90a495699"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-<br>
 #### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__JoinParams_1ae73056b2e063ebcef82c0d6486e22da8)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__JoinParams_1ae73056b2e063ebcef82c0d6486e22da8"></a>
 
 Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
 
-<br>
 #### `public inline bool `[`GetCustomData`](#structFRHAPI__JoinParams_1a24ccc3f4ff20cede248586da72d95514)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__JoinParams_1a24ccc3f4ff20cede248586da72d95514"></a>
 
 Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 
-<br>
 #### `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__JoinParams_1ac6458b11bc76f09dc47dfe3dde5b6bbb)`()` <a id="structFRHAPI__JoinParams_1ac6458b11bc76f09dc47dfe3dde5b6bbb"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-<br>
 #### `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__JoinParams_1a967faadf51bd51ca37a77b63e4d1d5a8)`() const` <a id="structFRHAPI__JoinParams_1a967faadf51bd51ca37a77b63e4d1d5a8"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-<br>
 #### `public inline void `[`SetCustomData`](#structFRHAPI__JoinParams_1a105e13210dd92f34682e6f504c7a8f4a)`(TMap< FString, FString > NewValue)` <a id="structFRHAPI__JoinParams_1a105e13210dd92f34682e6f504c7a8f4a"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 
-<br>
 #### `public inline void `[`ClearCustomData`](#structFRHAPI__JoinParams_1acbe843cc9336e24b9b7ac3dbeac3bccb)`()` <a id="structFRHAPI__JoinParams_1acbe843cc9336e24b9b7ac3dbeac3bccb"></a>
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
-<br>

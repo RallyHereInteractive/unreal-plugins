@@ -144,6 +144,7 @@ public:
 	 * @param [in] Delegate Callback delegate for when the search is completed.
 	 */
 	void Search(const FRH_SessionBrowserSearchParams& params, const FRH_OnSessionSearchCompleteDelegateBlock& Delegate = FRH_OnSessionSearchCompleteDelegateBlock());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Session Browser", meta = (DisplayName = "Search For Sessions", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_Search(const FRH_SessionBrowserSearchParams& params, FRH_OnSessionSearchCompleteDynamicDelegate Delegate) { Search(params, Delegate); }
 

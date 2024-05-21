@@ -310,6 +310,7 @@ public:
 	 * @param [in] Delegate Callback with the results of the search.
 	 */
 	void SearchQueues(const FRH_QueueSearchParams& params, const FRH_OnQueueSearchCompleteDelegateBlock& Delegate = FRH_OnQueueSearchCompleteDelegateBlock());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Matchmaking|Queues", meta = (DisplayName = "Search Queues", AutoCreateRefTerm = "params,Delegate"))
 	void BLUEPRINT_SearchQueues(const FRH_QueueSearchParams& params, const FRH_OnQueueSearchCompleteDynamicDelegate& Delegate) { SearchQueues(params, Delegate); }
 	/**
@@ -318,6 +319,7 @@ public:
 	 * @param [in] Delegate Callback with the results of the search.
 	 */
 	void SearchMatchmakingTemplateGroup(const FGuid& TemplateId, const FRH_OnGetMatchmakingTemplateGroupCompleteDelegateBlock& Delegate = FRH_OnGetMatchmakingTemplateGroupCompleteDelegateBlock());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Matchmaking|Queues", meta = (DisplayName = "Get Matchmaking Template Group", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_SearchMatchmakingTemplateGroup(const FGuid& TemplateId, const FRH_OnGetMatchmakingTemplateGroupCompleteDynamicDelegate& Delegate) { SearchMatchmakingTemplateGroup(TemplateId, Delegate); }
 	/**
@@ -326,6 +328,7 @@ public:
 	 * @param [in] Delegate Callback with the results of the search.
 	 */
 	void SearchMatchmakingProfile(const FString& ProfileId, const FRH_OnGetMatchmakingProfileCompleteDelegateBlock& Delegate = FRH_OnGetMatchmakingProfileCompleteDelegateBlock());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Matchmaking|Queues", meta = (DisplayName = "Get Matchmaking Profile", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_SearchMatchmakingProfile(const FString& ProfileId, const FRH_OnGetMatchmakingProfileCompleteDynamicDelegate& Delegate) { SearchMatchmakingProfile(ProfileId, Delegate); }
 	/**
@@ -334,6 +337,7 @@ public:
 	 * @param [in] Delegate Callback with the results of the search.
 	 */
 	void SearchInstanceRequestTemplate(const FGuid& TemplateId, const FRH_OnGetInstanceRequestTemplateCompleteDelegateBlock& Delegate = FRH_OnGetInstanceRequestTemplateCompleteDelegateBlock());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Matchmaking|Queues", meta = (DisplayName = "Get Instance Request Template", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_SearchInstanceRequestTemplate(const FGuid& TemplateId, const FRH_OnGetInstanceRequestTemplateCompleteDynamicDelegate& Delegate) { SearchInstanceRequestTemplate(TemplateId, Delegate); }
 	/**
@@ -341,8 +345,10 @@ public:
 	 * @param [in] Delegate Callback with the results of the search.
 	 */
 	void SearchRegions(int32 Cursor = 0, const FRH_OnRegionSearchCompleteDelegateBlock& Delegate = FRH_OnRegionSearchCompleteDelegateBlock());
+	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Matchmaking|Queues", meta = (DisplayName = "Get Matchmaking Template Group", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_SearchRegions(int32 Cursor, const FRH_OnRegionSearchCompleteDynamicDelegate& Delegate) { SearchRegions(Cursor, Delegate); }
+
 	/** @brief Get a cached queue by Queue Id. */
 	UFUNCTION(BlueprintPure, Category = "Matchmaking|Queues")
 	URH_MatchmakingQueueInfo* GetQueue(const FString& QueueId) const
