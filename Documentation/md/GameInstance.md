@@ -438,15 +438,10 @@ The current session we are using
 
 The default type of session to create when using AutoCreate bootstrapping mode
 
-<<<<<<< HEAD
-<br>
 #### `protected FString `[`DefaultAutoCreateRegion`](#classURH__GameInstanceServerBootstrapper_1a8b13906ca4b7c1144827bb39eba1d4ec) <a id="classURH__GameInstanceServerBootstrapper_1a8b13906ca4b7c1144827bb39eba1d4ec"></a>
 
 The default region of session to create when using AutoCreate bootstrapping mode
 
-<br>
-=======
->>>>>>> main
 #### `protected `[`ERH_ServerBootstrapMode`](undefined.md#group__GameInstance_1ga9dd612a2285258b977ec4c21d7a64196)` `[`DefaultBootstrapMode`](#classURH__GameInstanceServerBootstrapper_1a925b503fbad705f2664c2d36e21fe9cb) <a id="classURH__GameInstanceServerBootstrapper_1a925b503fbad705f2664c2d36e21fe9cb"></a>
 
 The default type of bootstrapping mode (only supports Disabled and LoginOnly, as other session types require commandline injection)
