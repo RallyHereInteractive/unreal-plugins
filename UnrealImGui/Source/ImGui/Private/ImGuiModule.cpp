@@ -145,6 +145,10 @@ void FImGuiModule::ShutdownModule()
 
 	// Before we shutdown we need to delete managers that will do all the necessary cleanup.
 
+#ifdef WITH_IMGUI_NETIMGUI
+	NetImgui::Shutdown();
+#endif
+
 #if WITH_EDITOR
 	checkf(ImGuiEditor, TEXT("Null ImGui Editor. ImGui editor instance should be deleted during module shutdown."));
 	delete ImGuiEditor;
@@ -154,10 +158,6 @@ void FImGuiModule::ShutdownModule()
 	checkf(ImGuiModuleManager, TEXT("Null ImGui Module Manager. Module manager instance should be deleted during module shutdown."));
 	delete ImGuiModuleManager;
 	ImGuiModuleManager = nullptr;
-
-#ifdef WITH_IMGUI_NETIMGUI
-	NetImgui::Shutdown();
-#endif
 
 #if WITH_EDITOR
 	// When shutting down we leave the global ImGui context pointer and handle pointing to resources that are already
