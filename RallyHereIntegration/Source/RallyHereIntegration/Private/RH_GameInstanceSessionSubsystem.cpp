@@ -217,7 +217,7 @@ bool URH_GameInstanceSessionSubsystem::MakeActiveSessionJoinable(UWorld* pWorld)
 	}
 	else
 	{
-		UE_LOG(LogRallyHereIntegration, Error, TEXT("Session %d could not find a valid connection string on the host"));
+		UE_LOG(LogRallyHereIntegration, Error, TEXT("Session %s could not find a valid connection string on the host"), *ActiveSession->GetSessionId());
 
 		return false;
 	}
