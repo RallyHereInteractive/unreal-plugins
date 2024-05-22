@@ -6,6 +6,7 @@
 #include "RallyHereAPIModule.h"
 #include "Misc/ConfigCacheIni.h"
 #include "RH_Polling.h"
+#include "Interfaces/IPluginManager.h"
 
 IMPLEMENT_MODULE(FRallyHereIntegrationModule, RallyHereIntegration);
 FString GRallyHereIntegrationIni;
@@ -14,7 +15,15 @@ void FRallyHereIntegrationModule::StartupModule()
 {
 	FModuleManager::LoadModuleChecked<FRallyHereAPIModule>(FName(TEXT("RallyHereAPI")));
 
-    UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+	FString PluginVersion = TEXT("Unknown");
+	auto RHIntegrationPlugin = IPluginManager::Get().FindPlugin(TEXT("RallyHereIntegration"));
+	if (RHIntegrationPlugin != nullptr)
+	{
+		const auto& Descriptor = RHIntegrationPlugin->GetDescriptor();
+		PluginVersion = Descriptor.VersionName;
+	}
+
+    UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] - Plugin Version %s"), ANSI_TO_TCHAR(__FUNCTION__), *PluginVersion);
     FConfigCacheIni::LoadGlobalIniFile(GRallyHereIntegrationIni, TEXT("RallyHereIntegration"));
 
 	FRH_AsyncTaskHelper::Initialize();
