@@ -27,7 +27,7 @@ TSharedPtr<F{{unrealModuleName}}HttpRequester> F{{unrealModuleName}}HttpRequeste
 F{{unrealModuleName}}HttpRequester::F{{unrealModuleName}}HttpRequester()
 {
 	MaxSimultaneousRequests = 15;
-	PendingRequestCount = 0;
+	InFlightRequestCount = 0;
 }
 
 void F{{unrealModuleName}}HttpRequester::FlushRequestQueue(bool bIsExiting)
@@ -45,6 +45,9 @@ void F{{unrealModuleName}}HttpRequester::TryExecuteNextRequest(bool bIsExiting)
 	{
 		return;
 	}
+
+	// this function is intended only to be run on the main game thread, as it can internally trigger delegates
+	ensure(IsInGameThread());
 
 	FScopeLock RequestQueueLock(&RequestQueueLockCS);
 
@@ -64,7 +67,8 @@ void F{{unrealModuleName}}HttpRequester::TryExecuteNextRequest(bool bIsExiting)
 					Request->HttpRequest->OnProcessRequestComplete().BindSP(AsShared(), &F{{unrealModuleName}}HttpRequester::OnResponse, Request->ResponseDelegate);
 					if (Request->HttpRequest->ProcessRequest())
 					{
-						PendingRequestCount++;
+						// increment pending request count, so we can keep track of how many requests are currently in-flight
+						InFlightRequestCount++;
 					}
 
 					// do not fire callback if exiting
@@ -74,7 +78,7 @@ void F{{unrealModuleName}}HttpRequester::TryExecuteNextRequest(bool bIsExiting)
 						Request->API->OnRequestStarted().Broadcast(Request->Metadata, Request->HttpRequest);
 					}
 
-					if (MaxSimultaneousRequests > 0 && PendingRequestCount >= MaxSimultaneousRequests)
+					if (MaxSimultaneousRequests > 0 && InFlightRequestCount >= MaxSimultaneousRequests)
 					{
 						break;
 					}
@@ -86,7 +90,7 @@ void F{{unrealModuleName}}HttpRequester::TryExecuteNextRequest(bool bIsExiting)
 				}
 			}
 
-			if (MaxSimultaneousRequests > 0 && PendingRequestCount >= MaxSimultaneousRequests)
+			if (MaxSimultaneousRequests > 0 && InFlightRequestCount >= MaxSimultaneousRequests)
 			{
 				return;
 			}
@@ -96,10 +100,12 @@ void F{{unrealModuleName}}HttpRequester::TryExecuteNextRequest(bool bIsExiting)
 
 void F{{unrealModuleName}}HttpRequester::OnResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FHttpRequestCompleteDelegate ResponseDelegate)
 {
-	PendingRequestCount--;
+	// execute the response delegate
 	ResponseDelegate.Execute(HttpRequest, HttpResponse, bSucceeded);
-	// Whenever we get a request response try to execute new requests if we have any.
-	QueueNextRequestCall();
+
+	// decrement pending request count
+	FScopeLock RequestQueueLock(&RequestQueueLockCS);
+	InFlightRequestCount--;
 }
 
 void F{{unrealModuleName}}HttpRequester::EnqueueHttpRequest(TSharedPtr<struct F{{unrealModuleName}}HttpRequestData> RequestData)
@@ -116,29 +122,11 @@ void F{{unrealModuleName}}HttpRequester::EnqueueHttpRequest(TSharedPtr<struct F{
 	{
 		HttpRequestQueue.Add(RequestData->Priority, {RequestData});
 	}
-	// Whenever we get a new request, try to execute requests
-	QueueNextRequestCall();
 }
 
-void F{{unrealModuleName}}HttpRequester::QueueNextRequestCall()
+void F{{unrealModuleName}}HttpRequester::Tick(float DeltaTime)
 {
-	if (GIsEditor && !GIsPlayInEditorWorld)
-	{
-		TryExecuteNextRequest();
-	}
-	else
-	{
-		// Delay until next frame
-		FTSTicker::GetCoreTicker().AddTicker(FTickerDelegate::CreateLambda([](float dts)
-		{
-			auto* Requester = F{{unrealModuleName}}HttpRequester::Get();
-			if (Requester != nullptr)
-			{
-				Requester->TryExecuteNextRequest();
-			}
-			return false;
-		}), 0.0f);
-	}
+	TryExecuteNextRequest();
 }
 
 {{#cppNamespaceDeclarations}}
