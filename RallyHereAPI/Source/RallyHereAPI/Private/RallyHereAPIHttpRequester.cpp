@@ -9,7 +9,7 @@ TSharedPtr<FRallyHereAPIHttpRequester> FRallyHereAPIHttpRequester::Singleton = n
 FRallyHereAPIHttpRequester::FRallyHereAPIHttpRequester()
 {
 	MaxSimultaneousRequests = 15;
-	PendingRequestCount = 0;
+	InFlightRequestCount = 0;
 }
 
 void FRallyHereAPIHttpRequester::FlushRequestQueue(bool bIsExiting)
@@ -23,7 +23,12 @@ void FRallyHereAPIHttpRequester::FlushRequestQueue(bool bIsExiting)
 
 void FRallyHereAPIHttpRequester::TryExecuteNextRequest(bool bIsExiting)
 {
-	if (!CanExecuteRequest())
+	// this function is intended only to be run on the main game thread, as it can internally trigger delegates
+	ensure(IsInGameThread());
+
+	FScopeLock RequestQueueLock(&RequestQueueLockCS);
+
+	if (HttpRequestQueue.IsEmpty() || (MaxSimultaneousRequests > 0 && InFlightRequestCount > MaxSimultaneousRequests))
 	{
 		return;
 	}
@@ -44,7 +49,8 @@ void FRallyHereAPIHttpRequester::TryExecuteNextRequest(bool bIsExiting)
 					Request->HttpRequest->OnProcessRequestComplete().BindSP(AsShared(), &FRallyHereAPIHttpRequester::OnResponse, Request->ResponseDelegate);
 					if (Request->HttpRequest->ProcessRequest())
 					{
-						PendingRequestCount++;
+						// increment pending request count, so we can keep track of how many requests are currently in-flight
+						InFlightRequestCount++;
 					}
 
 					// do not fire callback if exiting
@@ -54,7 +60,7 @@ void FRallyHereAPIHttpRequester::TryExecuteNextRequest(bool bIsExiting)
 						Request->API->OnRequestStarted().Broadcast(Request->Metadata, Request->HttpRequest);
 					}
 
-					if (MaxSimultaneousRequests > 0 && PendingRequestCount >= MaxSimultaneousRequests)
+					if (MaxSimultaneousRequests > 0 && InFlightRequestCount >= MaxSimultaneousRequests)
 					{
 						break;
 					}
@@ -66,7 +72,7 @@ void FRallyHereAPIHttpRequester::TryExecuteNextRequest(bool bIsExiting)
 				}
 			}
 
-			if (MaxSimultaneousRequests > 0 && PendingRequestCount >= MaxSimultaneousRequests)
+			if (MaxSimultaneousRequests > 0 && InFlightRequestCount >= MaxSimultaneousRequests)
 			{
 				return;
 			}
@@ -76,15 +82,19 @@ void FRallyHereAPIHttpRequester::TryExecuteNextRequest(bool bIsExiting)
 
 void FRallyHereAPIHttpRequester::OnResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FHttpRequestCompleteDelegate ResponseDelegate)
 {
-	PendingRequestCount--;
+	// execute the response delegate
 	ResponseDelegate.Execute(HttpRequest, HttpResponse, bSucceeded);
-	// Whenever we get a request response try to execute new requests if we have any.
-	QueueNextRequestCall();
+
+	// decrement pending request count
+	FScopeLock RequestQueueLock(&RequestQueueLockCS);
+	InFlightRequestCount--;
 }
 
 void FRallyHereAPIHttpRequester::EnqueueHttpRequest(TSharedPtr<struct FRallyHereAPIHttpRequestData> RequestData)
 {
 	RequestData->Metadata.QueuedTimestamp = FDateTime::Now();
+
+	FScopeLock RequestQueueLock(&RequestQueueLockCS);
 
 	if (auto findItem = HttpRequestQueue.Find(RequestData->Priority))
 	{
@@ -94,29 +104,11 @@ void FRallyHereAPIHttpRequester::EnqueueHttpRequest(TSharedPtr<struct FRallyHere
 	{
 		HttpRequestQueue.Add(RequestData->Priority, {RequestData});
 	}
-	// Whenever we get a new request, try to execute requests
-	QueueNextRequestCall();
 }
 
-void FRallyHereAPIHttpRequester::QueueNextRequestCall()
+void FRallyHereAPIHttpRequester::Tick(float DeltaTime)
 {
-	if (GIsEditor && !GIsPlayInEditorWorld)
-	{
-		TryExecuteNextRequest();
-	}
-	else
-	{
-		// Delay until next frame
-		FTSTicker::GetCoreTicker().AddTicker(FTickerDelegate::CreateLambda([](float dts)
-		{
-			auto* Requester = FRallyHereAPIHttpRequester::Get();
-			if (Requester != nullptr)
-			{
-				Requester->TryExecuteNextRequest();
-			}
-			return false;
-		}), 0.0f);
-	}
+	TryExecuteNextRequest();
 }
 
 }
