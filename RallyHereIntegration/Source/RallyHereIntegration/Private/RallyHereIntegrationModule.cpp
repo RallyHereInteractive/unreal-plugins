@@ -14,6 +14,7 @@ FString GRallyHereIntegrationIni;
 void FRallyHereIntegrationModule::StartupModule()
 {
 	FModuleManager::LoadModuleChecked<FRallyHereAPIModule>(FName(TEXT("RallyHereAPI")));
+	FModuleManager::LoadModuleChecked<IModuleInterface>(FName(TEXT("HTTP")));
 
 	FString PluginVersion = TEXT("Unknown");
 	auto RHIntegrationPlugin = IPluginManager::Get().FindPlugin(TEXT("RallyHereIntegration"));
@@ -24,6 +25,10 @@ void FRallyHereIntegrationModule::StartupModule()
 	}
 
     UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] - Plugin Version %s"), ANSI_TO_TCHAR(__FUNCTION__), *PluginVersion);
+
+	FString UserAgentComment = FString::Printf(TEXT("rallyhere-sdk-ver=%s"), *PluginVersion);
+	FPlatformHttp::AddDefaultUserAgentProjectComment(UserAgentComment);
+
     FConfigCacheIni::LoadGlobalIniFile(GRallyHereIntegrationIni, TEXT("RallyHereIntegration"));
 
 	FRH_AsyncTaskHelper::Initialize();
