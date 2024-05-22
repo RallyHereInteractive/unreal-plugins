@@ -28,6 +28,8 @@ void FRallyHereAPIHttpRequester::TryExecuteNextRequest(bool bIsExiting)
 		return;
 	}
 
+	FScopeLock RequestQueueLock(&RequestQueueLockCS);
+
 	TArray<int32> Keys;
 
 	if (HttpRequestQueue.GetKeys(Keys) > 0)
@@ -85,6 +87,8 @@ void FRallyHereAPIHttpRequester::OnResponse(FHttpRequestPtr HttpRequest, FHttpRe
 void FRallyHereAPIHttpRequester::EnqueueHttpRequest(TSharedPtr<struct FRallyHereAPIHttpRequestData> RequestData)
 {
 	RequestData->Metadata.QueuedTimestamp = FDateTime::Now();
+
+	FScopeLock RequestQueueLock(&RequestQueueLockCS);
 
 	if (auto findItem = HttpRequestQueue.Find(RequestData->Priority))
 	{

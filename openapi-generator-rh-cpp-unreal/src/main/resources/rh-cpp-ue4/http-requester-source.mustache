@@ -46,6 +46,8 @@ void F{{unrealModuleName}}HttpRequester::TryExecuteNextRequest(bool bIsExiting)
 		return;
 	}
 
+	FScopeLock RequestQueueLock(&RequestQueueLockCS);
+
 	TArray<int32> Keys;
 
 	if (HttpRequestQueue.GetKeys(Keys) > 0)
@@ -103,6 +105,8 @@ void F{{unrealModuleName}}HttpRequester::OnResponse(FHttpRequestPtr HttpRequest,
 void F{{unrealModuleName}}HttpRequester::EnqueueHttpRequest(TSharedPtr<struct F{{unrealModuleName}}HttpRequestData> RequestData)
 {
 	RequestData->Metadata.QueuedTimestamp = FDateTime::Now();
+
+	FScopeLock RequestQueueLock(&RequestQueueLockCS);
 
 	if (auto findItem = HttpRequestQueue.Find(RequestData->Priority))
 	{

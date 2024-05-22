@@ -100,6 +100,8 @@ private:
 
 	int32 MaxSimultaneousRequests;
 	int32 PendingRequestCount;
+
+	FCriticalSection RequestQueueLockCS;
 };
 
 }
