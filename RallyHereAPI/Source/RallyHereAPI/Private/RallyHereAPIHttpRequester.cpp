@@ -23,15 +23,15 @@ void FRallyHereAPIHttpRequester::FlushRequestQueue(bool bIsExiting)
 
 void FRallyHereAPIHttpRequester::TryExecuteNextRequest(bool bIsExiting)
 {
-	if (!CanExecuteRequest())
-	{
-		return;
-	}
-
 	// this function is intended only to be run on the main game thread, as it can internally trigger delegates
 	ensure(IsInGameThread());
 
 	FScopeLock RequestQueueLock(&RequestQueueLockCS);
+
+	if (HttpRequestQueue.IsEmpty() || (MaxSimultaneousRequests > 0 && InFlightRequestCount > MaxSimultaneousRequests))
+	{
+		return;
+	}
 
 	TArray<int32> Keys;
 

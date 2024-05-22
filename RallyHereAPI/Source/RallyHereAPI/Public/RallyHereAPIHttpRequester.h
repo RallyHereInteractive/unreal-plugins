@@ -95,14 +95,13 @@ public:
 	// FTickableGameObject interface
 	/** @brief Scan request queue to determine if any need to be kicked off. */
 	virtual void Tick(float DeltaTime);
-	/** @brief Poll controller is always tickable. */
+	/** @brief Only tick if there is work in the queue. */
 	virtual bool IsTickable() const { return HttpRequestQueue.Num() > 0; }
-	/** Gets the poll controller stat Id. */
+	/** Gets the stat Id. */
 	virtual TStatId GetStatId() const { RETURN_QUICK_DECLARE_CYCLE_STAT(FRallyHereAPIHttpRequester, STATGROUP_TaskGraphTasks); }
 
 private:
 	void TryExecuteNextRequest(bool bIsExiting = false);
-	bool CanExecuteRequest() const { return HttpRequestQueue.Num() > 0 && (MaxSimultaneousRequests == 0 || InFlightRequestCount < MaxSimultaneousRequests); }
 
 	static TSharedPtr<FRallyHereAPIHttpRequester> Singleton;
 
