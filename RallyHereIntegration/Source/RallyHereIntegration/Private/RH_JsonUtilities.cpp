@@ -77,7 +77,7 @@ namespace RHJsonUtilities
 		{
 			for (const TPair<FString, TSharedPtr<FJsonValue>>& Pair : Source->Values)
 			{
-				Dest->SetField(Pair.Key, FJsonValue::Duplicate(Pair.Value));
+				Dest->SetField(Pair.Key, Duplicate(Pair.Value));
 			}
 		}
 	}
