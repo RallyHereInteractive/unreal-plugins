@@ -59,7 +59,9 @@ struct RALLYHEREAPI_API FRHAPI_PurchasePrice : public FRHAPI_Model
 	/** @brief Returns a pointer to PriceItemId_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetPriceItemIdOrNull() const { if (PriceItemId_IsSet) return &PriceItemId_Optional; return nullptr; }
 	/** @brief Sets the value of PriceItemId_Optional and also sets PriceItemId_IsSet to true */
-	void SetPriceItemId(int32 NewValue) { PriceItemId_Optional = NewValue; PriceItemId_IsSet = true; }
+	void SetPriceItemId(const int32& NewValue) { PriceItemId_Optional = NewValue; PriceItemId_IsSet = true; }
+	/** @brief Sets the value of PriceItemId_Optional and also sets PriceItemId_IsSet to true using move semantics */
+	void SetPriceItemId(int32&& NewValue) { PriceItemId_Optional = NewValue; PriceItemId_IsSet = true; }
 	 /** @brief Clears the value of PriceItemId_Optional and sets PriceItemId_IsSet to false */
 	void ClearPriceItemId() { PriceItemId_Optional = 0; PriceItemId_IsSet = false; }
 	/** @brief Returns true if PriceItemId_Optional is set and matches the default value */
@@ -86,7 +88,9 @@ struct RALLYHEREAPI_API FRHAPI_PurchasePrice : public FRHAPI_Model
 	/** @brief Returns a pointer to Price_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetPriceOrNull() const { if (Price_IsSet) return &Price_Optional; return nullptr; }
 	/** @brief Sets the value of Price_Optional and also sets Price_IsSet to true */
-	void SetPrice(int32 NewValue) { Price_Optional = NewValue; Price_IsSet = true; }
+	void SetPrice(const int32& NewValue) { Price_Optional = NewValue; Price_IsSet = true; }
+	/** @brief Sets the value of Price_Optional and also sets Price_IsSet to true using move semantics */
+	void SetPrice(int32&& NewValue) { Price_Optional = NewValue; Price_IsSet = true; }
 	 /** @brief Clears the value of Price_Optional and sets Price_IsSet to false */
 	void ClearPrice() { Price_Optional = 0; Price_IsSet = false; }
 	/** @brief Returns true if Price_Optional is set and matches the default value */
@@ -113,7 +117,9 @@ struct RALLYHEREAPI_API FRHAPI_PurchasePrice : public FRHAPI_Model
 	/** @brief Returns a pointer to PriceCouponItemId_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetPriceCouponItemIdOrNull() const { if (PriceCouponItemId_IsSet) return &PriceCouponItemId_Optional; return nullptr; }
 	/** @brief Sets the value of PriceCouponItemId_Optional and also sets PriceCouponItemId_IsSet to true */
-	void SetPriceCouponItemId(int32 NewValue) { PriceCouponItemId_Optional = NewValue; PriceCouponItemId_IsSet = true; }
+	void SetPriceCouponItemId(const int32& NewValue) { PriceCouponItemId_Optional = NewValue; PriceCouponItemId_IsSet = true; }
+	/** @brief Sets the value of PriceCouponItemId_Optional and also sets PriceCouponItemId_IsSet to true using move semantics */
+	void SetPriceCouponItemId(int32&& NewValue) { PriceCouponItemId_Optional = NewValue; PriceCouponItemId_IsSet = true; }
 	 /** @brief Clears the value of PriceCouponItemId_Optional and sets PriceCouponItemId_IsSet to false */
 	void ClearPriceCouponItemId() { PriceCouponItemId_Optional = 0; PriceCouponItemId_IsSet = false; }
 	/** @brief Returns true if PriceCouponItemId_Optional is set and matches the default value */
@@ -140,7 +146,9 @@ struct RALLYHEREAPI_API FRHAPI_PurchasePrice : public FRHAPI_Model
 	/** @brief Returns a pointer to Currencies_Optional, if it has been set, otherwise returns nullptr */
 	const TArray<FRHAPI_PurchasePriceCurrency>* GetCurrenciesOrNull() const { if (Currencies_IsSet) return &Currencies_Optional; return nullptr; }
 	/** @brief Sets the value of Currencies_Optional and also sets Currencies_IsSet to true */
-	void SetCurrencies(TArray<FRHAPI_PurchasePriceCurrency> NewValue) { Currencies_Optional = NewValue; Currencies_IsSet = true; }
+	void SetCurrencies(const TArray<FRHAPI_PurchasePriceCurrency>& NewValue) { Currencies_Optional = NewValue; Currencies_IsSet = true; }
+	/** @brief Sets the value of Currencies_Optional and also sets Currencies_IsSet to true using move semantics */
+	void SetCurrencies(TArray<FRHAPI_PurchasePriceCurrency>&& NewValue) { Currencies_Optional = NewValue; Currencies_IsSet = true; }
 	 /** @brief Clears the value of Currencies_Optional and sets Currencies_IsSet to false */
 	void ClearCurrencies() { Currencies_IsSet = false; }
 };

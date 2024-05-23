@@ -59,7 +59,9 @@ struct RALLYHEREAPI_API FRHAPI_RankUpdateRequest : public FRHAPI_Model
 	/** @brief Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetInstanceIdOrNull() const { if (InstanceId_IsSet) return &InstanceId_Optional; return nullptr; }
 	/** @brief Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true */
-	void SetInstanceId(FString NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true; }
+	void SetInstanceId(const FString& NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true; }
+	/** @brief Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true using move semantics */
+	void SetInstanceId(FString&& NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true; }
 	 /** @brief Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false */
 	void ClearInstanceId() { InstanceId_IsSet = false; }
 
@@ -71,7 +73,9 @@ struct RALLYHEREAPI_API FRHAPI_RankUpdateRequest : public FRHAPI_Model
 	/** @brief Gets the value of RankId */
 	const int32& GetRankId() const { return RankId; }
 	/** @brief Sets the value of RankId */
-	void SetRankId(int32 NewValue) { RankId = NewValue;  }
+	void SetRankId(const int32& NewValue) { RankId = NewValue;  }
+	/** @brief Sets the value of RankId using move semantics */
+	void SetRankId(int32&& NewValue) { RankId = NewValue;  }
 	/** @brief Returns true if RankId matches the default value */
 	bool IsRankIdDefaultValue() const { return RankId == 0; }
 	/** @brief Sets the value of RankId to its default  */
@@ -85,7 +89,9 @@ struct RALLYHEREAPI_API FRHAPI_RankUpdateRequest : public FRHAPI_Model
 	/** @brief Gets the value of MatchLengthSeconds */
 	const int32& GetMatchLengthSeconds() const { return MatchLengthSeconds; }
 	/** @brief Sets the value of MatchLengthSeconds */
-	void SetMatchLengthSeconds(int32 NewValue) { MatchLengthSeconds = NewValue;  }
+	void SetMatchLengthSeconds(const int32& NewValue) { MatchLengthSeconds = NewValue;  }
+	/** @brief Sets the value of MatchLengthSeconds using move semantics */
+	void SetMatchLengthSeconds(int32&& NewValue) { MatchLengthSeconds = NewValue;  }
 	/** @brief Returns true if MatchLengthSeconds matches the default value */
 	bool IsMatchLengthSecondsDefaultValue() const { return MatchLengthSeconds == 0; }
 	/** @brief Sets the value of MatchLengthSeconds to its default  */
@@ -99,7 +105,9 @@ struct RALLYHEREAPI_API FRHAPI_RankUpdateRequest : public FRHAPI_Model
 	/** @brief Gets the value of Teams */
 	const TArray<FRHAPI_RankedTeam>& GetTeams() const { return Teams; }
 	/** @brief Sets the value of Teams */
-	void SetTeams(TArray<FRHAPI_RankedTeam> NewValue) { Teams = NewValue;  }
+	void SetTeams(const TArray<FRHAPI_RankedTeam>& NewValue) { Teams = NewValue;  }
+	/** @brief Sets the value of Teams using move semantics */
+	void SetTeams(TArray<FRHAPI_RankedTeam>&& NewValue) { Teams = NewValue;  }
 };
 
 /** @} */

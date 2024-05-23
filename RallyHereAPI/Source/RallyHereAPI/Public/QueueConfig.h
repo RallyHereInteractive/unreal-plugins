@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_QueueConfig : public FRHAPI_Model
 	/** @brief Gets the value of QueueId */
 	const FString& GetQueueId() const { return QueueId; }
 	/** @brief Sets the value of QueueId */
-	void SetQueueId(FString NewValue) { QueueId = NewValue;  }
+	void SetQueueId(const FString& NewValue) { QueueId = NewValue;  }
+	/** @brief Sets the value of QueueId using move semantics */
+	void SetQueueId(FString&& NewValue) { QueueId = NewValue;  }
 
 	/** @brief Flag for whether or not the queue is active, and can be joined or sessions created from it */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -57,7 +59,9 @@ struct RALLYHEREAPI_API FRHAPI_QueueConfig : public FRHAPI_Model
 	/** @brief Gets the value of Active */
 	const bool& GetActive() const { return Active; }
 	/** @brief Sets the value of Active */
-	void SetActive(bool NewValue) { Active = NewValue;  }
+	void SetActive(const bool& NewValue) { Active = NewValue;  }
+	/** @brief Sets the value of Active using move semantics */
+	void SetActive(bool&& NewValue) { Active = NewValue;  }
 	/** @brief Returns true if Active matches the default value */
 	bool IsActiveDefaultValue() const { return Active == false; }
 	/** @brief Sets the value of Active to its default  */
@@ -71,7 +75,9 @@ struct RALLYHEREAPI_API FRHAPI_QueueConfig : public FRHAPI_Model
 	/** @brief Gets the value of RankingType */
 	const int32& GetRankingType() const { return RankingType; }
 	/** @brief Sets the value of RankingType */
-	void SetRankingType(int32 NewValue) { RankingType = NewValue;  }
+	void SetRankingType(const int32& NewValue) { RankingType = NewValue;  }
+	/** @brief Sets the value of RankingType using move semantics */
+	void SetRankingType(int32&& NewValue) { RankingType = NewValue;  }
 	/** @brief Returns true if RankingType matches the default value */
 	bool IsRankingTypeDefaultValue() const { return RankingType == 0; }
 	/** @brief Sets the value of RankingType to its default  */
@@ -85,7 +91,9 @@ struct RALLYHEREAPI_API FRHAPI_QueueConfig : public FRHAPI_Model
 	/** @brief Gets the value of NumSides */
 	const int32& GetNumSides() const { return NumSides; }
 	/** @brief Sets the value of NumSides */
-	void SetNumSides(int32 NewValue) { NumSides = NewValue;  }
+	void SetNumSides(const int32& NewValue) { NumSides = NewValue;  }
+	/** @brief Sets the value of NumSides using move semantics */
+	void SetNumSides(int32&& NewValue) { NumSides = NewValue;  }
 	/** @brief Returns true if NumSides matches the default value */
 	bool IsNumSidesDefaultValue() const { return NumSides == 0; }
 	/** @brief Sets the value of NumSides to its default  */
@@ -99,7 +107,9 @@ struct RALLYHEREAPI_API FRHAPI_QueueConfig : public FRHAPI_Model
 	/** @brief Gets the value of MaxPlayersPerSide */
 	const int32& GetMaxPlayersPerSide() const { return MaxPlayersPerSide; }
 	/** @brief Sets the value of MaxPlayersPerSide */
-	void SetMaxPlayersPerSide(int32 NewValue) { MaxPlayersPerSide = NewValue;  }
+	void SetMaxPlayersPerSide(const int32& NewValue) { MaxPlayersPerSide = NewValue;  }
+	/** @brief Sets the value of MaxPlayersPerSide using move semantics */
+	void SetMaxPlayersPerSide(int32&& NewValue) { MaxPlayersPerSide = NewValue;  }
 	/** @brief Returns true if MaxPlayersPerSide matches the default value */
 	bool IsMaxPlayersPerSideDefaultValue() const { return MaxPlayersPerSide == 0; }
 	/** @brief Sets the value of MaxPlayersPerSide to its default  */
@@ -113,7 +123,9 @@ struct RALLYHEREAPI_API FRHAPI_QueueConfig : public FRHAPI_Model
 	/** @brief Gets the value of MinPlayersPerSide */
 	const int32& GetMinPlayersPerSide() const { return MinPlayersPerSide; }
 	/** @brief Sets the value of MinPlayersPerSide */
-	void SetMinPlayersPerSide(int32 NewValue) { MinPlayersPerSide = NewValue;  }
+	void SetMinPlayersPerSide(const int32& NewValue) { MinPlayersPerSide = NewValue;  }
+	/** @brief Sets the value of MinPlayersPerSide using move semantics */
+	void SetMinPlayersPerSide(int32&& NewValue) { MinPlayersPerSide = NewValue;  }
 	/** @brief Returns true if MinPlayersPerSide matches the default value */
 	bool IsMinPlayersPerSideDefaultValue() const { return MinPlayersPerSide == 0; }
 	/** @brief Sets the value of MinPlayersPerSide to its default  */
@@ -127,7 +139,9 @@ struct RALLYHEREAPI_API FRHAPI_QueueConfig : public FRHAPI_Model
 	/** @brief Gets the value of MaxQueueGroupSize */
 	const int32& GetMaxQueueGroupSize() const { return MaxQueueGroupSize; }
 	/** @brief Sets the value of MaxQueueGroupSize */
-	void SetMaxQueueGroupSize(int32 NewValue) { MaxQueueGroupSize = NewValue;  }
+	void SetMaxQueueGroupSize(const int32& NewValue) { MaxQueueGroupSize = NewValue;  }
+	/** @brief Sets the value of MaxQueueGroupSize using move semantics */
+	void SetMaxQueueGroupSize(int32&& NewValue) { MaxQueueGroupSize = NewValue;  }
 	/** @brief Returns true if MaxQueueGroupSize matches the default value */
 	bool IsMaxQueueGroupSizeDefaultValue() const { return MaxQueueGroupSize == 0; }
 	/** @brief Sets the value of MaxQueueGroupSize to its default  */
@@ -141,7 +155,9 @@ struct RALLYHEREAPI_API FRHAPI_QueueConfig : public FRHAPI_Model
 	/** @brief Gets the value of MatchMakingTemplateGroupId */
 	const FGuid& GetMatchMakingTemplateGroupId() const { return MatchMakingTemplateGroupId; }
 	/** @brief Sets the value of MatchMakingTemplateGroupId */
-	void SetMatchMakingTemplateGroupId(FGuid NewValue) { MatchMakingTemplateGroupId = NewValue;  }
+	void SetMatchMakingTemplateGroupId(const FGuid& NewValue) { MatchMakingTemplateGroupId = NewValue;  }
+	/** @brief Sets the value of MatchMakingTemplateGroupId using move semantics */
+	void SetMatchMakingTemplateGroupId(FGuid&& NewValue) { MatchMakingTemplateGroupId = NewValue;  }
 };
 
 /** @} */

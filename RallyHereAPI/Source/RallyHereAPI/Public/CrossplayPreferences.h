@@ -49,7 +49,9 @@ struct RALLYHEREAPI_API FRHAPI_CrossplayPreferences : public FRHAPI_Model
 	/** @brief Gets the value of PermittedPlatform */
 	const ERHAPI_CrossplayPlatform& GetPermittedPlatform() const { return PermittedPlatform; }
 	/** @brief Sets the value of PermittedPlatform */
-	void SetPermittedPlatform(ERHAPI_CrossplayPlatform NewValue) { PermittedPlatform = NewValue;  }
+	void SetPermittedPlatform(const ERHAPI_CrossplayPlatform& NewValue) { PermittedPlatform = NewValue;  }
+	/** @brief Sets the value of PermittedPlatform using move semantics */
+	void SetPermittedPlatform(ERHAPI_CrossplayPlatform&& NewValue) { PermittedPlatform = NewValue;  }
 
 	/** @brief The input type that the client is allowed to play with (keyboard and mouse, gamepad, touch input etc.) */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -59,7 +61,9 @@ struct RALLYHEREAPI_API FRHAPI_CrossplayPreferences : public FRHAPI_Model
 	/** @brief Gets the value of PermittedInput */
 	const ERHAPI_CrossplayInput& GetPermittedInput() const { return PermittedInput; }
 	/** @brief Sets the value of PermittedInput */
-	void SetPermittedInput(ERHAPI_CrossplayInput NewValue) { PermittedInput = NewValue;  }
+	void SetPermittedInput(const ERHAPI_CrossplayInput& NewValue) { PermittedInput = NewValue;  }
+	/** @brief Sets the value of PermittedInput using move semantics */
+	void SetPermittedInput(ERHAPI_CrossplayInput&& NewValue) { PermittedInput = NewValue;  }
 };
 
 /** @} */

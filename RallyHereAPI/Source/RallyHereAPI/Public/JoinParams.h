@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_JoinParams : public FRHAPI_Model
 	/** @brief Gets the value of PublicConnStr */
 	const FString& GetPublicConnStr() const { return PublicConnStr; }
 	/** @brief Sets the value of PublicConnStr */
-	void SetPublicConnStr(FString NewValue) { PublicConnStr = NewValue;  }
+	void SetPublicConnStr(const FString& NewValue) { PublicConnStr = NewValue;  }
+	/** @brief Sets the value of PublicConnStr using move semantics */
+	void SetPublicConnStr(FString&& NewValue) { PublicConnStr = NewValue;  }
 
 	/** @brief Private connection string for instance */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -57,7 +59,9 @@ struct RALLYHEREAPI_API FRHAPI_JoinParams : public FRHAPI_Model
 	/** @brief Gets the value of PrivateConnStr */
 	const FString& GetPrivateConnStr() const { return PrivateConnStr; }
 	/** @brief Sets the value of PrivateConnStr */
-	void SetPrivateConnStr(FString NewValue) { PrivateConnStr = NewValue;  }
+	void SetPrivateConnStr(const FString& NewValue) { PrivateConnStr = NewValue;  }
+	/** @brief Sets the value of PrivateConnStr using move semantics */
+	void SetPrivateConnStr(FString&& NewValue) { PrivateConnStr = NewValue;  }
 
 	/** @brief Custom data to join a instance */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -78,7 +82,9 @@ struct RALLYHEREAPI_API FRHAPI_JoinParams : public FRHAPI_Model
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
+	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
 	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false; }
 };

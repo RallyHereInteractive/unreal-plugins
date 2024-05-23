@@ -60,7 +60,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrdersResponse : public FRHAPI_Model
 	/** @brief Returns a pointer to Data_Optional, if it has been set, otherwise returns nullptr */
 	const TArray<FRHAPI_PlayerOrder>* GetDataOrNull() const { if (Data_IsSet) return &Data_Optional; return nullptr; }
 	/** @brief Sets the value of Data_Optional and also sets Data_IsSet to true */
-	void SetData(TArray<FRHAPI_PlayerOrder> NewValue) { Data_Optional = NewValue; Data_IsSet = true; }
+	void SetData(const TArray<FRHAPI_PlayerOrder>& NewValue) { Data_Optional = NewValue; Data_IsSet = true; }
+	/** @brief Sets the value of Data_Optional and also sets Data_IsSet to true using move semantics */
+	void SetData(TArray<FRHAPI_PlayerOrder>&& NewValue) { Data_Optional = NewValue; Data_IsSet = true; }
 	 /** @brief Clears the value of Data_Optional and sets Data_IsSet to false */
 	void ClearData() { Data_IsSet = false; }
 
@@ -72,7 +74,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrdersResponse : public FRHAPI_Model
 	/** @brief Gets the value of Page */
 	const FRHAPI_InventoryPageMeta& GetPage() const { return Page; }
 	/** @brief Sets the value of Page */
-	void SetPage(FRHAPI_InventoryPageMeta NewValue) { Page = NewValue;  }
+	void SetPage(const FRHAPI_InventoryPageMeta& NewValue) { Page = NewValue;  }
+	/** @brief Sets the value of Page using move semantics */
+	void SetPage(FRHAPI_InventoryPageMeta&& NewValue) { Page = NewValue;  }
 };
 
 /** @} */

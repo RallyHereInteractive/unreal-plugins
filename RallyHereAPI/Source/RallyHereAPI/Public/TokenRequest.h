@@ -48,7 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_TokenRequest : public FRHAPI_Model
 	/** @brief Gets the value of GrantType */
 	const ERHAPI_OAuthGrantType& GetGrantType() const { return GrantType; }
 	/** @brief Sets the value of GrantType */
-	void SetGrantType(ERHAPI_OAuthGrantType NewValue) { GrantType = NewValue;  }
+	void SetGrantType(const ERHAPI_OAuthGrantType& NewValue) { GrantType = NewValue;  }
+	/** @brief Sets the value of GrantType using move semantics */
+	void SetGrantType(ERHAPI_OAuthGrantType&& NewValue) { GrantType = NewValue;  }
 };
 
 /** @} */

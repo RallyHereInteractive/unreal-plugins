@@ -59,7 +59,9 @@ struct RALLYHEREAPI_API FRHAPI_InventorySessionCreateRequest : public FRHAPI_Mod
 	/** @brief Returns a pointer to SessionPlatform_Optional, if it has been set, otherwise returns nullptr */
 	const ERHAPI_Platform* GetSessionPlatformOrNull() const { if (SessionPlatform_IsSet) return &SessionPlatform_Optional; return nullptr; }
 	/** @brief Sets the value of SessionPlatform_Optional and also sets SessionPlatform_IsSet to true */
-	void SetSessionPlatform(ERHAPI_Platform NewValue) { SessionPlatform_Optional = NewValue; SessionPlatform_IsSet = true; }
+	void SetSessionPlatform(const ERHAPI_Platform& NewValue) { SessionPlatform_Optional = NewValue; SessionPlatform_IsSet = true; }
+	/** @brief Sets the value of SessionPlatform_Optional and also sets SessionPlatform_IsSet to true using move semantics */
+	void SetSessionPlatform(ERHAPI_Platform&& NewValue) { SessionPlatform_Optional = NewValue; SessionPlatform_IsSet = true; }
 	 /** @brief Clears the value of SessionPlatform_Optional and sets SessionPlatform_IsSet to false */
 	void ClearSessionPlatform() { SessionPlatform_IsSet = false; }
 };

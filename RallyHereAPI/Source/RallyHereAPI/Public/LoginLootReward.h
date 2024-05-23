@@ -58,7 +58,9 @@ struct RALLYHEREAPI_API FRHAPI_LoginLootReward : public FRHAPI_Model
 	/** @brief Returns a pointer to LootId_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetLootIdOrNull() const { if (LootId_IsSet) return &LootId_Optional; return nullptr; }
 	/** @brief Sets the value of LootId_Optional and also sets LootId_IsSet to true */
-	void SetLootId(FString NewValue) { LootId_Optional = NewValue; LootId_IsSet = true; }
+	void SetLootId(const FString& NewValue) { LootId_Optional = NewValue; LootId_IsSet = true; }
+	/** @brief Sets the value of LootId_Optional and also sets LootId_IsSet to true using move semantics */
+	void SetLootId(FString&& NewValue) { LootId_Optional = NewValue; LootId_IsSet = true; }
 	 /** @brief Clears the value of LootId_Optional and sets LootId_IsSet to false */
 	void ClearLootId() { LootId_IsSet = false; }
 
@@ -70,7 +72,9 @@ struct RALLYHEREAPI_API FRHAPI_LoginLootReward : public FRHAPI_Model
 	/** @brief Gets the value of LegacyLootId */
 	const int32& GetLegacyLootId() const { return LegacyLootId; }
 	/** @brief Sets the value of LegacyLootId */
-	void SetLegacyLootId(int32 NewValue) { LegacyLootId = NewValue;  }
+	void SetLegacyLootId(const int32& NewValue) { LegacyLootId = NewValue;  }
+	/** @brief Sets the value of LegacyLootId using move semantics */
+	void SetLegacyLootId(int32&& NewValue) { LegacyLootId = NewValue;  }
 	/** @brief Returns true if LegacyLootId matches the default value */
 	bool IsLegacyLootIdDefaultValue() const { return LegacyLootId == 0; }
 	/** @brief Sets the value of LegacyLootId to its default  */

@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchSession : public FRHAPI_Model
 	/** @brief Gets the value of SessionId */
 	const FString& GetSessionId() const { return SessionId; }
 	/** @brief Sets the value of SessionId */
-	void SetSessionId(FString NewValue) { SessionId = NewValue;  }
+	void SetSessionId(const FString& NewValue) { SessionId = NewValue;  }
+	/** @brief Sets the value of SessionId using move semantics */
+	void SetSessionId(FString&& NewValue) { SessionId = NewValue;  }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString MatchmakingProfileId_Optional{  };
@@ -67,7 +69,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchSession : public FRHAPI_Model
 	/** @brief Returns a pointer to MatchmakingProfileId_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetMatchmakingProfileIdOrNull() const { if (MatchmakingProfileId_IsSet) return &MatchmakingProfileId_Optional; return nullptr; }
 	/** @brief Sets the value of MatchmakingProfileId_Optional and also sets MatchmakingProfileId_IsSet to true */
-	void SetMatchmakingProfileId(FString NewValue) { MatchmakingProfileId_Optional = NewValue; MatchmakingProfileId_IsSet = true; }
+	void SetMatchmakingProfileId(const FString& NewValue) { MatchmakingProfileId_Optional = NewValue; MatchmakingProfileId_IsSet = true; }
+	/** @brief Sets the value of MatchmakingProfileId_Optional and also sets MatchmakingProfileId_IsSet to true using move semantics */
+	void SetMatchmakingProfileId(FString&& NewValue) { MatchmakingProfileId_Optional = NewValue; MatchmakingProfileId_IsSet = true; }
 	 /** @brief Clears the value of MatchmakingProfileId_Optional and sets MatchmakingProfileId_IsSet to false */
 	void ClearMatchmakingProfileId() { MatchmakingProfileId_IsSet = false; }
 };

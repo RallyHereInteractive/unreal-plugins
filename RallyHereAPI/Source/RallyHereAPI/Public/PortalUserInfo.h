@@ -49,7 +49,9 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserInfo : public FRHAPI_Model
 	/** @brief Gets the value of Platform */
 	const ERHAPI_Platform& GetPlatform() const { return Platform; }
 	/** @brief Sets the value of Platform */
-	void SetPlatform(ERHAPI_Platform NewValue) { Platform = NewValue;  }
+	void SetPlatform(const ERHAPI_Platform& NewValue) { Platform = NewValue;  }
+	/** @brief Sets the value of Platform using move semantics */
+	void SetPlatform(ERHAPI_Platform&& NewValue) { Platform = NewValue;  }
 
 	/** @brief Portal ID. *DEPRECATED* use `platform` instead */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -59,7 +61,9 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserInfo : public FRHAPI_Model
 	/** @brief Gets the value of PortalId */
 	const ERHAPI_DependenciesSchemasPortal& GetPortalId() const { return PortalId; }
 	/** @brief Sets the value of PortalId */
-	void SetPortalId(ERHAPI_DependenciesSchemasPortal NewValue) { PortalId = NewValue;  }
+	void SetPortalId(const ERHAPI_DependenciesSchemasPortal& NewValue) { PortalId = NewValue;  }
+	/** @brief Sets the value of PortalId using move semantics */
+	void SetPortalId(ERHAPI_DependenciesSchemasPortal&& NewValue) { PortalId = NewValue;  }
 
 	/** @brief Platform User ID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -69,7 +73,9 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserInfo : public FRHAPI_Model
 	/** @brief Gets the value of PortalUserId */
 	const FString& GetPortalUserId() const { return PortalUserId; }
 	/** @brief Sets the value of PortalUserId */
-	void SetPortalUserId(FString NewValue) { PortalUserId = NewValue;  }
+	void SetPortalUserId(const FString& NewValue) { PortalUserId = NewValue;  }
+	/** @brief Sets the value of PortalUserId using move semantics */
+	void SetPortalUserId(FString&& NewValue) { PortalUserId = NewValue;  }
 
 	/** @brief Display name */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -79,7 +85,9 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserInfo : public FRHAPI_Model
 	/** @brief Gets the value of DisplayName */
 	const FString& GetDisplayName() const { return DisplayName; }
 	/** @brief Sets the value of DisplayName */
-	void SetDisplayName(FString NewValue) { DisplayName = NewValue;  }
+	void SetDisplayName(const FString& NewValue) { DisplayName = NewValue;  }
+	/** @brief Sets the value of DisplayName using move semantics */
+	void SetDisplayName(FString&& NewValue) { DisplayName = NewValue;  }
 };
 
 /** @} */

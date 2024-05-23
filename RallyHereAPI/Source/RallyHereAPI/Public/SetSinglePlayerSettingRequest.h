@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_SetSinglePlayerSettingRequest : public FRHAPI_Mod
 	/** @brief Gets the value of V */
 	const int32& GetV() const { return V; }
 	/** @brief Sets the value of V */
-	void SetV(int32 NewValue) { V = NewValue;  }
+	void SetV(const int32& NewValue) { V = NewValue;  }
+	/** @brief Sets the value of V using move semantics */
+	void SetV(int32&& NewValue) { V = NewValue;  }
 	/** @brief Returns true if V matches the default value */
 	bool IsVDefaultValue() const { return V == 0; }
 	/** @brief Sets the value of V to its default  */
@@ -61,7 +63,9 @@ struct RALLYHEREAPI_API FRHAPI_SetSinglePlayerSettingRequest : public FRHAPI_Mod
 	/** @brief Gets the value of Value */
 	const FRHAPI_JsonValue& GetValue() const { return Value; }
 	/** @brief Sets the value of Value */
-	void SetValue(FRHAPI_JsonValue NewValue) { Value = NewValue;  }
+	void SetValue(const FRHAPI_JsonValue& NewValue) { Value = NewValue;  }
+	/** @brief Sets the value of Value using move semantics */
+	void SetValue(FRHAPI_JsonValue&& NewValue) { Value = NewValue;  }
 };
 
 /** @} */

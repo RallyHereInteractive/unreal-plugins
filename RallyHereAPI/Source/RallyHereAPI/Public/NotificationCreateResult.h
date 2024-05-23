@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_NotificationCreateResult : public FRHAPI_Model
 	/** @brief Gets the value of NotificationId */
 	const FString& GetNotificationId() const { return NotificationId; }
 	/** @brief Sets the value of NotificationId */
-	void SetNotificationId(FString NewValue) { NotificationId = NewValue;  }
+	void SetNotificationId(const FString& NewValue) { NotificationId = NewValue;  }
+	/** @brief Sets the value of NotificationId using move semantics */
+	void SetNotificationId(FString&& NewValue) { NotificationId = NewValue;  }
 };
 
 /** @} */

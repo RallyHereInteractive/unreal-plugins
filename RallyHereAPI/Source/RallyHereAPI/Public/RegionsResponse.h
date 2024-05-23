@@ -48,7 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_RegionsResponse : public FRHAPI_Model
 	/** @brief Gets the value of Regions */
 	const TArray<FRHAPI_Region>& GetRegions() const { return Regions; }
 	/** @brief Sets the value of Regions */
-	void SetRegions(TArray<FRHAPI_Region> NewValue) { Regions = NewValue;  }
+	void SetRegions(const TArray<FRHAPI_Region>& NewValue) { Regions = NewValue;  }
+	/** @brief Sets the value of Regions using move semantics */
+	void SetRegions(TArray<FRHAPI_Region>&& NewValue) { Regions = NewValue;  }
 
 	/** @brief Cursor to continue iterating through enabled regions. Non 0 cursor in the response means there are more regions. Pass the returned cursor up on a subsequent call to continue. A 0 cursor in the response means you have reached the end */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -58,7 +60,9 @@ struct RALLYHEREAPI_API FRHAPI_RegionsResponse : public FRHAPI_Model
 	/** @brief Gets the value of Cursor */
 	const int32& GetCursor() const { return Cursor; }
 	/** @brief Sets the value of Cursor */
-	void SetCursor(int32 NewValue) { Cursor = NewValue;  }
+	void SetCursor(const int32& NewValue) { Cursor = NewValue;  }
+	/** @brief Sets the value of Cursor using move semantics */
+	void SetCursor(int32&& NewValue) { Cursor = NewValue;  }
 	/** @brief Returns true if Cursor matches the default value */
 	bool IsCursorDefaultValue() const { return Cursor == 0; }
 	/** @brief Sets the value of Cursor to its default  */

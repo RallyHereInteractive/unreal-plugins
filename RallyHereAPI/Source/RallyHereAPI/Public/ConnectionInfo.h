@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_ConnectionInfo : public FRHAPI_Model
 	/** @brief Gets the value of Ip */
 	const FString& GetIp() const { return Ip; }
 	/** @brief Sets the value of Ip */
-	void SetIp(FString NewValue) { Ip = NewValue;  }
+	void SetIp(const FString& NewValue) { Ip = NewValue;  }
+	/** @brief Sets the value of Ip using move semantics */
+	void SetIp(FString&& NewValue) { Ip = NewValue;  }
 };
 
 /** @} */

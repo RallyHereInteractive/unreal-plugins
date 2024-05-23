@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_AdOpportunities : public FRHAPI_Model
 	/** @brief Gets the value of Opportunities */
 	const TArray<FRHAPI_AdOpportunity>& GetOpportunities() const { return Opportunities; }
 	/** @brief Sets the value of Opportunities */
-	void SetOpportunities(TArray<FRHAPI_AdOpportunity> NewValue) { Opportunities = NewValue;  }
+	void SetOpportunities(const TArray<FRHAPI_AdOpportunity>& NewValue) { Opportunities = NewValue;  }
+	/** @brief Sets the value of Opportunities using move semantics */
+	void SetOpportunities(TArray<FRHAPI_AdOpportunity>&& NewValue) { Opportunities = NewValue;  }
 };
 
 /** @} */

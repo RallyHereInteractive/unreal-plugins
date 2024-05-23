@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_LogoutRequest : public FRHAPI_Model
 	/** @brief Gets the value of RefreshToken */
 	const FString& GetRefreshToken() const { return RefreshToken; }
 	/** @brief Sets the value of RefreshToken */
-	void SetRefreshToken(FString NewValue) { RefreshToken = NewValue;  }
+	void SetRefreshToken(const FString& NewValue) { RefreshToken = NewValue;  }
+	/** @brief Sets the value of RefreshToken using move semantics */
+	void SetRefreshToken(FString&& NewValue) { RefreshToken = NewValue;  }
 };
 
 /** @} */

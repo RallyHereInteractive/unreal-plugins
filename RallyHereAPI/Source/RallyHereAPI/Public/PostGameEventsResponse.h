@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_PostGameEventsResponse : public FRHAPI_Model
 	/** @brief Gets the value of PostedEvents */
 	const int32& GetPostedEvents() const { return PostedEvents; }
 	/** @brief Sets the value of PostedEvents */
-	void SetPostedEvents(int32 NewValue) { PostedEvents = NewValue;  }
+	void SetPostedEvents(const int32& NewValue) { PostedEvents = NewValue;  }
+	/** @brief Sets the value of PostedEvents using move semantics */
+	void SetPostedEvents(int32&& NewValue) { PostedEvents = NewValue;  }
 	/** @brief Returns true if PostedEvents matches the default value */
 	bool IsPostedEventsDefaultValue() const { return PostedEvents == 0; }
 	/** @brief Sets the value of PostedEvents to its default  */
@@ -72,7 +74,9 @@ struct RALLYHEREAPI_API FRHAPI_PostGameEventsResponse : public FRHAPI_Model
 	/** @brief Returns a pointer to Errors_Optional, if it has been set, otherwise returns nullptr */
 	const TArray<FRHAPI_JsonValue>* GetErrorsOrNull() const { if (Errors_IsSet) return &Errors_Optional; return nullptr; }
 	/** @brief Sets the value of Errors_Optional and also sets Errors_IsSet to true */
-	void SetErrors(TArray<FRHAPI_JsonValue> NewValue) { Errors_Optional = NewValue; Errors_IsSet = true; }
+	void SetErrors(const TArray<FRHAPI_JsonValue>& NewValue) { Errors_Optional = NewValue; Errors_IsSet = true; }
+	/** @brief Sets the value of Errors_Optional and also sets Errors_IsSet to true using move semantics */
+	void SetErrors(TArray<FRHAPI_JsonValue>&& NewValue) { Errors_Optional = NewValue; Errors_IsSet = true; }
 	 /** @brief Clears the value of Errors_Optional and sets Errors_IsSet to false */
 	void ClearErrors() { Errors_IsSet = false; }
 };

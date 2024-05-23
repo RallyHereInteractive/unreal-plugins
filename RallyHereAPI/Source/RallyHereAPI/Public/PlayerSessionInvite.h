@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerSessionInvite : public FRHAPI_Model
 	/** @brief Gets the value of SessionId */
 	const FString& GetSessionId() const { return SessionId; }
 	/** @brief Sets the value of SessionId */
-	void SetSessionId(FString NewValue) { SessionId = NewValue;  }
+	void SetSessionId(const FString& NewValue) { SessionId = NewValue;  }
+	/** @brief Sets the value of SessionId using move semantics */
+	void SetSessionId(FString&& NewValue) { SessionId = NewValue;  }
 
 	/** @brief Player who sent the invite */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -68,7 +70,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerSessionInvite : public FRHAPI_Model
 	/** @brief Returns a pointer to InvitingPlayerUuid_Optional, if it has been set, otherwise returns nullptr */
 	const FGuid* GetInvitingPlayerUuidOrNull() const { if (InvitingPlayerUuid_IsSet) return &InvitingPlayerUuid_Optional; return nullptr; }
 	/** @brief Sets the value of InvitingPlayerUuid_Optional and also sets InvitingPlayerUuid_IsSet to true */
-	void SetInvitingPlayerUuid(FGuid NewValue) { InvitingPlayerUuid_Optional = NewValue; InvitingPlayerUuid_IsSet = true; }
+	void SetInvitingPlayerUuid(const FGuid& NewValue) { InvitingPlayerUuid_Optional = NewValue; InvitingPlayerUuid_IsSet = true; }
+	/** @brief Sets the value of InvitingPlayerUuid_Optional and also sets InvitingPlayerUuid_IsSet to true using move semantics */
+	void SetInvitingPlayerUuid(FGuid&& NewValue) { InvitingPlayerUuid_Optional = NewValue; InvitingPlayerUuid_IsSet = true; }
 	 /** @brief Clears the value of InvitingPlayerUuid_Optional and sets InvitingPlayerUuid_IsSet to false */
 	void ClearInvitingPlayerUuid() { InvitingPlayerUuid_IsSet = false; }
 };

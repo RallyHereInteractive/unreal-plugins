@@ -48,7 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_EventList : public FRHAPI_Model
 	/** @brief Gets the value of EventList */
 	const TArray<FRHAPI_RallyHereEvent>& GetEventList() const { return EventList; }
 	/** @brief Sets the value of EventList */
-	void SetEventList(TArray<FRHAPI_RallyHereEvent> NewValue) { EventList = NewValue;  }
+	void SetEventList(const TArray<FRHAPI_RallyHereEvent>& NewValue) { EventList = NewValue;  }
+	/** @brief Sets the value of EventList using move semantics */
+	void SetEventList(TArray<FRHAPI_RallyHereEvent>&& NewValue) { EventList = NewValue;  }
 };
 
 /** @} */

@@ -48,7 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerRankRequestResponse : public FRHAPI_Model
 	/** @brief Gets the value of PlayerRanks */
 	const TArray<FRHAPI_PlayerRankResponse>& GetPlayerRanks() const { return PlayerRanks; }
 	/** @brief Sets the value of PlayerRanks */
-	void SetPlayerRanks(TArray<FRHAPI_PlayerRankResponse> NewValue) { PlayerRanks = NewValue;  }
+	void SetPlayerRanks(const TArray<FRHAPI_PlayerRankResponse>& NewValue) { PlayerRanks = NewValue;  }
+	/** @brief Sets the value of PlayerRanks using move semantics */
+	void SetPlayerRanks(TArray<FRHAPI_PlayerRankResponse>&& NewValue) { PlayerRanks = NewValue;  }
 };
 
 /** @} */

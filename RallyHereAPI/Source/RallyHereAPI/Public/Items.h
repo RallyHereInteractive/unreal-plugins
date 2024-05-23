@@ -60,7 +60,9 @@ struct RALLYHEREAPI_API FRHAPI_Items : public FRHAPI_Model
 	/** @brief Returns a pointer to Items_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FRHAPI_Item>* GetItemsOrNull() const { if (Items_IsSet) return &Items_Optional; return nullptr; }
 	/** @brief Sets the value of Items_Optional and also sets Items_IsSet to true */
-	void SetItems(TMap<FString, FRHAPI_Item> NewValue) { Items_Optional = NewValue; Items_IsSet = true; }
+	void SetItems(const TMap<FString, FRHAPI_Item>& NewValue) { Items_Optional = NewValue; Items_IsSet = true; }
+	/** @brief Sets the value of Items_Optional and also sets Items_IsSet to true using move semantics */
+	void SetItems(TMap<FString, FRHAPI_Item>&& NewValue) { Items_Optional = NewValue; Items_IsSet = true; }
 	 /** @brief Clears the value of Items_Optional and sets Items_IsSet to false */
 	void ClearItems() { Items_IsSet = false; }
 
@@ -83,7 +85,9 @@ struct RALLYHEREAPI_API FRHAPI_Items : public FRHAPI_Model
 	/** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
 	const FRHAPI_CacheInfo* GetCacheInfoOrNull() const { if (CacheInfo_IsSet) return &CacheInfo_Optional; return nullptr; }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true */
-	void SetCacheInfo(FRHAPI_CacheInfo NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
+	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
+	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics */
+	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
 	 /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
 	void ClearCacheInfo() { CacheInfo_IsSet = false; }
 };

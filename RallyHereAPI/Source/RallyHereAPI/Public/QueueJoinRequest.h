@@ -48,7 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_QueueJoinRequest : public FRHAPI_Model
 	/** @brief Gets the value of QueueId */
 	const FString& GetQueueId() const { return QueueId; }
 	/** @brief Sets the value of QueueId */
-	void SetQueueId(FString NewValue) { QueueId = NewValue;  }
+	void SetQueueId(const FString& NewValue) { QueueId = NewValue;  }
+	/** @brief Sets the value of QueueId using move semantics */
+	void SetQueueId(FString&& NewValue) { QueueId = NewValue;  }
 
 	/** @brief Additional fields put on the matchmaking ticket for open match to search with (see https://openmatch.dev/site/docs/reference/api/#searchfields) */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -69,7 +71,9 @@ struct RALLYHEREAPI_API FRHAPI_QueueJoinRequest : public FRHAPI_Model
 	/** @brief Returns a pointer to AdditionalJoinParams_Optional, if it has been set, otherwise returns nullptr */
 	const FRHAPI_AdditionalJoinParams* GetAdditionalJoinParamsOrNull() const { if (AdditionalJoinParams_IsSet) return &AdditionalJoinParams_Optional; return nullptr; }
 	/** @brief Sets the value of AdditionalJoinParams_Optional and also sets AdditionalJoinParams_IsSet to true */
-	void SetAdditionalJoinParams(FRHAPI_AdditionalJoinParams NewValue) { AdditionalJoinParams_Optional = NewValue; AdditionalJoinParams_IsSet = true; }
+	void SetAdditionalJoinParams(const FRHAPI_AdditionalJoinParams& NewValue) { AdditionalJoinParams_Optional = NewValue; AdditionalJoinParams_IsSet = true; }
+	/** @brief Sets the value of AdditionalJoinParams_Optional and also sets AdditionalJoinParams_IsSet to true using move semantics */
+	void SetAdditionalJoinParams(FRHAPI_AdditionalJoinParams&& NewValue) { AdditionalJoinParams_Optional = NewValue; AdditionalJoinParams_IsSet = true; }
 	 /** @brief Clears the value of AdditionalJoinParams_Optional and sets AdditionalJoinParams_IsSet to false */
 	void ClearAdditionalJoinParams() { AdditionalJoinParams_IsSet = false; }
 
@@ -92,7 +96,9 @@ struct RALLYHEREAPI_API FRHAPI_QueueJoinRequest : public FRHAPI_Model
 	/** @brief Returns a pointer to MapPreferences_Optional, if it has been set, otherwise returns nullptr */
 	const TArray<FString>* GetMapPreferencesOrNull() const { if (MapPreferences_IsSet) return &MapPreferences_Optional; return nullptr; }
 	/** @brief Sets the value of MapPreferences_Optional and also sets MapPreferences_IsSet to true */
-	void SetMapPreferences(TArray<FString> NewValue) { MapPreferences_Optional = NewValue; MapPreferences_IsSet = true; }
+	void SetMapPreferences(const TArray<FString>& NewValue) { MapPreferences_Optional = NewValue; MapPreferences_IsSet = true; }
+	/** @brief Sets the value of MapPreferences_Optional and also sets MapPreferences_IsSet to true using move semantics */
+	void SetMapPreferences(TArray<FString>&& NewValue) { MapPreferences_Optional = NewValue; MapPreferences_IsSet = true; }
 	 /** @brief Clears the value of MapPreferences_Optional and sets MapPreferences_IsSet to false */
 	void ClearMapPreferences() { MapPreferences_IsSet = false; }
 };

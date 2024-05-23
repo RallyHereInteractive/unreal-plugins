@@ -59,7 +59,9 @@ struct RALLYHEREAPI_API FRHAPI_PagedPlayerMatchResponse : public FRHAPI_Model
 	/** @brief Returns a pointer to PlayerMatches_Optional, if it has been set, otherwise returns nullptr */
 	const TArray<FRHAPI_MatchPlayerWithMatch>* GetPlayerMatchesOrNull() const { if (PlayerMatches_IsSet) return &PlayerMatches_Optional; return nullptr; }
 	/** @brief Sets the value of PlayerMatches_Optional and also sets PlayerMatches_IsSet to true */
-	void SetPlayerMatches(TArray<FRHAPI_MatchPlayerWithMatch> NewValue) { PlayerMatches_Optional = NewValue; PlayerMatches_IsSet = true; }
+	void SetPlayerMatches(const TArray<FRHAPI_MatchPlayerWithMatch>& NewValue) { PlayerMatches_Optional = NewValue; PlayerMatches_IsSet = true; }
+	/** @brief Sets the value of PlayerMatches_Optional and also sets PlayerMatches_IsSet to true using move semantics */
+	void SetPlayerMatches(TArray<FRHAPI_MatchPlayerWithMatch>&& NewValue) { PlayerMatches_Optional = NewValue; PlayerMatches_IsSet = true; }
 	 /** @brief Clears the value of PlayerMatches_Optional and sets PlayerMatches_IsSet to false */
 	void ClearPlayerMatches() { PlayerMatches_IsSet = false; }
 
@@ -81,7 +83,9 @@ struct RALLYHEREAPI_API FRHAPI_PagedPlayerMatchResponse : public FRHAPI_Model
 	/** @brief Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetCursorOrNull() const { if (Cursor_IsSet) return &Cursor_Optional; return nullptr; }
 	/** @brief Sets the value of Cursor_Optional and also sets Cursor_IsSet to true */
-	void SetCursor(FString NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true; }
+	void SetCursor(const FString& NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true; }
+	/** @brief Sets the value of Cursor_Optional and also sets Cursor_IsSet to true using move semantics */
+	void SetCursor(FString&& NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true; }
 	 /** @brief Clears the value of Cursor_Optional and sets Cursor_IsSet to false */
 	void ClearCursor() { Cursor_IsSet = false; }
 };

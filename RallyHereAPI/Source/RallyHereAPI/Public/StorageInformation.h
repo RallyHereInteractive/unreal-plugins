@@ -57,7 +57,9 @@ struct RALLYHEREAPI_API FRHAPI_StorageInformation : public FRHAPI_Model
 	/** @brief Returns a pointer to TotalFiles_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetTotalFilesOrNull() const { if (TotalFiles_IsSet) return &TotalFiles_Optional; return nullptr; }
 	/** @brief Sets the value of TotalFiles_Optional and also sets TotalFiles_IsSet to true */
-	void SetTotalFiles(int32 NewValue) { TotalFiles_Optional = NewValue; TotalFiles_IsSet = true; }
+	void SetTotalFiles(const int32& NewValue) { TotalFiles_Optional = NewValue; TotalFiles_IsSet = true; }
+	/** @brief Sets the value of TotalFiles_Optional and also sets TotalFiles_IsSet to true using move semantics */
+	void SetTotalFiles(int32&& NewValue) { TotalFiles_Optional = NewValue; TotalFiles_IsSet = true; }
 	 /** @brief Clears the value of TotalFiles_Optional and sets TotalFiles_IsSet to false */
 	void ClearTotalFiles() { TotalFiles_Optional = 0; TotalFiles_IsSet = false; }
 	/** @brief Returns true if TotalFiles_Optional is set and matches the default value */
@@ -83,7 +85,9 @@ struct RALLYHEREAPI_API FRHAPI_StorageInformation : public FRHAPI_Model
 	/** @brief Returns a pointer to TotalSizeBytes_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetTotalSizeBytesOrNull() const { if (TotalSizeBytes_IsSet) return &TotalSizeBytes_Optional; return nullptr; }
 	/** @brief Sets the value of TotalSizeBytes_Optional and also sets TotalSizeBytes_IsSet to true */
-	void SetTotalSizeBytes(int32 NewValue) { TotalSizeBytes_Optional = NewValue; TotalSizeBytes_IsSet = true; }
+	void SetTotalSizeBytes(const int32& NewValue) { TotalSizeBytes_Optional = NewValue; TotalSizeBytes_IsSet = true; }
+	/** @brief Sets the value of TotalSizeBytes_Optional and also sets TotalSizeBytes_IsSet to true using move semantics */
+	void SetTotalSizeBytes(int32&& NewValue) { TotalSizeBytes_Optional = NewValue; TotalSizeBytes_IsSet = true; }
 	 /** @brief Clears the value of TotalSizeBytes_Optional and sets TotalSizeBytes_IsSet to false */
 	void ClearTotalSizeBytes() { TotalSizeBytes_Optional = 0; TotalSizeBytes_IsSet = false; }
 	/** @brief Returns true if TotalSizeBytes_Optional is set and matches the default value */
@@ -109,7 +113,9 @@ struct RALLYHEREAPI_API FRHAPI_StorageInformation : public FRHAPI_Model
 	/** @brief Returns a pointer to TotalSizeMb_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetTotalSizeMbOrNull() const { if (TotalSizeMb_IsSet) return &TotalSizeMb_Optional; return nullptr; }
 	/** @brief Sets the value of TotalSizeMb_Optional and also sets TotalSizeMb_IsSet to true */
-	void SetTotalSizeMb(int32 NewValue) { TotalSizeMb_Optional = NewValue; TotalSizeMb_IsSet = true; }
+	void SetTotalSizeMb(const int32& NewValue) { TotalSizeMb_Optional = NewValue; TotalSizeMb_IsSet = true; }
+	/** @brief Sets the value of TotalSizeMb_Optional and also sets TotalSizeMb_IsSet to true using move semantics */
+	void SetTotalSizeMb(int32&& NewValue) { TotalSizeMb_Optional = NewValue; TotalSizeMb_IsSet = true; }
 	 /** @brief Clears the value of TotalSizeMb_Optional and sets TotalSizeMb_IsSet to false */
 	void ClearTotalSizeMb() { TotalSizeMb_Optional = 0; TotalSizeMb_IsSet = false; }
 	/** @brief Returns true if TotalSizeMb_Optional is set and matches the default value */

@@ -48,7 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionInviteResponse : public FRHAPI_Model
 	/** @brief Gets the value of Players */
 	const TArray<FRHAPI_SessionPlayerUpdateResponse>& GetPlayers() const { return Players; }
 	/** @brief Sets the value of Players */
-	void SetPlayers(TArray<FRHAPI_SessionPlayerUpdateResponse> NewValue) { Players = NewValue;  }
+	void SetPlayers(const TArray<FRHAPI_SessionPlayerUpdateResponse>& NewValue) { Players = NewValue;  }
+	/** @brief Sets the value of Players using move semantics */
+	void SetPlayers(TArray<FRHAPI_SessionPlayerUpdateResponse>&& NewValue) { Players = NewValue;  }
 };
 
 /** @} */

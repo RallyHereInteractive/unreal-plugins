@@ -57,7 +57,9 @@ struct RALLYHEREAPI_API FRHAPI_BlockedPlayerV1 : public FRHAPI_Model
 	/** @brief Returns a pointer to BlockedPlayerId_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetBlockedPlayerIdOrNull() const { if (BlockedPlayerId_IsSet) return &BlockedPlayerId_Optional; return nullptr; }
 	/** @brief Sets the value of BlockedPlayerId_Optional and also sets BlockedPlayerId_IsSet to true */
-	void SetBlockedPlayerId(int32 NewValue) { BlockedPlayerId_Optional = NewValue; BlockedPlayerId_IsSet = true; }
+	void SetBlockedPlayerId(const int32& NewValue) { BlockedPlayerId_Optional = NewValue; BlockedPlayerId_IsSet = true; }
+	/** @brief Sets the value of BlockedPlayerId_Optional and also sets BlockedPlayerId_IsSet to true using move semantics */
+	void SetBlockedPlayerId(int32&& NewValue) { BlockedPlayerId_Optional = NewValue; BlockedPlayerId_IsSet = true; }
 	 /** @brief Clears the value of BlockedPlayerId_Optional and sets BlockedPlayerId_IsSet to false */
 	void ClearBlockedPlayerId() { BlockedPlayerId_Optional = 0; BlockedPlayerId_IsSet = false; }
 	/** @brief Returns true if BlockedPlayerId_Optional is set and matches the default value */
@@ -72,7 +74,9 @@ struct RALLYHEREAPI_API FRHAPI_BlockedPlayerV1 : public FRHAPI_Model
 	/** @brief Gets the value of BlockedPlayerUuid */
 	const FGuid& GetBlockedPlayerUuid() const { return BlockedPlayerUuid; }
 	/** @brief Sets the value of BlockedPlayerUuid */
-	void SetBlockedPlayerUuid(FGuid NewValue) { BlockedPlayerUuid = NewValue;  }
+	void SetBlockedPlayerUuid(const FGuid& NewValue) { BlockedPlayerUuid = NewValue;  }
+	/** @brief Sets the value of BlockedPlayerUuid using move semantics */
+	void SetBlockedPlayerUuid(FGuid&& NewValue) { BlockedPlayerUuid = NewValue;  }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FDateTime LastModifiedOn{  };
@@ -81,7 +85,9 @@ struct RALLYHEREAPI_API FRHAPI_BlockedPlayerV1 : public FRHAPI_Model
 	/** @brief Gets the value of LastModifiedOn */
 	const FDateTime& GetLastModifiedOn() const { return LastModifiedOn; }
 	/** @brief Sets the value of LastModifiedOn */
-	void SetLastModifiedOn(FDateTime NewValue) { LastModifiedOn = NewValue;  }
+	void SetLastModifiedOn(const FDateTime& NewValue) { LastModifiedOn = NewValue;  }
+	/** @brief Sets the value of LastModifiedOn using move semantics */
+	void SetLastModifiedOn(FDateTime&& NewValue) { LastModifiedOn = NewValue;  }
 };
 
 /** @} */

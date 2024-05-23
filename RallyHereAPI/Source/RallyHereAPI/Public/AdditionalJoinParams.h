@@ -58,7 +58,9 @@ struct RALLYHEREAPI_API FRHAPI_AdditionalJoinParams : public FRHAPI_Model
 	/** @brief Returns a pointer to DoubleArgs_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, float>* GetDoubleArgsOrNull() const { if (DoubleArgs_IsSet) return &DoubleArgs_Optional; return nullptr; }
 	/** @brief Sets the value of DoubleArgs_Optional and also sets DoubleArgs_IsSet to true */
-	void SetDoubleArgs(TMap<FString, float> NewValue) { DoubleArgs_Optional = NewValue; DoubleArgs_IsSet = true; }
+	void SetDoubleArgs(const TMap<FString, float>& NewValue) { DoubleArgs_Optional = NewValue; DoubleArgs_IsSet = true; }
+	/** @brief Sets the value of DoubleArgs_Optional and also sets DoubleArgs_IsSet to true using move semantics */
+	void SetDoubleArgs(TMap<FString, float>&& NewValue) { DoubleArgs_Optional = NewValue; DoubleArgs_IsSet = true; }
 	 /** @brief Clears the value of DoubleArgs_Optional and sets DoubleArgs_IsSet to false */
 	void ClearDoubleArgs() { DoubleArgs_IsSet = false; }
 
@@ -81,7 +83,9 @@ struct RALLYHEREAPI_API FRHAPI_AdditionalJoinParams : public FRHAPI_Model
 	/** @brief Returns a pointer to StringArgs_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FString>* GetStringArgsOrNull() const { if (StringArgs_IsSet) return &StringArgs_Optional; return nullptr; }
 	/** @brief Sets the value of StringArgs_Optional and also sets StringArgs_IsSet to true */
-	void SetStringArgs(TMap<FString, FString> NewValue) { StringArgs_Optional = NewValue; StringArgs_IsSet = true; }
+	void SetStringArgs(const TMap<FString, FString>& NewValue) { StringArgs_Optional = NewValue; StringArgs_IsSet = true; }
+	/** @brief Sets the value of StringArgs_Optional and also sets StringArgs_IsSet to true using move semantics */
+	void SetStringArgs(TMap<FString, FString>&& NewValue) { StringArgs_Optional = NewValue; StringArgs_IsSet = true; }
 	 /** @brief Clears the value of StringArgs_Optional and sets StringArgs_IsSet to false */
 	void ClearStringArgs() { StringArgs_IsSet = false; }
 
@@ -104,7 +108,9 @@ struct RALLYHEREAPI_API FRHAPI_AdditionalJoinParams : public FRHAPI_Model
 	/** @brief Returns a pointer to Tags_Optional, if it has been set, otherwise returns nullptr */
 	const TArray<FString>* GetTagsOrNull() const { if (Tags_IsSet) return &Tags_Optional; return nullptr; }
 	/** @brief Sets the value of Tags_Optional and also sets Tags_IsSet to true */
-	void SetTags(TArray<FString> NewValue) { Tags_Optional = NewValue; Tags_IsSet = true; }
+	void SetTags(const TArray<FString>& NewValue) { Tags_Optional = NewValue; Tags_IsSet = true; }
+	/** @brief Sets the value of Tags_Optional and also sets Tags_IsSet to true using move semantics */
+	void SetTags(TArray<FString>&& NewValue) { Tags_Optional = NewValue; Tags_IsSet = true; }
 	 /** @brief Clears the value of Tags_Optional and sets Tags_IsSet to false */
 	void ClearTags() { Tags_IsSet = false; }
 
@@ -127,7 +133,9 @@ struct RALLYHEREAPI_API FRHAPI_AdditionalJoinParams : public FRHAPI_Model
 	/** @brief Returns a pointer to Extensions_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FString>* GetExtensionsOrNull() const { if (Extensions_IsSet) return &Extensions_Optional; return nullptr; }
 	/** @brief Sets the value of Extensions_Optional and also sets Extensions_IsSet to true */
-	void SetExtensions(TMap<FString, FString> NewValue) { Extensions_Optional = NewValue; Extensions_IsSet = true; }
+	void SetExtensions(const TMap<FString, FString>& NewValue) { Extensions_Optional = NewValue; Extensions_IsSet = true; }
+	/** @brief Sets the value of Extensions_Optional and also sets Extensions_IsSet to true using move semantics */
+	void SetExtensions(TMap<FString, FString>&& NewValue) { Extensions_Optional = NewValue; Extensions_IsSet = true; }
 	 /** @brief Clears the value of Extensions_Optional and sets Extensions_IsSet to false */
 	void ClearExtensions() { Extensions_IsSet = false; }
 };

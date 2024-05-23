@@ -49,7 +49,9 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSessionTemplate : public FRHAPI_Model
 	/** @brief Gets the value of PlatformId */
 	const ERHAPI_PlatformID& GetPlatformId() const { return PlatformId; }
 	/** @brief Sets the value of PlatformId */
-	void SetPlatformId(ERHAPI_PlatformID NewValue) { PlatformId = NewValue;  }
+	void SetPlatformId(const ERHAPI_PlatformID& NewValue) { PlatformId = NewValue;  }
+	/** @brief Sets the value of PlatformId using move semantics */
+	void SetPlatformId(ERHAPI_PlatformID&& NewValue) { PlatformId = NewValue;  }
 
 	/** @brief Platform */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -59,7 +61,9 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSessionTemplate : public FRHAPI_Model
 	/** @brief Gets the value of Platform */
 	const ERHAPI_Platform& GetPlatform() const { return Platform; }
 	/** @brief Sets the value of Platform */
-	void SetPlatform(ERHAPI_Platform NewValue) { Platform = NewValue;  }
+	void SetPlatform(const ERHAPI_Platform& NewValue) { Platform = NewValue;  }
+	/** @brief Sets the value of Platform using move semantics */
+	void SetPlatform(ERHAPI_Platform&& NewValue) { Platform = NewValue;  }
 
 	/** @brief Platform-Specific Identifier for the Platform's template */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -69,7 +73,9 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSessionTemplate : public FRHAPI_Model
 	/** @brief Gets the value of PlatformSessionType */
 	const FString& GetPlatformSessionType() const { return PlatformSessionType; }
 	/** @brief Sets the value of PlatformSessionType */
-	void SetPlatformSessionType(FString NewValue) { PlatformSessionType = NewValue;  }
+	void SetPlatformSessionType(const FString& NewValue) { PlatformSessionType = NewValue;  }
+	/** @brief Sets the value of PlatformSessionType using move semantics */
+	void SetPlatformSessionType(FString&& NewValue) { PlatformSessionType = NewValue;  }
 
 	/** @brief The maximum number of players that can be a part of this platform session */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -90,7 +96,9 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSessionTemplate : public FRHAPI_Model
 	/** @brief Returns a pointer to MaxPlayers_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetMaxPlayersOrNull() const { if (MaxPlayers_IsSet) return &MaxPlayers_Optional; return nullptr; }
 	/** @brief Sets the value of MaxPlayers_Optional and also sets MaxPlayers_IsSet to true */
-	void SetMaxPlayers(int32 NewValue) { MaxPlayers_Optional = NewValue; MaxPlayers_IsSet = true; }
+	void SetMaxPlayers(const int32& NewValue) { MaxPlayers_Optional = NewValue; MaxPlayers_IsSet = true; }
+	/** @brief Sets the value of MaxPlayers_Optional and also sets MaxPlayers_IsSet to true using move semantics */
+	void SetMaxPlayers(int32&& NewValue) { MaxPlayers_Optional = NewValue; MaxPlayers_IsSet = true; }
 	 /** @brief Clears the value of MaxPlayers_Optional and sets MaxPlayers_IsSet to false */
 	void ClearMaxPlayers() { MaxPlayers_Optional = 0; MaxPlayers_IsSet = false; }
 	/** @brief Returns true if MaxPlayers_Optional is set and matches the default value */
@@ -117,7 +125,9 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSessionTemplate : public FRHAPI_Model
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
+	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
 	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false; }
 };

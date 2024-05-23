@@ -48,7 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_CalculatedRank : public FRHAPI_Model
 	/** @brief Gets the value of PlayerUuid */
 	const FGuid& GetPlayerUuid() const { return PlayerUuid; }
 	/** @brief Sets the value of PlayerUuid */
-	void SetPlayerUuid(FGuid NewValue) { PlayerUuid = NewValue;  }
+	void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid = NewValue;  }
+	/** @brief Sets the value of PlayerUuid using move semantics */
+	void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid = NewValue;  }
 
 	/** @brief Current rank info about player */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -58,7 +60,9 @@ struct RALLYHEREAPI_API FRHAPI_CalculatedRank : public FRHAPI_Model
 	/** @brief Gets the value of Rank */
 	const FRHAPI_RankData& GetRank() const { return Rank; }
 	/** @brief Sets the value of Rank */
-	void SetRank(FRHAPI_RankData NewValue) { Rank = NewValue;  }
+	void SetRank(const FRHAPI_RankData& NewValue) { Rank = NewValue;  }
+	/** @brief Sets the value of Rank using move semantics */
+	void SetRank(FRHAPI_RankData&& NewValue) { Rank = NewValue;  }
 
 	/** @brief How many seconds this player was in the match */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -68,7 +72,9 @@ struct RALLYHEREAPI_API FRHAPI_CalculatedRank : public FRHAPI_Model
 	/** @brief Gets the value of SecondsInMatch */
 	const int32& GetSecondsInMatch() const { return SecondsInMatch; }
 	/** @brief Sets the value of SecondsInMatch */
-	void SetSecondsInMatch(int32 NewValue) { SecondsInMatch = NewValue;  }
+	void SetSecondsInMatch(const int32& NewValue) { SecondsInMatch = NewValue;  }
+	/** @brief Sets the value of SecondsInMatch using move semantics */
+	void SetSecondsInMatch(int32&& NewValue) { SecondsInMatch = NewValue;  }
 	/** @brief Returns true if SecondsInMatch matches the default value */
 	bool IsSecondsInMatchDefaultValue() const { return SecondsInMatch == 0; }
 	/** @brief Sets the value of SecondsInMatch to its default  */

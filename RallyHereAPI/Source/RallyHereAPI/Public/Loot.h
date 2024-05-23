@@ -65,7 +65,9 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
+	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
 	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false; }
 
@@ -88,7 +90,9 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 	/** @brief Returns a pointer to LootUuid_Optional, if it has been set, otherwise returns nullptr */
 	const FGuid* GetLootUuidOrNull() const { if (LootUuid_IsSet) return &LootUuid_Optional; return nullptr; }
 	/** @brief Sets the value of LootUuid_Optional and also sets LootUuid_IsSet to true */
-	void SetLootUuid(FGuid NewValue) { LootUuid_Optional = NewValue; LootUuid_IsSet = true; }
+	void SetLootUuid(const FGuid& NewValue) { LootUuid_Optional = NewValue; LootUuid_IsSet = true; }
+	/** @brief Sets the value of LootUuid_Optional and also sets LootUuid_IsSet to true using move semantics */
+	void SetLootUuid(FGuid&& NewValue) { LootUuid_Optional = NewValue; LootUuid_IsSet = true; }
 	 /** @brief Clears the value of LootUuid_Optional and sets LootUuid_IsSet to false */
 	void ClearLootUuid() { LootUuid_IsSet = false; }
 
@@ -100,7 +104,9 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 	/** @brief Gets the value of LootId */
 	const int32& GetLootId() const { return LootId; }
 	/** @brief Sets the value of LootId */
-	void SetLootId(int32 NewValue) { LootId = NewValue;  }
+	void SetLootId(const int32& NewValue) { LootId = NewValue;  }
+	/** @brief Sets the value of LootId using move semantics */
+	void SetLootId(int32&& NewValue) { LootId = NewValue;  }
 	/** @brief Returns true if LootId matches the default value */
 	bool IsLootIdDefaultValue() const { return LootId == 0; }
 	/** @brief Sets the value of LootId to its default  */
@@ -114,7 +120,9 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 	/** @brief Gets the value of VendorId */
 	const int32& GetVendorId() const { return VendorId; }
 	/** @brief Sets the value of VendorId */
-	void SetVendorId(int32 NewValue) { VendorId = NewValue;  }
+	void SetVendorId(const int32& NewValue) { VendorId = NewValue;  }
+	/** @brief Sets the value of VendorId using move semantics */
+	void SetVendorId(int32&& NewValue) { VendorId = NewValue;  }
 	/** @brief Returns true if VendorId matches the default value */
 	bool IsVendorIdDefaultValue() const { return VendorId == 0; }
 	/** @brief Sets the value of VendorId to its default  */
@@ -139,7 +147,9 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 	/** @brief Returns a pointer to VendorUuid_Optional, if it has been set, otherwise returns nullptr */
 	const FGuid* GetVendorUuidOrNull() const { if (VendorUuid_IsSet) return &VendorUuid_Optional; return nullptr; }
 	/** @brief Sets the value of VendorUuid_Optional and also sets VendorUuid_IsSet to true */
-	void SetVendorUuid(FGuid NewValue) { VendorUuid_Optional = NewValue; VendorUuid_IsSet = true; }
+	void SetVendorUuid(const FGuid& NewValue) { VendorUuid_Optional = NewValue; VendorUuid_IsSet = true; }
+	/** @brief Sets the value of VendorUuid_Optional and also sets VendorUuid_IsSet to true using move semantics */
+	void SetVendorUuid(FGuid&& NewValue) { VendorUuid_Optional = NewValue; VendorUuid_IsSet = true; }
 	 /** @brief Clears the value of VendorUuid_Optional and sets VendorUuid_IsSet to false */
 	void ClearVendorUuid() { VendorUuid_IsSet = false; }
 
@@ -162,7 +172,9 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 	/** @brief Returns a pointer to ItemId_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetItemIdOrNull() const { if (ItemId_IsSet) return &ItemId_Optional; return nullptr; }
 	/** @brief Sets the value of ItemId_Optional and also sets ItemId_IsSet to true */
-	void SetItemId(int32 NewValue) { ItemId_Optional = NewValue; ItemId_IsSet = true; }
+	void SetItemId(const int32& NewValue) { ItemId_Optional = NewValue; ItemId_IsSet = true; }
+	/** @brief Sets the value of ItemId_Optional and also sets ItemId_IsSet to true using move semantics */
+	void SetItemId(int32&& NewValue) { ItemId_Optional = NewValue; ItemId_IsSet = true; }
 	 /** @brief Clears the value of ItemId_Optional and sets ItemId_IsSet to false */
 	void ClearItemId() { ItemId_Optional = 0; ItemId_IsSet = false; }
 	/** @brief Returns true if ItemId_Optional is set and matches the default value */
@@ -189,7 +201,9 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 	/** @brief Returns a pointer to ItemUuid_Optional, if it has been set, otherwise returns nullptr */
 	const FGuid* GetItemUuidOrNull() const { if (ItemUuid_IsSet) return &ItemUuid_Optional; return nullptr; }
 	/** @brief Sets the value of ItemUuid_Optional and also sets ItemUuid_IsSet to true */
-	void SetItemUuid(FGuid NewValue) { ItemUuid_Optional = NewValue; ItemUuid_IsSet = true; }
+	void SetItemUuid(const FGuid& NewValue) { ItemUuid_Optional = NewValue; ItemUuid_IsSet = true; }
+	/** @brief Sets the value of ItemUuid_Optional and also sets ItemUuid_IsSet to true using move semantics */
+	void SetItemUuid(FGuid&& NewValue) { ItemUuid_Optional = NewValue; ItemUuid_IsSet = true; }
 	 /** @brief Clears the value of ItemUuid_Optional and sets ItemUuid_IsSet to false */
 	void ClearItemUuid() { ItemUuid_IsSet = false; }
 
@@ -212,7 +226,9 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 	/** @brief Returns a pointer to Item_Optional, if it has been set, otherwise returns nullptr */
 	const FRHAPI_Item* GetItemOrNull() const { if (Item_IsSet) return &Item_Optional; return nullptr; }
 	/** @brief Sets the value of Item_Optional and also sets Item_IsSet to true */
-	void SetItem(FRHAPI_Item NewValue) { Item_Optional = NewValue; Item_IsSet = true; }
+	void SetItem(const FRHAPI_Item& NewValue) { Item_Optional = NewValue; Item_IsSet = true; }
+	/** @brief Sets the value of Item_Optional and also sets Item_IsSet to true using move semantics */
+	void SetItem(FRHAPI_Item&& NewValue) { Item_Optional = NewValue; Item_IsSet = true; }
 	 /** @brief Clears the value of Item_Optional and sets Item_IsSet to false */
 	void ClearItem() { Item_IsSet = false; }
 
@@ -235,7 +251,9 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 	/** @brief Returns a pointer to SubVendorId_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetSubVendorIdOrNull() const { if (SubVendorId_IsSet) return &SubVendorId_Optional; return nullptr; }
 	/** @brief Sets the value of SubVendorId_Optional and also sets SubVendorId_IsSet to true */
-	void SetSubVendorId(int32 NewValue) { SubVendorId_Optional = NewValue; SubVendorId_IsSet = true; }
+	void SetSubVendorId(const int32& NewValue) { SubVendorId_Optional = NewValue; SubVendorId_IsSet = true; }
+	/** @brief Sets the value of SubVendorId_Optional and also sets SubVendorId_IsSet to true using move semantics */
+	void SetSubVendorId(int32&& NewValue) { SubVendorId_Optional = NewValue; SubVendorId_IsSet = true; }
 	 /** @brief Clears the value of SubVendorId_Optional and sets SubVendorId_IsSet to false */
 	void ClearSubVendorId() { SubVendorId_Optional = 0; SubVendorId_IsSet = false; }
 	/** @brief Returns true if SubVendorId_Optional is set and matches the default value */
@@ -262,7 +280,9 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 	/** @brief Returns a pointer to SubVendorUuid_Optional, if it has been set, otherwise returns nullptr */
 	const FGuid* GetSubVendorUuidOrNull() const { if (SubVendorUuid_IsSet) return &SubVendorUuid_Optional; return nullptr; }
 	/** @brief Sets the value of SubVendorUuid_Optional and also sets SubVendorUuid_IsSet to true */
-	void SetSubVendorUuid(FGuid NewValue) { SubVendorUuid_Optional = NewValue; SubVendorUuid_IsSet = true; }
+	void SetSubVendorUuid(const FGuid& NewValue) { SubVendorUuid_Optional = NewValue; SubVendorUuid_IsSet = true; }
+	/** @brief Sets the value of SubVendorUuid_Optional and also sets SubVendorUuid_IsSet to true using move semantics */
+	void SetSubVendorUuid(FGuid&& NewValue) { SubVendorUuid_Optional = NewValue; SubVendorUuid_IsSet = true; }
 	 /** @brief Clears the value of SubVendorUuid_Optional and sets SubVendorUuid_IsSet to false */
 	void ClearSubVendorUuid() { SubVendorUuid_IsSet = false; }
 
@@ -285,7 +305,9 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 	/** @brief Returns a pointer to Quantity_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetQuantityOrNull() const { if (Quantity_IsSet) return &Quantity_Optional; return nullptr; }
 	/** @brief Sets the value of Quantity_Optional and also sets Quantity_IsSet to true */
-	void SetQuantity(int32 NewValue) { Quantity_Optional = NewValue; Quantity_IsSet = true; }
+	void SetQuantity(const int32& NewValue) { Quantity_Optional = NewValue; Quantity_IsSet = true; }
+	/** @brief Sets the value of Quantity_Optional and also sets Quantity_IsSet to true using move semantics */
+	void SetQuantity(int32&& NewValue) { Quantity_Optional = NewValue; Quantity_IsSet = true; }
 	 /** @brief Clears the value of Quantity_Optional and sets Quantity_IsSet to false */
 	void ClearQuantity() { Quantity_Optional = 0; Quantity_IsSet = false; }
 	/** @brief Returns true if Quantity_Optional is set and matches the default value */
@@ -312,7 +334,9 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 	/** @brief Returns a pointer to InventorySelectorType_Optional, if it has been set, otherwise returns nullptr */
 	const ERHAPI_InventorySelector* GetInventorySelectorTypeOrNull() const { if (InventorySelectorType_IsSet) return &InventorySelectorType_Optional; return nullptr; }
 	/** @brief Sets the value of InventorySelectorType_Optional and also sets InventorySelectorType_IsSet to true */
-	void SetInventorySelectorType(ERHAPI_InventorySelector NewValue) { InventorySelectorType_Optional = NewValue; InventorySelectorType_IsSet = true; }
+	void SetInventorySelectorType(const ERHAPI_InventorySelector& NewValue) { InventorySelectorType_Optional = NewValue; InventorySelectorType_IsSet = true; }
+	/** @brief Sets the value of InventorySelectorType_Optional and also sets InventorySelectorType_IsSet to true using move semantics */
+	void SetInventorySelectorType(ERHAPI_InventorySelector&& NewValue) { InventorySelectorType_Optional = NewValue; InventorySelectorType_IsSet = true; }
 	 /** @brief Clears the value of InventorySelectorType_Optional and sets InventorySelectorType_IsSet to false */
 	void ClearInventorySelectorType() { InventorySelectorType_IsSet = false; }
 
@@ -335,7 +359,9 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 	/** @brief Returns a pointer to InventoryOperation_Optional, if it has been set, otherwise returns nullptr */
 	const ERHAPI_InventoryOperation* GetInventoryOperationOrNull() const { if (InventoryOperation_IsSet) return &InventoryOperation_Optional; return nullptr; }
 	/** @brief Sets the value of InventoryOperation_Optional and also sets InventoryOperation_IsSet to true */
-	void SetInventoryOperation(ERHAPI_InventoryOperation NewValue) { InventoryOperation_Optional = NewValue; InventoryOperation_IsSet = true; }
+	void SetInventoryOperation(const ERHAPI_InventoryOperation& NewValue) { InventoryOperation_Optional = NewValue; InventoryOperation_IsSet = true; }
+	/** @brief Sets the value of InventoryOperation_Optional and also sets InventoryOperation_IsSet to true using move semantics */
+	void SetInventoryOperation(ERHAPI_InventoryOperation&& NewValue) { InventoryOperation_Optional = NewValue; InventoryOperation_IsSet = true; }
 	 /** @brief Clears the value of InventoryOperation_Optional and sets InventoryOperation_IsSet to false */
 	void ClearInventoryOperation() { InventoryOperation_IsSet = false; }
 
@@ -358,7 +384,9 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 	/** @brief Returns a pointer to Active_Optional, if it has been set, otherwise returns nullptr */
 	const bool* GetActiveOrNull() const { if (Active_IsSet) return &Active_Optional; return nullptr; }
 	/** @brief Sets the value of Active_Optional and also sets Active_IsSet to true */
-	void SetActive(bool NewValue) { Active_Optional = NewValue; Active_IsSet = true; }
+	void SetActive(const bool& NewValue) { Active_Optional = NewValue; Active_IsSet = true; }
+	/** @brief Sets the value of Active_Optional and also sets Active_IsSet to true using move semantics */
+	void SetActive(bool&& NewValue) { Active_Optional = NewValue; Active_IsSet = true; }
 	 /** @brief Clears the value of Active_Optional and sets Active_IsSet to false */
 	void ClearActive() { Active_Optional = false; Active_IsSet = false; }
 	/** @brief Returns true if Active_Optional is set and matches the default value */
@@ -385,7 +413,9 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 	/** @brief Returns a pointer to SortOrder_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetSortOrderOrNull() const { if (SortOrder_IsSet) return &SortOrder_Optional; return nullptr; }
 	/** @brief Sets the value of SortOrder_Optional and also sets SortOrder_IsSet to true */
-	void SetSortOrder(int32 NewValue) { SortOrder_Optional = NewValue; SortOrder_IsSet = true; }
+	void SetSortOrder(const int32& NewValue) { SortOrder_Optional = NewValue; SortOrder_IsSet = true; }
+	/** @brief Sets the value of SortOrder_Optional and also sets SortOrder_IsSet to true using move semantics */
+	void SetSortOrder(int32&& NewValue) { SortOrder_Optional = NewValue; SortOrder_IsSet = true; }
 	 /** @brief Clears the value of SortOrder_Optional and sets SortOrder_IsSet to false */
 	void ClearSortOrder() { SortOrder_Optional = 0; SortOrder_IsSet = false; }
 	/** @brief Returns true if SortOrder_Optional is set and matches the default value */
@@ -412,7 +442,9 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 	/** @brief Returns a pointer to DropWeight_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetDropWeightOrNull() const { if (DropWeight_IsSet) return &DropWeight_Optional; return nullptr; }
 	/** @brief Sets the value of DropWeight_Optional and also sets DropWeight_IsSet to true */
-	void SetDropWeight(int32 NewValue) { DropWeight_Optional = NewValue; DropWeight_IsSet = true; }
+	void SetDropWeight(const int32& NewValue) { DropWeight_Optional = NewValue; DropWeight_IsSet = true; }
+	/** @brief Sets the value of DropWeight_Optional and also sets DropWeight_IsSet to true using move semantics */
+	void SetDropWeight(int32&& NewValue) { DropWeight_Optional = NewValue; DropWeight_IsSet = true; }
 	 /** @brief Clears the value of DropWeight_Optional and sets DropWeight_IsSet to false */
 	void ClearDropWeight() { DropWeight_Optional = 0; DropWeight_IsSet = false; }
 	/** @brief Returns true if DropWeight_Optional is set and matches the default value */
@@ -439,7 +471,9 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 	/** @brief Returns a pointer to FillInNewOrder_Optional, if it has been set, otherwise returns nullptr */
 	const bool* GetFillInNewOrderOrNull() const { if (FillInNewOrder_IsSet) return &FillInNewOrder_Optional; return nullptr; }
 	/** @brief Sets the value of FillInNewOrder_Optional and also sets FillInNewOrder_IsSet to true */
-	void SetFillInNewOrder(bool NewValue) { FillInNewOrder_Optional = NewValue; FillInNewOrder_IsSet = true; }
+	void SetFillInNewOrder(const bool& NewValue) { FillInNewOrder_Optional = NewValue; FillInNewOrder_IsSet = true; }
+	/** @brief Sets the value of FillInNewOrder_Optional and also sets FillInNewOrder_IsSet to true using move semantics */
+	void SetFillInNewOrder(bool&& NewValue) { FillInNewOrder_Optional = NewValue; FillInNewOrder_IsSet = true; }
 	 /** @brief Clears the value of FillInNewOrder_Optional and sets FillInNewOrder_IsSet to false */
 	void ClearFillInNewOrder() { FillInNewOrder_Optional = false; FillInNewOrder_IsSet = false; }
 	/** @brief Returns true if FillInNewOrder_Optional is set and matches the default value */
@@ -466,7 +500,9 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 	/** @brief Returns a pointer to AllowPartialBundles_Optional, if it has been set, otherwise returns nullptr */
 	const bool* GetAllowPartialBundlesOrNull() const { if (AllowPartialBundles_IsSet) return &AllowPartialBundles_Optional; return nullptr; }
 	/** @brief Sets the value of AllowPartialBundles_Optional and also sets AllowPartialBundles_IsSet to true */
-	void SetAllowPartialBundles(bool NewValue) { AllowPartialBundles_Optional = NewValue; AllowPartialBundles_IsSet = true; }
+	void SetAllowPartialBundles(const bool& NewValue) { AllowPartialBundles_Optional = NewValue; AllowPartialBundles_IsSet = true; }
+	/** @brief Sets the value of AllowPartialBundles_Optional and also sets AllowPartialBundles_IsSet to true using move semantics */
+	void SetAllowPartialBundles(bool&& NewValue) { AllowPartialBundles_Optional = NewValue; AllowPartialBundles_IsSet = true; }
 	 /** @brief Clears the value of AllowPartialBundles_Optional and sets AllowPartialBundles_IsSet to false */
 	void ClearAllowPartialBundles() { AllowPartialBundles_Optional = true; AllowPartialBundles_IsSet = false; }
 	/** @brief Returns true if AllowPartialBundles_Optional is set and matches the default value */
@@ -493,7 +529,9 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 	/** @brief Returns a pointer to RequiredItemId_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetRequiredItemIdOrNull() const { if (RequiredItemId_IsSet) return &RequiredItemId_Optional; return nullptr; }
 	/** @brief Sets the value of RequiredItemId_Optional and also sets RequiredItemId_IsSet to true */
-	void SetRequiredItemId(int32 NewValue) { RequiredItemId_Optional = NewValue; RequiredItemId_IsSet = true; }
+	void SetRequiredItemId(const int32& NewValue) { RequiredItemId_Optional = NewValue; RequiredItemId_IsSet = true; }
+	/** @brief Sets the value of RequiredItemId_Optional and also sets RequiredItemId_IsSet to true using move semantics */
+	void SetRequiredItemId(int32&& NewValue) { RequiredItemId_Optional = NewValue; RequiredItemId_IsSet = true; }
 	 /** @brief Clears the value of RequiredItemId_Optional and sets RequiredItemId_IsSet to false */
 	void ClearRequiredItemId() { RequiredItemId_Optional = 0; RequiredItemId_IsSet = false; }
 	/** @brief Returns true if RequiredItemId_Optional is set and matches the default value */
@@ -520,7 +558,9 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 	/** @brief Returns a pointer to RequiredItemUuid_Optional, if it has been set, otherwise returns nullptr */
 	const FGuid* GetRequiredItemUuidOrNull() const { if (RequiredItemUuid_IsSet) return &RequiredItemUuid_Optional; return nullptr; }
 	/** @brief Sets the value of RequiredItemUuid_Optional and also sets RequiredItemUuid_IsSet to true */
-	void SetRequiredItemUuid(FGuid NewValue) { RequiredItemUuid_Optional = NewValue; RequiredItemUuid_IsSet = true; }
+	void SetRequiredItemUuid(const FGuid& NewValue) { RequiredItemUuid_Optional = NewValue; RequiredItemUuid_IsSet = true; }
+	/** @brief Sets the value of RequiredItemUuid_Optional and also sets RequiredItemUuid_IsSet to true using move semantics */
+	void SetRequiredItemUuid(FGuid&& NewValue) { RequiredItemUuid_Optional = NewValue; RequiredItemUuid_IsSet = true; }
 	 /** @brief Clears the value of RequiredItemUuid_Optional and sets RequiredItemUuid_IsSet to false */
 	void ClearRequiredItemUuid() { RequiredItemUuid_IsSet = false; }
 
@@ -543,7 +583,9 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 	/** @brief Returns a pointer to RequiredItemCount_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetRequiredItemCountOrNull() const { if (RequiredItemCount_IsSet) return &RequiredItemCount_Optional; return nullptr; }
 	/** @brief Sets the value of RequiredItemCount_Optional and also sets RequiredItemCount_IsSet to true */
-	void SetRequiredItemCount(int32 NewValue) { RequiredItemCount_Optional = NewValue; RequiredItemCount_IsSet = true; }
+	void SetRequiredItemCount(const int32& NewValue) { RequiredItemCount_Optional = NewValue; RequiredItemCount_IsSet = true; }
+	/** @brief Sets the value of RequiredItemCount_Optional and also sets RequiredItemCount_IsSet to true using move semantics */
+	void SetRequiredItemCount(int32&& NewValue) { RequiredItemCount_Optional = NewValue; RequiredItemCount_IsSet = true; }
 	 /** @brief Clears the value of RequiredItemCount_Optional and sets RequiredItemCount_IsSet to false */
 	void ClearRequiredItemCount() { RequiredItemCount_Optional = 0; RequiredItemCount_IsSet = false; }
 	/** @brief Returns true if RequiredItemCount_Optional is set and matches the default value */
@@ -570,7 +612,9 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 	/** @brief Returns a pointer to StackLimit_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetStackLimitOrNull() const { if (StackLimit_IsSet) return &StackLimit_Optional; return nullptr; }
 	/** @brief Sets the value of StackLimit_Optional and also sets StackLimit_IsSet to true */
-	void SetStackLimit(int32 NewValue) { StackLimit_Optional = NewValue; StackLimit_IsSet = true; }
+	void SetStackLimit(const int32& NewValue) { StackLimit_Optional = NewValue; StackLimit_IsSet = true; }
+	/** @brief Sets the value of StackLimit_Optional and also sets StackLimit_IsSet to true using move semantics */
+	void SetStackLimit(int32&& NewValue) { StackLimit_Optional = NewValue; StackLimit_IsSet = true; }
 	 /** @brief Clears the value of StackLimit_Optional and sets StackLimit_IsSet to false */
 	void ClearStackLimit() { StackLimit_Optional = 0; StackLimit_IsSet = false; }
 	/** @brief Returns true if StackLimit_Optional is set and matches the default value */
@@ -596,7 +640,9 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 	/** @brief Returns a pointer to UiHint_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetUiHintOrNull() const { if (UiHint_IsSet) return &UiHint_Optional; return nullptr; }
 	/** @brief Sets the value of UiHint_Optional and also sets UiHint_IsSet to true */
-	void SetUiHint(int32 NewValue) { UiHint_Optional = NewValue; UiHint_IsSet = true; }
+	void SetUiHint(const int32& NewValue) { UiHint_Optional = NewValue; UiHint_IsSet = true; }
+	/** @brief Sets the value of UiHint_Optional and also sets UiHint_IsSet to true using move semantics */
+	void SetUiHint(int32&& NewValue) { UiHint_Optional = NewValue; UiHint_IsSet = true; }
 	 /** @brief Clears the value of UiHint_Optional and sets UiHint_IsSet to false */
 	void ClearUiHint() { UiHint_Optional = 0; UiHint_IsSet = false; }
 	/** @brief Returns true if UiHint_Optional is set and matches the default value */
@@ -622,7 +668,9 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 	/** @brief Returns a pointer to EffectiveFrom_Optional, if it has been set, otherwise returns nullptr */
 	const FDateTime* GetEffectiveFromOrNull() const { if (EffectiveFrom_IsSet) return &EffectiveFrom_Optional; return nullptr; }
 	/** @brief Sets the value of EffectiveFrom_Optional and also sets EffectiveFrom_IsSet to true */
-	void SetEffectiveFrom(FDateTime NewValue) { EffectiveFrom_Optional = NewValue; EffectiveFrom_IsSet = true; }
+	void SetEffectiveFrom(const FDateTime& NewValue) { EffectiveFrom_Optional = NewValue; EffectiveFrom_IsSet = true; }
+	/** @brief Sets the value of EffectiveFrom_Optional and also sets EffectiveFrom_IsSet to true using move semantics */
+	void SetEffectiveFrom(FDateTime&& NewValue) { EffectiveFrom_Optional = NewValue; EffectiveFrom_IsSet = true; }
 	 /** @brief Clears the value of EffectiveFrom_Optional and sets EffectiveFrom_IsSet to false */
 	void ClearEffectiveFrom() { EffectiveFrom_IsSet = false; }
 
@@ -645,7 +693,9 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 	/** @brief Returns a pointer to QuantityType_Optional, if it has been set, otherwise returns nullptr */
 	const ERHAPI_QuantityType* GetQuantityTypeOrNull() const { if (QuantityType_IsSet) return &QuantityType_Optional; return nullptr; }
 	/** @brief Sets the value of QuantityType_Optional and also sets QuantityType_IsSet to true */
-	void SetQuantityType(ERHAPI_QuantityType NewValue) { QuantityType_Optional = NewValue; QuantityType_IsSet = true; }
+	void SetQuantityType(const ERHAPI_QuantityType& NewValue) { QuantityType_Optional = NewValue; QuantityType_IsSet = true; }
+	/** @brief Sets the value of QuantityType_Optional and also sets QuantityType_IsSet to true using move semantics */
+	void SetQuantityType(ERHAPI_QuantityType&& NewValue) { QuantityType_Optional = NewValue; QuantityType_IsSet = true; }
 	 /** @brief Clears the value of QuantityType_Optional and sets QuantityType_IsSet to false */
 	void ClearQuantityType() { QuantityType_IsSet = false; }
 
@@ -668,7 +718,9 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 	/** @brief Returns a pointer to QuantityMultInventoryItemId_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetQuantityMultInventoryItemIdOrNull() const { if (QuantityMultInventoryItemId_IsSet) return &QuantityMultInventoryItemId_Optional; return nullptr; }
 	/** @brief Sets the value of QuantityMultInventoryItemId_Optional and also sets QuantityMultInventoryItemId_IsSet to true */
-	void SetQuantityMultInventoryItemId(int32 NewValue) { QuantityMultInventoryItemId_Optional = NewValue; QuantityMultInventoryItemId_IsSet = true; }
+	void SetQuantityMultInventoryItemId(const int32& NewValue) { QuantityMultInventoryItemId_Optional = NewValue; QuantityMultInventoryItemId_IsSet = true; }
+	/** @brief Sets the value of QuantityMultInventoryItemId_Optional and also sets QuantityMultInventoryItemId_IsSet to true using move semantics */
+	void SetQuantityMultInventoryItemId(int32&& NewValue) { QuantityMultInventoryItemId_Optional = NewValue; QuantityMultInventoryItemId_IsSet = true; }
 	 /** @brief Clears the value of QuantityMultInventoryItemId_Optional and sets QuantityMultInventoryItemId_IsSet to false */
 	void ClearQuantityMultInventoryItemId() { QuantityMultInventoryItemId_Optional = 0; QuantityMultInventoryItemId_IsSet = false; }
 	/** @brief Returns true if QuantityMultInventoryItemId_Optional is set and matches the default value */
@@ -695,7 +747,9 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 	/** @brief Returns a pointer to QuantityMultInventoryItemUuid_Optional, if it has been set, otherwise returns nullptr */
 	const FGuid* GetQuantityMultInventoryItemUuidOrNull() const { if (QuantityMultInventoryItemUuid_IsSet) return &QuantityMultInventoryItemUuid_Optional; return nullptr; }
 	/** @brief Sets the value of QuantityMultInventoryItemUuid_Optional and also sets QuantityMultInventoryItemUuid_IsSet to true */
-	void SetQuantityMultInventoryItemUuid(FGuid NewValue) { QuantityMultInventoryItemUuid_Optional = NewValue; QuantityMultInventoryItemUuid_IsSet = true; }
+	void SetQuantityMultInventoryItemUuid(const FGuid& NewValue) { QuantityMultInventoryItemUuid_Optional = NewValue; QuantityMultInventoryItemUuid_IsSet = true; }
+	/** @brief Sets the value of QuantityMultInventoryItemUuid_Optional and also sets QuantityMultInventoryItemUuid_IsSet to true using move semantics */
+	void SetQuantityMultInventoryItemUuid(FGuid&& NewValue) { QuantityMultInventoryItemUuid_Optional = NewValue; QuantityMultInventoryItemUuid_IsSet = true; }
 	 /** @brief Clears the value of QuantityMultInventoryItemUuid_Optional and sets QuantityMultInventoryItemUuid_IsSet to false */
 	void ClearQuantityMultInventoryItemUuid() { QuantityMultInventoryItemUuid_IsSet = false; }
 
@@ -718,7 +772,9 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 	/** @brief Returns a pointer to IsClaimableByClient_Optional, if it has been set, otherwise returns nullptr */
 	const bool* GetIsClaimableByClientOrNull() const { if (IsClaimableByClient_IsSet) return &IsClaimableByClient_Optional; return nullptr; }
 	/** @brief Sets the value of IsClaimableByClient_Optional and also sets IsClaimableByClient_IsSet to true */
-	void SetIsClaimableByClient(bool NewValue) { IsClaimableByClient_Optional = NewValue; IsClaimableByClient_IsSet = true; }
+	void SetIsClaimableByClient(const bool& NewValue) { IsClaimableByClient_Optional = NewValue; IsClaimableByClient_IsSet = true; }
+	/** @brief Sets the value of IsClaimableByClient_Optional and also sets IsClaimableByClient_IsSet to true using move semantics */
+	void SetIsClaimableByClient(bool&& NewValue) { IsClaimableByClient_Optional = NewValue; IsClaimableByClient_IsSet = true; }
 	 /** @brief Clears the value of IsClaimableByClient_Optional and sets IsClaimableByClient_IsSet to false */
 	void ClearIsClaimableByClient() { IsClaimableByClient_Optional = false; IsClaimableByClient_IsSet = false; }
 	/** @brief Returns true if IsClaimableByClient_Optional is set and matches the default value */
@@ -745,7 +801,9 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 	/** @brief Returns a pointer to TimeFrameId_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetTimeFrameIdOrNull() const { if (TimeFrameId_IsSet) return &TimeFrameId_Optional; return nullptr; }
 	/** @brief Sets the value of TimeFrameId_Optional and also sets TimeFrameId_IsSet to true */
-	void SetTimeFrameId(int32 NewValue) { TimeFrameId_Optional = NewValue; TimeFrameId_IsSet = true; }
+	void SetTimeFrameId(const int32& NewValue) { TimeFrameId_Optional = NewValue; TimeFrameId_IsSet = true; }
+	/** @brief Sets the value of TimeFrameId_Optional and also sets TimeFrameId_IsSet to true using move semantics */
+	void SetTimeFrameId(int32&& NewValue) { TimeFrameId_Optional = NewValue; TimeFrameId_IsSet = true; }
 	 /** @brief Clears the value of TimeFrameId_Optional and sets TimeFrameId_IsSet to false */
 	void ClearTimeFrameId() { TimeFrameId_Optional = 0; TimeFrameId_IsSet = false; }
 	/** @brief Returns true if TimeFrameId_Optional is set and matches the default value */
@@ -772,7 +830,9 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 	/** @brief Returns a pointer to UseInventoryBucket_Optional, if it has been set, otherwise returns nullptr */
 	const ERHAPI_InventoryBucket* GetUseInventoryBucketOrNull() const { if (UseInventoryBucket_IsSet) return &UseInventoryBucket_Optional; return nullptr; }
 	/** @brief Sets the value of UseInventoryBucket_Optional and also sets UseInventoryBucket_IsSet to true */
-	void SetUseInventoryBucket(ERHAPI_InventoryBucket NewValue) { UseInventoryBucket_Optional = NewValue; UseInventoryBucket_IsSet = true; }
+	void SetUseInventoryBucket(const ERHAPI_InventoryBucket& NewValue) { UseInventoryBucket_Optional = NewValue; UseInventoryBucket_IsSet = true; }
+	/** @brief Sets the value of UseInventoryBucket_Optional and also sets UseInventoryBucket_IsSet to true using move semantics */
+	void SetUseInventoryBucket(ERHAPI_InventoryBucket&& NewValue) { UseInventoryBucket_Optional = NewValue; UseInventoryBucket_IsSet = true; }
 	 /** @brief Clears the value of UseInventoryBucket_Optional and sets UseInventoryBucket_IsSet to false */
 	void ClearUseInventoryBucket() { UseInventoryBucket_IsSet = false; }
 
@@ -795,7 +855,9 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 	/** @brief Returns a pointer to XpQuantityTransformType_Optional, if it has been set, otherwise returns nullptr */
 	const ERHAPI_XpQuantityTransform* GetXpQuantityTransformTypeOrNull() const { if (XpQuantityTransformType_IsSet) return &XpQuantityTransformType_Optional; return nullptr; }
 	/** @brief Sets the value of XpQuantityTransformType_Optional and also sets XpQuantityTransformType_IsSet to true */
-	void SetXpQuantityTransformType(ERHAPI_XpQuantityTransform NewValue) { XpQuantityTransformType_Optional = NewValue; XpQuantityTransformType_IsSet = true; }
+	void SetXpQuantityTransformType(const ERHAPI_XpQuantityTransform& NewValue) { XpQuantityTransformType_Optional = NewValue; XpQuantityTransformType_IsSet = true; }
+	/** @brief Sets the value of XpQuantityTransformType_Optional and also sets XpQuantityTransformType_IsSet to true using move semantics */
+	void SetXpQuantityTransformType(ERHAPI_XpQuantityTransform&& NewValue) { XpQuantityTransformType_Optional = NewValue; XpQuantityTransformType_IsSet = true; }
 	 /** @brief Clears the value of XpQuantityTransformType_Optional and sets XpQuantityTransformType_IsSet to false */
 	void ClearXpQuantityTransformType() { XpQuantityTransformType_IsSet = false; }
 
@@ -818,7 +880,9 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 	/** @brief Returns a pointer to CurrentPricePointGuid_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetCurrentPricePointGuidOrNull() const { if (CurrentPricePointGuid_IsSet) return &CurrentPricePointGuid_Optional; return nullptr; }
 	/** @brief Sets the value of CurrentPricePointGuid_Optional and also sets CurrentPricePointGuid_IsSet to true */
-	void SetCurrentPricePointGuid(FString NewValue) { CurrentPricePointGuid_Optional = NewValue; CurrentPricePointGuid_IsSet = true; }
+	void SetCurrentPricePointGuid(const FString& NewValue) { CurrentPricePointGuid_Optional = NewValue; CurrentPricePointGuid_IsSet = true; }
+	/** @brief Sets the value of CurrentPricePointGuid_Optional and also sets CurrentPricePointGuid_IsSet to true using move semantics */
+	void SetCurrentPricePointGuid(FString&& NewValue) { CurrentPricePointGuid_Optional = NewValue; CurrentPricePointGuid_IsSet = true; }
 	 /** @brief Clears the value of CurrentPricePointGuid_Optional and sets CurrentPricePointGuid_IsSet to false */
 	void ClearCurrentPricePointGuid() { CurrentPricePointGuid_IsSet = false; }
 
@@ -841,7 +905,9 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 	/** @brief Returns a pointer to PreSalePricePointGuid_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetPreSalePricePointGuidOrNull() const { if (PreSalePricePointGuid_IsSet) return &PreSalePricePointGuid_Optional; return nullptr; }
 	/** @brief Sets the value of PreSalePricePointGuid_Optional and also sets PreSalePricePointGuid_IsSet to true */
-	void SetPreSalePricePointGuid(FString NewValue) { PreSalePricePointGuid_Optional = NewValue; PreSalePricePointGuid_IsSet = true; }
+	void SetPreSalePricePointGuid(const FString& NewValue) { PreSalePricePointGuid_Optional = NewValue; PreSalePricePointGuid_IsSet = true; }
+	/** @brief Sets the value of PreSalePricePointGuid_Optional and also sets PreSalePricePointGuid_IsSet to true using move semantics */
+	void SetPreSalePricePointGuid(FString&& NewValue) { PreSalePricePointGuid_Optional = NewValue; PreSalePricePointGuid_IsSet = true; }
 	 /** @brief Clears the value of PreSalePricePointGuid_Optional and sets PreSalePricePointGuid_IsSet to false */
 	void ClearPreSalePricePointGuid() { PreSalePricePointGuid_IsSet = false; }
 
@@ -864,7 +930,9 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 	/** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
 	const FRHAPI_CacheInfo* GetCacheInfoOrNull() const { if (CacheInfo_IsSet) return &CacheInfo_Optional; return nullptr; }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true */
-	void SetCacheInfo(FRHAPI_CacheInfo NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
+	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
+	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics */
+	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
 	 /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
 	void ClearCacheInfo() { CacheInfo_IsSet = false; }
 
@@ -887,7 +955,9 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 	/** @brief Returns a pointer to HardQuantityMaximum_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetHardQuantityMaximumOrNull() const { if (HardQuantityMaximum_IsSet) return &HardQuantityMaximum_Optional; return nullptr; }
 	/** @brief Sets the value of HardQuantityMaximum_Optional and also sets HardQuantityMaximum_IsSet to true */
-	void SetHardQuantityMaximum(int32 NewValue) { HardQuantityMaximum_Optional = NewValue; HardQuantityMaximum_IsSet = true; }
+	void SetHardQuantityMaximum(const int32& NewValue) { HardQuantityMaximum_Optional = NewValue; HardQuantityMaximum_IsSet = true; }
+	/** @brief Sets the value of HardQuantityMaximum_Optional and also sets HardQuantityMaximum_IsSet to true using move semantics */
+	void SetHardQuantityMaximum(int32&& NewValue) { HardQuantityMaximum_Optional = NewValue; HardQuantityMaximum_IsSet = true; }
 	 /** @brief Clears the value of HardQuantityMaximum_Optional and sets HardQuantityMaximum_IsSet to false */
 	void ClearHardQuantityMaximum() { HardQuantityMaximum_Optional = 0; HardQuantityMaximum_IsSet = false; }
 	/** @brief Returns true if HardQuantityMaximum_Optional is set and matches the default value */

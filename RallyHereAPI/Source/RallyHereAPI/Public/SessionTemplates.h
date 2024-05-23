@@ -59,7 +59,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplates : public FRHAPI_Model
 	/** @brief Returns a pointer to Templates_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FRHAPI_SessionTemplate>* GetTemplatesOrNull() const { if (Templates_IsSet) return &Templates_Optional; return nullptr; }
 	/** @brief Sets the value of Templates_Optional and also sets Templates_IsSet to true */
-	void SetTemplates(TMap<FString, FRHAPI_SessionTemplate> NewValue) { Templates_Optional = NewValue; Templates_IsSet = true; }
+	void SetTemplates(const TMap<FString, FRHAPI_SessionTemplate>& NewValue) { Templates_Optional = NewValue; Templates_IsSet = true; }
+	/** @brief Sets the value of Templates_Optional and also sets Templates_IsSet to true using move semantics */
+	void SetTemplates(TMap<FString, FRHAPI_SessionTemplate>&& NewValue) { Templates_Optional = NewValue; Templates_IsSet = true; }
 	 /** @brief Clears the value of Templates_Optional and sets Templates_IsSet to false */
 	void ClearTemplates() { Templates_IsSet = false; }
 };

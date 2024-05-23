@@ -60,7 +60,9 @@ struct RALLYHEREAPI_API FRHAPI_InstanceRequest : public FRHAPI_Model
 	/** @brief Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetInstanceIdOrNull() const { if (InstanceId_IsSet) return &InstanceId_Optional; return nullptr; }
 	/** @brief Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true */
-	void SetInstanceId(FString NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true; }
+	void SetInstanceId(const FString& NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true; }
+	/** @brief Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true using move semantics */
+	void SetInstanceId(FString&& NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true; }
 	 /** @brief Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false */
 	void ClearInstanceId() { InstanceId_IsSet = false; }
 
@@ -83,7 +85,9 @@ struct RALLYHEREAPI_API FRHAPI_InstanceRequest : public FRHAPI_Model
 	/** @brief Returns a pointer to InstanceStartupParams_Optional, if it has been set, otherwise returns nullptr */
 	const FRHAPI_InstanceStartupParams* GetInstanceStartupParamsOrNull() const { if (InstanceStartupParams_IsSet) return &InstanceStartupParams_Optional; return nullptr; }
 	/** @brief Sets the value of InstanceStartupParams_Optional and also sets InstanceStartupParams_IsSet to true */
-	void SetInstanceStartupParams(FRHAPI_InstanceStartupParams NewValue) { InstanceStartupParams_Optional = NewValue; InstanceStartupParams_IsSet = true; }
+	void SetInstanceStartupParams(const FRHAPI_InstanceStartupParams& NewValue) { InstanceStartupParams_Optional = NewValue; InstanceStartupParams_IsSet = true; }
+	/** @brief Sets the value of InstanceStartupParams_Optional and also sets InstanceStartupParams_IsSet to true using move semantics */
+	void SetInstanceStartupParams(FRHAPI_InstanceStartupParams&& NewValue) { InstanceStartupParams_Optional = NewValue; InstanceStartupParams_IsSet = true; }
 	 /** @brief Clears the value of InstanceStartupParams_Optional and sets InstanceStartupParams_IsSet to false */
 	void ClearInstanceStartupParams() { InstanceStartupParams_IsSet = false; }
 
@@ -95,7 +99,9 @@ struct RALLYHEREAPI_API FRHAPI_InstanceRequest : public FRHAPI_Model
 	/** @brief Gets the value of HostType */
 	const ERHAPI_HostType& GetHostType() const { return HostType; }
 	/** @brief Sets the value of HostType */
-	void SetHostType(ERHAPI_HostType NewValue) { HostType = NewValue;  }
+	void SetHostType(const ERHAPI_HostType& NewValue) { HostType = NewValue;  }
+	/** @brief Sets the value of HostType using move semantics */
+	void SetHostType(ERHAPI_HostType&& NewValue) { HostType = NewValue;  }
 
 	/** @brief Player UUID of the host, if the host type is player */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -116,7 +122,9 @@ struct RALLYHEREAPI_API FRHAPI_InstanceRequest : public FRHAPI_Model
 	/** @brief Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr */
 	const FGuid* GetHostPlayerUuidOrNull() const { if (HostPlayerUuid_IsSet) return &HostPlayerUuid_Optional; return nullptr; }
 	/** @brief Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true */
-	void SetHostPlayerUuid(FGuid NewValue) { HostPlayerUuid_Optional = NewValue; HostPlayerUuid_IsSet = true; }
+	void SetHostPlayerUuid(const FGuid& NewValue) { HostPlayerUuid_Optional = NewValue; HostPlayerUuid_IsSet = true; }
+	/** @brief Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true using move semantics */
+	void SetHostPlayerUuid(FGuid&& NewValue) { HostPlayerUuid_Optional = NewValue; HostPlayerUuid_IsSet = true; }
 	 /** @brief Clears the value of HostPlayerUuid_Optional and sets HostPlayerUuid_IsSet to false */
 	void ClearHostPlayerUuid() { HostPlayerUuid_IsSet = false; }
 
@@ -139,7 +147,9 @@ struct RALLYHEREAPI_API FRHAPI_InstanceRequest : public FRHAPI_Model
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
+	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
 	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false; }
 };

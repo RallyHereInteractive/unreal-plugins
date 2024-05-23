@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchmakingResults : public FRHAPI_Model
 	/** @brief Gets the value of MatchMakingId */
 	const FString& GetMatchMakingId() const { return MatchMakingId; }
 	/** @brief Sets the value of MatchMakingId */
-	void SetMatchMakingId(FString NewValue) { MatchMakingId = NewValue;  }
+	void SetMatchMakingId(const FString& NewValue) { MatchMakingId = NewValue;  }
+	/** @brief Sets the value of MatchMakingId using move semantics */
+	void SetMatchMakingId(FString&& NewValue) { MatchMakingId = NewValue;  }
 
 	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -57,7 +59,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchmakingResults : public FRHAPI_Model
 	/** @brief Gets the value of Created */
 	const FDateTime& GetCreated() const { return Created; }
 	/** @brief Sets the value of Created */
-	void SetCreated(FDateTime NewValue) { Created = NewValue;  }
+	void SetCreated(const FDateTime& NewValue) { Created = NewValue;  }
+	/** @brief Sets the value of Created using move semantics */
+	void SetCreated(FDateTime&& NewValue) { Created = NewValue;  }
 
 	/** @brief MMF defined custom data */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -78,7 +82,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchmakingResults : public FRHAPI_Model
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
+	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
 	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false; }
 
@@ -101,7 +107,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchmakingResults : public FRHAPI_Model
 	/** @brief Returns a pointer to TicketIds_Optional, if it has been set, otherwise returns nullptr */
 	const TArray<FString>* GetTicketIdsOrNull() const { if (TicketIds_IsSet) return &TicketIds_Optional; return nullptr; }
 	/** @brief Sets the value of TicketIds_Optional and also sets TicketIds_IsSet to true */
-	void SetTicketIds(TArray<FString> NewValue) { TicketIds_Optional = NewValue; TicketIds_IsSet = true; }
+	void SetTicketIds(const TArray<FString>& NewValue) { TicketIds_Optional = NewValue; TicketIds_IsSet = true; }
+	/** @brief Sets the value of TicketIds_Optional and also sets TicketIds_IsSet to true using move semantics */
+	void SetTicketIds(TArray<FString>&& NewValue) { TicketIds_Optional = NewValue; TicketIds_IsSet = true; }
 	 /** @brief Clears the value of TicketIds_Optional and sets TicketIds_IsSet to false */
 	void ClearTicketIds() { TicketIds_IsSet = false; }
 
@@ -124,7 +132,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchmakingResults : public FRHAPI_Model
 	/** @brief Returns a pointer to TicketsAssigned_Optional, if it has been set, otherwise returns nullptr */
 	const bool* GetTicketsAssignedOrNull() const { if (TicketsAssigned_IsSet) return &TicketsAssigned_Optional; return nullptr; }
 	/** @brief Sets the value of TicketsAssigned_Optional and also sets TicketsAssigned_IsSet to true */
-	void SetTicketsAssigned(bool NewValue) { TicketsAssigned_Optional = NewValue; TicketsAssigned_IsSet = true; }
+	void SetTicketsAssigned(const bool& NewValue) { TicketsAssigned_Optional = NewValue; TicketsAssigned_IsSet = true; }
+	/** @brief Sets the value of TicketsAssigned_Optional and also sets TicketsAssigned_IsSet to true using move semantics */
+	void SetTicketsAssigned(bool&& NewValue) { TicketsAssigned_Optional = NewValue; TicketsAssigned_IsSet = true; }
 	 /** @brief Clears the value of TicketsAssigned_Optional and sets TicketsAssigned_IsSet to false */
 	void ClearTicketsAssigned() { TicketsAssigned_Optional = false; TicketsAssigned_IsSet = false; }
 	/** @brief Returns true if TicketsAssigned_Optional is set and matches the default value */

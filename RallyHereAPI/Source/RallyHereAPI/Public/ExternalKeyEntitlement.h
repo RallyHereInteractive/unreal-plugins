@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_ExternalKeyEntitlement : public FRHAPI_Model
 	/** @brief Gets the value of ExternalKeyCampaignId */
 	const FGuid& GetExternalKeyCampaignId() const { return ExternalKeyCampaignId; }
 	/** @brief Sets the value of ExternalKeyCampaignId */
-	void SetExternalKeyCampaignId(FGuid NewValue) { ExternalKeyCampaignId = NewValue;  }
+	void SetExternalKeyCampaignId(const FGuid& NewValue) { ExternalKeyCampaignId = NewValue;  }
+	/** @brief Sets the value of ExternalKeyCampaignId using move semantics */
+	void SetExternalKeyCampaignId(FGuid&& NewValue) { ExternalKeyCampaignId = NewValue;  }
 
 	/** @brief The quantity of the External Key Entitlement */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -57,7 +59,9 @@ struct RALLYHEREAPI_API FRHAPI_ExternalKeyEntitlement : public FRHAPI_Model
 	/** @brief Gets the value of Quantity */
 	const int32& GetQuantity() const { return Quantity; }
 	/** @brief Sets the value of Quantity */
-	void SetQuantity(int32 NewValue) { Quantity = NewValue;  }
+	void SetQuantity(const int32& NewValue) { Quantity = NewValue;  }
+	/** @brief Sets the value of Quantity using move semantics */
+	void SetQuantity(int32&& NewValue) { Quantity = NewValue;  }
 	/** @brief Returns true if Quantity matches the default value */
 	bool IsQuantityDefaultValue() const { return Quantity == 0; }
 	/** @brief Sets the value of Quantity to its default  */

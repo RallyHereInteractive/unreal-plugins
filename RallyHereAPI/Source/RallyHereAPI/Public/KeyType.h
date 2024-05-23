@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_KeyType : public FRHAPI_Model
 	/** @brief Gets the value of Type */
 	const FString& GetType() const { return Type; }
 	/** @brief Sets the value of Type */
-	void SetType(FString NewValue) { Type = NewValue;  }
+	void SetType(const FString& NewValue) { Type = NewValue;  }
+	/** @brief Sets the value of Type using move semantics */
+	void SetType(FString&& NewValue) { Type = NewValue;  }
 };
 
 /** @} */

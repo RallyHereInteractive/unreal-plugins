@@ -48,7 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaims : public FRHAPI_Model
 	/** @brief Gets the value of Claims */
 	const TArray<FRHAPI_KeyClaim>& GetClaims() const { return Claims; }
 	/** @brief Sets the value of Claims */
-	void SetClaims(TArray<FRHAPI_KeyClaim> NewValue) { Claims = NewValue;  }
+	void SetClaims(const TArray<FRHAPI_KeyClaim>& NewValue) { Claims = NewValue;  }
+	/** @brief Sets the value of Claims using move semantics */
+	void SetClaims(TArray<FRHAPI_KeyClaim>&& NewValue) { Claims = NewValue;  }
 };
 
 /** @} */

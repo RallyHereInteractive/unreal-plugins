@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_PlatformUnionCCUs : public FRHAPI_Model
 	/** @brief Gets the value of PlatformCounts */
 	const TMap<FString, FRHAPI_UnionCCU>& GetPlatformCounts() const { return PlatformCounts; }
 	/** @brief Sets the value of PlatformCounts */
-	void SetPlatformCounts(TMap<FString, FRHAPI_UnionCCU> NewValue) { PlatformCounts = NewValue;  }
+	void SetPlatformCounts(const TMap<FString, FRHAPI_UnionCCU>& NewValue) { PlatformCounts = NewValue;  }
+	/** @brief Sets the value of PlatformCounts using move semantics */
+	void SetPlatformCounts(TMap<FString, FRHAPI_UnionCCU>&& NewValue) { PlatformCounts = NewValue;  }
 };
 
 /** @} */

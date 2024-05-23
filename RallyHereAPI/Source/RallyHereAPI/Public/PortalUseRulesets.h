@@ -60,7 +60,9 @@ struct RALLYHEREAPI_API FRHAPI_PortalUseRulesets : public FRHAPI_Model
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
+	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
 	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false; }
 
@@ -82,7 +84,9 @@ struct RALLYHEREAPI_API FRHAPI_PortalUseRulesets : public FRHAPI_Model
 	/** @brief Returns a pointer to Rulesets_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FRHAPI_PortalUseRuleset>* GetRulesetsOrNull() const { if (Rulesets_IsSet) return &Rulesets_Optional; return nullptr; }
 	/** @brief Sets the value of Rulesets_Optional and also sets Rulesets_IsSet to true */
-	void SetRulesets(TMap<FString, FRHAPI_PortalUseRuleset> NewValue) { Rulesets_Optional = NewValue; Rulesets_IsSet = true; }
+	void SetRulesets(const TMap<FString, FRHAPI_PortalUseRuleset>& NewValue) { Rulesets_Optional = NewValue; Rulesets_IsSet = true; }
+	/** @brief Sets the value of Rulesets_Optional and also sets Rulesets_IsSet to true using move semantics */
+	void SetRulesets(TMap<FString, FRHAPI_PortalUseRuleset>&& NewValue) { Rulesets_Optional = NewValue; Rulesets_IsSet = true; }
 	 /** @brief Clears the value of Rulesets_Optional and sets Rulesets_IsSet to false */
 	void ClearRulesets() { Rulesets_IsSet = false; }
 
@@ -104,7 +108,9 @@ struct RALLYHEREAPI_API FRHAPI_PortalUseRulesets : public FRHAPI_Model
 	/** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
 	const FRHAPI_CacheInfo* GetCacheInfoOrNull() const { if (CacheInfo_IsSet) return &CacheInfo_Optional; return nullptr; }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true */
-	void SetCacheInfo(FRHAPI_CacheInfo NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
+	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
+	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics */
+	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
 	 /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
 	void ClearCacheInfo() { CacheInfo_IsSet = false; }
 };

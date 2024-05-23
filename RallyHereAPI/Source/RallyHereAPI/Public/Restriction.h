@@ -48,7 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_Restriction : public FRHAPI_Model
 	/** @brief Gets the value of Type */
 	const ERHAPI_RestrictionType& GetType() const { return Type; }
 	/** @brief Sets the value of Type */
-	void SetType(ERHAPI_RestrictionType NewValue) { Type = NewValue;  }
+	void SetType(const ERHAPI_RestrictionType& NewValue) { Type = NewValue;  }
+	/** @brief Sets the value of Type using move semantics */
+	void SetType(ERHAPI_RestrictionType&& NewValue) { Type = NewValue;  }
 
 	/** @brief Reason the restriction was applied */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -69,7 +71,9 @@ struct RALLYHEREAPI_API FRHAPI_Restriction : public FRHAPI_Model
 	/** @brief Returns a pointer to Reason_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetReasonOrNull() const { if (Reason_IsSet) return &Reason_Optional; return nullptr; }
 	/** @brief Sets the value of Reason_Optional and also sets Reason_IsSet to true */
-	void SetReason(FString NewValue) { Reason_Optional = NewValue; Reason_IsSet = true; }
+	void SetReason(const FString& NewValue) { Reason_Optional = NewValue; Reason_IsSet = true; }
+	/** @brief Sets the value of Reason_Optional and also sets Reason_IsSet to true using move semantics */
+	void SetReason(FString&& NewValue) { Reason_Optional = NewValue; Reason_IsSet = true; }
 	 /** @brief Clears the value of Reason_Optional and sets Reason_IsSet to false */
 	void ClearReason() { Reason_IsSet = false; }
 
@@ -92,7 +96,9 @@ struct RALLYHEREAPI_API FRHAPI_Restriction : public FRHAPI_Model
 	/** @brief Returns a pointer to Expiration_Optional, if it has been set, otherwise returns nullptr */
 	const FDateTime* GetExpirationOrNull() const { if (Expiration_IsSet) return &Expiration_Optional; return nullptr; }
 	/** @brief Sets the value of Expiration_Optional and also sets Expiration_IsSet to true */
-	void SetExpiration(FDateTime NewValue) { Expiration_Optional = NewValue; Expiration_IsSet = true; }
+	void SetExpiration(const FDateTime& NewValue) { Expiration_Optional = NewValue; Expiration_IsSet = true; }
+	/** @brief Sets the value of Expiration_Optional and also sets Expiration_IsSet to true using move semantics */
+	void SetExpiration(FDateTime&& NewValue) { Expiration_Optional = NewValue; Expiration_IsSet = true; }
 	 /** @brief Clears the value of Expiration_Optional and sets Expiration_IsSet to false */
 	void ClearExpiration() { Expiration_IsSet = false; }
 };

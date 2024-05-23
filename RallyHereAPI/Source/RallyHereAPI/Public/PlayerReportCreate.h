@@ -58,7 +58,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerReportCreate : public FRHAPI_Model
 	/** @brief Returns a pointer to SourcePlayerUuid_Optional, if it has been set, otherwise returns nullptr */
 	const FGuid* GetSourcePlayerUuidOrNull() const { if (SourcePlayerUuid_IsSet) return &SourcePlayerUuid_Optional; return nullptr; }
 	/** @brief Sets the value of SourcePlayerUuid_Optional and also sets SourcePlayerUuid_IsSet to true */
-	void SetSourcePlayerUuid(FGuid NewValue) { SourcePlayerUuid_Optional = NewValue; SourcePlayerUuid_IsSet = true; }
+	void SetSourcePlayerUuid(const FGuid& NewValue) { SourcePlayerUuid_Optional = NewValue; SourcePlayerUuid_IsSet = true; }
+	/** @brief Sets the value of SourcePlayerUuid_Optional and also sets SourcePlayerUuid_IsSet to true using move semantics */
+	void SetSourcePlayerUuid(FGuid&& NewValue) { SourcePlayerUuid_Optional = NewValue; SourcePlayerUuid_IsSet = true; }
 	 /** @brief Clears the value of SourcePlayerUuid_Optional and sets SourcePlayerUuid_IsSet to false */
 	void ClearSourcePlayerUuid() { SourcePlayerUuid_IsSet = false; }
 
@@ -70,7 +72,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerReportCreate : public FRHAPI_Model
 	/** @brief Gets the value of Reason */
 	const ERHAPI_ReportReason& GetReason() const { return Reason; }
 	/** @brief Sets the value of Reason */
-	void SetReason(ERHAPI_ReportReason NewValue) { Reason = NewValue;  }
+	void SetReason(const ERHAPI_ReportReason& NewValue) { Reason = NewValue;  }
+	/** @brief Sets the value of Reason using move semantics */
+	void SetReason(ERHAPI_ReportReason&& NewValue) { Reason = NewValue;  }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Description_Optional{  };
@@ -90,7 +94,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerReportCreate : public FRHAPI_Model
 	/** @brief Returns a pointer to Description_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetDescriptionOrNull() const { if (Description_IsSet) return &Description_Optional; return nullptr; }
 	/** @brief Sets the value of Description_Optional and also sets Description_IsSet to true */
-	void SetDescription(FString NewValue) { Description_Optional = NewValue; Description_IsSet = true; }
+	void SetDescription(const FString& NewValue) { Description_Optional = NewValue; Description_IsSet = true; }
+	/** @brief Sets the value of Description_Optional and also sets Description_IsSet to true using move semantics */
+	void SetDescription(FString&& NewValue) { Description_Optional = NewValue; Description_IsSet = true; }
 	 /** @brief Clears the value of Description_Optional and sets Description_IsSet to false */
 	void ClearDescription() { Description_IsSet = false; }
 
@@ -112,7 +118,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerReportCreate : public FRHAPI_Model
 	/** @brief Returns a pointer to SessionId_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetSessionIdOrNull() const { if (SessionId_IsSet) return &SessionId_Optional; return nullptr; }
 	/** @brief Sets the value of SessionId_Optional and also sets SessionId_IsSet to true */
-	void SetSessionId(FString NewValue) { SessionId_Optional = NewValue; SessionId_IsSet = true; }
+	void SetSessionId(const FString& NewValue) { SessionId_Optional = NewValue; SessionId_IsSet = true; }
+	/** @brief Sets the value of SessionId_Optional and also sets SessionId_IsSet to true using move semantics */
+	void SetSessionId(FString&& NewValue) { SessionId_Optional = NewValue; SessionId_IsSet = true; }
 	 /** @brief Clears the value of SessionId_Optional and sets SessionId_IsSet to false */
 	void ClearSessionId() { SessionId_IsSet = false; }
 
@@ -134,7 +142,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerReportCreate : public FRHAPI_Model
 	/** @brief Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetInstanceIdOrNull() const { if (InstanceId_IsSet) return &InstanceId_Optional; return nullptr; }
 	/** @brief Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true */
-	void SetInstanceId(FString NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true; }
+	void SetInstanceId(const FString& NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true; }
+	/** @brief Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true using move semantics */
+	void SetInstanceId(FString&& NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true; }
 	 /** @brief Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false */
 	void ClearInstanceId() { InstanceId_IsSet = false; }
 
@@ -156,7 +166,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerReportCreate : public FRHAPI_Model
 	/** @brief Returns a pointer to MatchId_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetMatchIdOrNull() const { if (MatchId_IsSet) return &MatchId_Optional; return nullptr; }
 	/** @brief Sets the value of MatchId_Optional and also sets MatchId_IsSet to true */
-	void SetMatchId(FString NewValue) { MatchId_Optional = NewValue; MatchId_IsSet = true; }
+	void SetMatchId(const FString& NewValue) { MatchId_Optional = NewValue; MatchId_IsSet = true; }
+	/** @brief Sets the value of MatchId_Optional and also sets MatchId_IsSet to true using move semantics */
+	void SetMatchId(FString&& NewValue) { MatchId_Optional = NewValue; MatchId_IsSet = true; }
 	 /** @brief Clears the value of MatchId_Optional and sets MatchId_IsSet to false */
 	void ClearMatchId() { MatchId_IsSet = false; }
 
@@ -178,7 +190,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerReportCreate : public FRHAPI_Model
 	/** @brief Returns a pointer to MatchSegment_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetMatchSegmentOrNull() const { if (MatchSegment_IsSet) return &MatchSegment_Optional; return nullptr; }
 	/** @brief Sets the value of MatchSegment_Optional and also sets MatchSegment_IsSet to true */
-	void SetMatchSegment(FString NewValue) { MatchSegment_Optional = NewValue; MatchSegment_IsSet = true; }
+	void SetMatchSegment(const FString& NewValue) { MatchSegment_Optional = NewValue; MatchSegment_IsSet = true; }
+	/** @brief Sets the value of MatchSegment_Optional and also sets MatchSegment_IsSet to true using move semantics */
+	void SetMatchSegment(FString&& NewValue) { MatchSegment_Optional = NewValue; MatchSegment_IsSet = true; }
 	 /** @brief Clears the value of MatchSegment_Optional and sets MatchSegment_IsSet to false */
 	void ClearMatchSegment() { MatchSegment_IsSet = false; }
 
@@ -201,7 +215,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerReportCreate : public FRHAPI_Model
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
+	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
 	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false; }
 };

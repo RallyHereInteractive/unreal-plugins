@@ -63,7 +63,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchSegmentWithPlayers : public FRHAPI_Model
 	/** @brief Returns a pointer to LastModifiedTimestamp_Optional, if it has been set, otherwise returns nullptr */
 	const FDateTime* GetLastModifiedTimestampOrNull() const { if (LastModifiedTimestamp_IsSet) return &LastModifiedTimestamp_Optional; return nullptr; }
 	/** @brief Sets the value of LastModifiedTimestamp_Optional and also sets LastModifiedTimestamp_IsSet to true */
-	void SetLastModifiedTimestamp(FDateTime NewValue) { LastModifiedTimestamp_Optional = NewValue; LastModifiedTimestamp_IsSet = true; }
+	void SetLastModifiedTimestamp(const FDateTime& NewValue) { LastModifiedTimestamp_Optional = NewValue; LastModifiedTimestamp_IsSet = true; }
+	/** @brief Sets the value of LastModifiedTimestamp_Optional and also sets LastModifiedTimestamp_IsSet to true using move semantics */
+	void SetLastModifiedTimestamp(FDateTime&& NewValue) { LastModifiedTimestamp_Optional = NewValue; LastModifiedTimestamp_IsSet = true; }
 	 /** @brief Clears the value of LastModifiedTimestamp_Optional and sets LastModifiedTimestamp_IsSet to false */
 	void ClearLastModifiedTimestamp() { LastModifiedTimestamp_IsSet = false; }
 
@@ -86,7 +88,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchSegmentWithPlayers : public FRHAPI_Model
 	/** @brief Returns a pointer to CreatedTimestamp_Optional, if it has been set, otherwise returns nullptr */
 	const FDateTime* GetCreatedTimestampOrNull() const { if (CreatedTimestamp_IsSet) return &CreatedTimestamp_Optional; return nullptr; }
 	/** @brief Sets the value of CreatedTimestamp_Optional and also sets CreatedTimestamp_IsSet to true */
-	void SetCreatedTimestamp(FDateTime NewValue) { CreatedTimestamp_Optional = NewValue; CreatedTimestamp_IsSet = true; }
+	void SetCreatedTimestamp(const FDateTime& NewValue) { CreatedTimestamp_Optional = NewValue; CreatedTimestamp_IsSet = true; }
+	/** @brief Sets the value of CreatedTimestamp_Optional and also sets CreatedTimestamp_IsSet to true using move semantics */
+	void SetCreatedTimestamp(FDateTime&& NewValue) { CreatedTimestamp_Optional = NewValue; CreatedTimestamp_IsSet = true; }
 	 /** @brief Clears the value of CreatedTimestamp_Optional and sets CreatedTimestamp_IsSet to false */
 	void ClearCreatedTimestamp() { CreatedTimestamp_IsSet = false; }
 
@@ -108,7 +112,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchSegmentWithPlayers : public FRHAPI_Model
 	/** @brief Returns a pointer to Type_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetTypeOrNull() const { if (Type_IsSet) return &Type_Optional; return nullptr; }
 	/** @brief Sets the value of Type_Optional and also sets Type_IsSet to true */
-	void SetType(FString NewValue) { Type_Optional = NewValue; Type_IsSet = true; }
+	void SetType(const FString& NewValue) { Type_Optional = NewValue; Type_IsSet = true; }
+	/** @brief Sets the value of Type_Optional and also sets Type_IsSet to true using move semantics */
+	void SetType(FString&& NewValue) { Type_Optional = NewValue; Type_IsSet = true; }
 	 /** @brief Clears the value of Type_Optional and sets Type_IsSet to false */
 	void ClearType() { Type_IsSet = false; }
 
@@ -130,7 +136,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchSegmentWithPlayers : public FRHAPI_Model
 	/** @brief Returns a pointer to State_Optional, if it has been set, otherwise returns nullptr */
 	const ERHAPI_MatchState* GetStateOrNull() const { if (State_IsSet) return &State_Optional; return nullptr; }
 	/** @brief Sets the value of State_Optional and also sets State_IsSet to true */
-	void SetState(ERHAPI_MatchState NewValue) { State_Optional = NewValue; State_IsSet = true; }
+	void SetState(const ERHAPI_MatchState& NewValue) { State_Optional = NewValue; State_IsSet = true; }
+	/** @brief Sets the value of State_Optional and also sets State_IsSet to true using move semantics */
+	void SetState(ERHAPI_MatchState&& NewValue) { State_Optional = NewValue; State_IsSet = true; }
 	 /** @brief Clears the value of State_Optional and sets State_IsSet to false */
 	void ClearState() { State_IsSet = false; }
 
@@ -153,7 +161,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchSegmentWithPlayers : public FRHAPI_Model
 	/** @brief Returns a pointer to StartTimestamp_Optional, if it has been set, otherwise returns nullptr */
 	const FDateTime* GetStartTimestampOrNull() const { if (StartTimestamp_IsSet) return &StartTimestamp_Optional; return nullptr; }
 	/** @brief Sets the value of StartTimestamp_Optional and also sets StartTimestamp_IsSet to true */
-	void SetStartTimestamp(FDateTime NewValue) { StartTimestamp_Optional = NewValue; StartTimestamp_IsSet = true; }
+	void SetStartTimestamp(const FDateTime& NewValue) { StartTimestamp_Optional = NewValue; StartTimestamp_IsSet = true; }
+	/** @brief Sets the value of StartTimestamp_Optional and also sets StartTimestamp_IsSet to true using move semantics */
+	void SetStartTimestamp(FDateTime&& NewValue) { StartTimestamp_Optional = NewValue; StartTimestamp_IsSet = true; }
 	 /** @brief Clears the value of StartTimestamp_Optional and sets StartTimestamp_IsSet to false */
 	void ClearStartTimestamp() { StartTimestamp_IsSet = false; }
 
@@ -176,7 +186,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchSegmentWithPlayers : public FRHAPI_Model
 	/** @brief Returns a pointer to EndTimestamp_Optional, if it has been set, otherwise returns nullptr */
 	const FDateTime* GetEndTimestampOrNull() const { if (EndTimestamp_IsSet) return &EndTimestamp_Optional; return nullptr; }
 	/** @brief Sets the value of EndTimestamp_Optional and also sets EndTimestamp_IsSet to true */
-	void SetEndTimestamp(FDateTime NewValue) { EndTimestamp_Optional = NewValue; EndTimestamp_IsSet = true; }
+	void SetEndTimestamp(const FDateTime& NewValue) { EndTimestamp_Optional = NewValue; EndTimestamp_IsSet = true; }
+	/** @brief Sets the value of EndTimestamp_Optional and also sets EndTimestamp_IsSet to true using move semantics */
+	void SetEndTimestamp(FDateTime&& NewValue) { EndTimestamp_Optional = NewValue; EndTimestamp_IsSet = true; }
 	 /** @brief Clears the value of EndTimestamp_Optional and sets EndTimestamp_IsSet to false */
 	void ClearEndTimestamp() { EndTimestamp_IsSet = false; }
 
@@ -198,7 +210,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchSegmentWithPlayers : public FRHAPI_Model
 	/** @brief Returns a pointer to DurationSeconds_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetDurationSecondsOrNull() const { if (DurationSeconds_IsSet) return &DurationSeconds_Optional; return nullptr; }
 	/** @brief Sets the value of DurationSeconds_Optional and also sets DurationSeconds_IsSet to true */
-	void SetDurationSeconds(int32 NewValue) { DurationSeconds_Optional = NewValue; DurationSeconds_IsSet = true; }
+	void SetDurationSeconds(const int32& NewValue) { DurationSeconds_Optional = NewValue; DurationSeconds_IsSet = true; }
+	/** @brief Sets the value of DurationSeconds_Optional and also sets DurationSeconds_IsSet to true using move semantics */
+	void SetDurationSeconds(int32&& NewValue) { DurationSeconds_Optional = NewValue; DurationSeconds_IsSet = true; }
 	 /** @brief Clears the value of DurationSeconds_Optional and sets DurationSeconds_IsSet to false */
 	void ClearDurationSeconds() { DurationSeconds_Optional = 0; DurationSeconds_IsSet = false; }
 	/** @brief Returns true if DurationSeconds_Optional is set and matches the default value */
@@ -224,7 +238,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchSegmentWithPlayers : public FRHAPI_Model
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
+	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
 	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false; }
 
@@ -246,7 +262,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchSegmentWithPlayers : public FRHAPI_Model
 	/** @brief Returns a pointer to CorrelationId_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetCorrelationIdOrNull() const { if (CorrelationId_IsSet) return &CorrelationId_Optional; return nullptr; }
 	/** @brief Sets the value of CorrelationId_Optional and also sets CorrelationId_IsSet to true */
-	void SetCorrelationId(FString NewValue) { CorrelationId_Optional = NewValue; CorrelationId_IsSet = true; }
+	void SetCorrelationId(const FString& NewValue) { CorrelationId_Optional = NewValue; CorrelationId_IsSet = true; }
+	/** @brief Sets the value of CorrelationId_Optional and also sets CorrelationId_IsSet to true using move semantics */
+	void SetCorrelationId(FString&& NewValue) { CorrelationId_Optional = NewValue; CorrelationId_IsSet = true; }
 	 /** @brief Clears the value of CorrelationId_Optional and sets CorrelationId_IsSet to false */
 	void ClearCorrelationId() { CorrelationId_IsSet = false; }
 
@@ -269,7 +287,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchSegmentWithPlayers : public FRHAPI_Model
 	/** @brief Returns a pointer to Sessions_Optional, if it has been set, otherwise returns nullptr */
 	const TArray<FRHAPI_MatchSession>* GetSessionsOrNull() const { if (Sessions_IsSet) return &Sessions_Optional; return nullptr; }
 	/** @brief Sets the value of Sessions_Optional and also sets Sessions_IsSet to true */
-	void SetSessions(TArray<FRHAPI_MatchSession> NewValue) { Sessions_Optional = NewValue; Sessions_IsSet = true; }
+	void SetSessions(const TArray<FRHAPI_MatchSession>& NewValue) { Sessions_Optional = NewValue; Sessions_IsSet = true; }
+	/** @brief Sets the value of Sessions_Optional and also sets Sessions_IsSet to true using move semantics */
+	void SetSessions(TArray<FRHAPI_MatchSession>&& NewValue) { Sessions_Optional = NewValue; Sessions_IsSet = true; }
 	 /** @brief Clears the value of Sessions_Optional and sets Sessions_IsSet to false */
 	void ClearSessions() { Sessions_IsSet = false; }
 
@@ -292,7 +312,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchSegmentWithPlayers : public FRHAPI_Model
 	/** @brief Returns a pointer to Instances_Optional, if it has been set, otherwise returns nullptr */
 	const TArray<FRHAPI_MatchInstance>* GetInstancesOrNull() const { if (Instances_IsSet) return &Instances_Optional; return nullptr; }
 	/** @brief Sets the value of Instances_Optional and also sets Instances_IsSet to true */
-	void SetInstances(TArray<FRHAPI_MatchInstance> NewValue) { Instances_Optional = NewValue; Instances_IsSet = true; }
+	void SetInstances(const TArray<FRHAPI_MatchInstance>& NewValue) { Instances_Optional = NewValue; Instances_IsSet = true; }
+	/** @brief Sets the value of Instances_Optional and also sets Instances_IsSet to true using move semantics */
+	void SetInstances(TArray<FRHAPI_MatchInstance>&& NewValue) { Instances_Optional = NewValue; Instances_IsSet = true; }
 	 /** @brief Clears the value of Instances_Optional and sets Instances_IsSet to false */
 	void ClearInstances() { Instances_IsSet = false; }
 
@@ -315,7 +337,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchSegmentWithPlayers : public FRHAPI_Model
 	/** @brief Returns a pointer to Allocations_Optional, if it has been set, otherwise returns nullptr */
 	const TArray<FRHAPI_MatchAllocation>* GetAllocationsOrNull() const { if (Allocations_IsSet) return &Allocations_Optional; return nullptr; }
 	/** @brief Sets the value of Allocations_Optional and also sets Allocations_IsSet to true */
-	void SetAllocations(TArray<FRHAPI_MatchAllocation> NewValue) { Allocations_Optional = NewValue; Allocations_IsSet = true; }
+	void SetAllocations(const TArray<FRHAPI_MatchAllocation>& NewValue) { Allocations_Optional = NewValue; Allocations_IsSet = true; }
+	/** @brief Sets the value of Allocations_Optional and also sets Allocations_IsSet to true using move semantics */
+	void SetAllocations(TArray<FRHAPI_MatchAllocation>&& NewValue) { Allocations_Optional = NewValue; Allocations_IsSet = true; }
 	 /** @brief Clears the value of Allocations_Optional and sets Allocations_IsSet to false */
 	void ClearAllocations() { Allocations_IsSet = false; }
 
@@ -327,7 +351,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchSegmentWithPlayers : public FRHAPI_Model
 	/** @brief Gets the value of MatchSegment */
 	const FString& GetMatchSegment() const { return MatchSegment; }
 	/** @brief Sets the value of MatchSegment */
-	void SetMatchSegment(FString NewValue) { MatchSegment = NewValue;  }
+	void SetMatchSegment(const FString& NewValue) { MatchSegment = NewValue;  }
+	/** @brief Sets the value of MatchSegment using move semantics */
+	void SetMatchSegment(FString&& NewValue) { MatchSegment = NewValue;  }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString MatchId_Optional{  };
@@ -347,7 +373,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchSegmentWithPlayers : public FRHAPI_Model
 	/** @brief Returns a pointer to MatchId_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetMatchIdOrNull() const { if (MatchId_IsSet) return &MatchId_Optional; return nullptr; }
 	/** @brief Sets the value of MatchId_Optional and also sets MatchId_IsSet to true */
-	void SetMatchId(FString NewValue) { MatchId_Optional = NewValue; MatchId_IsSet = true; }
+	void SetMatchId(const FString& NewValue) { MatchId_Optional = NewValue; MatchId_IsSet = true; }
+	/** @brief Sets the value of MatchId_Optional and also sets MatchId_IsSet to true using move semantics */
+	void SetMatchId(FString&& NewValue) { MatchId_Optional = NewValue; MatchId_IsSet = true; }
 	 /** @brief Clears the value of MatchId_Optional and sets MatchId_IsSet to false */
 	void ClearMatchId() { MatchId_IsSet = false; }
 
@@ -370,7 +398,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchSegmentWithPlayers : public FRHAPI_Model
 	/** @brief Returns a pointer to Players_Optional, if it has been set, otherwise returns nullptr */
 	const TArray<FRHAPI_MatchPlayerResponse>* GetPlayersOrNull() const { if (Players_IsSet) return &Players_Optional; return nullptr; }
 	/** @brief Sets the value of Players_Optional and also sets Players_IsSet to true */
-	void SetPlayers(TArray<FRHAPI_MatchPlayerResponse> NewValue) { Players_Optional = NewValue; Players_IsSet = true; }
+	void SetPlayers(const TArray<FRHAPI_MatchPlayerResponse>& NewValue) { Players_Optional = NewValue; Players_IsSet = true; }
+	/** @brief Sets the value of Players_Optional and also sets Players_IsSet to true using move semantics */
+	void SetPlayers(TArray<FRHAPI_MatchPlayerResponse>&& NewValue) { Players_Optional = NewValue; Players_IsSet = true; }
 	 /** @brief Clears the value of Players_Optional and sets Players_IsSet to false */
 	void ClearPlayers() { Players_IsSet = false; }
 };

@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_PriceBreakPointCurrency : public FRHAPI_Model
 	/** @brief Gets the value of PriceItemId */
 	const int32& GetPriceItemId() const { return PriceItemId; }
 	/** @brief Sets the value of PriceItemId */
-	void SetPriceItemId(int32 NewValue) { PriceItemId = NewValue;  }
+	void SetPriceItemId(const int32& NewValue) { PriceItemId = NewValue;  }
+	/** @brief Sets the value of PriceItemId using move semantics */
+	void SetPriceItemId(int32&& NewValue) { PriceItemId = NewValue;  }
 	/** @brief Returns true if PriceItemId matches the default value */
 	bool IsPriceItemIdDefaultValue() const { return PriceItemId == 0; }
 	/** @brief Sets the value of PriceItemId to its default  */
@@ -61,7 +63,9 @@ struct RALLYHEREAPI_API FRHAPI_PriceBreakPointCurrency : public FRHAPI_Model
 	/** @brief Gets the value of Price */
 	const int32& GetPrice() const { return Price; }
 	/** @brief Sets the value of Price */
-	void SetPrice(int32 NewValue) { Price = NewValue;  }
+	void SetPrice(const int32& NewValue) { Price = NewValue;  }
+	/** @brief Sets the value of Price using move semantics */
+	void SetPrice(int32&& NewValue) { Price = NewValue;  }
 	/** @brief Returns true if Price matches the default value */
 	bool IsPriceDefaultValue() const { return Price == 0; }
 	/** @brief Sets the value of Price to its default  */

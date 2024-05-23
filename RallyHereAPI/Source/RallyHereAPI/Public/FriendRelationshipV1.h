@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_FriendRelationshipV1 : public FRHAPI_Model
 	/** @brief Gets the value of FriendsPlayerUuid */
 	const FGuid& GetFriendsPlayerUuid() const { return FriendsPlayerUuid; }
 	/** @brief Sets the value of FriendsPlayerUuid */
-	void SetFriendsPlayerUuid(FGuid NewValue) { FriendsPlayerUuid = NewValue;  }
+	void SetFriendsPlayerUuid(const FGuid& NewValue) { FriendsPlayerUuid = NewValue;  }
+	/** @brief Sets the value of FriendsPlayerUuid using move semantics */
+	void SetFriendsPlayerUuid(FGuid&& NewValue) { FriendsPlayerUuid = NewValue;  }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 FriendsPlayerId_Optional{  };
@@ -67,7 +69,9 @@ struct RALLYHEREAPI_API FRHAPI_FriendRelationshipV1 : public FRHAPI_Model
 	/** @brief Returns a pointer to FriendsPlayerId_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetFriendsPlayerIdOrNull() const { if (FriendsPlayerId_IsSet) return &FriendsPlayerId_Optional; return nullptr; }
 	/** @brief Sets the value of FriendsPlayerId_Optional and also sets FriendsPlayerId_IsSet to true */
-	void SetFriendsPlayerId(int32 NewValue) { FriendsPlayerId_Optional = NewValue; FriendsPlayerId_IsSet = true; }
+	void SetFriendsPlayerId(const int32& NewValue) { FriendsPlayerId_Optional = NewValue; FriendsPlayerId_IsSet = true; }
+	/** @brief Sets the value of FriendsPlayerId_Optional and also sets FriendsPlayerId_IsSet to true using move semantics */
+	void SetFriendsPlayerId(int32&& NewValue) { FriendsPlayerId_Optional = NewValue; FriendsPlayerId_IsSet = true; }
 	 /** @brief Clears the value of FriendsPlayerId_Optional and sets FriendsPlayerId_IsSet to false */
 	void ClearFriendsPlayerId() { FriendsPlayerId_Optional = 0; FriendsPlayerId_IsSet = false; }
 	/** @brief Returns true if FriendsPlayerId_Optional is set and matches the default value */
@@ -82,7 +86,9 @@ struct RALLYHEREAPI_API FRHAPI_FriendRelationshipV1 : public FRHAPI_Model
 	/** @brief Gets the value of Status */
 	const ERHAPI_FriendshipStatus& GetStatus() const { return Status; }
 	/** @brief Sets the value of Status */
-	void SetStatus(ERHAPI_FriendshipStatus NewValue) { Status = NewValue;  }
+	void SetStatus(const ERHAPI_FriendshipStatus& NewValue) { Status = NewValue;  }
+	/** @brief Sets the value of Status using move semantics */
+	void SetStatus(ERHAPI_FriendshipStatus&& NewValue) { Status = NewValue;  }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Notes_Optional{  };
@@ -102,7 +108,9 @@ struct RALLYHEREAPI_API FRHAPI_FriendRelationshipV1 : public FRHAPI_Model
 	/** @brief Returns a pointer to Notes_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetNotesOrNull() const { if (Notes_IsSet) return &Notes_Optional; return nullptr; }
 	/** @brief Sets the value of Notes_Optional and also sets Notes_IsSet to true */
-	void SetNotes(FString NewValue) { Notes_Optional = NewValue; Notes_IsSet = true; }
+	void SetNotes(const FString& NewValue) { Notes_Optional = NewValue; Notes_IsSet = true; }
+	/** @brief Sets the value of Notes_Optional and also sets Notes_IsSet to true using move semantics */
+	void SetNotes(FString&& NewValue) { Notes_Optional = NewValue; Notes_IsSet = true; }
 	 /** @brief Clears the value of Notes_Optional and sets Notes_IsSet to false */
 	void ClearNotes() { Notes_IsSet = false; }
 
@@ -113,7 +121,9 @@ struct RALLYHEREAPI_API FRHAPI_FriendRelationshipV1 : public FRHAPI_Model
 	/** @brief Gets the value of LastModifiedOn */
 	const FDateTime& GetLastModifiedOn() const { return LastModifiedOn; }
 	/** @brief Sets the value of LastModifiedOn */
-	void SetLastModifiedOn(FDateTime NewValue) { LastModifiedOn = NewValue;  }
+	void SetLastModifiedOn(const FDateTime& NewValue) { LastModifiedOn = NewValue;  }
+	/** @brief Sets the value of LastModifiedOn using move semantics */
+	void SetLastModifiedOn(FDateTime&& NewValue) { LastModifiedOn = NewValue;  }
 };
 
 /** @} */

@@ -58,7 +58,9 @@ struct RALLYHEREAPI_API FRHAPI_OAuthTokenResponse : public FRHAPI_Model
 	/** @brief Returns a pointer to AccessToken_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetAccessTokenOrNull() const { if (AccessToken_IsSet) return &AccessToken_Optional; return nullptr; }
 	/** @brief Sets the value of AccessToken_Optional and also sets AccessToken_IsSet to true */
-	void SetAccessToken(FString NewValue) { AccessToken_Optional = NewValue; AccessToken_IsSet = true; }
+	void SetAccessToken(const FString& NewValue) { AccessToken_Optional = NewValue; AccessToken_IsSet = true; }
+	/** @brief Sets the value of AccessToken_Optional and also sets AccessToken_IsSet to true using move semantics */
+	void SetAccessToken(FString&& NewValue) { AccessToken_Optional = NewValue; AccessToken_IsSet = true; }
 	 /** @brief Clears the value of AccessToken_Optional and sets AccessToken_IsSet to false */
 	void ClearAccessToken() { AccessToken_IsSet = false; }
 
@@ -81,7 +83,9 @@ struct RALLYHEREAPI_API FRHAPI_OAuthTokenResponse : public FRHAPI_Model
 	/** @brief Returns a pointer to RefreshToken_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetRefreshTokenOrNull() const { if (RefreshToken_IsSet) return &RefreshToken_Optional; return nullptr; }
 	/** @brief Sets the value of RefreshToken_Optional and also sets RefreshToken_IsSet to true */
-	void SetRefreshToken(FString NewValue) { RefreshToken_Optional = NewValue; RefreshToken_IsSet = true; }
+	void SetRefreshToken(const FString& NewValue) { RefreshToken_Optional = NewValue; RefreshToken_IsSet = true; }
+	/** @brief Sets the value of RefreshToken_Optional and also sets RefreshToken_IsSet to true using move semantics */
+	void SetRefreshToken(FString&& NewValue) { RefreshToken_Optional = NewValue; RefreshToken_IsSet = true; }
 	 /** @brief Clears the value of RefreshToken_Optional and sets RefreshToken_IsSet to false */
 	void ClearRefreshToken() { RefreshToken_IsSet = false; }
 
@@ -104,7 +108,9 @@ struct RALLYHEREAPI_API FRHAPI_OAuthTokenResponse : public FRHAPI_Model
 	/** @brief Returns a pointer to NeedsEula_Optional, if it has been set, otherwise returns nullptr */
 	const bool* GetNeedsEulaOrNull() const { if (NeedsEula_IsSet) return &NeedsEula_Optional; return nullptr; }
 	/** @brief Sets the value of NeedsEula_Optional and also sets NeedsEula_IsSet to true */
-	void SetNeedsEula(bool NewValue) { NeedsEula_Optional = NewValue; NeedsEula_IsSet = true; }
+	void SetNeedsEula(const bool& NewValue) { NeedsEula_Optional = NewValue; NeedsEula_IsSet = true; }
+	/** @brief Sets the value of NeedsEula_Optional and also sets NeedsEula_IsSet to true using move semantics */
+	void SetNeedsEula(bool&& NewValue) { NeedsEula_Optional = NewValue; NeedsEula_IsSet = true; }
 	 /** @brief Clears the value of NeedsEula_Optional and sets NeedsEula_IsSet to false */
 	void ClearNeedsEula() { NeedsEula_Optional = false; NeedsEula_IsSet = false; }
 	/** @brief Returns true if NeedsEula_Optional is set and matches the default value */
@@ -131,7 +137,9 @@ struct RALLYHEREAPI_API FRHAPI_OAuthTokenResponse : public FRHAPI_Model
 	/** @brief Returns a pointer to NeedsTos_Optional, if it has been set, otherwise returns nullptr */
 	const bool* GetNeedsTosOrNull() const { if (NeedsTos_IsSet) return &NeedsTos_Optional; return nullptr; }
 	/** @brief Sets the value of NeedsTos_Optional and also sets NeedsTos_IsSet to true */
-	void SetNeedsTos(bool NewValue) { NeedsTos_Optional = NewValue; NeedsTos_IsSet = true; }
+	void SetNeedsTos(const bool& NewValue) { NeedsTos_Optional = NewValue; NeedsTos_IsSet = true; }
+	/** @brief Sets the value of NeedsTos_Optional and also sets NeedsTos_IsSet to true using move semantics */
+	void SetNeedsTos(bool&& NewValue) { NeedsTos_Optional = NewValue; NeedsTos_IsSet = true; }
 	 /** @brief Clears the value of NeedsTos_Optional and sets NeedsTos_IsSet to false */
 	void ClearNeedsTos() { NeedsTos_Optional = false; NeedsTos_IsSet = false; }
 	/** @brief Returns true if NeedsTos_Optional is set and matches the default value */
@@ -158,7 +166,9 @@ struct RALLYHEREAPI_API FRHAPI_OAuthTokenResponse : public FRHAPI_Model
 	/** @brief Returns a pointer to NeedsPrivacyPolicy_Optional, if it has been set, otherwise returns nullptr */
 	const bool* GetNeedsPrivacyPolicyOrNull() const { if (NeedsPrivacyPolicy_IsSet) return &NeedsPrivacyPolicy_Optional; return nullptr; }
 	/** @brief Sets the value of NeedsPrivacyPolicy_Optional and also sets NeedsPrivacyPolicy_IsSet to true */
-	void SetNeedsPrivacyPolicy(bool NewValue) { NeedsPrivacyPolicy_Optional = NewValue; NeedsPrivacyPolicy_IsSet = true; }
+	void SetNeedsPrivacyPolicy(const bool& NewValue) { NeedsPrivacyPolicy_Optional = NewValue; NeedsPrivacyPolicy_IsSet = true; }
+	/** @brief Sets the value of NeedsPrivacyPolicy_Optional and also sets NeedsPrivacyPolicy_IsSet to true using move semantics */
+	void SetNeedsPrivacyPolicy(bool&& NewValue) { NeedsPrivacyPolicy_Optional = NewValue; NeedsPrivacyPolicy_IsSet = true; }
 	 /** @brief Clears the value of NeedsPrivacyPolicy_Optional and sets NeedsPrivacyPolicy_IsSet to false */
 	void ClearNeedsPrivacyPolicy() { NeedsPrivacyPolicy_Optional = false; NeedsPrivacyPolicy_IsSet = false; }
 	/** @brief Returns true if NeedsPrivacyPolicy_Optional is set and matches the default value */
@@ -185,7 +195,9 @@ struct RALLYHEREAPI_API FRHAPI_OAuthTokenResponse : public FRHAPI_Model
 	/** @brief Returns a pointer to RegeneratedCode_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetRegeneratedCodeOrNull() const { if (RegeneratedCode_IsSet) return &RegeneratedCode_Optional; return nullptr; }
 	/** @brief Sets the value of RegeneratedCode_Optional and also sets RegeneratedCode_IsSet to true */
-	void SetRegeneratedCode(FString NewValue) { RegeneratedCode_Optional = NewValue; RegeneratedCode_IsSet = true; }
+	void SetRegeneratedCode(const FString& NewValue) { RegeneratedCode_Optional = NewValue; RegeneratedCode_IsSet = true; }
+	/** @brief Sets the value of RegeneratedCode_Optional and also sets RegeneratedCode_IsSet to true using move semantics */
+	void SetRegeneratedCode(FString&& NewValue) { RegeneratedCode_Optional = NewValue; RegeneratedCode_IsSet = true; }
 	 /** @brief Clears the value of RegeneratedCode_Optional and sets RegeneratedCode_IsSet to false */
 	void ClearRegeneratedCode() { RegeneratedCode_IsSet = false; }
 
@@ -208,7 +220,9 @@ struct RALLYHEREAPI_API FRHAPI_OAuthTokenResponse : public FRHAPI_Model
 	/** @brief Returns a pointer to ErrorMessage_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetErrorMessageOrNull() const { if (ErrorMessage_IsSet) return &ErrorMessage_Optional; return nullptr; }
 	/** @brief Sets the value of ErrorMessage_Optional and also sets ErrorMessage_IsSet to true */
-	void SetErrorMessage(FString NewValue) { ErrorMessage_Optional = NewValue; ErrorMessage_IsSet = true; }
+	void SetErrorMessage(const FString& NewValue) { ErrorMessage_Optional = NewValue; ErrorMessage_IsSet = true; }
+	/** @brief Sets the value of ErrorMessage_Optional and also sets ErrorMessage_IsSet to true using move semantics */
+	void SetErrorMessage(FString&& NewValue) { ErrorMessage_Optional = NewValue; ErrorMessage_IsSet = true; }
 	 /** @brief Clears the value of ErrorMessage_Optional and sets ErrorMessage_IsSet to false */
 	void ClearErrorMessage() { ErrorMessage_IsSet = false; }
 };

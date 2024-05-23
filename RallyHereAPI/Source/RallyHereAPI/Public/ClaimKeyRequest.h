@@ -57,7 +57,9 @@ struct RALLYHEREAPI_API FRHAPI_ClaimKeyRequest : public FRHAPI_Model
 	/** @brief Returns a pointer to ExternalKeyType_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetExternalKeyTypeOrNull() const { if (ExternalKeyType_IsSet) return &ExternalKeyType_Optional; return nullptr; }
 	/** @brief Sets the value of ExternalKeyType_Optional and also sets ExternalKeyType_IsSet to true */
-	void SetExternalKeyType(FString NewValue) { ExternalKeyType_Optional = NewValue; ExternalKeyType_IsSet = true; }
+	void SetExternalKeyType(const FString& NewValue) { ExternalKeyType_Optional = NewValue; ExternalKeyType_IsSet = true; }
+	/** @brief Sets the value of ExternalKeyType_Optional and also sets ExternalKeyType_IsSet to true using move semantics */
+	void SetExternalKeyType(FString&& NewValue) { ExternalKeyType_Optional = NewValue; ExternalKeyType_IsSet = true; }
 	 /** @brief Clears the value of ExternalKeyType_Optional and sets ExternalKeyType_IsSet to false */
 	void ClearExternalKeyType() { ExternalKeyType_Optional = TEXT("Type of the External Key"); ExternalKeyType_IsSet = false; }
 	/** @brief Returns true if ExternalKeyType_Optional is set and matches the default value */

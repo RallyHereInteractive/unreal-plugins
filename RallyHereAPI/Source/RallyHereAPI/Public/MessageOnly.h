@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_MessageOnly : public FRHAPI_Model
 	/** @brief Gets the value of Message */
 	const FString& GetMessage() const { return Message; }
 	/** @brief Sets the value of Message */
-	void SetMessage(FString NewValue) { Message = NewValue;  }
+	void SetMessage(const FString& NewValue) { Message = NewValue;  }
+	/** @brief Sets the value of Message using move semantics */
+	void SetMessage(FString&& NewValue) { Message = NewValue;  }
 };
 
 /** @} */

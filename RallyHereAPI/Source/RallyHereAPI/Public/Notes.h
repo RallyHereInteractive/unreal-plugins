@@ -57,7 +57,9 @@ struct RALLYHEREAPI_API FRHAPI_Notes : public FRHAPI_Model
 	/** @brief Returns a pointer to Notes_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetNotesOrNull() const { if (Notes_IsSet) return &Notes_Optional; return nullptr; }
 	/** @brief Sets the value of Notes_Optional and also sets Notes_IsSet to true */
-	void SetNotes(FString NewValue) { Notes_Optional = NewValue; Notes_IsSet = true; }
+	void SetNotes(const FString& NewValue) { Notes_Optional = NewValue; Notes_IsSet = true; }
+	/** @brief Sets the value of Notes_Optional and also sets Notes_IsSet to true using move semantics */
+	void SetNotes(FString&& NewValue) { Notes_Optional = NewValue; Notes_IsSet = true; }
 	 /** @brief Clears the value of Notes_Optional and sets Notes_IsSet to false */
 	void ClearNotes() { Notes_IsSet = false; }
 };

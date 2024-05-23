@@ -58,7 +58,9 @@ struct RALLYHEREAPI_API FRHAPI_PersonInfoResponse : public FRHAPI_Model
 	/** @brief Returns a pointer to PersonId_Optional, if it has been set, otherwise returns nullptr */
 	const FGuid* GetPersonIdOrNull() const { if (PersonId_IsSet) return &PersonId_Optional; return nullptr; }
 	/** @brief Sets the value of PersonId_Optional and also sets PersonId_IsSet to true */
-	void SetPersonId(FGuid NewValue) { PersonId_Optional = NewValue; PersonId_IsSet = true; }
+	void SetPersonId(const FGuid& NewValue) { PersonId_Optional = NewValue; PersonId_IsSet = true; }
+	/** @brief Sets the value of PersonId_Optional and also sets PersonId_IsSet to true using move semantics */
+	void SetPersonId(FGuid&& NewValue) { PersonId_Optional = NewValue; PersonId_IsSet = true; }
 	 /** @brief Clears the value of PersonId_Optional and sets PersonId_IsSet to false */
 	void ClearPersonId() { PersonId_IsSet = false; }
 
@@ -81,7 +83,9 @@ struct RALLYHEREAPI_API FRHAPI_PersonInfoResponse : public FRHAPI_Model
 	/** @brief Returns a pointer to ActivePlayerId_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetActivePlayerIdOrNull() const { if (ActivePlayerId_IsSet) return &ActivePlayerId_Optional; return nullptr; }
 	/** @brief Sets the value of ActivePlayerId_Optional and also sets ActivePlayerId_IsSet to true */
-	void SetActivePlayerId(int32 NewValue) { ActivePlayerId_Optional = NewValue; ActivePlayerId_IsSet = true; }
+	void SetActivePlayerId(const int32& NewValue) { ActivePlayerId_Optional = NewValue; ActivePlayerId_IsSet = true; }
+	/** @brief Sets the value of ActivePlayerId_Optional and also sets ActivePlayerId_IsSet to true using move semantics */
+	void SetActivePlayerId(int32&& NewValue) { ActivePlayerId_Optional = NewValue; ActivePlayerId_IsSet = true; }
 	 /** @brief Clears the value of ActivePlayerId_Optional and sets ActivePlayerId_IsSet to false */
 	void ClearActivePlayerId() { ActivePlayerId_Optional = 0; ActivePlayerId_IsSet = false; }
 	/** @brief Returns true if ActivePlayerId_Optional is set and matches the default value */
@@ -108,7 +112,9 @@ struct RALLYHEREAPI_API FRHAPI_PersonInfoResponse : public FRHAPI_Model
 	/** @brief Returns a pointer to Email_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetEmailOrNull() const { if (Email_IsSet) return &Email_Optional; return nullptr; }
 	/** @brief Sets the value of Email_Optional and also sets Email_IsSet to true */
-	void SetEmail(FString NewValue) { Email_Optional = NewValue; Email_IsSet = true; }
+	void SetEmail(const FString& NewValue) { Email_Optional = NewValue; Email_IsSet = true; }
+	/** @brief Sets the value of Email_Optional and also sets Email_IsSet to true using move semantics */
+	void SetEmail(FString&& NewValue) { Email_Optional = NewValue; Email_IsSet = true; }
 	 /** @brief Clears the value of Email_Optional and sets Email_IsSet to false */
 	void ClearEmail() { Email_IsSet = false; }
 };

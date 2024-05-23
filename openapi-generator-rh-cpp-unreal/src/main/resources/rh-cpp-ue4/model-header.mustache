@@ -127,7 +127,11 @@ struct {{dllapi}} {{classname}} : public {{unrealModelPrefix}}Model
 	const {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{datatype}}}{{/isEnum}}* Get{{name}}OrNull() const { if ({{name}}_IsSet) return &{{name}}_Optional; return nullptr; }
 	{{/required}}
 	/** @brief Sets the value of {{name}}{{^required}}_Optional and also sets {{name}}_IsSet to true{{/required}} */
-	void Set{{name}}({{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{datatype}}}{{/isEnum}} NewValue) { {{name}}{{^required}}_Optional{{/required}} = NewValue; {{^required}}{{name}}_IsSet = true;{{/required}} }
+	void Set{{name}}({{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}const {{{datatype}}}&{{/isEnum}} NewValue) { {{name}}{{^required}}_Optional{{/required}} = NewValue; {{^required}}{{name}}_IsSet = true;{{/required}} }
+	{{^isEnum}}
+	/** @brief Sets the value of {{name}}{{^required}}_Optional and also sets {{name}}_IsSet to true{{/required}} using move semantics */
+	void Set{{name}}({{{datatype}}}&& NewValue) { {{name}}{{^required}}_Optional{{/required}} = NewValue; {{^required}}{{name}}_IsSet = true;{{/required}} }
+	{{/isEnum}}
 	{{^required}}
 	 /** @brief Clears the value of {{name}}_Optional and sets {{name}}_IsSet to false */
 	void Clear{{name}}() { {{#defaultValue}}{{name}}_Optional = {{{.}}}; {{/defaultValue}}{{name}}_IsSet = false; }

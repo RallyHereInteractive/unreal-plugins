@@ -49,7 +49,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerLinkedPortalsResponse : public FRHAPI_Model
 	/** @brief Gets the value of Player */
 	const FRHAPI_PlayerPersonResponse& GetPlayer() const { return Player; }
 	/** @brief Sets the value of Player */
-	void SetPlayer(FRHAPI_PlayerPersonResponse NewValue) { Player = NewValue;  }
+	void SetPlayer(const FRHAPI_PlayerPersonResponse& NewValue) { Player = NewValue;  }
+	/** @brief Sets the value of Player using move semantics */
+	void SetPlayer(FRHAPI_PlayerPersonResponse&& NewValue) { Player = NewValue;  }
 
 	/** @brief List of linked portals */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -59,7 +61,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerLinkedPortalsResponse : public FRHAPI_Model
 	/** @brief Gets the value of LinkedPortals */
 	const TArray<FRHAPI_PortalUserResponse>& GetLinkedPortals() const { return LinkedPortals; }
 	/** @brief Sets the value of LinkedPortals */
-	void SetLinkedPortals(TArray<FRHAPI_PortalUserResponse> NewValue) { LinkedPortals = NewValue;  }
+	void SetLinkedPortals(const TArray<FRHAPI_PortalUserResponse>& NewValue) { LinkedPortals = NewValue;  }
+	/** @brief Sets the value of LinkedPortals using move semantics */
+	void SetLinkedPortals(TArray<FRHAPI_PortalUserResponse>&& NewValue) { LinkedPortals = NewValue;  }
 };
 
 /** @} */

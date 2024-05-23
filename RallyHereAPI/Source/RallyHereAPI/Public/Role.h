@@ -49,7 +49,9 @@ struct RALLYHEREAPI_API FRHAPI_Role : public FRHAPI_Model
 	/** @brief Gets the value of RoleId */
 	const FString& GetRoleId() const { return RoleId; }
 	/** @brief Sets the value of RoleId */
-	void SetRoleId(FString NewValue) { RoleId = NewValue;  }
+	void SetRoleId(const FString& NewValue) { RoleId = NewValue;  }
+	/** @brief Sets the value of RoleId using move semantics */
+	void SetRoleId(FString&& NewValue) { RoleId = NewValue;  }
 
 	/** @brief Legacy role ID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -70,7 +72,9 @@ struct RALLYHEREAPI_API FRHAPI_Role : public FRHAPI_Model
 	/** @brief Returns a pointer to LegacyRoleId_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetLegacyRoleIdOrNull() const { if (LegacyRoleId_IsSet) return &LegacyRoleId_Optional; return nullptr; }
 	/** @brief Sets the value of LegacyRoleId_Optional and also sets LegacyRoleId_IsSet to true */
-	void SetLegacyRoleId(int32 NewValue) { LegacyRoleId_Optional = NewValue; LegacyRoleId_IsSet = true; }
+	void SetLegacyRoleId(const int32& NewValue) { LegacyRoleId_Optional = NewValue; LegacyRoleId_IsSet = true; }
+	/** @brief Sets the value of LegacyRoleId_Optional and also sets LegacyRoleId_IsSet to true using move semantics */
+	void SetLegacyRoleId(int32&& NewValue) { LegacyRoleId_Optional = NewValue; LegacyRoleId_IsSet = true; }
 	 /** @brief Clears the value of LegacyRoleId_Optional and sets LegacyRoleId_IsSet to false */
 	void ClearLegacyRoleId() { LegacyRoleId_Optional = 0; LegacyRoleId_IsSet = false; }
 	/** @brief Returns true if LegacyRoleId_Optional is set and matches the default value */
@@ -97,7 +101,9 @@ struct RALLYHEREAPI_API FRHAPI_Role : public FRHAPI_Model
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
 	const FRHAPI_JsonObject* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(FRHAPI_JsonObject NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(const FRHAPI_JsonObject& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
+	void SetCustomData(FRHAPI_JsonObject&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
 	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false; }
 
@@ -120,7 +126,9 @@ struct RALLYHEREAPI_API FRHAPI_Role : public FRHAPI_Model
 	/** @brief Returns a pointer to AuthBypass_Optional, if it has been set, otherwise returns nullptr */
 	const ERHAPI_RoleAuthBypass* GetAuthBypassOrNull() const { if (AuthBypass_IsSet) return &AuthBypass_Optional; return nullptr; }
 	/** @brief Sets the value of AuthBypass_Optional and also sets AuthBypass_IsSet to true */
-	void SetAuthBypass(ERHAPI_RoleAuthBypass NewValue) { AuthBypass_Optional = NewValue; AuthBypass_IsSet = true; }
+	void SetAuthBypass(const ERHAPI_RoleAuthBypass& NewValue) { AuthBypass_Optional = NewValue; AuthBypass_IsSet = true; }
+	/** @brief Sets the value of AuthBypass_Optional and also sets AuthBypass_IsSet to true using move semantics */
+	void SetAuthBypass(ERHAPI_RoleAuthBypass&& NewValue) { AuthBypass_Optional = NewValue; AuthBypass_IsSet = true; }
 	 /** @brief Clears the value of AuthBypass_Optional and sets AuthBypass_IsSet to false */
 	void ClearAuthBypass() { AuthBypass_IsSet = false; }
 
@@ -143,7 +151,9 @@ struct RALLYHEREAPI_API FRHAPI_Role : public FRHAPI_Model
 	/** @brief Returns a pointer to LoginLootRewards_Optional, if it has been set, otherwise returns nullptr */
 	const TArray<FRHAPI_LoginLootReward>* GetLoginLootRewardsOrNull() const { if (LoginLootRewards_IsSet) return &LoginLootRewards_Optional; return nullptr; }
 	/** @brief Sets the value of LoginLootRewards_Optional and also sets LoginLootRewards_IsSet to true */
-	void SetLoginLootRewards(TArray<FRHAPI_LoginLootReward> NewValue) { LoginLootRewards_Optional = NewValue; LoginLootRewards_IsSet = true; }
+	void SetLoginLootRewards(const TArray<FRHAPI_LoginLootReward>& NewValue) { LoginLootRewards_Optional = NewValue; LoginLootRewards_IsSet = true; }
+	/** @brief Sets the value of LoginLootRewards_Optional and also sets LoginLootRewards_IsSet to true using move semantics */
+	void SetLoginLootRewards(TArray<FRHAPI_LoginLootReward>&& NewValue) { LoginLootRewards_Optional = NewValue; LoginLootRewards_IsSet = true; }
 	 /** @brief Clears the value of LoginLootRewards_Optional and sets LoginLootRewards_IsSet to false */
 	void ClearLoginLootRewards() { LoginLootRewards_IsSet = false; }
 };

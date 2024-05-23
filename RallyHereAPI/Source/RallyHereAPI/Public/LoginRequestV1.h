@@ -48,7 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_LoginRequestV1 : public FRHAPI_Model
 	/** @brief Gets the value of GrantType */
 	const ERHAPI_GrantType& GetGrantType() const { return GrantType; }
 	/** @brief Sets the value of GrantType */
-	void SetGrantType(ERHAPI_GrantType NewValue) { GrantType = NewValue;  }
+	void SetGrantType(const ERHAPI_GrantType& NewValue) { GrantType = NewValue;  }
+	/** @brief Sets the value of GrantType using move semantics */
+	void SetGrantType(ERHAPI_GrantType&& NewValue) { GrantType = NewValue;  }
 
 	/** @brief Token or secret used to authenticate the provided grant type */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -69,7 +71,9 @@ struct RALLYHEREAPI_API FRHAPI_LoginRequestV1 : public FRHAPI_Model
 	/** @brief Returns a pointer to PortalAccessToken_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetPortalAccessTokenOrNull() const { if (PortalAccessToken_IsSet) return &PortalAccessToken_Optional; return nullptr; }
 	/** @brief Sets the value of PortalAccessToken_Optional and also sets PortalAccessToken_IsSet to true */
-	void SetPortalAccessToken(FString NewValue) { PortalAccessToken_Optional = NewValue; PortalAccessToken_IsSet = true; }
+	void SetPortalAccessToken(const FString& NewValue) { PortalAccessToken_Optional = NewValue; PortalAccessToken_IsSet = true; }
+	/** @brief Sets the value of PortalAccessToken_Optional and also sets PortalAccessToken_IsSet to true using move semantics */
+	void SetPortalAccessToken(FString&& NewValue) { PortalAccessToken_Optional = NewValue; PortalAccessToken_IsSet = true; }
 	 /** @brief Clears the value of PortalAccessToken_Optional and sets PortalAccessToken_IsSet to false */
 	void ClearPortalAccessToken() { PortalAccessToken_Optional = TEXT(""); PortalAccessToken_IsSet = false; }
 	/** @brief Returns true if PortalAccessToken_Optional is set and matches the default value */
@@ -96,7 +100,9 @@ struct RALLYHEREAPI_API FRHAPI_LoginRequestV1 : public FRHAPI_Model
 	/** @brief Returns a pointer to PortalDisplayName_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetPortalDisplayNameOrNull() const { if (PortalDisplayName_IsSet) return &PortalDisplayName_Optional; return nullptr; }
 	/** @brief Sets the value of PortalDisplayName_Optional and also sets PortalDisplayName_IsSet to true */
-	void SetPortalDisplayName(FString NewValue) { PortalDisplayName_Optional = NewValue; PortalDisplayName_IsSet = true; }
+	void SetPortalDisplayName(const FString& NewValue) { PortalDisplayName_Optional = NewValue; PortalDisplayName_IsSet = true; }
+	/** @brief Sets the value of PortalDisplayName_Optional and also sets PortalDisplayName_IsSet to true using move semantics */
+	void SetPortalDisplayName(FString&& NewValue) { PortalDisplayName_Optional = NewValue; PortalDisplayName_IsSet = true; }
 	 /** @brief Clears the value of PortalDisplayName_Optional and sets PortalDisplayName_IsSet to false */
 	void ClearPortalDisplayName() { PortalDisplayName_Optional = TEXT(""); PortalDisplayName_IsSet = false; }
 	/** @brief Returns true if PortalDisplayName_Optional is set and matches the default value */
@@ -123,7 +129,9 @@ struct RALLYHEREAPI_API FRHAPI_LoginRequestV1 : public FRHAPI_Model
 	/** @brief Returns a pointer to PortalParentAccessToken_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetPortalParentAccessTokenOrNull() const { if (PortalParentAccessToken_IsSet) return &PortalParentAccessToken_Optional; return nullptr; }
 	/** @brief Sets the value of PortalParentAccessToken_Optional and also sets PortalParentAccessToken_IsSet to true */
-	void SetPortalParentAccessToken(FString NewValue) { PortalParentAccessToken_Optional = NewValue; PortalParentAccessToken_IsSet = true; }
+	void SetPortalParentAccessToken(const FString& NewValue) { PortalParentAccessToken_Optional = NewValue; PortalParentAccessToken_IsSet = true; }
+	/** @brief Sets the value of PortalParentAccessToken_Optional and also sets PortalParentAccessToken_IsSet to true using move semantics */
+	void SetPortalParentAccessToken(FString&& NewValue) { PortalParentAccessToken_Optional = NewValue; PortalParentAccessToken_IsSet = true; }
 	 /** @brief Clears the value of PortalParentAccessToken_Optional and sets PortalParentAccessToken_IsSet to false */
 	void ClearPortalParentAccessToken() { PortalParentAccessToken_Optional = TEXT(""); PortalParentAccessToken_IsSet = false; }
 	/** @brief Returns true if PortalParentAccessToken_Optional is set and matches the default value */
@@ -150,7 +158,9 @@ struct RALLYHEREAPI_API FRHAPI_LoginRequestV1 : public FRHAPI_Model
 	/** @brief Returns a pointer to PortalParentDisplayName_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetPortalParentDisplayNameOrNull() const { if (PortalParentDisplayName_IsSet) return &PortalParentDisplayName_Optional; return nullptr; }
 	/** @brief Sets the value of PortalParentDisplayName_Optional and also sets PortalParentDisplayName_IsSet to true */
-	void SetPortalParentDisplayName(FString NewValue) { PortalParentDisplayName_Optional = NewValue; PortalParentDisplayName_IsSet = true; }
+	void SetPortalParentDisplayName(const FString& NewValue) { PortalParentDisplayName_Optional = NewValue; PortalParentDisplayName_IsSet = true; }
+	/** @brief Sets the value of PortalParentDisplayName_Optional and also sets PortalParentDisplayName_IsSet to true using move semantics */
+	void SetPortalParentDisplayName(FString&& NewValue) { PortalParentDisplayName_Optional = NewValue; PortalParentDisplayName_IsSet = true; }
 	 /** @brief Clears the value of PortalParentDisplayName_Optional and sets PortalParentDisplayName_IsSet to false */
 	void ClearPortalParentDisplayName() { PortalParentDisplayName_Optional = TEXT(""); PortalParentDisplayName_IsSet = false; }
 	/** @brief Returns true if PortalParentDisplayName_Optional is set and matches the default value */
@@ -177,7 +187,9 @@ struct RALLYHEREAPI_API FRHAPI_LoginRequestV1 : public FRHAPI_Model
 	/** @brief Returns a pointer to IncludeRefresh_Optional, if it has been set, otherwise returns nullptr */
 	const bool* GetIncludeRefreshOrNull() const { if (IncludeRefresh_IsSet) return &IncludeRefresh_Optional; return nullptr; }
 	/** @brief Sets the value of IncludeRefresh_Optional and also sets IncludeRefresh_IsSet to true */
-	void SetIncludeRefresh(bool NewValue) { IncludeRefresh_Optional = NewValue; IncludeRefresh_IsSet = true; }
+	void SetIncludeRefresh(const bool& NewValue) { IncludeRefresh_Optional = NewValue; IncludeRefresh_IsSet = true; }
+	/** @brief Sets the value of IncludeRefresh_Optional and also sets IncludeRefresh_IsSet to true using move semantics */
+	void SetIncludeRefresh(bool&& NewValue) { IncludeRefresh_Optional = NewValue; IncludeRefresh_IsSet = true; }
 	 /** @brief Clears the value of IncludeRefresh_Optional and sets IncludeRefresh_IsSet to false */
 	void ClearIncludeRefresh() { IncludeRefresh_Optional = false; IncludeRefresh_IsSet = false; }
 	/** @brief Returns true if IncludeRefresh_Optional is set and matches the default value */
@@ -204,7 +216,9 @@ struct RALLYHEREAPI_API FRHAPI_LoginRequestV1 : public FRHAPI_Model
 	/** @brief Returns a pointer to AcceptEula_Optional, if it has been set, otherwise returns nullptr */
 	const bool* GetAcceptEulaOrNull() const { if (AcceptEula_IsSet) return &AcceptEula_Optional; return nullptr; }
 	/** @brief Sets the value of AcceptEula_Optional and also sets AcceptEula_IsSet to true */
-	void SetAcceptEula(bool NewValue) { AcceptEula_Optional = NewValue; AcceptEula_IsSet = true; }
+	void SetAcceptEula(const bool& NewValue) { AcceptEula_Optional = NewValue; AcceptEula_IsSet = true; }
+	/** @brief Sets the value of AcceptEula_Optional and also sets AcceptEula_IsSet to true using move semantics */
+	void SetAcceptEula(bool&& NewValue) { AcceptEula_Optional = NewValue; AcceptEula_IsSet = true; }
 	 /** @brief Clears the value of AcceptEula_Optional and sets AcceptEula_IsSet to false */
 	void ClearAcceptEula() { AcceptEula_Optional = false; AcceptEula_IsSet = false; }
 	/** @brief Returns true if AcceptEula_Optional is set and matches the default value */
@@ -231,7 +245,9 @@ struct RALLYHEREAPI_API FRHAPI_LoginRequestV1 : public FRHAPI_Model
 	/** @brief Returns a pointer to AcceptTos_Optional, if it has been set, otherwise returns nullptr */
 	const bool* GetAcceptTosOrNull() const { if (AcceptTos_IsSet) return &AcceptTos_Optional; return nullptr; }
 	/** @brief Sets the value of AcceptTos_Optional and also sets AcceptTos_IsSet to true */
-	void SetAcceptTos(bool NewValue) { AcceptTos_Optional = NewValue; AcceptTos_IsSet = true; }
+	void SetAcceptTos(const bool& NewValue) { AcceptTos_Optional = NewValue; AcceptTos_IsSet = true; }
+	/** @brief Sets the value of AcceptTos_Optional and also sets AcceptTos_IsSet to true using move semantics */
+	void SetAcceptTos(bool&& NewValue) { AcceptTos_Optional = NewValue; AcceptTos_IsSet = true; }
 	 /** @brief Clears the value of AcceptTos_Optional and sets AcceptTos_IsSet to false */
 	void ClearAcceptTos() { AcceptTos_Optional = false; AcceptTos_IsSet = false; }
 	/** @brief Returns true if AcceptTos_Optional is set and matches the default value */
@@ -258,7 +274,9 @@ struct RALLYHEREAPI_API FRHAPI_LoginRequestV1 : public FRHAPI_Model
 	/** @brief Returns a pointer to AcceptPrivacyPolicy_Optional, if it has been set, otherwise returns nullptr */
 	const bool* GetAcceptPrivacyPolicyOrNull() const { if (AcceptPrivacyPolicy_IsSet) return &AcceptPrivacyPolicy_Optional; return nullptr; }
 	/** @brief Sets the value of AcceptPrivacyPolicy_Optional and also sets AcceptPrivacyPolicy_IsSet to true */
-	void SetAcceptPrivacyPolicy(bool NewValue) { AcceptPrivacyPolicy_Optional = NewValue; AcceptPrivacyPolicy_IsSet = true; }
+	void SetAcceptPrivacyPolicy(const bool& NewValue) { AcceptPrivacyPolicy_Optional = NewValue; AcceptPrivacyPolicy_IsSet = true; }
+	/** @brief Sets the value of AcceptPrivacyPolicy_Optional and also sets AcceptPrivacyPolicy_IsSet to true using move semantics */
+	void SetAcceptPrivacyPolicy(bool&& NewValue) { AcceptPrivacyPolicy_Optional = NewValue; AcceptPrivacyPolicy_IsSet = true; }
 	 /** @brief Clears the value of AcceptPrivacyPolicy_Optional and sets AcceptPrivacyPolicy_IsSet to false */
 	void ClearAcceptPrivacyPolicy() { AcceptPrivacyPolicy_Optional = false; AcceptPrivacyPolicy_IsSet = false; }
 	/** @brief Returns true if AcceptPrivacyPolicy_Optional is set and matches the default value */

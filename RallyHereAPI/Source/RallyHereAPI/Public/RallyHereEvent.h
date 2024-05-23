@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_RallyHereEvent : public FRHAPI_Model
 	/** @brief Gets the value of EventUuid */
 	const FGuid& GetEventUuid() const { return EventUuid; }
 	/** @brief Sets the value of EventUuid */
-	void SetEventUuid(FGuid NewValue) { EventUuid = NewValue;  }
+	void SetEventUuid(const FGuid& NewValue) { EventUuid = NewValue;  }
+	/** @brief Sets the value of EventUuid using move semantics */
+	void SetEventUuid(FGuid&& NewValue) { EventUuid = NewValue;  }
 
 	/** @brief Type of event to process this as. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -57,7 +59,9 @@ struct RALLYHEREAPI_API FRHAPI_RallyHereEvent : public FRHAPI_Model
 	/** @brief Gets the value of EventName */
 	const FString& GetEventName() const { return EventName; }
 	/** @brief Sets the value of EventName */
-	void SetEventName(FString NewValue) { EventName = NewValue;  }
+	void SetEventName(const FString& NewValue) { EventName = NewValue;  }
+	/** @brief Sets the value of EventName using move semantics */
+	void SetEventName(FString&& NewValue) { EventName = NewValue;  }
 
 	/** @brief Time the event was triggered */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -67,7 +71,9 @@ struct RALLYHEREAPI_API FRHAPI_RallyHereEvent : public FRHAPI_Model
 	/** @brief Gets the value of EventTimestamp */
 	const FDateTime& GetEventTimestamp() const { return EventTimestamp; }
 	/** @brief Sets the value of EventTimestamp */
-	void SetEventTimestamp(FDateTime NewValue) { EventTimestamp = NewValue;  }
+	void SetEventTimestamp(const FDateTime& NewValue) { EventTimestamp = NewValue;  }
+	/** @brief Sets the value of EventTimestamp using move semantics */
+	void SetEventTimestamp(FDateTime&& NewValue) { EventTimestamp = NewValue;  }
 
 	/** @brief Event specific parameters */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -77,7 +83,9 @@ struct RALLYHEREAPI_API FRHAPI_RallyHereEvent : public FRHAPI_Model
 	/** @brief Gets the value of EventParams */
 	const FRHAPI_JsonObject& GetEventParams() const { return EventParams; }
 	/** @brief Sets the value of EventParams */
-	void SetEventParams(FRHAPI_JsonObject NewValue) { EventParams = NewValue;  }
+	void SetEventParams(const FRHAPI_JsonObject& NewValue) { EventParams = NewValue;  }
+	/** @brief Sets the value of EventParams using move semantics */
+	void SetEventParams(FRHAPI_JsonObject&& NewValue) { EventParams = NewValue;  }
 
 	/** @brief Event custom data */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -98,7 +106,9 @@ struct RALLYHEREAPI_API FRHAPI_RallyHereEvent : public FRHAPI_Model
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
+	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
 	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false; }
 
@@ -120,7 +130,9 @@ struct RALLYHEREAPI_API FRHAPI_RallyHereEvent : public FRHAPI_Model
 	/** @brief Returns a pointer to UserId_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetUserIdOrNull() const { if (UserId_IsSet) return &UserId_Optional; return nullptr; }
 	/** @brief Sets the value of UserId_Optional and also sets UserId_IsSet to true */
-	void SetUserId(FString NewValue) { UserId_Optional = NewValue; UserId_IsSet = true; }
+	void SetUserId(const FString& NewValue) { UserId_Optional = NewValue; UserId_IsSet = true; }
+	/** @brief Sets the value of UserId_Optional and also sets UserId_IsSet to true using move semantics */
+	void SetUserId(FString&& NewValue) { UserId_Optional = NewValue; UserId_IsSet = true; }
 	 /** @brief Clears the value of UserId_Optional and sets UserId_IsSet to false */
 	void ClearUserId() { UserId_IsSet = false; }
 
@@ -142,7 +154,9 @@ struct RALLYHEREAPI_API FRHAPI_RallyHereEvent : public FRHAPI_Model
 	/** @brief Returns a pointer to SessionId_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetSessionIdOrNull() const { if (SessionId_IsSet) return &SessionId_Optional; return nullptr; }
 	/** @brief Sets the value of SessionId_Optional and also sets SessionId_IsSet to true */
-	void SetSessionId(FString NewValue) { SessionId_Optional = NewValue; SessionId_IsSet = true; }
+	void SetSessionId(const FString& NewValue) { SessionId_Optional = NewValue; SessionId_IsSet = true; }
+	/** @brief Sets the value of SessionId_Optional and also sets SessionId_IsSet to true using move semantics */
+	void SetSessionId(FString&& NewValue) { SessionId_Optional = NewValue; SessionId_IsSet = true; }
 	 /** @brief Clears the value of SessionId_Optional and sets SessionId_IsSet to false */
 	void ClearSessionId() { SessionId_IsSet = false; }
 
@@ -164,7 +178,9 @@ struct RALLYHEREAPI_API FRHAPI_RallyHereEvent : public FRHAPI_Model
 	/** @brief Returns a pointer to CorrelationId_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetCorrelationIdOrNull() const { if (CorrelationId_IsSet) return &CorrelationId_Optional; return nullptr; }
 	/** @brief Sets the value of CorrelationId_Optional and also sets CorrelationId_IsSet to true */
-	void SetCorrelationId(FString NewValue) { CorrelationId_Optional = NewValue; CorrelationId_IsSet = true; }
+	void SetCorrelationId(const FString& NewValue) { CorrelationId_Optional = NewValue; CorrelationId_IsSet = true; }
+	/** @brief Sets the value of CorrelationId_Optional and also sets CorrelationId_IsSet to true using move semantics */
+	void SetCorrelationId(FString&& NewValue) { CorrelationId_Optional = NewValue; CorrelationId_IsSet = true; }
 	 /** @brief Clears the value of CorrelationId_Optional and sets CorrelationId_IsSet to false */
 	void ClearCorrelationId() { CorrelationId_IsSet = false; }
 };

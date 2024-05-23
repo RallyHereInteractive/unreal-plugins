@@ -49,7 +49,9 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlement : public FRHAPI_Model
 	/** @brief Gets the value of PlatformSku */
 	const FString& GetPlatformSku() const { return PlatformSku; }
 	/** @brief Sets the value of PlatformSku */
-	void SetPlatformSku(FString NewValue) { PlatformSku = NewValue;  }
+	void SetPlatformSku(const FString& NewValue) { PlatformSku = NewValue;  }
+	/** @brief Sets the value of PlatformSku using move semantics */
+	void SetPlatformSku(FString&& NewValue) { PlatformSku = NewValue;  }
 
 	/** @brief unique identifier for this purchased item (instance owned by this user) */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -59,7 +61,9 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlement : public FRHAPI_Model
 	/** @brief Gets the value of PlatformEntitlementId */
 	const FString& GetPlatformEntitlementId() const { return PlatformEntitlementId; }
 	/** @brief Sets the value of PlatformEntitlementId */
-	void SetPlatformEntitlementId(FString NewValue) { PlatformEntitlementId = NewValue;  }
+	void SetPlatformEntitlementId(const FString& NewValue) { PlatformEntitlementId = NewValue;  }
+	/** @brief Sets the value of PlatformEntitlementId using move semantics */
+	void SetPlatformEntitlementId(FString&& NewValue) { PlatformEntitlementId = NewValue;  }
 
 	/** @brief number purchased */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -80,7 +84,9 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlement : public FRHAPI_Model
 	/** @brief Returns a pointer to Quantity_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetQuantityOrNull() const { if (Quantity_IsSet) return &Quantity_Optional; return nullptr; }
 	/** @brief Sets the value of Quantity_Optional and also sets Quantity_IsSet to true */
-	void SetQuantity(int32 NewValue) { Quantity_Optional = NewValue; Quantity_IsSet = true; }
+	void SetQuantity(const int32& NewValue) { Quantity_Optional = NewValue; Quantity_IsSet = true; }
+	/** @brief Sets the value of Quantity_Optional and also sets Quantity_IsSet to true using move semantics */
+	void SetQuantity(int32&& NewValue) { Quantity_Optional = NewValue; Quantity_IsSet = true; }
 	 /** @brief Clears the value of Quantity_Optional and sets Quantity_IsSet to false */
 	void ClearQuantity() { Quantity_Optional = 1; Quantity_IsSet = false; }
 	/** @brief Returns true if Quantity_Optional is set and matches the default value */
@@ -107,7 +113,9 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlement : public FRHAPI_Model
 	/** @brief Returns a pointer to Status_Optional, if it has been set, otherwise returns nullptr */
 	const ERHAPI_EntitlementStatus* GetStatusOrNull() const { if (Status_IsSet) return &Status_Optional; return nullptr; }
 	/** @brief Sets the value of Status_Optional and also sets Status_IsSet to true */
-	void SetStatus(ERHAPI_EntitlementStatus NewValue) { Status_Optional = NewValue; Status_IsSet = true; }
+	void SetStatus(const ERHAPI_EntitlementStatus& NewValue) { Status_Optional = NewValue; Status_IsSet = true; }
+	/** @brief Sets the value of Status_Optional and also sets Status_IsSet to true using move semantics */
+	void SetStatus(ERHAPI_EntitlementStatus&& NewValue) { Status_Optional = NewValue; Status_IsSet = true; }
 	 /** @brief Clears the value of Status_Optional and sets Status_IsSet to false */
 	void ClearStatus() { Status_IsSet = false; }
 
@@ -130,7 +138,9 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlement : public FRHAPI_Model
 	/** @brief Returns a pointer to ErrorCode_Optional, if it has been set, otherwise returns nullptr */
 	const ERHAPI_EntitlementErrorCode* GetErrorCodeOrNull() const { if (ErrorCode_IsSet) return &ErrorCode_Optional; return nullptr; }
 	/** @brief Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true */
-	void SetErrorCode(ERHAPI_EntitlementErrorCode NewValue) { ErrorCode_Optional = NewValue; ErrorCode_IsSet = true; }
+	void SetErrorCode(const ERHAPI_EntitlementErrorCode& NewValue) { ErrorCode_Optional = NewValue; ErrorCode_IsSet = true; }
+	/** @brief Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true using move semantics */
+	void SetErrorCode(ERHAPI_EntitlementErrorCode&& NewValue) { ErrorCode_Optional = NewValue; ErrorCode_IsSet = true; }
 	 /** @brief Clears the value of ErrorCode_Optional and sets ErrorCode_IsSet to false */
 	void ClearErrorCode() { ErrorCode_IsSet = false; }
 
@@ -153,7 +163,9 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlement : public FRHAPI_Model
 	/** @brief Returns a pointer to OrderId_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetOrderIdOrNull() const { if (OrderId_IsSet) return &OrderId_Optional; return nullptr; }
 	/** @brief Sets the value of OrderId_Optional and also sets OrderId_IsSet to true */
-	void SetOrderId(FString NewValue) { OrderId_Optional = NewValue; OrderId_IsSet = true; }
+	void SetOrderId(const FString& NewValue) { OrderId_Optional = NewValue; OrderId_IsSet = true; }
+	/** @brief Sets the value of OrderId_Optional and also sets OrderId_IsSet to true using move semantics */
+	void SetOrderId(FString&& NewValue) { OrderId_Optional = NewValue; OrderId_IsSet = true; }
 	 /** @brief Clears the value of OrderId_Optional and sets OrderId_IsSet to false */
 	void ClearOrderId() { OrderId_IsSet = false; }
 };

@@ -48,7 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_SettingType : public FRHAPI_Model
 	/** @brief Gets the value of Versions */
 	const TMap<FString, FRHAPI_SettingTypeVersion>& GetVersions() const { return Versions; }
 	/** @brief Sets the value of Versions */
-	void SetVersions(TMap<FString, FRHAPI_SettingTypeVersion> NewValue) { Versions = NewValue;  }
+	void SetVersions(const TMap<FString, FRHAPI_SettingTypeVersion>& NewValue) { Versions = NewValue;  }
+	/** @brief Sets the value of Versions using move semantics */
+	void SetVersions(TMap<FString, FRHAPI_SettingTypeVersion>&& NewValue) { Versions = NewValue;  }
 };
 
 /** @} */

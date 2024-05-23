@@ -50,7 +50,9 @@ struct RALLYHEREAPI_API FRHAPI_CreateOrJoinRequest : public FRHAPI_Model
 	/** @brief Gets the value of ClientVersion */
 	const FString& GetClientVersion() const { return ClientVersion; }
 	/** @brief Sets the value of ClientVersion */
-	void SetClientVersion(FString NewValue) { ClientVersion = NewValue;  }
+	void SetClientVersion(const FString& NewValue) { ClientVersion = NewValue;  }
+	/** @brief Sets the value of ClientVersion using move semantics */
+	void SetClientVersion(FString&& NewValue) { ClientVersion = NewValue;  }
 
 	/** @brief Which input type and platform the client is using */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -60,7 +62,9 @@ struct RALLYHEREAPI_API FRHAPI_CreateOrJoinRequest : public FRHAPI_Model
 	/** @brief Gets the value of ClientSettings */
 	const FRHAPI_ClientSettings& GetClientSettings() const { return ClientSettings; }
 	/** @brief Sets the value of ClientSettings */
-	void SetClientSettings(FRHAPI_ClientSettings NewValue) { ClientSettings = NewValue;  }
+	void SetClientSettings(const FRHAPI_ClientSettings& NewValue) { ClientSettings = NewValue;  }
+	/** @brief Sets the value of ClientSettings using move semantics */
+	void SetClientSettings(FRHAPI_ClientSettings&& NewValue) { ClientSettings = NewValue;  }
 
 	/** @brief Client's desired crossplay settings to determine which other clients it can play with. If not defined, assumed to be as permissive as possible */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -81,7 +85,9 @@ struct RALLYHEREAPI_API FRHAPI_CreateOrJoinRequest : public FRHAPI_Model
 	/** @brief Returns a pointer to CrossplayPreferences_Optional, if it has been set, otherwise returns nullptr */
 	const FRHAPI_CrossplayPreferences* GetCrossplayPreferencesOrNull() const { if (CrossplayPreferences_IsSet) return &CrossplayPreferences_Optional; return nullptr; }
 	/** @brief Sets the value of CrossplayPreferences_Optional and also sets CrossplayPreferences_IsSet to true */
-	void SetCrossplayPreferences(FRHAPI_CrossplayPreferences NewValue) { CrossplayPreferences_Optional = NewValue; CrossplayPreferences_IsSet = true; }
+	void SetCrossplayPreferences(const FRHAPI_CrossplayPreferences& NewValue) { CrossplayPreferences_Optional = NewValue; CrossplayPreferences_IsSet = true; }
+	/** @brief Sets the value of CrossplayPreferences_Optional and also sets CrossplayPreferences_IsSet to true using move semantics */
+	void SetCrossplayPreferences(FRHAPI_CrossplayPreferences&& NewValue) { CrossplayPreferences_Optional = NewValue; CrossplayPreferences_IsSet = true; }
 	 /** @brief Clears the value of CrossplayPreferences_Optional and sets CrossplayPreferences_IsSet to false */
 	void ClearCrossplayPreferences() { CrossplayPreferences_IsSet = false; }
 
@@ -93,7 +99,9 @@ struct RALLYHEREAPI_API FRHAPI_CreateOrJoinRequest : public FRHAPI_Model
 	/** @brief Gets the value of SessionType */
 	const FString& GetSessionType() const { return SessionType; }
 	/** @brief Sets the value of SessionType */
-	void SetSessionType(FString NewValue) { SessionType = NewValue;  }
+	void SetSessionType(const FString& NewValue) { SessionType = NewValue;  }
+	/** @brief Sets the value of SessionType using move semantics */
+	void SetSessionType(FString&& NewValue) { SessionType = NewValue;  }
 
 	/** @brief Preferred region for the instance and match to take place in */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -114,7 +122,9 @@ struct RALLYHEREAPI_API FRHAPI_CreateOrJoinRequest : public FRHAPI_Model
 	/** @brief Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetRegionIdOrNull() const { if (RegionId_IsSet) return &RegionId_Optional; return nullptr; }
 	/** @brief Sets the value of RegionId_Optional and also sets RegionId_IsSet to true */
-	void SetRegionId(FString NewValue) { RegionId_Optional = NewValue; RegionId_IsSet = true; }
+	void SetRegionId(const FString& NewValue) { RegionId_Optional = NewValue; RegionId_IsSet = true; }
+	/** @brief Sets the value of RegionId_Optional and also sets RegionId_IsSet to true using move semantics */
+	void SetRegionId(FString&& NewValue) { RegionId_Optional = NewValue; RegionId_IsSet = true; }
 	 /** @brief Clears the value of RegionId_Optional and sets RegionId_IsSet to false */
 	void ClearRegionId() { RegionId_IsSet = false; }
 
@@ -137,7 +147,9 @@ struct RALLYHEREAPI_API FRHAPI_CreateOrJoinRequest : public FRHAPI_Model
 	/** @brief Returns a pointer to Player_Optional, if it has been set, otherwise returns nullptr */
 	const FRHAPI_SelfSessionPlayerUpdateRequest* GetPlayerOrNull() const { if (Player_IsSet) return &Player_Optional; return nullptr; }
 	/** @brief Sets the value of Player_Optional and also sets Player_IsSet to true */
-	void SetPlayer(FRHAPI_SelfSessionPlayerUpdateRequest NewValue) { Player_Optional = NewValue; Player_IsSet = true; }
+	void SetPlayer(const FRHAPI_SelfSessionPlayerUpdateRequest& NewValue) { Player_Optional = NewValue; Player_IsSet = true; }
+	/** @brief Sets the value of Player_Optional and also sets Player_IsSet to true using move semantics */
+	void SetPlayer(FRHAPI_SelfSessionPlayerUpdateRequest&& NewValue) { Player_Optional = NewValue; Player_IsSet = true; }
 	 /** @brief Clears the value of Player_Optional and sets Player_IsSet to false */
 	void ClearPlayer() { Player_IsSet = false; }
 };

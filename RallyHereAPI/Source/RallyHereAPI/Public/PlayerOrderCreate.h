@@ -61,7 +61,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderCreate : public FRHAPI_Model
 	/** @brief Returns a pointer to Source_Optional, if it has been set, otherwise returns nullptr */
 	const ERHAPI_Source* GetSourceOrNull() const { if (Source_IsSet) return &Source_Optional; return nullptr; }
 	/** @brief Sets the value of Source_Optional and also sets Source_IsSet to true */
-	void SetSource(ERHAPI_Source NewValue) { Source_Optional = NewValue; Source_IsSet = true; }
+	void SetSource(const ERHAPI_Source& NewValue) { Source_Optional = NewValue; Source_IsSet = true; }
+	/** @brief Sets the value of Source_Optional and also sets Source_IsSet to true using move semantics */
+	void SetSource(ERHAPI_Source&& NewValue) { Source_Optional = NewValue; Source_IsSet = true; }
 	 /** @brief Clears the value of Source_Optional and sets Source_IsSet to false */
 	void ClearSource() { Source_IsSet = false; }
 
@@ -84,7 +86,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderCreate : public FRHAPI_Model
 	/** @brief Returns a pointer to ClientOrderRefId_Optional, if it has been set, otherwise returns nullptr */
 	const FGuid* GetClientOrderRefIdOrNull() const { if (ClientOrderRefId_IsSet) return &ClientOrderRefId_Optional; return nullptr; }
 	/** @brief Sets the value of ClientOrderRefId_Optional and also sets ClientOrderRefId_IsSet to true */
-	void SetClientOrderRefId(FGuid NewValue) { ClientOrderRefId_Optional = NewValue; ClientOrderRefId_IsSet = true; }
+	void SetClientOrderRefId(const FGuid& NewValue) { ClientOrderRefId_Optional = NewValue; ClientOrderRefId_IsSet = true; }
+	/** @brief Sets the value of ClientOrderRefId_Optional and also sets ClientOrderRefId_IsSet to true using move semantics */
+	void SetClientOrderRefId(FGuid&& NewValue) { ClientOrderRefId_Optional = NewValue; ClientOrderRefId_IsSet = true; }
 	 /** @brief Clears the value of ClientOrderRefId_Optional and sets ClientOrderRefId_IsSet to false */
 	void ClearClientOrderRefId() { ClientOrderRefId_IsSet = false; }
 
@@ -107,7 +111,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderCreate : public FRHAPI_Model
 	/** @brief Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr */
 	const ERHAPI_Portal* GetPortalIdOrNull() const { if (PortalId_IsSet) return &PortalId_Optional; return nullptr; }
 	/** @brief Sets the value of PortalId_Optional and also sets PortalId_IsSet to true */
-	void SetPortalId(ERHAPI_Portal NewValue) { PortalId_Optional = NewValue; PortalId_IsSet = true; }
+	void SetPortalId(const ERHAPI_Portal& NewValue) { PortalId_Optional = NewValue; PortalId_IsSet = true; }
+	/** @brief Sets the value of PortalId_Optional and also sets PortalId_IsSet to true using move semantics */
+	void SetPortalId(ERHAPI_Portal&& NewValue) { PortalId_Optional = NewValue; PortalId_IsSet = true; }
 	 /** @brief Clears the value of PortalId_Optional and sets PortalId_IsSet to false */
 	void ClearPortalId() { PortalId_IsSet = false; }
 
@@ -130,7 +136,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderCreate : public FRHAPI_Model
 	/** @brief Returns a pointer to PortalUserId_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetPortalUserIdOrNull() const { if (PortalUserId_IsSet) return &PortalUserId_Optional; return nullptr; }
 	/** @brief Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true */
-	void SetPortalUserId(FString NewValue) { PortalUserId_Optional = NewValue; PortalUserId_IsSet = true; }
+	void SetPortalUserId(const FString& NewValue) { PortalUserId_Optional = NewValue; PortalUserId_IsSet = true; }
+	/** @brief Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true using move semantics */
+	void SetPortalUserId(FString&& NewValue) { PortalUserId_Optional = NewValue; PortalUserId_IsSet = true; }
 	 /** @brief Clears the value of PortalUserId_Optional and sets PortalUserId_IsSet to false */
 	void ClearPortalUserId() { PortalUserId_IsSet = false; }
 
@@ -153,7 +161,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderCreate : public FRHAPI_Model
 	/** @brief Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetInstanceIdOrNull() const { if (InstanceId_IsSet) return &InstanceId_Optional; return nullptr; }
 	/** @brief Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true */
-	void SetInstanceId(FString NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true; }
+	void SetInstanceId(const FString& NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true; }
+	/** @brief Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true using move semantics */
+	void SetInstanceId(FString&& NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true; }
 	 /** @brief Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false */
 	void ClearInstanceId() { InstanceId_IsSet = false; }
 
@@ -176,7 +186,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderCreate : public FRHAPI_Model
 	/** @brief Returns a pointer to MatchId_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetMatchIdOrNull() const { if (MatchId_IsSet) return &MatchId_Optional; return nullptr; }
 	/** @brief Sets the value of MatchId_Optional and also sets MatchId_IsSet to true */
-	void SetMatchId(FString NewValue) { MatchId_Optional = NewValue; MatchId_IsSet = true; }
+	void SetMatchId(const FString& NewValue) { MatchId_Optional = NewValue; MatchId_IsSet = true; }
+	/** @brief Sets the value of MatchId_Optional and also sets MatchId_IsSet to true using move semantics */
+	void SetMatchId(FString&& NewValue) { MatchId_Optional = NewValue; MatchId_IsSet = true; }
 	 /** @brief Clears the value of MatchId_Optional and sets MatchId_IsSet to false */
 	void ClearMatchId() { MatchId_IsSet = false; }
 
@@ -199,7 +211,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderCreate : public FRHAPI_Model
 	/** @brief Returns a pointer to IsTransaction_Optional, if it has been set, otherwise returns nullptr */
 	const bool* GetIsTransactionOrNull() const { if (IsTransaction_IsSet) return &IsTransaction_Optional; return nullptr; }
 	/** @brief Sets the value of IsTransaction_Optional and also sets IsTransaction_IsSet to true */
-	void SetIsTransaction(bool NewValue) { IsTransaction_Optional = NewValue; IsTransaction_IsSet = true; }
+	void SetIsTransaction(const bool& NewValue) { IsTransaction_Optional = NewValue; IsTransaction_IsSet = true; }
+	/** @brief Sets the value of IsTransaction_Optional and also sets IsTransaction_IsSet to true using move semantics */
+	void SetIsTransaction(bool&& NewValue) { IsTransaction_Optional = NewValue; IsTransaction_IsSet = true; }
 	 /** @brief Clears the value of IsTransaction_Optional and sets IsTransaction_IsSet to false */
 	void ClearIsTransaction() { IsTransaction_Optional = false; IsTransaction_IsSet = false; }
 	/** @brief Returns true if IsTransaction_Optional is set and matches the default value */
@@ -226,7 +240,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderCreate : public FRHAPI_Model
 	/** @brief Returns a pointer to OrderId_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetOrderIdOrNull() const { if (OrderId_IsSet) return &OrderId_Optional; return nullptr; }
 	/** @brief Sets the value of OrderId_Optional and also sets OrderId_IsSet to true */
-	void SetOrderId(FString NewValue) { OrderId_Optional = NewValue; OrderId_IsSet = true; }
+	void SetOrderId(const FString& NewValue) { OrderId_Optional = NewValue; OrderId_IsSet = true; }
+	/** @brief Sets the value of OrderId_Optional and also sets OrderId_IsSet to true using move semantics */
+	void SetOrderId(FString&& NewValue) { OrderId_Optional = NewValue; OrderId_IsSet = true; }
 	 /** @brief Clears the value of OrderId_Optional and sets OrderId_IsSet to false */
 	void ClearOrderId() { OrderId_IsSet = false; }
 
@@ -238,7 +254,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderCreate : public FRHAPI_Model
 	/** @brief Gets the value of Entries */
 	const TArray<FRHAPI_PlayerOrderEntryCreate>& GetEntries() const { return Entries; }
 	/** @brief Sets the value of Entries */
-	void SetEntries(TArray<FRHAPI_PlayerOrderEntryCreate> NewValue) { Entries = NewValue;  }
+	void SetEntries(const TArray<FRHAPI_PlayerOrderEntryCreate>& NewValue) { Entries = NewValue;  }
+	/** @brief Sets the value of Entries using move semantics */
+	void SetEntries(TArray<FRHAPI_PlayerOrderEntryCreate>&& NewValue) { Entries = NewValue;  }
 };
 
 /** @} */

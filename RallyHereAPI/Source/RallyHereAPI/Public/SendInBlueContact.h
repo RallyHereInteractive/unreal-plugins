@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_SendInBlueContact : public FRHAPI_Model
 	/** @brief Gets the value of Email */
 	const FString& GetEmail() const { return Email; }
 	/** @brief Sets the value of Email */
-	void SetEmail(FString NewValue) { Email = NewValue;  }
+	void SetEmail(const FString& NewValue) { Email = NewValue;  }
+	/** @brief Sets the value of Email using move semantics */
+	void SetEmail(FString&& NewValue) { Email = NewValue;  }
 
 	/** @brief Attributes */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -68,7 +70,9 @@ struct RALLYHEREAPI_API FRHAPI_SendInBlueContact : public FRHAPI_Model
 	/** @brief Returns a pointer to Attributes_Optional, if it has been set, otherwise returns nullptr */
 	const FRHAPI_JsonObject* GetAttributesOrNull() const { if (Attributes_IsSet) return &Attributes_Optional; return nullptr; }
 	/** @brief Sets the value of Attributes_Optional and also sets Attributes_IsSet to true */
-	void SetAttributes(FRHAPI_JsonObject NewValue) { Attributes_Optional = NewValue; Attributes_IsSet = true; }
+	void SetAttributes(const FRHAPI_JsonObject& NewValue) { Attributes_Optional = NewValue; Attributes_IsSet = true; }
+	/** @brief Sets the value of Attributes_Optional and also sets Attributes_IsSet to true using move semantics */
+	void SetAttributes(FRHAPI_JsonObject&& NewValue) { Attributes_Optional = NewValue; Attributes_IsSet = true; }
 	 /** @brief Clears the value of Attributes_Optional and sets Attributes_IsSet to false */
 	void ClearAttributes() { Attributes_IsSet = false; }
 
@@ -91,7 +95,9 @@ struct RALLYHEREAPI_API FRHAPI_SendInBlueContact : public FRHAPI_Model
 	/** @brief Returns a pointer to EmailBlacklisted_Optional, if it has been set, otherwise returns nullptr */
 	const bool* GetEmailBlacklistedOrNull() const { if (EmailBlacklisted_IsSet) return &EmailBlacklisted_Optional; return nullptr; }
 	/** @brief Sets the value of EmailBlacklisted_Optional and also sets EmailBlacklisted_IsSet to true */
-	void SetEmailBlacklisted(bool NewValue) { EmailBlacklisted_Optional = NewValue; EmailBlacklisted_IsSet = true; }
+	void SetEmailBlacklisted(const bool& NewValue) { EmailBlacklisted_Optional = NewValue; EmailBlacklisted_IsSet = true; }
+	/** @brief Sets the value of EmailBlacklisted_Optional and also sets EmailBlacklisted_IsSet to true using move semantics */
+	void SetEmailBlacklisted(bool&& NewValue) { EmailBlacklisted_Optional = NewValue; EmailBlacklisted_IsSet = true; }
 	 /** @brief Clears the value of EmailBlacklisted_Optional and sets EmailBlacklisted_IsSet to false */
 	void ClearEmailBlacklisted() { EmailBlacklisted_Optional = false; EmailBlacklisted_IsSet = false; }
 	/** @brief Returns true if EmailBlacklisted_Optional is set and matches the default value */
@@ -118,7 +124,9 @@ struct RALLYHEREAPI_API FRHAPI_SendInBlueContact : public FRHAPI_Model
 	/** @brief Returns a pointer to ListIds_Optional, if it has been set, otherwise returns nullptr */
 	const TArray<int32>* GetListIdsOrNull() const { if (ListIds_IsSet) return &ListIds_Optional; return nullptr; }
 	/** @brief Sets the value of ListIds_Optional and also sets ListIds_IsSet to true */
-	void SetListIds(TArray<int32> NewValue) { ListIds_Optional = NewValue; ListIds_IsSet = true; }
+	void SetListIds(const TArray<int32>& NewValue) { ListIds_Optional = NewValue; ListIds_IsSet = true; }
+	/** @brief Sets the value of ListIds_Optional and also sets ListIds_IsSet to true using move semantics */
+	void SetListIds(TArray<int32>&& NewValue) { ListIds_Optional = NewValue; ListIds_IsSet = true; }
 	 /** @brief Clears the value of ListIds_Optional and sets ListIds_IsSet to false */
 	void ClearListIds() { ListIds_IsSet = false; }
 
@@ -141,7 +149,9 @@ struct RALLYHEREAPI_API FRHAPI_SendInBlueContact : public FRHAPI_Model
 	/** @brief Returns a pointer to UnlinkListIds_Optional, if it has been set, otherwise returns nullptr */
 	const TArray<int32>* GetUnlinkListIdsOrNull() const { if (UnlinkListIds_IsSet) return &UnlinkListIds_Optional; return nullptr; }
 	/** @brief Sets the value of UnlinkListIds_Optional and also sets UnlinkListIds_IsSet to true */
-	void SetUnlinkListIds(TArray<int32> NewValue) { UnlinkListIds_Optional = NewValue; UnlinkListIds_IsSet = true; }
+	void SetUnlinkListIds(const TArray<int32>& NewValue) { UnlinkListIds_Optional = NewValue; UnlinkListIds_IsSet = true; }
+	/** @brief Sets the value of UnlinkListIds_Optional and also sets UnlinkListIds_IsSet to true using move semantics */
+	void SetUnlinkListIds(TArray<int32>&& NewValue) { UnlinkListIds_Optional = NewValue; UnlinkListIds_IsSet = true; }
 	 /** @brief Clears the value of UnlinkListIds_Optional and sets UnlinkListIds_IsSet to false */
 	void ClearUnlinkListIds() { UnlinkListIds_IsSet = false; }
 
@@ -164,7 +174,9 @@ struct RALLYHEREAPI_API FRHAPI_SendInBlueContact : public FRHAPI_Model
 	/** @brief Returns a pointer to UpdateEnabled_Optional, if it has been set, otherwise returns nullptr */
 	const bool* GetUpdateEnabledOrNull() const { if (UpdateEnabled_IsSet) return &UpdateEnabled_Optional; return nullptr; }
 	/** @brief Sets the value of UpdateEnabled_Optional and also sets UpdateEnabled_IsSet to true */
-	void SetUpdateEnabled(bool NewValue) { UpdateEnabled_Optional = NewValue; UpdateEnabled_IsSet = true; }
+	void SetUpdateEnabled(const bool& NewValue) { UpdateEnabled_Optional = NewValue; UpdateEnabled_IsSet = true; }
+	/** @brief Sets the value of UpdateEnabled_Optional and also sets UpdateEnabled_IsSet to true using move semantics */
+	void SetUpdateEnabled(bool&& NewValue) { UpdateEnabled_Optional = NewValue; UpdateEnabled_IsSet = true; }
 	 /** @brief Clears the value of UpdateEnabled_Optional and sets UpdateEnabled_IsSet to false */
 	void ClearUpdateEnabled() { UpdateEnabled_Optional = false; UpdateEnabled_IsSet = false; }
 	/** @brief Returns true if UpdateEnabled_Optional is set and matches the default value */

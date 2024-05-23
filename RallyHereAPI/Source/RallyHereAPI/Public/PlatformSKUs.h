@@ -60,7 +60,9 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSKUs : public FRHAPI_Model
 	/** @brief Returns a pointer to Skus_Optional, if it has been set, otherwise returns nullptr */
 	const TArray<FRHAPI_PlatformSKU>* GetSkusOrNull() const { if (Skus_IsSet) return &Skus_Optional; return nullptr; }
 	/** @brief Sets the value of Skus_Optional and also sets Skus_IsSet to true */
-	void SetSkus(TArray<FRHAPI_PlatformSKU> NewValue) { Skus_Optional = NewValue; Skus_IsSet = true; }
+	void SetSkus(const TArray<FRHAPI_PlatformSKU>& NewValue) { Skus_Optional = NewValue; Skus_IsSet = true; }
+	/** @brief Sets the value of Skus_Optional and also sets Skus_IsSet to true using move semantics */
+	void SetSkus(TArray<FRHAPI_PlatformSKU>&& NewValue) { Skus_Optional = NewValue; Skus_IsSet = true; }
 	 /** @brief Clears the value of Skus_Optional and sets Skus_IsSet to false */
 	void ClearSkus() { Skus_IsSet = false; }
 
@@ -83,7 +85,9 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSKUs : public FRHAPI_Model
 	/** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
 	const FRHAPI_CacheInfo* GetCacheInfoOrNull() const { if (CacheInfo_IsSet) return &CacheInfo_Optional; return nullptr; }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true */
-	void SetCacheInfo(FRHAPI_CacheInfo NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
+	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
+	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics */
+	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
 	 /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
 	void ClearCacheInfo() { CacheInfo_IsSet = false; }
 };

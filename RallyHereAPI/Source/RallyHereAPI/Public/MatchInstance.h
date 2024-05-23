@@ -58,7 +58,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchInstance : public FRHAPI_Model
 	/** @brief Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetInstanceIdOrNull() const { if (InstanceId_IsSet) return &InstanceId_Optional; return nullptr; }
 	/** @brief Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true */
-	void SetInstanceId(FString NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true; }
+	void SetInstanceId(const FString& NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true; }
+	/** @brief Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true using move semantics */
+	void SetInstanceId(FString&& NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true; }
 	 /** @brief Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false */
 	void ClearInstanceId() { InstanceId_IsSet = false; }
 
@@ -80,7 +82,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchInstance : public FRHAPI_Model
 	/** @brief Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr */
 	const FGuid* GetHostPlayerUuidOrNull() const { if (HostPlayerUuid_IsSet) return &HostPlayerUuid_Optional; return nullptr; }
 	/** @brief Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true */
-	void SetHostPlayerUuid(FGuid NewValue) { HostPlayerUuid_Optional = NewValue; HostPlayerUuid_IsSet = true; }
+	void SetHostPlayerUuid(const FGuid& NewValue) { HostPlayerUuid_Optional = NewValue; HostPlayerUuid_IsSet = true; }
+	/** @brief Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true using move semantics */
+	void SetHostPlayerUuid(FGuid&& NewValue) { HostPlayerUuid_Optional = NewValue; HostPlayerUuid_IsSet = true; }
 	 /** @brief Clears the value of HostPlayerUuid_Optional and sets HostPlayerUuid_IsSet to false */
 	void ClearHostPlayerUuid() { HostPlayerUuid_IsSet = false; }
 
@@ -102,7 +106,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchInstance : public FRHAPI_Model
 	/** @brief Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetRegionIdOrNull() const { if (RegionId_IsSet) return &RegionId_Optional; return nullptr; }
 	/** @brief Sets the value of RegionId_Optional and also sets RegionId_IsSet to true */
-	void SetRegionId(FString NewValue) { RegionId_Optional = NewValue; RegionId_IsSet = true; }
+	void SetRegionId(const FString& NewValue) { RegionId_Optional = NewValue; RegionId_IsSet = true; }
+	/** @brief Sets the value of RegionId_Optional and also sets RegionId_IsSet to true using move semantics */
+	void SetRegionId(FString&& NewValue) { RegionId_Optional = NewValue; RegionId_IsSet = true; }
 	 /** @brief Clears the value of RegionId_Optional and sets RegionId_IsSet to false */
 	void ClearRegionId() { RegionId_IsSet = false; }
 
@@ -124,7 +130,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchInstance : public FRHAPI_Model
 	/** @brief Returns a pointer to InstanceRequestTemplateId_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetInstanceRequestTemplateIdOrNull() const { if (InstanceRequestTemplateId_IsSet) return &InstanceRequestTemplateId_Optional; return nullptr; }
 	/** @brief Sets the value of InstanceRequestTemplateId_Optional and also sets InstanceRequestTemplateId_IsSet to true */
-	void SetInstanceRequestTemplateId(FString NewValue) { InstanceRequestTemplateId_Optional = NewValue; InstanceRequestTemplateId_IsSet = true; }
+	void SetInstanceRequestTemplateId(const FString& NewValue) { InstanceRequestTemplateId_Optional = NewValue; InstanceRequestTemplateId_IsSet = true; }
+	/** @brief Sets the value of InstanceRequestTemplateId_Optional and also sets InstanceRequestTemplateId_IsSet to true using move semantics */
+	void SetInstanceRequestTemplateId(FString&& NewValue) { InstanceRequestTemplateId_Optional = NewValue; InstanceRequestTemplateId_IsSet = true; }
 	 /** @brief Clears the value of InstanceRequestTemplateId_Optional and sets InstanceRequestTemplateId_IsSet to false */
 	void ClearInstanceRequestTemplateId() { InstanceRequestTemplateId_IsSet = false; }
 
@@ -146,7 +154,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchInstance : public FRHAPI_Model
 	/** @brief Returns a pointer to Map_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetMapOrNull() const { if (Map_IsSet) return &Map_Optional; return nullptr; }
 	/** @brief Sets the value of Map_Optional and also sets Map_IsSet to true */
-	void SetMap(FString NewValue) { Map_Optional = NewValue; Map_IsSet = true; }
+	void SetMap(const FString& NewValue) { Map_Optional = NewValue; Map_IsSet = true; }
+	/** @brief Sets the value of Map_Optional and also sets Map_IsSet to true using move semantics */
+	void SetMap(FString&& NewValue) { Map_Optional = NewValue; Map_IsSet = true; }
 	 /** @brief Clears the value of Map_Optional and sets Map_IsSet to false */
 	void ClearMap() { Map_IsSet = false; }
 
@@ -168,7 +178,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchInstance : public FRHAPI_Model
 	/** @brief Returns a pointer to GameMode_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetGameModeOrNull() const { if (GameMode_IsSet) return &GameMode_Optional; return nullptr; }
 	/** @brief Sets the value of GameMode_Optional and also sets GameMode_IsSet to true */
-	void SetGameMode(FString NewValue) { GameMode_Optional = NewValue; GameMode_IsSet = true; }
+	void SetGameMode(const FString& NewValue) { GameMode_Optional = NewValue; GameMode_IsSet = true; }
+	/** @brief Sets the value of GameMode_Optional and also sets GameMode_IsSet to true using move semantics */
+	void SetGameMode(FString&& NewValue) { GameMode_Optional = NewValue; GameMode_IsSet = true; }
 	 /** @brief Clears the value of GameMode_Optional and sets GameMode_IsSet to false */
 	void ClearGameMode() { GameMode_IsSet = false; }
 
@@ -190,7 +202,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchInstance : public FRHAPI_Model
 	/** @brief Returns a pointer to HostType_Optional, if it has been set, otherwise returns nullptr */
 	const ERHAPI_MatchHostType* GetHostTypeOrNull() const { if (HostType_IsSet) return &HostType_Optional; return nullptr; }
 	/** @brief Sets the value of HostType_Optional and also sets HostType_IsSet to true */
-	void SetHostType(ERHAPI_MatchHostType NewValue) { HostType_Optional = NewValue; HostType_IsSet = true; }
+	void SetHostType(const ERHAPI_MatchHostType& NewValue) { HostType_Optional = NewValue; HostType_IsSet = true; }
+	/** @brief Sets the value of HostType_Optional and also sets HostType_IsSet to true using move semantics */
+	void SetHostType(ERHAPI_MatchHostType&& NewValue) { HostType_Optional = NewValue; HostType_IsSet = true; }
 	 /** @brief Clears the value of HostType_Optional and sets HostType_IsSet to false */
 	void ClearHostType() { HostType_IsSet = false; }
 };

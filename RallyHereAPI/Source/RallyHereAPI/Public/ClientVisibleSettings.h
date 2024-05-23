@@ -58,7 +58,9 @@ struct RALLYHEREAPI_API FRHAPI_ClientVisibleSettings : public FRHAPI_Model
 	/** @brief Returns a pointer to SelfPingIntervalSeconds_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetSelfPingIntervalSecondsOrNull() const { if (SelfPingIntervalSeconds_IsSet) return &SelfPingIntervalSeconds_Optional; return nullptr; }
 	/** @brief Sets the value of SelfPingIntervalSeconds_Optional and also sets SelfPingIntervalSeconds_IsSet to true */
-	void SetSelfPingIntervalSeconds(int32 NewValue) { SelfPingIntervalSeconds_Optional = NewValue; SelfPingIntervalSeconds_IsSet = true; }
+	void SetSelfPingIntervalSeconds(const int32& NewValue) { SelfPingIntervalSeconds_Optional = NewValue; SelfPingIntervalSeconds_IsSet = true; }
+	/** @brief Sets the value of SelfPingIntervalSeconds_Optional and also sets SelfPingIntervalSeconds_IsSet to true using move semantics */
+	void SetSelfPingIntervalSeconds(int32&& NewValue) { SelfPingIntervalSeconds_Optional = NewValue; SelfPingIntervalSeconds_IsSet = true; }
 	 /** @brief Clears the value of SelfPingIntervalSeconds_Optional and sets SelfPingIntervalSeconds_IsSet to false */
 	void ClearSelfPingIntervalSeconds() { SelfPingIntervalSeconds_Optional = 30; SelfPingIntervalSeconds_IsSet = false; }
 	/** @brief Returns true if SelfPingIntervalSeconds_Optional is set and matches the default value */
@@ -85,7 +87,9 @@ struct RALLYHEREAPI_API FRHAPI_ClientVisibleSettings : public FRHAPI_Model
 	/** @brief Returns a pointer to LastSeenAgeConsideredOfflineSeconds_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetLastSeenAgeConsideredOfflineSecondsOrNull() const { if (LastSeenAgeConsideredOfflineSeconds_IsSet) return &LastSeenAgeConsideredOfflineSeconds_Optional; return nullptr; }
 	/** @brief Sets the value of LastSeenAgeConsideredOfflineSeconds_Optional and also sets LastSeenAgeConsideredOfflineSeconds_IsSet to true */
-	void SetLastSeenAgeConsideredOfflineSeconds(int32 NewValue) { LastSeenAgeConsideredOfflineSeconds_Optional = NewValue; LastSeenAgeConsideredOfflineSeconds_IsSet = true; }
+	void SetLastSeenAgeConsideredOfflineSeconds(const int32& NewValue) { LastSeenAgeConsideredOfflineSeconds_Optional = NewValue; LastSeenAgeConsideredOfflineSeconds_IsSet = true; }
+	/** @brief Sets the value of LastSeenAgeConsideredOfflineSeconds_Optional and also sets LastSeenAgeConsideredOfflineSeconds_IsSet to true using move semantics */
+	void SetLastSeenAgeConsideredOfflineSeconds(int32&& NewValue) { LastSeenAgeConsideredOfflineSeconds_Optional = NewValue; LastSeenAgeConsideredOfflineSeconds_IsSet = true; }
 	 /** @brief Clears the value of LastSeenAgeConsideredOfflineSeconds_Optional and sets LastSeenAgeConsideredOfflineSeconds_IsSet to false */
 	void ClearLastSeenAgeConsideredOfflineSeconds() { LastSeenAgeConsideredOfflineSeconds_Optional = 60; LastSeenAgeConsideredOfflineSeconds_IsSet = false; }
 	/** @brief Returns true if LastSeenAgeConsideredOfflineSeconds_Optional is set and matches the default value */

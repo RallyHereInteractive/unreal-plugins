@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_InstanceStartupParams : public FRHAPI_Model
 	/** @brief Gets the value of Map */
 	const FString& GetMap() const { return Map; }
 	/** @brief Sets the value of Map */
-	void SetMap(FString NewValue) { Map = NewValue;  }
+	void SetMap(const FString& NewValue) { Map = NewValue;  }
+	/** @brief Sets the value of Map using move semantics */
+	void SetMap(FString&& NewValue) { Map = NewValue;  }
 
 	/** @brief Game mode for the instance to spawn in */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -68,7 +70,9 @@ struct RALLYHEREAPI_API FRHAPI_InstanceStartupParams : public FRHAPI_Model
 	/** @brief Returns a pointer to Mode_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetModeOrNull() const { if (Mode_IsSet) return &Mode_Optional; return nullptr; }
 	/** @brief Sets the value of Mode_Optional and also sets Mode_IsSet to true */
-	void SetMode(FString NewValue) { Mode_Optional = NewValue; Mode_IsSet = true; }
+	void SetMode(const FString& NewValue) { Mode_Optional = NewValue; Mode_IsSet = true; }
+	/** @brief Sets the value of Mode_Optional and also sets Mode_IsSet to true using move semantics */
+	void SetMode(FString&& NewValue) { Mode_Optional = NewValue; Mode_IsSet = true; }
 	 /** @brief Clears the value of Mode_Optional and sets Mode_IsSet to false */
 	void ClearMode() { Mode_IsSet = false; }
 
@@ -80,7 +84,9 @@ struct RALLYHEREAPI_API FRHAPI_InstanceStartupParams : public FRHAPI_Model
 	/** @brief Gets the value of MiscParams */
 	const FString& GetMiscParams() const { return MiscParams; }
 	/** @brief Sets the value of MiscParams */
-	void SetMiscParams(FString NewValue) { MiscParams = NewValue;  }
+	void SetMiscParams(const FString& NewValue) { MiscParams = NewValue;  }
+	/** @brief Sets the value of MiscParams using move semantics */
+	void SetMiscParams(FString&& NewValue) { MiscParams = NewValue;  }
 
 	/** @brief Custom data to pass through to the instance */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -101,7 +107,9 @@ struct RALLYHEREAPI_API FRHAPI_InstanceStartupParams : public FRHAPI_Model
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
+	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
 	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false; }
 };

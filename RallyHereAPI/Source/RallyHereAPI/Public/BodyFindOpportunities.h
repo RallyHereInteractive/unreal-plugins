@@ -58,7 +58,9 @@ struct RALLYHEREAPI_API FRHAPI_BodyFindOpportunities : public FRHAPI_Model
 	/** @brief Returns a pointer to ScreenPixelWidth_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetScreenPixelWidthOrNull() const { if (ScreenPixelWidth_IsSet) return &ScreenPixelWidth_Optional; return nullptr; }
 	/** @brief Sets the value of ScreenPixelWidth_Optional and also sets ScreenPixelWidth_IsSet to true */
-	void SetScreenPixelWidth(int32 NewValue) { ScreenPixelWidth_Optional = NewValue; ScreenPixelWidth_IsSet = true; }
+	void SetScreenPixelWidth(const int32& NewValue) { ScreenPixelWidth_Optional = NewValue; ScreenPixelWidth_IsSet = true; }
+	/** @brief Sets the value of ScreenPixelWidth_Optional and also sets ScreenPixelWidth_IsSet to true using move semantics */
+	void SetScreenPixelWidth(int32&& NewValue) { ScreenPixelWidth_Optional = NewValue; ScreenPixelWidth_IsSet = true; }
 	 /** @brief Clears the value of ScreenPixelWidth_Optional and sets ScreenPixelWidth_IsSet to false */
 	void ClearScreenPixelWidth() { ScreenPixelWidth_Optional = 0; ScreenPixelWidth_IsSet = false; }
 	/** @brief Returns true if ScreenPixelWidth_Optional is set and matches the default value */
@@ -85,7 +87,9 @@ struct RALLYHEREAPI_API FRHAPI_BodyFindOpportunities : public FRHAPI_Model
 	/** @brief Returns a pointer to ScreenPixelHeight_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetScreenPixelHeightOrNull() const { if (ScreenPixelHeight_IsSet) return &ScreenPixelHeight_Optional; return nullptr; }
 	/** @brief Sets the value of ScreenPixelHeight_Optional and also sets ScreenPixelHeight_IsSet to true */
-	void SetScreenPixelHeight(int32 NewValue) { ScreenPixelHeight_Optional = NewValue; ScreenPixelHeight_IsSet = true; }
+	void SetScreenPixelHeight(const int32& NewValue) { ScreenPixelHeight_Optional = NewValue; ScreenPixelHeight_IsSet = true; }
+	/** @brief Sets the value of ScreenPixelHeight_Optional and also sets ScreenPixelHeight_IsSet to true using move semantics */
+	void SetScreenPixelHeight(int32&& NewValue) { ScreenPixelHeight_Optional = NewValue; ScreenPixelHeight_IsSet = true; }
 	 /** @brief Clears the value of ScreenPixelHeight_Optional and sets ScreenPixelHeight_IsSet to false */
 	void ClearScreenPixelHeight() { ScreenPixelHeight_Optional = 0; ScreenPixelHeight_IsSet = false; }
 	/** @brief Returns true if ScreenPixelHeight_Optional is set and matches the default value */
@@ -101,7 +105,9 @@ struct RALLYHEREAPI_API FRHAPI_BodyFindOpportunities : public FRHAPI_Model
 	/** @brief Gets the value of CountryCode */
 	const FString& GetCountryCode() const { return CountryCode; }
 	/** @brief Sets the value of CountryCode */
-	void SetCountryCode(FString NewValue) { CountryCode = NewValue;  }
+	void SetCountryCode(const FString& NewValue) { CountryCode = NewValue;  }
+	/** @brief Sets the value of CountryCode using move semantics */
+	void SetCountryCode(FString&& NewValue) { CountryCode = NewValue;  }
 
 	/** @brief [ISO 639-2](https://www.loc.gov/standards/iso639-2/php/code_list.php) language code */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -111,7 +117,9 @@ struct RALLYHEREAPI_API FRHAPI_BodyFindOpportunities : public FRHAPI_Model
 	/** @brief Gets the value of LanguageCode */
 	const FString& GetLanguageCode() const { return LanguageCode; }
 	/** @brief Sets the value of LanguageCode */
-	void SetLanguageCode(FString NewValue) { LanguageCode = NewValue;  }
+	void SetLanguageCode(const FString& NewValue) { LanguageCode = NewValue;  }
+	/** @brief Sets the value of LanguageCode using move semantics */
+	void SetLanguageCode(FString&& NewValue) { LanguageCode = NewValue;  }
 
 	/** @brief Unique Identifier for the device a session is started on.  E.g should be the same for multiple users on the same device. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -132,7 +140,9 @@ struct RALLYHEREAPI_API FRHAPI_BodyFindOpportunities : public FRHAPI_Model
 	/** @brief Returns a pointer to DeviceId_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetDeviceIdOrNull() const { if (DeviceId_IsSet) return &DeviceId_Optional; return nullptr; }
 	/** @brief Sets the value of DeviceId_Optional and also sets DeviceId_IsSet to true */
-	void SetDeviceId(FString NewValue) { DeviceId_Optional = NewValue; DeviceId_IsSet = true; }
+	void SetDeviceId(const FString& NewValue) { DeviceId_Optional = NewValue; DeviceId_IsSet = true; }
+	/** @brief Sets the value of DeviceId_Optional and also sets DeviceId_IsSet to true using move semantics */
+	void SetDeviceId(FString&& NewValue) { DeviceId_Optional = NewValue; DeviceId_IsSet = true; }
 	 /** @brief Clears the value of DeviceId_Optional and sets DeviceId_IsSet to false */
 	void ClearDeviceId() { DeviceId_IsSet = false; }
 };

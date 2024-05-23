@@ -61,7 +61,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
 	/** @brief Returns a pointer to PlayerId_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetPlayerIdOrNull() const { if (PlayerId_IsSet) return &PlayerId_Optional; return nullptr; }
 	/** @brief Sets the value of PlayerId_Optional and also sets PlayerId_IsSet to true */
-	void SetPlayerId(int32 NewValue) { PlayerId_Optional = NewValue; PlayerId_IsSet = true; }
+	void SetPlayerId(const int32& NewValue) { PlayerId_Optional = NewValue; PlayerId_IsSet = true; }
+	/** @brief Sets the value of PlayerId_Optional and also sets PlayerId_IsSet to true using move semantics */
+	void SetPlayerId(int32&& NewValue) { PlayerId_Optional = NewValue; PlayerId_IsSet = true; }
 	 /** @brief Clears the value of PlayerId_Optional and sets PlayerId_IsSet to false */
 	void ClearPlayerId() { PlayerId_Optional = 0; PlayerId_IsSet = false; }
 	/** @brief Returns true if PlayerId_Optional is set and matches the default value */
@@ -77,7 +79,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
 	/** @brief Gets the value of PlayerUuid */
 	const FGuid& GetPlayerUuid() const { return PlayerUuid; }
 	/** @brief Sets the value of PlayerUuid */
-	void SetPlayerUuid(FGuid NewValue) { PlayerUuid = NewValue;  }
+	void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid = NewValue;  }
+	/** @brief Sets the value of PlayerUuid using move semantics */
+	void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid = NewValue;  }
 
 	/** @brief Status of the player in the session */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -87,7 +91,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
 	/** @brief Gets the value of Status */
 	const ERHAPI_SessionPlayerStatus& GetStatus() const { return Status; }
 	/** @brief Sets the value of Status */
-	void SetStatus(ERHAPI_SessionPlayerStatus NewValue) { Status = NewValue;  }
+	void SetStatus(const ERHAPI_SessionPlayerStatus& NewValue) { Status = NewValue;  }
+	/** @brief Sets the value of Status using move semantics */
+	void SetStatus(ERHAPI_SessionPlayerStatus&& NewValue) { Status = NewValue;  }
 
 	/** @brief UUID of the player who sent this players invite, if any */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -108,7 +114,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
 	/** @brief Returns a pointer to InvitingPlayerUuid_Optional, if it has been set, otherwise returns nullptr */
 	const FGuid* GetInvitingPlayerUuidOrNull() const { if (InvitingPlayerUuid_IsSet) return &InvitingPlayerUuid_Optional; return nullptr; }
 	/** @brief Sets the value of InvitingPlayerUuid_Optional and also sets InvitingPlayerUuid_IsSet to true */
-	void SetInvitingPlayerUuid(FGuid NewValue) { InvitingPlayerUuid_Optional = NewValue; InvitingPlayerUuid_IsSet = true; }
+	void SetInvitingPlayerUuid(const FGuid& NewValue) { InvitingPlayerUuid_Optional = NewValue; InvitingPlayerUuid_IsSet = true; }
+	/** @brief Sets the value of InvitingPlayerUuid_Optional and also sets InvitingPlayerUuid_IsSet to true using move semantics */
+	void SetInvitingPlayerUuid(FGuid&& NewValue) { InvitingPlayerUuid_Optional = NewValue; InvitingPlayerUuid_IsSet = true; }
 	 /** @brief Clears the value of InvitingPlayerUuid_Optional and sets InvitingPlayerUuid_IsSet to false */
 	void ClearInvitingPlayerUuid() { InvitingPlayerUuid_IsSet = false; }
 
@@ -131,7 +139,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
 	/** @brief Returns a pointer to SourceSessionId_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetSourceSessionIdOrNull() const { if (SourceSessionId_IsSet) return &SourceSessionId_Optional; return nullptr; }
 	/** @brief Sets the value of SourceSessionId_Optional and also sets SourceSessionId_IsSet to true */
-	void SetSourceSessionId(FString NewValue) { SourceSessionId_Optional = NewValue; SourceSessionId_IsSet = true; }
+	void SetSourceSessionId(const FString& NewValue) { SourceSessionId_Optional = NewValue; SourceSessionId_IsSet = true; }
+	/** @brief Sets the value of SourceSessionId_Optional and also sets SourceSessionId_IsSet to true using move semantics */
+	void SetSourceSessionId(FString&& NewValue) { SourceSessionId_Optional = NewValue; SourceSessionId_IsSet = true; }
 	 /** @brief Clears the value of SourceSessionId_Optional and sets SourceSessionId_IsSet to false */
 	void ClearSourceSessionId() { SourceSessionId_IsSet = false; }
 
@@ -154,7 +164,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
+	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
 	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false; }
 
@@ -177,7 +189,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
 	/** @brief Returns a pointer to Version_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetVersionOrNull() const { if (Version_IsSet) return &Version_Optional; return nullptr; }
 	/** @brief Sets the value of Version_Optional and also sets Version_IsSet to true */
-	void SetVersion(FString NewValue) { Version_Optional = NewValue; Version_IsSet = true; }
+	void SetVersion(const FString& NewValue) { Version_Optional = NewValue; Version_IsSet = true; }
+	/** @brief Sets the value of Version_Optional and also sets Version_IsSet to true using move semantics */
+	void SetVersion(FString&& NewValue) { Version_Optional = NewValue; Version_IsSet = true; }
 	 /** @brief Clears the value of Version_Optional and sets Version_IsSet to false */
 	void ClearVersion() { Version_IsSet = false; }
 
@@ -200,7 +214,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
 	/** @brief Returns a pointer to ClientSettings_Optional, if it has been set, otherwise returns nullptr */
 	const FRHAPI_ClientSettings* GetClientSettingsOrNull() const { if (ClientSettings_IsSet) return &ClientSettings_Optional; return nullptr; }
 	/** @brief Sets the value of ClientSettings_Optional and also sets ClientSettings_IsSet to true */
-	void SetClientSettings(FRHAPI_ClientSettings NewValue) { ClientSettings_Optional = NewValue; ClientSettings_IsSet = true; }
+	void SetClientSettings(const FRHAPI_ClientSettings& NewValue) { ClientSettings_Optional = NewValue; ClientSettings_IsSet = true; }
+	/** @brief Sets the value of ClientSettings_Optional and also sets ClientSettings_IsSet to true using move semantics */
+	void SetClientSettings(FRHAPI_ClientSettings&& NewValue) { ClientSettings_Optional = NewValue; ClientSettings_IsSet = true; }
 	 /** @brief Clears the value of ClientSettings_Optional and sets ClientSettings_IsSet to false */
 	void ClearClientSettings() { ClientSettings_IsSet = false; }
 
@@ -223,7 +239,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
 	/** @brief Returns a pointer to CrossplayPreferences_Optional, if it has been set, otherwise returns nullptr */
 	const FRHAPI_CrossplayPreferences* GetCrossplayPreferencesOrNull() const { if (CrossplayPreferences_IsSet) return &CrossplayPreferences_Optional; return nullptr; }
 	/** @brief Sets the value of CrossplayPreferences_Optional and also sets CrossplayPreferences_IsSet to true */
-	void SetCrossplayPreferences(FRHAPI_CrossplayPreferences NewValue) { CrossplayPreferences_Optional = NewValue; CrossplayPreferences_IsSet = true; }
+	void SetCrossplayPreferences(const FRHAPI_CrossplayPreferences& NewValue) { CrossplayPreferences_Optional = NewValue; CrossplayPreferences_IsSet = true; }
+	/** @brief Sets the value of CrossplayPreferences_Optional and also sets CrossplayPreferences_IsSet to true using move semantics */
+	void SetCrossplayPreferences(FRHAPI_CrossplayPreferences&& NewValue) { CrossplayPreferences_Optional = NewValue; CrossplayPreferences_IsSet = true; }
 	 /** @brief Clears the value of CrossplayPreferences_Optional and sets CrossplayPreferences_IsSet to false */
 	void ClearCrossplayPreferences() { CrossplayPreferences_IsSet = false; }
 
@@ -246,7 +264,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
 	/** @brief Returns a pointer to Invited_Optional, if it has been set, otherwise returns nullptr */
 	const FDateTime* GetInvitedOrNull() const { if (Invited_IsSet) return &Invited_Optional; return nullptr; }
 	/** @brief Sets the value of Invited_Optional and also sets Invited_IsSet to true */
-	void SetInvited(FDateTime NewValue) { Invited_Optional = NewValue; Invited_IsSet = true; }
+	void SetInvited(const FDateTime& NewValue) { Invited_Optional = NewValue; Invited_IsSet = true; }
+	/** @brief Sets the value of Invited_Optional and also sets Invited_IsSet to true using move semantics */
+	void SetInvited(FDateTime&& NewValue) { Invited_Optional = NewValue; Invited_IsSet = true; }
 	 /** @brief Clears the value of Invited_Optional and sets Invited_IsSet to false */
 	void ClearInvited() { Invited_IsSet = false; }
 
@@ -269,7 +289,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
 	/** @brief Returns a pointer to Joined_Optional, if it has been set, otherwise returns nullptr */
 	const FDateTime* GetJoinedOrNull() const { if (Joined_IsSet) return &Joined_Optional; return nullptr; }
 	/** @brief Sets the value of Joined_Optional and also sets Joined_IsSet to true */
-	void SetJoined(FDateTime NewValue) { Joined_Optional = NewValue; Joined_IsSet = true; }
+	void SetJoined(const FDateTime& NewValue) { Joined_Optional = NewValue; Joined_IsSet = true; }
+	/** @brief Sets the value of Joined_Optional and also sets Joined_IsSet to true using move semantics */
+	void SetJoined(FDateTime&& NewValue) { Joined_Optional = NewValue; Joined_IsSet = true; }
 	 /** @brief Clears the value of Joined_Optional and sets Joined_IsSet to false */
 	void ClearJoined() { Joined_IsSet = false; }
 };

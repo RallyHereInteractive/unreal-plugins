@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_UpdatePersonInfoRequest : public FRHAPI_Model
 	/** @brief Gets the value of Email */
 	const FString& GetEmail() const { return Email; }
 	/** @brief Sets the value of Email */
-	void SetEmail(FString NewValue) { Email = NewValue;  }
+	void SetEmail(const FString& NewValue) { Email = NewValue;  }
+	/** @brief Sets the value of Email using move semantics */
+	void SetEmail(FString&& NewValue) { Email = NewValue;  }
 };
 
 /** @} */

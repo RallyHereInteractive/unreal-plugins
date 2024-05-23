@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchAllocation : public FRHAPI_Model
 	/** @brief Gets the value of AllocationId */
 	const FString& GetAllocationId() const { return AllocationId; }
 	/** @brief Sets the value of AllocationId */
-	void SetAllocationId(FString NewValue) { AllocationId = NewValue;  }
+	void SetAllocationId(const FString& NewValue) { AllocationId = NewValue;  }
+	/** @brief Sets the value of AllocationId using move semantics */
+	void SetAllocationId(FString&& NewValue) { AllocationId = NewValue;  }
 };
 
 /** @} */

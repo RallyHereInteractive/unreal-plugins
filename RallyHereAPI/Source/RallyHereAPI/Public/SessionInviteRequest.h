@@ -59,7 +59,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionInviteRequest : public FRHAPI_Model
 	/** @brief Returns a pointer to TeamId_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetTeamIdOrNull() const { if (TeamId_IsSet) return &TeamId_Optional; return nullptr; }
 	/** @brief Sets the value of TeamId_Optional and also sets TeamId_IsSet to true */
-	void SetTeamId(int32 NewValue) { TeamId_Optional = NewValue; TeamId_IsSet = true; }
+	void SetTeamId(const int32& NewValue) { TeamId_Optional = NewValue; TeamId_IsSet = true; }
+	/** @brief Sets the value of TeamId_Optional and also sets TeamId_IsSet to true using move semantics */
+	void SetTeamId(int32&& NewValue) { TeamId_Optional = NewValue; TeamId_IsSet = true; }
 	 /** @brief Clears the value of TeamId_Optional and sets TeamId_IsSet to false */
 	void ClearTeamId() { TeamId_Optional = 0; TeamId_IsSet = false; }
 	/** @brief Returns true if TeamId_Optional is set and matches the default value */
@@ -86,7 +88,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionInviteRequest : public FRHAPI_Model
 	/** @brief Returns a pointer to OverflowAction_Optional, if it has been set, otherwise returns nullptr */
 	const ERHAPI_TeamOverflowAction* GetOverflowActionOrNull() const { if (OverflowAction_IsSet) return &OverflowAction_Optional; return nullptr; }
 	/** @brief Sets the value of OverflowAction_Optional and also sets OverflowAction_IsSet to true */
-	void SetOverflowAction(ERHAPI_TeamOverflowAction NewValue) { OverflowAction_Optional = NewValue; OverflowAction_IsSet = true; }
+	void SetOverflowAction(const ERHAPI_TeamOverflowAction& NewValue) { OverflowAction_Optional = NewValue; OverflowAction_IsSet = true; }
+	/** @brief Sets the value of OverflowAction_Optional and also sets OverflowAction_IsSet to true using move semantics */
+	void SetOverflowAction(ERHAPI_TeamOverflowAction&& NewValue) { OverflowAction_Optional = NewValue; OverflowAction_IsSet = true; }
 	 /** @brief Clears the value of OverflowAction_Optional and sets OverflowAction_IsSet to false */
 	void ClearOverflowAction() { OverflowAction_IsSet = false; }
 
@@ -109,7 +113,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionInviteRequest : public FRHAPI_Model
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
+	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
 	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false; }
 };

@@ -48,7 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_RankConfigRequestResponseV3 : public FRHAPI_Model
 	/** @brief Gets the value of RankConfigs */
 	const TArray<FRHAPI_RankConfigV3>& GetRankConfigs() const { return RankConfigs; }
 	/** @brief Sets the value of RankConfigs */
-	void SetRankConfigs(TArray<FRHAPI_RankConfigV3> NewValue) { RankConfigs = NewValue;  }
+	void SetRankConfigs(const TArray<FRHAPI_RankConfigV3>& NewValue) { RankConfigs = NewValue;  }
+	/** @brief Sets the value of RankConfigs using move semantics */
+	void SetRankConfigs(TArray<FRHAPI_RankConfigV3>&& NewValue) { RankConfigs = NewValue;  }
 };
 
 /** @} */

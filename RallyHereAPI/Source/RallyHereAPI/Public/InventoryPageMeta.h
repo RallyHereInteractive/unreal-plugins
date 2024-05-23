@@ -59,7 +59,9 @@ struct RALLYHEREAPI_API FRHAPI_InventoryPageMeta : public FRHAPI_Model
 	/** @brief Returns a pointer to StartingPosition_Optional, if it has been set, otherwise returns nullptr */
 	const FDateTime* GetStartingPositionOrNull() const { if (StartingPosition_IsSet) return &StartingPosition_Optional; return nullptr; }
 	/** @brief Sets the value of StartingPosition_Optional and also sets StartingPosition_IsSet to true */
-	void SetStartingPosition(FDateTime NewValue) { StartingPosition_Optional = NewValue; StartingPosition_IsSet = true; }
+	void SetStartingPosition(const FDateTime& NewValue) { StartingPosition_Optional = NewValue; StartingPosition_IsSet = true; }
+	/** @brief Sets the value of StartingPosition_Optional and also sets StartingPosition_IsSet to true using move semantics */
+	void SetStartingPosition(FDateTime&& NewValue) { StartingPosition_Optional = NewValue; StartingPosition_IsSet = true; }
 	 /** @brief Clears the value of StartingPosition_Optional and sets StartingPosition_IsSet to false */
 	void ClearStartingPosition() { StartingPosition_IsSet = false; }
 
@@ -82,7 +84,9 @@ struct RALLYHEREAPI_API FRHAPI_InventoryPageMeta : public FRHAPI_Model
 	/** @brief Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetCursorOrNull() const { if (Cursor_IsSet) return &Cursor_Optional; return nullptr; }
 	/** @brief Sets the value of Cursor_Optional and also sets Cursor_IsSet to true */
-	void SetCursor(FString NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true; }
+	void SetCursor(const FString& NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true; }
+	/** @brief Sets the value of Cursor_Optional and also sets Cursor_IsSet to true using move semantics */
+	void SetCursor(FString&& NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true; }
 	 /** @brief Clears the value of Cursor_Optional and sets Cursor_IsSet to false */
 	void ClearCursor() { Cursor_IsSet = false; }
 
@@ -105,7 +109,9 @@ struct RALLYHEREAPI_API FRHAPI_InventoryPageMeta : public FRHAPI_Model
 	/** @brief Returns a pointer to Sort_Optional, if it has been set, otherwise returns nullptr */
 	const ERHAPI_SortOrder* GetSortOrNull() const { if (Sort_IsSet) return &Sort_Optional; return nullptr; }
 	/** @brief Sets the value of Sort_Optional and also sets Sort_IsSet to true */
-	void SetSort(ERHAPI_SortOrder NewValue) { Sort_Optional = NewValue; Sort_IsSet = true; }
+	void SetSort(const ERHAPI_SortOrder& NewValue) { Sort_Optional = NewValue; Sort_IsSet = true; }
+	/** @brief Sets the value of Sort_Optional and also sets Sort_IsSet to true using move semantics */
+	void SetSort(ERHAPI_SortOrder&& NewValue) { Sort_Optional = NewValue; Sort_IsSet = true; }
 	 /** @brief Clears the value of Sort_Optional and sets Sort_IsSet to false */
 	void ClearSort() { Sort_IsSet = false; }
 
@@ -128,7 +134,9 @@ struct RALLYHEREAPI_API FRHAPI_InventoryPageMeta : public FRHAPI_Model
 	/** @brief Returns a pointer to Limit_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetLimitOrNull() const { if (Limit_IsSet) return &Limit_Optional; return nullptr; }
 	/** @brief Sets the value of Limit_Optional and also sets Limit_IsSet to true */
-	void SetLimit(int32 NewValue) { Limit_Optional = NewValue; Limit_IsSet = true; }
+	void SetLimit(const int32& NewValue) { Limit_Optional = NewValue; Limit_IsSet = true; }
+	/** @brief Sets the value of Limit_Optional and also sets Limit_IsSet to true using move semantics */
+	void SetLimit(int32&& NewValue) { Limit_Optional = NewValue; Limit_IsSet = true; }
 	 /** @brief Clears the value of Limit_Optional and sets Limit_IsSet to false */
 	void ClearLimit() { Limit_Optional = 10; Limit_IsSet = false; }
 	/** @brief Returns true if Limit_Optional is set and matches the default value */

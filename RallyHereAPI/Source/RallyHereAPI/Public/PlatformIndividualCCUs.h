@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_PlatformIndividualCCUs : public FRHAPI_Model
 	/** @brief Gets the value of PlatformCcus */
 	const TMap<FString, FRHAPI_IndividualCCUs>& GetPlatformCcus() const { return PlatformCcus; }
 	/** @brief Sets the value of PlatformCcus */
-	void SetPlatformCcus(TMap<FString, FRHAPI_IndividualCCUs> NewValue) { PlatformCcus = NewValue;  }
+	void SetPlatformCcus(const TMap<FString, FRHAPI_IndividualCCUs>& NewValue) { PlatformCcus = NewValue;  }
+	/** @brief Sets the value of PlatformCcus using move semantics */
+	void SetPlatformCcus(TMap<FString, FRHAPI_IndividualCCUs>&& NewValue) { PlatformCcus = NewValue;  }
 };
 
 /** @} */

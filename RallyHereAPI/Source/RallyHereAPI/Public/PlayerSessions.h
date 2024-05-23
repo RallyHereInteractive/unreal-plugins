@@ -59,7 +59,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerSessions : public FRHAPI_Model
 	/** @brief Returns a pointer to Sessions_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FRHAPI_PlayerSession>* GetSessionsOrNull() const { if (Sessions_IsSet) return &Sessions_Optional; return nullptr; }
 	/** @brief Sets the value of Sessions_Optional and also sets Sessions_IsSet to true */
-	void SetSessions(TMap<FString, FRHAPI_PlayerSession> NewValue) { Sessions_Optional = NewValue; Sessions_IsSet = true; }
+	void SetSessions(const TMap<FString, FRHAPI_PlayerSession>& NewValue) { Sessions_Optional = NewValue; Sessions_IsSet = true; }
+	/** @brief Sets the value of Sessions_Optional and also sets Sessions_IsSet to true using move semantics */
+	void SetSessions(TMap<FString, FRHAPI_PlayerSession>&& NewValue) { Sessions_Optional = NewValue; Sessions_IsSet = true; }
 	 /** @brief Clears the value of Sessions_Optional and sets Sessions_IsSet to false */
 	void ClearSessions() { Sessions_IsSet = false; }
 
@@ -82,7 +84,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerSessions : public FRHAPI_Model
 	/** @brief Returns a pointer to LastUpdatedTimestamp_Optional, if it has been set, otherwise returns nullptr */
 	const FDateTime* GetLastUpdatedTimestampOrNull() const { if (LastUpdatedTimestamp_IsSet) return &LastUpdatedTimestamp_Optional; return nullptr; }
 	/** @brief Sets the value of LastUpdatedTimestamp_Optional and also sets LastUpdatedTimestamp_IsSet to true */
-	void SetLastUpdatedTimestamp(FDateTime NewValue) { LastUpdatedTimestamp_Optional = NewValue; LastUpdatedTimestamp_IsSet = true; }
+	void SetLastUpdatedTimestamp(const FDateTime& NewValue) { LastUpdatedTimestamp_Optional = NewValue; LastUpdatedTimestamp_IsSet = true; }
+	/** @brief Sets the value of LastUpdatedTimestamp_Optional and also sets LastUpdatedTimestamp_IsSet to true using move semantics */
+	void SetLastUpdatedTimestamp(FDateTime&& NewValue) { LastUpdatedTimestamp_Optional = NewValue; LastUpdatedTimestamp_IsSet = true; }
 	 /** @brief Clears the value of LastUpdatedTimestamp_Optional and sets LastUpdatedTimestamp_IsSet to false */
 	void ClearLastUpdatedTimestamp() { LastUpdatedTimestamp_IsSet = false; }
 };

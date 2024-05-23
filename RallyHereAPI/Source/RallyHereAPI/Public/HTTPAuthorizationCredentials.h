@@ -46,7 +46,9 @@ struct RALLYHEREAPI_API FRHAPI_HTTPAuthorizationCredentials : public FRHAPI_Mode
 	/** @brief Gets the value of Scheme */
 	const FString& GetScheme() const { return Scheme; }
 	/** @brief Sets the value of Scheme */
-	void SetScheme(FString NewValue) { Scheme = NewValue;  }
+	void SetScheme(const FString& NewValue) { Scheme = NewValue;  }
+	/** @brief Sets the value of Scheme using move semantics */
+	void SetScheme(FString&& NewValue) { Scheme = NewValue;  }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Credentials{  };
@@ -55,7 +57,9 @@ struct RALLYHEREAPI_API FRHAPI_HTTPAuthorizationCredentials : public FRHAPI_Mode
 	/** @brief Gets the value of Credentials */
 	const FString& GetCredentials() const { return Credentials; }
 	/** @brief Sets the value of Credentials */
-	void SetCredentials(FString NewValue) { Credentials = NewValue;  }
+	void SetCredentials(const FString& NewValue) { Credentials = NewValue;  }
+	/** @brief Sets the value of Credentials using move semantics */
+	void SetCredentials(FString&& NewValue) { Credentials = NewValue;  }
 };
 
 /** @} */
