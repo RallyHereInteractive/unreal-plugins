@@ -101,9 +101,6 @@ public:
 protected:
 	void FlushEventsOnce();
 
-	/** Create a request utilizing HttpRetry domains */
-	TSharedRef<IHttpRequest, ESPMode::ThreadSafe> CreateRequest();
-
 	bool bSessionInProgress;
 	/** The current configuration (might be updated with respect to the one provided at construction). */
 	FAnalyticsET::Config Config;
