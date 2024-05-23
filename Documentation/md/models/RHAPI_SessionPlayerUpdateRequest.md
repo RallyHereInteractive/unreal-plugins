@@ -34,11 +34,13 @@ A request body to update information about a player in a session.
 `public inline bool `[`GetStatus`](#structFRHAPI__SessionPlayerUpdateRequest_1ae985bb8e870e3f09268128729abd5507)`(ERHAPI_SessionPlayerStatus & OutValue) const` | Fills OutValue with the value of Status_Optional and returns true if it has been set, otherwise returns false.
 `public inline ERHAPI_SessionPlayerStatus * `[`GetStatusOrNull`](#structFRHAPI__SessionPlayerUpdateRequest_1a0c94c9335edd53644ff904f76602f05c)`()` | Returns a pointer to Status_Optional, if it has been set, otherwise returns nullptr.
 `public inline const ERHAPI_SessionPlayerStatus * `[`GetStatusOrNull`](#structFRHAPI__SessionPlayerUpdateRequest_1a710af1527fabcd4c31c3c136d2dfc4bc)`() const` | Returns a pointer to Status_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetStatus`](#structFRHAPI__SessionPlayerUpdateRequest_1af541180816bd2c7271e0daab51d8d5b3)`(ERHAPI_SessionPlayerStatus NewValue)` | Sets the value of Status_Optional and also sets Status_IsSet to true.
+`public inline void `[`SetStatus`](#structFRHAPI__SessionPlayerUpdateRequest_1a6fd100a81bc4cd7c3f83abe5364edefe)`(const ERHAPI_SessionPlayerStatus & NewValue)` | Sets the value of Status_Optional and also sets Status_IsSet to true.
+`public inline void `[`SetStatus`](#structFRHAPI__SessionPlayerUpdateRequest_1a816b87e015243da632ef61eec6ffc31a)`(ERHAPI_SessionPlayerStatus && NewValue)` | Sets the value of Status_Optional and also sets Status_IsSet to true using move semantics.
 `public inline void `[`ClearStatus`](#structFRHAPI__SessionPlayerUpdateRequest_1a2905381b74dd71938e896ad9059c01ea)`()` | Clears the value of Status_Optional and sets Status_IsSet to false.
 `public inline int32 & `[`GetTeamId`](#structFRHAPI__SessionPlayerUpdateRequest_1af5f5ab7680382d4eb1c597f462b2ef44)`()` | Gets the value of TeamId.
 `public inline const int32 & `[`GetTeamId`](#structFRHAPI__SessionPlayerUpdateRequest_1a81db9ded16d246cd9fb997809ec54ff6)`() const` | Gets the value of TeamId.
-`public inline void `[`SetTeamId`](#structFRHAPI__SessionPlayerUpdateRequest_1a33b9433646403e228f4afb04e4eff6ff)`(int32 NewValue)` | Sets the value of TeamId.
+`public inline void `[`SetTeamId`](#structFRHAPI__SessionPlayerUpdateRequest_1adc7b42f6fe4b84ecf34f130f15bd2b5e)`(const int32 & NewValue)` | Sets the value of TeamId.
+`public inline void `[`SetTeamId`](#structFRHAPI__SessionPlayerUpdateRequest_1af06239eaf8d674ba7a6e6a5c388740a8)`(int32 && NewValue)` | Sets the value of TeamId using move semantics.
 `public inline bool `[`IsTeamIdDefaultValue`](#structFRHAPI__SessionPlayerUpdateRequest_1a00cd4d137a38bad4d7cedb426c9618ea)`() const` | Returns true if TeamId matches the default value.
 `public inline void `[`SetTeamIdToDefault`](#structFRHAPI__SessionPlayerUpdateRequest_1a673d1ada9ca1f883dcee26c27c355d30)`()` | Sets the value of TeamId to its default
 `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__SessionPlayerUpdateRequest_1a2914913c10dab532c2d5f9b2f6795e4c)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
@@ -47,7 +49,8 @@ A request body to update information about a player in a session.
 `public inline bool `[`GetCustomData`](#structFRHAPI__SessionPlayerUpdateRequest_1a56c8023c8f38a15829a7a580fb7eea29)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__SessionPlayerUpdateRequest_1a8a2b6c950cbbb0c652c4696dcacf65e3)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__SessionPlayerUpdateRequest_1a0ddbe103d6085af6264d144d2b378216)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCustomData`](#structFRHAPI__SessionPlayerUpdateRequest_1a17ffb5766ae78cf4899c253af52c44cc)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`SetCustomData`](#structFRHAPI__SessionPlayerUpdateRequest_1a7a8633b9557cf02cdc6fd70d9ccb09b1)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`SetCustomData`](#structFRHAPI__SessionPlayerUpdateRequest_1a8bbcecb05fcb7c07bc51080f5bbd6624)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__SessionPlayerUpdateRequest_1a90415b775835034b0bb2f6e8e7f98426)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 `public inline ERHAPI_TeamOverflowAction & `[`GetOverflowAction`](#structFRHAPI__SessionPlayerUpdateRequest_1a60ae170f15ae710197a04360abdc3ece)`()` | Gets the value of OverflowAction_Optional, regardless of it having been set.
 `public inline const ERHAPI_TeamOverflowAction & `[`GetOverflowAction`](#structFRHAPI__SessionPlayerUpdateRequest_1add074c72686cfede59af894b6c6ac96e)`() const` | Gets the value of OverflowAction_Optional, regardless of it having been set.
@@ -55,7 +58,8 @@ A request body to update information about a player in a session.
 `public inline bool `[`GetOverflowAction`](#structFRHAPI__SessionPlayerUpdateRequest_1afb021030411f4c9b1d3d3bfb65a44892)`(ERHAPI_TeamOverflowAction & OutValue) const` | Fills OutValue with the value of OverflowAction_Optional and returns true if it has been set, otherwise returns false.
 `public inline ERHAPI_TeamOverflowAction * `[`GetOverflowActionOrNull`](#structFRHAPI__SessionPlayerUpdateRequest_1a621e63c898c45feb3393e90d30d5e7c0)`()` | Returns a pointer to OverflowAction_Optional, if it has been set, otherwise returns nullptr.
 `public inline const ERHAPI_TeamOverflowAction * `[`GetOverflowActionOrNull`](#structFRHAPI__SessionPlayerUpdateRequest_1a51193f8bd28c91ee1abbe002f7a63841)`() const` | Returns a pointer to OverflowAction_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetOverflowAction`](#structFRHAPI__SessionPlayerUpdateRequest_1a2dd0c3ba91633a87d6dd757308b78de1)`(ERHAPI_TeamOverflowAction NewValue)` | Sets the value of OverflowAction_Optional and also sets OverflowAction_IsSet to true.
+`public inline void `[`SetOverflowAction`](#structFRHAPI__SessionPlayerUpdateRequest_1ab3970b7e11accab5816b652190cf712f)`(const ERHAPI_TeamOverflowAction & NewValue)` | Sets the value of OverflowAction_Optional and also sets OverflowAction_IsSet to true.
+`public inline void `[`SetOverflowAction`](#structFRHAPI__SessionPlayerUpdateRequest_1ad39b069c4f8598ffd1bcd06c344e2cee)`(ERHAPI_TeamOverflowAction && NewValue)` | Sets the value of OverflowAction_Optional and also sets OverflowAction_IsSet to true using move semantics.
 `public inline void `[`ClearOverflowAction`](#structFRHAPI__SessionPlayerUpdateRequest_1a99c41fad98394fd5ee4d5a01a480de16)`()` | Clears the value of OverflowAction_Optional and sets OverflowAction_IsSet to false.
 
 ### Members
@@ -129,9 +133,13 @@ Returns a pointer to Status_Optional, if it has been set, otherwise returns null
 
 Returns a pointer to Status_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetStatus`](#structFRHAPI__SessionPlayerUpdateRequest_1af541180816bd2c7271e0daab51d8d5b3)`(ERHAPI_SessionPlayerStatus NewValue)` <a id="structFRHAPI__SessionPlayerUpdateRequest_1af541180816bd2c7271e0daab51d8d5b3"></a>
+#### `public inline void `[`SetStatus`](#structFRHAPI__SessionPlayerUpdateRequest_1a6fd100a81bc4cd7c3f83abe5364edefe)`(const ERHAPI_SessionPlayerStatus & NewValue)` <a id="structFRHAPI__SessionPlayerUpdateRequest_1a6fd100a81bc4cd7c3f83abe5364edefe"></a>
 
 Sets the value of Status_Optional and also sets Status_IsSet to true.
+
+#### `public inline void `[`SetStatus`](#structFRHAPI__SessionPlayerUpdateRequest_1a816b87e015243da632ef61eec6ffc31a)`(ERHAPI_SessionPlayerStatus && NewValue)` <a id="structFRHAPI__SessionPlayerUpdateRequest_1a816b87e015243da632ef61eec6ffc31a"></a>
+
+Sets the value of Status_Optional and also sets Status_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearStatus`](#structFRHAPI__SessionPlayerUpdateRequest_1a2905381b74dd71938e896ad9059c01ea)`()` <a id="structFRHAPI__SessionPlayerUpdateRequest_1a2905381b74dd71938e896ad9059c01ea"></a>
 
@@ -145,9 +153,13 @@ Gets the value of TeamId.
 
 Gets the value of TeamId.
 
-#### `public inline void `[`SetTeamId`](#structFRHAPI__SessionPlayerUpdateRequest_1a33b9433646403e228f4afb04e4eff6ff)`(int32 NewValue)` <a id="structFRHAPI__SessionPlayerUpdateRequest_1a33b9433646403e228f4afb04e4eff6ff"></a>
+#### `public inline void `[`SetTeamId`](#structFRHAPI__SessionPlayerUpdateRequest_1adc7b42f6fe4b84ecf34f130f15bd2b5e)`(const int32 & NewValue)` <a id="structFRHAPI__SessionPlayerUpdateRequest_1adc7b42f6fe4b84ecf34f130f15bd2b5e"></a>
 
 Sets the value of TeamId.
+
+#### `public inline void `[`SetTeamId`](#structFRHAPI__SessionPlayerUpdateRequest_1af06239eaf8d674ba7a6e6a5c388740a8)`(int32 && NewValue)` <a id="structFRHAPI__SessionPlayerUpdateRequest_1af06239eaf8d674ba7a6e6a5c388740a8"></a>
+
+Sets the value of TeamId using move semantics.
 
 #### `public inline bool `[`IsTeamIdDefaultValue`](#structFRHAPI__SessionPlayerUpdateRequest_1a00cd4d137a38bad4d7cedb426c9618ea)`() const` <a id="structFRHAPI__SessionPlayerUpdateRequest_1a00cd4d137a38bad4d7cedb426c9618ea"></a>
 
@@ -181,9 +193,13 @@ Returns a pointer to CustomData_Optional, if it has been set, otherwise returns 
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__SessionPlayerUpdateRequest_1a17ffb5766ae78cf4899c253af52c44cc)`(TMap< FString, FString > NewValue)` <a id="structFRHAPI__SessionPlayerUpdateRequest_1a17ffb5766ae78cf4899c253af52c44cc"></a>
+#### `public inline void `[`SetCustomData`](#structFRHAPI__SessionPlayerUpdateRequest_1a7a8633b9557cf02cdc6fd70d9ccb09b1)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__SessionPlayerUpdateRequest_1a7a8633b9557cf02cdc6fd70d9ccb09b1"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+
+#### `public inline void `[`SetCustomData`](#structFRHAPI__SessionPlayerUpdateRequest_1a8bbcecb05fcb7c07bc51080f5bbd6624)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__SessionPlayerUpdateRequest_1a8bbcecb05fcb7c07bc51080f5bbd6624"></a>
+
+Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearCustomData`](#structFRHAPI__SessionPlayerUpdateRequest_1a90415b775835034b0bb2f6e8e7f98426)`()` <a id="structFRHAPI__SessionPlayerUpdateRequest_1a90415b775835034b0bb2f6e8e7f98426"></a>
 
@@ -213,9 +229,13 @@ Returns a pointer to OverflowAction_Optional, if it has been set, otherwise retu
 
 Returns a pointer to OverflowAction_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetOverflowAction`](#structFRHAPI__SessionPlayerUpdateRequest_1a2dd0c3ba91633a87d6dd757308b78de1)`(ERHAPI_TeamOverflowAction NewValue)` <a id="structFRHAPI__SessionPlayerUpdateRequest_1a2dd0c3ba91633a87d6dd757308b78de1"></a>
+#### `public inline void `[`SetOverflowAction`](#structFRHAPI__SessionPlayerUpdateRequest_1ab3970b7e11accab5816b652190cf712f)`(const ERHAPI_TeamOverflowAction & NewValue)` <a id="structFRHAPI__SessionPlayerUpdateRequest_1ab3970b7e11accab5816b652190cf712f"></a>
 
 Sets the value of OverflowAction_Optional and also sets OverflowAction_IsSet to true.
+
+#### `public inline void `[`SetOverflowAction`](#structFRHAPI__SessionPlayerUpdateRequest_1ad39b069c4f8598ffd1bcd06c344e2cee)`(ERHAPI_TeamOverflowAction && NewValue)` <a id="structFRHAPI__SessionPlayerUpdateRequest_1ad39b069c4f8598ffd1bcd06c344e2cee"></a>
+
+Sets the value of OverflowAction_Optional and also sets OverflowAction_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearOverflowAction`](#structFRHAPI__SessionPlayerUpdateRequest_1a99c41fad98394fd5ee4d5a01a480de16)`()` <a id="structFRHAPI__SessionPlayerUpdateRequest_1a99c41fad98394fd5ee4d5a01a480de16"></a>
 

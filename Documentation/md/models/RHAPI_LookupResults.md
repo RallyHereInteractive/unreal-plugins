@@ -33,7 +33,8 @@ Lookup results for a player query.
 `public inline bool `[`GetDisplayNames`](#structFRHAPI__LookupResults_1a837bb8420ea712949908e7eebfeede65)`(TArray< TMap< FString, TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` >>> & OutValue) const` | Fills OutValue with the value of DisplayNames_Optional and returns true if it has been set, otherwise returns false.
 `public inline TArray< TMap< FString, TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > > > * `[`GetDisplayNamesOrNull`](#structFRHAPI__LookupResults_1a16c6face42908516dbde7bb33af14ad4)`()` | Returns a pointer to DisplayNames_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TArray< TMap< FString, TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > > > * `[`GetDisplayNamesOrNull`](#structFRHAPI__LookupResults_1a96610b089e26e13d568b575368dfe737)`() const` | Returns a pointer to DisplayNames_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetDisplayNames`](#structFRHAPI__LookupResults_1a6460bc29bfc3ccd660283462e60e1099)`(TArray< TMap< FString, TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` >>> NewValue)` | Sets the value of DisplayNames_Optional and also sets DisplayNames_IsSet to true.
+`public inline void `[`SetDisplayNames`](#structFRHAPI__LookupResults_1a77168fc0a12a9cb0a49ba43c51c4064c)`(const TArray< TMap< FString, TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` >>> & NewValue)` | Sets the value of DisplayNames_Optional and also sets DisplayNames_IsSet to true.
+`public inline void `[`SetDisplayNames`](#structFRHAPI__LookupResults_1a317e2cd82ab8e820bd8c1eed16673f74)`(TArray< TMap< FString, TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` >>> && NewValue)` | Sets the value of DisplayNames_Optional and also sets DisplayNames_IsSet to true using move semantics.
 `public inline void `[`ClearDisplayNames`](#structFRHAPI__LookupResults_1aeec72e245eb415cb70601a086fe7c854)`()` | Clears the value of DisplayNames_Optional and sets DisplayNames_IsSet to false.
 `public inline TMap< FString, TArray< `[`FRHAPI_PlatformIdentityLookupResults`](RHAPI_PlatformIdentityLookupResults.md#structFRHAPI__PlatformIdentityLookupResults)` > > & `[`GetIdentityPlatforms`](#structFRHAPI__LookupResults_1a692d445f337bba6baf76f8aedfe3a290)`()` | Gets the value of IdentityPlatforms_Optional, regardless of it having been set.
 `public inline const TMap< FString, TArray< `[`FRHAPI_PlatformIdentityLookupResults`](RHAPI_PlatformIdentityLookupResults.md#structFRHAPI__PlatformIdentityLookupResults)` > > & `[`GetIdentityPlatforms`](#structFRHAPI__LookupResults_1a83b50f1fa62f967258d9b6dfaffc84eb)`() const` | Gets the value of IdentityPlatforms_Optional, regardless of it having been set.
@@ -41,7 +42,8 @@ Lookup results for a player query.
 `public inline bool `[`GetIdentityPlatforms`](#structFRHAPI__LookupResults_1add656e8cc4e8a8f7d8e8db602f9e35d6)`(TMap< FString, TArray< `[`FRHAPI_PlatformIdentityLookupResults`](RHAPI_PlatformIdentityLookupResults.md#structFRHAPI__PlatformIdentityLookupResults)` >> & OutValue) const` | Fills OutValue with the value of IdentityPlatforms_Optional and returns true if it has been set, otherwise returns false.
 `public inline TMap< FString, TArray< `[`FRHAPI_PlatformIdentityLookupResults`](RHAPI_PlatformIdentityLookupResults.md#structFRHAPI__PlatformIdentityLookupResults)` > > * `[`GetIdentityPlatformsOrNull`](#structFRHAPI__LookupResults_1ae670b2adf832a4afd8cc9859dcff7a10)`()` | Returns a pointer to IdentityPlatforms_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TMap< FString, TArray< `[`FRHAPI_PlatformIdentityLookupResults`](RHAPI_PlatformIdentityLookupResults.md#structFRHAPI__PlatformIdentityLookupResults)` > > * `[`GetIdentityPlatformsOrNull`](#structFRHAPI__LookupResults_1a57078bff20eb941ced0a180b744fa94a)`() const` | Returns a pointer to IdentityPlatforms_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetIdentityPlatforms`](#structFRHAPI__LookupResults_1a78f1e8592bfe33c0fff3d9f282a8cb31)`(TMap< FString, TArray< `[`FRHAPI_PlatformIdentityLookupResults`](RHAPI_PlatformIdentityLookupResults.md#structFRHAPI__PlatformIdentityLookupResults)` >> NewValue)` | Sets the value of IdentityPlatforms_Optional and also sets IdentityPlatforms_IsSet to true.
+`public inline void `[`SetIdentityPlatforms`](#structFRHAPI__LookupResults_1abc6fb5105e221619e1f7ee56616588c6)`(const TMap< FString, TArray< `[`FRHAPI_PlatformIdentityLookupResults`](RHAPI_PlatformIdentityLookupResults.md#structFRHAPI__PlatformIdentityLookupResults)` >> & NewValue)` | Sets the value of IdentityPlatforms_Optional and also sets IdentityPlatforms_IsSet to true.
+`public inline void `[`SetIdentityPlatforms`](#structFRHAPI__LookupResults_1a28845552d59b4934ac92a7dc9a6cb3e7)`(TMap< FString, TArray< `[`FRHAPI_PlatformIdentityLookupResults`](RHAPI_PlatformIdentityLookupResults.md#structFRHAPI__PlatformIdentityLookupResults)` >> && NewValue)` | Sets the value of IdentityPlatforms_Optional and also sets IdentityPlatforms_IsSet to true using move semantics.
 `public inline void `[`ClearIdentityPlatforms`](#structFRHAPI__LookupResults_1af11a22a343f43d035ceb4bc0e48ae3ed)`()` | Clears the value of IdentityPlatforms_Optional and sets IdentityPlatforms_IsSet to false.
 `public inline TMap< FString, TArray< `[`FRHAPI_PlatformIdentityLookupResults`](RHAPI_PlatformIdentityLookupResults.md#structFRHAPI__PlatformIdentityLookupResults)` > > & `[`GetIdentityPlatformsByPlatform`](#structFRHAPI__LookupResults_1a2daecfd02a8952b011172997eb28bce4)`()` | Gets the value of IdentityPlatformsByPlatform_Optional, regardless of it having been set.
 `public inline const TMap< FString, TArray< `[`FRHAPI_PlatformIdentityLookupResults`](RHAPI_PlatformIdentityLookupResults.md#structFRHAPI__PlatformIdentityLookupResults)` > > & `[`GetIdentityPlatformsByPlatform`](#structFRHAPI__LookupResults_1ada78797f64d870728f6cb9348271d85b)`() const` | Gets the value of IdentityPlatformsByPlatform_Optional, regardless of it having been set.
@@ -49,7 +51,8 @@ Lookup results for a player query.
 `public inline bool `[`GetIdentityPlatformsByPlatform`](#structFRHAPI__LookupResults_1abf4538232a31004a9c984f0f7e643f45)`(TMap< FString, TArray< `[`FRHAPI_PlatformIdentityLookupResults`](RHAPI_PlatformIdentityLookupResults.md#structFRHAPI__PlatformIdentityLookupResults)` >> & OutValue) const` | Fills OutValue with the value of IdentityPlatformsByPlatform_Optional and returns true if it has been set, otherwise returns false.
 `public inline TMap< FString, TArray< `[`FRHAPI_PlatformIdentityLookupResults`](RHAPI_PlatformIdentityLookupResults.md#structFRHAPI__PlatformIdentityLookupResults)` > > * `[`GetIdentityPlatformsByPlatformOrNull`](#structFRHAPI__LookupResults_1a22a3e2b00f5c8f1c831d34830a812b9b)`()` | Returns a pointer to IdentityPlatformsByPlatform_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TMap< FString, TArray< `[`FRHAPI_PlatformIdentityLookupResults`](RHAPI_PlatformIdentityLookupResults.md#structFRHAPI__PlatformIdentityLookupResults)` > > * `[`GetIdentityPlatformsByPlatformOrNull`](#structFRHAPI__LookupResults_1a5d41c4ace1c4c955a0555ced609d4797)`() const` | Returns a pointer to IdentityPlatformsByPlatform_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetIdentityPlatformsByPlatform`](#structFRHAPI__LookupResults_1a2640d5921ef0f91c9ef47f263c247236)`(TMap< FString, TArray< `[`FRHAPI_PlatformIdentityLookupResults`](RHAPI_PlatformIdentityLookupResults.md#structFRHAPI__PlatformIdentityLookupResults)` >> NewValue)` | Sets the value of IdentityPlatformsByPlatform_Optional and also sets IdentityPlatformsByPlatform_IsSet to true.
+`public inline void `[`SetIdentityPlatformsByPlatform`](#structFRHAPI__LookupResults_1ac52e9413420a4650483690a8ba26223c)`(const TMap< FString, TArray< `[`FRHAPI_PlatformIdentityLookupResults`](RHAPI_PlatformIdentityLookupResults.md#structFRHAPI__PlatformIdentityLookupResults)` >> & NewValue)` | Sets the value of IdentityPlatformsByPlatform_Optional and also sets IdentityPlatformsByPlatform_IsSet to true.
+`public inline void `[`SetIdentityPlatformsByPlatform`](#structFRHAPI__LookupResults_1ad3c43d842667c8c32db7085c285ebd9f)`(TMap< FString, TArray< `[`FRHAPI_PlatformIdentityLookupResults`](RHAPI_PlatformIdentityLookupResults.md#structFRHAPI__PlatformIdentityLookupResults)` >> && NewValue)` | Sets the value of IdentityPlatformsByPlatform_Optional and also sets IdentityPlatformsByPlatform_IsSet to true using move semantics.
 `public inline void `[`ClearIdentityPlatformsByPlatform`](#structFRHAPI__LookupResults_1a519fd549d39056274491c78a5a4bb929)`()` | Clears the value of IdentityPlatformsByPlatform_Optional and sets IdentityPlatformsByPlatform_IsSet to false.
 
 ### Members
@@ -119,9 +122,13 @@ Returns a pointer to DisplayNames_Optional, if it has been set, otherwise return
 
 Returns a pointer to DisplayNames_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetDisplayNames`](#structFRHAPI__LookupResults_1a6460bc29bfc3ccd660283462e60e1099)`(TArray< TMap< FString, TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` >>> NewValue)` <a id="structFRHAPI__LookupResults_1a6460bc29bfc3ccd660283462e60e1099"></a>
+#### `public inline void `[`SetDisplayNames`](#structFRHAPI__LookupResults_1a77168fc0a12a9cb0a49ba43c51c4064c)`(const TArray< TMap< FString, TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` >>> & NewValue)` <a id="structFRHAPI__LookupResults_1a77168fc0a12a9cb0a49ba43c51c4064c"></a>
 
 Sets the value of DisplayNames_Optional and also sets DisplayNames_IsSet to true.
+
+#### `public inline void `[`SetDisplayNames`](#structFRHAPI__LookupResults_1a317e2cd82ab8e820bd8c1eed16673f74)`(TArray< TMap< FString, TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` >>> && NewValue)` <a id="structFRHAPI__LookupResults_1a317e2cd82ab8e820bd8c1eed16673f74"></a>
+
+Sets the value of DisplayNames_Optional and also sets DisplayNames_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearDisplayNames`](#structFRHAPI__LookupResults_1aeec72e245eb415cb70601a086fe7c854)`()` <a id="structFRHAPI__LookupResults_1aeec72e245eb415cb70601a086fe7c854"></a>
 
@@ -151,9 +158,13 @@ Returns a pointer to IdentityPlatforms_Optional, if it has been set, otherwise r
 
 Returns a pointer to IdentityPlatforms_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetIdentityPlatforms`](#structFRHAPI__LookupResults_1a78f1e8592bfe33c0fff3d9f282a8cb31)`(TMap< FString, TArray< `[`FRHAPI_PlatformIdentityLookupResults`](RHAPI_PlatformIdentityLookupResults.md#structFRHAPI__PlatformIdentityLookupResults)` >> NewValue)` <a id="structFRHAPI__LookupResults_1a78f1e8592bfe33c0fff3d9f282a8cb31"></a>
+#### `public inline void `[`SetIdentityPlatforms`](#structFRHAPI__LookupResults_1abc6fb5105e221619e1f7ee56616588c6)`(const TMap< FString, TArray< `[`FRHAPI_PlatformIdentityLookupResults`](RHAPI_PlatformIdentityLookupResults.md#structFRHAPI__PlatformIdentityLookupResults)` >> & NewValue)` <a id="structFRHAPI__LookupResults_1abc6fb5105e221619e1f7ee56616588c6"></a>
 
 Sets the value of IdentityPlatforms_Optional and also sets IdentityPlatforms_IsSet to true.
+
+#### `public inline void `[`SetIdentityPlatforms`](#structFRHAPI__LookupResults_1a28845552d59b4934ac92a7dc9a6cb3e7)`(TMap< FString, TArray< `[`FRHAPI_PlatformIdentityLookupResults`](RHAPI_PlatformIdentityLookupResults.md#structFRHAPI__PlatformIdentityLookupResults)` >> && NewValue)` <a id="structFRHAPI__LookupResults_1a28845552d59b4934ac92a7dc9a6cb3e7"></a>
+
+Sets the value of IdentityPlatforms_Optional and also sets IdentityPlatforms_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearIdentityPlatforms`](#structFRHAPI__LookupResults_1af11a22a343f43d035ceb4bc0e48ae3ed)`()` <a id="structFRHAPI__LookupResults_1af11a22a343f43d035ceb4bc0e48ae3ed"></a>
 
@@ -183,9 +194,13 @@ Returns a pointer to IdentityPlatformsByPlatform_Optional, if it has been set, o
 
 Returns a pointer to IdentityPlatformsByPlatform_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetIdentityPlatformsByPlatform`](#structFRHAPI__LookupResults_1a2640d5921ef0f91c9ef47f263c247236)`(TMap< FString, TArray< `[`FRHAPI_PlatformIdentityLookupResults`](RHAPI_PlatformIdentityLookupResults.md#structFRHAPI__PlatformIdentityLookupResults)` >> NewValue)` <a id="structFRHAPI__LookupResults_1a2640d5921ef0f91c9ef47f263c247236"></a>
+#### `public inline void `[`SetIdentityPlatformsByPlatform`](#structFRHAPI__LookupResults_1ac52e9413420a4650483690a8ba26223c)`(const TMap< FString, TArray< `[`FRHAPI_PlatformIdentityLookupResults`](RHAPI_PlatformIdentityLookupResults.md#structFRHAPI__PlatformIdentityLookupResults)` >> & NewValue)` <a id="structFRHAPI__LookupResults_1ac52e9413420a4650483690a8ba26223c"></a>
 
 Sets the value of IdentityPlatformsByPlatform_Optional and also sets IdentityPlatformsByPlatform_IsSet to true.
+
+#### `public inline void `[`SetIdentityPlatformsByPlatform`](#structFRHAPI__LookupResults_1ad3c43d842667c8c32db7085c285ebd9f)`(TMap< FString, TArray< `[`FRHAPI_PlatformIdentityLookupResults`](RHAPI_PlatformIdentityLookupResults.md#structFRHAPI__PlatformIdentityLookupResults)` >> && NewValue)` <a id="structFRHAPI__LookupResults_1ad3c43d842667c8c32db7085c285ebd9f"></a>
+
+Sets the value of IdentityPlatformsByPlatform_Optional and also sets IdentityPlatformsByPlatform_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearIdentityPlatformsByPlatform`](#structFRHAPI__LookupResults_1a519fd549d39056274491c78a5a4bb929)`()` <a id="structFRHAPI__LookupResults_1a519fd549d39056274491c78a5a4bb929"></a>
 

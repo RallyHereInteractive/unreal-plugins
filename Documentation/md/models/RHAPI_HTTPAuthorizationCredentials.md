@@ -25,10 +25,12 @@ The HTTP authorization credentials in the result of using &#x60;HTTPBearer&#x60;
 `public virtual void `[`WriteJson`](#structFRHAPI__HTTPAuthorizationCredentials_1ad814e7f5c9b7c7505d59b18f54b99ece)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetScheme`](#structFRHAPI__HTTPAuthorizationCredentials_1a8c832e41d86eee1857be7993008fa3df)`()` | Gets the value of Scheme.
 `public inline const FString & `[`GetScheme`](#structFRHAPI__HTTPAuthorizationCredentials_1a2ef520df7b23c50027ae5f3ff1df99a0)`() const` | Gets the value of Scheme.
-`public inline void `[`SetScheme`](#structFRHAPI__HTTPAuthorizationCredentials_1a43bfb08250e1a4ecb08b1646838c878f)`(FString NewValue)` | Sets the value of Scheme.
+`public inline void `[`SetScheme`](#structFRHAPI__HTTPAuthorizationCredentials_1a8c0a3d04be10db5da86367505bbbf970)`(const FString & NewValue)` | Sets the value of Scheme.
+`public inline void `[`SetScheme`](#structFRHAPI__HTTPAuthorizationCredentials_1aba105b2bf51e54d7899d6edf1b2853fe)`(FString && NewValue)` | Sets the value of Scheme using move semantics.
 `public inline FString & `[`GetCredentials`](#structFRHAPI__HTTPAuthorizationCredentials_1a725ad2d9e76604f96c85913795913e7e)`()` | Gets the value of Credentials.
 `public inline const FString & `[`GetCredentials`](#structFRHAPI__HTTPAuthorizationCredentials_1ac795cbc746ac22fa346ad9ff628f80a6)`() const` | Gets the value of Credentials.
-`public inline void `[`SetCredentials`](#structFRHAPI__HTTPAuthorizationCredentials_1adce62c37cb9006909642c84a056f9d10)`(FString NewValue)` | Sets the value of Credentials.
+`public inline void `[`SetCredentials`](#structFRHAPI__HTTPAuthorizationCredentials_1afa5fd09822635a0021a9ab7337fb6c48)`(const FString & NewValue)` | Sets the value of Credentials.
+`public inline void `[`SetCredentials`](#structFRHAPI__HTTPAuthorizationCredentials_1a51d2ea86d51baa1bead42a657c927f25)`(FString && NewValue)` | Sets the value of Credentials using move semantics.
 
 ### Members
 
@@ -61,9 +63,13 @@ Gets the value of Scheme.
 
 Gets the value of Scheme.
 
-#### `public inline void `[`SetScheme`](#structFRHAPI__HTTPAuthorizationCredentials_1a43bfb08250e1a4ecb08b1646838c878f)`(FString NewValue)` <a id="structFRHAPI__HTTPAuthorizationCredentials_1a43bfb08250e1a4ecb08b1646838c878f"></a>
+#### `public inline void `[`SetScheme`](#structFRHAPI__HTTPAuthorizationCredentials_1a8c0a3d04be10db5da86367505bbbf970)`(const FString & NewValue)` <a id="structFRHAPI__HTTPAuthorizationCredentials_1a8c0a3d04be10db5da86367505bbbf970"></a>
 
 Sets the value of Scheme.
+
+#### `public inline void `[`SetScheme`](#structFRHAPI__HTTPAuthorizationCredentials_1aba105b2bf51e54d7899d6edf1b2853fe)`(FString && NewValue)` <a id="structFRHAPI__HTTPAuthorizationCredentials_1aba105b2bf51e54d7899d6edf1b2853fe"></a>
+
+Sets the value of Scheme using move semantics.
 
 #### `public inline FString & `[`GetCredentials`](#structFRHAPI__HTTPAuthorizationCredentials_1a725ad2d9e76604f96c85913795913e7e)`()` <a id="structFRHAPI__HTTPAuthorizationCredentials_1a725ad2d9e76604f96c85913795913e7e"></a>
 
@@ -73,7 +79,11 @@ Gets the value of Credentials.
 
 Gets the value of Credentials.
 
-#### `public inline void `[`SetCredentials`](#structFRHAPI__HTTPAuthorizationCredentials_1adce62c37cb9006909642c84a056f9d10)`(FString NewValue)` <a id="structFRHAPI__HTTPAuthorizationCredentials_1adce62c37cb9006909642c84a056f9d10"></a>
+#### `public inline void `[`SetCredentials`](#structFRHAPI__HTTPAuthorizationCredentials_1afa5fd09822635a0021a9ab7337fb6c48)`(const FString & NewValue)` <a id="structFRHAPI__HTTPAuthorizationCredentials_1afa5fd09822635a0021a9ab7337fb6c48"></a>
 
 Sets the value of Credentials.
+
+#### `public inline void `[`SetCredentials`](#structFRHAPI__HTTPAuthorizationCredentials_1a51d2ea86d51baa1bead42a657c927f25)`(FString && NewValue)` <a id="structFRHAPI__HTTPAuthorizationCredentials_1a51d2ea86d51baa1bead42a657c927f25"></a>
+
+Sets the value of Credentials using move semantics.
 

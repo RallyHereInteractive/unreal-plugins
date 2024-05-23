@@ -24,7 +24,8 @@ Response to successfully requesting all of a player&#39;s ranks.
 `public virtual void `[`WriteJson`](#structFRHAPI__PlayerRankRequestResponseV2_1a038b46467170246424f5a188361d7cf1)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TArray< `[`FRHAPI_PlayerRankResponseV2`](RHAPI_PlayerRankResponseV2.md#structFRHAPI__PlayerRankResponseV2)` > & `[`GetPlayerRanks`](#structFRHAPI__PlayerRankRequestResponseV2_1a4b0f64f6adb6b32e30d012eea8623b54)`()` | Gets the value of PlayerRanks.
 `public inline const TArray< `[`FRHAPI_PlayerRankResponseV2`](RHAPI_PlayerRankResponseV2.md#structFRHAPI__PlayerRankResponseV2)` > & `[`GetPlayerRanks`](#structFRHAPI__PlayerRankRequestResponseV2_1ab5ce87761c241ccefaf1c5fe1ac0db82)`() const` | Gets the value of PlayerRanks.
-`public inline void `[`SetPlayerRanks`](#structFRHAPI__PlayerRankRequestResponseV2_1acdf16df8acc6e2f1341971ea6d2c2fa5)`(TArray< `[`FRHAPI_PlayerRankResponseV2`](RHAPI_PlayerRankResponseV2.md#structFRHAPI__PlayerRankResponseV2)` > NewValue)` | Sets the value of PlayerRanks.
+`public inline void `[`SetPlayerRanks`](#structFRHAPI__PlayerRankRequestResponseV2_1a16f78c370749d8c866955f5dece8254a)`(const TArray< `[`FRHAPI_PlayerRankResponseV2`](RHAPI_PlayerRankResponseV2.md#structFRHAPI__PlayerRankResponseV2)` > & NewValue)` | Sets the value of PlayerRanks.
+`public inline void `[`SetPlayerRanks`](#structFRHAPI__PlayerRankRequestResponseV2_1af221419bf3e57173ac1fc136b0c63a6a)`(TArray< `[`FRHAPI_PlayerRankResponseV2`](RHAPI_PlayerRankResponseV2.md#structFRHAPI__PlayerRankResponseV2)` > && NewValue)` | Sets the value of PlayerRanks using move semantics.
 
 ### Members
 
@@ -57,7 +58,11 @@ Gets the value of PlayerRanks.
 
 Gets the value of PlayerRanks.
 
-#### `public inline void `[`SetPlayerRanks`](#structFRHAPI__PlayerRankRequestResponseV2_1acdf16df8acc6e2f1341971ea6d2c2fa5)`(TArray< `[`FRHAPI_PlayerRankResponseV2`](RHAPI_PlayerRankResponseV2.md#structFRHAPI__PlayerRankResponseV2)` > NewValue)` <a id="structFRHAPI__PlayerRankRequestResponseV2_1acdf16df8acc6e2f1341971ea6d2c2fa5"></a>
+#### `public inline void `[`SetPlayerRanks`](#structFRHAPI__PlayerRankRequestResponseV2_1a16f78c370749d8c866955f5dece8254a)`(const TArray< `[`FRHAPI_PlayerRankResponseV2`](RHAPI_PlayerRankResponseV2.md#structFRHAPI__PlayerRankResponseV2)` > & NewValue)` <a id="structFRHAPI__PlayerRankRequestResponseV2_1a16f78c370749d8c866955f5dece8254a"></a>
 
 Sets the value of PlayerRanks.
+
+#### `public inline void `[`SetPlayerRanks`](#structFRHAPI__PlayerRankRequestResponseV2_1af221419bf3e57173ac1fc136b0c63a6a)`(TArray< `[`FRHAPI_PlayerRankResponseV2`](RHAPI_PlayerRankResponseV2.md#structFRHAPI__PlayerRankResponseV2)` > && NewValue)` <a id="structFRHAPI__PlayerRankRequestResponseV2_1af221419bf3e57173ac1fc136b0c63a6a"></a>
+
+Sets the value of PlayerRanks using move semantics.
 

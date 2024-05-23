@@ -26,14 +26,16 @@ struct FRHAPI_UpdateBackfillRequest
 `public virtual void `[`WriteJson`](#structFRHAPI__UpdateBackfillRequest_1ab5e7560a8a7b9102cae06b58d9aae50e)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetInstanceId`](#structFRHAPI__UpdateBackfillRequest_1a61f1f26aa48faa039a779543c7f630b8)`()` | Gets the value of InstanceId.
 `public inline const FString & `[`GetInstanceId`](#structFRHAPI__UpdateBackfillRequest_1a3dbfdbe0ef551031df2c74a323d13d2d)`() const` | Gets the value of InstanceId.
-`public inline void `[`SetInstanceId`](#structFRHAPI__UpdateBackfillRequest_1adce72461de6ef153361376d5ab41b201)`(FString NewValue)` | Sets the value of InstanceId.
+`public inline void `[`SetInstanceId`](#structFRHAPI__UpdateBackfillRequest_1a10a4b8eeb324c2c1f2d2b59f2c048f9f)`(const FString & NewValue)` | Sets the value of InstanceId.
+`public inline void `[`SetInstanceId`](#structFRHAPI__UpdateBackfillRequest_1a79f190409c36825e1a86413635f94a74)`(FString && NewValue)` | Sets the value of InstanceId using move semantics.
 `public inline `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & `[`GetAdditionalJoinParams`](#structFRHAPI__UpdateBackfillRequest_1a5d539b1d5ccc559f654522982d88c25f)`()` | Gets the value of AdditionalJoinParams_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & `[`GetAdditionalJoinParams`](#structFRHAPI__UpdateBackfillRequest_1a5578394f77774e81b5023a342a37b91d)`() const` | Gets the value of AdditionalJoinParams_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & `[`GetAdditionalJoinParams`](#structFRHAPI__UpdateBackfillRequest_1ace366e8a91bcb62dca94a5df74166a19)`(const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & DefaultValue) const` | Gets the value of AdditionalJoinParams_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetAdditionalJoinParams`](#structFRHAPI__UpdateBackfillRequest_1a54d99e91ca2522129b6f447ae9e85384)`(`[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & OutValue) const` | Fills OutValue with the value of AdditionalJoinParams_Optional and returns true if it has been set, otherwise returns false.
 `public inline `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` * `[`GetAdditionalJoinParamsOrNull`](#structFRHAPI__UpdateBackfillRequest_1af432acd32e0f20a862ce4606aead702a)`()` | Returns a pointer to AdditionalJoinParams_Optional, if it has been set, otherwise returns nullptr.
 `public inline const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` * `[`GetAdditionalJoinParamsOrNull`](#structFRHAPI__UpdateBackfillRequest_1a8b5829488df46a8981057f8a09ac9499)`() const` | Returns a pointer to AdditionalJoinParams_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetAdditionalJoinParams`](#structFRHAPI__UpdateBackfillRequest_1acbb75739dd4240b7ee8ab45e1f5c0583)`(`[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` NewValue)` | Sets the value of AdditionalJoinParams_Optional and also sets AdditionalJoinParams_IsSet to true.
+`public inline void `[`SetAdditionalJoinParams`](#structFRHAPI__UpdateBackfillRequest_1a0d0936734139d4b7c4a30e9aa3102338)`(const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & NewValue)` | Sets the value of AdditionalJoinParams_Optional and also sets AdditionalJoinParams_IsSet to true.
+`public inline void `[`SetAdditionalJoinParams`](#structFRHAPI__UpdateBackfillRequest_1a8a3dfcbf1384443b3495817d09b058bd)`(`[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` && NewValue)` | Sets the value of AdditionalJoinParams_Optional and also sets AdditionalJoinParams_IsSet to true using move semantics.
 `public inline void `[`ClearAdditionalJoinParams`](#structFRHAPI__UpdateBackfillRequest_1ada5b36edf78e65ce6bf9b9fe73d3aa6e)`()` | Clears the value of AdditionalJoinParams_Optional and sets AdditionalJoinParams_IsSet to false.
 `public inline TArray< `[`FRHAPI_BackfillTeam`](RHAPI_BackfillTeam.md#structFRHAPI__BackfillTeam)` > & `[`GetTeams`](#structFRHAPI__UpdateBackfillRequest_1a4589d12bdf628f45cfdf7eade6923997)`()` | Gets the value of Teams_Optional, regardless of it having been set.
 `public inline const TArray< `[`FRHAPI_BackfillTeam`](RHAPI_BackfillTeam.md#structFRHAPI__BackfillTeam)` > & `[`GetTeams`](#structFRHAPI__UpdateBackfillRequest_1aa69a5a74491f38db3ab36f254c9aff51)`() const` | Gets the value of Teams_Optional, regardless of it having been set.
@@ -41,7 +43,8 @@ struct FRHAPI_UpdateBackfillRequest
 `public inline bool `[`GetTeams`](#structFRHAPI__UpdateBackfillRequest_1af5c4a2cb761f4c69f676cf3b1ab9335a)`(TArray< `[`FRHAPI_BackfillTeam`](RHAPI_BackfillTeam.md#structFRHAPI__BackfillTeam)` > & OutValue) const` | Fills OutValue with the value of Teams_Optional and returns true if it has been set, otherwise returns false.
 `public inline TArray< `[`FRHAPI_BackfillTeam`](RHAPI_BackfillTeam.md#structFRHAPI__BackfillTeam)` > * `[`GetTeamsOrNull`](#structFRHAPI__UpdateBackfillRequest_1aad97c0f2bcb921a65988b16156cab602)`()` | Returns a pointer to Teams_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TArray< `[`FRHAPI_BackfillTeam`](RHAPI_BackfillTeam.md#structFRHAPI__BackfillTeam)` > * `[`GetTeamsOrNull`](#structFRHAPI__UpdateBackfillRequest_1a940797bad04cf8e2ac8f891f03acb14a)`() const` | Returns a pointer to Teams_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetTeams`](#structFRHAPI__UpdateBackfillRequest_1a40bcc5fb707434bb7e1f0d0dadcbf70e)`(TArray< `[`FRHAPI_BackfillTeam`](RHAPI_BackfillTeam.md#structFRHAPI__BackfillTeam)` > NewValue)` | Sets the value of Teams_Optional and also sets Teams_IsSet to true.
+`public inline void `[`SetTeams`](#structFRHAPI__UpdateBackfillRequest_1afca9fb3673d1ace5d161e3dd6ddac67c)`(const TArray< `[`FRHAPI_BackfillTeam`](RHAPI_BackfillTeam.md#structFRHAPI__BackfillTeam)` > & NewValue)` | Sets the value of Teams_Optional and also sets Teams_IsSet to true.
+`public inline void `[`SetTeams`](#structFRHAPI__UpdateBackfillRequest_1a0235e71cb6c9fdfefe20335715a61010)`(TArray< `[`FRHAPI_BackfillTeam`](RHAPI_BackfillTeam.md#structFRHAPI__BackfillTeam)` > && NewValue)` | Sets the value of Teams_Optional and also sets Teams_IsSet to true using move semantics.
 `public inline void `[`ClearTeams`](#structFRHAPI__UpdateBackfillRequest_1ab456151a06c9adfe1258778fbadaf412)`()` | Clears the value of Teams_Optional and sets Teams_IsSet to false.
 
 ### Members
@@ -91,9 +94,13 @@ Gets the value of InstanceId.
 
 Gets the value of InstanceId.
 
-#### `public inline void `[`SetInstanceId`](#structFRHAPI__UpdateBackfillRequest_1adce72461de6ef153361376d5ab41b201)`(FString NewValue)` <a id="structFRHAPI__UpdateBackfillRequest_1adce72461de6ef153361376d5ab41b201"></a>
+#### `public inline void `[`SetInstanceId`](#structFRHAPI__UpdateBackfillRequest_1a10a4b8eeb324c2c1f2d2b59f2c048f9f)`(const FString & NewValue)` <a id="structFRHAPI__UpdateBackfillRequest_1a10a4b8eeb324c2c1f2d2b59f2c048f9f"></a>
 
 Sets the value of InstanceId.
+
+#### `public inline void `[`SetInstanceId`](#structFRHAPI__UpdateBackfillRequest_1a79f190409c36825e1a86413635f94a74)`(FString && NewValue)` <a id="structFRHAPI__UpdateBackfillRequest_1a79f190409c36825e1a86413635f94a74"></a>
+
+Sets the value of InstanceId using move semantics.
 
 #### `public inline `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & `[`GetAdditionalJoinParams`](#structFRHAPI__UpdateBackfillRequest_1a5d539b1d5ccc559f654522982d88c25f)`()` <a id="structFRHAPI__UpdateBackfillRequest_1a5d539b1d5ccc559f654522982d88c25f"></a>
 
@@ -119,9 +126,13 @@ Returns a pointer to AdditionalJoinParams_Optional, if it has been set, otherwis
 
 Returns a pointer to AdditionalJoinParams_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetAdditionalJoinParams`](#structFRHAPI__UpdateBackfillRequest_1acbb75739dd4240b7ee8ab45e1f5c0583)`(`[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` NewValue)` <a id="structFRHAPI__UpdateBackfillRequest_1acbb75739dd4240b7ee8ab45e1f5c0583"></a>
+#### `public inline void `[`SetAdditionalJoinParams`](#structFRHAPI__UpdateBackfillRequest_1a0d0936734139d4b7c4a30e9aa3102338)`(const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & NewValue)` <a id="structFRHAPI__UpdateBackfillRequest_1a0d0936734139d4b7c4a30e9aa3102338"></a>
 
 Sets the value of AdditionalJoinParams_Optional and also sets AdditionalJoinParams_IsSet to true.
+
+#### `public inline void `[`SetAdditionalJoinParams`](#structFRHAPI__UpdateBackfillRequest_1a8a3dfcbf1384443b3495817d09b058bd)`(`[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` && NewValue)` <a id="structFRHAPI__UpdateBackfillRequest_1a8a3dfcbf1384443b3495817d09b058bd"></a>
+
+Sets the value of AdditionalJoinParams_Optional and also sets AdditionalJoinParams_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearAdditionalJoinParams`](#structFRHAPI__UpdateBackfillRequest_1ada5b36edf78e65ce6bf9b9fe73d3aa6e)`()` <a id="structFRHAPI__UpdateBackfillRequest_1ada5b36edf78e65ce6bf9b9fe73d3aa6e"></a>
 
@@ -151,9 +162,13 @@ Returns a pointer to Teams_Optional, if it has been set, otherwise returns nullp
 
 Returns a pointer to Teams_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetTeams`](#structFRHAPI__UpdateBackfillRequest_1a40bcc5fb707434bb7e1f0d0dadcbf70e)`(TArray< `[`FRHAPI_BackfillTeam`](RHAPI_BackfillTeam.md#structFRHAPI__BackfillTeam)` > NewValue)` <a id="structFRHAPI__UpdateBackfillRequest_1a40bcc5fb707434bb7e1f0d0dadcbf70e"></a>
+#### `public inline void `[`SetTeams`](#structFRHAPI__UpdateBackfillRequest_1afca9fb3673d1ace5d161e3dd6ddac67c)`(const TArray< `[`FRHAPI_BackfillTeam`](RHAPI_BackfillTeam.md#structFRHAPI__BackfillTeam)` > & NewValue)` <a id="structFRHAPI__UpdateBackfillRequest_1afca9fb3673d1ace5d161e3dd6ddac67c"></a>
 
 Sets the value of Teams_Optional and also sets Teams_IsSet to true.
+
+#### `public inline void `[`SetTeams`](#structFRHAPI__UpdateBackfillRequest_1a0235e71cb6c9fdfefe20335715a61010)`(TArray< `[`FRHAPI_BackfillTeam`](RHAPI_BackfillTeam.md#structFRHAPI__BackfillTeam)` > && NewValue)` <a id="structFRHAPI__UpdateBackfillRequest_1a0235e71cb6c9fdfefe20335715a61010"></a>
+
+Sets the value of Teams_Optional and also sets Teams_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearTeams`](#structFRHAPI__UpdateBackfillRequest_1ab456151a06c9adfe1258778fbadaf412)`()` <a id="structFRHAPI__UpdateBackfillRequest_1ab456151a06c9adfe1258778fbadaf412"></a>
 

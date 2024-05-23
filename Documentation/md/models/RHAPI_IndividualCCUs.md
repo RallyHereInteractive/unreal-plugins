@@ -22,7 +22,8 @@ struct FRHAPI_IndividualCCUs
 `public virtual void `[`WriteJson`](#structFRHAPI__IndividualCCUs_1a2aa9141980a2697f4d10a75949883808)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TMap< FString, int32 > & `[`GetCcus`](#structFRHAPI__IndividualCCUs_1a399c858d9aeb4e5f72078c5f1e10502b)`()` | Gets the value of Ccus.
 `public inline const TMap< FString, int32 > & `[`GetCcus`](#structFRHAPI__IndividualCCUs_1a7ece82d5f692461ca3f0ed8a21bada9f)`() const` | Gets the value of Ccus.
-`public inline void `[`SetCcus`](#structFRHAPI__IndividualCCUs_1a70c868c68ebb48b4095bed7f2d832141)`(TMap< FString, int32 > NewValue)` | Sets the value of Ccus.
+`public inline void `[`SetCcus`](#structFRHAPI__IndividualCCUs_1a5b3ec21ad92ef29a107a9943ce895c8f)`(const TMap< FString, int32 > & NewValue)` | Sets the value of Ccus.
+`public inline void `[`SetCcus`](#structFRHAPI__IndividualCCUs_1a9f71b35695e175852d2d05f390b2c7a1)`(TMap< FString, int32 > && NewValue)` | Sets the value of Ccus using move semantics.
 
 ### Members
 
@@ -53,7 +54,11 @@ Gets the value of Ccus.
 
 Gets the value of Ccus.
 
-#### `public inline void `[`SetCcus`](#structFRHAPI__IndividualCCUs_1a70c868c68ebb48b4095bed7f2d832141)`(TMap< FString, int32 > NewValue)` <a id="structFRHAPI__IndividualCCUs_1a70c868c68ebb48b4095bed7f2d832141"></a>
+#### `public inline void `[`SetCcus`](#structFRHAPI__IndividualCCUs_1a5b3ec21ad92ef29a107a9943ce895c8f)`(const TMap< FString, int32 > & NewValue)` <a id="structFRHAPI__IndividualCCUs_1a5b3ec21ad92ef29a107a9943ce895c8f"></a>
 
 Sets the value of Ccus.
+
+#### `public inline void `[`SetCcus`](#structFRHAPI__IndividualCCUs_1a9f71b35695e175852d2d05f390b2c7a1)`(TMap< FString, int32 > && NewValue)` <a id="structFRHAPI__IndividualCCUs_1a9f71b35695e175852d2d05f390b2c7a1"></a>
+
+Sets the value of Ccus using move semantics.
 

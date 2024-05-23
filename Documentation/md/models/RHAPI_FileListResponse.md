@@ -22,7 +22,8 @@ struct FRHAPI_FileListResponse
 `public virtual void `[`WriteJson`](#structFRHAPI__FileListResponse_1aa8398dd68b8aa0974f012609a672cb30)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TArray< `[`FRHAPI_FileResponse`](RHAPI_FileResponse.md#structFRHAPI__FileResponse)` > & `[`GetFiles`](#structFRHAPI__FileListResponse_1a803e61b0d38ce69a8238e07c5ff418c8)`()` | Gets the value of Files.
 `public inline const TArray< `[`FRHAPI_FileResponse`](RHAPI_FileResponse.md#structFRHAPI__FileResponse)` > & `[`GetFiles`](#structFRHAPI__FileListResponse_1ae35c95ec77215e43c48170d1359998bd)`() const` | Gets the value of Files.
-`public inline void `[`SetFiles`](#structFRHAPI__FileListResponse_1af9d165899f5c358c51bd9d04b023d0c2)`(TArray< `[`FRHAPI_FileResponse`](RHAPI_FileResponse.md#structFRHAPI__FileResponse)` > NewValue)` | Sets the value of Files.
+`public inline void `[`SetFiles`](#structFRHAPI__FileListResponse_1a3bf8aef0b547a26a38003cc648e3fd3e)`(const TArray< `[`FRHAPI_FileResponse`](RHAPI_FileResponse.md#structFRHAPI__FileResponse)` > & NewValue)` | Sets the value of Files.
+`public inline void `[`SetFiles`](#structFRHAPI__FileListResponse_1aba38b494070b386a9016018c0195f408)`(TArray< `[`FRHAPI_FileResponse`](RHAPI_FileResponse.md#structFRHAPI__FileResponse)` > && NewValue)` | Sets the value of Files using move semantics.
 
 ### Members
 
@@ -53,7 +54,11 @@ Gets the value of Files.
 
 Gets the value of Files.
 
-#### `public inline void `[`SetFiles`](#structFRHAPI__FileListResponse_1af9d165899f5c358c51bd9d04b023d0c2)`(TArray< `[`FRHAPI_FileResponse`](RHAPI_FileResponse.md#structFRHAPI__FileResponse)` > NewValue)` <a id="structFRHAPI__FileListResponse_1af9d165899f5c358c51bd9d04b023d0c2"></a>
+#### `public inline void `[`SetFiles`](#structFRHAPI__FileListResponse_1a3bf8aef0b547a26a38003cc648e3fd3e)`(const TArray< `[`FRHAPI_FileResponse`](RHAPI_FileResponse.md#structFRHAPI__FileResponse)` > & NewValue)` <a id="structFRHAPI__FileListResponse_1a3bf8aef0b547a26a38003cc648e3fd3e"></a>
 
 Sets the value of Files.
+
+#### `public inline void `[`SetFiles`](#structFRHAPI__FileListResponse_1aba38b494070b386a9016018c0195f408)`(TArray< `[`FRHAPI_FileResponse`](RHAPI_FileResponse.md#structFRHAPI__FileResponse)` > && NewValue)` <a id="structFRHAPI__FileListResponse_1aba38b494070b386a9016018c0195f408"></a>
+
+Sets the value of Files using move semantics.
 

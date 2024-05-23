@@ -10,6 +10,9 @@
 #include "CoreMinimal.h"
 #include "RallyHereAPIBaseModel.h"
 #include "HttpModule.h"
+#include "Stats/Stats2.h"
+#include "Async/TaskGraphInterfaces.h"
+#include "Tickable.h"
 
 DECLARE_STATS_GROUP(TEXT("RallyHereAPI"), STATGROUP_RallyHereAPI, STATCAT_Advanced);
 
@@ -47,7 +50,7 @@ public:
 
 typedef TMap<int32, TArray<TSharedPtr<struct FRallyHereAPIHttpRequestData>, TInlineAllocator<10>>> HttpRequestMap;
 
-class RALLYHEREAPI_API FRallyHereAPIHttpRequester : public TSharedFromThis<FRallyHereAPIHttpRequester>
+class RALLYHEREAPI_API FRallyHereAPIHttpRequester : public TSharedFromThis<FRallyHereAPIHttpRequester>, public FTickableGameObject
 {
 public:
 	FRallyHereAPIHttpRequester();
@@ -86,20 +89,28 @@ public:
 
 	void OnResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FHttpRequestCompleteDelegate ResponseDelegate);
 
-	// Immediately flushes all requests in the queue (useful in cases where the http system may be shutting down soon)
+	// Immediately flushes all requests in the queue (useful in cases where the http system may be shutting down soon).  Only safe on the main game thread.
 	void FlushRequestQueue(bool bIsExiting = false);
 
+	// FTickableGameObject interface
+	/** @brief Scan request queue to determine if any need to be kicked off. */
+	virtual void Tick(float DeltaTime);
+	/** @brief Only tick if there is work in the queue. */
+	virtual bool IsTickable() const { return HttpRequestQueue.Num() > 0; }
+	/** Gets the stat Id. */
+	virtual TStatId GetStatId() const { RETURN_QUICK_DECLARE_CYCLE_STAT(FRallyHereAPIHttpRequester, STATGROUP_TaskGraphTasks); }
+
 private:
-	void QueueNextRequestCall();
 	void TryExecuteNextRequest(bool bIsExiting = false);
-	bool CanExecuteRequest() const { return HttpRequestQueue.Num() > 0 && (MaxSimultaneousRequests == 0 || PendingRequestCount < MaxSimultaneousRequests); }
 
 	static TSharedPtr<FRallyHereAPIHttpRequester> Singleton;
 
 	HttpRequestMap HttpRequestQueue;
 
 	int32 MaxSimultaneousRequests;
-	int32 PendingRequestCount;
+	int32 InFlightRequestCount;
+
+	FCriticalSection RequestQueueLockCS;
 };
 
 }

@@ -29,7 +29,8 @@ Purge request to purge a person from the system. This will remove all data about
 `public inline bool `[`GetSuggestedPurgeTime`](#structFRHAPI__PurgeRequest_1a809a8c516d3eddc8691bd59e3bdae36a)`(FDateTime & OutValue) const` | Fills OutValue with the value of SuggestedPurgeTime_Optional and returns true if it has been set, otherwise returns false.
 `public inline FDateTime * `[`GetSuggestedPurgeTimeOrNull`](#structFRHAPI__PurgeRequest_1ada5179545649871f9f6f1f67241de802)`()` | Returns a pointer to SuggestedPurgeTime_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FDateTime * `[`GetSuggestedPurgeTimeOrNull`](#structFRHAPI__PurgeRequest_1a8c060bac1f0fb9d171a069be84fd27a6)`() const` | Returns a pointer to SuggestedPurgeTime_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetSuggestedPurgeTime`](#structFRHAPI__PurgeRequest_1a984eb6ce9ebd05540f22ef48a4481a66)`(FDateTime NewValue)` | Sets the value of SuggestedPurgeTime_Optional and also sets SuggestedPurgeTime_IsSet to true.
+`public inline void `[`SetSuggestedPurgeTime`](#structFRHAPI__PurgeRequest_1a1f73e6419e4b8eada594472b95bdfbf7)`(const FDateTime & NewValue)` | Sets the value of SuggestedPurgeTime_Optional and also sets SuggestedPurgeTime_IsSet to true.
+`public inline void `[`SetSuggestedPurgeTime`](#structFRHAPI__PurgeRequest_1a8964cd9ad30dd3597c15da06e2e82a21)`(FDateTime && NewValue)` | Sets the value of SuggestedPurgeTime_Optional and also sets SuggestedPurgeTime_IsSet to true using move semantics.
 `public inline void `[`ClearSuggestedPurgeTime`](#structFRHAPI__PurgeRequest_1a90e1c3b323ef9c0d6582d92a4ba4b990)`()` | Clears the value of SuggestedPurgeTime_Optional and sets SuggestedPurgeTime_IsSet to false.
 
 ### Members
@@ -83,9 +84,13 @@ Returns a pointer to SuggestedPurgeTime_Optional, if it has been set, otherwise 
 
 Returns a pointer to SuggestedPurgeTime_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetSuggestedPurgeTime`](#structFRHAPI__PurgeRequest_1a984eb6ce9ebd05540f22ef48a4481a66)`(FDateTime NewValue)` <a id="structFRHAPI__PurgeRequest_1a984eb6ce9ebd05540f22ef48a4481a66"></a>
+#### `public inline void `[`SetSuggestedPurgeTime`](#structFRHAPI__PurgeRequest_1a1f73e6419e4b8eada594472b95bdfbf7)`(const FDateTime & NewValue)` <a id="structFRHAPI__PurgeRequest_1a1f73e6419e4b8eada594472b95bdfbf7"></a>
 
 Sets the value of SuggestedPurgeTime_Optional and also sets SuggestedPurgeTime_IsSet to true.
+
+#### `public inline void `[`SetSuggestedPurgeTime`](#structFRHAPI__PurgeRequest_1a8964cd9ad30dd3597c15da06e2e82a21)`(FDateTime && NewValue)` <a id="structFRHAPI__PurgeRequest_1a8964cd9ad30dd3597c15da06e2e82a21"></a>
+
+Sets the value of SuggestedPurgeTime_Optional and also sets SuggestedPurgeTime_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearSuggestedPurgeTime`](#structFRHAPI__PurgeRequest_1a90e1c3b323ef9c0d6582d92a4ba4b990)`()` <a id="structFRHAPI__PurgeRequest_1a90e1c3b323ef9c0d6582d92a4ba4b990"></a>
 

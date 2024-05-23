@@ -32,20 +32,23 @@ A platform player resource in a platform session.
 `public inline bool `[`GetPlayerId`](#structFRHAPI__PlatformSessionPlayer_1a9e06a0931f56b5b4fa046d3468310795)`(int32 & OutValue) const` | Fills OutValue with the value of PlayerId_Optional and returns true if it has been set, otherwise returns false.
 `public inline int32 * `[`GetPlayerIdOrNull`](#structFRHAPI__PlatformSessionPlayer_1ab6a0f0ea8aabc882fc517492047566f4)`()` | Returns a pointer to PlayerId_Optional, if it has been set, otherwise returns nullptr.
 `public inline const int32 * `[`GetPlayerIdOrNull`](#structFRHAPI__PlatformSessionPlayer_1a5a87c3a7ee80e97518b8d2994f634bd5)`() const` | Returns a pointer to PlayerId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPlayerId`](#structFRHAPI__PlatformSessionPlayer_1a0f77291dac4e3ac36c15299c6c94dc69)`(int32 NewValue)` | Sets the value of PlayerId_Optional and also sets PlayerId_IsSet to true.
+`public inline void `[`SetPlayerId`](#structFRHAPI__PlatformSessionPlayer_1a2c00de6c14ad9cf1244d73caa318018f)`(const int32 & NewValue)` | Sets the value of PlayerId_Optional and also sets PlayerId_IsSet to true.
+`public inline void `[`SetPlayerId`](#structFRHAPI__PlatformSessionPlayer_1aa3d8fa5d8bd05dedc36968376f722b93)`(int32 && NewValue)` | Sets the value of PlayerId_Optional and also sets PlayerId_IsSet to true using move semantics.
 `public inline void `[`ClearPlayerId`](#structFRHAPI__PlatformSessionPlayer_1ad90bf8e5f5568848bd0e4387377c39aa)`()` | Clears the value of PlayerId_Optional and sets PlayerId_IsSet to false.
 `public inline bool `[`IsPlayerIdDefaultValue`](#structFRHAPI__PlatformSessionPlayer_1aeab3f493aea47825d306eb7fc0d34a0b)`() const` | Returns true if PlayerId_Optional is set and matches the default value.
 `public inline void `[`SetPlayerIdToDefault`](#structFRHAPI__PlatformSessionPlayer_1a061c54f1a70a22fb0043bce4d70d2b6c)`()` | Sets the value of PlayerId_Optional to its default and also sets PlayerId_IsSet to true.
 `public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__PlatformSessionPlayer_1af89400cb11d1ee66cc086e93d342bcfc)`()` | Gets the value of PlayerUuid.
 `public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__PlatformSessionPlayer_1a4ded60d33bfd83e2611caf5ca1f33e60)`() const` | Gets the value of PlayerUuid.
-`public inline void `[`SetPlayerUuid`](#structFRHAPI__PlatformSessionPlayer_1a1f656876075eb9cc3cce297ea8f80a63)`(FGuid NewValue)` | Sets the value of PlayerUuid.
+`public inline void `[`SetPlayerUuid`](#structFRHAPI__PlatformSessionPlayer_1af10a465575837e65436e8ad95249737d)`(const FGuid & NewValue)` | Sets the value of PlayerUuid.
+`public inline void `[`SetPlayerUuid`](#structFRHAPI__PlatformSessionPlayer_1ad3d918871b912e69d753e59b11d1683f)`(FGuid && NewValue)` | Sets the value of PlayerUuid using move semantics.
 `public inline bool & `[`GetLeader`](#structFRHAPI__PlatformSessionPlayer_1acefa4678c8e6e3c46363a9dbbdc775bb)`()` | Gets the value of Leader_Optional, regardless of it having been set.
 `public inline const bool & `[`GetLeader`](#structFRHAPI__PlatformSessionPlayer_1aa5e6566ab95802764e8bf924ddf09d8c)`() const` | Gets the value of Leader_Optional, regardless of it having been set.
 `public inline const bool & `[`GetLeader`](#structFRHAPI__PlatformSessionPlayer_1a13512aeb7ff61302432ef6951e625a0a)`(const bool & DefaultValue) const` | Gets the value of Leader_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetLeader`](#structFRHAPI__PlatformSessionPlayer_1a223d97927d19ac63603b8eb879a33e55)`(bool & OutValue) const` | Fills OutValue with the value of Leader_Optional and returns true if it has been set, otherwise returns false.
 `public inline bool * `[`GetLeaderOrNull`](#structFRHAPI__PlatformSessionPlayer_1a74ac0590dc01605b8fcfc942cea9716f)`()` | Returns a pointer to Leader_Optional, if it has been set, otherwise returns nullptr.
 `public inline const bool * `[`GetLeaderOrNull`](#structFRHAPI__PlatformSessionPlayer_1aa9deb6f2fb4669728e44d1a8e6cff336)`() const` | Returns a pointer to Leader_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetLeader`](#structFRHAPI__PlatformSessionPlayer_1ae81ebdf7f552e039bc2fb7b6db031fe4)`(bool NewValue)` | Sets the value of Leader_Optional and also sets Leader_IsSet to true.
+`public inline void `[`SetLeader`](#structFRHAPI__PlatformSessionPlayer_1a5e3022e81c3b022390fb0adffe4d3f70)`(const bool & NewValue)` | Sets the value of Leader_Optional and also sets Leader_IsSet to true.
+`public inline void `[`SetLeader`](#structFRHAPI__PlatformSessionPlayer_1ad12ab862e57ec633edade94ee2ec20fe)`(bool && NewValue)` | Sets the value of Leader_Optional and also sets Leader_IsSet to true using move semantics.
 `public inline void `[`ClearLeader`](#structFRHAPI__PlatformSessionPlayer_1a58f11cfb82926d116f78ba252050150e)`()` | Clears the value of Leader_Optional and sets Leader_IsSet to false.
 `public inline bool `[`IsLeaderDefaultValue`](#structFRHAPI__PlatformSessionPlayer_1a3b18105fa390a5974fc04aad4472abad)`() const` | Returns true if Leader_Optional is set and matches the default value.
 `public inline void `[`SetLeaderToDefault`](#structFRHAPI__PlatformSessionPlayer_1a8d7d302ebb8566e204633630192a6a74)`()` | Sets the value of Leader_Optional to its default and also sets Leader_IsSet to true.
@@ -113,9 +116,13 @@ Returns a pointer to PlayerId_Optional, if it has been set, otherwise returns nu
 
 Returns a pointer to PlayerId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPlayerId`](#structFRHAPI__PlatformSessionPlayer_1a0f77291dac4e3ac36c15299c6c94dc69)`(int32 NewValue)` <a id="structFRHAPI__PlatformSessionPlayer_1a0f77291dac4e3ac36c15299c6c94dc69"></a>
+#### `public inline void `[`SetPlayerId`](#structFRHAPI__PlatformSessionPlayer_1a2c00de6c14ad9cf1244d73caa318018f)`(const int32 & NewValue)` <a id="structFRHAPI__PlatformSessionPlayer_1a2c00de6c14ad9cf1244d73caa318018f"></a>
 
 Sets the value of PlayerId_Optional and also sets PlayerId_IsSet to true.
+
+#### `public inline void `[`SetPlayerId`](#structFRHAPI__PlatformSessionPlayer_1aa3d8fa5d8bd05dedc36968376f722b93)`(int32 && NewValue)` <a id="structFRHAPI__PlatformSessionPlayer_1aa3d8fa5d8bd05dedc36968376f722b93"></a>
+
+Sets the value of PlayerId_Optional and also sets PlayerId_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearPlayerId`](#structFRHAPI__PlatformSessionPlayer_1ad90bf8e5f5568848bd0e4387377c39aa)`()` <a id="structFRHAPI__PlatformSessionPlayer_1ad90bf8e5f5568848bd0e4387377c39aa"></a>
 
@@ -137,9 +144,13 @@ Gets the value of PlayerUuid.
 
 Gets the value of PlayerUuid.
 
-#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__PlatformSessionPlayer_1a1f656876075eb9cc3cce297ea8f80a63)`(FGuid NewValue)` <a id="structFRHAPI__PlatformSessionPlayer_1a1f656876075eb9cc3cce297ea8f80a63"></a>
+#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__PlatformSessionPlayer_1af10a465575837e65436e8ad95249737d)`(const FGuid & NewValue)` <a id="structFRHAPI__PlatformSessionPlayer_1af10a465575837e65436e8ad95249737d"></a>
 
 Sets the value of PlayerUuid.
+
+#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__PlatformSessionPlayer_1ad3d918871b912e69d753e59b11d1683f)`(FGuid && NewValue)` <a id="structFRHAPI__PlatformSessionPlayer_1ad3d918871b912e69d753e59b11d1683f"></a>
+
+Sets the value of PlayerUuid using move semantics.
 
 #### `public inline bool & `[`GetLeader`](#structFRHAPI__PlatformSessionPlayer_1acefa4678c8e6e3c46363a9dbbdc775bb)`()` <a id="structFRHAPI__PlatformSessionPlayer_1acefa4678c8e6e3c46363a9dbbdc775bb"></a>
 
@@ -165,9 +176,13 @@ Returns a pointer to Leader_Optional, if it has been set, otherwise returns null
 
 Returns a pointer to Leader_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetLeader`](#structFRHAPI__PlatformSessionPlayer_1ae81ebdf7f552e039bc2fb7b6db031fe4)`(bool NewValue)` <a id="structFRHAPI__PlatformSessionPlayer_1ae81ebdf7f552e039bc2fb7b6db031fe4"></a>
+#### `public inline void `[`SetLeader`](#structFRHAPI__PlatformSessionPlayer_1a5e3022e81c3b022390fb0adffe4d3f70)`(const bool & NewValue)` <a id="structFRHAPI__PlatformSessionPlayer_1a5e3022e81c3b022390fb0adffe4d3f70"></a>
 
 Sets the value of Leader_Optional and also sets Leader_IsSet to true.
+
+#### `public inline void `[`SetLeader`](#structFRHAPI__PlatformSessionPlayer_1ad12ab862e57ec633edade94ee2ec20fe)`(bool && NewValue)` <a id="structFRHAPI__PlatformSessionPlayer_1ad12ab862e57ec633edade94ee2ec20fe"></a>
+
+Sets the value of Leader_Optional and also sets Leader_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearLeader`](#structFRHAPI__PlatformSessionPlayer_1a58f11cfb82926d116f78ba252050150e)`()` <a id="structFRHAPI__PlatformSessionPlayer_1a58f11cfb82926d116f78ba252050150e"></a>
 

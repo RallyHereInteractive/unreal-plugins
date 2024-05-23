@@ -30,11 +30,13 @@ Request body to update generic rank data.
 `public inline bool `[`GetInstanceId`](#structFRHAPI__PlayerRankUpdateRequest_1a77bd2cd58b54b0336faf0bf98e422658)`(FString & OutValue) const` | Fills OutValue with the value of InstanceId_Optional and returns true if it has been set, otherwise returns false.
 `public inline FString * `[`GetInstanceIdOrNull`](#structFRHAPI__PlayerRankUpdateRequest_1a5842aca4a8311ee0ca42163ccf7b38ea)`()` | Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FString * `[`GetInstanceIdOrNull`](#structFRHAPI__PlayerRankUpdateRequest_1afbc936802367071d0637ea2a76874862)`() const` | Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetInstanceId`](#structFRHAPI__PlayerRankUpdateRequest_1a34a2ee59444834c77a865fad11d7be05)`(FString NewValue)` | Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true.
+`public inline void `[`SetInstanceId`](#structFRHAPI__PlayerRankUpdateRequest_1a03ed7f7b0de9b8e1ce69672d4670ae15)`(const FString & NewValue)` | Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true.
+`public inline void `[`SetInstanceId`](#structFRHAPI__PlayerRankUpdateRequest_1a5219e673e683e99e7e55b4fb8fd73679)`(FString && NewValue)` | Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true using move semantics.
 `public inline void `[`ClearInstanceId`](#structFRHAPI__PlayerRankUpdateRequest_1a6ed6ba4c13c1d481737f6ad718caa77b)`()` | Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false.
 `public inline `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` & `[`GetRank`](#structFRHAPI__PlayerRankUpdateRequest_1adcf57f5bc660d6e33c228e92031b2d6d)`()` | Gets the value of Rank.
 `public inline const `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` & `[`GetRank`](#structFRHAPI__PlayerRankUpdateRequest_1aea27448b12b90f63f81a75da57a130bb)`() const` | Gets the value of Rank.
-`public inline void `[`SetRank`](#structFRHAPI__PlayerRankUpdateRequest_1ae767c2f7ca88b15553b58f13278ed525)`(`[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` NewValue)` | Sets the value of Rank.
+`public inline void `[`SetRank`](#structFRHAPI__PlayerRankUpdateRequest_1a91d5b36a848c936d08c5482b9e5d72ae)`(const `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` & NewValue)` | Sets the value of Rank.
+`public inline void `[`SetRank`](#structFRHAPI__PlayerRankUpdateRequest_1a07ee64def7b9b07ad5e87cdfc1947997)`(`[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` && NewValue)` | Sets the value of Rank using move semantics.
 
 ### Members
 
@@ -91,9 +93,13 @@ Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns 
 
 Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetInstanceId`](#structFRHAPI__PlayerRankUpdateRequest_1a34a2ee59444834c77a865fad11d7be05)`(FString NewValue)` <a id="structFRHAPI__PlayerRankUpdateRequest_1a34a2ee59444834c77a865fad11d7be05"></a>
+#### `public inline void `[`SetInstanceId`](#structFRHAPI__PlayerRankUpdateRequest_1a03ed7f7b0de9b8e1ce69672d4670ae15)`(const FString & NewValue)` <a id="structFRHAPI__PlayerRankUpdateRequest_1a03ed7f7b0de9b8e1ce69672d4670ae15"></a>
 
 Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true.
+
+#### `public inline void `[`SetInstanceId`](#structFRHAPI__PlayerRankUpdateRequest_1a5219e673e683e99e7e55b4fb8fd73679)`(FString && NewValue)` <a id="structFRHAPI__PlayerRankUpdateRequest_1a5219e673e683e99e7e55b4fb8fd73679"></a>
+
+Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearInstanceId`](#structFRHAPI__PlayerRankUpdateRequest_1a6ed6ba4c13c1d481737f6ad718caa77b)`()` <a id="structFRHAPI__PlayerRankUpdateRequest_1a6ed6ba4c13c1d481737f6ad718caa77b"></a>
 
@@ -107,7 +113,11 @@ Gets the value of Rank.
 
 Gets the value of Rank.
 
-#### `public inline void `[`SetRank`](#structFRHAPI__PlayerRankUpdateRequest_1ae767c2f7ca88b15553b58f13278ed525)`(`[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` NewValue)` <a id="structFRHAPI__PlayerRankUpdateRequest_1ae767c2f7ca88b15553b58f13278ed525"></a>
+#### `public inline void `[`SetRank`](#structFRHAPI__PlayerRankUpdateRequest_1a91d5b36a848c936d08c5482b9e5d72ae)`(const `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` & NewValue)` <a id="structFRHAPI__PlayerRankUpdateRequest_1a91d5b36a848c936d08c5482b9e5d72ae"></a>
 
 Sets the value of Rank.
+
+#### `public inline void `[`SetRank`](#structFRHAPI__PlayerRankUpdateRequest_1a07ee64def7b9b07ad5e87cdfc1947997)`(`[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` && NewValue)` <a id="structFRHAPI__PlayerRankUpdateRequest_1a07ee64def7b9b07ad5e87cdfc1947997"></a>
+
+Sets the value of Rank using move semantics.
 

@@ -22,7 +22,8 @@ struct FRHAPI_EventList
 `public virtual void `[`WriteJson`](#structFRHAPI__EventList_1af2eb5752d7bff14073f7062f6568e6f3)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TArray< `[`FRHAPI_RallyHereEvent`](RHAPI_RallyHereEvent.md#structFRHAPI__RallyHereEvent)` > & `[`GetEventList`](#structFRHAPI__EventList_1aee65131c89751011cb94fb7d13e025fb)`()` | Gets the value of EventList.
 `public inline const TArray< `[`FRHAPI_RallyHereEvent`](RHAPI_RallyHereEvent.md#structFRHAPI__RallyHereEvent)` > & `[`GetEventList`](#structFRHAPI__EventList_1a93799dde50ffba542b135d905641c5ae)`() const` | Gets the value of EventList.
-`public inline void `[`SetEventList`](#structFRHAPI__EventList_1a9e6a338f4cbcbfc0d25d93a1e130853f)`(TArray< `[`FRHAPI_RallyHereEvent`](RHAPI_RallyHereEvent.md#structFRHAPI__RallyHereEvent)` > NewValue)` | Sets the value of EventList.
+`public inline void `[`SetEventList`](#structFRHAPI__EventList_1a37bfeb079a01b6d73b07a1c4bd583950)`(const TArray< `[`FRHAPI_RallyHereEvent`](RHAPI_RallyHereEvent.md#structFRHAPI__RallyHereEvent)` > & NewValue)` | Sets the value of EventList.
+`public inline void `[`SetEventList`](#structFRHAPI__EventList_1a02efe36021b9fad2d7e9a1a9339c4a8d)`(TArray< `[`FRHAPI_RallyHereEvent`](RHAPI_RallyHereEvent.md#structFRHAPI__RallyHereEvent)` > && NewValue)` | Sets the value of EventList using move semantics.
 
 ### Members
 
@@ -55,7 +56,11 @@ Gets the value of EventList.
 
 Gets the value of EventList.
 
-#### `public inline void `[`SetEventList`](#structFRHAPI__EventList_1a9e6a338f4cbcbfc0d25d93a1e130853f)`(TArray< `[`FRHAPI_RallyHereEvent`](RHAPI_RallyHereEvent.md#structFRHAPI__RallyHereEvent)` > NewValue)` <a id="structFRHAPI__EventList_1a9e6a338f4cbcbfc0d25d93a1e130853f"></a>
+#### `public inline void `[`SetEventList`](#structFRHAPI__EventList_1a37bfeb079a01b6d73b07a1c4bd583950)`(const TArray< `[`FRHAPI_RallyHereEvent`](RHAPI_RallyHereEvent.md#structFRHAPI__RallyHereEvent)` > & NewValue)` <a id="structFRHAPI__EventList_1a37bfeb079a01b6d73b07a1c4bd583950"></a>
 
 Sets the value of EventList.
+
+#### `public inline void `[`SetEventList`](#structFRHAPI__EventList_1a02efe36021b9fad2d7e9a1a9339c4a8d)`(TArray< `[`FRHAPI_RallyHereEvent`](RHAPI_RallyHereEvent.md#structFRHAPI__RallyHereEvent)` > && NewValue)` <a id="structFRHAPI__EventList_1a02efe36021b9fad2d7e9a1a9339c4a8d"></a>
+
+Sets the value of EventList using move semantics.
 

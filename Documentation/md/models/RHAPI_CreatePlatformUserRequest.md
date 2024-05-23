@@ -27,17 +27,20 @@ Request parameters to create a user exists.
 `public virtual void `[`WriteJson`](#structFRHAPI__CreatePlatformUserRequest_1a922a03a0d1d3d27b31af42288e713ab8)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__CreatePlatformUserRequest_1abe0ddacb7c3cd1b903f426306e81ab20)`()` | Gets the value of Platform.
 `public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__CreatePlatformUserRequest_1a532a49e83fc22a3827d4d2f9dac83ff9)`() const` | Gets the value of Platform.
-`public inline void `[`SetPlatform`](#structFRHAPI__CreatePlatformUserRequest_1a0d51e8bdaaca25069f2c3719bce47fdc)`(ERHAPI_Platform NewValue)` | Sets the value of Platform.
+`public inline void `[`SetPlatform`](#structFRHAPI__CreatePlatformUserRequest_1ac5e8919daaa182d7a79053d768fea731)`(const ERHAPI_Platform & NewValue)` | Sets the value of Platform.
+`public inline void `[`SetPlatform`](#structFRHAPI__CreatePlatformUserRequest_1a4de7ede139109c5ddc69df87d797235a)`(ERHAPI_Platform && NewValue)` | Sets the value of Platform using move semantics.
 `public inline FString & `[`GetPlatformUserId`](#structFRHAPI__CreatePlatformUserRequest_1a9ad2bfe5a284b59ea2f763d48d5184a4)`()` | Gets the value of PlatformUserId.
 `public inline const FString & `[`GetPlatformUserId`](#structFRHAPI__CreatePlatformUserRequest_1a841ce28db2e8d459de231d302b140d35)`() const` | Gets the value of PlatformUserId.
-`public inline void `[`SetPlatformUserId`](#structFRHAPI__CreatePlatformUserRequest_1aa576c9109a507dd45aa215299ad49eb3)`(FString NewValue)` | Sets the value of PlatformUserId.
+`public inline void `[`SetPlatformUserId`](#structFRHAPI__CreatePlatformUserRequest_1a5690c9b886416dca25d5c3728b9f8d4e)`(const FString & NewValue)` | Sets the value of PlatformUserId.
+`public inline void `[`SetPlatformUserId`](#structFRHAPI__CreatePlatformUserRequest_1aaa4a6df44a020221e4c03cfa7a9cdd27)`(FString && NewValue)` | Sets the value of PlatformUserId using move semantics.
 `public inline FString & `[`GetDisplayName`](#structFRHAPI__CreatePlatformUserRequest_1a375d2bf3510033e4361761841c9bf140)`()` | Gets the value of DisplayName_Optional, regardless of it having been set.
 `public inline const FString & `[`GetDisplayName`](#structFRHAPI__CreatePlatformUserRequest_1a711da1d2c6c2af0763fe0b99fa3d740d)`() const` | Gets the value of DisplayName_Optional, regardless of it having been set.
 `public inline const FString & `[`GetDisplayName`](#structFRHAPI__CreatePlatformUserRequest_1adfbfde046ac074d78c64437bfc2a6d47)`(const FString & DefaultValue) const` | Gets the value of DisplayName_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetDisplayName`](#structFRHAPI__CreatePlatformUserRequest_1a8a13b80603e9fc05cc5dedabc9c98f43)`(FString & OutValue) const` | Fills OutValue with the value of DisplayName_Optional and returns true if it has been set, otherwise returns false.
 `public inline FString * `[`GetDisplayNameOrNull`](#structFRHAPI__CreatePlatformUserRequest_1adea66f07e133320b42e4e51d48808820)`()` | Returns a pointer to DisplayName_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FString * `[`GetDisplayNameOrNull`](#structFRHAPI__CreatePlatformUserRequest_1a5bc140a8a7aee2d4a7d88c5864b3dfe1)`() const` | Returns a pointer to DisplayName_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetDisplayName`](#structFRHAPI__CreatePlatformUserRequest_1a65efbce7ad58e6dbff1906c4fc600af7)`(FString NewValue)` | Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true.
+`public inline void `[`SetDisplayName`](#structFRHAPI__CreatePlatformUserRequest_1aa58fd4fdd6802b095f6e750c9693f928)`(const FString & NewValue)` | Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true.
+`public inline void `[`SetDisplayName`](#structFRHAPI__CreatePlatformUserRequest_1ac39c49b4ae1b9538292b1bfd0b806418)`(FString && NewValue)` | Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true using move semantics.
 `public inline void `[`ClearDisplayName`](#structFRHAPI__CreatePlatformUserRequest_1a83baecca1ac4b53502cb573269d0aae2)`()` | Clears the value of DisplayName_Optional and sets DisplayName_IsSet to false.
 
 ### Members
@@ -83,9 +86,13 @@ Gets the value of Platform.
 
 Gets the value of Platform.
 
-#### `public inline void `[`SetPlatform`](#structFRHAPI__CreatePlatformUserRequest_1a0d51e8bdaaca25069f2c3719bce47fdc)`(ERHAPI_Platform NewValue)` <a id="structFRHAPI__CreatePlatformUserRequest_1a0d51e8bdaaca25069f2c3719bce47fdc"></a>
+#### `public inline void `[`SetPlatform`](#structFRHAPI__CreatePlatformUserRequest_1ac5e8919daaa182d7a79053d768fea731)`(const ERHAPI_Platform & NewValue)` <a id="structFRHAPI__CreatePlatformUserRequest_1ac5e8919daaa182d7a79053d768fea731"></a>
 
 Sets the value of Platform.
+
+#### `public inline void `[`SetPlatform`](#structFRHAPI__CreatePlatformUserRequest_1a4de7ede139109c5ddc69df87d797235a)`(ERHAPI_Platform && NewValue)` <a id="structFRHAPI__CreatePlatformUserRequest_1a4de7ede139109c5ddc69df87d797235a"></a>
+
+Sets the value of Platform using move semantics.
 
 #### `public inline FString & `[`GetPlatformUserId`](#structFRHAPI__CreatePlatformUserRequest_1a9ad2bfe5a284b59ea2f763d48d5184a4)`()` <a id="structFRHAPI__CreatePlatformUserRequest_1a9ad2bfe5a284b59ea2f763d48d5184a4"></a>
 
@@ -95,9 +102,13 @@ Gets the value of PlatformUserId.
 
 Gets the value of PlatformUserId.
 
-#### `public inline void `[`SetPlatformUserId`](#structFRHAPI__CreatePlatformUserRequest_1aa576c9109a507dd45aa215299ad49eb3)`(FString NewValue)` <a id="structFRHAPI__CreatePlatformUserRequest_1aa576c9109a507dd45aa215299ad49eb3"></a>
+#### `public inline void `[`SetPlatformUserId`](#structFRHAPI__CreatePlatformUserRequest_1a5690c9b886416dca25d5c3728b9f8d4e)`(const FString & NewValue)` <a id="structFRHAPI__CreatePlatformUserRequest_1a5690c9b886416dca25d5c3728b9f8d4e"></a>
 
 Sets the value of PlatformUserId.
+
+#### `public inline void `[`SetPlatformUserId`](#structFRHAPI__CreatePlatformUserRequest_1aaa4a6df44a020221e4c03cfa7a9cdd27)`(FString && NewValue)` <a id="structFRHAPI__CreatePlatformUserRequest_1aaa4a6df44a020221e4c03cfa7a9cdd27"></a>
+
+Sets the value of PlatformUserId using move semantics.
 
 #### `public inline FString & `[`GetDisplayName`](#structFRHAPI__CreatePlatformUserRequest_1a375d2bf3510033e4361761841c9bf140)`()` <a id="structFRHAPI__CreatePlatformUserRequest_1a375d2bf3510033e4361761841c9bf140"></a>
 
@@ -123,9 +134,13 @@ Returns a pointer to DisplayName_Optional, if it has been set, otherwise returns
 
 Returns a pointer to DisplayName_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetDisplayName`](#structFRHAPI__CreatePlatformUserRequest_1a65efbce7ad58e6dbff1906c4fc600af7)`(FString NewValue)` <a id="structFRHAPI__CreatePlatformUserRequest_1a65efbce7ad58e6dbff1906c4fc600af7"></a>
+#### `public inline void `[`SetDisplayName`](#structFRHAPI__CreatePlatformUserRequest_1aa58fd4fdd6802b095f6e750c9693f928)`(const FString & NewValue)` <a id="structFRHAPI__CreatePlatformUserRequest_1aa58fd4fdd6802b095f6e750c9693f928"></a>
 
 Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true.
+
+#### `public inline void `[`SetDisplayName`](#structFRHAPI__CreatePlatformUserRequest_1ac39c49b4ae1b9538292b1bfd0b806418)`(FString && NewValue)` <a id="structFRHAPI__CreatePlatformUserRequest_1ac39c49b4ae1b9538292b1bfd0b806418"></a>
+
+Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearDisplayName`](#structFRHAPI__CreatePlatformUserRequest_1a83baecca1ac4b53502cb573269d0aae2)`()` <a id="structFRHAPI__CreatePlatformUserRequest_1a83baecca1ac4b53502cb573269d0aae2"></a>
 

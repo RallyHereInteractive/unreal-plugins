@@ -23,12 +23,14 @@ struct FRHAPI_UnionCCU
 `public virtual void `[`WriteJson`](#structFRHAPI__UnionCCU_1a8fc5bcc9e138cd70bebb14bc72699888)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline int32 & `[`GetCount`](#structFRHAPI__UnionCCU_1a01121ee141faf15d1cfbc49c6034a752)`()` | Gets the value of Count.
 `public inline const int32 & `[`GetCount`](#structFRHAPI__UnionCCU_1ae361741146ee7e81d213ff3aa3b8521d)`() const` | Gets the value of Count.
-`public inline void `[`SetCount`](#structFRHAPI__UnionCCU_1a43cce3b35d4553f6a8d2a610774d0bc3)`(int32 NewValue)` | Sets the value of Count.
+`public inline void `[`SetCount`](#structFRHAPI__UnionCCU_1af20ee7933913c05c46566ae5060ee26b)`(const int32 & NewValue)` | Sets the value of Count.
+`public inline void `[`SetCount`](#structFRHAPI__UnionCCU_1aac11f52a7e89795fe19db111993c46cc)`(int32 && NewValue)` | Sets the value of Count using move semantics.
 `public inline bool `[`IsCountDefaultValue`](#structFRHAPI__UnionCCU_1adc972d59d8619c1c75819e44608ff9f4)`() const` | Returns true if Count matches the default value.
 `public inline void `[`SetCountToDefault`](#structFRHAPI__UnionCCU_1abc467e76ff259fec10aedbe23a0609ac)`()` | Sets the value of Count to its default
 `public inline TArray< FDateTime > & `[`GetTimestamps`](#structFRHAPI__UnionCCU_1ae3adb11b69a930ad9398ebea4ffe6834)`()` | Gets the value of Timestamps.
 `public inline const TArray< FDateTime > & `[`GetTimestamps`](#structFRHAPI__UnionCCU_1a47117df1eca9fadd348ef751ee922e4e)`() const` | Gets the value of Timestamps.
-`public inline void `[`SetTimestamps`](#structFRHAPI__UnionCCU_1ab545006632a4a8c3dcb7705d2aca1235)`(TArray< FDateTime > NewValue)` | Sets the value of Timestamps.
+`public inline void `[`SetTimestamps`](#structFRHAPI__UnionCCU_1ab9f944410d162dbacd4bd24bb2e8e84c)`(const TArray< FDateTime > & NewValue)` | Sets the value of Timestamps.
+`public inline void `[`SetTimestamps`](#structFRHAPI__UnionCCU_1a17b211fe11a1ba0ca8eeb3ddb027c283)`(TArray< FDateTime > && NewValue)` | Sets the value of Timestamps using move semantics.
 
 ### Members
 
@@ -61,9 +63,13 @@ Gets the value of Count.
 
 Gets the value of Count.
 
-#### `public inline void `[`SetCount`](#structFRHAPI__UnionCCU_1a43cce3b35d4553f6a8d2a610774d0bc3)`(int32 NewValue)` <a id="structFRHAPI__UnionCCU_1a43cce3b35d4553f6a8d2a610774d0bc3"></a>
+#### `public inline void `[`SetCount`](#structFRHAPI__UnionCCU_1af20ee7933913c05c46566ae5060ee26b)`(const int32 & NewValue)` <a id="structFRHAPI__UnionCCU_1af20ee7933913c05c46566ae5060ee26b"></a>
 
 Sets the value of Count.
+
+#### `public inline void `[`SetCount`](#structFRHAPI__UnionCCU_1aac11f52a7e89795fe19db111993c46cc)`(int32 && NewValue)` <a id="structFRHAPI__UnionCCU_1aac11f52a7e89795fe19db111993c46cc"></a>
+
+Sets the value of Count using move semantics.
 
 #### `public inline bool `[`IsCountDefaultValue`](#structFRHAPI__UnionCCU_1adc972d59d8619c1c75819e44608ff9f4)`() const` <a id="structFRHAPI__UnionCCU_1adc972d59d8619c1c75819e44608ff9f4"></a>
 
@@ -81,7 +87,11 @@ Gets the value of Timestamps.
 
 Gets the value of Timestamps.
 
-#### `public inline void `[`SetTimestamps`](#structFRHAPI__UnionCCU_1ab545006632a4a8c3dcb7705d2aca1235)`(TArray< FDateTime > NewValue)` <a id="structFRHAPI__UnionCCU_1ab545006632a4a8c3dcb7705d2aca1235"></a>
+#### `public inline void `[`SetTimestamps`](#structFRHAPI__UnionCCU_1ab9f944410d162dbacd4bd24bb2e8e84c)`(const TArray< FDateTime > & NewValue)` <a id="structFRHAPI__UnionCCU_1ab9f944410d162dbacd4bd24bb2e8e84c"></a>
 
 Sets the value of Timestamps.
+
+#### `public inline void `[`SetTimestamps`](#structFRHAPI__UnionCCU_1a17b211fe11a1ba0ca8eeb3ddb027c283)`(TArray< FDateTime > && NewValue)` <a id="structFRHAPI__UnionCCU_1a17b211fe11a1ba0ca8eeb3ddb027c283"></a>
+
+Sets the value of Timestamps using move semantics.
 

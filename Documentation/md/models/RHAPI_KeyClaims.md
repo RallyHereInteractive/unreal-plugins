@@ -24,7 +24,8 @@ List of Key Claims available to the player.
 `public virtual void `[`WriteJson`](#structFRHAPI__KeyClaims_1acac4e11383c4b935a7ada20845c1e61c)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TArray< `[`FRHAPI_KeyClaim`](RHAPI_KeyClaim.md#structFRHAPI__KeyClaim)` > & `[`GetClaims`](#structFRHAPI__KeyClaims_1a238768f96e700f779de67374bc77da86)`()` | Gets the value of Claims.
 `public inline const TArray< `[`FRHAPI_KeyClaim`](RHAPI_KeyClaim.md#structFRHAPI__KeyClaim)` > & `[`GetClaims`](#structFRHAPI__KeyClaims_1a54c92646bf5dd2ec2db58a29cafc1a49)`() const` | Gets the value of Claims.
-`public inline void `[`SetClaims`](#structFRHAPI__KeyClaims_1a63c11eaa09d0f26302c0ea044ec4a262)`(TArray< `[`FRHAPI_KeyClaim`](RHAPI_KeyClaim.md#structFRHAPI__KeyClaim)` > NewValue)` | Sets the value of Claims.
+`public inline void `[`SetClaims`](#structFRHAPI__KeyClaims_1a650a9f6b6c55d1374be035fff8c71a08)`(const TArray< `[`FRHAPI_KeyClaim`](RHAPI_KeyClaim.md#structFRHAPI__KeyClaim)` > & NewValue)` | Sets the value of Claims.
+`public inline void `[`SetClaims`](#structFRHAPI__KeyClaims_1a344b62ed098251c4036b106236a0c273)`(TArray< `[`FRHAPI_KeyClaim`](RHAPI_KeyClaim.md#structFRHAPI__KeyClaim)` > && NewValue)` | Sets the value of Claims using move semantics.
 
 ### Members
 
@@ -57,7 +58,11 @@ Gets the value of Claims.
 
 Gets the value of Claims.
 
-#### `public inline void `[`SetClaims`](#structFRHAPI__KeyClaims_1a63c11eaa09d0f26302c0ea044ec4a262)`(TArray< `[`FRHAPI_KeyClaim`](RHAPI_KeyClaim.md#structFRHAPI__KeyClaim)` > NewValue)` <a id="structFRHAPI__KeyClaims_1a63c11eaa09d0f26302c0ea044ec4a262"></a>
+#### `public inline void `[`SetClaims`](#structFRHAPI__KeyClaims_1a650a9f6b6c55d1374be035fff8c71a08)`(const TArray< `[`FRHAPI_KeyClaim`](RHAPI_KeyClaim.md#structFRHAPI__KeyClaim)` > & NewValue)` <a id="structFRHAPI__KeyClaims_1a650a9f6b6c55d1374be035fff8c71a08"></a>
 
 Sets the value of Claims.
+
+#### `public inline void `[`SetClaims`](#structFRHAPI__KeyClaims_1a344b62ed098251c4036b106236a0c273)`(TArray< `[`FRHAPI_KeyClaim`](RHAPI_KeyClaim.md#structFRHAPI__KeyClaim)` > && NewValue)` <a id="structFRHAPI__KeyClaims_1a344b62ed098251c4036b106236a0c273"></a>
+
+Sets the value of Claims using move semantics.
 

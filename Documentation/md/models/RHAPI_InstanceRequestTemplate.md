@@ -28,20 +28,24 @@ Configuration about how an instance should behave when it&#39;s allocated.
 `public virtual void `[`WriteJson`](#structFRHAPI__InstanceRequestTemplate_1a9d8e6599d189f3eabd67e12faa8322d4)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FGuid & `[`GetInstanceRequestTemplateId`](#structFRHAPI__InstanceRequestTemplate_1aacb4d163e889b32ad05a90a0c405bd75)`()` | Gets the value of InstanceRequestTemplateId.
 `public inline const FGuid & `[`GetInstanceRequestTemplateId`](#structFRHAPI__InstanceRequestTemplate_1a0c23e7ad0bf3901d8d9b53bfda7a9696)`() const` | Gets the value of InstanceRequestTemplateId.
-`public inline void `[`SetInstanceRequestTemplateId`](#structFRHAPI__InstanceRequestTemplate_1a3736be91713ef2e0001137d5dbc8437a)`(FGuid NewValue)` | Sets the value of InstanceRequestTemplateId.
+`public inline void `[`SetInstanceRequestTemplateId`](#structFRHAPI__InstanceRequestTemplate_1ab00c48bd8e766ad1cafeb1f2a8c1c866)`(const FGuid & NewValue)` | Sets the value of InstanceRequestTemplateId.
+`public inline void `[`SetInstanceRequestTemplateId`](#structFRHAPI__InstanceRequestTemplate_1a3826403a403527c8a6a3d42ed263b9be)`(FGuid && NewValue)` | Sets the value of InstanceRequestTemplateId using move semantics.
 `public inline `[`FRHAPI_MapSelectionListV2`](RHAPI_MapSelectionListV2.md#structFRHAPI__MapSelectionListV2)` & `[`GetMapSelectionList`](#structFRHAPI__InstanceRequestTemplate_1a94e8e368c26b057c8609ee8b8a2280e3)`()` | Gets the value of MapSelectionList.
 `public inline const `[`FRHAPI_MapSelectionListV2`](RHAPI_MapSelectionListV2.md#structFRHAPI__MapSelectionListV2)` & `[`GetMapSelectionList`](#structFRHAPI__InstanceRequestTemplate_1ad51b5d3d03e160c9ef83ce829aaaa3cc)`() const` | Gets the value of MapSelectionList.
-`public inline void `[`SetMapSelectionList`](#structFRHAPI__InstanceRequestTemplate_1a0e29c44f08aca64d88db0f21321002e4)`(`[`FRHAPI_MapSelectionListV2`](RHAPI_MapSelectionListV2.md#structFRHAPI__MapSelectionListV2)` NewValue)` | Sets the value of MapSelectionList.
+`public inline void `[`SetMapSelectionList`](#structFRHAPI__InstanceRequestTemplate_1a24c4c27ff67553b581e3656a4d1ea76d)`(const `[`FRHAPI_MapSelectionListV2`](RHAPI_MapSelectionListV2.md#structFRHAPI__MapSelectionListV2)` & NewValue)` | Sets the value of MapSelectionList.
+`public inline void `[`SetMapSelectionList`](#structFRHAPI__InstanceRequestTemplate_1afa2f838204074e26f41d57c88a450f7a)`(`[`FRHAPI_MapSelectionListV2`](RHAPI_MapSelectionListV2.md#structFRHAPI__MapSelectionListV2)` && NewValue)` | Sets the value of MapSelectionList using move semantics.
 `public inline ERHAPI_HostType & `[`GetDefaultHostType`](#structFRHAPI__InstanceRequestTemplate_1a72bb00a45fa50d72d01479adc7d27506)`()` | Gets the value of DefaultHostType.
 `public inline const ERHAPI_HostType & `[`GetDefaultHostType`](#structFRHAPI__InstanceRequestTemplate_1a3860adb1ea4174d7abf5f11a62252457)`() const` | Gets the value of DefaultHostType.
-`public inline void `[`SetDefaultHostType`](#structFRHAPI__InstanceRequestTemplate_1a554926e81ec8fbfb0ca96ce6847434f9)`(ERHAPI_HostType NewValue)` | Sets the value of DefaultHostType.
+`public inline void `[`SetDefaultHostType`](#structFRHAPI__InstanceRequestTemplate_1a965ba6e0e3d21a8cd2e4844fa1ddfc4f)`(const ERHAPI_HostType & NewValue)` | Sets the value of DefaultHostType.
+`public inline void `[`SetDefaultHostType`](#structFRHAPI__InstanceRequestTemplate_1a4763585e6faf1f992f11a65037fe2513)`(ERHAPI_HostType && NewValue)` | Sets the value of DefaultHostType using move semantics.
 `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InstanceRequestTemplate_1a79d0d4293fa8d90635ee3c31a319982e)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InstanceRequestTemplate_1a56d73bcd0efe05daf0de38bde5fc8de9)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InstanceRequestTemplate_1a4ffff34289210075aee9f8d1d918ebed)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetCustomData`](#structFRHAPI__InstanceRequestTemplate_1a4914983281b865b273142afa4b3f6ab4)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__InstanceRequestTemplate_1ad5ef053599f206f032395de929b55e2c)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__InstanceRequestTemplate_1afa5b06288870d3774750cc8582d4d890)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCustomData`](#structFRHAPI__InstanceRequestTemplate_1a8ba17a4f39fba30164264a41fb3bfe6f)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`SetCustomData`](#structFRHAPI__InstanceRequestTemplate_1aa026a5029fb1929dcd7f628436e84d18)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`SetCustomData`](#structFRHAPI__InstanceRequestTemplate_1a72a223ccf5728f0931a004042ca01439)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__InstanceRequestTemplate_1ac216c36da42fc221390416e2cd8cb2d1)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
 ### Members
@@ -91,9 +95,13 @@ Gets the value of InstanceRequestTemplateId.
 
 Gets the value of InstanceRequestTemplateId.
 
-#### `public inline void `[`SetInstanceRequestTemplateId`](#structFRHAPI__InstanceRequestTemplate_1a3736be91713ef2e0001137d5dbc8437a)`(FGuid NewValue)` <a id="structFRHAPI__InstanceRequestTemplate_1a3736be91713ef2e0001137d5dbc8437a"></a>
+#### `public inline void `[`SetInstanceRequestTemplateId`](#structFRHAPI__InstanceRequestTemplate_1ab00c48bd8e766ad1cafeb1f2a8c1c866)`(const FGuid & NewValue)` <a id="structFRHAPI__InstanceRequestTemplate_1ab00c48bd8e766ad1cafeb1f2a8c1c866"></a>
 
 Sets the value of InstanceRequestTemplateId.
+
+#### `public inline void `[`SetInstanceRequestTemplateId`](#structFRHAPI__InstanceRequestTemplate_1a3826403a403527c8a6a3d42ed263b9be)`(FGuid && NewValue)` <a id="structFRHAPI__InstanceRequestTemplate_1a3826403a403527c8a6a3d42ed263b9be"></a>
+
+Sets the value of InstanceRequestTemplateId using move semantics.
 
 #### `public inline `[`FRHAPI_MapSelectionListV2`](RHAPI_MapSelectionListV2.md#structFRHAPI__MapSelectionListV2)` & `[`GetMapSelectionList`](#structFRHAPI__InstanceRequestTemplate_1a94e8e368c26b057c8609ee8b8a2280e3)`()` <a id="structFRHAPI__InstanceRequestTemplate_1a94e8e368c26b057c8609ee8b8a2280e3"></a>
 
@@ -103,9 +111,13 @@ Gets the value of MapSelectionList.
 
 Gets the value of MapSelectionList.
 
-#### `public inline void `[`SetMapSelectionList`](#structFRHAPI__InstanceRequestTemplate_1a0e29c44f08aca64d88db0f21321002e4)`(`[`FRHAPI_MapSelectionListV2`](RHAPI_MapSelectionListV2.md#structFRHAPI__MapSelectionListV2)` NewValue)` <a id="structFRHAPI__InstanceRequestTemplate_1a0e29c44f08aca64d88db0f21321002e4"></a>
+#### `public inline void `[`SetMapSelectionList`](#structFRHAPI__InstanceRequestTemplate_1a24c4c27ff67553b581e3656a4d1ea76d)`(const `[`FRHAPI_MapSelectionListV2`](RHAPI_MapSelectionListV2.md#structFRHAPI__MapSelectionListV2)` & NewValue)` <a id="structFRHAPI__InstanceRequestTemplate_1a24c4c27ff67553b581e3656a4d1ea76d"></a>
 
 Sets the value of MapSelectionList.
+
+#### `public inline void `[`SetMapSelectionList`](#structFRHAPI__InstanceRequestTemplate_1afa2f838204074e26f41d57c88a450f7a)`(`[`FRHAPI_MapSelectionListV2`](RHAPI_MapSelectionListV2.md#structFRHAPI__MapSelectionListV2)` && NewValue)` <a id="structFRHAPI__InstanceRequestTemplate_1afa2f838204074e26f41d57c88a450f7a"></a>
+
+Sets the value of MapSelectionList using move semantics.
 
 #### `public inline ERHAPI_HostType & `[`GetDefaultHostType`](#structFRHAPI__InstanceRequestTemplate_1a72bb00a45fa50d72d01479adc7d27506)`()` <a id="structFRHAPI__InstanceRequestTemplate_1a72bb00a45fa50d72d01479adc7d27506"></a>
 
@@ -115,9 +127,13 @@ Gets the value of DefaultHostType.
 
 Gets the value of DefaultHostType.
 
-#### `public inline void `[`SetDefaultHostType`](#structFRHAPI__InstanceRequestTemplate_1a554926e81ec8fbfb0ca96ce6847434f9)`(ERHAPI_HostType NewValue)` <a id="structFRHAPI__InstanceRequestTemplate_1a554926e81ec8fbfb0ca96ce6847434f9"></a>
+#### `public inline void `[`SetDefaultHostType`](#structFRHAPI__InstanceRequestTemplate_1a965ba6e0e3d21a8cd2e4844fa1ddfc4f)`(const ERHAPI_HostType & NewValue)` <a id="structFRHAPI__InstanceRequestTemplate_1a965ba6e0e3d21a8cd2e4844fa1ddfc4f"></a>
 
 Sets the value of DefaultHostType.
+
+#### `public inline void `[`SetDefaultHostType`](#structFRHAPI__InstanceRequestTemplate_1a4763585e6faf1f992f11a65037fe2513)`(ERHAPI_HostType && NewValue)` <a id="structFRHAPI__InstanceRequestTemplate_1a4763585e6faf1f992f11a65037fe2513"></a>
+
+Sets the value of DefaultHostType using move semantics.
 
 #### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InstanceRequestTemplate_1a79d0d4293fa8d90635ee3c31a319982e)`()` <a id="structFRHAPI__InstanceRequestTemplate_1a79d0d4293fa8d90635ee3c31a319982e"></a>
 
@@ -143,9 +159,13 @@ Returns a pointer to CustomData_Optional, if it has been set, otherwise returns 
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__InstanceRequestTemplate_1a8ba17a4f39fba30164264a41fb3bfe6f)`(TMap< FString, FString > NewValue)` <a id="structFRHAPI__InstanceRequestTemplate_1a8ba17a4f39fba30164264a41fb3bfe6f"></a>
+#### `public inline void `[`SetCustomData`](#structFRHAPI__InstanceRequestTemplate_1aa026a5029fb1929dcd7f628436e84d18)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__InstanceRequestTemplate_1aa026a5029fb1929dcd7f628436e84d18"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+
+#### `public inline void `[`SetCustomData`](#structFRHAPI__InstanceRequestTemplate_1a72a223ccf5728f0931a004042ca01439)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__InstanceRequestTemplate_1a72a223ccf5728f0931a004042ca01439"></a>
+
+Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearCustomData`](#structFRHAPI__InstanceRequestTemplate_1ac216c36da42fc221390416e2cd8cb2d1)`()` <a id="structFRHAPI__InstanceRequestTemplate_1ac216c36da42fc221390416e2cd8cb2d1"></a>
 

@@ -31,17 +31,20 @@ OAuth token exchange request.
 `public virtual void `[`WriteJson`](#structFRHAPI__OAuthTokenExchange_1a3ca80a156dc9963e6ae8a2bae70404fa)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline ERHAPI_OAuthTokenEchangeGrantType & `[`GetGrantType`](#structFRHAPI__OAuthTokenExchange_1a6ee282c5eb8adbcf0eb170ea3e22f0ba)`()` | Gets the value of GrantType.
 `public inline const ERHAPI_OAuthTokenEchangeGrantType & `[`GetGrantType`](#structFRHAPI__OAuthTokenExchange_1a7ab8a47a8a149e23f9ae553e431dc30c)`() const` | Gets the value of GrantType.
-`public inline void `[`SetGrantType`](#structFRHAPI__OAuthTokenExchange_1aa4fae8ad2a78015a54eae66832a4de6d)`(ERHAPI_OAuthTokenEchangeGrantType NewValue)` | Sets the value of GrantType.
+`public inline void `[`SetGrantType`](#structFRHAPI__OAuthTokenExchange_1a36b23851bb1928b74e9b068ad53d1eb6)`(const ERHAPI_OAuthTokenEchangeGrantType & NewValue)` | Sets the value of GrantType.
+`public inline void `[`SetGrantType`](#structFRHAPI__OAuthTokenExchange_1a557340523e284d665b521ddfd8726c48)`(ERHAPI_OAuthTokenEchangeGrantType && NewValue)` | Sets the value of GrantType using move semantics.
 `public inline FString & `[`GetCode`](#structFRHAPI__OAuthTokenExchange_1a7707ebe9a7dfd2198cb60e45ead0e690)`()` | Gets the value of Code.
 `public inline const FString & `[`GetCode`](#structFRHAPI__OAuthTokenExchange_1afe1983a19229cf6ef62dfc9a3dd7c3e4)`() const` | Gets the value of Code.
-`public inline void `[`SetCode`](#structFRHAPI__OAuthTokenExchange_1a4f1f96ee76ae92ea93ae02b736f9451f)`(FString NewValue)` | Sets the value of Code.
+`public inline void `[`SetCode`](#structFRHAPI__OAuthTokenExchange_1a251224d73434a1ee1313180dc0a3b99f)`(const FString & NewValue)` | Sets the value of Code.
+`public inline void `[`SetCode`](#structFRHAPI__OAuthTokenExchange_1a7dd025e297c5ab46a47b0d952a0b6ee4)`(FString && NewValue)` | Sets the value of Code using move semantics.
 `public inline bool & `[`GetAcceptedEula`](#structFRHAPI__OAuthTokenExchange_1a53e63f94e1ba7917e516ef25db57fcfc)`()` | Gets the value of AcceptedEula_Optional, regardless of it having been set.
 `public inline const bool & `[`GetAcceptedEula`](#structFRHAPI__OAuthTokenExchange_1a692e97abf1cdc995ce7c76f196a7d1ca)`() const` | Gets the value of AcceptedEula_Optional, regardless of it having been set.
 `public inline const bool & `[`GetAcceptedEula`](#structFRHAPI__OAuthTokenExchange_1abd50a52ef98f635de9a04df437067740)`(const bool & DefaultValue) const` | Gets the value of AcceptedEula_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetAcceptedEula`](#structFRHAPI__OAuthTokenExchange_1a7d340fd12598c6d04539bf0d162ee2df)`(bool & OutValue) const` | Fills OutValue with the value of AcceptedEula_Optional and returns true if it has been set, otherwise returns false.
 `public inline bool * `[`GetAcceptedEulaOrNull`](#structFRHAPI__OAuthTokenExchange_1a3edab593b1fdabfa63fa482a138fb0f1)`()` | Returns a pointer to AcceptedEula_Optional, if it has been set, otherwise returns nullptr.
 `public inline const bool * `[`GetAcceptedEulaOrNull`](#structFRHAPI__OAuthTokenExchange_1a20b0762917a318d20a4ea774b9fd1530)`() const` | Returns a pointer to AcceptedEula_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetAcceptedEula`](#structFRHAPI__OAuthTokenExchange_1a7e0645daa97b58d978e2883f8e939727)`(bool NewValue)` | Sets the value of AcceptedEula_Optional and also sets AcceptedEula_IsSet to true.
+`public inline void `[`SetAcceptedEula`](#structFRHAPI__OAuthTokenExchange_1a179fd71ff9b581d3804f232dc5a2c7cf)`(const bool & NewValue)` | Sets the value of AcceptedEula_Optional and also sets AcceptedEula_IsSet to true.
+`public inline void `[`SetAcceptedEula`](#structFRHAPI__OAuthTokenExchange_1af7feca6bf184b6bfcdd7264af0b36b8c)`(bool && NewValue)` | Sets the value of AcceptedEula_Optional and also sets AcceptedEula_IsSet to true using move semantics.
 `public inline void `[`ClearAcceptedEula`](#structFRHAPI__OAuthTokenExchange_1a0dfd9d4f91feb3ee973bf6cf38171fba)`()` | Clears the value of AcceptedEula_Optional and sets AcceptedEula_IsSet to false.
 `public inline bool `[`IsAcceptedEulaDefaultValue`](#structFRHAPI__OAuthTokenExchange_1a528451ab043b5a886b59f59ca182ca11)`() const` | Returns true if AcceptedEula_Optional is set and matches the default value.
 `public inline void `[`SetAcceptedEulaToDefault`](#structFRHAPI__OAuthTokenExchange_1a2a068a9b1646965e8fa03cc111077f24)`()` | Sets the value of AcceptedEula_Optional to its default and also sets AcceptedEula_IsSet to true.
@@ -51,7 +54,8 @@ OAuth token exchange request.
 `public inline bool `[`GetAcceptedTos`](#structFRHAPI__OAuthTokenExchange_1ac5d3bbf8c2acee2f761f6d94e08b3b6b)`(bool & OutValue) const` | Fills OutValue with the value of AcceptedTos_Optional and returns true if it has been set, otherwise returns false.
 `public inline bool * `[`GetAcceptedTosOrNull`](#structFRHAPI__OAuthTokenExchange_1a5e312f6b64edca36be865672b7acd25f)`()` | Returns a pointer to AcceptedTos_Optional, if it has been set, otherwise returns nullptr.
 `public inline const bool * `[`GetAcceptedTosOrNull`](#structFRHAPI__OAuthTokenExchange_1a3de7095338a328bca1212886826bf5fa)`() const` | Returns a pointer to AcceptedTos_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetAcceptedTos`](#structFRHAPI__OAuthTokenExchange_1a7aeb26c0bd5a0a5c0a667e69c843bebc)`(bool NewValue)` | Sets the value of AcceptedTos_Optional and also sets AcceptedTos_IsSet to true.
+`public inline void `[`SetAcceptedTos`](#structFRHAPI__OAuthTokenExchange_1a3c509a4b8ad3112b57e56f39bb77b1fd)`(const bool & NewValue)` | Sets the value of AcceptedTos_Optional and also sets AcceptedTos_IsSet to true.
+`public inline void `[`SetAcceptedTos`](#structFRHAPI__OAuthTokenExchange_1ae3230daeb9781a70ad35740e21b8fffd)`(bool && NewValue)` | Sets the value of AcceptedTos_Optional and also sets AcceptedTos_IsSet to true using move semantics.
 `public inline void `[`ClearAcceptedTos`](#structFRHAPI__OAuthTokenExchange_1abb37f9c9c203a7419b816d7590ad6536)`()` | Clears the value of AcceptedTos_Optional and sets AcceptedTos_IsSet to false.
 `public inline bool `[`IsAcceptedTosDefaultValue`](#structFRHAPI__OAuthTokenExchange_1a54fb5e2dda724b25ab73be0c252e90d1)`() const` | Returns true if AcceptedTos_Optional is set and matches the default value.
 `public inline void `[`SetAcceptedTosToDefault`](#structFRHAPI__OAuthTokenExchange_1a5c57ff1fe72114cf8238824dfee5077c)`()` | Sets the value of AcceptedTos_Optional to its default and also sets AcceptedTos_IsSet to true.
@@ -61,7 +65,8 @@ OAuth token exchange request.
 `public inline bool `[`GetAcceptedPrivacyPolicy`](#structFRHAPI__OAuthTokenExchange_1a9c1f3cb03a83630263e44703279ded2a)`(bool & OutValue) const` | Fills OutValue with the value of AcceptedPrivacyPolicy_Optional and returns true if it has been set, otherwise returns false.
 `public inline bool * `[`GetAcceptedPrivacyPolicyOrNull`](#structFRHAPI__OAuthTokenExchange_1a0f3928a29c7bd8af1e0be1cd74d461b6)`()` | Returns a pointer to AcceptedPrivacyPolicy_Optional, if it has been set, otherwise returns nullptr.
 `public inline const bool * `[`GetAcceptedPrivacyPolicyOrNull`](#structFRHAPI__OAuthTokenExchange_1aedbb09ac04f49d018def2382887d0d8d)`() const` | Returns a pointer to AcceptedPrivacyPolicy_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetAcceptedPrivacyPolicy`](#structFRHAPI__OAuthTokenExchange_1a677c9d0c39918df89e2c40a228cb0368)`(bool NewValue)` | Sets the value of AcceptedPrivacyPolicy_Optional and also sets AcceptedPrivacyPolicy_IsSet to true.
+`public inline void `[`SetAcceptedPrivacyPolicy`](#structFRHAPI__OAuthTokenExchange_1afc6d343bfc865c4079b288621307cbc2)`(const bool & NewValue)` | Sets the value of AcceptedPrivacyPolicy_Optional and also sets AcceptedPrivacyPolicy_IsSet to true.
+`public inline void `[`SetAcceptedPrivacyPolicy`](#structFRHAPI__OAuthTokenExchange_1a9a3e12eac78b8295b4da499e8154f42c)`(bool && NewValue)` | Sets the value of AcceptedPrivacyPolicy_Optional and also sets AcceptedPrivacyPolicy_IsSet to true using move semantics.
 `public inline void `[`ClearAcceptedPrivacyPolicy`](#structFRHAPI__OAuthTokenExchange_1addf1109e7e4b70e5492411ec62c83fb1)`()` | Clears the value of AcceptedPrivacyPolicy_Optional and sets AcceptedPrivacyPolicy_IsSet to false.
 `public inline bool `[`IsAcceptedPrivacyPolicyDefaultValue`](#structFRHAPI__OAuthTokenExchange_1ae5beea9b982bdfe51052d2b1ed011776)`() const` | Returns true if AcceptedPrivacyPolicy_Optional is set and matches the default value.
 `public inline void `[`SetAcceptedPrivacyPolicyToDefault`](#structFRHAPI__OAuthTokenExchange_1a3523911676aa77a4facdfba9699a4355)`()` | Sets the value of AcceptedPrivacyPolicy_Optional to its default and also sets AcceptedPrivacyPolicy_IsSet to true.
@@ -125,9 +130,13 @@ Gets the value of GrantType.
 
 Gets the value of GrantType.
 
-#### `public inline void `[`SetGrantType`](#structFRHAPI__OAuthTokenExchange_1aa4fae8ad2a78015a54eae66832a4de6d)`(ERHAPI_OAuthTokenEchangeGrantType NewValue)` <a id="structFRHAPI__OAuthTokenExchange_1aa4fae8ad2a78015a54eae66832a4de6d"></a>
+#### `public inline void `[`SetGrantType`](#structFRHAPI__OAuthTokenExchange_1a36b23851bb1928b74e9b068ad53d1eb6)`(const ERHAPI_OAuthTokenEchangeGrantType & NewValue)` <a id="structFRHAPI__OAuthTokenExchange_1a36b23851bb1928b74e9b068ad53d1eb6"></a>
 
 Sets the value of GrantType.
+
+#### `public inline void `[`SetGrantType`](#structFRHAPI__OAuthTokenExchange_1a557340523e284d665b521ddfd8726c48)`(ERHAPI_OAuthTokenEchangeGrantType && NewValue)` <a id="structFRHAPI__OAuthTokenExchange_1a557340523e284d665b521ddfd8726c48"></a>
+
+Sets the value of GrantType using move semantics.
 
 #### `public inline FString & `[`GetCode`](#structFRHAPI__OAuthTokenExchange_1a7707ebe9a7dfd2198cb60e45ead0e690)`()` <a id="structFRHAPI__OAuthTokenExchange_1a7707ebe9a7dfd2198cb60e45ead0e690"></a>
 
@@ -137,9 +146,13 @@ Gets the value of Code.
 
 Gets the value of Code.
 
-#### `public inline void `[`SetCode`](#structFRHAPI__OAuthTokenExchange_1a4f1f96ee76ae92ea93ae02b736f9451f)`(FString NewValue)` <a id="structFRHAPI__OAuthTokenExchange_1a4f1f96ee76ae92ea93ae02b736f9451f"></a>
+#### `public inline void `[`SetCode`](#structFRHAPI__OAuthTokenExchange_1a251224d73434a1ee1313180dc0a3b99f)`(const FString & NewValue)` <a id="structFRHAPI__OAuthTokenExchange_1a251224d73434a1ee1313180dc0a3b99f"></a>
 
 Sets the value of Code.
+
+#### `public inline void `[`SetCode`](#structFRHAPI__OAuthTokenExchange_1a7dd025e297c5ab46a47b0d952a0b6ee4)`(FString && NewValue)` <a id="structFRHAPI__OAuthTokenExchange_1a7dd025e297c5ab46a47b0d952a0b6ee4"></a>
+
+Sets the value of Code using move semantics.
 
 #### `public inline bool & `[`GetAcceptedEula`](#structFRHAPI__OAuthTokenExchange_1a53e63f94e1ba7917e516ef25db57fcfc)`()` <a id="structFRHAPI__OAuthTokenExchange_1a53e63f94e1ba7917e516ef25db57fcfc"></a>
 
@@ -165,9 +178,13 @@ Returns a pointer to AcceptedEula_Optional, if it has been set, otherwise return
 
 Returns a pointer to AcceptedEula_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetAcceptedEula`](#structFRHAPI__OAuthTokenExchange_1a7e0645daa97b58d978e2883f8e939727)`(bool NewValue)` <a id="structFRHAPI__OAuthTokenExchange_1a7e0645daa97b58d978e2883f8e939727"></a>
+#### `public inline void `[`SetAcceptedEula`](#structFRHAPI__OAuthTokenExchange_1a179fd71ff9b581d3804f232dc5a2c7cf)`(const bool & NewValue)` <a id="structFRHAPI__OAuthTokenExchange_1a179fd71ff9b581d3804f232dc5a2c7cf"></a>
 
 Sets the value of AcceptedEula_Optional and also sets AcceptedEula_IsSet to true.
+
+#### `public inline void `[`SetAcceptedEula`](#structFRHAPI__OAuthTokenExchange_1af7feca6bf184b6bfcdd7264af0b36b8c)`(bool && NewValue)` <a id="structFRHAPI__OAuthTokenExchange_1af7feca6bf184b6bfcdd7264af0b36b8c"></a>
+
+Sets the value of AcceptedEula_Optional and also sets AcceptedEula_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearAcceptedEula`](#structFRHAPI__OAuthTokenExchange_1a0dfd9d4f91feb3ee973bf6cf38171fba)`()` <a id="structFRHAPI__OAuthTokenExchange_1a0dfd9d4f91feb3ee973bf6cf38171fba"></a>
 
@@ -205,9 +222,13 @@ Returns a pointer to AcceptedTos_Optional, if it has been set, otherwise returns
 
 Returns a pointer to AcceptedTos_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetAcceptedTos`](#structFRHAPI__OAuthTokenExchange_1a7aeb26c0bd5a0a5c0a667e69c843bebc)`(bool NewValue)` <a id="structFRHAPI__OAuthTokenExchange_1a7aeb26c0bd5a0a5c0a667e69c843bebc"></a>
+#### `public inline void `[`SetAcceptedTos`](#structFRHAPI__OAuthTokenExchange_1a3c509a4b8ad3112b57e56f39bb77b1fd)`(const bool & NewValue)` <a id="structFRHAPI__OAuthTokenExchange_1a3c509a4b8ad3112b57e56f39bb77b1fd"></a>
 
 Sets the value of AcceptedTos_Optional and also sets AcceptedTos_IsSet to true.
+
+#### `public inline void `[`SetAcceptedTos`](#structFRHAPI__OAuthTokenExchange_1ae3230daeb9781a70ad35740e21b8fffd)`(bool && NewValue)` <a id="structFRHAPI__OAuthTokenExchange_1ae3230daeb9781a70ad35740e21b8fffd"></a>
+
+Sets the value of AcceptedTos_Optional and also sets AcceptedTos_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearAcceptedTos`](#structFRHAPI__OAuthTokenExchange_1abb37f9c9c203a7419b816d7590ad6536)`()` <a id="structFRHAPI__OAuthTokenExchange_1abb37f9c9c203a7419b816d7590ad6536"></a>
 
@@ -245,9 +266,13 @@ Returns a pointer to AcceptedPrivacyPolicy_Optional, if it has been set, otherwi
 
 Returns a pointer to AcceptedPrivacyPolicy_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetAcceptedPrivacyPolicy`](#structFRHAPI__OAuthTokenExchange_1a677c9d0c39918df89e2c40a228cb0368)`(bool NewValue)` <a id="structFRHAPI__OAuthTokenExchange_1a677c9d0c39918df89e2c40a228cb0368"></a>
+#### `public inline void `[`SetAcceptedPrivacyPolicy`](#structFRHAPI__OAuthTokenExchange_1afc6d343bfc865c4079b288621307cbc2)`(const bool & NewValue)` <a id="structFRHAPI__OAuthTokenExchange_1afc6d343bfc865c4079b288621307cbc2"></a>
 
 Sets the value of AcceptedPrivacyPolicy_Optional and also sets AcceptedPrivacyPolicy_IsSet to true.
+
+#### `public inline void `[`SetAcceptedPrivacyPolicy`](#structFRHAPI__OAuthTokenExchange_1a9a3e12eac78b8295b4da499e8154f42c)`(bool && NewValue)` <a id="structFRHAPI__OAuthTokenExchange_1a9a3e12eac78b8295b4da499e8154f42c"></a>
+
+Sets the value of AcceptedPrivacyPolicy_Optional and also sets AcceptedPrivacyPolicy_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearAcceptedPrivacyPolicy`](#structFRHAPI__OAuthTokenExchange_1addf1109e7e4b70e5492411ec62c83fb1)`()` <a id="structFRHAPI__OAuthTokenExchange_1addf1109e7e4b70e5492411ec62c83fb1"></a>
 

@@ -28,14 +28,16 @@ Info about the matchmaking status in a session.
 `public virtual void `[`WriteJson`](#structFRHAPI__MatchmakingInfo_1a5caf4c240571f435a14cef04fdfb37ae)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetTicketId`](#structFRHAPI__MatchmakingInfo_1a9cf459b92d8b3628d076579e339b9b84)`()` | Gets the value of TicketId.
 `public inline const FString & `[`GetTicketId`](#structFRHAPI__MatchmakingInfo_1a11c0e0ef0b753761420d761d85bc7f27)`() const` | Gets the value of TicketId.
-`public inline void `[`SetTicketId`](#structFRHAPI__MatchmakingInfo_1ac79e24ca3917259b076f28af6af3d187)`(FString NewValue)` | Sets the value of TicketId.
+`public inline void `[`SetTicketId`](#structFRHAPI__MatchmakingInfo_1abbce2a4bc6b4f74d2ce4eb828eae3dca)`(const FString & NewValue)` | Sets the value of TicketId.
+`public inline void `[`SetTicketId`](#structFRHAPI__MatchmakingInfo_1a378aa4619d1053675e402214ae0ab61a)`(FString && NewValue)` | Sets the value of TicketId using move semantics.
 `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchmakingInfo_1a8e9a6e7143b93b2ba742203077505998)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchmakingInfo_1a3b59a2ff99e941c029cb4e6e222d2d68)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchmakingInfo_1a98a2b2b116f635394928749c83b7936a)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetCustomData`](#structFRHAPI__MatchmakingInfo_1a4047fab0d1d749ea20956a659778cb2a)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchmakingInfo_1a5756aab5970cf6e2c3ccb84085d79758)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchmakingInfo_1aace731bdf5e36da712c3419d502f98d0)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCustomData`](#structFRHAPI__MatchmakingInfo_1ae2a4e3aad5d613c1b88688ccf0eabcc5)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`SetCustomData`](#structFRHAPI__MatchmakingInfo_1ac902fb84251ef2a876bbcf8264a28d7c)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`SetCustomData`](#structFRHAPI__MatchmakingInfo_1a231fb303a6675f06bbe322dfb98e5f8b)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__MatchmakingInfo_1a1f532bfd3ea96a7ea315d0981e7842a2)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 `public inline FString & `[`GetQueueId`](#structFRHAPI__MatchmakingInfo_1a62b052cb201b479fe8c6c147d535e720)`()` | Gets the value of QueueId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetQueueId`](#structFRHAPI__MatchmakingInfo_1ab41a9abec2c0e11cc1406c85de0a9679)`() const` | Gets the value of QueueId_Optional, regardless of it having been set.
@@ -43,7 +45,8 @@ Info about the matchmaking status in a session.
 `public inline bool `[`GetQueueId`](#structFRHAPI__MatchmakingInfo_1a584aab184a4bff60dcb6061373324dac)`(FString & OutValue) const` | Fills OutValue with the value of QueueId_Optional and returns true if it has been set, otherwise returns false.
 `public inline FString * `[`GetQueueIdOrNull`](#structFRHAPI__MatchmakingInfo_1a87acb0888cbe32068e631925c53db155)`()` | Returns a pointer to QueueId_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FString * `[`GetQueueIdOrNull`](#structFRHAPI__MatchmakingInfo_1a83d1d5daa3780b0b2bf8ce76c8dca6c2)`() const` | Returns a pointer to QueueId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetQueueId`](#structFRHAPI__MatchmakingInfo_1a11debe1f627cb103447728a5bebafe57)`(FString NewValue)` | Sets the value of QueueId_Optional and also sets QueueId_IsSet to true.
+`public inline void `[`SetQueueId`](#structFRHAPI__MatchmakingInfo_1aa86c8e7c2df26e654653f5db7e75159d)`(const FString & NewValue)` | Sets the value of QueueId_Optional and also sets QueueId_IsSet to true.
+`public inline void `[`SetQueueId`](#structFRHAPI__MatchmakingInfo_1a12ba3cbe88f3d649678ef9e48fe1fa7f)`(FString && NewValue)` | Sets the value of QueueId_Optional and also sets QueueId_IsSet to true using move semantics.
 `public inline void `[`ClearQueueId`](#structFRHAPI__MatchmakingInfo_1a21d733a35471ef1059b550b810e33b31)`()` | Clears the value of QueueId_Optional and sets QueueId_IsSet to false.
 
 ### Members
@@ -93,9 +96,13 @@ Gets the value of TicketId.
 
 Gets the value of TicketId.
 
-#### `public inline void `[`SetTicketId`](#structFRHAPI__MatchmakingInfo_1ac79e24ca3917259b076f28af6af3d187)`(FString NewValue)` <a id="structFRHAPI__MatchmakingInfo_1ac79e24ca3917259b076f28af6af3d187"></a>
+#### `public inline void `[`SetTicketId`](#structFRHAPI__MatchmakingInfo_1abbce2a4bc6b4f74d2ce4eb828eae3dca)`(const FString & NewValue)` <a id="structFRHAPI__MatchmakingInfo_1abbce2a4bc6b4f74d2ce4eb828eae3dca"></a>
 
 Sets the value of TicketId.
+
+#### `public inline void `[`SetTicketId`](#structFRHAPI__MatchmakingInfo_1a378aa4619d1053675e402214ae0ab61a)`(FString && NewValue)` <a id="structFRHAPI__MatchmakingInfo_1a378aa4619d1053675e402214ae0ab61a"></a>
+
+Sets the value of TicketId using move semantics.
 
 #### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchmakingInfo_1a8e9a6e7143b93b2ba742203077505998)`()` <a id="structFRHAPI__MatchmakingInfo_1a8e9a6e7143b93b2ba742203077505998"></a>
 
@@ -121,9 +128,13 @@ Returns a pointer to CustomData_Optional, if it has been set, otherwise returns 
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__MatchmakingInfo_1ae2a4e3aad5d613c1b88688ccf0eabcc5)`(TMap< FString, FString > NewValue)` <a id="structFRHAPI__MatchmakingInfo_1ae2a4e3aad5d613c1b88688ccf0eabcc5"></a>
+#### `public inline void `[`SetCustomData`](#structFRHAPI__MatchmakingInfo_1ac902fb84251ef2a876bbcf8264a28d7c)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__MatchmakingInfo_1ac902fb84251ef2a876bbcf8264a28d7c"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+
+#### `public inline void `[`SetCustomData`](#structFRHAPI__MatchmakingInfo_1a231fb303a6675f06bbe322dfb98e5f8b)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__MatchmakingInfo_1a231fb303a6675f06bbe322dfb98e5f8b"></a>
+
+Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearCustomData`](#structFRHAPI__MatchmakingInfo_1a1f532bfd3ea96a7ea315d0981e7842a2)`()` <a id="structFRHAPI__MatchmakingInfo_1a1f532bfd3ea96a7ea315d0981e7842a2"></a>
 
@@ -153,9 +164,13 @@ Returns a pointer to QueueId_Optional, if it has been set, otherwise returns nul
 
 Returns a pointer to QueueId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetQueueId`](#structFRHAPI__MatchmakingInfo_1a11debe1f627cb103447728a5bebafe57)`(FString NewValue)` <a id="structFRHAPI__MatchmakingInfo_1a11debe1f627cb103447728a5bebafe57"></a>
+#### `public inline void `[`SetQueueId`](#structFRHAPI__MatchmakingInfo_1aa86c8e7c2df26e654653f5db7e75159d)`(const FString & NewValue)` <a id="structFRHAPI__MatchmakingInfo_1aa86c8e7c2df26e654653f5db7e75159d"></a>
 
 Sets the value of QueueId_Optional and also sets QueueId_IsSet to true.
+
+#### `public inline void `[`SetQueueId`](#structFRHAPI__MatchmakingInfo_1a12ba3cbe88f3d649678ef9e48fe1fa7f)`(FString && NewValue)` <a id="structFRHAPI__MatchmakingInfo_1a12ba3cbe88f3d649678ef9e48fe1fa7f"></a>
+
+Sets the value of QueueId_Optional and also sets QueueId_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearQueueId`](#structFRHAPI__MatchmakingInfo_1a21d733a35471ef1059b550b810e33b31)`()` <a id="structFRHAPI__MatchmakingInfo_1a21d733a35471ef1059b550b810e33b31"></a>
 

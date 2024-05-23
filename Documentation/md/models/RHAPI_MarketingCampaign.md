@@ -32,28 +32,33 @@ A Marketing Campaign is a set of external keys that can be claimed by players.Th
 `public virtual void `[`WriteJson`](#structFRHAPI__MarketingCampaign_1afc1372471524c0d87f44889c5ce67008)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FGuid & `[`GetUuid`](#structFRHAPI__MarketingCampaign_1afea3c2144a9946be7b97627fe96c82c5)`()` | Gets the value of Uuid.
 `public inline const FGuid & `[`GetUuid`](#structFRHAPI__MarketingCampaign_1a23193be74250e1626329d01416cdade3)`() const` | Gets the value of Uuid.
-`public inline void `[`SetUuid`](#structFRHAPI__MarketingCampaign_1a22cf010ad1fa09c3871fcfaa253b1f35)`(FGuid NewValue)` | Sets the value of Uuid.
+`public inline void `[`SetUuid`](#structFRHAPI__MarketingCampaign_1af25f9c5b255153e29a04239857fc5243)`(const FGuid & NewValue)` | Sets the value of Uuid.
+`public inline void `[`SetUuid`](#structFRHAPI__MarketingCampaign_1a6a1b6952c2593161192c7bdfd353996d)`(FGuid && NewValue)` | Sets the value of Uuid using move semantics.
 `public inline FString & `[`GetName`](#structFRHAPI__MarketingCampaign_1a4d1656a7c3c5ee9b7139d5c8ce31e90d)`()` | Gets the value of Name.
 `public inline const FString & `[`GetName`](#structFRHAPI__MarketingCampaign_1a3b052047bead420245b451ec7759e8b4)`() const` | Gets the value of Name.
-`public inline void `[`SetName`](#structFRHAPI__MarketingCampaign_1a43d09e85d07f6fe9becb151ccdd406a9)`(FString NewValue)` | Sets the value of Name.
+`public inline void `[`SetName`](#structFRHAPI__MarketingCampaign_1a71de4a767bd7fe754798ef35615fc599)`(const FString & NewValue)` | Sets the value of Name.
+`public inline void `[`SetName`](#structFRHAPI__MarketingCampaign_1aa0b4e9040a4d2e6344ac0b81928d009a)`(FString && NewValue)` | Sets the value of Name using move semantics.
 `public inline ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__MarketingCampaign_1afefb2ec2fc173cd53c0b3591d8e4bf3b)`()` | Gets the value of PortalId_Optional, regardless of it having been set.
 `public inline const ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__MarketingCampaign_1ad7162fd470886e6684e797e143ef6570)`() const` | Gets the value of PortalId_Optional, regardless of it having been set.
 `public inline const ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__MarketingCampaign_1ac65237e926e5521e602737d1befbfa7b)`(const ERHAPI_Portal & DefaultValue) const` | Gets the value of PortalId_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetPortalId`](#structFRHAPI__MarketingCampaign_1a785a09229a439d5dee598899d56edeff)`(ERHAPI_Portal & OutValue) const` | Fills OutValue with the value of PortalId_Optional and returns true if it has been set, otherwise returns false.
 `public inline ERHAPI_Portal * `[`GetPortalIdOrNull`](#structFRHAPI__MarketingCampaign_1a78000ff02df5641ac43b29bc1afc70ad)`()` | Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr.
 `public inline const ERHAPI_Portal * `[`GetPortalIdOrNull`](#structFRHAPI__MarketingCampaign_1a2f2f5ba03022ff2bc63592980564e2bc)`() const` | Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPortalId`](#structFRHAPI__MarketingCampaign_1af27df46acdcdfbe80f18b5ca6af19d0e)`(ERHAPI_Portal NewValue)` | Sets the value of PortalId_Optional and also sets PortalId_IsSet to true.
+`public inline void `[`SetPortalId`](#structFRHAPI__MarketingCampaign_1a07d6dc4e1e08dc6e173a25632370b2fa)`(const ERHAPI_Portal & NewValue)` | Sets the value of PortalId_Optional and also sets PortalId_IsSet to true.
+`public inline void `[`SetPortalId`](#structFRHAPI__MarketingCampaign_1a166990b58e244fa580a14ecb4c7a82c5)`(ERHAPI_Portal && NewValue)` | Sets the value of PortalId_Optional and also sets PortalId_IsSet to true using move semantics.
 `public inline void `[`ClearPortalId`](#structFRHAPI__MarketingCampaign_1a18a4f2fa4cfe73481188dd0d065b2899)`()` | Clears the value of PortalId_Optional and sets PortalId_IsSet to false.
 `public inline TArray< `[`FRHAPI_KeyType`](RHAPI_KeyType.md#structFRHAPI__KeyType)` > & `[`GetKeyTypes`](#structFRHAPI__MarketingCampaign_1ab1a2efa3ebfc416759425bc944c14751)`()` | Gets the value of KeyTypes.
 `public inline const TArray< `[`FRHAPI_KeyType`](RHAPI_KeyType.md#structFRHAPI__KeyType)` > & `[`GetKeyTypes`](#structFRHAPI__MarketingCampaign_1a6e04603948a382008325629abc892da6)`() const` | Gets the value of KeyTypes.
-`public inline void `[`SetKeyTypes`](#structFRHAPI__MarketingCampaign_1a739d8b8357e1a00a15d4e77efde53a5d)`(TArray< `[`FRHAPI_KeyType`](RHAPI_KeyType.md#structFRHAPI__KeyType)` > NewValue)` | Sets the value of KeyTypes.
+`public inline void `[`SetKeyTypes`](#structFRHAPI__MarketingCampaign_1a12eccfc6a4324cea720b7b0c52f5286c)`(const TArray< `[`FRHAPI_KeyType`](RHAPI_KeyType.md#structFRHAPI__KeyType)` > & NewValue)` | Sets the value of KeyTypes.
+`public inline void `[`SetKeyTypes`](#structFRHAPI__MarketingCampaign_1a21f67e838a95b4cdb5c03b2e4b642784)`(TArray< `[`FRHAPI_KeyType`](RHAPI_KeyType.md#structFRHAPI__KeyType)` > && NewValue)` | Sets the value of KeyTypes using move semantics.
 `public inline FString & `[`GetCreatedOn`](#structFRHAPI__MarketingCampaign_1afb006821fee42ef311e97deebb4158b8)`()` | Gets the value of CreatedOn_Optional, regardless of it having been set.
 `public inline const FString & `[`GetCreatedOn`](#structFRHAPI__MarketingCampaign_1aa77d50f39e725ceb84e27175db0bfa06)`() const` | Gets the value of CreatedOn_Optional, regardless of it having been set.
 `public inline const FString & `[`GetCreatedOn`](#structFRHAPI__MarketingCampaign_1af52eab87f90c083d1270394b1abff39b)`(const FString & DefaultValue) const` | Gets the value of CreatedOn_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetCreatedOn`](#structFRHAPI__MarketingCampaign_1ac65c3bb3193e8d64fad5765b6a2998bc)`(FString & OutValue) const` | Fills OutValue with the value of CreatedOn_Optional and returns true if it has been set, otherwise returns false.
 `public inline FString * `[`GetCreatedOnOrNull`](#structFRHAPI__MarketingCampaign_1ab7e50b5a72c019e9323b71378b52475b)`()` | Returns a pointer to CreatedOn_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FString * `[`GetCreatedOnOrNull`](#structFRHAPI__MarketingCampaign_1a14b5ec70aa6af84e07486c3ff4a7e3d5)`() const` | Returns a pointer to CreatedOn_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCreatedOn`](#structFRHAPI__MarketingCampaign_1a9b2a7c425e7e47b628a97ccd492cf3df)`(FString NewValue)` | Sets the value of CreatedOn_Optional and also sets CreatedOn_IsSet to true.
+`public inline void `[`SetCreatedOn`](#structFRHAPI__MarketingCampaign_1a1813ad0f80d93e5b070d3248e7c1b9a9)`(const FString & NewValue)` | Sets the value of CreatedOn_Optional and also sets CreatedOn_IsSet to true.
+`public inline void `[`SetCreatedOn`](#structFRHAPI__MarketingCampaign_1a12eac65c30b80961096e75080ff4389b)`(FString && NewValue)` | Sets the value of CreatedOn_Optional and also sets CreatedOn_IsSet to true using move semantics.
 `public inline void `[`ClearCreatedOn`](#structFRHAPI__MarketingCampaign_1af2065e3b9fe351f08930a45f42c57a1f)`()` | Clears the value of CreatedOn_Optional and sets CreatedOn_IsSet to false.
 `public inline FString & `[`GetLastModifiedOn`](#structFRHAPI__MarketingCampaign_1a934bb894ebc2082869ab21944d003f00)`()` | Gets the value of LastModifiedOn_Optional, regardless of it having been set.
 `public inline const FString & `[`GetLastModifiedOn`](#structFRHAPI__MarketingCampaign_1acae329d0b3570a0e0ef7331b6bc3169e)`() const` | Gets the value of LastModifiedOn_Optional, regardless of it having been set.
@@ -61,7 +66,8 @@ A Marketing Campaign is a set of external keys that can be claimed by players.Th
 `public inline bool `[`GetLastModifiedOn`](#structFRHAPI__MarketingCampaign_1aab3f28c30cb0f0c84d40ab37071c0564)`(FString & OutValue) const` | Fills OutValue with the value of LastModifiedOn_Optional and returns true if it has been set, otherwise returns false.
 `public inline FString * `[`GetLastModifiedOnOrNull`](#structFRHAPI__MarketingCampaign_1a0dc98da2de551cb295b39bf705038de2)`()` | Returns a pointer to LastModifiedOn_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FString * `[`GetLastModifiedOnOrNull`](#structFRHAPI__MarketingCampaign_1a6259718ff0ead9c36ad3da1f969c6034)`() const` | Returns a pointer to LastModifiedOn_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetLastModifiedOn`](#structFRHAPI__MarketingCampaign_1aafd70fa05b108d3c8919031a75ff0e9b)`(FString NewValue)` | Sets the value of LastModifiedOn_Optional and also sets LastModifiedOn_IsSet to true.
+`public inline void `[`SetLastModifiedOn`](#structFRHAPI__MarketingCampaign_1ac83cabbb7471de49476689f033ef517b)`(const FString & NewValue)` | Sets the value of LastModifiedOn_Optional and also sets LastModifiedOn_IsSet to true.
+`public inline void `[`SetLastModifiedOn`](#structFRHAPI__MarketingCampaign_1a86861434091b0ddae3034fb6a4caad27)`(FString && NewValue)` | Sets the value of LastModifiedOn_Optional and also sets LastModifiedOn_IsSet to true using move semantics.
 `public inline void `[`ClearLastModifiedOn`](#structFRHAPI__MarketingCampaign_1aa16796a166b316f0d75b6a9f6f667d21)`()` | Clears the value of LastModifiedOn_Optional and sets LastModifiedOn_IsSet to false.
 
 ### Members
@@ -127,9 +133,13 @@ Gets the value of Uuid.
 
 Gets the value of Uuid.
 
-#### `public inline void `[`SetUuid`](#structFRHAPI__MarketingCampaign_1a22cf010ad1fa09c3871fcfaa253b1f35)`(FGuid NewValue)` <a id="structFRHAPI__MarketingCampaign_1a22cf010ad1fa09c3871fcfaa253b1f35"></a>
+#### `public inline void `[`SetUuid`](#structFRHAPI__MarketingCampaign_1af25f9c5b255153e29a04239857fc5243)`(const FGuid & NewValue)` <a id="structFRHAPI__MarketingCampaign_1af25f9c5b255153e29a04239857fc5243"></a>
 
 Sets the value of Uuid.
+
+#### `public inline void `[`SetUuid`](#structFRHAPI__MarketingCampaign_1a6a1b6952c2593161192c7bdfd353996d)`(FGuid && NewValue)` <a id="structFRHAPI__MarketingCampaign_1a6a1b6952c2593161192c7bdfd353996d"></a>
+
+Sets the value of Uuid using move semantics.
 
 #### `public inline FString & `[`GetName`](#structFRHAPI__MarketingCampaign_1a4d1656a7c3c5ee9b7139d5c8ce31e90d)`()` <a id="structFRHAPI__MarketingCampaign_1a4d1656a7c3c5ee9b7139d5c8ce31e90d"></a>
 
@@ -139,9 +149,13 @@ Gets the value of Name.
 
 Gets the value of Name.
 
-#### `public inline void `[`SetName`](#structFRHAPI__MarketingCampaign_1a43d09e85d07f6fe9becb151ccdd406a9)`(FString NewValue)` <a id="structFRHAPI__MarketingCampaign_1a43d09e85d07f6fe9becb151ccdd406a9"></a>
+#### `public inline void `[`SetName`](#structFRHAPI__MarketingCampaign_1a71de4a767bd7fe754798ef35615fc599)`(const FString & NewValue)` <a id="structFRHAPI__MarketingCampaign_1a71de4a767bd7fe754798ef35615fc599"></a>
 
 Sets the value of Name.
+
+#### `public inline void `[`SetName`](#structFRHAPI__MarketingCampaign_1aa0b4e9040a4d2e6344ac0b81928d009a)`(FString && NewValue)` <a id="structFRHAPI__MarketingCampaign_1aa0b4e9040a4d2e6344ac0b81928d009a"></a>
+
+Sets the value of Name using move semantics.
 
 #### `public inline ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__MarketingCampaign_1afefb2ec2fc173cd53c0b3591d8e4bf3b)`()` <a id="structFRHAPI__MarketingCampaign_1afefb2ec2fc173cd53c0b3591d8e4bf3b"></a>
 
@@ -167,9 +181,13 @@ Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nu
 
 Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPortalId`](#structFRHAPI__MarketingCampaign_1af27df46acdcdfbe80f18b5ca6af19d0e)`(ERHAPI_Portal NewValue)` <a id="structFRHAPI__MarketingCampaign_1af27df46acdcdfbe80f18b5ca6af19d0e"></a>
+#### `public inline void `[`SetPortalId`](#structFRHAPI__MarketingCampaign_1a07d6dc4e1e08dc6e173a25632370b2fa)`(const ERHAPI_Portal & NewValue)` <a id="structFRHAPI__MarketingCampaign_1a07d6dc4e1e08dc6e173a25632370b2fa"></a>
 
 Sets the value of PortalId_Optional and also sets PortalId_IsSet to true.
+
+#### `public inline void `[`SetPortalId`](#structFRHAPI__MarketingCampaign_1a166990b58e244fa580a14ecb4c7a82c5)`(ERHAPI_Portal && NewValue)` <a id="structFRHAPI__MarketingCampaign_1a166990b58e244fa580a14ecb4c7a82c5"></a>
+
+Sets the value of PortalId_Optional and also sets PortalId_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearPortalId`](#structFRHAPI__MarketingCampaign_1a18a4f2fa4cfe73481188dd0d065b2899)`()` <a id="structFRHAPI__MarketingCampaign_1a18a4f2fa4cfe73481188dd0d065b2899"></a>
 
@@ -183,9 +201,13 @@ Gets the value of KeyTypes.
 
 Gets the value of KeyTypes.
 
-#### `public inline void `[`SetKeyTypes`](#structFRHAPI__MarketingCampaign_1a739d8b8357e1a00a15d4e77efde53a5d)`(TArray< `[`FRHAPI_KeyType`](RHAPI_KeyType.md#structFRHAPI__KeyType)` > NewValue)` <a id="structFRHAPI__MarketingCampaign_1a739d8b8357e1a00a15d4e77efde53a5d"></a>
+#### `public inline void `[`SetKeyTypes`](#structFRHAPI__MarketingCampaign_1a12eccfc6a4324cea720b7b0c52f5286c)`(const TArray< `[`FRHAPI_KeyType`](RHAPI_KeyType.md#structFRHAPI__KeyType)` > & NewValue)` <a id="structFRHAPI__MarketingCampaign_1a12eccfc6a4324cea720b7b0c52f5286c"></a>
 
 Sets the value of KeyTypes.
+
+#### `public inline void `[`SetKeyTypes`](#structFRHAPI__MarketingCampaign_1a21f67e838a95b4cdb5c03b2e4b642784)`(TArray< `[`FRHAPI_KeyType`](RHAPI_KeyType.md#structFRHAPI__KeyType)` > && NewValue)` <a id="structFRHAPI__MarketingCampaign_1a21f67e838a95b4cdb5c03b2e4b642784"></a>
+
+Sets the value of KeyTypes using move semantics.
 
 #### `public inline FString & `[`GetCreatedOn`](#structFRHAPI__MarketingCampaign_1afb006821fee42ef311e97deebb4158b8)`()` <a id="structFRHAPI__MarketingCampaign_1afb006821fee42ef311e97deebb4158b8"></a>
 
@@ -211,9 +233,13 @@ Returns a pointer to CreatedOn_Optional, if it has been set, otherwise returns n
 
 Returns a pointer to CreatedOn_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCreatedOn`](#structFRHAPI__MarketingCampaign_1a9b2a7c425e7e47b628a97ccd492cf3df)`(FString NewValue)` <a id="structFRHAPI__MarketingCampaign_1a9b2a7c425e7e47b628a97ccd492cf3df"></a>
+#### `public inline void `[`SetCreatedOn`](#structFRHAPI__MarketingCampaign_1a1813ad0f80d93e5b070d3248e7c1b9a9)`(const FString & NewValue)` <a id="structFRHAPI__MarketingCampaign_1a1813ad0f80d93e5b070d3248e7c1b9a9"></a>
 
 Sets the value of CreatedOn_Optional and also sets CreatedOn_IsSet to true.
+
+#### `public inline void `[`SetCreatedOn`](#structFRHAPI__MarketingCampaign_1a12eac65c30b80961096e75080ff4389b)`(FString && NewValue)` <a id="structFRHAPI__MarketingCampaign_1a12eac65c30b80961096e75080ff4389b"></a>
+
+Sets the value of CreatedOn_Optional and also sets CreatedOn_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearCreatedOn`](#structFRHAPI__MarketingCampaign_1af2065e3b9fe351f08930a45f42c57a1f)`()` <a id="structFRHAPI__MarketingCampaign_1af2065e3b9fe351f08930a45f42c57a1f"></a>
 
@@ -243,9 +269,13 @@ Returns a pointer to LastModifiedOn_Optional, if it has been set, otherwise retu
 
 Returns a pointer to LastModifiedOn_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetLastModifiedOn`](#structFRHAPI__MarketingCampaign_1aafd70fa05b108d3c8919031a75ff0e9b)`(FString NewValue)` <a id="structFRHAPI__MarketingCampaign_1aafd70fa05b108d3c8919031a75ff0e9b"></a>
+#### `public inline void `[`SetLastModifiedOn`](#structFRHAPI__MarketingCampaign_1ac83cabbb7471de49476689f033ef517b)`(const FString & NewValue)` <a id="structFRHAPI__MarketingCampaign_1ac83cabbb7471de49476689f033ef517b"></a>
 
 Sets the value of LastModifiedOn_Optional and also sets LastModifiedOn_IsSet to true.
+
+#### `public inline void `[`SetLastModifiedOn`](#structFRHAPI__MarketingCampaign_1a86861434091b0ddae3034fb6a4caad27)`(FString && NewValue)` <a id="structFRHAPI__MarketingCampaign_1a86861434091b0ddae3034fb6a4caad27"></a>
+
+Sets the value of LastModifiedOn_Optional and also sets LastModifiedOn_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearLastModifiedOn`](#structFRHAPI__MarketingCampaign_1aa16796a166b316f0d75b6a9f6f667d21)`()` <a id="structFRHAPI__MarketingCampaign_1aa16796a166b316f0d75b6a9f6f667d21"></a>
 

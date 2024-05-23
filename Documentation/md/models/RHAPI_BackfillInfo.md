@@ -26,14 +26,16 @@ Info about the open-match backfill object in a session.
 `public virtual void `[`WriteJson`](#structFRHAPI__BackfillInfo_1a4fcd1e078a86ff0937721ffd81b085b8)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetBackfillId`](#structFRHAPI__BackfillInfo_1a659925f7bed4235d2b8463c5186f41f9)`()` | Gets the value of BackfillId.
 `public inline const FString & `[`GetBackfillId`](#structFRHAPI__BackfillInfo_1a2cbdf4b05da0a9c98abd8cb3c19f2876)`() const` | Gets the value of BackfillId.
-`public inline void `[`SetBackfillId`](#structFRHAPI__BackfillInfo_1a6698fe25d3b61c366ba6dd4e97d3ba17)`(FString NewValue)` | Sets the value of BackfillId.
+`public inline void `[`SetBackfillId`](#structFRHAPI__BackfillInfo_1a35158eff975fcdcf6d4877fe2c983a4f)`(const FString & NewValue)` | Sets the value of BackfillId.
+`public inline void `[`SetBackfillId`](#structFRHAPI__BackfillInfo_1a9875c533250d147c8582470db641dc7d)`(FString && NewValue)` | Sets the value of BackfillId using move semantics.
 `public inline TMap< FString, FString > & `[`GetExtensions`](#structFRHAPI__BackfillInfo_1acd4171be6f7e414904eae68893ba2142)`()` | Gets the value of Extensions_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetExtensions`](#structFRHAPI__BackfillInfo_1ac38c9455f02f2996c741ba1136b900e2)`() const` | Gets the value of Extensions_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetExtensions`](#structFRHAPI__BackfillInfo_1a3e08fcb86b4377bf16321fc2fbd04acf)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of Extensions_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetExtensions`](#structFRHAPI__BackfillInfo_1a46d216b7646ac935c49eb297f468778a)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of Extensions_Optional and returns true if it has been set, otherwise returns false.
 `public inline TMap< FString, FString > * `[`GetExtensionsOrNull`](#structFRHAPI__BackfillInfo_1a0509b8d6c6613ee55f8e192fe60775fe)`()` | Returns a pointer to Extensions_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TMap< FString, FString > * `[`GetExtensionsOrNull`](#structFRHAPI__BackfillInfo_1a0a89bb3f1cdde31055424028b04cb120)`() const` | Returns a pointer to Extensions_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetExtensions`](#structFRHAPI__BackfillInfo_1a952fe467e266ffc96f347779cf49b12d)`(TMap< FString, FString > NewValue)` | Sets the value of Extensions_Optional and also sets Extensions_IsSet to true.
+`public inline void `[`SetExtensions`](#structFRHAPI__BackfillInfo_1a3c04338bc88a636450e4abec9fe9eca2)`(const TMap< FString, FString > & NewValue)` | Sets the value of Extensions_Optional and also sets Extensions_IsSet to true.
+`public inline void `[`SetExtensions`](#structFRHAPI__BackfillInfo_1aa6c9c0dd772bba3b58df204387dfc0a1)`(TMap< FString, FString > && NewValue)` | Sets the value of Extensions_Optional and also sets Extensions_IsSet to true using move semantics.
 `public inline void `[`ClearExtensions`](#structFRHAPI__BackfillInfo_1a13c1c5696be1196b66b1706a090c59ee)`()` | Clears the value of Extensions_Optional and sets Extensions_IsSet to false.
 
 ### Members
@@ -75,9 +77,13 @@ Gets the value of BackfillId.
 
 Gets the value of BackfillId.
 
-#### `public inline void `[`SetBackfillId`](#structFRHAPI__BackfillInfo_1a6698fe25d3b61c366ba6dd4e97d3ba17)`(FString NewValue)` <a id="structFRHAPI__BackfillInfo_1a6698fe25d3b61c366ba6dd4e97d3ba17"></a>
+#### `public inline void `[`SetBackfillId`](#structFRHAPI__BackfillInfo_1a35158eff975fcdcf6d4877fe2c983a4f)`(const FString & NewValue)` <a id="structFRHAPI__BackfillInfo_1a35158eff975fcdcf6d4877fe2c983a4f"></a>
 
 Sets the value of BackfillId.
+
+#### `public inline void `[`SetBackfillId`](#structFRHAPI__BackfillInfo_1a9875c533250d147c8582470db641dc7d)`(FString && NewValue)` <a id="structFRHAPI__BackfillInfo_1a9875c533250d147c8582470db641dc7d"></a>
+
+Sets the value of BackfillId using move semantics.
 
 #### `public inline TMap< FString, FString > & `[`GetExtensions`](#structFRHAPI__BackfillInfo_1acd4171be6f7e414904eae68893ba2142)`()` <a id="structFRHAPI__BackfillInfo_1acd4171be6f7e414904eae68893ba2142"></a>
 
@@ -103,9 +109,13 @@ Returns a pointer to Extensions_Optional, if it has been set, otherwise returns 
 
 Returns a pointer to Extensions_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetExtensions`](#structFRHAPI__BackfillInfo_1a952fe467e266ffc96f347779cf49b12d)`(TMap< FString, FString > NewValue)` <a id="structFRHAPI__BackfillInfo_1a952fe467e266ffc96f347779cf49b12d"></a>
+#### `public inline void `[`SetExtensions`](#structFRHAPI__BackfillInfo_1a3c04338bc88a636450e4abec9fe9eca2)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__BackfillInfo_1a3c04338bc88a636450e4abec9fe9eca2"></a>
 
 Sets the value of Extensions_Optional and also sets Extensions_IsSet to true.
+
+#### `public inline void `[`SetExtensions`](#structFRHAPI__BackfillInfo_1aa6c9c0dd772bba3b58df204387dfc0a1)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__BackfillInfo_1aa6c9c0dd772bba3b58df204387dfc0a1"></a>
+
+Sets the value of Extensions_Optional and also sets Extensions_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearExtensions`](#structFRHAPI__BackfillInfo_1a13c1c5696be1196b66b1706a090c59ee)`()` <a id="structFRHAPI__BackfillInfo_1a13c1c5696be1196b66b1706a090c59ee"></a>
 

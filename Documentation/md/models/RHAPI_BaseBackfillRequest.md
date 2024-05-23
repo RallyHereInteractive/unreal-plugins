@@ -22,7 +22,8 @@ struct FRHAPI_BaseBackfillRequest
 `public virtual void `[`WriteJson`](#structFRHAPI__BaseBackfillRequest_1a1cd261028157e2e554bb3ce0c030dd49)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetInstanceId`](#structFRHAPI__BaseBackfillRequest_1a1c9a904f6c5187a9e57f8334f21257d7)`()` | Gets the value of InstanceId.
 `public inline const FString & `[`GetInstanceId`](#structFRHAPI__BaseBackfillRequest_1af82ecb8b5005dcf3034bec2eb1252274)`() const` | Gets the value of InstanceId.
-`public inline void `[`SetInstanceId`](#structFRHAPI__BaseBackfillRequest_1a9277a4122e794833f96741e2d4be6e2e)`(FString NewValue)` | Sets the value of InstanceId.
+`public inline void `[`SetInstanceId`](#structFRHAPI__BaseBackfillRequest_1a5441e597e17d6f5c9cca97d75a5593b2)`(const FString & NewValue)` | Sets the value of InstanceId.
+`public inline void `[`SetInstanceId`](#structFRHAPI__BaseBackfillRequest_1ada0e50961e64647789d1278acaadf559)`(FString && NewValue)` | Sets the value of InstanceId using move semantics.
 
 ### Members
 
@@ -55,7 +56,11 @@ Gets the value of InstanceId.
 
 Gets the value of InstanceId.
 
-#### `public inline void `[`SetInstanceId`](#structFRHAPI__BaseBackfillRequest_1a9277a4122e794833f96741e2d4be6e2e)`(FString NewValue)` <a id="structFRHAPI__BaseBackfillRequest_1a9277a4122e794833f96741e2d4be6e2e"></a>
+#### `public inline void `[`SetInstanceId`](#structFRHAPI__BaseBackfillRequest_1a5441e597e17d6f5c9cca97d75a5593b2)`(const FString & NewValue)` <a id="structFRHAPI__BaseBackfillRequest_1a5441e597e17d6f5c9cca97d75a5593b2"></a>
 
 Sets the value of InstanceId.
+
+#### `public inline void `[`SetInstanceId`](#structFRHAPI__BaseBackfillRequest_1ada0e50961e64647789d1278acaadf559)`(FString && NewValue)` <a id="structFRHAPI__BaseBackfillRequest_1ada0e50961e64647789d1278acaadf559"></a>
+
+Sets the value of InstanceId using move semantics.
 

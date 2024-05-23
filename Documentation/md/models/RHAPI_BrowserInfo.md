@@ -29,7 +29,8 @@ Information about the browser resource in a session.
 `public inline bool `[`GetCustomData`](#structFRHAPI__BrowserInfo_1a2d8cf64f67c2ebc5e50b928cc557acea)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__BrowserInfo_1a839964c99508071de3dac7c7d2705ea6)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__BrowserInfo_1a1b453c2ac8b666a3c3e0ce3acdf0726d)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCustomData`](#structFRHAPI__BrowserInfo_1a6fe9c0b681f3646f18791398c90206a7)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`SetCustomData`](#structFRHAPI__BrowserInfo_1a0cecadce5a53f4e9c468dabbc318be3f)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`SetCustomData`](#structFRHAPI__BrowserInfo_1ae3ce69fb981a8c1dc00cefb7bf0c8835)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__BrowserInfo_1ae8f8398bbf009d658cf121b7734c9ba0)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
 ### Members
@@ -83,9 +84,13 @@ Returns a pointer to CustomData_Optional, if it has been set, otherwise returns 
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__BrowserInfo_1a6fe9c0b681f3646f18791398c90206a7)`(TMap< FString, FString > NewValue)` <a id="structFRHAPI__BrowserInfo_1a6fe9c0b681f3646f18791398c90206a7"></a>
+#### `public inline void `[`SetCustomData`](#structFRHAPI__BrowserInfo_1a0cecadce5a53f4e9c468dabbc318be3f)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__BrowserInfo_1a0cecadce5a53f4e9c468dabbc318be3f"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+
+#### `public inline void `[`SetCustomData`](#structFRHAPI__BrowserInfo_1ae3ce69fb981a8c1dc00cefb7bf0c8835)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__BrowserInfo_1ae3ce69fb981a8c1dc00cefb7bf0c8835"></a>
+
+Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearCustomData`](#structFRHAPI__BrowserInfo_1ae8f8398bbf009d658cf121b7734c9ba0)`()` <a id="structFRHAPI__BrowserInfo_1ae8f8398bbf009d658cf121b7734c9ba0"></a>
 

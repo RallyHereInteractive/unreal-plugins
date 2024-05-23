@@ -31,7 +31,8 @@ A collection of XP Tables. Each table is a collection of XP Levels from 1 to N. 
 `public inline bool `[`GetXpTables`](#structFRHAPI__XpTables_1ac8091df60e620a103d8b670dff5ec432)`(TMap< FString, `[`FRHAPI_XpTable`](RHAPI_XpTable.md#structFRHAPI__XpTable)` > & OutValue) const` | Fills OutValue with the value of XpTables_Optional and returns true if it has been set, otherwise returns false.
 `public inline TMap< FString, `[`FRHAPI_XpTable`](RHAPI_XpTable.md#structFRHAPI__XpTable)` > * `[`GetXpTablesOrNull`](#structFRHAPI__XpTables_1a18a28d46df966f62cd8ae8bcba4f37a3)`()` | Returns a pointer to XpTables_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TMap< FString, `[`FRHAPI_XpTable`](RHAPI_XpTable.md#structFRHAPI__XpTable)` > * `[`GetXpTablesOrNull`](#structFRHAPI__XpTables_1ac1becdee264194795d14db3260674367)`() const` | Returns a pointer to XpTables_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetXpTables`](#structFRHAPI__XpTables_1abb1d6f2e7b799fd9b3870d6ca90f8d7f)`(TMap< FString, `[`FRHAPI_XpTable`](RHAPI_XpTable.md#structFRHAPI__XpTable)` > NewValue)` | Sets the value of XpTables_Optional and also sets XpTables_IsSet to true.
+`public inline void `[`SetXpTables`](#structFRHAPI__XpTables_1affc3cada3401e4aa7dff7a012e0c9160)`(const TMap< FString, `[`FRHAPI_XpTable`](RHAPI_XpTable.md#structFRHAPI__XpTable)` > & NewValue)` | Sets the value of XpTables_Optional and also sets XpTables_IsSet to true.
+`public inline void `[`SetXpTables`](#structFRHAPI__XpTables_1a176f5942016838bce74e785a275ab6e0)`(TMap< FString, `[`FRHAPI_XpTable`](RHAPI_XpTable.md#structFRHAPI__XpTable)` > && NewValue)` | Sets the value of XpTables_Optional and also sets XpTables_IsSet to true using move semantics.
 `public inline void `[`ClearXpTables`](#structFRHAPI__XpTables_1a5e36b4e4ff74998ec3a45b32ad162ae8)`()` | Clears the value of XpTables_Optional and sets XpTables_IsSet to false.
 `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__XpTables_1ad08c1f6908fdfef7f234db7e03233494)`()` | Gets the value of CacheInfo_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__XpTables_1ad45af97da545060b85f1a28c598a370a)`() const` | Gets the value of CacheInfo_Optional, regardless of it having been set.
@@ -39,7 +40,8 @@ A collection of XP Tables. Each table is a collection of XP Levels from 1 to N. 
 `public inline bool `[`GetCacheInfo`](#structFRHAPI__XpTables_1a8fc8d4ba53a4047c2587034cd2600128)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & OutValue) const` | Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false.
 `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__XpTables_1ab13a95651a4b27bde71716fc85e572be)`()` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
 `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__XpTables_1ae9f9361501b6337170ac868b853539df)`() const` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCacheInfo`](#structFRHAPI__XpTables_1a3483a3c77324a4d50bee36cd5775be94)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
+`public inline void `[`SetCacheInfo`](#structFRHAPI__XpTables_1ac7cf018400ddcb2cc19655949c28ec8a)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
+`public inline void `[`SetCacheInfo`](#structFRHAPI__XpTables_1ab3779022164a1e254b11cd7f06464faf)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__XpTables_1a95f676a52f3ffb25429170bd6b5977c1)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 
 ### Members
@@ -97,9 +99,13 @@ Returns a pointer to XpTables_Optional, if it has been set, otherwise returns nu
 
 Returns a pointer to XpTables_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetXpTables`](#structFRHAPI__XpTables_1abb1d6f2e7b799fd9b3870d6ca90f8d7f)`(TMap< FString, `[`FRHAPI_XpTable`](RHAPI_XpTable.md#structFRHAPI__XpTable)` > NewValue)` <a id="structFRHAPI__XpTables_1abb1d6f2e7b799fd9b3870d6ca90f8d7f"></a>
+#### `public inline void `[`SetXpTables`](#structFRHAPI__XpTables_1affc3cada3401e4aa7dff7a012e0c9160)`(const TMap< FString, `[`FRHAPI_XpTable`](RHAPI_XpTable.md#structFRHAPI__XpTable)` > & NewValue)` <a id="structFRHAPI__XpTables_1affc3cada3401e4aa7dff7a012e0c9160"></a>
 
 Sets the value of XpTables_Optional and also sets XpTables_IsSet to true.
+
+#### `public inline void `[`SetXpTables`](#structFRHAPI__XpTables_1a176f5942016838bce74e785a275ab6e0)`(TMap< FString, `[`FRHAPI_XpTable`](RHAPI_XpTable.md#structFRHAPI__XpTable)` > && NewValue)` <a id="structFRHAPI__XpTables_1a176f5942016838bce74e785a275ab6e0"></a>
+
+Sets the value of XpTables_Optional and also sets XpTables_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearXpTables`](#structFRHAPI__XpTables_1a5e36b4e4ff74998ec3a45b32ad162ae8)`()` <a id="structFRHAPI__XpTables_1a5e36b4e4ff74998ec3a45b32ad162ae8"></a>
 
@@ -129,9 +135,13 @@ Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns n
 
 Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCacheInfo`](#structFRHAPI__XpTables_1a3483a3c77324a4d50bee36cd5775be94)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` NewValue)` <a id="structFRHAPI__XpTables_1a3483a3c77324a4d50bee36cd5775be94"></a>
+#### `public inline void `[`SetCacheInfo`](#structFRHAPI__XpTables_1ac7cf018400ddcb2cc19655949c28ec8a)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` <a id="structFRHAPI__XpTables_1ac7cf018400ddcb2cc19655949c28ec8a"></a>
 
 Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
+
+#### `public inline void `[`SetCacheInfo`](#structFRHAPI__XpTables_1ab3779022164a1e254b11cd7f06464faf)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` <a id="structFRHAPI__XpTables_1ab3779022164a1e254b11cd7f06464faf"></a>
+
+Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearCacheInfo`](#structFRHAPI__XpTables_1a95f676a52f3ffb25429170bd6b5977c1)`()` <a id="structFRHAPI__XpTables_1a95f676a52f3ffb25429170bd6b5977c1"></a>
 

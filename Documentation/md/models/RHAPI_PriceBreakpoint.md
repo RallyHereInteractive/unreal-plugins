@@ -34,13 +34,15 @@ Price based on quantity and the Item ID of the currency used.
 `public inline bool `[`GetPriceItemId`](#structFRHAPI__PriceBreakpoint_1ac06d5946e28223eda73690b593eb82b0)`(int32 & OutValue) const` | Fills OutValue with the value of PriceItemId_Optional and returns true if it has been set, otherwise returns false.
 `public inline int32 * `[`GetPriceItemIdOrNull`](#structFRHAPI__PriceBreakpoint_1a82563e97abfc170aebf83a64f0b6789a)`()` | Returns a pointer to PriceItemId_Optional, if it has been set, otherwise returns nullptr.
 `public inline const int32 * `[`GetPriceItemIdOrNull`](#structFRHAPI__PriceBreakpoint_1a98ea53c1d164757f5f0a2a50c302eca5)`() const` | Returns a pointer to PriceItemId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPriceItemId`](#structFRHAPI__PriceBreakpoint_1ab84fdb3594e5664ff0e7d9ae6ef8294a)`(int32 NewValue)` | Sets the value of PriceItemId_Optional and also sets PriceItemId_IsSet to true.
+`public inline void `[`SetPriceItemId`](#structFRHAPI__PriceBreakpoint_1af66cd60cdb974581286c61d675d867a8)`(const int32 & NewValue)` | Sets the value of PriceItemId_Optional and also sets PriceItemId_IsSet to true.
+`public inline void `[`SetPriceItemId`](#structFRHAPI__PriceBreakpoint_1a3ef30435939dcd91c41a272c727e788d)`(int32 && NewValue)` | Sets the value of PriceItemId_Optional and also sets PriceItemId_IsSet to true using move semantics.
 `public inline void `[`ClearPriceItemId`](#structFRHAPI__PriceBreakpoint_1ac1be94aeeecb6b02ccf0f3780824c763)`()` | Clears the value of PriceItemId_Optional and sets PriceItemId_IsSet to false.
 `public inline bool `[`IsPriceItemIdDefaultValue`](#structFRHAPI__PriceBreakpoint_1a4893eaa292e86d652ea87f2738abc986)`() const` | Returns true if PriceItemId_Optional is set and matches the default value.
 `public inline void `[`SetPriceItemIdToDefault`](#structFRHAPI__PriceBreakpoint_1a4ba3a4c1f6e83c5be2b6e9331c79b010)`()` | Sets the value of PriceItemId_Optional to its default and also sets PriceItemId_IsSet to true.
 `public inline int32 & `[`GetQuantity`](#structFRHAPI__PriceBreakpoint_1af05d9fe1f283434b76882e5a6d698b77)`()` | Gets the value of Quantity.
 `public inline const int32 & `[`GetQuantity`](#structFRHAPI__PriceBreakpoint_1a5f75a5a6b0236a678de1e8927018cbf9)`() const` | Gets the value of Quantity.
-`public inline void `[`SetQuantity`](#structFRHAPI__PriceBreakpoint_1a44a00ca3861e26114270338f7833c141)`(int32 NewValue)` | Sets the value of Quantity.
+`public inline void `[`SetQuantity`](#structFRHAPI__PriceBreakpoint_1a2330b562765eb45545fa6915999ddfb4)`(const int32 & NewValue)` | Sets the value of Quantity.
+`public inline void `[`SetQuantity`](#structFRHAPI__PriceBreakpoint_1a7915929b34c0c1cf9726e19bfa90a0ee)`(int32 && NewValue)` | Sets the value of Quantity using move semantics.
 `public inline bool `[`IsQuantityDefaultValue`](#structFRHAPI__PriceBreakpoint_1a57818dc09bb7bc0f55ce8f86d300ae1d)`() const` | Returns true if Quantity matches the default value.
 `public inline void `[`SetQuantityToDefault`](#structFRHAPI__PriceBreakpoint_1a751e1d23ac5fa893abe0b89e52ae18bd)`()` | Sets the value of Quantity to its default
 `public inline int32 & `[`GetPrice`](#structFRHAPI__PriceBreakpoint_1aa5a67208d3a0e33523dd92cefd8562e0)`()` | Gets the value of Price_Optional, regardless of it having been set.
@@ -49,7 +51,8 @@ Price based on quantity and the Item ID of the currency used.
 `public inline bool `[`GetPrice`](#structFRHAPI__PriceBreakpoint_1acd83052c5d75e193cafc30efecd4eb60)`(int32 & OutValue) const` | Fills OutValue with the value of Price_Optional and returns true if it has been set, otherwise returns false.
 `public inline int32 * `[`GetPriceOrNull`](#structFRHAPI__PriceBreakpoint_1ac2dd200423eae3ae2a72c2d50f5da856)`()` | Returns a pointer to Price_Optional, if it has been set, otherwise returns nullptr.
 `public inline const int32 * `[`GetPriceOrNull`](#structFRHAPI__PriceBreakpoint_1a7e61c3cfb361f8d7220f08db0ba0707e)`() const` | Returns a pointer to Price_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPrice`](#structFRHAPI__PriceBreakpoint_1ae1d835d2cc095e9ed7fb918b8c0a2091)`(int32 NewValue)` | Sets the value of Price_Optional and also sets Price_IsSet to true.
+`public inline void `[`SetPrice`](#structFRHAPI__PriceBreakpoint_1a149d6166a7d3333ee9f5ac23b3fc69be)`(const int32 & NewValue)` | Sets the value of Price_Optional and also sets Price_IsSet to true.
+`public inline void `[`SetPrice`](#structFRHAPI__PriceBreakpoint_1a61427b7f23bd6d0ace5865c322685a31)`(int32 && NewValue)` | Sets the value of Price_Optional and also sets Price_IsSet to true using move semantics.
 `public inline void `[`ClearPrice`](#structFRHAPI__PriceBreakpoint_1abc34aec70696358e5630a92a23b66828)`()` | Clears the value of Price_Optional and sets Price_IsSet to false.
 `public inline bool `[`IsPriceDefaultValue`](#structFRHAPI__PriceBreakpoint_1acba31cb60495ec62df014196748c0bc2)`() const` | Returns true if Price_Optional is set and matches the default value.
 `public inline void `[`SetPriceToDefault`](#structFRHAPI__PriceBreakpoint_1a8d69abade8883a96954226982fb02162)`()` | Sets the value of Price_Optional to its default and also sets Price_IsSet to true.
@@ -59,7 +62,8 @@ Price based on quantity and the Item ID of the currency used.
 `public inline bool `[`GetCurrencies`](#structFRHAPI__PriceBreakpoint_1a8b0bb39882ad0ace8c0816f50f6fd079)`(TArray< `[`FRHAPI_PriceBreakPointCurrency`](RHAPI_PriceBreakPointCurrency.md#structFRHAPI__PriceBreakPointCurrency)` > & OutValue) const` | Fills OutValue with the value of Currencies_Optional and returns true if it has been set, otherwise returns false.
 `public inline TArray< `[`FRHAPI_PriceBreakPointCurrency`](RHAPI_PriceBreakPointCurrency.md#structFRHAPI__PriceBreakPointCurrency)` > * `[`GetCurrenciesOrNull`](#structFRHAPI__PriceBreakpoint_1a89270b67ec00efb654e6ce297b55a893)`()` | Returns a pointer to Currencies_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TArray< `[`FRHAPI_PriceBreakPointCurrency`](RHAPI_PriceBreakPointCurrency.md#structFRHAPI__PriceBreakPointCurrency)` > * `[`GetCurrenciesOrNull`](#structFRHAPI__PriceBreakpoint_1a1ac8c81b218259ab123f4cefe8487fb6)`() const` | Returns a pointer to Currencies_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCurrencies`](#structFRHAPI__PriceBreakpoint_1abf8c70b33c541af454bac7cfacced1a0)`(TArray< `[`FRHAPI_PriceBreakPointCurrency`](RHAPI_PriceBreakPointCurrency.md#structFRHAPI__PriceBreakPointCurrency)` > NewValue)` | Sets the value of Currencies_Optional and also sets Currencies_IsSet to true.
+`public inline void `[`SetCurrencies`](#structFRHAPI__PriceBreakpoint_1a659b9f524ac8d733242bda499c410ef7)`(const TArray< `[`FRHAPI_PriceBreakPointCurrency`](RHAPI_PriceBreakPointCurrency.md#structFRHAPI__PriceBreakPointCurrency)` > & NewValue)` | Sets the value of Currencies_Optional and also sets Currencies_IsSet to true.
+`public inline void `[`SetCurrencies`](#structFRHAPI__PriceBreakpoint_1a4fad0c86a0a1b38f1ec25f2eb20093ad)`(TArray< `[`FRHAPI_PriceBreakPointCurrency`](RHAPI_PriceBreakPointCurrency.md#structFRHAPI__PriceBreakPointCurrency)` > && NewValue)` | Sets the value of Currencies_Optional and also sets Currencies_IsSet to true using move semantics.
 `public inline void `[`ClearCurrencies`](#structFRHAPI__PriceBreakpoint_1a5a56f870cfce517783d608a845db4b3a)`()` | Clears the value of Currencies_Optional and sets Currencies_IsSet to false.
 
 ### Members
@@ -131,9 +135,13 @@ Returns a pointer to PriceItemId_Optional, if it has been set, otherwise returns
 
 Returns a pointer to PriceItemId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPriceItemId`](#structFRHAPI__PriceBreakpoint_1ab84fdb3594e5664ff0e7d9ae6ef8294a)`(int32 NewValue)` <a id="structFRHAPI__PriceBreakpoint_1ab84fdb3594e5664ff0e7d9ae6ef8294a"></a>
+#### `public inline void `[`SetPriceItemId`](#structFRHAPI__PriceBreakpoint_1af66cd60cdb974581286c61d675d867a8)`(const int32 & NewValue)` <a id="structFRHAPI__PriceBreakpoint_1af66cd60cdb974581286c61d675d867a8"></a>
 
 Sets the value of PriceItemId_Optional and also sets PriceItemId_IsSet to true.
+
+#### `public inline void `[`SetPriceItemId`](#structFRHAPI__PriceBreakpoint_1a3ef30435939dcd91c41a272c727e788d)`(int32 && NewValue)` <a id="structFRHAPI__PriceBreakpoint_1a3ef30435939dcd91c41a272c727e788d"></a>
+
+Sets the value of PriceItemId_Optional and also sets PriceItemId_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearPriceItemId`](#structFRHAPI__PriceBreakpoint_1ac1be94aeeecb6b02ccf0f3780824c763)`()` <a id="structFRHAPI__PriceBreakpoint_1ac1be94aeeecb6b02ccf0f3780824c763"></a>
 
@@ -155,9 +163,13 @@ Gets the value of Quantity.
 
 Gets the value of Quantity.
 
-#### `public inline void `[`SetQuantity`](#structFRHAPI__PriceBreakpoint_1a44a00ca3861e26114270338f7833c141)`(int32 NewValue)` <a id="structFRHAPI__PriceBreakpoint_1a44a00ca3861e26114270338f7833c141"></a>
+#### `public inline void `[`SetQuantity`](#structFRHAPI__PriceBreakpoint_1a2330b562765eb45545fa6915999ddfb4)`(const int32 & NewValue)` <a id="structFRHAPI__PriceBreakpoint_1a2330b562765eb45545fa6915999ddfb4"></a>
 
 Sets the value of Quantity.
+
+#### `public inline void `[`SetQuantity`](#structFRHAPI__PriceBreakpoint_1a7915929b34c0c1cf9726e19bfa90a0ee)`(int32 && NewValue)` <a id="structFRHAPI__PriceBreakpoint_1a7915929b34c0c1cf9726e19bfa90a0ee"></a>
+
+Sets the value of Quantity using move semantics.
 
 #### `public inline bool `[`IsQuantityDefaultValue`](#structFRHAPI__PriceBreakpoint_1a57818dc09bb7bc0f55ce8f86d300ae1d)`() const` <a id="structFRHAPI__PriceBreakpoint_1a57818dc09bb7bc0f55ce8f86d300ae1d"></a>
 
@@ -191,9 +203,13 @@ Returns a pointer to Price_Optional, if it has been set, otherwise returns nullp
 
 Returns a pointer to Price_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPrice`](#structFRHAPI__PriceBreakpoint_1ae1d835d2cc095e9ed7fb918b8c0a2091)`(int32 NewValue)` <a id="structFRHAPI__PriceBreakpoint_1ae1d835d2cc095e9ed7fb918b8c0a2091"></a>
+#### `public inline void `[`SetPrice`](#structFRHAPI__PriceBreakpoint_1a149d6166a7d3333ee9f5ac23b3fc69be)`(const int32 & NewValue)` <a id="structFRHAPI__PriceBreakpoint_1a149d6166a7d3333ee9f5ac23b3fc69be"></a>
 
 Sets the value of Price_Optional and also sets Price_IsSet to true.
+
+#### `public inline void `[`SetPrice`](#structFRHAPI__PriceBreakpoint_1a61427b7f23bd6d0ace5865c322685a31)`(int32 && NewValue)` <a id="structFRHAPI__PriceBreakpoint_1a61427b7f23bd6d0ace5865c322685a31"></a>
+
+Sets the value of Price_Optional and also sets Price_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearPrice`](#structFRHAPI__PriceBreakpoint_1abc34aec70696358e5630a92a23b66828)`()` <a id="structFRHAPI__PriceBreakpoint_1abc34aec70696358e5630a92a23b66828"></a>
 
@@ -231,9 +247,13 @@ Returns a pointer to Currencies_Optional, if it has been set, otherwise returns 
 
 Returns a pointer to Currencies_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCurrencies`](#structFRHAPI__PriceBreakpoint_1abf8c70b33c541af454bac7cfacced1a0)`(TArray< `[`FRHAPI_PriceBreakPointCurrency`](RHAPI_PriceBreakPointCurrency.md#structFRHAPI__PriceBreakPointCurrency)` > NewValue)` <a id="structFRHAPI__PriceBreakpoint_1abf8c70b33c541af454bac7cfacced1a0"></a>
+#### `public inline void `[`SetCurrencies`](#structFRHAPI__PriceBreakpoint_1a659b9f524ac8d733242bda499c410ef7)`(const TArray< `[`FRHAPI_PriceBreakPointCurrency`](RHAPI_PriceBreakPointCurrency.md#structFRHAPI__PriceBreakPointCurrency)` > & NewValue)` <a id="structFRHAPI__PriceBreakpoint_1a659b9f524ac8d733242bda499c410ef7"></a>
 
 Sets the value of Currencies_Optional and also sets Currencies_IsSet to true.
+
+#### `public inline void `[`SetCurrencies`](#structFRHAPI__PriceBreakpoint_1a4fad0c86a0a1b38f1ec25f2eb20093ad)`(TArray< `[`FRHAPI_PriceBreakPointCurrency`](RHAPI_PriceBreakPointCurrency.md#structFRHAPI__PriceBreakPointCurrency)` > && NewValue)` <a id="structFRHAPI__PriceBreakpoint_1a4fad0c86a0a1b38f1ec25f2eb20093ad"></a>
+
+Sets the value of Currencies_Optional and also sets Currencies_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearCurrencies`](#structFRHAPI__PriceBreakpoint_1a5a56f870cfce517783d608a845db4b3a)`()` <a id="structFRHAPI__PriceBreakpoint_1a5a56f870cfce517783d608a845db4b3a"></a>
 

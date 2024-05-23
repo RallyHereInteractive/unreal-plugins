@@ -26,14 +26,16 @@ struct FRHAPI_BodyUpdateOpportunityById
 `public virtual void `[`WriteJson`](#structFRHAPI__BodyUpdateOpportunityById_1a58e1dd4c4f703fe628db9e1b083822ae)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline ERHAPI_OpportunityState & `[`GetState`](#structFRHAPI__BodyUpdateOpportunityById_1a8de0ea080658c3f1b0500e74d46ff88a)`()` | Gets the value of State.
 `public inline const ERHAPI_OpportunityState & `[`GetState`](#structFRHAPI__BodyUpdateOpportunityById_1a5ce8f5da8c5f5a5913c84d15b02e78e8)`() const` | Gets the value of State.
-`public inline void `[`SetState`](#structFRHAPI__BodyUpdateOpportunityById_1ae4ffb0650dcb1dbee639dda586bad383)`(ERHAPI_OpportunityState NewValue)` | Sets the value of State.
+`public inline void `[`SetState`](#structFRHAPI__BodyUpdateOpportunityById_1ae2e8a126fde2f650a3cbc94749fbe84e)`(const ERHAPI_OpportunityState & NewValue)` | Sets the value of State.
+`public inline void `[`SetState`](#structFRHAPI__BodyUpdateOpportunityById_1a9da7150171308c54fb7d0fd78348dfdd)`(ERHAPI_OpportunityState && NewValue)` | Sets the value of State using move semantics.
 `public inline ERHAPI_OpportunityAbortReason & `[`GetAbortReason`](#structFRHAPI__BodyUpdateOpportunityById_1a35ddba6cfa09314ca5ad65d8b80860c6)`()` | Gets the value of AbortReason_Optional, regardless of it having been set.
 `public inline const ERHAPI_OpportunityAbortReason & `[`GetAbortReason`](#structFRHAPI__BodyUpdateOpportunityById_1ae05309f6a15da094c22bd28ebe1f0ffa)`() const` | Gets the value of AbortReason_Optional, regardless of it having been set.
 `public inline const ERHAPI_OpportunityAbortReason & `[`GetAbortReason`](#structFRHAPI__BodyUpdateOpportunityById_1a08f3ad9fb9e6543ab7a00daf7ef0d432)`(const ERHAPI_OpportunityAbortReason & DefaultValue) const` | Gets the value of AbortReason_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetAbortReason`](#structFRHAPI__BodyUpdateOpportunityById_1aa4a6dbeb6533e1c8ba5e7302e95a1588)`(ERHAPI_OpportunityAbortReason & OutValue) const` | Fills OutValue with the value of AbortReason_Optional and returns true if it has been set, otherwise returns false.
 `public inline ERHAPI_OpportunityAbortReason * `[`GetAbortReasonOrNull`](#structFRHAPI__BodyUpdateOpportunityById_1a5b30200ae487a65a8304fdcd4716587c)`()` | Returns a pointer to AbortReason_Optional, if it has been set, otherwise returns nullptr.
 `public inline const ERHAPI_OpportunityAbortReason * `[`GetAbortReasonOrNull`](#structFRHAPI__BodyUpdateOpportunityById_1a22543c5f52181ace8e83ba1e50c0744a)`() const` | Returns a pointer to AbortReason_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetAbortReason`](#structFRHAPI__BodyUpdateOpportunityById_1a32cc9d390a455b9d5b0fcc019eb0d6d4)`(ERHAPI_OpportunityAbortReason NewValue)` | Sets the value of AbortReason_Optional and also sets AbortReason_IsSet to true.
+`public inline void `[`SetAbortReason`](#structFRHAPI__BodyUpdateOpportunityById_1a0003eaebb82fb020b340cc434c6f61ca)`(const ERHAPI_OpportunityAbortReason & NewValue)` | Sets the value of AbortReason_Optional and also sets AbortReason_IsSet to true.
+`public inline void `[`SetAbortReason`](#structFRHAPI__BodyUpdateOpportunityById_1ae52f06b60781cd26d8f76d78c53c887f)`(ERHAPI_OpportunityAbortReason && NewValue)` | Sets the value of AbortReason_Optional and also sets AbortReason_IsSet to true using move semantics.
 `public inline void `[`ClearAbortReason`](#structFRHAPI__BodyUpdateOpportunityById_1ae3f0cb05ba5fb7ee72632ff1f8c44efa)`()` | Clears the value of AbortReason_Optional and sets AbortReason_IsSet to false.
 `public inline int32 & `[`GetAbortSeconds`](#structFRHAPI__BodyUpdateOpportunityById_1ade4df84b05a41e53730e38ec57bc3324)`()` | Gets the value of AbortSeconds_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetAbortSeconds`](#structFRHAPI__BodyUpdateOpportunityById_1a8a2bf4770554be67faf9eec1247a0c3a)`() const` | Gets the value of AbortSeconds_Optional, regardless of it having been set.
@@ -41,7 +43,8 @@ struct FRHAPI_BodyUpdateOpportunityById
 `public inline bool `[`GetAbortSeconds`](#structFRHAPI__BodyUpdateOpportunityById_1a0ea37dd712c4abbb181d2f9fe5ba7eed)`(int32 & OutValue) const` | Fills OutValue with the value of AbortSeconds_Optional and returns true if it has been set, otherwise returns false.
 `public inline int32 * `[`GetAbortSecondsOrNull`](#structFRHAPI__BodyUpdateOpportunityById_1a9007e3f8f292d855e517a5c4fa6c4698)`()` | Returns a pointer to AbortSeconds_Optional, if it has been set, otherwise returns nullptr.
 `public inline const int32 * `[`GetAbortSecondsOrNull`](#structFRHAPI__BodyUpdateOpportunityById_1af79d0a714a905431fda6d1487190f000)`() const` | Returns a pointer to AbortSeconds_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetAbortSeconds`](#structFRHAPI__BodyUpdateOpportunityById_1adbb5855b71849aed3f14e5fb78c8d38c)`(int32 NewValue)` | Sets the value of AbortSeconds_Optional and also sets AbortSeconds_IsSet to true.
+`public inline void `[`SetAbortSeconds`](#structFRHAPI__BodyUpdateOpportunityById_1a7a7605323ddecfa6f873727cfe1c54cb)`(const int32 & NewValue)` | Sets the value of AbortSeconds_Optional and also sets AbortSeconds_IsSet to true.
+`public inline void `[`SetAbortSeconds`](#structFRHAPI__BodyUpdateOpportunityById_1ac48a89f8f8e3b93e25700b774dfba37d)`(int32 && NewValue)` | Sets the value of AbortSeconds_Optional and also sets AbortSeconds_IsSet to true using move semantics.
 `public inline void `[`ClearAbortSeconds`](#structFRHAPI__BodyUpdateOpportunityById_1a9043c9a127601316de50180e50e3ee1c)`()` | Clears the value of AbortSeconds_Optional and sets AbortSeconds_IsSet to false.
 `public inline bool `[`IsAbortSecondsDefaultValue`](#structFRHAPI__BodyUpdateOpportunityById_1a36f8b9127d7f5d7f0d84f54449b27ee5)`() const` | Returns true if AbortSeconds_Optional is set and matches the default value.
 `public inline void `[`SetAbortSecondsToDefault`](#structFRHAPI__BodyUpdateOpportunityById_1a8df7404741bbab7707ac20df7fd1d782)`()` | Sets the value of AbortSeconds_Optional to its default and also sets AbortSeconds_IsSet to true.
@@ -93,9 +96,13 @@ Gets the value of State.
 
 Gets the value of State.
 
-#### `public inline void `[`SetState`](#structFRHAPI__BodyUpdateOpportunityById_1ae4ffb0650dcb1dbee639dda586bad383)`(ERHAPI_OpportunityState NewValue)` <a id="structFRHAPI__BodyUpdateOpportunityById_1ae4ffb0650dcb1dbee639dda586bad383"></a>
+#### `public inline void `[`SetState`](#structFRHAPI__BodyUpdateOpportunityById_1ae2e8a126fde2f650a3cbc94749fbe84e)`(const ERHAPI_OpportunityState & NewValue)` <a id="structFRHAPI__BodyUpdateOpportunityById_1ae2e8a126fde2f650a3cbc94749fbe84e"></a>
 
 Sets the value of State.
+
+#### `public inline void `[`SetState`](#structFRHAPI__BodyUpdateOpportunityById_1a9da7150171308c54fb7d0fd78348dfdd)`(ERHAPI_OpportunityState && NewValue)` <a id="structFRHAPI__BodyUpdateOpportunityById_1a9da7150171308c54fb7d0fd78348dfdd"></a>
+
+Sets the value of State using move semantics.
 
 #### `public inline ERHAPI_OpportunityAbortReason & `[`GetAbortReason`](#structFRHAPI__BodyUpdateOpportunityById_1a35ddba6cfa09314ca5ad65d8b80860c6)`()` <a id="structFRHAPI__BodyUpdateOpportunityById_1a35ddba6cfa09314ca5ad65d8b80860c6"></a>
 
@@ -121,9 +128,13 @@ Returns a pointer to AbortReason_Optional, if it has been set, otherwise returns
 
 Returns a pointer to AbortReason_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetAbortReason`](#structFRHAPI__BodyUpdateOpportunityById_1a32cc9d390a455b9d5b0fcc019eb0d6d4)`(ERHAPI_OpportunityAbortReason NewValue)` <a id="structFRHAPI__BodyUpdateOpportunityById_1a32cc9d390a455b9d5b0fcc019eb0d6d4"></a>
+#### `public inline void `[`SetAbortReason`](#structFRHAPI__BodyUpdateOpportunityById_1a0003eaebb82fb020b340cc434c6f61ca)`(const ERHAPI_OpportunityAbortReason & NewValue)` <a id="structFRHAPI__BodyUpdateOpportunityById_1a0003eaebb82fb020b340cc434c6f61ca"></a>
 
 Sets the value of AbortReason_Optional and also sets AbortReason_IsSet to true.
+
+#### `public inline void `[`SetAbortReason`](#structFRHAPI__BodyUpdateOpportunityById_1ae52f06b60781cd26d8f76d78c53c887f)`(ERHAPI_OpportunityAbortReason && NewValue)` <a id="structFRHAPI__BodyUpdateOpportunityById_1ae52f06b60781cd26d8f76d78c53c887f"></a>
+
+Sets the value of AbortReason_Optional and also sets AbortReason_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearAbortReason`](#structFRHAPI__BodyUpdateOpportunityById_1ae3f0cb05ba5fb7ee72632ff1f8c44efa)`()` <a id="structFRHAPI__BodyUpdateOpportunityById_1ae3f0cb05ba5fb7ee72632ff1f8c44efa"></a>
 
@@ -153,9 +164,13 @@ Returns a pointer to AbortSeconds_Optional, if it has been set, otherwise return
 
 Returns a pointer to AbortSeconds_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetAbortSeconds`](#structFRHAPI__BodyUpdateOpportunityById_1adbb5855b71849aed3f14e5fb78c8d38c)`(int32 NewValue)` <a id="structFRHAPI__BodyUpdateOpportunityById_1adbb5855b71849aed3f14e5fb78c8d38c"></a>
+#### `public inline void `[`SetAbortSeconds`](#structFRHAPI__BodyUpdateOpportunityById_1a7a7605323ddecfa6f873727cfe1c54cb)`(const int32 & NewValue)` <a id="structFRHAPI__BodyUpdateOpportunityById_1a7a7605323ddecfa6f873727cfe1c54cb"></a>
 
 Sets the value of AbortSeconds_Optional and also sets AbortSeconds_IsSet to true.
+
+#### `public inline void `[`SetAbortSeconds`](#structFRHAPI__BodyUpdateOpportunityById_1ac48a89f8f8e3b93e25700b774dfba37d)`(int32 && NewValue)` <a id="structFRHAPI__BodyUpdateOpportunityById_1ac48a89f8f8e3b93e25700b774dfba37d"></a>
+
+Sets the value of AbortSeconds_Optional and also sets AbortSeconds_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearAbortSeconds`](#structFRHAPI__BodyUpdateOpportunityById_1a9043c9a127601316de50180e50e3ee1c)`()` <a id="structFRHAPI__BodyUpdateOpportunityById_1a9043c9a127601316de50180e50e3ee1c"></a>
 

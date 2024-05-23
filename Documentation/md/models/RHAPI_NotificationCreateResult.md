@@ -22,7 +22,8 @@ struct FRHAPI_NotificationCreateResult
 `public virtual void `[`WriteJson`](#structFRHAPI__NotificationCreateResult_1a5c75358a5507ce1ca7d2640273faf0a3)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetNotificationId`](#structFRHAPI__NotificationCreateResult_1a185596c9052bde6a9bb6a89aa9562073)`()` | Gets the value of NotificationId.
 `public inline const FString & `[`GetNotificationId`](#structFRHAPI__NotificationCreateResult_1a0db393cd84c4b3a8858fcefc6eb6c04c)`() const` | Gets the value of NotificationId.
-`public inline void `[`SetNotificationId`](#structFRHAPI__NotificationCreateResult_1af3fd2cd980ce7c6400b136f878f15f67)`(FString NewValue)` | Sets the value of NotificationId.
+`public inline void `[`SetNotificationId`](#structFRHAPI__NotificationCreateResult_1ac59523da3146439bd8008e641c8b6257)`(const FString & NewValue)` | Sets the value of NotificationId.
+`public inline void `[`SetNotificationId`](#structFRHAPI__NotificationCreateResult_1a868e130b14d88d04eb70717e9521e9f8)`(FString && NewValue)` | Sets the value of NotificationId using move semantics.
 
 ### Members
 
@@ -55,7 +56,11 @@ Gets the value of NotificationId.
 
 Gets the value of NotificationId.
 
-#### `public inline void `[`SetNotificationId`](#structFRHAPI__NotificationCreateResult_1af3fd2cd980ce7c6400b136f878f15f67)`(FString NewValue)` <a id="structFRHAPI__NotificationCreateResult_1af3fd2cd980ce7c6400b136f878f15f67"></a>
+#### `public inline void `[`SetNotificationId`](#structFRHAPI__NotificationCreateResult_1ac59523da3146439bd8008e641c8b6257)`(const FString & NewValue)` <a id="structFRHAPI__NotificationCreateResult_1ac59523da3146439bd8008e641c8b6257"></a>
 
 Sets the value of NotificationId.
+
+#### `public inline void `[`SetNotificationId`](#structFRHAPI__NotificationCreateResult_1a868e130b14d88d04eb70717e9521e9f8)`(FString && NewValue)` <a id="structFRHAPI__NotificationCreateResult_1a868e130b14d88d04eb70717e9521e9f8"></a>
+
+Sets the value of NotificationId using move semantics.
 

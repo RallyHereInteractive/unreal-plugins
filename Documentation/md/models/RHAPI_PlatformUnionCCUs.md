@@ -22,7 +22,8 @@ struct FRHAPI_PlatformUnionCCUs
 `public virtual void `[`WriteJson`](#structFRHAPI__PlatformUnionCCUs_1ae8474245ee70e50cd042277a95d4461b)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TMap< FString, `[`FRHAPI_UnionCCU`](RHAPI_UnionCCU.md#structFRHAPI__UnionCCU)` > & `[`GetPlatformCounts`](#structFRHAPI__PlatformUnionCCUs_1a8e1eac4923e330654565c2bda41d6eec)`()` | Gets the value of PlatformCounts.
 `public inline const TMap< FString, `[`FRHAPI_UnionCCU`](RHAPI_UnionCCU.md#structFRHAPI__UnionCCU)` > & `[`GetPlatformCounts`](#structFRHAPI__PlatformUnionCCUs_1ac19c7ffd66e610bd0e90e39007f06bc8)`() const` | Gets the value of PlatformCounts.
-`public inline void `[`SetPlatformCounts`](#structFRHAPI__PlatformUnionCCUs_1acc44cec93332b0100b7f4d026c0b2e12)`(TMap< FString, `[`FRHAPI_UnionCCU`](RHAPI_UnionCCU.md#structFRHAPI__UnionCCU)` > NewValue)` | Sets the value of PlatformCounts.
+`public inline void `[`SetPlatformCounts`](#structFRHAPI__PlatformUnionCCUs_1a0d3449b5852b2930074613d8ae0bfe51)`(const TMap< FString, `[`FRHAPI_UnionCCU`](RHAPI_UnionCCU.md#structFRHAPI__UnionCCU)` > & NewValue)` | Sets the value of PlatformCounts.
+`public inline void `[`SetPlatformCounts`](#structFRHAPI__PlatformUnionCCUs_1aa6f158575563b0f334872f707e46b3b7)`(TMap< FString, `[`FRHAPI_UnionCCU`](RHAPI_UnionCCU.md#structFRHAPI__UnionCCU)` > && NewValue)` | Sets the value of PlatformCounts using move semantics.
 
 ### Members
 
@@ -53,7 +54,11 @@ Gets the value of PlatformCounts.
 
 Gets the value of PlatformCounts.
 
-#### `public inline void `[`SetPlatformCounts`](#structFRHAPI__PlatformUnionCCUs_1acc44cec93332b0100b7f4d026c0b2e12)`(TMap< FString, `[`FRHAPI_UnionCCU`](RHAPI_UnionCCU.md#structFRHAPI__UnionCCU)` > NewValue)` <a id="structFRHAPI__PlatformUnionCCUs_1acc44cec93332b0100b7f4d026c0b2e12"></a>
+#### `public inline void `[`SetPlatformCounts`](#structFRHAPI__PlatformUnionCCUs_1a0d3449b5852b2930074613d8ae0bfe51)`(const TMap< FString, `[`FRHAPI_UnionCCU`](RHAPI_UnionCCU.md#structFRHAPI__UnionCCU)` > & NewValue)` <a id="structFRHAPI__PlatformUnionCCUs_1a0d3449b5852b2930074613d8ae0bfe51"></a>
 
 Sets the value of PlatformCounts.
+
+#### `public inline void `[`SetPlatformCounts`](#structFRHAPI__PlatformUnionCCUs_1aa6f158575563b0f334872f707e46b3b7)`(TMap< FString, `[`FRHAPI_UnionCCU`](RHAPI_UnionCCU.md#structFRHAPI__UnionCCU)` > && NewValue)` <a id="structFRHAPI__PlatformUnionCCUs_1aa6f158575563b0f334872f707e46b3b7"></a>
+
+Sets the value of PlatformCounts using move semantics.
 

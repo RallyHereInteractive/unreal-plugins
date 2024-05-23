@@ -39,7 +39,8 @@ struct FRHAPI_MatchInstance
 `public inline bool `[`GetInstanceId`](#structFRHAPI__MatchInstance_1a8e416e3ace8afc5386e9c56e138ab836)`(FString & OutValue) const` | Fills OutValue with the value of InstanceId_Optional and returns true if it has been set, otherwise returns false.
 `public inline FString * `[`GetInstanceIdOrNull`](#structFRHAPI__MatchInstance_1abcd2163d733a644851feeb44ce4335ed)`()` | Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FString * `[`GetInstanceIdOrNull`](#structFRHAPI__MatchInstance_1aeed7702808462c4e70dcbdf38df9961b)`() const` | Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetInstanceId`](#structFRHAPI__MatchInstance_1ac9f2c725de23b3ad616dc42add708408)`(FString NewValue)` | Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true.
+`public inline void `[`SetInstanceId`](#structFRHAPI__MatchInstance_1a1e6f5239480f81856b1be9eed7417971)`(const FString & NewValue)` | Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true.
+`public inline void `[`SetInstanceId`](#structFRHAPI__MatchInstance_1ad62c3b0aa84a2b000105c6498598d32e)`(FString && NewValue)` | Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true using move semantics.
 `public inline void `[`ClearInstanceId`](#structFRHAPI__MatchInstance_1aa75a1740116118e11efcaba067009ffd)`()` | Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false.
 `public inline FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__MatchInstance_1a7812185b9151fb35c7ea62938291b1d0)`()` | Gets the value of HostPlayerUuid_Optional, regardless of it having been set.
 `public inline const FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__MatchInstance_1acdb1458c769686fe3d41c942af1c31da)`() const` | Gets the value of HostPlayerUuid_Optional, regardless of it having been set.
@@ -47,7 +48,8 @@ struct FRHAPI_MatchInstance
 `public inline bool `[`GetHostPlayerUuid`](#structFRHAPI__MatchInstance_1a8664af139a046f0a5f6b116cb29e0487)`(FGuid & OutValue) const` | Fills OutValue with the value of HostPlayerUuid_Optional and returns true if it has been set, otherwise returns false.
 `public inline FGuid * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__MatchInstance_1a1bc0f137f30ec2ac7e2c900fd913df25)`()` | Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FGuid * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__MatchInstance_1a033649c878f31a424643486da0ca9add)`() const` | Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetHostPlayerUuid`](#structFRHAPI__MatchInstance_1ac7de957e98fc63a0638ad5c199c8e2ac)`(FGuid NewValue)` | Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true.
+`public inline void `[`SetHostPlayerUuid`](#structFRHAPI__MatchInstance_1ad1d842158916e1c08249d1fa9b2ae5c3)`(const FGuid & NewValue)` | Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true.
+`public inline void `[`SetHostPlayerUuid`](#structFRHAPI__MatchInstance_1acc7f8658af83ecb6b20e3d9acc8b6dcf)`(FGuid && NewValue)` | Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true using move semantics.
 `public inline void `[`ClearHostPlayerUuid`](#structFRHAPI__MatchInstance_1a1e12248e3e38843cb038d490f9d278e7)`()` | Clears the value of HostPlayerUuid_Optional and sets HostPlayerUuid_IsSet to false.
 `public inline FString & `[`GetRegionId`](#structFRHAPI__MatchInstance_1a1cdabefb612f530298cbdb7b7fc78731)`()` | Gets the value of RegionId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetRegionId`](#structFRHAPI__MatchInstance_1a8aa60a7a41ca41ef83792f219b3dd23e)`() const` | Gets the value of RegionId_Optional, regardless of it having been set.
@@ -55,7 +57,8 @@ struct FRHAPI_MatchInstance
 `public inline bool `[`GetRegionId`](#structFRHAPI__MatchInstance_1a1b2a4adbd3e832a9a27e42bf17040cdb)`(FString & OutValue) const` | Fills OutValue with the value of RegionId_Optional and returns true if it has been set, otherwise returns false.
 `public inline FString * `[`GetRegionIdOrNull`](#structFRHAPI__MatchInstance_1a8b7e25186b380c9bb15f83067960ff8f)`()` | Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FString * `[`GetRegionIdOrNull`](#structFRHAPI__MatchInstance_1a41431d8df64493b6770c49cc5d6f2a2c)`() const` | Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRegionId`](#structFRHAPI__MatchInstance_1a35378a8b4c5334421477fd269d97e815)`(FString NewValue)` | Sets the value of RegionId_Optional and also sets RegionId_IsSet to true.
+`public inline void `[`SetRegionId`](#structFRHAPI__MatchInstance_1abd12d4dae2af378a0404337ec5026ed3)`(const FString & NewValue)` | Sets the value of RegionId_Optional and also sets RegionId_IsSet to true.
+`public inline void `[`SetRegionId`](#structFRHAPI__MatchInstance_1a7d3f5c8df219004299e82e46eb848a91)`(FString && NewValue)` | Sets the value of RegionId_Optional and also sets RegionId_IsSet to true using move semantics.
 `public inline void `[`ClearRegionId`](#structFRHAPI__MatchInstance_1a52fb7e034e306dccfb55ac019844d02a)`()` | Clears the value of RegionId_Optional and sets RegionId_IsSet to false.
 `public inline FString & `[`GetInstanceRequestTemplateId`](#structFRHAPI__MatchInstance_1a7900a5d6e2a74bc89c7062ebfc47df2d)`()` | Gets the value of InstanceRequestTemplateId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetInstanceRequestTemplateId`](#structFRHAPI__MatchInstance_1a47e02bed696ee79aeffa396127545dab)`() const` | Gets the value of InstanceRequestTemplateId_Optional, regardless of it having been set.
@@ -63,7 +66,8 @@ struct FRHAPI_MatchInstance
 `public inline bool `[`GetInstanceRequestTemplateId`](#structFRHAPI__MatchInstance_1a50dfc5c58cc8b479800f4d960699624b)`(FString & OutValue) const` | Fills OutValue with the value of InstanceRequestTemplateId_Optional and returns true if it has been set, otherwise returns false.
 `public inline FString * `[`GetInstanceRequestTemplateIdOrNull`](#structFRHAPI__MatchInstance_1a356d34f5bb24b6010a301ed7ac953795)`()` | Returns a pointer to InstanceRequestTemplateId_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FString * `[`GetInstanceRequestTemplateIdOrNull`](#structFRHAPI__MatchInstance_1a1010c5aef4fa9409fdca99b64bed9a27)`() const` | Returns a pointer to InstanceRequestTemplateId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetInstanceRequestTemplateId`](#structFRHAPI__MatchInstance_1aa23769e27a8acaf0eb594a20674a8d30)`(FString NewValue)` | Sets the value of InstanceRequestTemplateId_Optional and also sets InstanceRequestTemplateId_IsSet to true.
+`public inline void `[`SetInstanceRequestTemplateId`](#structFRHAPI__MatchInstance_1a7a95594dfb12698f3f0f5358161bbb8a)`(const FString & NewValue)` | Sets the value of InstanceRequestTemplateId_Optional and also sets InstanceRequestTemplateId_IsSet to true.
+`public inline void `[`SetInstanceRequestTemplateId`](#structFRHAPI__MatchInstance_1a64edea9489d37e9654a42bdf9d938d7b)`(FString && NewValue)` | Sets the value of InstanceRequestTemplateId_Optional and also sets InstanceRequestTemplateId_IsSet to true using move semantics.
 `public inline void `[`ClearInstanceRequestTemplateId`](#structFRHAPI__MatchInstance_1a5a30b8e0988c2438faabc0e7fbd2a718)`()` | Clears the value of InstanceRequestTemplateId_Optional and sets InstanceRequestTemplateId_IsSet to false.
 `public inline FString & `[`GetMap`](#structFRHAPI__MatchInstance_1a571a190bcdf760a5e353db127010ba12)`()` | Gets the value of Map_Optional, regardless of it having been set.
 `public inline const FString & `[`GetMap`](#structFRHAPI__MatchInstance_1a1fa1f11fedef4bb65ac354d3aec5e926)`() const` | Gets the value of Map_Optional, regardless of it having been set.
@@ -71,7 +75,8 @@ struct FRHAPI_MatchInstance
 `public inline bool `[`GetMap`](#structFRHAPI__MatchInstance_1aecb1d0f1193cefa44e78f1f1e11e7e23)`(FString & OutValue) const` | Fills OutValue with the value of Map_Optional and returns true if it has been set, otherwise returns false.
 `public inline FString * `[`GetMapOrNull`](#structFRHAPI__MatchInstance_1af19fc27636d5ab130ebe0d650b086e3c)`()` | Returns a pointer to Map_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FString * `[`GetMapOrNull`](#structFRHAPI__MatchInstance_1ae9270ce2e1b4c4e6ac9fad264df05295)`() const` | Returns a pointer to Map_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetMap`](#structFRHAPI__MatchInstance_1a6bdd43206104f770ad96a6ff31068347)`(FString NewValue)` | Sets the value of Map_Optional and also sets Map_IsSet to true.
+`public inline void `[`SetMap`](#structFRHAPI__MatchInstance_1a1afda75deca0482eab9bf8ad041cce00)`(const FString & NewValue)` | Sets the value of Map_Optional and also sets Map_IsSet to true.
+`public inline void `[`SetMap`](#structFRHAPI__MatchInstance_1afc4da8d75e9c2f6d0e3fb5b5b989b62e)`(FString && NewValue)` | Sets the value of Map_Optional and also sets Map_IsSet to true using move semantics.
 `public inline void `[`ClearMap`](#structFRHAPI__MatchInstance_1a96933338a49dd96069cdcfb7812c80d0)`()` | Clears the value of Map_Optional and sets Map_IsSet to false.
 `public inline FString & `[`GetGameMode`](#structFRHAPI__MatchInstance_1aa5b8e824b479ea399c822b8daa878544)`()` | Gets the value of GameMode_Optional, regardless of it having been set.
 `public inline const FString & `[`GetGameMode`](#structFRHAPI__MatchInstance_1a0c2bc216b23b5cdd6b6b7efcd882c312)`() const` | Gets the value of GameMode_Optional, regardless of it having been set.
@@ -79,7 +84,8 @@ struct FRHAPI_MatchInstance
 `public inline bool `[`GetGameMode`](#structFRHAPI__MatchInstance_1a5f9b7a938d16695dd45c3e728d0d22b1)`(FString & OutValue) const` | Fills OutValue with the value of GameMode_Optional and returns true if it has been set, otherwise returns false.
 `public inline FString * `[`GetGameModeOrNull`](#structFRHAPI__MatchInstance_1a8c4f49987c8587c57061419b70438204)`()` | Returns a pointer to GameMode_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FString * `[`GetGameModeOrNull`](#structFRHAPI__MatchInstance_1a1b0299ca07450e935492618288f5ae28)`() const` | Returns a pointer to GameMode_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetGameMode`](#structFRHAPI__MatchInstance_1a6e3711dab03a79331e9be44bcf7afaae)`(FString NewValue)` | Sets the value of GameMode_Optional and also sets GameMode_IsSet to true.
+`public inline void `[`SetGameMode`](#structFRHAPI__MatchInstance_1adb52f4ef8ece3eb027f35886ed3004d5)`(const FString & NewValue)` | Sets the value of GameMode_Optional and also sets GameMode_IsSet to true.
+`public inline void `[`SetGameMode`](#structFRHAPI__MatchInstance_1ae7d6a16ef0b2882dc291caf57650a62e)`(FString && NewValue)` | Sets the value of GameMode_Optional and also sets GameMode_IsSet to true using move semantics.
 `public inline void `[`ClearGameMode`](#structFRHAPI__MatchInstance_1a036653dccbfeeea170930d93970068c4)`()` | Clears the value of GameMode_Optional and sets GameMode_IsSet to false.
 `public inline ERHAPI_MatchHostType & `[`GetHostType`](#structFRHAPI__MatchInstance_1a122d3eed6d08d9a9a117f23f05ec7c99)`()` | Gets the value of HostType_Optional, regardless of it having been set.
 `public inline const ERHAPI_MatchHostType & `[`GetHostType`](#structFRHAPI__MatchInstance_1afd3d448d7308788e3102e4b9b8b99b77)`() const` | Gets the value of HostType_Optional, regardless of it having been set.
@@ -87,7 +93,8 @@ struct FRHAPI_MatchInstance
 `public inline bool `[`GetHostType`](#structFRHAPI__MatchInstance_1abfb962f08ce90d5ba1700d7eea29cf38)`(ERHAPI_MatchHostType & OutValue) const` | Fills OutValue with the value of HostType_Optional and returns true if it has been set, otherwise returns false.
 `public inline ERHAPI_MatchHostType * `[`GetHostTypeOrNull`](#structFRHAPI__MatchInstance_1aa660a00d3d2dc2dbacb200269d8912d6)`()` | Returns a pointer to HostType_Optional, if it has been set, otherwise returns nullptr.
 `public inline const ERHAPI_MatchHostType * `[`GetHostTypeOrNull`](#structFRHAPI__MatchInstance_1a28f47a6c7821585dacf1b2fbc4704e96)`() const` | Returns a pointer to HostType_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetHostType`](#structFRHAPI__MatchInstance_1a5b8a1ba45e5b526cd992d7c571a81524)`(ERHAPI_MatchHostType NewValue)` | Sets the value of HostType_Optional and also sets HostType_IsSet to true.
+`public inline void `[`SetHostType`](#structFRHAPI__MatchInstance_1a94207ffd70a4712d829645bf6365c46a)`(const ERHAPI_MatchHostType & NewValue)` | Sets the value of HostType_Optional and also sets HostType_IsSet to true.
+`public inline void `[`SetHostType`](#structFRHAPI__MatchInstance_1afec0ec284c75d044049036c23f09c113)`(ERHAPI_MatchHostType && NewValue)` | Sets the value of HostType_Optional and also sets HostType_IsSet to true using move semantics.
 `public inline void `[`ClearHostType`](#structFRHAPI__MatchInstance_1a2cdc7dda631bde64222f3ec32d9417c9)`()` | Clears the value of HostType_Optional and sets HostType_IsSet to false.
 
 ### Members
@@ -175,9 +182,13 @@ Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns 
 
 Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetInstanceId`](#structFRHAPI__MatchInstance_1ac9f2c725de23b3ad616dc42add708408)`(FString NewValue)` <a id="structFRHAPI__MatchInstance_1ac9f2c725de23b3ad616dc42add708408"></a>
+#### `public inline void `[`SetInstanceId`](#structFRHAPI__MatchInstance_1a1e6f5239480f81856b1be9eed7417971)`(const FString & NewValue)` <a id="structFRHAPI__MatchInstance_1a1e6f5239480f81856b1be9eed7417971"></a>
 
 Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true.
+
+#### `public inline void `[`SetInstanceId`](#structFRHAPI__MatchInstance_1ad62c3b0aa84a2b000105c6498598d32e)`(FString && NewValue)` <a id="structFRHAPI__MatchInstance_1ad62c3b0aa84a2b000105c6498598d32e"></a>
+
+Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearInstanceId`](#structFRHAPI__MatchInstance_1aa75a1740116118e11efcaba067009ffd)`()` <a id="structFRHAPI__MatchInstance_1aa75a1740116118e11efcaba067009ffd"></a>
 
@@ -207,9 +218,13 @@ Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise retu
 
 Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetHostPlayerUuid`](#structFRHAPI__MatchInstance_1ac7de957e98fc63a0638ad5c199c8e2ac)`(FGuid NewValue)` <a id="structFRHAPI__MatchInstance_1ac7de957e98fc63a0638ad5c199c8e2ac"></a>
+#### `public inline void `[`SetHostPlayerUuid`](#structFRHAPI__MatchInstance_1ad1d842158916e1c08249d1fa9b2ae5c3)`(const FGuid & NewValue)` <a id="structFRHAPI__MatchInstance_1ad1d842158916e1c08249d1fa9b2ae5c3"></a>
 
 Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true.
+
+#### `public inline void `[`SetHostPlayerUuid`](#structFRHAPI__MatchInstance_1acc7f8658af83ecb6b20e3d9acc8b6dcf)`(FGuid && NewValue)` <a id="structFRHAPI__MatchInstance_1acc7f8658af83ecb6b20e3d9acc8b6dcf"></a>
+
+Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearHostPlayerUuid`](#structFRHAPI__MatchInstance_1a1e12248e3e38843cb038d490f9d278e7)`()` <a id="structFRHAPI__MatchInstance_1a1e12248e3e38843cb038d490f9d278e7"></a>
 
@@ -239,9 +254,13 @@ Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nu
 
 Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRegionId`](#structFRHAPI__MatchInstance_1a35378a8b4c5334421477fd269d97e815)`(FString NewValue)` <a id="structFRHAPI__MatchInstance_1a35378a8b4c5334421477fd269d97e815"></a>
+#### `public inline void `[`SetRegionId`](#structFRHAPI__MatchInstance_1abd12d4dae2af378a0404337ec5026ed3)`(const FString & NewValue)` <a id="structFRHAPI__MatchInstance_1abd12d4dae2af378a0404337ec5026ed3"></a>
 
 Sets the value of RegionId_Optional and also sets RegionId_IsSet to true.
+
+#### `public inline void `[`SetRegionId`](#structFRHAPI__MatchInstance_1a7d3f5c8df219004299e82e46eb848a91)`(FString && NewValue)` <a id="structFRHAPI__MatchInstance_1a7d3f5c8df219004299e82e46eb848a91"></a>
+
+Sets the value of RegionId_Optional and also sets RegionId_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearRegionId`](#structFRHAPI__MatchInstance_1a52fb7e034e306dccfb55ac019844d02a)`()` <a id="structFRHAPI__MatchInstance_1a52fb7e034e306dccfb55ac019844d02a"></a>
 
@@ -271,9 +290,13 @@ Returns a pointer to InstanceRequestTemplateId_Optional, if it has been set, oth
 
 Returns a pointer to InstanceRequestTemplateId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetInstanceRequestTemplateId`](#structFRHAPI__MatchInstance_1aa23769e27a8acaf0eb594a20674a8d30)`(FString NewValue)` <a id="structFRHAPI__MatchInstance_1aa23769e27a8acaf0eb594a20674a8d30"></a>
+#### `public inline void `[`SetInstanceRequestTemplateId`](#structFRHAPI__MatchInstance_1a7a95594dfb12698f3f0f5358161bbb8a)`(const FString & NewValue)` <a id="structFRHAPI__MatchInstance_1a7a95594dfb12698f3f0f5358161bbb8a"></a>
 
 Sets the value of InstanceRequestTemplateId_Optional and also sets InstanceRequestTemplateId_IsSet to true.
+
+#### `public inline void `[`SetInstanceRequestTemplateId`](#structFRHAPI__MatchInstance_1a64edea9489d37e9654a42bdf9d938d7b)`(FString && NewValue)` <a id="structFRHAPI__MatchInstance_1a64edea9489d37e9654a42bdf9d938d7b"></a>
+
+Sets the value of InstanceRequestTemplateId_Optional and also sets InstanceRequestTemplateId_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearInstanceRequestTemplateId`](#structFRHAPI__MatchInstance_1a5a30b8e0988c2438faabc0e7fbd2a718)`()` <a id="structFRHAPI__MatchInstance_1a5a30b8e0988c2438faabc0e7fbd2a718"></a>
 
@@ -303,9 +326,13 @@ Returns a pointer to Map_Optional, if it has been set, otherwise returns nullptr
 
 Returns a pointer to Map_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetMap`](#structFRHAPI__MatchInstance_1a6bdd43206104f770ad96a6ff31068347)`(FString NewValue)` <a id="structFRHAPI__MatchInstance_1a6bdd43206104f770ad96a6ff31068347"></a>
+#### `public inline void `[`SetMap`](#structFRHAPI__MatchInstance_1a1afda75deca0482eab9bf8ad041cce00)`(const FString & NewValue)` <a id="structFRHAPI__MatchInstance_1a1afda75deca0482eab9bf8ad041cce00"></a>
 
 Sets the value of Map_Optional and also sets Map_IsSet to true.
+
+#### `public inline void `[`SetMap`](#structFRHAPI__MatchInstance_1afc4da8d75e9c2f6d0e3fb5b5b989b62e)`(FString && NewValue)` <a id="structFRHAPI__MatchInstance_1afc4da8d75e9c2f6d0e3fb5b5b989b62e"></a>
+
+Sets the value of Map_Optional and also sets Map_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearMap`](#structFRHAPI__MatchInstance_1a96933338a49dd96069cdcfb7812c80d0)`()` <a id="structFRHAPI__MatchInstance_1a96933338a49dd96069cdcfb7812c80d0"></a>
 
@@ -335,9 +362,13 @@ Returns a pointer to GameMode_Optional, if it has been set, otherwise returns nu
 
 Returns a pointer to GameMode_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetGameMode`](#structFRHAPI__MatchInstance_1a6e3711dab03a79331e9be44bcf7afaae)`(FString NewValue)` <a id="structFRHAPI__MatchInstance_1a6e3711dab03a79331e9be44bcf7afaae"></a>
+#### `public inline void `[`SetGameMode`](#structFRHAPI__MatchInstance_1adb52f4ef8ece3eb027f35886ed3004d5)`(const FString & NewValue)` <a id="structFRHAPI__MatchInstance_1adb52f4ef8ece3eb027f35886ed3004d5"></a>
 
 Sets the value of GameMode_Optional and also sets GameMode_IsSet to true.
+
+#### `public inline void `[`SetGameMode`](#structFRHAPI__MatchInstance_1ae7d6a16ef0b2882dc291caf57650a62e)`(FString && NewValue)` <a id="structFRHAPI__MatchInstance_1ae7d6a16ef0b2882dc291caf57650a62e"></a>
+
+Sets the value of GameMode_Optional and also sets GameMode_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearGameMode`](#structFRHAPI__MatchInstance_1a036653dccbfeeea170930d93970068c4)`()` <a id="structFRHAPI__MatchInstance_1a036653dccbfeeea170930d93970068c4"></a>
 
@@ -367,9 +398,13 @@ Returns a pointer to HostType_Optional, if it has been set, otherwise returns nu
 
 Returns a pointer to HostType_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetHostType`](#structFRHAPI__MatchInstance_1a5b8a1ba45e5b526cd992d7c571a81524)`(ERHAPI_MatchHostType NewValue)` <a id="structFRHAPI__MatchInstance_1a5b8a1ba45e5b526cd992d7c571a81524"></a>
+#### `public inline void `[`SetHostType`](#structFRHAPI__MatchInstance_1a94207ffd70a4712d829645bf6365c46a)`(const ERHAPI_MatchHostType & NewValue)` <a id="structFRHAPI__MatchInstance_1a94207ffd70a4712d829645bf6365c46a"></a>
 
 Sets the value of HostType_Optional and also sets HostType_IsSet to true.
+
+#### `public inline void `[`SetHostType`](#structFRHAPI__MatchInstance_1afec0ec284c75d044049036c23f09c113)`(ERHAPI_MatchHostType && NewValue)` <a id="structFRHAPI__MatchInstance_1afec0ec284c75d044049036c23f09c113"></a>
+
+Sets the value of HostType_Optional and also sets HostType_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearHostType`](#structFRHAPI__MatchInstance_1a2cdc7dda631bde64222f3ec32d9417c9)`()` <a id="structFRHAPI__MatchInstance_1a2cdc7dda631bde64222f3ec32d9417c9"></a>
 

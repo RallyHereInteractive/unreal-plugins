@@ -256,7 +256,16 @@ void FRH_GameHostProviderGHA::BeginConnecting()
 void FRH_GameHostProviderGHA::OnConnectComplete(const RallyHereStatusCode& code)
 {
 	bool bIsError = GameHostAdapterImporter::rallyhere_is_error(code);
-	UE_CLOG(bIsError, LogRHGameHostProvider, Error, TEXT("[%s] GameHostAdapter Failed to connect to provider: %s"), ANSI_TO_TCHAR(__FUNCTION__), UTF8_TO_TCHAR(GameHostAdapterImporter::rallyhere_status_text(code)));
+
+	if (bIsError)
+	{
+		UE_LOG(LogRHGameHostProvider, Error, TEXT("[%s] GameHostAdapter failed to connect: %s"), ANSI_TO_TCHAR(__FUNCTION__), UTF8_TO_TCHAR(GameHostAdapterImporter::rallyhere_status_text(code)));
+	}
+	else
+	{
+		UE_LOG(LogRHGameHostProvider, Log, TEXT("[%s] GameHostAdapter successfully connected: %s"), ANSI_TO_TCHAR(__FUNCTION__), UTF8_TO_TCHAR(GameHostAdapterImporter::rallyhere_status_text(code)));
+	}
+
 	OnProviderConnectComplete.ExecuteIfBound(!bIsError);
 }
 
@@ -279,7 +288,16 @@ void FRH_GameHostProviderGHA::BeginRegister()
 void FRH_GameHostProviderGHA::OnRegisterComplete(const RallyHereStatusCode& code)
 {
 	bool bIsError = GameHostAdapterImporter::rallyhere_is_error(code);
-	UE_CLOG(bIsError, LogRHGameHostProvider, Error, TEXT("[%s] GameHostAdapter failed to register: %s"), ANSI_TO_TCHAR(__FUNCTION__), UTF8_TO_TCHAR(GameHostAdapterImporter::rallyhere_status_text(code)));
+
+	if (bIsError)
+	{
+		UE_LOG(LogRHGameHostProvider, Error, TEXT("[%s] GameHostAdapter failed to register: %s"), ANSI_TO_TCHAR(__FUNCTION__), UTF8_TO_TCHAR(GameHostAdapterImporter::rallyhere_status_text(code)));
+	}
+	else
+	{
+		UE_LOG(LogRHGameHostProvider, Log, TEXT("[%s] GameHostAdapter successfully registered: %s"), ANSI_TO_TCHAR(__FUNCTION__), UTF8_TO_TCHAR(GameHostAdapterImporter::rallyhere_status_text(code)));
+	}
+
 	OnProviderRegisterComplete.ExecuteIfBound(!bIsError);
 }
 
@@ -345,7 +363,16 @@ void FRH_GameHostProviderGHA::BeginReservation()
 void FRH_GameHostProviderGHA::OnReservationComplete(const RallyHereStatusCode& code)
 {
 	bool bIsError = GameHostAdapterImporter::rallyhere_is_error(code);
-	UE_CLOG(bIsError, LogRHGameHostProvider, Error, TEXT("[%s] GameHostAdapter failed to create reservation: %s"), ANSI_TO_TCHAR(__FUNCTION__), UTF8_TO_TCHAR(GameHostAdapterImporter::rallyhere_status_text(code)));
+
+	if (bIsError)
+	{
+		UE_LOG(LogRHGameHostProvider, Error, TEXT("[%s] GameHostAdapter failed to create reservation: %s"), ANSI_TO_TCHAR(__FUNCTION__), UTF8_TO_TCHAR(GameHostAdapterImporter::rallyhere_status_text(code)));
+	}
+	else
+	{
+		UE_LOG(LogRHGameHostProvider, Log, TEXT("[%s] GameHostAdapter successfully created reservation: %s"), ANSI_TO_TCHAR(__FUNCTION__), UTF8_TO_TCHAR(GameHostAdapterImporter::rallyhere_status_text(code)));
+	}
+
 	OnProviderReservationComplete.ExecuteIfBound(!bIsError);
 }
 
@@ -363,7 +390,16 @@ void FRH_GameHostProviderGHA::BeginSelfAllocate()
 void FRH_GameHostProviderGHA::OnSelfAllocateComplete(const RallyHereStatusCode& code)
 {
 	bool bIsError = GameHostAdapterImporter::rallyhere_is_error(code);
-	UE_CLOG(bIsError, LogRHGameHostProvider, Error, TEXT("[%s] GameHostAdapter failed to self allocate: %s"), ANSI_TO_TCHAR(__FUNCTION__), UTF8_TO_TCHAR(GameHostAdapterImporter::rallyhere_status_text(code)));
+
+	if (bIsError)
+	{
+		UE_LOG(LogRHGameHostProvider, Error, TEXT("[%s] GameHostAdapter failed to self allocate: %s"), ANSI_TO_TCHAR(__FUNCTION__), UTF8_TO_TCHAR(GameHostAdapterImporter::rallyhere_status_text(code)));
+	}
+	else
+	{
+		UE_LOG(LogRHGameHostProvider, Log, TEXT("[%s] GameHostAdapter successfully self allocated: %s"), ANSI_TO_TCHAR(__FUNCTION__), UTF8_TO_TCHAR(GameHostAdapterImporter::rallyhere_status_text(code)));
+	}
+
 	OnProviderSelfAllocateComplete.ExecuteIfBound(!bIsError);
 }
 

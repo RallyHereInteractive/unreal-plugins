@@ -29,7 +29,8 @@ struct FRHAPI_FriendsApiConfig
 `public inline bool `[`GetFriendLimit`](#structFRHAPI__FriendsApiConfig_1a7b78efd3a914e2573ed53c5ca534ff63)`(int32 & OutValue) const` | Fills OutValue with the value of FriendLimit_Optional and returns true if it has been set, otherwise returns false.
 `public inline int32 * `[`GetFriendLimitOrNull`](#structFRHAPI__FriendsApiConfig_1aa2a7f053ea26ea6aaa4bd7aee282ddee)`()` | Returns a pointer to FriendLimit_Optional, if it has been set, otherwise returns nullptr.
 `public inline const int32 * `[`GetFriendLimitOrNull`](#structFRHAPI__FriendsApiConfig_1a08ca443c142685db1b2992f2cbb1dda3)`() const` | Returns a pointer to FriendLimit_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetFriendLimit`](#structFRHAPI__FriendsApiConfig_1a83efbe00bd07534d4fc0ffab51887bf6)`(int32 NewValue)` | Sets the value of FriendLimit_Optional and also sets FriendLimit_IsSet to true.
+`public inline void `[`SetFriendLimit`](#structFRHAPI__FriendsApiConfig_1a7f0b81b78b6b2e7c772dbad2f57adfff)`(const int32 & NewValue)` | Sets the value of FriendLimit_Optional and also sets FriendLimit_IsSet to true.
+`public inline void `[`SetFriendLimit`](#structFRHAPI__FriendsApiConfig_1a780c93a0447afbcd803d83424a237125)`(int32 && NewValue)` | Sets the value of FriendLimit_Optional and also sets FriendLimit_IsSet to true using move semantics.
 `public inline void `[`ClearFriendLimit`](#structFRHAPI__FriendsApiConfig_1a60aa7aa4cfa84c0f671909ae7b175a0b)`()` | Clears the value of FriendLimit_Optional and sets FriendLimit_IsSet to false.
 `public inline bool `[`IsFriendLimitDefaultValue`](#structFRHAPI__FriendsApiConfig_1ac72c7c55e3903f85f2e14cb155514b42)`() const` | Returns true if FriendLimit_Optional is set and matches the default value.
 `public inline void `[`SetFriendLimitToDefault`](#structFRHAPI__FriendsApiConfig_1a65eface867cb58994c712fa3dd43fa83)`()` | Sets the value of FriendLimit_Optional to its default and also sets FriendLimit_IsSet to true.
@@ -39,7 +40,8 @@ struct FRHAPI_FriendsApiConfig
 `public inline bool `[`GetBlockLimit`](#structFRHAPI__FriendsApiConfig_1af601208b5269a541f1389e9506569317)`(int32 & OutValue) const` | Fills OutValue with the value of BlockLimit_Optional and returns true if it has been set, otherwise returns false.
 `public inline int32 * `[`GetBlockLimitOrNull`](#structFRHAPI__FriendsApiConfig_1a3f7accd9cf22e2431740ba424b3fec1a)`()` | Returns a pointer to BlockLimit_Optional, if it has been set, otherwise returns nullptr.
 `public inline const int32 * `[`GetBlockLimitOrNull`](#structFRHAPI__FriendsApiConfig_1a988918b5df52c1e25572782bd8ae53b1)`() const` | Returns a pointer to BlockLimit_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetBlockLimit`](#structFRHAPI__FriendsApiConfig_1a30602bfb9ca8bff183307303bec0d8f5)`(int32 NewValue)` | Sets the value of BlockLimit_Optional and also sets BlockLimit_IsSet to true.
+`public inline void `[`SetBlockLimit`](#structFRHAPI__FriendsApiConfig_1a4b2a5a79a1f2020a79fcf8b86a8c70d2)`(const int32 & NewValue)` | Sets the value of BlockLimit_Optional and also sets BlockLimit_IsSet to true.
+`public inline void `[`SetBlockLimit`](#structFRHAPI__FriendsApiConfig_1aace58dc39ea228a9c268107126fdcc15)`(int32 && NewValue)` | Sets the value of BlockLimit_Optional and also sets BlockLimit_IsSet to true using move semantics.
 `public inline void `[`ClearBlockLimit`](#structFRHAPI__FriendsApiConfig_1ae1a531df74e704ff9a5d5df27eecd439)`()` | Clears the value of BlockLimit_Optional and sets BlockLimit_IsSet to false.
 `public inline bool `[`IsBlockLimitDefaultValue`](#structFRHAPI__FriendsApiConfig_1ace5bbfa806e7314b7b8781eec0fdac77)`() const` | Returns true if BlockLimit_Optional is set and matches the default value.
 `public inline void `[`SetBlockLimitToDefault`](#structFRHAPI__FriendsApiConfig_1a31550ce0b44294881608c3f7caf124cf)`()` | Sets the value of BlockLimit_Optional to its default and also sets BlockLimit_IsSet to true.
@@ -103,9 +105,13 @@ Returns a pointer to FriendLimit_Optional, if it has been set, otherwise returns
 
 Returns a pointer to FriendLimit_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetFriendLimit`](#structFRHAPI__FriendsApiConfig_1a83efbe00bd07534d4fc0ffab51887bf6)`(int32 NewValue)` <a id="structFRHAPI__FriendsApiConfig_1a83efbe00bd07534d4fc0ffab51887bf6"></a>
+#### `public inline void `[`SetFriendLimit`](#structFRHAPI__FriendsApiConfig_1a7f0b81b78b6b2e7c772dbad2f57adfff)`(const int32 & NewValue)` <a id="structFRHAPI__FriendsApiConfig_1a7f0b81b78b6b2e7c772dbad2f57adfff"></a>
 
 Sets the value of FriendLimit_Optional and also sets FriendLimit_IsSet to true.
+
+#### `public inline void `[`SetFriendLimit`](#structFRHAPI__FriendsApiConfig_1a780c93a0447afbcd803d83424a237125)`(int32 && NewValue)` <a id="structFRHAPI__FriendsApiConfig_1a780c93a0447afbcd803d83424a237125"></a>
+
+Sets the value of FriendLimit_Optional and also sets FriendLimit_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearFriendLimit`](#structFRHAPI__FriendsApiConfig_1a60aa7aa4cfa84c0f671909ae7b175a0b)`()` <a id="structFRHAPI__FriendsApiConfig_1a60aa7aa4cfa84c0f671909ae7b175a0b"></a>
 
@@ -143,9 +149,13 @@ Returns a pointer to BlockLimit_Optional, if it has been set, otherwise returns 
 
 Returns a pointer to BlockLimit_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetBlockLimit`](#structFRHAPI__FriendsApiConfig_1a30602bfb9ca8bff183307303bec0d8f5)`(int32 NewValue)` <a id="structFRHAPI__FriendsApiConfig_1a30602bfb9ca8bff183307303bec0d8f5"></a>
+#### `public inline void `[`SetBlockLimit`](#structFRHAPI__FriendsApiConfig_1a4b2a5a79a1f2020a79fcf8b86a8c70d2)`(const int32 & NewValue)` <a id="structFRHAPI__FriendsApiConfig_1a4b2a5a79a1f2020a79fcf8b86a8c70d2"></a>
 
 Sets the value of BlockLimit_Optional and also sets BlockLimit_IsSet to true.
+
+#### `public inline void `[`SetBlockLimit`](#structFRHAPI__FriendsApiConfig_1aace58dc39ea228a9c268107126fdcc15)`(int32 && NewValue)` <a id="structFRHAPI__FriendsApiConfig_1aace58dc39ea228a9c268107126fdcc15"></a>
+
+Sets the value of BlockLimit_Optional and also sets BlockLimit_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearBlockLimit`](#structFRHAPI__FriendsApiConfig_1ae1a531df74e704ff9a5d5df27eecd439)`()` <a id="structFRHAPI__FriendsApiConfig_1ae1a531df74e704ff9a5d5df27eecd439"></a>
 

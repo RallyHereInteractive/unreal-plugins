@@ -33,7 +33,8 @@ struct FRHAPI_BodyFindOpportunities
 `public inline bool `[`GetScreenPixelWidth`](#structFRHAPI__BodyFindOpportunities_1afcebe830ce5b9c7e39770fb0468f1e3d)`(int32 & OutValue) const` | Fills OutValue with the value of ScreenPixelWidth_Optional and returns true if it has been set, otherwise returns false.
 `public inline int32 * `[`GetScreenPixelWidthOrNull`](#structFRHAPI__BodyFindOpportunities_1a8c9bc39b971859ddbeb80556492c0fc6)`()` | Returns a pointer to ScreenPixelWidth_Optional, if it has been set, otherwise returns nullptr.
 `public inline const int32 * `[`GetScreenPixelWidthOrNull`](#structFRHAPI__BodyFindOpportunities_1a74fed5f63eef8c9cd4a35f2b1f3a0631)`() const` | Returns a pointer to ScreenPixelWidth_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetScreenPixelWidth`](#structFRHAPI__BodyFindOpportunities_1a89c2a76632b1a12919e52368a155ff06)`(int32 NewValue)` | Sets the value of ScreenPixelWidth_Optional and also sets ScreenPixelWidth_IsSet to true.
+`public inline void `[`SetScreenPixelWidth`](#structFRHAPI__BodyFindOpportunities_1a4a473293db607d5367fda9debbbddb40)`(const int32 & NewValue)` | Sets the value of ScreenPixelWidth_Optional and also sets ScreenPixelWidth_IsSet to true.
+`public inline void `[`SetScreenPixelWidth`](#structFRHAPI__BodyFindOpportunities_1a4fe4e4d36d6912b2dc52aaa44b6bd233)`(int32 && NewValue)` | Sets the value of ScreenPixelWidth_Optional and also sets ScreenPixelWidth_IsSet to true using move semantics.
 `public inline void `[`ClearScreenPixelWidth`](#structFRHAPI__BodyFindOpportunities_1ae6663d32a01ee5dffa9d75a6132f95f2)`()` | Clears the value of ScreenPixelWidth_Optional and sets ScreenPixelWidth_IsSet to false.
 `public inline bool `[`IsScreenPixelWidthDefaultValue`](#structFRHAPI__BodyFindOpportunities_1a2455bb9010c3861a19d196be1e8e764a)`() const` | Returns true if ScreenPixelWidth_Optional is set and matches the default value.
 `public inline void `[`SetScreenPixelWidthToDefault`](#structFRHAPI__BodyFindOpportunities_1a77699235df89da355f3f899790addb3c)`()` | Sets the value of ScreenPixelWidth_Optional to its default and also sets ScreenPixelWidth_IsSet to true.
@@ -43,23 +44,27 @@ struct FRHAPI_BodyFindOpportunities
 `public inline bool `[`GetScreenPixelHeight`](#structFRHAPI__BodyFindOpportunities_1a89104b1d7b2c782fd8e6b7486e86f476)`(int32 & OutValue) const` | Fills OutValue with the value of ScreenPixelHeight_Optional and returns true if it has been set, otherwise returns false.
 `public inline int32 * `[`GetScreenPixelHeightOrNull`](#structFRHAPI__BodyFindOpportunities_1a8831af1b2f1f4151aeafb4c3704d1cf6)`()` | Returns a pointer to ScreenPixelHeight_Optional, if it has been set, otherwise returns nullptr.
 `public inline const int32 * `[`GetScreenPixelHeightOrNull`](#structFRHAPI__BodyFindOpportunities_1a148e76eb5c80318d7bada5ccb17b0d83)`() const` | Returns a pointer to ScreenPixelHeight_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetScreenPixelHeight`](#structFRHAPI__BodyFindOpportunities_1a9a6a83aa3791b0a72cafc1ea45a12891)`(int32 NewValue)` | Sets the value of ScreenPixelHeight_Optional and also sets ScreenPixelHeight_IsSet to true.
+`public inline void `[`SetScreenPixelHeight`](#structFRHAPI__BodyFindOpportunities_1a5c4817f4d0d8a8261b52f50be1da556a)`(const int32 & NewValue)` | Sets the value of ScreenPixelHeight_Optional and also sets ScreenPixelHeight_IsSet to true.
+`public inline void `[`SetScreenPixelHeight`](#structFRHAPI__BodyFindOpportunities_1a63cd7bc32854976762cbb1015dfbf140)`(int32 && NewValue)` | Sets the value of ScreenPixelHeight_Optional and also sets ScreenPixelHeight_IsSet to true using move semantics.
 `public inline void `[`ClearScreenPixelHeight`](#structFRHAPI__BodyFindOpportunities_1a048b38678d62f4814c85642a737c6509)`()` | Clears the value of ScreenPixelHeight_Optional and sets ScreenPixelHeight_IsSet to false.
 `public inline bool `[`IsScreenPixelHeightDefaultValue`](#structFRHAPI__BodyFindOpportunities_1af1ff5fc6e6bd2f3fc32267299a693f1c)`() const` | Returns true if ScreenPixelHeight_Optional is set and matches the default value.
 `public inline void `[`SetScreenPixelHeightToDefault`](#structFRHAPI__BodyFindOpportunities_1a0d93830a1d72571e005154ed1a7d3dfc)`()` | Sets the value of ScreenPixelHeight_Optional to its default and also sets ScreenPixelHeight_IsSet to true.
 `public inline FString & `[`GetCountryCode`](#structFRHAPI__BodyFindOpportunities_1a1ecbe536baf4fd61c4828d6ba39b65f1)`()` | Gets the value of CountryCode.
 `public inline const FString & `[`GetCountryCode`](#structFRHAPI__BodyFindOpportunities_1a7eae910423db2956866ea4955f23a205)`() const` | Gets the value of CountryCode.
-`public inline void `[`SetCountryCode`](#structFRHAPI__BodyFindOpportunities_1ae85974c5d8491983860972669174b6a2)`(FString NewValue)` | Sets the value of CountryCode.
+`public inline void `[`SetCountryCode`](#structFRHAPI__BodyFindOpportunities_1af3f613ad705be75f5eb186d067bad2ec)`(const FString & NewValue)` | Sets the value of CountryCode.
+`public inline void `[`SetCountryCode`](#structFRHAPI__BodyFindOpportunities_1aa4c36a18ae5fb9c64018b3e7f31dd895)`(FString && NewValue)` | Sets the value of CountryCode using move semantics.
 `public inline FString & `[`GetLanguageCode`](#structFRHAPI__BodyFindOpportunities_1a4d0b86e4faad731905c5db2a7ba9d213)`()` | Gets the value of LanguageCode.
 `public inline const FString & `[`GetLanguageCode`](#structFRHAPI__BodyFindOpportunities_1a0ff0d1a37dbb3f09955f382fef8607e3)`() const` | Gets the value of LanguageCode.
-`public inline void `[`SetLanguageCode`](#structFRHAPI__BodyFindOpportunities_1aef1ad0c375227658f87aa8dff199905d)`(FString NewValue)` | Sets the value of LanguageCode.
+`public inline void `[`SetLanguageCode`](#structFRHAPI__BodyFindOpportunities_1aba0c4e19fe30668d4af9a411f42c6805)`(const FString & NewValue)` | Sets the value of LanguageCode.
+`public inline void `[`SetLanguageCode`](#structFRHAPI__BodyFindOpportunities_1a965aa093d5a53a88d66c9374dea7dee9)`(FString && NewValue)` | Sets the value of LanguageCode using move semantics.
 `public inline FString & `[`GetDeviceId`](#structFRHAPI__BodyFindOpportunities_1a99721c0a584f18326ec89bc1ff892f4b)`()` | Gets the value of DeviceId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetDeviceId`](#structFRHAPI__BodyFindOpportunities_1a0091f17eb436e8fd318aafd99c15b84f)`() const` | Gets the value of DeviceId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetDeviceId`](#structFRHAPI__BodyFindOpportunities_1a4fb6a5815305678edf7d607236d9996c)`(const FString & DefaultValue) const` | Gets the value of DeviceId_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetDeviceId`](#structFRHAPI__BodyFindOpportunities_1ad6507176464a8d43dc4d033a2ed50c15)`(FString & OutValue) const` | Fills OutValue with the value of DeviceId_Optional and returns true if it has been set, otherwise returns false.
 `public inline FString * `[`GetDeviceIdOrNull`](#structFRHAPI__BodyFindOpportunities_1ad2ba474615210b658b077aa89a80ccc3)`()` | Returns a pointer to DeviceId_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FString * `[`GetDeviceIdOrNull`](#structFRHAPI__BodyFindOpportunities_1a4cb9b21ae9e0cde5d141057915f7e417)`() const` | Returns a pointer to DeviceId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetDeviceId`](#structFRHAPI__BodyFindOpportunities_1a8d83231e709256660cd11cb262191ea8)`(FString NewValue)` | Sets the value of DeviceId_Optional and also sets DeviceId_IsSet to true.
+`public inline void `[`SetDeviceId`](#structFRHAPI__BodyFindOpportunities_1adba3a2227fef489360c52b50eb9fc9ea)`(const FString & NewValue)` | Sets the value of DeviceId_Optional and also sets DeviceId_IsSet to true.
+`public inline void `[`SetDeviceId`](#structFRHAPI__BodyFindOpportunities_1af995107060547cef908951c8b551c147)`(FString && NewValue)` | Sets the value of DeviceId_Optional and also sets DeviceId_IsSet to true using move semantics.
 `public inline void `[`ClearDeviceId`](#structFRHAPI__BodyFindOpportunities_1a7188bb5fbcdd19a876c7928d7989d186)`()` | Clears the value of DeviceId_Optional and sets DeviceId_IsSet to false.
 
 ### Members
@@ -137,9 +142,13 @@ Returns a pointer to ScreenPixelWidth_Optional, if it has been set, otherwise re
 
 Returns a pointer to ScreenPixelWidth_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetScreenPixelWidth`](#structFRHAPI__BodyFindOpportunities_1a89c2a76632b1a12919e52368a155ff06)`(int32 NewValue)` <a id="structFRHAPI__BodyFindOpportunities_1a89c2a76632b1a12919e52368a155ff06"></a>
+#### `public inline void `[`SetScreenPixelWidth`](#structFRHAPI__BodyFindOpportunities_1a4a473293db607d5367fda9debbbddb40)`(const int32 & NewValue)` <a id="structFRHAPI__BodyFindOpportunities_1a4a473293db607d5367fda9debbbddb40"></a>
 
 Sets the value of ScreenPixelWidth_Optional and also sets ScreenPixelWidth_IsSet to true.
+
+#### `public inline void `[`SetScreenPixelWidth`](#structFRHAPI__BodyFindOpportunities_1a4fe4e4d36d6912b2dc52aaa44b6bd233)`(int32 && NewValue)` <a id="structFRHAPI__BodyFindOpportunities_1a4fe4e4d36d6912b2dc52aaa44b6bd233"></a>
+
+Sets the value of ScreenPixelWidth_Optional and also sets ScreenPixelWidth_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearScreenPixelWidth`](#structFRHAPI__BodyFindOpportunities_1ae6663d32a01ee5dffa9d75a6132f95f2)`()` <a id="structFRHAPI__BodyFindOpportunities_1ae6663d32a01ee5dffa9d75a6132f95f2"></a>
 
@@ -177,9 +186,13 @@ Returns a pointer to ScreenPixelHeight_Optional, if it has been set, otherwise r
 
 Returns a pointer to ScreenPixelHeight_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetScreenPixelHeight`](#structFRHAPI__BodyFindOpportunities_1a9a6a83aa3791b0a72cafc1ea45a12891)`(int32 NewValue)` <a id="structFRHAPI__BodyFindOpportunities_1a9a6a83aa3791b0a72cafc1ea45a12891"></a>
+#### `public inline void `[`SetScreenPixelHeight`](#structFRHAPI__BodyFindOpportunities_1a5c4817f4d0d8a8261b52f50be1da556a)`(const int32 & NewValue)` <a id="structFRHAPI__BodyFindOpportunities_1a5c4817f4d0d8a8261b52f50be1da556a"></a>
 
 Sets the value of ScreenPixelHeight_Optional and also sets ScreenPixelHeight_IsSet to true.
+
+#### `public inline void `[`SetScreenPixelHeight`](#structFRHAPI__BodyFindOpportunities_1a63cd7bc32854976762cbb1015dfbf140)`(int32 && NewValue)` <a id="structFRHAPI__BodyFindOpportunities_1a63cd7bc32854976762cbb1015dfbf140"></a>
+
+Sets the value of ScreenPixelHeight_Optional and also sets ScreenPixelHeight_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearScreenPixelHeight`](#structFRHAPI__BodyFindOpportunities_1a048b38678d62f4814c85642a737c6509)`()` <a id="structFRHAPI__BodyFindOpportunities_1a048b38678d62f4814c85642a737c6509"></a>
 
@@ -201,9 +214,13 @@ Gets the value of CountryCode.
 
 Gets the value of CountryCode.
 
-#### `public inline void `[`SetCountryCode`](#structFRHAPI__BodyFindOpportunities_1ae85974c5d8491983860972669174b6a2)`(FString NewValue)` <a id="structFRHAPI__BodyFindOpportunities_1ae85974c5d8491983860972669174b6a2"></a>
+#### `public inline void `[`SetCountryCode`](#structFRHAPI__BodyFindOpportunities_1af3f613ad705be75f5eb186d067bad2ec)`(const FString & NewValue)` <a id="structFRHAPI__BodyFindOpportunities_1af3f613ad705be75f5eb186d067bad2ec"></a>
 
 Sets the value of CountryCode.
+
+#### `public inline void `[`SetCountryCode`](#structFRHAPI__BodyFindOpportunities_1aa4c36a18ae5fb9c64018b3e7f31dd895)`(FString && NewValue)` <a id="structFRHAPI__BodyFindOpportunities_1aa4c36a18ae5fb9c64018b3e7f31dd895"></a>
+
+Sets the value of CountryCode using move semantics.
 
 #### `public inline FString & `[`GetLanguageCode`](#structFRHAPI__BodyFindOpportunities_1a4d0b86e4faad731905c5db2a7ba9d213)`()` <a id="structFRHAPI__BodyFindOpportunities_1a4d0b86e4faad731905c5db2a7ba9d213"></a>
 
@@ -213,9 +230,13 @@ Gets the value of LanguageCode.
 
 Gets the value of LanguageCode.
 
-#### `public inline void `[`SetLanguageCode`](#structFRHAPI__BodyFindOpportunities_1aef1ad0c375227658f87aa8dff199905d)`(FString NewValue)` <a id="structFRHAPI__BodyFindOpportunities_1aef1ad0c375227658f87aa8dff199905d"></a>
+#### `public inline void `[`SetLanguageCode`](#structFRHAPI__BodyFindOpportunities_1aba0c4e19fe30668d4af9a411f42c6805)`(const FString & NewValue)` <a id="structFRHAPI__BodyFindOpportunities_1aba0c4e19fe30668d4af9a411f42c6805"></a>
 
 Sets the value of LanguageCode.
+
+#### `public inline void `[`SetLanguageCode`](#structFRHAPI__BodyFindOpportunities_1a965aa093d5a53a88d66c9374dea7dee9)`(FString && NewValue)` <a id="structFRHAPI__BodyFindOpportunities_1a965aa093d5a53a88d66c9374dea7dee9"></a>
+
+Sets the value of LanguageCode using move semantics.
 
 #### `public inline FString & `[`GetDeviceId`](#structFRHAPI__BodyFindOpportunities_1a99721c0a584f18326ec89bc1ff892f4b)`()` <a id="structFRHAPI__BodyFindOpportunities_1a99721c0a584f18326ec89bc1ff892f4b"></a>
 
@@ -241,9 +262,13 @@ Returns a pointer to DeviceId_Optional, if it has been set, otherwise returns nu
 
 Returns a pointer to DeviceId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetDeviceId`](#structFRHAPI__BodyFindOpportunities_1a8d83231e709256660cd11cb262191ea8)`(FString NewValue)` <a id="structFRHAPI__BodyFindOpportunities_1a8d83231e709256660cd11cb262191ea8"></a>
+#### `public inline void `[`SetDeviceId`](#structFRHAPI__BodyFindOpportunities_1adba3a2227fef489360c52b50eb9fc9ea)`(const FString & NewValue)` <a id="structFRHAPI__BodyFindOpportunities_1adba3a2227fef489360c52b50eb9fc9ea"></a>
 
 Sets the value of DeviceId_Optional and also sets DeviceId_IsSet to true.
+
+#### `public inline void `[`SetDeviceId`](#structFRHAPI__BodyFindOpportunities_1af995107060547cef908951c8b551c147)`(FString && NewValue)` <a id="structFRHAPI__BodyFindOpportunities_1af995107060547cef908951c8b551c147"></a>
+
+Sets the value of DeviceId_Optional and also sets DeviceId_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearDeviceId`](#structFRHAPI__BodyFindOpportunities_1a7188bb5fbcdd19a876c7928d7989d186)`()` <a id="structFRHAPI__BodyFindOpportunities_1a7188bb5fbcdd19a876c7928d7989d186"></a>
 

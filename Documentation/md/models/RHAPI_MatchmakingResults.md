@@ -29,17 +29,20 @@ struct FRHAPI_MatchmakingResults
 `public virtual void `[`WriteJson`](#structFRHAPI__MatchmakingResults_1aaa25743c46903ecac25d19361c982d82)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetMatchMakingId`](#structFRHAPI__MatchmakingResults_1a3eec9da01abb85f14e2852770df849af)`()` | Gets the value of MatchMakingId.
 `public inline const FString & `[`GetMatchMakingId`](#structFRHAPI__MatchmakingResults_1a96808910d8dc9a9c2a57c8b22de9e5a4)`() const` | Gets the value of MatchMakingId.
-`public inline void `[`SetMatchMakingId`](#structFRHAPI__MatchmakingResults_1a0bbee72f60f388d1f37ce90f1eaf1fe3)`(FString NewValue)` | Sets the value of MatchMakingId.
+`public inline void `[`SetMatchMakingId`](#structFRHAPI__MatchmakingResults_1aedd10bd3ad6b1c515417e2ca791b6c12)`(const FString & NewValue)` | Sets the value of MatchMakingId.
+`public inline void `[`SetMatchMakingId`](#structFRHAPI__MatchmakingResults_1ad068293accc4bf3b9e68ffe073b1be43)`(FString && NewValue)` | Sets the value of MatchMakingId using move semantics.
 `public inline FDateTime & `[`GetCreated`](#structFRHAPI__MatchmakingResults_1a2fb8620470daf2cba9b6a80acbe5647d)`()` | Gets the value of Created.
 `public inline const FDateTime & `[`GetCreated`](#structFRHAPI__MatchmakingResults_1a9dc547452a88f623f6d9f5286bbc8580)`() const` | Gets the value of Created.
-`public inline void `[`SetCreated`](#structFRHAPI__MatchmakingResults_1a65a062ef9c309fe8b92167295b9ef01e)`(FDateTime NewValue)` | Sets the value of Created.
+`public inline void `[`SetCreated`](#structFRHAPI__MatchmakingResults_1a21afc5d660d3731b4c0d63e68a05b8eb)`(const FDateTime & NewValue)` | Sets the value of Created.
+`public inline void `[`SetCreated`](#structFRHAPI__MatchmakingResults_1a44230ebba5486d7b75643ca976d70189)`(FDateTime && NewValue)` | Sets the value of Created using move semantics.
 `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchmakingResults_1a1e55e716d190d23769c1f8739391cd9a)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchmakingResults_1a01117496cdeb5820fa36738dced25ad1)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchmakingResults_1a5a8b871bd725140fb3b5611b36df7763)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetCustomData`](#structFRHAPI__MatchmakingResults_1ada7324d7b363cc133f4b5d93ac7da168)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchmakingResults_1ac49979aae65167105a1aa96560d9c0e4)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchmakingResults_1aab743d1e41d1d239c7d6137ff87ac905)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCustomData`](#structFRHAPI__MatchmakingResults_1a42d42ca4236818b9c6f728e2ccf89df8)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`SetCustomData`](#structFRHAPI__MatchmakingResults_1a1923c6f5b25c22f78e775bc52cc33533)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`SetCustomData`](#structFRHAPI__MatchmakingResults_1aead98d298dfaa92ba049e5b96356b894)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__MatchmakingResults_1ae469afc928153d7220e9d3eddc314527)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 `public inline TArray< FString > & `[`GetTicketIds`](#structFRHAPI__MatchmakingResults_1abeb503f0a839ff3719e0280b5e4e23a7)`()` | Gets the value of TicketIds_Optional, regardless of it having been set.
 `public inline const TArray< FString > & `[`GetTicketIds`](#structFRHAPI__MatchmakingResults_1ab3217ee869176976d9b2072f83295d2b)`() const` | Gets the value of TicketIds_Optional, regardless of it having been set.
@@ -47,7 +50,8 @@ struct FRHAPI_MatchmakingResults
 `public inline bool `[`GetTicketIds`](#structFRHAPI__MatchmakingResults_1a48b374004e48aeb12c8b39f4481cc967)`(TArray< FString > & OutValue) const` | Fills OutValue with the value of TicketIds_Optional and returns true if it has been set, otherwise returns false.
 `public inline TArray< FString > * `[`GetTicketIdsOrNull`](#structFRHAPI__MatchmakingResults_1aeeebf6ffd67a77e5f2c8702d2f14a3d1)`()` | Returns a pointer to TicketIds_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TArray< FString > * `[`GetTicketIdsOrNull`](#structFRHAPI__MatchmakingResults_1a13406c13b9df008591e546ee9ab79325)`() const` | Returns a pointer to TicketIds_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetTicketIds`](#structFRHAPI__MatchmakingResults_1ac24e7953c0388b90f4c45aad7f312b40)`(TArray< FString > NewValue)` | Sets the value of TicketIds_Optional and also sets TicketIds_IsSet to true.
+`public inline void `[`SetTicketIds`](#structFRHAPI__MatchmakingResults_1a9b5cec5d26a7246226b2666379a3dce4)`(const TArray< FString > & NewValue)` | Sets the value of TicketIds_Optional and also sets TicketIds_IsSet to true.
+`public inline void `[`SetTicketIds`](#structFRHAPI__MatchmakingResults_1ab7ad53a7ec1fef36cc365228adda0707)`(TArray< FString > && NewValue)` | Sets the value of TicketIds_Optional and also sets TicketIds_IsSet to true using move semantics.
 `public inline void `[`ClearTicketIds`](#structFRHAPI__MatchmakingResults_1a65ed513e849ce02fa71a83adc2b5e626)`()` | Clears the value of TicketIds_Optional and sets TicketIds_IsSet to false.
 `public inline bool & `[`GetTicketsAssigned`](#structFRHAPI__MatchmakingResults_1a1e366bfdac0e3504b24c541a69eb9001)`()` | Gets the value of TicketsAssigned_Optional, regardless of it having been set.
 `public inline const bool & `[`GetTicketsAssigned`](#structFRHAPI__MatchmakingResults_1a3c6c69815d2813502e1b2277e086d2ad)`() const` | Gets the value of TicketsAssigned_Optional, regardless of it having been set.
@@ -55,7 +59,8 @@ struct FRHAPI_MatchmakingResults
 `public inline bool `[`GetTicketsAssigned`](#structFRHAPI__MatchmakingResults_1a8080a07d99496bad41f51148831eb743)`(bool & OutValue) const` | Fills OutValue with the value of TicketsAssigned_Optional and returns true if it has been set, otherwise returns false.
 `public inline bool * `[`GetTicketsAssignedOrNull`](#structFRHAPI__MatchmakingResults_1a3a09f799a93b1877eb05391827aac77f)`()` | Returns a pointer to TicketsAssigned_Optional, if it has been set, otherwise returns nullptr.
 `public inline const bool * `[`GetTicketsAssignedOrNull`](#structFRHAPI__MatchmakingResults_1a8aab0b5e579155f1e309b12ea31db0ce)`() const` | Returns a pointer to TicketsAssigned_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetTicketsAssigned`](#structFRHAPI__MatchmakingResults_1af59657d445561e425c137d4f71530da6)`(bool NewValue)` | Sets the value of TicketsAssigned_Optional and also sets TicketsAssigned_IsSet to true.
+`public inline void `[`SetTicketsAssigned`](#structFRHAPI__MatchmakingResults_1a0dc7dfccda6d6986de987fd94d57cb03)`(const bool & NewValue)` | Sets the value of TicketsAssigned_Optional and also sets TicketsAssigned_IsSet to true.
+`public inline void `[`SetTicketsAssigned`](#structFRHAPI__MatchmakingResults_1a8c3f099d477bdea81419337ab5f9e852)`(bool && NewValue)` | Sets the value of TicketsAssigned_Optional and also sets TicketsAssigned_IsSet to true using move semantics.
 `public inline void `[`ClearTicketsAssigned`](#structFRHAPI__MatchmakingResults_1aa61a731c623adefbd95d6b7dec006971)`()` | Clears the value of TicketsAssigned_Optional and sets TicketsAssigned_IsSet to false.
 `public inline bool `[`IsTicketsAssignedDefaultValue`](#structFRHAPI__MatchmakingResults_1a5c8749120aa46ca1db37523cbd44a784)`() const` | Returns true if TicketsAssigned_Optional is set and matches the default value.
 `public inline void `[`SetTicketsAssignedToDefault`](#structFRHAPI__MatchmakingResults_1a9d944457f3d11276df11f7ae3deba0ce)`()` | Sets the value of TicketsAssigned_Optional to its default and also sets TicketsAssigned_IsSet to true.
@@ -119,9 +124,13 @@ Gets the value of MatchMakingId.
 
 Gets the value of MatchMakingId.
 
-#### `public inline void `[`SetMatchMakingId`](#structFRHAPI__MatchmakingResults_1a0bbee72f60f388d1f37ce90f1eaf1fe3)`(FString NewValue)` <a id="structFRHAPI__MatchmakingResults_1a0bbee72f60f388d1f37ce90f1eaf1fe3"></a>
+#### `public inline void `[`SetMatchMakingId`](#structFRHAPI__MatchmakingResults_1aedd10bd3ad6b1c515417e2ca791b6c12)`(const FString & NewValue)` <a id="structFRHAPI__MatchmakingResults_1aedd10bd3ad6b1c515417e2ca791b6c12"></a>
 
 Sets the value of MatchMakingId.
+
+#### `public inline void `[`SetMatchMakingId`](#structFRHAPI__MatchmakingResults_1ad068293accc4bf3b9e68ffe073b1be43)`(FString && NewValue)` <a id="structFRHAPI__MatchmakingResults_1ad068293accc4bf3b9e68ffe073b1be43"></a>
+
+Sets the value of MatchMakingId using move semantics.
 
 #### `public inline FDateTime & `[`GetCreated`](#structFRHAPI__MatchmakingResults_1a2fb8620470daf2cba9b6a80acbe5647d)`()` <a id="structFRHAPI__MatchmakingResults_1a2fb8620470daf2cba9b6a80acbe5647d"></a>
 
@@ -131,9 +140,13 @@ Gets the value of Created.
 
 Gets the value of Created.
 
-#### `public inline void `[`SetCreated`](#structFRHAPI__MatchmakingResults_1a65a062ef9c309fe8b92167295b9ef01e)`(FDateTime NewValue)` <a id="structFRHAPI__MatchmakingResults_1a65a062ef9c309fe8b92167295b9ef01e"></a>
+#### `public inline void `[`SetCreated`](#structFRHAPI__MatchmakingResults_1a21afc5d660d3731b4c0d63e68a05b8eb)`(const FDateTime & NewValue)` <a id="structFRHAPI__MatchmakingResults_1a21afc5d660d3731b4c0d63e68a05b8eb"></a>
 
 Sets the value of Created.
+
+#### `public inline void `[`SetCreated`](#structFRHAPI__MatchmakingResults_1a44230ebba5486d7b75643ca976d70189)`(FDateTime && NewValue)` <a id="structFRHAPI__MatchmakingResults_1a44230ebba5486d7b75643ca976d70189"></a>
+
+Sets the value of Created using move semantics.
 
 #### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchmakingResults_1a1e55e716d190d23769c1f8739391cd9a)`()` <a id="structFRHAPI__MatchmakingResults_1a1e55e716d190d23769c1f8739391cd9a"></a>
 
@@ -159,9 +172,13 @@ Returns a pointer to CustomData_Optional, if it has been set, otherwise returns 
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__MatchmakingResults_1a42d42ca4236818b9c6f728e2ccf89df8)`(TMap< FString, FString > NewValue)` <a id="structFRHAPI__MatchmakingResults_1a42d42ca4236818b9c6f728e2ccf89df8"></a>
+#### `public inline void `[`SetCustomData`](#structFRHAPI__MatchmakingResults_1a1923c6f5b25c22f78e775bc52cc33533)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__MatchmakingResults_1a1923c6f5b25c22f78e775bc52cc33533"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+
+#### `public inline void `[`SetCustomData`](#structFRHAPI__MatchmakingResults_1aead98d298dfaa92ba049e5b96356b894)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__MatchmakingResults_1aead98d298dfaa92ba049e5b96356b894"></a>
+
+Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearCustomData`](#structFRHAPI__MatchmakingResults_1ae469afc928153d7220e9d3eddc314527)`()` <a id="structFRHAPI__MatchmakingResults_1ae469afc928153d7220e9d3eddc314527"></a>
 
@@ -191,9 +208,13 @@ Returns a pointer to TicketIds_Optional, if it has been set, otherwise returns n
 
 Returns a pointer to TicketIds_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetTicketIds`](#structFRHAPI__MatchmakingResults_1ac24e7953c0388b90f4c45aad7f312b40)`(TArray< FString > NewValue)` <a id="structFRHAPI__MatchmakingResults_1ac24e7953c0388b90f4c45aad7f312b40"></a>
+#### `public inline void `[`SetTicketIds`](#structFRHAPI__MatchmakingResults_1a9b5cec5d26a7246226b2666379a3dce4)`(const TArray< FString > & NewValue)` <a id="structFRHAPI__MatchmakingResults_1a9b5cec5d26a7246226b2666379a3dce4"></a>
 
 Sets the value of TicketIds_Optional and also sets TicketIds_IsSet to true.
+
+#### `public inline void `[`SetTicketIds`](#structFRHAPI__MatchmakingResults_1ab7ad53a7ec1fef36cc365228adda0707)`(TArray< FString > && NewValue)` <a id="structFRHAPI__MatchmakingResults_1ab7ad53a7ec1fef36cc365228adda0707"></a>
+
+Sets the value of TicketIds_Optional and also sets TicketIds_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearTicketIds`](#structFRHAPI__MatchmakingResults_1a65ed513e849ce02fa71a83adc2b5e626)`()` <a id="structFRHAPI__MatchmakingResults_1a65ed513e849ce02fa71a83adc2b5e626"></a>
 
@@ -223,9 +244,13 @@ Returns a pointer to TicketsAssigned_Optional, if it has been set, otherwise ret
 
 Returns a pointer to TicketsAssigned_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetTicketsAssigned`](#structFRHAPI__MatchmakingResults_1af59657d445561e425c137d4f71530da6)`(bool NewValue)` <a id="structFRHAPI__MatchmakingResults_1af59657d445561e425c137d4f71530da6"></a>
+#### `public inline void `[`SetTicketsAssigned`](#structFRHAPI__MatchmakingResults_1a0dc7dfccda6d6986de987fd94d57cb03)`(const bool & NewValue)` <a id="structFRHAPI__MatchmakingResults_1a0dc7dfccda6d6986de987fd94d57cb03"></a>
 
 Sets the value of TicketsAssigned_Optional and also sets TicketsAssigned_IsSet to true.
+
+#### `public inline void `[`SetTicketsAssigned`](#structFRHAPI__MatchmakingResults_1a8c3f099d477bdea81419337ab5f9e852)`(bool && NewValue)` <a id="structFRHAPI__MatchmakingResults_1a8c3f099d477bdea81419337ab5f9e852"></a>
+
+Sets the value of TicketsAssigned_Optional and also sets TicketsAssigned_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearTicketsAssigned`](#structFRHAPI__MatchmakingResults_1aa61a731c623adefbd95d6b7dec006971)`()` <a id="structFRHAPI__MatchmakingResults_1aa61a731c623adefbd95d6b7dec006971"></a>
 

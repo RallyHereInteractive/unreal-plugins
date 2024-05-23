@@ -47,23 +47,27 @@ A player resource in a session.
 `public inline bool `[`GetPlayerId`](#structFRHAPI__SessionPlayer_1a1e104e5d5a81d0555749531774c57e20)`(int32 & OutValue) const` | Fills OutValue with the value of PlayerId_Optional and returns true if it has been set, otherwise returns false.
 `public inline int32 * `[`GetPlayerIdOrNull`](#structFRHAPI__SessionPlayer_1a7104c302ca1e6be25e64a792a6fc2640)`()` | Returns a pointer to PlayerId_Optional, if it has been set, otherwise returns nullptr.
 `public inline const int32 * `[`GetPlayerIdOrNull`](#structFRHAPI__SessionPlayer_1a65f89cbd11987a3f666137a07abbe88a)`() const` | Returns a pointer to PlayerId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPlayerId`](#structFRHAPI__SessionPlayer_1a1904aa3344becb59e73b470231169f47)`(int32 NewValue)` | Sets the value of PlayerId_Optional and also sets PlayerId_IsSet to true.
+`public inline void `[`SetPlayerId`](#structFRHAPI__SessionPlayer_1a18dc590068006ad80eedeff1dd8d249e)`(const int32 & NewValue)` | Sets the value of PlayerId_Optional and also sets PlayerId_IsSet to true.
+`public inline void `[`SetPlayerId`](#structFRHAPI__SessionPlayer_1a2db3aad8433a2272a793d50b28d6d7e6)`(int32 && NewValue)` | Sets the value of PlayerId_Optional and also sets PlayerId_IsSet to true using move semantics.
 `public inline void `[`ClearPlayerId`](#structFRHAPI__SessionPlayer_1aa5068324d303c0ec84db535158fb345e)`()` | Clears the value of PlayerId_Optional and sets PlayerId_IsSet to false.
 `public inline bool `[`IsPlayerIdDefaultValue`](#structFRHAPI__SessionPlayer_1aebb63b6bda892c9b01eba35b22163697)`() const` | Returns true if PlayerId_Optional is set and matches the default value.
 `public inline void `[`SetPlayerIdToDefault`](#structFRHAPI__SessionPlayer_1af1f33f4f89bbc5c6685fe0d700d0c65d)`()` | Sets the value of PlayerId_Optional to its default and also sets PlayerId_IsSet to true.
 `public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__SessionPlayer_1aff80c8a8801c3da78cef13c02b4c0358)`()` | Gets the value of PlayerUuid.
 `public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__SessionPlayer_1ac79ff0f30d08521f2f5e7b81041319f9)`() const` | Gets the value of PlayerUuid.
-`public inline void `[`SetPlayerUuid`](#structFRHAPI__SessionPlayer_1afca7d66e4c75dbc1d88e130c7eeff780)`(FGuid NewValue)` | Sets the value of PlayerUuid.
+`public inline void `[`SetPlayerUuid`](#structFRHAPI__SessionPlayer_1aa100374334edfa54cec4eb186fd722f1)`(const FGuid & NewValue)` | Sets the value of PlayerUuid.
+`public inline void `[`SetPlayerUuid`](#structFRHAPI__SessionPlayer_1a4c7df8f84c8e51c83e3451ea963a8df8)`(FGuid && NewValue)` | Sets the value of PlayerUuid using move semantics.
 `public inline ERHAPI_SessionPlayerStatus & `[`GetStatus`](#structFRHAPI__SessionPlayer_1a6c1dcd9332956742bb36aee64fd9f376)`()` | Gets the value of Status.
 `public inline const ERHAPI_SessionPlayerStatus & `[`GetStatus`](#structFRHAPI__SessionPlayer_1a02ca2506bc5bc82b3429833efbbccb65)`() const` | Gets the value of Status.
-`public inline void `[`SetStatus`](#structFRHAPI__SessionPlayer_1a36b3c46c65ab4deaf64a2a976c511cdf)`(ERHAPI_SessionPlayerStatus NewValue)` | Sets the value of Status.
+`public inline void `[`SetStatus`](#structFRHAPI__SessionPlayer_1a9c1580758cbaf2a675af0f6af73fa164)`(const ERHAPI_SessionPlayerStatus & NewValue)` | Sets the value of Status.
+`public inline void `[`SetStatus`](#structFRHAPI__SessionPlayer_1a59bed8edf15aa46a43be9b776289ca58)`(ERHAPI_SessionPlayerStatus && NewValue)` | Sets the value of Status using move semantics.
 `public inline FGuid & `[`GetInvitingPlayerUuid`](#structFRHAPI__SessionPlayer_1acd45c7b28d8030a4e93eb540b1d1be22)`()` | Gets the value of InvitingPlayerUuid_Optional, regardless of it having been set.
 `public inline const FGuid & `[`GetInvitingPlayerUuid`](#structFRHAPI__SessionPlayer_1a54de85369af1e47e840f21f47a9d3abd)`() const` | Gets the value of InvitingPlayerUuid_Optional, regardless of it having been set.
 `public inline const FGuid & `[`GetInvitingPlayerUuid`](#structFRHAPI__SessionPlayer_1a945d4425d54f813d530b4786286a1026)`(const FGuid & DefaultValue) const` | Gets the value of InvitingPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetInvitingPlayerUuid`](#structFRHAPI__SessionPlayer_1a9a66f2679f58a2fe39581512c7bb808d)`(FGuid & OutValue) const` | Fills OutValue with the value of InvitingPlayerUuid_Optional and returns true if it has been set, otherwise returns false.
 `public inline FGuid * `[`GetInvitingPlayerUuidOrNull`](#structFRHAPI__SessionPlayer_1a3b147bc23a9db14aedd6b8c851bc71a8)`()` | Returns a pointer to InvitingPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FGuid * `[`GetInvitingPlayerUuidOrNull`](#structFRHAPI__SessionPlayer_1a79e1d75785329cc7b9787fe811c77b1a)`() const` | Returns a pointer to InvitingPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetInvitingPlayerUuid`](#structFRHAPI__SessionPlayer_1acc906044eca07ceb43ed52a1a5964642)`(FGuid NewValue)` | Sets the value of InvitingPlayerUuid_Optional and also sets InvitingPlayerUuid_IsSet to true.
+`public inline void `[`SetInvitingPlayerUuid`](#structFRHAPI__SessionPlayer_1a41efe769656a8d868f1d9bf4e6f95982)`(const FGuid & NewValue)` | Sets the value of InvitingPlayerUuid_Optional and also sets InvitingPlayerUuid_IsSet to true.
+`public inline void `[`SetInvitingPlayerUuid`](#structFRHAPI__SessionPlayer_1ae775fcfba655315a862d729d264d735d)`(FGuid && NewValue)` | Sets the value of InvitingPlayerUuid_Optional and also sets InvitingPlayerUuid_IsSet to true using move semantics.
 `public inline void `[`ClearInvitingPlayerUuid`](#structFRHAPI__SessionPlayer_1a108279eb6926eafff034a612ab51fc69)`()` | Clears the value of InvitingPlayerUuid_Optional and sets InvitingPlayerUuid_IsSet to false.
 `public inline FString & `[`GetSourceSessionId`](#structFRHAPI__SessionPlayer_1a58827da36bffbc5e3cb93591bce2cb0c)`()` | Gets the value of SourceSessionId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetSourceSessionId`](#structFRHAPI__SessionPlayer_1a1b024df8ab7ead95079f03326e85510f)`() const` | Gets the value of SourceSessionId_Optional, regardless of it having been set.
@@ -71,7 +75,8 @@ A player resource in a session.
 `public inline bool `[`GetSourceSessionId`](#structFRHAPI__SessionPlayer_1abcba87f13817fe0a6cacda017f742601)`(FString & OutValue) const` | Fills OutValue with the value of SourceSessionId_Optional and returns true if it has been set, otherwise returns false.
 `public inline FString * `[`GetSourceSessionIdOrNull`](#structFRHAPI__SessionPlayer_1a6fbb24ae58218124424cf207a0bf47af)`()` | Returns a pointer to SourceSessionId_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FString * `[`GetSourceSessionIdOrNull`](#structFRHAPI__SessionPlayer_1a258603cdb48ada4a5688a0c788d677b3)`() const` | Returns a pointer to SourceSessionId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetSourceSessionId`](#structFRHAPI__SessionPlayer_1a5642e6719ed0719b0842b60eda7d0e09)`(FString NewValue)` | Sets the value of SourceSessionId_Optional and also sets SourceSessionId_IsSet to true.
+`public inline void `[`SetSourceSessionId`](#structFRHAPI__SessionPlayer_1a974ab75f208af30bb662a2141c1075a3)`(const FString & NewValue)` | Sets the value of SourceSessionId_Optional and also sets SourceSessionId_IsSet to true.
+`public inline void `[`SetSourceSessionId`](#structFRHAPI__SessionPlayer_1a458b38a395078654a306e23320ceeda4)`(FString && NewValue)` | Sets the value of SourceSessionId_Optional and also sets SourceSessionId_IsSet to true using move semantics.
 `public inline void `[`ClearSourceSessionId`](#structFRHAPI__SessionPlayer_1a94530a246d8f063c45837aef156267d5)`()` | Clears the value of SourceSessionId_Optional and sets SourceSessionId_IsSet to false.
 `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__SessionPlayer_1a5eff9bc325194bc90dd734562a8c8b89)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__SessionPlayer_1ae6385310f74507afa449e27aeb309964)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
@@ -79,7 +84,8 @@ A player resource in a session.
 `public inline bool `[`GetCustomData`](#structFRHAPI__SessionPlayer_1a84827d47bd6680f74e33e477d5ebea53)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__SessionPlayer_1a44de6cafe64a30947bb032a3dc6cb4f4)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__SessionPlayer_1a89a25ab11203738ea71a04923ee52078)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCustomData`](#structFRHAPI__SessionPlayer_1a12ea2cec1d05e710a554a0eb60d65d51)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`SetCustomData`](#structFRHAPI__SessionPlayer_1a9a27bfb13c6d1cc989ad0665367194f8)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`SetCustomData`](#structFRHAPI__SessionPlayer_1a969de0b12ba4895b9efbf709345eb2be)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__SessionPlayer_1a711c019f6e123fbd65355b61e3d16b23)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 `public inline FString & `[`GetVersion`](#structFRHAPI__SessionPlayer_1a7b8c88818bdb429e4d8c48ab5aca5fd6)`()` | Gets the value of Version_Optional, regardless of it having been set.
 `public inline const FString & `[`GetVersion`](#structFRHAPI__SessionPlayer_1af89e969acd8d16449783d4d5a04e2bf8)`() const` | Gets the value of Version_Optional, regardless of it having been set.
@@ -87,7 +93,8 @@ A player resource in a session.
 `public inline bool `[`GetVersion`](#structFRHAPI__SessionPlayer_1a57c4d76dd7690b0062d7799e80e333af)`(FString & OutValue) const` | Fills OutValue with the value of Version_Optional and returns true if it has been set, otherwise returns false.
 `public inline FString * `[`GetVersionOrNull`](#structFRHAPI__SessionPlayer_1a0d2d6ab091911afd5e8befdfd31a6ff6)`()` | Returns a pointer to Version_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FString * `[`GetVersionOrNull`](#structFRHAPI__SessionPlayer_1a11b5151b3217305efcd38671cdfc44cf)`() const` | Returns a pointer to Version_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetVersion`](#structFRHAPI__SessionPlayer_1a583d1947aeef7a39ee44ff38bfac4c2a)`(FString NewValue)` | Sets the value of Version_Optional and also sets Version_IsSet to true.
+`public inline void `[`SetVersion`](#structFRHAPI__SessionPlayer_1a55472ed2f15c79cde9ba8d122f96e82b)`(const FString & NewValue)` | Sets the value of Version_Optional and also sets Version_IsSet to true.
+`public inline void `[`SetVersion`](#structFRHAPI__SessionPlayer_1a211f17e6b2a900b8ff4b10cd91beda39)`(FString && NewValue)` | Sets the value of Version_Optional and also sets Version_IsSet to true using move semantics.
 `public inline void `[`ClearVersion`](#structFRHAPI__SessionPlayer_1a118c09e3ead5ffc3d5a533d39d429d8c)`()` | Clears the value of Version_Optional and sets Version_IsSet to false.
 `public inline `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & `[`GetClientSettings`](#structFRHAPI__SessionPlayer_1ae528a51f129695154021c0e793018c92)`()` | Gets the value of ClientSettings_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & `[`GetClientSettings`](#structFRHAPI__SessionPlayer_1a460f99294350394cc6d722c31d487605)`() const` | Gets the value of ClientSettings_Optional, regardless of it having been set.
@@ -95,7 +102,8 @@ A player resource in a session.
 `public inline bool `[`GetClientSettings`](#structFRHAPI__SessionPlayer_1a2fe4bca124fda7bac88a901c77f7bb73)`(`[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & OutValue) const` | Fills OutValue with the value of ClientSettings_Optional and returns true if it has been set, otherwise returns false.
 `public inline `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` * `[`GetClientSettingsOrNull`](#structFRHAPI__SessionPlayer_1a9a18ebe5edbdc58a5d26d11373abb7de)`()` | Returns a pointer to ClientSettings_Optional, if it has been set, otherwise returns nullptr.
 `public inline const `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` * `[`GetClientSettingsOrNull`](#structFRHAPI__SessionPlayer_1a9486a2cd28010c8e35d37a75533a3131)`() const` | Returns a pointer to ClientSettings_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetClientSettings`](#structFRHAPI__SessionPlayer_1a5a0215b63901be5413393030ecc16973)`(`[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` NewValue)` | Sets the value of ClientSettings_Optional and also sets ClientSettings_IsSet to true.
+`public inline void `[`SetClientSettings`](#structFRHAPI__SessionPlayer_1a2267fa9b9ff554f580093e9795f4b3c1)`(const `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & NewValue)` | Sets the value of ClientSettings_Optional and also sets ClientSettings_IsSet to true.
+`public inline void `[`SetClientSettings`](#structFRHAPI__SessionPlayer_1aa6016551db90452842fcb47b63fc9513)`(`[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` && NewValue)` | Sets the value of ClientSettings_Optional and also sets ClientSettings_IsSet to true using move semantics.
 `public inline void `[`ClearClientSettings`](#structFRHAPI__SessionPlayer_1a821f58c31fd1c68d79b8059e68050e46)`()` | Clears the value of ClientSettings_Optional and sets ClientSettings_IsSet to false.
 `public inline `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & `[`GetCrossplayPreferences`](#structFRHAPI__SessionPlayer_1a5389b335b1a88ce3987698a5d375430d)`()` | Gets the value of CrossplayPreferences_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & `[`GetCrossplayPreferences`](#structFRHAPI__SessionPlayer_1a6c4ea67788f54d4479f6e1d8ad6a4665)`() const` | Gets the value of CrossplayPreferences_Optional, regardless of it having been set.
@@ -103,7 +111,8 @@ A player resource in a session.
 `public inline bool `[`GetCrossplayPreferences`](#structFRHAPI__SessionPlayer_1ad343d91946f076520d5c3622da363df9)`(`[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & OutValue) const` | Fills OutValue with the value of CrossplayPreferences_Optional and returns true if it has been set, otherwise returns false.
 `public inline `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` * `[`GetCrossplayPreferencesOrNull`](#structFRHAPI__SessionPlayer_1a71c83a819f2b88a8326644575317fd19)`()` | Returns a pointer to CrossplayPreferences_Optional, if it has been set, otherwise returns nullptr.
 `public inline const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` * `[`GetCrossplayPreferencesOrNull`](#structFRHAPI__SessionPlayer_1ac2e2424adff3522117846bb62581b695)`() const` | Returns a pointer to CrossplayPreferences_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCrossplayPreferences`](#structFRHAPI__SessionPlayer_1a1ce0e1ce8882e124d253029609cf619b)`(`[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` NewValue)` | Sets the value of CrossplayPreferences_Optional and also sets CrossplayPreferences_IsSet to true.
+`public inline void `[`SetCrossplayPreferences`](#structFRHAPI__SessionPlayer_1a2d930713a59c9b6f32269d3c84b7d0e7)`(const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & NewValue)` | Sets the value of CrossplayPreferences_Optional and also sets CrossplayPreferences_IsSet to true.
+`public inline void `[`SetCrossplayPreferences`](#structFRHAPI__SessionPlayer_1a5860fc77403656e49d3b50fab5626fc9)`(`[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` && NewValue)` | Sets the value of CrossplayPreferences_Optional and also sets CrossplayPreferences_IsSet to true using move semantics.
 `public inline void `[`ClearCrossplayPreferences`](#structFRHAPI__SessionPlayer_1aab20b5ceba1df5862b8b103d6c6352ea)`()` | Clears the value of CrossplayPreferences_Optional and sets CrossplayPreferences_IsSet to false.
 `public inline FDateTime & `[`GetInvited`](#structFRHAPI__SessionPlayer_1a14d0bbb2f3a437ad4d8110490d682ba9)`()` | Gets the value of Invited_Optional, regardless of it having been set.
 `public inline const FDateTime & `[`GetInvited`](#structFRHAPI__SessionPlayer_1ad379c6e768e0c56ee579e44d08eade13)`() const` | Gets the value of Invited_Optional, regardless of it having been set.
@@ -111,7 +120,8 @@ A player resource in a session.
 `public inline bool `[`GetInvited`](#structFRHAPI__SessionPlayer_1a76c27fdddda2985942a56a424bbd06b9)`(FDateTime & OutValue) const` | Fills OutValue with the value of Invited_Optional and returns true if it has been set, otherwise returns false.
 `public inline FDateTime * `[`GetInvitedOrNull`](#structFRHAPI__SessionPlayer_1a7976724ad9e4aaf6ea7edf6ad798a12c)`()` | Returns a pointer to Invited_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FDateTime * `[`GetInvitedOrNull`](#structFRHAPI__SessionPlayer_1a35b6948791f2d659c1fa54dbd5e32d16)`() const` | Returns a pointer to Invited_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetInvited`](#structFRHAPI__SessionPlayer_1a1a96f1444823fa4ed7bb2e26cea4e632)`(FDateTime NewValue)` | Sets the value of Invited_Optional and also sets Invited_IsSet to true.
+`public inline void `[`SetInvited`](#structFRHAPI__SessionPlayer_1a3f2a8cee70c4e795028af5ffd30575c7)`(const FDateTime & NewValue)` | Sets the value of Invited_Optional and also sets Invited_IsSet to true.
+`public inline void `[`SetInvited`](#structFRHAPI__SessionPlayer_1ac7609c54e0843b8b55dfcf77bdc12d34)`(FDateTime && NewValue)` | Sets the value of Invited_Optional and also sets Invited_IsSet to true using move semantics.
 `public inline void `[`ClearInvited`](#structFRHAPI__SessionPlayer_1aa6b1a742b86c52aa02ee01441a2bf2d8)`()` | Clears the value of Invited_Optional and sets Invited_IsSet to false.
 `public inline FDateTime & `[`GetJoined`](#structFRHAPI__SessionPlayer_1abecbf72283ecb262b1152bd4b9b60f5b)`()` | Gets the value of Joined_Optional, regardless of it having been set.
 `public inline const FDateTime & `[`GetJoined`](#structFRHAPI__SessionPlayer_1a5a9776015def077c57f79ac3a9ea340e)`() const` | Gets the value of Joined_Optional, regardless of it having been set.
@@ -119,7 +129,8 @@ A player resource in a session.
 `public inline bool `[`GetJoined`](#structFRHAPI__SessionPlayer_1a5b395ef14a3539880ebb60c8388ad570)`(FDateTime & OutValue) const` | Fills OutValue with the value of Joined_Optional and returns true if it has been set, otherwise returns false.
 `public inline FDateTime * `[`GetJoinedOrNull`](#structFRHAPI__SessionPlayer_1abcecfd21a9d0658857f355def398d3e1)`()` | Returns a pointer to Joined_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FDateTime * `[`GetJoinedOrNull`](#structFRHAPI__SessionPlayer_1a8ea013f03ae714cb143675f500dd7dfa)`() const` | Returns a pointer to Joined_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetJoined`](#structFRHAPI__SessionPlayer_1a4d113ac251cab541e6a0f442aeb6ce50)`(FDateTime NewValue)` | Sets the value of Joined_Optional and also sets Joined_IsSet to true.
+`public inline void `[`SetJoined`](#structFRHAPI__SessionPlayer_1a8ed366220b9b073812691e913ab66aa8)`(const FDateTime & NewValue)` | Sets the value of Joined_Optional and also sets Joined_IsSet to true.
+`public inline void `[`SetJoined`](#structFRHAPI__SessionPlayer_1ad0a79f61b61e1166ac8c646637372d4b)`(FDateTime && NewValue)` | Sets the value of Joined_Optional and also sets Joined_IsSet to true using move semantics.
 `public inline void `[`ClearJoined`](#structFRHAPI__SessionPlayer_1a8b9c20d24a494d6a9c252112833d06e2)`()` | Clears the value of Joined_Optional and sets Joined_IsSet to false.
 
 ### Members
@@ -245,9 +256,13 @@ Returns a pointer to PlayerId_Optional, if it has been set, otherwise returns nu
 
 Returns a pointer to PlayerId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPlayerId`](#structFRHAPI__SessionPlayer_1a1904aa3344becb59e73b470231169f47)`(int32 NewValue)` <a id="structFRHAPI__SessionPlayer_1a1904aa3344becb59e73b470231169f47"></a>
+#### `public inline void `[`SetPlayerId`](#structFRHAPI__SessionPlayer_1a18dc590068006ad80eedeff1dd8d249e)`(const int32 & NewValue)` <a id="structFRHAPI__SessionPlayer_1a18dc590068006ad80eedeff1dd8d249e"></a>
 
 Sets the value of PlayerId_Optional and also sets PlayerId_IsSet to true.
+
+#### `public inline void `[`SetPlayerId`](#structFRHAPI__SessionPlayer_1a2db3aad8433a2272a793d50b28d6d7e6)`(int32 && NewValue)` <a id="structFRHAPI__SessionPlayer_1a2db3aad8433a2272a793d50b28d6d7e6"></a>
+
+Sets the value of PlayerId_Optional and also sets PlayerId_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearPlayerId`](#structFRHAPI__SessionPlayer_1aa5068324d303c0ec84db535158fb345e)`()` <a id="structFRHAPI__SessionPlayer_1aa5068324d303c0ec84db535158fb345e"></a>
 
@@ -269,9 +284,13 @@ Gets the value of PlayerUuid.
 
 Gets the value of PlayerUuid.
 
-#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__SessionPlayer_1afca7d66e4c75dbc1d88e130c7eeff780)`(FGuid NewValue)` <a id="structFRHAPI__SessionPlayer_1afca7d66e4c75dbc1d88e130c7eeff780"></a>
+#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__SessionPlayer_1aa100374334edfa54cec4eb186fd722f1)`(const FGuid & NewValue)` <a id="structFRHAPI__SessionPlayer_1aa100374334edfa54cec4eb186fd722f1"></a>
 
 Sets the value of PlayerUuid.
+
+#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__SessionPlayer_1a4c7df8f84c8e51c83e3451ea963a8df8)`(FGuid && NewValue)` <a id="structFRHAPI__SessionPlayer_1a4c7df8f84c8e51c83e3451ea963a8df8"></a>
+
+Sets the value of PlayerUuid using move semantics.
 
 #### `public inline ERHAPI_SessionPlayerStatus & `[`GetStatus`](#structFRHAPI__SessionPlayer_1a6c1dcd9332956742bb36aee64fd9f376)`()` <a id="structFRHAPI__SessionPlayer_1a6c1dcd9332956742bb36aee64fd9f376"></a>
 
@@ -281,9 +300,13 @@ Gets the value of Status.
 
 Gets the value of Status.
 
-#### `public inline void `[`SetStatus`](#structFRHAPI__SessionPlayer_1a36b3c46c65ab4deaf64a2a976c511cdf)`(ERHAPI_SessionPlayerStatus NewValue)` <a id="structFRHAPI__SessionPlayer_1a36b3c46c65ab4deaf64a2a976c511cdf"></a>
+#### `public inline void `[`SetStatus`](#structFRHAPI__SessionPlayer_1a9c1580758cbaf2a675af0f6af73fa164)`(const ERHAPI_SessionPlayerStatus & NewValue)` <a id="structFRHAPI__SessionPlayer_1a9c1580758cbaf2a675af0f6af73fa164"></a>
 
 Sets the value of Status.
+
+#### `public inline void `[`SetStatus`](#structFRHAPI__SessionPlayer_1a59bed8edf15aa46a43be9b776289ca58)`(ERHAPI_SessionPlayerStatus && NewValue)` <a id="structFRHAPI__SessionPlayer_1a59bed8edf15aa46a43be9b776289ca58"></a>
+
+Sets the value of Status using move semantics.
 
 #### `public inline FGuid & `[`GetInvitingPlayerUuid`](#structFRHAPI__SessionPlayer_1acd45c7b28d8030a4e93eb540b1d1be22)`()` <a id="structFRHAPI__SessionPlayer_1acd45c7b28d8030a4e93eb540b1d1be22"></a>
 
@@ -309,9 +332,13 @@ Returns a pointer to InvitingPlayerUuid_Optional, if it has been set, otherwise 
 
 Returns a pointer to InvitingPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetInvitingPlayerUuid`](#structFRHAPI__SessionPlayer_1acc906044eca07ceb43ed52a1a5964642)`(FGuid NewValue)` <a id="structFRHAPI__SessionPlayer_1acc906044eca07ceb43ed52a1a5964642"></a>
+#### `public inline void `[`SetInvitingPlayerUuid`](#structFRHAPI__SessionPlayer_1a41efe769656a8d868f1d9bf4e6f95982)`(const FGuid & NewValue)` <a id="structFRHAPI__SessionPlayer_1a41efe769656a8d868f1d9bf4e6f95982"></a>
 
 Sets the value of InvitingPlayerUuid_Optional and also sets InvitingPlayerUuid_IsSet to true.
+
+#### `public inline void `[`SetInvitingPlayerUuid`](#structFRHAPI__SessionPlayer_1ae775fcfba655315a862d729d264d735d)`(FGuid && NewValue)` <a id="structFRHAPI__SessionPlayer_1ae775fcfba655315a862d729d264d735d"></a>
+
+Sets the value of InvitingPlayerUuid_Optional and also sets InvitingPlayerUuid_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearInvitingPlayerUuid`](#structFRHAPI__SessionPlayer_1a108279eb6926eafff034a612ab51fc69)`()` <a id="structFRHAPI__SessionPlayer_1a108279eb6926eafff034a612ab51fc69"></a>
 
@@ -341,9 +368,13 @@ Returns a pointer to SourceSessionId_Optional, if it has been set, otherwise ret
 
 Returns a pointer to SourceSessionId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetSourceSessionId`](#structFRHAPI__SessionPlayer_1a5642e6719ed0719b0842b60eda7d0e09)`(FString NewValue)` <a id="structFRHAPI__SessionPlayer_1a5642e6719ed0719b0842b60eda7d0e09"></a>
+#### `public inline void `[`SetSourceSessionId`](#structFRHAPI__SessionPlayer_1a974ab75f208af30bb662a2141c1075a3)`(const FString & NewValue)` <a id="structFRHAPI__SessionPlayer_1a974ab75f208af30bb662a2141c1075a3"></a>
 
 Sets the value of SourceSessionId_Optional and also sets SourceSessionId_IsSet to true.
+
+#### `public inline void `[`SetSourceSessionId`](#structFRHAPI__SessionPlayer_1a458b38a395078654a306e23320ceeda4)`(FString && NewValue)` <a id="structFRHAPI__SessionPlayer_1a458b38a395078654a306e23320ceeda4"></a>
+
+Sets the value of SourceSessionId_Optional and also sets SourceSessionId_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearSourceSessionId`](#structFRHAPI__SessionPlayer_1a94530a246d8f063c45837aef156267d5)`()` <a id="structFRHAPI__SessionPlayer_1a94530a246d8f063c45837aef156267d5"></a>
 
@@ -373,9 +404,13 @@ Returns a pointer to CustomData_Optional, if it has been set, otherwise returns 
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__SessionPlayer_1a12ea2cec1d05e710a554a0eb60d65d51)`(TMap< FString, FString > NewValue)` <a id="structFRHAPI__SessionPlayer_1a12ea2cec1d05e710a554a0eb60d65d51"></a>
+#### `public inline void `[`SetCustomData`](#structFRHAPI__SessionPlayer_1a9a27bfb13c6d1cc989ad0665367194f8)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__SessionPlayer_1a9a27bfb13c6d1cc989ad0665367194f8"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+
+#### `public inline void `[`SetCustomData`](#structFRHAPI__SessionPlayer_1a969de0b12ba4895b9efbf709345eb2be)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__SessionPlayer_1a969de0b12ba4895b9efbf709345eb2be"></a>
+
+Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearCustomData`](#structFRHAPI__SessionPlayer_1a711c019f6e123fbd65355b61e3d16b23)`()` <a id="structFRHAPI__SessionPlayer_1a711c019f6e123fbd65355b61e3d16b23"></a>
 
@@ -405,9 +440,13 @@ Returns a pointer to Version_Optional, if it has been set, otherwise returns nul
 
 Returns a pointer to Version_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetVersion`](#structFRHAPI__SessionPlayer_1a583d1947aeef7a39ee44ff38bfac4c2a)`(FString NewValue)` <a id="structFRHAPI__SessionPlayer_1a583d1947aeef7a39ee44ff38bfac4c2a"></a>
+#### `public inline void `[`SetVersion`](#structFRHAPI__SessionPlayer_1a55472ed2f15c79cde9ba8d122f96e82b)`(const FString & NewValue)` <a id="structFRHAPI__SessionPlayer_1a55472ed2f15c79cde9ba8d122f96e82b"></a>
 
 Sets the value of Version_Optional and also sets Version_IsSet to true.
+
+#### `public inline void `[`SetVersion`](#structFRHAPI__SessionPlayer_1a211f17e6b2a900b8ff4b10cd91beda39)`(FString && NewValue)` <a id="structFRHAPI__SessionPlayer_1a211f17e6b2a900b8ff4b10cd91beda39"></a>
+
+Sets the value of Version_Optional and also sets Version_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearVersion`](#structFRHAPI__SessionPlayer_1a118c09e3ead5ffc3d5a533d39d429d8c)`()` <a id="structFRHAPI__SessionPlayer_1a118c09e3ead5ffc3d5a533d39d429d8c"></a>
 
@@ -437,9 +476,13 @@ Returns a pointer to ClientSettings_Optional, if it has been set, otherwise retu
 
 Returns a pointer to ClientSettings_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetClientSettings`](#structFRHAPI__SessionPlayer_1a5a0215b63901be5413393030ecc16973)`(`[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` NewValue)` <a id="structFRHAPI__SessionPlayer_1a5a0215b63901be5413393030ecc16973"></a>
+#### `public inline void `[`SetClientSettings`](#structFRHAPI__SessionPlayer_1a2267fa9b9ff554f580093e9795f4b3c1)`(const `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & NewValue)` <a id="structFRHAPI__SessionPlayer_1a2267fa9b9ff554f580093e9795f4b3c1"></a>
 
 Sets the value of ClientSettings_Optional and also sets ClientSettings_IsSet to true.
+
+#### `public inline void `[`SetClientSettings`](#structFRHAPI__SessionPlayer_1aa6016551db90452842fcb47b63fc9513)`(`[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` && NewValue)` <a id="structFRHAPI__SessionPlayer_1aa6016551db90452842fcb47b63fc9513"></a>
+
+Sets the value of ClientSettings_Optional and also sets ClientSettings_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearClientSettings`](#structFRHAPI__SessionPlayer_1a821f58c31fd1c68d79b8059e68050e46)`()` <a id="structFRHAPI__SessionPlayer_1a821f58c31fd1c68d79b8059e68050e46"></a>
 
@@ -469,9 +512,13 @@ Returns a pointer to CrossplayPreferences_Optional, if it has been set, otherwis
 
 Returns a pointer to CrossplayPreferences_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCrossplayPreferences`](#structFRHAPI__SessionPlayer_1a1ce0e1ce8882e124d253029609cf619b)`(`[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` NewValue)` <a id="structFRHAPI__SessionPlayer_1a1ce0e1ce8882e124d253029609cf619b"></a>
+#### `public inline void `[`SetCrossplayPreferences`](#structFRHAPI__SessionPlayer_1a2d930713a59c9b6f32269d3c84b7d0e7)`(const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & NewValue)` <a id="structFRHAPI__SessionPlayer_1a2d930713a59c9b6f32269d3c84b7d0e7"></a>
 
 Sets the value of CrossplayPreferences_Optional and also sets CrossplayPreferences_IsSet to true.
+
+#### `public inline void `[`SetCrossplayPreferences`](#structFRHAPI__SessionPlayer_1a5860fc77403656e49d3b50fab5626fc9)`(`[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` && NewValue)` <a id="structFRHAPI__SessionPlayer_1a5860fc77403656e49d3b50fab5626fc9"></a>
+
+Sets the value of CrossplayPreferences_Optional and also sets CrossplayPreferences_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearCrossplayPreferences`](#structFRHAPI__SessionPlayer_1aab20b5ceba1df5862b8b103d6c6352ea)`()` <a id="structFRHAPI__SessionPlayer_1aab20b5ceba1df5862b8b103d6c6352ea"></a>
 
@@ -501,9 +548,13 @@ Returns a pointer to Invited_Optional, if it has been set, otherwise returns nul
 
 Returns a pointer to Invited_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetInvited`](#structFRHAPI__SessionPlayer_1a1a96f1444823fa4ed7bb2e26cea4e632)`(FDateTime NewValue)` <a id="structFRHAPI__SessionPlayer_1a1a96f1444823fa4ed7bb2e26cea4e632"></a>
+#### `public inline void `[`SetInvited`](#structFRHAPI__SessionPlayer_1a3f2a8cee70c4e795028af5ffd30575c7)`(const FDateTime & NewValue)` <a id="structFRHAPI__SessionPlayer_1a3f2a8cee70c4e795028af5ffd30575c7"></a>
 
 Sets the value of Invited_Optional and also sets Invited_IsSet to true.
+
+#### `public inline void `[`SetInvited`](#structFRHAPI__SessionPlayer_1ac7609c54e0843b8b55dfcf77bdc12d34)`(FDateTime && NewValue)` <a id="structFRHAPI__SessionPlayer_1ac7609c54e0843b8b55dfcf77bdc12d34"></a>
+
+Sets the value of Invited_Optional and also sets Invited_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearInvited`](#structFRHAPI__SessionPlayer_1aa6b1a742b86c52aa02ee01441a2bf2d8)`()` <a id="structFRHAPI__SessionPlayer_1aa6b1a742b86c52aa02ee01441a2bf2d8"></a>
 
@@ -533,9 +584,13 @@ Returns a pointer to Joined_Optional, if it has been set, otherwise returns null
 
 Returns a pointer to Joined_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetJoined`](#structFRHAPI__SessionPlayer_1a4d113ac251cab541e6a0f442aeb6ce50)`(FDateTime NewValue)` <a id="structFRHAPI__SessionPlayer_1a4d113ac251cab541e6a0f442aeb6ce50"></a>
+#### `public inline void `[`SetJoined`](#structFRHAPI__SessionPlayer_1a8ed366220b9b073812691e913ab66aa8)`(const FDateTime & NewValue)` <a id="structFRHAPI__SessionPlayer_1a8ed366220b9b073812691e913ab66aa8"></a>
 
 Sets the value of Joined_Optional and also sets Joined_IsSet to true.
+
+#### `public inline void `[`SetJoined`](#structFRHAPI__SessionPlayer_1ad0a79f61b61e1166ac8c646637372d4b)`(FDateTime && NewValue)` <a id="structFRHAPI__SessionPlayer_1ad0a79f61b61e1166ac8c646637372d4b"></a>
+
+Sets the value of Joined_Optional and also sets Joined_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearJoined`](#structFRHAPI__SessionPlayer_1a8b9c20d24a494d6a9c252112833d06e2)`()` <a id="structFRHAPI__SessionPlayer_1a8b9c20d24a494d6a9c252112833d06e2"></a>
 

@@ -27,18 +27,22 @@ List of the player&#39;s friends. Includes sent friend requests and received fri
 `public virtual void `[`WriteJson`](#structFRHAPI__FriendsListV1_1acb7cbed9846f10171b989619086a769e)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__FriendsListV1_1a5f7796f0b61994ae71393f8ec6101d86)`()` | Gets the value of PlayerUuid.
 `public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__FriendsListV1_1a4ffa53937f68363a1e96ce0f2cb7be85)`() const` | Gets the value of PlayerUuid.
-`public inline void `[`SetPlayerUuid`](#structFRHAPI__FriendsListV1_1a7ab7696e9baa27a137419b7d4a8a7dd9)`(FGuid NewValue)` | Sets the value of PlayerUuid.
+`public inline void `[`SetPlayerUuid`](#structFRHAPI__FriendsListV1_1ae69e2eeacbbb8542d21ea4983701a9aa)`(const FGuid & NewValue)` | Sets the value of PlayerUuid.
+`public inline void `[`SetPlayerUuid`](#structFRHAPI__FriendsListV1_1a9d45c16bbf2bcd6547d0db0b486296ca)`(FGuid && NewValue)` | Sets the value of PlayerUuid using move semantics.
 `public inline int32 & `[`GetPlayerId`](#structFRHAPI__FriendsListV1_1a402e7cf34b752b335d312f904f2d8f2e)`()` | Gets the value of PlayerId.
 `public inline const int32 & `[`GetPlayerId`](#structFRHAPI__FriendsListV1_1a91b2af4c18e9ab9f9c8c5c1a6679d292)`() const` | Gets the value of PlayerId.
-`public inline void `[`SetPlayerId`](#structFRHAPI__FriendsListV1_1a4382fa4a609d7d0c0402a0257eef40cb)`(int32 NewValue)` | Sets the value of PlayerId.
+`public inline void `[`SetPlayerId`](#structFRHAPI__FriendsListV1_1a6787835db1738667e688544dba862985)`(const int32 & NewValue)` | Sets the value of PlayerId.
+`public inline void `[`SetPlayerId`](#structFRHAPI__FriendsListV1_1a7cd9504e91addf236d2b350e4fac33bd)`(int32 && NewValue)` | Sets the value of PlayerId using move semantics.
 `public inline bool `[`IsPlayerIdDefaultValue`](#structFRHAPI__FriendsListV1_1aafea53a89c4b5766d526b913c41ee543)`() const` | Returns true if PlayerId matches the default value.
 `public inline void `[`SetPlayerIdToDefault`](#structFRHAPI__FriendsListV1_1a06892fea936dbec54161498bdb8a90ae)`()` | Sets the value of PlayerId to its default
 `public inline TArray< `[`FRHAPI_FriendRelationshipV1`](RHAPI_FriendRelationshipV1.md#structFRHAPI__FriendRelationshipV1)` > & `[`GetFriends`](#structFRHAPI__FriendsListV1_1a77ecb24de44970c92a16bf238a542fc7)`()` | Gets the value of Friends.
 `public inline const TArray< `[`FRHAPI_FriendRelationshipV1`](RHAPI_FriendRelationshipV1.md#structFRHAPI__FriendRelationshipV1)` > & `[`GetFriends`](#structFRHAPI__FriendsListV1_1a0341d564ceed3e4075a69581e10aa257)`() const` | Gets the value of Friends.
-`public inline void `[`SetFriends`](#structFRHAPI__FriendsListV1_1af97016f516552cad4261deda850db56a)`(TArray< `[`FRHAPI_FriendRelationshipV1`](RHAPI_FriendRelationshipV1.md#structFRHAPI__FriendRelationshipV1)` > NewValue)` | Sets the value of Friends.
+`public inline void `[`SetFriends`](#structFRHAPI__FriendsListV1_1af7b218e4bab38b98592fe59e1931d98b)`(const TArray< `[`FRHAPI_FriendRelationshipV1`](RHAPI_FriendRelationshipV1.md#structFRHAPI__FriendRelationshipV1)` > & NewValue)` | Sets the value of Friends.
+`public inline void `[`SetFriends`](#structFRHAPI__FriendsListV1_1a1ba66ac0294f77f9d9d2e84177bb6ae3)`(TArray< `[`FRHAPI_FriendRelationshipV1`](RHAPI_FriendRelationshipV1.md#structFRHAPI__FriendRelationshipV1)` > && NewValue)` | Sets the value of Friends using move semantics.
 `public inline `[`FRHAPI_PageMeta`](RHAPI_PageMeta.md#structFRHAPI__PageMeta)` & `[`GetPage`](#structFRHAPI__FriendsListV1_1a644b85484d368f28a31a885aa47d6008)`()` | Gets the value of Page.
 `public inline const `[`FRHAPI_PageMeta`](RHAPI_PageMeta.md#structFRHAPI__PageMeta)` & `[`GetPage`](#structFRHAPI__FriendsListV1_1a3db91f511ebae8a145e619b0057e2692)`() const` | Gets the value of Page.
-`public inline void `[`SetPage`](#structFRHAPI__FriendsListV1_1a97a749a8ef5ec437d006a5488ab1ca4c)`(`[`FRHAPI_PageMeta`](RHAPI_PageMeta.md#structFRHAPI__PageMeta)` NewValue)` | Sets the value of Page.
+`public inline void `[`SetPage`](#structFRHAPI__FriendsListV1_1ac52b24ab40c3708312bf3b03559d0a03)`(const `[`FRHAPI_PageMeta`](RHAPI_PageMeta.md#structFRHAPI__PageMeta)` & NewValue)` | Sets the value of Page.
+`public inline void `[`SetPage`](#structFRHAPI__FriendsListV1_1a8a6c246971581fc1ba2abbd82ab445eb)`(`[`FRHAPI_PageMeta`](RHAPI_PageMeta.md#structFRHAPI__PageMeta)` && NewValue)` | Sets the value of Page using move semantics.
 
 ### Members
 
@@ -75,9 +79,13 @@ Gets the value of PlayerUuid.
 
 Gets the value of PlayerUuid.
 
-#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__FriendsListV1_1a7ab7696e9baa27a137419b7d4a8a7dd9)`(FGuid NewValue)` <a id="structFRHAPI__FriendsListV1_1a7ab7696e9baa27a137419b7d4a8a7dd9"></a>
+#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__FriendsListV1_1ae69e2eeacbbb8542d21ea4983701a9aa)`(const FGuid & NewValue)` <a id="structFRHAPI__FriendsListV1_1ae69e2eeacbbb8542d21ea4983701a9aa"></a>
 
 Sets the value of PlayerUuid.
+
+#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__FriendsListV1_1a9d45c16bbf2bcd6547d0db0b486296ca)`(FGuid && NewValue)` <a id="structFRHAPI__FriendsListV1_1a9d45c16bbf2bcd6547d0db0b486296ca"></a>
+
+Sets the value of PlayerUuid using move semantics.
 
 #### `public inline int32 & `[`GetPlayerId`](#structFRHAPI__FriendsListV1_1a402e7cf34b752b335d312f904f2d8f2e)`()` <a id="structFRHAPI__FriendsListV1_1a402e7cf34b752b335d312f904f2d8f2e"></a>
 
@@ -87,9 +95,13 @@ Gets the value of PlayerId.
 
 Gets the value of PlayerId.
 
-#### `public inline void `[`SetPlayerId`](#structFRHAPI__FriendsListV1_1a4382fa4a609d7d0c0402a0257eef40cb)`(int32 NewValue)` <a id="structFRHAPI__FriendsListV1_1a4382fa4a609d7d0c0402a0257eef40cb"></a>
+#### `public inline void `[`SetPlayerId`](#structFRHAPI__FriendsListV1_1a6787835db1738667e688544dba862985)`(const int32 & NewValue)` <a id="structFRHAPI__FriendsListV1_1a6787835db1738667e688544dba862985"></a>
 
 Sets the value of PlayerId.
+
+#### `public inline void `[`SetPlayerId`](#structFRHAPI__FriendsListV1_1a7cd9504e91addf236d2b350e4fac33bd)`(int32 && NewValue)` <a id="structFRHAPI__FriendsListV1_1a7cd9504e91addf236d2b350e4fac33bd"></a>
+
+Sets the value of PlayerId using move semantics.
 
 #### `public inline bool `[`IsPlayerIdDefaultValue`](#structFRHAPI__FriendsListV1_1aafea53a89c4b5766d526b913c41ee543)`() const` <a id="structFRHAPI__FriendsListV1_1aafea53a89c4b5766d526b913c41ee543"></a>
 
@@ -107,9 +119,13 @@ Gets the value of Friends.
 
 Gets the value of Friends.
 
-#### `public inline void `[`SetFriends`](#structFRHAPI__FriendsListV1_1af97016f516552cad4261deda850db56a)`(TArray< `[`FRHAPI_FriendRelationshipV1`](RHAPI_FriendRelationshipV1.md#structFRHAPI__FriendRelationshipV1)` > NewValue)` <a id="structFRHAPI__FriendsListV1_1af97016f516552cad4261deda850db56a"></a>
+#### `public inline void `[`SetFriends`](#structFRHAPI__FriendsListV1_1af7b218e4bab38b98592fe59e1931d98b)`(const TArray< `[`FRHAPI_FriendRelationshipV1`](RHAPI_FriendRelationshipV1.md#structFRHAPI__FriendRelationshipV1)` > & NewValue)` <a id="structFRHAPI__FriendsListV1_1af7b218e4bab38b98592fe59e1931d98b"></a>
 
 Sets the value of Friends.
+
+#### `public inline void `[`SetFriends`](#structFRHAPI__FriendsListV1_1a1ba66ac0294f77f9d9d2e84177bb6ae3)`(TArray< `[`FRHAPI_FriendRelationshipV1`](RHAPI_FriendRelationshipV1.md#structFRHAPI__FriendRelationshipV1)` > && NewValue)` <a id="structFRHAPI__FriendsListV1_1a1ba66ac0294f77f9d9d2e84177bb6ae3"></a>
+
+Sets the value of Friends using move semantics.
 
 #### `public inline `[`FRHAPI_PageMeta`](RHAPI_PageMeta.md#structFRHAPI__PageMeta)` & `[`GetPage`](#structFRHAPI__FriendsListV1_1a644b85484d368f28a31a885aa47d6008)`()` <a id="structFRHAPI__FriendsListV1_1a644b85484d368f28a31a885aa47d6008"></a>
 
@@ -119,7 +135,11 @@ Gets the value of Page.
 
 Gets the value of Page.
 
-#### `public inline void `[`SetPage`](#structFRHAPI__FriendsListV1_1a97a749a8ef5ec437d006a5488ab1ca4c)`(`[`FRHAPI_PageMeta`](RHAPI_PageMeta.md#structFRHAPI__PageMeta)` NewValue)` <a id="structFRHAPI__FriendsListV1_1a97a749a8ef5ec437d006a5488ab1ca4c"></a>
+#### `public inline void `[`SetPage`](#structFRHAPI__FriendsListV1_1ac52b24ab40c3708312bf3b03559d0a03)`(const `[`FRHAPI_PageMeta`](RHAPI_PageMeta.md#structFRHAPI__PageMeta)` & NewValue)` <a id="structFRHAPI__FriendsListV1_1ac52b24ab40c3708312bf3b03559d0a03"></a>
 
 Sets the value of Page.
+
+#### `public inline void `[`SetPage`](#structFRHAPI__FriendsListV1_1a8a6c246971581fc1ba2abbd82ab445eb)`(`[`FRHAPI_PageMeta`](RHAPI_PageMeta.md#structFRHAPI__PageMeta)` && NewValue)` <a id="structFRHAPI__FriendsListV1_1a8a6c246971581fc1ba2abbd82ab445eb"></a>
+
+Sets the value of Page using move semantics.
 

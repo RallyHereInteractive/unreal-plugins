@@ -27,17 +27,20 @@ Ranked data about a player&#39;s skill and confidence levels.
 `public virtual void `[`WriteJson`](#structFRHAPI__RankData_1ae6535dda682e34f419505864f6451557)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline float & `[`GetMu`](#structFRHAPI__RankData_1a0a2c501c8a8d440f060ca600124efa7a)`()` | Gets the value of Mu.
 `public inline const float & `[`GetMu`](#structFRHAPI__RankData_1a65ca5c4664b5ef60345439156aee02b9)`() const` | Gets the value of Mu.
-`public inline void `[`SetMu`](#structFRHAPI__RankData_1ade1c2275b9f3bd62fd2cc33a117596be)`(float NewValue)` | Sets the value of Mu.
+`public inline void `[`SetMu`](#structFRHAPI__RankData_1a3a7a74b4c3ac6797e704a655e709fee9)`(const float & NewValue)` | Sets the value of Mu.
+`public inline void `[`SetMu`](#structFRHAPI__RankData_1ac3a49ced1b0c2dc44473ccbf8628e482)`(float && NewValue)` | Sets the value of Mu using move semantics.
 `public inline float & `[`GetSigma`](#structFRHAPI__RankData_1a30e029ef16b031aff172f71e960dba16)`()` | Gets the value of Sigma.
 `public inline const float & `[`GetSigma`](#structFRHAPI__RankData_1ac0fdf966a2fe9a58e82c5bdb7aa57bb9)`() const` | Gets the value of Sigma.
-`public inline void `[`SetSigma`](#structFRHAPI__RankData_1a5650bafa8bd83f4582fc8ea91dafb931)`(float NewValue)` | Sets the value of Sigma.
+`public inline void `[`SetSigma`](#structFRHAPI__RankData_1ae2fc5606bfaa9067f0a6b4fad5b6379f)`(const float & NewValue)` | Sets the value of Sigma.
+`public inline void `[`SetSigma`](#structFRHAPI__RankData_1a2b171e0cfe4d7ba58b83ff335c617468)`(float && NewValue)` | Sets the value of Sigma using move semantics.
 `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__RankData_1ae2a514ff74b15eedc063e0f162f687ee)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__RankData_1aeb70cd726f718f8dae11d3224f05c196)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__RankData_1ae0d5ca3e159251223c9f44a542676696)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetCustomData`](#structFRHAPI__RankData_1ac5e97b58e367645b7c86f4d75bb104a5)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__RankData_1ae83cac353d1116f8a0e0b8af55f11be1)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__RankData_1ac7be297a8ac380c575fd38cf3d95a1ab)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCustomData`](#structFRHAPI__RankData_1a276200d7bad57cad50071060f3be8eab)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`SetCustomData`](#structFRHAPI__RankData_1a8b5a4b31e177d0994d16991bbfc540ba)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`SetCustomData`](#structFRHAPI__RankData_1a2ad592ac3fee26b810cf6d4768f427f9)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__RankData_1ae6fdd574b4aa03a955e0d73368021c63)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
 ### Members
@@ -83,9 +86,13 @@ Gets the value of Mu.
 
 Gets the value of Mu.
 
-#### `public inline void `[`SetMu`](#structFRHAPI__RankData_1ade1c2275b9f3bd62fd2cc33a117596be)`(float NewValue)` <a id="structFRHAPI__RankData_1ade1c2275b9f3bd62fd2cc33a117596be"></a>
+#### `public inline void `[`SetMu`](#structFRHAPI__RankData_1a3a7a74b4c3ac6797e704a655e709fee9)`(const float & NewValue)` <a id="structFRHAPI__RankData_1a3a7a74b4c3ac6797e704a655e709fee9"></a>
 
 Sets the value of Mu.
+
+#### `public inline void `[`SetMu`](#structFRHAPI__RankData_1ac3a49ced1b0c2dc44473ccbf8628e482)`(float && NewValue)` <a id="structFRHAPI__RankData_1ac3a49ced1b0c2dc44473ccbf8628e482"></a>
+
+Sets the value of Mu using move semantics.
 
 #### `public inline float & `[`GetSigma`](#structFRHAPI__RankData_1a30e029ef16b031aff172f71e960dba16)`()` <a id="structFRHAPI__RankData_1a30e029ef16b031aff172f71e960dba16"></a>
 
@@ -95,9 +102,13 @@ Gets the value of Sigma.
 
 Gets the value of Sigma.
 
-#### `public inline void `[`SetSigma`](#structFRHAPI__RankData_1a5650bafa8bd83f4582fc8ea91dafb931)`(float NewValue)` <a id="structFRHAPI__RankData_1a5650bafa8bd83f4582fc8ea91dafb931"></a>
+#### `public inline void `[`SetSigma`](#structFRHAPI__RankData_1ae2fc5606bfaa9067f0a6b4fad5b6379f)`(const float & NewValue)` <a id="structFRHAPI__RankData_1ae2fc5606bfaa9067f0a6b4fad5b6379f"></a>
 
 Sets the value of Sigma.
+
+#### `public inline void `[`SetSigma`](#structFRHAPI__RankData_1a2b171e0cfe4d7ba58b83ff335c617468)`(float && NewValue)` <a id="structFRHAPI__RankData_1a2b171e0cfe4d7ba58b83ff335c617468"></a>
+
+Sets the value of Sigma using move semantics.
 
 #### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__RankData_1ae2a514ff74b15eedc063e0f162f687ee)`()` <a id="structFRHAPI__RankData_1ae2a514ff74b15eedc063e0f162f687ee"></a>
 
@@ -123,9 +134,13 @@ Returns a pointer to CustomData_Optional, if it has been set, otherwise returns 
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__RankData_1a276200d7bad57cad50071060f3be8eab)`(TMap< FString, FString > NewValue)` <a id="structFRHAPI__RankData_1a276200d7bad57cad50071060f3be8eab"></a>
+#### `public inline void `[`SetCustomData`](#structFRHAPI__RankData_1a8b5a4b31e177d0994d16991bbfc540ba)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__RankData_1a8b5a4b31e177d0994d16991bbfc540ba"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+
+#### `public inline void `[`SetCustomData`](#structFRHAPI__RankData_1a2ad592ac3fee26b810cf6d4768f427f9)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__RankData_1a2ad592ac3fee26b810cf6d4768f427f9"></a>
+
+Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearCustomData`](#structFRHAPI__RankData_1ae6fdd574b4aa03a955e0d73368021c63)`()` <a id="structFRHAPI__RankData_1ae6fdd574b4aa03a955e0d73368021c63"></a>
 

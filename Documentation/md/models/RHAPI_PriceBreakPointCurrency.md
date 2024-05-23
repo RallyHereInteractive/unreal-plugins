@@ -25,12 +25,14 @@ The currencies of a Price Breakpoint.
 `public virtual void `[`WriteJson`](#structFRHAPI__PriceBreakPointCurrency_1a31c4e71c4815cfdc93cef9c8cfd0f1fa)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline int32 & `[`GetPriceItemId`](#structFRHAPI__PriceBreakPointCurrency_1a3833756dc86744bfe93773f94fa0f48e)`()` | Gets the value of PriceItemId.
 `public inline const int32 & `[`GetPriceItemId`](#structFRHAPI__PriceBreakPointCurrency_1a55430b28bf915560fc4c00533b42384c)`() const` | Gets the value of PriceItemId.
-`public inline void `[`SetPriceItemId`](#structFRHAPI__PriceBreakPointCurrency_1afbb6594169a66131d73be76ab40d460b)`(int32 NewValue)` | Sets the value of PriceItemId.
+`public inline void `[`SetPriceItemId`](#structFRHAPI__PriceBreakPointCurrency_1a4c32f427fd1a34146735b5e25cf5b7a8)`(const int32 & NewValue)` | Sets the value of PriceItemId.
+`public inline void `[`SetPriceItemId`](#structFRHAPI__PriceBreakPointCurrency_1adee55d4262e267879deccf1346671bfc)`(int32 && NewValue)` | Sets the value of PriceItemId using move semantics.
 `public inline bool `[`IsPriceItemIdDefaultValue`](#structFRHAPI__PriceBreakPointCurrency_1ac2e90c50c94de4f0366f965267d94755)`() const` | Returns true if PriceItemId matches the default value.
 `public inline void `[`SetPriceItemIdToDefault`](#structFRHAPI__PriceBreakPointCurrency_1af16d3af705d6e44aa6fc0bf8ea763873)`()` | Sets the value of PriceItemId to its default
 `public inline int32 & `[`GetPrice`](#structFRHAPI__PriceBreakPointCurrency_1a8deddaa6262dc0705ca04cc242065bdd)`()` | Gets the value of Price.
 `public inline const int32 & `[`GetPrice`](#structFRHAPI__PriceBreakPointCurrency_1ae44a1883c00a3ba094dd4d1c8cb089a2)`() const` | Gets the value of Price.
-`public inline void `[`SetPrice`](#structFRHAPI__PriceBreakPointCurrency_1ac96bb9787ee7dd0b0d4648452ce4b848)`(int32 NewValue)` | Sets the value of Price.
+`public inline void `[`SetPrice`](#structFRHAPI__PriceBreakPointCurrency_1ac631554943d37765136f4e554b2cde2d)`(const int32 & NewValue)` | Sets the value of Price.
+`public inline void `[`SetPrice`](#structFRHAPI__PriceBreakPointCurrency_1a4573389211659ecc6dc5a920a5d0b884)`(int32 && NewValue)` | Sets the value of Price using move semantics.
 `public inline bool `[`IsPriceDefaultValue`](#structFRHAPI__PriceBreakPointCurrency_1a9a1537b11431e1c8253bbe95f15e7c16)`() const` | Returns true if Price matches the default value.
 `public inline void `[`SetPriceToDefault`](#structFRHAPI__PriceBreakPointCurrency_1a3ff3ff898ac78e428be02c407a1c847e)`()` | Sets the value of Price to its default
 
@@ -69,9 +71,13 @@ Gets the value of PriceItemId.
 
 Gets the value of PriceItemId.
 
-#### `public inline void `[`SetPriceItemId`](#structFRHAPI__PriceBreakPointCurrency_1afbb6594169a66131d73be76ab40d460b)`(int32 NewValue)` <a id="structFRHAPI__PriceBreakPointCurrency_1afbb6594169a66131d73be76ab40d460b"></a>
+#### `public inline void `[`SetPriceItemId`](#structFRHAPI__PriceBreakPointCurrency_1a4c32f427fd1a34146735b5e25cf5b7a8)`(const int32 & NewValue)` <a id="structFRHAPI__PriceBreakPointCurrency_1a4c32f427fd1a34146735b5e25cf5b7a8"></a>
 
 Sets the value of PriceItemId.
+
+#### `public inline void `[`SetPriceItemId`](#structFRHAPI__PriceBreakPointCurrency_1adee55d4262e267879deccf1346671bfc)`(int32 && NewValue)` <a id="structFRHAPI__PriceBreakPointCurrency_1adee55d4262e267879deccf1346671bfc"></a>
+
+Sets the value of PriceItemId using move semantics.
 
 #### `public inline bool `[`IsPriceItemIdDefaultValue`](#structFRHAPI__PriceBreakPointCurrency_1ac2e90c50c94de4f0366f965267d94755)`() const` <a id="structFRHAPI__PriceBreakPointCurrency_1ac2e90c50c94de4f0366f965267d94755"></a>
 
@@ -89,9 +95,13 @@ Gets the value of Price.
 
 Gets the value of Price.
 
-#### `public inline void `[`SetPrice`](#structFRHAPI__PriceBreakPointCurrency_1ac96bb9787ee7dd0b0d4648452ce4b848)`(int32 NewValue)` <a id="structFRHAPI__PriceBreakPointCurrency_1ac96bb9787ee7dd0b0d4648452ce4b848"></a>
+#### `public inline void `[`SetPrice`](#structFRHAPI__PriceBreakPointCurrency_1ac631554943d37765136f4e554b2cde2d)`(const int32 & NewValue)` <a id="structFRHAPI__PriceBreakPointCurrency_1ac631554943d37765136f4e554b2cde2d"></a>
 
 Sets the value of Price.
+
+#### `public inline void `[`SetPrice`](#structFRHAPI__PriceBreakPointCurrency_1a4573389211659ecc6dc5a920a5d0b884)`(int32 && NewValue)` <a id="structFRHAPI__PriceBreakPointCurrency_1a4573389211659ecc6dc5a920a5d0b884"></a>
+
+Sets the value of Price using move semantics.
 
 #### `public inline bool `[`IsPriceDefaultValue`](#structFRHAPI__PriceBreakPointCurrency_1a9a1537b11431e1c8253bbe95f15e7c16)`() const` <a id="structFRHAPI__PriceBreakPointCurrency_1a9a1537b11431e1c8253bbe95f15e7c16"></a>
 

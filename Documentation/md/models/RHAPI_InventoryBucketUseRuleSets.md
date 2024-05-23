@@ -31,7 +31,8 @@ A collection of Inventory Bucket Use Rule Sets. A rule set determine how item ca
 `public inline bool `[`GetRuleSets`](#structFRHAPI__InventoryBucketUseRuleSets_1a20ab8741220988f68b99436142b308cc)`(TMap< FString, `[`FRHAPI_InventoryBucketUseRuleSet`](RHAPI_InventoryBucketUseRuleSet.md#structFRHAPI__InventoryBucketUseRuleSet)` > & OutValue) const` | Fills OutValue with the value of RuleSets_Optional and returns true if it has been set, otherwise returns false.
 `public inline TMap< FString, `[`FRHAPI_InventoryBucketUseRuleSet`](RHAPI_InventoryBucketUseRuleSet.md#structFRHAPI__InventoryBucketUseRuleSet)` > * `[`GetRuleSetsOrNull`](#structFRHAPI__InventoryBucketUseRuleSets_1a8c7730910e0f2c0f66c0ac07e3d967bc)`()` | Returns a pointer to RuleSets_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TMap< FString, `[`FRHAPI_InventoryBucketUseRuleSet`](RHAPI_InventoryBucketUseRuleSet.md#structFRHAPI__InventoryBucketUseRuleSet)` > * `[`GetRuleSetsOrNull`](#structFRHAPI__InventoryBucketUseRuleSets_1a1409a120b179be2507d41425a018ddad)`() const` | Returns a pointer to RuleSets_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRuleSets`](#structFRHAPI__InventoryBucketUseRuleSets_1a7c670c4dde0611d9b6e27a47fda9a04c)`(TMap< FString, `[`FRHAPI_InventoryBucketUseRuleSet`](RHAPI_InventoryBucketUseRuleSet.md#structFRHAPI__InventoryBucketUseRuleSet)` > NewValue)` | Sets the value of RuleSets_Optional and also sets RuleSets_IsSet to true.
+`public inline void `[`SetRuleSets`](#structFRHAPI__InventoryBucketUseRuleSets_1a9139e4f850663d4ea6b5c2c5fff3dd98)`(const TMap< FString, `[`FRHAPI_InventoryBucketUseRuleSet`](RHAPI_InventoryBucketUseRuleSet.md#structFRHAPI__InventoryBucketUseRuleSet)` > & NewValue)` | Sets the value of RuleSets_Optional and also sets RuleSets_IsSet to true.
+`public inline void `[`SetRuleSets`](#structFRHAPI__InventoryBucketUseRuleSets_1aff1e8eb7694ef25c0d011be236ed0ce9)`(TMap< FString, `[`FRHAPI_InventoryBucketUseRuleSet`](RHAPI_InventoryBucketUseRuleSet.md#structFRHAPI__InventoryBucketUseRuleSet)` > && NewValue)` | Sets the value of RuleSets_Optional and also sets RuleSets_IsSet to true using move semantics.
 `public inline void `[`ClearRuleSets`](#structFRHAPI__InventoryBucketUseRuleSets_1a4d056b0e01547e67525ae74343fe932f)`()` | Clears the value of RuleSets_Optional and sets RuleSets_IsSet to false.
 `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSets_1a5faa4a8938f8eba12e0d430f9fe24634)`()` | Gets the value of CacheInfo_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSets_1a6eac72a5d10765adb6bf64f9e6ac996b)`() const` | Gets the value of CacheInfo_Optional, regardless of it having been set.
@@ -39,7 +40,8 @@ A collection of Inventory Bucket Use Rule Sets. A rule set determine how item ca
 `public inline bool `[`GetCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSets_1a33dd772efcf464da6b3b6db246e6097b)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & OutValue) const` | Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false.
 `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__InventoryBucketUseRuleSets_1a2d4eb355e30583e9bb0d364610e615dc)`()` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
 `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__InventoryBucketUseRuleSets_1aebaf7ae0573b04b04c1111faa2ff5eae)`() const` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSets_1a6137f5004b123127d0b9e968bc20e460)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
+`public inline void `[`SetCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSets_1a7fa11ba31fb9cb36b41b0b17d633ef32)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
+`public inline void `[`SetCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSets_1abec2944748b3ec62858a593db1d51dd9)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSets_1a20b164be4527441b9245a6558fbc2db3)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 
 ### Members
@@ -97,9 +99,13 @@ Returns a pointer to RuleSets_Optional, if it has been set, otherwise returns nu
 
 Returns a pointer to RuleSets_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRuleSets`](#structFRHAPI__InventoryBucketUseRuleSets_1a7c670c4dde0611d9b6e27a47fda9a04c)`(TMap< FString, `[`FRHAPI_InventoryBucketUseRuleSet`](RHAPI_InventoryBucketUseRuleSet.md#structFRHAPI__InventoryBucketUseRuleSet)` > NewValue)` <a id="structFRHAPI__InventoryBucketUseRuleSets_1a7c670c4dde0611d9b6e27a47fda9a04c"></a>
+#### `public inline void `[`SetRuleSets`](#structFRHAPI__InventoryBucketUseRuleSets_1a9139e4f850663d4ea6b5c2c5fff3dd98)`(const TMap< FString, `[`FRHAPI_InventoryBucketUseRuleSet`](RHAPI_InventoryBucketUseRuleSet.md#structFRHAPI__InventoryBucketUseRuleSet)` > & NewValue)` <a id="structFRHAPI__InventoryBucketUseRuleSets_1a9139e4f850663d4ea6b5c2c5fff3dd98"></a>
 
 Sets the value of RuleSets_Optional and also sets RuleSets_IsSet to true.
+
+#### `public inline void `[`SetRuleSets`](#structFRHAPI__InventoryBucketUseRuleSets_1aff1e8eb7694ef25c0d011be236ed0ce9)`(TMap< FString, `[`FRHAPI_InventoryBucketUseRuleSet`](RHAPI_InventoryBucketUseRuleSet.md#structFRHAPI__InventoryBucketUseRuleSet)` > && NewValue)` <a id="structFRHAPI__InventoryBucketUseRuleSets_1aff1e8eb7694ef25c0d011be236ed0ce9"></a>
+
+Sets the value of RuleSets_Optional and also sets RuleSets_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearRuleSets`](#structFRHAPI__InventoryBucketUseRuleSets_1a4d056b0e01547e67525ae74343fe932f)`()` <a id="structFRHAPI__InventoryBucketUseRuleSets_1a4d056b0e01547e67525ae74343fe932f"></a>
 
@@ -129,9 +135,13 @@ Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns n
 
 Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSets_1a6137f5004b123127d0b9e968bc20e460)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` NewValue)` <a id="structFRHAPI__InventoryBucketUseRuleSets_1a6137f5004b123127d0b9e968bc20e460"></a>
+#### `public inline void `[`SetCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSets_1a7fa11ba31fb9cb36b41b0b17d633ef32)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` <a id="structFRHAPI__InventoryBucketUseRuleSets_1a7fa11ba31fb9cb36b41b0b17d633ef32"></a>
 
 Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
+
+#### `public inline void `[`SetCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSets_1abec2944748b3ec62858a593db1d51dd9)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` <a id="structFRHAPI__InventoryBucketUseRuleSets_1abec2944748b3ec62858a593db1d51dd9"></a>
+
+Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSets_1a20b164be4527441b9245a6558fbc2db3)`()` <a id="structFRHAPI__InventoryBucketUseRuleSets_1a20b164be4527441b9245a6558fbc2db3"></a>
 

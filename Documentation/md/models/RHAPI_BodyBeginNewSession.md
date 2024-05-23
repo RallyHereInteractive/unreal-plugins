@@ -24,14 +24,16 @@ struct FRHAPI_BodyBeginNewSession
 `public virtual void `[`WriteJson`](#structFRHAPI__BodyBeginNewSession_1a5d1dde9f77c7668e7b6719a96ef7b764)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetCountryCode`](#structFRHAPI__BodyBeginNewSession_1a6389cd1eff5913dc8846897aa608bac7)`()` | Gets the value of CountryCode.
 `public inline const FString & `[`GetCountryCode`](#structFRHAPI__BodyBeginNewSession_1a260f56c1f98a11fb15cee9782b9ed373)`() const` | Gets the value of CountryCode.
-`public inline void `[`SetCountryCode`](#structFRHAPI__BodyBeginNewSession_1a32cbcd75f9a37e01716b923702a5fced)`(FString NewValue)` | Sets the value of CountryCode.
+`public inline void `[`SetCountryCode`](#structFRHAPI__BodyBeginNewSession_1a35478f3af0971b1433dbad006124973c)`(const FString & NewValue)` | Sets the value of CountryCode.
+`public inline void `[`SetCountryCode`](#structFRHAPI__BodyBeginNewSession_1a541ebeb59cdd2f1aa2962e70ea990620)`(FString && NewValue)` | Sets the value of CountryCode using move semantics.
 `public inline FString & `[`GetDeviceId`](#structFRHAPI__BodyBeginNewSession_1a4eea2f2bd9d4bd859380833600c3f610)`()` | Gets the value of DeviceId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetDeviceId`](#structFRHAPI__BodyBeginNewSession_1ade2cd5930fe03039e294e42d436b4628)`() const` | Gets the value of DeviceId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetDeviceId`](#structFRHAPI__BodyBeginNewSession_1a9620840815ec9c2ee834e1ca31d62dee)`(const FString & DefaultValue) const` | Gets the value of DeviceId_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetDeviceId`](#structFRHAPI__BodyBeginNewSession_1a8ffe9a4c354f183c5372e80e8e957a29)`(FString & OutValue) const` | Fills OutValue with the value of DeviceId_Optional and returns true if it has been set, otherwise returns false.
 `public inline FString * `[`GetDeviceIdOrNull`](#structFRHAPI__BodyBeginNewSession_1a8b21a4a1672d0c12b008b5d389c522c3)`()` | Returns a pointer to DeviceId_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FString * `[`GetDeviceIdOrNull`](#structFRHAPI__BodyBeginNewSession_1a891c220cbbdb6dc7a930f6ac7f64aa2e)`() const` | Returns a pointer to DeviceId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetDeviceId`](#structFRHAPI__BodyBeginNewSession_1a4a8a729f2efb24d2e09caefe6ba8e25f)`(FString NewValue)` | Sets the value of DeviceId_Optional and also sets DeviceId_IsSet to true.
+`public inline void `[`SetDeviceId`](#structFRHAPI__BodyBeginNewSession_1afa826ef99895ffefc51fc55e5f3e70cf)`(const FString & NewValue)` | Sets the value of DeviceId_Optional and also sets DeviceId_IsSet to true.
+`public inline void `[`SetDeviceId`](#structFRHAPI__BodyBeginNewSession_1a65bfb4595fdf40d2ec1aa2e5574958e0)`(FString && NewValue)` | Sets the value of DeviceId_Optional and also sets DeviceId_IsSet to true using move semantics.
 `public inline void `[`ClearDeviceId`](#structFRHAPI__BodyBeginNewSession_1aae458d9179139e19b99c983ce6ba80c5)`()` | Clears the value of DeviceId_Optional and sets DeviceId_IsSet to false.
 
 ### Members
@@ -73,9 +75,13 @@ Gets the value of CountryCode.
 
 Gets the value of CountryCode.
 
-#### `public inline void `[`SetCountryCode`](#structFRHAPI__BodyBeginNewSession_1a32cbcd75f9a37e01716b923702a5fced)`(FString NewValue)` <a id="structFRHAPI__BodyBeginNewSession_1a32cbcd75f9a37e01716b923702a5fced"></a>
+#### `public inline void `[`SetCountryCode`](#structFRHAPI__BodyBeginNewSession_1a35478f3af0971b1433dbad006124973c)`(const FString & NewValue)` <a id="structFRHAPI__BodyBeginNewSession_1a35478f3af0971b1433dbad006124973c"></a>
 
 Sets the value of CountryCode.
+
+#### `public inline void `[`SetCountryCode`](#structFRHAPI__BodyBeginNewSession_1a541ebeb59cdd2f1aa2962e70ea990620)`(FString && NewValue)` <a id="structFRHAPI__BodyBeginNewSession_1a541ebeb59cdd2f1aa2962e70ea990620"></a>
+
+Sets the value of CountryCode using move semantics.
 
 #### `public inline FString & `[`GetDeviceId`](#structFRHAPI__BodyBeginNewSession_1a4eea2f2bd9d4bd859380833600c3f610)`()` <a id="structFRHAPI__BodyBeginNewSession_1a4eea2f2bd9d4bd859380833600c3f610"></a>
 
@@ -101,9 +107,13 @@ Returns a pointer to DeviceId_Optional, if it has been set, otherwise returns nu
 
 Returns a pointer to DeviceId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetDeviceId`](#structFRHAPI__BodyBeginNewSession_1a4a8a729f2efb24d2e09caefe6ba8e25f)`(FString NewValue)` <a id="structFRHAPI__BodyBeginNewSession_1a4a8a729f2efb24d2e09caefe6ba8e25f"></a>
+#### `public inline void `[`SetDeviceId`](#structFRHAPI__BodyBeginNewSession_1afa826ef99895ffefc51fc55e5f3e70cf)`(const FString & NewValue)` <a id="structFRHAPI__BodyBeginNewSession_1afa826ef99895ffefc51fc55e5f3e70cf"></a>
 
 Sets the value of DeviceId_Optional and also sets DeviceId_IsSet to true.
+
+#### `public inline void `[`SetDeviceId`](#structFRHAPI__BodyBeginNewSession_1a65bfb4595fdf40d2ec1aa2e5574958e0)`(FString && NewValue)` <a id="structFRHAPI__BodyBeginNewSession_1a65bfb4595fdf40d2ec1aa2e5574958e0"></a>
+
+Sets the value of DeviceId_Optional and also sets DeviceId_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearDeviceId`](#structFRHAPI__BodyBeginNewSession_1aae458d9179139e19b99c983ce6ba80c5)`()` <a id="structFRHAPI__BodyBeginNewSession_1aae458d9179139e19b99c983ce6ba80c5"></a>
 

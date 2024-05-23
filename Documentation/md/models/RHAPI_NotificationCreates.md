@@ -22,7 +22,8 @@ struct FRHAPI_NotificationCreates
 `public virtual void `[`WriteJson`](#structFRHAPI__NotificationCreates_1a6e1fc671101a6fb9cc5cfcb96ff067ae)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TArray< `[`FRHAPI_NotificationCreate`](RHAPI_NotificationCreate.md#structFRHAPI__NotificationCreate)` > & `[`GetNotifications`](#structFRHAPI__NotificationCreates_1a9c4940dd27a70f36a6eddc2f3fc99578)`()` | Gets the value of Notifications.
 `public inline const TArray< `[`FRHAPI_NotificationCreate`](RHAPI_NotificationCreate.md#structFRHAPI__NotificationCreate)` > & `[`GetNotifications`](#structFRHAPI__NotificationCreates_1a0c864431bbd3d55c5ac1d0c3000d6f8d)`() const` | Gets the value of Notifications.
-`public inline void `[`SetNotifications`](#structFRHAPI__NotificationCreates_1a82108e9b74ec61cb3d11b686ce1d91c8)`(TArray< `[`FRHAPI_NotificationCreate`](RHAPI_NotificationCreate.md#structFRHAPI__NotificationCreate)` > NewValue)` | Sets the value of Notifications.
+`public inline void `[`SetNotifications`](#structFRHAPI__NotificationCreates_1ad2006a7562d302b85d3055a3869df4d0)`(const TArray< `[`FRHAPI_NotificationCreate`](RHAPI_NotificationCreate.md#structFRHAPI__NotificationCreate)` > & NewValue)` | Sets the value of Notifications.
+`public inline void `[`SetNotifications`](#structFRHAPI__NotificationCreates_1a7d44433bc5ce5b70e9d256f2175c9fc7)`(TArray< `[`FRHAPI_NotificationCreate`](RHAPI_NotificationCreate.md#structFRHAPI__NotificationCreate)` > && NewValue)` | Sets the value of Notifications using move semantics.
 
 ### Members
 
@@ -55,7 +56,11 @@ Gets the value of Notifications.
 
 Gets the value of Notifications.
 
-#### `public inline void `[`SetNotifications`](#structFRHAPI__NotificationCreates_1a82108e9b74ec61cb3d11b686ce1d91c8)`(TArray< `[`FRHAPI_NotificationCreate`](RHAPI_NotificationCreate.md#structFRHAPI__NotificationCreate)` > NewValue)` <a id="structFRHAPI__NotificationCreates_1a82108e9b74ec61cb3d11b686ce1d91c8"></a>
+#### `public inline void `[`SetNotifications`](#structFRHAPI__NotificationCreates_1ad2006a7562d302b85d3055a3869df4d0)`(const TArray< `[`FRHAPI_NotificationCreate`](RHAPI_NotificationCreate.md#structFRHAPI__NotificationCreate)` > & NewValue)` <a id="structFRHAPI__NotificationCreates_1ad2006a7562d302b85d3055a3869df4d0"></a>
 
 Sets the value of Notifications.
+
+#### `public inline void `[`SetNotifications`](#structFRHAPI__NotificationCreates_1a7d44433bc5ce5b70e9d256f2175c9fc7)`(TArray< `[`FRHAPI_NotificationCreate`](RHAPI_NotificationCreate.md#structFRHAPI__NotificationCreate)` > && NewValue)` <a id="structFRHAPI__NotificationCreates_1a7d44433bc5ce5b70e9d256f2175c9fc7"></a>
+
+Sets the value of Notifications using move semantics.
 
