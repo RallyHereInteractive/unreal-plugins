@@ -611,8 +611,36 @@ public:
 	* @param [out] Price The price of the item at the given quantity and currency type.
 	* @return If true, a valid price has been found
 	*/
+	UE_DEPRECATED(5.0, "Please use GetUnitPrices that takes an array of currency ids")
+	UFUNCTION(BlueprintPure, Category = "Catalog Subsystem", meta = (DisplayName = "Get Unit Price ", DeprecatedFunction, DeprecationMessage="Please use GetUnitPrice that takes an array of currency ids"))
+	static bool GetUnitPrice(const TArray<FRHAPI_PriceBreakpoint>& PriceBreakpoints, int32 CurrencyItemId, int32 Quantity, int32& Price)
+	{
+		TArray<int32> CurrencyIds = { CurrencyItemId };
+		TArray<FRHAPI_PriceBreakPointCurrency> PriceCurrencies = GetUnitPrices(PriceBreakpoints, CurrencyIds, Quantity);
+
+		// this function should only be used in cases where there is only a single currency, or it could provide incorrect results
+		ensure(PriceCurrencies.Num() <= 1);
+
+		for (const auto& PriceCurrency : PriceCurrencies)
+		{
+			if (PriceCurrency.GetPriceItemId() == CurrencyItemId)
+			{
+				Price = PriceCurrency.GetPrice();
+				return true;
+			}
+		}
+
+		return false;
+	}
+	/**
+	* @brief Gets the price of an item at a given quantity for a given set of currency types.
+	* @param [in] PriceBreakpoints The set of breakpoints being searched.
+	* @param [in] CurrencyIds The currency types being looked for (a price point must have all of the specified currencies).
+	* @param [in] Quantity The quantity being looked for.
+	* @return The array of price currencies for the given quantity if found, empty if not found
+	*/
 	UFUNCTION(BlueprintPure, Category = "Catalog Subsystem", meta = (DisplayName = "Get Unit Price "))
-	static bool GetUnitPrice(const TArray<FRHAPI_PriceBreakpoint>& PriceBreakpoints, int32 CurrencyItemId, int32 Quantity, int32& Price);
+	static TArray<FRHAPI_PriceBreakPointCurrency> GetUnitPrices(const TArray<FRHAPI_PriceBreakpoint>& PriceBreakpoints, const TArray<int32>& CurrencyIds, int32 Quantity);
 	/**
 	* @brief Gets if the coupon item can be used to discount a vendor item.
 	* @param [in] Coupon Item The item that is being used as a coupon.

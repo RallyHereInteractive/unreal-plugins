@@ -425,19 +425,44 @@ void FRHDTW_Catalog::DoShowVendors(URH_CatalogSubsystem* catalog)
 								{
 									for (const auto& PriceBreakpoint : *CurrentBreakpoints)
 									{
-										int32 DisplayPrice = PriceBreakpoint.GetPrice();
-										int32 SelectedCouponItemId = 0;
+										// construct a fallback price using old configuration method in case the new one is not available, so we can use the new method for consistency
+										FRHAPI_PriceBreakPointCurrency SingleItemPrice;
+										SingleItemPrice.SetPrice(PriceBreakpoint.GetPrice());
+										SingleItemPrice.SetPriceItemId(PriceBreakpoint.GetPriceItemId());
+										const TArray<FRHAPI_PriceBreakPointCurrency> SingleItemPriceArray = { SingleItemPrice };
 
-										if (SelectedVendorCouponIndexs[VendorItemIndex] > 0)
+										const auto PriceCurrencies = PriceBreakpoint.GetCurrencies(SingleItemPriceArray);
+
+										FString PriceDisplay;
+										TArray<FRHAPI_PurchasePriceCurrency> DisplayPrices;
+
+										for (const auto& PriceCurrency : PriceCurrencies)
 										{
-											if (URH_CatalogItem* CouponItem = Coupons[SelectedVendorCouponIndexs[VendorItemIndex] - 1])
+											int32 DisplayPrice = PriceCurrency.GetPrice();
+											int32 SelectedCouponItemId = 0;
+
+											if (SelectedVendorCouponIndexs[VendorItemIndex] > 0)
 											{
-												if (CouponItem->GetCouponDiscountCurrencyItemId() == PriceBreakpoint.GetPriceItemId())
+												if (URH_CatalogItem* CouponItem = Coupons[SelectedVendorCouponIndexs[VendorItemIndex] - 1])
 												{
-													SelectedCouponItemId = CouponItem->GetItemId();
-													DisplayPrice = URH_CatalogBlueprintLibrary::GetCouponDiscountedPrice(CouponItem, DisplayPrice);
+													if (CouponItem->GetCouponDiscountCurrencyItemId() == PriceCurrency.GetPriceItemId())
+													{
+														SelectedCouponItemId = CouponItem->GetItemId();
+														DisplayPrice = URH_CatalogBlueprintLibrary::GetCouponDiscountedPrice(CouponItem, DisplayPrice);
+													}
 												}
 											}
+
+											if (PriceDisplay.Len() > 0)
+											{
+												PriceDisplay += TEXT("\n");
+											}
+											PriceDisplay += FString::Printf(TEXT("%d:%d"), PriceBreakpoint.GetPriceItemId(), DisplayPrice);
+
+											FRHAPI_PurchasePriceCurrency DisplayPriceCurrency;
+											DisplayPriceCurrency.SetPrice(DisplayPrice);
+											DisplayPriceCurrency.SetPriceItemId(PriceCurrency.GetPriceItemId());
+											DisplayPrices.Add(DisplayPriceCurrency);
 										}
 
 										if (PriceIndex != 0)
@@ -445,11 +470,10 @@ void FRHDTW_Catalog::DoShowVendors(URH_CatalogSubsystem* catalog)
 											ImGui::SameLine();
 										}
 										PriceIndex++;
-										auto buttonName = FString::Printf(TEXT("%d:%d"), PriceBreakpoint.GetPriceItemId(), DisplayPrice);
 
 										// #RHTODO: Show presale prices on buttons?
 
-										if (ImGui::Button(TCHAR_TO_UTF8(*buttonName)))
+										if (ImGui::Button(TCHAR_TO_UTF8(*PriceDisplay)))
 										{
 											const ULocalPlayer* pLocalPlayer = GetFirstSelectedLocalPlayer();
 											if (pLocalPlayer == nullptr)
@@ -469,8 +493,7 @@ void FRHDTW_Catalog::DoShowVendors(URH_CatalogSubsystem* catalog)
 											NewPlayerOrderEntry->LootItem = VendorItemPair.Value;
 											NewPlayerOrderEntry->Quantity = 1;
 											NewPlayerOrderEntry->ExternalTransactionId = "IMGUI Purchase";
-											NewPlayerOrderEntry->PriceItemId = PriceBreakpoint.GetPriceItemId();
-											NewPlayerOrderEntry->Price = DisplayPrice;
+											NewPlayerOrderEntry->Prices = DisplayPrices;
 											NewPlayerOrderEntry->CouponItemId = SelectedCouponItemId;
 
 											TArray<URH_PlayerOrderEntry*> PlayerOrderEntries;

@@ -666,19 +666,62 @@ void URH_CatalogSubsystem::OnGetCatalogTimeFramesAllResponse(const TGetCatalogTi
 
 ///
 
-bool URH_CatalogBlueprintLibrary::GetUnitPrice(const TArray<FRHAPI_PriceBreakpoint>& PriceBreakpoints, int32 CurrencyItemId, int32 Quantity, int32& Price)
+TArray<FRHAPI_PriceBreakPointCurrency> URH_CatalogBlueprintLibrary::GetUnitPrices(const TArray<FRHAPI_PriceBreakpoint>& PriceBreakpoints, const TArray<int32>& CurrencyIds, int32 Quantity)
 {
 	for (const auto& PriceBreakpoint : PriceBreakpoints)
 	{
-		if (PriceBreakpoint.GetPriceItemId() == CurrencyItemId &&
-			PriceBreakpoint.GetQuantity() == Quantity)
+		if (PriceBreakpoint.GetQuantity() == Quantity)
 		{
-			Price = PriceBreakpoint.GetPrice();
-			return true;
+			if (const auto MultiCurrency = PriceBreakpoint.GetCurrenciesOrNull())
+			{
+				TArray<FRHAPI_PriceBreakPointCurrency> PriceBreakPointCurrencies;
+
+				// copy the currenccy list, and make sure all currencies match by consuming them from the copy
+				auto MultiCurrencyCopy = *MultiCurrency;
+				for (const auto& CurrencyId : CurrencyIds)
+				{
+					// find and remove the currency from the list
+					for (auto It = MultiCurrencyCopy.CreateIterator(); It; ++It)
+					{
+						if (It->GetPriceItemId() == CurrencyId)
+						{
+							FRHAPI_PriceBreakPointCurrency PriceBreakPointCurrency;
+							PriceBreakPointCurrency.SetPriceItemId(It->GetPriceItemId());
+							PriceBreakPointCurrency.SetPrice(It->GetPrice());
+
+							PriceBreakPointCurrencies.Add(PriceBreakPointCurrency);
+
+							It.RemoveCurrent();
+							break;
+						}
+					}
+				}
+
+				// if all currencies were consumed, return the result
+				if (MultiCurrencyCopy.Num() == 0)
+				{
+					return PriceBreakPointCurrencies;
+				}
+			}
+			else if (CurrencyIds.Num() == 1)
+			{
+				// fall back to single currency and item configuration
+				if (PriceBreakpoint.GetPriceItemId() == CurrencyIds[0] &&
+					PriceBreakpoint.GetQuantity() == Quantity)
+				{
+					FRHAPI_PriceBreakPointCurrency PriceBreakPointCurrency;
+					PriceBreakPointCurrency.SetPriceItemId(PriceBreakpoint.GetPriceItemId());
+					PriceBreakPointCurrency.SetPrice(PriceBreakpoint.GetPrice());
+
+					TArray<FRHAPI_PriceBreakPointCurrency> PriceBreakPointCurrencies = { PriceBreakPointCurrency };
+
+					return PriceBreakPointCurrencies;
+				}
+			}
 		}
 	}
 
-	return false;
+	return TArray<FRHAPI_PriceBreakPointCurrency>();
 }
 
 bool URH_CatalogBlueprintLibrary::IsCouponApplicableForItem(URH_CatalogItem* CouponItem, const FRHAPI_Loot& CatalogVendorItem)
