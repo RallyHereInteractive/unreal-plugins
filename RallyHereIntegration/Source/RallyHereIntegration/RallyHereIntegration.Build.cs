@@ -34,7 +34,8 @@ public class RallyHereIntegration : ModuleRules
 				"Hotfix",
 				"Projects",
 				"Analytics",
-				"EngineSettings"
+				"EngineSettings",
+				"CoreOnline",
 			}
 		);
     }
