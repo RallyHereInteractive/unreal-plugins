@@ -222,10 +222,17 @@ void FOnlineIdentityAnon::RevokeAuthToken(const FUniqueNetId& UserId, const FOnR
     });
 }
 
+#if ((ENGINE_MAJOR_VERSION > 5) || (ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 4))
+void FOnlineIdentityAnon::GetUserPrivilege(const FUniqueNetId& UserId, EUserPrivileges::Type Privilege, const FOnGetUserPrivilegeCompleteDelegate& Delegate, EShowPrivilegeResolveUI ShowResolveUI)
+{
+	Delegate.ExecuteIfBound(UserId, Privilege, (uint32)EPrivilegeResults::NoFailures);
+}
+#else
 void FOnlineIdentityAnon::GetUserPrivilege(const FUniqueNetId& UserId, EUserPrivileges::Type Privilege, const FOnGetUserPrivilegeCompleteDelegate& Delegate)
 {
-    Delegate.ExecuteIfBound(UserId, Privilege, (uint32)EPrivilegeResults::NoFailures);
+	Delegate.ExecuteIfBound(UserId, Privilege, (uint32)EPrivilegeResults::NoFailures);
 }
+#endif
 
 FPlatformUserId FOnlineIdentityAnon::GetPlatformUserIdFromUniqueNetId(const FUniqueNetId& UniqueNetId) const
 {
