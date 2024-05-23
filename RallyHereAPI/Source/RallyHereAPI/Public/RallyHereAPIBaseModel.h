@@ -162,7 +162,7 @@ public:
 		const FHttpRetryParams& InParams = FHttpRetryParams()
 	)
 		: FHttpRetrySystem::FRequest(
-			InManager,
+			*InManager,
 			HttpRequest,
 			InParams.RetryLimitCountOverride,
 			InParams.RetryTimeoutRelativeSecondsOverride,
