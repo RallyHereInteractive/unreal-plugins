@@ -48,7 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_EntitlementEventList : public FRHAPI_Model
 	/** @brief Gets the value of Events */
 	const TArray<FRHAPI_EntitlementEvent>& GetEvents() const { return Events; }
 	/** @brief Sets the value of Events */
-	void SetEvents(TArray<FRHAPI_EntitlementEvent> NewValue) { Events = NewValue;  }
+	void SetEvents(const TArray<FRHAPI_EntitlementEvent>& NewValue) { Events = NewValue;  }
+	/** @brief Sets the value of Events using move semantics */
+	void SetEvents(TArray<FRHAPI_EntitlementEvent>&& NewValue) { Events = NewValue;  }
 
 	/** @brief The cursor for the next page of events */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -69,7 +71,9 @@ struct RALLYHEREAPI_API FRHAPI_EntitlementEventList : public FRHAPI_Model
 	/** @brief Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetCursorOrNull() const { if (Cursor_IsSet) return &Cursor_Optional; return nullptr; }
 	/** @brief Sets the value of Cursor_Optional and also sets Cursor_IsSet to true */
-	void SetCursor(FString NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true; }
+	void SetCursor(const FString& NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true; }
+	/** @brief Sets the value of Cursor_Optional and also sets Cursor_IsSet to true using move semantics */
+	void SetCursor(FString&& NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true; }
 	 /** @brief Clears the value of Cursor_Optional and sets Cursor_IsSet to false */
 	void ClearCursor() { Cursor_IsSet = false; }
 };

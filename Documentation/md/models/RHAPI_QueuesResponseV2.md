@@ -24,7 +24,8 @@ A list of configuration about queues.
 `public virtual void `[`WriteJson`](#structFRHAPI__QueuesResponseV2_1a49c9ce634a9103e83ab3aacf8393fa75)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TArray< `[`FRHAPI_QueueConfigV2`](RHAPI_QueueConfigV2.md#structFRHAPI__QueueConfigV2)` > & `[`GetQueues`](#structFRHAPI__QueuesResponseV2_1abb321e52232f0bc6d94b28451e4c9550)`()` | Gets the value of Queues.
 `public inline const TArray< `[`FRHAPI_QueueConfigV2`](RHAPI_QueueConfigV2.md#structFRHAPI__QueueConfigV2)` > & `[`GetQueues`](#structFRHAPI__QueuesResponseV2_1a3d7675d6083b26d4b9d4a728846c365a)`() const` | Gets the value of Queues.
-`public inline void `[`SetQueues`](#structFRHAPI__QueuesResponseV2_1a8dfac168821c99dbf5b63a5d496b868b)`(TArray< `[`FRHAPI_QueueConfigV2`](RHAPI_QueueConfigV2.md#structFRHAPI__QueueConfigV2)` > NewValue)` | Sets the value of Queues.
+`public inline void `[`SetQueues`](#structFRHAPI__QueuesResponseV2_1a3397237c8b20e217615839f043fc096a)`(const TArray< `[`FRHAPI_QueueConfigV2`](RHAPI_QueueConfigV2.md#structFRHAPI__QueueConfigV2)` > & NewValue)` | Sets the value of Queues.
+`public inline void `[`SetQueues`](#structFRHAPI__QueuesResponseV2_1acf2caa57328e562b1c528c63be9121f9)`(TArray< `[`FRHAPI_QueueConfigV2`](RHAPI_QueueConfigV2.md#structFRHAPI__QueueConfigV2)` > && NewValue)` | Sets the value of Queues using move semantics.
 
 ### Members
 
@@ -57,7 +58,11 @@ Gets the value of Queues.
 
 Gets the value of Queues.
 
-#### `public inline void `[`SetQueues`](#structFRHAPI__QueuesResponseV2_1a8dfac168821c99dbf5b63a5d496b868b)`(TArray< `[`FRHAPI_QueueConfigV2`](RHAPI_QueueConfigV2.md#structFRHAPI__QueueConfigV2)` > NewValue)` <a id="structFRHAPI__QueuesResponseV2_1a8dfac168821c99dbf5b63a5d496b868b"></a>
+#### `public inline void `[`SetQueues`](#structFRHAPI__QueuesResponseV2_1a3397237c8b20e217615839f043fc096a)`(const TArray< `[`FRHAPI_QueueConfigV2`](RHAPI_QueueConfigV2.md#structFRHAPI__QueueConfigV2)` > & NewValue)` <a id="structFRHAPI__QueuesResponseV2_1a3397237c8b20e217615839f043fc096a"></a>
 
 Sets the value of Queues.
+
+#### `public inline void `[`SetQueues`](#structFRHAPI__QueuesResponseV2_1acf2caa57328e562b1c528c63be9121f9)`(TArray< `[`FRHAPI_QueueConfigV2`](RHAPI_QueueConfigV2.md#structFRHAPI__QueueConfigV2)` > && NewValue)` <a id="structFRHAPI__QueuesResponseV2_1acf2caa57328e562b1c528c63be9121f9"></a>
+
+Sets the value of Queues using move semantics.
 

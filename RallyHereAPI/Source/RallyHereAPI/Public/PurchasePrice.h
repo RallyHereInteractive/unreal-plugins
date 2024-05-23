@@ -9,6 +9,7 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
+#include "PurchasePriceCurrency.h"
 #include "PurchasePrice.generated.h"
 
 /** @defgroup RHAPI_PurchasePrice RallyHere API Model PurchasePrice
@@ -39,33 +40,63 @@ struct RALLYHEREAPI_API FRHAPI_PurchasePrice : public FRHAPI_Model
 	*/
 	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-	/** @brief The Item used as the currency for the purchase. */
+	/** @brief The Item used as the currency for the purchase. Deprecated. Use currencies instead */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 PriceItemId{ 0 };
-	/** @brief Gets the value of PriceItemId */
-	int32& GetPriceItemId() { return PriceItemId; }
-	/** @brief Gets the value of PriceItemId */
-	const int32& GetPriceItemId() const { return PriceItemId; }
-	/** @brief Sets the value of PriceItemId */
-	void SetPriceItemId(int32 NewValue) { PriceItemId = NewValue;  }
-	/** @brief Returns true if PriceItemId matches the default value */
-	bool IsPriceItemIdDefaultValue() const { return PriceItemId == 0; }
-	/** @brief Sets the value of PriceItemId to its default  */
-	void SetPriceItemIdToDefault() { PriceItemId = 0;  }
+	int32 PriceItemId_Optional{  };
+	/** @brief true if PriceItemId_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool PriceItemId_IsSet{ false };
+	/** @brief Gets the value of PriceItemId_Optional, regardless of it having been set */
+	int32& GetPriceItemId() { return PriceItemId_Optional; }
+	/** @brief Gets the value of PriceItemId_Optional, regardless of it having been set */
+	const int32& GetPriceItemId() const { return PriceItemId_Optional; }
+	/** @brief Gets the value of PriceItemId_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetPriceItemId(const int32& DefaultValue) const { if (PriceItemId_IsSet) return PriceItemId_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of PriceItemId_Optional and returns true if it has been set, otherwise returns false */
+	bool GetPriceItemId(int32& OutValue) const { if (PriceItemId_IsSet) OutValue = PriceItemId_Optional; return PriceItemId_IsSet; }
+	/** @brief Returns a pointer to PriceItemId_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetPriceItemIdOrNull() { if (PriceItemId_IsSet) return &PriceItemId_Optional; return nullptr; }
+	/** @brief Returns a pointer to PriceItemId_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetPriceItemIdOrNull() const { if (PriceItemId_IsSet) return &PriceItemId_Optional; return nullptr; }
+	/** @brief Sets the value of PriceItemId_Optional and also sets PriceItemId_IsSet to true */
+	void SetPriceItemId(const int32& NewValue) { PriceItemId_Optional = NewValue; PriceItemId_IsSet = true; }
+	/** @brief Sets the value of PriceItemId_Optional and also sets PriceItemId_IsSet to true using move semantics */
+	void SetPriceItemId(int32&& NewValue) { PriceItemId_Optional = NewValue; PriceItemId_IsSet = true; }
+	 /** @brief Clears the value of PriceItemId_Optional and sets PriceItemId_IsSet to false */
+	void ClearPriceItemId() { PriceItemId_Optional = 0; PriceItemId_IsSet = false; }
+	/** @brief Returns true if PriceItemId_Optional is set and matches the default value */
+	bool IsPriceItemIdDefaultValue() const { return PriceItemId_IsSet && PriceItemId_Optional == 0; }
+	/** @brief Sets the value of PriceItemId_Optional to its default and also sets PriceItemId_IsSet to true */
+	void SetPriceItemIdToDefault() { PriceItemId_Optional = 0; PriceItemId_IsSet = true; }
 
-	/** @brief The price of the Item. */
+	/** @brief The price of the Item. Deprecated. Use currencies instead */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 Price{ 0 };
-	/** @brief Gets the value of Price */
-	int32& GetPrice() { return Price; }
-	/** @brief Gets the value of Price */
-	const int32& GetPrice() const { return Price; }
-	/** @brief Sets the value of Price */
-	void SetPrice(int32 NewValue) { Price = NewValue;  }
-	/** @brief Returns true if Price matches the default value */
-	bool IsPriceDefaultValue() const { return Price == 0; }
-	/** @brief Sets the value of Price to its default  */
-	void SetPriceToDefault() { Price = 0;  }
+	int32 Price_Optional{  };
+	/** @brief true if Price_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Price_IsSet{ false };
+	/** @brief Gets the value of Price_Optional, regardless of it having been set */
+	int32& GetPrice() { return Price_Optional; }
+	/** @brief Gets the value of Price_Optional, regardless of it having been set */
+	const int32& GetPrice() const { return Price_Optional; }
+	/** @brief Gets the value of Price_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetPrice(const int32& DefaultValue) const { if (Price_IsSet) return Price_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Price_Optional and returns true if it has been set, otherwise returns false */
+	bool GetPrice(int32& OutValue) const { if (Price_IsSet) OutValue = Price_Optional; return Price_IsSet; }
+	/** @brief Returns a pointer to Price_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetPriceOrNull() { if (Price_IsSet) return &Price_Optional; return nullptr; }
+	/** @brief Returns a pointer to Price_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetPriceOrNull() const { if (Price_IsSet) return &Price_Optional; return nullptr; }
+	/** @brief Sets the value of Price_Optional and also sets Price_IsSet to true */
+	void SetPrice(const int32& NewValue) { Price_Optional = NewValue; Price_IsSet = true; }
+	/** @brief Sets the value of Price_Optional and also sets Price_IsSet to true using move semantics */
+	void SetPrice(int32&& NewValue) { Price_Optional = NewValue; Price_IsSet = true; }
+	 /** @brief Clears the value of Price_Optional and sets Price_IsSet to false */
+	void ClearPrice() { Price_Optional = 0; Price_IsSet = false; }
+	/** @brief Returns true if Price_Optional is set and matches the default value */
+	bool IsPriceDefaultValue() const { return Price_IsSet && Price_Optional == 0; }
+	/** @brief Sets the value of Price_Optional to its default and also sets Price_IsSet to true */
+	void SetPriceToDefault() { Price_Optional = 0; Price_IsSet = true; }
 
 	/** @brief The Item used as the coupon for the purchase. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -86,13 +117,40 @@ struct RALLYHEREAPI_API FRHAPI_PurchasePrice : public FRHAPI_Model
 	/** @brief Returns a pointer to PriceCouponItemId_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetPriceCouponItemIdOrNull() const { if (PriceCouponItemId_IsSet) return &PriceCouponItemId_Optional; return nullptr; }
 	/** @brief Sets the value of PriceCouponItemId_Optional and also sets PriceCouponItemId_IsSet to true */
-	void SetPriceCouponItemId(int32 NewValue) { PriceCouponItemId_Optional = NewValue; PriceCouponItemId_IsSet = true; }
+	void SetPriceCouponItemId(const int32& NewValue) { PriceCouponItemId_Optional = NewValue; PriceCouponItemId_IsSet = true; }
+	/** @brief Sets the value of PriceCouponItemId_Optional and also sets PriceCouponItemId_IsSet to true using move semantics */
+	void SetPriceCouponItemId(int32&& NewValue) { PriceCouponItemId_Optional = NewValue; PriceCouponItemId_IsSet = true; }
 	 /** @brief Clears the value of PriceCouponItemId_Optional and sets PriceCouponItemId_IsSet to false */
 	void ClearPriceCouponItemId() { PriceCouponItemId_Optional = 0; PriceCouponItemId_IsSet = false; }
 	/** @brief Returns true if PriceCouponItemId_Optional is set and matches the default value */
 	bool IsPriceCouponItemIdDefaultValue() const { return PriceCouponItemId_IsSet && PriceCouponItemId_Optional == 0; }
 	/** @brief Sets the value of PriceCouponItemId_Optional to its default and also sets PriceCouponItemId_IsSet to true */
 	void SetPriceCouponItemIdToDefault() { PriceCouponItemId_Optional = 0; PriceCouponItemId_IsSet = true; }
+
+	/** @brief List of currencies for this purchase price */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TArray<FRHAPI_PurchasePriceCurrency> Currencies_Optional{  };
+	/** @brief true if Currencies_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Currencies_IsSet{ false };
+	/** @brief Gets the value of Currencies_Optional, regardless of it having been set */
+	TArray<FRHAPI_PurchasePriceCurrency>& GetCurrencies() { return Currencies_Optional; }
+	/** @brief Gets the value of Currencies_Optional, regardless of it having been set */
+	const TArray<FRHAPI_PurchasePriceCurrency>& GetCurrencies() const { return Currencies_Optional; }
+	/** @brief Gets the value of Currencies_Optional, if it has been set, otherwise it returns DefaultValue */
+	const TArray<FRHAPI_PurchasePriceCurrency>& GetCurrencies(const TArray<FRHAPI_PurchasePriceCurrency>& DefaultValue) const { if (Currencies_IsSet) return Currencies_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Currencies_Optional and returns true if it has been set, otherwise returns false */
+	bool GetCurrencies(TArray<FRHAPI_PurchasePriceCurrency>& OutValue) const { if (Currencies_IsSet) OutValue = Currencies_Optional; return Currencies_IsSet; }
+	/** @brief Returns a pointer to Currencies_Optional, if it has been set, otherwise returns nullptr */
+	TArray<FRHAPI_PurchasePriceCurrency>* GetCurrenciesOrNull() { if (Currencies_IsSet) return &Currencies_Optional; return nullptr; }
+	/** @brief Returns a pointer to Currencies_Optional, if it has been set, otherwise returns nullptr */
+	const TArray<FRHAPI_PurchasePriceCurrency>* GetCurrenciesOrNull() const { if (Currencies_IsSet) return &Currencies_Optional; return nullptr; }
+	/** @brief Sets the value of Currencies_Optional and also sets Currencies_IsSet to true */
+	void SetCurrencies(const TArray<FRHAPI_PurchasePriceCurrency>& NewValue) { Currencies_Optional = NewValue; Currencies_IsSet = true; }
+	/** @brief Sets the value of Currencies_Optional and also sets Currencies_IsSet to true using move semantics */
+	void SetCurrencies(TArray<FRHAPI_PurchasePriceCurrency>&& NewValue) { Currencies_Optional = NewValue; Currencies_IsSet = true; }
+	 /** @brief Clears the value of Currencies_Optional and sets Currencies_IsSet to false */
+	void ClearCurrencies() { Currencies_IsSet = false; }
 };
 
 /** @} */

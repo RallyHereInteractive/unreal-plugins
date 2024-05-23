@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_BodyBeginNewSession : public FRHAPI_Model
 	/** @brief Gets the value of CountryCode */
 	const FString& GetCountryCode() const { return CountryCode; }
 	/** @brief Sets the value of CountryCode */
-	void SetCountryCode(FString NewValue) { CountryCode = NewValue;  }
+	void SetCountryCode(const FString& NewValue) { CountryCode = NewValue;  }
+	/** @brief Sets the value of CountryCode using move semantics */
+	void SetCountryCode(FString&& NewValue) { CountryCode = NewValue;  }
 
 	/** @brief Unique Identifier for the device a session is started on.  E.g should be the same for multiple users on the same device. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -68,7 +70,9 @@ struct RALLYHEREAPI_API FRHAPI_BodyBeginNewSession : public FRHAPI_Model
 	/** @brief Returns a pointer to DeviceId_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetDeviceIdOrNull() const { if (DeviceId_IsSet) return &DeviceId_Optional; return nullptr; }
 	/** @brief Sets the value of DeviceId_Optional and also sets DeviceId_IsSet to true */
-	void SetDeviceId(FString NewValue) { DeviceId_Optional = NewValue; DeviceId_IsSet = true; }
+	void SetDeviceId(const FString& NewValue) { DeviceId_Optional = NewValue; DeviceId_IsSet = true; }
+	/** @brief Sets the value of DeviceId_Optional and also sets DeviceId_IsSet to true using move semantics */
+	void SetDeviceId(FString&& NewValue) { DeviceId_Optional = NewValue; DeviceId_IsSet = true; }
 	 /** @brief Clears the value of DeviceId_Optional and sets DeviceId_IsSet to false */
 	void ClearDeviceId() { DeviceId_IsSet = false; }
 };

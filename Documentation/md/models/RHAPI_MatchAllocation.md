@@ -22,7 +22,8 @@ struct FRHAPI_MatchAllocation
 `public virtual void `[`WriteJson`](#structFRHAPI__MatchAllocation_1ab828cb823e2e08717f526f2f7f1ce61e)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetAllocationId`](#structFRHAPI__MatchAllocation_1a73f7061eded6be56a570e700437ba7bf)`()` | Gets the value of AllocationId.
 `public inline const FString & `[`GetAllocationId`](#structFRHAPI__MatchAllocation_1a1914dff0951bd239fc38b0c943432842)`() const` | Gets the value of AllocationId.
-`public inline void `[`SetAllocationId`](#structFRHAPI__MatchAllocation_1a81566654cc39d8728c1b8215506c7b9f)`(FString NewValue)` | Sets the value of AllocationId.
+`public inline void `[`SetAllocationId`](#structFRHAPI__MatchAllocation_1a280e4d2923e0a42fb40d4ad6cd8cd674)`(const FString & NewValue)` | Sets the value of AllocationId.
+`public inline void `[`SetAllocationId`](#structFRHAPI__MatchAllocation_1a5ed79863fa36e9af70ad7100629239bc)`(FString && NewValue)` | Sets the value of AllocationId using move semantics.
 
 ### Members
 
@@ -55,7 +56,11 @@ Gets the value of AllocationId.
 
 Gets the value of AllocationId.
 
-#### `public inline void `[`SetAllocationId`](#structFRHAPI__MatchAllocation_1a81566654cc39d8728c1b8215506c7b9f)`(FString NewValue)` <a id="structFRHAPI__MatchAllocation_1a81566654cc39d8728c1b8215506c7b9f"></a>
+#### `public inline void `[`SetAllocationId`](#structFRHAPI__MatchAllocation_1a280e4d2923e0a42fb40d4ad6cd8cd674)`(const FString & NewValue)` <a id="structFRHAPI__MatchAllocation_1a280e4d2923e0a42fb40d4ad6cd8cd674"></a>
 
 Sets the value of AllocationId.
+
+#### `public inline void `[`SetAllocationId`](#structFRHAPI__MatchAllocation_1a5ed79863fa36e9af70ad7100629239bc)`(FString && NewValue)` <a id="structFRHAPI__MatchAllocation_1a5ed79863fa36e9af70ad7100629239bc"></a>
+
+Sets the value of AllocationId using move semantics.
 

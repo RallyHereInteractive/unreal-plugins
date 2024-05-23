@@ -46,7 +46,9 @@ struct RALLYHEREAPI_API FRHAPI_CacheInfo : public FRHAPI_Model
 	/** @brief Gets the value of Etag */
 	const FString& GetEtag() const { return Etag; }
 	/** @brief Sets the value of Etag */
-	void SetEtag(FString NewValue) { Etag = NewValue;  }
+	void SetEtag(const FString& NewValue) { Etag = NewValue;  }
+	/** @brief Sets the value of Etag using move semantics */
+	void SetEtag(FString&& NewValue) { Etag = NewValue;  }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString StrRep_Optional{  };
@@ -66,7 +68,9 @@ struct RALLYHEREAPI_API FRHAPI_CacheInfo : public FRHAPI_Model
 	/** @brief Returns a pointer to StrRep_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetStrRepOrNull() const { if (StrRep_IsSet) return &StrRep_Optional; return nullptr; }
 	/** @brief Sets the value of StrRep_Optional and also sets StrRep_IsSet to true */
-	void SetStrRep(FString NewValue) { StrRep_Optional = NewValue; StrRep_IsSet = true; }
+	void SetStrRep(const FString& NewValue) { StrRep_Optional = NewValue; StrRep_IsSet = true; }
+	/** @brief Sets the value of StrRep_Optional and also sets StrRep_IsSet to true using move semantics */
+	void SetStrRep(FString&& NewValue) { StrRep_Optional = NewValue; StrRep_IsSet = true; }
 	 /** @brief Clears the value of StrRep_Optional and sets StrRep_IsSet to false */
 	void ClearStrRep() { StrRep_IsSet = false; }
 };

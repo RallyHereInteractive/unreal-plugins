@@ -60,7 +60,9 @@ struct RALLYHEREAPI_API FRHAPI_UpdateInventoryRequests : public FRHAPI_Model
 	/** @brief Returns a pointer to Source_Optional, if it has been set, otherwise returns nullptr */
 	const ERHAPI_Source* GetSourceOrNull() const { if (Source_IsSet) return &Source_Optional; return nullptr; }
 	/** @brief Sets the value of Source_Optional and also sets Source_IsSet to true */
-	void SetSource(ERHAPI_Source NewValue) { Source_Optional = NewValue; Source_IsSet = true; }
+	void SetSource(const ERHAPI_Source& NewValue) { Source_Optional = NewValue; Source_IsSet = true; }
+	/** @brief Sets the value of Source_Optional and also sets Source_IsSet to true using move semantics */
+	void SetSource(ERHAPI_Source&& NewValue) { Source_Optional = NewValue; Source_IsSet = true; }
 	 /** @brief Clears the value of Source_Optional and sets Source_IsSet to false */
 	void ClearSource() { Source_IsSet = false; }
 
@@ -83,7 +85,9 @@ struct RALLYHEREAPI_API FRHAPI_UpdateInventoryRequests : public FRHAPI_Model
 	/** @brief Returns a pointer to ClientOrderRefId_Optional, if it has been set, otherwise returns nullptr */
 	const FGuid* GetClientOrderRefIdOrNull() const { if (ClientOrderRefId_IsSet) return &ClientOrderRefId_Optional; return nullptr; }
 	/** @brief Sets the value of ClientOrderRefId_Optional and also sets ClientOrderRefId_IsSet to true */
-	void SetClientOrderRefId(FGuid NewValue) { ClientOrderRefId_Optional = NewValue; ClientOrderRefId_IsSet = true; }
+	void SetClientOrderRefId(const FGuid& NewValue) { ClientOrderRefId_Optional = NewValue; ClientOrderRefId_IsSet = true; }
+	/** @brief Sets the value of ClientOrderRefId_Optional and also sets ClientOrderRefId_IsSet to true using move semantics */
+	void SetClientOrderRefId(FGuid&& NewValue) { ClientOrderRefId_Optional = NewValue; ClientOrderRefId_IsSet = true; }
 	 /** @brief Clears the value of ClientOrderRefId_Optional and sets ClientOrderRefId_IsSet to false */
 	void ClearClientOrderRefId() { ClientOrderRefId_IsSet = false; }
 
@@ -95,7 +99,9 @@ struct RALLYHEREAPI_API FRHAPI_UpdateInventoryRequests : public FRHAPI_Model
 	/** @brief Gets the value of Inventory */
 	const TArray<FRHAPI_UpdateInventoryRequestById>& GetInventory() const { return Inventory; }
 	/** @brief Sets the value of Inventory */
-	void SetInventory(TArray<FRHAPI_UpdateInventoryRequestById> NewValue) { Inventory = NewValue;  }
+	void SetInventory(const TArray<FRHAPI_UpdateInventoryRequestById>& NewValue) { Inventory = NewValue;  }
+	/** @brief Sets the value of Inventory using move semantics */
+	void SetInventory(TArray<FRHAPI_UpdateInventoryRequestById>&& NewValue) { Inventory = NewValue;  }
 };
 
 /** @} */

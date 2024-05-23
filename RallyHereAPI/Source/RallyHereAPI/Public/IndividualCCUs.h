@@ -46,7 +46,9 @@ struct RALLYHEREAPI_API FRHAPI_IndividualCCUs : public FRHAPI_Model
 	/** @brief Gets the value of Ccus */
 	const TMap<FString, int32>& GetCcus() const { return Ccus; }
 	/** @brief Sets the value of Ccus */
-	void SetCcus(TMap<FString, int32> NewValue) { Ccus = NewValue;  }
+	void SetCcus(const TMap<FString, int32>& NewValue) { Ccus = NewValue;  }
+	/** @brief Sets the value of Ccus using move semantics */
+	void SetCcus(TMap<FString, int32>&& NewValue) { Ccus = NewValue;  }
 };
 
 /** @} */

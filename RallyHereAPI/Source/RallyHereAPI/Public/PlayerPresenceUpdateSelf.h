@@ -59,7 +59,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPresenceUpdateSelf : public FRHAPI_Model
 	/** @brief Returns a pointer to Status_Optional, if it has been set, otherwise returns nullptr */
 	const ERHAPI_OnlineStatus* GetStatusOrNull() const { if (Status_IsSet) return &Status_Optional; return nullptr; }
 	/** @brief Sets the value of Status_Optional and also sets Status_IsSet to true */
-	void SetStatus(ERHAPI_OnlineStatus NewValue) { Status_Optional = NewValue; Status_IsSet = true; }
+	void SetStatus(const ERHAPI_OnlineStatus& NewValue) { Status_Optional = NewValue; Status_IsSet = true; }
+	/** @brief Sets the value of Status_Optional and also sets Status_IsSet to true using move semantics */
+	void SetStatus(ERHAPI_OnlineStatus&& NewValue) { Status_Optional = NewValue; Status_IsSet = true; }
 	 /** @brief Clears the value of Status_Optional and sets Status_IsSet to false */
 	void ClearStatus() { Status_IsSet = false; }
 
@@ -82,7 +84,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPresenceUpdateSelf : public FRHAPI_Model
 	/** @brief Returns a pointer to Message_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetMessageOrNull() const { if (Message_IsSet) return &Message_Optional; return nullptr; }
 	/** @brief Sets the value of Message_Optional and also sets Message_IsSet to true */
-	void SetMessage(FString NewValue) { Message_Optional = NewValue; Message_IsSet = true; }
+	void SetMessage(const FString& NewValue) { Message_Optional = NewValue; Message_IsSet = true; }
+	/** @brief Sets the value of Message_Optional and also sets Message_IsSet to true using move semantics */
+	void SetMessage(FString&& NewValue) { Message_Optional = NewValue; Message_IsSet = true; }
 	 /** @brief Clears the value of Message_Optional and sets Message_IsSet to false */
 	void ClearMessage() { Message_IsSet = false; }
 
@@ -105,7 +109,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPresenceUpdateSelf : public FRHAPI_Model
 	/** @brief Returns a pointer to DoNotDisturb_Optional, if it has been set, otherwise returns nullptr */
 	const bool* GetDoNotDisturbOrNull() const { if (DoNotDisturb_IsSet) return &DoNotDisturb_Optional; return nullptr; }
 	/** @brief Sets the value of DoNotDisturb_Optional and also sets DoNotDisturb_IsSet to true */
-	void SetDoNotDisturb(bool NewValue) { DoNotDisturb_Optional = NewValue; DoNotDisturb_IsSet = true; }
+	void SetDoNotDisturb(const bool& NewValue) { DoNotDisturb_Optional = NewValue; DoNotDisturb_IsSet = true; }
+	/** @brief Sets the value of DoNotDisturb_Optional and also sets DoNotDisturb_IsSet to true using move semantics */
+	void SetDoNotDisturb(bool&& NewValue) { DoNotDisturb_Optional = NewValue; DoNotDisturb_IsSet = true; }
 	 /** @brief Clears the value of DoNotDisturb_Optional and sets DoNotDisturb_IsSet to false */
 	void ClearDoNotDisturb() { DoNotDisturb_Optional = false; DoNotDisturb_IsSet = false; }
 	/** @brief Returns true if DoNotDisturb_Optional is set and matches the default value */
@@ -132,7 +138,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPresenceUpdateSelf : public FRHAPI_Model
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
+	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
 	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false; }
 };

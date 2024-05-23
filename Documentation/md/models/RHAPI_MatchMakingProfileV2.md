@@ -37,25 +37,29 @@ A profile that describes what pools of players a session will be a part of when 
 `public virtual void `[`WriteJson`](#structFRHAPI__MatchMakingProfileV2_1aa6ebcdc58854a72f9cb8c75b9f86834c)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetMatchMakingProfileId`](#structFRHAPI__MatchMakingProfileV2_1a4ae3b82d9d3c2bb53a131330dfe71e59)`()` | Gets the value of MatchMakingProfileId.
 `public inline const FString & `[`GetMatchMakingProfileId`](#structFRHAPI__MatchMakingProfileV2_1a2546a8d06702b1dd5a24f4d001f98688)`() const` | Gets the value of MatchMakingProfileId.
-`public inline void `[`SetMatchMakingProfileId`](#structFRHAPI__MatchMakingProfileV2_1ad06533915af39e0591af3d6a135990ca)`(FString NewValue)` | Sets the value of MatchMakingProfileId.
+`public inline void `[`SetMatchMakingProfileId`](#structFRHAPI__MatchMakingProfileV2_1ac12fa1dff20955c44762e4c5ecf3644d)`(const FString & NewValue)` | Sets the value of MatchMakingProfileId.
+`public inline void `[`SetMatchMakingProfileId`](#structFRHAPI__MatchMakingProfileV2_1aa223a50f6f5b2e8c50e47104740464e4)`(FString && NewValue)` | Sets the value of MatchMakingProfileId using move semantics.
 `public inline ERHAPI_ProfileJoinMode & `[`GetJoinMode`](#structFRHAPI__MatchMakingProfileV2_1acca3ed8e4eaac20c40fc1cb590bc1a40)`()` | Gets the value of JoinMode_Optional, regardless of it having been set.
 `public inline const ERHAPI_ProfileJoinMode & `[`GetJoinMode`](#structFRHAPI__MatchMakingProfileV2_1af93faf8294555ca09913a242027c0e10)`() const` | Gets the value of JoinMode_Optional, regardless of it having been set.
 `public inline const ERHAPI_ProfileJoinMode & `[`GetJoinMode`](#structFRHAPI__MatchMakingProfileV2_1a470e7b74c7d01ff76ddbe193aae39050)`(const ERHAPI_ProfileJoinMode & DefaultValue) const` | Gets the value of JoinMode_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetJoinMode`](#structFRHAPI__MatchMakingProfileV2_1a698163252c3bc913772d2c6f7c046225)`(ERHAPI_ProfileJoinMode & OutValue) const` | Fills OutValue with the value of JoinMode_Optional and returns true if it has been set, otherwise returns false.
 `public inline ERHAPI_ProfileJoinMode * `[`GetJoinModeOrNull`](#structFRHAPI__MatchMakingProfileV2_1a951f51f8957ac2b177fb73d471ade8a9)`()` | Returns a pointer to JoinMode_Optional, if it has been set, otherwise returns nullptr.
 `public inline const ERHAPI_ProfileJoinMode * `[`GetJoinModeOrNull`](#structFRHAPI__MatchMakingProfileV2_1a473dbf0d119cd9c3a167816772d63ddc)`() const` | Returns a pointer to JoinMode_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetJoinMode`](#structFRHAPI__MatchMakingProfileV2_1af09ae2e4a0a93c57ef3441b3e0016897)`(ERHAPI_ProfileJoinMode NewValue)` | Sets the value of JoinMode_Optional and also sets JoinMode_IsSet to true.
+`public inline void `[`SetJoinMode`](#structFRHAPI__MatchMakingProfileV2_1ae419e9c8d1c3d6ba2092596618447518)`(const ERHAPI_ProfileJoinMode & NewValue)` | Sets the value of JoinMode_Optional and also sets JoinMode_IsSet to true.
+`public inline void `[`SetJoinMode`](#structFRHAPI__MatchMakingProfileV2_1a6e541aa635e3442b93c226fbdbd7e02f)`(ERHAPI_ProfileJoinMode && NewValue)` | Sets the value of JoinMode_Optional and also sets JoinMode_IsSet to true using move semantics.
 `public inline void `[`ClearJoinMode`](#structFRHAPI__MatchMakingProfileV2_1aab63f74fb4ae0fb21419a3cecdacb647)`()` | Clears the value of JoinMode_Optional and sets JoinMode_IsSet to false.
 `public inline FGuid & `[`GetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingProfileV2_1a8bd2d9571b74ae730f49da3265cd52d9)`()` | Gets the value of InstanceRequestTemplateId.
 `public inline const FGuid & `[`GetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingProfileV2_1a9b376d843d7b97b2540be8f226e7c3ea)`() const` | Gets the value of InstanceRequestTemplateId.
-`public inline void `[`SetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingProfileV2_1a983cd05dcafc65def71e70fa9a646598)`(FGuid NewValue)` | Sets the value of InstanceRequestTemplateId.
+`public inline void `[`SetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingProfileV2_1ae5c65b0dc895cdcdf081ebcb23d6822a)`(const FGuid & NewValue)` | Sets the value of InstanceRequestTemplateId.
+`public inline void `[`SetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingProfileV2_1a81bcba79254b0d4e94c95606031cbd23)`(FGuid && NewValue)` | Sets the value of InstanceRequestTemplateId using move semantics.
 `public inline FString & `[`GetRankId`](#structFRHAPI__MatchMakingProfileV2_1a072dcd90d711229eadc0a0b765233cac)`()` | Gets the value of RankId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetRankId`](#structFRHAPI__MatchMakingProfileV2_1a44e1a5ddc56d3d7d957aef529a008983)`() const` | Gets the value of RankId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetRankId`](#structFRHAPI__MatchMakingProfileV2_1a872d95940df64fe58cd9674fedd33126)`(const FString & DefaultValue) const` | Gets the value of RankId_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetRankId`](#structFRHAPI__MatchMakingProfileV2_1afc8b52a3625120cb5893535059288df1)`(FString & OutValue) const` | Fills OutValue with the value of RankId_Optional and returns true if it has been set, otherwise returns false.
 `public inline FString * `[`GetRankIdOrNull`](#structFRHAPI__MatchMakingProfileV2_1ad27d1e25492cd7c62834360f42897f42)`()` | Returns a pointer to RankId_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FString * `[`GetRankIdOrNull`](#structFRHAPI__MatchMakingProfileV2_1a2d2c3762f37155df05423c4ac7fb4a0e)`() const` | Returns a pointer to RankId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRankId`](#structFRHAPI__MatchMakingProfileV2_1ac8cd53f1c162284f8d88db8c56c05140)`(FString NewValue)` | Sets the value of RankId_Optional and also sets RankId_IsSet to true.
+`public inline void `[`SetRankId`](#structFRHAPI__MatchMakingProfileV2_1ae987b1b7e9b4ff7cf014c34ea4c1bd9f)`(const FString & NewValue)` | Sets the value of RankId_Optional and also sets RankId_IsSet to true.
+`public inline void `[`SetRankId`](#structFRHAPI__MatchMakingProfileV2_1a6354146a6e6fc04019044dcc47ad4ec4)`(FString && NewValue)` | Sets the value of RankId_Optional and also sets RankId_IsSet to true using move semantics.
 `public inline void `[`ClearRankId`](#structFRHAPI__MatchMakingProfileV2_1a897e53f524139e9885b59fe28ca26b6f)`()` | Clears the value of RankId_Optional and sets RankId_IsSet to false.
 `public inline int32 & `[`GetNumSides`](#structFRHAPI__MatchMakingProfileV2_1aa563f13e67e9b818e62f8a087a5bcb40)`()` | Gets the value of NumSides_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetNumSides`](#structFRHAPI__MatchMakingProfileV2_1a110ef77dbe42d217beb59c97bc2b46cb)`() const` | Gets the value of NumSides_Optional, regardless of it having been set.
@@ -63,7 +67,8 @@ A profile that describes what pools of players a session will be a part of when 
 `public inline bool `[`GetNumSides`](#structFRHAPI__MatchMakingProfileV2_1af343eff64a902f25d50fbf423b4f81f0)`(int32 & OutValue) const` | Fills OutValue with the value of NumSides_Optional and returns true if it has been set, otherwise returns false.
 `public inline int32 * `[`GetNumSidesOrNull`](#structFRHAPI__MatchMakingProfileV2_1acdf478cadb8c7e198b34958a5a7ceeb6)`()` | Returns a pointer to NumSides_Optional, if it has been set, otherwise returns nullptr.
 `public inline const int32 * `[`GetNumSidesOrNull`](#structFRHAPI__MatchMakingProfileV2_1a0b6f4509991348462aacee8c9b3ac0dd)`() const` | Returns a pointer to NumSides_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetNumSides`](#structFRHAPI__MatchMakingProfileV2_1a273701f77d1cedaa6550c048dd0ff244)`(int32 NewValue)` | Sets the value of NumSides_Optional and also sets NumSides_IsSet to true.
+`public inline void `[`SetNumSides`](#structFRHAPI__MatchMakingProfileV2_1ae37798f0eb286a17efe2eef35fb32cb4)`(const int32 & NewValue)` | Sets the value of NumSides_Optional and also sets NumSides_IsSet to true.
+`public inline void `[`SetNumSides`](#structFRHAPI__MatchMakingProfileV2_1a6062458d23aea2798770679f4c0f5454)`(int32 && NewValue)` | Sets the value of NumSides_Optional and also sets NumSides_IsSet to true using move semantics.
 `public inline void `[`ClearNumSides`](#structFRHAPI__MatchMakingProfileV2_1a4b5d018076f15a9cf92d33bb7422ffb3)`()` | Clears the value of NumSides_Optional and sets NumSides_IsSet to false.
 `public inline bool `[`IsNumSidesDefaultValue`](#structFRHAPI__MatchMakingProfileV2_1a66b7c48d8cc8248a686ddd756ab4bb78)`() const` | Returns true if NumSides_Optional is set and matches the default value.
 `public inline void `[`SetNumSidesToDefault`](#structFRHAPI__MatchMakingProfileV2_1a24a38c894c073d4219d42a06390d84bd)`()` | Sets the value of NumSides_Optional to its default and also sets NumSides_IsSet to true.
@@ -73,7 +78,8 @@ A profile that describes what pools of players a session will be a part of when 
 `public inline bool `[`GetMaxPlayersPerSide`](#structFRHAPI__MatchMakingProfileV2_1a31cda4199401eb0c57419e45a7c3810a)`(int32 & OutValue) const` | Fills OutValue with the value of MaxPlayersPerSide_Optional and returns true if it has been set, otherwise returns false.
 `public inline int32 * `[`GetMaxPlayersPerSideOrNull`](#structFRHAPI__MatchMakingProfileV2_1adafaa70e4226ea96b269d0a207359827)`()` | Returns a pointer to MaxPlayersPerSide_Optional, if it has been set, otherwise returns nullptr.
 `public inline const int32 * `[`GetMaxPlayersPerSideOrNull`](#structFRHAPI__MatchMakingProfileV2_1ada03ad1166940ce885192b921399afd5)`() const` | Returns a pointer to MaxPlayersPerSide_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetMaxPlayersPerSide`](#structFRHAPI__MatchMakingProfileV2_1a2277e9935a6a4cf8b78ad8552051e9c3)`(int32 NewValue)` | Sets the value of MaxPlayersPerSide_Optional and also sets MaxPlayersPerSide_IsSet to true.
+`public inline void `[`SetMaxPlayersPerSide`](#structFRHAPI__MatchMakingProfileV2_1a25833bb2c6389754f86a79992075dd87)`(const int32 & NewValue)` | Sets the value of MaxPlayersPerSide_Optional and also sets MaxPlayersPerSide_IsSet to true.
+`public inline void `[`SetMaxPlayersPerSide`](#structFRHAPI__MatchMakingProfileV2_1a6d6ec5802ed1461ed2d1e81185df311b)`(int32 && NewValue)` | Sets the value of MaxPlayersPerSide_Optional and also sets MaxPlayersPerSide_IsSet to true using move semantics.
 `public inline void `[`ClearMaxPlayersPerSide`](#structFRHAPI__MatchMakingProfileV2_1a8deb6676caa04797a00ad24169150878)`()` | Clears the value of MaxPlayersPerSide_Optional and sets MaxPlayersPerSide_IsSet to false.
 `public inline bool `[`IsMaxPlayersPerSideDefaultValue`](#structFRHAPI__MatchMakingProfileV2_1a834129c1dc734d80921a47a67ed13dbf)`() const` | Returns true if MaxPlayersPerSide_Optional is set and matches the default value.
 `public inline void `[`SetMaxPlayersPerSideToDefault`](#structFRHAPI__MatchMakingProfileV2_1a3641c66672a47129b61a22e239a89df2)`()` | Sets the value of MaxPlayersPerSide_Optional to its default and also sets MaxPlayersPerSide_IsSet to true.
@@ -83,7 +89,8 @@ A profile that describes what pools of players a session will be a part of when 
 `public inline bool `[`GetMinPlayersPerSide`](#structFRHAPI__MatchMakingProfileV2_1a8eecd9c9114cc4ef9a43fbf94dfee801)`(int32 & OutValue) const` | Fills OutValue with the value of MinPlayersPerSide_Optional and returns true if it has been set, otherwise returns false.
 `public inline int32 * `[`GetMinPlayersPerSideOrNull`](#structFRHAPI__MatchMakingProfileV2_1a5f657d787b0409f585eef7efd77a4efd)`()` | Returns a pointer to MinPlayersPerSide_Optional, if it has been set, otherwise returns nullptr.
 `public inline const int32 * `[`GetMinPlayersPerSideOrNull`](#structFRHAPI__MatchMakingProfileV2_1afc889300c68d018be0408236c110d827)`() const` | Returns a pointer to MinPlayersPerSide_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetMinPlayersPerSide`](#structFRHAPI__MatchMakingProfileV2_1a2d3046489c766d465fa104e5b8a1677a)`(int32 NewValue)` | Sets the value of MinPlayersPerSide_Optional and also sets MinPlayersPerSide_IsSet to true.
+`public inline void `[`SetMinPlayersPerSide`](#structFRHAPI__MatchMakingProfileV2_1a2e9108eeef924dd0e41cad257ca9e172)`(const int32 & NewValue)` | Sets the value of MinPlayersPerSide_Optional and also sets MinPlayersPerSide_IsSet to true.
+`public inline void `[`SetMinPlayersPerSide`](#structFRHAPI__MatchMakingProfileV2_1a559edadde5762af449dc71d2fa64aff0)`(int32 && NewValue)` | Sets the value of MinPlayersPerSide_Optional and also sets MinPlayersPerSide_IsSet to true using move semantics.
 `public inline void `[`ClearMinPlayersPerSide`](#structFRHAPI__MatchMakingProfileV2_1a718d5fad0a7afd7c7d123ecf3f6561a0)`()` | Clears the value of MinPlayersPerSide_Optional and sets MinPlayersPerSide_IsSet to false.
 `public inline bool `[`IsMinPlayersPerSideDefaultValue`](#structFRHAPI__MatchMakingProfileV2_1a815a3c8c494a1d04e3403918d4498f49)`() const` | Returns true if MinPlayersPerSide_Optional is set and matches the default value.
 `public inline void `[`SetMinPlayersPerSideToDefault`](#structFRHAPI__MatchMakingProfileV2_1a620b2a35235eed724c9f14d8df2ab3bc)`()` | Sets the value of MinPlayersPerSide_Optional to its default and also sets MinPlayersPerSide_IsSet to true.
@@ -93,7 +100,8 @@ A profile that describes what pools of players a session will be a part of when 
 `public inline bool `[`GetLegacyConfig`](#structFRHAPI__MatchMakingProfileV2_1a94ad71fbad7c8f49329b5bac9dd9be20)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & OutValue) const` | Fills OutValue with the value of LegacyConfig_Optional and returns true if it has been set, otherwise returns false.
 `public inline `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` * `[`GetLegacyConfigOrNull`](#structFRHAPI__MatchMakingProfileV2_1affd3bac0fc61edb4b9b67feb189eb4ca)`()` | Returns a pointer to LegacyConfig_Optional, if it has been set, otherwise returns nullptr.
 `public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` * `[`GetLegacyConfigOrNull`](#structFRHAPI__MatchMakingProfileV2_1ad8cabc5ac1976c08c6b8b8a3defd6988)`() const` | Returns a pointer to LegacyConfig_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetLegacyConfig`](#structFRHAPI__MatchMakingProfileV2_1a629a0a6f1cdfdc1fd1b53c33b01190b2)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` NewValue)` | Sets the value of LegacyConfig_Optional and also sets LegacyConfig_IsSet to true.
+`public inline void `[`SetLegacyConfig`](#structFRHAPI__MatchMakingProfileV2_1a5f73c1ccaf38bf99fc9ec5cdc7ddde21)`(const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & NewValue)` | Sets the value of LegacyConfig_Optional and also sets LegacyConfig_IsSet to true.
+`public inline void `[`SetLegacyConfig`](#structFRHAPI__MatchMakingProfileV2_1ac5b15400c0751f5855c67818409c328a)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` && NewValue)` | Sets the value of LegacyConfig_Optional and also sets LegacyConfig_IsSet to true using move semantics.
 `public inline void `[`ClearLegacyConfig`](#structFRHAPI__MatchMakingProfileV2_1aa51a7cf8d677bd0f57eed39122d5d6af)`()` | Clears the value of LegacyConfig_Optional and sets LegacyConfig_IsSet to false.
 
 ### Members
@@ -179,9 +187,13 @@ Gets the value of MatchMakingProfileId.
 
 Gets the value of MatchMakingProfileId.
 
-#### `public inline void `[`SetMatchMakingProfileId`](#structFRHAPI__MatchMakingProfileV2_1ad06533915af39e0591af3d6a135990ca)`(FString NewValue)` <a id="structFRHAPI__MatchMakingProfileV2_1ad06533915af39e0591af3d6a135990ca"></a>
+#### `public inline void `[`SetMatchMakingProfileId`](#structFRHAPI__MatchMakingProfileV2_1ac12fa1dff20955c44762e4c5ecf3644d)`(const FString & NewValue)` <a id="structFRHAPI__MatchMakingProfileV2_1ac12fa1dff20955c44762e4c5ecf3644d"></a>
 
 Sets the value of MatchMakingProfileId.
+
+#### `public inline void `[`SetMatchMakingProfileId`](#structFRHAPI__MatchMakingProfileV2_1aa223a50f6f5b2e8c50e47104740464e4)`(FString && NewValue)` <a id="structFRHAPI__MatchMakingProfileV2_1aa223a50f6f5b2e8c50e47104740464e4"></a>
+
+Sets the value of MatchMakingProfileId using move semantics.
 
 #### `public inline ERHAPI_ProfileJoinMode & `[`GetJoinMode`](#structFRHAPI__MatchMakingProfileV2_1acca3ed8e4eaac20c40fc1cb590bc1a40)`()` <a id="structFRHAPI__MatchMakingProfileV2_1acca3ed8e4eaac20c40fc1cb590bc1a40"></a>
 
@@ -207,9 +219,13 @@ Returns a pointer to JoinMode_Optional, if it has been set, otherwise returns nu
 
 Returns a pointer to JoinMode_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetJoinMode`](#structFRHAPI__MatchMakingProfileV2_1af09ae2e4a0a93c57ef3441b3e0016897)`(ERHAPI_ProfileJoinMode NewValue)` <a id="structFRHAPI__MatchMakingProfileV2_1af09ae2e4a0a93c57ef3441b3e0016897"></a>
+#### `public inline void `[`SetJoinMode`](#structFRHAPI__MatchMakingProfileV2_1ae419e9c8d1c3d6ba2092596618447518)`(const ERHAPI_ProfileJoinMode & NewValue)` <a id="structFRHAPI__MatchMakingProfileV2_1ae419e9c8d1c3d6ba2092596618447518"></a>
 
 Sets the value of JoinMode_Optional and also sets JoinMode_IsSet to true.
+
+#### `public inline void `[`SetJoinMode`](#structFRHAPI__MatchMakingProfileV2_1a6e541aa635e3442b93c226fbdbd7e02f)`(ERHAPI_ProfileJoinMode && NewValue)` <a id="structFRHAPI__MatchMakingProfileV2_1a6e541aa635e3442b93c226fbdbd7e02f"></a>
+
+Sets the value of JoinMode_Optional and also sets JoinMode_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearJoinMode`](#structFRHAPI__MatchMakingProfileV2_1aab63f74fb4ae0fb21419a3cecdacb647)`()` <a id="structFRHAPI__MatchMakingProfileV2_1aab63f74fb4ae0fb21419a3cecdacb647"></a>
 
@@ -223,9 +239,13 @@ Gets the value of InstanceRequestTemplateId.
 
 Gets the value of InstanceRequestTemplateId.
 
-#### `public inline void `[`SetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingProfileV2_1a983cd05dcafc65def71e70fa9a646598)`(FGuid NewValue)` <a id="structFRHAPI__MatchMakingProfileV2_1a983cd05dcafc65def71e70fa9a646598"></a>
+#### `public inline void `[`SetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingProfileV2_1ae5c65b0dc895cdcdf081ebcb23d6822a)`(const FGuid & NewValue)` <a id="structFRHAPI__MatchMakingProfileV2_1ae5c65b0dc895cdcdf081ebcb23d6822a"></a>
 
 Sets the value of InstanceRequestTemplateId.
+
+#### `public inline void `[`SetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingProfileV2_1a81bcba79254b0d4e94c95606031cbd23)`(FGuid && NewValue)` <a id="structFRHAPI__MatchMakingProfileV2_1a81bcba79254b0d4e94c95606031cbd23"></a>
+
+Sets the value of InstanceRequestTemplateId using move semantics.
 
 #### `public inline FString & `[`GetRankId`](#structFRHAPI__MatchMakingProfileV2_1a072dcd90d711229eadc0a0b765233cac)`()` <a id="structFRHAPI__MatchMakingProfileV2_1a072dcd90d711229eadc0a0b765233cac"></a>
 
@@ -251,9 +271,13 @@ Returns a pointer to RankId_Optional, if it has been set, otherwise returns null
 
 Returns a pointer to RankId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRankId`](#structFRHAPI__MatchMakingProfileV2_1ac8cd53f1c162284f8d88db8c56c05140)`(FString NewValue)` <a id="structFRHAPI__MatchMakingProfileV2_1ac8cd53f1c162284f8d88db8c56c05140"></a>
+#### `public inline void `[`SetRankId`](#structFRHAPI__MatchMakingProfileV2_1ae987b1b7e9b4ff7cf014c34ea4c1bd9f)`(const FString & NewValue)` <a id="structFRHAPI__MatchMakingProfileV2_1ae987b1b7e9b4ff7cf014c34ea4c1bd9f"></a>
 
 Sets the value of RankId_Optional and also sets RankId_IsSet to true.
+
+#### `public inline void `[`SetRankId`](#structFRHAPI__MatchMakingProfileV2_1a6354146a6e6fc04019044dcc47ad4ec4)`(FString && NewValue)` <a id="structFRHAPI__MatchMakingProfileV2_1a6354146a6e6fc04019044dcc47ad4ec4"></a>
+
+Sets the value of RankId_Optional and also sets RankId_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearRankId`](#structFRHAPI__MatchMakingProfileV2_1a897e53f524139e9885b59fe28ca26b6f)`()` <a id="structFRHAPI__MatchMakingProfileV2_1a897e53f524139e9885b59fe28ca26b6f"></a>
 
@@ -283,9 +307,13 @@ Returns a pointer to NumSides_Optional, if it has been set, otherwise returns nu
 
 Returns a pointer to NumSides_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetNumSides`](#structFRHAPI__MatchMakingProfileV2_1a273701f77d1cedaa6550c048dd0ff244)`(int32 NewValue)` <a id="structFRHAPI__MatchMakingProfileV2_1a273701f77d1cedaa6550c048dd0ff244"></a>
+#### `public inline void `[`SetNumSides`](#structFRHAPI__MatchMakingProfileV2_1ae37798f0eb286a17efe2eef35fb32cb4)`(const int32 & NewValue)` <a id="structFRHAPI__MatchMakingProfileV2_1ae37798f0eb286a17efe2eef35fb32cb4"></a>
 
 Sets the value of NumSides_Optional and also sets NumSides_IsSet to true.
+
+#### `public inline void `[`SetNumSides`](#structFRHAPI__MatchMakingProfileV2_1a6062458d23aea2798770679f4c0f5454)`(int32 && NewValue)` <a id="structFRHAPI__MatchMakingProfileV2_1a6062458d23aea2798770679f4c0f5454"></a>
+
+Sets the value of NumSides_Optional and also sets NumSides_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearNumSides`](#structFRHAPI__MatchMakingProfileV2_1a4b5d018076f15a9cf92d33bb7422ffb3)`()` <a id="structFRHAPI__MatchMakingProfileV2_1a4b5d018076f15a9cf92d33bb7422ffb3"></a>
 
@@ -323,9 +351,13 @@ Returns a pointer to MaxPlayersPerSide_Optional, if it has been set, otherwise r
 
 Returns a pointer to MaxPlayersPerSide_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetMaxPlayersPerSide`](#structFRHAPI__MatchMakingProfileV2_1a2277e9935a6a4cf8b78ad8552051e9c3)`(int32 NewValue)` <a id="structFRHAPI__MatchMakingProfileV2_1a2277e9935a6a4cf8b78ad8552051e9c3"></a>
+#### `public inline void `[`SetMaxPlayersPerSide`](#structFRHAPI__MatchMakingProfileV2_1a25833bb2c6389754f86a79992075dd87)`(const int32 & NewValue)` <a id="structFRHAPI__MatchMakingProfileV2_1a25833bb2c6389754f86a79992075dd87"></a>
 
 Sets the value of MaxPlayersPerSide_Optional and also sets MaxPlayersPerSide_IsSet to true.
+
+#### `public inline void `[`SetMaxPlayersPerSide`](#structFRHAPI__MatchMakingProfileV2_1a6d6ec5802ed1461ed2d1e81185df311b)`(int32 && NewValue)` <a id="structFRHAPI__MatchMakingProfileV2_1a6d6ec5802ed1461ed2d1e81185df311b"></a>
+
+Sets the value of MaxPlayersPerSide_Optional and also sets MaxPlayersPerSide_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearMaxPlayersPerSide`](#structFRHAPI__MatchMakingProfileV2_1a8deb6676caa04797a00ad24169150878)`()` <a id="structFRHAPI__MatchMakingProfileV2_1a8deb6676caa04797a00ad24169150878"></a>
 
@@ -363,9 +395,13 @@ Returns a pointer to MinPlayersPerSide_Optional, if it has been set, otherwise r
 
 Returns a pointer to MinPlayersPerSide_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetMinPlayersPerSide`](#structFRHAPI__MatchMakingProfileV2_1a2d3046489c766d465fa104e5b8a1677a)`(int32 NewValue)` <a id="structFRHAPI__MatchMakingProfileV2_1a2d3046489c766d465fa104e5b8a1677a"></a>
+#### `public inline void `[`SetMinPlayersPerSide`](#structFRHAPI__MatchMakingProfileV2_1a2e9108eeef924dd0e41cad257ca9e172)`(const int32 & NewValue)` <a id="structFRHAPI__MatchMakingProfileV2_1a2e9108eeef924dd0e41cad257ca9e172"></a>
 
 Sets the value of MinPlayersPerSide_Optional and also sets MinPlayersPerSide_IsSet to true.
+
+#### `public inline void `[`SetMinPlayersPerSide`](#structFRHAPI__MatchMakingProfileV2_1a559edadde5762af449dc71d2fa64aff0)`(int32 && NewValue)` <a id="structFRHAPI__MatchMakingProfileV2_1a559edadde5762af449dc71d2fa64aff0"></a>
+
+Sets the value of MinPlayersPerSide_Optional and also sets MinPlayersPerSide_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearMinPlayersPerSide`](#structFRHAPI__MatchMakingProfileV2_1a718d5fad0a7afd7c7d123ecf3f6561a0)`()` <a id="structFRHAPI__MatchMakingProfileV2_1a718d5fad0a7afd7c7d123ecf3f6561a0"></a>
 
@@ -403,9 +439,13 @@ Returns a pointer to LegacyConfig_Optional, if it has been set, otherwise return
 
 Returns a pointer to LegacyConfig_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetLegacyConfig`](#structFRHAPI__MatchMakingProfileV2_1a629a0a6f1cdfdc1fd1b53c33b01190b2)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` NewValue)` <a id="structFRHAPI__MatchMakingProfileV2_1a629a0a6f1cdfdc1fd1b53c33b01190b2"></a>
+#### `public inline void `[`SetLegacyConfig`](#structFRHAPI__MatchMakingProfileV2_1a5f73c1ccaf38bf99fc9ec5cdc7ddde21)`(const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & NewValue)` <a id="structFRHAPI__MatchMakingProfileV2_1a5f73c1ccaf38bf99fc9ec5cdc7ddde21"></a>
 
 Sets the value of LegacyConfig_Optional and also sets LegacyConfig_IsSet to true.
+
+#### `public inline void `[`SetLegacyConfig`](#structFRHAPI__MatchMakingProfileV2_1ac5b15400c0751f5855c67818409c328a)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` && NewValue)` <a id="structFRHAPI__MatchMakingProfileV2_1ac5b15400c0751f5855c67818409c328a"></a>
+
+Sets the value of LegacyConfig_Optional and also sets LegacyConfig_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearLegacyConfig`](#structFRHAPI__MatchMakingProfileV2_1aa51a7cf8d677bd0f57eed39122d5d6af)`()` <a id="structFRHAPI__MatchMakingProfileV2_1aa51a7cf8d677bd0f57eed39122d5d6af"></a>
 

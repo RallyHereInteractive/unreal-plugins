@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_BackfillInfo : public FRHAPI_Model
 	/** @brief Gets the value of BackfillId */
 	const FString& GetBackfillId() const { return BackfillId; }
 	/** @brief Sets the value of BackfillId */
-	void SetBackfillId(FString NewValue) { BackfillId = NewValue;  }
+	void SetBackfillId(const FString& NewValue) { BackfillId = NewValue;  }
+	/** @brief Sets the value of BackfillId using move semantics */
+	void SetBackfillId(FString&& NewValue) { BackfillId = NewValue;  }
 
 	/** @brief Optional additional extensions used when acknowledging backfill requests */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -68,7 +70,9 @@ struct RALLYHEREAPI_API FRHAPI_BackfillInfo : public FRHAPI_Model
 	/** @brief Returns a pointer to Extensions_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FString>* GetExtensionsOrNull() const { if (Extensions_IsSet) return &Extensions_Optional; return nullptr; }
 	/** @brief Sets the value of Extensions_Optional and also sets Extensions_IsSet to true */
-	void SetExtensions(TMap<FString, FString> NewValue) { Extensions_Optional = NewValue; Extensions_IsSet = true; }
+	void SetExtensions(const TMap<FString, FString>& NewValue) { Extensions_Optional = NewValue; Extensions_IsSet = true; }
+	/** @brief Sets the value of Extensions_Optional and also sets Extensions_IsSet to true using move semantics */
+	void SetExtensions(TMap<FString, FString>&& NewValue) { Extensions_Optional = NewValue; Extensions_IsSet = true; }
 	 /** @brief Clears the value of Extensions_Optional and sets Extensions_IsSet to false */
 	void ClearExtensions() { Extensions_IsSet = false; }
 };

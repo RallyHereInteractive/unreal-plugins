@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_RankData : public FRHAPI_Model
 	/** @brief Gets the value of Mu */
 	const float& GetMu() const { return Mu; }
 	/** @brief Sets the value of Mu */
-	void SetMu(float NewValue) { Mu = NewValue;  }
+	void SetMu(const float& NewValue) { Mu = NewValue;  }
+	/** @brief Sets the value of Mu using move semantics */
+	void SetMu(float&& NewValue) { Mu = NewValue;  }
 
 	/** @brief A measure of how confident we are in the perceived skill (high sigma means low confidence) */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -57,7 +59,9 @@ struct RALLYHEREAPI_API FRHAPI_RankData : public FRHAPI_Model
 	/** @brief Gets the value of Sigma */
 	const float& GetSigma() const { return Sigma; }
 	/** @brief Sets the value of Sigma */
-	void SetSigma(float NewValue) { Sigma = NewValue;  }
+	void SetSigma(const float& NewValue) { Sigma = NewValue;  }
+	/** @brief Sets the value of Sigma using move semantics */
+	void SetSigma(float&& NewValue) { Sigma = NewValue;  }
 
 	/** @brief Custom key-value player rank data */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -78,7 +82,9 @@ struct RALLYHEREAPI_API FRHAPI_RankData : public FRHAPI_Model
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
+	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
 	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false; }
 };

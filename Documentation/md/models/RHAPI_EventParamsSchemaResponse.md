@@ -22,7 +22,8 @@ struct FRHAPI_EventParamsSchemaResponse
 `public virtual void `[`WriteJson`](#structFRHAPI__EventParamsSchemaResponse_1a9343c960940188914be16ab41bf7ce41)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetEventParamSchemas`](#structFRHAPI__EventParamsSchemaResponse_1ac59fd588bf42e8a3fd8d63e4557f5072)`()` | Gets the value of EventParamSchemas.
 `public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetEventParamSchemas`](#structFRHAPI__EventParamsSchemaResponse_1a19f51b10761cc867c81d2ed06fd61b02)`() const` | Gets the value of EventParamSchemas.
-`public inline void `[`SetEventParamSchemas`](#structFRHAPI__EventParamsSchemaResponse_1a280eb9bd68257147c78af5c9b5ae113f)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` NewValue)` | Sets the value of EventParamSchemas.
+`public inline void `[`SetEventParamSchemas`](#structFRHAPI__EventParamsSchemaResponse_1acb8b642988bba54b7ad855bcf18c99eb)`(const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & NewValue)` | Sets the value of EventParamSchemas.
+`public inline void `[`SetEventParamSchemas`](#structFRHAPI__EventParamsSchemaResponse_1aeb9f1bd86e565de192b250bcade39243)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` && NewValue)` | Sets the value of EventParamSchemas using move semantics.
 
 ### Members
 
@@ -55,7 +56,11 @@ Gets the value of EventParamSchemas.
 
 Gets the value of EventParamSchemas.
 
-#### `public inline void `[`SetEventParamSchemas`](#structFRHAPI__EventParamsSchemaResponse_1a280eb9bd68257147c78af5c9b5ae113f)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` NewValue)` <a id="structFRHAPI__EventParamsSchemaResponse_1a280eb9bd68257147c78af5c9b5ae113f"></a>
+#### `public inline void `[`SetEventParamSchemas`](#structFRHAPI__EventParamsSchemaResponse_1acb8b642988bba54b7ad855bcf18c99eb)`(const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & NewValue)` <a id="structFRHAPI__EventParamsSchemaResponse_1acb8b642988bba54b7ad855bcf18c99eb"></a>
 
 Sets the value of EventParamSchemas.
+
+#### `public inline void `[`SetEventParamSchemas`](#structFRHAPI__EventParamsSchemaResponse_1aeb9f1bd86e565de192b250bcade39243)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` && NewValue)` <a id="structFRHAPI__EventParamsSchemaResponse_1aeb9f1bd86e565de192b250bcade39243"></a>
+
+Sets the value of EventParamSchemas using move semantics.
 

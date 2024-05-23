@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerLastSeenUpdate : public FRHAPI_Model
 	/** @brief Gets the value of Time */
 	const FDateTime& GetTime() const { return Time; }
 	/** @brief Sets the value of Time */
-	void SetTime(FDateTime NewValue) { Time = NewValue;  }
+	void SetTime(const FDateTime& NewValue) { Time = NewValue;  }
+	/** @brief Sets the value of Time using move semantics */
+	void SetTime(FDateTime&& NewValue) { Time = NewValue;  }
 
 	/** @brief Platform the user was online in */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -68,7 +70,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerLastSeenUpdate : public FRHAPI_Model
 	/** @brief Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetPlatformOrNull() const { if (Platform_IsSet) return &Platform_Optional; return nullptr; }
 	/** @brief Sets the value of Platform_Optional and also sets Platform_IsSet to true */
-	void SetPlatform(FString NewValue) { Platform_Optional = NewValue; Platform_IsSet = true; }
+	void SetPlatform(const FString& NewValue) { Platform_Optional = NewValue; Platform_IsSet = true; }
+	/** @brief Sets the value of Platform_Optional and also sets Platform_IsSet to true using move semantics */
+	void SetPlatform(FString&& NewValue) { Platform_Optional = NewValue; Platform_IsSet = true; }
 	 /** @brief Clears the value of Platform_Optional and sets Platform_IsSet to false */
 	void ClearPlatform() { Platform_IsSet = false; }
 
@@ -91,7 +95,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerLastSeenUpdate : public FRHAPI_Model
 	/** @brief Returns a pointer to DisplayName_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetDisplayNameOrNull() const { if (DisplayName_IsSet) return &DisplayName_Optional; return nullptr; }
 	/** @brief Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true */
-	void SetDisplayName(FString NewValue) { DisplayName_Optional = NewValue; DisplayName_IsSet = true; }
+	void SetDisplayName(const FString& NewValue) { DisplayName_Optional = NewValue; DisplayName_IsSet = true; }
+	/** @brief Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true using move semantics */
+	void SetDisplayName(FString&& NewValue) { DisplayName_Optional = NewValue; DisplayName_IsSet = true; }
 	 /** @brief Clears the value of DisplayName_Optional and sets DisplayName_IsSet to false */
 	void ClearDisplayName() { DisplayName_IsSet = false; }
 };

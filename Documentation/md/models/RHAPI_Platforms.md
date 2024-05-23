@@ -22,7 +22,8 @@ struct FRHAPI_Platforms
 `public virtual void `[`WriteJson`](#structFRHAPI__Platforms_1afced0f9ef246bfaeba1bc7a31f322267)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TArray< FString > & `[`GetPlatforms`](#structFRHAPI__Platforms_1a88e4d99e7376ee7ef9873104a9041192)`()` | Gets the value of Platforms.
 `public inline const TArray< FString > & `[`GetPlatforms`](#structFRHAPI__Platforms_1ab3d5d3d8ddcb4a1d3486c0706fffaf4a)`() const` | Gets the value of Platforms.
-`public inline void `[`SetPlatforms`](#structFRHAPI__Platforms_1a1451cc76b8f1d221dd8098449787c504)`(TArray< FString > NewValue)` | Sets the value of Platforms.
+`public inline void `[`SetPlatforms`](#structFRHAPI__Platforms_1ad6bc004022947fe42230560f31742688)`(const TArray< FString > & NewValue)` | Sets the value of Platforms.
+`public inline void `[`SetPlatforms`](#structFRHAPI__Platforms_1aea379b333439a8cf682ccc1f2d004e31)`(TArray< FString > && NewValue)` | Sets the value of Platforms using move semantics.
 
 ### Members
 
@@ -53,7 +54,11 @@ Gets the value of Platforms.
 
 Gets the value of Platforms.
 
-#### `public inline void `[`SetPlatforms`](#structFRHAPI__Platforms_1a1451cc76b8f1d221dd8098449787c504)`(TArray< FString > NewValue)` <a id="structFRHAPI__Platforms_1a1451cc76b8f1d221dd8098449787c504"></a>
+#### `public inline void `[`SetPlatforms`](#structFRHAPI__Platforms_1ad6bc004022947fe42230560f31742688)`(const TArray< FString > & NewValue)` <a id="structFRHAPI__Platforms_1ad6bc004022947fe42230560f31742688"></a>
 
 Sets the value of Platforms.
+
+#### `public inline void `[`SetPlatforms`](#structFRHAPI__Platforms_1aea379b333439a8cf682ccc1f2d004e31)`(TArray< FString > && NewValue)` <a id="structFRHAPI__Platforms_1aea379b333439a8cf682ccc1f2d004e31"></a>
+
+Sets the value of Platforms using move semantics.
 

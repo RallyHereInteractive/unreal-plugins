@@ -26,14 +26,7 @@ protected:
 
 	FString SearchMatchId;
 
-	int32 SearchPageSize;
-	TArray<ANSICHAR> SearchInstanceId;
-	TArray<ANSICHAR> SearchAllocationId;
-	TArray<ANSICHAR> SearchSessionId;
-	TArray<ANSICHAR> SearchHostPlayerUuid;
-	TArray<ANSICHAR> SearchRegionId;
-	TArray<ANSICHAR> SearchPlayerUuid;
-	TArray<ANSICHAR> SearchCursor;
+	FRH_MatchSearchParams SearchParams;
 
 	struct FFullSearchResult
 	{

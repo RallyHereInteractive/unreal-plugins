@@ -24,15 +24,18 @@ struct FRHAPI_InstanceHealthSettingsResponse
 `public virtual void `[`WriteJson`](#structFRHAPI__InstanceHealthSettingsResponse_1ac2b7bb8984eb933795253d167b9ef335)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline int32 & `[`GetCadenceSeconds`](#structFRHAPI__InstanceHealthSettingsResponse_1aa2176c0e6d984485a69b90b574216e5e)`()` | Gets the value of CadenceSeconds.
 `public inline const int32 & `[`GetCadenceSeconds`](#structFRHAPI__InstanceHealthSettingsResponse_1aeb95560afa937f11bfda49412f6fc386)`() const` | Gets the value of CadenceSeconds.
-`public inline void `[`SetCadenceSeconds`](#structFRHAPI__InstanceHealthSettingsResponse_1ac57a8ab5f1c3acb183bfc7fd5fb5ecc7)`(int32 NewValue)` | Sets the value of CadenceSeconds.
+`public inline void `[`SetCadenceSeconds`](#structFRHAPI__InstanceHealthSettingsResponse_1ad309c1a1ebd7872ac5242a2b708ebd65)`(const int32 & NewValue)` | Sets the value of CadenceSeconds.
+`public inline void `[`SetCadenceSeconds`](#structFRHAPI__InstanceHealthSettingsResponse_1a80909be5664c1b59f856e28294590960)`(int32 && NewValue)` | Sets the value of CadenceSeconds using move semantics.
 `public inline bool `[`IsCadenceSecondsDefaultValue`](#structFRHAPI__InstanceHealthSettingsResponse_1a7611b5c46586c2d8991c3199e8c269c4)`() const` | Returns true if CadenceSeconds matches the default value.
 `public inline void `[`SetCadenceSecondsToDefault`](#structFRHAPI__InstanceHealthSettingsResponse_1af06cb65f610db85ab0fb335d4a154087)`()` | Sets the value of CadenceSeconds to its default
 `public inline float & `[`GetUnhealthyHealthCheckPercentage`](#structFRHAPI__InstanceHealthSettingsResponse_1a735ba7014221f287a836b84c925437ae)`()` | Gets the value of UnhealthyHealthCheckPercentage.
 `public inline const float & `[`GetUnhealthyHealthCheckPercentage`](#structFRHAPI__InstanceHealthSettingsResponse_1a9603ca9d72c81b5de082d1388875cdbf)`() const` | Gets the value of UnhealthyHealthCheckPercentage.
-`public inline void `[`SetUnhealthyHealthCheckPercentage`](#structFRHAPI__InstanceHealthSettingsResponse_1a07f914dca1c21b24876f1310e859ae47)`(float NewValue)` | Sets the value of UnhealthyHealthCheckPercentage.
+`public inline void `[`SetUnhealthyHealthCheckPercentage`](#structFRHAPI__InstanceHealthSettingsResponse_1a9ab263121dd9dafa4e6ab0c832a45f64)`(const float & NewValue)` | Sets the value of UnhealthyHealthCheckPercentage.
+`public inline void `[`SetUnhealthyHealthCheckPercentage`](#structFRHAPI__InstanceHealthSettingsResponse_1ac2ade9ce0fe3ee109af198ae521c192f)`(float && NewValue)` | Sets the value of UnhealthyHealthCheckPercentage using move semantics.
 `public inline int32 & `[`GetMissedChecksBeforeUnknown`](#structFRHAPI__InstanceHealthSettingsResponse_1aae1cc8be31e9119af31779fca48ce0db)`()` | Gets the value of MissedChecksBeforeUnknown.
 `public inline const int32 & `[`GetMissedChecksBeforeUnknown`](#structFRHAPI__InstanceHealthSettingsResponse_1a03c67349ce4e805ac1accd041b481890)`() const` | Gets the value of MissedChecksBeforeUnknown.
-`public inline void `[`SetMissedChecksBeforeUnknown`](#structFRHAPI__InstanceHealthSettingsResponse_1a7db76e610b787cdca3c167a1f6bd62c7)`(int32 NewValue)` | Sets the value of MissedChecksBeforeUnknown.
+`public inline void `[`SetMissedChecksBeforeUnknown`](#structFRHAPI__InstanceHealthSettingsResponse_1adb3d870f99ba84c90d3ff907acd7adb6)`(const int32 & NewValue)` | Sets the value of MissedChecksBeforeUnknown.
+`public inline void `[`SetMissedChecksBeforeUnknown`](#structFRHAPI__InstanceHealthSettingsResponse_1a997f29cc7794297ace1ed0c19b53ef09)`(int32 && NewValue)` | Sets the value of MissedChecksBeforeUnknown using move semantics.
 `public inline bool `[`IsMissedChecksBeforeUnknownDefaultValue`](#structFRHAPI__InstanceHealthSettingsResponse_1ac5c50dad723924530c69a0ea7166fcc3)`() const` | Returns true if MissedChecksBeforeUnknown matches the default value.
 `public inline void `[`SetMissedChecksBeforeUnknownToDefault`](#structFRHAPI__InstanceHealthSettingsResponse_1a8664689c37913f913401736f03a9df95)`()` | Sets the value of MissedChecksBeforeUnknown to its default
 
@@ -75,9 +78,13 @@ Gets the value of CadenceSeconds.
 
 Gets the value of CadenceSeconds.
 
-#### `public inline void `[`SetCadenceSeconds`](#structFRHAPI__InstanceHealthSettingsResponse_1ac57a8ab5f1c3acb183bfc7fd5fb5ecc7)`(int32 NewValue)` <a id="structFRHAPI__InstanceHealthSettingsResponse_1ac57a8ab5f1c3acb183bfc7fd5fb5ecc7"></a>
+#### `public inline void `[`SetCadenceSeconds`](#structFRHAPI__InstanceHealthSettingsResponse_1ad309c1a1ebd7872ac5242a2b708ebd65)`(const int32 & NewValue)` <a id="structFRHAPI__InstanceHealthSettingsResponse_1ad309c1a1ebd7872ac5242a2b708ebd65"></a>
 
 Sets the value of CadenceSeconds.
+
+#### `public inline void `[`SetCadenceSeconds`](#structFRHAPI__InstanceHealthSettingsResponse_1a80909be5664c1b59f856e28294590960)`(int32 && NewValue)` <a id="structFRHAPI__InstanceHealthSettingsResponse_1a80909be5664c1b59f856e28294590960"></a>
+
+Sets the value of CadenceSeconds using move semantics.
 
 #### `public inline bool `[`IsCadenceSecondsDefaultValue`](#structFRHAPI__InstanceHealthSettingsResponse_1a7611b5c46586c2d8991c3199e8c269c4)`() const` <a id="structFRHAPI__InstanceHealthSettingsResponse_1a7611b5c46586c2d8991c3199e8c269c4"></a>
 
@@ -95,9 +102,13 @@ Gets the value of UnhealthyHealthCheckPercentage.
 
 Gets the value of UnhealthyHealthCheckPercentage.
 
-#### `public inline void `[`SetUnhealthyHealthCheckPercentage`](#structFRHAPI__InstanceHealthSettingsResponse_1a07f914dca1c21b24876f1310e859ae47)`(float NewValue)` <a id="structFRHAPI__InstanceHealthSettingsResponse_1a07f914dca1c21b24876f1310e859ae47"></a>
+#### `public inline void `[`SetUnhealthyHealthCheckPercentage`](#structFRHAPI__InstanceHealthSettingsResponse_1a9ab263121dd9dafa4e6ab0c832a45f64)`(const float & NewValue)` <a id="structFRHAPI__InstanceHealthSettingsResponse_1a9ab263121dd9dafa4e6ab0c832a45f64"></a>
 
 Sets the value of UnhealthyHealthCheckPercentage.
+
+#### `public inline void `[`SetUnhealthyHealthCheckPercentage`](#structFRHAPI__InstanceHealthSettingsResponse_1ac2ade9ce0fe3ee109af198ae521c192f)`(float && NewValue)` <a id="structFRHAPI__InstanceHealthSettingsResponse_1ac2ade9ce0fe3ee109af198ae521c192f"></a>
+
+Sets the value of UnhealthyHealthCheckPercentage using move semantics.
 
 #### `public inline int32 & `[`GetMissedChecksBeforeUnknown`](#structFRHAPI__InstanceHealthSettingsResponse_1aae1cc8be31e9119af31779fca48ce0db)`()` <a id="structFRHAPI__InstanceHealthSettingsResponse_1aae1cc8be31e9119af31779fca48ce0db"></a>
 
@@ -107,9 +118,13 @@ Gets the value of MissedChecksBeforeUnknown.
 
 Gets the value of MissedChecksBeforeUnknown.
 
-#### `public inline void `[`SetMissedChecksBeforeUnknown`](#structFRHAPI__InstanceHealthSettingsResponse_1a7db76e610b787cdca3c167a1f6bd62c7)`(int32 NewValue)` <a id="structFRHAPI__InstanceHealthSettingsResponse_1a7db76e610b787cdca3c167a1f6bd62c7"></a>
+#### `public inline void `[`SetMissedChecksBeforeUnknown`](#structFRHAPI__InstanceHealthSettingsResponse_1adb3d870f99ba84c90d3ff907acd7adb6)`(const int32 & NewValue)` <a id="structFRHAPI__InstanceHealthSettingsResponse_1adb3d870f99ba84c90d3ff907acd7adb6"></a>
 
 Sets the value of MissedChecksBeforeUnknown.
+
+#### `public inline void `[`SetMissedChecksBeforeUnknown`](#structFRHAPI__InstanceHealthSettingsResponse_1a997f29cc7794297ace1ed0c19b53ef09)`(int32 && NewValue)` <a id="structFRHAPI__InstanceHealthSettingsResponse_1a997f29cc7794297ace1ed0c19b53ef09"></a>
+
+Sets the value of MissedChecksBeforeUnknown using move semantics.
 
 #### `public inline bool `[`IsMissedChecksBeforeUnknownDefaultValue`](#structFRHAPI__InstanceHealthSettingsResponse_1ac5c50dad723924530c69a0ea7166fcc3)`() const` <a id="structFRHAPI__InstanceHealthSettingsResponse_1ac5c50dad723924530c69a0ea7166fcc3"></a>
 

@@ -31,10 +31,12 @@ How a Platform SKU will be converted into Loot for a player.
 `public virtual void `[`WriteJson`](#structFRHAPI__LootEntitlement_1abc9a3fe5a4eca7716ebc9e9765a0f8f1)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline ERHAPI_EntitlementType & `[`GetType`](#structFRHAPI__LootEntitlement_1a3273a989e504b5fb8285a3c4daaf27e7)`()` | Gets the value of Type.
 `public inline const ERHAPI_EntitlementType & `[`GetType`](#structFRHAPI__LootEntitlement_1aa87afaa4477efdc3a41837d1e24f50a6)`() const` | Gets the value of Type.
-`public inline void `[`SetType`](#structFRHAPI__LootEntitlement_1ad1c622ae79971a0dda502e51838e597c)`(ERHAPI_EntitlementType NewValue)` | Sets the value of Type.
+`public inline void `[`SetType`](#structFRHAPI__LootEntitlement_1a823022f67d94393021db001d3d0c9269)`(const ERHAPI_EntitlementType & NewValue)` | Sets the value of Type.
+`public inline void `[`SetType`](#structFRHAPI__LootEntitlement_1a95bb3d5d4b7936c71cf2a7b61e1b2aaf)`(ERHAPI_EntitlementType && NewValue)` | Sets the value of Type using move semantics.
 `public inline int32 & `[`GetLootId`](#structFRHAPI__LootEntitlement_1a41a4c7e648dd972b3cd87d87825fa083)`()` | Gets the value of LootId.
 `public inline const int32 & `[`GetLootId`](#structFRHAPI__LootEntitlement_1ab4a9a7cba3c748c16714834d29f85b48)`() const` | Gets the value of LootId.
-`public inline void `[`SetLootId`](#structFRHAPI__LootEntitlement_1a5c4c29c645ee103024e10b15e96045e0)`(int32 NewValue)` | Sets the value of LootId.
+`public inline void `[`SetLootId`](#structFRHAPI__LootEntitlement_1a5a7d6872ab1f824d8bac5c609d7d8c34)`(const int32 & NewValue)` | Sets the value of LootId.
+`public inline void `[`SetLootId`](#structFRHAPI__LootEntitlement_1af48c3bc963949a9e95ab6b8da3e1d8d1)`(int32 && NewValue)` | Sets the value of LootId using move semantics.
 `public inline bool `[`IsLootIdDefaultValue`](#structFRHAPI__LootEntitlement_1ae579a6fa258227322777f08030c8eb40)`() const` | Returns true if LootId matches the default value.
 `public inline void `[`SetLootIdToDefault`](#structFRHAPI__LootEntitlement_1ac109819d196188782622887410d4d28e)`()` | Sets the value of LootId to its default
 `public inline int32 & `[`GetRefundLootId`](#structFRHAPI__LootEntitlement_1a9399f83b2c094088ca664d966f9fa44d)`()` | Gets the value of RefundLootId_Optional, regardless of it having been set.
@@ -43,7 +45,8 @@ How a Platform SKU will be converted into Loot for a player.
 `public inline bool `[`GetRefundLootId`](#structFRHAPI__LootEntitlement_1a25e1304774b2f280bcd0eb04675f60f8)`(int32 & OutValue) const` | Fills OutValue with the value of RefundLootId_Optional and returns true if it has been set, otherwise returns false.
 `public inline int32 * `[`GetRefundLootIdOrNull`](#structFRHAPI__LootEntitlement_1a697fb355a0f2fd6c9f98974a0ac8c9c7)`()` | Returns a pointer to RefundLootId_Optional, if it has been set, otherwise returns nullptr.
 `public inline const int32 * `[`GetRefundLootIdOrNull`](#structFRHAPI__LootEntitlement_1aea08907a3b45debf01993b949289cdd1)`() const` | Returns a pointer to RefundLootId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRefundLootId`](#structFRHAPI__LootEntitlement_1a5e630eb6de55791f7bc1e367ed6263b6)`(int32 NewValue)` | Sets the value of RefundLootId_Optional and also sets RefundLootId_IsSet to true.
+`public inline void `[`SetRefundLootId`](#structFRHAPI__LootEntitlement_1a09de17b1d42671edb347576089741c8e)`(const int32 & NewValue)` | Sets the value of RefundLootId_Optional and also sets RefundLootId_IsSet to true.
+`public inline void `[`SetRefundLootId`](#structFRHAPI__LootEntitlement_1ac2f001079e115071edf5dad4f5e8a5f3)`(int32 && NewValue)` | Sets the value of RefundLootId_Optional and also sets RefundLootId_IsSet to true using move semantics.
 `public inline void `[`ClearRefundLootId`](#structFRHAPI__LootEntitlement_1ad077f707cd6cd27b7d2c17dbf6173ed4)`()` | Clears the value of RefundLootId_Optional and sets RefundLootId_IsSet to false.
 `public inline bool `[`IsRefundLootIdDefaultValue`](#structFRHAPI__LootEntitlement_1acfa22e319b5a5168758dae5ae3da3530)`() const` | Returns true if RefundLootId_Optional is set and matches the default value.
 `public inline void `[`SetRefundLootIdToDefault`](#structFRHAPI__LootEntitlement_1a90c354f4a45f98ff889f2c7cf565b076)`()` | Sets the value of RefundLootId_Optional to its default and also sets RefundLootId_IsSet to true.
@@ -53,7 +56,8 @@ How a Platform SKU will be converted into Loot for a player.
 `public inline bool `[`GetChargebackLootId`](#structFRHAPI__LootEntitlement_1a5333171229ac5e892f17d694498614b7)`(int32 & OutValue) const` | Fills OutValue with the value of ChargebackLootId_Optional and returns true if it has been set, otherwise returns false.
 `public inline int32 * `[`GetChargebackLootIdOrNull`](#structFRHAPI__LootEntitlement_1a6013e6f81d5f0cecbb362b55653ec3ce)`()` | Returns a pointer to ChargebackLootId_Optional, if it has been set, otherwise returns nullptr.
 `public inline const int32 * `[`GetChargebackLootIdOrNull`](#structFRHAPI__LootEntitlement_1a929bd11adaa8aa10cf7d2c7ca77d3ba1)`() const` | Returns a pointer to ChargebackLootId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetChargebackLootId`](#structFRHAPI__LootEntitlement_1a988e53a2abd2e6fe8850c8c725d88b47)`(int32 NewValue)` | Sets the value of ChargebackLootId_Optional and also sets ChargebackLootId_IsSet to true.
+`public inline void `[`SetChargebackLootId`](#structFRHAPI__LootEntitlement_1a2b64faa543dd5f4b272b4ce3977f1886)`(const int32 & NewValue)` | Sets the value of ChargebackLootId_Optional and also sets ChargebackLootId_IsSet to true.
+`public inline void `[`SetChargebackLootId`](#structFRHAPI__LootEntitlement_1ac81528dd24935bd845e1a55b43ab6078)`(int32 && NewValue)` | Sets the value of ChargebackLootId_Optional and also sets ChargebackLootId_IsSet to true using move semantics.
 `public inline void `[`ClearChargebackLootId`](#structFRHAPI__LootEntitlement_1a25a0c1795e1029da2535636175661589)`()` | Clears the value of ChargebackLootId_Optional and sets ChargebackLootId_IsSet to false.
 `public inline bool `[`IsChargebackLootIdDefaultValue`](#structFRHAPI__LootEntitlement_1a7fa2819951a44be101b5e3e5bbf5c2df)`() const` | Returns true if ChargebackLootId_Optional is set and matches the default value.
 `public inline void `[`SetChargebackLootIdToDefault`](#structFRHAPI__LootEntitlement_1aa7b189956e3e1c7387144f63bea3ca6e)`()` | Sets the value of ChargebackLootId_Optional to its default and also sets ChargebackLootId_IsSet to true.
@@ -63,7 +67,8 @@ How a Platform SKU will be converted into Loot for a player.
 `public inline bool `[`GetChargebackReversalLootId`](#structFRHAPI__LootEntitlement_1a250e6b338fa8a6e22699458c60314074)`(int32 & OutValue) const` | Fills OutValue with the value of ChargebackReversalLootId_Optional and returns true if it has been set, otherwise returns false.
 `public inline int32 * `[`GetChargebackReversalLootIdOrNull`](#structFRHAPI__LootEntitlement_1aca3944f636b1bc6ab7b6311cab9e368e)`()` | Returns a pointer to ChargebackReversalLootId_Optional, if it has been set, otherwise returns nullptr.
 `public inline const int32 * `[`GetChargebackReversalLootIdOrNull`](#structFRHAPI__LootEntitlement_1a9b738eb83ffbba3acebbad9090823bb5)`() const` | Returns a pointer to ChargebackReversalLootId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetChargebackReversalLootId`](#structFRHAPI__LootEntitlement_1acc90b8e7b96362c7c509c58b1ac2f919)`(int32 NewValue)` | Sets the value of ChargebackReversalLootId_Optional and also sets ChargebackReversalLootId_IsSet to true.
+`public inline void `[`SetChargebackReversalLootId`](#structFRHAPI__LootEntitlement_1a89d0c8c15b34e6da8760509d74a9e2f0)`(const int32 & NewValue)` | Sets the value of ChargebackReversalLootId_Optional and also sets ChargebackReversalLootId_IsSet to true.
+`public inline void `[`SetChargebackReversalLootId`](#structFRHAPI__LootEntitlement_1a3599bb72b2784514312a3f87ea599bbd)`(int32 && NewValue)` | Sets the value of ChargebackReversalLootId_Optional and also sets ChargebackReversalLootId_IsSet to true using move semantics.
 `public inline void `[`ClearChargebackReversalLootId`](#structFRHAPI__LootEntitlement_1af984b3ff858dcac14e6d4f6fb79ad74e)`()` | Clears the value of ChargebackReversalLootId_Optional and sets ChargebackReversalLootId_IsSet to false.
 `public inline bool `[`IsChargebackReversalLootIdDefaultValue`](#structFRHAPI__LootEntitlement_1aa0ba1b30005e46a5d6dc1d970308b1a7)`() const` | Returns true if ChargebackReversalLootId_Optional is set and matches the default value.
 `public inline void `[`SetChargebackReversalLootIdToDefault`](#structFRHAPI__LootEntitlement_1a742527a3389dffb53537bed7a00a6749)`()` | Sets the value of ChargebackReversalLootId_Optional to its default and also sets ChargebackReversalLootId_IsSet to true.
@@ -127,9 +132,13 @@ Gets the value of Type.
 
 Gets the value of Type.
 
-#### `public inline void `[`SetType`](#structFRHAPI__LootEntitlement_1ad1c622ae79971a0dda502e51838e597c)`(ERHAPI_EntitlementType NewValue)` <a id="structFRHAPI__LootEntitlement_1ad1c622ae79971a0dda502e51838e597c"></a>
+#### `public inline void `[`SetType`](#structFRHAPI__LootEntitlement_1a823022f67d94393021db001d3d0c9269)`(const ERHAPI_EntitlementType & NewValue)` <a id="structFRHAPI__LootEntitlement_1a823022f67d94393021db001d3d0c9269"></a>
 
 Sets the value of Type.
+
+#### `public inline void `[`SetType`](#structFRHAPI__LootEntitlement_1a95bb3d5d4b7936c71cf2a7b61e1b2aaf)`(ERHAPI_EntitlementType && NewValue)` <a id="structFRHAPI__LootEntitlement_1a95bb3d5d4b7936c71cf2a7b61e1b2aaf"></a>
+
+Sets the value of Type using move semantics.
 
 #### `public inline int32 & `[`GetLootId`](#structFRHAPI__LootEntitlement_1a41a4c7e648dd972b3cd87d87825fa083)`()` <a id="structFRHAPI__LootEntitlement_1a41a4c7e648dd972b3cd87d87825fa083"></a>
 
@@ -139,9 +148,13 @@ Gets the value of LootId.
 
 Gets the value of LootId.
 
-#### `public inline void `[`SetLootId`](#structFRHAPI__LootEntitlement_1a5c4c29c645ee103024e10b15e96045e0)`(int32 NewValue)` <a id="structFRHAPI__LootEntitlement_1a5c4c29c645ee103024e10b15e96045e0"></a>
+#### `public inline void `[`SetLootId`](#structFRHAPI__LootEntitlement_1a5a7d6872ab1f824d8bac5c609d7d8c34)`(const int32 & NewValue)` <a id="structFRHAPI__LootEntitlement_1a5a7d6872ab1f824d8bac5c609d7d8c34"></a>
 
 Sets the value of LootId.
+
+#### `public inline void `[`SetLootId`](#structFRHAPI__LootEntitlement_1af48c3bc963949a9e95ab6b8da3e1d8d1)`(int32 && NewValue)` <a id="structFRHAPI__LootEntitlement_1af48c3bc963949a9e95ab6b8da3e1d8d1"></a>
+
+Sets the value of LootId using move semantics.
 
 #### `public inline bool `[`IsLootIdDefaultValue`](#structFRHAPI__LootEntitlement_1ae579a6fa258227322777f08030c8eb40)`() const` <a id="structFRHAPI__LootEntitlement_1ae579a6fa258227322777f08030c8eb40"></a>
 
@@ -175,9 +188,13 @@ Returns a pointer to RefundLootId_Optional, if it has been set, otherwise return
 
 Returns a pointer to RefundLootId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRefundLootId`](#structFRHAPI__LootEntitlement_1a5e630eb6de55791f7bc1e367ed6263b6)`(int32 NewValue)` <a id="structFRHAPI__LootEntitlement_1a5e630eb6de55791f7bc1e367ed6263b6"></a>
+#### `public inline void `[`SetRefundLootId`](#structFRHAPI__LootEntitlement_1a09de17b1d42671edb347576089741c8e)`(const int32 & NewValue)` <a id="structFRHAPI__LootEntitlement_1a09de17b1d42671edb347576089741c8e"></a>
 
 Sets the value of RefundLootId_Optional and also sets RefundLootId_IsSet to true.
+
+#### `public inline void `[`SetRefundLootId`](#structFRHAPI__LootEntitlement_1ac2f001079e115071edf5dad4f5e8a5f3)`(int32 && NewValue)` <a id="structFRHAPI__LootEntitlement_1ac2f001079e115071edf5dad4f5e8a5f3"></a>
+
+Sets the value of RefundLootId_Optional and also sets RefundLootId_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearRefundLootId`](#structFRHAPI__LootEntitlement_1ad077f707cd6cd27b7d2c17dbf6173ed4)`()` <a id="structFRHAPI__LootEntitlement_1ad077f707cd6cd27b7d2c17dbf6173ed4"></a>
 
@@ -215,9 +232,13 @@ Returns a pointer to ChargebackLootId_Optional, if it has been set, otherwise re
 
 Returns a pointer to ChargebackLootId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetChargebackLootId`](#structFRHAPI__LootEntitlement_1a988e53a2abd2e6fe8850c8c725d88b47)`(int32 NewValue)` <a id="structFRHAPI__LootEntitlement_1a988e53a2abd2e6fe8850c8c725d88b47"></a>
+#### `public inline void `[`SetChargebackLootId`](#structFRHAPI__LootEntitlement_1a2b64faa543dd5f4b272b4ce3977f1886)`(const int32 & NewValue)` <a id="structFRHAPI__LootEntitlement_1a2b64faa543dd5f4b272b4ce3977f1886"></a>
 
 Sets the value of ChargebackLootId_Optional and also sets ChargebackLootId_IsSet to true.
+
+#### `public inline void `[`SetChargebackLootId`](#structFRHAPI__LootEntitlement_1ac81528dd24935bd845e1a55b43ab6078)`(int32 && NewValue)` <a id="structFRHAPI__LootEntitlement_1ac81528dd24935bd845e1a55b43ab6078"></a>
+
+Sets the value of ChargebackLootId_Optional and also sets ChargebackLootId_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearChargebackLootId`](#structFRHAPI__LootEntitlement_1a25a0c1795e1029da2535636175661589)`()` <a id="structFRHAPI__LootEntitlement_1a25a0c1795e1029da2535636175661589"></a>
 
@@ -255,9 +276,13 @@ Returns a pointer to ChargebackReversalLootId_Optional, if it has been set, othe
 
 Returns a pointer to ChargebackReversalLootId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetChargebackReversalLootId`](#structFRHAPI__LootEntitlement_1acc90b8e7b96362c7c509c58b1ac2f919)`(int32 NewValue)` <a id="structFRHAPI__LootEntitlement_1acc90b8e7b96362c7c509c58b1ac2f919"></a>
+#### `public inline void `[`SetChargebackReversalLootId`](#structFRHAPI__LootEntitlement_1a89d0c8c15b34e6da8760509d74a9e2f0)`(const int32 & NewValue)` <a id="structFRHAPI__LootEntitlement_1a89d0c8c15b34e6da8760509d74a9e2f0"></a>
 
 Sets the value of ChargebackReversalLootId_Optional and also sets ChargebackReversalLootId_IsSet to true.
+
+#### `public inline void `[`SetChargebackReversalLootId`](#structFRHAPI__LootEntitlement_1a3599bb72b2784514312a3f87ea599bbd)`(int32 && NewValue)` <a id="structFRHAPI__LootEntitlement_1a3599bb72b2784514312a3f87ea599bbd"></a>
+
+Sets the value of ChargebackReversalLootId_Optional and also sets ChargebackReversalLootId_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearChargebackReversalLootId`](#structFRHAPI__LootEntitlement_1af984b3ff858dcac14e6d4f6fb79ad74e)`()` <a id="structFRHAPI__LootEntitlement_1af984b3ff858dcac14e6d4f6fb79ad74e"></a>
 

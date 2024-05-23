@@ -57,7 +57,9 @@ struct RALLYHEREAPI_API FRHAPI_HzApiErrorModel : public FRHAPI_Model
 	/** @brief Returns a pointer to AuthSuccess_Optional, if it has been set, otherwise returns nullptr */
 	const bool* GetAuthSuccessOrNull() const { if (AuthSuccess_IsSet) return &AuthSuccess_Optional; return nullptr; }
 	/** @brief Sets the value of AuthSuccess_Optional and also sets AuthSuccess_IsSet to true */
-	void SetAuthSuccess(bool NewValue) { AuthSuccess_Optional = NewValue; AuthSuccess_IsSet = true; }
+	void SetAuthSuccess(const bool& NewValue) { AuthSuccess_Optional = NewValue; AuthSuccess_IsSet = true; }
+	/** @brief Sets the value of AuthSuccess_Optional and also sets AuthSuccess_IsSet to true using move semantics */
+	void SetAuthSuccess(bool&& NewValue) { AuthSuccess_Optional = NewValue; AuthSuccess_IsSet = true; }
 	 /** @brief Clears the value of AuthSuccess_Optional and sets AuthSuccess_IsSet to false */
 	void ClearAuthSuccess() { AuthSuccess_Optional = true; AuthSuccess_IsSet = false; }
 	/** @brief Returns true if AuthSuccess_Optional is set and matches the default value */
@@ -72,7 +74,9 @@ struct RALLYHEREAPI_API FRHAPI_HzApiErrorModel : public FRHAPI_Model
 	/** @brief Gets the value of ErrorCode */
 	const FString& GetErrorCode() const { return ErrorCode; }
 	/** @brief Sets the value of ErrorCode */
-	void SetErrorCode(FString NewValue) { ErrorCode = NewValue;  }
+	void SetErrorCode(const FString& NewValue) { ErrorCode = NewValue;  }
+	/** @brief Sets the value of ErrorCode using move semantics */
+	void SetErrorCode(FString&& NewValue) { ErrorCode = NewValue;  }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Desc{  };
@@ -81,7 +85,9 @@ struct RALLYHEREAPI_API FRHAPI_HzApiErrorModel : public FRHAPI_Model
 	/** @brief Gets the value of Desc */
 	const FString& GetDesc() const { return Desc; }
 	/** @brief Sets the value of Desc */
-	void SetDesc(FString NewValue) { Desc = NewValue;  }
+	void SetDesc(const FString& NewValue) { Desc = NewValue;  }
+	/** @brief Sets the value of Desc using move semantics */
+	void SetDesc(FString&& NewValue) { Desc = NewValue;  }
 };
 
 /** @} */

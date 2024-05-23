@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_BackfillTeam : public FRHAPI_Model
 	/** @brief Gets the value of PlayersRequired */
 	const int32& GetPlayersRequired() const { return PlayersRequired; }
 	/** @brief Sets the value of PlayersRequired */
-	void SetPlayersRequired(int32 NewValue) { PlayersRequired = NewValue;  }
+	void SetPlayersRequired(const int32& NewValue) { PlayersRequired = NewValue;  }
+	/** @brief Sets the value of PlayersRequired using move semantics */
+	void SetPlayersRequired(int32&& NewValue) { PlayersRequired = NewValue;  }
 	/** @brief Returns true if PlayersRequired matches the default value */
 	bool IsPlayersRequiredDefaultValue() const { return PlayersRequired == 0; }
 	/** @brief Sets the value of PlayersRequired to its default  */
@@ -61,7 +63,9 @@ struct RALLYHEREAPI_API FRHAPI_BackfillTeam : public FRHAPI_Model
 	/** @brief Gets the value of TeamId */
 	const int32& GetTeamId() const { return TeamId; }
 	/** @brief Sets the value of TeamId */
-	void SetTeamId(int32 NewValue) { TeamId = NewValue;  }
+	void SetTeamId(const int32& NewValue) { TeamId = NewValue;  }
+	/** @brief Sets the value of TeamId using move semantics */
+	void SetTeamId(int32&& NewValue) { TeamId = NewValue;  }
 	/** @brief Returns true if TeamId matches the default value */
 	bool IsTeamIdDefaultValue() const { return TeamId == 0; }
 	/** @brief Sets the value of TeamId to its default  */

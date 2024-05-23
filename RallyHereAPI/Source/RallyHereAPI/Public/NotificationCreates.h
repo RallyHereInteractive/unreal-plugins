@@ -48,7 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_NotificationCreates : public FRHAPI_Model
 	/** @brief Gets the value of Notifications */
 	const TArray<FRHAPI_NotificationCreate>& GetNotifications() const { return Notifications; }
 	/** @brief Sets the value of Notifications */
-	void SetNotifications(TArray<FRHAPI_NotificationCreate> NewValue) { Notifications = NewValue;  }
+	void SetNotifications(const TArray<FRHAPI_NotificationCreate>& NewValue) { Notifications = NewValue;  }
+	/** @brief Sets the value of Notifications using move semantics */
+	void SetNotifications(TArray<FRHAPI_NotificationCreate>&& NewValue) { Notifications = NewValue;  }
 };
 
 /** @} */

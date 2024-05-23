@@ -32,7 +32,8 @@ Collection of Update Inventory Requests. The Inventory referenced in the Update 
 `public inline bool `[`GetSource`](#structFRHAPI__UpdateInventoryRequests_1a79366bc7965bc537dfdafb254ee3975f)`(ERHAPI_Source & OutValue) const` | Fills OutValue with the value of Source_Optional and returns true if it has been set, otherwise returns false.
 `public inline ERHAPI_Source * `[`GetSourceOrNull`](#structFRHAPI__UpdateInventoryRequests_1acac0c3fa2cf508046c640d27416c1ea1)`()` | Returns a pointer to Source_Optional, if it has been set, otherwise returns nullptr.
 `public inline const ERHAPI_Source * `[`GetSourceOrNull`](#structFRHAPI__UpdateInventoryRequests_1ae98cb0c748edb0febba7fffa4afc513c)`() const` | Returns a pointer to Source_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetSource`](#structFRHAPI__UpdateInventoryRequests_1a5b24c0d3c4a9ef60f864d871e19125ce)`(ERHAPI_Source NewValue)` | Sets the value of Source_Optional and also sets Source_IsSet to true.
+`public inline void `[`SetSource`](#structFRHAPI__UpdateInventoryRequests_1a43acaea9b6e76d17b806cec337bc21fc)`(const ERHAPI_Source & NewValue)` | Sets the value of Source_Optional and also sets Source_IsSet to true.
+`public inline void `[`SetSource`](#structFRHAPI__UpdateInventoryRequests_1a8a3246bc3a935ccf44616ce5ae85e359)`(ERHAPI_Source && NewValue)` | Sets the value of Source_Optional and also sets Source_IsSet to true using move semantics.
 `public inline void `[`ClearSource`](#structFRHAPI__UpdateInventoryRequests_1a4636d2382659c027ac5f6d7c5413436a)`()` | Clears the value of Source_Optional and sets Source_IsSet to false.
 `public inline FGuid & `[`GetClientOrderRefId`](#structFRHAPI__UpdateInventoryRequests_1af1f81290ae1ebbbdc4f401b94289c914)`()` | Gets the value of ClientOrderRefId_Optional, regardless of it having been set.
 `public inline const FGuid & `[`GetClientOrderRefId`](#structFRHAPI__UpdateInventoryRequests_1a5884d2d9a33472cae64508ff3856122e)`() const` | Gets the value of ClientOrderRefId_Optional, regardless of it having been set.
@@ -40,11 +41,13 @@ Collection of Update Inventory Requests. The Inventory referenced in the Update 
 `public inline bool `[`GetClientOrderRefId`](#structFRHAPI__UpdateInventoryRequests_1a954e1f64dd5becb1c49b3892bbadaf51)`(FGuid & OutValue) const` | Fills OutValue with the value of ClientOrderRefId_Optional and returns true if it has been set, otherwise returns false.
 `public inline FGuid * `[`GetClientOrderRefIdOrNull`](#structFRHAPI__UpdateInventoryRequests_1ae3e35d9e8cd76094dc8aede083a64725)`()` | Returns a pointer to ClientOrderRefId_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FGuid * `[`GetClientOrderRefIdOrNull`](#structFRHAPI__UpdateInventoryRequests_1aba5a2e840a0ae74d659652f8a1485773)`() const` | Returns a pointer to ClientOrderRefId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetClientOrderRefId`](#structFRHAPI__UpdateInventoryRequests_1a5a2f352883ea87a8299bb450843732d8)`(FGuid NewValue)` | Sets the value of ClientOrderRefId_Optional and also sets ClientOrderRefId_IsSet to true.
+`public inline void `[`SetClientOrderRefId`](#structFRHAPI__UpdateInventoryRequests_1a0c9bc77ba61737db0fa0d94001212920)`(const FGuid & NewValue)` | Sets the value of ClientOrderRefId_Optional and also sets ClientOrderRefId_IsSet to true.
+`public inline void `[`SetClientOrderRefId`](#structFRHAPI__UpdateInventoryRequests_1a428225f0d11f648bf6138fa6a17afbf4)`(FGuid && NewValue)` | Sets the value of ClientOrderRefId_Optional and also sets ClientOrderRefId_IsSet to true using move semantics.
 `public inline void `[`ClearClientOrderRefId`](#structFRHAPI__UpdateInventoryRequests_1a9d2c82a14e5d4c2df1501637be55e602)`()` | Clears the value of ClientOrderRefId_Optional and sets ClientOrderRefId_IsSet to false.
 `public inline TArray< `[`FRHAPI_UpdateInventoryRequestById`](RHAPI_UpdateInventoryRequestById.md#structFRHAPI__UpdateInventoryRequestById)` > & `[`GetInventory`](#structFRHAPI__UpdateInventoryRequests_1aa3f7f39ca6239abb822c139bb0355c9a)`()` | Gets the value of Inventory.
 `public inline const TArray< `[`FRHAPI_UpdateInventoryRequestById`](RHAPI_UpdateInventoryRequestById.md#structFRHAPI__UpdateInventoryRequestById)` > & `[`GetInventory`](#structFRHAPI__UpdateInventoryRequests_1a16236c2da82677b936d1e02d891c1009)`() const` | Gets the value of Inventory.
-`public inline void `[`SetInventory`](#structFRHAPI__UpdateInventoryRequests_1ad386c910446362cdba8b737245b2769f)`(TArray< `[`FRHAPI_UpdateInventoryRequestById`](RHAPI_UpdateInventoryRequestById.md#structFRHAPI__UpdateInventoryRequestById)` > NewValue)` | Sets the value of Inventory.
+`public inline void `[`SetInventory`](#structFRHAPI__UpdateInventoryRequests_1a1aa66c687421317e059a578b981c7f25)`(const TArray< `[`FRHAPI_UpdateInventoryRequestById`](RHAPI_UpdateInventoryRequestById.md#structFRHAPI__UpdateInventoryRequestById)` > & NewValue)` | Sets the value of Inventory.
+`public inline void `[`SetInventory`](#structFRHAPI__UpdateInventoryRequests_1af49dd83a84b4d5c64c18f987755aa054)`(TArray< `[`FRHAPI_UpdateInventoryRequestById`](RHAPI_UpdateInventoryRequestById.md#structFRHAPI__UpdateInventoryRequestById)` > && NewValue)` | Sets the value of Inventory using move semantics.
 
 ### Members
 
@@ -109,9 +112,13 @@ Returns a pointer to Source_Optional, if it has been set, otherwise returns null
 
 Returns a pointer to Source_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetSource`](#structFRHAPI__UpdateInventoryRequests_1a5b24c0d3c4a9ef60f864d871e19125ce)`(ERHAPI_Source NewValue)` <a id="structFRHAPI__UpdateInventoryRequests_1a5b24c0d3c4a9ef60f864d871e19125ce"></a>
+#### `public inline void `[`SetSource`](#structFRHAPI__UpdateInventoryRequests_1a43acaea9b6e76d17b806cec337bc21fc)`(const ERHAPI_Source & NewValue)` <a id="structFRHAPI__UpdateInventoryRequests_1a43acaea9b6e76d17b806cec337bc21fc"></a>
 
 Sets the value of Source_Optional and also sets Source_IsSet to true.
+
+#### `public inline void `[`SetSource`](#structFRHAPI__UpdateInventoryRequests_1a8a3246bc3a935ccf44616ce5ae85e359)`(ERHAPI_Source && NewValue)` <a id="structFRHAPI__UpdateInventoryRequests_1a8a3246bc3a935ccf44616ce5ae85e359"></a>
+
+Sets the value of Source_Optional and also sets Source_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearSource`](#structFRHAPI__UpdateInventoryRequests_1a4636d2382659c027ac5f6d7c5413436a)`()` <a id="structFRHAPI__UpdateInventoryRequests_1a4636d2382659c027ac5f6d7c5413436a"></a>
 
@@ -141,9 +148,13 @@ Returns a pointer to ClientOrderRefId_Optional, if it has been set, otherwise re
 
 Returns a pointer to ClientOrderRefId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetClientOrderRefId`](#structFRHAPI__UpdateInventoryRequests_1a5a2f352883ea87a8299bb450843732d8)`(FGuid NewValue)` <a id="structFRHAPI__UpdateInventoryRequests_1a5a2f352883ea87a8299bb450843732d8"></a>
+#### `public inline void `[`SetClientOrderRefId`](#structFRHAPI__UpdateInventoryRequests_1a0c9bc77ba61737db0fa0d94001212920)`(const FGuid & NewValue)` <a id="structFRHAPI__UpdateInventoryRequests_1a0c9bc77ba61737db0fa0d94001212920"></a>
 
 Sets the value of ClientOrderRefId_Optional and also sets ClientOrderRefId_IsSet to true.
+
+#### `public inline void `[`SetClientOrderRefId`](#structFRHAPI__UpdateInventoryRequests_1a428225f0d11f648bf6138fa6a17afbf4)`(FGuid && NewValue)` <a id="structFRHAPI__UpdateInventoryRequests_1a428225f0d11f648bf6138fa6a17afbf4"></a>
+
+Sets the value of ClientOrderRefId_Optional and also sets ClientOrderRefId_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearClientOrderRefId`](#structFRHAPI__UpdateInventoryRequests_1a9d2c82a14e5d4c2df1501637be55e602)`()` <a id="structFRHAPI__UpdateInventoryRequests_1a9d2c82a14e5d4c2df1501637be55e602"></a>
 
@@ -157,7 +168,11 @@ Gets the value of Inventory.
 
 Gets the value of Inventory.
 
-#### `public inline void `[`SetInventory`](#structFRHAPI__UpdateInventoryRequests_1ad386c910446362cdba8b737245b2769f)`(TArray< `[`FRHAPI_UpdateInventoryRequestById`](RHAPI_UpdateInventoryRequestById.md#structFRHAPI__UpdateInventoryRequestById)` > NewValue)` <a id="structFRHAPI__UpdateInventoryRequests_1ad386c910446362cdba8b737245b2769f"></a>
+#### `public inline void `[`SetInventory`](#structFRHAPI__UpdateInventoryRequests_1a1aa66c687421317e059a578b981c7f25)`(const TArray< `[`FRHAPI_UpdateInventoryRequestById`](RHAPI_UpdateInventoryRequestById.md#structFRHAPI__UpdateInventoryRequestById)` > & NewValue)` <a id="structFRHAPI__UpdateInventoryRequests_1a1aa66c687421317e059a578b981c7f25"></a>
 
 Sets the value of Inventory.
+
+#### `public inline void `[`SetInventory`](#structFRHAPI__UpdateInventoryRequests_1af49dd83a84b4d5c64c18f987755aa054)`(TArray< `[`FRHAPI_UpdateInventoryRequestById`](RHAPI_UpdateInventoryRequestById.md#structFRHAPI__UpdateInventoryRequestById)` > && NewValue)` <a id="structFRHAPI__UpdateInventoryRequests_1af49dd83a84b4d5c64c18f987755aa054"></a>
+
+Sets the value of Inventory using move semantics.
 

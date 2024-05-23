@@ -59,7 +59,9 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaim : public FRHAPI_Model
 	/** @brief Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr */
 	const ERHAPI_Portal* GetPortalIdOrNull() const { if (PortalId_IsSet) return &PortalId_Optional; return nullptr; }
 	/** @brief Sets the value of PortalId_Optional and also sets PortalId_IsSet to true */
-	void SetPortalId(ERHAPI_Portal NewValue) { PortalId_Optional = NewValue; PortalId_IsSet = true; }
+	void SetPortalId(const ERHAPI_Portal& NewValue) { PortalId_Optional = NewValue; PortalId_IsSet = true; }
+	/** @brief Sets the value of PortalId_Optional and also sets PortalId_IsSet to true using move semantics */
+	void SetPortalId(ERHAPI_Portal&& NewValue) { PortalId_Optional = NewValue; PortalId_IsSet = true; }
 	 /** @brief Clears the value of PortalId_Optional and sets PortalId_IsSet to false */
 	void ClearPortalId() { PortalId_IsSet = false; }
 
@@ -82,7 +84,9 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaim : public FRHAPI_Model
 	/** @brief Returns a pointer to PortalUserId_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetPortalUserIdOrNull() const { if (PortalUserId_IsSet) return &PortalUserId_Optional; return nullptr; }
 	/** @brief Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true */
-	void SetPortalUserId(FString NewValue) { PortalUserId_Optional = NewValue; PortalUserId_IsSet = true; }
+	void SetPortalUserId(const FString& NewValue) { PortalUserId_Optional = NewValue; PortalUserId_IsSet = true; }
+	/** @brief Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true using move semantics */
+	void SetPortalUserId(FString&& NewValue) { PortalUserId_Optional = NewValue; PortalUserId_IsSet = true; }
 	 /** @brief Clears the value of PortalUserId_Optional and sets PortalUserId_IsSet to false */
 	void ClearPortalUserId() { PortalUserId_IsSet = false; }
 
@@ -94,7 +98,9 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaim : public FRHAPI_Model
 	/** @brief Gets the value of KeyClaimUuid */
 	const FGuid& GetKeyClaimUuid() const { return KeyClaimUuid; }
 	/** @brief Sets the value of KeyClaimUuid */
-	void SetKeyClaimUuid(FGuid NewValue) { KeyClaimUuid = NewValue;  }
+	void SetKeyClaimUuid(const FGuid& NewValue) { KeyClaimUuid = NewValue;  }
+	/** @brief Sets the value of KeyClaimUuid using move semantics */
+	void SetKeyClaimUuid(FGuid&& NewValue) { KeyClaimUuid = NewValue;  }
 
 	/** @brief Whether the KeyClaim has been claimed */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -115,7 +121,9 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaim : public FRHAPI_Model
 	/** @brief Returns a pointer to Claimed_Optional, if it has been set, otherwise returns nullptr */
 	const bool* GetClaimedOrNull() const { if (Claimed_IsSet) return &Claimed_Optional; return nullptr; }
 	/** @brief Sets the value of Claimed_Optional and also sets Claimed_IsSet to true */
-	void SetClaimed(bool NewValue) { Claimed_Optional = NewValue; Claimed_IsSet = true; }
+	void SetClaimed(const bool& NewValue) { Claimed_Optional = NewValue; Claimed_IsSet = true; }
+	/** @brief Sets the value of Claimed_Optional and also sets Claimed_IsSet to true using move semantics */
+	void SetClaimed(bool&& NewValue) { Claimed_Optional = NewValue; Claimed_IsSet = true; }
 	 /** @brief Clears the value of Claimed_Optional and sets Claimed_IsSet to false */
 	void ClearClaimed() { Claimed_Optional = false; Claimed_IsSet = false; }
 	/** @brief Returns true if Claimed_Optional is set and matches the default value */
@@ -142,7 +150,9 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaim : public FRHAPI_Model
 	/** @brief Returns a pointer to ExternalKey_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetExternalKeyOrNull() const { if (ExternalKey_IsSet) return &ExternalKey_Optional; return nullptr; }
 	/** @brief Sets the value of ExternalKey_Optional and also sets ExternalKey_IsSet to true */
-	void SetExternalKey(FString NewValue) { ExternalKey_Optional = NewValue; ExternalKey_IsSet = true; }
+	void SetExternalKey(const FString& NewValue) { ExternalKey_Optional = NewValue; ExternalKey_IsSet = true; }
+	/** @brief Sets the value of ExternalKey_Optional and also sets ExternalKey_IsSet to true using move semantics */
+	void SetExternalKey(FString&& NewValue) { ExternalKey_Optional = NewValue; ExternalKey_IsSet = true; }
 	 /** @brief Clears the value of ExternalKey_Optional and sets ExternalKey_IsSet to false */
 	void ClearExternalKey() { ExternalKey_IsSet = false; }
 
@@ -165,7 +175,9 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaim : public FRHAPI_Model
 	/** @brief Returns a pointer to ExternalKeyCampaignUuid_Optional, if it has been set, otherwise returns nullptr */
 	const FGuid* GetExternalKeyCampaignUuidOrNull() const { if (ExternalKeyCampaignUuid_IsSet) return &ExternalKeyCampaignUuid_Optional; return nullptr; }
 	/** @brief Sets the value of ExternalKeyCampaignUuid_Optional and also sets ExternalKeyCampaignUuid_IsSet to true */
-	void SetExternalKeyCampaignUuid(FGuid NewValue) { ExternalKeyCampaignUuid_Optional = NewValue; ExternalKeyCampaignUuid_IsSet = true; }
+	void SetExternalKeyCampaignUuid(const FGuid& NewValue) { ExternalKeyCampaignUuid_Optional = NewValue; ExternalKeyCampaignUuid_IsSet = true; }
+	/** @brief Sets the value of ExternalKeyCampaignUuid_Optional and also sets ExternalKeyCampaignUuid_IsSet to true using move semantics */
+	void SetExternalKeyCampaignUuid(FGuid&& NewValue) { ExternalKeyCampaignUuid_Optional = NewValue; ExternalKeyCampaignUuid_IsSet = true; }
 	 /** @brief Clears the value of ExternalKeyCampaignUuid_Optional and sets ExternalKeyCampaignUuid_IsSet to false */
 	void ClearExternalKeyCampaignUuid() { ExternalKeyCampaignUuid_IsSet = false; }
 
@@ -188,7 +200,9 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaim : public FRHAPI_Model
 	/** @brief Returns a pointer to ExternalKeyType_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetExternalKeyTypeOrNull() const { if (ExternalKeyType_IsSet) return &ExternalKeyType_Optional; return nullptr; }
 	/** @brief Sets the value of ExternalKeyType_Optional and also sets ExternalKeyType_IsSet to true */
-	void SetExternalKeyType(FString NewValue) { ExternalKeyType_Optional = NewValue; ExternalKeyType_IsSet = true; }
+	void SetExternalKeyType(const FString& NewValue) { ExternalKeyType_Optional = NewValue; ExternalKeyType_IsSet = true; }
+	/** @brief Sets the value of ExternalKeyType_Optional and also sets ExternalKeyType_IsSet to true using move semantics */
+	void SetExternalKeyType(FString&& NewValue) { ExternalKeyType_Optional = NewValue; ExternalKeyType_IsSet = true; }
 	 /** @brief Clears the value of ExternalKeyType_Optional and sets ExternalKeyType_IsSet to false */
 	void ClearExternalKeyType() { ExternalKeyType_IsSet = false; }
 
@@ -211,7 +225,9 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaim : public FRHAPI_Model
 	/** @brief Returns a pointer to CreatedOn_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetCreatedOnOrNull() const { if (CreatedOn_IsSet) return &CreatedOn_Optional; return nullptr; }
 	/** @brief Sets the value of CreatedOn_Optional and also sets CreatedOn_IsSet to true */
-	void SetCreatedOn(FString NewValue) { CreatedOn_Optional = NewValue; CreatedOn_IsSet = true; }
+	void SetCreatedOn(const FString& NewValue) { CreatedOn_Optional = NewValue; CreatedOn_IsSet = true; }
+	/** @brief Sets the value of CreatedOn_Optional and also sets CreatedOn_IsSet to true using move semantics */
+	void SetCreatedOn(FString&& NewValue) { CreatedOn_Optional = NewValue; CreatedOn_IsSet = true; }
 	 /** @brief Clears the value of CreatedOn_Optional and sets CreatedOn_IsSet to false */
 	void ClearCreatedOn() { CreatedOn_IsSet = false; }
 
@@ -234,7 +250,9 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaim : public FRHAPI_Model
 	/** @brief Returns a pointer to LastModifiedOn_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetLastModifiedOnOrNull() const { if (LastModifiedOn_IsSet) return &LastModifiedOn_Optional; return nullptr; }
 	/** @brief Sets the value of LastModifiedOn_Optional and also sets LastModifiedOn_IsSet to true */
-	void SetLastModifiedOn(FString NewValue) { LastModifiedOn_Optional = NewValue; LastModifiedOn_IsSet = true; }
+	void SetLastModifiedOn(const FString& NewValue) { LastModifiedOn_Optional = NewValue; LastModifiedOn_IsSet = true; }
+	/** @brief Sets the value of LastModifiedOn_Optional and also sets LastModifiedOn_IsSet to true using move semantics */
+	void SetLastModifiedOn(FString&& NewValue) { LastModifiedOn_Optional = NewValue; LastModifiedOn_IsSet = true; }
 	 /** @brief Clears the value of LastModifiedOn_Optional and sets LastModifiedOn_IsSet to false */
 	void ClearLastModifiedOn() { LastModifiedOn_IsSet = false; }
 };

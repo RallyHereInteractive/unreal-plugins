@@ -60,7 +60,9 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfoUpdate : public FRHAPI_Model
 	/** @brief Returns a pointer to AllocationId_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetAllocationIdOrNull() const { if (AllocationId_IsSet) return &AllocationId_Optional; return nullptr; }
 	/** @brief Sets the value of AllocationId_Optional and also sets AllocationId_IsSet to true */
-	void SetAllocationId(FString NewValue) { AllocationId_Optional = NewValue; AllocationId_IsSet = true; }
+	void SetAllocationId(const FString& NewValue) { AllocationId_Optional = NewValue; AllocationId_IsSet = true; }
+	/** @brief Sets the value of AllocationId_Optional and also sets AllocationId_IsSet to true using move semantics */
+	void SetAllocationId(FString&& NewValue) { AllocationId_Optional = NewValue; AllocationId_IsSet = true; }
 	 /** @brief Clears the value of AllocationId_Optional and sets AllocationId_IsSet to false */
 	void ClearAllocationId() { AllocationId_IsSet = false; }
 
@@ -83,7 +85,9 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfoUpdate : public FRHAPI_Model
 	/** @brief Returns a pointer to JoinStatus_Optional, if it has been set, otherwise returns nullptr */
 	const ERHAPI_InstanceJoinableStatus* GetJoinStatusOrNull() const { if (JoinStatus_IsSet) return &JoinStatus_Optional; return nullptr; }
 	/** @brief Sets the value of JoinStatus_Optional and also sets JoinStatus_IsSet to true */
-	void SetJoinStatus(ERHAPI_InstanceJoinableStatus NewValue) { JoinStatus_Optional = NewValue; JoinStatus_IsSet = true; }
+	void SetJoinStatus(const ERHAPI_InstanceJoinableStatus& NewValue) { JoinStatus_Optional = NewValue; JoinStatus_IsSet = true; }
+	/** @brief Sets the value of JoinStatus_Optional and also sets JoinStatus_IsSet to true using move semantics */
+	void SetJoinStatus(ERHAPI_InstanceJoinableStatus&& NewValue) { JoinStatus_Optional = NewValue; JoinStatus_IsSet = true; }
 	 /** @brief Clears the value of JoinStatus_Optional and sets JoinStatus_IsSet to false */
 	void ClearJoinStatus() { JoinStatus_IsSet = false; }
 
@@ -106,7 +110,9 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfoUpdate : public FRHAPI_Model
 	/** @brief Returns a pointer to JoinParams_Optional, if it has been set, otherwise returns nullptr */
 	const FRHAPI_JoinParams* GetJoinParamsOrNull() const { if (JoinParams_IsSet) return &JoinParams_Optional; return nullptr; }
 	/** @brief Sets the value of JoinParams_Optional and also sets JoinParams_IsSet to true */
-	void SetJoinParams(FRHAPI_JoinParams NewValue) { JoinParams_Optional = NewValue; JoinParams_IsSet = true; }
+	void SetJoinParams(const FRHAPI_JoinParams& NewValue) { JoinParams_Optional = NewValue; JoinParams_IsSet = true; }
+	/** @brief Sets the value of JoinParams_Optional and also sets JoinParams_IsSet to true using move semantics */
+	void SetJoinParams(FRHAPI_JoinParams&& NewValue) { JoinParams_Optional = NewValue; JoinParams_IsSet = true; }
 	 /** @brief Clears the value of JoinParams_Optional and sets JoinParams_IsSet to false */
 	void ClearJoinParams() { JoinParams_IsSet = false; }
 
@@ -129,7 +135,9 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfoUpdate : public FRHAPI_Model
 	/** @brief Returns a pointer to Version_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetVersionOrNull() const { if (Version_IsSet) return &Version_Optional; return nullptr; }
 	/** @brief Sets the value of Version_Optional and also sets Version_IsSet to true */
-	void SetVersion(FString NewValue) { Version_Optional = NewValue; Version_IsSet = true; }
+	void SetVersion(const FString& NewValue) { Version_Optional = NewValue; Version_IsSet = true; }
+	/** @brief Sets the value of Version_Optional and also sets Version_IsSet to true using move semantics */
+	void SetVersion(FString&& NewValue) { Version_Optional = NewValue; Version_IsSet = true; }
 	 /** @brief Clears the value of Version_Optional and sets Version_IsSet to false */
 	void ClearVersion() { Version_IsSet = false; }
 
@@ -152,7 +160,9 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfoUpdate : public FRHAPI_Model
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
+	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
 	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false; }
 };

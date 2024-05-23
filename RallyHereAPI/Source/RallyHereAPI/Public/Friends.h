@@ -46,7 +46,9 @@ struct RALLYHEREAPI_API FRHAPI_Friends : public FRHAPI_Model
 	/** @brief Gets the value of Friends */
 	const TArray<FGuid>& GetFriends() const { return Friends; }
 	/** @brief Sets the value of Friends */
-	void SetFriends(TArray<FGuid> NewValue) { Friends = NewValue;  }
+	void SetFriends(const TArray<FGuid>& NewValue) { Friends = NewValue;  }
+	/** @brief Sets the value of Friends using move semantics */
+	void SetFriends(TArray<FGuid>&& NewValue) { Friends = NewValue;  }
 };
 
 /** @} */

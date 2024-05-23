@@ -15,15 +15,6 @@
 
 FRHDTW_Match::FRHDTW_Match()
 {
-	SearchPageSize = 0;
-	SearchInstanceId.SetNumZeroed(RH_STRINGENTRY_GUIDSIZE);
-	SearchAllocationId.SetNumZeroed(RH_STRINGENTRY_GUIDSIZE);
-	SearchSessionId.SetNumZeroed(RH_STRINGENTRY_GUIDSIZE);
-	SearchHostPlayerUuid.SetNumZeroed(RH_STRINGENTRY_GUIDSIZE);
-	SearchRegionId.SetNumZeroed(RH_STRINGENTRY_GUIDSIZE);
-	SearchPlayerUuid.SetNumZeroed(RH_STRINGENTRY_GUIDSIZE);
-	SearchCursor.SetNumZeroed(1024);	// cursor may have data packed in, so make it large
-
 	DownloadDirectory = FPaths::HasProjectPersistentDownloadDir() ? FPaths::ProjectPersistentDownloadDir() : TEXT("");
 }
 
@@ -255,51 +246,37 @@ void FRHDTW_Match::DoSearchMatches()
 
 	static int32 GuidFieldLength = 300;
 	ImGui::SetNextItemWidth(GuidFieldLength);
-	ImGui::InputText("SessionId", SearchSessionId.GetData(), SearchSessionId.Num());
+	ImGui::InputText("SessionId", &SearchParams.SessionId);
 	ImGui::SetNextItemWidth(GuidFieldLength);
-	ImGui::InputText("InstanceId", SearchInstanceId.GetData(), SearchInstanceId.Num());
+	ImGui::InputText("InstanceId", &SearchParams.InstanceId);
 	ImGui::SetNextItemWidth(GuidFieldLength);
-	ImGui::InputText("AllocationId", SearchAllocationId.GetData(), SearchAllocationId.Num());
+	ImGui::InputText("AllocationId", &SearchParams.AllocationId);
 	
 	ImGui::SetNextItemWidth(GuidFieldLength);
-	ImGui::InputText("PlayerUuid", SearchPlayerUuid.GetData(), SearchPlayerUuid.Num());
+	ImGui::InputText("PlayerUuid", &SearchParams.PlayerUuid);
 	ImGui::SetNextItemWidth(GuidFieldLength);
-	ImGui::InputText("HostPlayerUuid", SearchHostPlayerUuid.GetData(), SearchHostPlayerUuid.Num());
+	ImGui::InputText("HostPlayerUuid", &SearchParams.HostPlayerUuid);
 	ImGui::SetNextItemWidth(GuidFieldLength);
-	ImGui::InputText("RegionId", SearchRegionId.GetData(), SearchRegionId.Num());
+	ImGui::InputText("RegionId", &SearchParams.RegionId);
 
 	ImGui::SetNextItemWidth(GuidFieldLength);
-	ImGui::InputInt("Page Size", &SearchPageSize, 5, 10);
+	ImGui::InputInt("Page Size", &SearchParams.PageSize, 5, 10);
 	ImGui::SetNextItemWidth(GuidFieldLength);
-	ImGui::InputText("Cursor", SearchCursor.GetData(), SearchCursor.Num());
+	ImGui::InputText("Cursor", &SearchParams.Cursor);
+
+	ImGui::Checkbox("Include Segments", &SearchParams.bIncludeSegments);
+	ImGui::SameLine();
+	ImGui::Checkbox("Include Players", &SearchParams.bIncludePlayers);
+
 
 	if (ImGui::Button("Search"))
 	{
-		FRH_MatchSearchParams SearchParams;
-		SearchParams.PageSize = SearchPageSize;
-		SearchParams.InstanceId = FString(ANSI_TO_TCHAR(SearchInstanceId.GetData()));
-		SearchParams.AllocationId = FString(ANSI_TO_TCHAR(SearchAllocationId.GetData()));
-		SearchParams.SessionId = FString(ANSI_TO_TCHAR(SearchSessionId.GetData()));
-		SearchParams.HostPlayerUuid = FString(ANSI_TO_TCHAR(SearchHostPlayerUuid.GetData()));
-		SearchParams.RegionId = FString(ANSI_TO_TCHAR(SearchRegionId.GetData()));
-		SearchParams.PlayerUuid = FString(ANSI_TO_TCHAR(SearchPlayerUuid.GetData()));
-		SearchParams.Cursor = FString(ANSI_TO_TCHAR(SearchCursor.GetData()));
-
 		pGIMatchSubsystem->SearchMatches(SearchParams, FRH_OnMatchSearchCompleteDelegate::CreateSP(this, &FRHDTW_Match::OnSearchMatchesComplete));	
 	}
 	ImGui::SameLine();
 	if (ImGui::Button("Clear Search"))
 	{
-		SearchPageSize = 0;
-#define ResetStringField(Field) Field.Reset(); Field.AddZeroed(Field.GetSlack());
-		ResetStringField(SearchInstanceId);
-		ResetStringField(SearchAllocationId);
-		ResetStringField(SearchSessionId);
-		ResetStringField(SearchHostPlayerUuid);
-		ResetStringField(SearchRegionId);
-		ResetStringField(SearchPlayerUuid);
-		ResetStringField(SearchCursor);
-#undef ResetStringField
+		SearchParams = FRH_MatchSearchParams();
 	}
 
 	ImGui::Separator();
@@ -337,9 +314,9 @@ void FRHDTW_Match::DoSearchMatches()
 				{
 					if (ImGui::Button("Search Next Page"))
 					{
-						FRH_MatchSearchParams SearchParams = SearchResult.Result.SearchParams;
-						SearchParams.Cursor = SearchResult.Result.NextPageCursor;
-						pGIMatchSubsystem->SearchMatches(SearchParams, FRH_OnMatchSearchCompleteDelegate::CreateSP(this, &FRHDTW_Match::OnSearchMatchesComplete));
+						FRH_MatchSearchParams PageSearchParams = SearchResult.Result.SearchParams;
+						PageSearchParams.Cursor = SearchResult.Result.NextPageCursor;
+						pGIMatchSubsystem->SearchMatches(PageSearchParams, FRH_OnMatchSearchCompleteDelegate::CreateSP(this, &FRHDTW_Match::OnSearchMatchesComplete));
 					}
 				}
 			}

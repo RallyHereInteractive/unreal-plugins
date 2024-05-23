@@ -48,7 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingProfile : public FRHAPI_Model
 	/** @brief Gets the value of ProfileId */
 	const FString& GetProfileId() const { return ProfileId; }
 	/** @brief Sets the value of ProfileId */
-	void SetProfileId(FString NewValue) { ProfileId = NewValue;  }
+	void SetProfileId(const FString& NewValue) { ProfileId = NewValue;  }
+	/** @brief Sets the value of ProfileId using move semantics */
+	void SetProfileId(FString&& NewValue) { ProfileId = NewValue;  }
 
 	/** @brief What mode to set on the matchmaking profile (normal, backfill etc) */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -69,7 +71,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingProfile : public FRHAPI_Model
 	/** @brief Returns a pointer to JoinMode_Optional, if it has been set, otherwise returns nullptr */
 	const ERHAPI_ProfileJoinMode* GetJoinModeOrNull() const { if (JoinMode_IsSet) return &JoinMode_Optional; return nullptr; }
 	/** @brief Sets the value of JoinMode_Optional and also sets JoinMode_IsSet to true */
-	void SetJoinMode(ERHAPI_ProfileJoinMode NewValue) { JoinMode_Optional = NewValue; JoinMode_IsSet = true; }
+	void SetJoinMode(const ERHAPI_ProfileJoinMode& NewValue) { JoinMode_Optional = NewValue; JoinMode_IsSet = true; }
+	/** @brief Sets the value of JoinMode_Optional and also sets JoinMode_IsSet to true using move semantics */
+	void SetJoinMode(ERHAPI_ProfileJoinMode&& NewValue) { JoinMode_Optional = NewValue; JoinMode_IsSet = true; }
 	 /** @brief Clears the value of JoinMode_Optional and sets JoinMode_IsSet to false */
 	void ClearJoinMode() { JoinMode_IsSet = false; }
 
@@ -81,7 +85,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingProfile : public FRHAPI_Model
 	/** @brief Gets the value of InstanceLaunchTemplateId */
 	const FGuid& GetInstanceLaunchTemplateId() const { return InstanceLaunchTemplateId; }
 	/** @brief Sets the value of InstanceLaunchTemplateId */
-	void SetInstanceLaunchTemplateId(FGuid NewValue) { InstanceLaunchTemplateId = NewValue;  }
+	void SetInstanceLaunchTemplateId(const FGuid& NewValue) { InstanceLaunchTemplateId = NewValue;  }
+	/** @brief Sets the value of InstanceLaunchTemplateId using move semantics */
+	void SetInstanceLaunchTemplateId(FGuid&& NewValue) { InstanceLaunchTemplateId = NewValue;  }
 
 	/** @brief Which rank this profile should use MMR from to make matches from, and update at the end of match (1v1 MMR or 2v2 MMR for example) */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -102,7 +108,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingProfile : public FRHAPI_Model
 	/** @brief Returns a pointer to RankId_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetRankIdOrNull() const { if (RankId_IsSet) return &RankId_Optional; return nullptr; }
 	/** @brief Sets the value of RankId_Optional and also sets RankId_IsSet to true */
-	void SetRankId(FString NewValue) { RankId_Optional = NewValue; RankId_IsSet = true; }
+	void SetRankId(const FString& NewValue) { RankId_Optional = NewValue; RankId_IsSet = true; }
+	/** @brief Sets the value of RankId_Optional and also sets RankId_IsSet to true using move semantics */
+	void SetRankId(FString&& NewValue) { RankId_Optional = NewValue; RankId_IsSet = true; }
 	 /** @brief Clears the value of RankId_Optional and sets RankId_IsSet to false */
 	void ClearRankId() { RankId_IsSet = false; }
 
@@ -125,7 +133,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingProfile : public FRHAPI_Model
 	/** @brief Returns a pointer to NumSides_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetNumSidesOrNull() const { if (NumSides_IsSet) return &NumSides_Optional; return nullptr; }
 	/** @brief Sets the value of NumSides_Optional and also sets NumSides_IsSet to true */
-	void SetNumSides(int32 NewValue) { NumSides_Optional = NewValue; NumSides_IsSet = true; }
+	void SetNumSides(const int32& NewValue) { NumSides_Optional = NewValue; NumSides_IsSet = true; }
+	/** @brief Sets the value of NumSides_Optional and also sets NumSides_IsSet to true using move semantics */
+	void SetNumSides(int32&& NewValue) { NumSides_Optional = NewValue; NumSides_IsSet = true; }
 	 /** @brief Clears the value of NumSides_Optional and sets NumSides_IsSet to false */
 	void ClearNumSides() { NumSides_Optional = 0; NumSides_IsSet = false; }
 	/** @brief Returns true if NumSides_Optional is set and matches the default value */
@@ -152,7 +162,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingProfile : public FRHAPI_Model
 	/** @brief Returns a pointer to MaxPlayersPerSide_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetMaxPlayersPerSideOrNull() const { if (MaxPlayersPerSide_IsSet) return &MaxPlayersPerSide_Optional; return nullptr; }
 	/** @brief Sets the value of MaxPlayersPerSide_Optional and also sets MaxPlayersPerSide_IsSet to true */
-	void SetMaxPlayersPerSide(int32 NewValue) { MaxPlayersPerSide_Optional = NewValue; MaxPlayersPerSide_IsSet = true; }
+	void SetMaxPlayersPerSide(const int32& NewValue) { MaxPlayersPerSide_Optional = NewValue; MaxPlayersPerSide_IsSet = true; }
+	/** @brief Sets the value of MaxPlayersPerSide_Optional and also sets MaxPlayersPerSide_IsSet to true using move semantics */
+	void SetMaxPlayersPerSide(int32&& NewValue) { MaxPlayersPerSide_Optional = NewValue; MaxPlayersPerSide_IsSet = true; }
 	 /** @brief Clears the value of MaxPlayersPerSide_Optional and sets MaxPlayersPerSide_IsSet to false */
 	void ClearMaxPlayersPerSide() { MaxPlayersPerSide_Optional = 0; MaxPlayersPerSide_IsSet = false; }
 	/** @brief Returns true if MaxPlayersPerSide_Optional is set and matches the default value */
@@ -179,7 +191,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingProfile : public FRHAPI_Model
 	/** @brief Returns a pointer to MinPlayersPerSide_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetMinPlayersPerSideOrNull() const { if (MinPlayersPerSide_IsSet) return &MinPlayersPerSide_Optional; return nullptr; }
 	/** @brief Sets the value of MinPlayersPerSide_Optional and also sets MinPlayersPerSide_IsSet to true */
-	void SetMinPlayersPerSide(int32 NewValue) { MinPlayersPerSide_Optional = NewValue; MinPlayersPerSide_IsSet = true; }
+	void SetMinPlayersPerSide(const int32& NewValue) { MinPlayersPerSide_Optional = NewValue; MinPlayersPerSide_IsSet = true; }
+	/** @brief Sets the value of MinPlayersPerSide_Optional and also sets MinPlayersPerSide_IsSet to true using move semantics */
+	void SetMinPlayersPerSide(int32&& NewValue) { MinPlayersPerSide_Optional = NewValue; MinPlayersPerSide_IsSet = true; }
 	 /** @brief Clears the value of MinPlayersPerSide_Optional and sets MinPlayersPerSide_IsSet to false */
 	void ClearMinPlayersPerSide() { MinPlayersPerSide_Optional = 0; MinPlayersPerSide_IsSet = false; }
 	/** @brief Returns true if MinPlayersPerSide_Optional is set and matches the default value */
@@ -206,7 +220,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingProfile : public FRHAPI_Model
 	/** @brief Returns a pointer to LegacyConfig_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FString>* GetLegacyConfigOrNull() const { if (LegacyConfig_IsSet) return &LegacyConfig_Optional; return nullptr; }
 	/** @brief Sets the value of LegacyConfig_Optional and also sets LegacyConfig_IsSet to true */
-	void SetLegacyConfig(TMap<FString, FString> NewValue) { LegacyConfig_Optional = NewValue; LegacyConfig_IsSet = true; }
+	void SetLegacyConfig(const TMap<FString, FString>& NewValue) { LegacyConfig_Optional = NewValue; LegacyConfig_IsSet = true; }
+	/** @brief Sets the value of LegacyConfig_Optional and also sets LegacyConfig_IsSet to true using move semantics */
+	void SetLegacyConfig(TMap<FString, FString>&& NewValue) { LegacyConfig_Optional = NewValue; LegacyConfig_IsSet = true; }
 	 /** @brief Clears the value of LegacyConfig_Optional and sets LegacyConfig_IsSet to false */
 	void ClearLegacyConfig() { LegacyConfig_IsSet = false; }
 };

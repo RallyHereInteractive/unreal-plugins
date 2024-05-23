@@ -59,7 +59,9 @@ struct RALLYHEREAPI_API FRHAPI_AcknowledgeBackfillResponse : public FRHAPI_Model
 	/** @brief Returns a pointer to BackfilledPlayers_Optional, if it has been set, otherwise returns nullptr */
 	const TArray<FRHAPI_SessionPlayer>* GetBackfilledPlayersOrNull() const { if (BackfilledPlayers_IsSet) return &BackfilledPlayers_Optional; return nullptr; }
 	/** @brief Sets the value of BackfilledPlayers_Optional and also sets BackfilledPlayers_IsSet to true */
-	void SetBackfilledPlayers(TArray<FRHAPI_SessionPlayer> NewValue) { BackfilledPlayers_Optional = NewValue; BackfilledPlayers_IsSet = true; }
+	void SetBackfilledPlayers(const TArray<FRHAPI_SessionPlayer>& NewValue) { BackfilledPlayers_Optional = NewValue; BackfilledPlayers_IsSet = true; }
+	/** @brief Sets the value of BackfilledPlayers_Optional and also sets BackfilledPlayers_IsSet to true using move semantics */
+	void SetBackfilledPlayers(TArray<FRHAPI_SessionPlayer>&& NewValue) { BackfilledPlayers_Optional = NewValue; BackfilledPlayers_IsSet = true; }
 	 /** @brief Clears the value of BackfilledPlayers_Optional and sets BackfilledPlayers_IsSet to false */
 	void ClearBackfilledPlayers() { BackfilledPlayers_IsSet = false; }
 };

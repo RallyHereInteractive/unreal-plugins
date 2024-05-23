@@ -48,7 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_PlatformUserResponse : public FRHAPI_Model
 	/** @brief Gets the value of Platform */
 	const ERHAPI_Platform& GetPlatform() const { return Platform; }
 	/** @brief Sets the value of Platform */
-	void SetPlatform(ERHAPI_Platform NewValue) { Platform = NewValue;  }
+	void SetPlatform(const ERHAPI_Platform& NewValue) { Platform = NewValue;  }
+	/** @brief Sets the value of Platform using move semantics */
+	void SetPlatform(ERHAPI_Platform&& NewValue) { Platform = NewValue;  }
 
 	/** @brief Platform user ID to search/create with */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -58,7 +60,9 @@ struct RALLYHEREAPI_API FRHAPI_PlatformUserResponse : public FRHAPI_Model
 	/** @brief Gets the value of PlatformUserId */
 	const FString& GetPlatformUserId() const { return PlatformUserId; }
 	/** @brief Sets the value of PlatformUserId */
-	void SetPlatformUserId(FString NewValue) { PlatformUserId = NewValue;  }
+	void SetPlatformUserId(const FString& NewValue) { PlatformUserId = NewValue;  }
+	/** @brief Sets the value of PlatformUserId using move semantics */
+	void SetPlatformUserId(FString&& NewValue) { PlatformUserId = NewValue;  }
 
 	/** @brief Platform Display name */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -79,7 +83,9 @@ struct RALLYHEREAPI_API FRHAPI_PlatformUserResponse : public FRHAPI_Model
 	/** @brief Returns a pointer to DisplayName_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetDisplayNameOrNull() const { if (DisplayName_IsSet) return &DisplayName_Optional; return nullptr; }
 	/** @brief Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true */
-	void SetDisplayName(FString NewValue) { DisplayName_Optional = NewValue; DisplayName_IsSet = true; }
+	void SetDisplayName(const FString& NewValue) { DisplayName_Optional = NewValue; DisplayName_IsSet = true; }
+	/** @brief Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true using move semantics */
+	void SetDisplayName(FString&& NewValue) { DisplayName_Optional = NewValue; DisplayName_IsSet = true; }
 	 /** @brief Clears the value of DisplayName_Optional and sets DisplayName_IsSet to false */
 	void ClearDisplayName() { DisplayName_IsSet = false; }
 
@@ -91,7 +97,9 @@ struct RALLYHEREAPI_API FRHAPI_PlatformUserResponse : public FRHAPI_Model
 	/** @brief Gets the value of PlayerId */
 	const int32& GetPlayerId() const { return PlayerId; }
 	/** @brief Sets the value of PlayerId */
-	void SetPlayerId(int32 NewValue) { PlayerId = NewValue;  }
+	void SetPlayerId(const int32& NewValue) { PlayerId = NewValue;  }
+	/** @brief Sets the value of PlayerId using move semantics */
+	void SetPlayerId(int32&& NewValue) { PlayerId = NewValue;  }
 	/** @brief Returns true if PlayerId matches the default value */
 	bool IsPlayerIdDefaultValue() const { return PlayerId == 0; }
 	/** @brief Sets the value of PlayerId to its default  */
@@ -105,7 +113,9 @@ struct RALLYHEREAPI_API FRHAPI_PlatformUserResponse : public FRHAPI_Model
 	/** @brief Gets the value of PlayerUuid */
 	const FGuid& GetPlayerUuid() const { return PlayerUuid; }
 	/** @brief Sets the value of PlayerUuid */
-	void SetPlayerUuid(FGuid NewValue) { PlayerUuid = NewValue;  }
+	void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid = NewValue;  }
+	/** @brief Sets the value of PlayerUuid using move semantics */
+	void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid = NewValue;  }
 
 	/** @brief Person ID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -115,7 +125,9 @@ struct RALLYHEREAPI_API FRHAPI_PlatformUserResponse : public FRHAPI_Model
 	/** @brief Gets the value of PersonId */
 	const FGuid& GetPersonId() const { return PersonId; }
 	/** @brief Sets the value of PersonId */
-	void SetPersonId(FGuid NewValue) { PersonId = NewValue;  }
+	void SetPersonId(const FGuid& NewValue) { PersonId = NewValue;  }
+	/** @brief Sets the value of PersonId using move semantics */
+	void SetPersonId(FGuid&& NewValue) { PersonId = NewValue;  }
 
 	/** @brief *DEPRECATED* use `active_player_uuid` instead.  Active player ID, if the player has an active player. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -136,7 +148,9 @@ struct RALLYHEREAPI_API FRHAPI_PlatformUserResponse : public FRHAPI_Model
 	/** @brief Returns a pointer to ActivePlayerId_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetActivePlayerIdOrNull() const { if (ActivePlayerId_IsSet) return &ActivePlayerId_Optional; return nullptr; }
 	/** @brief Sets the value of ActivePlayerId_Optional and also sets ActivePlayerId_IsSet to true */
-	void SetActivePlayerId(int32 NewValue) { ActivePlayerId_Optional = NewValue; ActivePlayerId_IsSet = true; }
+	void SetActivePlayerId(const int32& NewValue) { ActivePlayerId_Optional = NewValue; ActivePlayerId_IsSet = true; }
+	/** @brief Sets the value of ActivePlayerId_Optional and also sets ActivePlayerId_IsSet to true using move semantics */
+	void SetActivePlayerId(int32&& NewValue) { ActivePlayerId_Optional = NewValue; ActivePlayerId_IsSet = true; }
 	 /** @brief Clears the value of ActivePlayerId_Optional and sets ActivePlayerId_IsSet to false */
 	void ClearActivePlayerId() { ActivePlayerId_Optional = 0; ActivePlayerId_IsSet = false; }
 	/** @brief Returns true if ActivePlayerId_Optional is set and matches the default value */
@@ -163,7 +177,9 @@ struct RALLYHEREAPI_API FRHAPI_PlatformUserResponse : public FRHAPI_Model
 	/** @brief Returns a pointer to ActivePlayerUuid_Optional, if it has been set, otherwise returns nullptr */
 	const FGuid* GetActivePlayerUuidOrNull() const { if (ActivePlayerUuid_IsSet) return &ActivePlayerUuid_Optional; return nullptr; }
 	/** @brief Sets the value of ActivePlayerUuid_Optional and also sets ActivePlayerUuid_IsSet to true */
-	void SetActivePlayerUuid(FGuid NewValue) { ActivePlayerUuid_Optional = NewValue; ActivePlayerUuid_IsSet = true; }
+	void SetActivePlayerUuid(const FGuid& NewValue) { ActivePlayerUuid_Optional = NewValue; ActivePlayerUuid_IsSet = true; }
+	/** @brief Sets the value of ActivePlayerUuid_Optional and also sets ActivePlayerUuid_IsSet to true using move semantics */
+	void SetActivePlayerUuid(FGuid&& NewValue) { ActivePlayerUuid_Optional = NewValue; ActivePlayerUuid_IsSet = true; }
 	 /** @brief Clears the value of ActivePlayerUuid_Optional and sets ActivePlayerUuid_IsSet to false */
 	void ClearActivePlayerUuid() { ActivePlayerUuid_IsSet = false; }
 };

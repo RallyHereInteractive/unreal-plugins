@@ -48,7 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_BrowserResponse : public FRHAPI_Model
 	/** @brief Gets the value of Cursor */
 	const int32& GetCursor() const { return Cursor; }
 	/** @brief Sets the value of Cursor */
-	void SetCursor(int32 NewValue) { Cursor = NewValue;  }
+	void SetCursor(const int32& NewValue) { Cursor = NewValue;  }
+	/** @brief Sets the value of Cursor using move semantics */
+	void SetCursor(int32&& NewValue) { Cursor = NewValue;  }
 	/** @brief Returns true if Cursor matches the default value */
 	bool IsCursorDefaultValue() const { return Cursor == 0; }
 	/** @brief Sets the value of Cursor to its default  */
@@ -62,7 +64,9 @@ struct RALLYHEREAPI_API FRHAPI_BrowserResponse : public FRHAPI_Model
 	/** @brief Gets the value of BrowserSessions */
 	const TArray<FRHAPI_BrowserSessionInfo>& GetBrowserSessions() const { return BrowserSessions; }
 	/** @brief Sets the value of BrowserSessions */
-	void SetBrowserSessions(TArray<FRHAPI_BrowserSessionInfo> NewValue) { BrowserSessions = NewValue;  }
+	void SetBrowserSessions(const TArray<FRHAPI_BrowserSessionInfo>& NewValue) { BrowserSessions = NewValue;  }
+	/** @brief Sets the value of BrowserSessions using move semantics */
+	void SetBrowserSessions(TArray<FRHAPI_BrowserSessionInfo>&& NewValue) { BrowserSessions = NewValue;  }
 };
 
 /** @} */

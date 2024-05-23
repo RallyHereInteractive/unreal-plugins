@@ -49,7 +49,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
 	/** @brief Gets the value of SessionType */
 	const FString& GetSessionType() const { return SessionType; }
 	/** @brief Sets the value of SessionType */
-	void SetSessionType(FString NewValue) { SessionType = NewValue;  }
+	void SetSessionType(const FString& NewValue) { SessionType = NewValue;  }
+	/** @brief Sets the value of SessionType using move semantics */
+	void SetSessionType(FString&& NewValue) { SessionType = NewValue;  }
 
 	/** @brief Engine identifier for sessions of this type.  For UE, this is commonly `Party` or `Game`. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -70,7 +72,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
 	/** @brief Returns a pointer to EngineSessionType_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetEngineSessionTypeOrNull() const { if (EngineSessionType_IsSet) return &EngineSessionType_Optional; return nullptr; }
 	/** @brief Sets the value of EngineSessionType_Optional and also sets EngineSessionType_IsSet to true */
-	void SetEngineSessionType(FString NewValue) { EngineSessionType_Optional = NewValue; EngineSessionType_IsSet = true; }
+	void SetEngineSessionType(const FString& NewValue) { EngineSessionType_Optional = NewValue; EngineSessionType_IsSet = true; }
+	/** @brief Sets the value of EngineSessionType_Optional and also sets EngineSessionType_IsSet to true using move semantics */
+	void SetEngineSessionType(FString&& NewValue) { EngineSessionType_Optional = NewValue; EngineSessionType_IsSet = true; }
 	 /** @brief Clears the value of EngineSessionType_Optional and sets EngineSessionType_IsSet to false */
 	void ClearEngineSessionType() { EngineSessionType_Optional = TEXT("Game"); EngineSessionType_IsSet = false; }
 	/** @brief Returns true if EngineSessionType_Optional is set and matches the default value */
@@ -97,7 +101,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
 	/** @brief Returns a pointer to CanJoinMatchmaking_Optional, if it has been set, otherwise returns nullptr */
 	const bool* GetCanJoinMatchmakingOrNull() const { if (CanJoinMatchmaking_IsSet) return &CanJoinMatchmaking_Optional; return nullptr; }
 	/** @brief Sets the value of CanJoinMatchmaking_Optional and also sets CanJoinMatchmaking_IsSet to true */
-	void SetCanJoinMatchmaking(bool NewValue) { CanJoinMatchmaking_Optional = NewValue; CanJoinMatchmaking_IsSet = true; }
+	void SetCanJoinMatchmaking(const bool& NewValue) { CanJoinMatchmaking_Optional = NewValue; CanJoinMatchmaking_IsSet = true; }
+	/** @brief Sets the value of CanJoinMatchmaking_Optional and also sets CanJoinMatchmaking_IsSet to true using move semantics */
+	void SetCanJoinMatchmaking(bool&& NewValue) { CanJoinMatchmaking_Optional = NewValue; CanJoinMatchmaking_IsSet = true; }
 	 /** @brief Clears the value of CanJoinMatchmaking_Optional and sets CanJoinMatchmaking_IsSet to false */
 	void ClearCanJoinMatchmaking() { CanJoinMatchmaking_Optional = false; CanJoinMatchmaking_IsSet = false; }
 	/** @brief Returns true if CanJoinMatchmaking_Optional is set and matches the default value */
@@ -124,7 +130,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
 	/** @brief Returns a pointer to CanBeCreatedByPlayersDirectly_Optional, if it has been set, otherwise returns nullptr */
 	const bool* GetCanBeCreatedByPlayersDirectlyOrNull() const { if (CanBeCreatedByPlayersDirectly_IsSet) return &CanBeCreatedByPlayersDirectly_Optional; return nullptr; }
 	/** @brief Sets the value of CanBeCreatedByPlayersDirectly_Optional and also sets CanBeCreatedByPlayersDirectly_IsSet to true */
-	void SetCanBeCreatedByPlayersDirectly(bool NewValue) { CanBeCreatedByPlayersDirectly_Optional = NewValue; CanBeCreatedByPlayersDirectly_IsSet = true; }
+	void SetCanBeCreatedByPlayersDirectly(const bool& NewValue) { CanBeCreatedByPlayersDirectly_Optional = NewValue; CanBeCreatedByPlayersDirectly_IsSet = true; }
+	/** @brief Sets the value of CanBeCreatedByPlayersDirectly_Optional and also sets CanBeCreatedByPlayersDirectly_IsSet to true using move semantics */
+	void SetCanBeCreatedByPlayersDirectly(bool&& NewValue) { CanBeCreatedByPlayersDirectly_Optional = NewValue; CanBeCreatedByPlayersDirectly_IsSet = true; }
 	 /** @brief Clears the value of CanBeCreatedByPlayersDirectly_Optional and sets CanBeCreatedByPlayersDirectly_IsSet to false */
 	void ClearCanBeCreatedByPlayersDirectly() { CanBeCreatedByPlayersDirectly_Optional = false; CanBeCreatedByPlayersDirectly_IsSet = false; }
 	/** @brief Returns true if CanBeCreatedByPlayersDirectly_Optional is set and matches the default value */
@@ -151,7 +159,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
 	/** @brief Returns a pointer to Joinable_Optional, if it has been set, otherwise returns nullptr */
 	const bool* GetJoinableOrNull() const { if (Joinable_IsSet) return &Joinable_Optional; return nullptr; }
 	/** @brief Sets the value of Joinable_Optional and also sets Joinable_IsSet to true */
-	void SetJoinable(bool NewValue) { Joinable_Optional = NewValue; Joinable_IsSet = true; }
+	void SetJoinable(const bool& NewValue) { Joinable_Optional = NewValue; Joinable_IsSet = true; }
+	/** @brief Sets the value of Joinable_Optional and also sets Joinable_IsSet to true using move semantics */
+	void SetJoinable(bool&& NewValue) { Joinable_Optional = NewValue; Joinable_IsSet = true; }
 	 /** @brief Clears the value of Joinable_Optional and sets Joinable_IsSet to false */
 	void ClearJoinable() { Joinable_Optional = false; Joinable_IsSet = false; }
 	/** @brief Returns true if Joinable_Optional is set and matches the default value */
@@ -178,7 +188,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
 	/** @brief Returns a pointer to AttemptAutoJoin_Optional, if it has been set, otherwise returns nullptr */
 	const bool* GetAttemptAutoJoinOrNull() const { if (AttemptAutoJoin_IsSet) return &AttemptAutoJoin_Optional; return nullptr; }
 	/** @brief Sets the value of AttemptAutoJoin_Optional and also sets AttemptAutoJoin_IsSet to true */
-	void SetAttemptAutoJoin(bool NewValue) { AttemptAutoJoin_Optional = NewValue; AttemptAutoJoin_IsSet = true; }
+	void SetAttemptAutoJoin(const bool& NewValue) { AttemptAutoJoin_Optional = NewValue; AttemptAutoJoin_IsSet = true; }
+	/** @brief Sets the value of AttemptAutoJoin_Optional and also sets AttemptAutoJoin_IsSet to true using move semantics */
+	void SetAttemptAutoJoin(bool&& NewValue) { AttemptAutoJoin_Optional = NewValue; AttemptAutoJoin_IsSet = true; }
 	 /** @brief Clears the value of AttemptAutoJoin_Optional and sets AttemptAutoJoin_IsSet to false */
 	void ClearAttemptAutoJoin() { AttemptAutoJoin_Optional = false; AttemptAutoJoin_IsSet = false; }
 	/** @brief Returns true if AttemptAutoJoin_Optional is set and matches the default value */
@@ -205,7 +217,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
 	/** @brief Returns a pointer to DefaultPublic_Optional, if it has been set, otherwise returns nullptr */
 	const bool* GetDefaultPublicOrNull() const { if (DefaultPublic_IsSet) return &DefaultPublic_Optional; return nullptr; }
 	/** @brief Sets the value of DefaultPublic_Optional and also sets DefaultPublic_IsSet to true */
-	void SetDefaultPublic(bool NewValue) { DefaultPublic_Optional = NewValue; DefaultPublic_IsSet = true; }
+	void SetDefaultPublic(const bool& NewValue) { DefaultPublic_Optional = NewValue; DefaultPublic_IsSet = true; }
+	/** @brief Sets the value of DefaultPublic_Optional and also sets DefaultPublic_IsSet to true using move semantics */
+	void SetDefaultPublic(bool&& NewValue) { DefaultPublic_Optional = NewValue; DefaultPublic_IsSet = true; }
 	 /** @brief Clears the value of DefaultPublic_Optional and sets DefaultPublic_IsSet to false */
 	void ClearDefaultPublic() { DefaultPublic_Optional = false; DefaultPublic_IsSet = false; }
 	/** @brief Returns true if DefaultPublic_Optional is set and matches the default value */
@@ -232,7 +246,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
 	/** @brief Returns a pointer to AutoAddToBrowser_Optional, if it has been set, otherwise returns nullptr */
 	const bool* GetAutoAddToBrowserOrNull() const { if (AutoAddToBrowser_IsSet) return &AutoAddToBrowser_Optional; return nullptr; }
 	/** @brief Sets the value of AutoAddToBrowser_Optional and also sets AutoAddToBrowser_IsSet to true */
-	void SetAutoAddToBrowser(bool NewValue) { AutoAddToBrowser_Optional = NewValue; AutoAddToBrowser_IsSet = true; }
+	void SetAutoAddToBrowser(const bool& NewValue) { AutoAddToBrowser_Optional = NewValue; AutoAddToBrowser_IsSet = true; }
+	/** @brief Sets the value of AutoAddToBrowser_Optional and also sets AutoAddToBrowser_IsSet to true using move semantics */
+	void SetAutoAddToBrowser(bool&& NewValue) { AutoAddToBrowser_Optional = NewValue; AutoAddToBrowser_IsSet = true; }
 	 /** @brief Clears the value of AutoAddToBrowser_Optional and sets AutoAddToBrowser_IsSet to false */
 	void ClearAutoAddToBrowser() { AutoAddToBrowser_Optional = false; AutoAddToBrowser_IsSet = false; }
 	/** @brief Returns true if AutoAddToBrowser_Optional is set and matches the default value */
@@ -259,7 +275,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
 	/** @brief Returns a pointer to AutoBrowserParams_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FString>* GetAutoBrowserParamsOrNull() const { if (AutoBrowserParams_IsSet) return &AutoBrowserParams_Optional; return nullptr; }
 	/** @brief Sets the value of AutoBrowserParams_Optional and also sets AutoBrowserParams_IsSet to true */
-	void SetAutoBrowserParams(TMap<FString, FString> NewValue) { AutoBrowserParams_Optional = NewValue; AutoBrowserParams_IsSet = true; }
+	void SetAutoBrowserParams(const TMap<FString, FString>& NewValue) { AutoBrowserParams_Optional = NewValue; AutoBrowserParams_IsSet = true; }
+	/** @brief Sets the value of AutoBrowserParams_Optional and also sets AutoBrowserParams_IsSet to true using move semantics */
+	void SetAutoBrowserParams(TMap<FString, FString>&& NewValue) { AutoBrowserParams_Optional = NewValue; AutoBrowserParams_IsSet = true; }
 	 /** @brief Clears the value of AutoBrowserParams_Optional and sets AutoBrowserParams_IsSet to false */
 	void ClearAutoBrowserParams() { AutoBrowserParams_IsSet = false; }
 
@@ -282,7 +300,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
 	/** @brief Returns a pointer to CanBeAddedToServerBrowser_Optional, if it has been set, otherwise returns nullptr */
 	const bool* GetCanBeAddedToServerBrowserOrNull() const { if (CanBeAddedToServerBrowser_IsSet) return &CanBeAddedToServerBrowser_Optional; return nullptr; }
 	/** @brief Sets the value of CanBeAddedToServerBrowser_Optional and also sets CanBeAddedToServerBrowser_IsSet to true */
-	void SetCanBeAddedToServerBrowser(bool NewValue) { CanBeAddedToServerBrowser_Optional = NewValue; CanBeAddedToServerBrowser_IsSet = true; }
+	void SetCanBeAddedToServerBrowser(const bool& NewValue) { CanBeAddedToServerBrowser_Optional = NewValue; CanBeAddedToServerBrowser_IsSet = true; }
+	/** @brief Sets the value of CanBeAddedToServerBrowser_Optional and also sets CanBeAddedToServerBrowser_IsSet to true using move semantics */
+	void SetCanBeAddedToServerBrowser(bool&& NewValue) { CanBeAddedToServerBrowser_Optional = NewValue; CanBeAddedToServerBrowser_IsSet = true; }
 	 /** @brief Clears the value of CanBeAddedToServerBrowser_Optional and sets CanBeAddedToServerBrowser_IsSet to false */
 	void ClearCanBeAddedToServerBrowser() { CanBeAddedToServerBrowser_Optional = false; CanBeAddedToServerBrowser_IsSet = false; }
 	/** @brief Returns true if CanBeAddedToServerBrowser_Optional is set and matches the default value */
@@ -309,7 +329,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
 	/** @brief Returns a pointer to KeepAliveOnEmpty_Optional, if it has been set, otherwise returns nullptr */
 	const bool* GetKeepAliveOnEmptyOrNull() const { if (KeepAliveOnEmpty_IsSet) return &KeepAliveOnEmpty_Optional; return nullptr; }
 	/** @brief Sets the value of KeepAliveOnEmpty_Optional and also sets KeepAliveOnEmpty_IsSet to true */
-	void SetKeepAliveOnEmpty(bool NewValue) { KeepAliveOnEmpty_Optional = NewValue; KeepAliveOnEmpty_IsSet = true; }
+	void SetKeepAliveOnEmpty(const bool& NewValue) { KeepAliveOnEmpty_Optional = NewValue; KeepAliveOnEmpty_IsSet = true; }
+	/** @brief Sets the value of KeepAliveOnEmpty_Optional and also sets KeepAliveOnEmpty_IsSet to true using move semantics */
+	void SetKeepAliveOnEmpty(bool&& NewValue) { KeepAliveOnEmpty_Optional = NewValue; KeepAliveOnEmpty_IsSet = true; }
 	 /** @brief Clears the value of KeepAliveOnEmpty_Optional and sets KeepAliveOnEmpty_IsSet to false */
 	void ClearKeepAliveOnEmpty() { KeepAliveOnEmpty_Optional = false; KeepAliveOnEmpty_IsSet = false; }
 	/** @brief Returns true if KeepAliveOnEmpty_Optional is set and matches the default value */
@@ -336,7 +358,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
 	/** @brief Returns a pointer to PlatformTemplates_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FRHAPI_PlatformSessionTemplate>* GetPlatformTemplatesOrNull() const { if (PlatformTemplates_IsSet) return &PlatformTemplates_Optional; return nullptr; }
 	/** @brief Sets the value of PlatformTemplates_Optional and also sets PlatformTemplates_IsSet to true */
-	void SetPlatformTemplates(TMap<FString, FRHAPI_PlatformSessionTemplate> NewValue) { PlatformTemplates_Optional = NewValue; PlatformTemplates_IsSet = true; }
+	void SetPlatformTemplates(const TMap<FString, FRHAPI_PlatformSessionTemplate>& NewValue) { PlatformTemplates_Optional = NewValue; PlatformTemplates_IsSet = true; }
+	/** @brief Sets the value of PlatformTemplates_Optional and also sets PlatformTemplates_IsSet to true using move semantics */
+	void SetPlatformTemplates(TMap<FString, FRHAPI_PlatformSessionTemplate>&& NewValue) { PlatformTemplates_Optional = NewValue; PlatformTemplates_IsSet = true; }
 	 /** @brief Clears the value of PlatformTemplates_Optional and sets PlatformTemplates_IsSet to false */
 	void ClearPlatformTemplates() { PlatformTemplates_IsSet = false; }
 
@@ -359,7 +383,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
 	/** @brief Returns a pointer to AutoStartupParams_Optional, if it has been set, otherwise returns nullptr */
 	const FRHAPI_InstanceStartupParams* GetAutoStartupParamsOrNull() const { if (AutoStartupParams_IsSet) return &AutoStartupParams_Optional; return nullptr; }
 	/** @brief Sets the value of AutoStartupParams_Optional and also sets AutoStartupParams_IsSet to true */
-	void SetAutoStartupParams(FRHAPI_InstanceStartupParams NewValue) { AutoStartupParams_Optional = NewValue; AutoStartupParams_IsSet = true; }
+	void SetAutoStartupParams(const FRHAPI_InstanceStartupParams& NewValue) { AutoStartupParams_Optional = NewValue; AutoStartupParams_IsSet = true; }
+	/** @brief Sets the value of AutoStartupParams_Optional and also sets AutoStartupParams_IsSet to true using move semantics */
+	void SetAutoStartupParams(FRHAPI_InstanceStartupParams&& NewValue) { AutoStartupParams_Optional = NewValue; AutoStartupParams_IsSet = true; }
 	 /** @brief Clears the value of AutoStartupParams_Optional and sets AutoStartupParams_IsSet to false */
 	void ClearAutoStartupParams() { AutoStartupParams_IsSet = false; }
 
@@ -382,7 +408,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
 	/** @brief Returns a pointer to MinSessionCount_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetMinSessionCountOrNull() const { if (MinSessionCount_IsSet) return &MinSessionCount_Optional; return nullptr; }
 	/** @brief Sets the value of MinSessionCount_Optional and also sets MinSessionCount_IsSet to true */
-	void SetMinSessionCount(int32 NewValue) { MinSessionCount_Optional = NewValue; MinSessionCount_IsSet = true; }
+	void SetMinSessionCount(const int32& NewValue) { MinSessionCount_Optional = NewValue; MinSessionCount_IsSet = true; }
+	/** @brief Sets the value of MinSessionCount_Optional and also sets MinSessionCount_IsSet to true using move semantics */
+	void SetMinSessionCount(int32&& NewValue) { MinSessionCount_Optional = NewValue; MinSessionCount_IsSet = true; }
 	 /** @brief Clears the value of MinSessionCount_Optional and sets MinSessionCount_IsSet to false */
 	void ClearMinSessionCount() { MinSessionCount_Optional = 0; MinSessionCount_IsSet = false; }
 	/** @brief Returns true if MinSessionCount_Optional is set and matches the default value */
@@ -409,7 +437,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
+	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
 	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false; }
 
@@ -432,7 +462,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
 	/** @brief Returns a pointer to NumTeams_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetNumTeamsOrNull() const { if (NumTeams_IsSet) return &NumTeams_Optional; return nullptr; }
 	/** @brief Sets the value of NumTeams_Optional and also sets NumTeams_IsSet to true */
-	void SetNumTeams(int32 NewValue) { NumTeams_Optional = NewValue; NumTeams_IsSet = true; }
+	void SetNumTeams(const int32& NewValue) { NumTeams_Optional = NewValue; NumTeams_IsSet = true; }
+	/** @brief Sets the value of NumTeams_Optional and also sets NumTeams_IsSet to true using move semantics */
+	void SetNumTeams(int32&& NewValue) { NumTeams_Optional = NewValue; NumTeams_IsSet = true; }
 	 /** @brief Clears the value of NumTeams_Optional and sets NumTeams_IsSet to false */
 	void ClearNumTeams() { NumTeams_Optional = 1; NumTeams_IsSet = false; }
 	/** @brief Returns true if NumTeams_Optional is set and matches the default value */
@@ -459,7 +491,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
 	/** @brief Returns a pointer to PlayersPerTeam_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetPlayersPerTeamOrNull() const { if (PlayersPerTeam_IsSet) return &PlayersPerTeam_Optional; return nullptr; }
 	/** @brief Sets the value of PlayersPerTeam_Optional and also sets PlayersPerTeam_IsSet to true */
-	void SetPlayersPerTeam(int32 NewValue) { PlayersPerTeam_Optional = NewValue; PlayersPerTeam_IsSet = true; }
+	void SetPlayersPerTeam(const int32& NewValue) { PlayersPerTeam_Optional = NewValue; PlayersPerTeam_IsSet = true; }
+	/** @brief Sets the value of PlayersPerTeam_Optional and also sets PlayersPerTeam_IsSet to true using move semantics */
+	void SetPlayersPerTeam(int32&& NewValue) { PlayersPerTeam_Optional = NewValue; PlayersPerTeam_IsSet = true; }
 	 /** @brief Clears the value of PlayersPerTeam_Optional and sets PlayersPerTeam_IsSet to false */
 	void ClearPlayersPerTeam() { PlayersPerTeam_Optional = 4; PlayersPerTeam_IsSet = false; }
 	/** @brief Returns true if PlayersPerTeam_Optional is set and matches the default value */
@@ -486,7 +520,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
 	/** @brief Returns a pointer to CanChangeOwnTeam_Optional, if it has been set, otherwise returns nullptr */
 	const bool* GetCanChangeOwnTeamOrNull() const { if (CanChangeOwnTeam_IsSet) return &CanChangeOwnTeam_Optional; return nullptr; }
 	/** @brief Sets the value of CanChangeOwnTeam_Optional and also sets CanChangeOwnTeam_IsSet to true */
-	void SetCanChangeOwnTeam(bool NewValue) { CanChangeOwnTeam_Optional = NewValue; CanChangeOwnTeam_IsSet = true; }
+	void SetCanChangeOwnTeam(const bool& NewValue) { CanChangeOwnTeam_Optional = NewValue; CanChangeOwnTeam_IsSet = true; }
+	/** @brief Sets the value of CanChangeOwnTeam_Optional and also sets CanChangeOwnTeam_IsSet to true using move semantics */
+	void SetCanChangeOwnTeam(bool&& NewValue) { CanChangeOwnTeam_Optional = NewValue; CanChangeOwnTeam_IsSet = true; }
 	 /** @brief Clears the value of CanChangeOwnTeam_Optional and sets CanChangeOwnTeam_IsSet to false */
 	void ClearCanChangeOwnTeam() { CanChangeOwnTeam_Optional = true; CanChangeOwnTeam_IsSet = false; }
 	/** @brief Returns true if CanChangeOwnTeam_Optional is set and matches the default value */

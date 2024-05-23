@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_FileListResponse : public FRHAPI_Model
 	/** @brief Gets the value of Files */
 	const TArray<FRHAPI_FileResponse>& GetFiles() const { return Files; }
 	/** @brief Sets the value of Files */
-	void SetFiles(TArray<FRHAPI_FileResponse> NewValue) { Files = NewValue;  }
+	void SetFiles(const TArray<FRHAPI_FileResponse>& NewValue) { Files = NewValue;  }
+	/** @brief Sets the value of Files using move semantics */
+	void SetFiles(TArray<FRHAPI_FileResponse>&& NewValue) { Files = NewValue;  }
 };
 
 /** @} */

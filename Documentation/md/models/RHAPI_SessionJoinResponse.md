@@ -24,7 +24,8 @@ Response when a player successfully joins a session.
 `public virtual void `[`WriteJson`](#structFRHAPI__SessionJoinResponse_1a29e24fca444e7af72874cce8b76a27a6)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetSessionId`](#structFRHAPI__SessionJoinResponse_1aec0fea30126379f82c3b0b92b40ee9c2)`()` | Gets the value of SessionId.
 `public inline const FString & `[`GetSessionId`](#structFRHAPI__SessionJoinResponse_1a5864fade9558dad663e8f6cccf769468)`() const` | Gets the value of SessionId.
-`public inline void `[`SetSessionId`](#structFRHAPI__SessionJoinResponse_1ae84390873c78919f4076dbe7834e197c)`(FString NewValue)` | Sets the value of SessionId.
+`public inline void `[`SetSessionId`](#structFRHAPI__SessionJoinResponse_1ac73376a9211c0d65dc15ccaf5f96da42)`(const FString & NewValue)` | Sets the value of SessionId.
+`public inline void `[`SetSessionId`](#structFRHAPI__SessionJoinResponse_1ad2a7741d51fb07f0766bab8a202c97a1)`(FString && NewValue)` | Sets the value of SessionId using move semantics.
 
 ### Members
 
@@ -57,7 +58,11 @@ Gets the value of SessionId.
 
 Gets the value of SessionId.
 
-#### `public inline void `[`SetSessionId`](#structFRHAPI__SessionJoinResponse_1ae84390873c78919f4076dbe7834e197c)`(FString NewValue)` <a id="structFRHAPI__SessionJoinResponse_1ae84390873c78919f4076dbe7834e197c"></a>
+#### `public inline void `[`SetSessionId`](#structFRHAPI__SessionJoinResponse_1ac73376a9211c0d65dc15ccaf5f96da42)`(const FString & NewValue)` <a id="structFRHAPI__SessionJoinResponse_1ac73376a9211c0d65dc15ccaf5f96da42"></a>
 
 Sets the value of SessionId.
+
+#### `public inline void `[`SetSessionId`](#structFRHAPI__SessionJoinResponse_1ad2a7741d51fb07f0766bab8a202c97a1)`(FString && NewValue)` <a id="structFRHAPI__SessionJoinResponse_1ad2a7741d51fb07f0766bab8a202c97a1"></a>
+
+Sets the value of SessionId using move semantics.
 

@@ -68,7 +68,9 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
 	/** @brief Returns a pointer to XpTables_Optional, if it has been set, otherwise returns nullptr */
 	const FRHAPI_XpTables* GetXpTablesOrNull() const { if (XpTables_IsSet) return &XpTables_Optional; return nullptr; }
 	/** @brief Sets the value of XpTables_Optional and also sets XpTables_IsSet to true */
-	void SetXpTables(FRHAPI_XpTables NewValue) { XpTables_Optional = NewValue; XpTables_IsSet = true; }
+	void SetXpTables(const FRHAPI_XpTables& NewValue) { XpTables_Optional = NewValue; XpTables_IsSet = true; }
+	/** @brief Sets the value of XpTables_Optional and also sets XpTables_IsSet to true using move semantics */
+	void SetXpTables(FRHAPI_XpTables&& NewValue) { XpTables_Optional = NewValue; XpTables_IsSet = true; }
 	 /** @brief Clears the value of XpTables_Optional and sets XpTables_IsSet to false */
 	void ClearXpTables() { XpTables_IsSet = false; }
 
@@ -91,7 +93,9 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
 	/** @brief Returns a pointer to PortalUseRulesets_Optional, if it has been set, otherwise returns nullptr */
 	const FRHAPI_PortalUseRulesets* GetPortalUseRulesetsOrNull() const { if (PortalUseRulesets_IsSet) return &PortalUseRulesets_Optional; return nullptr; }
 	/** @brief Sets the value of PortalUseRulesets_Optional and also sets PortalUseRulesets_IsSet to true */
-	void SetPortalUseRulesets(FRHAPI_PortalUseRulesets NewValue) { PortalUseRulesets_Optional = NewValue; PortalUseRulesets_IsSet = true; }
+	void SetPortalUseRulesets(const FRHAPI_PortalUseRulesets& NewValue) { PortalUseRulesets_Optional = NewValue; PortalUseRulesets_IsSet = true; }
+	/** @brief Sets the value of PortalUseRulesets_Optional and also sets PortalUseRulesets_IsSet to true using move semantics */
+	void SetPortalUseRulesets(FRHAPI_PortalUseRulesets&& NewValue) { PortalUseRulesets_Optional = NewValue; PortalUseRulesets_IsSet = true; }
 	 /** @brief Clears the value of PortalUseRulesets_Optional and sets PortalUseRulesets_IsSet to false */
 	void ClearPortalUseRulesets() { PortalUseRulesets_IsSet = false; }
 
@@ -114,7 +118,9 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
 	/** @brief Returns a pointer to InventoryBucketUseRuleSets_Optional, if it has been set, otherwise returns nullptr */
 	const FRHAPI_InventoryBucketUseRuleSets* GetInventoryBucketUseRuleSetsOrNull() const { if (InventoryBucketUseRuleSets_IsSet) return &InventoryBucketUseRuleSets_Optional; return nullptr; }
 	/** @brief Sets the value of InventoryBucketUseRuleSets_Optional and also sets InventoryBucketUseRuleSets_IsSet to true */
-	void SetInventoryBucketUseRuleSets(FRHAPI_InventoryBucketUseRuleSets NewValue) { InventoryBucketUseRuleSets_Optional = NewValue; InventoryBucketUseRuleSets_IsSet = true; }
+	void SetInventoryBucketUseRuleSets(const FRHAPI_InventoryBucketUseRuleSets& NewValue) { InventoryBucketUseRuleSets_Optional = NewValue; InventoryBucketUseRuleSets_IsSet = true; }
+	/** @brief Sets the value of InventoryBucketUseRuleSets_Optional and also sets InventoryBucketUseRuleSets_IsSet to true using move semantics */
+	void SetInventoryBucketUseRuleSets(FRHAPI_InventoryBucketUseRuleSets&& NewValue) { InventoryBucketUseRuleSets_Optional = NewValue; InventoryBucketUseRuleSets_IsSet = true; }
 	 /** @brief Clears the value of InventoryBucketUseRuleSets_Optional and sets InventoryBucketUseRuleSets_IsSet to false */
 	void ClearInventoryBucketUseRuleSets() { InventoryBucketUseRuleSets_IsSet = false; }
 
@@ -137,7 +143,9 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
 	/** @brief Returns a pointer to Vendors_Optional, if it has been set, otherwise returns nullptr */
 	const FRHAPI_Vendors* GetVendorsOrNull() const { if (Vendors_IsSet) return &Vendors_Optional; return nullptr; }
 	/** @brief Sets the value of Vendors_Optional and also sets Vendors_IsSet to true */
-	void SetVendors(FRHAPI_Vendors NewValue) { Vendors_Optional = NewValue; Vendors_IsSet = true; }
+	void SetVendors(const FRHAPI_Vendors& NewValue) { Vendors_Optional = NewValue; Vendors_IsSet = true; }
+	/** @brief Sets the value of Vendors_Optional and also sets Vendors_IsSet to true using move semantics */
+	void SetVendors(FRHAPI_Vendors&& NewValue) { Vendors_Optional = NewValue; Vendors_IsSet = true; }
 	 /** @brief Clears the value of Vendors_Optional and sets Vendors_IsSet to false */
 	void ClearVendors() { Vendors_IsSet = false; }
 
@@ -160,7 +168,9 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
 	/** @brief Returns a pointer to Loot_Optional, if it has been set, otherwise returns nullptr */
 	const FRHAPI_Loots* GetLootOrNull() const { if (Loot_IsSet) return &Loot_Optional; return nullptr; }
 	/** @brief Sets the value of Loot_Optional and also sets Loot_IsSet to true */
-	void SetLoot(FRHAPI_Loots NewValue) { Loot_Optional = NewValue; Loot_IsSet = true; }
+	void SetLoot(const FRHAPI_Loots& NewValue) { Loot_Optional = NewValue; Loot_IsSet = true; }
+	/** @brief Sets the value of Loot_Optional and also sets Loot_IsSet to true using move semantics */
+	void SetLoot(FRHAPI_Loots&& NewValue) { Loot_Optional = NewValue; Loot_IsSet = true; }
 	 /** @brief Clears the value of Loot_Optional and sets Loot_IsSet to false */
 	void ClearLoot() { Loot_IsSet = false; }
 
@@ -183,7 +193,9 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
 	/** @brief Returns a pointer to Items_Optional, if it has been set, otherwise returns nullptr */
 	const FRHAPI_Items* GetItemsOrNull() const { if (Items_IsSet) return &Items_Optional; return nullptr; }
 	/** @brief Sets the value of Items_Optional and also sets Items_IsSet to true */
-	void SetItems(FRHAPI_Items NewValue) { Items_Optional = NewValue; Items_IsSet = true; }
+	void SetItems(const FRHAPI_Items& NewValue) { Items_Optional = NewValue; Items_IsSet = true; }
+	/** @brief Sets the value of Items_Optional and also sets Items_IsSet to true using move semantics */
+	void SetItems(FRHAPI_Items&& NewValue) { Items_Optional = NewValue; Items_IsSet = true; }
 	 /** @brief Clears the value of Items_Optional and sets Items_IsSet to false */
 	void ClearItems() { Items_IsSet = false; }
 
@@ -206,7 +218,9 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
 	/** @brief Returns a pointer to PricePoints_Optional, if it has been set, otherwise returns nullptr */
 	const FRHAPI_PricePoints* GetPricePointsOrNull() const { if (PricePoints_IsSet) return &PricePoints_Optional; return nullptr; }
 	/** @brief Sets the value of PricePoints_Optional and also sets PricePoints_IsSet to true */
-	void SetPricePoints(FRHAPI_PricePoints NewValue) { PricePoints_Optional = NewValue; PricePoints_IsSet = true; }
+	void SetPricePoints(const FRHAPI_PricePoints& NewValue) { PricePoints_Optional = NewValue; PricePoints_IsSet = true; }
+	/** @brief Sets the value of PricePoints_Optional and also sets PricePoints_IsSet to true using move semantics */
+	void SetPricePoints(FRHAPI_PricePoints&& NewValue) { PricePoints_Optional = NewValue; PricePoints_IsSet = true; }
 	 /** @brief Clears the value of PricePoints_Optional and sets PricePoints_IsSet to false */
 	void ClearPricePoints() { PricePoints_IsSet = false; }
 
@@ -229,7 +243,9 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
 	/** @brief Returns a pointer to TimeFrames_Optional, if it has been set, otherwise returns nullptr */
 	const FRHAPI_TimeFrames* GetTimeFramesOrNull() const { if (TimeFrames_IsSet) return &TimeFrames_Optional; return nullptr; }
 	/** @brief Sets the value of TimeFrames_Optional and also sets TimeFrames_IsSet to true */
-	void SetTimeFrames(FRHAPI_TimeFrames NewValue) { TimeFrames_Optional = NewValue; TimeFrames_IsSet = true; }
+	void SetTimeFrames(const FRHAPI_TimeFrames& NewValue) { TimeFrames_Optional = NewValue; TimeFrames_IsSet = true; }
+	/** @brief Sets the value of TimeFrames_Optional and also sets TimeFrames_IsSet to true using move semantics */
+	void SetTimeFrames(FRHAPI_TimeFrames&& NewValue) { TimeFrames_Optional = NewValue; TimeFrames_IsSet = true; }
 	 /** @brief Clears the value of TimeFrames_Optional and sets TimeFrames_IsSet to false */
 	void ClearTimeFrames() { TimeFrames_IsSet = false; }
 
@@ -252,7 +268,9 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
 	/** @brief Returns a pointer to Skus_Optional, if it has been set, otherwise returns nullptr */
 	const FRHAPI_PlatformSKUs* GetSkusOrNull() const { if (Skus_IsSet) return &Skus_Optional; return nullptr; }
 	/** @brief Sets the value of Skus_Optional and also sets Skus_IsSet to true */
-	void SetSkus(FRHAPI_PlatformSKUs NewValue) { Skus_Optional = NewValue; Skus_IsSet = true; }
+	void SetSkus(const FRHAPI_PlatformSKUs& NewValue) { Skus_Optional = NewValue; Skus_IsSet = true; }
+	/** @brief Sets the value of Skus_Optional and also sets Skus_IsSet to true using move semantics */
+	void SetSkus(FRHAPI_PlatformSKUs&& NewValue) { Skus_Optional = NewValue; Skus_IsSet = true; }
 	 /** @brief Clears the value of Skus_Optional and sets Skus_IsSet to false */
 	void ClearSkus() { Skus_IsSet = false; }
 
@@ -275,7 +293,9 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
 	/** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
 	const FRHAPI_CacheInfo* GetCacheInfoOrNull() const { if (CacheInfo_IsSet) return &CacheInfo_Optional; return nullptr; }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true */
-	void SetCacheInfo(FRHAPI_CacheInfo NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
+	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
+	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics */
+	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
 	 /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
 	void ClearCacheInfo() { CacheInfo_IsSet = false; }
 };

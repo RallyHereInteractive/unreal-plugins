@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_PersonEmailListResponse : public FRHAPI_Model
 	/** @brief Gets the value of EmailListIds */
 	const TArray<int32>& GetEmailListIds() const { return EmailListIds; }
 	/** @brief Sets the value of EmailListIds */
-	void SetEmailListIds(TArray<int32> NewValue) { EmailListIds = NewValue;  }
+	void SetEmailListIds(const TArray<int32>& NewValue) { EmailListIds = NewValue;  }
+	/** @brief Sets the value of EmailListIds using move semantics */
+	void SetEmailListIds(TArray<int32>&& NewValue) { EmailListIds = NewValue;  }
 };
 
 /** @} */

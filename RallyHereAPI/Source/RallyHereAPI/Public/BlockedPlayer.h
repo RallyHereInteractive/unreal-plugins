@@ -46,7 +46,9 @@ struct RALLYHEREAPI_API FRHAPI_BlockedPlayer : public FRHAPI_Model
 	/** @brief Gets the value of BlockedPlayerUuid */
 	const FGuid& GetBlockedPlayerUuid() const { return BlockedPlayerUuid; }
 	/** @brief Sets the value of BlockedPlayerUuid */
-	void SetBlockedPlayerUuid(FGuid NewValue) { BlockedPlayerUuid = NewValue;  }
+	void SetBlockedPlayerUuid(const FGuid& NewValue) { BlockedPlayerUuid = NewValue;  }
+	/** @brief Sets the value of BlockedPlayerUuid using move semantics */
+	void SetBlockedPlayerUuid(FGuid&& NewValue) { BlockedPlayerUuid = NewValue;  }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FDateTime LastModifiedOn{  };
@@ -55,7 +57,9 @@ struct RALLYHEREAPI_API FRHAPI_BlockedPlayer : public FRHAPI_Model
 	/** @brief Gets the value of LastModifiedOn */
 	const FDateTime& GetLastModifiedOn() const { return LastModifiedOn; }
 	/** @brief Sets the value of LastModifiedOn */
-	void SetLastModifiedOn(FDateTime NewValue) { LastModifiedOn = NewValue;  }
+	void SetLastModifiedOn(const FDateTime& NewValue) { LastModifiedOn = NewValue;  }
+	/** @brief Sets the value of LastModifiedOn using move semantics */
+	void SetLastModifiedOn(FDateTime&& NewValue) { LastModifiedOn = NewValue;  }
 };
 
 /** @} */

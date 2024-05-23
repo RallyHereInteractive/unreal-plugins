@@ -48,7 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_InstanceHealthStatusResponse : public FRHAPI_Mode
 	/** @brief Gets the value of UpdatedInstanceHealth */
 	const ERHAPI_InstanceHealthStatus& GetUpdatedInstanceHealth() const { return UpdatedInstanceHealth; }
 	/** @brief Sets the value of UpdatedInstanceHealth */
-	void SetUpdatedInstanceHealth(ERHAPI_InstanceHealthStatus NewValue) { UpdatedInstanceHealth = NewValue;  }
+	void SetUpdatedInstanceHealth(const ERHAPI_InstanceHealthStatus& NewValue) { UpdatedInstanceHealth = NewValue;  }
+	/** @brief Sets the value of UpdatedInstanceHealth using move semantics */
+	void SetUpdatedInstanceHealth(ERHAPI_InstanceHealthStatus&& NewValue) { UpdatedInstanceHealth = NewValue;  }
 };
 
 /** @} */

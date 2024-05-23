@@ -30,19 +30,22 @@ Response for getting a player&#39;s info.
 `public virtual void `[`WriteJson`](#structFRHAPI__PlayerPersonResponse_1a07e5f87c8b258ba8b4b5f9cf24294188)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline int32 & `[`GetPlayerId`](#structFRHAPI__PlayerPersonResponse_1afed3098f55fb2c1175b20d5f9a469f11)`()` | Gets the value of PlayerId.
 `public inline const int32 & `[`GetPlayerId`](#structFRHAPI__PlayerPersonResponse_1a218ed87d8e156eda4bf474f4a4efb050)`() const` | Gets the value of PlayerId.
-`public inline void `[`SetPlayerId`](#structFRHAPI__PlayerPersonResponse_1adcfa0dedd085e788f00442b172b657c1)`(int32 NewValue)` | Sets the value of PlayerId.
+`public inline void `[`SetPlayerId`](#structFRHAPI__PlayerPersonResponse_1a820ab44ccf334526c874dfe032ae1179)`(const int32 & NewValue)` | Sets the value of PlayerId.
+`public inline void `[`SetPlayerId`](#structFRHAPI__PlayerPersonResponse_1ad515494fd8fb4e76d8df145cea805a08)`(int32 && NewValue)` | Sets the value of PlayerId using move semantics.
 `public inline bool `[`IsPlayerIdDefaultValue`](#structFRHAPI__PlayerPersonResponse_1a5c9a8ada9783a0f385bc997745fdd9f2)`() const` | Returns true if PlayerId matches the default value.
 `public inline void `[`SetPlayerIdToDefault`](#structFRHAPI__PlayerPersonResponse_1ab1bdfbc107c2424b5062899491c5ad56)`()` | Sets the value of PlayerId to its default
 `public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__PlayerPersonResponse_1a02c5fae88b825eb4dd395937544c5ce7)`()` | Gets the value of PlayerUuid.
 `public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__PlayerPersonResponse_1ad0409636cc555075b0b2e1a3afbafd93)`() const` | Gets the value of PlayerUuid.
-`public inline void `[`SetPlayerUuid`](#structFRHAPI__PlayerPersonResponse_1a46e761ddb66e8b25a3de3488e16a911e)`(FGuid NewValue)` | Sets the value of PlayerUuid.
+`public inline void `[`SetPlayerUuid`](#structFRHAPI__PlayerPersonResponse_1a94123983b25e78d680e03396d96bdd1f)`(const FGuid & NewValue)` | Sets the value of PlayerUuid.
+`public inline void `[`SetPlayerUuid`](#structFRHAPI__PlayerPersonResponse_1aa9eba9b71c3dd5a30964a8fe2aa95f4c)`(FGuid && NewValue)` | Sets the value of PlayerUuid using move semantics.
 `public inline int32 & `[`GetActivePlayerId`](#structFRHAPI__PlayerPersonResponse_1af591f58851eed2ffc18be12e5936ed24)`()` | Gets the value of ActivePlayerId_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetActivePlayerId`](#structFRHAPI__PlayerPersonResponse_1a6929c7e179b8897bc5fcbb0a35836489)`() const` | Gets the value of ActivePlayerId_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetActivePlayerId`](#structFRHAPI__PlayerPersonResponse_1a96ac6dff30726f82b79ff0a5b1b47f73)`(const int32 & DefaultValue) const` | Gets the value of ActivePlayerId_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetActivePlayerId`](#structFRHAPI__PlayerPersonResponse_1a187cfe3d29b7eb69ae446035ac229f9f)`(int32 & OutValue) const` | Fills OutValue with the value of ActivePlayerId_Optional and returns true if it has been set, otherwise returns false.
 `public inline int32 * `[`GetActivePlayerIdOrNull`](#structFRHAPI__PlayerPersonResponse_1a87c814466209339e0f658c1b411e7621)`()` | Returns a pointer to ActivePlayerId_Optional, if it has been set, otherwise returns nullptr.
 `public inline const int32 * `[`GetActivePlayerIdOrNull`](#structFRHAPI__PlayerPersonResponse_1affd49f363af67f77e1d6622c31eccb5f)`() const` | Returns a pointer to ActivePlayerId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetActivePlayerId`](#structFRHAPI__PlayerPersonResponse_1afd9a1220256eca92d3210f6086af0355)`(int32 NewValue)` | Sets the value of ActivePlayerId_Optional and also sets ActivePlayerId_IsSet to true.
+`public inline void `[`SetActivePlayerId`](#structFRHAPI__PlayerPersonResponse_1a19ad9813c879aff779d6ce0980e44769)`(const int32 & NewValue)` | Sets the value of ActivePlayerId_Optional and also sets ActivePlayerId_IsSet to true.
+`public inline void `[`SetActivePlayerId`](#structFRHAPI__PlayerPersonResponse_1a2cf3a97116d00a6afee51dd794aead0d)`(int32 && NewValue)` | Sets the value of ActivePlayerId_Optional and also sets ActivePlayerId_IsSet to true using move semantics.
 `public inline void `[`ClearActivePlayerId`](#structFRHAPI__PlayerPersonResponse_1a52911bca3d1c286aa9c49fa76861047a)`()` | Clears the value of ActivePlayerId_Optional and sets ActivePlayerId_IsSet to false.
 `public inline bool `[`IsActivePlayerIdDefaultValue`](#structFRHAPI__PlayerPersonResponse_1a7b9f33082c19d3b28c613a7dbfd8243e)`() const` | Returns true if ActivePlayerId_Optional is set and matches the default value.
 `public inline void `[`SetActivePlayerIdToDefault`](#structFRHAPI__PlayerPersonResponse_1a2b06fa3955a69ff033aa899285fe0cc2)`()` | Sets the value of ActivePlayerId_Optional to its default and also sets ActivePlayerId_IsSet to true.
@@ -52,11 +55,13 @@ Response for getting a player&#39;s info.
 `public inline bool `[`GetActivePlayerUuid`](#structFRHAPI__PlayerPersonResponse_1afcf0666d4223356e40602f728b72c17d)`(FGuid & OutValue) const` | Fills OutValue with the value of ActivePlayerUuid_Optional and returns true if it has been set, otherwise returns false.
 `public inline FGuid * `[`GetActivePlayerUuidOrNull`](#structFRHAPI__PlayerPersonResponse_1aaaf0e94aa3718791751fde7e34416884)`()` | Returns a pointer to ActivePlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FGuid * `[`GetActivePlayerUuidOrNull`](#structFRHAPI__PlayerPersonResponse_1ad3e7c39000c20d9b85d65875381180cd)`() const` | Returns a pointer to ActivePlayerUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetActivePlayerUuid`](#structFRHAPI__PlayerPersonResponse_1a11de50995559963c46341b0b01d0212f)`(FGuid NewValue)` | Sets the value of ActivePlayerUuid_Optional and also sets ActivePlayerUuid_IsSet to true.
+`public inline void `[`SetActivePlayerUuid`](#structFRHAPI__PlayerPersonResponse_1aca41ca7015a9149ef82d8ab2763c027d)`(const FGuid & NewValue)` | Sets the value of ActivePlayerUuid_Optional and also sets ActivePlayerUuid_IsSet to true.
+`public inline void `[`SetActivePlayerUuid`](#structFRHAPI__PlayerPersonResponse_1a0005536a280a08f5c1c5e7368d6249ba)`(FGuid && NewValue)` | Sets the value of ActivePlayerUuid_Optional and also sets ActivePlayerUuid_IsSet to true using move semantics.
 `public inline void `[`ClearActivePlayerUuid`](#structFRHAPI__PlayerPersonResponse_1a4d3688ff68e789bac4d134e5781e3235)`()` | Clears the value of ActivePlayerUuid_Optional and sets ActivePlayerUuid_IsSet to false.
 `public inline FGuid & `[`GetPersonId`](#structFRHAPI__PlayerPersonResponse_1ac85300f4fb4136190db63cae819ab715)`()` | Gets the value of PersonId.
 `public inline const FGuid & `[`GetPersonId`](#structFRHAPI__PlayerPersonResponse_1a8881ca097d22c79931874d8334478bbc)`() const` | Gets the value of PersonId.
-`public inline void `[`SetPersonId`](#structFRHAPI__PlayerPersonResponse_1a78b38719bfeb0006e3534537428820ff)`(FGuid NewValue)` | Sets the value of PersonId.
+`public inline void `[`SetPersonId`](#structFRHAPI__PlayerPersonResponse_1a35a4f7105803ece61ed04ad20ccb29b0)`(const FGuid & NewValue)` | Sets the value of PersonId.
+`public inline void `[`SetPersonId`](#structFRHAPI__PlayerPersonResponse_1a2b42e72a1a9775df4f065c704ae18dcc)`(FGuid && NewValue)` | Sets the value of PersonId using move semantics.
 
 ### Members
 
@@ -113,9 +118,13 @@ Gets the value of PlayerId.
 
 Gets the value of PlayerId.
 
-#### `public inline void `[`SetPlayerId`](#structFRHAPI__PlayerPersonResponse_1adcfa0dedd085e788f00442b172b657c1)`(int32 NewValue)` <a id="structFRHAPI__PlayerPersonResponse_1adcfa0dedd085e788f00442b172b657c1"></a>
+#### `public inline void `[`SetPlayerId`](#structFRHAPI__PlayerPersonResponse_1a820ab44ccf334526c874dfe032ae1179)`(const int32 & NewValue)` <a id="structFRHAPI__PlayerPersonResponse_1a820ab44ccf334526c874dfe032ae1179"></a>
 
 Sets the value of PlayerId.
+
+#### `public inline void `[`SetPlayerId`](#structFRHAPI__PlayerPersonResponse_1ad515494fd8fb4e76d8df145cea805a08)`(int32 && NewValue)` <a id="structFRHAPI__PlayerPersonResponse_1ad515494fd8fb4e76d8df145cea805a08"></a>
+
+Sets the value of PlayerId using move semantics.
 
 #### `public inline bool `[`IsPlayerIdDefaultValue`](#structFRHAPI__PlayerPersonResponse_1a5c9a8ada9783a0f385bc997745fdd9f2)`() const` <a id="structFRHAPI__PlayerPersonResponse_1a5c9a8ada9783a0f385bc997745fdd9f2"></a>
 
@@ -133,9 +142,13 @@ Gets the value of PlayerUuid.
 
 Gets the value of PlayerUuid.
 
-#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__PlayerPersonResponse_1a46e761ddb66e8b25a3de3488e16a911e)`(FGuid NewValue)` <a id="structFRHAPI__PlayerPersonResponse_1a46e761ddb66e8b25a3de3488e16a911e"></a>
+#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__PlayerPersonResponse_1a94123983b25e78d680e03396d96bdd1f)`(const FGuid & NewValue)` <a id="structFRHAPI__PlayerPersonResponse_1a94123983b25e78d680e03396d96bdd1f"></a>
 
 Sets the value of PlayerUuid.
+
+#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__PlayerPersonResponse_1aa9eba9b71c3dd5a30964a8fe2aa95f4c)`(FGuid && NewValue)` <a id="structFRHAPI__PlayerPersonResponse_1aa9eba9b71c3dd5a30964a8fe2aa95f4c"></a>
+
+Sets the value of PlayerUuid using move semantics.
 
 #### `public inline int32 & `[`GetActivePlayerId`](#structFRHAPI__PlayerPersonResponse_1af591f58851eed2ffc18be12e5936ed24)`()` <a id="structFRHAPI__PlayerPersonResponse_1af591f58851eed2ffc18be12e5936ed24"></a>
 
@@ -161,9 +174,13 @@ Returns a pointer to ActivePlayerId_Optional, if it has been set, otherwise retu
 
 Returns a pointer to ActivePlayerId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetActivePlayerId`](#structFRHAPI__PlayerPersonResponse_1afd9a1220256eca92d3210f6086af0355)`(int32 NewValue)` <a id="structFRHAPI__PlayerPersonResponse_1afd9a1220256eca92d3210f6086af0355"></a>
+#### `public inline void `[`SetActivePlayerId`](#structFRHAPI__PlayerPersonResponse_1a19ad9813c879aff779d6ce0980e44769)`(const int32 & NewValue)` <a id="structFRHAPI__PlayerPersonResponse_1a19ad9813c879aff779d6ce0980e44769"></a>
 
 Sets the value of ActivePlayerId_Optional and also sets ActivePlayerId_IsSet to true.
+
+#### `public inline void `[`SetActivePlayerId`](#structFRHAPI__PlayerPersonResponse_1a2cf3a97116d00a6afee51dd794aead0d)`(int32 && NewValue)` <a id="structFRHAPI__PlayerPersonResponse_1a2cf3a97116d00a6afee51dd794aead0d"></a>
+
+Sets the value of ActivePlayerId_Optional and also sets ActivePlayerId_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearActivePlayerId`](#structFRHAPI__PlayerPersonResponse_1a52911bca3d1c286aa9c49fa76861047a)`()` <a id="structFRHAPI__PlayerPersonResponse_1a52911bca3d1c286aa9c49fa76861047a"></a>
 
@@ -201,9 +218,13 @@ Returns a pointer to ActivePlayerUuid_Optional, if it has been set, otherwise re
 
 Returns a pointer to ActivePlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetActivePlayerUuid`](#structFRHAPI__PlayerPersonResponse_1a11de50995559963c46341b0b01d0212f)`(FGuid NewValue)` <a id="structFRHAPI__PlayerPersonResponse_1a11de50995559963c46341b0b01d0212f"></a>
+#### `public inline void `[`SetActivePlayerUuid`](#structFRHAPI__PlayerPersonResponse_1aca41ca7015a9149ef82d8ab2763c027d)`(const FGuid & NewValue)` <a id="structFRHAPI__PlayerPersonResponse_1aca41ca7015a9149ef82d8ab2763c027d"></a>
 
 Sets the value of ActivePlayerUuid_Optional and also sets ActivePlayerUuid_IsSet to true.
+
+#### `public inline void `[`SetActivePlayerUuid`](#structFRHAPI__PlayerPersonResponse_1a0005536a280a08f5c1c5e7368d6249ba)`(FGuid && NewValue)` <a id="structFRHAPI__PlayerPersonResponse_1a0005536a280a08f5c1c5e7368d6249ba"></a>
+
+Sets the value of ActivePlayerUuid_Optional and also sets ActivePlayerUuid_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearActivePlayerUuid`](#structFRHAPI__PlayerPersonResponse_1a4d3688ff68e789bac4d134e5781e3235)`()` <a id="structFRHAPI__PlayerPersonResponse_1a4d3688ff68e789bac4d134e5781e3235"></a>
 
@@ -217,7 +238,11 @@ Gets the value of PersonId.
 
 Gets the value of PersonId.
 
-#### `public inline void `[`SetPersonId`](#structFRHAPI__PlayerPersonResponse_1a78b38719bfeb0006e3534537428820ff)`(FGuid NewValue)` <a id="structFRHAPI__PlayerPersonResponse_1a78b38719bfeb0006e3534537428820ff"></a>
+#### `public inline void `[`SetPersonId`](#structFRHAPI__PlayerPersonResponse_1a35a4f7105803ece61ed04ad20ccb29b0)`(const FGuid & NewValue)` <a id="structFRHAPI__PlayerPersonResponse_1a35a4f7105803ece61ed04ad20ccb29b0"></a>
 
 Sets the value of PersonId.
+
+#### `public inline void `[`SetPersonId`](#structFRHAPI__PlayerPersonResponse_1a2b42e72a1a9775df4f065c704ae18dcc)`(FGuid && NewValue)` <a id="structFRHAPI__PlayerPersonResponse_1a2b42e72a1a9775df4f065c704ae18dcc"></a>
+
+Sets the value of PersonId using move semantics.
 

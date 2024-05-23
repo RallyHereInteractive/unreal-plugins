@@ -48,7 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_InventorySession : public FRHAPI_Model
 	/** @brief Gets the value of SessionId */
 	const FString& GetSessionId() const { return SessionId; }
 	/** @brief Sets the value of SessionId */
-	void SetSessionId(FString NewValue) { SessionId = NewValue;  }
+	void SetSessionId(const FString& NewValue) { SessionId = NewValue;  }
+	/** @brief Sets the value of SessionId using move semantics */
+	void SetSessionId(FString&& NewValue) { SessionId = NewValue;  }
 
 	/** @brief Platform for this Inventory Session. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -69,7 +71,9 @@ struct RALLYHEREAPI_API FRHAPI_InventorySession : public FRHAPI_Model
 	/** @brief Returns a pointer to SessionPlatform_Optional, if it has been set, otherwise returns nullptr */
 	const ERHAPI_Platform* GetSessionPlatformOrNull() const { if (SessionPlatform_IsSet) return &SessionPlatform_Optional; return nullptr; }
 	/** @brief Sets the value of SessionPlatform_Optional and also sets SessionPlatform_IsSet to true */
-	void SetSessionPlatform(ERHAPI_Platform NewValue) { SessionPlatform_Optional = NewValue; SessionPlatform_IsSet = true; }
+	void SetSessionPlatform(const ERHAPI_Platform& NewValue) { SessionPlatform_Optional = NewValue; SessionPlatform_IsSet = true; }
+	/** @brief Sets the value of SessionPlatform_Optional and also sets SessionPlatform_IsSet to true using move semantics */
+	void SetSessionPlatform(ERHAPI_Platform&& NewValue) { SessionPlatform_Optional = NewValue; SessionPlatform_IsSet = true; }
 	 /** @brief Clears the value of SessionPlatform_Optional and sets SessionPlatform_IsSet to false */
 	void ClearSessionPlatform() { SessionPlatform_IsSet = false; }
 
@@ -92,7 +96,9 @@ struct RALLYHEREAPI_API FRHAPI_InventorySession : public FRHAPI_Model
 	/** @brief Returns a pointer to AppliedDurableLoot_Optional, if it has been set, otherwise returns nullptr */
 	const TArray<int32>* GetAppliedDurableLootOrNull() const { if (AppliedDurableLoot_IsSet) return &AppliedDurableLoot_Optional; return nullptr; }
 	/** @brief Sets the value of AppliedDurableLoot_Optional and also sets AppliedDurableLoot_IsSet to true */
-	void SetAppliedDurableLoot(TArray<int32> NewValue) { AppliedDurableLoot_Optional = NewValue; AppliedDurableLoot_IsSet = true; }
+	void SetAppliedDurableLoot(const TArray<int32>& NewValue) { AppliedDurableLoot_Optional = NewValue; AppliedDurableLoot_IsSet = true; }
+	/** @brief Sets the value of AppliedDurableLoot_Optional and also sets AppliedDurableLoot_IsSet to true using move semantics */
+	void SetAppliedDurableLoot(TArray<int32>&& NewValue) { AppliedDurableLoot_Optional = NewValue; AppliedDurableLoot_IsSet = true; }
 	 /** @brief Clears the value of AppliedDurableLoot_Optional and sets AppliedDurableLoot_IsSet to false */
 	void ClearAppliedDurableLoot() { AppliedDurableLoot_IsSet = false; }
 };

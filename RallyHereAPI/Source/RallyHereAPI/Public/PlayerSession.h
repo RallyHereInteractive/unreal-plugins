@@ -49,7 +49,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerSession : public FRHAPI_Model
 	/** @brief Gets the value of Type */
 	const FString& GetType() const { return Type; }
 	/** @brief Sets the value of Type */
-	void SetType(FString NewValue) { Type = NewValue;  }
+	void SetType(const FString& NewValue) { Type = NewValue;  }
+	/** @brief Sets the value of Type using move semantics */
+	void SetType(FString&& NewValue) { Type = NewValue;  }
 
 	/** @brief Sessions the player is currently a part of for this session type, if any. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -70,7 +72,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerSession : public FRHAPI_Model
 	/** @brief Returns a pointer to SessionIds_Optional, if it has been set, otherwise returns nullptr */
 	const TSet<FString>* GetSessionIdsOrNull() const { if (SessionIds_IsSet) return &SessionIds_Optional; return nullptr; }
 	/** @brief Sets the value of SessionIds_Optional and also sets SessionIds_IsSet to true */
-	void SetSessionIds(TSet<FString> NewValue) { SessionIds_Optional = NewValue; SessionIds_IsSet = true; }
+	void SetSessionIds(const TSet<FString>& NewValue) { SessionIds_Optional = NewValue; SessionIds_IsSet = true; }
+	/** @brief Sets the value of SessionIds_Optional and also sets SessionIds_IsSet to true using move semantics */
+	void SetSessionIds(TSet<FString>&& NewValue) { SessionIds_Optional = NewValue; SessionIds_IsSet = true; }
 	 /** @brief Clears the value of SessionIds_Optional and sets SessionIds_IsSet to false */
 	void ClearSessionIds() { SessionIds_IsSet = false; }
 
@@ -93,7 +97,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerSession : public FRHAPI_Model
 	/** @brief Returns a pointer to PendingInvites_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FRHAPI_PlayerSessionInvite>* GetPendingInvitesOrNull() const { if (PendingInvites_IsSet) return &PendingInvites_Optional; return nullptr; }
 	/** @brief Sets the value of PendingInvites_Optional and also sets PendingInvites_IsSet to true */
-	void SetPendingInvites(TMap<FString, FRHAPI_PlayerSessionInvite> NewValue) { PendingInvites_Optional = NewValue; PendingInvites_IsSet = true; }
+	void SetPendingInvites(const TMap<FString, FRHAPI_PlayerSessionInvite>& NewValue) { PendingInvites_Optional = NewValue; PendingInvites_IsSet = true; }
+	/** @brief Sets the value of PendingInvites_Optional and also sets PendingInvites_IsSet to true using move semantics */
+	void SetPendingInvites(TMap<FString, FRHAPI_PlayerSessionInvite>&& NewValue) { PendingInvites_Optional = NewValue; PendingInvites_IsSet = true; }
 	 /** @brief Clears the value of PendingInvites_Optional and sets PendingInvites_IsSet to false */
 	void ClearPendingInvites() { PendingInvites_IsSet = false; }
 };

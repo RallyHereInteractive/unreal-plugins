@@ -29,7 +29,8 @@ Inventory Context for a Player.
 `public inline bool `[`GetInventory`](#structFRHAPI__InventoryContextResponse_1a9b4af4258c9a4fb458ddab83157d4e7f)`(`[`FRHAPI_Inventory`](RHAPI_Inventory.md#structFRHAPI__Inventory)` & OutValue) const` | Fills OutValue with the value of Inventory_Optional and returns true if it has been set, otherwise returns false.
 `public inline `[`FRHAPI_Inventory`](RHAPI_Inventory.md#structFRHAPI__Inventory)` * `[`GetInventoryOrNull`](#structFRHAPI__InventoryContextResponse_1a799ccbd402f02d24f1172b38ad4469fa)`()` | Returns a pointer to Inventory_Optional, if it has been set, otherwise returns nullptr.
 `public inline const `[`FRHAPI_Inventory`](RHAPI_Inventory.md#structFRHAPI__Inventory)` * `[`GetInventoryOrNull`](#structFRHAPI__InventoryContextResponse_1ac2709dcadd009f843c4c66000a969128)`() const` | Returns a pointer to Inventory_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetInventory`](#structFRHAPI__InventoryContextResponse_1a55bde5b6a680c3b5985044755a31d1f3)`(`[`FRHAPI_Inventory`](RHAPI_Inventory.md#structFRHAPI__Inventory)` NewValue)` | Sets the value of Inventory_Optional and also sets Inventory_IsSet to true.
+`public inline void `[`SetInventory`](#structFRHAPI__InventoryContextResponse_1af6025ac2e9e41aa65beb4bd20f8acf4d)`(const `[`FRHAPI_Inventory`](RHAPI_Inventory.md#structFRHAPI__Inventory)` & NewValue)` | Sets the value of Inventory_Optional and also sets Inventory_IsSet to true.
+`public inline void `[`SetInventory`](#structFRHAPI__InventoryContextResponse_1a5cbd5da73e757edd0dbe316079059272)`(`[`FRHAPI_Inventory`](RHAPI_Inventory.md#structFRHAPI__Inventory)` && NewValue)` | Sets the value of Inventory_Optional and also sets Inventory_IsSet to true using move semantics.
 `public inline void `[`ClearInventory`](#structFRHAPI__InventoryContextResponse_1a41cea14fe48b16820fe86c112069ede4)`()` | Clears the value of Inventory_Optional and sets Inventory_IsSet to false.
 
 ### Members
@@ -83,9 +84,13 @@ Returns a pointer to Inventory_Optional, if it has been set, otherwise returns n
 
 Returns a pointer to Inventory_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetInventory`](#structFRHAPI__InventoryContextResponse_1a55bde5b6a680c3b5985044755a31d1f3)`(`[`FRHAPI_Inventory`](RHAPI_Inventory.md#structFRHAPI__Inventory)` NewValue)` <a id="structFRHAPI__InventoryContextResponse_1a55bde5b6a680c3b5985044755a31d1f3"></a>
+#### `public inline void `[`SetInventory`](#structFRHAPI__InventoryContextResponse_1af6025ac2e9e41aa65beb4bd20f8acf4d)`(const `[`FRHAPI_Inventory`](RHAPI_Inventory.md#structFRHAPI__Inventory)` & NewValue)` <a id="structFRHAPI__InventoryContextResponse_1af6025ac2e9e41aa65beb4bd20f8acf4d"></a>
 
 Sets the value of Inventory_Optional and also sets Inventory_IsSet to true.
+
+#### `public inline void `[`SetInventory`](#structFRHAPI__InventoryContextResponse_1a5cbd5da73e757edd0dbe316079059272)`(`[`FRHAPI_Inventory`](RHAPI_Inventory.md#structFRHAPI__Inventory)` && NewValue)` <a id="structFRHAPI__InventoryContextResponse_1a5cbd5da73e757edd0dbe316079059272"></a>
+
+Sets the value of Inventory_Optional and also sets Inventory_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearInventory`](#structFRHAPI__InventoryContextResponse_1a41cea14fe48b16820fe86c112069ede4)`()` <a id="structFRHAPI__InventoryContextResponse_1a41cea14fe48b16820fe86c112069ede4"></a>
 

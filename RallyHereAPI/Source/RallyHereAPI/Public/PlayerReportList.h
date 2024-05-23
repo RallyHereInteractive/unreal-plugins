@@ -48,7 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerReportList : public FRHAPI_Model
 	/** @brief Gets the value of Reports */
 	const TArray<FRHAPI_PlayerReport>& GetReports() const { return Reports; }
 	/** @brief Sets the value of Reports */
-	void SetReports(TArray<FRHAPI_PlayerReport> NewValue) { Reports = NewValue;  }
+	void SetReports(const TArray<FRHAPI_PlayerReport>& NewValue) { Reports = NewValue;  }
+	/** @brief Sets the value of Reports using move semantics */
+	void SetReports(TArray<FRHAPI_PlayerReport>&& NewValue) { Reports = NewValue;  }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString NextCursor_Optional{  };
@@ -68,7 +70,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerReportList : public FRHAPI_Model
 	/** @brief Returns a pointer to NextCursor_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetNextCursorOrNull() const { if (NextCursor_IsSet) return &NextCursor_Optional; return nullptr; }
 	/** @brief Sets the value of NextCursor_Optional and also sets NextCursor_IsSet to true */
-	void SetNextCursor(FString NewValue) { NextCursor_Optional = NewValue; NextCursor_IsSet = true; }
+	void SetNextCursor(const FString& NewValue) { NextCursor_Optional = NewValue; NextCursor_IsSet = true; }
+	/** @brief Sets the value of NextCursor_Optional and also sets NextCursor_IsSet to true using move semantics */
+	void SetNextCursor(FString&& NewValue) { NextCursor_Optional = NewValue; NextCursor_IsSet = true; }
 	 /** @brief Clears the value of NextCursor_Optional and sets NextCursor_IsSet to false */
 	void ClearNextCursor() { NextCursor_IsSet = false; }
 };

@@ -33,22 +33,26 @@ DEPRECATED Configuration about what rules must be satisfied to use this template
 `public inline bool `[`GetMatchMakingTemplateId`](#structFRHAPI__MatchMakingTemplate_1a90ce064e5d98f19c0fa39cba9ac0d142)`(FGuid & OutValue) const` | Fills OutValue with the value of MatchMakingTemplateId_Optional and returns true if it has been set, otherwise returns false.
 `public inline FGuid * `[`GetMatchMakingTemplateIdOrNull`](#structFRHAPI__MatchMakingTemplate_1ad01d5418d126d1585b3dcad867f3f0b9)`()` | Returns a pointer to MatchMakingTemplateId_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FGuid * `[`GetMatchMakingTemplateIdOrNull`](#structFRHAPI__MatchMakingTemplate_1ad5cd37f04db42e29c91c09a04e87969f)`() const` | Returns a pointer to MatchMakingTemplateId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetMatchMakingTemplateId`](#structFRHAPI__MatchMakingTemplate_1add24dd13400dfdfaede58416ae09daec)`(FGuid NewValue)` | Sets the value of MatchMakingTemplateId_Optional and also sets MatchMakingTemplateId_IsSet to true.
+`public inline void `[`SetMatchMakingTemplateId`](#structFRHAPI__MatchMakingTemplate_1ad7e2223324a83e01232f1bcadf0bc1a0)`(const FGuid & NewValue)` | Sets the value of MatchMakingTemplateId_Optional and also sets MatchMakingTemplateId_IsSet to true.
+`public inline void `[`SetMatchMakingTemplateId`](#structFRHAPI__MatchMakingTemplate_1af81e1a364acbee6bf8b7e6f7e869fa6f)`(FGuid && NewValue)` | Sets the value of MatchMakingTemplateId_Optional and also sets MatchMakingTemplateId_IsSet to true using move semantics.
 `public inline void `[`ClearMatchMakingTemplateId`](#structFRHAPI__MatchMakingTemplate_1aba6ed3458027f078405c957e54196f4f)`()` | Clears the value of MatchMakingTemplateId_Optional and sets MatchMakingTemplateId_IsSet to false.
 `public inline ERHAPI_MMRGroupingMethod & `[`GetMmrGroupingMethod`](#structFRHAPI__MatchMakingTemplate_1abf647090fae345e43e6269adf096a3f1)`()` | Gets the value of MmrGroupingMethod.
 `public inline const ERHAPI_MMRGroupingMethod & `[`GetMmrGroupingMethod`](#structFRHAPI__MatchMakingTemplate_1a778c3a09e3f33d2f57ece24d086593df)`() const` | Gets the value of MmrGroupingMethod.
-`public inline void `[`SetMmrGroupingMethod`](#structFRHAPI__MatchMakingTemplate_1a92b303d5d1ac668de44e8e6aa9d48e8d)`(ERHAPI_MMRGroupingMethod NewValue)` | Sets the value of MmrGroupingMethod.
+`public inline void `[`SetMmrGroupingMethod`](#structFRHAPI__MatchMakingTemplate_1a98f24006fd1b941df0e507fdf2d8ba9f)`(const ERHAPI_MMRGroupingMethod & NewValue)` | Sets the value of MmrGroupingMethod.
+`public inline void `[`SetMmrGroupingMethod`](#structFRHAPI__MatchMakingTemplate_1a77d557f7915aa06c4324eeb268a97a6c)`(ERHAPI_MMRGroupingMethod && NewValue)` | Sets the value of MmrGroupingMethod using move semantics.
 `public inline `[`FRHAPI_MatchMakingRuleset`](RHAPI_MatchMakingRuleset.md#structFRHAPI__MatchMakingRuleset)` & `[`GetRuleset`](#structFRHAPI__MatchMakingTemplate_1acd6e5b0ca5fb8cbb167e1b642cfe0bfb)`()` | Gets the value of Ruleset_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_MatchMakingRuleset`](RHAPI_MatchMakingRuleset.md#structFRHAPI__MatchMakingRuleset)` & `[`GetRuleset`](#structFRHAPI__MatchMakingTemplate_1a92dac10805e63875314b07de4b896ab1)`() const` | Gets the value of Ruleset_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_MatchMakingRuleset`](RHAPI_MatchMakingRuleset.md#structFRHAPI__MatchMakingRuleset)` & `[`GetRuleset`](#structFRHAPI__MatchMakingTemplate_1ad0b90512eaae2e1c44541b1e467c59ff)`(const `[`FRHAPI_MatchMakingRuleset`](RHAPI_MatchMakingRuleset.md#structFRHAPI__MatchMakingRuleset)` & DefaultValue) const` | Gets the value of Ruleset_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetRuleset`](#structFRHAPI__MatchMakingTemplate_1aeab00f0f29a0f1dd77f920302e0e16c5)`(`[`FRHAPI_MatchMakingRuleset`](RHAPI_MatchMakingRuleset.md#structFRHAPI__MatchMakingRuleset)` & OutValue) const` | Fills OutValue with the value of Ruleset_Optional and returns true if it has been set, otherwise returns false.
 `public inline `[`FRHAPI_MatchMakingRuleset`](RHAPI_MatchMakingRuleset.md#structFRHAPI__MatchMakingRuleset)` * `[`GetRulesetOrNull`](#structFRHAPI__MatchMakingTemplate_1aa70205bfa6aee6aaed52112956169237)`()` | Returns a pointer to Ruleset_Optional, if it has been set, otherwise returns nullptr.
 `public inline const `[`FRHAPI_MatchMakingRuleset`](RHAPI_MatchMakingRuleset.md#structFRHAPI__MatchMakingRuleset)` * `[`GetRulesetOrNull`](#structFRHAPI__MatchMakingTemplate_1a098b5c4b0a448051f969029db4f1b846)`() const` | Returns a pointer to Ruleset_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRuleset`](#structFRHAPI__MatchMakingTemplate_1a448ec940989b4195fee980b8a91a5553)`(`[`FRHAPI_MatchMakingRuleset`](RHAPI_MatchMakingRuleset.md#structFRHAPI__MatchMakingRuleset)` NewValue)` | Sets the value of Ruleset_Optional and also sets Ruleset_IsSet to true.
+`public inline void `[`SetRuleset`](#structFRHAPI__MatchMakingTemplate_1a161de86529e9aaafd56aa978635b7a5a)`(const `[`FRHAPI_MatchMakingRuleset`](RHAPI_MatchMakingRuleset.md#structFRHAPI__MatchMakingRuleset)` & NewValue)` | Sets the value of Ruleset_Optional and also sets Ruleset_IsSet to true.
+`public inline void `[`SetRuleset`](#structFRHAPI__MatchMakingTemplate_1a10fbcafed79d1355947f299b9704d087)`(`[`FRHAPI_MatchMakingRuleset`](RHAPI_MatchMakingRuleset.md#structFRHAPI__MatchMakingRuleset)` && NewValue)` | Sets the value of Ruleset_Optional and also sets Ruleset_IsSet to true using move semantics.
 `public inline void `[`ClearRuleset`](#structFRHAPI__MatchMakingTemplate_1add4f8053263cd740171a409700081376)`()` | Clears the value of Ruleset_Optional and sets Ruleset_IsSet to false.
 `public inline TArray< `[`FRHAPI_MatchMakingProfile`](RHAPI_MatchMakingProfile.md#structFRHAPI__MatchMakingProfile)` > & `[`GetProfiles`](#structFRHAPI__MatchMakingTemplate_1afb18252df2f9f997555a3a9888fa7731)`()` | Gets the value of Profiles.
 `public inline const TArray< `[`FRHAPI_MatchMakingProfile`](RHAPI_MatchMakingProfile.md#structFRHAPI__MatchMakingProfile)` > & `[`GetProfiles`](#structFRHAPI__MatchMakingTemplate_1a20bb59793bbd9666efdd2574d62dfa3f)`() const` | Gets the value of Profiles.
-`public inline void `[`SetProfiles`](#structFRHAPI__MatchMakingTemplate_1a6c2430e5b2ab7e5bb9e514a540cf599c)`(TArray< `[`FRHAPI_MatchMakingProfile`](RHAPI_MatchMakingProfile.md#structFRHAPI__MatchMakingProfile)` > NewValue)` | Sets the value of Profiles.
+`public inline void `[`SetProfiles`](#structFRHAPI__MatchMakingTemplate_1a3a72b6a34d0b5e44eb0c03543bd896be)`(const TArray< `[`FRHAPI_MatchMakingProfile`](RHAPI_MatchMakingProfile.md#structFRHAPI__MatchMakingProfile)` > & NewValue)` | Sets the value of Profiles.
+`public inline void `[`SetProfiles`](#structFRHAPI__MatchMakingTemplate_1af493f503422175f318ab966ed70f5488)`(TArray< `[`FRHAPI_MatchMakingProfile`](RHAPI_MatchMakingProfile.md#structFRHAPI__MatchMakingProfile)` > && NewValue)` | Sets the value of Profiles using move semantics.
 
 ### Members
 
@@ -117,9 +121,13 @@ Returns a pointer to MatchMakingTemplateId_Optional, if it has been set, otherwi
 
 Returns a pointer to MatchMakingTemplateId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetMatchMakingTemplateId`](#structFRHAPI__MatchMakingTemplate_1add24dd13400dfdfaede58416ae09daec)`(FGuid NewValue)` <a id="structFRHAPI__MatchMakingTemplate_1add24dd13400dfdfaede58416ae09daec"></a>
+#### `public inline void `[`SetMatchMakingTemplateId`](#structFRHAPI__MatchMakingTemplate_1ad7e2223324a83e01232f1bcadf0bc1a0)`(const FGuid & NewValue)` <a id="structFRHAPI__MatchMakingTemplate_1ad7e2223324a83e01232f1bcadf0bc1a0"></a>
 
 Sets the value of MatchMakingTemplateId_Optional and also sets MatchMakingTemplateId_IsSet to true.
+
+#### `public inline void `[`SetMatchMakingTemplateId`](#structFRHAPI__MatchMakingTemplate_1af81e1a364acbee6bf8b7e6f7e869fa6f)`(FGuid && NewValue)` <a id="structFRHAPI__MatchMakingTemplate_1af81e1a364acbee6bf8b7e6f7e869fa6f"></a>
+
+Sets the value of MatchMakingTemplateId_Optional and also sets MatchMakingTemplateId_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearMatchMakingTemplateId`](#structFRHAPI__MatchMakingTemplate_1aba6ed3458027f078405c957e54196f4f)`()` <a id="structFRHAPI__MatchMakingTemplate_1aba6ed3458027f078405c957e54196f4f"></a>
 
@@ -133,9 +141,13 @@ Gets the value of MmrGroupingMethod.
 
 Gets the value of MmrGroupingMethod.
 
-#### `public inline void `[`SetMmrGroupingMethod`](#structFRHAPI__MatchMakingTemplate_1a92b303d5d1ac668de44e8e6aa9d48e8d)`(ERHAPI_MMRGroupingMethod NewValue)` <a id="structFRHAPI__MatchMakingTemplate_1a92b303d5d1ac668de44e8e6aa9d48e8d"></a>
+#### `public inline void `[`SetMmrGroupingMethod`](#structFRHAPI__MatchMakingTemplate_1a98f24006fd1b941df0e507fdf2d8ba9f)`(const ERHAPI_MMRGroupingMethod & NewValue)` <a id="structFRHAPI__MatchMakingTemplate_1a98f24006fd1b941df0e507fdf2d8ba9f"></a>
 
 Sets the value of MmrGroupingMethod.
+
+#### `public inline void `[`SetMmrGroupingMethod`](#structFRHAPI__MatchMakingTemplate_1a77d557f7915aa06c4324eeb268a97a6c)`(ERHAPI_MMRGroupingMethod && NewValue)` <a id="structFRHAPI__MatchMakingTemplate_1a77d557f7915aa06c4324eeb268a97a6c"></a>
+
+Sets the value of MmrGroupingMethod using move semantics.
 
 #### `public inline `[`FRHAPI_MatchMakingRuleset`](RHAPI_MatchMakingRuleset.md#structFRHAPI__MatchMakingRuleset)` & `[`GetRuleset`](#structFRHAPI__MatchMakingTemplate_1acd6e5b0ca5fb8cbb167e1b642cfe0bfb)`()` <a id="structFRHAPI__MatchMakingTemplate_1acd6e5b0ca5fb8cbb167e1b642cfe0bfb"></a>
 
@@ -161,9 +173,13 @@ Returns a pointer to Ruleset_Optional, if it has been set, otherwise returns nul
 
 Returns a pointer to Ruleset_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRuleset`](#structFRHAPI__MatchMakingTemplate_1a448ec940989b4195fee980b8a91a5553)`(`[`FRHAPI_MatchMakingRuleset`](RHAPI_MatchMakingRuleset.md#structFRHAPI__MatchMakingRuleset)` NewValue)` <a id="structFRHAPI__MatchMakingTemplate_1a448ec940989b4195fee980b8a91a5553"></a>
+#### `public inline void `[`SetRuleset`](#structFRHAPI__MatchMakingTemplate_1a161de86529e9aaafd56aa978635b7a5a)`(const `[`FRHAPI_MatchMakingRuleset`](RHAPI_MatchMakingRuleset.md#structFRHAPI__MatchMakingRuleset)` & NewValue)` <a id="structFRHAPI__MatchMakingTemplate_1a161de86529e9aaafd56aa978635b7a5a"></a>
 
 Sets the value of Ruleset_Optional and also sets Ruleset_IsSet to true.
+
+#### `public inline void `[`SetRuleset`](#structFRHAPI__MatchMakingTemplate_1a10fbcafed79d1355947f299b9704d087)`(`[`FRHAPI_MatchMakingRuleset`](RHAPI_MatchMakingRuleset.md#structFRHAPI__MatchMakingRuleset)` && NewValue)` <a id="structFRHAPI__MatchMakingTemplate_1a10fbcafed79d1355947f299b9704d087"></a>
+
+Sets the value of Ruleset_Optional and also sets Ruleset_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearRuleset`](#structFRHAPI__MatchMakingTemplate_1add4f8053263cd740171a409700081376)`()` <a id="structFRHAPI__MatchMakingTemplate_1add4f8053263cd740171a409700081376"></a>
 
@@ -177,7 +193,11 @@ Gets the value of Profiles.
 
 Gets the value of Profiles.
 
-#### `public inline void `[`SetProfiles`](#structFRHAPI__MatchMakingTemplate_1a6c2430e5b2ab7e5bb9e514a540cf599c)`(TArray< `[`FRHAPI_MatchMakingProfile`](RHAPI_MatchMakingProfile.md#structFRHAPI__MatchMakingProfile)` > NewValue)` <a id="structFRHAPI__MatchMakingTemplate_1a6c2430e5b2ab7e5bb9e514a540cf599c"></a>
+#### `public inline void `[`SetProfiles`](#structFRHAPI__MatchMakingTemplate_1a3a72b6a34d0b5e44eb0c03543bd896be)`(const TArray< `[`FRHAPI_MatchMakingProfile`](RHAPI_MatchMakingProfile.md#structFRHAPI__MatchMakingProfile)` > & NewValue)` <a id="structFRHAPI__MatchMakingTemplate_1a3a72b6a34d0b5e44eb0c03543bd896be"></a>
 
 Sets the value of Profiles.
+
+#### `public inline void `[`SetProfiles`](#structFRHAPI__MatchMakingTemplate_1af493f503422175f318ab966ed70f5488)`(TArray< `[`FRHAPI_MatchMakingProfile`](RHAPI_MatchMakingProfile.md#structFRHAPI__MatchMakingProfile)` > && NewValue)` <a id="structFRHAPI__MatchMakingTemplate_1af493f503422175f318ab966ed70f5488"></a>
+
+Sets the value of Profiles using move semantics.
 

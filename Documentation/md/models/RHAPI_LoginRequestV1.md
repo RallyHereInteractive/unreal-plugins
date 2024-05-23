@@ -38,14 +38,16 @@ struct FRHAPI_LoginRequestV1
 `public virtual void `[`WriteJson`](#structFRHAPI__LoginRequestV1_1afb34e361a832a5965fc3f279d7366de1)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline ERHAPI_GrantType & `[`GetGrantType`](#structFRHAPI__LoginRequestV1_1aba328ef0495c5e7f8de2dad1725c4e67)`()` | Gets the value of GrantType.
 `public inline const ERHAPI_GrantType & `[`GetGrantType`](#structFRHAPI__LoginRequestV1_1a154a10b14c2931d90684345db5225116)`() const` | Gets the value of GrantType.
-`public inline void `[`SetGrantType`](#structFRHAPI__LoginRequestV1_1affd35ca62a54def818ef0f2f7f919ead)`(ERHAPI_GrantType NewValue)` | Sets the value of GrantType.
+`public inline void `[`SetGrantType`](#structFRHAPI__LoginRequestV1_1a6eb406fdb4c5c76f6be6ebdf15c8136d)`(const ERHAPI_GrantType & NewValue)` | Sets the value of GrantType.
+`public inline void `[`SetGrantType`](#structFRHAPI__LoginRequestV1_1a86ccbad4059e11e7e2392bc7eb6754d0)`(ERHAPI_GrantType && NewValue)` | Sets the value of GrantType using move semantics.
 `public inline FString & `[`GetPortalAccessToken`](#structFRHAPI__LoginRequestV1_1a500cfdd5b03970a615295709ef4f71c6)`()` | Gets the value of PortalAccessToken_Optional, regardless of it having been set.
 `public inline const FString & `[`GetPortalAccessToken`](#structFRHAPI__LoginRequestV1_1aa4121210b97dbe16c7eb87056eabfff7)`() const` | Gets the value of PortalAccessToken_Optional, regardless of it having been set.
 `public inline const FString & `[`GetPortalAccessToken`](#structFRHAPI__LoginRequestV1_1abfbf4f8290626aa6741fcb1ebd9cde0f)`(const FString & DefaultValue) const` | Gets the value of PortalAccessToken_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetPortalAccessToken`](#structFRHAPI__LoginRequestV1_1a279c5f65ccb418628f06bf6c99e215ce)`(FString & OutValue) const` | Fills OutValue with the value of PortalAccessToken_Optional and returns true if it has been set, otherwise returns false.
 `public inline FString * `[`GetPortalAccessTokenOrNull`](#structFRHAPI__LoginRequestV1_1ab198a6684bcdcbb6fb0988dcef3e0c79)`()` | Returns a pointer to PortalAccessToken_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FString * `[`GetPortalAccessTokenOrNull`](#structFRHAPI__LoginRequestV1_1aa0c2dcb877fa366ab1b304e564c5fd24)`() const` | Returns a pointer to PortalAccessToken_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPortalAccessToken`](#structFRHAPI__LoginRequestV1_1a4fcbb03230869519b4dc4d6769d6d2ae)`(FString NewValue)` | Sets the value of PortalAccessToken_Optional and also sets PortalAccessToken_IsSet to true.
+`public inline void `[`SetPortalAccessToken`](#structFRHAPI__LoginRequestV1_1ae6fbf43a39cb1d0e774756c4566f49d2)`(const FString & NewValue)` | Sets the value of PortalAccessToken_Optional and also sets PortalAccessToken_IsSet to true.
+`public inline void `[`SetPortalAccessToken`](#structFRHAPI__LoginRequestV1_1a5b809f4b6f03b42c5064335cbe8c3ef8)`(FString && NewValue)` | Sets the value of PortalAccessToken_Optional and also sets PortalAccessToken_IsSet to true using move semantics.
 `public inline void `[`ClearPortalAccessToken`](#structFRHAPI__LoginRequestV1_1a6f5f63b9a84c1480633c04d024b1f359)`()` | Clears the value of PortalAccessToken_Optional and sets PortalAccessToken_IsSet to false.
 `public inline bool `[`IsPortalAccessTokenDefaultValue`](#structFRHAPI__LoginRequestV1_1abc9e48df88f10f0beb57b98cade49f29)`() const` | Returns true if PortalAccessToken_Optional is set and matches the default value.
 `public inline void `[`SetPortalAccessTokenToDefault`](#structFRHAPI__LoginRequestV1_1af668f553eb393e4124e0f3ebe0a261c0)`()` | Sets the value of PortalAccessToken_Optional to its default and also sets PortalAccessToken_IsSet to true.
@@ -55,7 +57,8 @@ struct FRHAPI_LoginRequestV1
 `public inline bool `[`GetPortalDisplayName`](#structFRHAPI__LoginRequestV1_1a2ef397bdba4436c2ce3b0092acec86ef)`(FString & OutValue) const` | Fills OutValue with the value of PortalDisplayName_Optional and returns true if it has been set, otherwise returns false.
 `public inline FString * `[`GetPortalDisplayNameOrNull`](#structFRHAPI__LoginRequestV1_1a2c3b54c262c258bec602acc0d9ee00ba)`()` | Returns a pointer to PortalDisplayName_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FString * `[`GetPortalDisplayNameOrNull`](#structFRHAPI__LoginRequestV1_1a8d97a6e1fb62de68b13285f83cda94a2)`() const` | Returns a pointer to PortalDisplayName_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPortalDisplayName`](#structFRHAPI__LoginRequestV1_1ae4df2aba7332f33d89512aa773edb17d)`(FString NewValue)` | Sets the value of PortalDisplayName_Optional and also sets PortalDisplayName_IsSet to true.
+`public inline void `[`SetPortalDisplayName`](#structFRHAPI__LoginRequestV1_1abdaa64f24c4e3b503c250d08cd211baf)`(const FString & NewValue)` | Sets the value of PortalDisplayName_Optional and also sets PortalDisplayName_IsSet to true.
+`public inline void `[`SetPortalDisplayName`](#structFRHAPI__LoginRequestV1_1a6f8462b4df60a8a487737055472d2d74)`(FString && NewValue)` | Sets the value of PortalDisplayName_Optional and also sets PortalDisplayName_IsSet to true using move semantics.
 `public inline void `[`ClearPortalDisplayName`](#structFRHAPI__LoginRequestV1_1ab6d75d6ed5717f0a4fc920c480561f10)`()` | Clears the value of PortalDisplayName_Optional and sets PortalDisplayName_IsSet to false.
 `public inline bool `[`IsPortalDisplayNameDefaultValue`](#structFRHAPI__LoginRequestV1_1a5d07c7544437f18f977ed60748c63d80)`() const` | Returns true if PortalDisplayName_Optional is set and matches the default value.
 `public inline void `[`SetPortalDisplayNameToDefault`](#structFRHAPI__LoginRequestV1_1a34499db17134bd2404dc3ad90012f79b)`()` | Sets the value of PortalDisplayName_Optional to its default and also sets PortalDisplayName_IsSet to true.
@@ -65,7 +68,8 @@ struct FRHAPI_LoginRequestV1
 `public inline bool `[`GetPortalParentAccessToken`](#structFRHAPI__LoginRequestV1_1aa80708f79901750929ae9df4385d870c)`(FString & OutValue) const` | Fills OutValue with the value of PortalParentAccessToken_Optional and returns true if it has been set, otherwise returns false.
 `public inline FString * `[`GetPortalParentAccessTokenOrNull`](#structFRHAPI__LoginRequestV1_1a859e53a2cc9ff794d536997221744989)`()` | Returns a pointer to PortalParentAccessToken_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FString * `[`GetPortalParentAccessTokenOrNull`](#structFRHAPI__LoginRequestV1_1a33bfb0e8c6c596cc79879cd6e5b03dd2)`() const` | Returns a pointer to PortalParentAccessToken_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPortalParentAccessToken`](#structFRHAPI__LoginRequestV1_1a05166d93077849fe75e9e7b0063dd4fe)`(FString NewValue)` | Sets the value of PortalParentAccessToken_Optional and also sets PortalParentAccessToken_IsSet to true.
+`public inline void `[`SetPortalParentAccessToken`](#structFRHAPI__LoginRequestV1_1a224eb93b0cd9897d9da71eaab436c3b4)`(const FString & NewValue)` | Sets the value of PortalParentAccessToken_Optional and also sets PortalParentAccessToken_IsSet to true.
+`public inline void `[`SetPortalParentAccessToken`](#structFRHAPI__LoginRequestV1_1a1ddba65ea655cd21597ef26277e26c0a)`(FString && NewValue)` | Sets the value of PortalParentAccessToken_Optional and also sets PortalParentAccessToken_IsSet to true using move semantics.
 `public inline void `[`ClearPortalParentAccessToken`](#structFRHAPI__LoginRequestV1_1aa6e2e26c9db08a28c88571332f901b60)`()` | Clears the value of PortalParentAccessToken_Optional and sets PortalParentAccessToken_IsSet to false.
 `public inline bool `[`IsPortalParentAccessTokenDefaultValue`](#structFRHAPI__LoginRequestV1_1a294cb9fee89003b898f8f1fbcc05bdc0)`() const` | Returns true if PortalParentAccessToken_Optional is set and matches the default value.
 `public inline void `[`SetPortalParentAccessTokenToDefault`](#structFRHAPI__LoginRequestV1_1a499de88fbdfd9c318e19a7e52164d1c9)`()` | Sets the value of PortalParentAccessToken_Optional to its default and also sets PortalParentAccessToken_IsSet to true.
@@ -75,7 +79,8 @@ struct FRHAPI_LoginRequestV1
 `public inline bool `[`GetPortalParentDisplayName`](#structFRHAPI__LoginRequestV1_1aafb09e32a58bb4638c94cc2e74401e5d)`(FString & OutValue) const` | Fills OutValue with the value of PortalParentDisplayName_Optional and returns true if it has been set, otherwise returns false.
 `public inline FString * `[`GetPortalParentDisplayNameOrNull`](#structFRHAPI__LoginRequestV1_1aa54106c578ff3ceac90f1872a813b84c)`()` | Returns a pointer to PortalParentDisplayName_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FString * `[`GetPortalParentDisplayNameOrNull`](#structFRHAPI__LoginRequestV1_1a3ceb4dfc8e731a0a81cd4579d2862259)`() const` | Returns a pointer to PortalParentDisplayName_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPortalParentDisplayName`](#structFRHAPI__LoginRequestV1_1aa8a00604555cac731a7a02728232556d)`(FString NewValue)` | Sets the value of PortalParentDisplayName_Optional and also sets PortalParentDisplayName_IsSet to true.
+`public inline void `[`SetPortalParentDisplayName`](#structFRHAPI__LoginRequestV1_1ac0f8bfc328236a5c9da05a02469b0a4f)`(const FString & NewValue)` | Sets the value of PortalParentDisplayName_Optional and also sets PortalParentDisplayName_IsSet to true.
+`public inline void `[`SetPortalParentDisplayName`](#structFRHAPI__LoginRequestV1_1ad08a2932de06c8dc44e7654d18541339)`(FString && NewValue)` | Sets the value of PortalParentDisplayName_Optional and also sets PortalParentDisplayName_IsSet to true using move semantics.
 `public inline void `[`ClearPortalParentDisplayName`](#structFRHAPI__LoginRequestV1_1a66e53166395f1d797f95122c25c772e6)`()` | Clears the value of PortalParentDisplayName_Optional and sets PortalParentDisplayName_IsSet to false.
 `public inline bool `[`IsPortalParentDisplayNameDefaultValue`](#structFRHAPI__LoginRequestV1_1a446a83239fedd24f9e73457914ed047d)`() const` | Returns true if PortalParentDisplayName_Optional is set and matches the default value.
 `public inline void `[`SetPortalParentDisplayNameToDefault`](#structFRHAPI__LoginRequestV1_1a1164bbe730b05f565c4a13ed43185deb)`()` | Sets the value of PortalParentDisplayName_Optional to its default and also sets PortalParentDisplayName_IsSet to true.
@@ -85,7 +90,8 @@ struct FRHAPI_LoginRequestV1
 `public inline bool `[`GetIncludeRefresh`](#structFRHAPI__LoginRequestV1_1a8a65c714e437b56c9f659c300faaf896)`(bool & OutValue) const` | Fills OutValue with the value of IncludeRefresh_Optional and returns true if it has been set, otherwise returns false.
 `public inline bool * `[`GetIncludeRefreshOrNull`](#structFRHAPI__LoginRequestV1_1aaef275d69e673715780f5692960c3138)`()` | Returns a pointer to IncludeRefresh_Optional, if it has been set, otherwise returns nullptr.
 `public inline const bool * `[`GetIncludeRefreshOrNull`](#structFRHAPI__LoginRequestV1_1a3128f61e92909f8127a4ab5230dc1a75)`() const` | Returns a pointer to IncludeRefresh_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetIncludeRefresh`](#structFRHAPI__LoginRequestV1_1a189f961fd3ab79793d4fab7bfb9f3fe5)`(bool NewValue)` | Sets the value of IncludeRefresh_Optional and also sets IncludeRefresh_IsSet to true.
+`public inline void `[`SetIncludeRefresh`](#structFRHAPI__LoginRequestV1_1a92255bddc919371134d3cef18d44d23b)`(const bool & NewValue)` | Sets the value of IncludeRefresh_Optional and also sets IncludeRefresh_IsSet to true.
+`public inline void `[`SetIncludeRefresh`](#structFRHAPI__LoginRequestV1_1adee83c2d6bff6635921f6bc9634b3fcb)`(bool && NewValue)` | Sets the value of IncludeRefresh_Optional and also sets IncludeRefresh_IsSet to true using move semantics.
 `public inline void `[`ClearIncludeRefresh`](#structFRHAPI__LoginRequestV1_1a4d32f474e3ebfb2f98e1651b1ce5fb6e)`()` | Clears the value of IncludeRefresh_Optional and sets IncludeRefresh_IsSet to false.
 `public inline bool `[`IsIncludeRefreshDefaultValue`](#structFRHAPI__LoginRequestV1_1a57a046c28fb74bba94aa6dfe43a29c9b)`() const` | Returns true if IncludeRefresh_Optional is set and matches the default value.
 `public inline void `[`SetIncludeRefreshToDefault`](#structFRHAPI__LoginRequestV1_1a742c7d1a4e064be2c1469662a2a7dbf0)`()` | Sets the value of IncludeRefresh_Optional to its default and also sets IncludeRefresh_IsSet to true.
@@ -95,7 +101,8 @@ struct FRHAPI_LoginRequestV1
 `public inline bool `[`GetAcceptEula`](#structFRHAPI__LoginRequestV1_1a18503c58dd0f2b019d9c0934d854d2d3)`(bool & OutValue) const` | Fills OutValue with the value of AcceptEula_Optional and returns true if it has been set, otherwise returns false.
 `public inline bool * `[`GetAcceptEulaOrNull`](#structFRHAPI__LoginRequestV1_1a6b21d626ffdbbf55a7e19004ad40528d)`()` | Returns a pointer to AcceptEula_Optional, if it has been set, otherwise returns nullptr.
 `public inline const bool * `[`GetAcceptEulaOrNull`](#structFRHAPI__LoginRequestV1_1a37e30d178b51efa7be1125dff98c84d7)`() const` | Returns a pointer to AcceptEula_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetAcceptEula`](#structFRHAPI__LoginRequestV1_1a3c0ee2f2175d9110a53bee55617c2cfd)`(bool NewValue)` | Sets the value of AcceptEula_Optional and also sets AcceptEula_IsSet to true.
+`public inline void `[`SetAcceptEula`](#structFRHAPI__LoginRequestV1_1acfa88c71be1fb5d59252ca9f9309efe7)`(const bool & NewValue)` | Sets the value of AcceptEula_Optional and also sets AcceptEula_IsSet to true.
+`public inline void `[`SetAcceptEula`](#structFRHAPI__LoginRequestV1_1a1d3cbf5fec2ab57d848d9563a6c84ed0)`(bool && NewValue)` | Sets the value of AcceptEula_Optional and also sets AcceptEula_IsSet to true using move semantics.
 `public inline void `[`ClearAcceptEula`](#structFRHAPI__LoginRequestV1_1a9b51780e9816a5cb2ca47c9f340385d2)`()` | Clears the value of AcceptEula_Optional and sets AcceptEula_IsSet to false.
 `public inline bool `[`IsAcceptEulaDefaultValue`](#structFRHAPI__LoginRequestV1_1aef4204a66417da2e0395e78b5137de5b)`() const` | Returns true if AcceptEula_Optional is set and matches the default value.
 `public inline void `[`SetAcceptEulaToDefault`](#structFRHAPI__LoginRequestV1_1aebff83f31849866bcd7698a35726408c)`()` | Sets the value of AcceptEula_Optional to its default and also sets AcceptEula_IsSet to true.
@@ -105,7 +112,8 @@ struct FRHAPI_LoginRequestV1
 `public inline bool `[`GetAcceptTos`](#structFRHAPI__LoginRequestV1_1ae7448deed42325473e4e99c6628ae2f3)`(bool & OutValue) const` | Fills OutValue with the value of AcceptTos_Optional and returns true if it has been set, otherwise returns false.
 `public inline bool * `[`GetAcceptTosOrNull`](#structFRHAPI__LoginRequestV1_1a3790b5ab75143c91907de5c50c8ef65a)`()` | Returns a pointer to AcceptTos_Optional, if it has been set, otherwise returns nullptr.
 `public inline const bool * `[`GetAcceptTosOrNull`](#structFRHAPI__LoginRequestV1_1ac37c5bffd50c47a4b8d8af85a08eb613)`() const` | Returns a pointer to AcceptTos_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetAcceptTos`](#structFRHAPI__LoginRequestV1_1aa1c5d72aead560fe730db4ecb3d69290)`(bool NewValue)` | Sets the value of AcceptTos_Optional and also sets AcceptTos_IsSet to true.
+`public inline void `[`SetAcceptTos`](#structFRHAPI__LoginRequestV1_1a114835805ab79e27577a692041bb095a)`(const bool & NewValue)` | Sets the value of AcceptTos_Optional and also sets AcceptTos_IsSet to true.
+`public inline void `[`SetAcceptTos`](#structFRHAPI__LoginRequestV1_1a97474d42b59dd139d9f4c1e95e5244fb)`(bool && NewValue)` | Sets the value of AcceptTos_Optional and also sets AcceptTos_IsSet to true using move semantics.
 `public inline void `[`ClearAcceptTos`](#structFRHAPI__LoginRequestV1_1adabb1d08ab991ccc72c1fca427a2de5a)`()` | Clears the value of AcceptTos_Optional and sets AcceptTos_IsSet to false.
 `public inline bool `[`IsAcceptTosDefaultValue`](#structFRHAPI__LoginRequestV1_1a8da59ecd9c57753f3174f98bdc3500f6)`() const` | Returns true if AcceptTos_Optional is set and matches the default value.
 `public inline void `[`SetAcceptTosToDefault`](#structFRHAPI__LoginRequestV1_1ae5b328b14a4122950055ff4c7b45a3b6)`()` | Sets the value of AcceptTos_Optional to its default and also sets AcceptTos_IsSet to true.
@@ -115,7 +123,8 @@ struct FRHAPI_LoginRequestV1
 `public inline bool `[`GetAcceptPrivacyPolicy`](#structFRHAPI__LoginRequestV1_1a6e0492e3cbe4783d21105757d5818ca6)`(bool & OutValue) const` | Fills OutValue with the value of AcceptPrivacyPolicy_Optional and returns true if it has been set, otherwise returns false.
 `public inline bool * `[`GetAcceptPrivacyPolicyOrNull`](#structFRHAPI__LoginRequestV1_1a465ac74d30cfd19db80b02c392a17e70)`()` | Returns a pointer to AcceptPrivacyPolicy_Optional, if it has been set, otherwise returns nullptr.
 `public inline const bool * `[`GetAcceptPrivacyPolicyOrNull`](#structFRHAPI__LoginRequestV1_1ac70c479de53ed15e6b2f215e93a22daa)`() const` | Returns a pointer to AcceptPrivacyPolicy_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetAcceptPrivacyPolicy`](#structFRHAPI__LoginRequestV1_1a9b846e726e9468dd7026d5ca52c16c88)`(bool NewValue)` | Sets the value of AcceptPrivacyPolicy_Optional and also sets AcceptPrivacyPolicy_IsSet to true.
+`public inline void `[`SetAcceptPrivacyPolicy`](#structFRHAPI__LoginRequestV1_1aa4e95f9aec3519093eb17b0f8591fec2)`(const bool & NewValue)` | Sets the value of AcceptPrivacyPolicy_Optional and also sets AcceptPrivacyPolicy_IsSet to true.
+`public inline void `[`SetAcceptPrivacyPolicy`](#structFRHAPI__LoginRequestV1_1a7c422b137b6599c006157d4ba1cb831f)`(bool && NewValue)` | Sets the value of AcceptPrivacyPolicy_Optional and also sets AcceptPrivacyPolicy_IsSet to true using move semantics.
 `public inline void `[`ClearAcceptPrivacyPolicy`](#structFRHAPI__LoginRequestV1_1ae6935f79cb6cf3b44b05b88925e457be)`()` | Clears the value of AcceptPrivacyPolicy_Optional and sets AcceptPrivacyPolicy_IsSet to false.
 `public inline bool `[`IsAcceptPrivacyPolicyDefaultValue`](#structFRHAPI__LoginRequestV1_1ad54685034fe9ad2ab281134c099d2f9e)`() const` | Returns true if AcceptPrivacyPolicy_Optional is set and matches the default value.
 `public inline void `[`SetAcceptPrivacyPolicyToDefault`](#structFRHAPI__LoginRequestV1_1acd55a9f76eddf263489516ccf5bb712d)`()` | Sets the value of AcceptPrivacyPolicy_Optional to its default and also sets AcceptPrivacyPolicy_IsSet to true.
@@ -215,9 +224,13 @@ Gets the value of GrantType.
 
 Gets the value of GrantType.
 
-#### `public inline void `[`SetGrantType`](#structFRHAPI__LoginRequestV1_1affd35ca62a54def818ef0f2f7f919ead)`(ERHAPI_GrantType NewValue)` <a id="structFRHAPI__LoginRequestV1_1affd35ca62a54def818ef0f2f7f919ead"></a>
+#### `public inline void `[`SetGrantType`](#structFRHAPI__LoginRequestV1_1a6eb406fdb4c5c76f6be6ebdf15c8136d)`(const ERHAPI_GrantType & NewValue)` <a id="structFRHAPI__LoginRequestV1_1a6eb406fdb4c5c76f6be6ebdf15c8136d"></a>
 
 Sets the value of GrantType.
+
+#### `public inline void `[`SetGrantType`](#structFRHAPI__LoginRequestV1_1a86ccbad4059e11e7e2392bc7eb6754d0)`(ERHAPI_GrantType && NewValue)` <a id="structFRHAPI__LoginRequestV1_1a86ccbad4059e11e7e2392bc7eb6754d0"></a>
+
+Sets the value of GrantType using move semantics.
 
 #### `public inline FString & `[`GetPortalAccessToken`](#structFRHAPI__LoginRequestV1_1a500cfdd5b03970a615295709ef4f71c6)`()` <a id="structFRHAPI__LoginRequestV1_1a500cfdd5b03970a615295709ef4f71c6"></a>
 
@@ -243,9 +256,13 @@ Returns a pointer to PortalAccessToken_Optional, if it has been set, otherwise r
 
 Returns a pointer to PortalAccessToken_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPortalAccessToken`](#structFRHAPI__LoginRequestV1_1a4fcbb03230869519b4dc4d6769d6d2ae)`(FString NewValue)` <a id="structFRHAPI__LoginRequestV1_1a4fcbb03230869519b4dc4d6769d6d2ae"></a>
+#### `public inline void `[`SetPortalAccessToken`](#structFRHAPI__LoginRequestV1_1ae6fbf43a39cb1d0e774756c4566f49d2)`(const FString & NewValue)` <a id="structFRHAPI__LoginRequestV1_1ae6fbf43a39cb1d0e774756c4566f49d2"></a>
 
 Sets the value of PortalAccessToken_Optional and also sets PortalAccessToken_IsSet to true.
+
+#### `public inline void `[`SetPortalAccessToken`](#structFRHAPI__LoginRequestV1_1a5b809f4b6f03b42c5064335cbe8c3ef8)`(FString && NewValue)` <a id="structFRHAPI__LoginRequestV1_1a5b809f4b6f03b42c5064335cbe8c3ef8"></a>
+
+Sets the value of PortalAccessToken_Optional and also sets PortalAccessToken_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearPortalAccessToken`](#structFRHAPI__LoginRequestV1_1a6f5f63b9a84c1480633c04d024b1f359)`()` <a id="structFRHAPI__LoginRequestV1_1a6f5f63b9a84c1480633c04d024b1f359"></a>
 
@@ -283,9 +300,13 @@ Returns a pointer to PortalDisplayName_Optional, if it has been set, otherwise r
 
 Returns a pointer to PortalDisplayName_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPortalDisplayName`](#structFRHAPI__LoginRequestV1_1ae4df2aba7332f33d89512aa773edb17d)`(FString NewValue)` <a id="structFRHAPI__LoginRequestV1_1ae4df2aba7332f33d89512aa773edb17d"></a>
+#### `public inline void `[`SetPortalDisplayName`](#structFRHAPI__LoginRequestV1_1abdaa64f24c4e3b503c250d08cd211baf)`(const FString & NewValue)` <a id="structFRHAPI__LoginRequestV1_1abdaa64f24c4e3b503c250d08cd211baf"></a>
 
 Sets the value of PortalDisplayName_Optional and also sets PortalDisplayName_IsSet to true.
+
+#### `public inline void `[`SetPortalDisplayName`](#structFRHAPI__LoginRequestV1_1a6f8462b4df60a8a487737055472d2d74)`(FString && NewValue)` <a id="structFRHAPI__LoginRequestV1_1a6f8462b4df60a8a487737055472d2d74"></a>
+
+Sets the value of PortalDisplayName_Optional and also sets PortalDisplayName_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearPortalDisplayName`](#structFRHAPI__LoginRequestV1_1ab6d75d6ed5717f0a4fc920c480561f10)`()` <a id="structFRHAPI__LoginRequestV1_1ab6d75d6ed5717f0a4fc920c480561f10"></a>
 
@@ -323,9 +344,13 @@ Returns a pointer to PortalParentAccessToken_Optional, if it has been set, other
 
 Returns a pointer to PortalParentAccessToken_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPortalParentAccessToken`](#structFRHAPI__LoginRequestV1_1a05166d93077849fe75e9e7b0063dd4fe)`(FString NewValue)` <a id="structFRHAPI__LoginRequestV1_1a05166d93077849fe75e9e7b0063dd4fe"></a>
+#### `public inline void `[`SetPortalParentAccessToken`](#structFRHAPI__LoginRequestV1_1a224eb93b0cd9897d9da71eaab436c3b4)`(const FString & NewValue)` <a id="structFRHAPI__LoginRequestV1_1a224eb93b0cd9897d9da71eaab436c3b4"></a>
 
 Sets the value of PortalParentAccessToken_Optional and also sets PortalParentAccessToken_IsSet to true.
+
+#### `public inline void `[`SetPortalParentAccessToken`](#structFRHAPI__LoginRequestV1_1a1ddba65ea655cd21597ef26277e26c0a)`(FString && NewValue)` <a id="structFRHAPI__LoginRequestV1_1a1ddba65ea655cd21597ef26277e26c0a"></a>
+
+Sets the value of PortalParentAccessToken_Optional and also sets PortalParentAccessToken_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearPortalParentAccessToken`](#structFRHAPI__LoginRequestV1_1aa6e2e26c9db08a28c88571332f901b60)`()` <a id="structFRHAPI__LoginRequestV1_1aa6e2e26c9db08a28c88571332f901b60"></a>
 
@@ -363,9 +388,13 @@ Returns a pointer to PortalParentDisplayName_Optional, if it has been set, other
 
 Returns a pointer to PortalParentDisplayName_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPortalParentDisplayName`](#structFRHAPI__LoginRequestV1_1aa8a00604555cac731a7a02728232556d)`(FString NewValue)` <a id="structFRHAPI__LoginRequestV1_1aa8a00604555cac731a7a02728232556d"></a>
+#### `public inline void `[`SetPortalParentDisplayName`](#structFRHAPI__LoginRequestV1_1ac0f8bfc328236a5c9da05a02469b0a4f)`(const FString & NewValue)` <a id="structFRHAPI__LoginRequestV1_1ac0f8bfc328236a5c9da05a02469b0a4f"></a>
 
 Sets the value of PortalParentDisplayName_Optional and also sets PortalParentDisplayName_IsSet to true.
+
+#### `public inline void `[`SetPortalParentDisplayName`](#structFRHAPI__LoginRequestV1_1ad08a2932de06c8dc44e7654d18541339)`(FString && NewValue)` <a id="structFRHAPI__LoginRequestV1_1ad08a2932de06c8dc44e7654d18541339"></a>
+
+Sets the value of PortalParentDisplayName_Optional and also sets PortalParentDisplayName_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearPortalParentDisplayName`](#structFRHAPI__LoginRequestV1_1a66e53166395f1d797f95122c25c772e6)`()` <a id="structFRHAPI__LoginRequestV1_1a66e53166395f1d797f95122c25c772e6"></a>
 
@@ -403,9 +432,13 @@ Returns a pointer to IncludeRefresh_Optional, if it has been set, otherwise retu
 
 Returns a pointer to IncludeRefresh_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetIncludeRefresh`](#structFRHAPI__LoginRequestV1_1a189f961fd3ab79793d4fab7bfb9f3fe5)`(bool NewValue)` <a id="structFRHAPI__LoginRequestV1_1a189f961fd3ab79793d4fab7bfb9f3fe5"></a>
+#### `public inline void `[`SetIncludeRefresh`](#structFRHAPI__LoginRequestV1_1a92255bddc919371134d3cef18d44d23b)`(const bool & NewValue)` <a id="structFRHAPI__LoginRequestV1_1a92255bddc919371134d3cef18d44d23b"></a>
 
 Sets the value of IncludeRefresh_Optional and also sets IncludeRefresh_IsSet to true.
+
+#### `public inline void `[`SetIncludeRefresh`](#structFRHAPI__LoginRequestV1_1adee83c2d6bff6635921f6bc9634b3fcb)`(bool && NewValue)` <a id="structFRHAPI__LoginRequestV1_1adee83c2d6bff6635921f6bc9634b3fcb"></a>
+
+Sets the value of IncludeRefresh_Optional and also sets IncludeRefresh_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearIncludeRefresh`](#structFRHAPI__LoginRequestV1_1a4d32f474e3ebfb2f98e1651b1ce5fb6e)`()` <a id="structFRHAPI__LoginRequestV1_1a4d32f474e3ebfb2f98e1651b1ce5fb6e"></a>
 
@@ -443,9 +476,13 @@ Returns a pointer to AcceptEula_Optional, if it has been set, otherwise returns 
 
 Returns a pointer to AcceptEula_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetAcceptEula`](#structFRHAPI__LoginRequestV1_1a3c0ee2f2175d9110a53bee55617c2cfd)`(bool NewValue)` <a id="structFRHAPI__LoginRequestV1_1a3c0ee2f2175d9110a53bee55617c2cfd"></a>
+#### `public inline void `[`SetAcceptEula`](#structFRHAPI__LoginRequestV1_1acfa88c71be1fb5d59252ca9f9309efe7)`(const bool & NewValue)` <a id="structFRHAPI__LoginRequestV1_1acfa88c71be1fb5d59252ca9f9309efe7"></a>
 
 Sets the value of AcceptEula_Optional and also sets AcceptEula_IsSet to true.
+
+#### `public inline void `[`SetAcceptEula`](#structFRHAPI__LoginRequestV1_1a1d3cbf5fec2ab57d848d9563a6c84ed0)`(bool && NewValue)` <a id="structFRHAPI__LoginRequestV1_1a1d3cbf5fec2ab57d848d9563a6c84ed0"></a>
+
+Sets the value of AcceptEula_Optional and also sets AcceptEula_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearAcceptEula`](#structFRHAPI__LoginRequestV1_1a9b51780e9816a5cb2ca47c9f340385d2)`()` <a id="structFRHAPI__LoginRequestV1_1a9b51780e9816a5cb2ca47c9f340385d2"></a>
 
@@ -483,9 +520,13 @@ Returns a pointer to AcceptTos_Optional, if it has been set, otherwise returns n
 
 Returns a pointer to AcceptTos_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetAcceptTos`](#structFRHAPI__LoginRequestV1_1aa1c5d72aead560fe730db4ecb3d69290)`(bool NewValue)` <a id="structFRHAPI__LoginRequestV1_1aa1c5d72aead560fe730db4ecb3d69290"></a>
+#### `public inline void `[`SetAcceptTos`](#structFRHAPI__LoginRequestV1_1a114835805ab79e27577a692041bb095a)`(const bool & NewValue)` <a id="structFRHAPI__LoginRequestV1_1a114835805ab79e27577a692041bb095a"></a>
 
 Sets the value of AcceptTos_Optional and also sets AcceptTos_IsSet to true.
+
+#### `public inline void `[`SetAcceptTos`](#structFRHAPI__LoginRequestV1_1a97474d42b59dd139d9f4c1e95e5244fb)`(bool && NewValue)` <a id="structFRHAPI__LoginRequestV1_1a97474d42b59dd139d9f4c1e95e5244fb"></a>
+
+Sets the value of AcceptTos_Optional and also sets AcceptTos_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearAcceptTos`](#structFRHAPI__LoginRequestV1_1adabb1d08ab991ccc72c1fca427a2de5a)`()` <a id="structFRHAPI__LoginRequestV1_1adabb1d08ab991ccc72c1fca427a2de5a"></a>
 
@@ -523,9 +564,13 @@ Returns a pointer to AcceptPrivacyPolicy_Optional, if it has been set, otherwise
 
 Returns a pointer to AcceptPrivacyPolicy_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetAcceptPrivacyPolicy`](#structFRHAPI__LoginRequestV1_1a9b846e726e9468dd7026d5ca52c16c88)`(bool NewValue)` <a id="structFRHAPI__LoginRequestV1_1a9b846e726e9468dd7026d5ca52c16c88"></a>
+#### `public inline void `[`SetAcceptPrivacyPolicy`](#structFRHAPI__LoginRequestV1_1aa4e95f9aec3519093eb17b0f8591fec2)`(const bool & NewValue)` <a id="structFRHAPI__LoginRequestV1_1aa4e95f9aec3519093eb17b0f8591fec2"></a>
 
 Sets the value of AcceptPrivacyPolicy_Optional and also sets AcceptPrivacyPolicy_IsSet to true.
+
+#### `public inline void `[`SetAcceptPrivacyPolicy`](#structFRHAPI__LoginRequestV1_1a7c422b137b6599c006157d4ba1cb831f)`(bool && NewValue)` <a id="structFRHAPI__LoginRequestV1_1a7c422b137b6599c006157d4ba1cb831f"></a>
+
+Sets the value of AcceptPrivacyPolicy_Optional and also sets AcceptPrivacyPolicy_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearAcceptPrivacyPolicy`](#structFRHAPI__LoginRequestV1_1ae6935f79cb6cf3b44b05b88925e457be)`()` <a id="structFRHAPI__LoginRequestV1_1ae6935f79cb6cf3b44b05b88925e457be"></a>
 

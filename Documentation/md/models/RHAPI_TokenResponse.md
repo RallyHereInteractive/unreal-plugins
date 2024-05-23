@@ -28,21 +28,25 @@ OAuth2 Token Response.
 `public virtual void `[`WriteJson`](#structFRHAPI__TokenResponse_1a667fb38cc9a4612f7b20de637d509c56)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetAccessToken`](#structFRHAPI__TokenResponse_1ae02bb6e092058e18ccf61352b24820b5)`()` | Gets the value of AccessToken.
 `public inline const FString & `[`GetAccessToken`](#structFRHAPI__TokenResponse_1ad604cb33c5feaf308d4c76460ec5bb41)`() const` | Gets the value of AccessToken.
-`public inline void `[`SetAccessToken`](#structFRHAPI__TokenResponse_1a51f07bcf002ad820887147d4dfc4e279)`(FString NewValue)` | Sets the value of AccessToken.
+`public inline void `[`SetAccessToken`](#structFRHAPI__TokenResponse_1a5c77cea4ccdffd1795a07441390ce271)`(const FString & NewValue)` | Sets the value of AccessToken.
+`public inline void `[`SetAccessToken`](#structFRHAPI__TokenResponse_1a0f0e6334d81133e882c66a44be9260d4)`(FString && NewValue)` | Sets the value of AccessToken using move semantics.
 `public inline FString & `[`GetTokenType`](#structFRHAPI__TokenResponse_1a5676d4c5ee5f92f90d90372734b0d073)`()` | Gets the value of TokenType.
 `public inline const FString & `[`GetTokenType`](#structFRHAPI__TokenResponse_1a5247437cd4681320b756bf9974ab5e86)`() const` | Gets the value of TokenType.
-`public inline void `[`SetTokenType`](#structFRHAPI__TokenResponse_1ac357edf097024f10de5077248e04d7d5)`(FString NewValue)` | Sets the value of TokenType.
+`public inline void `[`SetTokenType`](#structFRHAPI__TokenResponse_1addd90c244d575f3690fbdb625a81dcc0)`(const FString & NewValue)` | Sets the value of TokenType.
+`public inline void `[`SetTokenType`](#structFRHAPI__TokenResponse_1ab8212eff759c0a23c4e4551769dbf172)`(FString && NewValue)` | Sets the value of TokenType using move semantics.
 `public inline FString & `[`GetRefreshToken`](#structFRHAPI__TokenResponse_1aeb7b6f2350eefadc8ad42799b2d937ef)`()` | Gets the value of RefreshToken_Optional, regardless of it having been set.
 `public inline const FString & `[`GetRefreshToken`](#structFRHAPI__TokenResponse_1aa39c5af160236c69e2f47f0ea4d440c9)`() const` | Gets the value of RefreshToken_Optional, regardless of it having been set.
 `public inline const FString & `[`GetRefreshToken`](#structFRHAPI__TokenResponse_1af2e4a443449b46145042457026d9a90a)`(const FString & DefaultValue) const` | Gets the value of RefreshToken_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetRefreshToken`](#structFRHAPI__TokenResponse_1a7d6ac2dde662779996bfa707f5e8f4aa)`(FString & OutValue) const` | Fills OutValue with the value of RefreshToken_Optional and returns true if it has been set, otherwise returns false.
 `public inline FString * `[`GetRefreshTokenOrNull`](#structFRHAPI__TokenResponse_1a8361fb23129ce5754854ec8df8a37caf)`()` | Returns a pointer to RefreshToken_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FString * `[`GetRefreshTokenOrNull`](#structFRHAPI__TokenResponse_1a24388acb3504f05e34ae5418c123c4c4)`() const` | Returns a pointer to RefreshToken_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRefreshToken`](#structFRHAPI__TokenResponse_1a8d8ee7e703a1aa50e5a9ba430c1c853e)`(FString NewValue)` | Sets the value of RefreshToken_Optional and also sets RefreshToken_IsSet to true.
+`public inline void `[`SetRefreshToken`](#structFRHAPI__TokenResponse_1a8f82d55b9c6af0d3c05ff883caa71632)`(const FString & NewValue)` | Sets the value of RefreshToken_Optional and also sets RefreshToken_IsSet to true.
+`public inline void `[`SetRefreshToken`](#structFRHAPI__TokenResponse_1a3f50259541f620e7be54d14f8ba6cfab)`(FString && NewValue)` | Sets the value of RefreshToken_Optional and also sets RefreshToken_IsSet to true using move semantics.
 `public inline void `[`ClearRefreshToken`](#structFRHAPI__TokenResponse_1a74cbde90c757cf242fc68161279ebfb8)`()` | Clears the value of RefreshToken_Optional and sets RefreshToken_IsSet to false.
 `public inline int32 & `[`GetExpiresIn`](#structFRHAPI__TokenResponse_1a6756fc1ebbcd784b9a872ad5262fe371)`()` | Gets the value of ExpiresIn.
 `public inline const int32 & `[`GetExpiresIn`](#structFRHAPI__TokenResponse_1a190123e7780c4e2e63fe2dee23ab5bc8)`() const` | Gets the value of ExpiresIn.
-`public inline void `[`SetExpiresIn`](#structFRHAPI__TokenResponse_1ae472d563faf9b86d29b8f2250919d0be)`(int32 NewValue)` | Sets the value of ExpiresIn.
+`public inline void `[`SetExpiresIn`](#structFRHAPI__TokenResponse_1a2aac788ac3241e8e2ff90f7074213fd4)`(const int32 & NewValue)` | Sets the value of ExpiresIn.
+`public inline void `[`SetExpiresIn`](#structFRHAPI__TokenResponse_1a77111e5ac8eb8b26fb436a5f6ece61f7)`(int32 && NewValue)` | Sets the value of ExpiresIn using move semantics.
 `public inline bool `[`IsExpiresInDefaultValue`](#structFRHAPI__TokenResponse_1aaa2d99ce14af9262ac9c281daa9dd414)`() const` | Returns true if ExpiresIn matches the default value.
 `public inline void `[`SetExpiresInToDefault`](#structFRHAPI__TokenResponse_1a22b23057ad1e9278d2e1d605bd3edaae)`()` | Sets the value of ExpiresIn to its default
 
@@ -93,9 +97,13 @@ Gets the value of AccessToken.
 
 Gets the value of AccessToken.
 
-#### `public inline void `[`SetAccessToken`](#structFRHAPI__TokenResponse_1a51f07bcf002ad820887147d4dfc4e279)`(FString NewValue)` <a id="structFRHAPI__TokenResponse_1a51f07bcf002ad820887147d4dfc4e279"></a>
+#### `public inline void `[`SetAccessToken`](#structFRHAPI__TokenResponse_1a5c77cea4ccdffd1795a07441390ce271)`(const FString & NewValue)` <a id="structFRHAPI__TokenResponse_1a5c77cea4ccdffd1795a07441390ce271"></a>
 
 Sets the value of AccessToken.
+
+#### `public inline void `[`SetAccessToken`](#structFRHAPI__TokenResponse_1a0f0e6334d81133e882c66a44be9260d4)`(FString && NewValue)` <a id="structFRHAPI__TokenResponse_1a0f0e6334d81133e882c66a44be9260d4"></a>
+
+Sets the value of AccessToken using move semantics.
 
 #### `public inline FString & `[`GetTokenType`](#structFRHAPI__TokenResponse_1a5676d4c5ee5f92f90d90372734b0d073)`()` <a id="structFRHAPI__TokenResponse_1a5676d4c5ee5f92f90d90372734b0d073"></a>
 
@@ -105,9 +113,13 @@ Gets the value of TokenType.
 
 Gets the value of TokenType.
 
-#### `public inline void `[`SetTokenType`](#structFRHAPI__TokenResponse_1ac357edf097024f10de5077248e04d7d5)`(FString NewValue)` <a id="structFRHAPI__TokenResponse_1ac357edf097024f10de5077248e04d7d5"></a>
+#### `public inline void `[`SetTokenType`](#structFRHAPI__TokenResponse_1addd90c244d575f3690fbdb625a81dcc0)`(const FString & NewValue)` <a id="structFRHAPI__TokenResponse_1addd90c244d575f3690fbdb625a81dcc0"></a>
 
 Sets the value of TokenType.
+
+#### `public inline void `[`SetTokenType`](#structFRHAPI__TokenResponse_1ab8212eff759c0a23c4e4551769dbf172)`(FString && NewValue)` <a id="structFRHAPI__TokenResponse_1ab8212eff759c0a23c4e4551769dbf172"></a>
+
+Sets the value of TokenType using move semantics.
 
 #### `public inline FString & `[`GetRefreshToken`](#structFRHAPI__TokenResponse_1aeb7b6f2350eefadc8ad42799b2d937ef)`()` <a id="structFRHAPI__TokenResponse_1aeb7b6f2350eefadc8ad42799b2d937ef"></a>
 
@@ -133,9 +145,13 @@ Returns a pointer to RefreshToken_Optional, if it has been set, otherwise return
 
 Returns a pointer to RefreshToken_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRefreshToken`](#structFRHAPI__TokenResponse_1a8d8ee7e703a1aa50e5a9ba430c1c853e)`(FString NewValue)` <a id="structFRHAPI__TokenResponse_1a8d8ee7e703a1aa50e5a9ba430c1c853e"></a>
+#### `public inline void `[`SetRefreshToken`](#structFRHAPI__TokenResponse_1a8f82d55b9c6af0d3c05ff883caa71632)`(const FString & NewValue)` <a id="structFRHAPI__TokenResponse_1a8f82d55b9c6af0d3c05ff883caa71632"></a>
 
 Sets the value of RefreshToken_Optional and also sets RefreshToken_IsSet to true.
+
+#### `public inline void `[`SetRefreshToken`](#structFRHAPI__TokenResponse_1a3f50259541f620e7be54d14f8ba6cfab)`(FString && NewValue)` <a id="structFRHAPI__TokenResponse_1a3f50259541f620e7be54d14f8ba6cfab"></a>
+
+Sets the value of RefreshToken_Optional and also sets RefreshToken_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearRefreshToken`](#structFRHAPI__TokenResponse_1a74cbde90c757cf242fc68161279ebfb8)`()` <a id="structFRHAPI__TokenResponse_1a74cbde90c757cf242fc68161279ebfb8"></a>
 
@@ -149,9 +165,13 @@ Gets the value of ExpiresIn.
 
 Gets the value of ExpiresIn.
 
-#### `public inline void `[`SetExpiresIn`](#structFRHAPI__TokenResponse_1ae472d563faf9b86d29b8f2250919d0be)`(int32 NewValue)` <a id="structFRHAPI__TokenResponse_1ae472d563faf9b86d29b8f2250919d0be"></a>
+#### `public inline void `[`SetExpiresIn`](#structFRHAPI__TokenResponse_1a2aac788ac3241e8e2ff90f7074213fd4)`(const int32 & NewValue)` <a id="structFRHAPI__TokenResponse_1a2aac788ac3241e8e2ff90f7074213fd4"></a>
 
 Sets the value of ExpiresIn.
+
+#### `public inline void `[`SetExpiresIn`](#structFRHAPI__TokenResponse_1a77111e5ac8eb8b26fb436a5f6ece61f7)`(int32 && NewValue)` <a id="structFRHAPI__TokenResponse_1a77111e5ac8eb8b26fb436a5f6ece61f7"></a>
+
+Sets the value of ExpiresIn using move semantics.
 
 #### `public inline bool `[`IsExpiresInDefaultValue`](#structFRHAPI__TokenResponse_1aaa2d99ce14af9262ac9c281daa9dd414)`() const` <a id="structFRHAPI__TokenResponse_1aaa2d99ce14af9262ac9c281daa9dd414"></a>
 

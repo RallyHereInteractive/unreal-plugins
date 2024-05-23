@@ -25,10 +25,12 @@ DEPRECATED A list of maps that can be chosen from when an instance is launching.
 `public virtual void `[`WriteJson`](#structFRHAPI__MapSelectionList_1ac5757039a5dfb4ba500eedc62dcc9f77)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetMapSelectionListId`](#structFRHAPI__MapSelectionList_1a33760d8296656286de30e157c9b8d75d)`()` | Gets the value of MapSelectionListId.
 `public inline const FString & `[`GetMapSelectionListId`](#structFRHAPI__MapSelectionList_1accb162b236aa274d987f72da2a72d186)`() const` | Gets the value of MapSelectionListId.
-`public inline void `[`SetMapSelectionListId`](#structFRHAPI__MapSelectionList_1aba278792dfddde9bbfc5a21e282aab73)`(FString NewValue)` | Sets the value of MapSelectionListId.
+`public inline void `[`SetMapSelectionListId`](#structFRHAPI__MapSelectionList_1a924c4bb7da793a317f947dd0920ca22b)`(const FString & NewValue)` | Sets the value of MapSelectionListId.
+`public inline void `[`SetMapSelectionListId`](#structFRHAPI__MapSelectionList_1a238f74d888833647a12ce25947817f52)`(FString && NewValue)` | Sets the value of MapSelectionListId using move semantics.
 `public inline TArray< `[`FRHAPI_MapConfig`](RHAPI_MapConfig.md#structFRHAPI__MapConfig)` > & `[`GetMaps`](#structFRHAPI__MapSelectionList_1a1176087597f5a20435aadfe380d7577b)`()` | Gets the value of Maps.
 `public inline const TArray< `[`FRHAPI_MapConfig`](RHAPI_MapConfig.md#structFRHAPI__MapConfig)` > & `[`GetMaps`](#structFRHAPI__MapSelectionList_1acd9b43b6edd69821810f3ca13aca2395)`() const` | Gets the value of Maps.
-`public inline void `[`SetMaps`](#structFRHAPI__MapSelectionList_1a4aba4193810a93b9e65bf99c15a6e4c8)`(TArray< `[`FRHAPI_MapConfig`](RHAPI_MapConfig.md#structFRHAPI__MapConfig)` > NewValue)` | Sets the value of Maps.
+`public inline void `[`SetMaps`](#structFRHAPI__MapSelectionList_1a8291b3fa0b812dfed6bfb3c28f502169)`(const TArray< `[`FRHAPI_MapConfig`](RHAPI_MapConfig.md#structFRHAPI__MapConfig)` > & NewValue)` | Sets the value of Maps.
+`public inline void `[`SetMaps`](#structFRHAPI__MapSelectionList_1a1755709a6b8aceaaf44dd1d69004a152)`(TArray< `[`FRHAPI_MapConfig`](RHAPI_MapConfig.md#structFRHAPI__MapConfig)` > && NewValue)` | Sets the value of Maps using move semantics.
 
 ### Members
 
@@ -65,9 +67,13 @@ Gets the value of MapSelectionListId.
 
 Gets the value of MapSelectionListId.
 
-#### `public inline void `[`SetMapSelectionListId`](#structFRHAPI__MapSelectionList_1aba278792dfddde9bbfc5a21e282aab73)`(FString NewValue)` <a id="structFRHAPI__MapSelectionList_1aba278792dfddde9bbfc5a21e282aab73"></a>
+#### `public inline void `[`SetMapSelectionListId`](#structFRHAPI__MapSelectionList_1a924c4bb7da793a317f947dd0920ca22b)`(const FString & NewValue)` <a id="structFRHAPI__MapSelectionList_1a924c4bb7da793a317f947dd0920ca22b"></a>
 
 Sets the value of MapSelectionListId.
+
+#### `public inline void `[`SetMapSelectionListId`](#structFRHAPI__MapSelectionList_1a238f74d888833647a12ce25947817f52)`(FString && NewValue)` <a id="structFRHAPI__MapSelectionList_1a238f74d888833647a12ce25947817f52"></a>
+
+Sets the value of MapSelectionListId using move semantics.
 
 #### `public inline TArray< `[`FRHAPI_MapConfig`](RHAPI_MapConfig.md#structFRHAPI__MapConfig)` > & `[`GetMaps`](#structFRHAPI__MapSelectionList_1a1176087597f5a20435aadfe380d7577b)`()` <a id="structFRHAPI__MapSelectionList_1a1176087597f5a20435aadfe380d7577b"></a>
 
@@ -77,7 +83,11 @@ Gets the value of Maps.
 
 Gets the value of Maps.
 
-#### `public inline void `[`SetMaps`](#structFRHAPI__MapSelectionList_1a4aba4193810a93b9e65bf99c15a6e4c8)`(TArray< `[`FRHAPI_MapConfig`](RHAPI_MapConfig.md#structFRHAPI__MapConfig)` > NewValue)` <a id="structFRHAPI__MapSelectionList_1a4aba4193810a93b9e65bf99c15a6e4c8"></a>
+#### `public inline void `[`SetMaps`](#structFRHAPI__MapSelectionList_1a8291b3fa0b812dfed6bfb3c28f502169)`(const TArray< `[`FRHAPI_MapConfig`](RHAPI_MapConfig.md#structFRHAPI__MapConfig)` > & NewValue)` <a id="structFRHAPI__MapSelectionList_1a8291b3fa0b812dfed6bfb3c28f502169"></a>
 
 Sets the value of Maps.
+
+#### `public inline void `[`SetMaps`](#structFRHAPI__MapSelectionList_1a1755709a6b8aceaaf44dd1d69004a152)`(TArray< `[`FRHAPI_MapConfig`](RHAPI_MapConfig.md#structFRHAPI__MapConfig)` > && NewValue)` <a id="structFRHAPI__MapSelectionList_1a1755709a6b8aceaaf44dd1d69004a152"></a>
+
+Sets the value of Maps using move semantics.
 

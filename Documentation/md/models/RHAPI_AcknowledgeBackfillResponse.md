@@ -27,7 +27,8 @@ struct FRHAPI_AcknowledgeBackfillResponse
 `public inline bool `[`GetBackfilledPlayers`](#structFRHAPI__AcknowledgeBackfillResponse_1a2cbc045425237f6f8899b282908596a1)`(TArray< `[`FRHAPI_SessionPlayer`](RHAPI_SessionPlayer.md#structFRHAPI__SessionPlayer)` > & OutValue) const` | Fills OutValue with the value of BackfilledPlayers_Optional and returns true if it has been set, otherwise returns false.
 `public inline TArray< `[`FRHAPI_SessionPlayer`](RHAPI_SessionPlayer.md#structFRHAPI__SessionPlayer)` > * `[`GetBackfilledPlayersOrNull`](#structFRHAPI__AcknowledgeBackfillResponse_1a4c3fc4ebd860b8db99c310aa5c4aeb13)`()` | Returns a pointer to BackfilledPlayers_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TArray< `[`FRHAPI_SessionPlayer`](RHAPI_SessionPlayer.md#structFRHAPI__SessionPlayer)` > * `[`GetBackfilledPlayersOrNull`](#structFRHAPI__AcknowledgeBackfillResponse_1af49d805208763958a0a76bb1bcf00a80)`() const` | Returns a pointer to BackfilledPlayers_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetBackfilledPlayers`](#structFRHAPI__AcknowledgeBackfillResponse_1a9fd607d0415fb7f31f10434c109182ce)`(TArray< `[`FRHAPI_SessionPlayer`](RHAPI_SessionPlayer.md#structFRHAPI__SessionPlayer)` > NewValue)` | Sets the value of BackfilledPlayers_Optional and also sets BackfilledPlayers_IsSet to true.
+`public inline void `[`SetBackfilledPlayers`](#structFRHAPI__AcknowledgeBackfillResponse_1a74a0b13b8e8d8e5380d4a57a272270a4)`(const TArray< `[`FRHAPI_SessionPlayer`](RHAPI_SessionPlayer.md#structFRHAPI__SessionPlayer)` > & NewValue)` | Sets the value of BackfilledPlayers_Optional and also sets BackfilledPlayers_IsSet to true.
+`public inline void `[`SetBackfilledPlayers`](#structFRHAPI__AcknowledgeBackfillResponse_1af194803db96207bafe13f14feeea0526)`(TArray< `[`FRHAPI_SessionPlayer`](RHAPI_SessionPlayer.md#structFRHAPI__SessionPlayer)` > && NewValue)` | Sets the value of BackfilledPlayers_Optional and also sets BackfilledPlayers_IsSet to true using move semantics.
 `public inline void `[`ClearBackfilledPlayers`](#structFRHAPI__AcknowledgeBackfillResponse_1a5df126a7e77babbaedc697a42980a889)`()` | Clears the value of BackfilledPlayers_Optional and sets BackfilledPlayers_IsSet to false.
 
 ### Members
@@ -81,9 +82,13 @@ Returns a pointer to BackfilledPlayers_Optional, if it has been set, otherwise r
 
 Returns a pointer to BackfilledPlayers_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetBackfilledPlayers`](#structFRHAPI__AcknowledgeBackfillResponse_1a9fd607d0415fb7f31f10434c109182ce)`(TArray< `[`FRHAPI_SessionPlayer`](RHAPI_SessionPlayer.md#structFRHAPI__SessionPlayer)` > NewValue)` <a id="structFRHAPI__AcknowledgeBackfillResponse_1a9fd607d0415fb7f31f10434c109182ce"></a>
+#### `public inline void `[`SetBackfilledPlayers`](#structFRHAPI__AcknowledgeBackfillResponse_1a74a0b13b8e8d8e5380d4a57a272270a4)`(const TArray< `[`FRHAPI_SessionPlayer`](RHAPI_SessionPlayer.md#structFRHAPI__SessionPlayer)` > & NewValue)` <a id="structFRHAPI__AcknowledgeBackfillResponse_1a74a0b13b8e8d8e5380d4a57a272270a4"></a>
 
 Sets the value of BackfilledPlayers_Optional and also sets BackfilledPlayers_IsSet to true.
+
+#### `public inline void `[`SetBackfilledPlayers`](#structFRHAPI__AcknowledgeBackfillResponse_1af194803db96207bafe13f14feeea0526)`(TArray< `[`FRHAPI_SessionPlayer`](RHAPI_SessionPlayer.md#structFRHAPI__SessionPlayer)` > && NewValue)` <a id="structFRHAPI__AcknowledgeBackfillResponse_1af194803db96207bafe13f14feeea0526"></a>
+
+Sets the value of BackfilledPlayers_Optional and also sets BackfilledPlayers_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearBackfilledPlayers`](#structFRHAPI__AcknowledgeBackfillResponse_1a5df126a7e77babbaedc697a42980a889)`()` <a id="structFRHAPI__AcknowledgeBackfillResponse_1a5df126a7e77babbaedc697a42980a889"></a>
 

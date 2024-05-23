@@ -49,7 +49,9 @@ struct RALLYHEREAPI_API FRHAPI_MarketingCampaign : public FRHAPI_Model
 	/** @brief Gets the value of Uuid */
 	const FGuid& GetUuid() const { return Uuid; }
 	/** @brief Sets the value of Uuid */
-	void SetUuid(FGuid NewValue) { Uuid = NewValue;  }
+	void SetUuid(const FGuid& NewValue) { Uuid = NewValue;  }
+	/** @brief Sets the value of Uuid using move semantics */
+	void SetUuid(FGuid&& NewValue) { Uuid = NewValue;  }
 
 	/** @brief The name of the Marketing Campaign */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -59,7 +61,9 @@ struct RALLYHEREAPI_API FRHAPI_MarketingCampaign : public FRHAPI_Model
 	/** @brief Gets the value of Name */
 	const FString& GetName() const { return Name; }
 	/** @brief Sets the value of Name */
-	void SetName(FString NewValue) { Name = NewValue;  }
+	void SetName(const FString& NewValue) { Name = NewValue;  }
+	/** @brief Sets the value of Name using move semantics */
+	void SetName(FString&& NewValue) { Name = NewValue;  }
 
 	/** @brief Platform for the Marketing Campaign */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -80,7 +84,9 @@ struct RALLYHEREAPI_API FRHAPI_MarketingCampaign : public FRHAPI_Model
 	/** @brief Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr */
 	const ERHAPI_Portal* GetPortalIdOrNull() const { if (PortalId_IsSet) return &PortalId_Optional; return nullptr; }
 	/** @brief Sets the value of PortalId_Optional and also sets PortalId_IsSet to true */
-	void SetPortalId(ERHAPI_Portal NewValue) { PortalId_Optional = NewValue; PortalId_IsSet = true; }
+	void SetPortalId(const ERHAPI_Portal& NewValue) { PortalId_Optional = NewValue; PortalId_IsSet = true; }
+	/** @brief Sets the value of PortalId_Optional and also sets PortalId_IsSet to true using move semantics */
+	void SetPortalId(ERHAPI_Portal&& NewValue) { PortalId_Optional = NewValue; PortalId_IsSet = true; }
 	 /** @brief Clears the value of PortalId_Optional and sets PortalId_IsSet to false */
 	void ClearPortalId() { PortalId_IsSet = false; }
 
@@ -92,7 +98,9 @@ struct RALLYHEREAPI_API FRHAPI_MarketingCampaign : public FRHAPI_Model
 	/** @brief Gets the value of KeyTypes */
 	const TArray<FRHAPI_KeyType>& GetKeyTypes() const { return KeyTypes; }
 	/** @brief Sets the value of KeyTypes */
-	void SetKeyTypes(TArray<FRHAPI_KeyType> NewValue) { KeyTypes = NewValue;  }
+	void SetKeyTypes(const TArray<FRHAPI_KeyType>& NewValue) { KeyTypes = NewValue;  }
+	/** @brief Sets the value of KeyTypes using move semantics */
+	void SetKeyTypes(TArray<FRHAPI_KeyType>&& NewValue) { KeyTypes = NewValue;  }
 
 	/** @brief The time the MarketingCampaign was created */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -113,7 +121,9 @@ struct RALLYHEREAPI_API FRHAPI_MarketingCampaign : public FRHAPI_Model
 	/** @brief Returns a pointer to CreatedOn_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetCreatedOnOrNull() const { if (CreatedOn_IsSet) return &CreatedOn_Optional; return nullptr; }
 	/** @brief Sets the value of CreatedOn_Optional and also sets CreatedOn_IsSet to true */
-	void SetCreatedOn(FString NewValue) { CreatedOn_Optional = NewValue; CreatedOn_IsSet = true; }
+	void SetCreatedOn(const FString& NewValue) { CreatedOn_Optional = NewValue; CreatedOn_IsSet = true; }
+	/** @brief Sets the value of CreatedOn_Optional and also sets CreatedOn_IsSet to true using move semantics */
+	void SetCreatedOn(FString&& NewValue) { CreatedOn_Optional = NewValue; CreatedOn_IsSet = true; }
 	 /** @brief Clears the value of CreatedOn_Optional and sets CreatedOn_IsSet to false */
 	void ClearCreatedOn() { CreatedOn_IsSet = false; }
 
@@ -136,7 +146,9 @@ struct RALLYHEREAPI_API FRHAPI_MarketingCampaign : public FRHAPI_Model
 	/** @brief Returns a pointer to LastModifiedOn_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetLastModifiedOnOrNull() const { if (LastModifiedOn_IsSet) return &LastModifiedOn_Optional; return nullptr; }
 	/** @brief Sets the value of LastModifiedOn_Optional and also sets LastModifiedOn_IsSet to true */
-	void SetLastModifiedOn(FString NewValue) { LastModifiedOn_Optional = NewValue; LastModifiedOn_IsSet = true; }
+	void SetLastModifiedOn(const FString& NewValue) { LastModifiedOn_Optional = NewValue; LastModifiedOn_IsSet = true; }
+	/** @brief Sets the value of LastModifiedOn_Optional and also sets LastModifiedOn_IsSet to true using move semantics */
+	void SetLastModifiedOn(FString&& NewValue) { LastModifiedOn_Optional = NewValue; LastModifiedOn_IsSet = true; }
 	 /** @brief Clears the value of LastModifiedOn_Optional and sets LastModifiedOn_IsSet to false */
 	void ClearLastModifiedOn() { LastModifiedOn_IsSet = false; }
 };

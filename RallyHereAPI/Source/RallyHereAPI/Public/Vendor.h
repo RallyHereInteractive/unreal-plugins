@@ -61,7 +61,9 @@ struct RALLYHEREAPI_API FRHAPI_Vendor : public FRHAPI_Model
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
+	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
 	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false; }
 
@@ -84,7 +86,9 @@ struct RALLYHEREAPI_API FRHAPI_Vendor : public FRHAPI_Model
 	/** @brief Returns a pointer to VendorUuid_Optional, if it has been set, otherwise returns nullptr */
 	const FGuid* GetVendorUuidOrNull() const { if (VendorUuid_IsSet) return &VendorUuid_Optional; return nullptr; }
 	/** @brief Sets the value of VendorUuid_Optional and also sets VendorUuid_IsSet to true */
-	void SetVendorUuid(FGuid NewValue) { VendorUuid_Optional = NewValue; VendorUuid_IsSet = true; }
+	void SetVendorUuid(const FGuid& NewValue) { VendorUuid_Optional = NewValue; VendorUuid_IsSet = true; }
+	/** @brief Sets the value of VendorUuid_Optional and also sets VendorUuid_IsSet to true using move semantics */
+	void SetVendorUuid(FGuid&& NewValue) { VendorUuid_Optional = NewValue; VendorUuid_IsSet = true; }
 	 /** @brief Clears the value of VendorUuid_Optional and sets VendorUuid_IsSet to false */
 	void ClearVendorUuid() { VendorUuid_IsSet = false; }
 
@@ -107,7 +111,9 @@ struct RALLYHEREAPI_API FRHAPI_Vendor : public FRHAPI_Model
 	/** @brief Returns a pointer to Type_Optional, if it has been set, otherwise returns nullptr */
 	const ERHAPI_VendorType* GetTypeOrNull() const { if (Type_IsSet) return &Type_Optional; return nullptr; }
 	/** @brief Sets the value of Type_Optional and also sets Type_IsSet to true */
-	void SetType(ERHAPI_VendorType NewValue) { Type_Optional = NewValue; Type_IsSet = true; }
+	void SetType(const ERHAPI_VendorType& NewValue) { Type_Optional = NewValue; Type_IsSet = true; }
+	/** @brief Sets the value of Type_Optional and also sets Type_IsSet to true using move semantics */
+	void SetType(ERHAPI_VendorType&& NewValue) { Type_Optional = NewValue; Type_IsSet = true; }
 	 /** @brief Clears the value of Type_Optional and sets Type_IsSet to false */
 	void ClearType() { Type_IsSet = false; }
 
@@ -129,7 +135,9 @@ struct RALLYHEREAPI_API FRHAPI_Vendor : public FRHAPI_Model
 	/** @brief Returns a pointer to LegacyType_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetLegacyTypeOrNull() const { if (LegacyType_IsSet) return &LegacyType_Optional; return nullptr; }
 	/** @brief Sets the value of LegacyType_Optional and also sets LegacyType_IsSet to true */
-	void SetLegacyType(int32 NewValue) { LegacyType_Optional = NewValue; LegacyType_IsSet = true; }
+	void SetLegacyType(const int32& NewValue) { LegacyType_Optional = NewValue; LegacyType_IsSet = true; }
+	/** @brief Sets the value of LegacyType_Optional and also sets LegacyType_IsSet to true using move semantics */
+	void SetLegacyType(int32&& NewValue) { LegacyType_Optional = NewValue; LegacyType_IsSet = true; }
 	 /** @brief Clears the value of LegacyType_Optional and sets LegacyType_IsSet to false */
 	void ClearLegacyType() { LegacyType_Optional = 0; LegacyType_IsSet = false; }
 	/** @brief Returns true if LegacyType_Optional is set and matches the default value */
@@ -155,7 +163,9 @@ struct RALLYHEREAPI_API FRHAPI_Vendor : public FRHAPI_Model
 	/** @brief Returns a pointer to LegacyConfigVersion_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetLegacyConfigVersionOrNull() const { if (LegacyConfigVersion_IsSet) return &LegacyConfigVersion_Optional; return nullptr; }
 	/** @brief Sets the value of LegacyConfigVersion_Optional and also sets LegacyConfigVersion_IsSet to true */
-	void SetLegacyConfigVersion(int32 NewValue) { LegacyConfigVersion_Optional = NewValue; LegacyConfigVersion_IsSet = true; }
+	void SetLegacyConfigVersion(const int32& NewValue) { LegacyConfigVersion_Optional = NewValue; LegacyConfigVersion_IsSet = true; }
+	/** @brief Sets the value of LegacyConfigVersion_Optional and also sets LegacyConfigVersion_IsSet to true using move semantics */
+	void SetLegacyConfigVersion(int32&& NewValue) { LegacyConfigVersion_Optional = NewValue; LegacyConfigVersion_IsSet = true; }
 	 /** @brief Clears the value of LegacyConfigVersion_Optional and sets LegacyConfigVersion_IsSet to false */
 	void ClearLegacyConfigVersion() { LegacyConfigVersion_Optional = 0; LegacyConfigVersion_IsSet = false; }
 	/** @brief Returns true if LegacyConfigVersion_Optional is set and matches the default value */
@@ -182,7 +192,9 @@ struct RALLYHEREAPI_API FRHAPI_Vendor : public FRHAPI_Model
 	/** @brief Returns a pointer to Loot_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FRHAPI_Loot>* GetLootOrNull() const { if (Loot_IsSet) return &Loot_Optional; return nullptr; }
 	/** @brief Sets the value of Loot_Optional and also sets Loot_IsSet to true */
-	void SetLoot(TMap<FString, FRHAPI_Loot> NewValue) { Loot_Optional = NewValue; Loot_IsSet = true; }
+	void SetLoot(const TMap<FString, FRHAPI_Loot>& NewValue) { Loot_Optional = NewValue; Loot_IsSet = true; }
+	/** @brief Sets the value of Loot_Optional and also sets Loot_IsSet to true using move semantics */
+	void SetLoot(TMap<FString, FRHAPI_Loot>&& NewValue) { Loot_Optional = NewValue; Loot_IsSet = true; }
 	 /** @brief Clears the value of Loot_Optional and sets Loot_IsSet to false */
 	void ClearLoot() { Loot_IsSet = false; }
 
@@ -205,7 +217,9 @@ struct RALLYHEREAPI_API FRHAPI_Vendor : public FRHAPI_Model
 	/** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
 	const FRHAPI_CacheInfo* GetCacheInfoOrNull() const { if (CacheInfo_IsSet) return &CacheInfo_Optional; return nullptr; }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true */
-	void SetCacheInfo(FRHAPI_CacheInfo NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
+	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
+	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics */
+	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
 	 /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
 	void ClearCacheInfo() { CacheInfo_IsSet = false; }
 };

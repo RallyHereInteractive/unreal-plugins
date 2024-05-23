@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_Notification : public FRHAPI_Model
 	/** @brief Gets the value of Message */
 	const FString& GetMessage() const { return Message; }
 	/** @brief Sets the value of Message */
-	void SetMessage(FString NewValue) { Message = NewValue;  }
+	void SetMessage(const FString& NewValue) { Message = NewValue;  }
+	/** @brief Sets the value of Message using move semantics */
+	void SetMessage(FString&& NewValue) { Message = NewValue;  }
 
 	/** @brief Path to get additional data about this notification */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -68,7 +70,9 @@ struct RALLYHEREAPI_API FRHAPI_Notification : public FRHAPI_Model
 	/** @brief Returns a pointer to RhUrl_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetRhUrlOrNull() const { if (RhUrl_IsSet) return &RhUrl_Optional; return nullptr; }
 	/** @brief Sets the value of RhUrl_Optional and also sets RhUrl_IsSet to true */
-	void SetRhUrl(FString NewValue) { RhUrl_Optional = NewValue; RhUrl_IsSet = true; }
+	void SetRhUrl(const FString& NewValue) { RhUrl_Optional = NewValue; RhUrl_IsSet = true; }
+	/** @brief Sets the value of RhUrl_Optional and also sets RhUrl_IsSet to true using move semantics */
+	void SetRhUrl(FString&& NewValue) { RhUrl_Optional = NewValue; RhUrl_IsSet = true; }
 	 /** @brief Clears the value of RhUrl_Optional and sets RhUrl_IsSet to false */
 	void ClearRhUrl() { RhUrl_IsSet = false; }
 
@@ -91,7 +95,9 @@ struct RALLYHEREAPI_API FRHAPI_Notification : public FRHAPI_Model
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
+	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
 	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false; }
 
@@ -114,7 +120,9 @@ struct RALLYHEREAPI_API FRHAPI_Notification : public FRHAPI_Model
 	/** @brief Returns a pointer to Etag_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetEtagOrNull() const { if (Etag_IsSet) return &Etag_Optional; return nullptr; }
 	/** @brief Sets the value of Etag_Optional and also sets Etag_IsSet to true */
-	void SetEtag(FString NewValue) { Etag_Optional = NewValue; Etag_IsSet = true; }
+	void SetEtag(const FString& NewValue) { Etag_Optional = NewValue; Etag_IsSet = true; }
+	/** @brief Sets the value of Etag_Optional and also sets Etag_IsSet to true using move semantics */
+	void SetEtag(FString&& NewValue) { Etag_Optional = NewValue; Etag_IsSet = true; }
 	 /** @brief Clears the value of Etag_Optional and sets Etag_IsSet to false */
 	void ClearEtag() { Etag_IsSet = false; }
 
@@ -126,7 +134,9 @@ struct RALLYHEREAPI_API FRHAPI_Notification : public FRHAPI_Model
 	/** @brief Gets the value of NotificationId */
 	const FString& GetNotificationId() const { return NotificationId; }
 	/** @brief Sets the value of NotificationId */
-	void SetNotificationId(FString NewValue) { NotificationId = NewValue;  }
+	void SetNotificationId(const FString& NewValue) { NotificationId = NewValue;  }
+	/** @brief Sets the value of NotificationId using move semantics */
+	void SetNotificationId(FString&& NewValue) { NotificationId = NewValue;  }
 
 	/** @brief When this notification was added */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -136,7 +146,9 @@ struct RALLYHEREAPI_API FRHAPI_Notification : public FRHAPI_Model
 	/** @brief Gets the value of Created */
 	const FDateTime& GetCreated() const { return Created; }
 	/** @brief Sets the value of Created */
-	void SetCreated(FDateTime NewValue) { Created = NewValue;  }
+	void SetCreated(const FDateTime& NewValue) { Created = NewValue;  }
+	/** @brief Sets the value of Created using move semantics */
+	void SetCreated(FDateTime&& NewValue) { Created = NewValue;  }
 };
 
 /** @} */

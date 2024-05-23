@@ -59,7 +59,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayerUpdateResponse : public FRHAPI_Model
 	/** @brief Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr */
 	const FGuid* GetPlayerUuidOrNull() const { if (PlayerUuid_IsSet) return &PlayerUuid_Optional; return nullptr; }
 	/** @brief Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true */
-	void SetPlayerUuid(FGuid NewValue) { PlayerUuid_Optional = NewValue; PlayerUuid_IsSet = true; }
+	void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid_Optional = NewValue; PlayerUuid_IsSet = true; }
+	/** @brief Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true using move semantics */
+	void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid_Optional = NewValue; PlayerUuid_IsSet = true; }
 	 /** @brief Clears the value of PlayerUuid_Optional and sets PlayerUuid_IsSet to false */
 	void ClearPlayerUuid() { PlayerUuid_IsSet = false; }
 
@@ -71,7 +73,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayerUpdateResponse : public FRHAPI_Model
 	/** @brief Gets the value of Status */
 	const ERHAPI_SessionPlayerStatus& GetStatus() const { return Status; }
 	/** @brief Sets the value of Status */
-	void SetStatus(ERHAPI_SessionPlayerStatus NewValue) { Status = NewValue;  }
+	void SetStatus(const ERHAPI_SessionPlayerStatus& NewValue) { Status = NewValue;  }
+	/** @brief Sets the value of Status using move semantics */
+	void SetStatus(ERHAPI_SessionPlayerStatus&& NewValue) { Status = NewValue;  }
 
 	/** @brief Which team the player joined */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -81,7 +85,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayerUpdateResponse : public FRHAPI_Model
 	/** @brief Gets the value of TeamId */
 	const int32& GetTeamId() const { return TeamId; }
 	/** @brief Sets the value of TeamId */
-	void SetTeamId(int32 NewValue) { TeamId = NewValue;  }
+	void SetTeamId(const int32& NewValue) { TeamId = NewValue;  }
+	/** @brief Sets the value of TeamId using move semantics */
+	void SetTeamId(int32&& NewValue) { TeamId = NewValue;  }
 	/** @brief Returns true if TeamId matches the default value */
 	bool IsTeamIdDefaultValue() const { return TeamId == 0; }
 	/** @brief Sets the value of TeamId to its default  */
@@ -106,7 +112,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayerUpdateResponse : public FRHAPI_Model
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
+	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
 	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false; }
 };

@@ -41,7 +41,8 @@ A collection of Loot and how to fulfill them.
 `public inline bool `[`GetCustomData`](#structFRHAPI__Vendor_1a8105f764906c77a60c614e9c3c685f18)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__Vendor_1a4183b612a36de5eabae8d1a3d11debaf)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__Vendor_1a443f7f3b5a4d61b855258c8410498176)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCustomData`](#structFRHAPI__Vendor_1a0c1bccc4044d44928f069428c54a0baa)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`SetCustomData`](#structFRHAPI__Vendor_1a6b3880b47edfc7c5b23fae5a4764fe3a)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`SetCustomData`](#structFRHAPI__Vendor_1aab1cfec99d787c9942c8749044c7857e)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__Vendor_1a3be0ed314dd1c186d5437cd282e72367)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 `public inline FGuid & `[`GetVendorUuid`](#structFRHAPI__Vendor_1aac37e4c01929f700585eb565edab3589)`()` | Gets the value of VendorUuid_Optional, regardless of it having been set.
 `public inline const FGuid & `[`GetVendorUuid`](#structFRHAPI__Vendor_1a0251860469c6454d7daa83b40bf9cca6)`() const` | Gets the value of VendorUuid_Optional, regardless of it having been set.
@@ -49,7 +50,8 @@ A collection of Loot and how to fulfill them.
 `public inline bool `[`GetVendorUuid`](#structFRHAPI__Vendor_1ab96b24ef610404ae3b9e38e948659ce9)`(FGuid & OutValue) const` | Fills OutValue with the value of VendorUuid_Optional and returns true if it has been set, otherwise returns false.
 `public inline FGuid * `[`GetVendorUuidOrNull`](#structFRHAPI__Vendor_1aea178973ef93b37639d5f3df679d38d2)`()` | Returns a pointer to VendorUuid_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FGuid * `[`GetVendorUuidOrNull`](#structFRHAPI__Vendor_1ace85d579b93e01c50c73470185593317)`() const` | Returns a pointer to VendorUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetVendorUuid`](#structFRHAPI__Vendor_1a5a8887e0a008ea5d0b4a6ad1590b832a)`(FGuid NewValue)` | Sets the value of VendorUuid_Optional and also sets VendorUuid_IsSet to true.
+`public inline void `[`SetVendorUuid`](#structFRHAPI__Vendor_1a3ed1c66868983c4a0ebe66a4a3e517de)`(const FGuid & NewValue)` | Sets the value of VendorUuid_Optional and also sets VendorUuid_IsSet to true.
+`public inline void `[`SetVendorUuid`](#structFRHAPI__Vendor_1acc0fbea9ca9e866dc61600c8f83bc6ba)`(FGuid && NewValue)` | Sets the value of VendorUuid_Optional and also sets VendorUuid_IsSet to true using move semantics.
 `public inline void `[`ClearVendorUuid`](#structFRHAPI__Vendor_1abf17b70aaa40c7c92456dd853564d0b9)`()` | Clears the value of VendorUuid_Optional and sets VendorUuid_IsSet to false.
 `public inline ERHAPI_VendorType & `[`GetType`](#structFRHAPI__Vendor_1a45b0024bf9841cc84a56cf325a7b61e7)`()` | Gets the value of Type_Optional, regardless of it having been set.
 `public inline const ERHAPI_VendorType & `[`GetType`](#structFRHAPI__Vendor_1ae21da9d6ed5959edd48a777e7b6ff3a3)`() const` | Gets the value of Type_Optional, regardless of it having been set.
@@ -57,7 +59,8 @@ A collection of Loot and how to fulfill them.
 `public inline bool `[`GetType`](#structFRHAPI__Vendor_1a828e1adcb46a9bd94aa54213b932ca2e)`(ERHAPI_VendorType & OutValue) const` | Fills OutValue with the value of Type_Optional and returns true if it has been set, otherwise returns false.
 `public inline ERHAPI_VendorType * `[`GetTypeOrNull`](#structFRHAPI__Vendor_1af9215bfe94384c215051bd61fe159325)`()` | Returns a pointer to Type_Optional, if it has been set, otherwise returns nullptr.
 `public inline const ERHAPI_VendorType * `[`GetTypeOrNull`](#structFRHAPI__Vendor_1a7620043e2ec89f1c12cb123d24949b1e)`() const` | Returns a pointer to Type_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetType`](#structFRHAPI__Vendor_1a92879bfb67b571aac58fedab8cd6980c)`(ERHAPI_VendorType NewValue)` | Sets the value of Type_Optional and also sets Type_IsSet to true.
+`public inline void `[`SetType`](#structFRHAPI__Vendor_1a9caccbf9c0f715f2d71348c468e3a0cb)`(const ERHAPI_VendorType & NewValue)` | Sets the value of Type_Optional and also sets Type_IsSet to true.
+`public inline void `[`SetType`](#structFRHAPI__Vendor_1afb6382c4f68b9633ce9b16a016f19062)`(ERHAPI_VendorType && NewValue)` | Sets the value of Type_Optional and also sets Type_IsSet to true using move semantics.
 `public inline void `[`ClearType`](#structFRHAPI__Vendor_1a80edd87ab36f2af40668d9cded28fe38)`()` | Clears the value of Type_Optional and sets Type_IsSet to false.
 `public inline int32 & `[`GetLegacyType`](#structFRHAPI__Vendor_1ac502dd37140bae8da4c17bd4f61264db)`()` | Gets the value of LegacyType_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetLegacyType`](#structFRHAPI__Vendor_1a9af7f8eab2cb80643f6f1e38f0ca1f30)`() const` | Gets the value of LegacyType_Optional, regardless of it having been set.
@@ -65,7 +68,8 @@ A collection of Loot and how to fulfill them.
 `public inline bool `[`GetLegacyType`](#structFRHAPI__Vendor_1ab6c02b6569a627874af993cb74121201)`(int32 & OutValue) const` | Fills OutValue with the value of LegacyType_Optional and returns true if it has been set, otherwise returns false.
 `public inline int32 * `[`GetLegacyTypeOrNull`](#structFRHAPI__Vendor_1a0a01b3fec78493ab417c092373238b73)`()` | Returns a pointer to LegacyType_Optional, if it has been set, otherwise returns nullptr.
 `public inline const int32 * `[`GetLegacyTypeOrNull`](#structFRHAPI__Vendor_1ae65ad3debd3fd58a3f0ad28369fe4c6b)`() const` | Returns a pointer to LegacyType_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetLegacyType`](#structFRHAPI__Vendor_1a8a674360c7fbe19a34f815cc065a392b)`(int32 NewValue)` | Sets the value of LegacyType_Optional and also sets LegacyType_IsSet to true.
+`public inline void `[`SetLegacyType`](#structFRHAPI__Vendor_1ab2a20209348b36c27284d97a184d8f30)`(const int32 & NewValue)` | Sets the value of LegacyType_Optional and also sets LegacyType_IsSet to true.
+`public inline void `[`SetLegacyType`](#structFRHAPI__Vendor_1ada0810ec2b07e62bfbb63711981357df)`(int32 && NewValue)` | Sets the value of LegacyType_Optional and also sets LegacyType_IsSet to true using move semantics.
 `public inline void `[`ClearLegacyType`](#structFRHAPI__Vendor_1abbe2f3c16522df63f1e1ed1c1e83050e)`()` | Clears the value of LegacyType_Optional and sets LegacyType_IsSet to false.
 `public inline bool `[`IsLegacyTypeDefaultValue`](#structFRHAPI__Vendor_1ad0132c838c402d246db971bbc80ed73e)`() const` | Returns true if LegacyType_Optional is set and matches the default value.
 `public inline void `[`SetLegacyTypeToDefault`](#structFRHAPI__Vendor_1ab48395e3c0ad815ab6f12b5de430ec17)`()` | Sets the value of LegacyType_Optional to its default and also sets LegacyType_IsSet to true.
@@ -75,7 +79,8 @@ A collection of Loot and how to fulfill them.
 `public inline bool `[`GetLegacyConfigVersion`](#structFRHAPI__Vendor_1ac1127266dbd107f5570c171f86c4bde6)`(int32 & OutValue) const` | Fills OutValue with the value of LegacyConfigVersion_Optional and returns true if it has been set, otherwise returns false.
 `public inline int32 * `[`GetLegacyConfigVersionOrNull`](#structFRHAPI__Vendor_1ad71e61816a72d3732706eef5063a7d35)`()` | Returns a pointer to LegacyConfigVersion_Optional, if it has been set, otherwise returns nullptr.
 `public inline const int32 * `[`GetLegacyConfigVersionOrNull`](#structFRHAPI__Vendor_1a70560282202c79eb90f696968dd25b24)`() const` | Returns a pointer to LegacyConfigVersion_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetLegacyConfigVersion`](#structFRHAPI__Vendor_1ac9c278fd82180b7d4fdd65d75226f5ae)`(int32 NewValue)` | Sets the value of LegacyConfigVersion_Optional and also sets LegacyConfigVersion_IsSet to true.
+`public inline void `[`SetLegacyConfigVersion`](#structFRHAPI__Vendor_1aaedc701eda8405a813d5c540d67635c5)`(const int32 & NewValue)` | Sets the value of LegacyConfigVersion_Optional and also sets LegacyConfigVersion_IsSet to true.
+`public inline void `[`SetLegacyConfigVersion`](#structFRHAPI__Vendor_1af09754f248e24f41caf500ae7fb3f5ac)`(int32 && NewValue)` | Sets the value of LegacyConfigVersion_Optional and also sets LegacyConfigVersion_IsSet to true using move semantics.
 `public inline void `[`ClearLegacyConfigVersion`](#structFRHAPI__Vendor_1a39cd6cbcb2eac3f3c0ead5e4f4829c4b)`()` | Clears the value of LegacyConfigVersion_Optional and sets LegacyConfigVersion_IsSet to false.
 `public inline bool `[`IsLegacyConfigVersionDefaultValue`](#structFRHAPI__Vendor_1a6993999a6bda0506d8515a042ea35d8e)`() const` | Returns true if LegacyConfigVersion_Optional is set and matches the default value.
 `public inline void `[`SetLegacyConfigVersionToDefault`](#structFRHAPI__Vendor_1a9e344ffcc36fb5a870528fe918f56022)`()` | Sets the value of LegacyConfigVersion_Optional to its default and also sets LegacyConfigVersion_IsSet to true.
@@ -85,7 +90,8 @@ A collection of Loot and how to fulfill them.
 `public inline bool `[`GetLoot`](#structFRHAPI__Vendor_1ab3dc72b107f49cbfbbb0f8c31a361386)`(TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > & OutValue) const` | Fills OutValue with the value of Loot_Optional and returns true if it has been set, otherwise returns false.
 `public inline TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > * `[`GetLootOrNull`](#structFRHAPI__Vendor_1a78a902e9294269a1d8d791a4a4d5a166)`()` | Returns a pointer to Loot_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > * `[`GetLootOrNull`](#structFRHAPI__Vendor_1abf95c1cb96c75ba9e2539222bd88bffb)`() const` | Returns a pointer to Loot_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetLoot`](#structFRHAPI__Vendor_1abe9c308b868059eb397ab13197c488e9)`(TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > NewValue)` | Sets the value of Loot_Optional and also sets Loot_IsSet to true.
+`public inline void `[`SetLoot`](#structFRHAPI__Vendor_1af2e78d113b3ed17ca4052a5e2e248a22)`(const TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > & NewValue)` | Sets the value of Loot_Optional and also sets Loot_IsSet to true.
+`public inline void `[`SetLoot`](#structFRHAPI__Vendor_1a52779c3435d842a90d94a6efe643cd1d)`(TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > && NewValue)` | Sets the value of Loot_Optional and also sets Loot_IsSet to true using move semantics.
 `public inline void `[`ClearLoot`](#structFRHAPI__Vendor_1a4df091c709882709f1f85c228a2c433b)`()` | Clears the value of Loot_Optional and sets Loot_IsSet to false.
 `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Vendor_1a1bb9e41145e791fdb2a302749766673b)`()` | Gets the value of CacheInfo_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Vendor_1accb6b3b3d1a4f7fc1384563476d17e1d)`() const` | Gets the value of CacheInfo_Optional, regardless of it having been set.
@@ -93,7 +99,8 @@ A collection of Loot and how to fulfill them.
 `public inline bool `[`GetCacheInfo`](#structFRHAPI__Vendor_1abb4e281ecc7113f91a134a27651e0baa)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & OutValue) const` | Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false.
 `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__Vendor_1ab70558f3bfdc3e48d0c743f57f9d6e7f)`()` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
 `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__Vendor_1ac467253fcf6fd3c80cd30a7f58a9032c)`() const` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCacheInfo`](#structFRHAPI__Vendor_1a93b22eb2618b002b78d3a5ab68b088f0)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
+`public inline void `[`SetCacheInfo`](#structFRHAPI__Vendor_1af1147fc0803935b3f4841b0ad216040f)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
+`public inline void `[`SetCacheInfo`](#structFRHAPI__Vendor_1a3b545d4a0818a241f3d9b584e8cae7c4)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__Vendor_1aab46ead254eea4bde0f552f352c5e2ad)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 
 ### Members
@@ -191,9 +198,13 @@ Returns a pointer to CustomData_Optional, if it has been set, otherwise returns 
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__Vendor_1a0c1bccc4044d44928f069428c54a0baa)`(TMap< FString, FString > NewValue)` <a id="structFRHAPI__Vendor_1a0c1bccc4044d44928f069428c54a0baa"></a>
+#### `public inline void `[`SetCustomData`](#structFRHAPI__Vendor_1a6b3880b47edfc7c5b23fae5a4764fe3a)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__Vendor_1a6b3880b47edfc7c5b23fae5a4764fe3a"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+
+#### `public inline void `[`SetCustomData`](#structFRHAPI__Vendor_1aab1cfec99d787c9942c8749044c7857e)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__Vendor_1aab1cfec99d787c9942c8749044c7857e"></a>
+
+Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearCustomData`](#structFRHAPI__Vendor_1a3be0ed314dd1c186d5437cd282e72367)`()` <a id="structFRHAPI__Vendor_1a3be0ed314dd1c186d5437cd282e72367"></a>
 
@@ -223,9 +234,13 @@ Returns a pointer to VendorUuid_Optional, if it has been set, otherwise returns 
 
 Returns a pointer to VendorUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetVendorUuid`](#structFRHAPI__Vendor_1a5a8887e0a008ea5d0b4a6ad1590b832a)`(FGuid NewValue)` <a id="structFRHAPI__Vendor_1a5a8887e0a008ea5d0b4a6ad1590b832a"></a>
+#### `public inline void `[`SetVendorUuid`](#structFRHAPI__Vendor_1a3ed1c66868983c4a0ebe66a4a3e517de)`(const FGuid & NewValue)` <a id="structFRHAPI__Vendor_1a3ed1c66868983c4a0ebe66a4a3e517de"></a>
 
 Sets the value of VendorUuid_Optional and also sets VendorUuid_IsSet to true.
+
+#### `public inline void `[`SetVendorUuid`](#structFRHAPI__Vendor_1acc0fbea9ca9e866dc61600c8f83bc6ba)`(FGuid && NewValue)` <a id="structFRHAPI__Vendor_1acc0fbea9ca9e866dc61600c8f83bc6ba"></a>
+
+Sets the value of VendorUuid_Optional and also sets VendorUuid_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearVendorUuid`](#structFRHAPI__Vendor_1abf17b70aaa40c7c92456dd853564d0b9)`()` <a id="structFRHAPI__Vendor_1abf17b70aaa40c7c92456dd853564d0b9"></a>
 
@@ -255,9 +270,13 @@ Returns a pointer to Type_Optional, if it has been set, otherwise returns nullpt
 
 Returns a pointer to Type_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetType`](#structFRHAPI__Vendor_1a92879bfb67b571aac58fedab8cd6980c)`(ERHAPI_VendorType NewValue)` <a id="structFRHAPI__Vendor_1a92879bfb67b571aac58fedab8cd6980c"></a>
+#### `public inline void `[`SetType`](#structFRHAPI__Vendor_1a9caccbf9c0f715f2d71348c468e3a0cb)`(const ERHAPI_VendorType & NewValue)` <a id="structFRHAPI__Vendor_1a9caccbf9c0f715f2d71348c468e3a0cb"></a>
 
 Sets the value of Type_Optional and also sets Type_IsSet to true.
+
+#### `public inline void `[`SetType`](#structFRHAPI__Vendor_1afb6382c4f68b9633ce9b16a016f19062)`(ERHAPI_VendorType && NewValue)` <a id="structFRHAPI__Vendor_1afb6382c4f68b9633ce9b16a016f19062"></a>
+
+Sets the value of Type_Optional and also sets Type_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearType`](#structFRHAPI__Vendor_1a80edd87ab36f2af40668d9cded28fe38)`()` <a id="structFRHAPI__Vendor_1a80edd87ab36f2af40668d9cded28fe38"></a>
 
@@ -287,9 +306,13 @@ Returns a pointer to LegacyType_Optional, if it has been set, otherwise returns 
 
 Returns a pointer to LegacyType_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetLegacyType`](#structFRHAPI__Vendor_1a8a674360c7fbe19a34f815cc065a392b)`(int32 NewValue)` <a id="structFRHAPI__Vendor_1a8a674360c7fbe19a34f815cc065a392b"></a>
+#### `public inline void `[`SetLegacyType`](#structFRHAPI__Vendor_1ab2a20209348b36c27284d97a184d8f30)`(const int32 & NewValue)` <a id="structFRHAPI__Vendor_1ab2a20209348b36c27284d97a184d8f30"></a>
 
 Sets the value of LegacyType_Optional and also sets LegacyType_IsSet to true.
+
+#### `public inline void `[`SetLegacyType`](#structFRHAPI__Vendor_1ada0810ec2b07e62bfbb63711981357df)`(int32 && NewValue)` <a id="structFRHAPI__Vendor_1ada0810ec2b07e62bfbb63711981357df"></a>
+
+Sets the value of LegacyType_Optional and also sets LegacyType_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearLegacyType`](#structFRHAPI__Vendor_1abbe2f3c16522df63f1e1ed1c1e83050e)`()` <a id="structFRHAPI__Vendor_1abbe2f3c16522df63f1e1ed1c1e83050e"></a>
 
@@ -327,9 +350,13 @@ Returns a pointer to LegacyConfigVersion_Optional, if it has been set, otherwise
 
 Returns a pointer to LegacyConfigVersion_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetLegacyConfigVersion`](#structFRHAPI__Vendor_1ac9c278fd82180b7d4fdd65d75226f5ae)`(int32 NewValue)` <a id="structFRHAPI__Vendor_1ac9c278fd82180b7d4fdd65d75226f5ae"></a>
+#### `public inline void `[`SetLegacyConfigVersion`](#structFRHAPI__Vendor_1aaedc701eda8405a813d5c540d67635c5)`(const int32 & NewValue)` <a id="structFRHAPI__Vendor_1aaedc701eda8405a813d5c540d67635c5"></a>
 
 Sets the value of LegacyConfigVersion_Optional and also sets LegacyConfigVersion_IsSet to true.
+
+#### `public inline void `[`SetLegacyConfigVersion`](#structFRHAPI__Vendor_1af09754f248e24f41caf500ae7fb3f5ac)`(int32 && NewValue)` <a id="structFRHAPI__Vendor_1af09754f248e24f41caf500ae7fb3f5ac"></a>
+
+Sets the value of LegacyConfigVersion_Optional and also sets LegacyConfigVersion_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearLegacyConfigVersion`](#structFRHAPI__Vendor_1a39cd6cbcb2eac3f3c0ead5e4f4829c4b)`()` <a id="structFRHAPI__Vendor_1a39cd6cbcb2eac3f3c0ead5e4f4829c4b"></a>
 
@@ -367,9 +394,13 @@ Returns a pointer to Loot_Optional, if it has been set, otherwise returns nullpt
 
 Returns a pointer to Loot_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetLoot`](#structFRHAPI__Vendor_1abe9c308b868059eb397ab13197c488e9)`(TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > NewValue)` <a id="structFRHAPI__Vendor_1abe9c308b868059eb397ab13197c488e9"></a>
+#### `public inline void `[`SetLoot`](#structFRHAPI__Vendor_1af2e78d113b3ed17ca4052a5e2e248a22)`(const TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > & NewValue)` <a id="structFRHAPI__Vendor_1af2e78d113b3ed17ca4052a5e2e248a22"></a>
 
 Sets the value of Loot_Optional and also sets Loot_IsSet to true.
+
+#### `public inline void `[`SetLoot`](#structFRHAPI__Vendor_1a52779c3435d842a90d94a6efe643cd1d)`(TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > && NewValue)` <a id="structFRHAPI__Vendor_1a52779c3435d842a90d94a6efe643cd1d"></a>
+
+Sets the value of Loot_Optional and also sets Loot_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearLoot`](#structFRHAPI__Vendor_1a4df091c709882709f1f85c228a2c433b)`()` <a id="structFRHAPI__Vendor_1a4df091c709882709f1f85c228a2c433b"></a>
 
@@ -399,9 +430,13 @@ Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns n
 
 Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCacheInfo`](#structFRHAPI__Vendor_1a93b22eb2618b002b78d3a5ab68b088f0)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` NewValue)` <a id="structFRHAPI__Vendor_1a93b22eb2618b002b78d3a5ab68b088f0"></a>
+#### `public inline void `[`SetCacheInfo`](#structFRHAPI__Vendor_1af1147fc0803935b3f4841b0ad216040f)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` <a id="structFRHAPI__Vendor_1af1147fc0803935b3f4841b0ad216040f"></a>
 
 Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
+
+#### `public inline void `[`SetCacheInfo`](#structFRHAPI__Vendor_1a3b545d4a0818a241f3d9b584e8cae7c4)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` <a id="structFRHAPI__Vendor_1a3b545d4a0818a241f3d9b584e8cae7c4"></a>
+
+Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearCacheInfo`](#structFRHAPI__Vendor_1aab46ead254eea4bde0f552f352c5e2ad)`()` <a id="structFRHAPI__Vendor_1aab46ead254eea4bde0f552f352c5e2ad"></a>
 

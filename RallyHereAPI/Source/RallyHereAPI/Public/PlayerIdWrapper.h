@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerIdWrapper : public FRHAPI_Model
 	/** @brief Gets the value of PlayerId */
 	const int32& GetPlayerId() const { return PlayerId; }
 	/** @brief Sets the value of PlayerId */
-	void SetPlayerId(int32 NewValue) { PlayerId = NewValue;  }
+	void SetPlayerId(const int32& NewValue) { PlayerId = NewValue;  }
+	/** @brief Sets the value of PlayerId using move semantics */
+	void SetPlayerId(int32&& NewValue) { PlayerId = NewValue;  }
 	/** @brief Returns true if PlayerId matches the default value */
 	bool IsPlayerIdDefaultValue() const { return PlayerId == 0; }
 	/** @brief Sets the value of PlayerId to its default  */

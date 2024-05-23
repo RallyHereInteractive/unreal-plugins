@@ -22,12 +22,23 @@ using RallyHereAPI::TryGetJsonValue;
 void FRHAPI_PriceBreakpoint::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
 	Writer->WriteObjectStart();
-	Writer->WriteIdentifierPrefix(TEXT("price_item_id"));
-	RallyHereAPI::WriteJsonValue(Writer, PriceItemId);
+	if (PriceItemId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("price_item_id"));
+		RallyHereAPI::WriteJsonValue(Writer, PriceItemId_Optional);
+	}
 	Writer->WriteIdentifierPrefix(TEXT("quantity"));
 	RallyHereAPI::WriteJsonValue(Writer, Quantity);
-	Writer->WriteIdentifierPrefix(TEXT("price"));
-	RallyHereAPI::WriteJsonValue(Writer, Price);
+	if (Price_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("price"));
+		RallyHereAPI::WriteJsonValue(Writer, Price_Optional);
+	}
+	if (Currencies_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("currencies"));
+		RallyHereAPI::WriteJsonValue(Writer, Currencies_Optional);
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -40,11 +51,25 @@ bool FRHAPI_PriceBreakpoint::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPriceItemIdField = (*Object)->TryGetField(TEXT("price_item_id"));
-	ParseSuccess &= JsonPriceItemIdField.IsValid() && !JsonPriceItemIdField->IsNull() && TryGetJsonValue(JsonPriceItemIdField, PriceItemId);
+	if (JsonPriceItemIdField.IsValid() && !JsonPriceItemIdField->IsNull())
+	{
+		PriceItemId_IsSet = TryGetJsonValue(JsonPriceItemIdField, PriceItemId_Optional);
+		ParseSuccess &= PriceItemId_IsSet;
+	}
 	const TSharedPtr<FJsonValue> JsonQuantityField = (*Object)->TryGetField(TEXT("quantity"));
 	ParseSuccess &= JsonQuantityField.IsValid() && !JsonQuantityField->IsNull() && TryGetJsonValue(JsonQuantityField, Quantity);
 	const TSharedPtr<FJsonValue> JsonPriceField = (*Object)->TryGetField(TEXT("price"));
-	ParseSuccess &= JsonPriceField.IsValid() && !JsonPriceField->IsNull() && TryGetJsonValue(JsonPriceField, Price);
+	if (JsonPriceField.IsValid() && !JsonPriceField->IsNull())
+	{
+		Price_IsSet = TryGetJsonValue(JsonPriceField, Price_Optional);
+		ParseSuccess &= Price_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonCurrenciesField = (*Object)->TryGetField(TEXT("currencies"));
+	if (JsonCurrenciesField.IsValid() && !JsonCurrenciesField->IsNull())
+	{
+		Currencies_IsSet = TryGetJsonValue(JsonCurrenciesField, Currencies_Optional);
+		ParseSuccess &= Currencies_IsSet;
+	}
 
 	return ParseSuccess;
 }

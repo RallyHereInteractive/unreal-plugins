@@ -28,20 +28,24 @@ struct FRHAPI_InstanceLaunchTemplate
 `public virtual void `[`WriteJson`](#structFRHAPI__InstanceLaunchTemplate_1ad2fe1ba96c85828d23d5122a7cd2ce95)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FGuid & `[`GetInstanceLaunchTemplateId`](#structFRHAPI__InstanceLaunchTemplate_1a645feb373f0302fd43e3a4fded7a1d5d)`()` | Gets the value of InstanceLaunchTemplateId.
 `public inline const FGuid & `[`GetInstanceLaunchTemplateId`](#structFRHAPI__InstanceLaunchTemplate_1a0b3842d18f16d2c94079fe0c93910c9b)`() const` | Gets the value of InstanceLaunchTemplateId.
-`public inline void `[`SetInstanceLaunchTemplateId`](#structFRHAPI__InstanceLaunchTemplate_1a6fbb92a72bec4b09af929bb6cfc558e7)`(FGuid NewValue)` | Sets the value of InstanceLaunchTemplateId.
+`public inline void `[`SetInstanceLaunchTemplateId`](#structFRHAPI__InstanceLaunchTemplate_1a3bc4212567aa2e3680f46dc5639ba8b4)`(const FGuid & NewValue)` | Sets the value of InstanceLaunchTemplateId.
+`public inline void `[`SetInstanceLaunchTemplateId`](#structFRHAPI__InstanceLaunchTemplate_1a3426195d541d08004a7539f41600c007)`(FGuid && NewValue)` | Sets the value of InstanceLaunchTemplateId using move semantics.
 `public inline `[`FRHAPI_MapSelectionList`](RHAPI_MapSelectionList.md#structFRHAPI__MapSelectionList)` & `[`GetMapSelectionList`](#structFRHAPI__InstanceLaunchTemplate_1a7550e10953986adf59b249efe55848e8)`()` | Gets the value of MapSelectionList.
 `public inline const `[`FRHAPI_MapSelectionList`](RHAPI_MapSelectionList.md#structFRHAPI__MapSelectionList)` & `[`GetMapSelectionList`](#structFRHAPI__InstanceLaunchTemplate_1aa358f8b3bdfe50ab77dc10791c9cfc81)`() const` | Gets the value of MapSelectionList.
-`public inline void `[`SetMapSelectionList`](#structFRHAPI__InstanceLaunchTemplate_1af7f9a8e490e1a024a14c0e988744e153)`(`[`FRHAPI_MapSelectionList`](RHAPI_MapSelectionList.md#structFRHAPI__MapSelectionList)` NewValue)` | Sets the value of MapSelectionList.
+`public inline void `[`SetMapSelectionList`](#structFRHAPI__InstanceLaunchTemplate_1a2a7d3d49cb4c26e1c34154d96171e0bb)`(const `[`FRHAPI_MapSelectionList`](RHAPI_MapSelectionList.md#structFRHAPI__MapSelectionList)` & NewValue)` | Sets the value of MapSelectionList.
+`public inline void `[`SetMapSelectionList`](#structFRHAPI__InstanceLaunchTemplate_1aade4109fc2898082579338ec5b9f3a24)`(`[`FRHAPI_MapSelectionList`](RHAPI_MapSelectionList.md#structFRHAPI__MapSelectionList)` && NewValue)` | Sets the value of MapSelectionList using move semantics.
 `public inline ERHAPI_HostType & `[`GetDefaultHostType`](#structFRHAPI__InstanceLaunchTemplate_1a0b5d674190d7d7f9739caa2990c653cc)`()` | Gets the value of DefaultHostType.
 `public inline const ERHAPI_HostType & `[`GetDefaultHostType`](#structFRHAPI__InstanceLaunchTemplate_1af24572d24cc0ebacd287fed22c12ee89)`() const` | Gets the value of DefaultHostType.
-`public inline void `[`SetDefaultHostType`](#structFRHAPI__InstanceLaunchTemplate_1ac7fce40f23fa5537211a45d747983bab)`(ERHAPI_HostType NewValue)` | Sets the value of DefaultHostType.
+`public inline void `[`SetDefaultHostType`](#structFRHAPI__InstanceLaunchTemplate_1a32c140e58d9e51087dd5c49aaec10224)`(const ERHAPI_HostType & NewValue)` | Sets the value of DefaultHostType.
+`public inline void `[`SetDefaultHostType`](#structFRHAPI__InstanceLaunchTemplate_1a1a43b406f8003fcb98910e327f7cd960)`(ERHAPI_HostType && NewValue)` | Sets the value of DefaultHostType using move semantics.
 `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InstanceLaunchTemplate_1a79ceedb163febc7aa6f5608a21ddd929)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InstanceLaunchTemplate_1a8902d8a407b6707dddf0fdd0aded5da3)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InstanceLaunchTemplate_1ab08920d63cadb78bf49330841095f287)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetCustomData`](#structFRHAPI__InstanceLaunchTemplate_1a2c4b1a89f7008b6a896f0b698ad16ec4)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__InstanceLaunchTemplate_1a0e5ae9617c084f743fa5b6df295d45b7)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__InstanceLaunchTemplate_1a7861e6b2e56afe863cb1abe6fc848277)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCustomData`](#structFRHAPI__InstanceLaunchTemplate_1ad2e928208d7823bc216ce2c49a6c1b99)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`SetCustomData`](#structFRHAPI__InstanceLaunchTemplate_1ab47861711e09857401a9e4618918727c)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`SetCustomData`](#structFRHAPI__InstanceLaunchTemplate_1ac3511caecbc2a9851a13b8ff6d761ab9)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__InstanceLaunchTemplate_1accf875216c04898f0a996ce52e838833)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
 ### Members
@@ -91,9 +95,13 @@ Gets the value of InstanceLaunchTemplateId.
 
 Gets the value of InstanceLaunchTemplateId.
 
-#### `public inline void `[`SetInstanceLaunchTemplateId`](#structFRHAPI__InstanceLaunchTemplate_1a6fbb92a72bec4b09af929bb6cfc558e7)`(FGuid NewValue)` <a id="structFRHAPI__InstanceLaunchTemplate_1a6fbb92a72bec4b09af929bb6cfc558e7"></a>
+#### `public inline void `[`SetInstanceLaunchTemplateId`](#structFRHAPI__InstanceLaunchTemplate_1a3bc4212567aa2e3680f46dc5639ba8b4)`(const FGuid & NewValue)` <a id="structFRHAPI__InstanceLaunchTemplate_1a3bc4212567aa2e3680f46dc5639ba8b4"></a>
 
 Sets the value of InstanceLaunchTemplateId.
+
+#### `public inline void `[`SetInstanceLaunchTemplateId`](#structFRHAPI__InstanceLaunchTemplate_1a3426195d541d08004a7539f41600c007)`(FGuid && NewValue)` <a id="structFRHAPI__InstanceLaunchTemplate_1a3426195d541d08004a7539f41600c007"></a>
+
+Sets the value of InstanceLaunchTemplateId using move semantics.
 
 #### `public inline `[`FRHAPI_MapSelectionList`](RHAPI_MapSelectionList.md#structFRHAPI__MapSelectionList)` & `[`GetMapSelectionList`](#structFRHAPI__InstanceLaunchTemplate_1a7550e10953986adf59b249efe55848e8)`()` <a id="structFRHAPI__InstanceLaunchTemplate_1a7550e10953986adf59b249efe55848e8"></a>
 
@@ -103,9 +111,13 @@ Gets the value of MapSelectionList.
 
 Gets the value of MapSelectionList.
 
-#### `public inline void `[`SetMapSelectionList`](#structFRHAPI__InstanceLaunchTemplate_1af7f9a8e490e1a024a14c0e988744e153)`(`[`FRHAPI_MapSelectionList`](RHAPI_MapSelectionList.md#structFRHAPI__MapSelectionList)` NewValue)` <a id="structFRHAPI__InstanceLaunchTemplate_1af7f9a8e490e1a024a14c0e988744e153"></a>
+#### `public inline void `[`SetMapSelectionList`](#structFRHAPI__InstanceLaunchTemplate_1a2a7d3d49cb4c26e1c34154d96171e0bb)`(const `[`FRHAPI_MapSelectionList`](RHAPI_MapSelectionList.md#structFRHAPI__MapSelectionList)` & NewValue)` <a id="structFRHAPI__InstanceLaunchTemplate_1a2a7d3d49cb4c26e1c34154d96171e0bb"></a>
 
 Sets the value of MapSelectionList.
+
+#### `public inline void `[`SetMapSelectionList`](#structFRHAPI__InstanceLaunchTemplate_1aade4109fc2898082579338ec5b9f3a24)`(`[`FRHAPI_MapSelectionList`](RHAPI_MapSelectionList.md#structFRHAPI__MapSelectionList)` && NewValue)` <a id="structFRHAPI__InstanceLaunchTemplate_1aade4109fc2898082579338ec5b9f3a24"></a>
+
+Sets the value of MapSelectionList using move semantics.
 
 #### `public inline ERHAPI_HostType & `[`GetDefaultHostType`](#structFRHAPI__InstanceLaunchTemplate_1a0b5d674190d7d7f9739caa2990c653cc)`()` <a id="structFRHAPI__InstanceLaunchTemplate_1a0b5d674190d7d7f9739caa2990c653cc"></a>
 
@@ -115,9 +127,13 @@ Gets the value of DefaultHostType.
 
 Gets the value of DefaultHostType.
 
-#### `public inline void `[`SetDefaultHostType`](#structFRHAPI__InstanceLaunchTemplate_1ac7fce40f23fa5537211a45d747983bab)`(ERHAPI_HostType NewValue)` <a id="structFRHAPI__InstanceLaunchTemplate_1ac7fce40f23fa5537211a45d747983bab"></a>
+#### `public inline void `[`SetDefaultHostType`](#structFRHAPI__InstanceLaunchTemplate_1a32c140e58d9e51087dd5c49aaec10224)`(const ERHAPI_HostType & NewValue)` <a id="structFRHAPI__InstanceLaunchTemplate_1a32c140e58d9e51087dd5c49aaec10224"></a>
 
 Sets the value of DefaultHostType.
+
+#### `public inline void `[`SetDefaultHostType`](#structFRHAPI__InstanceLaunchTemplate_1a1a43b406f8003fcb98910e327f7cd960)`(ERHAPI_HostType && NewValue)` <a id="structFRHAPI__InstanceLaunchTemplate_1a1a43b406f8003fcb98910e327f7cd960"></a>
+
+Sets the value of DefaultHostType using move semantics.
 
 #### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InstanceLaunchTemplate_1a79ceedb163febc7aa6f5608a21ddd929)`()` <a id="structFRHAPI__InstanceLaunchTemplate_1a79ceedb163febc7aa6f5608a21ddd929"></a>
 
@@ -143,9 +159,13 @@ Returns a pointer to CustomData_Optional, if it has been set, otherwise returns 
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__InstanceLaunchTemplate_1ad2e928208d7823bc216ce2c49a6c1b99)`(TMap< FString, FString > NewValue)` <a id="structFRHAPI__InstanceLaunchTemplate_1ad2e928208d7823bc216ce2c49a6c1b99"></a>
+#### `public inline void `[`SetCustomData`](#structFRHAPI__InstanceLaunchTemplate_1ab47861711e09857401a9e4618918727c)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__InstanceLaunchTemplate_1ab47861711e09857401a9e4618918727c"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+
+#### `public inline void `[`SetCustomData`](#structFRHAPI__InstanceLaunchTemplate_1ac3511caecbc2a9851a13b8ff6d761ab9)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__InstanceLaunchTemplate_1ac3511caecbc2a9851a13b8ff6d761ab9"></a>
+
+Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearCustomData`](#structFRHAPI__InstanceLaunchTemplate_1accf875216c04898f0a996ce52e838833)`()` <a id="structFRHAPI__InstanceLaunchTemplate_1accf875216c04898f0a996ce52e838833"></a>
 

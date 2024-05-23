@@ -22,7 +22,8 @@ struct FRHAPI_AdOpportunities
 `public virtual void `[`WriteJson`](#structFRHAPI__AdOpportunities_1a479bc71e04d3d38ba4dab5c3fa76870c)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TArray< `[`FRHAPI_AdOpportunity`](RHAPI_AdOpportunity.md#structFRHAPI__AdOpportunity)` > & `[`GetOpportunities`](#structFRHAPI__AdOpportunities_1a9bb1906e1cc793af43de22cc852c2a78)`()` | Gets the value of Opportunities.
 `public inline const TArray< `[`FRHAPI_AdOpportunity`](RHAPI_AdOpportunity.md#structFRHAPI__AdOpportunity)` > & `[`GetOpportunities`](#structFRHAPI__AdOpportunities_1a9b93de1d671c38962e90f1963dc67272)`() const` | Gets the value of Opportunities.
-`public inline void `[`SetOpportunities`](#structFRHAPI__AdOpportunities_1af4812eab7243e147bd720ae6d2eca341)`(TArray< `[`FRHAPI_AdOpportunity`](RHAPI_AdOpportunity.md#structFRHAPI__AdOpportunity)` > NewValue)` | Sets the value of Opportunities.
+`public inline void `[`SetOpportunities`](#structFRHAPI__AdOpportunities_1a02a973c9e4e5888ee257803b5847264a)`(const TArray< `[`FRHAPI_AdOpportunity`](RHAPI_AdOpportunity.md#structFRHAPI__AdOpportunity)` > & NewValue)` | Sets the value of Opportunities.
+`public inline void `[`SetOpportunities`](#structFRHAPI__AdOpportunities_1a16dc81023a030c25a225ce15fe147539)`(TArray< `[`FRHAPI_AdOpportunity`](RHAPI_AdOpportunity.md#structFRHAPI__AdOpportunity)` > && NewValue)` | Sets the value of Opportunities using move semantics.
 
 ### Members
 
@@ -53,7 +54,11 @@ Gets the value of Opportunities.
 
 Gets the value of Opportunities.
 
-#### `public inline void `[`SetOpportunities`](#structFRHAPI__AdOpportunities_1af4812eab7243e147bd720ae6d2eca341)`(TArray< `[`FRHAPI_AdOpportunity`](RHAPI_AdOpportunity.md#structFRHAPI__AdOpportunity)` > NewValue)` <a id="structFRHAPI__AdOpportunities_1af4812eab7243e147bd720ae6d2eca341"></a>
+#### `public inline void `[`SetOpportunities`](#structFRHAPI__AdOpportunities_1a02a973c9e4e5888ee257803b5847264a)`(const TArray< `[`FRHAPI_AdOpportunity`](RHAPI_AdOpportunity.md#structFRHAPI__AdOpportunity)` > & NewValue)` <a id="structFRHAPI__AdOpportunities_1a02a973c9e4e5888ee257803b5847264a"></a>
 
 Sets the value of Opportunities.
+
+#### `public inline void `[`SetOpportunities`](#structFRHAPI__AdOpportunities_1a16dc81023a030c25a225ce15fe147539)`(TArray< `[`FRHAPI_AdOpportunity`](RHAPI_AdOpportunity.md#structFRHAPI__AdOpportunity)` > && NewValue)` <a id="structFRHAPI__AdOpportunities_1a16dc81023a030c25a225ce15fe147539"></a>
+
+Sets the value of Opportunities using move semantics.
 

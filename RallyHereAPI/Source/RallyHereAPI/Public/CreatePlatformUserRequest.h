@@ -48,7 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_CreatePlatformUserRequest : public FRHAPI_Model
 	/** @brief Gets the value of Platform */
 	const ERHAPI_Platform& GetPlatform() const { return Platform; }
 	/** @brief Sets the value of Platform */
-	void SetPlatform(ERHAPI_Platform NewValue) { Platform = NewValue;  }
+	void SetPlatform(const ERHAPI_Platform& NewValue) { Platform = NewValue;  }
+	/** @brief Sets the value of Platform using move semantics */
+	void SetPlatform(ERHAPI_Platform&& NewValue) { Platform = NewValue;  }
 
 	/** @brief Platform user ID to create with */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -58,7 +60,9 @@ struct RALLYHEREAPI_API FRHAPI_CreatePlatformUserRequest : public FRHAPI_Model
 	/** @brief Gets the value of PlatformUserId */
 	const FString& GetPlatformUserId() const { return PlatformUserId; }
 	/** @brief Sets the value of PlatformUserId */
-	void SetPlatformUserId(FString NewValue) { PlatformUserId = NewValue;  }
+	void SetPlatformUserId(const FString& NewValue) { PlatformUserId = NewValue;  }
+	/** @brief Sets the value of PlatformUserId using move semantics */
+	void SetPlatformUserId(FString&& NewValue) { PlatformUserId = NewValue;  }
 
 	/** @brief Display name used when creating a new player */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -79,7 +83,9 @@ struct RALLYHEREAPI_API FRHAPI_CreatePlatformUserRequest : public FRHAPI_Model
 	/** @brief Returns a pointer to DisplayName_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetDisplayNameOrNull() const { if (DisplayName_IsSet) return &DisplayName_Optional; return nullptr; }
 	/** @brief Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true */
-	void SetDisplayName(FString NewValue) { DisplayName_Optional = NewValue; DisplayName_IsSet = true; }
+	void SetDisplayName(const FString& NewValue) { DisplayName_Optional = NewValue; DisplayName_IsSet = true; }
+	/** @brief Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true using move semantics */
+	void SetDisplayName(FString&& NewValue) { DisplayName_Optional = NewValue; DisplayName_IsSet = true; }
 	 /** @brief Clears the value of DisplayName_Optional and sets DisplayName_IsSet to false */
 	void ClearDisplayName() { DisplayName_IsSet = false; }
 };

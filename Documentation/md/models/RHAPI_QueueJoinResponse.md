@@ -24,7 +24,8 @@ A response for successfully joining a matchmaking queue.
 `public virtual void `[`WriteJson`](#structFRHAPI__QueueJoinResponse_1a573b18b3ab3a3820c0f6b84091c5db02)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetTicketId`](#structFRHAPI__QueueJoinResponse_1ab0e3d2d5d43f96c58aa1f1e49d1be733)`()` | Gets the value of TicketId.
 `public inline const FString & `[`GetTicketId`](#structFRHAPI__QueueJoinResponse_1a8a65bbb1fee3afbadcc529088774aabe)`() const` | Gets the value of TicketId.
-`public inline void `[`SetTicketId`](#structFRHAPI__QueueJoinResponse_1a4efeb4ee24a01173a12baaa33d358cdd)`(FString NewValue)` | Sets the value of TicketId.
+`public inline void `[`SetTicketId`](#structFRHAPI__QueueJoinResponse_1ab6782823d19d4a0613d9521013c1f0ff)`(const FString & NewValue)` | Sets the value of TicketId.
+`public inline void `[`SetTicketId`](#structFRHAPI__QueueJoinResponse_1a05dedf5638833d9fe9ce533c69504b17)`(FString && NewValue)` | Sets the value of TicketId using move semantics.
 
 ### Members
 
@@ -57,7 +58,11 @@ Gets the value of TicketId.
 
 Gets the value of TicketId.
 
-#### `public inline void `[`SetTicketId`](#structFRHAPI__QueueJoinResponse_1a4efeb4ee24a01173a12baaa33d358cdd)`(FString NewValue)` <a id="structFRHAPI__QueueJoinResponse_1a4efeb4ee24a01173a12baaa33d358cdd"></a>
+#### `public inline void `[`SetTicketId`](#structFRHAPI__QueueJoinResponse_1ab6782823d19d4a0613d9521013c1f0ff)`(const FString & NewValue)` <a id="structFRHAPI__QueueJoinResponse_1ab6782823d19d4a0613d9521013c1f0ff"></a>
 
 Sets the value of TicketId.
+
+#### `public inline void `[`SetTicketId`](#structFRHAPI__QueueJoinResponse_1a05dedf5638833d9fe9ce533c69504b17)`(FString && NewValue)` <a id="structFRHAPI__QueueJoinResponse_1a05dedf5638833d9fe9ce533c69504b17"></a>
+
+Sets the value of TicketId using move semantics.
 

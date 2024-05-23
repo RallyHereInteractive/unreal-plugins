@@ -48,7 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_MapSelectionList : public FRHAPI_Model
 	/** @brief Gets the value of MapSelectionListId */
 	const FString& GetMapSelectionListId() const { return MapSelectionListId; }
 	/** @brief Sets the value of MapSelectionListId */
-	void SetMapSelectionListId(FString NewValue) { MapSelectionListId = NewValue;  }
+	void SetMapSelectionListId(const FString& NewValue) { MapSelectionListId = NewValue;  }
+	/** @brief Sets the value of MapSelectionListId using move semantics */
+	void SetMapSelectionListId(FString&& NewValue) { MapSelectionListId = NewValue;  }
 
 	/** @brief List of maps that can be chosen in this selection list */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -58,7 +60,9 @@ struct RALLYHEREAPI_API FRHAPI_MapSelectionList : public FRHAPI_Model
 	/** @brief Gets the value of Maps */
 	const TArray<FRHAPI_MapConfig>& GetMaps() const { return Maps; }
 	/** @brief Sets the value of Maps */
-	void SetMaps(TArray<FRHAPI_MapConfig> NewValue) { Maps = NewValue;  }
+	void SetMaps(const TArray<FRHAPI_MapConfig>& NewValue) { Maps = NewValue;  }
+	/** @brief Sets the value of Maps using move semantics */
+	void SetMaps(TArray<FRHAPI_MapConfig>&& NewValue) { Maps = NewValue;  }
 };
 
 /** @} */

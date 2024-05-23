@@ -250,6 +250,7 @@ Private/PortalUserResponse.cpp
 Private/PostGameEventsResponse.cpp
 Private/PresenceAPI.cpp
 Private/PresenceAdminAPI.cpp
+Private/PriceBreakPointCurrency.cpp
 Private/PriceBreakpoint.cpp
 Private/PricePoint.cpp
 Private/PricePoints.cpp
@@ -257,6 +258,7 @@ Private/ProfileJoinMode.cpp
 Private/PublicKey.cpp
 Private/PublicKeyList.cpp
 Private/PurchasePrice.cpp
+Private/PurchasePriceCurrency.cpp
 Private/PurgeRequest.cpp
 Private/PurgeResponse.cpp
 Private/QuantityType.cpp
@@ -593,6 +595,7 @@ Public/PortalUserResponse.h
 Public/PostGameEventsResponse.h
 Public/PresenceAPI.h
 Public/PresenceAdminAPI.h
+Public/PriceBreakPointCurrency.h
 Public/PriceBreakpoint.h
 Public/PricePoint.h
 Public/PricePoints.h
@@ -600,6 +603,7 @@ Public/ProfileJoinMode.h
 Public/PublicKey.h
 Public/PublicKeyList.h
 Public/PurchasePrice.h
+Public/PurchasePriceCurrency.h
 Public/PurgeRequest.h
 Public/PurgeResponse.h
 Public/QuantityType.h

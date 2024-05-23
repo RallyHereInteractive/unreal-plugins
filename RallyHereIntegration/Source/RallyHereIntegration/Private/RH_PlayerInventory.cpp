@@ -1177,8 +1177,8 @@ void URH_PlayerInventory::WriteOrderEntries(TArray<FRHAPI_PlayerOrderEntryCreate
 
 			// add local expected unit price information to the request so that the server can validate we match
 			FRHAPI_PurchasePrice NewPurchasePrice;
-			NewPurchasePrice.PriceItemId = OrderEntry->GetPriceItemId();
-			NewPurchasePrice.Price = OrderEntry->GetPrice();
+			NewPurchasePrice.SetPriceItemId(OrderEntry->GetPriceItemId());
+			NewPurchasePrice.SetPrice(OrderEntry->GetPrice());
 			NewPurchasePrice.SetPriceCouponItemId(OrderEntry->GetCouponItemId());
 
 			NewOrderEntry.SetPurchasePrice(NewPurchasePrice);

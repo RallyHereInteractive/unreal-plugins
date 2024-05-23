@@ -23,12 +23,14 @@ struct FRHAPI_BackfillTeam
 `public virtual void `[`WriteJson`](#structFRHAPI__BackfillTeam_1a1ec758b6cbab7517c5d34015a65c08ec)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline int32 & `[`GetPlayersRequired`](#structFRHAPI__BackfillTeam_1a253eeecedf2f345cc05cbbfc75b6f9b1)`()` | Gets the value of PlayersRequired.
 `public inline const int32 & `[`GetPlayersRequired`](#structFRHAPI__BackfillTeam_1a57c08eca078b8af22a2f17efda5a35c8)`() const` | Gets the value of PlayersRequired.
-`public inline void `[`SetPlayersRequired`](#structFRHAPI__BackfillTeam_1a372afbb3601c9328bd31286a202be615)`(int32 NewValue)` | Sets the value of PlayersRequired.
+`public inline void `[`SetPlayersRequired`](#structFRHAPI__BackfillTeam_1aed64aa333297dcaa4240a81c2ab76b99)`(const int32 & NewValue)` | Sets the value of PlayersRequired.
+`public inline void `[`SetPlayersRequired`](#structFRHAPI__BackfillTeam_1a0ab0406925dab6f5ca45cd962417d85a)`(int32 && NewValue)` | Sets the value of PlayersRequired using move semantics.
 `public inline bool `[`IsPlayersRequiredDefaultValue`](#structFRHAPI__BackfillTeam_1a64293b1e09f0ca637ffba8fae0a371d2)`() const` | Returns true if PlayersRequired matches the default value.
 `public inline void `[`SetPlayersRequiredToDefault`](#structFRHAPI__BackfillTeam_1a85eed60c7d5390558f0d38df6dce2eaf)`()` | Sets the value of PlayersRequired to its default
 `public inline int32 & `[`GetTeamId`](#structFRHAPI__BackfillTeam_1aa4d27f9fa4149a32be552632ca2d0972)`()` | Gets the value of TeamId.
 `public inline const int32 & `[`GetTeamId`](#structFRHAPI__BackfillTeam_1a7eed8d80b3b8a21939eeae5abc99cb17)`() const` | Gets the value of TeamId.
-`public inline void `[`SetTeamId`](#structFRHAPI__BackfillTeam_1a0ae80ec02bf9690a923e0ceaf3418b45)`(int32 NewValue)` | Sets the value of TeamId.
+`public inline void `[`SetTeamId`](#structFRHAPI__BackfillTeam_1aeea5f2ea122602b3bfe1fe4a53ea6647)`(const int32 & NewValue)` | Sets the value of TeamId.
+`public inline void `[`SetTeamId`](#structFRHAPI__BackfillTeam_1ab7bad2a71d7d52bb89b3f108cee52474)`(int32 && NewValue)` | Sets the value of TeamId using move semantics.
 `public inline bool `[`IsTeamIdDefaultValue`](#structFRHAPI__BackfillTeam_1ae4f0e6536aac48c49b9bf2a40c24aaff)`() const` | Returns true if TeamId matches the default value.
 `public inline void `[`SetTeamIdToDefault`](#structFRHAPI__BackfillTeam_1ae37f74276a05d9144c1de4d367b1dc89)`()` | Sets the value of TeamId to its default
 
@@ -67,9 +69,13 @@ Gets the value of PlayersRequired.
 
 Gets the value of PlayersRequired.
 
-#### `public inline void `[`SetPlayersRequired`](#structFRHAPI__BackfillTeam_1a372afbb3601c9328bd31286a202be615)`(int32 NewValue)` <a id="structFRHAPI__BackfillTeam_1a372afbb3601c9328bd31286a202be615"></a>
+#### `public inline void `[`SetPlayersRequired`](#structFRHAPI__BackfillTeam_1aed64aa333297dcaa4240a81c2ab76b99)`(const int32 & NewValue)` <a id="structFRHAPI__BackfillTeam_1aed64aa333297dcaa4240a81c2ab76b99"></a>
 
 Sets the value of PlayersRequired.
+
+#### `public inline void `[`SetPlayersRequired`](#structFRHAPI__BackfillTeam_1a0ab0406925dab6f5ca45cd962417d85a)`(int32 && NewValue)` <a id="structFRHAPI__BackfillTeam_1a0ab0406925dab6f5ca45cd962417d85a"></a>
+
+Sets the value of PlayersRequired using move semantics.
 
 #### `public inline bool `[`IsPlayersRequiredDefaultValue`](#structFRHAPI__BackfillTeam_1a64293b1e09f0ca637ffba8fae0a371d2)`() const` <a id="structFRHAPI__BackfillTeam_1a64293b1e09f0ca637ffba8fae0a371d2"></a>
 
@@ -87,9 +93,13 @@ Gets the value of TeamId.
 
 Gets the value of TeamId.
 
-#### `public inline void `[`SetTeamId`](#structFRHAPI__BackfillTeam_1a0ae80ec02bf9690a923e0ceaf3418b45)`(int32 NewValue)` <a id="structFRHAPI__BackfillTeam_1a0ae80ec02bf9690a923e0ceaf3418b45"></a>
+#### `public inline void `[`SetTeamId`](#structFRHAPI__BackfillTeam_1aeea5f2ea122602b3bfe1fe4a53ea6647)`(const int32 & NewValue)` <a id="structFRHAPI__BackfillTeam_1aeea5f2ea122602b3bfe1fe4a53ea6647"></a>
 
 Sets the value of TeamId.
+
+#### `public inline void `[`SetTeamId`](#structFRHAPI__BackfillTeam_1ab7bad2a71d7d52bb89b3f108cee52474)`(int32 && NewValue)` <a id="structFRHAPI__BackfillTeam_1ab7bad2a71d7d52bb89b3f108cee52474"></a>
+
+Sets the value of TeamId using move semantics.
 
 #### `public inline bool `[`IsTeamIdDefaultValue`](#structFRHAPI__BackfillTeam_1ae4f0e6536aac48c49b9bf2a40c24aaff)`() const` <a id="structFRHAPI__BackfillTeam_1ae4f0e6536aac48c49b9bf2a40c24aaff"></a>
 

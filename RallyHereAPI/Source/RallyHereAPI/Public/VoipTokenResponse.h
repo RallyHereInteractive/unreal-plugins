@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_VoipTokenResponse : public FRHAPI_Model
 	/** @brief Gets the value of Token */
 	const FString& GetToken() const { return Token; }
 	/** @brief Sets the value of Token */
-	void SetToken(FString NewValue) { Token = NewValue;  }
+	void SetToken(const FString& NewValue) { Token = NewValue;  }
+	/** @brief Sets the value of Token using move semantics */
+	void SetToken(FString&& NewValue) { Token = NewValue;  }
 
 	/** @brief Issuer for client's login token */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -57,7 +59,9 @@ struct RALLYHEREAPI_API FRHAPI_VoipTokenResponse : public FRHAPI_Model
 	/** @brief Gets the value of Issuer */
 	const FString& GetIssuer() const { return Issuer; }
 	/** @brief Sets the value of Issuer */
-	void SetIssuer(FString NewValue) { Issuer = NewValue;  }
+	void SetIssuer(const FString& NewValue) { Issuer = NewValue;  }
+	/** @brief Sets the value of Issuer using move semantics */
+	void SetIssuer(FString&& NewValue) { Issuer = NewValue;  }
 
 	/** @brief Server for voip login */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -67,7 +71,9 @@ struct RALLYHEREAPI_API FRHAPI_VoipTokenResponse : public FRHAPI_Model
 	/** @brief Gets the value of Server */
 	const FString& GetServer() const { return Server; }
 	/** @brief Sets the value of Server */
-	void SetServer(FString NewValue) { Server = NewValue;  }
+	void SetServer(const FString& NewValue) { Server = NewValue;  }
+	/** @brief Sets the value of Server using move semantics */
+	void SetServer(FString&& NewValue) { Server = NewValue;  }
 };
 
 /** @} */

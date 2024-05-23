@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_PortalTokenDetailsRequest : public FRHAPI_Model
 	/** @brief Gets the value of GrantType */
 	const ERHAPI_PortalTokenDetailsGrantType& GetGrantType() const { return GrantType; }
 	/** @brief Sets the value of GrantType */
-	void SetGrantType(ERHAPI_PortalTokenDetailsGrantType NewValue) { GrantType = NewValue;  }
+	void SetGrantType(const ERHAPI_PortalTokenDetailsGrantType& NewValue) { GrantType = NewValue;  }
+	/** @brief Sets the value of GrantType using move semantics */
+	void SetGrantType(ERHAPI_PortalTokenDetailsGrantType&& NewValue) { GrantType = NewValue;  }
 
 	/** @brief Token or secret used to authenticate the provided grant type */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -57,7 +59,9 @@ struct RALLYHEREAPI_API FRHAPI_PortalTokenDetailsRequest : public FRHAPI_Model
 	/** @brief Gets the value of PortalAccessToken */
 	const FString& GetPortalAccessToken() const { return PortalAccessToken; }
 	/** @brief Sets the value of PortalAccessToken */
-	void SetPortalAccessToken(FString NewValue) { PortalAccessToken = NewValue;  }
+	void SetPortalAccessToken(const FString& NewValue) { PortalAccessToken = NewValue;  }
+	/** @brief Sets the value of PortalAccessToken using move semantics */
+	void SetPortalAccessToken(FString&& NewValue) { PortalAccessToken = NewValue;  }
 };
 
 /** @} */

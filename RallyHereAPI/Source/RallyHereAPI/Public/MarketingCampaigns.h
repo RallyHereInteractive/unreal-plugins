@@ -48,7 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_MarketingCampaigns : public FRHAPI_Model
 	/** @brief Gets the value of Campaigns */
 	const TArray<FRHAPI_MarketingCampaign>& GetCampaigns() const { return Campaigns; }
 	/** @brief Sets the value of Campaigns */
-	void SetCampaigns(TArray<FRHAPI_MarketingCampaign> NewValue) { Campaigns = NewValue;  }
+	void SetCampaigns(const TArray<FRHAPI_MarketingCampaign>& NewValue) { Campaigns = NewValue;  }
+	/** @brief Sets the value of Campaigns using move semantics */
+	void SetCampaigns(TArray<FRHAPI_MarketingCampaign>&& NewValue) { Campaigns = NewValue;  }
 };
 
 /** @} */

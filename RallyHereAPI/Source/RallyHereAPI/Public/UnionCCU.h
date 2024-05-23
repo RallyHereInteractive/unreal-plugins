@@ -46,7 +46,9 @@ struct RALLYHEREAPI_API FRHAPI_UnionCCU : public FRHAPI_Model
 	/** @brief Gets the value of Count */
 	const int32& GetCount() const { return Count; }
 	/** @brief Sets the value of Count */
-	void SetCount(int32 NewValue) { Count = NewValue;  }
+	void SetCount(const int32& NewValue) { Count = NewValue;  }
+	/** @brief Sets the value of Count using move semantics */
+	void SetCount(int32&& NewValue) { Count = NewValue;  }
 	/** @brief Returns true if Count matches the default value */
 	bool IsCountDefaultValue() const { return Count == 0; }
 	/** @brief Sets the value of Count to its default  */
@@ -59,7 +61,9 @@ struct RALLYHEREAPI_API FRHAPI_UnionCCU : public FRHAPI_Model
 	/** @brief Gets the value of Timestamps */
 	const TArray<FDateTime>& GetTimestamps() const { return Timestamps; }
 	/** @brief Sets the value of Timestamps */
-	void SetTimestamps(TArray<FDateTime> NewValue) { Timestamps = NewValue;  }
+	void SetTimestamps(const TArray<FDateTime>& NewValue) { Timestamps = NewValue;  }
+	/** @brief Sets the value of Timestamps using move semantics */
+	void SetTimestamps(TArray<FDateTime>&& NewValue) { Timestamps = NewValue;  }
 };
 
 /** @} */

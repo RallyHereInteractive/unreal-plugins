@@ -31,7 +31,8 @@ A collection of SKUs.
 `public inline bool `[`GetSkus`](#structFRHAPI__PlatformSKUs_1a62141f4469ac477b36799bb984e16bb8)`(TArray< `[`FRHAPI_PlatformSKU`](RHAPI_PlatformSKU.md#structFRHAPI__PlatformSKU)` > & OutValue) const` | Fills OutValue with the value of Skus_Optional and returns true if it has been set, otherwise returns false.
 `public inline TArray< `[`FRHAPI_PlatformSKU`](RHAPI_PlatformSKU.md#structFRHAPI__PlatformSKU)` > * `[`GetSkusOrNull`](#structFRHAPI__PlatformSKUs_1ac4890aab945e1de80feef258c209fda3)`()` | Returns a pointer to Skus_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TArray< `[`FRHAPI_PlatformSKU`](RHAPI_PlatformSKU.md#structFRHAPI__PlatformSKU)` > * `[`GetSkusOrNull`](#structFRHAPI__PlatformSKUs_1aa9cf1cdb6bb6ebd5ed1c340d88ba9dcd)`() const` | Returns a pointer to Skus_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetSkus`](#structFRHAPI__PlatformSKUs_1a5940deee89f4e82a7308de336dc3b7a4)`(TArray< `[`FRHAPI_PlatformSKU`](RHAPI_PlatformSKU.md#structFRHAPI__PlatformSKU)` > NewValue)` | Sets the value of Skus_Optional and also sets Skus_IsSet to true.
+`public inline void `[`SetSkus`](#structFRHAPI__PlatformSKUs_1a055c88e65f30f64828cf9707084f282b)`(const TArray< `[`FRHAPI_PlatformSKU`](RHAPI_PlatformSKU.md#structFRHAPI__PlatformSKU)` > & NewValue)` | Sets the value of Skus_Optional and also sets Skus_IsSet to true.
+`public inline void `[`SetSkus`](#structFRHAPI__PlatformSKUs_1a018fe0789adc5ef0a70fec3f6fb8c20b)`(TArray< `[`FRHAPI_PlatformSKU`](RHAPI_PlatformSKU.md#structFRHAPI__PlatformSKU)` > && NewValue)` | Sets the value of Skus_Optional and also sets Skus_IsSet to true using move semantics.
 `public inline void `[`ClearSkus`](#structFRHAPI__PlatformSKUs_1a08ca18a31302856e16bd7c639613c6bb)`()` | Clears the value of Skus_Optional and sets Skus_IsSet to false.
 `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__PlatformSKUs_1a318445d1f3dc40ce6b3077a9749b4486)`()` | Gets the value of CacheInfo_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__PlatformSKUs_1a7097729d60085c51e126b384414bf48b)`() const` | Gets the value of CacheInfo_Optional, regardless of it having been set.
@@ -39,7 +40,8 @@ A collection of SKUs.
 `public inline bool `[`GetCacheInfo`](#structFRHAPI__PlatformSKUs_1a886a5b9d4d09655191ac22fa2829f049)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & OutValue) const` | Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false.
 `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__PlatformSKUs_1a815a34c44515d5b5cda7186287507ca4)`()` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
 `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__PlatformSKUs_1a392ad3242cba87ca9b7af8277b758df7)`() const` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCacheInfo`](#structFRHAPI__PlatformSKUs_1a927ec923274add3e7377274d0e9486c4)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
+`public inline void `[`SetCacheInfo`](#structFRHAPI__PlatformSKUs_1a647ad0949a07a6a73353c92c917bddcb)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
+`public inline void `[`SetCacheInfo`](#structFRHAPI__PlatformSKUs_1a882f66a9e09db87937061352f349b2b0)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__PlatformSKUs_1ab850ddbfa9a2c1ea59ff31d5c08825e3)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 
 ### Members
@@ -101,9 +103,13 @@ Returns a pointer to Skus_Optional, if it has been set, otherwise returns nullpt
 
 Returns a pointer to Skus_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetSkus`](#structFRHAPI__PlatformSKUs_1a5940deee89f4e82a7308de336dc3b7a4)`(TArray< `[`FRHAPI_PlatformSKU`](RHAPI_PlatformSKU.md#structFRHAPI__PlatformSKU)` > NewValue)` <a id="structFRHAPI__PlatformSKUs_1a5940deee89f4e82a7308de336dc3b7a4"></a>
+#### `public inline void `[`SetSkus`](#structFRHAPI__PlatformSKUs_1a055c88e65f30f64828cf9707084f282b)`(const TArray< `[`FRHAPI_PlatformSKU`](RHAPI_PlatformSKU.md#structFRHAPI__PlatformSKU)` > & NewValue)` <a id="structFRHAPI__PlatformSKUs_1a055c88e65f30f64828cf9707084f282b"></a>
 
 Sets the value of Skus_Optional and also sets Skus_IsSet to true.
+
+#### `public inline void `[`SetSkus`](#structFRHAPI__PlatformSKUs_1a018fe0789adc5ef0a70fec3f6fb8c20b)`(TArray< `[`FRHAPI_PlatformSKU`](RHAPI_PlatformSKU.md#structFRHAPI__PlatformSKU)` > && NewValue)` <a id="structFRHAPI__PlatformSKUs_1a018fe0789adc5ef0a70fec3f6fb8c20b"></a>
+
+Sets the value of Skus_Optional and also sets Skus_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearSkus`](#structFRHAPI__PlatformSKUs_1a08ca18a31302856e16bd7c639613c6bb)`()` <a id="structFRHAPI__PlatformSKUs_1a08ca18a31302856e16bd7c639613c6bb"></a>
 
@@ -133,9 +139,13 @@ Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns n
 
 Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCacheInfo`](#structFRHAPI__PlatformSKUs_1a927ec923274add3e7377274d0e9486c4)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` NewValue)` <a id="structFRHAPI__PlatformSKUs_1a927ec923274add3e7377274d0e9486c4"></a>
+#### `public inline void `[`SetCacheInfo`](#structFRHAPI__PlatformSKUs_1a647ad0949a07a6a73353c92c917bddcb)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` <a id="structFRHAPI__PlatformSKUs_1a647ad0949a07a6a73353c92c917bddcb"></a>
 
 Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
+
+#### `public inline void `[`SetCacheInfo`](#structFRHAPI__PlatformSKUs_1a882f66a9e09db87937061352f349b2b0)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` <a id="structFRHAPI__PlatformSKUs_1a882f66a9e09db87937061352f349b2b0"></a>
+
+Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearCacheInfo`](#structFRHAPI__PlatformSKUs_1ab850ddbfa9a2c1ea59ff31d5c08825e3)`()` <a id="structFRHAPI__PlatformSKUs_1ab850ddbfa9a2c1ea59ff31d5c08825e3"></a>
 

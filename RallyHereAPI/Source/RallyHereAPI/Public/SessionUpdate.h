@@ -59,7 +59,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionUpdate : public FRHAPI_Model
 	/** @brief Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetRegionIdOrNull() const { if (RegionId_IsSet) return &RegionId_Optional; return nullptr; }
 	/** @brief Sets the value of RegionId_Optional and also sets RegionId_IsSet to true */
-	void SetRegionId(FString NewValue) { RegionId_Optional = NewValue; RegionId_IsSet = true; }
+	void SetRegionId(const FString& NewValue) { RegionId_Optional = NewValue; RegionId_IsSet = true; }
+	/** @brief Sets the value of RegionId_Optional and also sets RegionId_IsSet to true using move semantics */
+	void SetRegionId(FString&& NewValue) { RegionId_Optional = NewValue; RegionId_IsSet = true; }
 	 /** @brief Clears the value of RegionId_Optional and sets RegionId_IsSet to false */
 	void ClearRegionId() { RegionId_IsSet = false; }
 
@@ -82,7 +84,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionUpdate : public FRHAPI_Model
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
+	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
 	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false; }
 
@@ -105,7 +109,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionUpdate : public FRHAPI_Model
 	/** @brief Returns a pointer to Joinable_Optional, if it has been set, otherwise returns nullptr */
 	const bool* GetJoinableOrNull() const { if (Joinable_IsSet) return &Joinable_Optional; return nullptr; }
 	/** @brief Sets the value of Joinable_Optional and also sets Joinable_IsSet to true */
-	void SetJoinable(bool NewValue) { Joinable_Optional = NewValue; Joinable_IsSet = true; }
+	void SetJoinable(const bool& NewValue) { Joinable_Optional = NewValue; Joinable_IsSet = true; }
+	/** @brief Sets the value of Joinable_Optional and also sets Joinable_IsSet to true using move semantics */
+	void SetJoinable(bool&& NewValue) { Joinable_Optional = NewValue; Joinable_IsSet = true; }
 	 /** @brief Clears the value of Joinable_Optional and sets Joinable_IsSet to false */
 	void ClearJoinable() { Joinable_Optional = false; Joinable_IsSet = false; }
 	/** @brief Returns true if Joinable_Optional is set and matches the default value */
@@ -132,7 +138,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionUpdate : public FRHAPI_Model
 	/** @brief Returns a pointer to Teams_Optional, if it has been set, otherwise returns nullptr */
 	const TArray<FRHAPI_TeamUpdate>* GetTeamsOrNull() const { if (Teams_IsSet) return &Teams_Optional; return nullptr; }
 	/** @brief Sets the value of Teams_Optional and also sets Teams_IsSet to true */
-	void SetTeams(TArray<FRHAPI_TeamUpdate> NewValue) { Teams_Optional = NewValue; Teams_IsSet = true; }
+	void SetTeams(const TArray<FRHAPI_TeamUpdate>& NewValue) { Teams_Optional = NewValue; Teams_IsSet = true; }
+	/** @brief Sets the value of Teams_Optional and also sets Teams_IsSet to true using move semantics */
+	void SetTeams(TArray<FRHAPI_TeamUpdate>&& NewValue) { Teams_Optional = NewValue; Teams_IsSet = true; }
 	 /** @brief Clears the value of Teams_Optional and sets Teams_IsSet to false */
 	void ClearTeams() { Teams_IsSet = false; }
 };

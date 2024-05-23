@@ -50,7 +50,9 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessRequest : public FRHAPI
 	/** @brief Gets the value of TransactionId */
 	const FString& GetTransactionId() const { return TransactionId; }
 	/** @brief Sets the value of TransactionId */
-	void SetTransactionId(FString NewValue) { TransactionId = NewValue;  }
+	void SetTransactionId(const FString& NewValue) { TransactionId = NewValue;  }
+	/** @brief Sets the value of TransactionId using move semantics */
+	void SetTransactionId(FString&& NewValue) { TransactionId = NewValue;  }
 
 	/** @brief Platform token that can be used to verify the identity of the user */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -60,7 +62,9 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessRequest : public FRHAPI
 	/** @brief Gets the value of PlatformToken */
 	const FString& GetPlatformToken() const { return PlatformToken; }
 	/** @brief Sets the value of PlatformToken */
-	void SetPlatformToken(FString NewValue) { PlatformToken = NewValue;  }
+	void SetPlatformToken(const FString& NewValue) { PlatformToken = NewValue;  }
+	/** @brief Sets the value of PlatformToken using move semantics */
+	void SetPlatformToken(FString&& NewValue) { PlatformToken = NewValue;  }
 
 	/** @brief Platform this entitlement was purchased was made on */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -70,7 +74,9 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessRequest : public FRHAPI
 	/** @brief Gets the value of PlatformId */
 	const FString& GetPlatformId() const { return PlatformId; }
 	/** @brief Sets the value of PlatformId */
-	void SetPlatformId(FString NewValue) { PlatformId = NewValue;  }
+	void SetPlatformId(const FString& NewValue) { PlatformId = NewValue;  }
+	/** @brief Sets the value of PlatformId using move semantics */
+	void SetPlatformId(FString&& NewValue) { PlatformId = NewValue;  }
 
 	/** @brief region this purchase was made in */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -80,7 +86,9 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessRequest : public FRHAPI
 	/** @brief Gets the value of PlatformRegion */
 	const ERHAPI_PlatformRegion& GetPlatformRegion() const { return PlatformRegion; }
 	/** @brief Sets the value of PlatformRegion */
-	void SetPlatformRegion(ERHAPI_PlatformRegion NewValue) { PlatformRegion = NewValue;  }
+	void SetPlatformRegion(const ERHAPI_PlatformRegion& NewValue) { PlatformRegion = NewValue;  }
+	/** @brief Sets the value of PlatformRegion using move semantics */
+	void SetPlatformRegion(ERHAPI_PlatformRegion&& NewValue) { PlatformRegion = NewValue;  }
 
 	/** @brief client type this purchase was made on */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -90,7 +98,9 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessRequest : public FRHAPI
 	/** @brief Gets the value of ClientType */
 	const ERHAPI_ClientType& GetClientType() const { return ClientType; }
 	/** @brief Sets the value of ClientType */
-	void SetClientType(ERHAPI_ClientType NewValue) { ClientType = NewValue;  }
+	void SetClientType(const ERHAPI_ClientType& NewValue) { ClientType = NewValue;  }
+	/** @brief Sets the value of ClientType using move semantics */
+	void SetClientType(ERHAPI_ClientType&& NewValue) { ClientType = NewValue;  }
 
 	/** @brief Platform entitlements to process */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -111,7 +121,9 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessRequest : public FRHAPI
 	/** @brief Returns a pointer to Entitlements_Optional, if it has been set, otherwise returns nullptr */
 	const TArray<FRHAPI_PlatformEntitlement>* GetEntitlementsOrNull() const { if (Entitlements_IsSet) return &Entitlements_Optional; return nullptr; }
 	/** @brief Sets the value of Entitlements_Optional and also sets Entitlements_IsSet to true */
-	void SetEntitlements(TArray<FRHAPI_PlatformEntitlement> NewValue) { Entitlements_Optional = NewValue; Entitlements_IsSet = true; }
+	void SetEntitlements(const TArray<FRHAPI_PlatformEntitlement>& NewValue) { Entitlements_Optional = NewValue; Entitlements_IsSet = true; }
+	/** @brief Sets the value of Entitlements_Optional and also sets Entitlements_IsSet to true using move semantics */
+	void SetEntitlements(TArray<FRHAPI_PlatformEntitlement>&& NewValue) { Entitlements_Optional = NewValue; Entitlements_IsSet = true; }
 	 /** @brief Clears the value of Entitlements_Optional and sets Entitlements_IsSet to false */
 	void ClearEntitlements() { Entitlements_IsSet = false; }
 };

@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_AdOpportunity : public FRHAPI_Model
 	/** @brief Gets the value of AdUrl */
 	const FString& GetAdUrl() const { return AdUrl; }
 	/** @brief Sets the value of AdUrl */
-	void SetAdUrl(FString NewValue) { AdUrl = NewValue;  }
+	void SetAdUrl(const FString& NewValue) { AdUrl = NewValue;  }
+	/** @brief Sets the value of AdUrl using move semantics */
+	void SetAdUrl(FString&& NewValue) { AdUrl = NewValue;  }
 
 	/** @brief The number of seconds the ad is */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -57,7 +59,9 @@ struct RALLYHEREAPI_API FRHAPI_AdOpportunity : public FRHAPI_Model
 	/** @brief Gets the value of Seconds */
 	const int32& GetSeconds() const { return Seconds; }
 	/** @brief Sets the value of Seconds */
-	void SetSeconds(int32 NewValue) { Seconds = NewValue;  }
+	void SetSeconds(const int32& NewValue) { Seconds = NewValue;  }
+	/** @brief Sets the value of Seconds using move semantics */
+	void SetSeconds(int32&& NewValue) { Seconds = NewValue;  }
 	/** @brief Returns true if Seconds matches the default value */
 	bool IsSecondsDefaultValue() const { return Seconds == 0; }
 	/** @brief Sets the value of Seconds to its default  */
@@ -71,7 +75,9 @@ struct RALLYHEREAPI_API FRHAPI_AdOpportunity : public FRHAPI_Model
 	/** @brief Gets the value of OpportunityId */
 	const FString& GetOpportunityId() const { return OpportunityId; }
 	/** @brief Sets the value of OpportunityId */
-	void SetOpportunityId(FString NewValue) { OpportunityId = NewValue;  }
+	void SetOpportunityId(const FString& NewValue) { OpportunityId = NewValue;  }
+	/** @brief Sets the value of OpportunityId using move semantics */
+	void SetOpportunityId(FString&& NewValue) { OpportunityId = NewValue;  }
 };
 
 /** @} */

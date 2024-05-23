@@ -29,7 +29,8 @@ Request to update a person&#39;s email list subscriptions.
 `public inline bool `[`GetEmailListIds`](#structFRHAPI__PersonEmailListRequest_1a577b39a9aad16d1fac8aba9be9f77e8d)`(TArray< int32 > & OutValue) const` | Fills OutValue with the value of EmailListIds_Optional and returns true if it has been set, otherwise returns false.
 `public inline TArray< int32 > * `[`GetEmailListIdsOrNull`](#structFRHAPI__PersonEmailListRequest_1a380c5012251647de67ef86087c29a9f6)`()` | Returns a pointer to EmailListIds_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TArray< int32 > * `[`GetEmailListIdsOrNull`](#structFRHAPI__PersonEmailListRequest_1ae4b01fbeffd7a00a89f779afd6f32689)`() const` | Returns a pointer to EmailListIds_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetEmailListIds`](#structFRHAPI__PersonEmailListRequest_1a1a25e71e46276a364fd039ff924ab31c)`(TArray< int32 > NewValue)` | Sets the value of EmailListIds_Optional and also sets EmailListIds_IsSet to true.
+`public inline void `[`SetEmailListIds`](#structFRHAPI__PersonEmailListRequest_1ac143d7575eda1eb5ef2dd264927843b5)`(const TArray< int32 > & NewValue)` | Sets the value of EmailListIds_Optional and also sets EmailListIds_IsSet to true.
+`public inline void `[`SetEmailListIds`](#structFRHAPI__PersonEmailListRequest_1a1672a398555a3cd201cd60a7fcc787e0)`(TArray< int32 > && NewValue)` | Sets the value of EmailListIds_Optional and also sets EmailListIds_IsSet to true using move semantics.
 `public inline void `[`ClearEmailListIds`](#structFRHAPI__PersonEmailListRequest_1accf496a99915c0447482fb8e77b1dfb2)`()` | Clears the value of EmailListIds_Optional and sets EmailListIds_IsSet to false.
 
 ### Members
@@ -83,9 +84,13 @@ Returns a pointer to EmailListIds_Optional, if it has been set, otherwise return
 
 Returns a pointer to EmailListIds_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetEmailListIds`](#structFRHAPI__PersonEmailListRequest_1a1a25e71e46276a364fd039ff924ab31c)`(TArray< int32 > NewValue)` <a id="structFRHAPI__PersonEmailListRequest_1a1a25e71e46276a364fd039ff924ab31c"></a>
+#### `public inline void `[`SetEmailListIds`](#structFRHAPI__PersonEmailListRequest_1ac143d7575eda1eb5ef2dd264927843b5)`(const TArray< int32 > & NewValue)` <a id="structFRHAPI__PersonEmailListRequest_1ac143d7575eda1eb5ef2dd264927843b5"></a>
 
 Sets the value of EmailListIds_Optional and also sets EmailListIds_IsSet to true.
+
+#### `public inline void `[`SetEmailListIds`](#structFRHAPI__PersonEmailListRequest_1a1672a398555a3cd201cd60a7fcc787e0)`(TArray< int32 > && NewValue)` <a id="structFRHAPI__PersonEmailListRequest_1a1672a398555a3cd201cd60a7fcc787e0"></a>
+
+Sets the value of EmailListIds_Optional and also sets EmailListIds_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearEmailListIds`](#structFRHAPI__PersonEmailListRequest_1accf496a99915c0447482fb8e77b1dfb2)`()` <a id="structFRHAPI__PersonEmailListRequest_1accf496a99915c0447482fb8e77b1dfb2"></a>
 

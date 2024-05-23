@@ -1325,6 +1325,14 @@ FString FRequest_GetMatches::ComputePath() const
 	{
 		QueryParams.Add(FString(TEXT("player_uuid=")) + ToUrlString(PlayerUuid.GetValue()));
 	}
+	if(IncludeSegments.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("include_segments=")) + ToUrlString(IncludeSegments.GetValue()));
+	}
+	if(IncludePlayers.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("include_players=")) + ToUrlString(IncludePlayers.GetValue()));
+	}
 	Path += TCHAR('?');
 	Path += FString::Join(QueryParams, TEXT("&"));
 

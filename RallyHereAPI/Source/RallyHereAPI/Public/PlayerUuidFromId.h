@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerUuidFromId : public FRHAPI_Model
 	/** @brief Gets the value of Uuid */
 	const FGuid& GetUuid() const { return Uuid; }
 	/** @brief Sets the value of Uuid */
-	void SetUuid(FGuid NewValue) { Uuid = NewValue;  }
+	void SetUuid(const FGuid& NewValue) { Uuid = NewValue;  }
+	/** @brief Sets the value of Uuid using move semantics */
+	void SetUuid(FGuid&& NewValue) { Uuid = NewValue;  }
 };
 
 /** @} */

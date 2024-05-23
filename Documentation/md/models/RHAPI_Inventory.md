@@ -31,7 +31,8 @@ Inventory for a Player organized by Item ID.
 `public inline bool `[`GetItems`](#structFRHAPI__Inventory_1a9971f75be762971c919d66ae16cb9416)`(TMap< FString, `[`FRHAPI_ItemInventory`](RHAPI_ItemInventory.md#structFRHAPI__ItemInventory)` > & OutValue) const` | Fills OutValue with the value of Items_Optional and returns true if it has been set, otherwise returns false.
 `public inline TMap< FString, `[`FRHAPI_ItemInventory`](RHAPI_ItemInventory.md#structFRHAPI__ItemInventory)` > * `[`GetItemsOrNull`](#structFRHAPI__Inventory_1a1f64ef3c5b2344981576fea06b0492b8)`()` | Returns a pointer to Items_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TMap< FString, `[`FRHAPI_ItemInventory`](RHAPI_ItemInventory.md#structFRHAPI__ItemInventory)` > * `[`GetItemsOrNull`](#structFRHAPI__Inventory_1ab35d617ca4fce1557035421c948cfd17)`() const` | Returns a pointer to Items_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetItems`](#structFRHAPI__Inventory_1a75595aec37c0627c04dceb340e2f766d)`(TMap< FString, `[`FRHAPI_ItemInventory`](RHAPI_ItemInventory.md#structFRHAPI__ItemInventory)` > NewValue)` | Sets the value of Items_Optional and also sets Items_IsSet to true.
+`public inline void `[`SetItems`](#structFRHAPI__Inventory_1a7e5863746c76ca8a5f78ab493e8dd301)`(const TMap< FString, `[`FRHAPI_ItemInventory`](RHAPI_ItemInventory.md#structFRHAPI__ItemInventory)` > & NewValue)` | Sets the value of Items_Optional and also sets Items_IsSet to true.
+`public inline void `[`SetItems`](#structFRHAPI__Inventory_1a95791402e476e2acbadd8411ff482b5a)`(TMap< FString, `[`FRHAPI_ItemInventory`](RHAPI_ItemInventory.md#structFRHAPI__ItemInventory)` > && NewValue)` | Sets the value of Items_Optional and also sets Items_IsSet to true using move semantics.
 `public inline void `[`ClearItems`](#structFRHAPI__Inventory_1ace507bfbd42dc8ac6c2d5f429eb1106b)`()` | Clears the value of Items_Optional and sets Items_IsSet to false.
 `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Inventory_1a00c3bce14622af56577d44bf37b463f4)`()` | Gets the value of CacheInfo_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Inventory_1ae918a58e47026c48014d700e1d30c7bf)`() const` | Gets the value of CacheInfo_Optional, regardless of it having been set.
@@ -39,7 +40,8 @@ Inventory for a Player organized by Item ID.
 `public inline bool `[`GetCacheInfo`](#structFRHAPI__Inventory_1a7b96bc1d3574c0c1c3d6f0ce2f58daa4)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & OutValue) const` | Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false.
 `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__Inventory_1aa0e9296dc8dca59a8e45ae258b10035b)`()` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
 `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__Inventory_1a4b79d280988af02ab874400706f7406c)`() const` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCacheInfo`](#structFRHAPI__Inventory_1a10ebebd28eab0dffa3aea1d0a3c18dd2)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
+`public inline void `[`SetCacheInfo`](#structFRHAPI__Inventory_1a06e6f371deaabb83e239d53f9b8a8719)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
+`public inline void `[`SetCacheInfo`](#structFRHAPI__Inventory_1a9b33c0616493d9737f508fd7ef861d8f)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__Inventory_1ab40dec6674cdb911e51d1fe71907064d)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 
 ### Members
@@ -101,9 +103,13 @@ Returns a pointer to Items_Optional, if it has been set, otherwise returns nullp
 
 Returns a pointer to Items_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetItems`](#structFRHAPI__Inventory_1a75595aec37c0627c04dceb340e2f766d)`(TMap< FString, `[`FRHAPI_ItemInventory`](RHAPI_ItemInventory.md#structFRHAPI__ItemInventory)` > NewValue)` <a id="structFRHAPI__Inventory_1a75595aec37c0627c04dceb340e2f766d"></a>
+#### `public inline void `[`SetItems`](#structFRHAPI__Inventory_1a7e5863746c76ca8a5f78ab493e8dd301)`(const TMap< FString, `[`FRHAPI_ItemInventory`](RHAPI_ItemInventory.md#structFRHAPI__ItemInventory)` > & NewValue)` <a id="structFRHAPI__Inventory_1a7e5863746c76ca8a5f78ab493e8dd301"></a>
 
 Sets the value of Items_Optional and also sets Items_IsSet to true.
+
+#### `public inline void `[`SetItems`](#structFRHAPI__Inventory_1a95791402e476e2acbadd8411ff482b5a)`(TMap< FString, `[`FRHAPI_ItemInventory`](RHAPI_ItemInventory.md#structFRHAPI__ItemInventory)` > && NewValue)` <a id="structFRHAPI__Inventory_1a95791402e476e2acbadd8411ff482b5a"></a>
+
+Sets the value of Items_Optional and also sets Items_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearItems`](#structFRHAPI__Inventory_1ace507bfbd42dc8ac6c2d5f429eb1106b)`()` <a id="structFRHAPI__Inventory_1ace507bfbd42dc8ac6c2d5f429eb1106b"></a>
 
@@ -133,9 +139,13 @@ Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns n
 
 Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCacheInfo`](#structFRHAPI__Inventory_1a10ebebd28eab0dffa3aea1d0a3c18dd2)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` NewValue)` <a id="structFRHAPI__Inventory_1a10ebebd28eab0dffa3aea1d0a3c18dd2"></a>
+#### `public inline void `[`SetCacheInfo`](#structFRHAPI__Inventory_1a06e6f371deaabb83e239d53f9b8a8719)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` <a id="structFRHAPI__Inventory_1a06e6f371deaabb83e239d53f9b8a8719"></a>
 
 Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
+
+#### `public inline void `[`SetCacheInfo`](#structFRHAPI__Inventory_1a9b33c0616493d9737f508fd7ef861d8f)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` <a id="structFRHAPI__Inventory_1a9b33c0616493d9737f508fd7ef861d8f"></a>
+
+Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearCacheInfo`](#structFRHAPI__Inventory_1ab40dec6674cdb911e51d1fe71907064d)`()` <a id="structFRHAPI__Inventory_1ab40dec6674cdb911e51d1fe71907064d"></a>
 

@@ -30,11 +30,13 @@ A collection of Player Orders.
 `public inline bool `[`GetData`](#structFRHAPI__PlayerOrdersResponse_1a90d4b437c35f15baf0d835b7cd43c4d5)`(TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > & OutValue) const` | Fills OutValue with the value of Data_Optional and returns true if it has been set, otherwise returns false.
 `public inline TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > * `[`GetDataOrNull`](#structFRHAPI__PlayerOrdersResponse_1a02137244a73038499960c97d08e715dd)`()` | Returns a pointer to Data_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > * `[`GetDataOrNull`](#structFRHAPI__PlayerOrdersResponse_1aaa57c08fd59616f7d7f2a75d55f88436)`() const` | Returns a pointer to Data_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetData`](#structFRHAPI__PlayerOrdersResponse_1a0bdc148248e6ff73e014b9ad2f6beec9)`(TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > NewValue)` | Sets the value of Data_Optional and also sets Data_IsSet to true.
+`public inline void `[`SetData`](#structFRHAPI__PlayerOrdersResponse_1a66a42d4a23c5cbde2299206558d33734)`(const TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > & NewValue)` | Sets the value of Data_Optional and also sets Data_IsSet to true.
+`public inline void `[`SetData`](#structFRHAPI__PlayerOrdersResponse_1a7302733f38c311b598919dc70c332312)`(TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > && NewValue)` | Sets the value of Data_Optional and also sets Data_IsSet to true using move semantics.
 `public inline void `[`ClearData`](#structFRHAPI__PlayerOrdersResponse_1ad6f65b52067db43d4ee56fcd0c3154be)`()` | Clears the value of Data_Optional and sets Data_IsSet to false.
 `public inline `[`FRHAPI_InventoryPageMeta`](RHAPI_InventoryPageMeta.md#structFRHAPI__InventoryPageMeta)` & `[`GetPage`](#structFRHAPI__PlayerOrdersResponse_1a5bd79d7fe6f3248e6a235f109240bb05)`()` | Gets the value of Page.
 `public inline const `[`FRHAPI_InventoryPageMeta`](RHAPI_InventoryPageMeta.md#structFRHAPI__InventoryPageMeta)` & `[`GetPage`](#structFRHAPI__PlayerOrdersResponse_1a163356eaae70f3de59d40dfa53c6d282)`() const` | Gets the value of Page.
-`public inline void `[`SetPage`](#structFRHAPI__PlayerOrdersResponse_1ad6ebd309447418e0da39b0689bcc5116)`(`[`FRHAPI_InventoryPageMeta`](RHAPI_InventoryPageMeta.md#structFRHAPI__InventoryPageMeta)` NewValue)` | Sets the value of Page.
+`public inline void `[`SetPage`](#structFRHAPI__PlayerOrdersResponse_1a7598e89fce3d10feee19c32f810f23d3)`(const `[`FRHAPI_InventoryPageMeta`](RHAPI_InventoryPageMeta.md#structFRHAPI__InventoryPageMeta)` & NewValue)` | Sets the value of Page.
+`public inline void `[`SetPage`](#structFRHAPI__PlayerOrdersResponse_1ab7cac2374c84e2a7249e48a498831201)`(`[`FRHAPI_InventoryPageMeta`](RHAPI_InventoryPageMeta.md#structFRHAPI__InventoryPageMeta)` && NewValue)` | Sets the value of Page using move semantics.
 
 ### Members
 
@@ -91,9 +93,13 @@ Returns a pointer to Data_Optional, if it has been set, otherwise returns nullpt
 
 Returns a pointer to Data_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetData`](#structFRHAPI__PlayerOrdersResponse_1a0bdc148248e6ff73e014b9ad2f6beec9)`(TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > NewValue)` <a id="structFRHAPI__PlayerOrdersResponse_1a0bdc148248e6ff73e014b9ad2f6beec9"></a>
+#### `public inline void `[`SetData`](#structFRHAPI__PlayerOrdersResponse_1a66a42d4a23c5cbde2299206558d33734)`(const TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > & NewValue)` <a id="structFRHAPI__PlayerOrdersResponse_1a66a42d4a23c5cbde2299206558d33734"></a>
 
 Sets the value of Data_Optional and also sets Data_IsSet to true.
+
+#### `public inline void `[`SetData`](#structFRHAPI__PlayerOrdersResponse_1a7302733f38c311b598919dc70c332312)`(TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > && NewValue)` <a id="structFRHAPI__PlayerOrdersResponse_1a7302733f38c311b598919dc70c332312"></a>
+
+Sets the value of Data_Optional and also sets Data_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearData`](#structFRHAPI__PlayerOrdersResponse_1ad6f65b52067db43d4ee56fcd0c3154be)`()` <a id="structFRHAPI__PlayerOrdersResponse_1ad6f65b52067db43d4ee56fcd0c3154be"></a>
 
@@ -107,7 +113,11 @@ Gets the value of Page.
 
 Gets the value of Page.
 
-#### `public inline void `[`SetPage`](#structFRHAPI__PlayerOrdersResponse_1ad6ebd309447418e0da39b0689bcc5116)`(`[`FRHAPI_InventoryPageMeta`](RHAPI_InventoryPageMeta.md#structFRHAPI__InventoryPageMeta)` NewValue)` <a id="structFRHAPI__PlayerOrdersResponse_1ad6ebd309447418e0da39b0689bcc5116"></a>
+#### `public inline void `[`SetPage`](#structFRHAPI__PlayerOrdersResponse_1a7598e89fce3d10feee19c32f810f23d3)`(const `[`FRHAPI_InventoryPageMeta`](RHAPI_InventoryPageMeta.md#structFRHAPI__InventoryPageMeta)` & NewValue)` <a id="structFRHAPI__PlayerOrdersResponse_1a7598e89fce3d10feee19c32f810f23d3"></a>
 
 Sets the value of Page.
+
+#### `public inline void `[`SetPage`](#structFRHAPI__PlayerOrdersResponse_1ab7cac2374c84e2a7249e48a498831201)`(`[`FRHAPI_InventoryPageMeta`](RHAPI_InventoryPageMeta.md#structFRHAPI__InventoryPageMeta)` && NewValue)` <a id="structFRHAPI__PlayerOrdersResponse_1ab7cac2374c84e2a7249e48a498831201"></a>
+
+Sets the value of Page using move semantics.
 

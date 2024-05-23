@@ -46,7 +46,9 @@ struct RALLYHEREAPI_API FRHAPI_Platforms : public FRHAPI_Model
 	/** @brief Gets the value of Platforms */
 	const TArray<FString>& GetPlatforms() const { return Platforms; }
 	/** @brief Sets the value of Platforms */
-	void SetPlatforms(TArray<FString> NewValue) { Platforms = NewValue;  }
+	void SetPlatforms(const TArray<FString>& NewValue) { Platforms = NewValue;  }
+	/** @brief Sets the value of Platforms using move semantics */
+	void SetPlatforms(TArray<FString>&& NewValue) { Platforms = NewValue;  }
 };
 
 /** @} */

@@ -49,7 +49,9 @@ struct RALLYHEREAPI_API FRHAPI_InstanceRequestTemplate : public FRHAPI_Model
 	/** @brief Gets the value of InstanceRequestTemplateId */
 	const FGuid& GetInstanceRequestTemplateId() const { return InstanceRequestTemplateId; }
 	/** @brief Sets the value of InstanceRequestTemplateId */
-	void SetInstanceRequestTemplateId(FGuid NewValue) { InstanceRequestTemplateId = NewValue;  }
+	void SetInstanceRequestTemplateId(const FGuid& NewValue) { InstanceRequestTemplateId = NewValue;  }
+	/** @brief Sets the value of InstanceRequestTemplateId using move semantics */
+	void SetInstanceRequestTemplateId(FGuid&& NewValue) { InstanceRequestTemplateId = NewValue;  }
 
 	/** @brief A selection list of maps that can be chosen to launch into */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -59,7 +61,9 @@ struct RALLYHEREAPI_API FRHAPI_InstanceRequestTemplate : public FRHAPI_Model
 	/** @brief Gets the value of MapSelectionList */
 	const FRHAPI_MapSelectionListV2& GetMapSelectionList() const { return MapSelectionList; }
 	/** @brief Sets the value of MapSelectionList */
-	void SetMapSelectionList(FRHAPI_MapSelectionListV2 NewValue) { MapSelectionList = NewValue;  }
+	void SetMapSelectionList(const FRHAPI_MapSelectionListV2& NewValue) { MapSelectionList = NewValue;  }
+	/** @brief Sets the value of MapSelectionList using move semantics */
+	void SetMapSelectionList(FRHAPI_MapSelectionListV2&& NewValue) { MapSelectionList = NewValue;  }
 
 	/** @brief Default host type for this template. Can be overriden in instance requests */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -69,7 +73,9 @@ struct RALLYHEREAPI_API FRHAPI_InstanceRequestTemplate : public FRHAPI_Model
 	/** @brief Gets the value of DefaultHostType */
 	const ERHAPI_HostType& GetDefaultHostType() const { return DefaultHostType; }
 	/** @brief Sets the value of DefaultHostType */
-	void SetDefaultHostType(ERHAPI_HostType NewValue) { DefaultHostType = NewValue;  }
+	void SetDefaultHostType(const ERHAPI_HostType& NewValue) { DefaultHostType = NewValue;  }
+	/** @brief Sets the value of DefaultHostType using move semantics */
+	void SetDefaultHostType(ERHAPI_HostType&& NewValue) { DefaultHostType = NewValue;  }
 
 	/** @brief Custom data that will be passed to the session during the instance launch request */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -90,7 +96,9 @@ struct RALLYHEREAPI_API FRHAPI_InstanceRequestTemplate : public FRHAPI_Model
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
+	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
 	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false; }
 };

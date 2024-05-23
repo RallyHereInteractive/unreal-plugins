@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionJoinResponse : public FRHAPI_Model
 	/** @brief Gets the value of SessionId */
 	const FString& GetSessionId() const { return SessionId; }
 	/** @brief Sets the value of SessionId */
-	void SetSessionId(FString NewValue) { SessionId = NewValue;  }
+	void SetSessionId(const FString& NewValue) { SessionId = NewValue;  }
+	/** @brief Sets the value of SessionId using move semantics */
+	void SetSessionId(FString&& NewValue) { SessionId = NewValue;  }
 };
 
 /** @} */

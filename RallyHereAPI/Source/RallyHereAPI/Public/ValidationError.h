@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_ValidationError : public FRHAPI_Model
 	/** @brief Gets the value of Loc */
 	const TArray<FRHAPI_LocationInner>& GetLoc() const { return Loc; }
 	/** @brief Sets the value of Loc */
-	void SetLoc(TArray<FRHAPI_LocationInner> NewValue) { Loc = NewValue;  }
+	void SetLoc(const TArray<FRHAPI_LocationInner>& NewValue) { Loc = NewValue;  }
+	/** @brief Sets the value of Loc using move semantics */
+	void SetLoc(TArray<FRHAPI_LocationInner>&& NewValue) { Loc = NewValue;  }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Msg{  };
@@ -56,7 +58,9 @@ struct RALLYHEREAPI_API FRHAPI_ValidationError : public FRHAPI_Model
 	/** @brief Gets the value of Msg */
 	const FString& GetMsg() const { return Msg; }
 	/** @brief Sets the value of Msg */
-	void SetMsg(FString NewValue) { Msg = NewValue;  }
+	void SetMsg(const FString& NewValue) { Msg = NewValue;  }
+	/** @brief Sets the value of Msg using move semantics */
+	void SetMsg(FString&& NewValue) { Msg = NewValue;  }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Type{  };
@@ -65,7 +69,9 @@ struct RALLYHEREAPI_API FRHAPI_ValidationError : public FRHAPI_Model
 	/** @brief Gets the value of Type */
 	const FString& GetType() const { return Type; }
 	/** @brief Sets the value of Type */
-	void SetType(FString NewValue) { Type = NewValue;  }
+	void SetType(const FString& NewValue) { Type = NewValue;  }
+	/** @brief Sets the value of Type using move semantics */
+	void SetType(FString&& NewValue) { Type = NewValue;  }
 };
 
 /** @} */

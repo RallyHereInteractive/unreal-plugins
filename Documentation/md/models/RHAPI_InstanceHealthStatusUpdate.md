@@ -25,10 +25,12 @@ A request body for an instances health check.
 `public virtual void `[`WriteJson`](#structFRHAPI__InstanceHealthStatusUpdate_1a6d5e5054aaf5929c1517761dca916347)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline ERHAPI_InstanceHealthStatus & `[`GetInstanceHealth`](#structFRHAPI__InstanceHealthStatusUpdate_1aee3b1e634828fa5e708bb279f1ae3614)`()` | Gets the value of InstanceHealth.
 `public inline const ERHAPI_InstanceHealthStatus & `[`GetInstanceHealth`](#structFRHAPI__InstanceHealthStatusUpdate_1a82f83d721db301c89eb0bdbce11a9ab3)`() const` | Gets the value of InstanceHealth.
-`public inline void `[`SetInstanceHealth`](#structFRHAPI__InstanceHealthStatusUpdate_1a118ed7a3b14461e9650ae70cd2c71217)`(ERHAPI_InstanceHealthStatus NewValue)` | Sets the value of InstanceHealth.
+`public inline void `[`SetInstanceHealth`](#structFRHAPI__InstanceHealthStatusUpdate_1ae0c0341088c6e28be4deeece1518dbc2)`(const ERHAPI_InstanceHealthStatus & NewValue)` | Sets the value of InstanceHealth.
+`public inline void `[`SetInstanceHealth`](#structFRHAPI__InstanceHealthStatusUpdate_1a7751f9de636767b823e471255195468a)`(ERHAPI_InstanceHealthStatus && NewValue)` | Sets the value of InstanceHealth using move semantics.
 `public inline FString & `[`GetInstanceId`](#structFRHAPI__InstanceHealthStatusUpdate_1ac700bdfe25364183c4113ffd5f3a3c8e)`()` | Gets the value of InstanceId.
 `public inline const FString & `[`GetInstanceId`](#structFRHAPI__InstanceHealthStatusUpdate_1adb98c332bf94570d61b2cc7be9466370)`() const` | Gets the value of InstanceId.
-`public inline void `[`SetInstanceId`](#structFRHAPI__InstanceHealthStatusUpdate_1a03b4d45807ee5dd20addf7a1a35c6166)`(FString NewValue)` | Sets the value of InstanceId.
+`public inline void `[`SetInstanceId`](#structFRHAPI__InstanceHealthStatusUpdate_1a3ce5e29bd4da65ab7afe71ad2752bc6c)`(const FString & NewValue)` | Sets the value of InstanceId.
+`public inline void `[`SetInstanceId`](#structFRHAPI__InstanceHealthStatusUpdate_1acfdbd1699b4dd643e9837a2bd2c197d7)`(FString && NewValue)` | Sets the value of InstanceId using move semantics.
 
 ### Members
 
@@ -65,9 +67,13 @@ Gets the value of InstanceHealth.
 
 Gets the value of InstanceHealth.
 
-#### `public inline void `[`SetInstanceHealth`](#structFRHAPI__InstanceHealthStatusUpdate_1a118ed7a3b14461e9650ae70cd2c71217)`(ERHAPI_InstanceHealthStatus NewValue)` <a id="structFRHAPI__InstanceHealthStatusUpdate_1a118ed7a3b14461e9650ae70cd2c71217"></a>
+#### `public inline void `[`SetInstanceHealth`](#structFRHAPI__InstanceHealthStatusUpdate_1ae0c0341088c6e28be4deeece1518dbc2)`(const ERHAPI_InstanceHealthStatus & NewValue)` <a id="structFRHAPI__InstanceHealthStatusUpdate_1ae0c0341088c6e28be4deeece1518dbc2"></a>
 
 Sets the value of InstanceHealth.
+
+#### `public inline void `[`SetInstanceHealth`](#structFRHAPI__InstanceHealthStatusUpdate_1a7751f9de636767b823e471255195468a)`(ERHAPI_InstanceHealthStatus && NewValue)` <a id="structFRHAPI__InstanceHealthStatusUpdate_1a7751f9de636767b823e471255195468a"></a>
+
+Sets the value of InstanceHealth using move semantics.
 
 #### `public inline FString & `[`GetInstanceId`](#structFRHAPI__InstanceHealthStatusUpdate_1ac700bdfe25364183c4113ffd5f3a3c8e)`()` <a id="structFRHAPI__InstanceHealthStatusUpdate_1ac700bdfe25364183c4113ffd5f3a3c8e"></a>
 
@@ -77,7 +83,11 @@ Gets the value of InstanceId.
 
 Gets the value of InstanceId.
 
-#### `public inline void `[`SetInstanceId`](#structFRHAPI__InstanceHealthStatusUpdate_1a03b4d45807ee5dd20addf7a1a35c6166)`(FString NewValue)` <a id="structFRHAPI__InstanceHealthStatusUpdate_1a03b4d45807ee5dd20addf7a1a35c6166"></a>
+#### `public inline void `[`SetInstanceId`](#structFRHAPI__InstanceHealthStatusUpdate_1a3ce5e29bd4da65ab7afe71ad2752bc6c)`(const FString & NewValue)` <a id="structFRHAPI__InstanceHealthStatusUpdate_1a3ce5e29bd4da65ab7afe71ad2752bc6c"></a>
 
 Sets the value of InstanceId.
+
+#### `public inline void `[`SetInstanceId`](#structFRHAPI__InstanceHealthStatusUpdate_1acfdbd1699b4dd643e9837a2bd2c197d7)`(FString && NewValue)` <a id="structFRHAPI__InstanceHealthStatusUpdate_1acfdbd1699b4dd643e9837a2bd2c197d7"></a>
+
+Sets the value of InstanceId using move semantics.
 

@@ -28,11 +28,13 @@ struct FRHAPI_Notifications
 `public inline bool `[`GetNotifications`](#structFRHAPI__Notifications_1a7f1ba68ab77910889f7eed1408a90a6d)`(TArray< `[`FRHAPI_Notification`](RHAPI_Notification.md#structFRHAPI__Notification)` > & OutValue) const` | Fills OutValue with the value of Notifications_Optional and returns true if it has been set, otherwise returns false.
 `public inline TArray< `[`FRHAPI_Notification`](RHAPI_Notification.md#structFRHAPI__Notification)` > * `[`GetNotificationsOrNull`](#structFRHAPI__Notifications_1ad665102ee0c88831a48ed45797ab4186)`()` | Returns a pointer to Notifications_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TArray< `[`FRHAPI_Notification`](RHAPI_Notification.md#structFRHAPI__Notification)` > * `[`GetNotificationsOrNull`](#structFRHAPI__Notifications_1a6aaef183ae54e0157e1d902edad7bdea)`() const` | Returns a pointer to Notifications_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetNotifications`](#structFRHAPI__Notifications_1ace382adf0ac946e08db0343803e17183)`(TArray< `[`FRHAPI_Notification`](RHAPI_Notification.md#structFRHAPI__Notification)` > NewValue)` | Sets the value of Notifications_Optional and also sets Notifications_IsSet to true.
+`public inline void `[`SetNotifications`](#structFRHAPI__Notifications_1a4eb945b50dcc4faca7571723eb2e91d5)`(const TArray< `[`FRHAPI_Notification`](RHAPI_Notification.md#structFRHAPI__Notification)` > & NewValue)` | Sets the value of Notifications_Optional and also sets Notifications_IsSet to true.
+`public inline void `[`SetNotifications`](#structFRHAPI__Notifications_1ae9db3383c9f48e586cc62d4264404f21)`(TArray< `[`FRHAPI_Notification`](RHAPI_Notification.md#structFRHAPI__Notification)` > && NewValue)` | Sets the value of Notifications_Optional and also sets Notifications_IsSet to true using move semantics.
 `public inline void `[`ClearNotifications`](#structFRHAPI__Notifications_1ab07527aa1d7b633c781fd47dae70826d)`()` | Clears the value of Notifications_Optional and sets Notifications_IsSet to false.
 `public inline FString & `[`GetCursor`](#structFRHAPI__Notifications_1afd9b7aa38d363efdbc1c5faa0d991062)`()` | Gets the value of Cursor.
 `public inline const FString & `[`GetCursor`](#structFRHAPI__Notifications_1a35aceb22cd3df426a3b5f6b0bef10636)`() const` | Gets the value of Cursor.
-`public inline void `[`SetCursor`](#structFRHAPI__Notifications_1ac0e1d984335fbae47d6201af59d4b834)`(FString NewValue)` | Sets the value of Cursor.
+`public inline void `[`SetCursor`](#structFRHAPI__Notifications_1acce0e608d250eb18342aae92248637d8)`(const FString & NewValue)` | Sets the value of Cursor.
+`public inline void `[`SetCursor`](#structFRHAPI__Notifications_1ab6277b46626d1ec14ad9524235eaa863)`(FString && NewValue)` | Sets the value of Cursor using move semantics.
 
 ### Members
 
@@ -89,9 +91,13 @@ Returns a pointer to Notifications_Optional, if it has been set, otherwise retur
 
 Returns a pointer to Notifications_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetNotifications`](#structFRHAPI__Notifications_1ace382adf0ac946e08db0343803e17183)`(TArray< `[`FRHAPI_Notification`](RHAPI_Notification.md#structFRHAPI__Notification)` > NewValue)` <a id="structFRHAPI__Notifications_1ace382adf0ac946e08db0343803e17183"></a>
+#### `public inline void `[`SetNotifications`](#structFRHAPI__Notifications_1a4eb945b50dcc4faca7571723eb2e91d5)`(const TArray< `[`FRHAPI_Notification`](RHAPI_Notification.md#structFRHAPI__Notification)` > & NewValue)` <a id="structFRHAPI__Notifications_1a4eb945b50dcc4faca7571723eb2e91d5"></a>
 
 Sets the value of Notifications_Optional and also sets Notifications_IsSet to true.
+
+#### `public inline void `[`SetNotifications`](#structFRHAPI__Notifications_1ae9db3383c9f48e586cc62d4264404f21)`(TArray< `[`FRHAPI_Notification`](RHAPI_Notification.md#structFRHAPI__Notification)` > && NewValue)` <a id="structFRHAPI__Notifications_1ae9db3383c9f48e586cc62d4264404f21"></a>
+
+Sets the value of Notifications_Optional and also sets Notifications_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearNotifications`](#structFRHAPI__Notifications_1ab07527aa1d7b633c781fd47dae70826d)`()` <a id="structFRHAPI__Notifications_1ab07527aa1d7b633c781fd47dae70826d"></a>
 
@@ -105,7 +111,11 @@ Gets the value of Cursor.
 
 Gets the value of Cursor.
 
-#### `public inline void `[`SetCursor`](#structFRHAPI__Notifications_1ac0e1d984335fbae47d6201af59d4b834)`(FString NewValue)` <a id="structFRHAPI__Notifications_1ac0e1d984335fbae47d6201af59d4b834"></a>
+#### `public inline void `[`SetCursor`](#structFRHAPI__Notifications_1acce0e608d250eb18342aae92248637d8)`(const FString & NewValue)` <a id="structFRHAPI__Notifications_1acce0e608d250eb18342aae92248637d8"></a>
 
 Sets the value of Cursor.
+
+#### `public inline void `[`SetCursor`](#structFRHAPI__Notifications_1ab6277b46626d1ec14ad9524235eaa863)`(FString && NewValue)` <a id="structFRHAPI__Notifications_1ab6277b46626d1ec14ad9524235eaa863"></a>
+
+Sets the value of Cursor using move semantics.
 

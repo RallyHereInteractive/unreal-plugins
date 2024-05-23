@@ -24,7 +24,8 @@ List of player_ids to operate on.
 `public virtual void `[`WriteJson`](#structFRHAPI__FriendsV1_1a1e7d9580550c971346cedc2f3e9b9df0)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TArray< int32 > & `[`GetFriends`](#structFRHAPI__FriendsV1_1a3c23848f4395c361cde091e1bc56d7f6)`()` | Gets the value of Friends.
 `public inline const TArray< int32 > & `[`GetFriends`](#structFRHAPI__FriendsV1_1a0ec1becb88da49d89a122b5d91c3a172)`() const` | Gets the value of Friends.
-`public inline void `[`SetFriends`](#structFRHAPI__FriendsV1_1a3a86db8797363e9c81019d3c24d2056f)`(TArray< int32 > NewValue)` | Sets the value of Friends.
+`public inline void `[`SetFriends`](#structFRHAPI__FriendsV1_1a45cf64ae52a38bcbd6f82e8ea7bdd6fb)`(const TArray< int32 > & NewValue)` | Sets the value of Friends.
+`public inline void `[`SetFriends`](#structFRHAPI__FriendsV1_1abb875f9a2f6d21c8132525edf9ab64b7)`(TArray< int32 > && NewValue)` | Sets the value of Friends using move semantics.
 
 ### Members
 
@@ -55,7 +56,11 @@ Gets the value of Friends.
 
 Gets the value of Friends.
 
-#### `public inline void `[`SetFriends`](#structFRHAPI__FriendsV1_1a3a86db8797363e9c81019d3c24d2056f)`(TArray< int32 > NewValue)` <a id="structFRHAPI__FriendsV1_1a3a86db8797363e9c81019d3c24d2056f"></a>
+#### `public inline void `[`SetFriends`](#structFRHAPI__FriendsV1_1a45cf64ae52a38bcbd6f82e8ea7bdd6fb)`(const TArray< int32 > & NewValue)` <a id="structFRHAPI__FriendsV1_1a45cf64ae52a38bcbd6f82e8ea7bdd6fb"></a>
 
 Sets the value of Friends.
+
+#### `public inline void `[`SetFriends`](#structFRHAPI__FriendsV1_1abb875f9a2f6d21c8132525edf9ab64b7)`(TArray< int32 > && NewValue)` <a id="structFRHAPI__FriendsV1_1abb875f9a2f6d21c8132525edf9ab64b7"></a>
+
+Sets the value of Friends using move semantics.
 

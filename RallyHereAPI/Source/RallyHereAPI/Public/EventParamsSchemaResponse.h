@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_EventParamsSchemaResponse : public FRHAPI_Model
 	/** @brief Gets the value of EventParamSchemas */
 	const FRHAPI_JsonObject& GetEventParamSchemas() const { return EventParamSchemas; }
 	/** @brief Sets the value of EventParamSchemas */
-	void SetEventParamSchemas(FRHAPI_JsonObject NewValue) { EventParamSchemas = NewValue;  }
+	void SetEventParamSchemas(const FRHAPI_JsonObject& NewValue) { EventParamSchemas = NewValue;  }
+	/** @brief Sets the value of EventParamSchemas using move semantics */
+	void SetEventParamSchemas(FRHAPI_JsonObject&& NewValue) { EventParamSchemas = NewValue;  }
 };
 
 /** @} */

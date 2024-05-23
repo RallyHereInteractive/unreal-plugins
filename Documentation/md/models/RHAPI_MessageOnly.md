@@ -24,7 +24,8 @@ Message only response.
 `public virtual void `[`WriteJson`](#structFRHAPI__MessageOnly_1a3c641f01fce8607f221a9cbdcc557533)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetMessage`](#structFRHAPI__MessageOnly_1acad27e625a0840c0002310edba4f8cb6)`()` | Gets the value of Message.
 `public inline const FString & `[`GetMessage`](#structFRHAPI__MessageOnly_1afe30c250051e80d194c815b963d4d4ba)`() const` | Gets the value of Message.
-`public inline void `[`SetMessage`](#structFRHAPI__MessageOnly_1a0eb9aec4d1113c87c318b88b716f306d)`(FString NewValue)` | Sets the value of Message.
+`public inline void `[`SetMessage`](#structFRHAPI__MessageOnly_1a42d0de1829d11d01f233524980db245d)`(const FString & NewValue)` | Sets the value of Message.
+`public inline void `[`SetMessage`](#structFRHAPI__MessageOnly_1a9459892b54db44109182c0b50d404885)`(FString && NewValue)` | Sets the value of Message using move semantics.
 
 ### Members
 
@@ -57,7 +58,11 @@ Gets the value of Message.
 
 Gets the value of Message.
 
-#### `public inline void `[`SetMessage`](#structFRHAPI__MessageOnly_1a0eb9aec4d1113c87c318b88b716f306d)`(FString NewValue)` <a id="structFRHAPI__MessageOnly_1a0eb9aec4d1113c87c318b88b716f306d"></a>
+#### `public inline void `[`SetMessage`](#structFRHAPI__MessageOnly_1a42d0de1829d11d01f233524980db245d)`(const FString & NewValue)` <a id="structFRHAPI__MessageOnly_1a42d0de1829d11d01f233524980db245d"></a>
 
 Sets the value of Message.
+
+#### `public inline void `[`SetMessage`](#structFRHAPI__MessageOnly_1a9459892b54db44109182c0b50d404885)`(FString && NewValue)` <a id="structFRHAPI__MessageOnly_1a9459892b54db44109182c0b50d404885"></a>
+
+Sets the value of Message using move semantics.
 

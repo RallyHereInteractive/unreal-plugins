@@ -59,7 +59,9 @@ struct RALLYHEREAPI_API FRHAPI_InventoryBucketUseRuleSets : public FRHAPI_Model
 	/** @brief Returns a pointer to RuleSets_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FRHAPI_InventoryBucketUseRuleSet>* GetRuleSetsOrNull() const { if (RuleSets_IsSet) return &RuleSets_Optional; return nullptr; }
 	/** @brief Sets the value of RuleSets_Optional and also sets RuleSets_IsSet to true */
-	void SetRuleSets(TMap<FString, FRHAPI_InventoryBucketUseRuleSet> NewValue) { RuleSets_Optional = NewValue; RuleSets_IsSet = true; }
+	void SetRuleSets(const TMap<FString, FRHAPI_InventoryBucketUseRuleSet>& NewValue) { RuleSets_Optional = NewValue; RuleSets_IsSet = true; }
+	/** @brief Sets the value of RuleSets_Optional and also sets RuleSets_IsSet to true using move semantics */
+	void SetRuleSets(TMap<FString, FRHAPI_InventoryBucketUseRuleSet>&& NewValue) { RuleSets_Optional = NewValue; RuleSets_IsSet = true; }
 	 /** @brief Clears the value of RuleSets_Optional and sets RuleSets_IsSet to false */
 	void ClearRuleSets() { RuleSets_IsSet = false; }
 
@@ -81,7 +83,9 @@ struct RALLYHEREAPI_API FRHAPI_InventoryBucketUseRuleSets : public FRHAPI_Model
 	/** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
 	const FRHAPI_CacheInfo* GetCacheInfoOrNull() const { if (CacheInfo_IsSet) return &CacheInfo_Optional; return nullptr; }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true */
-	void SetCacheInfo(FRHAPI_CacheInfo NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
+	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
+	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics */
+	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
 	 /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
 	void ClearCacheInfo() { CacheInfo_IsSet = false; }
 };

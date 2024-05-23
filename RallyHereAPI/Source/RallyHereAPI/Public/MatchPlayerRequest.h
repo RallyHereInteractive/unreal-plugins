@@ -57,7 +57,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchPlayerRequest : public FRHAPI_Model
 	/** @brief Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr */
 	const FGuid* GetPlayerUuidOrNull() const { if (PlayerUuid_IsSet) return &PlayerUuid_Optional; return nullptr; }
 	/** @brief Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true */
-	void SetPlayerUuid(FGuid NewValue) { PlayerUuid_Optional = NewValue; PlayerUuid_IsSet = true; }
+	void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid_Optional = NewValue; PlayerUuid_IsSet = true; }
+	/** @brief Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true using move semantics */
+	void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid_Optional = NewValue; PlayerUuid_IsSet = true; }
 	 /** @brief Clears the value of PlayerUuid_Optional and sets PlayerUuid_IsSet to false */
 	void ClearPlayerUuid() { PlayerUuid_IsSet = false; }
 
@@ -79,7 +81,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchPlayerRequest : public FRHAPI_Model
 	/** @brief Returns a pointer to TeamId_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetTeamIdOrNull() const { if (TeamId_IsSet) return &TeamId_Optional; return nullptr; }
 	/** @brief Sets the value of TeamId_Optional and also sets TeamId_IsSet to true */
-	void SetTeamId(FString NewValue) { TeamId_Optional = NewValue; TeamId_IsSet = true; }
+	void SetTeamId(const FString& NewValue) { TeamId_Optional = NewValue; TeamId_IsSet = true; }
+	/** @brief Sets the value of TeamId_Optional and also sets TeamId_IsSet to true using move semantics */
+	void SetTeamId(FString&& NewValue) { TeamId_Optional = NewValue; TeamId_IsSet = true; }
 	 /** @brief Clears the value of TeamId_Optional and sets TeamId_IsSet to false */
 	void ClearTeamId() { TeamId_IsSet = false; }
 
@@ -101,7 +105,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchPlayerRequest : public FRHAPI_Model
 	/** @brief Returns a pointer to PartySessionId_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetPartySessionIdOrNull() const { if (PartySessionId_IsSet) return &PartySessionId_Optional; return nullptr; }
 	/** @brief Sets the value of PartySessionId_Optional and also sets PartySessionId_IsSet to true */
-	void SetPartySessionId(FString NewValue) { PartySessionId_Optional = NewValue; PartySessionId_IsSet = true; }
+	void SetPartySessionId(const FString& NewValue) { PartySessionId_Optional = NewValue; PartySessionId_IsSet = true; }
+	/** @brief Sets the value of PartySessionId_Optional and also sets PartySessionId_IsSet to true using move semantics */
+	void SetPartySessionId(FString&& NewValue) { PartySessionId_Optional = NewValue; PartySessionId_IsSet = true; }
 	 /** @brief Clears the value of PartySessionId_Optional and sets PartySessionId_IsSet to false */
 	void ClearPartySessionId() { PartySessionId_IsSet = false; }
 
@@ -123,7 +129,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchPlayerRequest : public FRHAPI_Model
 	/** @brief Returns a pointer to Placement_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetPlacementOrNull() const { if (Placement_IsSet) return &Placement_Optional; return nullptr; }
 	/** @brief Sets the value of Placement_Optional and also sets Placement_IsSet to true */
-	void SetPlacement(int32 NewValue) { Placement_Optional = NewValue; Placement_IsSet = true; }
+	void SetPlacement(const int32& NewValue) { Placement_Optional = NewValue; Placement_IsSet = true; }
+	/** @brief Sets the value of Placement_Optional and also sets Placement_IsSet to true using move semantics */
+	void SetPlacement(int32&& NewValue) { Placement_Optional = NewValue; Placement_IsSet = true; }
 	 /** @brief Clears the value of Placement_Optional and sets Placement_IsSet to false */
 	void ClearPlacement() { Placement_Optional = 0; Placement_IsSet = false; }
 	/** @brief Returns true if Placement_Optional is set and matches the default value */
@@ -150,7 +158,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchPlayerRequest : public FRHAPI_Model
 	/** @brief Returns a pointer to JoinedMatchTimestamp_Optional, if it has been set, otherwise returns nullptr */
 	const FDateTime* GetJoinedMatchTimestampOrNull() const { if (JoinedMatchTimestamp_IsSet) return &JoinedMatchTimestamp_Optional; return nullptr; }
 	/** @brief Sets the value of JoinedMatchTimestamp_Optional and also sets JoinedMatchTimestamp_IsSet to true */
-	void SetJoinedMatchTimestamp(FDateTime NewValue) { JoinedMatchTimestamp_Optional = NewValue; JoinedMatchTimestamp_IsSet = true; }
+	void SetJoinedMatchTimestamp(const FDateTime& NewValue) { JoinedMatchTimestamp_Optional = NewValue; JoinedMatchTimestamp_IsSet = true; }
+	/** @brief Sets the value of JoinedMatchTimestamp_Optional and also sets JoinedMatchTimestamp_IsSet to true using move semantics */
+	void SetJoinedMatchTimestamp(FDateTime&& NewValue) { JoinedMatchTimestamp_Optional = NewValue; JoinedMatchTimestamp_IsSet = true; }
 	 /** @brief Clears the value of JoinedMatchTimestamp_Optional and sets JoinedMatchTimestamp_IsSet to false */
 	void ClearJoinedMatchTimestamp() { JoinedMatchTimestamp_IsSet = false; }
 
@@ -173,7 +183,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchPlayerRequest : public FRHAPI_Model
 	/** @brief Returns a pointer to LeftMatchTimestamp_Optional, if it has been set, otherwise returns nullptr */
 	const FDateTime* GetLeftMatchTimestampOrNull() const { if (LeftMatchTimestamp_IsSet) return &LeftMatchTimestamp_Optional; return nullptr; }
 	/** @brief Sets the value of LeftMatchTimestamp_Optional and also sets LeftMatchTimestamp_IsSet to true */
-	void SetLeftMatchTimestamp(FDateTime NewValue) { LeftMatchTimestamp_Optional = NewValue; LeftMatchTimestamp_IsSet = true; }
+	void SetLeftMatchTimestamp(const FDateTime& NewValue) { LeftMatchTimestamp_Optional = NewValue; LeftMatchTimestamp_IsSet = true; }
+	/** @brief Sets the value of LeftMatchTimestamp_Optional and also sets LeftMatchTimestamp_IsSet to true using move semantics */
+	void SetLeftMatchTimestamp(FDateTime&& NewValue) { LeftMatchTimestamp_Optional = NewValue; LeftMatchTimestamp_IsSet = true; }
 	 /** @brief Clears the value of LeftMatchTimestamp_Optional and sets LeftMatchTimestamp_IsSet to false */
 	void ClearLeftMatchTimestamp() { LeftMatchTimestamp_IsSet = false; }
 
@@ -195,7 +207,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchPlayerRequest : public FRHAPI_Model
 	/** @brief Returns a pointer to DurationSeconds_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetDurationSecondsOrNull() const { if (DurationSeconds_IsSet) return &DurationSeconds_Optional; return nullptr; }
 	/** @brief Sets the value of DurationSeconds_Optional and also sets DurationSeconds_IsSet to true */
-	void SetDurationSeconds(int32 NewValue) { DurationSeconds_Optional = NewValue; DurationSeconds_IsSet = true; }
+	void SetDurationSeconds(const int32& NewValue) { DurationSeconds_Optional = NewValue; DurationSeconds_IsSet = true; }
+	/** @brief Sets the value of DurationSeconds_Optional and also sets DurationSeconds_IsSet to true using move semantics */
+	void SetDurationSeconds(int32&& NewValue) { DurationSeconds_Optional = NewValue; DurationSeconds_IsSet = true; }
 	 /** @brief Clears the value of DurationSeconds_Optional and sets DurationSeconds_IsSet to false */
 	void ClearDurationSeconds() { DurationSeconds_Optional = 0; DurationSeconds_IsSet = false; }
 	/** @brief Returns true if DurationSeconds_Optional is set and matches the default value */
@@ -221,7 +235,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchPlayerRequest : public FRHAPI_Model
 	/** @brief Returns a pointer to StartingRank_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetStartingRankOrNull() const { if (StartingRank_IsSet) return &StartingRank_Optional; return nullptr; }
 	/** @brief Sets the value of StartingRank_Optional and also sets StartingRank_IsSet to true */
-	void SetStartingRank(FString NewValue) { StartingRank_Optional = NewValue; StartingRank_IsSet = true; }
+	void SetStartingRank(const FString& NewValue) { StartingRank_Optional = NewValue; StartingRank_IsSet = true; }
+	/** @brief Sets the value of StartingRank_Optional and also sets StartingRank_IsSet to true using move semantics */
+	void SetStartingRank(FString&& NewValue) { StartingRank_Optional = NewValue; StartingRank_IsSet = true; }
 	 /** @brief Clears the value of StartingRank_Optional and sets StartingRank_IsSet to false */
 	void ClearStartingRank() { StartingRank_IsSet = false; }
 
@@ -243,7 +259,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchPlayerRequest : public FRHAPI_Model
 	/** @brief Returns a pointer to FinishingRank_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetFinishingRankOrNull() const { if (FinishingRank_IsSet) return &FinishingRank_Optional; return nullptr; }
 	/** @brief Sets the value of FinishingRank_Optional and also sets FinishingRank_IsSet to true */
-	void SetFinishingRank(FString NewValue) { FinishingRank_Optional = NewValue; FinishingRank_IsSet = true; }
+	void SetFinishingRank(const FString& NewValue) { FinishingRank_Optional = NewValue; FinishingRank_IsSet = true; }
+	/** @brief Sets the value of FinishingRank_Optional and also sets FinishingRank_IsSet to true using move semantics */
+	void SetFinishingRank(FString&& NewValue) { FinishingRank_Optional = NewValue; FinishingRank_IsSet = true; }
 	 /** @brief Clears the value of FinishingRank_Optional and sets FinishingRank_IsSet to false */
 	void ClearFinishingRank() { FinishingRank_IsSet = false; }
 
@@ -265,7 +283,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchPlayerRequest : public FRHAPI_Model
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
+	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
 	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false; }
 };

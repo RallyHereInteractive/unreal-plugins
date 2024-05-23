@@ -49,7 +49,9 @@ struct RALLYHEREAPI_API FRHAPI_UpdateBackfillRequest : public FRHAPI_Model
 	/** @brief Gets the value of InstanceId */
 	const FString& GetInstanceId() const { return InstanceId; }
 	/** @brief Sets the value of InstanceId */
-	void SetInstanceId(FString NewValue) { InstanceId = NewValue;  }
+	void SetInstanceId(const FString& NewValue) { InstanceId = NewValue;  }
+	/** @brief Sets the value of InstanceId using move semantics */
+	void SetInstanceId(FString&& NewValue) { InstanceId = NewValue;  }
 
 	/** @brief Additional fields put on the matchmaking ticket for open match to search with (see https://openmatch.dev/site/docs/reference/api/#searchfields) */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -70,7 +72,9 @@ struct RALLYHEREAPI_API FRHAPI_UpdateBackfillRequest : public FRHAPI_Model
 	/** @brief Returns a pointer to AdditionalJoinParams_Optional, if it has been set, otherwise returns nullptr */
 	const FRHAPI_AdditionalJoinParams* GetAdditionalJoinParamsOrNull() const { if (AdditionalJoinParams_IsSet) return &AdditionalJoinParams_Optional; return nullptr; }
 	/** @brief Sets the value of AdditionalJoinParams_Optional and also sets AdditionalJoinParams_IsSet to true */
-	void SetAdditionalJoinParams(FRHAPI_AdditionalJoinParams NewValue) { AdditionalJoinParams_Optional = NewValue; AdditionalJoinParams_IsSet = true; }
+	void SetAdditionalJoinParams(const FRHAPI_AdditionalJoinParams& NewValue) { AdditionalJoinParams_Optional = NewValue; AdditionalJoinParams_IsSet = true; }
+	/** @brief Sets the value of AdditionalJoinParams_Optional and also sets AdditionalJoinParams_IsSet to true using move semantics */
+	void SetAdditionalJoinParams(FRHAPI_AdditionalJoinParams&& NewValue) { AdditionalJoinParams_Optional = NewValue; AdditionalJoinParams_IsSet = true; }
 	 /** @brief Clears the value of AdditionalJoinParams_Optional and sets AdditionalJoinParams_IsSet to false */
 	void ClearAdditionalJoinParams() { AdditionalJoinParams_IsSet = false; }
 
@@ -93,7 +97,9 @@ struct RALLYHEREAPI_API FRHAPI_UpdateBackfillRequest : public FRHAPI_Model
 	/** @brief Returns a pointer to Teams_Optional, if it has been set, otherwise returns nullptr */
 	const TArray<FRHAPI_BackfillTeam>* GetTeamsOrNull() const { if (Teams_IsSet) return &Teams_Optional; return nullptr; }
 	/** @brief Sets the value of Teams_Optional and also sets Teams_IsSet to true */
-	void SetTeams(TArray<FRHAPI_BackfillTeam> NewValue) { Teams_Optional = NewValue; Teams_IsSet = true; }
+	void SetTeams(const TArray<FRHAPI_BackfillTeam>& NewValue) { Teams_Optional = NewValue; Teams_IsSet = true; }
+	/** @brief Sets the value of Teams_Optional and also sets Teams_IsSet to true using move semantics */
+	void SetTeams(TArray<FRHAPI_BackfillTeam>&& NewValue) { Teams_Optional = NewValue; Teams_IsSet = true; }
 	 /** @brief Clears the value of Teams_Optional and sets Teams_IsSet to false */
 	void ClearTeams() { Teams_IsSet = false; }
 };

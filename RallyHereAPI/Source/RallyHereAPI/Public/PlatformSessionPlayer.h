@@ -58,7 +58,9 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSessionPlayer : public FRHAPI_Model
 	/** @brief Returns a pointer to PlayerId_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetPlayerIdOrNull() const { if (PlayerId_IsSet) return &PlayerId_Optional; return nullptr; }
 	/** @brief Sets the value of PlayerId_Optional and also sets PlayerId_IsSet to true */
-	void SetPlayerId(int32 NewValue) { PlayerId_Optional = NewValue; PlayerId_IsSet = true; }
+	void SetPlayerId(const int32& NewValue) { PlayerId_Optional = NewValue; PlayerId_IsSet = true; }
+	/** @brief Sets the value of PlayerId_Optional and also sets PlayerId_IsSet to true using move semantics */
+	void SetPlayerId(int32&& NewValue) { PlayerId_Optional = NewValue; PlayerId_IsSet = true; }
 	 /** @brief Clears the value of PlayerId_Optional and sets PlayerId_IsSet to false */
 	void ClearPlayerId() { PlayerId_Optional = 0; PlayerId_IsSet = false; }
 	/** @brief Returns true if PlayerId_Optional is set and matches the default value */
@@ -74,7 +76,9 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSessionPlayer : public FRHAPI_Model
 	/** @brief Gets the value of PlayerUuid */
 	const FGuid& GetPlayerUuid() const { return PlayerUuid; }
 	/** @brief Sets the value of PlayerUuid */
-	void SetPlayerUuid(FGuid NewValue) { PlayerUuid = NewValue;  }
+	void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid = NewValue;  }
+	/** @brief Sets the value of PlayerUuid using move semantics */
+	void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid = NewValue;  }
 
 	/** @brief Is this player the leader of the platform session?  When setting up the parent session, if all players are from the same platform session, leadership is coordinated */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -95,7 +99,9 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSessionPlayer : public FRHAPI_Model
 	/** @brief Returns a pointer to Leader_Optional, if it has been set, otherwise returns nullptr */
 	const bool* GetLeaderOrNull() const { if (Leader_IsSet) return &Leader_Optional; return nullptr; }
 	/** @brief Sets the value of Leader_Optional and also sets Leader_IsSet to true */
-	void SetLeader(bool NewValue) { Leader_Optional = NewValue; Leader_IsSet = true; }
+	void SetLeader(const bool& NewValue) { Leader_Optional = NewValue; Leader_IsSet = true; }
+	/** @brief Sets the value of Leader_Optional and also sets Leader_IsSet to true using move semantics */
+	void SetLeader(bool&& NewValue) { Leader_Optional = NewValue; Leader_IsSet = true; }
 	 /** @brief Clears the value of Leader_Optional and sets Leader_IsSet to false */
 	void ClearLeader() { Leader_Optional = false; Leader_IsSet = false; }
 	/** @brief Returns true if Leader_Optional is set and matches the default value */

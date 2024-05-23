@@ -58,7 +58,9 @@ struct RALLYHEREAPI_API FRHAPI_FriendsApiConfig : public FRHAPI_Model
 	/** @brief Returns a pointer to FriendLimit_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetFriendLimitOrNull() const { if (FriendLimit_IsSet) return &FriendLimit_Optional; return nullptr; }
 	/** @brief Sets the value of FriendLimit_Optional and also sets FriendLimit_IsSet to true */
-	void SetFriendLimit(int32 NewValue) { FriendLimit_Optional = NewValue; FriendLimit_IsSet = true; }
+	void SetFriendLimit(const int32& NewValue) { FriendLimit_Optional = NewValue; FriendLimit_IsSet = true; }
+	/** @brief Sets the value of FriendLimit_Optional and also sets FriendLimit_IsSet to true using move semantics */
+	void SetFriendLimit(int32&& NewValue) { FriendLimit_Optional = NewValue; FriendLimit_IsSet = true; }
 	 /** @brief Clears the value of FriendLimit_Optional and sets FriendLimit_IsSet to false */
 	void ClearFriendLimit() { FriendLimit_Optional = 10000; FriendLimit_IsSet = false; }
 	/** @brief Returns true if FriendLimit_Optional is set and matches the default value */
@@ -85,7 +87,9 @@ struct RALLYHEREAPI_API FRHAPI_FriendsApiConfig : public FRHAPI_Model
 	/** @brief Returns a pointer to BlockLimit_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetBlockLimitOrNull() const { if (BlockLimit_IsSet) return &BlockLimit_Optional; return nullptr; }
 	/** @brief Sets the value of BlockLimit_Optional and also sets BlockLimit_IsSet to true */
-	void SetBlockLimit(int32 NewValue) { BlockLimit_Optional = NewValue; BlockLimit_IsSet = true; }
+	void SetBlockLimit(const int32& NewValue) { BlockLimit_Optional = NewValue; BlockLimit_IsSet = true; }
+	/** @brief Sets the value of BlockLimit_Optional and also sets BlockLimit_IsSet to true using move semantics */
+	void SetBlockLimit(int32&& NewValue) { BlockLimit_Optional = NewValue; BlockLimit_IsSet = true; }
 	 /** @brief Clears the value of BlockLimit_Optional and sets BlockLimit_IsSet to false */
 	void ClearBlockLimit() { BlockLimit_Optional = 10000; BlockLimit_IsSet = false; }
 	/** @brief Returns true if BlockLimit_Optional is set and matches the default value */

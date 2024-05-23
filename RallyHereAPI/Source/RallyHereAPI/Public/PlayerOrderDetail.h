@@ -50,7 +50,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderDetail : public FRHAPI_Model
 	/** @brief Gets the value of Type */
 	const ERHAPI_PlayerOrderDetailType& GetType() const { return Type; }
 	/** @brief Sets the value of Type */
-	void SetType(ERHAPI_PlayerOrderDetailType NewValue) { Type = NewValue;  }
+	void SetType(const ERHAPI_PlayerOrderDetailType& NewValue) { Type = NewValue;  }
+	/** @brief Sets the value of Type using move semantics */
+	void SetType(ERHAPI_PlayerOrderDetailType&& NewValue) { Type = NewValue;  }
 
 	/** @brief The Loot ID. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -71,7 +73,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderDetail : public FRHAPI_Model
 	/** @brief Returns a pointer to LootId_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetLootIdOrNull() const { if (LootId_IsSet) return &LootId_Optional; return nullptr; }
 	/** @brief Sets the value of LootId_Optional and also sets LootId_IsSet to true */
-	void SetLootId(int32 NewValue) { LootId_Optional = NewValue; LootId_IsSet = true; }
+	void SetLootId(const int32& NewValue) { LootId_Optional = NewValue; LootId_IsSet = true; }
+	/** @brief Sets the value of LootId_Optional and also sets LootId_IsSet to true using move semantics */
+	void SetLootId(int32&& NewValue) { LootId_Optional = NewValue; LootId_IsSet = true; }
 	 /** @brief Clears the value of LootId_Optional and sets LootId_IsSet to false */
 	void ClearLootId() { LootId_Optional = 0; LootId_IsSet = false; }
 	/** @brief Returns true if LootId_Optional is set and matches the default value */
@@ -98,7 +102,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderDetail : public FRHAPI_Model
 	/** @brief Returns a pointer to InvChange_Optional, if it has been set, otherwise returns nullptr */
 	const FRHAPI_PlayerInventoryChange* GetInvChangeOrNull() const { if (InvChange_IsSet) return &InvChange_Optional; return nullptr; }
 	/** @brief Sets the value of InvChange_Optional and also sets InvChange_IsSet to true */
-	void SetInvChange(FRHAPI_PlayerInventoryChange NewValue) { InvChange_Optional = NewValue; InvChange_IsSet = true; }
+	void SetInvChange(const FRHAPI_PlayerInventoryChange& NewValue) { InvChange_Optional = NewValue; InvChange_IsSet = true; }
+	/** @brief Sets the value of InvChange_Optional and also sets InvChange_IsSet to true using move semantics */
+	void SetInvChange(FRHAPI_PlayerInventoryChange&& NewValue) { InvChange_Optional = NewValue; InvChange_IsSet = true; }
 	 /** @brief Clears the value of InvChange_Optional and sets InvChange_IsSet to false */
 	void ClearInvChange() { InvChange_IsSet = false; }
 
@@ -121,7 +127,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderDetail : public FRHAPI_Model
 	/** @brief Returns a pointer to Order_Optional, if it has been set, otherwise returns nullptr */
 	const FRHAPI_PlayerOrderCreate* GetOrderOrNull() const { if (Order_IsSet) return &Order_Optional; return nullptr; }
 	/** @brief Sets the value of Order_Optional and also sets Order_IsSet to true */
-	void SetOrder(FRHAPI_PlayerOrderCreate NewValue) { Order_Optional = NewValue; Order_IsSet = true; }
+	void SetOrder(const FRHAPI_PlayerOrderCreate& NewValue) { Order_Optional = NewValue; Order_IsSet = true; }
+	/** @brief Sets the value of Order_Optional and also sets Order_IsSet to true using move semantics */
+	void SetOrder(FRHAPI_PlayerOrderCreate&& NewValue) { Order_Optional = NewValue; Order_IsSet = true; }
 	 /** @brief Clears the value of Order_Optional and sets Order_IsSet to false */
 	void ClearOrder() { Order_IsSet = false; }
 };

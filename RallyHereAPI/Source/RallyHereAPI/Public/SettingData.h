@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_SettingData : public FRHAPI_Model
 	/** @brief Gets the value of V */
 	const int32& GetV() const { return V; }
 	/** @brief Sets the value of V */
-	void SetV(int32 NewValue) { V = NewValue;  }
+	void SetV(const int32& NewValue) { V = NewValue;  }
+	/** @brief Sets the value of V using move semantics */
+	void SetV(int32&& NewValue) { V = NewValue;  }
 	/** @brief Returns true if V matches the default value */
 	bool IsVDefaultValue() const { return V == 0; }
 	/** @brief Sets the value of V to its default  */
@@ -72,7 +74,9 @@ struct RALLYHEREAPI_API FRHAPI_SettingData : public FRHAPI_Model
 	/** @brief Returns a pointer to Value_Optional, if it has been set, otherwise returns nullptr */
 	const FRHAPI_JsonValue* GetValueOrNull() const { if (Value_IsSet) return &Value_Optional; return nullptr; }
 	/** @brief Sets the value of Value_Optional and also sets Value_IsSet to true */
-	void SetValue(FRHAPI_JsonValue NewValue) { Value_Optional = NewValue; Value_IsSet = true; }
+	void SetValue(const FRHAPI_JsonValue& NewValue) { Value_Optional = NewValue; Value_IsSet = true; }
+	/** @brief Sets the value of Value_Optional and also sets Value_IsSet to true using move semantics */
+	void SetValue(FRHAPI_JsonValue&& NewValue) { Value_Optional = NewValue; Value_IsSet = true; }
 	 /** @brief Clears the value of Value_Optional and sets Value_IsSet to false */
 	void ClearValue() { Value_IsSet = false; }
 };

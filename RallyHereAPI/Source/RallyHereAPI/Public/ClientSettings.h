@@ -61,7 +61,9 @@ struct RALLYHEREAPI_API FRHAPI_ClientSettings : public FRHAPI_Model
 	/** @brief Returns a pointer to PlatformId_Optional, if it has been set, otherwise returns nullptr */
 	const ERHAPI_PlatformID* GetPlatformIdOrNull() const { if (PlatformId_IsSet) return &PlatformId_Optional; return nullptr; }
 	/** @brief Sets the value of PlatformId_Optional and also sets PlatformId_IsSet to true */
-	void SetPlatformId(ERHAPI_PlatformID NewValue) { PlatformId_Optional = NewValue; PlatformId_IsSet = true; }
+	void SetPlatformId(const ERHAPI_PlatformID& NewValue) { PlatformId_Optional = NewValue; PlatformId_IsSet = true; }
+	/** @brief Sets the value of PlatformId_Optional and also sets PlatformId_IsSet to true using move semantics */
+	void SetPlatformId(ERHAPI_PlatformID&& NewValue) { PlatformId_Optional = NewValue; PlatformId_IsSet = true; }
 	 /** @brief Clears the value of PlatformId_Optional and sets PlatformId_IsSet to false */
 	void ClearPlatformId() { PlatformId_IsSet = false; }
 
@@ -84,7 +86,9 @@ struct RALLYHEREAPI_API FRHAPI_ClientSettings : public FRHAPI_Model
 	/** @brief Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr */
 	const ERHAPI_Platform* GetPlatformOrNull() const { if (Platform_IsSet) return &Platform_Optional; return nullptr; }
 	/** @brief Sets the value of Platform_Optional and also sets Platform_IsSet to true */
-	void SetPlatform(ERHAPI_Platform NewValue) { Platform_Optional = NewValue; Platform_IsSet = true; }
+	void SetPlatform(const ERHAPI_Platform& NewValue) { Platform_Optional = NewValue; Platform_IsSet = true; }
+	/** @brief Sets the value of Platform_Optional and also sets Platform_IsSet to true using move semantics */
+	void SetPlatform(ERHAPI_Platform&& NewValue) { Platform_Optional = NewValue; Platform_IsSet = true; }
 	 /** @brief Clears the value of Platform_Optional and sets Platform_IsSet to false */
 	void ClearPlatform() { Platform_IsSet = false; }
 
@@ -96,7 +100,9 @@ struct RALLYHEREAPI_API FRHAPI_ClientSettings : public FRHAPI_Model
 	/** @brief Gets the value of Input */
 	const ERHAPI_Input& GetInput() const { return Input; }
 	/** @brief Sets the value of Input */
-	void SetInput(ERHAPI_Input NewValue) { Input = NewValue;  }
+	void SetInput(const ERHAPI_Input& NewValue) { Input = NewValue;  }
+	/** @brief Sets the value of Input using move semantics */
+	void SetInput(ERHAPI_Input&& NewValue) { Input = NewValue;  }
 };
 
 /** @} */

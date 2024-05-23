@@ -24,7 +24,8 @@ Model for getting a player UUID from a player ID.
 `public virtual void `[`WriteJson`](#structFRHAPI__PlayerUuidFromId_1a6e18ad078934048aa08c3b68ffc43706)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FGuid & `[`GetUuid`](#structFRHAPI__PlayerUuidFromId_1a47a1e049d978c28ee4e97a26da4d49be)`()` | Gets the value of Uuid.
 `public inline const FGuid & `[`GetUuid`](#structFRHAPI__PlayerUuidFromId_1ab17b92b34de1090d5a2b392882100ae1)`() const` | Gets the value of Uuid.
-`public inline void `[`SetUuid`](#structFRHAPI__PlayerUuidFromId_1af7a1334489be24d8295ab4bebfab0029)`(FGuid NewValue)` | Sets the value of Uuid.
+`public inline void `[`SetUuid`](#structFRHAPI__PlayerUuidFromId_1a7945727f5fc44c291c074abf9a481bf6)`(const FGuid & NewValue)` | Sets the value of Uuid.
+`public inline void `[`SetUuid`](#structFRHAPI__PlayerUuidFromId_1a0bb1f33cc5fcfd48637816d197c7c65b)`(FGuid && NewValue)` | Sets the value of Uuid using move semantics.
 
 ### Members
 
@@ -57,7 +58,11 @@ Gets the value of Uuid.
 
 Gets the value of Uuid.
 
-#### `public inline void `[`SetUuid`](#structFRHAPI__PlayerUuidFromId_1af7a1334489be24d8295ab4bebfab0029)`(FGuid NewValue)` <a id="structFRHAPI__PlayerUuidFromId_1af7a1334489be24d8295ab4bebfab0029"></a>
+#### `public inline void `[`SetUuid`](#structFRHAPI__PlayerUuidFromId_1a7945727f5fc44c291c074abf9a481bf6)`(const FGuid & NewValue)` <a id="structFRHAPI__PlayerUuidFromId_1a7945727f5fc44c291c074abf9a481bf6"></a>
 
 Sets the value of Uuid.
+
+#### `public inline void `[`SetUuid`](#structFRHAPI__PlayerUuidFromId_1a0bb1f33cc5fcfd48637816d197c7c65b)`(FGuid && NewValue)` <a id="structFRHAPI__PlayerUuidFromId_1a0bb1f33cc5fcfd48637816d197c7c65b"></a>
+
+Sets the value of Uuid using move semantics.
 

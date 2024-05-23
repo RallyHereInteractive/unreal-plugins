@@ -31,16 +31,19 @@ The player that is being blocked. V1 includes player_id and player_uuid.
 `public inline bool `[`GetBlockedPlayerId`](#structFRHAPI__BlockedPlayerV1_1a205bd3351c53e2302c6cc1248a728eaa)`(int32 & OutValue) const` | Fills OutValue with the value of BlockedPlayerId_Optional and returns true if it has been set, otherwise returns false.
 `public inline int32 * `[`GetBlockedPlayerIdOrNull`](#structFRHAPI__BlockedPlayerV1_1a9e11a950a8516599fee0b407ac1fedee)`()` | Returns a pointer to BlockedPlayerId_Optional, if it has been set, otherwise returns nullptr.
 `public inline const int32 * `[`GetBlockedPlayerIdOrNull`](#structFRHAPI__BlockedPlayerV1_1ad5963fa5d1ffe8ed94d4b497079c2a0c)`() const` | Returns a pointer to BlockedPlayerId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetBlockedPlayerId`](#structFRHAPI__BlockedPlayerV1_1a755fc2d828b8734851a73da798c8875c)`(int32 NewValue)` | Sets the value of BlockedPlayerId_Optional and also sets BlockedPlayerId_IsSet to true.
+`public inline void `[`SetBlockedPlayerId`](#structFRHAPI__BlockedPlayerV1_1af93e2e5d6d7ce2dad8fca4cc3400ec82)`(const int32 & NewValue)` | Sets the value of BlockedPlayerId_Optional and also sets BlockedPlayerId_IsSet to true.
+`public inline void `[`SetBlockedPlayerId`](#structFRHAPI__BlockedPlayerV1_1aa53c2a548cdc28f3792a4c77a7e50baa)`(int32 && NewValue)` | Sets the value of BlockedPlayerId_Optional and also sets BlockedPlayerId_IsSet to true using move semantics.
 `public inline void `[`ClearBlockedPlayerId`](#structFRHAPI__BlockedPlayerV1_1a2e7d44afaa128e42642207f7ca8942d0)`()` | Clears the value of BlockedPlayerId_Optional and sets BlockedPlayerId_IsSet to false.
 `public inline bool `[`IsBlockedPlayerIdDefaultValue`](#structFRHAPI__BlockedPlayerV1_1a569e9403d985c563dc2520420d7d0678)`() const` | Returns true if BlockedPlayerId_Optional is set and matches the default value.
 `public inline void `[`SetBlockedPlayerIdToDefault`](#structFRHAPI__BlockedPlayerV1_1ae7d25bb29a63de671f8b98d10dcd1f21)`()` | Sets the value of BlockedPlayerId_Optional to its default and also sets BlockedPlayerId_IsSet to true.
 `public inline FGuid & `[`GetBlockedPlayerUuid`](#structFRHAPI__BlockedPlayerV1_1ac42f806a7777f546ffd6ab133c6a2e5c)`()` | Gets the value of BlockedPlayerUuid.
 `public inline const FGuid & `[`GetBlockedPlayerUuid`](#structFRHAPI__BlockedPlayerV1_1a2202ee54fdde82fceb495fef30d0e937)`() const` | Gets the value of BlockedPlayerUuid.
-`public inline void `[`SetBlockedPlayerUuid`](#structFRHAPI__BlockedPlayerV1_1ab379b9ecaf5ada4a5ba827f686930e27)`(FGuid NewValue)` | Sets the value of BlockedPlayerUuid.
+`public inline void `[`SetBlockedPlayerUuid`](#structFRHAPI__BlockedPlayerV1_1aee1cc0ce5c9c42e919178e875567224f)`(const FGuid & NewValue)` | Sets the value of BlockedPlayerUuid.
+`public inline void `[`SetBlockedPlayerUuid`](#structFRHAPI__BlockedPlayerV1_1a880e6c198c35fb83011d795b50fe6bdc)`(FGuid && NewValue)` | Sets the value of BlockedPlayerUuid using move semantics.
 `public inline FDateTime & `[`GetLastModifiedOn`](#structFRHAPI__BlockedPlayerV1_1adb166e94801e68f9f9b781bf3e47135d)`()` | Gets the value of LastModifiedOn.
 `public inline const FDateTime & `[`GetLastModifiedOn`](#structFRHAPI__BlockedPlayerV1_1a6ac3224bec707ae8bb7cb49c3ddb1c59)`() const` | Gets the value of LastModifiedOn.
-`public inline void `[`SetLastModifiedOn`](#structFRHAPI__BlockedPlayerV1_1aee5bfec8464fb07e11c36a60a03ce35e)`(FDateTime NewValue)` | Sets the value of LastModifiedOn.
+`public inline void `[`SetLastModifiedOn`](#structFRHAPI__BlockedPlayerV1_1a87fc45898c000edafcbd7e3c2daca79a)`(const FDateTime & NewValue)` | Sets the value of LastModifiedOn.
+`public inline void `[`SetLastModifiedOn`](#structFRHAPI__BlockedPlayerV1_1a0dd490fe07697930c686d3305f4c5662)`(FDateTime && NewValue)` | Sets the value of LastModifiedOn using move semantics.
 
 ### Members
 
@@ -95,9 +98,13 @@ Returns a pointer to BlockedPlayerId_Optional, if it has been set, otherwise ret
 
 Returns a pointer to BlockedPlayerId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetBlockedPlayerId`](#structFRHAPI__BlockedPlayerV1_1a755fc2d828b8734851a73da798c8875c)`(int32 NewValue)` <a id="structFRHAPI__BlockedPlayerV1_1a755fc2d828b8734851a73da798c8875c"></a>
+#### `public inline void `[`SetBlockedPlayerId`](#structFRHAPI__BlockedPlayerV1_1af93e2e5d6d7ce2dad8fca4cc3400ec82)`(const int32 & NewValue)` <a id="structFRHAPI__BlockedPlayerV1_1af93e2e5d6d7ce2dad8fca4cc3400ec82"></a>
 
 Sets the value of BlockedPlayerId_Optional and also sets BlockedPlayerId_IsSet to true.
+
+#### `public inline void `[`SetBlockedPlayerId`](#structFRHAPI__BlockedPlayerV1_1aa53c2a548cdc28f3792a4c77a7e50baa)`(int32 && NewValue)` <a id="structFRHAPI__BlockedPlayerV1_1aa53c2a548cdc28f3792a4c77a7e50baa"></a>
+
+Sets the value of BlockedPlayerId_Optional and also sets BlockedPlayerId_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearBlockedPlayerId`](#structFRHAPI__BlockedPlayerV1_1a2e7d44afaa128e42642207f7ca8942d0)`()` <a id="structFRHAPI__BlockedPlayerV1_1a2e7d44afaa128e42642207f7ca8942d0"></a>
 
@@ -119,9 +126,13 @@ Gets the value of BlockedPlayerUuid.
 
 Gets the value of BlockedPlayerUuid.
 
-#### `public inline void `[`SetBlockedPlayerUuid`](#structFRHAPI__BlockedPlayerV1_1ab379b9ecaf5ada4a5ba827f686930e27)`(FGuid NewValue)` <a id="structFRHAPI__BlockedPlayerV1_1ab379b9ecaf5ada4a5ba827f686930e27"></a>
+#### `public inline void `[`SetBlockedPlayerUuid`](#structFRHAPI__BlockedPlayerV1_1aee1cc0ce5c9c42e919178e875567224f)`(const FGuid & NewValue)` <a id="structFRHAPI__BlockedPlayerV1_1aee1cc0ce5c9c42e919178e875567224f"></a>
 
 Sets the value of BlockedPlayerUuid.
+
+#### `public inline void `[`SetBlockedPlayerUuid`](#structFRHAPI__BlockedPlayerV1_1a880e6c198c35fb83011d795b50fe6bdc)`(FGuid && NewValue)` <a id="structFRHAPI__BlockedPlayerV1_1a880e6c198c35fb83011d795b50fe6bdc"></a>
+
+Sets the value of BlockedPlayerUuid using move semantics.
 
 #### `public inline FDateTime & `[`GetLastModifiedOn`](#structFRHAPI__BlockedPlayerV1_1adb166e94801e68f9f9b781bf3e47135d)`()` <a id="structFRHAPI__BlockedPlayerV1_1adb166e94801e68f9f9b781bf3e47135d"></a>
 
@@ -131,7 +142,11 @@ Gets the value of LastModifiedOn.
 
 Gets the value of LastModifiedOn.
 
-#### `public inline void `[`SetLastModifiedOn`](#structFRHAPI__BlockedPlayerV1_1aee5bfec8464fb07e11c36a60a03ce35e)`(FDateTime NewValue)` <a id="structFRHAPI__BlockedPlayerV1_1aee5bfec8464fb07e11c36a60a03ce35e"></a>
+#### `public inline void `[`SetLastModifiedOn`](#structFRHAPI__BlockedPlayerV1_1a87fc45898c000edafcbd7e3c2daca79a)`(const FDateTime & NewValue)` <a id="structFRHAPI__BlockedPlayerV1_1a87fc45898c000edafcbd7e3c2daca79a"></a>
 
 Sets the value of LastModifiedOn.
+
+#### `public inline void `[`SetLastModifiedOn`](#structFRHAPI__BlockedPlayerV1_1a0dd490fe07697930c686d3305f4c5662)`(FDateTime && NewValue)` <a id="structFRHAPI__BlockedPlayerV1_1a0dd490fe07697930c686d3305f4c5662"></a>
+
+Sets the value of LastModifiedOn using move semantics.
 

@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_PurgeResponse : public FRHAPI_Model
 	/** @brief Gets the value of PersonId */
 	const FGuid& GetPersonId() const { return PersonId; }
 	/** @brief Sets the value of PersonId */
-	void SetPersonId(FGuid NewValue) { PersonId = NewValue;  }
+	void SetPersonId(const FGuid& NewValue) { PersonId = NewValue;  }
+	/** @brief Sets the value of PersonId using move semantics */
+	void SetPersonId(FGuid&& NewValue) { PersonId = NewValue;  }
 
 	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -57,7 +59,9 @@ struct RALLYHEREAPI_API FRHAPI_PurgeResponse : public FRHAPI_Model
 	/** @brief Gets the value of PurgeOn */
 	const FDateTime& GetPurgeOn() const { return PurgeOn; }
 	/** @brief Sets the value of PurgeOn */
-	void SetPurgeOn(FDateTime NewValue) { PurgeOn = NewValue;  }
+	void SetPurgeOn(const FDateTime& NewValue) { PurgeOn = NewValue;  }
+	/** @brief Sets the value of PurgeOn using move semantics */
+	void SetPurgeOn(FDateTime&& NewValue) { PurgeOn = NewValue;  }
 
 	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -67,7 +71,9 @@ struct RALLYHEREAPI_API FRHAPI_PurgeResponse : public FRHAPI_Model
 	/** @brief Gets the value of CreatedOn */
 	const FDateTime& GetCreatedOn() const { return CreatedOn; }
 	/** @brief Sets the value of CreatedOn */
-	void SetCreatedOn(FDateTime NewValue) { CreatedOn = NewValue;  }
+	void SetCreatedOn(const FDateTime& NewValue) { CreatedOn = NewValue;  }
+	/** @brief Sets the value of CreatedOn using move semantics */
+	void SetCreatedOn(FDateTime&& NewValue) { CreatedOn = NewValue;  }
 
 	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -77,7 +83,9 @@ struct RALLYHEREAPI_API FRHAPI_PurgeResponse : public FRHAPI_Model
 	/** @brief Gets the value of LastModifiedOn */
 	const FDateTime& GetLastModifiedOn() const { return LastModifiedOn; }
 	/** @brief Sets the value of LastModifiedOn */
-	void SetLastModifiedOn(FDateTime NewValue) { LastModifiedOn = NewValue;  }
+	void SetLastModifiedOn(const FDateTime& NewValue) { LastModifiedOn = NewValue;  }
+	/** @brief Sets the value of LastModifiedOn using move semantics */
+	void SetLastModifiedOn(FDateTime&& NewValue) { LastModifiedOn = NewValue;  }
 
 	/** @brief Status of the purge request */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -87,7 +95,9 @@ struct RALLYHEREAPI_API FRHAPI_PurgeResponse : public FRHAPI_Model
 	/** @brief Gets the value of Status */
 	const FString& GetStatus() const { return Status; }
 	/** @brief Sets the value of Status */
-	void SetStatus(FString NewValue) { Status = NewValue;  }
+	void SetStatus(const FString& NewValue) { Status = NewValue;  }
+	/** @brief Sets the value of Status using move semantics */
+	void SetStatus(FString&& NewValue) { Status = NewValue;  }
 };
 
 /** @} */

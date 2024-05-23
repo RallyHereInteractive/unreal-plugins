@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_TokenResponse : public FRHAPI_Model
 	/** @brief Gets the value of AccessToken */
 	const FString& GetAccessToken() const { return AccessToken; }
 	/** @brief Sets the value of AccessToken */
-	void SetAccessToken(FString NewValue) { AccessToken = NewValue;  }
+	void SetAccessToken(const FString& NewValue) { AccessToken = NewValue;  }
+	/** @brief Sets the value of AccessToken using move semantics */
+	void SetAccessToken(FString&& NewValue) { AccessToken = NewValue;  }
 
 	/** @brief Result token type */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -57,7 +59,9 @@ struct RALLYHEREAPI_API FRHAPI_TokenResponse : public FRHAPI_Model
 	/** @brief Gets the value of TokenType */
 	const FString& GetTokenType() const { return TokenType; }
 	/** @brief Sets the value of TokenType */
-	void SetTokenType(FString NewValue) { TokenType = NewValue;  }
+	void SetTokenType(const FString& NewValue) { TokenType = NewValue;  }
+	/** @brief Sets the value of TokenType using move semantics */
+	void SetTokenType(FString&& NewValue) { TokenType = NewValue;  }
 
 	/** @brief Result refresh token that can be used to get new access tokens */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -78,7 +82,9 @@ struct RALLYHEREAPI_API FRHAPI_TokenResponse : public FRHAPI_Model
 	/** @brief Returns a pointer to RefreshToken_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetRefreshTokenOrNull() const { if (RefreshToken_IsSet) return &RefreshToken_Optional; return nullptr; }
 	/** @brief Sets the value of RefreshToken_Optional and also sets RefreshToken_IsSet to true */
-	void SetRefreshToken(FString NewValue) { RefreshToken_Optional = NewValue; RefreshToken_IsSet = true; }
+	void SetRefreshToken(const FString& NewValue) { RefreshToken_Optional = NewValue; RefreshToken_IsSet = true; }
+	/** @brief Sets the value of RefreshToken_Optional and also sets RefreshToken_IsSet to true using move semantics */
+	void SetRefreshToken(FString&& NewValue) { RefreshToken_Optional = NewValue; RefreshToken_IsSet = true; }
 	 /** @brief Clears the value of RefreshToken_Optional and sets RefreshToken_IsSet to false */
 	void ClearRefreshToken() { RefreshToken_IsSet = false; }
 
@@ -90,7 +96,9 @@ struct RALLYHEREAPI_API FRHAPI_TokenResponse : public FRHAPI_Model
 	/** @brief Gets the value of ExpiresIn */
 	const int32& GetExpiresIn() const { return ExpiresIn; }
 	/** @brief Sets the value of ExpiresIn */
-	void SetExpiresIn(int32 NewValue) { ExpiresIn = NewValue;  }
+	void SetExpiresIn(const int32& NewValue) { ExpiresIn = NewValue;  }
+	/** @brief Sets the value of ExpiresIn using move semantics */
+	void SetExpiresIn(int32&& NewValue) { ExpiresIn = NewValue;  }
 	/** @brief Returns true if ExpiresIn matches the default value */
 	bool IsExpiresInDefaultValue() const { return ExpiresIn == 0; }
 	/** @brief Sets the value of ExpiresIn to its default  */

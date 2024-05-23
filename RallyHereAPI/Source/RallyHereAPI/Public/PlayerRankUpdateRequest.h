@@ -59,7 +59,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerRankUpdateRequest : public FRHAPI_Model
 	/** @brief Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetInstanceIdOrNull() const { if (InstanceId_IsSet) return &InstanceId_Optional; return nullptr; }
 	/** @brief Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true */
-	void SetInstanceId(FString NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true; }
+	void SetInstanceId(const FString& NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true; }
+	/** @brief Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true using move semantics */
+	void SetInstanceId(FString&& NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true; }
 	 /** @brief Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false */
 	void ClearInstanceId() { InstanceId_IsSet = false; }
 
@@ -71,7 +73,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerRankUpdateRequest : public FRHAPI_Model
 	/** @brief Gets the value of Rank */
 	const FRHAPI_RankData& GetRank() const { return Rank; }
 	/** @brief Sets the value of Rank */
-	void SetRank(FRHAPI_RankData NewValue) { Rank = NewValue;  }
+	void SetRank(const FRHAPI_RankData& NewValue) { Rank = NewValue;  }
+	/** @brief Sets the value of Rank using move semantics */
+	void SetRank(FRHAPI_RankData&& NewValue) { Rank = NewValue;  }
 };
 
 /** @} */

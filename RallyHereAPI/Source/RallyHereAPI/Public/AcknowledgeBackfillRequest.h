@@ -48,7 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_AcknowledgeBackfillRequest : public FRHAPI_Model
 	/** @brief Gets the value of InstanceId */
 	const FString& GetInstanceId() const { return InstanceId; }
 	/** @brief Sets the value of InstanceId */
-	void SetInstanceId(FString NewValue) { InstanceId = NewValue;  }
+	void SetInstanceId(const FString& NewValue) { InstanceId = NewValue;  }
+	/** @brief Sets the value of InstanceId using move semantics */
+	void SetInstanceId(FString&& NewValue) { InstanceId = NewValue;  }
 
 	/** @brief Additional extensions to add to the Assignment for the backfill resource associated with the session */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -69,7 +71,9 @@ struct RALLYHEREAPI_API FRHAPI_AcknowledgeBackfillRequest : public FRHAPI_Model
 	/** @brief Returns a pointer to Extensions_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FString>* GetExtensionsOrNull() const { if (Extensions_IsSet) return &Extensions_Optional; return nullptr; }
 	/** @brief Sets the value of Extensions_Optional and also sets Extensions_IsSet to true */
-	void SetExtensions(TMap<FString, FString> NewValue) { Extensions_Optional = NewValue; Extensions_IsSet = true; }
+	void SetExtensions(const TMap<FString, FString>& NewValue) { Extensions_Optional = NewValue; Extensions_IsSet = true; }
+	/** @brief Sets the value of Extensions_Optional and also sets Extensions_IsSet to true using move semantics */
+	void SetExtensions(TMap<FString, FString>&& NewValue) { Extensions_Optional = NewValue; Extensions_IsSet = true; }
 	 /** @brief Clears the value of Extensions_Optional and sets Extensions_IsSet to false */
 	void ClearExtensions() { Extensions_IsSet = false; }
 
@@ -92,7 +96,9 @@ struct RALLYHEREAPI_API FRHAPI_AcknowledgeBackfillRequest : public FRHAPI_Model
 	/** @brief Returns a pointer to OverflowAction_Optional, if it has been set, otherwise returns nullptr */
 	const ERHAPI_TeamOverflowAction* GetOverflowActionOrNull() const { if (OverflowAction_IsSet) return &OverflowAction_Optional; return nullptr; }
 	/** @brief Sets the value of OverflowAction_Optional and also sets OverflowAction_IsSet to true */
-	void SetOverflowAction(ERHAPI_TeamOverflowAction NewValue) { OverflowAction_Optional = NewValue; OverflowAction_IsSet = true; }
+	void SetOverflowAction(const ERHAPI_TeamOverflowAction& NewValue) { OverflowAction_Optional = NewValue; OverflowAction_IsSet = true; }
+	/** @brief Sets the value of OverflowAction_Optional and also sets OverflowAction_IsSet to true using move semantics */
+	void SetOverflowAction(ERHAPI_TeamOverflowAction&& NewValue) { OverflowAction_Optional = NewValue; OverflowAction_IsSet = true; }
 	 /** @brief Clears the value of OverflowAction_Optional and sets OverflowAction_IsSet to false */
 	void ClearOverflowAction() { OverflowAction_IsSet = false; }
 };

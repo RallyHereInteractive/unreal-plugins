@@ -59,7 +59,9 @@ struct RALLYHEREAPI_API FRHAPI_XpTable : public FRHAPI_Model
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
+	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
 	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false; }
 
@@ -82,7 +84,9 @@ struct RALLYHEREAPI_API FRHAPI_XpTable : public FRHAPI_Model
 	/** @brief Returns a pointer to XpUuid_Optional, if it has been set, otherwise returns nullptr */
 	const FGuid* GetXpUuidOrNull() const { if (XpUuid_IsSet) return &XpUuid_Optional; return nullptr; }
 	/** @brief Sets the value of XpUuid_Optional and also sets XpUuid_IsSet to true */
-	void SetXpUuid(FGuid NewValue) { XpUuid_Optional = NewValue; XpUuid_IsSet = true; }
+	void SetXpUuid(const FGuid& NewValue) { XpUuid_Optional = NewValue; XpUuid_IsSet = true; }
+	/** @brief Sets the value of XpUuid_Optional and also sets XpUuid_IsSet to true using move semantics */
+	void SetXpUuid(FGuid&& NewValue) { XpUuid_Optional = NewValue; XpUuid_IsSet = true; }
 	 /** @brief Clears the value of XpUuid_Optional and sets XpUuid_IsSet to false */
 	void ClearXpUuid() { XpUuid_IsSet = false; }
 
@@ -104,7 +108,9 @@ struct RALLYHEREAPI_API FRHAPI_XpTable : public FRHAPI_Model
 	/** @brief Returns a pointer to XpEntries_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, int32>* GetXpEntriesOrNull() const { if (XpEntries_IsSet) return &XpEntries_Optional; return nullptr; }
 	/** @brief Sets the value of XpEntries_Optional and also sets XpEntries_IsSet to true */
-	void SetXpEntries(TMap<FString, int32> NewValue) { XpEntries_Optional = NewValue; XpEntries_IsSet = true; }
+	void SetXpEntries(const TMap<FString, int32>& NewValue) { XpEntries_Optional = NewValue; XpEntries_IsSet = true; }
+	/** @brief Sets the value of XpEntries_Optional and also sets XpEntries_IsSet to true using move semantics */
+	void SetXpEntries(TMap<FString, int32>&& NewValue) { XpEntries_Optional = NewValue; XpEntries_IsSet = true; }
 	 /** @brief Clears the value of XpEntries_Optional and sets XpEntries_IsSet to false */
 	void ClearXpEntries() { XpEntries_IsSet = false; }
 
@@ -126,7 +132,9 @@ struct RALLYHEREAPI_API FRHAPI_XpTable : public FRHAPI_Model
 	/** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
 	const FRHAPI_CacheInfo* GetCacheInfoOrNull() const { if (CacheInfo_IsSet) return &CacheInfo_Optional; return nullptr; }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true */
-	void SetCacheInfo(FRHAPI_CacheInfo NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
+	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
+	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics */
+	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
 	 /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
 	void ClearCacheInfo() { CacheInfo_IsSet = false; }
 };

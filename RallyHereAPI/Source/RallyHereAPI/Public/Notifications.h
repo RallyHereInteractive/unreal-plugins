@@ -59,7 +59,9 @@ struct RALLYHEREAPI_API FRHAPI_Notifications : public FRHAPI_Model
 	/** @brief Returns a pointer to Notifications_Optional, if it has been set, otherwise returns nullptr */
 	const TArray<FRHAPI_Notification>* GetNotificationsOrNull() const { if (Notifications_IsSet) return &Notifications_Optional; return nullptr; }
 	/** @brief Sets the value of Notifications_Optional and also sets Notifications_IsSet to true */
-	void SetNotifications(TArray<FRHAPI_Notification> NewValue) { Notifications_Optional = NewValue; Notifications_IsSet = true; }
+	void SetNotifications(const TArray<FRHAPI_Notification>& NewValue) { Notifications_Optional = NewValue; Notifications_IsSet = true; }
+	/** @brief Sets the value of Notifications_Optional and also sets Notifications_IsSet to true using move semantics */
+	void SetNotifications(TArray<FRHAPI_Notification>&& NewValue) { Notifications_Optional = NewValue; Notifications_IsSet = true; }
 	 /** @brief Clears the value of Notifications_Optional and sets Notifications_IsSet to false */
 	void ClearNotifications() { Notifications_IsSet = false; }
 
@@ -71,7 +73,9 @@ struct RALLYHEREAPI_API FRHAPI_Notifications : public FRHAPI_Model
 	/** @brief Gets the value of Cursor */
 	const FString& GetCursor() const { return Cursor; }
 	/** @brief Sets the value of Cursor */
-	void SetCursor(FString NewValue) { Cursor = NewValue;  }
+	void SetCursor(const FString& NewValue) { Cursor = NewValue;  }
+	/** @brief Sets the value of Cursor using move semantics */
+	void SetCursor(FString&& NewValue) { Cursor = NewValue;  }
 };
 
 /** @} */

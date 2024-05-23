@@ -26,7 +26,8 @@ Setting version/value data from a specific setting type/key for a player.
 `public virtual void `[`WriteJson`](#structFRHAPI__SettingData_1ac6098c095a74f24c31aff74290e1b19b)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline int32 & `[`GetV`](#structFRHAPI__SettingData_1a540c85e652ecbfbd2641e8500c27b66a)`()` | Gets the value of V.
 `public inline const int32 & `[`GetV`](#structFRHAPI__SettingData_1abebe2f1a931f0bf0a8b90e57c4a59845)`() const` | Gets the value of V.
-`public inline void `[`SetV`](#structFRHAPI__SettingData_1a8584efc9cbcbbf717a8fa37e36aced01)`(int32 NewValue)` | Sets the value of V.
+`public inline void `[`SetV`](#structFRHAPI__SettingData_1a25a11ae202e4d86e865063d20c39cdc7)`(const int32 & NewValue)` | Sets the value of V.
+`public inline void `[`SetV`](#structFRHAPI__SettingData_1ae470149875008c4ee6bd9a4ee47822aa)`(int32 && NewValue)` | Sets the value of V using move semantics.
 `public inline bool `[`IsVDefaultValue`](#structFRHAPI__SettingData_1afac8ce0d0cac1f2a2880f9378d959d14)`() const` | Returns true if V matches the default value.
 `public inline void `[`SetVToDefault`](#structFRHAPI__SettingData_1a96191983827c14b416c2bcd6b2cc660e)`()` | Sets the value of V to its default
 `public inline `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` & `[`GetValue`](#structFRHAPI__SettingData_1aad140fab11a097a469db39728f50c2d0)`()` | Gets the value of Value_Optional, regardless of it having been set.
@@ -35,7 +36,8 @@ Setting version/value data from a specific setting type/key for a player.
 `public inline bool `[`GetValue`](#structFRHAPI__SettingData_1abf6b8af24da1c48580697ec497114cd4)`(`[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` & OutValue) const` | Fills OutValue with the value of Value_Optional and returns true if it has been set, otherwise returns false.
 `public inline `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` * `[`GetValueOrNull`](#structFRHAPI__SettingData_1a99d489a3de1bb0d9480aa8f3ff02ce4c)`()` | Returns a pointer to Value_Optional, if it has been set, otherwise returns nullptr.
 `public inline const `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` * `[`GetValueOrNull`](#structFRHAPI__SettingData_1aa0a0a6dc2295285d8c1e36c95d230b3c)`() const` | Returns a pointer to Value_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetValue`](#structFRHAPI__SettingData_1a829c0a3854f445ef75d87d45802fdeea)`(`[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` NewValue)` | Sets the value of Value_Optional and also sets Value_IsSet to true.
+`public inline void `[`SetValue`](#structFRHAPI__SettingData_1af8e69c18963b052c7387eaa4d301451e)`(const `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` & NewValue)` | Sets the value of Value_Optional and also sets Value_IsSet to true.
+`public inline void `[`SetValue`](#structFRHAPI__SettingData_1a7e44672c04f8bfef29258ea4fca0d8cb)`(`[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` && NewValue)` | Sets the value of Value_Optional and also sets Value_IsSet to true using move semantics.
 `public inline void `[`ClearValue`](#structFRHAPI__SettingData_1ae921409b065fd1a162494dbf3f9906ab)`()` | Clears the value of Value_Optional and sets Value_IsSet to false.
 
 ### Members
@@ -77,9 +79,13 @@ Gets the value of V.
 
 Gets the value of V.
 
-#### `public inline void `[`SetV`](#structFRHAPI__SettingData_1a8584efc9cbcbbf717a8fa37e36aced01)`(int32 NewValue)` <a id="structFRHAPI__SettingData_1a8584efc9cbcbbf717a8fa37e36aced01"></a>
+#### `public inline void `[`SetV`](#structFRHAPI__SettingData_1a25a11ae202e4d86e865063d20c39cdc7)`(const int32 & NewValue)` <a id="structFRHAPI__SettingData_1a25a11ae202e4d86e865063d20c39cdc7"></a>
 
 Sets the value of V.
+
+#### `public inline void `[`SetV`](#structFRHAPI__SettingData_1ae470149875008c4ee6bd9a4ee47822aa)`(int32 && NewValue)` <a id="structFRHAPI__SettingData_1ae470149875008c4ee6bd9a4ee47822aa"></a>
+
+Sets the value of V using move semantics.
 
 #### `public inline bool `[`IsVDefaultValue`](#structFRHAPI__SettingData_1afac8ce0d0cac1f2a2880f9378d959d14)`() const` <a id="structFRHAPI__SettingData_1afac8ce0d0cac1f2a2880f9378d959d14"></a>
 
@@ -113,9 +119,13 @@ Returns a pointer to Value_Optional, if it has been set, otherwise returns nullp
 
 Returns a pointer to Value_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetValue`](#structFRHAPI__SettingData_1a829c0a3854f445ef75d87d45802fdeea)`(`[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` NewValue)` <a id="structFRHAPI__SettingData_1a829c0a3854f445ef75d87d45802fdeea"></a>
+#### `public inline void `[`SetValue`](#structFRHAPI__SettingData_1af8e69c18963b052c7387eaa4d301451e)`(const `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` & NewValue)` <a id="structFRHAPI__SettingData_1af8e69c18963b052c7387eaa4d301451e"></a>
 
 Sets the value of Value_Optional and also sets Value_IsSet to true.
+
+#### `public inline void `[`SetValue`](#structFRHAPI__SettingData_1a7e44672c04f8bfef29258ea4fca0d8cb)`(`[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` && NewValue)` <a id="structFRHAPI__SettingData_1a7e44672c04f8bfef29258ea4fca0d8cb"></a>
+
+Sets the value of Value_Optional and also sets Value_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearValue`](#structFRHAPI__SettingData_1ae921409b065fd1a162494dbf3f9906ab)`()` <a id="structFRHAPI__SettingData_1ae921409b065fd1a162494dbf3f9906ab"></a>
 

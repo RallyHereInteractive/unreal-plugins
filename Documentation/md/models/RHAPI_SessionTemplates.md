@@ -29,7 +29,8 @@ A mapping of RallyHere session template types to the templates.
 `public inline bool `[`GetTemplates`](#structFRHAPI__SessionTemplates_1a0d42b4824bb9af1c810646c3d90d8644)`(TMap< FString, `[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > & OutValue) const` | Fills OutValue with the value of Templates_Optional and returns true if it has been set, otherwise returns false.
 `public inline TMap< FString, `[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > * `[`GetTemplatesOrNull`](#structFRHAPI__SessionTemplates_1a1a92056debc0a11a1e04ca9753b50071)`()` | Returns a pointer to Templates_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TMap< FString, `[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > * `[`GetTemplatesOrNull`](#structFRHAPI__SessionTemplates_1acbd85ceb3a6e5991c6f457452319019b)`() const` | Returns a pointer to Templates_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetTemplates`](#structFRHAPI__SessionTemplates_1a371255f9f30c3b980c055c01ff674948)`(TMap< FString, `[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > NewValue)` | Sets the value of Templates_Optional and also sets Templates_IsSet to true.
+`public inline void `[`SetTemplates`](#structFRHAPI__SessionTemplates_1a8967462116a8cb26a7f8a0e5b0cdde52)`(const TMap< FString, `[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > & NewValue)` | Sets the value of Templates_Optional and also sets Templates_IsSet to true.
+`public inline void `[`SetTemplates`](#structFRHAPI__SessionTemplates_1abe86dc9344d01c518d3f2ff0959aa74f)`(TMap< FString, `[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > && NewValue)` | Sets the value of Templates_Optional and also sets Templates_IsSet to true using move semantics.
 `public inline void `[`ClearTemplates`](#structFRHAPI__SessionTemplates_1a131f21d340cfc955ef693695785df14a)`()` | Clears the value of Templates_Optional and sets Templates_IsSet to false.
 
 ### Members
@@ -83,9 +84,13 @@ Returns a pointer to Templates_Optional, if it has been set, otherwise returns n
 
 Returns a pointer to Templates_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetTemplates`](#structFRHAPI__SessionTemplates_1a371255f9f30c3b980c055c01ff674948)`(TMap< FString, `[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > NewValue)` <a id="structFRHAPI__SessionTemplates_1a371255f9f30c3b980c055c01ff674948"></a>
+#### `public inline void `[`SetTemplates`](#structFRHAPI__SessionTemplates_1a8967462116a8cb26a7f8a0e5b0cdde52)`(const TMap< FString, `[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > & NewValue)` <a id="structFRHAPI__SessionTemplates_1a8967462116a8cb26a7f8a0e5b0cdde52"></a>
 
 Sets the value of Templates_Optional and also sets Templates_IsSet to true.
+
+#### `public inline void `[`SetTemplates`](#structFRHAPI__SessionTemplates_1abe86dc9344d01c518d3f2ff0959aa74f)`(TMap< FString, `[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > && NewValue)` <a id="structFRHAPI__SessionTemplates_1abe86dc9344d01c518d3f2ff0959aa74f"></a>
+
+Sets the value of Templates_Optional and also sets Templates_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearTemplates`](#structFRHAPI__SessionTemplates_1a131f21d340cfc955ef693695785df14a)`()` <a id="structFRHAPI__SessionTemplates_1a131f21d340cfc955ef693695785df14a"></a>
 

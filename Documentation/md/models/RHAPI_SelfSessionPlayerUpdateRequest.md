@@ -36,17 +36,21 @@ A request body for a player updating information about themselves.
 `public inline bool `[`GetStatus`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1aa4778eafeab137a80737cb4ac3b85aeb)`(ERHAPI_SessionPlayerStatus & OutValue) const` | Fills OutValue with the value of Status_Optional and returns true if it has been set, otherwise returns false.
 `public inline ERHAPI_SessionPlayerStatus * `[`GetStatusOrNull`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a1eb593819087754e5872e9b91f1b3289)`()` | Returns a pointer to Status_Optional, if it has been set, otherwise returns nullptr.
 `public inline const ERHAPI_SessionPlayerStatus * `[`GetStatusOrNull`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1af709ed3c843dcbaea33f66daf04b195e)`() const` | Returns a pointer to Status_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetStatus`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1af3d37c0180946dedce83850037f7631e)`(ERHAPI_SessionPlayerStatus NewValue)` | Sets the value of Status_Optional and also sets Status_IsSet to true.
+`public inline void `[`SetStatus`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a0f285e59bfe54b7d0c4b97241906b0be)`(const ERHAPI_SessionPlayerStatus & NewValue)` | Sets the value of Status_Optional and also sets Status_IsSet to true.
+`public inline void `[`SetStatus`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a4948faa7fe9618c2724448e48a7d850e)`(ERHAPI_SessionPlayerStatus && NewValue)` | Sets the value of Status_Optional and also sets Status_IsSet to true using move semantics.
 `public inline void `[`ClearStatus`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a43b611f41d315e4d920418702e1c508b)`()` | Clears the value of Status_Optional and sets Status_IsSet to false.
 `public inline FString & `[`GetClientVersion`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1ac28d2a14c9ab5f993dcf0f115ffe8065)`()` | Gets the value of ClientVersion.
 `public inline const FString & `[`GetClientVersion`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a9884671fb2a07272c4a254db4b5a60ea)`() const` | Gets the value of ClientVersion.
-`public inline void `[`SetClientVersion`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a5a7b1202b482322ca10a8b8046ecc13c)`(FString NewValue)` | Sets the value of ClientVersion.
+`public inline void `[`SetClientVersion`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1afa6bcea0716b1ec9c7092fe36487504f)`(const FString & NewValue)` | Sets the value of ClientVersion.
+`public inline void `[`SetClientVersion`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a9fbcbc38c7afa20eea8bacab4b460eee)`(FString && NewValue)` | Sets the value of ClientVersion using move semantics.
 `public inline `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & `[`GetClientSettings`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1aae5c9917394a8daea13f8e1b3fede7fc)`()` | Gets the value of ClientSettings.
 `public inline const `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & `[`GetClientSettings`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1ab53168dd05e16b5cae6ed2ffe4e2dd04)`() const` | Gets the value of ClientSettings.
-`public inline void `[`SetClientSettings`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a0e9e7718d3337ecd2f87be25e9084ba9)`(`[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` NewValue)` | Sets the value of ClientSettings.
+`public inline void `[`SetClientSettings`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1aa8e0a5a86495dcdcb3210f511dd1f0dd)`(const `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & NewValue)` | Sets the value of ClientSettings.
+`public inline void `[`SetClientSettings`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1aedd38d9bfb6d078e9486e860982c9450)`(`[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` && NewValue)` | Sets the value of ClientSettings using move semantics.
 `public inline int32 & `[`GetTeamId`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1aa91152f39bf35cdfd48f092e198c0864)`()` | Gets the value of TeamId.
 `public inline const int32 & `[`GetTeamId`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a72f5cc93485c3a7f055640acf9665505)`() const` | Gets the value of TeamId.
-`public inline void `[`SetTeamId`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a6d0501d38d1c6dd22cad1956528500b1)`(int32 NewValue)` | Sets the value of TeamId.
+`public inline void `[`SetTeamId`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a440a6f1d74af247d9284f4f118d509c7)`(const int32 & NewValue)` | Sets the value of TeamId.
+`public inline void `[`SetTeamId`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1ad69f91c5a1374d5baf61211880aac340)`(int32 && NewValue)` | Sets the value of TeamId using move semantics.
 `public inline bool `[`IsTeamIdDefaultValue`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a15c6b3db1569e1555132bf0540770064)`() const` | Returns true if TeamId matches the default value.
 `public inline void `[`SetTeamIdToDefault`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a3782cd521bb7775f673f97861613130d)`()` | Sets the value of TeamId to its default
 `public inline `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & `[`GetCrossplayPreferences`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a17bf901ce856d781acf75d3c05ce2051)`()` | Gets the value of CrossplayPreferences_Optional, regardless of it having been set.
@@ -55,7 +59,8 @@ A request body for a player updating information about themselves.
 `public inline bool `[`GetCrossplayPreferences`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1adb508ab41d796ca2863c518504d67284)`(`[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & OutValue) const` | Fills OutValue with the value of CrossplayPreferences_Optional and returns true if it has been set, otherwise returns false.
 `public inline `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` * `[`GetCrossplayPreferencesOrNull`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1ae91328b352d515792e7bfef9c022ed2e)`()` | Returns a pointer to CrossplayPreferences_Optional, if it has been set, otherwise returns nullptr.
 `public inline const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` * `[`GetCrossplayPreferencesOrNull`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1adf3c02f507868c0c8da429df6f6b7b0f)`() const` | Returns a pointer to CrossplayPreferences_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCrossplayPreferences`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a8257fa87ed002fcbca2abde0e5db3d29)`(`[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` NewValue)` | Sets the value of CrossplayPreferences_Optional and also sets CrossplayPreferences_IsSet to true.
+`public inline void `[`SetCrossplayPreferences`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1ae8c58a3802a65126d2796b83ab9710d9)`(const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & NewValue)` | Sets the value of CrossplayPreferences_Optional and also sets CrossplayPreferences_IsSet to true.
+`public inline void `[`SetCrossplayPreferences`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1ad76136a2d0ff6bcd321f8bd2fa0fdaee)`(`[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` && NewValue)` | Sets the value of CrossplayPreferences_Optional and also sets CrossplayPreferences_IsSet to true using move semantics.
 `public inline void `[`ClearCrossplayPreferences`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1ad9dacb94ea41b6f8efbf9c1c9ed3420e)`()` | Clears the value of CrossplayPreferences_Optional and sets CrossplayPreferences_IsSet to false.
 `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a9ecf38ff0a4a3ba94c5a1106348428f9)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a7f2afaef3a77a2a4697806a10de2a5af)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
@@ -63,7 +68,8 @@ A request body for a player updating information about themselves.
 `public inline bool `[`GetCustomData`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a77e8157f202a5ad51f743a00178f92a4)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1af13635fbf33bc082ff124b33867ee5cb)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a24356665c3aeec53f6f5367d79920207)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCustomData`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1ae06caba5bb32425ee95705a6e8e05937)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`SetCustomData`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a4fa7c9343daa4537935132227e07d4ae)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`SetCustomData`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a7abed25d8014343285c9a8af520774f4)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1afc76499c6b23732fdd02a72402d7e752)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
 ### Members
@@ -145,9 +151,13 @@ Returns a pointer to Status_Optional, if it has been set, otherwise returns null
 
 Returns a pointer to Status_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetStatus`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1af3d37c0180946dedce83850037f7631e)`(ERHAPI_SessionPlayerStatus NewValue)` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1af3d37c0180946dedce83850037f7631e"></a>
+#### `public inline void `[`SetStatus`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a0f285e59bfe54b7d0c4b97241906b0be)`(const ERHAPI_SessionPlayerStatus & NewValue)` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1a0f285e59bfe54b7d0c4b97241906b0be"></a>
 
 Sets the value of Status_Optional and also sets Status_IsSet to true.
+
+#### `public inline void `[`SetStatus`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a4948faa7fe9618c2724448e48a7d850e)`(ERHAPI_SessionPlayerStatus && NewValue)` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1a4948faa7fe9618c2724448e48a7d850e"></a>
+
+Sets the value of Status_Optional and also sets Status_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearStatus`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a43b611f41d315e4d920418702e1c508b)`()` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1a43b611f41d315e4d920418702e1c508b"></a>
 
@@ -161,9 +171,13 @@ Gets the value of ClientVersion.
 
 Gets the value of ClientVersion.
 
-#### `public inline void `[`SetClientVersion`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a5a7b1202b482322ca10a8b8046ecc13c)`(FString NewValue)` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1a5a7b1202b482322ca10a8b8046ecc13c"></a>
+#### `public inline void `[`SetClientVersion`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1afa6bcea0716b1ec9c7092fe36487504f)`(const FString & NewValue)` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1afa6bcea0716b1ec9c7092fe36487504f"></a>
 
 Sets the value of ClientVersion.
+
+#### `public inline void `[`SetClientVersion`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a9fbcbc38c7afa20eea8bacab4b460eee)`(FString && NewValue)` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1a9fbcbc38c7afa20eea8bacab4b460eee"></a>
+
+Sets the value of ClientVersion using move semantics.
 
 #### `public inline `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & `[`GetClientSettings`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1aae5c9917394a8daea13f8e1b3fede7fc)`()` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1aae5c9917394a8daea13f8e1b3fede7fc"></a>
 
@@ -173,9 +187,13 @@ Gets the value of ClientSettings.
 
 Gets the value of ClientSettings.
 
-#### `public inline void `[`SetClientSettings`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a0e9e7718d3337ecd2f87be25e9084ba9)`(`[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` NewValue)` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1a0e9e7718d3337ecd2f87be25e9084ba9"></a>
+#### `public inline void `[`SetClientSettings`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1aa8e0a5a86495dcdcb3210f511dd1f0dd)`(const `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & NewValue)` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1aa8e0a5a86495dcdcb3210f511dd1f0dd"></a>
 
 Sets the value of ClientSettings.
+
+#### `public inline void `[`SetClientSettings`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1aedd38d9bfb6d078e9486e860982c9450)`(`[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` && NewValue)` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1aedd38d9bfb6d078e9486e860982c9450"></a>
+
+Sets the value of ClientSettings using move semantics.
 
 #### `public inline int32 & `[`GetTeamId`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1aa91152f39bf35cdfd48f092e198c0864)`()` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1aa91152f39bf35cdfd48f092e198c0864"></a>
 
@@ -185,9 +203,13 @@ Gets the value of TeamId.
 
 Gets the value of TeamId.
 
-#### `public inline void `[`SetTeamId`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a6d0501d38d1c6dd22cad1956528500b1)`(int32 NewValue)` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1a6d0501d38d1c6dd22cad1956528500b1"></a>
+#### `public inline void `[`SetTeamId`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a440a6f1d74af247d9284f4f118d509c7)`(const int32 & NewValue)` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1a440a6f1d74af247d9284f4f118d509c7"></a>
 
 Sets the value of TeamId.
+
+#### `public inline void `[`SetTeamId`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1ad69f91c5a1374d5baf61211880aac340)`(int32 && NewValue)` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1ad69f91c5a1374d5baf61211880aac340"></a>
+
+Sets the value of TeamId using move semantics.
 
 #### `public inline bool `[`IsTeamIdDefaultValue`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a15c6b3db1569e1555132bf0540770064)`() const` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1a15c6b3db1569e1555132bf0540770064"></a>
 
@@ -221,9 +243,13 @@ Returns a pointer to CrossplayPreferences_Optional, if it has been set, otherwis
 
 Returns a pointer to CrossplayPreferences_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCrossplayPreferences`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a8257fa87ed002fcbca2abde0e5db3d29)`(`[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` NewValue)` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1a8257fa87ed002fcbca2abde0e5db3d29"></a>
+#### `public inline void `[`SetCrossplayPreferences`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1ae8c58a3802a65126d2796b83ab9710d9)`(const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & NewValue)` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1ae8c58a3802a65126d2796b83ab9710d9"></a>
 
 Sets the value of CrossplayPreferences_Optional and also sets CrossplayPreferences_IsSet to true.
+
+#### `public inline void `[`SetCrossplayPreferences`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1ad76136a2d0ff6bcd321f8bd2fa0fdaee)`(`[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` && NewValue)` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1ad76136a2d0ff6bcd321f8bd2fa0fdaee"></a>
+
+Sets the value of CrossplayPreferences_Optional and also sets CrossplayPreferences_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearCrossplayPreferences`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1ad9dacb94ea41b6f8efbf9c1c9ed3420e)`()` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1ad9dacb94ea41b6f8efbf9c1c9ed3420e"></a>
 
@@ -253,9 +279,13 @@ Returns a pointer to CustomData_Optional, if it has been set, otherwise returns 
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1ae06caba5bb32425ee95705a6e8e05937)`(TMap< FString, FString > NewValue)` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1ae06caba5bb32425ee95705a6e8e05937"></a>
+#### `public inline void `[`SetCustomData`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a4fa7c9343daa4537935132227e07d4ae)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1a4fa7c9343daa4537935132227e07d4ae"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+
+#### `public inline void `[`SetCustomData`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a7abed25d8014343285c9a8af520774f4)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1a7abed25d8014343285c9a8af520774f4"></a>
+
+Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearCustomData`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1afc76499c6b23732fdd02a72402d7e752)`()` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1afc76499c6b23732fdd02a72402d7e752"></a>
 

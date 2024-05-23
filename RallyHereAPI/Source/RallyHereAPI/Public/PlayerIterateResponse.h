@@ -59,7 +59,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerIterateResponse : public FRHAPI_Model
 	/** @brief Returns a pointer to Players_Optional, if it has been set, otherwise returns nullptr */
 	const TArray<FRHAPI_PlayerResponse>* GetPlayersOrNull() const { if (Players_IsSet) return &Players_Optional; return nullptr; }
 	/** @brief Sets the value of Players_Optional and also sets Players_IsSet to true */
-	void SetPlayers(TArray<FRHAPI_PlayerResponse> NewValue) { Players_Optional = NewValue; Players_IsSet = true; }
+	void SetPlayers(const TArray<FRHAPI_PlayerResponse>& NewValue) { Players_Optional = NewValue; Players_IsSet = true; }
+	/** @brief Sets the value of Players_Optional and also sets Players_IsSet to true using move semantics */
+	void SetPlayers(TArray<FRHAPI_PlayerResponse>&& NewValue) { Players_Optional = NewValue; Players_IsSet = true; }
 	 /** @brief Clears the value of Players_Optional and sets Players_IsSet to false */
 	void ClearPlayers() { Players_IsSet = false; }
 
@@ -82,7 +84,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerIterateResponse : public FRHAPI_Model
 	/** @brief Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetCursorOrNull() const { if (Cursor_IsSet) return &Cursor_Optional; return nullptr; }
 	/** @brief Sets the value of Cursor_Optional and also sets Cursor_IsSet to true */
-	void SetCursor(FString NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true; }
+	void SetCursor(const FString& NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true; }
+	/** @brief Sets the value of Cursor_Optional and also sets Cursor_IsSet to true using move semantics */
+	void SetCursor(FString&& NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true; }
 	 /** @brief Clears the value of Cursor_Optional and sets Cursor_IsSet to false */
 	void ClearCursor() { Cursor_Optional = TEXT(""); Cursor_IsSet = false; }
 	/** @brief Returns true if Cursor_Optional is set and matches the default value */

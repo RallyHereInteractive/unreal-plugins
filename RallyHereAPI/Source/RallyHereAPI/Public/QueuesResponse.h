@@ -48,7 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_QueuesResponse : public FRHAPI_Model
 	/** @brief Gets the value of Queues */
 	const TArray<FRHAPI_QueueConfig>& GetQueues() const { return Queues; }
 	/** @brief Sets the value of Queues */
-	void SetQueues(TArray<FRHAPI_QueueConfig> NewValue) { Queues = NewValue;  }
+	void SetQueues(const TArray<FRHAPI_QueueConfig>& NewValue) { Queues = NewValue;  }
+	/** @brief Sets the value of Queues using move semantics */
+	void SetQueues(TArray<FRHAPI_QueueConfig>&& NewValue) { Queues = NewValue;  }
 };
 
 /** @} */

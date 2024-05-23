@@ -58,7 +58,9 @@ struct RALLYHEREAPI_API FRHAPI_KVsResponseV2 : public FRHAPI_Model
 	/** @brief Returns a pointer to Kvs_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FString>* GetKvsOrNull() const { if (Kvs_IsSet) return &Kvs_Optional; return nullptr; }
 	/** @brief Sets the value of Kvs_Optional and also sets Kvs_IsSet to true */
-	void SetKvs(TMap<FString, FString> NewValue) { Kvs_Optional = NewValue; Kvs_IsSet = true; }
+	void SetKvs(const TMap<FString, FString>& NewValue) { Kvs_Optional = NewValue; Kvs_IsSet = true; }
+	/** @brief Sets the value of Kvs_Optional and also sets Kvs_IsSet to true using move semantics */
+	void SetKvs(TMap<FString, FString>&& NewValue) { Kvs_Optional = NewValue; Kvs_IsSet = true; }
 	 /** @brief Clears the value of Kvs_Optional and sets Kvs_IsSet to false */
 	void ClearKvs() { Kvs_IsSet = false; }
 
@@ -81,7 +83,9 @@ struct RALLYHEREAPI_API FRHAPI_KVsResponseV2 : public FRHAPI_Model
 	/** @brief Returns a pointer to SecretKvs_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FString>* GetSecretKvsOrNull() const { if (SecretKvs_IsSet) return &SecretKvs_Optional; return nullptr; }
 	/** @brief Sets the value of SecretKvs_Optional and also sets SecretKvs_IsSet to true */
-	void SetSecretKvs(TMap<FString, FString> NewValue) { SecretKvs_Optional = NewValue; SecretKvs_IsSet = true; }
+	void SetSecretKvs(const TMap<FString, FString>& NewValue) { SecretKvs_Optional = NewValue; SecretKvs_IsSet = true; }
+	/** @brief Sets the value of SecretKvs_Optional and also sets SecretKvs_IsSet to true using move semantics */
+	void SetSecretKvs(TMap<FString, FString>&& NewValue) { SecretKvs_Optional = NewValue; SecretKvs_IsSet = true; }
 	 /** @brief Clears the value of SecretKvs_Optional and sets SecretKvs_IsSet to false */
 	void ClearSecretKvs() { SecretKvs_IsSet = false; }
 };

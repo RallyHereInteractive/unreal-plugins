@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_TeamUpdate : public FRHAPI_Model
 	/** @brief Gets the value of MaxSize */
 	const int32& GetMaxSize() const { return MaxSize; }
 	/** @brief Sets the value of MaxSize */
-	void SetMaxSize(int32 NewValue) { MaxSize = NewValue;  }
+	void SetMaxSize(const int32& NewValue) { MaxSize = NewValue;  }
+	/** @brief Sets the value of MaxSize using move semantics */
+	void SetMaxSize(int32&& NewValue) { MaxSize = NewValue;  }
 	/** @brief Returns true if MaxSize matches the default value */
 	bool IsMaxSizeDefaultValue() const { return MaxSize == 0; }
 	/** @brief Sets the value of MaxSize to its default  */

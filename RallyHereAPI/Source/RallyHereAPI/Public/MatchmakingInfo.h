@@ -47,7 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchmakingInfo : public FRHAPI_Model
 	/** @brief Gets the value of TicketId */
 	const FString& GetTicketId() const { return TicketId; }
 	/** @brief Sets the value of TicketId */
-	void SetTicketId(FString NewValue) { TicketId = NewValue;  }
+	void SetTicketId(const FString& NewValue) { TicketId = NewValue;  }
+	/** @brief Sets the value of TicketId using move semantics */
+	void SetTicketId(FString&& NewValue) { TicketId = NewValue;  }
 
 	/** @brief session-defined custom data */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -68,7 +70,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchmakingInfo : public FRHAPI_Model
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
+	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
 	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false; }
 
@@ -91,7 +95,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchmakingInfo : public FRHAPI_Model
 	/** @brief Returns a pointer to QueueId_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetQueueIdOrNull() const { if (QueueId_IsSet) return &QueueId_Optional; return nullptr; }
 	/** @brief Sets the value of QueueId_Optional and also sets QueueId_IsSet to true */
-	void SetQueueId(FString NewValue) { QueueId_Optional = NewValue; QueueId_IsSet = true; }
+	void SetQueueId(const FString& NewValue) { QueueId_Optional = NewValue; QueueId_IsSet = true; }
+	/** @brief Sets the value of QueueId_Optional and also sets QueueId_IsSet to true using move semantics */
+	void SetQueueId(FString&& NewValue) { QueueId_Optional = NewValue; QueueId_IsSet = true; }
 	 /** @brief Clears the value of QueueId_Optional and sets QueueId_IsSet to false */
 	void ClearQueueId() { QueueId_IsSet = false; }
 };

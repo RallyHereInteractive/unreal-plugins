@@ -29,7 +29,8 @@ struct FRHAPI_PagedMatchResponse
 `public inline bool `[`GetMatches`](#structFRHAPI__PagedMatchResponse_1a0d9d7ad76c69b279231d1aeaa16999f4)`(TArray< `[`FRHAPI_MatchWithPlayers`](RHAPI_MatchWithPlayers.md#structFRHAPI__MatchWithPlayers)` > & OutValue) const` | Fills OutValue with the value of Matches_Optional and returns true if it has been set, otherwise returns false.
 `public inline TArray< `[`FRHAPI_MatchWithPlayers`](RHAPI_MatchWithPlayers.md#structFRHAPI__MatchWithPlayers)` > * `[`GetMatchesOrNull`](#structFRHAPI__PagedMatchResponse_1a1596401d0125df6d907018f9a2f6c84d)`()` | Returns a pointer to Matches_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TArray< `[`FRHAPI_MatchWithPlayers`](RHAPI_MatchWithPlayers.md#structFRHAPI__MatchWithPlayers)` > * `[`GetMatchesOrNull`](#structFRHAPI__PagedMatchResponse_1a7f568643570ec0cf5c702dda08088d62)`() const` | Returns a pointer to Matches_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetMatches`](#structFRHAPI__PagedMatchResponse_1aa479494c62243598bf486b5d03223b5b)`(TArray< `[`FRHAPI_MatchWithPlayers`](RHAPI_MatchWithPlayers.md#structFRHAPI__MatchWithPlayers)` > NewValue)` | Sets the value of Matches_Optional and also sets Matches_IsSet to true.
+`public inline void `[`SetMatches`](#structFRHAPI__PagedMatchResponse_1a703f91f13acb73b08c6da6238cf28b40)`(const TArray< `[`FRHAPI_MatchWithPlayers`](RHAPI_MatchWithPlayers.md#structFRHAPI__MatchWithPlayers)` > & NewValue)` | Sets the value of Matches_Optional and also sets Matches_IsSet to true.
+`public inline void `[`SetMatches`](#structFRHAPI__PagedMatchResponse_1ad91c8b8698cd64a55d86300093c269b6)`(TArray< `[`FRHAPI_MatchWithPlayers`](RHAPI_MatchWithPlayers.md#structFRHAPI__MatchWithPlayers)` > && NewValue)` | Sets the value of Matches_Optional and also sets Matches_IsSet to true using move semantics.
 `public inline void `[`ClearMatches`](#structFRHAPI__PagedMatchResponse_1a4e8b2a92dfa528dad2e187ef1b7603e2)`()` | Clears the value of Matches_Optional and sets Matches_IsSet to false.
 `public inline FString & `[`GetCursor`](#structFRHAPI__PagedMatchResponse_1a97fe15090807585e70c969236bc62c9b)`()` | Gets the value of Cursor_Optional, regardless of it having been set.
 `public inline const FString & `[`GetCursor`](#structFRHAPI__PagedMatchResponse_1a10f860ec7416bfb3ea527f60fd96b57d)`() const` | Gets the value of Cursor_Optional, regardless of it having been set.
@@ -37,7 +38,8 @@ struct FRHAPI_PagedMatchResponse
 `public inline bool `[`GetCursor`](#structFRHAPI__PagedMatchResponse_1a548e84660e37e00e5cb713faca4d8fa3)`(FString & OutValue) const` | Fills OutValue with the value of Cursor_Optional and returns true if it has been set, otherwise returns false.
 `public inline FString * `[`GetCursorOrNull`](#structFRHAPI__PagedMatchResponse_1a0121948f6686cccc976b83a8a92728f9)`()` | Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FString * `[`GetCursorOrNull`](#structFRHAPI__PagedMatchResponse_1a4bf08aeab7d4d4262f871d86a3d58729)`() const` | Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCursor`](#structFRHAPI__PagedMatchResponse_1a86cc1074efc7feea41724e6bb560c1e1)`(FString NewValue)` | Sets the value of Cursor_Optional and also sets Cursor_IsSet to true.
+`public inline void `[`SetCursor`](#structFRHAPI__PagedMatchResponse_1aa38213884da23e5c873e1ebcf7757fad)`(const FString & NewValue)` | Sets the value of Cursor_Optional and also sets Cursor_IsSet to true.
+`public inline void `[`SetCursor`](#structFRHAPI__PagedMatchResponse_1a8ea8baa6b0aa75afb445e0550b4e7216)`(FString && NewValue)` | Sets the value of Cursor_Optional and also sets Cursor_IsSet to true using move semantics.
 `public inline void `[`ClearCursor`](#structFRHAPI__PagedMatchResponse_1a70914e8d6d2e7ee09981e16a71800f61)`()` | Clears the value of Cursor_Optional and sets Cursor_IsSet to false.
 
 ### Members
@@ -97,9 +99,13 @@ Returns a pointer to Matches_Optional, if it has been set, otherwise returns nul
 
 Returns a pointer to Matches_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetMatches`](#structFRHAPI__PagedMatchResponse_1aa479494c62243598bf486b5d03223b5b)`(TArray< `[`FRHAPI_MatchWithPlayers`](RHAPI_MatchWithPlayers.md#structFRHAPI__MatchWithPlayers)` > NewValue)` <a id="structFRHAPI__PagedMatchResponse_1aa479494c62243598bf486b5d03223b5b"></a>
+#### `public inline void `[`SetMatches`](#structFRHAPI__PagedMatchResponse_1a703f91f13acb73b08c6da6238cf28b40)`(const TArray< `[`FRHAPI_MatchWithPlayers`](RHAPI_MatchWithPlayers.md#structFRHAPI__MatchWithPlayers)` > & NewValue)` <a id="structFRHAPI__PagedMatchResponse_1a703f91f13acb73b08c6da6238cf28b40"></a>
 
 Sets the value of Matches_Optional and also sets Matches_IsSet to true.
+
+#### `public inline void `[`SetMatches`](#structFRHAPI__PagedMatchResponse_1ad91c8b8698cd64a55d86300093c269b6)`(TArray< `[`FRHAPI_MatchWithPlayers`](RHAPI_MatchWithPlayers.md#structFRHAPI__MatchWithPlayers)` > && NewValue)` <a id="structFRHAPI__PagedMatchResponse_1ad91c8b8698cd64a55d86300093c269b6"></a>
+
+Sets the value of Matches_Optional and also sets Matches_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearMatches`](#structFRHAPI__PagedMatchResponse_1a4e8b2a92dfa528dad2e187ef1b7603e2)`()` <a id="structFRHAPI__PagedMatchResponse_1a4e8b2a92dfa528dad2e187ef1b7603e2"></a>
 
@@ -129,9 +135,13 @@ Returns a pointer to Cursor_Optional, if it has been set, otherwise returns null
 
 Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCursor`](#structFRHAPI__PagedMatchResponse_1a86cc1074efc7feea41724e6bb560c1e1)`(FString NewValue)` <a id="structFRHAPI__PagedMatchResponse_1a86cc1074efc7feea41724e6bb560c1e1"></a>
+#### `public inline void `[`SetCursor`](#structFRHAPI__PagedMatchResponse_1aa38213884da23e5c873e1ebcf7757fad)`(const FString & NewValue)` <a id="structFRHAPI__PagedMatchResponse_1aa38213884da23e5c873e1ebcf7757fad"></a>
 
 Sets the value of Cursor_Optional and also sets Cursor_IsSet to true.
+
+#### `public inline void `[`SetCursor`](#structFRHAPI__PagedMatchResponse_1a8ea8baa6b0aa75afb445e0550b4e7216)`(FString && NewValue)` <a id="structFRHAPI__PagedMatchResponse_1a8ea8baa6b0aa75afb445e0550b4e7216"></a>
+
+Sets the value of Cursor_Optional and also sets Cursor_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearCursor`](#structFRHAPI__PagedMatchResponse_1a70914e8d6d2e7ee09981e16a71800f61)`()` <a id="structFRHAPI__PagedMatchResponse_1a70914e8d6d2e7ee09981e16a71800f61"></a>
 

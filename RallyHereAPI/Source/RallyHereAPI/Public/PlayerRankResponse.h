@@ -48,7 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerRankResponse : public FRHAPI_Model
 	/** @brief Gets the value of PlayerUuid */
 	const FGuid& GetPlayerUuid() const { return PlayerUuid; }
 	/** @brief Sets the value of PlayerUuid */
-	void SetPlayerUuid(FGuid NewValue) { PlayerUuid = NewValue;  }
+	void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid = NewValue;  }
+	/** @brief Sets the value of PlayerUuid using move semantics */
+	void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid = NewValue;  }
 
 	/** @brief Current rank info about player */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -58,7 +60,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerRankResponse : public FRHAPI_Model
 	/** @brief Gets the value of Rank */
 	const FRHAPI_RankData& GetRank() const { return Rank; }
 	/** @brief Sets the value of Rank */
-	void SetRank(FRHAPI_RankData NewValue) { Rank = NewValue;  }
+	void SetRank(const FRHAPI_RankData& NewValue) { Rank = NewValue;  }
+	/** @brief Sets the value of Rank using move semantics */
+	void SetRank(FRHAPI_RankData&& NewValue) { Rank = NewValue;  }
 
 	/** @brief ID for this rank */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -68,7 +72,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerRankResponse : public FRHAPI_Model
 	/** @brief Gets the value of RankId */
 	const int32& GetRankId() const { return RankId; }
 	/** @brief Sets the value of RankId */
-	void SetRankId(int32 NewValue) { RankId = NewValue;  }
+	void SetRankId(const int32& NewValue) { RankId = NewValue;  }
+	/** @brief Sets the value of RankId using move semantics */
+	void SetRankId(int32&& NewValue) { RankId = NewValue;  }
 	/** @brief Returns true if RankId matches the default value */
 	bool IsRankIdDefaultValue() const { return RankId == 0; }
 	/** @brief Sets the value of RankId to its default  */

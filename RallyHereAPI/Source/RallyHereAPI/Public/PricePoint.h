@@ -60,7 +60,9 @@ struct RALLYHEREAPI_API FRHAPI_PricePoint : public FRHAPI_Model
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
 	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
+	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
 	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false; }
 
@@ -83,7 +85,9 @@ struct RALLYHEREAPI_API FRHAPI_PricePoint : public FRHAPI_Model
 	/** @brief Returns a pointer to Name_Optional, if it has been set, otherwise returns nullptr */
 	const FString* GetNameOrNull() const { if (Name_IsSet) return &Name_Optional; return nullptr; }
 	/** @brief Sets the value of Name_Optional and also sets Name_IsSet to true */
-	void SetName(FString NewValue) { Name_Optional = NewValue; Name_IsSet = true; }
+	void SetName(const FString& NewValue) { Name_Optional = NewValue; Name_IsSet = true; }
+	/** @brief Sets the value of Name_Optional and also sets Name_IsSet to true using move semantics */
+	void SetName(FString&& NewValue) { Name_Optional = NewValue; Name_IsSet = true; }
 	 /** @brief Clears the value of Name_Optional and sets Name_IsSet to false */
 	void ClearName() { Name_IsSet = false; }
 
@@ -106,7 +110,9 @@ struct RALLYHEREAPI_API FRHAPI_PricePoint : public FRHAPI_Model
 	/** @brief Returns a pointer to StrictFlag_Optional, if it has been set, otherwise returns nullptr */
 	const bool* GetStrictFlagOrNull() const { if (StrictFlag_IsSet) return &StrictFlag_Optional; return nullptr; }
 	/** @brief Sets the value of StrictFlag_Optional and also sets StrictFlag_IsSet to true */
-	void SetStrictFlag(bool NewValue) { StrictFlag_Optional = NewValue; StrictFlag_IsSet = true; }
+	void SetStrictFlag(const bool& NewValue) { StrictFlag_Optional = NewValue; StrictFlag_IsSet = true; }
+	/** @brief Sets the value of StrictFlag_Optional and also sets StrictFlag_IsSet to true using move semantics */
+	void SetStrictFlag(bool&& NewValue) { StrictFlag_Optional = NewValue; StrictFlag_IsSet = true; }
 	 /** @brief Clears the value of StrictFlag_Optional and sets StrictFlag_IsSet to false */
 	void ClearStrictFlag() { StrictFlag_Optional = false; StrictFlag_IsSet = false; }
 	/** @brief Returns true if StrictFlag_Optional is set and matches the default value */
@@ -133,7 +139,9 @@ struct RALLYHEREAPI_API FRHAPI_PricePoint : public FRHAPI_Model
 	/** @brief Returns a pointer to CapFlag_Optional, if it has been set, otherwise returns nullptr */
 	const bool* GetCapFlagOrNull() const { if (CapFlag_IsSet) return &CapFlag_Optional; return nullptr; }
 	/** @brief Sets the value of CapFlag_Optional and also sets CapFlag_IsSet to true */
-	void SetCapFlag(bool NewValue) { CapFlag_Optional = NewValue; CapFlag_IsSet = true; }
+	void SetCapFlag(const bool& NewValue) { CapFlag_Optional = NewValue; CapFlag_IsSet = true; }
+	/** @brief Sets the value of CapFlag_Optional and also sets CapFlag_IsSet to true using move semantics */
+	void SetCapFlag(bool&& NewValue) { CapFlag_Optional = NewValue; CapFlag_IsSet = true; }
 	 /** @brief Clears the value of CapFlag_Optional and sets CapFlag_IsSet to false */
 	void ClearCapFlag() { CapFlag_Optional = false; CapFlag_IsSet = false; }
 	/** @brief Returns true if CapFlag_Optional is set and matches the default value */
@@ -160,7 +168,9 @@ struct RALLYHEREAPI_API FRHAPI_PricePoint : public FRHAPI_Model
 	/** @brief Returns a pointer to CurrentBreakpoints_Optional, if it has been set, otherwise returns nullptr */
 	const TArray<FRHAPI_PriceBreakpoint>* GetCurrentBreakpointsOrNull() const { if (CurrentBreakpoints_IsSet) return &CurrentBreakpoints_Optional; return nullptr; }
 	/** @brief Sets the value of CurrentBreakpoints_Optional and also sets CurrentBreakpoints_IsSet to true */
-	void SetCurrentBreakpoints(TArray<FRHAPI_PriceBreakpoint> NewValue) { CurrentBreakpoints_Optional = NewValue; CurrentBreakpoints_IsSet = true; }
+	void SetCurrentBreakpoints(const TArray<FRHAPI_PriceBreakpoint>& NewValue) { CurrentBreakpoints_Optional = NewValue; CurrentBreakpoints_IsSet = true; }
+	/** @brief Sets the value of CurrentBreakpoints_Optional and also sets CurrentBreakpoints_IsSet to true using move semantics */
+	void SetCurrentBreakpoints(TArray<FRHAPI_PriceBreakpoint>&& NewValue) { CurrentBreakpoints_Optional = NewValue; CurrentBreakpoints_IsSet = true; }
 	 /** @brief Clears the value of CurrentBreakpoints_Optional and sets CurrentBreakpoints_IsSet to false */
 	void ClearCurrentBreakpoints() { CurrentBreakpoints_IsSet = false; }
 
@@ -183,7 +193,9 @@ struct RALLYHEREAPI_API FRHAPI_PricePoint : public FRHAPI_Model
 	/** @brief Returns a pointer to PreSaleBreakpoints_Optional, if it has been set, otherwise returns nullptr */
 	const TArray<FRHAPI_PriceBreakpoint>* GetPreSaleBreakpointsOrNull() const { if (PreSaleBreakpoints_IsSet) return &PreSaleBreakpoints_Optional; return nullptr; }
 	/** @brief Sets the value of PreSaleBreakpoints_Optional and also sets PreSaleBreakpoints_IsSet to true */
-	void SetPreSaleBreakpoints(TArray<FRHAPI_PriceBreakpoint> NewValue) { PreSaleBreakpoints_Optional = NewValue; PreSaleBreakpoints_IsSet = true; }
+	void SetPreSaleBreakpoints(const TArray<FRHAPI_PriceBreakpoint>& NewValue) { PreSaleBreakpoints_Optional = NewValue; PreSaleBreakpoints_IsSet = true; }
+	/** @brief Sets the value of PreSaleBreakpoints_Optional and also sets PreSaleBreakpoints_IsSet to true using move semantics */
+	void SetPreSaleBreakpoints(TArray<FRHAPI_PriceBreakpoint>&& NewValue) { PreSaleBreakpoints_Optional = NewValue; PreSaleBreakpoints_IsSet = true; }
 	 /** @brief Clears the value of PreSaleBreakpoints_Optional and sets PreSaleBreakpoints_IsSet to false */
 	void ClearPreSaleBreakpoints() { PreSaleBreakpoints_IsSet = false; }
 
@@ -206,7 +218,9 @@ struct RALLYHEREAPI_API FRHAPI_PricePoint : public FRHAPI_Model
 	/** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
 	const FRHAPI_CacheInfo* GetCacheInfoOrNull() const { if (CacheInfo_IsSet) return &CacheInfo_Optional; return nullptr; }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true */
-	void SetCacheInfo(FRHAPI_CacheInfo NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
+	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
+	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics */
+	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
 	 /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
 	void ClearCacheInfo() { CacheInfo_IsSet = false; }
 };

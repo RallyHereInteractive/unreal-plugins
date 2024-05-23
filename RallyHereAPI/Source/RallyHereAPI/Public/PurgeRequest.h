@@ -58,7 +58,9 @@ struct RALLYHEREAPI_API FRHAPI_PurgeRequest : public FRHAPI_Model
 	/** @brief Returns a pointer to SuggestedPurgeTime_Optional, if it has been set, otherwise returns nullptr */
 	const FDateTime* GetSuggestedPurgeTimeOrNull() const { if (SuggestedPurgeTime_IsSet) return &SuggestedPurgeTime_Optional; return nullptr; }
 	/** @brief Sets the value of SuggestedPurgeTime_Optional and also sets SuggestedPurgeTime_IsSet to true */
-	void SetSuggestedPurgeTime(FDateTime NewValue) { SuggestedPurgeTime_Optional = NewValue; SuggestedPurgeTime_IsSet = true; }
+	void SetSuggestedPurgeTime(const FDateTime& NewValue) { SuggestedPurgeTime_Optional = NewValue; SuggestedPurgeTime_IsSet = true; }
+	/** @brief Sets the value of SuggestedPurgeTime_Optional and also sets SuggestedPurgeTime_IsSet to true using move semantics */
+	void SetSuggestedPurgeTime(FDateTime&& NewValue) { SuggestedPurgeTime_Optional = NewValue; SuggestedPurgeTime_IsSet = true; }
 	 /** @brief Clears the value of SuggestedPurgeTime_Optional and sets SuggestedPurgeTime_IsSet to false */
 	void ClearSuggestedPurgeTime() { SuggestedPurgeTime_IsSet = false; }
 };

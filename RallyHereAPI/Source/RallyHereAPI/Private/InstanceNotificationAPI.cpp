@@ -180,7 +180,7 @@ FString FResponse_InstanceCreateNotification::GetHttpResponseCodeDescription(EHt
 	case 400:
 		return TEXT(" Error Codes: - bad_id - Passed client id is not a valid id ");
 	case 403:
-		return TEXT(" Error Codes: - auth_token_unknown - Failed to parse token - auth_token_sig_invalid - Token Signature is invalid - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_invalid_version - Invalid Authorization - version - auth_token_expired - Token is expired - auth_token_format - Invalid Authorization - {} - insufficient_permissions - Insufficient Permissions - auth_not_jwt - Invalid Authorization - auth_token_invalid_claim - Token contained invalid claim value: {} ");
+		return TEXT(" Error Codes: - auth_not_jwt - Invalid Authorization - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - insufficient_permissions - Insufficient Permissions ");
 	case 409:
 		return TEXT(" Error Codes: - too_many_listening_to_single_client - An enumeration. ");
 	case 422:
@@ -411,7 +411,7 @@ FString FResponse_InstanceGetNotificationById::GetHttpResponseCodeDescription(EH
 	case 400:
 		return TEXT(" Error Codes: - bad_id - Passed client id is not a valid id ");
 	case 403:
-		return TEXT(" Error Codes: - auth_token_unknown - Failed to parse token - auth_token_sig_invalid - Token Signature is invalid - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_invalid_version - Invalid Authorization - version - auth_token_expired - Token is expired - auth_token_format - Invalid Authorization - {} - insufficient_permissions - Insufficient Permissions - auth_not_jwt - Invalid Authorization - auth_token_invalid_claim - Token contained invalid claim value: {} ");
+		return TEXT(" Error Codes: - auth_not_jwt - Invalid Authorization - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - insufficient_permissions - Insufficient Permissions ");
 	case 404:
 		return TEXT(" Error Codes: - resource_not_found - Notification could not be found ");
 	case 409:
@@ -677,7 +677,7 @@ FString FResponse_InstanceGetNotificationsPage::GetHttpResponseCodeDescription(E
 	case 400:
 		return TEXT(" Error Codes: - bad_id - Passed client id is not a valid id ");
 	case 403:
-		return TEXT(" Error Codes: - auth_token_unknown - Failed to parse token - auth_token_sig_invalid - Token Signature is invalid - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_invalid_version - Invalid Authorization - version - auth_token_expired - Token is expired - auth_token_format - Invalid Authorization - {} - insufficient_permissions - Insufficient Permissions - auth_not_jwt - Invalid Authorization - auth_token_invalid_claim - Token contained invalid claim value: {} ");
+		return TEXT(" Error Codes: - auth_not_jwt - Invalid Authorization - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - insufficient_permissions - Insufficient Permissions ");
 	case 409:
 		return TEXT(" Error Codes: - too_many_listening_to_single_client - An enumeration. ");
 	case 422:
@@ -927,7 +927,7 @@ FString FResponse_InstanceLongPollForNotifications::GetHttpResponseCodeDescripti
 	case 400:
 		return TEXT(" Error Codes: - bad_id - Passed client id is not a valid id ");
 	case 403:
-		return TEXT(" Error Codes: - auth_token_unknown - Failed to parse token - auth_token_sig_invalid - Token Signature is invalid - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_invalid_version - Invalid Authorization - version - auth_token_expired - Token is expired - auth_token_format - Invalid Authorization - {} - insufficient_permissions - Insufficient Permissions - auth_not_jwt - Invalid Authorization - auth_token_invalid_claim - Token contained invalid claim value: {} ");
+		return TEXT(" Error Codes: - auth_not_jwt - Invalid Authorization - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - insufficient_permissions - Insufficient Permissions ");
 	case 409:
 		return TEXT(" Error Codes: - too_many_listening_to_single_client - An enumeration. ");
 	case 422:

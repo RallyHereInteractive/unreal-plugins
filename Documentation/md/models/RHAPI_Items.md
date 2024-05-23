@@ -31,7 +31,8 @@ A collections of Items by Item ID.
 `public inline bool `[`GetItems`](#structFRHAPI__Items_1af64a10709091193e9ddf7f8cae227334)`(TMap< FString, `[`FRHAPI_Item`](RHAPI_Item.md#structFRHAPI__Item)` > & OutValue) const` | Fills OutValue with the value of Items_Optional and returns true if it has been set, otherwise returns false.
 `public inline TMap< FString, `[`FRHAPI_Item`](RHAPI_Item.md#structFRHAPI__Item)` > * `[`GetItemsOrNull`](#structFRHAPI__Items_1a59a64d015fb6d45f928a01d377ca9ff1)`()` | Returns a pointer to Items_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TMap< FString, `[`FRHAPI_Item`](RHAPI_Item.md#structFRHAPI__Item)` > * `[`GetItemsOrNull`](#structFRHAPI__Items_1a727c9a06c92134aa5df7380d3b213b4e)`() const` | Returns a pointer to Items_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetItems`](#structFRHAPI__Items_1a3d7697d693b05aef7dc34583c8aa4188)`(TMap< FString, `[`FRHAPI_Item`](RHAPI_Item.md#structFRHAPI__Item)` > NewValue)` | Sets the value of Items_Optional and also sets Items_IsSet to true.
+`public inline void `[`SetItems`](#structFRHAPI__Items_1a47eafcaaf4df9d3232ee0435885bdac9)`(const TMap< FString, `[`FRHAPI_Item`](RHAPI_Item.md#structFRHAPI__Item)` > & NewValue)` | Sets the value of Items_Optional and also sets Items_IsSet to true.
+`public inline void `[`SetItems`](#structFRHAPI__Items_1ab46ba0d20c0b3a5858b5f355162c65c8)`(TMap< FString, `[`FRHAPI_Item`](RHAPI_Item.md#structFRHAPI__Item)` > && NewValue)` | Sets the value of Items_Optional and also sets Items_IsSet to true using move semantics.
 `public inline void `[`ClearItems`](#structFRHAPI__Items_1a2f14e5ee5d4d02ff849753ef84a9a713)`()` | Clears the value of Items_Optional and sets Items_IsSet to false.
 `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Items_1a298ec445177a4b83f5ecb0033a193b7f)`()` | Gets the value of CacheInfo_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Items_1af09b7f5f49d7f5ba4e38002a72473e18)`() const` | Gets the value of CacheInfo_Optional, regardless of it having been set.
@@ -39,7 +40,8 @@ A collections of Items by Item ID.
 `public inline bool `[`GetCacheInfo`](#structFRHAPI__Items_1a88edb36b4ed0b822839435f34dc71c2b)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & OutValue) const` | Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false.
 `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__Items_1a3fd57fc77b04c5e29de60c279a4e0761)`()` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
 `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__Items_1a3071a0878ff7776f22f57fcd3f93098e)`() const` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCacheInfo`](#structFRHAPI__Items_1ab308c1803a753ea3b798d90e685592a5)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
+`public inline void `[`SetCacheInfo`](#structFRHAPI__Items_1aadfa9e40f2503e083779241e131ba28d)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
+`public inline void `[`SetCacheInfo`](#structFRHAPI__Items_1af646e5c2a1dfac658afe04beb5af0623)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__Items_1a92bb319e2322768d4493dd851721c1ac)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 
 ### Members
@@ -101,9 +103,13 @@ Returns a pointer to Items_Optional, if it has been set, otherwise returns nullp
 
 Returns a pointer to Items_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetItems`](#structFRHAPI__Items_1a3d7697d693b05aef7dc34583c8aa4188)`(TMap< FString, `[`FRHAPI_Item`](RHAPI_Item.md#structFRHAPI__Item)` > NewValue)` <a id="structFRHAPI__Items_1a3d7697d693b05aef7dc34583c8aa4188"></a>
+#### `public inline void `[`SetItems`](#structFRHAPI__Items_1a47eafcaaf4df9d3232ee0435885bdac9)`(const TMap< FString, `[`FRHAPI_Item`](RHAPI_Item.md#structFRHAPI__Item)` > & NewValue)` <a id="structFRHAPI__Items_1a47eafcaaf4df9d3232ee0435885bdac9"></a>
 
 Sets the value of Items_Optional and also sets Items_IsSet to true.
+
+#### `public inline void `[`SetItems`](#structFRHAPI__Items_1ab46ba0d20c0b3a5858b5f355162c65c8)`(TMap< FString, `[`FRHAPI_Item`](RHAPI_Item.md#structFRHAPI__Item)` > && NewValue)` <a id="structFRHAPI__Items_1ab46ba0d20c0b3a5858b5f355162c65c8"></a>
+
+Sets the value of Items_Optional and also sets Items_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearItems`](#structFRHAPI__Items_1a2f14e5ee5d4d02ff849753ef84a9a713)`()` <a id="structFRHAPI__Items_1a2f14e5ee5d4d02ff849753ef84a9a713"></a>
 
@@ -133,9 +139,13 @@ Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns n
 
 Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCacheInfo`](#structFRHAPI__Items_1ab308c1803a753ea3b798d90e685592a5)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` NewValue)` <a id="structFRHAPI__Items_1ab308c1803a753ea3b798d90e685592a5"></a>
+#### `public inline void `[`SetCacheInfo`](#structFRHAPI__Items_1aadfa9e40f2503e083779241e131ba28d)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` <a id="structFRHAPI__Items_1aadfa9e40f2503e083779241e131ba28d"></a>
 
 Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
+
+#### `public inline void `[`SetCacheInfo`](#structFRHAPI__Items_1af646e5c2a1dfac658afe04beb5af0623)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` <a id="structFRHAPI__Items_1af646e5c2a1dfac658afe04beb5af0623"></a>
+
+Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearCacheInfo`](#structFRHAPI__Items_1a92bb319e2322768d4493dd851721c1ac)`()` <a id="structFRHAPI__Items_1a92bb319e2322768d4493dd851721c1ac"></a>
 

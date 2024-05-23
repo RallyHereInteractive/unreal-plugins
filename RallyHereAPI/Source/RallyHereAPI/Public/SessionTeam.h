@@ -48,7 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionTeam : public FRHAPI_Model
 	/** @brief Gets the value of Players */
 	const TArray<FRHAPI_SessionPlayer>& GetPlayers() const { return Players; }
 	/** @brief Sets the value of Players */
-	void SetPlayers(TArray<FRHAPI_SessionPlayer> NewValue) { Players = NewValue;  }
+	void SetPlayers(const TArray<FRHAPI_SessionPlayer>& NewValue) { Players = NewValue;  }
+	/** @brief Sets the value of Players using move semantics */
+	void SetPlayers(TArray<FRHAPI_SessionPlayer>&& NewValue) { Players = NewValue;  }
 
 	/** @brief Maximum number of players allowed on this team */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -58,7 +60,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionTeam : public FRHAPI_Model
 	/** @brief Gets the value of MaxSize */
 	const int32& GetMaxSize() const { return MaxSize; }
 	/** @brief Sets the value of MaxSize */
-	void SetMaxSize(int32 NewValue) { MaxSize = NewValue;  }
+	void SetMaxSize(const int32& NewValue) { MaxSize = NewValue;  }
+	/** @brief Sets the value of MaxSize using move semantics */
+	void SetMaxSize(int32&& NewValue) { MaxSize = NewValue;  }
 	/** @brief Returns true if MaxSize matches the default value */
 	bool IsMaxSizeDefaultValue() const { return MaxSize == 0; }
 	/** @brief Sets the value of MaxSize to its default  */
@@ -83,7 +87,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionTeam : public FRHAPI_Model
 	/** @brief Returns a pointer to TeamId_Optional, if it has been set, otherwise returns nullptr */
 	const int32* GetTeamIdOrNull() const { if (TeamId_IsSet) return &TeamId_Optional; return nullptr; }
 	/** @brief Sets the value of TeamId_Optional and also sets TeamId_IsSet to true */
-	void SetTeamId(int32 NewValue) { TeamId_Optional = NewValue; TeamId_IsSet = true; }
+	void SetTeamId(const int32& NewValue) { TeamId_Optional = NewValue; TeamId_IsSet = true; }
+	/** @brief Sets the value of TeamId_Optional and also sets TeamId_IsSet to true using move semantics */
+	void SetTeamId(int32&& NewValue) { TeamId_Optional = NewValue; TeamId_IsSet = true; }
 	 /** @brief Clears the value of TeamId_Optional and sets TeamId_IsSet to false */
 	void ClearTeamId() { TeamId_Optional = 0; TeamId_IsSet = false; }
 	/** @brief Returns true if TeamId_Optional is set and matches the default value */
@@ -110,7 +116,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionTeam : public FRHAPI_Model
 	/** @brief Returns a pointer to TicketIds_Optional, if it has been set, otherwise returns nullptr */
 	const TArray<FString>* GetTicketIdsOrNull() const { if (TicketIds_IsSet) return &TicketIds_Optional; return nullptr; }
 	/** @brief Sets the value of TicketIds_Optional and also sets TicketIds_IsSet to true */
-	void SetTicketIds(TArray<FString> NewValue) { TicketIds_Optional = NewValue; TicketIds_IsSet = true; }
+	void SetTicketIds(const TArray<FString>& NewValue) { TicketIds_Optional = NewValue; TicketIds_IsSet = true; }
+	/** @brief Sets the value of TicketIds_Optional and also sets TicketIds_IsSet to true using move semantics */
+	void SetTicketIds(TArray<FString>&& NewValue) { TicketIds_Optional = NewValue; TicketIds_IsSet = true; }
 	 /** @brief Clears the value of TicketIds_Optional and sets TicketIds_IsSet to false */
 	void ClearTicketIds() { TicketIds_IsSet = false; }
 };
