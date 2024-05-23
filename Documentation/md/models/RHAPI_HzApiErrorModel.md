@@ -29,16 +29,19 @@ struct FRHAPI_HzApiErrorModel
 `public inline bool `[`GetAuthSuccess`](#structFRHAPI__HzApiErrorModel_1a86294d7f68007b62297b4ebdce7b387c)`(bool & OutValue) const` | Fills OutValue with the value of AuthSuccess_Optional and returns true if it has been set, otherwise returns false.
 `public inline bool * `[`GetAuthSuccessOrNull`](#structFRHAPI__HzApiErrorModel_1a679ac0e5c83ba18fc7797d8a7fdf6585)`()` | Returns a pointer to AuthSuccess_Optional, if it has been set, otherwise returns nullptr.
 `public inline const bool * `[`GetAuthSuccessOrNull`](#structFRHAPI__HzApiErrorModel_1aa7c5416fce5423f21e85331eb7cc17df)`() const` | Returns a pointer to AuthSuccess_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetAuthSuccess`](#structFRHAPI__HzApiErrorModel_1a2cfd62235e5ce61e8e53f014152f5b08)`(bool NewValue)` | Sets the value of AuthSuccess_Optional and also sets AuthSuccess_IsSet to true.
+`public inline void `[`SetAuthSuccess`](#structFRHAPI__HzApiErrorModel_1aeb10d045ab0483d2c861ce8c004da323)`(const bool & NewValue)` | Sets the value of AuthSuccess_Optional and also sets AuthSuccess_IsSet to true.
+`public inline void `[`SetAuthSuccess`](#structFRHAPI__HzApiErrorModel_1a62c8d08698ebae0949ca8de3fa3d0ed9)`(bool && NewValue)` | Sets the value of AuthSuccess_Optional and also sets AuthSuccess_IsSet to true using move semantics.
 `public inline void `[`ClearAuthSuccess`](#structFRHAPI__HzApiErrorModel_1a02132e1b9773e2f1ad0177f1f9bec798)`()` | Clears the value of AuthSuccess_Optional and sets AuthSuccess_IsSet to false.
 `public inline bool `[`IsAuthSuccessDefaultValue`](#structFRHAPI__HzApiErrorModel_1a9dba3f3ce37138195c71b0569de4cfd6)`() const` | Returns true if AuthSuccess_Optional is set and matches the default value.
 `public inline void `[`SetAuthSuccessToDefault`](#structFRHAPI__HzApiErrorModel_1a46994e9d2e4a2f35c4663a06b6c3ba35)`()` | Sets the value of AuthSuccess_Optional to its default and also sets AuthSuccess_IsSet to true.
 `public inline FString & `[`GetErrorCode`](#structFRHAPI__HzApiErrorModel_1ad0a304e4b2f1f60f2f62319237856ac8)`()` | Gets the value of ErrorCode.
 `public inline const FString & `[`GetErrorCode`](#structFRHAPI__HzApiErrorModel_1a755d0d8b52c5f8ad55313b5bf810f62e)`() const` | Gets the value of ErrorCode.
-`public inline void `[`SetErrorCode`](#structFRHAPI__HzApiErrorModel_1ac18374ef3ff865995112c28ed1b185b9)`(FString NewValue)` | Sets the value of ErrorCode.
+`public inline void `[`SetErrorCode`](#structFRHAPI__HzApiErrorModel_1a28916e46afed0e412f028ed0d3f6eb36)`(const FString & NewValue)` | Sets the value of ErrorCode.
+`public inline void `[`SetErrorCode`](#structFRHAPI__HzApiErrorModel_1a9094c6b8a7d02dc0b2405ed955a9e075)`(FString && NewValue)` | Sets the value of ErrorCode using move semantics.
 `public inline FString & `[`GetDesc`](#structFRHAPI__HzApiErrorModel_1a496a4192b0576bc7002e9f125ce2f749)`()` | Gets the value of Desc.
 `public inline const FString & `[`GetDesc`](#structFRHAPI__HzApiErrorModel_1a65965171338907af99cdae71df426171)`() const` | Gets the value of Desc.
-`public inline void `[`SetDesc`](#structFRHAPI__HzApiErrorModel_1af32229f3c1dc37276045d5221e905d27)`(FString NewValue)` | Sets the value of Desc.
+`public inline void `[`SetDesc`](#structFRHAPI__HzApiErrorModel_1ae459d740cce8090ea8848e56f42c0238)`(const FString & NewValue)` | Sets the value of Desc.
+`public inline void `[`SetDesc`](#structFRHAPI__HzApiErrorModel_1ac168956ae2561b559455c29aed860bc2)`(FString && NewValue)` | Sets the value of Desc using move semantics.
 
 ### Members
 
@@ -93,9 +96,13 @@ Returns a pointer to AuthSuccess_Optional, if it has been set, otherwise returns
 
 Returns a pointer to AuthSuccess_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetAuthSuccess`](#structFRHAPI__HzApiErrorModel_1a2cfd62235e5ce61e8e53f014152f5b08)`(bool NewValue)` <a id="structFRHAPI__HzApiErrorModel_1a2cfd62235e5ce61e8e53f014152f5b08"></a>
+#### `public inline void `[`SetAuthSuccess`](#structFRHAPI__HzApiErrorModel_1aeb10d045ab0483d2c861ce8c004da323)`(const bool & NewValue)` <a id="structFRHAPI__HzApiErrorModel_1aeb10d045ab0483d2c861ce8c004da323"></a>
 
 Sets the value of AuthSuccess_Optional and also sets AuthSuccess_IsSet to true.
+
+#### `public inline void `[`SetAuthSuccess`](#structFRHAPI__HzApiErrorModel_1a62c8d08698ebae0949ca8de3fa3d0ed9)`(bool && NewValue)` <a id="structFRHAPI__HzApiErrorModel_1a62c8d08698ebae0949ca8de3fa3d0ed9"></a>
+
+Sets the value of AuthSuccess_Optional and also sets AuthSuccess_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearAuthSuccess`](#structFRHAPI__HzApiErrorModel_1a02132e1b9773e2f1ad0177f1f9bec798)`()` <a id="structFRHAPI__HzApiErrorModel_1a02132e1b9773e2f1ad0177f1f9bec798"></a>
 
@@ -117,9 +124,13 @@ Gets the value of ErrorCode.
 
 Gets the value of ErrorCode.
 
-#### `public inline void `[`SetErrorCode`](#structFRHAPI__HzApiErrorModel_1ac18374ef3ff865995112c28ed1b185b9)`(FString NewValue)` <a id="structFRHAPI__HzApiErrorModel_1ac18374ef3ff865995112c28ed1b185b9"></a>
+#### `public inline void `[`SetErrorCode`](#structFRHAPI__HzApiErrorModel_1a28916e46afed0e412f028ed0d3f6eb36)`(const FString & NewValue)` <a id="structFRHAPI__HzApiErrorModel_1a28916e46afed0e412f028ed0d3f6eb36"></a>
 
 Sets the value of ErrorCode.
+
+#### `public inline void `[`SetErrorCode`](#structFRHAPI__HzApiErrorModel_1a9094c6b8a7d02dc0b2405ed955a9e075)`(FString && NewValue)` <a id="structFRHAPI__HzApiErrorModel_1a9094c6b8a7d02dc0b2405ed955a9e075"></a>
+
+Sets the value of ErrorCode using move semantics.
 
 #### `public inline FString & `[`GetDesc`](#structFRHAPI__HzApiErrorModel_1a496a4192b0576bc7002e9f125ce2f749)`()` <a id="structFRHAPI__HzApiErrorModel_1a496a4192b0576bc7002e9f125ce2f749"></a>
 
@@ -129,7 +140,11 @@ Gets the value of Desc.
 
 Gets the value of Desc.
 
-#### `public inline void `[`SetDesc`](#structFRHAPI__HzApiErrorModel_1af32229f3c1dc37276045d5221e905d27)`(FString NewValue)` <a id="structFRHAPI__HzApiErrorModel_1af32229f3c1dc37276045d5221e905d27"></a>
+#### `public inline void `[`SetDesc`](#structFRHAPI__HzApiErrorModel_1ae459d740cce8090ea8848e56f42c0238)`(const FString & NewValue)` <a id="structFRHAPI__HzApiErrorModel_1ae459d740cce8090ea8848e56f42c0238"></a>
 
 Sets the value of Desc.
+
+#### `public inline void `[`SetDesc`](#structFRHAPI__HzApiErrorModel_1ac168956ae2561b559455c29aed860bc2)`(FString && NewValue)` <a id="structFRHAPI__HzApiErrorModel_1ac168956ae2561b559455c29aed860bc2"></a>
+
+Sets the value of Desc using move semantics.
 

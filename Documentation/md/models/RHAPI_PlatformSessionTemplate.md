@@ -30,20 +30,24 @@ Template used to create new platform sessions for a specific type of platform. C
 `public virtual void `[`WriteJson`](#structFRHAPI__PlatformSessionTemplate_1ae18e5802f726493cc53d3b6a941052f3)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline ERHAPI_PlatformID & `[`GetPlatformId`](#structFRHAPI__PlatformSessionTemplate_1a1ba25b3925205ce1043ab6405149c654)`()` | Gets the value of PlatformId.
 `public inline const ERHAPI_PlatformID & `[`GetPlatformId`](#structFRHAPI__PlatformSessionTemplate_1a29a74f1aec1b8bbb0da3b4dc7ff9cfe4)`() const` | Gets the value of PlatformId.
-`public inline void `[`SetPlatformId`](#structFRHAPI__PlatformSessionTemplate_1ab3bb4c8fa9d9689a2bff93f9a9806d4f)`(ERHAPI_PlatformID NewValue)` | Sets the value of PlatformId.
+`public inline void `[`SetPlatformId`](#structFRHAPI__PlatformSessionTemplate_1a50de2227039ed3b70a00f0bdd56c6176)`(const ERHAPI_PlatformID & NewValue)` | Sets the value of PlatformId.
+`public inline void `[`SetPlatformId`](#structFRHAPI__PlatformSessionTemplate_1a1ccf854776ab9ce9ef98ff7dfb4db375)`(ERHAPI_PlatformID && NewValue)` | Sets the value of PlatformId using move semantics.
 `public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PlatformSessionTemplate_1aaa03090feaa90bf86a69a3fb9358a8ad)`()` | Gets the value of Platform.
 `public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PlatformSessionTemplate_1a3730049b24ff914aa7edce798156269f)`() const` | Gets the value of Platform.
-`public inline void `[`SetPlatform`](#structFRHAPI__PlatformSessionTemplate_1a0b76e6498381802e9867a4c67b45be85)`(ERHAPI_Platform NewValue)` | Sets the value of Platform.
+`public inline void `[`SetPlatform`](#structFRHAPI__PlatformSessionTemplate_1ae2778f814b7c09406ecfeb489348470e)`(const ERHAPI_Platform & NewValue)` | Sets the value of Platform.
+`public inline void `[`SetPlatform`](#structFRHAPI__PlatformSessionTemplate_1a8b23d91876792c0fad9a23d7fc0baae8)`(ERHAPI_Platform && NewValue)` | Sets the value of Platform using move semantics.
 `public inline FString & `[`GetPlatformSessionType`](#structFRHAPI__PlatformSessionTemplate_1a4cbe1d9976dfbba75ebb02c8d71f12dd)`()` | Gets the value of PlatformSessionType.
 `public inline const FString & `[`GetPlatformSessionType`](#structFRHAPI__PlatformSessionTemplate_1a24a0a7504fdacbe9a8696e65f4445e81)`() const` | Gets the value of PlatformSessionType.
-`public inline void `[`SetPlatformSessionType`](#structFRHAPI__PlatformSessionTemplate_1a98903f927c175ec2f8d650bb0c9924d5)`(FString NewValue)` | Sets the value of PlatformSessionType.
+`public inline void `[`SetPlatformSessionType`](#structFRHAPI__PlatformSessionTemplate_1ae4649c2c8e864f15123671ca4ad6697e)`(const FString & NewValue)` | Sets the value of PlatformSessionType.
+`public inline void `[`SetPlatformSessionType`](#structFRHAPI__PlatformSessionTemplate_1ab0a3eb9f9c4e4a3ee3f7cc881c933f45)`(FString && NewValue)` | Sets the value of PlatformSessionType using move semantics.
 `public inline int32 & `[`GetMaxPlayers`](#structFRHAPI__PlatformSessionTemplate_1adac1a80b307d7cec56c1158adae10710)`()` | Gets the value of MaxPlayers_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetMaxPlayers`](#structFRHAPI__PlatformSessionTemplate_1a5e06d329050cf9909daecd0e392aa966)`() const` | Gets the value of MaxPlayers_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetMaxPlayers`](#structFRHAPI__PlatformSessionTemplate_1a8225b01e34f6b240d5934f6eab337977)`(const int32 & DefaultValue) const` | Gets the value of MaxPlayers_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetMaxPlayers`](#structFRHAPI__PlatformSessionTemplate_1a16185aff7b18ea80da7ac53720287811)`(int32 & OutValue) const` | Fills OutValue with the value of MaxPlayers_Optional and returns true if it has been set, otherwise returns false.
 `public inline int32 * `[`GetMaxPlayersOrNull`](#structFRHAPI__PlatformSessionTemplate_1adb188930a6a2fd9801e5dec1e68b46b8)`()` | Returns a pointer to MaxPlayers_Optional, if it has been set, otherwise returns nullptr.
 `public inline const int32 * `[`GetMaxPlayersOrNull`](#structFRHAPI__PlatformSessionTemplate_1ab3ba73e245474b42f2146b1c3e7c1b7b)`() const` | Returns a pointer to MaxPlayers_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetMaxPlayers`](#structFRHAPI__PlatformSessionTemplate_1a87f775ac012c4e63d28bf89d2ff604c1)`(int32 NewValue)` | Sets the value of MaxPlayers_Optional and also sets MaxPlayers_IsSet to true.
+`public inline void `[`SetMaxPlayers`](#structFRHAPI__PlatformSessionTemplate_1a20472cbcd3e87ccbbf4933a6f7db32a3)`(const int32 & NewValue)` | Sets the value of MaxPlayers_Optional and also sets MaxPlayers_IsSet to true.
+`public inline void `[`SetMaxPlayers`](#structFRHAPI__PlatformSessionTemplate_1a54fcc2739ae5f6a0c923525ccfe7250e)`(int32 && NewValue)` | Sets the value of MaxPlayers_Optional and also sets MaxPlayers_IsSet to true using move semantics.
 `public inline void `[`ClearMaxPlayers`](#structFRHAPI__PlatformSessionTemplate_1af2d8b5f464542815bcbbcf41870d0acc)`()` | Clears the value of MaxPlayers_Optional and sets MaxPlayers_IsSet to false.
 `public inline bool `[`IsMaxPlayersDefaultValue`](#structFRHAPI__PlatformSessionTemplate_1afcc99ba028d9ae88bd51bd821e79081e)`() const` | Returns true if MaxPlayers_Optional is set and matches the default value.
 `public inline void `[`SetMaxPlayersToDefault`](#structFRHAPI__PlatformSessionTemplate_1a906c779ed24a184bbf330d00f26a6f21)`()` | Sets the value of MaxPlayers_Optional to its default and also sets MaxPlayers_IsSet to true.
@@ -53,7 +57,8 @@ Template used to create new platform sessions for a specific type of platform. C
 `public inline bool `[`GetCustomData`](#structFRHAPI__PlatformSessionTemplate_1a245b15b5a658c492364ea19ad5911b56)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PlatformSessionTemplate_1a695a2c70e2430ff72683f866fa0dd126)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PlatformSessionTemplate_1aa7c5172eaa282ce126e031459a60b1c0)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCustomData`](#structFRHAPI__PlatformSessionTemplate_1a7bbcfbaaf9edbe5d6d9dc50669b33ff9)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`SetCustomData`](#structFRHAPI__PlatformSessionTemplate_1a84b094834ca70ea0cdef308dfca71190)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`SetCustomData`](#structFRHAPI__PlatformSessionTemplate_1aca029e260d3091a665af93f24722cea1)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__PlatformSessionTemplate_1a1bab29f42e2c1c50068349c69c644583)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
 ### Members
@@ -111,9 +116,13 @@ Gets the value of PlatformId.
 
 Gets the value of PlatformId.
 
-#### `public inline void `[`SetPlatformId`](#structFRHAPI__PlatformSessionTemplate_1ab3bb4c8fa9d9689a2bff93f9a9806d4f)`(ERHAPI_PlatformID NewValue)` <a id="structFRHAPI__PlatformSessionTemplate_1ab3bb4c8fa9d9689a2bff93f9a9806d4f"></a>
+#### `public inline void `[`SetPlatformId`](#structFRHAPI__PlatformSessionTemplate_1a50de2227039ed3b70a00f0bdd56c6176)`(const ERHAPI_PlatformID & NewValue)` <a id="structFRHAPI__PlatformSessionTemplate_1a50de2227039ed3b70a00f0bdd56c6176"></a>
 
 Sets the value of PlatformId.
+
+#### `public inline void `[`SetPlatformId`](#structFRHAPI__PlatformSessionTemplate_1a1ccf854776ab9ce9ef98ff7dfb4db375)`(ERHAPI_PlatformID && NewValue)` <a id="structFRHAPI__PlatformSessionTemplate_1a1ccf854776ab9ce9ef98ff7dfb4db375"></a>
+
+Sets the value of PlatformId using move semantics.
 
 #### `public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PlatformSessionTemplate_1aaa03090feaa90bf86a69a3fb9358a8ad)`()` <a id="structFRHAPI__PlatformSessionTemplate_1aaa03090feaa90bf86a69a3fb9358a8ad"></a>
 
@@ -123,9 +132,13 @@ Gets the value of Platform.
 
 Gets the value of Platform.
 
-#### `public inline void `[`SetPlatform`](#structFRHAPI__PlatformSessionTemplate_1a0b76e6498381802e9867a4c67b45be85)`(ERHAPI_Platform NewValue)` <a id="structFRHAPI__PlatformSessionTemplate_1a0b76e6498381802e9867a4c67b45be85"></a>
+#### `public inline void `[`SetPlatform`](#structFRHAPI__PlatformSessionTemplate_1ae2778f814b7c09406ecfeb489348470e)`(const ERHAPI_Platform & NewValue)` <a id="structFRHAPI__PlatformSessionTemplate_1ae2778f814b7c09406ecfeb489348470e"></a>
 
 Sets the value of Platform.
+
+#### `public inline void `[`SetPlatform`](#structFRHAPI__PlatformSessionTemplate_1a8b23d91876792c0fad9a23d7fc0baae8)`(ERHAPI_Platform && NewValue)` <a id="structFRHAPI__PlatformSessionTemplate_1a8b23d91876792c0fad9a23d7fc0baae8"></a>
+
+Sets the value of Platform using move semantics.
 
 #### `public inline FString & `[`GetPlatformSessionType`](#structFRHAPI__PlatformSessionTemplate_1a4cbe1d9976dfbba75ebb02c8d71f12dd)`()` <a id="structFRHAPI__PlatformSessionTemplate_1a4cbe1d9976dfbba75ebb02c8d71f12dd"></a>
 
@@ -135,9 +148,13 @@ Gets the value of PlatformSessionType.
 
 Gets the value of PlatformSessionType.
 
-#### `public inline void `[`SetPlatformSessionType`](#structFRHAPI__PlatformSessionTemplate_1a98903f927c175ec2f8d650bb0c9924d5)`(FString NewValue)` <a id="structFRHAPI__PlatformSessionTemplate_1a98903f927c175ec2f8d650bb0c9924d5"></a>
+#### `public inline void `[`SetPlatformSessionType`](#structFRHAPI__PlatformSessionTemplate_1ae4649c2c8e864f15123671ca4ad6697e)`(const FString & NewValue)` <a id="structFRHAPI__PlatformSessionTemplate_1ae4649c2c8e864f15123671ca4ad6697e"></a>
 
 Sets the value of PlatformSessionType.
+
+#### `public inline void `[`SetPlatformSessionType`](#structFRHAPI__PlatformSessionTemplate_1ab0a3eb9f9c4e4a3ee3f7cc881c933f45)`(FString && NewValue)` <a id="structFRHAPI__PlatformSessionTemplate_1ab0a3eb9f9c4e4a3ee3f7cc881c933f45"></a>
+
+Sets the value of PlatformSessionType using move semantics.
 
 #### `public inline int32 & `[`GetMaxPlayers`](#structFRHAPI__PlatformSessionTemplate_1adac1a80b307d7cec56c1158adae10710)`()` <a id="structFRHAPI__PlatformSessionTemplate_1adac1a80b307d7cec56c1158adae10710"></a>
 
@@ -163,9 +180,13 @@ Returns a pointer to MaxPlayers_Optional, if it has been set, otherwise returns 
 
 Returns a pointer to MaxPlayers_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetMaxPlayers`](#structFRHAPI__PlatformSessionTemplate_1a87f775ac012c4e63d28bf89d2ff604c1)`(int32 NewValue)` <a id="structFRHAPI__PlatformSessionTemplate_1a87f775ac012c4e63d28bf89d2ff604c1"></a>
+#### `public inline void `[`SetMaxPlayers`](#structFRHAPI__PlatformSessionTemplate_1a20472cbcd3e87ccbbf4933a6f7db32a3)`(const int32 & NewValue)` <a id="structFRHAPI__PlatformSessionTemplate_1a20472cbcd3e87ccbbf4933a6f7db32a3"></a>
 
 Sets the value of MaxPlayers_Optional and also sets MaxPlayers_IsSet to true.
+
+#### `public inline void `[`SetMaxPlayers`](#structFRHAPI__PlatformSessionTemplate_1a54fcc2739ae5f6a0c923525ccfe7250e)`(int32 && NewValue)` <a id="structFRHAPI__PlatformSessionTemplate_1a54fcc2739ae5f6a0c923525ccfe7250e"></a>
+
+Sets the value of MaxPlayers_Optional and also sets MaxPlayers_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearMaxPlayers`](#structFRHAPI__PlatformSessionTemplate_1af2d8b5f464542815bcbbcf41870d0acc)`()` <a id="structFRHAPI__PlatformSessionTemplate_1af2d8b5f464542815bcbbcf41870d0acc"></a>
 
@@ -203,9 +224,13 @@ Returns a pointer to CustomData_Optional, if it has been set, otherwise returns 
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__PlatformSessionTemplate_1a7bbcfbaaf9edbe5d6d9dc50669b33ff9)`(TMap< FString, FString > NewValue)` <a id="structFRHAPI__PlatformSessionTemplate_1a7bbcfbaaf9edbe5d6d9dc50669b33ff9"></a>
+#### `public inline void `[`SetCustomData`](#structFRHAPI__PlatformSessionTemplate_1a84b094834ca70ea0cdef308dfca71190)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__PlatformSessionTemplate_1a84b094834ca70ea0cdef308dfca71190"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+
+#### `public inline void `[`SetCustomData`](#structFRHAPI__PlatformSessionTemplate_1aca029e260d3091a665af93f24722cea1)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__PlatformSessionTemplate_1aca029e260d3091a665af93f24722cea1"></a>
+
+Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearCustomData`](#structFRHAPI__PlatformSessionTemplate_1a1bab29f42e2c1c50068349c69c644583)`()` <a id="structFRHAPI__PlatformSessionTemplate_1a1bab29f42e2c1c50068349c69c644583"></a>
 

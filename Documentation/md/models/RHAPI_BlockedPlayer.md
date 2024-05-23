@@ -25,10 +25,12 @@ The player that is being blocked.
 `public virtual void `[`WriteJson`](#structFRHAPI__BlockedPlayer_1a1037583cdcc3c272106e0488926ee1d4)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FGuid & `[`GetBlockedPlayerUuid`](#structFRHAPI__BlockedPlayer_1a9548784ebf50d0e6718d8bdaa05bdc01)`()` | Gets the value of BlockedPlayerUuid.
 `public inline const FGuid & `[`GetBlockedPlayerUuid`](#structFRHAPI__BlockedPlayer_1ad843e12c6107e58a99f84ed0f5362bcf)`() const` | Gets the value of BlockedPlayerUuid.
-`public inline void `[`SetBlockedPlayerUuid`](#structFRHAPI__BlockedPlayer_1a299f215923b86d31db71fc18f61fb4c9)`(FGuid NewValue)` | Sets the value of BlockedPlayerUuid.
+`public inline void `[`SetBlockedPlayerUuid`](#structFRHAPI__BlockedPlayer_1a3ebe1681cb5f93d5d63d7d83626be423)`(const FGuid & NewValue)` | Sets the value of BlockedPlayerUuid.
+`public inline void `[`SetBlockedPlayerUuid`](#structFRHAPI__BlockedPlayer_1a40ffafd3414218f0032b4816e69f0404)`(FGuid && NewValue)` | Sets the value of BlockedPlayerUuid using move semantics.
 `public inline FDateTime & `[`GetLastModifiedOn`](#structFRHAPI__BlockedPlayer_1a711a83c7742b9e7314aa164e49f6d455)`()` | Gets the value of LastModifiedOn.
 `public inline const FDateTime & `[`GetLastModifiedOn`](#structFRHAPI__BlockedPlayer_1a1fde10dd3b7b0c4a4900aedebff87713)`() const` | Gets the value of LastModifiedOn.
-`public inline void `[`SetLastModifiedOn`](#structFRHAPI__BlockedPlayer_1ac53ba9d483ec1f43c39fcc34203b9bc7)`(FDateTime NewValue)` | Sets the value of LastModifiedOn.
+`public inline void `[`SetLastModifiedOn`](#structFRHAPI__BlockedPlayer_1a615e0e0c81ad600e7069c63b267a5839)`(const FDateTime & NewValue)` | Sets the value of LastModifiedOn.
+`public inline void `[`SetLastModifiedOn`](#structFRHAPI__BlockedPlayer_1acc5a064ea357ca845b82a68b0c382f4f)`(FDateTime && NewValue)` | Sets the value of LastModifiedOn using move semantics.
 
 ### Members
 
@@ -61,9 +63,13 @@ Gets the value of BlockedPlayerUuid.
 
 Gets the value of BlockedPlayerUuid.
 
-#### `public inline void `[`SetBlockedPlayerUuid`](#structFRHAPI__BlockedPlayer_1a299f215923b86d31db71fc18f61fb4c9)`(FGuid NewValue)` <a id="structFRHAPI__BlockedPlayer_1a299f215923b86d31db71fc18f61fb4c9"></a>
+#### `public inline void `[`SetBlockedPlayerUuid`](#structFRHAPI__BlockedPlayer_1a3ebe1681cb5f93d5d63d7d83626be423)`(const FGuid & NewValue)` <a id="structFRHAPI__BlockedPlayer_1a3ebe1681cb5f93d5d63d7d83626be423"></a>
 
 Sets the value of BlockedPlayerUuid.
+
+#### `public inline void `[`SetBlockedPlayerUuid`](#structFRHAPI__BlockedPlayer_1a40ffafd3414218f0032b4816e69f0404)`(FGuid && NewValue)` <a id="structFRHAPI__BlockedPlayer_1a40ffafd3414218f0032b4816e69f0404"></a>
+
+Sets the value of BlockedPlayerUuid using move semantics.
 
 #### `public inline FDateTime & `[`GetLastModifiedOn`](#structFRHAPI__BlockedPlayer_1a711a83c7742b9e7314aa164e49f6d455)`()` <a id="structFRHAPI__BlockedPlayer_1a711a83c7742b9e7314aa164e49f6d455"></a>
 
@@ -73,7 +79,11 @@ Gets the value of LastModifiedOn.
 
 Gets the value of LastModifiedOn.
 
-#### `public inline void `[`SetLastModifiedOn`](#structFRHAPI__BlockedPlayer_1ac53ba9d483ec1f43c39fcc34203b9bc7)`(FDateTime NewValue)` <a id="structFRHAPI__BlockedPlayer_1ac53ba9d483ec1f43c39fcc34203b9bc7"></a>
+#### `public inline void `[`SetLastModifiedOn`](#structFRHAPI__BlockedPlayer_1a615e0e0c81ad600e7069c63b267a5839)`(const FDateTime & NewValue)` <a id="structFRHAPI__BlockedPlayer_1a615e0e0c81ad600e7069c63b267a5839"></a>
 
 Sets the value of LastModifiedOn.
+
+#### `public inline void `[`SetLastModifiedOn`](#structFRHAPI__BlockedPlayer_1acc5a064ea357ca845b82a68b0c382f4f)`(FDateTime && NewValue)` <a id="structFRHAPI__BlockedPlayer_1acc5a064ea357ca845b82a68b0c382f4f"></a>
+
+Sets the value of LastModifiedOn using move semantics.
 

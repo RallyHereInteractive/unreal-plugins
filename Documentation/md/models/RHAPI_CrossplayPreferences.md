@@ -25,10 +25,12 @@ A session&#39;s or player&#39;s preferences around crossplay platforms and input
 `public virtual void `[`WriteJson`](#structFRHAPI__CrossplayPreferences_1ad1acab088331e99ab2ff3fa42c9b1973)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline ERHAPI_CrossplayPlatform & `[`GetPermittedPlatform`](#structFRHAPI__CrossplayPreferences_1a218dd80d52dd5a946464d85276a9712c)`()` | Gets the value of PermittedPlatform.
 `public inline const ERHAPI_CrossplayPlatform & `[`GetPermittedPlatform`](#structFRHAPI__CrossplayPreferences_1aad1c87f3bf1cfd812a1fed142b7aed4f)`() const` | Gets the value of PermittedPlatform.
-`public inline void `[`SetPermittedPlatform`](#structFRHAPI__CrossplayPreferences_1ab3e97515aa5dabbdff8cdfa06bb22956)`(ERHAPI_CrossplayPlatform NewValue)` | Sets the value of PermittedPlatform.
+`public inline void `[`SetPermittedPlatform`](#structFRHAPI__CrossplayPreferences_1ab64e2c751110fa6a1df0ced701add27c)`(const ERHAPI_CrossplayPlatform & NewValue)` | Sets the value of PermittedPlatform.
+`public inline void `[`SetPermittedPlatform`](#structFRHAPI__CrossplayPreferences_1ac69e1e71d8f07300b317a525f74f68d4)`(ERHAPI_CrossplayPlatform && NewValue)` | Sets the value of PermittedPlatform using move semantics.
 `public inline ERHAPI_CrossplayInput & `[`GetPermittedInput`](#structFRHAPI__CrossplayPreferences_1abc3c6227e6e919f488cb27dfcba4ed45)`()` | Gets the value of PermittedInput.
 `public inline const ERHAPI_CrossplayInput & `[`GetPermittedInput`](#structFRHAPI__CrossplayPreferences_1ad54395727b7ccfff2b671b951362d0e0)`() const` | Gets the value of PermittedInput.
-`public inline void `[`SetPermittedInput`](#structFRHAPI__CrossplayPreferences_1a7b0065b5374b1708ecbefd784b6a1b1b)`(ERHAPI_CrossplayInput NewValue)` | Sets the value of PermittedInput.
+`public inline void `[`SetPermittedInput`](#structFRHAPI__CrossplayPreferences_1ac5d33878d5c008d84cebb2d1e187c33f)`(const ERHAPI_CrossplayInput & NewValue)` | Sets the value of PermittedInput.
+`public inline void `[`SetPermittedInput`](#structFRHAPI__CrossplayPreferences_1a111ddddb6c1bf63f29639aff74c5103e)`(ERHAPI_CrossplayInput && NewValue)` | Sets the value of PermittedInput using move semantics.
 
 ### Members
 
@@ -65,9 +67,13 @@ Gets the value of PermittedPlatform.
 
 Gets the value of PermittedPlatform.
 
-#### `public inline void `[`SetPermittedPlatform`](#structFRHAPI__CrossplayPreferences_1ab3e97515aa5dabbdff8cdfa06bb22956)`(ERHAPI_CrossplayPlatform NewValue)` <a id="structFRHAPI__CrossplayPreferences_1ab3e97515aa5dabbdff8cdfa06bb22956"></a>
+#### `public inline void `[`SetPermittedPlatform`](#structFRHAPI__CrossplayPreferences_1ab64e2c751110fa6a1df0ced701add27c)`(const ERHAPI_CrossplayPlatform & NewValue)` <a id="structFRHAPI__CrossplayPreferences_1ab64e2c751110fa6a1df0ced701add27c"></a>
 
 Sets the value of PermittedPlatform.
+
+#### `public inline void `[`SetPermittedPlatform`](#structFRHAPI__CrossplayPreferences_1ac69e1e71d8f07300b317a525f74f68d4)`(ERHAPI_CrossplayPlatform && NewValue)` <a id="structFRHAPI__CrossplayPreferences_1ac69e1e71d8f07300b317a525f74f68d4"></a>
+
+Sets the value of PermittedPlatform using move semantics.
 
 #### `public inline ERHAPI_CrossplayInput & `[`GetPermittedInput`](#structFRHAPI__CrossplayPreferences_1abc3c6227e6e919f488cb27dfcba4ed45)`()` <a id="structFRHAPI__CrossplayPreferences_1abc3c6227e6e919f488cb27dfcba4ed45"></a>
 
@@ -77,7 +83,11 @@ Gets the value of PermittedInput.
 
 Gets the value of PermittedInput.
 
-#### `public inline void `[`SetPermittedInput`](#structFRHAPI__CrossplayPreferences_1a7b0065b5374b1708ecbefd784b6a1b1b)`(ERHAPI_CrossplayInput NewValue)` <a id="structFRHAPI__CrossplayPreferences_1a7b0065b5374b1708ecbefd784b6a1b1b"></a>
+#### `public inline void `[`SetPermittedInput`](#structFRHAPI__CrossplayPreferences_1ac5d33878d5c008d84cebb2d1e187c33f)`(const ERHAPI_CrossplayInput & NewValue)` <a id="structFRHAPI__CrossplayPreferences_1ac5d33878d5c008d84cebb2d1e187c33f"></a>
 
 Sets the value of PermittedInput.
+
+#### `public inline void `[`SetPermittedInput`](#structFRHAPI__CrossplayPreferences_1a111ddddb6c1bf63f29639aff74c5103e)`(ERHAPI_CrossplayInput && NewValue)` <a id="structFRHAPI__CrossplayPreferences_1a111ddddb6c1bf63f29639aff74c5103e"></a>
+
+Sets the value of PermittedInput using move semantics.
 

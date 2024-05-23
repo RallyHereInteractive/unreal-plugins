@@ -28,14 +28,16 @@ Response body for creating a new Inventory Session.
 `public virtual void `[`WriteJson`](#structFRHAPI__InventorySessionCreateResponse_1a37c0a3f8b429ba26ed669bf454d5db21)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetSessionId`](#structFRHAPI__InventorySessionCreateResponse_1a77aeee0f1ae5d7a103ff24d386ddcd55)`()` | Gets the value of SessionId.
 `public inline const FString & `[`GetSessionId`](#structFRHAPI__InventorySessionCreateResponse_1a19c5a7257ae09c490d41069927aa775b)`() const` | Gets the value of SessionId.
-`public inline void `[`SetSessionId`](#structFRHAPI__InventorySessionCreateResponse_1ad127ab1a1011409893174b01bd35f7bd)`(FString NewValue)` | Sets the value of SessionId.
+`public inline void `[`SetSessionId`](#structFRHAPI__InventorySessionCreateResponse_1acfb8332ea9950663a8446e9faed936a7)`(const FString & NewValue)` | Sets the value of SessionId.
+`public inline void `[`SetSessionId`](#structFRHAPI__InventorySessionCreateResponse_1a5496c41ee89ee4f0db3e52c7a95ae4f6)`(FString && NewValue)` | Sets the value of SessionId using move semantics.
 `public inline ERHAPI_Platform & `[`GetSessionPlatform`](#structFRHAPI__InventorySessionCreateResponse_1a5226a12debf31b45d28c1033e0b07998)`()` | Gets the value of SessionPlatform_Optional, regardless of it having been set.
 `public inline const ERHAPI_Platform & `[`GetSessionPlatform`](#structFRHAPI__InventorySessionCreateResponse_1aca6a03ec7c6589f23faf1cc057dcd7df)`() const` | Gets the value of SessionPlatform_Optional, regardless of it having been set.
 `public inline const ERHAPI_Platform & `[`GetSessionPlatform`](#structFRHAPI__InventorySessionCreateResponse_1ab821fb4c83b83379d4a462dea52cf1f6)`(const ERHAPI_Platform & DefaultValue) const` | Gets the value of SessionPlatform_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetSessionPlatform`](#structFRHAPI__InventorySessionCreateResponse_1af403bd2cd9c17cdc9def44c86659f303)`(ERHAPI_Platform & OutValue) const` | Fills OutValue with the value of SessionPlatform_Optional and returns true if it has been set, otherwise returns false.
 `public inline ERHAPI_Platform * `[`GetSessionPlatformOrNull`](#structFRHAPI__InventorySessionCreateResponse_1ac67c0633fb26b54fa149ba3135af76d2)`()` | Returns a pointer to SessionPlatform_Optional, if it has been set, otherwise returns nullptr.
 `public inline const ERHAPI_Platform * `[`GetSessionPlatformOrNull`](#structFRHAPI__InventorySessionCreateResponse_1a0cc15c28d9cc40bb19a4643c92c59b2d)`() const` | Returns a pointer to SessionPlatform_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetSessionPlatform`](#structFRHAPI__InventorySessionCreateResponse_1a2e6226bab06355a442af999620c6d1b7)`(ERHAPI_Platform NewValue)` | Sets the value of SessionPlatform_Optional and also sets SessionPlatform_IsSet to true.
+`public inline void `[`SetSessionPlatform`](#structFRHAPI__InventorySessionCreateResponse_1ae0d730f76b1427ff006277173b7141e7)`(const ERHAPI_Platform & NewValue)` | Sets the value of SessionPlatform_Optional and also sets SessionPlatform_IsSet to true.
+`public inline void `[`SetSessionPlatform`](#structFRHAPI__InventorySessionCreateResponse_1afe5cdccfc999eb6b3d37c7ba1cc70d74)`(ERHAPI_Platform && NewValue)` | Sets the value of SessionPlatform_Optional and also sets SessionPlatform_IsSet to true using move semantics.
 `public inline void `[`ClearSessionPlatform`](#structFRHAPI__InventorySessionCreateResponse_1adbc958d59e8c8c174c36ed12ce9fd852)`()` | Clears the value of SessionPlatform_Optional and sets SessionPlatform_IsSet to false.
 `public inline FString & `[`GetOrderId`](#structFRHAPI__InventorySessionCreateResponse_1a5908f55863626ef4fcfd5306f593ec1f)`()` | Gets the value of OrderId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetOrderId`](#structFRHAPI__InventorySessionCreateResponse_1ae428b644cc5cb9674d1396df83521554)`() const` | Gets the value of OrderId_Optional, regardless of it having been set.
@@ -43,7 +45,8 @@ Response body for creating a new Inventory Session.
 `public inline bool `[`GetOrderId`](#structFRHAPI__InventorySessionCreateResponse_1a55ceafca80b79d5330080d2371f81fe9)`(FString & OutValue) const` | Fills OutValue with the value of OrderId_Optional and returns true if it has been set, otherwise returns false.
 `public inline FString * `[`GetOrderIdOrNull`](#structFRHAPI__InventorySessionCreateResponse_1ab366e349e214ee9dc8791d54f59f410b)`()` | Returns a pointer to OrderId_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FString * `[`GetOrderIdOrNull`](#structFRHAPI__InventorySessionCreateResponse_1ac5166ea93efc6870f0dc5ef740ced2c4)`() const` | Returns a pointer to OrderId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetOrderId`](#structFRHAPI__InventorySessionCreateResponse_1a379ae7d16cc532c43049ef0fb2f1f307)`(FString NewValue)` | Sets the value of OrderId_Optional and also sets OrderId_IsSet to true.
+`public inline void `[`SetOrderId`](#structFRHAPI__InventorySessionCreateResponse_1a05aa80d05259c503e1a87ae1ff5f0d15)`(const FString & NewValue)` | Sets the value of OrderId_Optional and also sets OrderId_IsSet to true.
+`public inline void `[`SetOrderId`](#structFRHAPI__InventorySessionCreateResponse_1a2c4be0f3e86c23fa07ec9dc29254ec3e)`(FString && NewValue)` | Sets the value of OrderId_Optional and also sets OrderId_IsSet to true using move semantics.
 `public inline void `[`ClearOrderId`](#structFRHAPI__InventorySessionCreateResponse_1a4153c08a7d83d6edff4c3368e7685910)`()` | Clears the value of OrderId_Optional and sets OrderId_IsSet to false.
 
 ### Members
@@ -93,9 +96,13 @@ Gets the value of SessionId.
 
 Gets the value of SessionId.
 
-#### `public inline void `[`SetSessionId`](#structFRHAPI__InventorySessionCreateResponse_1ad127ab1a1011409893174b01bd35f7bd)`(FString NewValue)` <a id="structFRHAPI__InventorySessionCreateResponse_1ad127ab1a1011409893174b01bd35f7bd"></a>
+#### `public inline void `[`SetSessionId`](#structFRHAPI__InventorySessionCreateResponse_1acfb8332ea9950663a8446e9faed936a7)`(const FString & NewValue)` <a id="structFRHAPI__InventorySessionCreateResponse_1acfb8332ea9950663a8446e9faed936a7"></a>
 
 Sets the value of SessionId.
+
+#### `public inline void `[`SetSessionId`](#structFRHAPI__InventorySessionCreateResponse_1a5496c41ee89ee4f0db3e52c7a95ae4f6)`(FString && NewValue)` <a id="structFRHAPI__InventorySessionCreateResponse_1a5496c41ee89ee4f0db3e52c7a95ae4f6"></a>
+
+Sets the value of SessionId using move semantics.
 
 #### `public inline ERHAPI_Platform & `[`GetSessionPlatform`](#structFRHAPI__InventorySessionCreateResponse_1a5226a12debf31b45d28c1033e0b07998)`()` <a id="structFRHAPI__InventorySessionCreateResponse_1a5226a12debf31b45d28c1033e0b07998"></a>
 
@@ -121,9 +128,13 @@ Returns a pointer to SessionPlatform_Optional, if it has been set, otherwise ret
 
 Returns a pointer to SessionPlatform_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetSessionPlatform`](#structFRHAPI__InventorySessionCreateResponse_1a2e6226bab06355a442af999620c6d1b7)`(ERHAPI_Platform NewValue)` <a id="structFRHAPI__InventorySessionCreateResponse_1a2e6226bab06355a442af999620c6d1b7"></a>
+#### `public inline void `[`SetSessionPlatform`](#structFRHAPI__InventorySessionCreateResponse_1ae0d730f76b1427ff006277173b7141e7)`(const ERHAPI_Platform & NewValue)` <a id="structFRHAPI__InventorySessionCreateResponse_1ae0d730f76b1427ff006277173b7141e7"></a>
 
 Sets the value of SessionPlatform_Optional and also sets SessionPlatform_IsSet to true.
+
+#### `public inline void `[`SetSessionPlatform`](#structFRHAPI__InventorySessionCreateResponse_1afe5cdccfc999eb6b3d37c7ba1cc70d74)`(ERHAPI_Platform && NewValue)` <a id="structFRHAPI__InventorySessionCreateResponse_1afe5cdccfc999eb6b3d37c7ba1cc70d74"></a>
+
+Sets the value of SessionPlatform_Optional and also sets SessionPlatform_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearSessionPlatform`](#structFRHAPI__InventorySessionCreateResponse_1adbc958d59e8c8c174c36ed12ce9fd852)`()` <a id="structFRHAPI__InventorySessionCreateResponse_1adbc958d59e8c8c174c36ed12ce9fd852"></a>
 
@@ -153,9 +164,13 @@ Returns a pointer to OrderId_Optional, if it has been set, otherwise returns nul
 
 Returns a pointer to OrderId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetOrderId`](#structFRHAPI__InventorySessionCreateResponse_1a379ae7d16cc532c43049ef0fb2f1f307)`(FString NewValue)` <a id="structFRHAPI__InventorySessionCreateResponse_1a379ae7d16cc532c43049ef0fb2f1f307"></a>
+#### `public inline void `[`SetOrderId`](#structFRHAPI__InventorySessionCreateResponse_1a05aa80d05259c503e1a87ae1ff5f0d15)`(const FString & NewValue)` <a id="structFRHAPI__InventorySessionCreateResponse_1a05aa80d05259c503e1a87ae1ff5f0d15"></a>
 
 Sets the value of OrderId_Optional and also sets OrderId_IsSet to true.
+
+#### `public inline void `[`SetOrderId`](#structFRHAPI__InventorySessionCreateResponse_1a2c4be0f3e86c23fa07ec9dc29254ec3e)`(FString && NewValue)` <a id="structFRHAPI__InventorySessionCreateResponse_1a2c4be0f3e86c23fa07ec9dc29254ec3e"></a>
+
+Sets the value of OrderId_Optional and also sets OrderId_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearOrderId`](#structFRHAPI__InventorySessionCreateResponse_1a4153c08a7d83d6edff4c3368e7685910)`()` <a id="structFRHAPI__InventorySessionCreateResponse_1a4153c08a7d83d6edff4c3368e7685910"></a>
 

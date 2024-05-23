@@ -33,7 +33,8 @@ Response for getting a person&#39;s info.
 `public inline bool `[`GetPersonId`](#structFRHAPI__PersonInfoResponse_1a1ffb7b957a1aa0f7e53a10a5f083e068)`(FGuid & OutValue) const` | Fills OutValue with the value of PersonId_Optional and returns true if it has been set, otherwise returns false.
 `public inline FGuid * `[`GetPersonIdOrNull`](#structFRHAPI__PersonInfoResponse_1a5a55d6fc5154bf5ba092a184a73fcb38)`()` | Returns a pointer to PersonId_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FGuid * `[`GetPersonIdOrNull`](#structFRHAPI__PersonInfoResponse_1a17c8a2d76dbbe566904a18e5637e1db0)`() const` | Returns a pointer to PersonId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPersonId`](#structFRHAPI__PersonInfoResponse_1a636fad92ade2dda2ccec5fe0f2faf9c8)`(FGuid NewValue)` | Sets the value of PersonId_Optional and also sets PersonId_IsSet to true.
+`public inline void `[`SetPersonId`](#structFRHAPI__PersonInfoResponse_1a691f60e0c9a194b3428885cbfb78d7a4)`(const FGuid & NewValue)` | Sets the value of PersonId_Optional and also sets PersonId_IsSet to true.
+`public inline void `[`SetPersonId`](#structFRHAPI__PersonInfoResponse_1a6453980960cfeead8fd350b02e8ea5cc)`(FGuid && NewValue)` | Sets the value of PersonId_Optional and also sets PersonId_IsSet to true using move semantics.
 `public inline void `[`ClearPersonId`](#structFRHAPI__PersonInfoResponse_1aee15a4d0a3e019e24aa98d3b5fb41442)`()` | Clears the value of PersonId_Optional and sets PersonId_IsSet to false.
 `public inline int32 & `[`GetActivePlayerId`](#structFRHAPI__PersonInfoResponse_1ac8837d8dcdf81a2289e6369be782df95)`()` | Gets the value of ActivePlayerId_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetActivePlayerId`](#structFRHAPI__PersonInfoResponse_1ac808f70bd213157b932360926fd94601)`() const` | Gets the value of ActivePlayerId_Optional, regardless of it having been set.
@@ -41,7 +42,8 @@ Response for getting a person&#39;s info.
 `public inline bool `[`GetActivePlayerId`](#structFRHAPI__PersonInfoResponse_1af1e1ffaba380a3c6db46e100a715a137)`(int32 & OutValue) const` | Fills OutValue with the value of ActivePlayerId_Optional and returns true if it has been set, otherwise returns false.
 `public inline int32 * `[`GetActivePlayerIdOrNull`](#structFRHAPI__PersonInfoResponse_1a5c5295c3dcdadb5a168172cb61ff7400)`()` | Returns a pointer to ActivePlayerId_Optional, if it has been set, otherwise returns nullptr.
 `public inline const int32 * `[`GetActivePlayerIdOrNull`](#structFRHAPI__PersonInfoResponse_1ab2f1f65704194c8209b251e5e92496d7)`() const` | Returns a pointer to ActivePlayerId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetActivePlayerId`](#structFRHAPI__PersonInfoResponse_1a18dca6461596c1af7e37c4f45b0bb856)`(int32 NewValue)` | Sets the value of ActivePlayerId_Optional and also sets ActivePlayerId_IsSet to true.
+`public inline void `[`SetActivePlayerId`](#structFRHAPI__PersonInfoResponse_1a971ee342a4e0f25993ca9d11dab6714a)`(const int32 & NewValue)` | Sets the value of ActivePlayerId_Optional and also sets ActivePlayerId_IsSet to true.
+`public inline void `[`SetActivePlayerId`](#structFRHAPI__PersonInfoResponse_1a3b5676b8e8f28a11eb5dce1c9d1f48b0)`(int32 && NewValue)` | Sets the value of ActivePlayerId_Optional and also sets ActivePlayerId_IsSet to true using move semantics.
 `public inline void `[`ClearActivePlayerId`](#structFRHAPI__PersonInfoResponse_1a558267ad55a7da0b17c9a7378646b429)`()` | Clears the value of ActivePlayerId_Optional and sets ActivePlayerId_IsSet to false.
 `public inline bool `[`IsActivePlayerIdDefaultValue`](#structFRHAPI__PersonInfoResponse_1a80e6f00658d24becf4a172719002d624)`() const` | Returns true if ActivePlayerId_Optional is set and matches the default value.
 `public inline void `[`SetActivePlayerIdToDefault`](#structFRHAPI__PersonInfoResponse_1a0e6c098a669a0d819d8a0edcbb09b916)`()` | Sets the value of ActivePlayerId_Optional to its default and also sets ActivePlayerId_IsSet to true.
@@ -51,7 +53,8 @@ Response for getting a person&#39;s info.
 `public inline bool `[`GetEmail`](#structFRHAPI__PersonInfoResponse_1aab796fbe933c7fc5bd4186d3f9c567bd)`(FString & OutValue) const` | Fills OutValue with the value of Email_Optional and returns true if it has been set, otherwise returns false.
 `public inline FString * `[`GetEmailOrNull`](#structFRHAPI__PersonInfoResponse_1a1f293a96bcfad12a1633e73febdadf94)`()` | Returns a pointer to Email_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FString * `[`GetEmailOrNull`](#structFRHAPI__PersonInfoResponse_1aa5788c2920e399ccf8f5d0eb2f75130e)`() const` | Returns a pointer to Email_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetEmail`](#structFRHAPI__PersonInfoResponse_1ae300cc4f31ac61b1ab1ef71795201184)`(FString NewValue)` | Sets the value of Email_Optional and also sets Email_IsSet to true.
+`public inline void `[`SetEmail`](#structFRHAPI__PersonInfoResponse_1a284dfd21ce17bd628c00680c5276a8a2)`(const FString & NewValue)` | Sets the value of Email_Optional and also sets Email_IsSet to true.
+`public inline void `[`SetEmail`](#structFRHAPI__PersonInfoResponse_1ac384300786a02c301b41b06187d4aef7)`(FString && NewValue)` | Sets the value of Email_Optional and also sets Email_IsSet to true using move semantics.
 `public inline void `[`ClearEmail`](#structFRHAPI__PersonInfoResponse_1ae7e95f48a6604663a002c86dd219fee6)`()` | Clears the value of Email_Optional and sets Email_IsSet to false.
 
 ### Members
@@ -121,9 +124,13 @@ Returns a pointer to PersonId_Optional, if it has been set, otherwise returns nu
 
 Returns a pointer to PersonId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPersonId`](#structFRHAPI__PersonInfoResponse_1a636fad92ade2dda2ccec5fe0f2faf9c8)`(FGuid NewValue)` <a id="structFRHAPI__PersonInfoResponse_1a636fad92ade2dda2ccec5fe0f2faf9c8"></a>
+#### `public inline void `[`SetPersonId`](#structFRHAPI__PersonInfoResponse_1a691f60e0c9a194b3428885cbfb78d7a4)`(const FGuid & NewValue)` <a id="structFRHAPI__PersonInfoResponse_1a691f60e0c9a194b3428885cbfb78d7a4"></a>
 
 Sets the value of PersonId_Optional and also sets PersonId_IsSet to true.
+
+#### `public inline void `[`SetPersonId`](#structFRHAPI__PersonInfoResponse_1a6453980960cfeead8fd350b02e8ea5cc)`(FGuid && NewValue)` <a id="structFRHAPI__PersonInfoResponse_1a6453980960cfeead8fd350b02e8ea5cc"></a>
+
+Sets the value of PersonId_Optional and also sets PersonId_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearPersonId`](#structFRHAPI__PersonInfoResponse_1aee15a4d0a3e019e24aa98d3b5fb41442)`()` <a id="structFRHAPI__PersonInfoResponse_1aee15a4d0a3e019e24aa98d3b5fb41442"></a>
 
@@ -153,9 +160,13 @@ Returns a pointer to ActivePlayerId_Optional, if it has been set, otherwise retu
 
 Returns a pointer to ActivePlayerId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetActivePlayerId`](#structFRHAPI__PersonInfoResponse_1a18dca6461596c1af7e37c4f45b0bb856)`(int32 NewValue)` <a id="structFRHAPI__PersonInfoResponse_1a18dca6461596c1af7e37c4f45b0bb856"></a>
+#### `public inline void `[`SetActivePlayerId`](#structFRHAPI__PersonInfoResponse_1a971ee342a4e0f25993ca9d11dab6714a)`(const int32 & NewValue)` <a id="structFRHAPI__PersonInfoResponse_1a971ee342a4e0f25993ca9d11dab6714a"></a>
 
 Sets the value of ActivePlayerId_Optional and also sets ActivePlayerId_IsSet to true.
+
+#### `public inline void `[`SetActivePlayerId`](#structFRHAPI__PersonInfoResponse_1a3b5676b8e8f28a11eb5dce1c9d1f48b0)`(int32 && NewValue)` <a id="structFRHAPI__PersonInfoResponse_1a3b5676b8e8f28a11eb5dce1c9d1f48b0"></a>
+
+Sets the value of ActivePlayerId_Optional and also sets ActivePlayerId_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearActivePlayerId`](#structFRHAPI__PersonInfoResponse_1a558267ad55a7da0b17c9a7378646b429)`()` <a id="structFRHAPI__PersonInfoResponse_1a558267ad55a7da0b17c9a7378646b429"></a>
 
@@ -193,9 +204,13 @@ Returns a pointer to Email_Optional, if it has been set, otherwise returns nullp
 
 Returns a pointer to Email_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetEmail`](#structFRHAPI__PersonInfoResponse_1ae300cc4f31ac61b1ab1ef71795201184)`(FString NewValue)` <a id="structFRHAPI__PersonInfoResponse_1ae300cc4f31ac61b1ab1ef71795201184"></a>
+#### `public inline void `[`SetEmail`](#structFRHAPI__PersonInfoResponse_1a284dfd21ce17bd628c00680c5276a8a2)`(const FString & NewValue)` <a id="structFRHAPI__PersonInfoResponse_1a284dfd21ce17bd628c00680c5276a8a2"></a>
 
 Sets the value of Email_Optional and also sets Email_IsSet to true.
+
+#### `public inline void `[`SetEmail`](#structFRHAPI__PersonInfoResponse_1ac384300786a02c301b41b06187d4aef7)`(FString && NewValue)` <a id="structFRHAPI__PersonInfoResponse_1ac384300786a02c301b41b06187d4aef7"></a>
+
+Sets the value of Email_Optional and also sets Email_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearEmail`](#structFRHAPI__PersonInfoResponse_1ae7e95f48a6604663a002c86dd219fee6)`()` <a id="structFRHAPI__PersonInfoResponse_1ae7e95f48a6604663a002c86dd219fee6"></a>
 

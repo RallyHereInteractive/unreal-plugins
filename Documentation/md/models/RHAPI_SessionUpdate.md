@@ -35,7 +35,8 @@ A request body to update information about a session resource.
 `public inline bool `[`GetRegionId`](#structFRHAPI__SessionUpdate_1abb52a4f959368b5ff17dfca55868ca1a)`(FString & OutValue) const` | Fills OutValue with the value of RegionId_Optional and returns true if it has been set, otherwise returns false.
 `public inline FString * `[`GetRegionIdOrNull`](#structFRHAPI__SessionUpdate_1a98aa631f19fe9d833553ce00e76784c9)`()` | Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FString * `[`GetRegionIdOrNull`](#structFRHAPI__SessionUpdate_1a3c305f88622374211674d0460ffbe2ec)`() const` | Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRegionId`](#structFRHAPI__SessionUpdate_1af3738baba2b55dd312a464d2cd2cb5b2)`(FString NewValue)` | Sets the value of RegionId_Optional and also sets RegionId_IsSet to true.
+`public inline void `[`SetRegionId`](#structFRHAPI__SessionUpdate_1a401142b51f0adb69e21ec5d9f5634fc2)`(const FString & NewValue)` | Sets the value of RegionId_Optional and also sets RegionId_IsSet to true.
+`public inline void `[`SetRegionId`](#structFRHAPI__SessionUpdate_1a1f6cde5e867eb7f9fdda5971bdf176b7)`(FString && NewValue)` | Sets the value of RegionId_Optional and also sets RegionId_IsSet to true using move semantics.
 `public inline void `[`ClearRegionId`](#structFRHAPI__SessionUpdate_1a9d0d41f29e5abde04971abc760e79cad)`()` | Clears the value of RegionId_Optional and sets RegionId_IsSet to false.
 `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__SessionUpdate_1a90c555e3270441fd39ca37b48f42e4b7)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__SessionUpdate_1a25f19ba461efb88d2e796043b704acbe)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
@@ -43,7 +44,8 @@ A request body to update information about a session resource.
 `public inline bool `[`GetCustomData`](#structFRHAPI__SessionUpdate_1a6ad53d6269bd9319b6aa9fd4d6dc57f7)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__SessionUpdate_1a511d62a037fe7af840ad0a35146fa553)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__SessionUpdate_1a24df114a5fcae9e12a1c2d0c35d9ab5e)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCustomData`](#structFRHAPI__SessionUpdate_1a067b23e769c67dbef812810ef33038fd)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`SetCustomData`](#structFRHAPI__SessionUpdate_1ac7201f17e26632c0d05833448028b429)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`SetCustomData`](#structFRHAPI__SessionUpdate_1aa1167e54c679c4006fa5788fcafd7b84)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__SessionUpdate_1ae42a27ea8701e456d8c7da0a840ab67a)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 `public inline bool & `[`GetJoinable`](#structFRHAPI__SessionUpdate_1a02c087ef532461a4a67965edf157e2be)`()` | Gets the value of Joinable_Optional, regardless of it having been set.
 `public inline const bool & `[`GetJoinable`](#structFRHAPI__SessionUpdate_1a76ddc37b2559202fb20415df8dd2b6b7)`() const` | Gets the value of Joinable_Optional, regardless of it having been set.
@@ -51,7 +53,8 @@ A request body to update information about a session resource.
 `public inline bool `[`GetJoinable`](#structFRHAPI__SessionUpdate_1ab8ce51e436d1aec01168e2685464133f)`(bool & OutValue) const` | Fills OutValue with the value of Joinable_Optional and returns true if it has been set, otherwise returns false.
 `public inline bool * `[`GetJoinableOrNull`](#structFRHAPI__SessionUpdate_1a72e87a8e9e412964af2f81946e6adbb4)`()` | Returns a pointer to Joinable_Optional, if it has been set, otherwise returns nullptr.
 `public inline const bool * `[`GetJoinableOrNull`](#structFRHAPI__SessionUpdate_1a81dd7dfa0fc643e2c7f136d667fe5112)`() const` | Returns a pointer to Joinable_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetJoinable`](#structFRHAPI__SessionUpdate_1ad3553aa34e058ae6965d6c915ac88254)`(bool NewValue)` | Sets the value of Joinable_Optional and also sets Joinable_IsSet to true.
+`public inline void `[`SetJoinable`](#structFRHAPI__SessionUpdate_1a44e9bcc3963f6fd2c9409a812fe5e63a)`(const bool & NewValue)` | Sets the value of Joinable_Optional and also sets Joinable_IsSet to true.
+`public inline void `[`SetJoinable`](#structFRHAPI__SessionUpdate_1a1f07dcf1e00e5b84e580b21e3f9d3fbd)`(bool && NewValue)` | Sets the value of Joinable_Optional and also sets Joinable_IsSet to true using move semantics.
 `public inline void `[`ClearJoinable`](#structFRHAPI__SessionUpdate_1a5e38954afb4281bfd14241a6b0faca88)`()` | Clears the value of Joinable_Optional and sets Joinable_IsSet to false.
 `public inline bool `[`IsJoinableDefaultValue`](#structFRHAPI__SessionUpdate_1a6c81424549450bef7b7430faa548f0e4)`() const` | Returns true if Joinable_Optional is set and matches the default value.
 `public inline void `[`SetJoinableToDefault`](#structFRHAPI__SessionUpdate_1a0831036473b80aa18223036feeab2a6f)`()` | Sets the value of Joinable_Optional to its default and also sets Joinable_IsSet to true.
@@ -61,7 +64,8 @@ A request body to update information about a session resource.
 `public inline bool `[`GetTeams`](#structFRHAPI__SessionUpdate_1a958de74a0023e45b3d6fbd9526536623)`(TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & OutValue) const` | Fills OutValue with the value of Teams_Optional and returns true if it has been set, otherwise returns false.
 `public inline TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > * `[`GetTeamsOrNull`](#structFRHAPI__SessionUpdate_1aa600a05a479e733189aeca7a9f236fd5)`()` | Returns a pointer to Teams_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > * `[`GetTeamsOrNull`](#structFRHAPI__SessionUpdate_1a4422c103e603e65d9d2805fcbe7e7ace)`() const` | Returns a pointer to Teams_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetTeams`](#structFRHAPI__SessionUpdate_1a99e5ed74bda523a9f8cddb1adb380822)`(TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > NewValue)` | Sets the value of Teams_Optional and also sets Teams_IsSet to true.
+`public inline void `[`SetTeams`](#structFRHAPI__SessionUpdate_1a4dfc73f5fff1d622501ad2ded10818a3)`(const TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & NewValue)` | Sets the value of Teams_Optional and also sets Teams_IsSet to true.
+`public inline void `[`SetTeams`](#structFRHAPI__SessionUpdate_1a9b6f391a708d219f7f7eee092ef4853f)`(TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > && NewValue)` | Sets the value of Teams_Optional and also sets Teams_IsSet to true using move semantics.
 `public inline void `[`ClearTeams`](#structFRHAPI__SessionUpdate_1a25c2f946c12657cbf3ecd48755f2b141)`()` | Clears the value of Teams_Optional and sets Teams_IsSet to false.
 
 ### Members
@@ -139,9 +143,13 @@ Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nu
 
 Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRegionId`](#structFRHAPI__SessionUpdate_1af3738baba2b55dd312a464d2cd2cb5b2)`(FString NewValue)` <a id="structFRHAPI__SessionUpdate_1af3738baba2b55dd312a464d2cd2cb5b2"></a>
+#### `public inline void `[`SetRegionId`](#structFRHAPI__SessionUpdate_1a401142b51f0adb69e21ec5d9f5634fc2)`(const FString & NewValue)` <a id="structFRHAPI__SessionUpdate_1a401142b51f0adb69e21ec5d9f5634fc2"></a>
 
 Sets the value of RegionId_Optional and also sets RegionId_IsSet to true.
+
+#### `public inline void `[`SetRegionId`](#structFRHAPI__SessionUpdate_1a1f6cde5e867eb7f9fdda5971bdf176b7)`(FString && NewValue)` <a id="structFRHAPI__SessionUpdate_1a1f6cde5e867eb7f9fdda5971bdf176b7"></a>
+
+Sets the value of RegionId_Optional and also sets RegionId_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearRegionId`](#structFRHAPI__SessionUpdate_1a9d0d41f29e5abde04971abc760e79cad)`()` <a id="structFRHAPI__SessionUpdate_1a9d0d41f29e5abde04971abc760e79cad"></a>
 
@@ -171,9 +179,13 @@ Returns a pointer to CustomData_Optional, if it has been set, otherwise returns 
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__SessionUpdate_1a067b23e769c67dbef812810ef33038fd)`(TMap< FString, FString > NewValue)` <a id="structFRHAPI__SessionUpdate_1a067b23e769c67dbef812810ef33038fd"></a>
+#### `public inline void `[`SetCustomData`](#structFRHAPI__SessionUpdate_1ac7201f17e26632c0d05833448028b429)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__SessionUpdate_1ac7201f17e26632c0d05833448028b429"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+
+#### `public inline void `[`SetCustomData`](#structFRHAPI__SessionUpdate_1aa1167e54c679c4006fa5788fcafd7b84)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__SessionUpdate_1aa1167e54c679c4006fa5788fcafd7b84"></a>
+
+Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearCustomData`](#structFRHAPI__SessionUpdate_1ae42a27ea8701e456d8c7da0a840ab67a)`()` <a id="structFRHAPI__SessionUpdate_1ae42a27ea8701e456d8c7da0a840ab67a"></a>
 
@@ -203,9 +215,13 @@ Returns a pointer to Joinable_Optional, if it has been set, otherwise returns nu
 
 Returns a pointer to Joinable_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetJoinable`](#structFRHAPI__SessionUpdate_1ad3553aa34e058ae6965d6c915ac88254)`(bool NewValue)` <a id="structFRHAPI__SessionUpdate_1ad3553aa34e058ae6965d6c915ac88254"></a>
+#### `public inline void `[`SetJoinable`](#structFRHAPI__SessionUpdate_1a44e9bcc3963f6fd2c9409a812fe5e63a)`(const bool & NewValue)` <a id="structFRHAPI__SessionUpdate_1a44e9bcc3963f6fd2c9409a812fe5e63a"></a>
 
 Sets the value of Joinable_Optional and also sets Joinable_IsSet to true.
+
+#### `public inline void `[`SetJoinable`](#structFRHAPI__SessionUpdate_1a1f07dcf1e00e5b84e580b21e3f9d3fbd)`(bool && NewValue)` <a id="structFRHAPI__SessionUpdate_1a1f07dcf1e00e5b84e580b21e3f9d3fbd"></a>
+
+Sets the value of Joinable_Optional and also sets Joinable_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearJoinable`](#structFRHAPI__SessionUpdate_1a5e38954afb4281bfd14241a6b0faca88)`()` <a id="structFRHAPI__SessionUpdate_1a5e38954afb4281bfd14241a6b0faca88"></a>
 
@@ -243,9 +259,13 @@ Returns a pointer to Teams_Optional, if it has been set, otherwise returns nullp
 
 Returns a pointer to Teams_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetTeams`](#structFRHAPI__SessionUpdate_1a99e5ed74bda523a9f8cddb1adb380822)`(TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > NewValue)` <a id="structFRHAPI__SessionUpdate_1a99e5ed74bda523a9f8cddb1adb380822"></a>
+#### `public inline void `[`SetTeams`](#structFRHAPI__SessionUpdate_1a4dfc73f5fff1d622501ad2ded10818a3)`(const TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & NewValue)` <a id="structFRHAPI__SessionUpdate_1a4dfc73f5fff1d622501ad2ded10818a3"></a>
 
 Sets the value of Teams_Optional and also sets Teams_IsSet to true.
+
+#### `public inline void `[`SetTeams`](#structFRHAPI__SessionUpdate_1a9b6f391a708d219f7f7eee092ef4853f)`(TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > && NewValue)` <a id="structFRHAPI__SessionUpdate_1a9b6f391a708d219f7f7eee092ef4853f"></a>
+
+Sets the value of Teams_Optional and also sets Teams_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearTeams`](#structFRHAPI__SessionUpdate_1a25c2f946c12657cbf3ecd48755f2b141)`()` <a id="structFRHAPI__SessionUpdate_1a25c2f946c12657cbf3ecd48755f2b141"></a>
 

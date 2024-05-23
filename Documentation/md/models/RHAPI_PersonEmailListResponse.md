@@ -24,7 +24,8 @@ Response for updating a person&#39;s email list subscriptions.
 `public virtual void `[`WriteJson`](#structFRHAPI__PersonEmailListResponse_1a502b121c93096ab99799fa71130d6cb8)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TArray< int32 > & `[`GetEmailListIds`](#structFRHAPI__PersonEmailListResponse_1a603ce5ee32c487c52d59f7434989d029)`()` | Gets the value of EmailListIds.
 `public inline const TArray< int32 > & `[`GetEmailListIds`](#structFRHAPI__PersonEmailListResponse_1a3079634ec6743a9b7b8dfb7e43fae8cd)`() const` | Gets the value of EmailListIds.
-`public inline void `[`SetEmailListIds`](#structFRHAPI__PersonEmailListResponse_1a7b238ecadcb0b5dc5633901d06601a99)`(TArray< int32 > NewValue)` | Sets the value of EmailListIds.
+`public inline void `[`SetEmailListIds`](#structFRHAPI__PersonEmailListResponse_1a85f46c915867632837fb1b114e20b1d3)`(const TArray< int32 > & NewValue)` | Sets the value of EmailListIds.
+`public inline void `[`SetEmailListIds`](#structFRHAPI__PersonEmailListResponse_1aba90168ef58f6c024238700a19d3735b)`(TArray< int32 > && NewValue)` | Sets the value of EmailListIds using move semantics.
 
 ### Members
 
@@ -57,7 +58,11 @@ Gets the value of EmailListIds.
 
 Gets the value of EmailListIds.
 
-#### `public inline void `[`SetEmailListIds`](#structFRHAPI__PersonEmailListResponse_1a7b238ecadcb0b5dc5633901d06601a99)`(TArray< int32 > NewValue)` <a id="structFRHAPI__PersonEmailListResponse_1a7b238ecadcb0b5dc5633901d06601a99"></a>
+#### `public inline void `[`SetEmailListIds`](#structFRHAPI__PersonEmailListResponse_1a85f46c915867632837fb1b114e20b1d3)`(const TArray< int32 > & NewValue)` <a id="structFRHAPI__PersonEmailListResponse_1a85f46c915867632837fb1b114e20b1d3"></a>
 
 Sets the value of EmailListIds.
+
+#### `public inline void `[`SetEmailListIds`](#structFRHAPI__PersonEmailListResponse_1aba90168ef58f6c024238700a19d3735b)`(TArray< int32 > && NewValue)` <a id="structFRHAPI__PersonEmailListResponse_1aba90168ef58f6c024238700a19d3735b"></a>
+
+Sets the value of EmailListIds using move semantics.
 

@@ -26,14 +26,16 @@ A collection of rules that are used to determine whether a MatchMakingTemplate s
 `public virtual void `[`WriteJson`](#structFRHAPI__MatchMakingRuleset_1acb32bcfdfac306d329be3cdd71e40e4e)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > & `[`GetRules`](#structFRHAPI__MatchMakingRuleset_1a02f9dfc75b2ceedb77dc171f93f29683)`()` | Gets the value of Rules.
 `public inline const TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > & `[`GetRules`](#structFRHAPI__MatchMakingRuleset_1a30d5a11c789d4ca8a141fad42a84bcce)`() const` | Gets the value of Rules.
-`public inline void `[`SetRules`](#structFRHAPI__MatchMakingRuleset_1a1ecb757823284accdc8f0277c345dc49)`(TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > NewValue)` | Sets the value of Rules.
+`public inline void `[`SetRules`](#structFRHAPI__MatchMakingRuleset_1a95dd984ce4623055d498de65234758f6)`(const TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > & NewValue)` | Sets the value of Rules.
+`public inline void `[`SetRules`](#structFRHAPI__MatchMakingRuleset_1a6deb26d921c7b27c4f10e0934a8f4c79)`(TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > && NewValue)` | Sets the value of Rules using move semantics.
 `public inline ERHAPI_Determiner & `[`GetDeterminer`](#structFRHAPI__MatchMakingRuleset_1a52023e14aad3971fb54eb804c09d5666)`()` | Gets the value of Determiner_Optional, regardless of it having been set.
 `public inline const ERHAPI_Determiner & `[`GetDeterminer`](#structFRHAPI__MatchMakingRuleset_1acf42a5782b5100020c053a91300768f6)`() const` | Gets the value of Determiner_Optional, regardless of it having been set.
 `public inline const ERHAPI_Determiner & `[`GetDeterminer`](#structFRHAPI__MatchMakingRuleset_1a5538ca24eb8a3a5f688f737fb8abce7b)`(const ERHAPI_Determiner & DefaultValue) const` | Gets the value of Determiner_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetDeterminer`](#structFRHAPI__MatchMakingRuleset_1a5ca48a4e38e8d9a4227c3dfd6d08c35f)`(ERHAPI_Determiner & OutValue) const` | Fills OutValue with the value of Determiner_Optional and returns true if it has been set, otherwise returns false.
 `public inline ERHAPI_Determiner * `[`GetDeterminerOrNull`](#structFRHAPI__MatchMakingRuleset_1a75e4e4b888c0118b8c724992f473c930)`()` | Returns a pointer to Determiner_Optional, if it has been set, otherwise returns nullptr.
 `public inline const ERHAPI_Determiner * `[`GetDeterminerOrNull`](#structFRHAPI__MatchMakingRuleset_1aed30508ce30d948af980f1ed840d9f4e)`() const` | Returns a pointer to Determiner_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetDeterminer`](#structFRHAPI__MatchMakingRuleset_1a30489b3b244e528dd7ec8ffefe49e1b7)`(ERHAPI_Determiner NewValue)` | Sets the value of Determiner_Optional and also sets Determiner_IsSet to true.
+`public inline void `[`SetDeterminer`](#structFRHAPI__MatchMakingRuleset_1a8e545ca2611db722685e0b16abf014f3)`(const ERHAPI_Determiner & NewValue)` | Sets the value of Determiner_Optional and also sets Determiner_IsSet to true.
+`public inline void `[`SetDeterminer`](#structFRHAPI__MatchMakingRuleset_1acb0772787c71128b04e7e3ed9ce5000e)`(ERHAPI_Determiner && NewValue)` | Sets the value of Determiner_Optional and also sets Determiner_IsSet to true using move semantics.
 `public inline void `[`ClearDeterminer`](#structFRHAPI__MatchMakingRuleset_1a48e9ee08c491fb294cc3167b406e7e41)`()` | Clears the value of Determiner_Optional and sets Determiner_IsSet to false.
 
 ### Members
@@ -75,9 +77,13 @@ Gets the value of Rules.
 
 Gets the value of Rules.
 
-#### `public inline void `[`SetRules`](#structFRHAPI__MatchMakingRuleset_1a1ecb757823284accdc8f0277c345dc49)`(TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > NewValue)` <a id="structFRHAPI__MatchMakingRuleset_1a1ecb757823284accdc8f0277c345dc49"></a>
+#### `public inline void `[`SetRules`](#structFRHAPI__MatchMakingRuleset_1a95dd984ce4623055d498de65234758f6)`(const TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > & NewValue)` <a id="structFRHAPI__MatchMakingRuleset_1a95dd984ce4623055d498de65234758f6"></a>
 
 Sets the value of Rules.
+
+#### `public inline void `[`SetRules`](#structFRHAPI__MatchMakingRuleset_1a6deb26d921c7b27c4f10e0934a8f4c79)`(TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > && NewValue)` <a id="structFRHAPI__MatchMakingRuleset_1a6deb26d921c7b27c4f10e0934a8f4c79"></a>
+
+Sets the value of Rules using move semantics.
 
 #### `public inline ERHAPI_Determiner & `[`GetDeterminer`](#structFRHAPI__MatchMakingRuleset_1a52023e14aad3971fb54eb804c09d5666)`()` <a id="structFRHAPI__MatchMakingRuleset_1a52023e14aad3971fb54eb804c09d5666"></a>
 
@@ -103,9 +109,13 @@ Returns a pointer to Determiner_Optional, if it has been set, otherwise returns 
 
 Returns a pointer to Determiner_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetDeterminer`](#structFRHAPI__MatchMakingRuleset_1a30489b3b244e528dd7ec8ffefe49e1b7)`(ERHAPI_Determiner NewValue)` <a id="structFRHAPI__MatchMakingRuleset_1a30489b3b244e528dd7ec8ffefe49e1b7"></a>
+#### `public inline void `[`SetDeterminer`](#structFRHAPI__MatchMakingRuleset_1a8e545ca2611db722685e0b16abf014f3)`(const ERHAPI_Determiner & NewValue)` <a id="structFRHAPI__MatchMakingRuleset_1a8e545ca2611db722685e0b16abf014f3"></a>
 
 Sets the value of Determiner_Optional and also sets Determiner_IsSet to true.
+
+#### `public inline void `[`SetDeterminer`](#structFRHAPI__MatchMakingRuleset_1acb0772787c71128b04e7e3ed9ce5000e)`(ERHAPI_Determiner && NewValue)` <a id="structFRHAPI__MatchMakingRuleset_1acb0772787c71128b04e7e3ed9ce5000e"></a>
+
+Sets the value of Determiner_Optional and also sets Determiner_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearDeterminer`](#structFRHAPI__MatchMakingRuleset_1a48e9ee08c491fb294cc3167b406e7e41)`()` <a id="structFRHAPI__MatchMakingRuleset_1a48e9ee08c491fb294cc3167b406e7e41"></a>
 

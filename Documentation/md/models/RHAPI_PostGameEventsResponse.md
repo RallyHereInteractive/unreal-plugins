@@ -24,7 +24,8 @@ struct FRHAPI_PostGameEventsResponse
 `public virtual void `[`WriteJson`](#structFRHAPI__PostGameEventsResponse_1a2526583c3c98ef274d01a87d86108cb0)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline int32 & `[`GetPostedEvents`](#structFRHAPI__PostGameEventsResponse_1a5d308cdc0e5647372e993ed02ec53701)`()` | Gets the value of PostedEvents.
 `public inline const int32 & `[`GetPostedEvents`](#structFRHAPI__PostGameEventsResponse_1ac08763c5db10d34a410d0ed7711bf03a)`() const` | Gets the value of PostedEvents.
-`public inline void `[`SetPostedEvents`](#structFRHAPI__PostGameEventsResponse_1a2ccb7747d3b05789b3362e423ec658fe)`(int32 NewValue)` | Sets the value of PostedEvents.
+`public inline void `[`SetPostedEvents`](#structFRHAPI__PostGameEventsResponse_1a64844278435658b99e033b639e3a65cc)`(const int32 & NewValue)` | Sets the value of PostedEvents.
+`public inline void `[`SetPostedEvents`](#structFRHAPI__PostGameEventsResponse_1a3ea085b5d38c73800b1ef512372cf713)`(int32 && NewValue)` | Sets the value of PostedEvents using move semantics.
 `public inline bool `[`IsPostedEventsDefaultValue`](#structFRHAPI__PostGameEventsResponse_1a33f77ad6d36173417f8a53c402654493)`() const` | Returns true if PostedEvents matches the default value.
 `public inline void `[`SetPostedEventsToDefault`](#structFRHAPI__PostGameEventsResponse_1a3f5dfe2d5d14b932b8502db6a2ca119a)`()` | Sets the value of PostedEvents to its default
 `public inline TArray< `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > & `[`GetErrors`](#structFRHAPI__PostGameEventsResponse_1af6ed576d107b976b7c215980b44843d9)`()` | Gets the value of Errors_Optional, regardless of it having been set.
@@ -33,7 +34,8 @@ struct FRHAPI_PostGameEventsResponse
 `public inline bool `[`GetErrors`](#structFRHAPI__PostGameEventsResponse_1afdeb56eacaf89f648ca521d479fa2c23)`(TArray< `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > & OutValue) const` | Fills OutValue with the value of Errors_Optional and returns true if it has been set, otherwise returns false.
 `public inline TArray< `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > * `[`GetErrorsOrNull`](#structFRHAPI__PostGameEventsResponse_1a87b36b7499a7e78bdc27f1d32666d849)`()` | Returns a pointer to Errors_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TArray< `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > * `[`GetErrorsOrNull`](#structFRHAPI__PostGameEventsResponse_1a6e5cae343486059f6b3eaa11b8a60c90)`() const` | Returns a pointer to Errors_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetErrors`](#structFRHAPI__PostGameEventsResponse_1a25c25fc991dbbfa0bd1a9d4042835053)`(TArray< `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > NewValue)` | Sets the value of Errors_Optional and also sets Errors_IsSet to true.
+`public inline void `[`SetErrors`](#structFRHAPI__PostGameEventsResponse_1a6e16076b25ada896380954560c7174a9)`(const TArray< `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > & NewValue)` | Sets the value of Errors_Optional and also sets Errors_IsSet to true.
+`public inline void `[`SetErrors`](#structFRHAPI__PostGameEventsResponse_1a68e03e76d789a236685f659d4347b830)`(TArray< `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > && NewValue)` | Sets the value of Errors_Optional and also sets Errors_IsSet to true using move semantics.
 `public inline void `[`ClearErrors`](#structFRHAPI__PostGameEventsResponse_1afbb863db522201168db69a6f6c10e2af)`()` | Clears the value of Errors_Optional and sets Errors_IsSet to false.
 
 ### Members
@@ -75,9 +77,13 @@ Gets the value of PostedEvents.
 
 Gets the value of PostedEvents.
 
-#### `public inline void `[`SetPostedEvents`](#structFRHAPI__PostGameEventsResponse_1a2ccb7747d3b05789b3362e423ec658fe)`(int32 NewValue)` <a id="structFRHAPI__PostGameEventsResponse_1a2ccb7747d3b05789b3362e423ec658fe"></a>
+#### `public inline void `[`SetPostedEvents`](#structFRHAPI__PostGameEventsResponse_1a64844278435658b99e033b639e3a65cc)`(const int32 & NewValue)` <a id="structFRHAPI__PostGameEventsResponse_1a64844278435658b99e033b639e3a65cc"></a>
 
 Sets the value of PostedEvents.
+
+#### `public inline void `[`SetPostedEvents`](#structFRHAPI__PostGameEventsResponse_1a3ea085b5d38c73800b1ef512372cf713)`(int32 && NewValue)` <a id="structFRHAPI__PostGameEventsResponse_1a3ea085b5d38c73800b1ef512372cf713"></a>
+
+Sets the value of PostedEvents using move semantics.
 
 #### `public inline bool `[`IsPostedEventsDefaultValue`](#structFRHAPI__PostGameEventsResponse_1a33f77ad6d36173417f8a53c402654493)`() const` <a id="structFRHAPI__PostGameEventsResponse_1a33f77ad6d36173417f8a53c402654493"></a>
 
@@ -111,9 +117,13 @@ Returns a pointer to Errors_Optional, if it has been set, otherwise returns null
 
 Returns a pointer to Errors_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetErrors`](#structFRHAPI__PostGameEventsResponse_1a25c25fc991dbbfa0bd1a9d4042835053)`(TArray< `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > NewValue)` <a id="structFRHAPI__PostGameEventsResponse_1a25c25fc991dbbfa0bd1a9d4042835053"></a>
+#### `public inline void `[`SetErrors`](#structFRHAPI__PostGameEventsResponse_1a6e16076b25ada896380954560c7174a9)`(const TArray< `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > & NewValue)` <a id="structFRHAPI__PostGameEventsResponse_1a6e16076b25ada896380954560c7174a9"></a>
 
 Sets the value of Errors_Optional and also sets Errors_IsSet to true.
+
+#### `public inline void `[`SetErrors`](#structFRHAPI__PostGameEventsResponse_1a68e03e76d789a236685f659d4347b830)`(TArray< `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > && NewValue)` <a id="structFRHAPI__PostGameEventsResponse_1a68e03e76d789a236685f659d4347b830"></a>
+
+Sets the value of Errors_Optional and also sets Errors_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearErrors`](#structFRHAPI__PostGameEventsResponse_1afbb863db522201168db69a6f6c10e2af)`()` <a id="structFRHAPI__PostGameEventsResponse_1afbb863db522201168db69a6f6c10e2af"></a>
 

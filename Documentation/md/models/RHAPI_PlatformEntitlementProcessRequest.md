@@ -30,26 +30,32 @@ Request to process a platform entitlement.
 `public virtual void `[`WriteJson`](#structFRHAPI__PlatformEntitlementProcessRequest_1af0754b911184c7a6b5bb0efc399ff22b)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetTransactionId`](#structFRHAPI__PlatformEntitlementProcessRequest_1a51301f3004ef1dbbaf6340a1d18d5ff8)`()` | Gets the value of TransactionId.
 `public inline const FString & `[`GetTransactionId`](#structFRHAPI__PlatformEntitlementProcessRequest_1aadf7387ad49aafa891f81900413c8df7)`() const` | Gets the value of TransactionId.
-`public inline void `[`SetTransactionId`](#structFRHAPI__PlatformEntitlementProcessRequest_1ac826ac5ce2ab0999dc8d40a1789c5172)`(FString NewValue)` | Sets the value of TransactionId.
+`public inline void `[`SetTransactionId`](#structFRHAPI__PlatformEntitlementProcessRequest_1a42684c88f2421073ff3aa5c93a4d92f4)`(const FString & NewValue)` | Sets the value of TransactionId.
+`public inline void `[`SetTransactionId`](#structFRHAPI__PlatformEntitlementProcessRequest_1ae120b13e354eb92730661031c08ed9d5)`(FString && NewValue)` | Sets the value of TransactionId using move semantics.
 `public inline FString & `[`GetPlatformToken`](#structFRHAPI__PlatformEntitlementProcessRequest_1a46c556ef651d060f6d30bb51cf6f6a34)`()` | Gets the value of PlatformToken.
 `public inline const FString & `[`GetPlatformToken`](#structFRHAPI__PlatformEntitlementProcessRequest_1a6cd05cb4e91dab59f3ce419454a7b915)`() const` | Gets the value of PlatformToken.
-`public inline void `[`SetPlatformToken`](#structFRHAPI__PlatformEntitlementProcessRequest_1a63265337309b5ef52f5fce355b035b96)`(FString NewValue)` | Sets the value of PlatformToken.
+`public inline void `[`SetPlatformToken`](#structFRHAPI__PlatformEntitlementProcessRequest_1a46a0856d880e6cb5940294e9723cd39c)`(const FString & NewValue)` | Sets the value of PlatformToken.
+`public inline void `[`SetPlatformToken`](#structFRHAPI__PlatformEntitlementProcessRequest_1a8e290e471b1cea6865e1fb43ffc445e5)`(FString && NewValue)` | Sets the value of PlatformToken using move semantics.
 `public inline FString & `[`GetPlatformId`](#structFRHAPI__PlatformEntitlementProcessRequest_1a45d91a4c47c73b3b28382d05e785ea0d)`()` | Gets the value of PlatformId.
 `public inline const FString & `[`GetPlatformId`](#structFRHAPI__PlatformEntitlementProcessRequest_1ab89c3edcccc8bc9d465296a82dec2976)`() const` | Gets the value of PlatformId.
-`public inline void `[`SetPlatformId`](#structFRHAPI__PlatformEntitlementProcessRequest_1ae74dc5c9f4b4dd92b814be44dda4e2ba)`(FString NewValue)` | Sets the value of PlatformId.
+`public inline void `[`SetPlatformId`](#structFRHAPI__PlatformEntitlementProcessRequest_1a3884b12d6f59454a08a4453991c7faec)`(const FString & NewValue)` | Sets the value of PlatformId.
+`public inline void `[`SetPlatformId`](#structFRHAPI__PlatformEntitlementProcessRequest_1af3279ab1e4cfd73fe390d096073e8cff)`(FString && NewValue)` | Sets the value of PlatformId using move semantics.
 `public inline ERHAPI_PlatformRegion & `[`GetPlatformRegion`](#structFRHAPI__PlatformEntitlementProcessRequest_1ab827b8b08f6bc72dc2cdf3626deb7f19)`()` | Gets the value of PlatformRegion.
 `public inline const ERHAPI_PlatformRegion & `[`GetPlatformRegion`](#structFRHAPI__PlatformEntitlementProcessRequest_1a8c0ca241313bb3e2f1d0d173a23dc372)`() const` | Gets the value of PlatformRegion.
-`public inline void `[`SetPlatformRegion`](#structFRHAPI__PlatformEntitlementProcessRequest_1a80832fbb3596577cf4a49c020951b15d)`(ERHAPI_PlatformRegion NewValue)` | Sets the value of PlatformRegion.
+`public inline void `[`SetPlatformRegion`](#structFRHAPI__PlatformEntitlementProcessRequest_1a3b7c18aeb506667a110f623f4c635d9c)`(const ERHAPI_PlatformRegion & NewValue)` | Sets the value of PlatformRegion.
+`public inline void `[`SetPlatformRegion`](#structFRHAPI__PlatformEntitlementProcessRequest_1ad5f6b69be825a8ec7f0b1ab9b37d767f)`(ERHAPI_PlatformRegion && NewValue)` | Sets the value of PlatformRegion using move semantics.
 `public inline ERHAPI_ClientType & `[`GetClientType`](#structFRHAPI__PlatformEntitlementProcessRequest_1a89fcf5846ed78023c699b6ca31d7c275)`()` | Gets the value of ClientType.
 `public inline const ERHAPI_ClientType & `[`GetClientType`](#structFRHAPI__PlatformEntitlementProcessRequest_1a1e2eb1ee2959340470e82afb81ceea75)`() const` | Gets the value of ClientType.
-`public inline void `[`SetClientType`](#structFRHAPI__PlatformEntitlementProcessRequest_1a07f9403c901988ddb953920bfaa4e0f6)`(ERHAPI_ClientType NewValue)` | Sets the value of ClientType.
+`public inline void `[`SetClientType`](#structFRHAPI__PlatformEntitlementProcessRequest_1a2498ca3832ba4e9f44caff3b537a0f17)`(const ERHAPI_ClientType & NewValue)` | Sets the value of ClientType.
+`public inline void `[`SetClientType`](#structFRHAPI__PlatformEntitlementProcessRequest_1a06ead50b187f385895d173b50a3692a6)`(ERHAPI_ClientType && NewValue)` | Sets the value of ClientType using move semantics.
 `public inline TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & `[`GetEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1a601120e574160eca58e98170e9d4b4e7)`()` | Gets the value of Entitlements_Optional, regardless of it having been set.
 `public inline const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & `[`GetEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1a5e5780d5354d2f2e6a60d18933840e14)`() const` | Gets the value of Entitlements_Optional, regardless of it having been set.
 `public inline const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & `[`GetEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1a375ef768b008aa6ecadbc0b2a4062761)`(const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & DefaultValue) const` | Gets the value of Entitlements_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1ac72ca2c63c2fc3f571fb4475cbd96f82)`(TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & OutValue) const` | Fills OutValue with the value of Entitlements_Optional and returns true if it has been set, otherwise returns false.
 `public inline TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > * `[`GetEntitlementsOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1ad288e59a3bc25d6f4f6c33b802d38fdf)`()` | Returns a pointer to Entitlements_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > * `[`GetEntitlementsOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1addaede490193b8714cdf49552bceeac2)`() const` | Returns a pointer to Entitlements_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1add57dd436f6402d835ebe33e4d76305b)`(TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > NewValue)` | Sets the value of Entitlements_Optional and also sets Entitlements_IsSet to true.
+`public inline void `[`SetEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1a707f605277c2a1e3ad3b1ac4841dc16f)`(const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & NewValue)` | Sets the value of Entitlements_Optional and also sets Entitlements_IsSet to true.
+`public inline void `[`SetEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1ad39bf35d93c1f427798647fba3aed0d8)`(TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > && NewValue)` | Sets the value of Entitlements_Optional and also sets Entitlements_IsSet to true using move semantics.
 `public inline void `[`ClearEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1a9493313ad553516ff62bf102065e1344)`()` | Clears the value of Entitlements_Optional and sets Entitlements_IsSet to false.
 
 ### Members
@@ -107,9 +113,13 @@ Gets the value of TransactionId.
 
 Gets the value of TransactionId.
 
-#### `public inline void `[`SetTransactionId`](#structFRHAPI__PlatformEntitlementProcessRequest_1ac826ac5ce2ab0999dc8d40a1789c5172)`(FString NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1ac826ac5ce2ab0999dc8d40a1789c5172"></a>
+#### `public inline void `[`SetTransactionId`](#structFRHAPI__PlatformEntitlementProcessRequest_1a42684c88f2421073ff3aa5c93a4d92f4)`(const FString & NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a42684c88f2421073ff3aa5c93a4d92f4"></a>
 
 Sets the value of TransactionId.
+
+#### `public inline void `[`SetTransactionId`](#structFRHAPI__PlatformEntitlementProcessRequest_1ae120b13e354eb92730661031c08ed9d5)`(FString && NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1ae120b13e354eb92730661031c08ed9d5"></a>
+
+Sets the value of TransactionId using move semantics.
 
 #### `public inline FString & `[`GetPlatformToken`](#structFRHAPI__PlatformEntitlementProcessRequest_1a46c556ef651d060f6d30bb51cf6f6a34)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a46c556ef651d060f6d30bb51cf6f6a34"></a>
 
@@ -119,9 +129,13 @@ Gets the value of PlatformToken.
 
 Gets the value of PlatformToken.
 
-#### `public inline void `[`SetPlatformToken`](#structFRHAPI__PlatformEntitlementProcessRequest_1a63265337309b5ef52f5fce355b035b96)`(FString NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a63265337309b5ef52f5fce355b035b96"></a>
+#### `public inline void `[`SetPlatformToken`](#structFRHAPI__PlatformEntitlementProcessRequest_1a46a0856d880e6cb5940294e9723cd39c)`(const FString & NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a46a0856d880e6cb5940294e9723cd39c"></a>
 
 Sets the value of PlatformToken.
+
+#### `public inline void `[`SetPlatformToken`](#structFRHAPI__PlatformEntitlementProcessRequest_1a8e290e471b1cea6865e1fb43ffc445e5)`(FString && NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a8e290e471b1cea6865e1fb43ffc445e5"></a>
+
+Sets the value of PlatformToken using move semantics.
 
 #### `public inline FString & `[`GetPlatformId`](#structFRHAPI__PlatformEntitlementProcessRequest_1a45d91a4c47c73b3b28382d05e785ea0d)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a45d91a4c47c73b3b28382d05e785ea0d"></a>
 
@@ -131,9 +145,13 @@ Gets the value of PlatformId.
 
 Gets the value of PlatformId.
 
-#### `public inline void `[`SetPlatformId`](#structFRHAPI__PlatformEntitlementProcessRequest_1ae74dc5c9f4b4dd92b814be44dda4e2ba)`(FString NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1ae74dc5c9f4b4dd92b814be44dda4e2ba"></a>
+#### `public inline void `[`SetPlatformId`](#structFRHAPI__PlatformEntitlementProcessRequest_1a3884b12d6f59454a08a4453991c7faec)`(const FString & NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a3884b12d6f59454a08a4453991c7faec"></a>
 
 Sets the value of PlatformId.
+
+#### `public inline void `[`SetPlatformId`](#structFRHAPI__PlatformEntitlementProcessRequest_1af3279ab1e4cfd73fe390d096073e8cff)`(FString && NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1af3279ab1e4cfd73fe390d096073e8cff"></a>
+
+Sets the value of PlatformId using move semantics.
 
 #### `public inline ERHAPI_PlatformRegion & `[`GetPlatformRegion`](#structFRHAPI__PlatformEntitlementProcessRequest_1ab827b8b08f6bc72dc2cdf3626deb7f19)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1ab827b8b08f6bc72dc2cdf3626deb7f19"></a>
 
@@ -143,9 +161,13 @@ Gets the value of PlatformRegion.
 
 Gets the value of PlatformRegion.
 
-#### `public inline void `[`SetPlatformRegion`](#structFRHAPI__PlatformEntitlementProcessRequest_1a80832fbb3596577cf4a49c020951b15d)`(ERHAPI_PlatformRegion NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a80832fbb3596577cf4a49c020951b15d"></a>
+#### `public inline void `[`SetPlatformRegion`](#structFRHAPI__PlatformEntitlementProcessRequest_1a3b7c18aeb506667a110f623f4c635d9c)`(const ERHAPI_PlatformRegion & NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a3b7c18aeb506667a110f623f4c635d9c"></a>
 
 Sets the value of PlatformRegion.
+
+#### `public inline void `[`SetPlatformRegion`](#structFRHAPI__PlatformEntitlementProcessRequest_1ad5f6b69be825a8ec7f0b1ab9b37d767f)`(ERHAPI_PlatformRegion && NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1ad5f6b69be825a8ec7f0b1ab9b37d767f"></a>
+
+Sets the value of PlatformRegion using move semantics.
 
 #### `public inline ERHAPI_ClientType & `[`GetClientType`](#structFRHAPI__PlatformEntitlementProcessRequest_1a89fcf5846ed78023c699b6ca31d7c275)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a89fcf5846ed78023c699b6ca31d7c275"></a>
 
@@ -155,9 +177,13 @@ Gets the value of ClientType.
 
 Gets the value of ClientType.
 
-#### `public inline void `[`SetClientType`](#structFRHAPI__PlatformEntitlementProcessRequest_1a07f9403c901988ddb953920bfaa4e0f6)`(ERHAPI_ClientType NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a07f9403c901988ddb953920bfaa4e0f6"></a>
+#### `public inline void `[`SetClientType`](#structFRHAPI__PlatformEntitlementProcessRequest_1a2498ca3832ba4e9f44caff3b537a0f17)`(const ERHAPI_ClientType & NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a2498ca3832ba4e9f44caff3b537a0f17"></a>
 
 Sets the value of ClientType.
+
+#### `public inline void `[`SetClientType`](#structFRHAPI__PlatformEntitlementProcessRequest_1a06ead50b187f385895d173b50a3692a6)`(ERHAPI_ClientType && NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a06ead50b187f385895d173b50a3692a6"></a>
+
+Sets the value of ClientType using move semantics.
 
 #### `public inline TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & `[`GetEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1a601120e574160eca58e98170e9d4b4e7)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a601120e574160eca58e98170e9d4b4e7"></a>
 
@@ -183,9 +209,13 @@ Returns a pointer to Entitlements_Optional, if it has been set, otherwise return
 
 Returns a pointer to Entitlements_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1add57dd436f6402d835ebe33e4d76305b)`(TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1add57dd436f6402d835ebe33e4d76305b"></a>
+#### `public inline void `[`SetEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1a707f605277c2a1e3ad3b1ac4841dc16f)`(const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a707f605277c2a1e3ad3b1ac4841dc16f"></a>
 
 Sets the value of Entitlements_Optional and also sets Entitlements_IsSet to true.
+
+#### `public inline void `[`SetEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1ad39bf35d93c1f427798647fba3aed0d8)`(TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > && NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1ad39bf35d93c1f427798647fba3aed0d8"></a>
+
+Sets the value of Entitlements_Optional and also sets Entitlements_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1a9493313ad553516ff62bf102065e1344)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a9493313ad553516ff62bf102065e1344"></a>
 

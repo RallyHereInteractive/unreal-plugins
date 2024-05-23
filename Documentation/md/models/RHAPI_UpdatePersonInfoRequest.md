@@ -24,7 +24,8 @@ Request to update a person&#39;s info.
 `public virtual void `[`WriteJson`](#structFRHAPI__UpdatePersonInfoRequest_1a27ed6dc5682a17500361ca5e956a9eaa)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1af78a67575dd9865d044c07949b497844)`()` | Gets the value of Email.
 `public inline const FString & `[`GetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1a45d6be43aae6a507a369fcd3a7bf6501)`() const` | Gets the value of Email.
-`public inline void `[`SetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1a247522d48abf10f07a16f29e31b95c36)`(FString NewValue)` | Sets the value of Email.
+`public inline void `[`SetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1a645433b72c507ec2fe0e716b643527cb)`(const FString & NewValue)` | Sets the value of Email.
+`public inline void `[`SetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1a029fb9fdd039ad651f3afb5856dbd27f)`(FString && NewValue)` | Sets the value of Email using move semantics.
 
 ### Members
 
@@ -57,7 +58,11 @@ Gets the value of Email.
 
 Gets the value of Email.
 
-#### `public inline void `[`SetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1a247522d48abf10f07a16f29e31b95c36)`(FString NewValue)` <a id="structFRHAPI__UpdatePersonInfoRequest_1a247522d48abf10f07a16f29e31b95c36"></a>
+#### `public inline void `[`SetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1a645433b72c507ec2fe0e716b643527cb)`(const FString & NewValue)` <a id="structFRHAPI__UpdatePersonInfoRequest_1a645433b72c507ec2fe0e716b643527cb"></a>
 
 Sets the value of Email.
+
+#### `public inline void `[`SetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1a029fb9fdd039ad651f3afb5856dbd27f)`(FString && NewValue)` <a id="structFRHAPI__UpdatePersonInfoRequest_1a029fb9fdd039ad651f3afb5856dbd27f"></a>
+
+Sets the value of Email using move semantics.
 

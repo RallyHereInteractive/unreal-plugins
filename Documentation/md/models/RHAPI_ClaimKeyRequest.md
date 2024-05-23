@@ -29,7 +29,8 @@ Attempt to claim a Key Claim from a Marketing Campaign.
 `public inline bool `[`GetExternalKeyType`](#structFRHAPI__ClaimKeyRequest_1a645f6800782ff6f7299e3e0d38e15733)`(FString & OutValue) const` | Fills OutValue with the value of ExternalKeyType_Optional and returns true if it has been set, otherwise returns false.
 `public inline FString * `[`GetExternalKeyTypeOrNull`](#structFRHAPI__ClaimKeyRequest_1a19e37ab022c3bbd1d0132c548c21adbb)`()` | Returns a pointer to ExternalKeyType_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FString * `[`GetExternalKeyTypeOrNull`](#structFRHAPI__ClaimKeyRequest_1aa476809ffd8c08b344601d1b0168f0cf)`() const` | Returns a pointer to ExternalKeyType_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetExternalKeyType`](#structFRHAPI__ClaimKeyRequest_1a05e05c87e26ed6f66b5c34fd003fec3c)`(FString NewValue)` | Sets the value of ExternalKeyType_Optional and also sets ExternalKeyType_IsSet to true.
+`public inline void `[`SetExternalKeyType`](#structFRHAPI__ClaimKeyRequest_1a93d4341831134ac750ec70ac9861cd73)`(const FString & NewValue)` | Sets the value of ExternalKeyType_Optional and also sets ExternalKeyType_IsSet to true.
+`public inline void `[`SetExternalKeyType`](#structFRHAPI__ClaimKeyRequest_1a70a62d0472f976c80316c3153c158b99)`(FString && NewValue)` | Sets the value of ExternalKeyType_Optional and also sets ExternalKeyType_IsSet to true using move semantics.
 `public inline void `[`ClearExternalKeyType`](#structFRHAPI__ClaimKeyRequest_1a945c53afa9624ef22d85bce0fd2c46e1)`()` | Clears the value of ExternalKeyType_Optional and sets ExternalKeyType_IsSet to false.
 `public inline bool `[`IsExternalKeyTypeDefaultValue`](#structFRHAPI__ClaimKeyRequest_1a0b7fb3f3756d8af98f56ae9da22036a7)`() const` | Returns true if ExternalKeyType_Optional is set and matches the default value.
 `public inline void `[`SetExternalKeyTypeToDefault`](#structFRHAPI__ClaimKeyRequest_1a9c5278e971b44e220a33a63bc9361bbd)`()` | Sets the value of ExternalKeyType_Optional to its default and also sets ExternalKeyType_IsSet to true.
@@ -83,9 +84,13 @@ Returns a pointer to ExternalKeyType_Optional, if it has been set, otherwise ret
 
 Returns a pointer to ExternalKeyType_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetExternalKeyType`](#structFRHAPI__ClaimKeyRequest_1a05e05c87e26ed6f66b5c34fd003fec3c)`(FString NewValue)` <a id="structFRHAPI__ClaimKeyRequest_1a05e05c87e26ed6f66b5c34fd003fec3c"></a>
+#### `public inline void `[`SetExternalKeyType`](#structFRHAPI__ClaimKeyRequest_1a93d4341831134ac750ec70ac9861cd73)`(const FString & NewValue)` <a id="structFRHAPI__ClaimKeyRequest_1a93d4341831134ac750ec70ac9861cd73"></a>
 
 Sets the value of ExternalKeyType_Optional and also sets ExternalKeyType_IsSet to true.
+
+#### `public inline void `[`SetExternalKeyType`](#structFRHAPI__ClaimKeyRequest_1a70a62d0472f976c80316c3153c158b99)`(FString && NewValue)` <a id="structFRHAPI__ClaimKeyRequest_1a70a62d0472f976c80316c3153c158b99"></a>
+
+Sets the value of ExternalKeyType_Optional and also sets ExternalKeyType_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearExternalKeyType`](#structFRHAPI__ClaimKeyRequest_1a945c53afa9624ef22d85bce0fd2c46e1)`()` <a id="structFRHAPI__ClaimKeyRequest_1a945c53afa9624ef22d85bce0fd2c46e1"></a>
 

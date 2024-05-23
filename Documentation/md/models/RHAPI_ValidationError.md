@@ -24,13 +24,16 @@ struct FRHAPI_ValidationError
 `public virtual void `[`WriteJson`](#structFRHAPI__ValidationError_1a6ad60c5e03c830506b58887849fa43db)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TArray< `[`FRHAPI_LocationInner`](RHAPI_LocationInner.md#structFRHAPI__LocationInner)` > & `[`GetLoc`](#structFRHAPI__ValidationError_1abf1227d9ef5b4a4238422c016c0859da)`()` | Gets the value of Loc.
 `public inline const TArray< `[`FRHAPI_LocationInner`](RHAPI_LocationInner.md#structFRHAPI__LocationInner)` > & `[`GetLoc`](#structFRHAPI__ValidationError_1afee16f1cb4b4b1cff3be2fb367b9194b)`() const` | Gets the value of Loc.
-`public inline void `[`SetLoc`](#structFRHAPI__ValidationError_1a790dc5f32c3159f3c633eb0edb85edd7)`(TArray< `[`FRHAPI_LocationInner`](RHAPI_LocationInner.md#structFRHAPI__LocationInner)` > NewValue)` | Sets the value of Loc.
+`public inline void `[`SetLoc`](#structFRHAPI__ValidationError_1af21480c81ac669bd963361807082dc17)`(const TArray< `[`FRHAPI_LocationInner`](RHAPI_LocationInner.md#structFRHAPI__LocationInner)` > & NewValue)` | Sets the value of Loc.
+`public inline void `[`SetLoc`](#structFRHAPI__ValidationError_1afdb49da714dbbe1b0c69169e998c883c)`(TArray< `[`FRHAPI_LocationInner`](RHAPI_LocationInner.md#structFRHAPI__LocationInner)` > && NewValue)` | Sets the value of Loc using move semantics.
 `public inline FString & `[`GetMsg`](#structFRHAPI__ValidationError_1af87c82841237f79052cce426ba7c8f4e)`()` | Gets the value of Msg.
 `public inline const FString & `[`GetMsg`](#structFRHAPI__ValidationError_1a033c4d3989361b189cbe719e9e3ada43)`() const` | Gets the value of Msg.
-`public inline void `[`SetMsg`](#structFRHAPI__ValidationError_1a7025c8b35b61d2523cf426fd577cddae)`(FString NewValue)` | Sets the value of Msg.
+`public inline void `[`SetMsg`](#structFRHAPI__ValidationError_1a0bcdb73934d686e5aafaee2832f78e58)`(const FString & NewValue)` | Sets the value of Msg.
+`public inline void `[`SetMsg`](#structFRHAPI__ValidationError_1a64ef8810e9829c350b2496da1f724bcf)`(FString && NewValue)` | Sets the value of Msg using move semantics.
 `public inline FString & `[`GetType`](#structFRHAPI__ValidationError_1a1d00a847b3b555ad080655ebe0b5c261)`()` | Gets the value of Type.
 `public inline const FString & `[`GetType`](#structFRHAPI__ValidationError_1a03c34fe18e8cbc74092d32accdc5d041)`() const` | Gets the value of Type.
-`public inline void `[`SetType`](#structFRHAPI__ValidationError_1a4a714bf3a474e5ee8407c274514ae753)`(FString NewValue)` | Sets the value of Type.
+`public inline void `[`SetType`](#structFRHAPI__ValidationError_1a78392f271dd7cdaf162aa11b1625d0df)`(const FString & NewValue)` | Sets the value of Type.
+`public inline void `[`SetType`](#structFRHAPI__ValidationError_1adc9a82d4bbe035c68a23e59125f18112)`(FString && NewValue)` | Sets the value of Type using move semantics.
 
 ### Members
 
@@ -65,9 +68,13 @@ Gets the value of Loc.
 
 Gets the value of Loc.
 
-#### `public inline void `[`SetLoc`](#structFRHAPI__ValidationError_1a790dc5f32c3159f3c633eb0edb85edd7)`(TArray< `[`FRHAPI_LocationInner`](RHAPI_LocationInner.md#structFRHAPI__LocationInner)` > NewValue)` <a id="structFRHAPI__ValidationError_1a790dc5f32c3159f3c633eb0edb85edd7"></a>
+#### `public inline void `[`SetLoc`](#structFRHAPI__ValidationError_1af21480c81ac669bd963361807082dc17)`(const TArray< `[`FRHAPI_LocationInner`](RHAPI_LocationInner.md#structFRHAPI__LocationInner)` > & NewValue)` <a id="structFRHAPI__ValidationError_1af21480c81ac669bd963361807082dc17"></a>
 
 Sets the value of Loc.
+
+#### `public inline void `[`SetLoc`](#structFRHAPI__ValidationError_1afdb49da714dbbe1b0c69169e998c883c)`(TArray< `[`FRHAPI_LocationInner`](RHAPI_LocationInner.md#structFRHAPI__LocationInner)` > && NewValue)` <a id="structFRHAPI__ValidationError_1afdb49da714dbbe1b0c69169e998c883c"></a>
+
+Sets the value of Loc using move semantics.
 
 #### `public inline FString & `[`GetMsg`](#structFRHAPI__ValidationError_1af87c82841237f79052cce426ba7c8f4e)`()` <a id="structFRHAPI__ValidationError_1af87c82841237f79052cce426ba7c8f4e"></a>
 
@@ -77,9 +84,13 @@ Gets the value of Msg.
 
 Gets the value of Msg.
 
-#### `public inline void `[`SetMsg`](#structFRHAPI__ValidationError_1a7025c8b35b61d2523cf426fd577cddae)`(FString NewValue)` <a id="structFRHAPI__ValidationError_1a7025c8b35b61d2523cf426fd577cddae"></a>
+#### `public inline void `[`SetMsg`](#structFRHAPI__ValidationError_1a0bcdb73934d686e5aafaee2832f78e58)`(const FString & NewValue)` <a id="structFRHAPI__ValidationError_1a0bcdb73934d686e5aafaee2832f78e58"></a>
 
 Sets the value of Msg.
+
+#### `public inline void `[`SetMsg`](#structFRHAPI__ValidationError_1a64ef8810e9829c350b2496da1f724bcf)`(FString && NewValue)` <a id="structFRHAPI__ValidationError_1a64ef8810e9829c350b2496da1f724bcf"></a>
+
+Sets the value of Msg using move semantics.
 
 #### `public inline FString & `[`GetType`](#structFRHAPI__ValidationError_1a1d00a847b3b555ad080655ebe0b5c261)`()` <a id="structFRHAPI__ValidationError_1a1d00a847b3b555ad080655ebe0b5c261"></a>
 
@@ -89,7 +100,11 @@ Gets the value of Type.
 
 Gets the value of Type.
 
-#### `public inline void `[`SetType`](#structFRHAPI__ValidationError_1a4a714bf3a474e5ee8407c274514ae753)`(FString NewValue)` <a id="structFRHAPI__ValidationError_1a4a714bf3a474e5ee8407c274514ae753"></a>
+#### `public inline void `[`SetType`](#structFRHAPI__ValidationError_1a78392f271dd7cdaf162aa11b1625d0df)`(const FString & NewValue)` <a id="structFRHAPI__ValidationError_1a78392f271dd7cdaf162aa11b1625d0df"></a>
 
 Sets the value of Type.
+
+#### `public inline void `[`SetType`](#structFRHAPI__ValidationError_1adc9a82d4bbe035c68a23e59125f18112)`(FString && NewValue)` <a id="structFRHAPI__ValidationError_1adc9a82d4bbe035c68a23e59125f18112"></a>
+
+Sets the value of Type using move semantics.
 

@@ -24,7 +24,8 @@ Response to successfully requesting all rank config.
 `public virtual void `[`WriteJson`](#structFRHAPI__RankConfigRequestResponseV3_1aafb5abc5f45bf57d4cf749c1c334c833)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TArray< `[`FRHAPI_RankConfigV3`](RHAPI_RankConfigV3.md#structFRHAPI__RankConfigV3)` > & `[`GetRankConfigs`](#structFRHAPI__RankConfigRequestResponseV3_1a8c8cda54fa6317f64ea6f59f1986c94e)`()` | Gets the value of RankConfigs.
 `public inline const TArray< `[`FRHAPI_RankConfigV3`](RHAPI_RankConfigV3.md#structFRHAPI__RankConfigV3)` > & `[`GetRankConfigs`](#structFRHAPI__RankConfigRequestResponseV3_1ae064553522932fd8b0d176a865353986)`() const` | Gets the value of RankConfigs.
-`public inline void `[`SetRankConfigs`](#structFRHAPI__RankConfigRequestResponseV3_1af7ae457032ee4982f52fbed0c760dbae)`(TArray< `[`FRHAPI_RankConfigV3`](RHAPI_RankConfigV3.md#structFRHAPI__RankConfigV3)` > NewValue)` | Sets the value of RankConfigs.
+`public inline void `[`SetRankConfigs`](#structFRHAPI__RankConfigRequestResponseV3_1a40726cf14572e240bd46e42eec50ff24)`(const TArray< `[`FRHAPI_RankConfigV3`](RHAPI_RankConfigV3.md#structFRHAPI__RankConfigV3)` > & NewValue)` | Sets the value of RankConfigs.
+`public inline void `[`SetRankConfigs`](#structFRHAPI__RankConfigRequestResponseV3_1acbea4abb73cfec0e7deba3e9c3e33931)`(TArray< `[`FRHAPI_RankConfigV3`](RHAPI_RankConfigV3.md#structFRHAPI__RankConfigV3)` > && NewValue)` | Sets the value of RankConfigs using move semantics.
 
 ### Members
 
@@ -57,7 +58,11 @@ Gets the value of RankConfigs.
 
 Gets the value of RankConfigs.
 
-#### `public inline void `[`SetRankConfigs`](#structFRHAPI__RankConfigRequestResponseV3_1af7ae457032ee4982f52fbed0c760dbae)`(TArray< `[`FRHAPI_RankConfigV3`](RHAPI_RankConfigV3.md#structFRHAPI__RankConfigV3)` > NewValue)` <a id="structFRHAPI__RankConfigRequestResponseV3_1af7ae457032ee4982f52fbed0c760dbae"></a>
+#### `public inline void `[`SetRankConfigs`](#structFRHAPI__RankConfigRequestResponseV3_1a40726cf14572e240bd46e42eec50ff24)`(const TArray< `[`FRHAPI_RankConfigV3`](RHAPI_RankConfigV3.md#structFRHAPI__RankConfigV3)` > & NewValue)` <a id="structFRHAPI__RankConfigRequestResponseV3_1a40726cf14572e240bd46e42eec50ff24"></a>
 
 Sets the value of RankConfigs.
+
+#### `public inline void `[`SetRankConfigs`](#structFRHAPI__RankConfigRequestResponseV3_1acbea4abb73cfec0e7deba3e9c3e33931)`(TArray< `[`FRHAPI_RankConfigV3`](RHAPI_RankConfigV3.md#structFRHAPI__RankConfigV3)` > && NewValue)` <a id="structFRHAPI__RankConfigRequestResponseV3_1acbea4abb73cfec0e7deba3e9c3e33931"></a>
+
+Sets the value of RankConfigs using move semantics.
 

@@ -24,15 +24,18 @@ struct FRHAPI_AdOpportunity
 `public virtual void `[`WriteJson`](#structFRHAPI__AdOpportunity_1a4a1100d7ce89db79898d59dc8017effd)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetAdUrl`](#structFRHAPI__AdOpportunity_1a8dcf652a8c0b7ab48dd3c39f80628aab)`()` | Gets the value of AdUrl.
 `public inline const FString & `[`GetAdUrl`](#structFRHAPI__AdOpportunity_1a5e81eba4f2fc85ab5c798c0d0e4b0b25)`() const` | Gets the value of AdUrl.
-`public inline void `[`SetAdUrl`](#structFRHAPI__AdOpportunity_1a163059957b31cb5bf11118d670732e04)`(FString NewValue)` | Sets the value of AdUrl.
+`public inline void `[`SetAdUrl`](#structFRHAPI__AdOpportunity_1a24737eca64f56436fb3aeaf4b918a4cf)`(const FString & NewValue)` | Sets the value of AdUrl.
+`public inline void `[`SetAdUrl`](#structFRHAPI__AdOpportunity_1a4a108d1a88addd76146abb147d108fa0)`(FString && NewValue)` | Sets the value of AdUrl using move semantics.
 `public inline int32 & `[`GetSeconds`](#structFRHAPI__AdOpportunity_1a81af9bc21531a9b893c63701c3a32226)`()` | Gets the value of Seconds.
 `public inline const int32 & `[`GetSeconds`](#structFRHAPI__AdOpportunity_1a64f89adb2f2bc8a770256f856171edb1)`() const` | Gets the value of Seconds.
-`public inline void `[`SetSeconds`](#structFRHAPI__AdOpportunity_1a39d50942df6398873b5371b0b8c3f01a)`(int32 NewValue)` | Sets the value of Seconds.
+`public inline void `[`SetSeconds`](#structFRHAPI__AdOpportunity_1acc657d0d7b6df7335d24fc807c7aebe1)`(const int32 & NewValue)` | Sets the value of Seconds.
+`public inline void `[`SetSeconds`](#structFRHAPI__AdOpportunity_1ae72d74fad0d91b7cb51a9683010a1833)`(int32 && NewValue)` | Sets the value of Seconds using move semantics.
 `public inline bool `[`IsSecondsDefaultValue`](#structFRHAPI__AdOpportunity_1a9e54ef7649ae8449e4b91140e44019cc)`() const` | Returns true if Seconds matches the default value.
 `public inline void `[`SetSecondsToDefault`](#structFRHAPI__AdOpportunity_1ad114b28f826eab6f93f6fb78fc405714)`()` | Sets the value of Seconds to its default
 `public inline FString & `[`GetOpportunityId`](#structFRHAPI__AdOpportunity_1a6403415eb727e767876069dd98fd0296)`()` | Gets the value of OpportunityId.
 `public inline const FString & `[`GetOpportunityId`](#structFRHAPI__AdOpportunity_1af16ec49a16ce1243bd2f250e0673d9b9)`() const` | Gets the value of OpportunityId.
-`public inline void `[`SetOpportunityId`](#structFRHAPI__AdOpportunity_1ac464e608478a61280f9af03bbd03c1dc)`(FString NewValue)` | Sets the value of OpportunityId.
+`public inline void `[`SetOpportunityId`](#structFRHAPI__AdOpportunity_1a85c275760b0d78e1327247914d7e03e7)`(const FString & NewValue)` | Sets the value of OpportunityId.
+`public inline void `[`SetOpportunityId`](#structFRHAPI__AdOpportunity_1a50b81c758d9391340e07a6ec1fe80aa7)`(FString && NewValue)` | Sets the value of OpportunityId using move semantics.
 
 ### Members
 
@@ -73,9 +76,13 @@ Gets the value of AdUrl.
 
 Gets the value of AdUrl.
 
-#### `public inline void `[`SetAdUrl`](#structFRHAPI__AdOpportunity_1a163059957b31cb5bf11118d670732e04)`(FString NewValue)` <a id="structFRHAPI__AdOpportunity_1a163059957b31cb5bf11118d670732e04"></a>
+#### `public inline void `[`SetAdUrl`](#structFRHAPI__AdOpportunity_1a24737eca64f56436fb3aeaf4b918a4cf)`(const FString & NewValue)` <a id="structFRHAPI__AdOpportunity_1a24737eca64f56436fb3aeaf4b918a4cf"></a>
 
 Sets the value of AdUrl.
+
+#### `public inline void `[`SetAdUrl`](#structFRHAPI__AdOpportunity_1a4a108d1a88addd76146abb147d108fa0)`(FString && NewValue)` <a id="structFRHAPI__AdOpportunity_1a4a108d1a88addd76146abb147d108fa0"></a>
+
+Sets the value of AdUrl using move semantics.
 
 #### `public inline int32 & `[`GetSeconds`](#structFRHAPI__AdOpportunity_1a81af9bc21531a9b893c63701c3a32226)`()` <a id="structFRHAPI__AdOpportunity_1a81af9bc21531a9b893c63701c3a32226"></a>
 
@@ -85,9 +92,13 @@ Gets the value of Seconds.
 
 Gets the value of Seconds.
 
-#### `public inline void `[`SetSeconds`](#structFRHAPI__AdOpportunity_1a39d50942df6398873b5371b0b8c3f01a)`(int32 NewValue)` <a id="structFRHAPI__AdOpportunity_1a39d50942df6398873b5371b0b8c3f01a"></a>
+#### `public inline void `[`SetSeconds`](#structFRHAPI__AdOpportunity_1acc657d0d7b6df7335d24fc807c7aebe1)`(const int32 & NewValue)` <a id="structFRHAPI__AdOpportunity_1acc657d0d7b6df7335d24fc807c7aebe1"></a>
 
 Sets the value of Seconds.
+
+#### `public inline void `[`SetSeconds`](#structFRHAPI__AdOpportunity_1ae72d74fad0d91b7cb51a9683010a1833)`(int32 && NewValue)` <a id="structFRHAPI__AdOpportunity_1ae72d74fad0d91b7cb51a9683010a1833"></a>
+
+Sets the value of Seconds using move semantics.
 
 #### `public inline bool `[`IsSecondsDefaultValue`](#structFRHAPI__AdOpportunity_1a9e54ef7649ae8449e4b91140e44019cc)`() const` <a id="structFRHAPI__AdOpportunity_1a9e54ef7649ae8449e4b91140e44019cc"></a>
 
@@ -105,7 +116,11 @@ Gets the value of OpportunityId.
 
 Gets the value of OpportunityId.
 
-#### `public inline void `[`SetOpportunityId`](#structFRHAPI__AdOpportunity_1ac464e608478a61280f9af03bbd03c1dc)`(FString NewValue)` <a id="structFRHAPI__AdOpportunity_1ac464e608478a61280f9af03bbd03c1dc"></a>
+#### `public inline void `[`SetOpportunityId`](#structFRHAPI__AdOpportunity_1a85c275760b0d78e1327247914d7e03e7)`(const FString & NewValue)` <a id="structFRHAPI__AdOpportunity_1a85c275760b0d78e1327247914d7e03e7"></a>
 
 Sets the value of OpportunityId.
+
+#### `public inline void `[`SetOpportunityId`](#structFRHAPI__AdOpportunity_1a50b81c758d9391340e07a6ec1fe80aa7)`(FString && NewValue)` <a id="structFRHAPI__AdOpportunity_1a50b81c758d9391340e07a6ec1fe80aa7"></a>
+
+Sets the value of OpportunityId using move semantics.
 

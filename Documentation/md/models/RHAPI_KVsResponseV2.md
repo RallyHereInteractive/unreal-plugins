@@ -29,7 +29,8 @@ struct FRHAPI_KVsResponseV2
 `public inline bool `[`GetKvs`](#structFRHAPI__KVsResponseV2_1a1a71151b149264d149a91f50e8e9f9e4)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of Kvs_Optional and returns true if it has been set, otherwise returns false.
 `public inline TMap< FString, FString > * `[`GetKvsOrNull`](#structFRHAPI__KVsResponseV2_1ab7793ec6478bc293efbd506f84945727)`()` | Returns a pointer to Kvs_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TMap< FString, FString > * `[`GetKvsOrNull`](#structFRHAPI__KVsResponseV2_1a6e04dd037f69c481f45411c240042941)`() const` | Returns a pointer to Kvs_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetKvs`](#structFRHAPI__KVsResponseV2_1a2f681d332fc5baf74bcf3b39ed707892)`(TMap< FString, FString > NewValue)` | Sets the value of Kvs_Optional and also sets Kvs_IsSet to true.
+`public inline void `[`SetKvs`](#structFRHAPI__KVsResponseV2_1a5ba628f1c8fbc3305afcd0151f0ec000)`(const TMap< FString, FString > & NewValue)` | Sets the value of Kvs_Optional and also sets Kvs_IsSet to true.
+`public inline void `[`SetKvs`](#structFRHAPI__KVsResponseV2_1a8d8f045aaf79967b3b841a260089d040)`(TMap< FString, FString > && NewValue)` | Sets the value of Kvs_Optional and also sets Kvs_IsSet to true using move semantics.
 `public inline void `[`ClearKvs`](#structFRHAPI__KVsResponseV2_1a8777e5cde5028f594e27db29dae4bab2)`()` | Clears the value of Kvs_Optional and sets Kvs_IsSet to false.
 `public inline TMap< FString, FString > & `[`GetSecretKvs`](#structFRHAPI__KVsResponseV2_1a81cd82fb9b2da0778444a748eae40c88)`()` | Gets the value of SecretKvs_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetSecretKvs`](#structFRHAPI__KVsResponseV2_1ad210dbd7182922231a12c971086e5b73)`() const` | Gets the value of SecretKvs_Optional, regardless of it having been set.
@@ -37,7 +38,8 @@ struct FRHAPI_KVsResponseV2
 `public inline bool `[`GetSecretKvs`](#structFRHAPI__KVsResponseV2_1a4c060960fdd938171b48f81fd8023af4)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of SecretKvs_Optional and returns true if it has been set, otherwise returns false.
 `public inline TMap< FString, FString > * `[`GetSecretKvsOrNull`](#structFRHAPI__KVsResponseV2_1a7b3179143300d24a14c3e1411c64e4c1)`()` | Returns a pointer to SecretKvs_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TMap< FString, FString > * `[`GetSecretKvsOrNull`](#structFRHAPI__KVsResponseV2_1a0557b9d9e655ea2dc50dcb21e30d5b2a)`() const` | Returns a pointer to SecretKvs_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetSecretKvs`](#structFRHAPI__KVsResponseV2_1a2de15bc30b0339a61ed24487624f3361)`(TMap< FString, FString > NewValue)` | Sets the value of SecretKvs_Optional and also sets SecretKvs_IsSet to true.
+`public inline void `[`SetSecretKvs`](#structFRHAPI__KVsResponseV2_1ace017fbf13868fd79c520f2e0480f009)`(const TMap< FString, FString > & NewValue)` | Sets the value of SecretKvs_Optional and also sets SecretKvs_IsSet to true.
+`public inline void `[`SetSecretKvs`](#structFRHAPI__KVsResponseV2_1afca79ef23c8f802c124bc86c58d44107)`(TMap< FString, FString > && NewValue)` | Sets the value of SecretKvs_Optional and also sets SecretKvs_IsSet to true using move semantics.
 `public inline void `[`ClearSecretKvs`](#structFRHAPI__KVsResponseV2_1aaa15339436ec513d1e51e1900394c473)`()` | Clears the value of SecretKvs_Optional and sets SecretKvs_IsSet to false.
 
 ### Members
@@ -99,9 +101,13 @@ Returns a pointer to Kvs_Optional, if it has been set, otherwise returns nullptr
 
 Returns a pointer to Kvs_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetKvs`](#structFRHAPI__KVsResponseV2_1a2f681d332fc5baf74bcf3b39ed707892)`(TMap< FString, FString > NewValue)` <a id="structFRHAPI__KVsResponseV2_1a2f681d332fc5baf74bcf3b39ed707892"></a>
+#### `public inline void `[`SetKvs`](#structFRHAPI__KVsResponseV2_1a5ba628f1c8fbc3305afcd0151f0ec000)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__KVsResponseV2_1a5ba628f1c8fbc3305afcd0151f0ec000"></a>
 
 Sets the value of Kvs_Optional and also sets Kvs_IsSet to true.
+
+#### `public inline void `[`SetKvs`](#structFRHAPI__KVsResponseV2_1a8d8f045aaf79967b3b841a260089d040)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__KVsResponseV2_1a8d8f045aaf79967b3b841a260089d040"></a>
+
+Sets the value of Kvs_Optional and also sets Kvs_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearKvs`](#structFRHAPI__KVsResponseV2_1a8777e5cde5028f594e27db29dae4bab2)`()` <a id="structFRHAPI__KVsResponseV2_1a8777e5cde5028f594e27db29dae4bab2"></a>
 
@@ -131,9 +137,13 @@ Returns a pointer to SecretKvs_Optional, if it has been set, otherwise returns n
 
 Returns a pointer to SecretKvs_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetSecretKvs`](#structFRHAPI__KVsResponseV2_1a2de15bc30b0339a61ed24487624f3361)`(TMap< FString, FString > NewValue)` <a id="structFRHAPI__KVsResponseV2_1a2de15bc30b0339a61ed24487624f3361"></a>
+#### `public inline void `[`SetSecretKvs`](#structFRHAPI__KVsResponseV2_1ace017fbf13868fd79c520f2e0480f009)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__KVsResponseV2_1ace017fbf13868fd79c520f2e0480f009"></a>
 
 Sets the value of SecretKvs_Optional and also sets SecretKvs_IsSet to true.
+
+#### `public inline void `[`SetSecretKvs`](#structFRHAPI__KVsResponseV2_1afca79ef23c8f802c124bc86c58d44107)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__KVsResponseV2_1afca79ef23c8f802c124bc86c58d44107"></a>
+
+Sets the value of SecretKvs_Optional and also sets SecretKvs_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearSecretKvs`](#structFRHAPI__KVsResponseV2_1aaa15339436ec513d1e51e1900394c473)`()` <a id="structFRHAPI__KVsResponseV2_1aaa15339436ec513d1e51e1900394c473"></a>
 

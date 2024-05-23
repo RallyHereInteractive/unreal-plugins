@@ -30,14 +30,16 @@ Information about a session listed in a browser.
 `public virtual void `[`WriteJson`](#structFRHAPI__BrowserSessionInfo_1a8d5ae1616aa1286df5b6807ea5c0d2b7)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetSessionId`](#structFRHAPI__BrowserSessionInfo_1a7827480c91eb08234f3cfd136530f45e)`()` | Gets the value of SessionId.
 `public inline const FString & `[`GetSessionId`](#structFRHAPI__BrowserSessionInfo_1a44f80f96d99f79dd995d4f8ea92d6fc3)`() const` | Gets the value of SessionId.
-`public inline void `[`SetSessionId`](#structFRHAPI__BrowserSessionInfo_1adda53283e5c9709509eb99376cab0d5d)`(FString NewValue)` | Sets the value of SessionId.
+`public inline void `[`SetSessionId`](#structFRHAPI__BrowserSessionInfo_1af9bd395ee6c2e2a117e199292f31d937)`(const FString & NewValue)` | Sets the value of SessionId.
+`public inline void `[`SetSessionId`](#structFRHAPI__BrowserSessionInfo_1a0288e14c2a5669ce9fbd7cca6d35e13e)`(FString && NewValue)` | Sets the value of SessionId using move semantics.
 `public inline int32 & `[`GetPlayerCount`](#structFRHAPI__BrowserSessionInfo_1aca0c832a46ad32204ccbcf099766277b)`()` | Gets the value of PlayerCount_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetPlayerCount`](#structFRHAPI__BrowserSessionInfo_1a6982b9b28572dba09338420bc24e1bf9)`() const` | Gets the value of PlayerCount_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetPlayerCount`](#structFRHAPI__BrowserSessionInfo_1a1eaefc617051b03ab5e71e14fa48b55a)`(const int32 & DefaultValue) const` | Gets the value of PlayerCount_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetPlayerCount`](#structFRHAPI__BrowserSessionInfo_1a39108acad6e256b339c9b3ea000cee3b)`(int32 & OutValue) const` | Fills OutValue with the value of PlayerCount_Optional and returns true if it has been set, otherwise returns false.
 `public inline int32 * `[`GetPlayerCountOrNull`](#structFRHAPI__BrowserSessionInfo_1a454dcdca1f511fdce9b8de474a22d245)`()` | Returns a pointer to PlayerCount_Optional, if it has been set, otherwise returns nullptr.
 `public inline const int32 * `[`GetPlayerCountOrNull`](#structFRHAPI__BrowserSessionInfo_1a8b18c9981e5ddcdc069d530af68ceefb)`() const` | Returns a pointer to PlayerCount_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPlayerCount`](#structFRHAPI__BrowserSessionInfo_1acfeb37e446922e7e3c5150385f1a1a0c)`(int32 NewValue)` | Sets the value of PlayerCount_Optional and also sets PlayerCount_IsSet to true.
+`public inline void `[`SetPlayerCount`](#structFRHAPI__BrowserSessionInfo_1a6f970072da1db84fd563906baf55dbed)`(const int32 & NewValue)` | Sets the value of PlayerCount_Optional and also sets PlayerCount_IsSet to true.
+`public inline void `[`SetPlayerCount`](#structFRHAPI__BrowserSessionInfo_1acb5b34a1fc0498cf3f49832d550eb815)`(int32 && NewValue)` | Sets the value of PlayerCount_Optional and also sets PlayerCount_IsSet to true using move semantics.
 `public inline void `[`ClearPlayerCount`](#structFRHAPI__BrowserSessionInfo_1aea544e1d0c35b6eb3042f5541619d850)`()` | Clears the value of PlayerCount_Optional and sets PlayerCount_IsSet to false.
 `public inline bool `[`IsPlayerCountDefaultValue`](#structFRHAPI__BrowserSessionInfo_1aca260c0cc406d03f4423ae42aa00cd7d)`() const` | Returns true if PlayerCount_Optional is set and matches the default value.
 `public inline void `[`SetPlayerCountToDefault`](#structFRHAPI__BrowserSessionInfo_1a33402b8ce555bdda6304a68c169128cf)`()` | Sets the value of PlayerCount_Optional to its default and also sets PlayerCount_IsSet to true.
@@ -47,7 +49,8 @@ Information about a session listed in a browser.
 `public inline bool `[`GetMaxPlayerCount`](#structFRHAPI__BrowserSessionInfo_1a4fca349b8c31f615d8b19c3bab0bf6ac)`(int32 & OutValue) const` | Fills OutValue with the value of MaxPlayerCount_Optional and returns true if it has been set, otherwise returns false.
 `public inline int32 * `[`GetMaxPlayerCountOrNull`](#structFRHAPI__BrowserSessionInfo_1a70f5a87412bbd72fcf926b43a9483e63)`()` | Returns a pointer to MaxPlayerCount_Optional, if it has been set, otherwise returns nullptr.
 `public inline const int32 * `[`GetMaxPlayerCountOrNull`](#structFRHAPI__BrowserSessionInfo_1a5bc6fe76a2dc171f1e414883c93a9feb)`() const` | Returns a pointer to MaxPlayerCount_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetMaxPlayerCount`](#structFRHAPI__BrowserSessionInfo_1a6e4f72b01eb2e52595f24f1bfa572af9)`(int32 NewValue)` | Sets the value of MaxPlayerCount_Optional and also sets MaxPlayerCount_IsSet to true.
+`public inline void `[`SetMaxPlayerCount`](#structFRHAPI__BrowserSessionInfo_1ab9e458d4237816e4393f052649ca8e84)`(const int32 & NewValue)` | Sets the value of MaxPlayerCount_Optional and also sets MaxPlayerCount_IsSet to true.
+`public inline void `[`SetMaxPlayerCount`](#structFRHAPI__BrowserSessionInfo_1ada5f36406308d1b7d01c91492836d39c)`(int32 && NewValue)` | Sets the value of MaxPlayerCount_Optional and also sets MaxPlayerCount_IsSet to true using move semantics.
 `public inline void `[`ClearMaxPlayerCount`](#structFRHAPI__BrowserSessionInfo_1ae4db76a7c37ed889376ede8b46d804e8)`()` | Clears the value of MaxPlayerCount_Optional and sets MaxPlayerCount_IsSet to false.
 `public inline bool `[`IsMaxPlayerCountDefaultValue`](#structFRHAPI__BrowserSessionInfo_1a2216b0feb30b57b5d2e3fe24662bd446)`() const` | Returns true if MaxPlayerCount_Optional is set and matches the default value.
 `public inline void `[`SetMaxPlayerCountToDefault`](#structFRHAPI__BrowserSessionInfo_1ac2796e981f1551692d575f75f8b3a826)`()` | Sets the value of MaxPlayerCount_Optional to its default and also sets MaxPlayerCount_IsSet to true.
@@ -57,7 +60,8 @@ Information about a session listed in a browser.
 `public inline bool `[`GetCustomData`](#structFRHAPI__BrowserSessionInfo_1a3e1c0b8045943d73a0a847bce3e07cc4)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__BrowserSessionInfo_1ac71728fae96f9a21c11d366c702b8c76)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__BrowserSessionInfo_1a916172ecb02eaec5c54b28cfc4445f8c)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCustomData`](#structFRHAPI__BrowserSessionInfo_1a35ebc4fc8566513ff72476b165e53875)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`SetCustomData`](#structFRHAPI__BrowserSessionInfo_1a4a8be0270a10138d36ca7ce536c21761)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`SetCustomData`](#structFRHAPI__BrowserSessionInfo_1a73beea90988e2c3933966d54d492d993)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__BrowserSessionInfo_1a84c5084e250d78bbfc734d4ba66d70ca)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
 ### Members
@@ -115,9 +119,13 @@ Gets the value of SessionId.
 
 Gets the value of SessionId.
 
-#### `public inline void `[`SetSessionId`](#structFRHAPI__BrowserSessionInfo_1adda53283e5c9709509eb99376cab0d5d)`(FString NewValue)` <a id="structFRHAPI__BrowserSessionInfo_1adda53283e5c9709509eb99376cab0d5d"></a>
+#### `public inline void `[`SetSessionId`](#structFRHAPI__BrowserSessionInfo_1af9bd395ee6c2e2a117e199292f31d937)`(const FString & NewValue)` <a id="structFRHAPI__BrowserSessionInfo_1af9bd395ee6c2e2a117e199292f31d937"></a>
 
 Sets the value of SessionId.
+
+#### `public inline void `[`SetSessionId`](#structFRHAPI__BrowserSessionInfo_1a0288e14c2a5669ce9fbd7cca6d35e13e)`(FString && NewValue)` <a id="structFRHAPI__BrowserSessionInfo_1a0288e14c2a5669ce9fbd7cca6d35e13e"></a>
+
+Sets the value of SessionId using move semantics.
 
 #### `public inline int32 & `[`GetPlayerCount`](#structFRHAPI__BrowserSessionInfo_1aca0c832a46ad32204ccbcf099766277b)`()` <a id="structFRHAPI__BrowserSessionInfo_1aca0c832a46ad32204ccbcf099766277b"></a>
 
@@ -143,9 +151,13 @@ Returns a pointer to PlayerCount_Optional, if it has been set, otherwise returns
 
 Returns a pointer to PlayerCount_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPlayerCount`](#structFRHAPI__BrowserSessionInfo_1acfeb37e446922e7e3c5150385f1a1a0c)`(int32 NewValue)` <a id="structFRHAPI__BrowserSessionInfo_1acfeb37e446922e7e3c5150385f1a1a0c"></a>
+#### `public inline void `[`SetPlayerCount`](#structFRHAPI__BrowserSessionInfo_1a6f970072da1db84fd563906baf55dbed)`(const int32 & NewValue)` <a id="structFRHAPI__BrowserSessionInfo_1a6f970072da1db84fd563906baf55dbed"></a>
 
 Sets the value of PlayerCount_Optional and also sets PlayerCount_IsSet to true.
+
+#### `public inline void `[`SetPlayerCount`](#structFRHAPI__BrowserSessionInfo_1acb5b34a1fc0498cf3f49832d550eb815)`(int32 && NewValue)` <a id="structFRHAPI__BrowserSessionInfo_1acb5b34a1fc0498cf3f49832d550eb815"></a>
+
+Sets the value of PlayerCount_Optional and also sets PlayerCount_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearPlayerCount`](#structFRHAPI__BrowserSessionInfo_1aea544e1d0c35b6eb3042f5541619d850)`()` <a id="structFRHAPI__BrowserSessionInfo_1aea544e1d0c35b6eb3042f5541619d850"></a>
 
@@ -183,9 +195,13 @@ Returns a pointer to MaxPlayerCount_Optional, if it has been set, otherwise retu
 
 Returns a pointer to MaxPlayerCount_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetMaxPlayerCount`](#structFRHAPI__BrowserSessionInfo_1a6e4f72b01eb2e52595f24f1bfa572af9)`(int32 NewValue)` <a id="structFRHAPI__BrowserSessionInfo_1a6e4f72b01eb2e52595f24f1bfa572af9"></a>
+#### `public inline void `[`SetMaxPlayerCount`](#structFRHAPI__BrowserSessionInfo_1ab9e458d4237816e4393f052649ca8e84)`(const int32 & NewValue)` <a id="structFRHAPI__BrowserSessionInfo_1ab9e458d4237816e4393f052649ca8e84"></a>
 
 Sets the value of MaxPlayerCount_Optional and also sets MaxPlayerCount_IsSet to true.
+
+#### `public inline void `[`SetMaxPlayerCount`](#structFRHAPI__BrowserSessionInfo_1ada5f36406308d1b7d01c91492836d39c)`(int32 && NewValue)` <a id="structFRHAPI__BrowserSessionInfo_1ada5f36406308d1b7d01c91492836d39c"></a>
+
+Sets the value of MaxPlayerCount_Optional and also sets MaxPlayerCount_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearMaxPlayerCount`](#structFRHAPI__BrowserSessionInfo_1ae4db76a7c37ed889376ede8b46d804e8)`()` <a id="structFRHAPI__BrowserSessionInfo_1ae4db76a7c37ed889376ede8b46d804e8"></a>
 
@@ -223,9 +239,13 @@ Returns a pointer to CustomData_Optional, if it has been set, otherwise returns 
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__BrowserSessionInfo_1a35ebc4fc8566513ff72476b165e53875)`(TMap< FString, FString > NewValue)` <a id="structFRHAPI__BrowserSessionInfo_1a35ebc4fc8566513ff72476b165e53875"></a>
+#### `public inline void `[`SetCustomData`](#structFRHAPI__BrowserSessionInfo_1a4a8be0270a10138d36ca7ce536c21761)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__BrowserSessionInfo_1a4a8be0270a10138d36ca7ce536c21761"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+
+#### `public inline void `[`SetCustomData`](#structFRHAPI__BrowserSessionInfo_1a73beea90988e2c3933966d54d492d993)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__BrowserSessionInfo_1a73beea90988e2c3933966d54d492d993"></a>
+
+Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearCustomData`](#structFRHAPI__BrowserSessionInfo_1a84c5084e250d78bbfc734d4ba66d70ca)`()` <a id="structFRHAPI__BrowserSessionInfo_1a84c5084e250d78bbfc734d4ba66d70ca"></a>
 

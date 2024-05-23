@@ -24,7 +24,8 @@ OAuth2 Token Request.
 `public virtual void `[`WriteJson`](#structFRHAPI__TokenRequest_1ac6a1c593c454eca89fbab0bfeb2b3ab8)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline ERHAPI_OAuthGrantType & `[`GetGrantType`](#structFRHAPI__TokenRequest_1af877a2666bfbcc00776b4cabb10be0c1)`()` | Gets the value of GrantType.
 `public inline const ERHAPI_OAuthGrantType & `[`GetGrantType`](#structFRHAPI__TokenRequest_1a42354cce6c75b41d7a086d04e271e4b3)`() const` | Gets the value of GrantType.
-`public inline void `[`SetGrantType`](#structFRHAPI__TokenRequest_1afa21d677b63a9882f3ec72522fcbee5e)`(ERHAPI_OAuthGrantType NewValue)` | Sets the value of GrantType.
+`public inline void `[`SetGrantType`](#structFRHAPI__TokenRequest_1a160962cad4802550db661b2c28f293da)`(const ERHAPI_OAuthGrantType & NewValue)` | Sets the value of GrantType.
+`public inline void `[`SetGrantType`](#structFRHAPI__TokenRequest_1aca918140ff99e6cd97ac8b0abf9787a3)`(ERHAPI_OAuthGrantType && NewValue)` | Sets the value of GrantType using move semantics.
 
 ### Members
 
@@ -57,7 +58,11 @@ Gets the value of GrantType.
 
 Gets the value of GrantType.
 
-#### `public inline void `[`SetGrantType`](#structFRHAPI__TokenRequest_1afa21d677b63a9882f3ec72522fcbee5e)`(ERHAPI_OAuthGrantType NewValue)` <a id="structFRHAPI__TokenRequest_1afa21d677b63a9882f3ec72522fcbee5e"></a>
+#### `public inline void `[`SetGrantType`](#structFRHAPI__TokenRequest_1a160962cad4802550db661b2c28f293da)`(const ERHAPI_OAuthGrantType & NewValue)` <a id="structFRHAPI__TokenRequest_1a160962cad4802550db661b2c28f293da"></a>
 
 Sets the value of GrantType.
+
+#### `public inline void `[`SetGrantType`](#structFRHAPI__TokenRequest_1aca918140ff99e6cd97ac8b0abf9787a3)`(ERHAPI_OAuthGrantType && NewValue)` <a id="structFRHAPI__TokenRequest_1aca918140ff99e6cd97ac8b0abf9787a3"></a>
+
+Sets the value of GrantType using move semantics.
 

@@ -50,7 +50,8 @@ struct FRHAPI_MatchPlayerWithMatch
 `public inline bool `[`GetLastModifiedTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1aa4afabce04335565c0121bf0a57e6ea7)`(FDateTime & OutValue) const` | Fills OutValue with the value of LastModifiedTimestamp_Optional and returns true if it has been set, otherwise returns false.
 `public inline FDateTime * `[`GetLastModifiedTimestampOrNull`](#structFRHAPI__MatchPlayerWithMatch_1aa0f632f6d7578d529b5fb3f20e0ae990)`()` | Returns a pointer to LastModifiedTimestamp_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FDateTime * `[`GetLastModifiedTimestampOrNull`](#structFRHAPI__MatchPlayerWithMatch_1a98821fce9bd961bf952d794c471c88ce)`() const` | Returns a pointer to LastModifiedTimestamp_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetLastModifiedTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1a359dc9d78f4fe4b4c287a4b0fe3ac59a)`(FDateTime NewValue)` | Sets the value of LastModifiedTimestamp_Optional and also sets LastModifiedTimestamp_IsSet to true.
+`public inline void `[`SetLastModifiedTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1ac896deefbc8b4e6e7ca0e1e975fab9fe)`(const FDateTime & NewValue)` | Sets the value of LastModifiedTimestamp_Optional and also sets LastModifiedTimestamp_IsSet to true.
+`public inline void `[`SetLastModifiedTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1af0000a1bfdfe02681a68885e77dedaff)`(FDateTime && NewValue)` | Sets the value of LastModifiedTimestamp_Optional and also sets LastModifiedTimestamp_IsSet to true using move semantics.
 `public inline void `[`ClearLastModifiedTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1a8ce696255a3018379356e8c2fe0cc5a2)`()` | Clears the value of LastModifiedTimestamp_Optional and sets LastModifiedTimestamp_IsSet to false.
 `public inline FDateTime & `[`GetCreatedTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1a3205515c325938c4bee06d90fe91fb6c)`()` | Gets the value of CreatedTimestamp_Optional, regardless of it having been set.
 `public inline const FDateTime & `[`GetCreatedTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1afd0ba7565093829a10b3db652c9cb144)`() const` | Gets the value of CreatedTimestamp_Optional, regardless of it having been set.
@@ -58,7 +59,8 @@ struct FRHAPI_MatchPlayerWithMatch
 `public inline bool `[`GetCreatedTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1a184ff0f198843fe340875d5b12c332d5)`(FDateTime & OutValue) const` | Fills OutValue with the value of CreatedTimestamp_Optional and returns true if it has been set, otherwise returns false.
 `public inline FDateTime * `[`GetCreatedTimestampOrNull`](#structFRHAPI__MatchPlayerWithMatch_1a3bfb888df565ff60410f5962997c02e8)`()` | Returns a pointer to CreatedTimestamp_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FDateTime * `[`GetCreatedTimestampOrNull`](#structFRHAPI__MatchPlayerWithMatch_1a8223cd5ef1d785cc639507fd04d9bc3b)`() const` | Returns a pointer to CreatedTimestamp_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCreatedTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1a6367179d66f5ce0f1511eab08b0b7770)`(FDateTime NewValue)` | Sets the value of CreatedTimestamp_Optional and also sets CreatedTimestamp_IsSet to true.
+`public inline void `[`SetCreatedTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1a49f01a9ff7ef49203ede3363a6724f3c)`(const FDateTime & NewValue)` | Sets the value of CreatedTimestamp_Optional and also sets CreatedTimestamp_IsSet to true.
+`public inline void `[`SetCreatedTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1a2e38b08bfae81b59f446f3c4dd478fa2)`(FDateTime && NewValue)` | Sets the value of CreatedTimestamp_Optional and also sets CreatedTimestamp_IsSet to true using move semantics.
 `public inline void `[`ClearCreatedTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1a314a508998777fc801cca1c11828fc24)`()` | Clears the value of CreatedTimestamp_Optional and sets CreatedTimestamp_IsSet to false.
 `public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__MatchPlayerWithMatch_1af68ddb1c7c8b330051813bbcbeddb9d5)`()` | Gets the value of PlayerUuid_Optional, regardless of it having been set.
 `public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__MatchPlayerWithMatch_1a3e39db9fd72852e3a42108ab781bc8fe)`() const` | Gets the value of PlayerUuid_Optional, regardless of it having been set.
@@ -66,7 +68,8 @@ struct FRHAPI_MatchPlayerWithMatch
 `public inline bool `[`GetPlayerUuid`](#structFRHAPI__MatchPlayerWithMatch_1a291626fa4d01c1136eed79a881a2dae9)`(FGuid & OutValue) const` | Fills OutValue with the value of PlayerUuid_Optional and returns true if it has been set, otherwise returns false.
 `public inline FGuid * `[`GetPlayerUuidOrNull`](#structFRHAPI__MatchPlayerWithMatch_1a4dcf8c768b15825ed617d9e227c9a896)`()` | Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FGuid * `[`GetPlayerUuidOrNull`](#structFRHAPI__MatchPlayerWithMatch_1aee23148f15701a720502296dc9ae71c8)`() const` | Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPlayerUuid`](#structFRHAPI__MatchPlayerWithMatch_1ad6d27d59c32f5fdb170503a575713b05)`(FGuid NewValue)` | Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true.
+`public inline void `[`SetPlayerUuid`](#structFRHAPI__MatchPlayerWithMatch_1a44d71c86b971e39d517c96fc1876b7aa)`(const FGuid & NewValue)` | Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true.
+`public inline void `[`SetPlayerUuid`](#structFRHAPI__MatchPlayerWithMatch_1a07d8ef764e646f6c6426681dbe852d56)`(FGuid && NewValue)` | Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true using move semantics.
 `public inline void `[`ClearPlayerUuid`](#structFRHAPI__MatchPlayerWithMatch_1a3dbf12033fe77ebad938f4f8bd00e4b9)`()` | Clears the value of PlayerUuid_Optional and sets PlayerUuid_IsSet to false.
 `public inline FString & `[`GetTeamId`](#structFRHAPI__MatchPlayerWithMatch_1ac1d506916f528477ac16f59d3939f2b1)`()` | Gets the value of TeamId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetTeamId`](#structFRHAPI__MatchPlayerWithMatch_1a962cf97c9dd76ae74763411636bd456d)`() const` | Gets the value of TeamId_Optional, regardless of it having been set.
@@ -74,7 +77,8 @@ struct FRHAPI_MatchPlayerWithMatch
 `public inline bool `[`GetTeamId`](#structFRHAPI__MatchPlayerWithMatch_1a86721154ff0747defe41825a5d1bc932)`(FString & OutValue) const` | Fills OutValue with the value of TeamId_Optional and returns true if it has been set, otherwise returns false.
 `public inline FString * `[`GetTeamIdOrNull`](#structFRHAPI__MatchPlayerWithMatch_1a2cf9d90a9f6afa88f4e810093fc5818a)`()` | Returns a pointer to TeamId_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FString * `[`GetTeamIdOrNull`](#structFRHAPI__MatchPlayerWithMatch_1a18c81405a1bd4f64d0b1c69108260903)`() const` | Returns a pointer to TeamId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetTeamId`](#structFRHAPI__MatchPlayerWithMatch_1afbcc81964b0d3e4b4f72b2705b86db0f)`(FString NewValue)` | Sets the value of TeamId_Optional and also sets TeamId_IsSet to true.
+`public inline void `[`SetTeamId`](#structFRHAPI__MatchPlayerWithMatch_1a543342c78a3ec048e4a6f04c49ec8788)`(const FString & NewValue)` | Sets the value of TeamId_Optional and also sets TeamId_IsSet to true.
+`public inline void `[`SetTeamId`](#structFRHAPI__MatchPlayerWithMatch_1a59f395d8164b4dd2141179d789955374)`(FString && NewValue)` | Sets the value of TeamId_Optional and also sets TeamId_IsSet to true using move semantics.
 `public inline void `[`ClearTeamId`](#structFRHAPI__MatchPlayerWithMatch_1ae786e20e4ef264737dfdd652ffa8dd53)`()` | Clears the value of TeamId_Optional and sets TeamId_IsSet to false.
 `public inline FString & `[`GetPartySessionId`](#structFRHAPI__MatchPlayerWithMatch_1a9b87135f81c2808975d06b6054c72107)`()` | Gets the value of PartySessionId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetPartySessionId`](#structFRHAPI__MatchPlayerWithMatch_1a954f34fb9dff64ff12ab37bf674daf51)`() const` | Gets the value of PartySessionId_Optional, regardless of it having been set.
@@ -82,7 +86,8 @@ struct FRHAPI_MatchPlayerWithMatch
 `public inline bool `[`GetPartySessionId`](#structFRHAPI__MatchPlayerWithMatch_1ad5a3639b61a7215e15b69c18a1467f65)`(FString & OutValue) const` | Fills OutValue with the value of PartySessionId_Optional and returns true if it has been set, otherwise returns false.
 `public inline FString * `[`GetPartySessionIdOrNull`](#structFRHAPI__MatchPlayerWithMatch_1a9389787891442ad68dfa23695d6fc8c4)`()` | Returns a pointer to PartySessionId_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FString * `[`GetPartySessionIdOrNull`](#structFRHAPI__MatchPlayerWithMatch_1a8cf36de02631975b1258235452a803a1)`() const` | Returns a pointer to PartySessionId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPartySessionId`](#structFRHAPI__MatchPlayerWithMatch_1aca5b6eceabf956c8713b009e64a3c74f)`(FString NewValue)` | Sets the value of PartySessionId_Optional and also sets PartySessionId_IsSet to true.
+`public inline void `[`SetPartySessionId`](#structFRHAPI__MatchPlayerWithMatch_1ab9b0cad7a58ec2060b0d0c054206cb3e)`(const FString & NewValue)` | Sets the value of PartySessionId_Optional and also sets PartySessionId_IsSet to true.
+`public inline void `[`SetPartySessionId`](#structFRHAPI__MatchPlayerWithMatch_1a1053b144bcfd6551cb8db4981b92730f)`(FString && NewValue)` | Sets the value of PartySessionId_Optional and also sets PartySessionId_IsSet to true using move semantics.
 `public inline void `[`ClearPartySessionId`](#structFRHAPI__MatchPlayerWithMatch_1ab0c9bafe1fe1b0857eae325acb587bb8)`()` | Clears the value of PartySessionId_Optional and sets PartySessionId_IsSet to false.
 `public inline int32 & `[`GetPlacement`](#structFRHAPI__MatchPlayerWithMatch_1a53e39e303dfd6b34aebee3418a3ca669)`()` | Gets the value of Placement_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetPlacement`](#structFRHAPI__MatchPlayerWithMatch_1a30d717b08d7617fb843768a8a54ed3a0)`() const` | Gets the value of Placement_Optional, regardless of it having been set.
@@ -90,7 +95,8 @@ struct FRHAPI_MatchPlayerWithMatch
 `public inline bool `[`GetPlacement`](#structFRHAPI__MatchPlayerWithMatch_1a5bc2bdb587241bfe48df47c63cb15cd7)`(int32 & OutValue) const` | Fills OutValue with the value of Placement_Optional and returns true if it has been set, otherwise returns false.
 `public inline int32 * `[`GetPlacementOrNull`](#structFRHAPI__MatchPlayerWithMatch_1af28df41b10041641439c770dcba3d6fb)`()` | Returns a pointer to Placement_Optional, if it has been set, otherwise returns nullptr.
 `public inline const int32 * `[`GetPlacementOrNull`](#structFRHAPI__MatchPlayerWithMatch_1a76323074c25400ef1fadeefdc8b22ee6)`() const` | Returns a pointer to Placement_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPlacement`](#structFRHAPI__MatchPlayerWithMatch_1abb9c0d02b170d1776b5be384718f4a67)`(int32 NewValue)` | Sets the value of Placement_Optional and also sets Placement_IsSet to true.
+`public inline void `[`SetPlacement`](#structFRHAPI__MatchPlayerWithMatch_1af3dad4578613aee6e6838c03bf632fa1)`(const int32 & NewValue)` | Sets the value of Placement_Optional and also sets Placement_IsSet to true.
+`public inline void `[`SetPlacement`](#structFRHAPI__MatchPlayerWithMatch_1a286aebf583cfe4c3292697ecc1c18bed)`(int32 && NewValue)` | Sets the value of Placement_Optional and also sets Placement_IsSet to true using move semantics.
 `public inline void `[`ClearPlacement`](#structFRHAPI__MatchPlayerWithMatch_1a5d88bbe1e747ed4fde8a09646bed27d6)`()` | Clears the value of Placement_Optional and sets Placement_IsSet to false.
 `public inline bool `[`IsPlacementDefaultValue`](#structFRHAPI__MatchPlayerWithMatch_1adbd55a069d0102cbe9e75d04dc874428)`() const` | Returns true if Placement_Optional is set and matches the default value.
 `public inline void `[`SetPlacementToDefault`](#structFRHAPI__MatchPlayerWithMatch_1afe2d5e1393af77f79778e832a6e124e2)`()` | Sets the value of Placement_Optional to its default and also sets Placement_IsSet to true.
@@ -100,7 +106,8 @@ struct FRHAPI_MatchPlayerWithMatch
 `public inline bool `[`GetJoinedMatchTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1a9dbec70c5c63a41e27b2f6e093c54705)`(FDateTime & OutValue) const` | Fills OutValue with the value of JoinedMatchTimestamp_Optional and returns true if it has been set, otherwise returns false.
 `public inline FDateTime * `[`GetJoinedMatchTimestampOrNull`](#structFRHAPI__MatchPlayerWithMatch_1aac1be2dd11dc1927b7fb7b42d8bfe86b)`()` | Returns a pointer to JoinedMatchTimestamp_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FDateTime * `[`GetJoinedMatchTimestampOrNull`](#structFRHAPI__MatchPlayerWithMatch_1a4aefb589eb7c14945a9649a1d0945779)`() const` | Returns a pointer to JoinedMatchTimestamp_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetJoinedMatchTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1a0e1d67427cb7a36950723b2adbaca8bd)`(FDateTime NewValue)` | Sets the value of JoinedMatchTimestamp_Optional and also sets JoinedMatchTimestamp_IsSet to true.
+`public inline void `[`SetJoinedMatchTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1a43617f01e00b3544107f389432254569)`(const FDateTime & NewValue)` | Sets the value of JoinedMatchTimestamp_Optional and also sets JoinedMatchTimestamp_IsSet to true.
+`public inline void `[`SetJoinedMatchTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1aa5730588451bc5c240f59fbe3ac12aba)`(FDateTime && NewValue)` | Sets the value of JoinedMatchTimestamp_Optional and also sets JoinedMatchTimestamp_IsSet to true using move semantics.
 `public inline void `[`ClearJoinedMatchTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1abae34d5cfc3bff2dd51e229e96a43855)`()` | Clears the value of JoinedMatchTimestamp_Optional and sets JoinedMatchTimestamp_IsSet to false.
 `public inline FDateTime & `[`GetLeftMatchTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1a09f5313ad1ecd6085965daaebc79f7f4)`()` | Gets the value of LeftMatchTimestamp_Optional, regardless of it having been set.
 `public inline const FDateTime & `[`GetLeftMatchTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1a1177367a9b74447345a74db785d10795)`() const` | Gets the value of LeftMatchTimestamp_Optional, regardless of it having been set.
@@ -108,7 +115,8 @@ struct FRHAPI_MatchPlayerWithMatch
 `public inline bool `[`GetLeftMatchTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1a9e52d9cd8e77028e90510cf9d7dbec39)`(FDateTime & OutValue) const` | Fills OutValue with the value of LeftMatchTimestamp_Optional and returns true if it has been set, otherwise returns false.
 `public inline FDateTime * `[`GetLeftMatchTimestampOrNull`](#structFRHAPI__MatchPlayerWithMatch_1aa1ae284c8db0da0423991391e6cb2572)`()` | Returns a pointer to LeftMatchTimestamp_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FDateTime * `[`GetLeftMatchTimestampOrNull`](#structFRHAPI__MatchPlayerWithMatch_1a98d18e8a9f4b84e9cc512e9e48de05d3)`() const` | Returns a pointer to LeftMatchTimestamp_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetLeftMatchTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1a36907cf1bb0ed9cae9f270e32e2a3c6c)`(FDateTime NewValue)` | Sets the value of LeftMatchTimestamp_Optional and also sets LeftMatchTimestamp_IsSet to true.
+`public inline void `[`SetLeftMatchTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1a0b7b8bbc0f7c6c4b3622fc79b41b8446)`(const FDateTime & NewValue)` | Sets the value of LeftMatchTimestamp_Optional and also sets LeftMatchTimestamp_IsSet to true.
+`public inline void `[`SetLeftMatchTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1a674ea543a942f78d4b2da158b7a5cdac)`(FDateTime && NewValue)` | Sets the value of LeftMatchTimestamp_Optional and also sets LeftMatchTimestamp_IsSet to true using move semantics.
 `public inline void `[`ClearLeftMatchTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1a9824e1b54f752e7cc9936942826fd2d0)`()` | Clears the value of LeftMatchTimestamp_Optional and sets LeftMatchTimestamp_IsSet to false.
 `public inline int32 & `[`GetDurationSeconds`](#structFRHAPI__MatchPlayerWithMatch_1a25b5cf59d5a43e46e72e3fb04ce38410)`()` | Gets the value of DurationSeconds_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetDurationSeconds`](#structFRHAPI__MatchPlayerWithMatch_1a66564db814173f76da5eaddf592e184e)`() const` | Gets the value of DurationSeconds_Optional, regardless of it having been set.
@@ -116,7 +124,8 @@ struct FRHAPI_MatchPlayerWithMatch
 `public inline bool `[`GetDurationSeconds`](#structFRHAPI__MatchPlayerWithMatch_1a2a7f8c81e681d721c99ff311c01c9c71)`(int32 & OutValue) const` | Fills OutValue with the value of DurationSeconds_Optional and returns true if it has been set, otherwise returns false.
 `public inline int32 * `[`GetDurationSecondsOrNull`](#structFRHAPI__MatchPlayerWithMatch_1a1d56676cbe9c86d05c7483a5eafd4f68)`()` | Returns a pointer to DurationSeconds_Optional, if it has been set, otherwise returns nullptr.
 `public inline const int32 * `[`GetDurationSecondsOrNull`](#structFRHAPI__MatchPlayerWithMatch_1af99c3acff465956562af8a607b2a46ad)`() const` | Returns a pointer to DurationSeconds_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetDurationSeconds`](#structFRHAPI__MatchPlayerWithMatch_1a9c176ee7ffaf2d62f8a68b57fbdb06f2)`(int32 NewValue)` | Sets the value of DurationSeconds_Optional and also sets DurationSeconds_IsSet to true.
+`public inline void `[`SetDurationSeconds`](#structFRHAPI__MatchPlayerWithMatch_1a128737ce3f6a7d9205182a2c9b68becc)`(const int32 & NewValue)` | Sets the value of DurationSeconds_Optional and also sets DurationSeconds_IsSet to true.
+`public inline void `[`SetDurationSeconds`](#structFRHAPI__MatchPlayerWithMatch_1a468b67f772387f903d1a2dfd19685889)`(int32 && NewValue)` | Sets the value of DurationSeconds_Optional and also sets DurationSeconds_IsSet to true using move semantics.
 `public inline void `[`ClearDurationSeconds`](#structFRHAPI__MatchPlayerWithMatch_1a0ecdc5e12f71bc0d02f402229205d3c4)`()` | Clears the value of DurationSeconds_Optional and sets DurationSeconds_IsSet to false.
 `public inline bool `[`IsDurationSecondsDefaultValue`](#structFRHAPI__MatchPlayerWithMatch_1a29ba09c1078ffcf1f88a15634cdee9a2)`() const` | Returns true if DurationSeconds_Optional is set and matches the default value.
 `public inline void `[`SetDurationSecondsToDefault`](#structFRHAPI__MatchPlayerWithMatch_1ab273feafe8a95a5d26528a655a99dec6)`()` | Sets the value of DurationSeconds_Optional to its default and also sets DurationSeconds_IsSet to true.
@@ -126,7 +135,8 @@ struct FRHAPI_MatchPlayerWithMatch
 `public inline bool `[`GetStartingRank`](#structFRHAPI__MatchPlayerWithMatch_1a235f3a980254e68a2aa2c310790343f6)`(FString & OutValue) const` | Fills OutValue with the value of StartingRank_Optional and returns true if it has been set, otherwise returns false.
 `public inline FString * `[`GetStartingRankOrNull`](#structFRHAPI__MatchPlayerWithMatch_1adf7d98c0df8dc214903acbeb366e3ff9)`()` | Returns a pointer to StartingRank_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FString * `[`GetStartingRankOrNull`](#structFRHAPI__MatchPlayerWithMatch_1a7a351caba5674742b0b25cef2e745a78)`() const` | Returns a pointer to StartingRank_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetStartingRank`](#structFRHAPI__MatchPlayerWithMatch_1a91e73ed8ffa11e1a49e404d04d7c359a)`(FString NewValue)` | Sets the value of StartingRank_Optional and also sets StartingRank_IsSet to true.
+`public inline void `[`SetStartingRank`](#structFRHAPI__MatchPlayerWithMatch_1a9d4cb7e4a513ad834596c5e47be79644)`(const FString & NewValue)` | Sets the value of StartingRank_Optional and also sets StartingRank_IsSet to true.
+`public inline void `[`SetStartingRank`](#structFRHAPI__MatchPlayerWithMatch_1af7794dcd90ba383e8765121711000ea4)`(FString && NewValue)` | Sets the value of StartingRank_Optional and also sets StartingRank_IsSet to true using move semantics.
 `public inline void `[`ClearStartingRank`](#structFRHAPI__MatchPlayerWithMatch_1aa3f553837d1d00f98f5b8288c5d9008f)`()` | Clears the value of StartingRank_Optional and sets StartingRank_IsSet to false.
 `public inline FString & `[`GetFinishingRank`](#structFRHAPI__MatchPlayerWithMatch_1a062a8980237a14560c0da668dbf71efa)`()` | Gets the value of FinishingRank_Optional, regardless of it having been set.
 `public inline const FString & `[`GetFinishingRank`](#structFRHAPI__MatchPlayerWithMatch_1abde80907a0a7795758115456f8d5a30c)`() const` | Gets the value of FinishingRank_Optional, regardless of it having been set.
@@ -134,7 +144,8 @@ struct FRHAPI_MatchPlayerWithMatch
 `public inline bool `[`GetFinishingRank`](#structFRHAPI__MatchPlayerWithMatch_1a12da2ec0385822aff5fb80cf6a5b0f67)`(FString & OutValue) const` | Fills OutValue with the value of FinishingRank_Optional and returns true if it has been set, otherwise returns false.
 `public inline FString * `[`GetFinishingRankOrNull`](#structFRHAPI__MatchPlayerWithMatch_1aea919809b63cdaa4df1746d49619207b)`()` | Returns a pointer to FinishingRank_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FString * `[`GetFinishingRankOrNull`](#structFRHAPI__MatchPlayerWithMatch_1aef3470716b4ab692d8b88639cc12d683)`() const` | Returns a pointer to FinishingRank_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetFinishingRank`](#structFRHAPI__MatchPlayerWithMatch_1a5199cc37f0433b0e873b66289d85faf1)`(FString NewValue)` | Sets the value of FinishingRank_Optional and also sets FinishingRank_IsSet to true.
+`public inline void `[`SetFinishingRank`](#structFRHAPI__MatchPlayerWithMatch_1aee5982d705028644e7a64a69b31551e2)`(const FString & NewValue)` | Sets the value of FinishingRank_Optional and also sets FinishingRank_IsSet to true.
+`public inline void `[`SetFinishingRank`](#structFRHAPI__MatchPlayerWithMatch_1a21f4f6753ef98c8a52ccdc66a4831900)`(FString && NewValue)` | Sets the value of FinishingRank_Optional and also sets FinishingRank_IsSet to true using move semantics.
 `public inline void `[`ClearFinishingRank`](#structFRHAPI__MatchPlayerWithMatch_1a82d8cbc73e9caa7fb977cba81ec493f1)`()` | Clears the value of FinishingRank_Optional and sets FinishingRank_IsSet to false.
 `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchPlayerWithMatch_1a21d4abd52548ff0c327ce069f0780e7c)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchPlayerWithMatch_1a4f2bae1af2cdb368a0bce7a8d45f7c89)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
@@ -142,11 +153,13 @@ struct FRHAPI_MatchPlayerWithMatch
 `public inline bool `[`GetCustomData`](#structFRHAPI__MatchPlayerWithMatch_1a76e28c3e446b4e2a4d8b825299926e06)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchPlayerWithMatch_1aba46f37cac786d76962a426e80642e41)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchPlayerWithMatch_1a31f20c887434e4129a45a47ebddf25f4)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCustomData`](#structFRHAPI__MatchPlayerWithMatch_1addd14be4839cf46c72d3ededee01d432)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`SetCustomData`](#structFRHAPI__MatchPlayerWithMatch_1a266d9cfe2304e45730a39632b837cc6f)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`SetCustomData`](#structFRHAPI__MatchPlayerWithMatch_1a08b041e111c8479e6480a119856f841e)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__MatchPlayerWithMatch_1a64ebb116326952d6dbcc9e93345e9132)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 `public inline `[`FRHAPI_MatchValuesOnly`](RHAPI_MatchValuesOnly.md#structFRHAPI__MatchValuesOnly)` & `[`GetMatch`](#structFRHAPI__MatchPlayerWithMatch_1a812d7e285444a4a4f3458c32bfcabd7c)`()` | Gets the value of Match.
 `public inline const `[`FRHAPI_MatchValuesOnly`](RHAPI_MatchValuesOnly.md#structFRHAPI__MatchValuesOnly)` & `[`GetMatch`](#structFRHAPI__MatchPlayerWithMatch_1a8353a40289beee854be294896714878e)`() const` | Gets the value of Match.
-`public inline void `[`SetMatch`](#structFRHAPI__MatchPlayerWithMatch_1a9218553977c7c9661613f43ff8d56a3d)`(`[`FRHAPI_MatchValuesOnly`](RHAPI_MatchValuesOnly.md#structFRHAPI__MatchValuesOnly)` NewValue)` | Sets the value of Match.
+`public inline void `[`SetMatch`](#structFRHAPI__MatchPlayerWithMatch_1aca7f5fae110172a881481d5d0ff53afd)`(const `[`FRHAPI_MatchValuesOnly`](RHAPI_MatchValuesOnly.md#structFRHAPI__MatchValuesOnly)` & NewValue)` | Sets the value of Match.
+`public inline void `[`SetMatch`](#structFRHAPI__MatchPlayerWithMatch_1a6537e66fb30973c75eb43b54ca47c5a7)`(`[`FRHAPI_MatchValuesOnly`](RHAPI_MatchValuesOnly.md#structFRHAPI__MatchValuesOnly)` && NewValue)` | Sets the value of Match using move semantics.
 
 ### Members
 
@@ -275,9 +288,13 @@ Returns a pointer to LastModifiedTimestamp_Optional, if it has been set, otherwi
 
 Returns a pointer to LastModifiedTimestamp_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetLastModifiedTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1a359dc9d78f4fe4b4c287a4b0fe3ac59a)`(FDateTime NewValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1a359dc9d78f4fe4b4c287a4b0fe3ac59a"></a>
+#### `public inline void `[`SetLastModifiedTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1ac896deefbc8b4e6e7ca0e1e975fab9fe)`(const FDateTime & NewValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1ac896deefbc8b4e6e7ca0e1e975fab9fe"></a>
 
 Sets the value of LastModifiedTimestamp_Optional and also sets LastModifiedTimestamp_IsSet to true.
+
+#### `public inline void `[`SetLastModifiedTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1af0000a1bfdfe02681a68885e77dedaff)`(FDateTime && NewValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1af0000a1bfdfe02681a68885e77dedaff"></a>
+
+Sets the value of LastModifiedTimestamp_Optional and also sets LastModifiedTimestamp_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearLastModifiedTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1a8ce696255a3018379356e8c2fe0cc5a2)`()` <a id="structFRHAPI__MatchPlayerWithMatch_1a8ce696255a3018379356e8c2fe0cc5a2"></a>
 
@@ -307,9 +324,13 @@ Returns a pointer to CreatedTimestamp_Optional, if it has been set, otherwise re
 
 Returns a pointer to CreatedTimestamp_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCreatedTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1a6367179d66f5ce0f1511eab08b0b7770)`(FDateTime NewValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1a6367179d66f5ce0f1511eab08b0b7770"></a>
+#### `public inline void `[`SetCreatedTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1a49f01a9ff7ef49203ede3363a6724f3c)`(const FDateTime & NewValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1a49f01a9ff7ef49203ede3363a6724f3c"></a>
 
 Sets the value of CreatedTimestamp_Optional and also sets CreatedTimestamp_IsSet to true.
+
+#### `public inline void `[`SetCreatedTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1a2e38b08bfae81b59f446f3c4dd478fa2)`(FDateTime && NewValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1a2e38b08bfae81b59f446f3c4dd478fa2"></a>
+
+Sets the value of CreatedTimestamp_Optional and also sets CreatedTimestamp_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearCreatedTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1a314a508998777fc801cca1c11828fc24)`()` <a id="structFRHAPI__MatchPlayerWithMatch_1a314a508998777fc801cca1c11828fc24"></a>
 
@@ -339,9 +360,13 @@ Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns 
 
 Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__MatchPlayerWithMatch_1ad6d27d59c32f5fdb170503a575713b05)`(FGuid NewValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1ad6d27d59c32f5fdb170503a575713b05"></a>
+#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__MatchPlayerWithMatch_1a44d71c86b971e39d517c96fc1876b7aa)`(const FGuid & NewValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1a44d71c86b971e39d517c96fc1876b7aa"></a>
 
 Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true.
+
+#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__MatchPlayerWithMatch_1a07d8ef764e646f6c6426681dbe852d56)`(FGuid && NewValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1a07d8ef764e646f6c6426681dbe852d56"></a>
+
+Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearPlayerUuid`](#structFRHAPI__MatchPlayerWithMatch_1a3dbf12033fe77ebad938f4f8bd00e4b9)`()` <a id="structFRHAPI__MatchPlayerWithMatch_1a3dbf12033fe77ebad938f4f8bd00e4b9"></a>
 
@@ -371,9 +396,13 @@ Returns a pointer to TeamId_Optional, if it has been set, otherwise returns null
 
 Returns a pointer to TeamId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetTeamId`](#structFRHAPI__MatchPlayerWithMatch_1afbcc81964b0d3e4b4f72b2705b86db0f)`(FString NewValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1afbcc81964b0d3e4b4f72b2705b86db0f"></a>
+#### `public inline void `[`SetTeamId`](#structFRHAPI__MatchPlayerWithMatch_1a543342c78a3ec048e4a6f04c49ec8788)`(const FString & NewValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1a543342c78a3ec048e4a6f04c49ec8788"></a>
 
 Sets the value of TeamId_Optional and also sets TeamId_IsSet to true.
+
+#### `public inline void `[`SetTeamId`](#structFRHAPI__MatchPlayerWithMatch_1a59f395d8164b4dd2141179d789955374)`(FString && NewValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1a59f395d8164b4dd2141179d789955374"></a>
+
+Sets the value of TeamId_Optional and also sets TeamId_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearTeamId`](#structFRHAPI__MatchPlayerWithMatch_1ae786e20e4ef264737dfdd652ffa8dd53)`()` <a id="structFRHAPI__MatchPlayerWithMatch_1ae786e20e4ef264737dfdd652ffa8dd53"></a>
 
@@ -403,9 +432,13 @@ Returns a pointer to PartySessionId_Optional, if it has been set, otherwise retu
 
 Returns a pointer to PartySessionId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPartySessionId`](#structFRHAPI__MatchPlayerWithMatch_1aca5b6eceabf956c8713b009e64a3c74f)`(FString NewValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1aca5b6eceabf956c8713b009e64a3c74f"></a>
+#### `public inline void `[`SetPartySessionId`](#structFRHAPI__MatchPlayerWithMatch_1ab9b0cad7a58ec2060b0d0c054206cb3e)`(const FString & NewValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1ab9b0cad7a58ec2060b0d0c054206cb3e"></a>
 
 Sets the value of PartySessionId_Optional and also sets PartySessionId_IsSet to true.
+
+#### `public inline void `[`SetPartySessionId`](#structFRHAPI__MatchPlayerWithMatch_1a1053b144bcfd6551cb8db4981b92730f)`(FString && NewValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1a1053b144bcfd6551cb8db4981b92730f"></a>
+
+Sets the value of PartySessionId_Optional and also sets PartySessionId_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearPartySessionId`](#structFRHAPI__MatchPlayerWithMatch_1ab0c9bafe1fe1b0857eae325acb587bb8)`()` <a id="structFRHAPI__MatchPlayerWithMatch_1ab0c9bafe1fe1b0857eae325acb587bb8"></a>
 
@@ -435,9 +468,13 @@ Returns a pointer to Placement_Optional, if it has been set, otherwise returns n
 
 Returns a pointer to Placement_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPlacement`](#structFRHAPI__MatchPlayerWithMatch_1abb9c0d02b170d1776b5be384718f4a67)`(int32 NewValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1abb9c0d02b170d1776b5be384718f4a67"></a>
+#### `public inline void `[`SetPlacement`](#structFRHAPI__MatchPlayerWithMatch_1af3dad4578613aee6e6838c03bf632fa1)`(const int32 & NewValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1af3dad4578613aee6e6838c03bf632fa1"></a>
 
 Sets the value of Placement_Optional and also sets Placement_IsSet to true.
+
+#### `public inline void `[`SetPlacement`](#structFRHAPI__MatchPlayerWithMatch_1a286aebf583cfe4c3292697ecc1c18bed)`(int32 && NewValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1a286aebf583cfe4c3292697ecc1c18bed"></a>
+
+Sets the value of Placement_Optional and also sets Placement_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearPlacement`](#structFRHAPI__MatchPlayerWithMatch_1a5d88bbe1e747ed4fde8a09646bed27d6)`()` <a id="structFRHAPI__MatchPlayerWithMatch_1a5d88bbe1e747ed4fde8a09646bed27d6"></a>
 
@@ -475,9 +512,13 @@ Returns a pointer to JoinedMatchTimestamp_Optional, if it has been set, otherwis
 
 Returns a pointer to JoinedMatchTimestamp_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetJoinedMatchTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1a0e1d67427cb7a36950723b2adbaca8bd)`(FDateTime NewValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1a0e1d67427cb7a36950723b2adbaca8bd"></a>
+#### `public inline void `[`SetJoinedMatchTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1a43617f01e00b3544107f389432254569)`(const FDateTime & NewValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1a43617f01e00b3544107f389432254569"></a>
 
 Sets the value of JoinedMatchTimestamp_Optional and also sets JoinedMatchTimestamp_IsSet to true.
+
+#### `public inline void `[`SetJoinedMatchTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1aa5730588451bc5c240f59fbe3ac12aba)`(FDateTime && NewValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1aa5730588451bc5c240f59fbe3ac12aba"></a>
+
+Sets the value of JoinedMatchTimestamp_Optional and also sets JoinedMatchTimestamp_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearJoinedMatchTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1abae34d5cfc3bff2dd51e229e96a43855)`()` <a id="structFRHAPI__MatchPlayerWithMatch_1abae34d5cfc3bff2dd51e229e96a43855"></a>
 
@@ -507,9 +548,13 @@ Returns a pointer to LeftMatchTimestamp_Optional, if it has been set, otherwise 
 
 Returns a pointer to LeftMatchTimestamp_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetLeftMatchTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1a36907cf1bb0ed9cae9f270e32e2a3c6c)`(FDateTime NewValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1a36907cf1bb0ed9cae9f270e32e2a3c6c"></a>
+#### `public inline void `[`SetLeftMatchTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1a0b7b8bbc0f7c6c4b3622fc79b41b8446)`(const FDateTime & NewValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1a0b7b8bbc0f7c6c4b3622fc79b41b8446"></a>
 
 Sets the value of LeftMatchTimestamp_Optional and also sets LeftMatchTimestamp_IsSet to true.
+
+#### `public inline void `[`SetLeftMatchTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1a674ea543a942f78d4b2da158b7a5cdac)`(FDateTime && NewValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1a674ea543a942f78d4b2da158b7a5cdac"></a>
+
+Sets the value of LeftMatchTimestamp_Optional and also sets LeftMatchTimestamp_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearLeftMatchTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1a9824e1b54f752e7cc9936942826fd2d0)`()` <a id="structFRHAPI__MatchPlayerWithMatch_1a9824e1b54f752e7cc9936942826fd2d0"></a>
 
@@ -539,9 +584,13 @@ Returns a pointer to DurationSeconds_Optional, if it has been set, otherwise ret
 
 Returns a pointer to DurationSeconds_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetDurationSeconds`](#structFRHAPI__MatchPlayerWithMatch_1a9c176ee7ffaf2d62f8a68b57fbdb06f2)`(int32 NewValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1a9c176ee7ffaf2d62f8a68b57fbdb06f2"></a>
+#### `public inline void `[`SetDurationSeconds`](#structFRHAPI__MatchPlayerWithMatch_1a128737ce3f6a7d9205182a2c9b68becc)`(const int32 & NewValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1a128737ce3f6a7d9205182a2c9b68becc"></a>
 
 Sets the value of DurationSeconds_Optional and also sets DurationSeconds_IsSet to true.
+
+#### `public inline void `[`SetDurationSeconds`](#structFRHAPI__MatchPlayerWithMatch_1a468b67f772387f903d1a2dfd19685889)`(int32 && NewValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1a468b67f772387f903d1a2dfd19685889"></a>
+
+Sets the value of DurationSeconds_Optional and also sets DurationSeconds_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearDurationSeconds`](#structFRHAPI__MatchPlayerWithMatch_1a0ecdc5e12f71bc0d02f402229205d3c4)`()` <a id="structFRHAPI__MatchPlayerWithMatch_1a0ecdc5e12f71bc0d02f402229205d3c4"></a>
 
@@ -579,9 +628,13 @@ Returns a pointer to StartingRank_Optional, if it has been set, otherwise return
 
 Returns a pointer to StartingRank_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetStartingRank`](#structFRHAPI__MatchPlayerWithMatch_1a91e73ed8ffa11e1a49e404d04d7c359a)`(FString NewValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1a91e73ed8ffa11e1a49e404d04d7c359a"></a>
+#### `public inline void `[`SetStartingRank`](#structFRHAPI__MatchPlayerWithMatch_1a9d4cb7e4a513ad834596c5e47be79644)`(const FString & NewValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1a9d4cb7e4a513ad834596c5e47be79644"></a>
 
 Sets the value of StartingRank_Optional and also sets StartingRank_IsSet to true.
+
+#### `public inline void `[`SetStartingRank`](#structFRHAPI__MatchPlayerWithMatch_1af7794dcd90ba383e8765121711000ea4)`(FString && NewValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1af7794dcd90ba383e8765121711000ea4"></a>
+
+Sets the value of StartingRank_Optional and also sets StartingRank_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearStartingRank`](#structFRHAPI__MatchPlayerWithMatch_1aa3f553837d1d00f98f5b8288c5d9008f)`()` <a id="structFRHAPI__MatchPlayerWithMatch_1aa3f553837d1d00f98f5b8288c5d9008f"></a>
 
@@ -611,9 +664,13 @@ Returns a pointer to FinishingRank_Optional, if it has been set, otherwise retur
 
 Returns a pointer to FinishingRank_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetFinishingRank`](#structFRHAPI__MatchPlayerWithMatch_1a5199cc37f0433b0e873b66289d85faf1)`(FString NewValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1a5199cc37f0433b0e873b66289d85faf1"></a>
+#### `public inline void `[`SetFinishingRank`](#structFRHAPI__MatchPlayerWithMatch_1aee5982d705028644e7a64a69b31551e2)`(const FString & NewValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1aee5982d705028644e7a64a69b31551e2"></a>
 
 Sets the value of FinishingRank_Optional and also sets FinishingRank_IsSet to true.
+
+#### `public inline void `[`SetFinishingRank`](#structFRHAPI__MatchPlayerWithMatch_1a21f4f6753ef98c8a52ccdc66a4831900)`(FString && NewValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1a21f4f6753ef98c8a52ccdc66a4831900"></a>
+
+Sets the value of FinishingRank_Optional and also sets FinishingRank_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearFinishingRank`](#structFRHAPI__MatchPlayerWithMatch_1a82d8cbc73e9caa7fb977cba81ec493f1)`()` <a id="structFRHAPI__MatchPlayerWithMatch_1a82d8cbc73e9caa7fb977cba81ec493f1"></a>
 
@@ -643,9 +700,13 @@ Returns a pointer to CustomData_Optional, if it has been set, otherwise returns 
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__MatchPlayerWithMatch_1addd14be4839cf46c72d3ededee01d432)`(TMap< FString, FString > NewValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1addd14be4839cf46c72d3ededee01d432"></a>
+#### `public inline void `[`SetCustomData`](#structFRHAPI__MatchPlayerWithMatch_1a266d9cfe2304e45730a39632b837cc6f)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1a266d9cfe2304e45730a39632b837cc6f"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+
+#### `public inline void `[`SetCustomData`](#structFRHAPI__MatchPlayerWithMatch_1a08b041e111c8479e6480a119856f841e)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1a08b041e111c8479e6480a119856f841e"></a>
+
+Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearCustomData`](#structFRHAPI__MatchPlayerWithMatch_1a64ebb116326952d6dbcc9e93345e9132)`()` <a id="structFRHAPI__MatchPlayerWithMatch_1a64ebb116326952d6dbcc9e93345e9132"></a>
 
@@ -659,7 +720,11 @@ Gets the value of Match.
 
 Gets the value of Match.
 
-#### `public inline void `[`SetMatch`](#structFRHAPI__MatchPlayerWithMatch_1a9218553977c7c9661613f43ff8d56a3d)`(`[`FRHAPI_MatchValuesOnly`](RHAPI_MatchValuesOnly.md#structFRHAPI__MatchValuesOnly)` NewValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1a9218553977c7c9661613f43ff8d56a3d"></a>
+#### `public inline void `[`SetMatch`](#structFRHAPI__MatchPlayerWithMatch_1aca7f5fae110172a881481d5d0ff53afd)`(const `[`FRHAPI_MatchValuesOnly`](RHAPI_MatchValuesOnly.md#structFRHAPI__MatchValuesOnly)` & NewValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1aca7f5fae110172a881481d5d0ff53afd"></a>
 
 Sets the value of Match.
+
+#### `public inline void `[`SetMatch`](#structFRHAPI__MatchPlayerWithMatch_1a6537e66fb30973c75eb43b54ca47c5a7)`(`[`FRHAPI_MatchValuesOnly`](RHAPI_MatchValuesOnly.md#structFRHAPI__MatchValuesOnly)` && NewValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1a6537e66fb30973c75eb43b54ca47c5a7"></a>
+
+Sets the value of Match using move semantics.
 

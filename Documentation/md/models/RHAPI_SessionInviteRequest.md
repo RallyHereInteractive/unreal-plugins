@@ -31,7 +31,8 @@ struct FRHAPI_SessionInviteRequest
 `public inline bool `[`GetTeamId`](#structFRHAPI__SessionInviteRequest_1a8a1b425932dd231662d45969601d838b)`(int32 & OutValue) const` | Fills OutValue with the value of TeamId_Optional and returns true if it has been set, otherwise returns false.
 `public inline int32 * `[`GetTeamIdOrNull`](#structFRHAPI__SessionInviteRequest_1a358b12458c94df9aa7f5ed2896ea969d)`()` | Returns a pointer to TeamId_Optional, if it has been set, otherwise returns nullptr.
 `public inline const int32 * `[`GetTeamIdOrNull`](#structFRHAPI__SessionInviteRequest_1a579da08f99cfe8a5fbb94cfde91dcc11)`() const` | Returns a pointer to TeamId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetTeamId`](#structFRHAPI__SessionInviteRequest_1a8f8db984220ab17e00f46c172dd1bbdd)`(int32 NewValue)` | Sets the value of TeamId_Optional and also sets TeamId_IsSet to true.
+`public inline void `[`SetTeamId`](#structFRHAPI__SessionInviteRequest_1a69dfb3b819ccf485f8f03c58a348ace0)`(const int32 & NewValue)` | Sets the value of TeamId_Optional and also sets TeamId_IsSet to true.
+`public inline void `[`SetTeamId`](#structFRHAPI__SessionInviteRequest_1a845c17036818ec6550954c6aad145beb)`(int32 && NewValue)` | Sets the value of TeamId_Optional and also sets TeamId_IsSet to true using move semantics.
 `public inline void `[`ClearTeamId`](#structFRHAPI__SessionInviteRequest_1ab803fd40b4e56bf7305e95e52b042adc)`()` | Clears the value of TeamId_Optional and sets TeamId_IsSet to false.
 `public inline bool `[`IsTeamIdDefaultValue`](#structFRHAPI__SessionInviteRequest_1a9aadde9c1d4c9214e23659a7c68bebbf)`() const` | Returns true if TeamId_Optional is set and matches the default value.
 `public inline void `[`SetTeamIdToDefault`](#structFRHAPI__SessionInviteRequest_1a85d4fe630db7f98e9bf2a11dc22a6729)`()` | Sets the value of TeamId_Optional to its default and also sets TeamId_IsSet to true.
@@ -41,7 +42,8 @@ struct FRHAPI_SessionInviteRequest
 `public inline bool `[`GetOverflowAction`](#structFRHAPI__SessionInviteRequest_1a54a9e060da58850d510b20afae8a78c8)`(ERHAPI_TeamOverflowAction & OutValue) const` | Fills OutValue with the value of OverflowAction_Optional and returns true if it has been set, otherwise returns false.
 `public inline ERHAPI_TeamOverflowAction * `[`GetOverflowActionOrNull`](#structFRHAPI__SessionInviteRequest_1afdaced8043e24f44fd14185f2abdf605)`()` | Returns a pointer to OverflowAction_Optional, if it has been set, otherwise returns nullptr.
 `public inline const ERHAPI_TeamOverflowAction * `[`GetOverflowActionOrNull`](#structFRHAPI__SessionInviteRequest_1a7a08c4e5e8a2d842f7cbb7b54f38d5fc)`() const` | Returns a pointer to OverflowAction_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetOverflowAction`](#structFRHAPI__SessionInviteRequest_1a7cd0f4812dc4862276da0056a52e5da3)`(ERHAPI_TeamOverflowAction NewValue)` | Sets the value of OverflowAction_Optional and also sets OverflowAction_IsSet to true.
+`public inline void `[`SetOverflowAction`](#structFRHAPI__SessionInviteRequest_1a8869f71ece1d360f688d3b06f4de57a4)`(const ERHAPI_TeamOverflowAction & NewValue)` | Sets the value of OverflowAction_Optional and also sets OverflowAction_IsSet to true.
+`public inline void `[`SetOverflowAction`](#structFRHAPI__SessionInviteRequest_1a999124db6f8d8b37aa6a02367ebdbeeb)`(ERHAPI_TeamOverflowAction && NewValue)` | Sets the value of OverflowAction_Optional and also sets OverflowAction_IsSet to true using move semantics.
 `public inline void `[`ClearOverflowAction`](#structFRHAPI__SessionInviteRequest_1a028d16832907411195a4c18f65f485a5)`()` | Clears the value of OverflowAction_Optional and sets OverflowAction_IsSet to false.
 `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__SessionInviteRequest_1a813e26aa5368ddd0e16a1b24c81a309b)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__SessionInviteRequest_1a899274f259affb020bc0f36666847c80)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
@@ -49,7 +51,8 @@ struct FRHAPI_SessionInviteRequest
 `public inline bool `[`GetCustomData`](#structFRHAPI__SessionInviteRequest_1a86d2b56c097198a5a15921b6f97601f3)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__SessionInviteRequest_1a9c306cedc62cd683032e422ec980e477)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__SessionInviteRequest_1a807eae54e59440e7eb0bec7a82f9bf29)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCustomData`](#structFRHAPI__SessionInviteRequest_1a3e89858749deba8535a5ed21cfb7d6c8)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`SetCustomData`](#structFRHAPI__SessionInviteRequest_1a024f088908644c46842748d6fb5ba272)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`SetCustomData`](#structFRHAPI__SessionInviteRequest_1a2efdf342aec88aeb9e9a30ea98996276)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__SessionInviteRequest_1abf043838cd5ee967422e9bac37825728)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
 ### Members
@@ -119,9 +122,13 @@ Returns a pointer to TeamId_Optional, if it has been set, otherwise returns null
 
 Returns a pointer to TeamId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetTeamId`](#structFRHAPI__SessionInviteRequest_1a8f8db984220ab17e00f46c172dd1bbdd)`(int32 NewValue)` <a id="structFRHAPI__SessionInviteRequest_1a8f8db984220ab17e00f46c172dd1bbdd"></a>
+#### `public inline void `[`SetTeamId`](#structFRHAPI__SessionInviteRequest_1a69dfb3b819ccf485f8f03c58a348ace0)`(const int32 & NewValue)` <a id="structFRHAPI__SessionInviteRequest_1a69dfb3b819ccf485f8f03c58a348ace0"></a>
 
 Sets the value of TeamId_Optional and also sets TeamId_IsSet to true.
+
+#### `public inline void `[`SetTeamId`](#structFRHAPI__SessionInviteRequest_1a845c17036818ec6550954c6aad145beb)`(int32 && NewValue)` <a id="structFRHAPI__SessionInviteRequest_1a845c17036818ec6550954c6aad145beb"></a>
+
+Sets the value of TeamId_Optional and also sets TeamId_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearTeamId`](#structFRHAPI__SessionInviteRequest_1ab803fd40b4e56bf7305e95e52b042adc)`()` <a id="structFRHAPI__SessionInviteRequest_1ab803fd40b4e56bf7305e95e52b042adc"></a>
 
@@ -159,9 +166,13 @@ Returns a pointer to OverflowAction_Optional, if it has been set, otherwise retu
 
 Returns a pointer to OverflowAction_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetOverflowAction`](#structFRHAPI__SessionInviteRequest_1a7cd0f4812dc4862276da0056a52e5da3)`(ERHAPI_TeamOverflowAction NewValue)` <a id="structFRHAPI__SessionInviteRequest_1a7cd0f4812dc4862276da0056a52e5da3"></a>
+#### `public inline void `[`SetOverflowAction`](#structFRHAPI__SessionInviteRequest_1a8869f71ece1d360f688d3b06f4de57a4)`(const ERHAPI_TeamOverflowAction & NewValue)` <a id="structFRHAPI__SessionInviteRequest_1a8869f71ece1d360f688d3b06f4de57a4"></a>
 
 Sets the value of OverflowAction_Optional and also sets OverflowAction_IsSet to true.
+
+#### `public inline void `[`SetOverflowAction`](#structFRHAPI__SessionInviteRequest_1a999124db6f8d8b37aa6a02367ebdbeeb)`(ERHAPI_TeamOverflowAction && NewValue)` <a id="structFRHAPI__SessionInviteRequest_1a999124db6f8d8b37aa6a02367ebdbeeb"></a>
+
+Sets the value of OverflowAction_Optional and also sets OverflowAction_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearOverflowAction`](#structFRHAPI__SessionInviteRequest_1a028d16832907411195a4c18f65f485a5)`()` <a id="structFRHAPI__SessionInviteRequest_1a028d16832907411195a4c18f65f485a5"></a>
 
@@ -191,9 +202,13 @@ Returns a pointer to CustomData_Optional, if it has been set, otherwise returns 
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__SessionInviteRequest_1a3e89858749deba8535a5ed21cfb7d6c8)`(TMap< FString, FString > NewValue)` <a id="structFRHAPI__SessionInviteRequest_1a3e89858749deba8535a5ed21cfb7d6c8"></a>
+#### `public inline void `[`SetCustomData`](#structFRHAPI__SessionInviteRequest_1a024f088908644c46842748d6fb5ba272)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__SessionInviteRequest_1a024f088908644c46842748d6fb5ba272"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+
+#### `public inline void `[`SetCustomData`](#structFRHAPI__SessionInviteRequest_1a2efdf342aec88aeb9e9a30ea98996276)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__SessionInviteRequest_1a2efdf342aec88aeb9e9a30ea98996276"></a>
+
+Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearCustomData`](#structFRHAPI__SessionInviteRequest_1abf043838cd5ee967422e9bac37825728)`()` <a id="structFRHAPI__SessionInviteRequest_1abf043838cd5ee967422e9bac37825728"></a>
 

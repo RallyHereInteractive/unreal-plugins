@@ -24,7 +24,8 @@ Connection info about the requesting client.
 `public virtual void `[`WriteJson`](#structFRHAPI__ConnectionInfo_1a194e39da068ff951effe98a6b0a36a56)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetIp`](#structFRHAPI__ConnectionInfo_1a35cdcfa371719695f1ad4fe00c86db75)`()` | Gets the value of Ip.
 `public inline const FString & `[`GetIp`](#structFRHAPI__ConnectionInfo_1add13d7706711b691a3dbf9bbd504a749)`() const` | Gets the value of Ip.
-`public inline void `[`SetIp`](#structFRHAPI__ConnectionInfo_1ab2a203deb1501471c2ff86bcfd6ae3b3)`(FString NewValue)` | Sets the value of Ip.
+`public inline void `[`SetIp`](#structFRHAPI__ConnectionInfo_1acb1790c26e5fbd79624f96465738f064)`(const FString & NewValue)` | Sets the value of Ip.
+`public inline void `[`SetIp`](#structFRHAPI__ConnectionInfo_1a88e597b9901f485cbda8ebb5272ecf82)`(FString && NewValue)` | Sets the value of Ip using move semantics.
 
 ### Members
 
@@ -57,7 +58,11 @@ Gets the value of Ip.
 
 Gets the value of Ip.
 
-#### `public inline void `[`SetIp`](#structFRHAPI__ConnectionInfo_1ab2a203deb1501471c2ff86bcfd6ae3b3)`(FString NewValue)` <a id="structFRHAPI__ConnectionInfo_1ab2a203deb1501471c2ff86bcfd6ae3b3"></a>
+#### `public inline void `[`SetIp`](#structFRHAPI__ConnectionInfo_1acb1790c26e5fbd79624f96465738f064)`(const FString & NewValue)` <a id="structFRHAPI__ConnectionInfo_1acb1790c26e5fbd79624f96465738f064"></a>
 
 Sets the value of Ip.
+
+#### `public inline void `[`SetIp`](#structFRHAPI__ConnectionInfo_1a88e597b9901f485cbda8ebb5272ecf82)`(FString && NewValue)` <a id="structFRHAPI__ConnectionInfo_1a88e597b9901f485cbda8ebb5272ecf82"></a>
+
+Sets the value of Ip using move semantics.
 

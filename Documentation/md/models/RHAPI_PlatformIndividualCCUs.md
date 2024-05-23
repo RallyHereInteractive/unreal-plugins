@@ -22,7 +22,8 @@ struct FRHAPI_PlatformIndividualCCUs
 `public virtual void `[`WriteJson`](#structFRHAPI__PlatformIndividualCCUs_1a56e52f0e1c650225d97b95b4dfa66fd2)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TMap< FString, `[`FRHAPI_IndividualCCUs`](RHAPI_IndividualCCUs.md#structFRHAPI__IndividualCCUs)` > & `[`GetPlatformCcus`](#structFRHAPI__PlatformIndividualCCUs_1ab0aa45ea28850ff0954025afd80821c0)`()` | Gets the value of PlatformCcus.
 `public inline const TMap< FString, `[`FRHAPI_IndividualCCUs`](RHAPI_IndividualCCUs.md#structFRHAPI__IndividualCCUs)` > & `[`GetPlatformCcus`](#structFRHAPI__PlatformIndividualCCUs_1ab453ea06efdbf264d0386af5a92e1d65)`() const` | Gets the value of PlatformCcus.
-`public inline void `[`SetPlatformCcus`](#structFRHAPI__PlatformIndividualCCUs_1a02d6518127c49ad1d7fcfb0bdf1f243b)`(TMap< FString, `[`FRHAPI_IndividualCCUs`](RHAPI_IndividualCCUs.md#structFRHAPI__IndividualCCUs)` > NewValue)` | Sets the value of PlatformCcus.
+`public inline void `[`SetPlatformCcus`](#structFRHAPI__PlatformIndividualCCUs_1aca09255ca387260c24d66cb6ff0fb140)`(const TMap< FString, `[`FRHAPI_IndividualCCUs`](RHAPI_IndividualCCUs.md#structFRHAPI__IndividualCCUs)` > & NewValue)` | Sets the value of PlatformCcus.
+`public inline void `[`SetPlatformCcus`](#structFRHAPI__PlatformIndividualCCUs_1ab58bf479585a604e9b7e2e9ac7e4d0d6)`(TMap< FString, `[`FRHAPI_IndividualCCUs`](RHAPI_IndividualCCUs.md#structFRHAPI__IndividualCCUs)` > && NewValue)` | Sets the value of PlatformCcus using move semantics.
 
 ### Members
 
@@ -53,7 +54,11 @@ Gets the value of PlatformCcus.
 
 Gets the value of PlatformCcus.
 
-#### `public inline void `[`SetPlatformCcus`](#structFRHAPI__PlatformIndividualCCUs_1a02d6518127c49ad1d7fcfb0bdf1f243b)`(TMap< FString, `[`FRHAPI_IndividualCCUs`](RHAPI_IndividualCCUs.md#structFRHAPI__IndividualCCUs)` > NewValue)` <a id="structFRHAPI__PlatformIndividualCCUs_1a02d6518127c49ad1d7fcfb0bdf1f243b"></a>
+#### `public inline void `[`SetPlatformCcus`](#structFRHAPI__PlatformIndividualCCUs_1aca09255ca387260c24d66cb6ff0fb140)`(const TMap< FString, `[`FRHAPI_IndividualCCUs`](RHAPI_IndividualCCUs.md#structFRHAPI__IndividualCCUs)` > & NewValue)` <a id="structFRHAPI__PlatformIndividualCCUs_1aca09255ca387260c24d66cb6ff0fb140"></a>
 
 Sets the value of PlatformCcus.
+
+#### `public inline void `[`SetPlatformCcus`](#structFRHAPI__PlatformIndividualCCUs_1ab58bf479585a604e9b7e2e9ac7e4d0d6)`(TMap< FString, `[`FRHAPI_IndividualCCUs`](RHAPI_IndividualCCUs.md#structFRHAPI__IndividualCCUs)` > && NewValue)` <a id="structFRHAPI__PlatformIndividualCCUs_1ab58bf479585a604e9b7e2e9ac7e4d0d6"></a>
+
+Sets the value of PlatformCcus using move semantics.
 

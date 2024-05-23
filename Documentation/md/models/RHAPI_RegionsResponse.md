@@ -25,10 +25,12 @@ A list of regions and a cursor to continue iterating.
 `public virtual void `[`WriteJson`](#structFRHAPI__RegionsResponse_1ae5e1a61325c1ef40e956be575dd73d21)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TArray< `[`FRHAPI_Region`](RHAPI_Region.md#structFRHAPI__Region)` > & `[`GetRegions`](#structFRHAPI__RegionsResponse_1a73cb043968f010e0fb707c641d2d2ece)`()` | Gets the value of Regions.
 `public inline const TArray< `[`FRHAPI_Region`](RHAPI_Region.md#structFRHAPI__Region)` > & `[`GetRegions`](#structFRHAPI__RegionsResponse_1a14b4e2795b3ef2224f4ea6731f3c895d)`() const` | Gets the value of Regions.
-`public inline void `[`SetRegions`](#structFRHAPI__RegionsResponse_1ad105d1a2e9cb43976972a8e37cb7a65b)`(TArray< `[`FRHAPI_Region`](RHAPI_Region.md#structFRHAPI__Region)` > NewValue)` | Sets the value of Regions.
+`public inline void `[`SetRegions`](#structFRHAPI__RegionsResponse_1a71ad65aa13b453fba693727a4ac9bccb)`(const TArray< `[`FRHAPI_Region`](RHAPI_Region.md#structFRHAPI__Region)` > & NewValue)` | Sets the value of Regions.
+`public inline void `[`SetRegions`](#structFRHAPI__RegionsResponse_1ad10e4b6016040d0c8a0f2712ec4fdfb8)`(TArray< `[`FRHAPI_Region`](RHAPI_Region.md#structFRHAPI__Region)` > && NewValue)` | Sets the value of Regions using move semantics.
 `public inline int32 & `[`GetCursor`](#structFRHAPI__RegionsResponse_1a4a4d7ca43dca64558748338627013d1b)`()` | Gets the value of Cursor.
 `public inline const int32 & `[`GetCursor`](#structFRHAPI__RegionsResponse_1afd77ebb324104e67f59ccc6111c8baa6)`() const` | Gets the value of Cursor.
-`public inline void `[`SetCursor`](#structFRHAPI__RegionsResponse_1abb45eadfb06da13b2ffb40f6fd93d755)`(int32 NewValue)` | Sets the value of Cursor.
+`public inline void `[`SetCursor`](#structFRHAPI__RegionsResponse_1ad57569e69c973aa882441b4c4d954b21)`(const int32 & NewValue)` | Sets the value of Cursor.
+`public inline void `[`SetCursor`](#structFRHAPI__RegionsResponse_1ab4f5d6f7b736204110dec9d680724056)`(int32 && NewValue)` | Sets the value of Cursor using move semantics.
 `public inline bool `[`IsCursorDefaultValue`](#structFRHAPI__RegionsResponse_1a1adf0f792485a9ab5e95f81fb7a104ad)`() const` | Returns true if Cursor matches the default value.
 `public inline void `[`SetCursorToDefault`](#structFRHAPI__RegionsResponse_1a8aee19a22a6a8ec675ac7582cde78b49)`()` | Sets the value of Cursor to its default
 
@@ -67,9 +69,13 @@ Gets the value of Regions.
 
 Gets the value of Regions.
 
-#### `public inline void `[`SetRegions`](#structFRHAPI__RegionsResponse_1ad105d1a2e9cb43976972a8e37cb7a65b)`(TArray< `[`FRHAPI_Region`](RHAPI_Region.md#structFRHAPI__Region)` > NewValue)` <a id="structFRHAPI__RegionsResponse_1ad105d1a2e9cb43976972a8e37cb7a65b"></a>
+#### `public inline void `[`SetRegions`](#structFRHAPI__RegionsResponse_1a71ad65aa13b453fba693727a4ac9bccb)`(const TArray< `[`FRHAPI_Region`](RHAPI_Region.md#structFRHAPI__Region)` > & NewValue)` <a id="structFRHAPI__RegionsResponse_1a71ad65aa13b453fba693727a4ac9bccb"></a>
 
 Sets the value of Regions.
+
+#### `public inline void `[`SetRegions`](#structFRHAPI__RegionsResponse_1ad10e4b6016040d0c8a0f2712ec4fdfb8)`(TArray< `[`FRHAPI_Region`](RHAPI_Region.md#structFRHAPI__Region)` > && NewValue)` <a id="structFRHAPI__RegionsResponse_1ad10e4b6016040d0c8a0f2712ec4fdfb8"></a>
+
+Sets the value of Regions using move semantics.
 
 #### `public inline int32 & `[`GetCursor`](#structFRHAPI__RegionsResponse_1a4a4d7ca43dca64558748338627013d1b)`()` <a id="structFRHAPI__RegionsResponse_1a4a4d7ca43dca64558748338627013d1b"></a>
 
@@ -79,9 +85,13 @@ Gets the value of Cursor.
 
 Gets the value of Cursor.
 
-#### `public inline void `[`SetCursor`](#structFRHAPI__RegionsResponse_1abb45eadfb06da13b2ffb40f6fd93d755)`(int32 NewValue)` <a id="structFRHAPI__RegionsResponse_1abb45eadfb06da13b2ffb40f6fd93d755"></a>
+#### `public inline void `[`SetCursor`](#structFRHAPI__RegionsResponse_1ad57569e69c973aa882441b4c4d954b21)`(const int32 & NewValue)` <a id="structFRHAPI__RegionsResponse_1ad57569e69c973aa882441b4c4d954b21"></a>
 
 Sets the value of Cursor.
+
+#### `public inline void `[`SetCursor`](#structFRHAPI__RegionsResponse_1ab4f5d6f7b736204110dec9d680724056)`(int32 && NewValue)` <a id="structFRHAPI__RegionsResponse_1ab4f5d6f7b736204110dec9d680724056"></a>
+
+Sets the value of Cursor using move semantics.
 
 #### `public inline bool `[`IsCursorDefaultValue`](#structFRHAPI__RegionsResponse_1a1adf0f792485a9ab5e95f81fb7a104ad)`() const` <a id="structFRHAPI__RegionsResponse_1a1adf0f792485a9ab5e95f81fb7a104ad"></a>
 

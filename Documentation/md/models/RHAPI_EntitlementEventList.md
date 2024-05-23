@@ -24,14 +24,16 @@ struct FRHAPI_EntitlementEventList
 `public virtual void `[`WriteJson`](#structFRHAPI__EntitlementEventList_1a416fced08062c5929550f55b07bee1f8)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TArray< `[`FRHAPI_EntitlementEvent`](RHAPI_EntitlementEvent.md#structFRHAPI__EntitlementEvent)` > & `[`GetEvents`](#structFRHAPI__EntitlementEventList_1a8013cde2cf4350616ed670ab98d5b3d4)`()` | Gets the value of Events.
 `public inline const TArray< `[`FRHAPI_EntitlementEvent`](RHAPI_EntitlementEvent.md#structFRHAPI__EntitlementEvent)` > & `[`GetEvents`](#structFRHAPI__EntitlementEventList_1a88b1e46345294753cdd0aa133e46e1f0)`() const` | Gets the value of Events.
-`public inline void `[`SetEvents`](#structFRHAPI__EntitlementEventList_1ab56001c29296f64c50746e30603e21b2)`(TArray< `[`FRHAPI_EntitlementEvent`](RHAPI_EntitlementEvent.md#structFRHAPI__EntitlementEvent)` > NewValue)` | Sets the value of Events.
+`public inline void `[`SetEvents`](#structFRHAPI__EntitlementEventList_1ab93fb31f064e847fd1bf83fa2e0f726d)`(const TArray< `[`FRHAPI_EntitlementEvent`](RHAPI_EntitlementEvent.md#structFRHAPI__EntitlementEvent)` > & NewValue)` | Sets the value of Events.
+`public inline void `[`SetEvents`](#structFRHAPI__EntitlementEventList_1a5819169e8082c2546bbe8adb48fd2023)`(TArray< `[`FRHAPI_EntitlementEvent`](RHAPI_EntitlementEvent.md#structFRHAPI__EntitlementEvent)` > && NewValue)` | Sets the value of Events using move semantics.
 `public inline FString & `[`GetCursor`](#structFRHAPI__EntitlementEventList_1a8e178f8383eb98bcfc2bbbb62c21300f)`()` | Gets the value of Cursor_Optional, regardless of it having been set.
 `public inline const FString & `[`GetCursor`](#structFRHAPI__EntitlementEventList_1ae893bb04a293f12468aa5bbc455acc76)`() const` | Gets the value of Cursor_Optional, regardless of it having been set.
 `public inline const FString & `[`GetCursor`](#structFRHAPI__EntitlementEventList_1a0162673f909d7f63d25d36fc5827aa0f)`(const FString & DefaultValue) const` | Gets the value of Cursor_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetCursor`](#structFRHAPI__EntitlementEventList_1aa85c0365ed689379000cfa35e2dc55a9)`(FString & OutValue) const` | Fills OutValue with the value of Cursor_Optional and returns true if it has been set, otherwise returns false.
 `public inline FString * `[`GetCursorOrNull`](#structFRHAPI__EntitlementEventList_1ad7b540def8476ebe0bb6c7070b2fceb0)`()` | Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FString * `[`GetCursorOrNull`](#structFRHAPI__EntitlementEventList_1a59ec5c41978bc16804aba82f5f5da04c)`() const` | Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCursor`](#structFRHAPI__EntitlementEventList_1a41fe69ccfab4f352f26140dd77855164)`(FString NewValue)` | Sets the value of Cursor_Optional and also sets Cursor_IsSet to true.
+`public inline void `[`SetCursor`](#structFRHAPI__EntitlementEventList_1aad3eb200ef55d113aea11a8e19609c23)`(const FString & NewValue)` | Sets the value of Cursor_Optional and also sets Cursor_IsSet to true.
+`public inline void `[`SetCursor`](#structFRHAPI__EntitlementEventList_1a5cf732a8165b81e2ddde2435ad36cc3d)`(FString && NewValue)` | Sets the value of Cursor_Optional and also sets Cursor_IsSet to true using move semantics.
 `public inline void `[`ClearCursor`](#structFRHAPI__EntitlementEventList_1ad53ca1646a6b5f74c4fcc9fd64d63c0f)`()` | Clears the value of Cursor_Optional and sets Cursor_IsSet to false.
 
 ### Members
@@ -73,9 +75,13 @@ Gets the value of Events.
 
 Gets the value of Events.
 
-#### `public inline void `[`SetEvents`](#structFRHAPI__EntitlementEventList_1ab56001c29296f64c50746e30603e21b2)`(TArray< `[`FRHAPI_EntitlementEvent`](RHAPI_EntitlementEvent.md#structFRHAPI__EntitlementEvent)` > NewValue)` <a id="structFRHAPI__EntitlementEventList_1ab56001c29296f64c50746e30603e21b2"></a>
+#### `public inline void `[`SetEvents`](#structFRHAPI__EntitlementEventList_1ab93fb31f064e847fd1bf83fa2e0f726d)`(const TArray< `[`FRHAPI_EntitlementEvent`](RHAPI_EntitlementEvent.md#structFRHAPI__EntitlementEvent)` > & NewValue)` <a id="structFRHAPI__EntitlementEventList_1ab93fb31f064e847fd1bf83fa2e0f726d"></a>
 
 Sets the value of Events.
+
+#### `public inline void `[`SetEvents`](#structFRHAPI__EntitlementEventList_1a5819169e8082c2546bbe8adb48fd2023)`(TArray< `[`FRHAPI_EntitlementEvent`](RHAPI_EntitlementEvent.md#structFRHAPI__EntitlementEvent)` > && NewValue)` <a id="structFRHAPI__EntitlementEventList_1a5819169e8082c2546bbe8adb48fd2023"></a>
+
+Sets the value of Events using move semantics.
 
 #### `public inline FString & `[`GetCursor`](#structFRHAPI__EntitlementEventList_1a8e178f8383eb98bcfc2bbbb62c21300f)`()` <a id="structFRHAPI__EntitlementEventList_1a8e178f8383eb98bcfc2bbbb62c21300f"></a>
 
@@ -101,9 +107,13 @@ Returns a pointer to Cursor_Optional, if it has been set, otherwise returns null
 
 Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCursor`](#structFRHAPI__EntitlementEventList_1a41fe69ccfab4f352f26140dd77855164)`(FString NewValue)` <a id="structFRHAPI__EntitlementEventList_1a41fe69ccfab4f352f26140dd77855164"></a>
+#### `public inline void `[`SetCursor`](#structFRHAPI__EntitlementEventList_1aad3eb200ef55d113aea11a8e19609c23)`(const FString & NewValue)` <a id="structFRHAPI__EntitlementEventList_1aad3eb200ef55d113aea11a8e19609c23"></a>
 
 Sets the value of Cursor_Optional and also sets Cursor_IsSet to true.
+
+#### `public inline void `[`SetCursor`](#structFRHAPI__EntitlementEventList_1a5cf732a8165b81e2ddde2435ad36cc3d)`(FString && NewValue)` <a id="structFRHAPI__EntitlementEventList_1a5cf732a8165b81e2ddde2435ad36cc3d"></a>
+
+Sets the value of Cursor_Optional and also sets Cursor_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearCursor`](#structFRHAPI__EntitlementEventList_1ad53ca1646a6b5f74c4fcc9fd64d63c0f)`()` <a id="structFRHAPI__EntitlementEventList_1ad53ca1646a6b5f74c4fcc9fd64d63c0f"></a>
 

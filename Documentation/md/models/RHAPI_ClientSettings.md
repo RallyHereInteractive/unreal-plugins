@@ -32,7 +32,8 @@ A player&#39;s platform and input settings.
 `public inline bool `[`GetPlatformId`](#structFRHAPI__ClientSettings_1a98dc74d68ee137b3a4da707fe1188af8)`(ERHAPI_PlatformID & OutValue) const` | Fills OutValue with the value of PlatformId_Optional and returns true if it has been set, otherwise returns false.
 `public inline ERHAPI_PlatformID * `[`GetPlatformIdOrNull`](#structFRHAPI__ClientSettings_1a682c548a788d96fb81260c49f9ff7887)`()` | Returns a pointer to PlatformId_Optional, if it has been set, otherwise returns nullptr.
 `public inline const ERHAPI_PlatformID * `[`GetPlatformIdOrNull`](#structFRHAPI__ClientSettings_1a15bc6ad8edead108914e572d428ae6d3)`() const` | Returns a pointer to PlatformId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPlatformId`](#structFRHAPI__ClientSettings_1a84bba5025f11d7723e4caf241e864534)`(ERHAPI_PlatformID NewValue)` | Sets the value of PlatformId_Optional and also sets PlatformId_IsSet to true.
+`public inline void `[`SetPlatformId`](#structFRHAPI__ClientSettings_1a2e349e7e7a7e64f9240bbdc26e5f2d45)`(const ERHAPI_PlatformID & NewValue)` | Sets the value of PlatformId_Optional and also sets PlatformId_IsSet to true.
+`public inline void `[`SetPlatformId`](#structFRHAPI__ClientSettings_1a0fcd9aa6004e107ff3c88932f80b3d4a)`(ERHAPI_PlatformID && NewValue)` | Sets the value of PlatformId_Optional and also sets PlatformId_IsSet to true using move semantics.
 `public inline void `[`ClearPlatformId`](#structFRHAPI__ClientSettings_1a664e3f1014412b0595ccc0af264539d8)`()` | Clears the value of PlatformId_Optional and sets PlatformId_IsSet to false.
 `public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__ClientSettings_1aae02bf1e6b936d62341704c89dc12234)`()` | Gets the value of Platform_Optional, regardless of it having been set.
 `public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__ClientSettings_1aada5b2c1fd356a1896e31a81dfbf86cb)`() const` | Gets the value of Platform_Optional, regardless of it having been set.
@@ -40,11 +41,13 @@ A player&#39;s platform and input settings.
 `public inline bool `[`GetPlatform`](#structFRHAPI__ClientSettings_1ae4527cd8e88b306dd13587b3b821d925)`(ERHAPI_Platform & OutValue) const` | Fills OutValue with the value of Platform_Optional and returns true if it has been set, otherwise returns false.
 `public inline ERHAPI_Platform * `[`GetPlatformOrNull`](#structFRHAPI__ClientSettings_1afe0cf4cde1a6e9f19aa7bdc435cf6596)`()` | Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr.
 `public inline const ERHAPI_Platform * `[`GetPlatformOrNull`](#structFRHAPI__ClientSettings_1a380ae371c54cb209f3f0286482b43408)`() const` | Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPlatform`](#structFRHAPI__ClientSettings_1acfe62e00fa7df9c3fd613b5abd60b13c)`(ERHAPI_Platform NewValue)` | Sets the value of Platform_Optional and also sets Platform_IsSet to true.
+`public inline void `[`SetPlatform`](#structFRHAPI__ClientSettings_1a1be22efee7d1c5cbb10adc67cd6d281f)`(const ERHAPI_Platform & NewValue)` | Sets the value of Platform_Optional and also sets Platform_IsSet to true.
+`public inline void `[`SetPlatform`](#structFRHAPI__ClientSettings_1adb02a093433bb593f4677d37de4da4f4)`(ERHAPI_Platform && NewValue)` | Sets the value of Platform_Optional and also sets Platform_IsSet to true using move semantics.
 `public inline void `[`ClearPlatform`](#structFRHAPI__ClientSettings_1ac631d7b1d552180893eee6278baca67d)`()` | Clears the value of Platform_Optional and sets Platform_IsSet to false.
 `public inline ERHAPI_Input & `[`GetInput`](#structFRHAPI__ClientSettings_1a93d46c212f51efcac6bc6a56655367ce)`()` | Gets the value of Input.
 `public inline const ERHAPI_Input & `[`GetInput`](#structFRHAPI__ClientSettings_1a987756f572f84cc101ec31fef828a1b9)`() const` | Gets the value of Input.
-`public inline void `[`SetInput`](#structFRHAPI__ClientSettings_1aa5ac02634804e12780258a45e97e2d33)`(ERHAPI_Input NewValue)` | Sets the value of Input.
+`public inline void `[`SetInput`](#structFRHAPI__ClientSettings_1a76aa599df8c174ff30b606a756bd93eb)`(const ERHAPI_Input & NewValue)` | Sets the value of Input.
+`public inline void `[`SetInput`](#structFRHAPI__ClientSettings_1a3f3387f1f429c614b68d2e3519eaf23b)`(ERHAPI_Input && NewValue)` | Sets the value of Input using move semantics.
 
 ### Members
 
@@ -109,9 +112,13 @@ Returns a pointer to PlatformId_Optional, if it has been set, otherwise returns 
 
 Returns a pointer to PlatformId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPlatformId`](#structFRHAPI__ClientSettings_1a84bba5025f11d7723e4caf241e864534)`(ERHAPI_PlatformID NewValue)` <a id="structFRHAPI__ClientSettings_1a84bba5025f11d7723e4caf241e864534"></a>
+#### `public inline void `[`SetPlatformId`](#structFRHAPI__ClientSettings_1a2e349e7e7a7e64f9240bbdc26e5f2d45)`(const ERHAPI_PlatformID & NewValue)` <a id="structFRHAPI__ClientSettings_1a2e349e7e7a7e64f9240bbdc26e5f2d45"></a>
 
 Sets the value of PlatformId_Optional and also sets PlatformId_IsSet to true.
+
+#### `public inline void `[`SetPlatformId`](#structFRHAPI__ClientSettings_1a0fcd9aa6004e107ff3c88932f80b3d4a)`(ERHAPI_PlatformID && NewValue)` <a id="structFRHAPI__ClientSettings_1a0fcd9aa6004e107ff3c88932f80b3d4a"></a>
+
+Sets the value of PlatformId_Optional and also sets PlatformId_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearPlatformId`](#structFRHAPI__ClientSettings_1a664e3f1014412b0595ccc0af264539d8)`()` <a id="structFRHAPI__ClientSettings_1a664e3f1014412b0595ccc0af264539d8"></a>
 
@@ -141,9 +148,13 @@ Returns a pointer to Platform_Optional, if it has been set, otherwise returns nu
 
 Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPlatform`](#structFRHAPI__ClientSettings_1acfe62e00fa7df9c3fd613b5abd60b13c)`(ERHAPI_Platform NewValue)` <a id="structFRHAPI__ClientSettings_1acfe62e00fa7df9c3fd613b5abd60b13c"></a>
+#### `public inline void `[`SetPlatform`](#structFRHAPI__ClientSettings_1a1be22efee7d1c5cbb10adc67cd6d281f)`(const ERHAPI_Platform & NewValue)` <a id="structFRHAPI__ClientSettings_1a1be22efee7d1c5cbb10adc67cd6d281f"></a>
 
 Sets the value of Platform_Optional and also sets Platform_IsSet to true.
+
+#### `public inline void `[`SetPlatform`](#structFRHAPI__ClientSettings_1adb02a093433bb593f4677d37de4da4f4)`(ERHAPI_Platform && NewValue)` <a id="structFRHAPI__ClientSettings_1adb02a093433bb593f4677d37de4da4f4"></a>
+
+Sets the value of Platform_Optional and also sets Platform_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearPlatform`](#structFRHAPI__ClientSettings_1ac631d7b1d552180893eee6278baca67d)`()` <a id="structFRHAPI__ClientSettings_1ac631d7b1d552180893eee6278baca67d"></a>
 
@@ -157,7 +168,11 @@ Gets the value of Input.
 
 Gets the value of Input.
 
-#### `public inline void `[`SetInput`](#structFRHAPI__ClientSettings_1aa5ac02634804e12780258a45e97e2d33)`(ERHAPI_Input NewValue)` <a id="structFRHAPI__ClientSettings_1aa5ac02634804e12780258a45e97e2d33"></a>
+#### `public inline void `[`SetInput`](#structFRHAPI__ClientSettings_1a76aa599df8c174ff30b606a756bd93eb)`(const ERHAPI_Input & NewValue)` <a id="structFRHAPI__ClientSettings_1a76aa599df8c174ff30b606a756bd93eb"></a>
 
 Sets the value of Input.
+
+#### `public inline void `[`SetInput`](#structFRHAPI__ClientSettings_1a3f3387f1f429c614b68d2e3519eaf23b)`(ERHAPI_Input && NewValue)` <a id="structFRHAPI__ClientSettings_1a3f3387f1f429c614b68d2e3519eaf23b"></a>
+
+Sets the value of Input using move semantics.
 

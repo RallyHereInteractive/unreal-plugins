@@ -45,46 +45,56 @@ struct FRHAPI_EntitlementEvent
 `public virtual void `[`WriteJson`](#structFRHAPI__EntitlementEvent_1a48c51ef26812226738977e18236e0435)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetEventId`](#structFRHAPI__EntitlementEvent_1a52b22f4d98df9bebd7d909c5c980af3a)`()` | Gets the value of EventId.
 `public inline const FString & `[`GetEventId`](#structFRHAPI__EntitlementEvent_1ac48dafd583079e95750424f793ff818b)`() const` | Gets the value of EventId.
-`public inline void `[`SetEventId`](#structFRHAPI__EntitlementEvent_1a8f4c26f5802b97d1790fca80dd340cd5)`(FString NewValue)` | Sets the value of EventId.
+`public inline void `[`SetEventId`](#structFRHAPI__EntitlementEvent_1ab2e7caf1a7a94d7d0f78b4c5147260a1)`(const FString & NewValue)` | Sets the value of EventId.
+`public inline void `[`SetEventId`](#structFRHAPI__EntitlementEvent_1ad4b28571815cddc239b2d0a1c2659768)`(FString && NewValue)` | Sets the value of EventId using move semantics.
 `public inline ERHAPI_EntitlementActionType & `[`GetActionType`](#structFRHAPI__EntitlementEvent_1af0eca50ccfde0d7b749f0eb21f63c0d8)`()` | Gets the value of ActionType.
 `public inline const ERHAPI_EntitlementActionType & `[`GetActionType`](#structFRHAPI__EntitlementEvent_1ab4e17ab87da8a0fce99705d9eb323d01)`() const` | Gets the value of ActionType.
-`public inline void `[`SetActionType`](#structFRHAPI__EntitlementEvent_1ab6a113f608e00f35c8d7cbb4cb39b5ba)`(ERHAPI_EntitlementActionType NewValue)` | Sets the value of ActionType.
+`public inline void `[`SetActionType`](#structFRHAPI__EntitlementEvent_1ae8c1691815e0962fa4b4f73e02d1e5ee)`(const ERHAPI_EntitlementActionType & NewValue)` | Sets the value of ActionType.
+`public inline void `[`SetActionType`](#structFRHAPI__EntitlementEvent_1ab6483c615db1ee7b394c0b910e0711a2)`(ERHAPI_EntitlementActionType && NewValue)` | Sets the value of ActionType using move semantics.
 `public inline ERHAPI_EntitlementType & `[`GetEntitlementType`](#structFRHAPI__EntitlementEvent_1a0707fee704c58ea91c8cdc768fbfcb92)`()` | Gets the value of EntitlementType_Optional, regardless of it having been set.
 `public inline const ERHAPI_EntitlementType & `[`GetEntitlementType`](#structFRHAPI__EntitlementEvent_1ab5ea0ce68f2a6022e02954934dafbac7)`() const` | Gets the value of EntitlementType_Optional, regardless of it having been set.
 `public inline const ERHAPI_EntitlementType & `[`GetEntitlementType`](#structFRHAPI__EntitlementEvent_1ab4b9d1f55aa8e54f8f9bb2055ae29db4)`(const ERHAPI_EntitlementType & DefaultValue) const` | Gets the value of EntitlementType_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetEntitlementType`](#structFRHAPI__EntitlementEvent_1a60829820e6968a02f730fe32f453daf8)`(ERHAPI_EntitlementType & OutValue) const` | Fills OutValue with the value of EntitlementType_Optional and returns true if it has been set, otherwise returns false.
 `public inline ERHAPI_EntitlementType * `[`GetEntitlementTypeOrNull`](#structFRHAPI__EntitlementEvent_1af0162050b5fe97d113fb467d4fbca3a8)`()` | Returns a pointer to EntitlementType_Optional, if it has been set, otherwise returns nullptr.
 `public inline const ERHAPI_EntitlementType * `[`GetEntitlementTypeOrNull`](#structFRHAPI__EntitlementEvent_1af4cead59304817a95b328e18a19b88cd)`() const` | Returns a pointer to EntitlementType_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetEntitlementType`](#structFRHAPI__EntitlementEvent_1a676e65904887b6a0d8a8317a4f2b88ae)`(ERHAPI_EntitlementType NewValue)` | Sets the value of EntitlementType_Optional and also sets EntitlementType_IsSet to true.
+`public inline void `[`SetEntitlementType`](#structFRHAPI__EntitlementEvent_1a5ff9352e4d9b1bfeb2095274e4b3df99)`(const ERHAPI_EntitlementType & NewValue)` | Sets the value of EntitlementType_Optional and also sets EntitlementType_IsSet to true.
+`public inline void `[`SetEntitlementType`](#structFRHAPI__EntitlementEvent_1a01f938722a1c25698046a35cdddffd0b)`(ERHAPI_EntitlementType && NewValue)` | Sets the value of EntitlementType_Optional and also sets EntitlementType_IsSet to true using move semantics.
 `public inline void `[`ClearEntitlementType`](#structFRHAPI__EntitlementEvent_1ab5fc55849a7f316c82f0d8c378663c63)`()` | Clears the value of EntitlementType_Optional and sets EntitlementType_IsSet to false.
 `public inline ERHAPI_EntitlementEventStatus & `[`GetStatus`](#structFRHAPI__EntitlementEvent_1ab2c40d46cdca6d4c0a0ad84081b1c3b9)`()` | Gets the value of Status.
 `public inline const ERHAPI_EntitlementEventStatus & `[`GetStatus`](#structFRHAPI__EntitlementEvent_1a3404a80e8442a9be926417e0d42509cd)`() const` | Gets the value of Status.
-`public inline void `[`SetStatus`](#structFRHAPI__EntitlementEvent_1a0892ee25d64729f648b4833fe36fbb90)`(ERHAPI_EntitlementEventStatus NewValue)` | Sets the value of Status.
+`public inline void `[`SetStatus`](#structFRHAPI__EntitlementEvent_1a32bcdd2a566838299c20df134f2aafea)`(const ERHAPI_EntitlementEventStatus & NewValue)` | Sets the value of Status.
+`public inline void `[`SetStatus`](#structFRHAPI__EntitlementEvent_1a9d27604fc4c683873a23d5da37c00d38)`(ERHAPI_EntitlementEventStatus && NewValue)` | Sets the value of Status using move semantics.
 `public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__EntitlementEvent_1aa8df4d27083db0017f1355f0fdaf2598)`()` | Gets the value of PlayerUuid.
 `public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__EntitlementEvent_1a0925f513ccd61462bf9a2cec78ac25f2)`() const` | Gets the value of PlayerUuid.
-`public inline void `[`SetPlayerUuid`](#structFRHAPI__EntitlementEvent_1aac8e504baa836a05d18e35b9aefd5eee)`(FGuid NewValue)` | Sets the value of PlayerUuid.
+`public inline void `[`SetPlayerUuid`](#structFRHAPI__EntitlementEvent_1a06c180302f7f61e5cd44b47b8b3fa6d8)`(const FGuid & NewValue)` | Sets the value of PlayerUuid.
+`public inline void `[`SetPlayerUuid`](#structFRHAPI__EntitlementEvent_1a481ffe075c7a977f9ff5a36a45ec5fa7)`(FGuid && NewValue)` | Sets the value of PlayerUuid using move semantics.
 `public inline int32 & `[`GetPlayerId`](#structFRHAPI__EntitlementEvent_1a374dcf80ac1eee2fdd0732cd4f0fdbd4)`()` | Gets the value of PlayerId_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetPlayerId`](#structFRHAPI__EntitlementEvent_1a7b6e8633ba7d3695fe5693132db88169)`() const` | Gets the value of PlayerId_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetPlayerId`](#structFRHAPI__EntitlementEvent_1a2a61ea9715fad659d5958704b68922c3)`(const int32 & DefaultValue) const` | Gets the value of PlayerId_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetPlayerId`](#structFRHAPI__EntitlementEvent_1a7da68afdfa06811f1cc0073920449241)`(int32 & OutValue) const` | Fills OutValue with the value of PlayerId_Optional and returns true if it has been set, otherwise returns false.
 `public inline int32 * `[`GetPlayerIdOrNull`](#structFRHAPI__EntitlementEvent_1ae4da3a483c7a333d974ef82a4816428a)`()` | Returns a pointer to PlayerId_Optional, if it has been set, otherwise returns nullptr.
 `public inline const int32 * `[`GetPlayerIdOrNull`](#structFRHAPI__EntitlementEvent_1aacec2aff59b39ce09a0ea023cdce3d8d)`() const` | Returns a pointer to PlayerId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPlayerId`](#structFRHAPI__EntitlementEvent_1a624c37a777c0d3fb0cf702205a7cdf97)`(int32 NewValue)` | Sets the value of PlayerId_Optional and also sets PlayerId_IsSet to true.
+`public inline void `[`SetPlayerId`](#structFRHAPI__EntitlementEvent_1a034a93220a1be1ba15e87ae5e4c633ce)`(const int32 & NewValue)` | Sets the value of PlayerId_Optional and also sets PlayerId_IsSet to true.
+`public inline void `[`SetPlayerId`](#structFRHAPI__EntitlementEvent_1a3c9344f27e29cf874fb7e0579d8119e7)`(int32 && NewValue)` | Sets the value of PlayerId_Optional and also sets PlayerId_IsSet to true using move semantics.
 `public inline void `[`ClearPlayerId`](#structFRHAPI__EntitlementEvent_1af5146abdacbb3ecff369e2b812e548b4)`()` | Clears the value of PlayerId_Optional and sets PlayerId_IsSet to false.
 `public inline bool `[`IsPlayerIdDefaultValue`](#structFRHAPI__EntitlementEvent_1a3026ad7ecda02aa2c1b451bc9996f115)`() const` | Returns true if PlayerId_Optional is set and matches the default value.
 `public inline void `[`SetPlayerIdToDefault`](#structFRHAPI__EntitlementEvent_1ae741a5dd78801d9663c20f485968a08d)`()` | Sets the value of PlayerId_Optional to its default and also sets PlayerId_IsSet to true.
 `public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__EntitlementEvent_1a7f3123486a2adfe5da00a683f34708d9)`()` | Gets the value of Platform.
 `public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__EntitlementEvent_1a70653d33816f53ac512d53e36a0d7150)`() const` | Gets the value of Platform.
-`public inline void `[`SetPlatform`](#structFRHAPI__EntitlementEvent_1a68be11bc1c7f3e125631911323f39c8a)`(ERHAPI_Platform NewValue)` | Sets the value of Platform.
+`public inline void `[`SetPlatform`](#structFRHAPI__EntitlementEvent_1a7df513bad966ecdc3076a745056b5fe1)`(const ERHAPI_Platform & NewValue)` | Sets the value of Platform.
+`public inline void `[`SetPlatform`](#structFRHAPI__EntitlementEvent_1a3ff194bd82fcdba2dcd35094c937b9e9)`(ERHAPI_Platform && NewValue)` | Sets the value of Platform using move semantics.
 `public inline FString & `[`GetPlatformUserId`](#structFRHAPI__EntitlementEvent_1aa4695db78339af49fe14f48d6511e40b)`()` | Gets the value of PlatformUserId.
 `public inline const FString & `[`GetPlatformUserId`](#structFRHAPI__EntitlementEvent_1a9315e3f7e5ddd04d2137d0bc06f4236d)`() const` | Gets the value of PlatformUserId.
-`public inline void `[`SetPlatformUserId`](#structFRHAPI__EntitlementEvent_1a5701c7f012380768f6b526a7b33f83dc)`(FString NewValue)` | Sets the value of PlatformUserId.
+`public inline void `[`SetPlatformUserId`](#structFRHAPI__EntitlementEvent_1aafe0fb182cc70300bc8f55d63725135c)`(const FString & NewValue)` | Sets the value of PlatformUserId.
+`public inline void `[`SetPlatformUserId`](#structFRHAPI__EntitlementEvent_1aba889cf4450aa959ae7ea48cc05d1916)`(FString && NewValue)` | Sets the value of PlatformUserId using move semantics.
 `public inline FString & `[`GetSku`](#structFRHAPI__EntitlementEvent_1a8fa02acf3341a8fddb48baacf22fface)`()` | Gets the value of Sku.
 `public inline const FString & `[`GetSku`](#structFRHAPI__EntitlementEvent_1a9bd8f27a9af373e7f39e58dca9da9683)`() const` | Gets the value of Sku.
-`public inline void `[`SetSku`](#structFRHAPI__EntitlementEvent_1a70c6f3312f76f5f1606c21338f844214)`(FString NewValue)` | Sets the value of Sku.
+`public inline void `[`SetSku`](#structFRHAPI__EntitlementEvent_1a6d9abf334d5639a9602bfdc164d69e70)`(const FString & NewValue)` | Sets the value of Sku.
+`public inline void `[`SetSku`](#structFRHAPI__EntitlementEvent_1ad8ea52866f9417b47f70be452070d7a7)`(FString && NewValue)` | Sets the value of Sku using move semantics.
 `public inline int32 & `[`GetQuantity`](#structFRHAPI__EntitlementEvent_1a35de6107e96657f605b2bc8139c4afc3)`()` | Gets the value of Quantity.
 `public inline const int32 & `[`GetQuantity`](#structFRHAPI__EntitlementEvent_1adfc529891406b1ce73af493312c34d07)`() const` | Gets the value of Quantity.
-`public inline void `[`SetQuantity`](#structFRHAPI__EntitlementEvent_1a7fc416b20577580f3ea9d784193f5172)`(int32 NewValue)` | Sets the value of Quantity.
+`public inline void `[`SetQuantity`](#structFRHAPI__EntitlementEvent_1a52507a0f0713e30caf8e1662e865f575)`(const int32 & NewValue)` | Sets the value of Quantity.
+`public inline void `[`SetQuantity`](#structFRHAPI__EntitlementEvent_1a1b727920a518f660061a03705726196e)`(int32 && NewValue)` | Sets the value of Quantity using move semantics.
 `public inline bool `[`IsQuantityDefaultValue`](#structFRHAPI__EntitlementEvent_1a8f992e4fc07f33ee0da0a253d214a72c)`() const` | Returns true if Quantity matches the default value.
 `public inline void `[`SetQuantityToDefault`](#structFRHAPI__EntitlementEvent_1a72c3ce100d0da50ad259598fb1fee0d1)`()` | Sets the value of Quantity to its default
 `public inline FString & `[`GetPlatformTransactionId`](#structFRHAPI__EntitlementEvent_1a346fc3fb279002db593ee148d803d577)`()` | Gets the value of PlatformTransactionId_Optional, regardless of it having been set.
@@ -93,7 +103,8 @@ struct FRHAPI_EntitlementEvent
 `public inline bool `[`GetPlatformTransactionId`](#structFRHAPI__EntitlementEvent_1a2e6629b61a341581b10b994d11ac5221)`(FString & OutValue) const` | Fills OutValue with the value of PlatformTransactionId_Optional and returns true if it has been set, otherwise returns false.
 `public inline FString * `[`GetPlatformTransactionIdOrNull`](#structFRHAPI__EntitlementEvent_1a4c6357ee4b1d6eb654a9be924ab1ba90)`()` | Returns a pointer to PlatformTransactionId_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FString * `[`GetPlatformTransactionIdOrNull`](#structFRHAPI__EntitlementEvent_1ae7ab66955406bd63dc386de1e1f02e4a)`() const` | Returns a pointer to PlatformTransactionId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPlatformTransactionId`](#structFRHAPI__EntitlementEvent_1aae9d61c8a7589c91fbc1b88e6f97f8bd)`(FString NewValue)` | Sets the value of PlatformTransactionId_Optional and also sets PlatformTransactionId_IsSet to true.
+`public inline void `[`SetPlatformTransactionId`](#structFRHAPI__EntitlementEvent_1a48a51b52a980be5bd9adf2cdd6d226ee)`(const FString & NewValue)` | Sets the value of PlatformTransactionId_Optional and also sets PlatformTransactionId_IsSet to true.
+`public inline void `[`SetPlatformTransactionId`](#structFRHAPI__EntitlementEvent_1a7ad1df8a745c6ac15a5c4027a5ebffb0)`(FString && NewValue)` | Sets the value of PlatformTransactionId_Optional and also sets PlatformTransactionId_IsSet to true using move semantics.
 `public inline void `[`ClearPlatformTransactionId`](#structFRHAPI__EntitlementEvent_1af39f853e7fe1b1a432b85a8fa41deba6)`()` | Clears the value of PlatformTransactionId_Optional and sets PlatformTransactionId_IsSet to false.
 `public inline `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetPlatformData`](#structFRHAPI__EntitlementEvent_1af4826913ab038ccdea8e355b5ca487a7)`()` | Gets the value of PlatformData_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetPlatformData`](#structFRHAPI__EntitlementEvent_1adc641ca6377c183f9f3a77177e7adc77)`() const` | Gets the value of PlatformData_Optional, regardless of it having been set.
@@ -101,7 +112,8 @@ struct FRHAPI_EntitlementEvent
 `public inline bool `[`GetPlatformData`](#structFRHAPI__EntitlementEvent_1a22c4188347e5b31e0daef9bfe192d4dc)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & OutValue) const` | Fills OutValue with the value of PlatformData_Optional and returns true if it has been set, otherwise returns false.
 `public inline `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` * `[`GetPlatformDataOrNull`](#structFRHAPI__EntitlementEvent_1a123899938f4680c3c8461563bcaefc15)`()` | Returns a pointer to PlatformData_Optional, if it has been set, otherwise returns nullptr.
 `public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` * `[`GetPlatformDataOrNull`](#structFRHAPI__EntitlementEvent_1a2fea0c8ebbd2e73c7086e7cf0371712e)`() const` | Returns a pointer to PlatformData_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPlatformData`](#structFRHAPI__EntitlementEvent_1a0a2c1014fec7f9ab5525d4980f2b532f)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` NewValue)` | Sets the value of PlatformData_Optional and also sets PlatformData_IsSet to true.
+`public inline void `[`SetPlatformData`](#structFRHAPI__EntitlementEvent_1aa9ee212cdf87a1b33a40480242649379)`(const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & NewValue)` | Sets the value of PlatformData_Optional and also sets PlatformData_IsSet to true.
+`public inline void `[`SetPlatformData`](#structFRHAPI__EntitlementEvent_1a01a5a034b70b5ae19264132ffa027f19)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` && NewValue)` | Sets the value of PlatformData_Optional and also sets PlatformData_IsSet to true using move semantics.
 `public inline void `[`ClearPlatformData`](#structFRHAPI__EntitlementEvent_1a05bd248c86e3a9deee67131f187a2174)`()` | Clears the value of PlatformData_Optional and sets PlatformData_IsSet to false.
 `public inline FString & `[`GetOrderId`](#structFRHAPI__EntitlementEvent_1ab261914bb676d5d2348463bcc4d5efb7)`()` | Gets the value of OrderId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetOrderId`](#structFRHAPI__EntitlementEvent_1ae711b8dff88d6a8a3a3326b83e81a9ee)`() const` | Gets the value of OrderId_Optional, regardless of it having been set.
@@ -109,7 +121,8 @@ struct FRHAPI_EntitlementEvent
 `public inline bool `[`GetOrderId`](#structFRHAPI__EntitlementEvent_1a5acc6a2b31adbb163fd19fb3fe7bd3f7)`(FString & OutValue) const` | Fills OutValue with the value of OrderId_Optional and returns true if it has been set, otherwise returns false.
 `public inline FString * `[`GetOrderIdOrNull`](#structFRHAPI__EntitlementEvent_1a476e6f4a3cac518df1ab93a9785b0bdd)`()` | Returns a pointer to OrderId_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FString * `[`GetOrderIdOrNull`](#structFRHAPI__EntitlementEvent_1a8368da8ff02e34a2c529165ca743fac4)`() const` | Returns a pointer to OrderId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetOrderId`](#structFRHAPI__EntitlementEvent_1a2368932c3af25abfb0dbe9029f748f88)`(FString NewValue)` | Sets the value of OrderId_Optional and also sets OrderId_IsSet to true.
+`public inline void `[`SetOrderId`](#structFRHAPI__EntitlementEvent_1a0fdab933915bec218e0eff6162b6922e)`(const FString & NewValue)` | Sets the value of OrderId_Optional and also sets OrderId_IsSet to true.
+`public inline void `[`SetOrderId`](#structFRHAPI__EntitlementEvent_1a67409743db49868c65943f94e4599442)`(FString && NewValue)` | Sets the value of OrderId_Optional and also sets OrderId_IsSet to true using move semantics.
 `public inline void `[`ClearOrderId`](#structFRHAPI__EntitlementEvent_1a0c8208b28982b04f72aea22f8499ac8d)`()` | Clears the value of OrderId_Optional and sets OrderId_IsSet to false.
 `public inline int32 & `[`GetLootId`](#structFRHAPI__EntitlementEvent_1a906cb09c494c571efa680568980f614f)`()` | Gets the value of LootId_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetLootId`](#structFRHAPI__EntitlementEvent_1af36961dcb21037a4ec15af47563d1416)`() const` | Gets the value of LootId_Optional, regardless of it having been set.
@@ -117,7 +130,8 @@ struct FRHAPI_EntitlementEvent
 `public inline bool `[`GetLootId`](#structFRHAPI__EntitlementEvent_1a32ecb807d1e953da5476cdedae4c15b1)`(int32 & OutValue) const` | Fills OutValue with the value of LootId_Optional and returns true if it has been set, otherwise returns false.
 `public inline int32 * `[`GetLootIdOrNull`](#structFRHAPI__EntitlementEvent_1af55f4b2a6515c7ca0069ffdf8b954d13)`()` | Returns a pointer to LootId_Optional, if it has been set, otherwise returns nullptr.
 `public inline const int32 * `[`GetLootIdOrNull`](#structFRHAPI__EntitlementEvent_1af119702b21818e1feb23f98f3aab1eab)`() const` | Returns a pointer to LootId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetLootId`](#structFRHAPI__EntitlementEvent_1a2cc5b10cc98beb0de12217653d133864)`(int32 NewValue)` | Sets the value of LootId_Optional and also sets LootId_IsSet to true.
+`public inline void `[`SetLootId`](#structFRHAPI__EntitlementEvent_1ab38a5548a0a306293f24bfca9e487845)`(const int32 & NewValue)` | Sets the value of LootId_Optional and also sets LootId_IsSet to true.
+`public inline void `[`SetLootId`](#structFRHAPI__EntitlementEvent_1af066ffb610dc5d9be3ca1273990955ef)`(int32 && NewValue)` | Sets the value of LootId_Optional and also sets LootId_IsSet to true using move semantics.
 `public inline void `[`ClearLootId`](#structFRHAPI__EntitlementEvent_1a08856ada3f43071b642f45fafe05a258)`()` | Clears the value of LootId_Optional and sets LootId_IsSet to false.
 `public inline bool `[`IsLootIdDefaultValue`](#structFRHAPI__EntitlementEvent_1a461b97f0966229b02571bd3b65445d0f)`() const` | Returns true if LootId_Optional is set and matches the default value.
 `public inline void `[`SetLootIdToDefault`](#structFRHAPI__EntitlementEvent_1a352080fbd00ce9e45c9563f78e293e73)`()` | Sets the value of LootId_Optional to its default and also sets LootId_IsSet to true.
@@ -127,14 +141,17 @@ struct FRHAPI_EntitlementEvent
 `public inline bool `[`GetKeyClaimUuid`](#structFRHAPI__EntitlementEvent_1a1d0edade85b970c06630c3a29a80678d)`(FGuid & OutValue) const` | Fills OutValue with the value of KeyClaimUuid_Optional and returns true if it has been set, otherwise returns false.
 `public inline FGuid * `[`GetKeyClaimUuidOrNull`](#structFRHAPI__EntitlementEvent_1a245fb7a0d0ae1507ac41689b43416e19)`()` | Returns a pointer to KeyClaimUuid_Optional, if it has been set, otherwise returns nullptr.
 `public inline const FGuid * `[`GetKeyClaimUuidOrNull`](#structFRHAPI__EntitlementEvent_1a06a288bd0434f9a10b10236947aba54c)`() const` | Returns a pointer to KeyClaimUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetKeyClaimUuid`](#structFRHAPI__EntitlementEvent_1a4f296ae1a43c28ee9870c6d747e69fda)`(FGuid NewValue)` | Sets the value of KeyClaimUuid_Optional and also sets KeyClaimUuid_IsSet to true.
+`public inline void `[`SetKeyClaimUuid`](#structFRHAPI__EntitlementEvent_1a8ab6f303bbf02c26dbc42f8334d37cd5)`(const FGuid & NewValue)` | Sets the value of KeyClaimUuid_Optional and also sets KeyClaimUuid_IsSet to true.
+`public inline void `[`SetKeyClaimUuid`](#structFRHAPI__EntitlementEvent_1afea0e0a9c49b35bb3b169b064a6f561d)`(FGuid && NewValue)` | Sets the value of KeyClaimUuid_Optional and also sets KeyClaimUuid_IsSet to true using move semantics.
 `public inline void `[`ClearKeyClaimUuid`](#structFRHAPI__EntitlementEvent_1a1605339c11ff8db171f9fdc308220631)`()` | Clears the value of KeyClaimUuid_Optional and sets KeyClaimUuid_IsSet to false.
 `public inline FDateTime & `[`GetCreated`](#structFRHAPI__EntitlementEvent_1a4919985ff2ae20b28c95917fe54f455a)`()` | Gets the value of Created.
 `public inline const FDateTime & `[`GetCreated`](#structFRHAPI__EntitlementEvent_1ac4b38128674fcb86c3dcc16981991457)`() const` | Gets the value of Created.
-`public inline void `[`SetCreated`](#structFRHAPI__EntitlementEvent_1a123e04b036729f84279cfaa7fb753cf0)`(FDateTime NewValue)` | Sets the value of Created.
+`public inline void `[`SetCreated`](#structFRHAPI__EntitlementEvent_1a1c63dc9fbe262e47e80ebc34b2eaad62)`(const FDateTime & NewValue)` | Sets the value of Created.
+`public inline void `[`SetCreated`](#structFRHAPI__EntitlementEvent_1adbab92856c57e5a0ecaa5d53b3d9961d)`(FDateTime && NewValue)` | Sets the value of Created using move semantics.
 `public inline FDateTime & `[`GetLastModified`](#structFRHAPI__EntitlementEvent_1a735bd93f2d7a8e705b29d317ee7c64d7)`()` | Gets the value of LastModified.
 `public inline const FDateTime & `[`GetLastModified`](#structFRHAPI__EntitlementEvent_1a057ae60105f8c9224a6eb5234006aac7)`() const` | Gets the value of LastModified.
-`public inline void `[`SetLastModified`](#structFRHAPI__EntitlementEvent_1aef72cd737bf344719c8f971591699d0a)`(FDateTime NewValue)` | Sets the value of LastModified.
+`public inline void `[`SetLastModified`](#structFRHAPI__EntitlementEvent_1ab8f4ff02df207045d00257de6397c6b4)`(const FDateTime & NewValue)` | Sets the value of LastModified.
+`public inline void `[`SetLastModified`](#structFRHAPI__EntitlementEvent_1a5d15252ee09b6117e3f310fecf96966d)`(FDateTime && NewValue)` | Sets the value of LastModified using move semantics.
 
 ### Members
 
@@ -259,9 +276,13 @@ Gets the value of EventId.
 
 Gets the value of EventId.
 
-#### `public inline void `[`SetEventId`](#structFRHAPI__EntitlementEvent_1a8f4c26f5802b97d1790fca80dd340cd5)`(FString NewValue)` <a id="structFRHAPI__EntitlementEvent_1a8f4c26f5802b97d1790fca80dd340cd5"></a>
+#### `public inline void `[`SetEventId`](#structFRHAPI__EntitlementEvent_1ab2e7caf1a7a94d7d0f78b4c5147260a1)`(const FString & NewValue)` <a id="structFRHAPI__EntitlementEvent_1ab2e7caf1a7a94d7d0f78b4c5147260a1"></a>
 
 Sets the value of EventId.
+
+#### `public inline void `[`SetEventId`](#structFRHAPI__EntitlementEvent_1ad4b28571815cddc239b2d0a1c2659768)`(FString && NewValue)` <a id="structFRHAPI__EntitlementEvent_1ad4b28571815cddc239b2d0a1c2659768"></a>
+
+Sets the value of EventId using move semantics.
 
 #### `public inline ERHAPI_EntitlementActionType & `[`GetActionType`](#structFRHAPI__EntitlementEvent_1af0eca50ccfde0d7b749f0eb21f63c0d8)`()` <a id="structFRHAPI__EntitlementEvent_1af0eca50ccfde0d7b749f0eb21f63c0d8"></a>
 
@@ -271,9 +292,13 @@ Gets the value of ActionType.
 
 Gets the value of ActionType.
 
-#### `public inline void `[`SetActionType`](#structFRHAPI__EntitlementEvent_1ab6a113f608e00f35c8d7cbb4cb39b5ba)`(ERHAPI_EntitlementActionType NewValue)` <a id="structFRHAPI__EntitlementEvent_1ab6a113f608e00f35c8d7cbb4cb39b5ba"></a>
+#### `public inline void `[`SetActionType`](#structFRHAPI__EntitlementEvent_1ae8c1691815e0962fa4b4f73e02d1e5ee)`(const ERHAPI_EntitlementActionType & NewValue)` <a id="structFRHAPI__EntitlementEvent_1ae8c1691815e0962fa4b4f73e02d1e5ee"></a>
 
 Sets the value of ActionType.
+
+#### `public inline void `[`SetActionType`](#structFRHAPI__EntitlementEvent_1ab6483c615db1ee7b394c0b910e0711a2)`(ERHAPI_EntitlementActionType && NewValue)` <a id="structFRHAPI__EntitlementEvent_1ab6483c615db1ee7b394c0b910e0711a2"></a>
+
+Sets the value of ActionType using move semantics.
 
 #### `public inline ERHAPI_EntitlementType & `[`GetEntitlementType`](#structFRHAPI__EntitlementEvent_1a0707fee704c58ea91c8cdc768fbfcb92)`()` <a id="structFRHAPI__EntitlementEvent_1a0707fee704c58ea91c8cdc768fbfcb92"></a>
 
@@ -299,9 +324,13 @@ Returns a pointer to EntitlementType_Optional, if it has been set, otherwise ret
 
 Returns a pointer to EntitlementType_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetEntitlementType`](#structFRHAPI__EntitlementEvent_1a676e65904887b6a0d8a8317a4f2b88ae)`(ERHAPI_EntitlementType NewValue)` <a id="structFRHAPI__EntitlementEvent_1a676e65904887b6a0d8a8317a4f2b88ae"></a>
+#### `public inline void `[`SetEntitlementType`](#structFRHAPI__EntitlementEvent_1a5ff9352e4d9b1bfeb2095274e4b3df99)`(const ERHAPI_EntitlementType & NewValue)` <a id="structFRHAPI__EntitlementEvent_1a5ff9352e4d9b1bfeb2095274e4b3df99"></a>
 
 Sets the value of EntitlementType_Optional and also sets EntitlementType_IsSet to true.
+
+#### `public inline void `[`SetEntitlementType`](#structFRHAPI__EntitlementEvent_1a01f938722a1c25698046a35cdddffd0b)`(ERHAPI_EntitlementType && NewValue)` <a id="structFRHAPI__EntitlementEvent_1a01f938722a1c25698046a35cdddffd0b"></a>
+
+Sets the value of EntitlementType_Optional and also sets EntitlementType_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearEntitlementType`](#structFRHAPI__EntitlementEvent_1ab5fc55849a7f316c82f0d8c378663c63)`()` <a id="structFRHAPI__EntitlementEvent_1ab5fc55849a7f316c82f0d8c378663c63"></a>
 
@@ -315,9 +344,13 @@ Gets the value of Status.
 
 Gets the value of Status.
 
-#### `public inline void `[`SetStatus`](#structFRHAPI__EntitlementEvent_1a0892ee25d64729f648b4833fe36fbb90)`(ERHAPI_EntitlementEventStatus NewValue)` <a id="structFRHAPI__EntitlementEvent_1a0892ee25d64729f648b4833fe36fbb90"></a>
+#### `public inline void `[`SetStatus`](#structFRHAPI__EntitlementEvent_1a32bcdd2a566838299c20df134f2aafea)`(const ERHAPI_EntitlementEventStatus & NewValue)` <a id="structFRHAPI__EntitlementEvent_1a32bcdd2a566838299c20df134f2aafea"></a>
 
 Sets the value of Status.
+
+#### `public inline void `[`SetStatus`](#structFRHAPI__EntitlementEvent_1a9d27604fc4c683873a23d5da37c00d38)`(ERHAPI_EntitlementEventStatus && NewValue)` <a id="structFRHAPI__EntitlementEvent_1a9d27604fc4c683873a23d5da37c00d38"></a>
+
+Sets the value of Status using move semantics.
 
 #### `public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__EntitlementEvent_1aa8df4d27083db0017f1355f0fdaf2598)`()` <a id="structFRHAPI__EntitlementEvent_1aa8df4d27083db0017f1355f0fdaf2598"></a>
 
@@ -327,9 +360,13 @@ Gets the value of PlayerUuid.
 
 Gets the value of PlayerUuid.
 
-#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__EntitlementEvent_1aac8e504baa836a05d18e35b9aefd5eee)`(FGuid NewValue)` <a id="structFRHAPI__EntitlementEvent_1aac8e504baa836a05d18e35b9aefd5eee"></a>
+#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__EntitlementEvent_1a06c180302f7f61e5cd44b47b8b3fa6d8)`(const FGuid & NewValue)` <a id="structFRHAPI__EntitlementEvent_1a06c180302f7f61e5cd44b47b8b3fa6d8"></a>
 
 Sets the value of PlayerUuid.
+
+#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__EntitlementEvent_1a481ffe075c7a977f9ff5a36a45ec5fa7)`(FGuid && NewValue)` <a id="structFRHAPI__EntitlementEvent_1a481ffe075c7a977f9ff5a36a45ec5fa7"></a>
+
+Sets the value of PlayerUuid using move semantics.
 
 #### `public inline int32 & `[`GetPlayerId`](#structFRHAPI__EntitlementEvent_1a374dcf80ac1eee2fdd0732cd4f0fdbd4)`()` <a id="structFRHAPI__EntitlementEvent_1a374dcf80ac1eee2fdd0732cd4f0fdbd4"></a>
 
@@ -355,9 +392,13 @@ Returns a pointer to PlayerId_Optional, if it has been set, otherwise returns nu
 
 Returns a pointer to PlayerId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPlayerId`](#structFRHAPI__EntitlementEvent_1a624c37a777c0d3fb0cf702205a7cdf97)`(int32 NewValue)` <a id="structFRHAPI__EntitlementEvent_1a624c37a777c0d3fb0cf702205a7cdf97"></a>
+#### `public inline void `[`SetPlayerId`](#structFRHAPI__EntitlementEvent_1a034a93220a1be1ba15e87ae5e4c633ce)`(const int32 & NewValue)` <a id="structFRHAPI__EntitlementEvent_1a034a93220a1be1ba15e87ae5e4c633ce"></a>
 
 Sets the value of PlayerId_Optional and also sets PlayerId_IsSet to true.
+
+#### `public inline void `[`SetPlayerId`](#structFRHAPI__EntitlementEvent_1a3c9344f27e29cf874fb7e0579d8119e7)`(int32 && NewValue)` <a id="structFRHAPI__EntitlementEvent_1a3c9344f27e29cf874fb7e0579d8119e7"></a>
+
+Sets the value of PlayerId_Optional and also sets PlayerId_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearPlayerId`](#structFRHAPI__EntitlementEvent_1af5146abdacbb3ecff369e2b812e548b4)`()` <a id="structFRHAPI__EntitlementEvent_1af5146abdacbb3ecff369e2b812e548b4"></a>
 
@@ -379,9 +420,13 @@ Gets the value of Platform.
 
 Gets the value of Platform.
 
-#### `public inline void `[`SetPlatform`](#structFRHAPI__EntitlementEvent_1a68be11bc1c7f3e125631911323f39c8a)`(ERHAPI_Platform NewValue)` <a id="structFRHAPI__EntitlementEvent_1a68be11bc1c7f3e125631911323f39c8a"></a>
+#### `public inline void `[`SetPlatform`](#structFRHAPI__EntitlementEvent_1a7df513bad966ecdc3076a745056b5fe1)`(const ERHAPI_Platform & NewValue)` <a id="structFRHAPI__EntitlementEvent_1a7df513bad966ecdc3076a745056b5fe1"></a>
 
 Sets the value of Platform.
+
+#### `public inline void `[`SetPlatform`](#structFRHAPI__EntitlementEvent_1a3ff194bd82fcdba2dcd35094c937b9e9)`(ERHAPI_Platform && NewValue)` <a id="structFRHAPI__EntitlementEvent_1a3ff194bd82fcdba2dcd35094c937b9e9"></a>
+
+Sets the value of Platform using move semantics.
 
 #### `public inline FString & `[`GetPlatformUserId`](#structFRHAPI__EntitlementEvent_1aa4695db78339af49fe14f48d6511e40b)`()` <a id="structFRHAPI__EntitlementEvent_1aa4695db78339af49fe14f48d6511e40b"></a>
 
@@ -391,9 +436,13 @@ Gets the value of PlatformUserId.
 
 Gets the value of PlatformUserId.
 
-#### `public inline void `[`SetPlatformUserId`](#structFRHAPI__EntitlementEvent_1a5701c7f012380768f6b526a7b33f83dc)`(FString NewValue)` <a id="structFRHAPI__EntitlementEvent_1a5701c7f012380768f6b526a7b33f83dc"></a>
+#### `public inline void `[`SetPlatformUserId`](#structFRHAPI__EntitlementEvent_1aafe0fb182cc70300bc8f55d63725135c)`(const FString & NewValue)` <a id="structFRHAPI__EntitlementEvent_1aafe0fb182cc70300bc8f55d63725135c"></a>
 
 Sets the value of PlatformUserId.
+
+#### `public inline void `[`SetPlatformUserId`](#structFRHAPI__EntitlementEvent_1aba889cf4450aa959ae7ea48cc05d1916)`(FString && NewValue)` <a id="structFRHAPI__EntitlementEvent_1aba889cf4450aa959ae7ea48cc05d1916"></a>
+
+Sets the value of PlatformUserId using move semantics.
 
 #### `public inline FString & `[`GetSku`](#structFRHAPI__EntitlementEvent_1a8fa02acf3341a8fddb48baacf22fface)`()` <a id="structFRHAPI__EntitlementEvent_1a8fa02acf3341a8fddb48baacf22fface"></a>
 
@@ -403,9 +452,13 @@ Gets the value of Sku.
 
 Gets the value of Sku.
 
-#### `public inline void `[`SetSku`](#structFRHAPI__EntitlementEvent_1a70c6f3312f76f5f1606c21338f844214)`(FString NewValue)` <a id="structFRHAPI__EntitlementEvent_1a70c6f3312f76f5f1606c21338f844214"></a>
+#### `public inline void `[`SetSku`](#structFRHAPI__EntitlementEvent_1a6d9abf334d5639a9602bfdc164d69e70)`(const FString & NewValue)` <a id="structFRHAPI__EntitlementEvent_1a6d9abf334d5639a9602bfdc164d69e70"></a>
 
 Sets the value of Sku.
+
+#### `public inline void `[`SetSku`](#structFRHAPI__EntitlementEvent_1ad8ea52866f9417b47f70be452070d7a7)`(FString && NewValue)` <a id="structFRHAPI__EntitlementEvent_1ad8ea52866f9417b47f70be452070d7a7"></a>
+
+Sets the value of Sku using move semantics.
 
 #### `public inline int32 & `[`GetQuantity`](#structFRHAPI__EntitlementEvent_1a35de6107e96657f605b2bc8139c4afc3)`()` <a id="structFRHAPI__EntitlementEvent_1a35de6107e96657f605b2bc8139c4afc3"></a>
 
@@ -415,9 +468,13 @@ Gets the value of Quantity.
 
 Gets the value of Quantity.
 
-#### `public inline void `[`SetQuantity`](#structFRHAPI__EntitlementEvent_1a7fc416b20577580f3ea9d784193f5172)`(int32 NewValue)` <a id="structFRHAPI__EntitlementEvent_1a7fc416b20577580f3ea9d784193f5172"></a>
+#### `public inline void `[`SetQuantity`](#structFRHAPI__EntitlementEvent_1a52507a0f0713e30caf8e1662e865f575)`(const int32 & NewValue)` <a id="structFRHAPI__EntitlementEvent_1a52507a0f0713e30caf8e1662e865f575"></a>
 
 Sets the value of Quantity.
+
+#### `public inline void `[`SetQuantity`](#structFRHAPI__EntitlementEvent_1a1b727920a518f660061a03705726196e)`(int32 && NewValue)` <a id="structFRHAPI__EntitlementEvent_1a1b727920a518f660061a03705726196e"></a>
+
+Sets the value of Quantity using move semantics.
 
 #### `public inline bool `[`IsQuantityDefaultValue`](#structFRHAPI__EntitlementEvent_1a8f992e4fc07f33ee0da0a253d214a72c)`() const` <a id="structFRHAPI__EntitlementEvent_1a8f992e4fc07f33ee0da0a253d214a72c"></a>
 
@@ -451,9 +508,13 @@ Returns a pointer to PlatformTransactionId_Optional, if it has been set, otherwi
 
 Returns a pointer to PlatformTransactionId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPlatformTransactionId`](#structFRHAPI__EntitlementEvent_1aae9d61c8a7589c91fbc1b88e6f97f8bd)`(FString NewValue)` <a id="structFRHAPI__EntitlementEvent_1aae9d61c8a7589c91fbc1b88e6f97f8bd"></a>
+#### `public inline void `[`SetPlatformTransactionId`](#structFRHAPI__EntitlementEvent_1a48a51b52a980be5bd9adf2cdd6d226ee)`(const FString & NewValue)` <a id="structFRHAPI__EntitlementEvent_1a48a51b52a980be5bd9adf2cdd6d226ee"></a>
 
 Sets the value of PlatformTransactionId_Optional and also sets PlatformTransactionId_IsSet to true.
+
+#### `public inline void `[`SetPlatformTransactionId`](#structFRHAPI__EntitlementEvent_1a7ad1df8a745c6ac15a5c4027a5ebffb0)`(FString && NewValue)` <a id="structFRHAPI__EntitlementEvent_1a7ad1df8a745c6ac15a5c4027a5ebffb0"></a>
+
+Sets the value of PlatformTransactionId_Optional and also sets PlatformTransactionId_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearPlatformTransactionId`](#structFRHAPI__EntitlementEvent_1af39f853e7fe1b1a432b85a8fa41deba6)`()` <a id="structFRHAPI__EntitlementEvent_1af39f853e7fe1b1a432b85a8fa41deba6"></a>
 
@@ -483,9 +544,13 @@ Returns a pointer to PlatformData_Optional, if it has been set, otherwise return
 
 Returns a pointer to PlatformData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPlatformData`](#structFRHAPI__EntitlementEvent_1a0a2c1014fec7f9ab5525d4980f2b532f)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` NewValue)` <a id="structFRHAPI__EntitlementEvent_1a0a2c1014fec7f9ab5525d4980f2b532f"></a>
+#### `public inline void `[`SetPlatformData`](#structFRHAPI__EntitlementEvent_1aa9ee212cdf87a1b33a40480242649379)`(const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & NewValue)` <a id="structFRHAPI__EntitlementEvent_1aa9ee212cdf87a1b33a40480242649379"></a>
 
 Sets the value of PlatformData_Optional and also sets PlatformData_IsSet to true.
+
+#### `public inline void `[`SetPlatformData`](#structFRHAPI__EntitlementEvent_1a01a5a034b70b5ae19264132ffa027f19)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` && NewValue)` <a id="structFRHAPI__EntitlementEvent_1a01a5a034b70b5ae19264132ffa027f19"></a>
+
+Sets the value of PlatformData_Optional and also sets PlatformData_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearPlatformData`](#structFRHAPI__EntitlementEvent_1a05bd248c86e3a9deee67131f187a2174)`()` <a id="structFRHAPI__EntitlementEvent_1a05bd248c86e3a9deee67131f187a2174"></a>
 
@@ -515,9 +580,13 @@ Returns a pointer to OrderId_Optional, if it has been set, otherwise returns nul
 
 Returns a pointer to OrderId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetOrderId`](#structFRHAPI__EntitlementEvent_1a2368932c3af25abfb0dbe9029f748f88)`(FString NewValue)` <a id="structFRHAPI__EntitlementEvent_1a2368932c3af25abfb0dbe9029f748f88"></a>
+#### `public inline void `[`SetOrderId`](#structFRHAPI__EntitlementEvent_1a0fdab933915bec218e0eff6162b6922e)`(const FString & NewValue)` <a id="structFRHAPI__EntitlementEvent_1a0fdab933915bec218e0eff6162b6922e"></a>
 
 Sets the value of OrderId_Optional and also sets OrderId_IsSet to true.
+
+#### `public inline void `[`SetOrderId`](#structFRHAPI__EntitlementEvent_1a67409743db49868c65943f94e4599442)`(FString && NewValue)` <a id="structFRHAPI__EntitlementEvent_1a67409743db49868c65943f94e4599442"></a>
+
+Sets the value of OrderId_Optional and also sets OrderId_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearOrderId`](#structFRHAPI__EntitlementEvent_1a0c8208b28982b04f72aea22f8499ac8d)`()` <a id="structFRHAPI__EntitlementEvent_1a0c8208b28982b04f72aea22f8499ac8d"></a>
 
@@ -547,9 +616,13 @@ Returns a pointer to LootId_Optional, if it has been set, otherwise returns null
 
 Returns a pointer to LootId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetLootId`](#structFRHAPI__EntitlementEvent_1a2cc5b10cc98beb0de12217653d133864)`(int32 NewValue)` <a id="structFRHAPI__EntitlementEvent_1a2cc5b10cc98beb0de12217653d133864"></a>
+#### `public inline void `[`SetLootId`](#structFRHAPI__EntitlementEvent_1ab38a5548a0a306293f24bfca9e487845)`(const int32 & NewValue)` <a id="structFRHAPI__EntitlementEvent_1ab38a5548a0a306293f24bfca9e487845"></a>
 
 Sets the value of LootId_Optional and also sets LootId_IsSet to true.
+
+#### `public inline void `[`SetLootId`](#structFRHAPI__EntitlementEvent_1af066ffb610dc5d9be3ca1273990955ef)`(int32 && NewValue)` <a id="structFRHAPI__EntitlementEvent_1af066ffb610dc5d9be3ca1273990955ef"></a>
+
+Sets the value of LootId_Optional and also sets LootId_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearLootId`](#structFRHAPI__EntitlementEvent_1a08856ada3f43071b642f45fafe05a258)`()` <a id="structFRHAPI__EntitlementEvent_1a08856ada3f43071b642f45fafe05a258"></a>
 
@@ -587,9 +660,13 @@ Returns a pointer to KeyClaimUuid_Optional, if it has been set, otherwise return
 
 Returns a pointer to KeyClaimUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetKeyClaimUuid`](#structFRHAPI__EntitlementEvent_1a4f296ae1a43c28ee9870c6d747e69fda)`(FGuid NewValue)` <a id="structFRHAPI__EntitlementEvent_1a4f296ae1a43c28ee9870c6d747e69fda"></a>
+#### `public inline void `[`SetKeyClaimUuid`](#structFRHAPI__EntitlementEvent_1a8ab6f303bbf02c26dbc42f8334d37cd5)`(const FGuid & NewValue)` <a id="structFRHAPI__EntitlementEvent_1a8ab6f303bbf02c26dbc42f8334d37cd5"></a>
 
 Sets the value of KeyClaimUuid_Optional and also sets KeyClaimUuid_IsSet to true.
+
+#### `public inline void `[`SetKeyClaimUuid`](#structFRHAPI__EntitlementEvent_1afea0e0a9c49b35bb3b169b064a6f561d)`(FGuid && NewValue)` <a id="structFRHAPI__EntitlementEvent_1afea0e0a9c49b35bb3b169b064a6f561d"></a>
+
+Sets the value of KeyClaimUuid_Optional and also sets KeyClaimUuid_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearKeyClaimUuid`](#structFRHAPI__EntitlementEvent_1a1605339c11ff8db171f9fdc308220631)`()` <a id="structFRHAPI__EntitlementEvent_1a1605339c11ff8db171f9fdc308220631"></a>
 
@@ -603,9 +680,13 @@ Gets the value of Created.
 
 Gets the value of Created.
 
-#### `public inline void `[`SetCreated`](#structFRHAPI__EntitlementEvent_1a123e04b036729f84279cfaa7fb753cf0)`(FDateTime NewValue)` <a id="structFRHAPI__EntitlementEvent_1a123e04b036729f84279cfaa7fb753cf0"></a>
+#### `public inline void `[`SetCreated`](#structFRHAPI__EntitlementEvent_1a1c63dc9fbe262e47e80ebc34b2eaad62)`(const FDateTime & NewValue)` <a id="structFRHAPI__EntitlementEvent_1a1c63dc9fbe262e47e80ebc34b2eaad62"></a>
 
 Sets the value of Created.
+
+#### `public inline void `[`SetCreated`](#structFRHAPI__EntitlementEvent_1adbab92856c57e5a0ecaa5d53b3d9961d)`(FDateTime && NewValue)` <a id="structFRHAPI__EntitlementEvent_1adbab92856c57e5a0ecaa5d53b3d9961d"></a>
+
+Sets the value of Created using move semantics.
 
 #### `public inline FDateTime & `[`GetLastModified`](#structFRHAPI__EntitlementEvent_1a735bd93f2d7a8e705b29d317ee7c64d7)`()` <a id="structFRHAPI__EntitlementEvent_1a735bd93f2d7a8e705b29d317ee7c64d7"></a>
 
@@ -615,7 +696,11 @@ Gets the value of LastModified.
 
 Gets the value of LastModified.
 
-#### `public inline void `[`SetLastModified`](#structFRHAPI__EntitlementEvent_1aef72cd737bf344719c8f971591699d0a)`(FDateTime NewValue)` <a id="structFRHAPI__EntitlementEvent_1aef72cd737bf344719c8f971591699d0a"></a>
+#### `public inline void `[`SetLastModified`](#structFRHAPI__EntitlementEvent_1ab8f4ff02df207045d00257de6397c6b4)`(const FDateTime & NewValue)` <a id="structFRHAPI__EntitlementEvent_1ab8f4ff02df207045d00257de6397c6b4"></a>
 
 Sets the value of LastModified.
+
+#### `public inline void `[`SetLastModified`](#structFRHAPI__EntitlementEvent_1a5d15252ee09b6117e3f310fecf96966d)`(FDateTime && NewValue)` <a id="structFRHAPI__EntitlementEvent_1a5d15252ee09b6117e3f310fecf96966d"></a>
+
+Sets the value of LastModified using move semantics.
 

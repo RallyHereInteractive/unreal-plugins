@@ -29,7 +29,8 @@ Lookup results for a platform user id.
 `public inline bool `[`GetIdentity`](#structFRHAPI__PlatformIdentityLookupResults_1a5d34c865dd67d82644989486c3ca19b6)`(TMap< FString, `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > & OutValue) const` | Fills OutValue with the value of Identity_Optional and returns true if it has been set, otherwise returns false.
 `public inline TMap< FString, `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > * `[`GetIdentityOrNull`](#structFRHAPI__PlatformIdentityLookupResults_1a78662a60d3e9bf723bd3d8681dd8850c)`()` | Returns a pointer to Identity_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TMap< FString, `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > * `[`GetIdentityOrNull`](#structFRHAPI__PlatformIdentityLookupResults_1a2256a0fe1009b3b9dea514c94e1ecb3d)`() const` | Returns a pointer to Identity_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetIdentity`](#structFRHAPI__PlatformIdentityLookupResults_1a22c42e34eeb78028a98a745bc05c77da)`(TMap< FString, `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > NewValue)` | Sets the value of Identity_Optional and also sets Identity_IsSet to true.
+`public inline void `[`SetIdentity`](#structFRHAPI__PlatformIdentityLookupResults_1ae94950f32b38c379ea0cee77cd2a6aaa)`(const TMap< FString, `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > & NewValue)` | Sets the value of Identity_Optional and also sets Identity_IsSet to true.
+`public inline void `[`SetIdentity`](#structFRHAPI__PlatformIdentityLookupResults_1a12704c2cd9f8ad2ebedf51524deec9a1)`(TMap< FString, `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > && NewValue)` | Sets the value of Identity_Optional and also sets Identity_IsSet to true using move semantics.
 `public inline void `[`ClearIdentity`](#structFRHAPI__PlatformIdentityLookupResults_1a2bf03151bdb401f2036fedafb0d6800b)`()` | Clears the value of Identity_Optional and sets Identity_IsSet to false.
 
 ### Members
@@ -83,9 +84,13 @@ Returns a pointer to Identity_Optional, if it has been set, otherwise returns nu
 
 Returns a pointer to Identity_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetIdentity`](#structFRHAPI__PlatformIdentityLookupResults_1a22c42e34eeb78028a98a745bc05c77da)`(TMap< FString, `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > NewValue)` <a id="structFRHAPI__PlatformIdentityLookupResults_1a22c42e34eeb78028a98a745bc05c77da"></a>
+#### `public inline void `[`SetIdentity`](#structFRHAPI__PlatformIdentityLookupResults_1ae94950f32b38c379ea0cee77cd2a6aaa)`(const TMap< FString, `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > & NewValue)` <a id="structFRHAPI__PlatformIdentityLookupResults_1ae94950f32b38c379ea0cee77cd2a6aaa"></a>
 
 Sets the value of Identity_Optional and also sets Identity_IsSet to true.
+
+#### `public inline void `[`SetIdentity`](#structFRHAPI__PlatformIdentityLookupResults_1a12704c2cd9f8ad2ebedf51524deec9a1)`(TMap< FString, `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > && NewValue)` <a id="structFRHAPI__PlatformIdentityLookupResults_1a12704c2cd9f8ad2ebedf51524deec9a1"></a>
+
+Sets the value of Identity_Optional and also sets Identity_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearIdentity`](#structFRHAPI__PlatformIdentityLookupResults_1a2bf03151bdb401f2036fedafb0d6800b)`()` <a id="structFRHAPI__PlatformIdentityLookupResults_1a2bf03151bdb401f2036fedafb0d6800b"></a>
 

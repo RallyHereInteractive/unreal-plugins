@@ -22,7 +22,8 @@ struct FRHAPI_BackfillSettingsResponse
 `public virtual void `[`WriteJson`](#structFRHAPI__BackfillSettingsResponse_1a8bc2efddc2eeccb95e310cd81d818b1a)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline float & `[`GetTimeout`](#structFRHAPI__BackfillSettingsResponse_1ac079c953b4903b9cffc824a5672d01c1)`()` | Gets the value of Timeout.
 `public inline const float & `[`GetTimeout`](#structFRHAPI__BackfillSettingsResponse_1ad8af373f0c08c40fe4bd1dc8a7ac81a7)`() const` | Gets the value of Timeout.
-`public inline void `[`SetTimeout`](#structFRHAPI__BackfillSettingsResponse_1ad12bb0eb9309bce3b1a4219d916842bf)`(float NewValue)` | Sets the value of Timeout.
+`public inline void `[`SetTimeout`](#structFRHAPI__BackfillSettingsResponse_1afeb2fc798d52bcde3c6021a564e36d85)`(const float & NewValue)` | Sets the value of Timeout.
+`public inline void `[`SetTimeout`](#structFRHAPI__BackfillSettingsResponse_1ae3981a6b345312f27351e9ecec552ca0)`(float && NewValue)` | Sets the value of Timeout using move semantics.
 
 ### Members
 
@@ -55,7 +56,11 @@ Gets the value of Timeout.
 
 Gets the value of Timeout.
 
-#### `public inline void `[`SetTimeout`](#structFRHAPI__BackfillSettingsResponse_1ad12bb0eb9309bce3b1a4219d916842bf)`(float NewValue)` <a id="structFRHAPI__BackfillSettingsResponse_1ad12bb0eb9309bce3b1a4219d916842bf"></a>
+#### `public inline void `[`SetTimeout`](#structFRHAPI__BackfillSettingsResponse_1afeb2fc798d52bcde3c6021a564e36d85)`(const float & NewValue)` <a id="structFRHAPI__BackfillSettingsResponse_1afeb2fc798d52bcde3c6021a564e36d85"></a>
 
 Sets the value of Timeout.
+
+#### `public inline void `[`SetTimeout`](#structFRHAPI__BackfillSettingsResponse_1ae3981a6b345312f27351e9ecec552ca0)`(float && NewValue)` <a id="structFRHAPI__BackfillSettingsResponse_1ae3981a6b345312f27351e9ecec552ca0"></a>
+
+Sets the value of Timeout using move semantics.
 

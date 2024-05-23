@@ -29,7 +29,8 @@ struct FRHAPI_ClientVisibleSettings
 `public inline bool `[`GetSelfPingIntervalSeconds`](#structFRHAPI__ClientVisibleSettings_1a7d37f13d0e6f3b4c649fd3ccb39f4218)`(int32 & OutValue) const` | Fills OutValue with the value of SelfPingIntervalSeconds_Optional and returns true if it has been set, otherwise returns false.
 `public inline int32 * `[`GetSelfPingIntervalSecondsOrNull`](#structFRHAPI__ClientVisibleSettings_1a34678a73c4d9347369a1f20cc260bb9b)`()` | Returns a pointer to SelfPingIntervalSeconds_Optional, if it has been set, otherwise returns nullptr.
 `public inline const int32 * `[`GetSelfPingIntervalSecondsOrNull`](#structFRHAPI__ClientVisibleSettings_1afcfdcd7dc359cb1a1ebbb6ce509a483e)`() const` | Returns a pointer to SelfPingIntervalSeconds_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetSelfPingIntervalSeconds`](#structFRHAPI__ClientVisibleSettings_1a050457006baf4958a6cec5137b045bb5)`(int32 NewValue)` | Sets the value of SelfPingIntervalSeconds_Optional and also sets SelfPingIntervalSeconds_IsSet to true.
+`public inline void `[`SetSelfPingIntervalSeconds`](#structFRHAPI__ClientVisibleSettings_1a5613c77805f14dcfb7ee721558a140d1)`(const int32 & NewValue)` | Sets the value of SelfPingIntervalSeconds_Optional and also sets SelfPingIntervalSeconds_IsSet to true.
+`public inline void `[`SetSelfPingIntervalSeconds`](#structFRHAPI__ClientVisibleSettings_1ab039af57d889c2b8889d583f01dd2457)`(int32 && NewValue)` | Sets the value of SelfPingIntervalSeconds_Optional and also sets SelfPingIntervalSeconds_IsSet to true using move semantics.
 `public inline void `[`ClearSelfPingIntervalSeconds`](#structFRHAPI__ClientVisibleSettings_1adafb2332f88d81839bf4bf0900a5de60)`()` | Clears the value of SelfPingIntervalSeconds_Optional and sets SelfPingIntervalSeconds_IsSet to false.
 `public inline bool `[`IsSelfPingIntervalSecondsDefaultValue`](#structFRHAPI__ClientVisibleSettings_1a033a38b4df1faee9ca6d2696fead88d7)`() const` | Returns true if SelfPingIntervalSeconds_Optional is set and matches the default value.
 `public inline void `[`SetSelfPingIntervalSecondsToDefault`](#structFRHAPI__ClientVisibleSettings_1ad3c526b51d28291c49c00d222e8d1049)`()` | Sets the value of SelfPingIntervalSeconds_Optional to its default and also sets SelfPingIntervalSeconds_IsSet to true.
@@ -39,7 +40,8 @@ struct FRHAPI_ClientVisibleSettings
 `public inline bool `[`GetLastSeenAgeConsideredOfflineSeconds`](#structFRHAPI__ClientVisibleSettings_1a29bd6609cd9e8d706240941c142e3da7)`(int32 & OutValue) const` | Fills OutValue with the value of LastSeenAgeConsideredOfflineSeconds_Optional and returns true if it has been set, otherwise returns false.
 `public inline int32 * `[`GetLastSeenAgeConsideredOfflineSecondsOrNull`](#structFRHAPI__ClientVisibleSettings_1af01ca031f3dfcc31ebaf224639f9dcb1)`()` | Returns a pointer to LastSeenAgeConsideredOfflineSeconds_Optional, if it has been set, otherwise returns nullptr.
 `public inline const int32 * `[`GetLastSeenAgeConsideredOfflineSecondsOrNull`](#structFRHAPI__ClientVisibleSettings_1ac8ebdc79ad956d299d6294514e85eca2)`() const` | Returns a pointer to LastSeenAgeConsideredOfflineSeconds_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetLastSeenAgeConsideredOfflineSeconds`](#structFRHAPI__ClientVisibleSettings_1a0cafbeeddc645c594bdae30ddff26091)`(int32 NewValue)` | Sets the value of LastSeenAgeConsideredOfflineSeconds_Optional and also sets LastSeenAgeConsideredOfflineSeconds_IsSet to true.
+`public inline void `[`SetLastSeenAgeConsideredOfflineSeconds`](#structFRHAPI__ClientVisibleSettings_1af8e7143f85fa107b0c82f287e40b6047)`(const int32 & NewValue)` | Sets the value of LastSeenAgeConsideredOfflineSeconds_Optional and also sets LastSeenAgeConsideredOfflineSeconds_IsSet to true.
+`public inline void `[`SetLastSeenAgeConsideredOfflineSeconds`](#structFRHAPI__ClientVisibleSettings_1a4b1675323119711225de3c0ee8022598)`(int32 && NewValue)` | Sets the value of LastSeenAgeConsideredOfflineSeconds_Optional and also sets LastSeenAgeConsideredOfflineSeconds_IsSet to true using move semantics.
 `public inline void `[`ClearLastSeenAgeConsideredOfflineSeconds`](#structFRHAPI__ClientVisibleSettings_1a6c06cf26f430201a9cca63f91203f0e2)`()` | Clears the value of LastSeenAgeConsideredOfflineSeconds_Optional and sets LastSeenAgeConsideredOfflineSeconds_IsSet to false.
 `public inline bool `[`IsLastSeenAgeConsideredOfflineSecondsDefaultValue`](#structFRHAPI__ClientVisibleSettings_1aa3e05d3f534bb08e0d5179551dc8766b)`() const` | Returns true if LastSeenAgeConsideredOfflineSeconds_Optional is set and matches the default value.
 `public inline void `[`SetLastSeenAgeConsideredOfflineSecondsToDefault`](#structFRHAPI__ClientVisibleSettings_1a34afe649f51b3772bd802d3e4982d686)`()` | Sets the value of LastSeenAgeConsideredOfflineSeconds_Optional to its default and also sets LastSeenAgeConsideredOfflineSeconds_IsSet to true.
@@ -103,9 +105,13 @@ Returns a pointer to SelfPingIntervalSeconds_Optional, if it has been set, other
 
 Returns a pointer to SelfPingIntervalSeconds_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetSelfPingIntervalSeconds`](#structFRHAPI__ClientVisibleSettings_1a050457006baf4958a6cec5137b045bb5)`(int32 NewValue)` <a id="structFRHAPI__ClientVisibleSettings_1a050457006baf4958a6cec5137b045bb5"></a>
+#### `public inline void `[`SetSelfPingIntervalSeconds`](#structFRHAPI__ClientVisibleSettings_1a5613c77805f14dcfb7ee721558a140d1)`(const int32 & NewValue)` <a id="structFRHAPI__ClientVisibleSettings_1a5613c77805f14dcfb7ee721558a140d1"></a>
 
 Sets the value of SelfPingIntervalSeconds_Optional and also sets SelfPingIntervalSeconds_IsSet to true.
+
+#### `public inline void `[`SetSelfPingIntervalSeconds`](#structFRHAPI__ClientVisibleSettings_1ab039af57d889c2b8889d583f01dd2457)`(int32 && NewValue)` <a id="structFRHAPI__ClientVisibleSettings_1ab039af57d889c2b8889d583f01dd2457"></a>
+
+Sets the value of SelfPingIntervalSeconds_Optional and also sets SelfPingIntervalSeconds_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearSelfPingIntervalSeconds`](#structFRHAPI__ClientVisibleSettings_1adafb2332f88d81839bf4bf0900a5de60)`()` <a id="structFRHAPI__ClientVisibleSettings_1adafb2332f88d81839bf4bf0900a5de60"></a>
 
@@ -143,9 +149,13 @@ Returns a pointer to LastSeenAgeConsideredOfflineSeconds_Optional, if it has bee
 
 Returns a pointer to LastSeenAgeConsideredOfflineSeconds_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetLastSeenAgeConsideredOfflineSeconds`](#structFRHAPI__ClientVisibleSettings_1a0cafbeeddc645c594bdae30ddff26091)`(int32 NewValue)` <a id="structFRHAPI__ClientVisibleSettings_1a0cafbeeddc645c594bdae30ddff26091"></a>
+#### `public inline void `[`SetLastSeenAgeConsideredOfflineSeconds`](#structFRHAPI__ClientVisibleSettings_1af8e7143f85fa107b0c82f287e40b6047)`(const int32 & NewValue)` <a id="structFRHAPI__ClientVisibleSettings_1af8e7143f85fa107b0c82f287e40b6047"></a>
 
 Sets the value of LastSeenAgeConsideredOfflineSeconds_Optional and also sets LastSeenAgeConsideredOfflineSeconds_IsSet to true.
+
+#### `public inline void `[`SetLastSeenAgeConsideredOfflineSeconds`](#structFRHAPI__ClientVisibleSettings_1a4b1675323119711225de3c0ee8022598)`(int32 && NewValue)` <a id="structFRHAPI__ClientVisibleSettings_1a4b1675323119711225de3c0ee8022598"></a>
+
+Sets the value of LastSeenAgeConsideredOfflineSeconds_Optional and also sets LastSeenAgeConsideredOfflineSeconds_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearLastSeenAgeConsideredOfflineSeconds`](#structFRHAPI__ClientVisibleSettings_1a6c06cf26f430201a9cca63f91203f0e2)`()` <a id="structFRHAPI__ClientVisibleSettings_1a6c06cf26f430201a9cca63f91203f0e2"></a>
 

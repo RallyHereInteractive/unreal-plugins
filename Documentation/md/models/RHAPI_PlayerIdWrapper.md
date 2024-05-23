@@ -24,7 +24,8 @@ Model for getting a player ID from a player UUID.
 `public virtual void `[`WriteJson`](#structFRHAPI__PlayerIdWrapper_1ac9e978d8c152b4cc909db76a787e4529)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline int32 & `[`GetPlayerId`](#structFRHAPI__PlayerIdWrapper_1a1f525c0cdd5ad98d8bd51582e9644900)`()` | Gets the value of PlayerId.
 `public inline const int32 & `[`GetPlayerId`](#structFRHAPI__PlayerIdWrapper_1a6d4d79522551ec4b8d5bd0045cd3784f)`() const` | Gets the value of PlayerId.
-`public inline void `[`SetPlayerId`](#structFRHAPI__PlayerIdWrapper_1a5fab2ef714c104e844b89f62ffdd30f5)`(int32 NewValue)` | Sets the value of PlayerId.
+`public inline void `[`SetPlayerId`](#structFRHAPI__PlayerIdWrapper_1a0c32b1185c5d5cd36af803e3d7dd6257)`(const int32 & NewValue)` | Sets the value of PlayerId.
+`public inline void `[`SetPlayerId`](#structFRHAPI__PlayerIdWrapper_1a1e45e9ab03e19cc61e1e62d191239f5e)`(int32 && NewValue)` | Sets the value of PlayerId using move semantics.
 `public inline bool `[`IsPlayerIdDefaultValue`](#structFRHAPI__PlayerIdWrapper_1a4ead20a497424bd20af5cf9770c34df4)`() const` | Returns true if PlayerId matches the default value.
 `public inline void `[`SetPlayerIdToDefault`](#structFRHAPI__PlayerIdWrapper_1af09d4ca3ce7197ff58f5cd4608f51eaa)`()` | Sets the value of PlayerId to its default
 
@@ -59,9 +60,13 @@ Gets the value of PlayerId.
 
 Gets the value of PlayerId.
 
-#### `public inline void `[`SetPlayerId`](#structFRHAPI__PlayerIdWrapper_1a5fab2ef714c104e844b89f62ffdd30f5)`(int32 NewValue)` <a id="structFRHAPI__PlayerIdWrapper_1a5fab2ef714c104e844b89f62ffdd30f5"></a>
+#### `public inline void `[`SetPlayerId`](#structFRHAPI__PlayerIdWrapper_1a0c32b1185c5d5cd36af803e3d7dd6257)`(const int32 & NewValue)` <a id="structFRHAPI__PlayerIdWrapper_1a0c32b1185c5d5cd36af803e3d7dd6257"></a>
 
 Sets the value of PlayerId.
+
+#### `public inline void `[`SetPlayerId`](#structFRHAPI__PlayerIdWrapper_1a1e45e9ab03e19cc61e1e62d191239f5e)`(int32 && NewValue)` <a id="structFRHAPI__PlayerIdWrapper_1a1e45e9ab03e19cc61e1e62d191239f5e"></a>
+
+Sets the value of PlayerId using move semantics.
 
 #### `public inline bool `[`IsPlayerIdDefaultValue`](#structFRHAPI__PlayerIdWrapper_1a4ead20a497424bd20af5cf9770c34df4)`() const` <a id="structFRHAPI__PlayerIdWrapper_1a4ead20a497424bd20af5cf9770c34df4"></a>
 

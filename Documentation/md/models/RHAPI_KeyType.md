@@ -24,7 +24,8 @@ A Key Type is a type of key that can be claimed from a Marketing Campaign.
 `public virtual void `[`WriteJson`](#structFRHAPI__KeyType_1a2f8918a400e913e9034377d936692548)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetType`](#structFRHAPI__KeyType_1a6246f2efe400fcd0ef63b8cea89b836a)`()` | Gets the value of Type.
 `public inline const FString & `[`GetType`](#structFRHAPI__KeyType_1ae2f4df1be8a30aa99befe068994848ed)`() const` | Gets the value of Type.
-`public inline void `[`SetType`](#structFRHAPI__KeyType_1ada118d4aa3e8fea65f29cd198f50a5f2)`(FString NewValue)` | Sets the value of Type.
+`public inline void `[`SetType`](#structFRHAPI__KeyType_1a226dd08eb7860a5039e68572698f852b)`(const FString & NewValue)` | Sets the value of Type.
+`public inline void `[`SetType`](#structFRHAPI__KeyType_1a191abc9192c5780495c18c204b83cdf6)`(FString && NewValue)` | Sets the value of Type using move semantics.
 
 ### Members
 
@@ -57,7 +58,11 @@ Gets the value of Type.
 
 Gets the value of Type.
 
-#### `public inline void `[`SetType`](#structFRHAPI__KeyType_1ada118d4aa3e8fea65f29cd198f50a5f2)`(FString NewValue)` <a id="structFRHAPI__KeyType_1ada118d4aa3e8fea65f29cd198f50a5f2"></a>
+#### `public inline void `[`SetType`](#structFRHAPI__KeyType_1a226dd08eb7860a5039e68572698f852b)`(const FString & NewValue)` <a id="structFRHAPI__KeyType_1a226dd08eb7860a5039e68572698f852b"></a>
 
 Sets the value of Type.
+
+#### `public inline void `[`SetType`](#structFRHAPI__KeyType_1a191abc9192c5780495c18c204b83cdf6)`(FString && NewValue)` <a id="structFRHAPI__KeyType_1a191abc9192c5780495c18c204b83cdf6"></a>
+
+Sets the value of Type using move semantics.
 

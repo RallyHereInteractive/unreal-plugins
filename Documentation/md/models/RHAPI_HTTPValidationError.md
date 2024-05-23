@@ -27,7 +27,8 @@ struct FRHAPI_HTTPValidationError
 `public inline bool `[`GetDetail`](#structFRHAPI__HTTPValidationError_1a90f37afda96315807fb4fd7b078b60ea)`(TArray< `[`FRHAPI_ValidationError`](RHAPI_ValidationError.md#structFRHAPI__ValidationError)` > & OutValue) const` | Fills OutValue with the value of Detail_Optional and returns true if it has been set, otherwise returns false.
 `public inline TArray< `[`FRHAPI_ValidationError`](RHAPI_ValidationError.md#structFRHAPI__ValidationError)` > * `[`GetDetailOrNull`](#structFRHAPI__HTTPValidationError_1ade6a4dbcb19294c2ab618a7d110cdbb1)`()` | Returns a pointer to Detail_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TArray< `[`FRHAPI_ValidationError`](RHAPI_ValidationError.md#structFRHAPI__ValidationError)` > * `[`GetDetailOrNull`](#structFRHAPI__HTTPValidationError_1aba26c0199e254d73c85a261cbd3174ed)`() const` | Returns a pointer to Detail_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetDetail`](#structFRHAPI__HTTPValidationError_1ab5da2c3ae56e603b3f130829b8fbabb5)`(TArray< `[`FRHAPI_ValidationError`](RHAPI_ValidationError.md#structFRHAPI__ValidationError)` > NewValue)` | Sets the value of Detail_Optional and also sets Detail_IsSet to true.
+`public inline void `[`SetDetail`](#structFRHAPI__HTTPValidationError_1af63be614152fce3a6283029c6aceb4d1)`(const TArray< `[`FRHAPI_ValidationError`](RHAPI_ValidationError.md#structFRHAPI__ValidationError)` > & NewValue)` | Sets the value of Detail_Optional and also sets Detail_IsSet to true.
+`public inline void `[`SetDetail`](#structFRHAPI__HTTPValidationError_1ac73f4df75f7ab26f4ef7cef8b71701d0)`(TArray< `[`FRHAPI_ValidationError`](RHAPI_ValidationError.md#structFRHAPI__ValidationError)` > && NewValue)` | Sets the value of Detail_Optional and also sets Detail_IsSet to true using move semantics.
 `public inline void `[`ClearDetail`](#structFRHAPI__HTTPValidationError_1a12352d19408f341b50d0c3235fc78cab)`()` | Clears the value of Detail_Optional and sets Detail_IsSet to false.
 
 ### Members
@@ -79,9 +80,13 @@ Returns a pointer to Detail_Optional, if it has been set, otherwise returns null
 
 Returns a pointer to Detail_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetDetail`](#structFRHAPI__HTTPValidationError_1ab5da2c3ae56e603b3f130829b8fbabb5)`(TArray< `[`FRHAPI_ValidationError`](RHAPI_ValidationError.md#structFRHAPI__ValidationError)` > NewValue)` <a id="structFRHAPI__HTTPValidationError_1ab5da2c3ae56e603b3f130829b8fbabb5"></a>
+#### `public inline void `[`SetDetail`](#structFRHAPI__HTTPValidationError_1af63be614152fce3a6283029c6aceb4d1)`(const TArray< `[`FRHAPI_ValidationError`](RHAPI_ValidationError.md#structFRHAPI__ValidationError)` > & NewValue)` <a id="structFRHAPI__HTTPValidationError_1af63be614152fce3a6283029c6aceb4d1"></a>
 
 Sets the value of Detail_Optional and also sets Detail_IsSet to true.
+
+#### `public inline void `[`SetDetail`](#structFRHAPI__HTTPValidationError_1ac73f4df75f7ab26f4ef7cef8b71701d0)`(TArray< `[`FRHAPI_ValidationError`](RHAPI_ValidationError.md#structFRHAPI__ValidationError)` > && NewValue)` <a id="structFRHAPI__HTTPValidationError_1ac73f4df75f7ab26f4ef7cef8b71701d0"></a>
+
+Sets the value of Detail_Optional and also sets Detail_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearDetail`](#structFRHAPI__HTTPValidationError_1a12352d19408f341b50d0c3235fc78cab)`()` <a id="structFRHAPI__HTTPValidationError_1a12352d19408f341b50d0c3235fc78cab"></a>
 

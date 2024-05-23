@@ -31,7 +31,8 @@ A collection of Price Points by Price Point ID.
 `public inline bool `[`GetPricePoints`](#structFRHAPI__PricePoints_1ad8c2c23f55f007fcadaacb79cb138e11)`(TMap< FString, `[`FRHAPI_PricePoint`](RHAPI_PricePoint.md#structFRHAPI__PricePoint)` > & OutValue) const` | Fills OutValue with the value of PricePoints_Optional and returns true if it has been set, otherwise returns false.
 `public inline TMap< FString, `[`FRHAPI_PricePoint`](RHAPI_PricePoint.md#structFRHAPI__PricePoint)` > * `[`GetPricePointsOrNull`](#structFRHAPI__PricePoints_1a6e7aec930ce4bc763d79e7948b08dbf4)`()` | Returns a pointer to PricePoints_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TMap< FString, `[`FRHAPI_PricePoint`](RHAPI_PricePoint.md#structFRHAPI__PricePoint)` > * `[`GetPricePointsOrNull`](#structFRHAPI__PricePoints_1a375fc514578157b23bf3dc1311b650e1)`() const` | Returns a pointer to PricePoints_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPricePoints`](#structFRHAPI__PricePoints_1a3b058fb0d21723a567e4f955c4733f53)`(TMap< FString, `[`FRHAPI_PricePoint`](RHAPI_PricePoint.md#structFRHAPI__PricePoint)` > NewValue)` | Sets the value of PricePoints_Optional and also sets PricePoints_IsSet to true.
+`public inline void `[`SetPricePoints`](#structFRHAPI__PricePoints_1aee6added6f303752a6123b955b464352)`(const TMap< FString, `[`FRHAPI_PricePoint`](RHAPI_PricePoint.md#structFRHAPI__PricePoint)` > & NewValue)` | Sets the value of PricePoints_Optional and also sets PricePoints_IsSet to true.
+`public inline void `[`SetPricePoints`](#structFRHAPI__PricePoints_1a7c49718f51bd207c46d4dd6b7d739d80)`(TMap< FString, `[`FRHAPI_PricePoint`](RHAPI_PricePoint.md#structFRHAPI__PricePoint)` > && NewValue)` | Sets the value of PricePoints_Optional and also sets PricePoints_IsSet to true using move semantics.
 `public inline void `[`ClearPricePoints`](#structFRHAPI__PricePoints_1a352bbd66d385926c16a72270dd51a328)`()` | Clears the value of PricePoints_Optional and sets PricePoints_IsSet to false.
 `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__PricePoints_1af707663da5d4bbf8ec3fff55804f6960)`()` | Gets the value of CacheInfo_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__PricePoints_1a2b48e1e38c0483a706eef570e35c8d54)`() const` | Gets the value of CacheInfo_Optional, regardless of it having been set.
@@ -39,7 +40,8 @@ A collection of Price Points by Price Point ID.
 `public inline bool `[`GetCacheInfo`](#structFRHAPI__PricePoints_1a8333dca65cc8af5aabe478e3d53a34c4)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & OutValue) const` | Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false.
 `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__PricePoints_1a9196079c8599ca7f5d37ee1347ba773e)`()` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
 `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__PricePoints_1aa5663ad500695f85e6738784af32b9c9)`() const` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCacheInfo`](#structFRHAPI__PricePoints_1ab3b6b85d8519b6b269a2d3bb2b8c958c)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
+`public inline void `[`SetCacheInfo`](#structFRHAPI__PricePoints_1a33c968af1245465bfd900057fd774f02)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
+`public inline void `[`SetCacheInfo`](#structFRHAPI__PricePoints_1a100d349c79e8afea4ca1c9f79d6b1c8d)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__PricePoints_1abfa1adc34f7db0417bb34ef01d64f158)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 
 ### Members
@@ -101,9 +103,13 @@ Returns a pointer to PricePoints_Optional, if it has been set, otherwise returns
 
 Returns a pointer to PricePoints_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPricePoints`](#structFRHAPI__PricePoints_1a3b058fb0d21723a567e4f955c4733f53)`(TMap< FString, `[`FRHAPI_PricePoint`](RHAPI_PricePoint.md#structFRHAPI__PricePoint)` > NewValue)` <a id="structFRHAPI__PricePoints_1a3b058fb0d21723a567e4f955c4733f53"></a>
+#### `public inline void `[`SetPricePoints`](#structFRHAPI__PricePoints_1aee6added6f303752a6123b955b464352)`(const TMap< FString, `[`FRHAPI_PricePoint`](RHAPI_PricePoint.md#structFRHAPI__PricePoint)` > & NewValue)` <a id="structFRHAPI__PricePoints_1aee6added6f303752a6123b955b464352"></a>
 
 Sets the value of PricePoints_Optional and also sets PricePoints_IsSet to true.
+
+#### `public inline void `[`SetPricePoints`](#structFRHAPI__PricePoints_1a7c49718f51bd207c46d4dd6b7d739d80)`(TMap< FString, `[`FRHAPI_PricePoint`](RHAPI_PricePoint.md#structFRHAPI__PricePoint)` > && NewValue)` <a id="structFRHAPI__PricePoints_1a7c49718f51bd207c46d4dd6b7d739d80"></a>
+
+Sets the value of PricePoints_Optional and also sets PricePoints_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearPricePoints`](#structFRHAPI__PricePoints_1a352bbd66d385926c16a72270dd51a328)`()` <a id="structFRHAPI__PricePoints_1a352bbd66d385926c16a72270dd51a328"></a>
 
@@ -133,9 +139,13 @@ Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns n
 
 Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCacheInfo`](#structFRHAPI__PricePoints_1ab3b6b85d8519b6b269a2d3bb2b8c958c)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` NewValue)` <a id="structFRHAPI__PricePoints_1ab3b6b85d8519b6b269a2d3bb2b8c958c"></a>
+#### `public inline void `[`SetCacheInfo`](#structFRHAPI__PricePoints_1a33c968af1245465bfd900057fd774f02)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` <a id="structFRHAPI__PricePoints_1a33c968af1245465bfd900057fd774f02"></a>
 
 Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
+
+#### `public inline void `[`SetCacheInfo`](#structFRHAPI__PricePoints_1a100d349c79e8afea4ca1c9f79d6b1c8d)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` <a id="structFRHAPI__PricePoints_1a100d349c79e8afea4ca1c9f79d6b1c8d"></a>
+
+Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearCacheInfo`](#structFRHAPI__PricePoints_1abfa1adc34f7db0417bb34ef01d64f158)`()` <a id="structFRHAPI__PricePoints_1abfa1adc34f7db0417bb34ef01d64f158"></a>
 

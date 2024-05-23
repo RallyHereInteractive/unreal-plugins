@@ -24,7 +24,8 @@ Response body for an instance health check.
 `public virtual void `[`WriteJson`](#structFRHAPI__InstanceHealthStatusResponse_1abab9a453db0e9e39fa59e64b961de3f1)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline ERHAPI_InstanceHealthStatus & `[`GetUpdatedInstanceHealth`](#structFRHAPI__InstanceHealthStatusResponse_1ac26b0bbfd237bdadd4ed172c543030d0)`()` | Gets the value of UpdatedInstanceHealth.
 `public inline const ERHAPI_InstanceHealthStatus & `[`GetUpdatedInstanceHealth`](#structFRHAPI__InstanceHealthStatusResponse_1a5ce08ac2c8e4fb15ac43a8ff6f15f258)`() const` | Gets the value of UpdatedInstanceHealth.
-`public inline void `[`SetUpdatedInstanceHealth`](#structFRHAPI__InstanceHealthStatusResponse_1a889b418b61dbfee55a2e52804fcd3215)`(ERHAPI_InstanceHealthStatus NewValue)` | Sets the value of UpdatedInstanceHealth.
+`public inline void `[`SetUpdatedInstanceHealth`](#structFRHAPI__InstanceHealthStatusResponse_1a1aab0cbab929fa9f5e0c145da6fd548d)`(const ERHAPI_InstanceHealthStatus & NewValue)` | Sets the value of UpdatedInstanceHealth.
+`public inline void `[`SetUpdatedInstanceHealth`](#structFRHAPI__InstanceHealthStatusResponse_1a84859652c802d388f561584fbf90f160)`(ERHAPI_InstanceHealthStatus && NewValue)` | Sets the value of UpdatedInstanceHealth using move semantics.
 
 ### Members
 
@@ -57,7 +58,11 @@ Gets the value of UpdatedInstanceHealth.
 
 Gets the value of UpdatedInstanceHealth.
 
-#### `public inline void `[`SetUpdatedInstanceHealth`](#structFRHAPI__InstanceHealthStatusResponse_1a889b418b61dbfee55a2e52804fcd3215)`(ERHAPI_InstanceHealthStatus NewValue)` <a id="structFRHAPI__InstanceHealthStatusResponse_1a889b418b61dbfee55a2e52804fcd3215"></a>
+#### `public inline void `[`SetUpdatedInstanceHealth`](#structFRHAPI__InstanceHealthStatusResponse_1a1aab0cbab929fa9f5e0c145da6fd548d)`(const ERHAPI_InstanceHealthStatus & NewValue)` <a id="structFRHAPI__InstanceHealthStatusResponse_1a1aab0cbab929fa9f5e0c145da6fd548d"></a>
 
 Sets the value of UpdatedInstanceHealth.
+
+#### `public inline void `[`SetUpdatedInstanceHealth`](#structFRHAPI__InstanceHealthStatusResponse_1a84859652c802d388f561584fbf90f160)`(ERHAPI_InstanceHealthStatus && NewValue)` <a id="structFRHAPI__InstanceHealthStatusResponse_1a84859652c802d388f561584fbf90f160"></a>
+
+Sets the value of UpdatedInstanceHealth using move semantics.
 

@@ -28,14 +28,16 @@ A request body to enter into a matchmaking queue.
 `public virtual void `[`WriteJson`](#structFRHAPI__QueueJoinRequest_1a97acb248466e63b7798eafa5ce7ebcc8)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetQueueId`](#structFRHAPI__QueueJoinRequest_1a04947239245adaac9f29e11bcbeda080)`()` | Gets the value of QueueId.
 `public inline const FString & `[`GetQueueId`](#structFRHAPI__QueueJoinRequest_1aac1422f7f250b7adf344f06933daec99)`() const` | Gets the value of QueueId.
-`public inline void `[`SetQueueId`](#structFRHAPI__QueueJoinRequest_1a773383670395fcd0af3caca9097b942a)`(FString NewValue)` | Sets the value of QueueId.
+`public inline void `[`SetQueueId`](#structFRHAPI__QueueJoinRequest_1a35e4c5e0c6b6ec8b0e3c25ec3e2cb99e)`(const FString & NewValue)` | Sets the value of QueueId.
+`public inline void `[`SetQueueId`](#structFRHAPI__QueueJoinRequest_1a5ff8df643c3cd053c22b1bb2bcaf0446)`(FString && NewValue)` | Sets the value of QueueId using move semantics.
 `public inline `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & `[`GetAdditionalJoinParams`](#structFRHAPI__QueueJoinRequest_1a5970453e4b31aa54a9faf3ac5845c832)`()` | Gets the value of AdditionalJoinParams_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & `[`GetAdditionalJoinParams`](#structFRHAPI__QueueJoinRequest_1a88e22a378f5e9df2d48545c7b450ed2f)`() const` | Gets the value of AdditionalJoinParams_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & `[`GetAdditionalJoinParams`](#structFRHAPI__QueueJoinRequest_1a273fb9fade8c917d42141e1418a8bcd6)`(const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & DefaultValue) const` | Gets the value of AdditionalJoinParams_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetAdditionalJoinParams`](#structFRHAPI__QueueJoinRequest_1a9abf8cdeef8fb56ceb7d860e8c9cbca7)`(`[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & OutValue) const` | Fills OutValue with the value of AdditionalJoinParams_Optional and returns true if it has been set, otherwise returns false.
 `public inline `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` * `[`GetAdditionalJoinParamsOrNull`](#structFRHAPI__QueueJoinRequest_1a15d288553c61109c70c71ae2bc3eae19)`()` | Returns a pointer to AdditionalJoinParams_Optional, if it has been set, otherwise returns nullptr.
 `public inline const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` * `[`GetAdditionalJoinParamsOrNull`](#structFRHAPI__QueueJoinRequest_1a58825f4cefd0e8251a5d18cea6fef2c1)`() const` | Returns a pointer to AdditionalJoinParams_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetAdditionalJoinParams`](#structFRHAPI__QueueJoinRequest_1a5b3c1314212338247edf3bbfc50e23c1)`(`[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` NewValue)` | Sets the value of AdditionalJoinParams_Optional and also sets AdditionalJoinParams_IsSet to true.
+`public inline void `[`SetAdditionalJoinParams`](#structFRHAPI__QueueJoinRequest_1a8224ad8036dc3c2ea4380ed0bff43857)`(const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & NewValue)` | Sets the value of AdditionalJoinParams_Optional and also sets AdditionalJoinParams_IsSet to true.
+`public inline void `[`SetAdditionalJoinParams`](#structFRHAPI__QueueJoinRequest_1a9dd338c0a602c11f37fb3c550cd1235e)`(`[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` && NewValue)` | Sets the value of AdditionalJoinParams_Optional and also sets AdditionalJoinParams_IsSet to true using move semantics.
 `public inline void `[`ClearAdditionalJoinParams`](#structFRHAPI__QueueJoinRequest_1a3e098b2fd5478ac3893a7e4149f84a19)`()` | Clears the value of AdditionalJoinParams_Optional and sets AdditionalJoinParams_IsSet to false.
 `public inline TArray< FString > & `[`GetMapPreferences`](#structFRHAPI__QueueJoinRequest_1acc39604b4fe9d852c99cc1e64e475402)`()` | Gets the value of MapPreferences_Optional, regardless of it having been set.
 `public inline const TArray< FString > & `[`GetMapPreferences`](#structFRHAPI__QueueJoinRequest_1acc8805274de0a0ef1fc7da1931e4221f)`() const` | Gets the value of MapPreferences_Optional, regardless of it having been set.
@@ -43,7 +45,8 @@ A request body to enter into a matchmaking queue.
 `public inline bool `[`GetMapPreferences`](#structFRHAPI__QueueJoinRequest_1a9e431e3f2cae778b8ac13c5e310e3165)`(TArray< FString > & OutValue) const` | Fills OutValue with the value of MapPreferences_Optional and returns true if it has been set, otherwise returns false.
 `public inline TArray< FString > * `[`GetMapPreferencesOrNull`](#structFRHAPI__QueueJoinRequest_1a64156de1f457b5963b1c675c0eacc8ee)`()` | Returns a pointer to MapPreferences_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TArray< FString > * `[`GetMapPreferencesOrNull`](#structFRHAPI__QueueJoinRequest_1a67fc70d6a1bf8d21cb8644bee33042e3)`() const` | Returns a pointer to MapPreferences_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetMapPreferences`](#structFRHAPI__QueueJoinRequest_1a473a1e40872aa37c1c2bb1e05589d673)`(TArray< FString > NewValue)` | Sets the value of MapPreferences_Optional and also sets MapPreferences_IsSet to true.
+`public inline void `[`SetMapPreferences`](#structFRHAPI__QueueJoinRequest_1a462ab879ddfec3e9f608e48b215d9b69)`(const TArray< FString > & NewValue)` | Sets the value of MapPreferences_Optional and also sets MapPreferences_IsSet to true.
+`public inline void `[`SetMapPreferences`](#structFRHAPI__QueueJoinRequest_1ae8267806a4f94fd0ca521c3b45ce4a53)`(TArray< FString > && NewValue)` | Sets the value of MapPreferences_Optional and also sets MapPreferences_IsSet to true using move semantics.
 `public inline void `[`ClearMapPreferences`](#structFRHAPI__QueueJoinRequest_1a60ee35ca85529854b6ecc140d872194a)`()` | Clears the value of MapPreferences_Optional and sets MapPreferences_IsSet to false.
 
 ### Members
@@ -93,9 +96,13 @@ Gets the value of QueueId.
 
 Gets the value of QueueId.
 
-#### `public inline void `[`SetQueueId`](#structFRHAPI__QueueJoinRequest_1a773383670395fcd0af3caca9097b942a)`(FString NewValue)` <a id="structFRHAPI__QueueJoinRequest_1a773383670395fcd0af3caca9097b942a"></a>
+#### `public inline void `[`SetQueueId`](#structFRHAPI__QueueJoinRequest_1a35e4c5e0c6b6ec8b0e3c25ec3e2cb99e)`(const FString & NewValue)` <a id="structFRHAPI__QueueJoinRequest_1a35e4c5e0c6b6ec8b0e3c25ec3e2cb99e"></a>
 
 Sets the value of QueueId.
+
+#### `public inline void `[`SetQueueId`](#structFRHAPI__QueueJoinRequest_1a5ff8df643c3cd053c22b1bb2bcaf0446)`(FString && NewValue)` <a id="structFRHAPI__QueueJoinRequest_1a5ff8df643c3cd053c22b1bb2bcaf0446"></a>
+
+Sets the value of QueueId using move semantics.
 
 #### `public inline `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & `[`GetAdditionalJoinParams`](#structFRHAPI__QueueJoinRequest_1a5970453e4b31aa54a9faf3ac5845c832)`()` <a id="structFRHAPI__QueueJoinRequest_1a5970453e4b31aa54a9faf3ac5845c832"></a>
 
@@ -121,9 +128,13 @@ Returns a pointer to AdditionalJoinParams_Optional, if it has been set, otherwis
 
 Returns a pointer to AdditionalJoinParams_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetAdditionalJoinParams`](#structFRHAPI__QueueJoinRequest_1a5b3c1314212338247edf3bbfc50e23c1)`(`[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` NewValue)` <a id="structFRHAPI__QueueJoinRequest_1a5b3c1314212338247edf3bbfc50e23c1"></a>
+#### `public inline void `[`SetAdditionalJoinParams`](#structFRHAPI__QueueJoinRequest_1a8224ad8036dc3c2ea4380ed0bff43857)`(const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & NewValue)` <a id="structFRHAPI__QueueJoinRequest_1a8224ad8036dc3c2ea4380ed0bff43857"></a>
 
 Sets the value of AdditionalJoinParams_Optional and also sets AdditionalJoinParams_IsSet to true.
+
+#### `public inline void `[`SetAdditionalJoinParams`](#structFRHAPI__QueueJoinRequest_1a9dd338c0a602c11f37fb3c550cd1235e)`(`[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` && NewValue)` <a id="structFRHAPI__QueueJoinRequest_1a9dd338c0a602c11f37fb3c550cd1235e"></a>
+
+Sets the value of AdditionalJoinParams_Optional and also sets AdditionalJoinParams_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearAdditionalJoinParams`](#structFRHAPI__QueueJoinRequest_1a3e098b2fd5478ac3893a7e4149f84a19)`()` <a id="structFRHAPI__QueueJoinRequest_1a3e098b2fd5478ac3893a7e4149f84a19"></a>
 
@@ -153,9 +164,13 @@ Returns a pointer to MapPreferences_Optional, if it has been set, otherwise retu
 
 Returns a pointer to MapPreferences_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetMapPreferences`](#structFRHAPI__QueueJoinRequest_1a473a1e40872aa37c1c2bb1e05589d673)`(TArray< FString > NewValue)` <a id="structFRHAPI__QueueJoinRequest_1a473a1e40872aa37c1c2bb1e05589d673"></a>
+#### `public inline void `[`SetMapPreferences`](#structFRHAPI__QueueJoinRequest_1a462ab879ddfec3e9f608e48b215d9b69)`(const TArray< FString > & NewValue)` <a id="structFRHAPI__QueueJoinRequest_1a462ab879ddfec3e9f608e48b215d9b69"></a>
 
 Sets the value of MapPreferences_Optional and also sets MapPreferences_IsSet to true.
+
+#### `public inline void `[`SetMapPreferences`](#structFRHAPI__QueueJoinRequest_1ae8267806a4f94fd0ca521c3b45ce4a53)`(TArray< FString > && NewValue)` <a id="structFRHAPI__QueueJoinRequest_1ae8267806a4f94fd0ca521c3b45ce4a53"></a>
+
+Sets the value of MapPreferences_Optional and also sets MapPreferences_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearMapPreferences`](#structFRHAPI__QueueJoinRequest_1a60ee35ca85529854b6ecc140d872194a)`()` <a id="structFRHAPI__QueueJoinRequest_1a60ee35ca85529854b6ecc140d872194a"></a>
 

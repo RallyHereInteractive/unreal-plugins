@@ -25,12 +25,14 @@ Updatable contents of a setting for a player.
 `public virtual void `[`WriteJson`](#structFRHAPI__SetSinglePlayerSettingRequest_1a413e895216855c3ae074fa0823e4eaeb)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline int32 & `[`GetV`](#structFRHAPI__SetSinglePlayerSettingRequest_1abca292eac082cd5723422b68fb905aa9)`()` | Gets the value of V.
 `public inline const int32 & `[`GetV`](#structFRHAPI__SetSinglePlayerSettingRequest_1ae6b9e2663e1c571414ea48bbf94d0d43)`() const` | Gets the value of V.
-`public inline void `[`SetV`](#structFRHAPI__SetSinglePlayerSettingRequest_1ab1c381a9737538afc8f4bd1bcd8da4f3)`(int32 NewValue)` | Sets the value of V.
+`public inline void `[`SetV`](#structFRHAPI__SetSinglePlayerSettingRequest_1a4bb21a0b14b9908250cbd60eac6464c9)`(const int32 & NewValue)` | Sets the value of V.
+`public inline void `[`SetV`](#structFRHAPI__SetSinglePlayerSettingRequest_1a74a31e870ab36ea388059be34852fad0)`(int32 && NewValue)` | Sets the value of V using move semantics.
 `public inline bool `[`IsVDefaultValue`](#structFRHAPI__SetSinglePlayerSettingRequest_1ad34a8faf6cf256d4c3fae84eda113018)`() const` | Returns true if V matches the default value.
 `public inline void `[`SetVToDefault`](#structFRHAPI__SetSinglePlayerSettingRequest_1a11e6da31e8ecf115683e8e21a3561f9a)`()` | Sets the value of V to its default
 `public inline `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` & `[`GetValue`](#structFRHAPI__SetSinglePlayerSettingRequest_1a7cb5fb8393aedc898f47ad2d929d32ae)`()` | Gets the value of Value.
 `public inline const `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` & `[`GetValue`](#structFRHAPI__SetSinglePlayerSettingRequest_1aaa2c2551ebb2f201f7fcdf9e6e8adfc7)`() const` | Gets the value of Value.
-`public inline void `[`SetValue`](#structFRHAPI__SetSinglePlayerSettingRequest_1a74b0b55e594aa836bbfc55c5673fad40)`(`[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` NewValue)` | Sets the value of Value.
+`public inline void `[`SetValue`](#structFRHAPI__SetSinglePlayerSettingRequest_1a2a6538047730dadf3c88f0000be2f36f)`(const `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` & NewValue)` | Sets the value of Value.
+`public inline void `[`SetValue`](#structFRHAPI__SetSinglePlayerSettingRequest_1a40bc6507f9b7f2990337450b12370dee)`(`[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` && NewValue)` | Sets the value of Value using move semantics.
 
 ### Members
 
@@ -67,9 +69,13 @@ Gets the value of V.
 
 Gets the value of V.
 
-#### `public inline void `[`SetV`](#structFRHAPI__SetSinglePlayerSettingRequest_1ab1c381a9737538afc8f4bd1bcd8da4f3)`(int32 NewValue)` <a id="structFRHAPI__SetSinglePlayerSettingRequest_1ab1c381a9737538afc8f4bd1bcd8da4f3"></a>
+#### `public inline void `[`SetV`](#structFRHAPI__SetSinglePlayerSettingRequest_1a4bb21a0b14b9908250cbd60eac6464c9)`(const int32 & NewValue)` <a id="structFRHAPI__SetSinglePlayerSettingRequest_1a4bb21a0b14b9908250cbd60eac6464c9"></a>
 
 Sets the value of V.
+
+#### `public inline void `[`SetV`](#structFRHAPI__SetSinglePlayerSettingRequest_1a74a31e870ab36ea388059be34852fad0)`(int32 && NewValue)` <a id="structFRHAPI__SetSinglePlayerSettingRequest_1a74a31e870ab36ea388059be34852fad0"></a>
+
+Sets the value of V using move semantics.
 
 #### `public inline bool `[`IsVDefaultValue`](#structFRHAPI__SetSinglePlayerSettingRequest_1ad34a8faf6cf256d4c3fae84eda113018)`() const` <a id="structFRHAPI__SetSinglePlayerSettingRequest_1ad34a8faf6cf256d4c3fae84eda113018"></a>
 
@@ -87,7 +93,11 @@ Gets the value of Value.
 
 Gets the value of Value.
 
-#### `public inline void `[`SetValue`](#structFRHAPI__SetSinglePlayerSettingRequest_1a74b0b55e594aa836bbfc55c5673fad40)`(`[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` NewValue)` <a id="structFRHAPI__SetSinglePlayerSettingRequest_1a74b0b55e594aa836bbfc55c5673fad40"></a>
+#### `public inline void `[`SetValue`](#structFRHAPI__SetSinglePlayerSettingRequest_1a2a6538047730dadf3c88f0000be2f36f)`(const `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` & NewValue)` <a id="structFRHAPI__SetSinglePlayerSettingRequest_1a2a6538047730dadf3c88f0000be2f36f"></a>
 
 Sets the value of Value.
+
+#### `public inline void `[`SetValue`](#structFRHAPI__SetSinglePlayerSettingRequest_1a40bc6507f9b7f2990337450b12370dee)`(`[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` && NewValue)` <a id="structFRHAPI__SetSinglePlayerSettingRequest_1a40bc6507f9b7f2990337450b12370dee"></a>
+
+Sets the value of Value using move semantics.
 

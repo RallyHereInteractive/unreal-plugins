@@ -31,7 +31,8 @@ A collection of Time Frames by Time Frame ID.
 `public inline bool `[`GetTimeFrames`](#structFRHAPI__TimeFrames_1afb3119beec255e6853e5e9ae8eba508e)`(TMap< FString, `[`FRHAPI_TimeFrame`](RHAPI_TimeFrame.md#structFRHAPI__TimeFrame)` > & OutValue) const` | Fills OutValue with the value of TimeFrames_Optional and returns true if it has been set, otherwise returns false.
 `public inline TMap< FString, `[`FRHAPI_TimeFrame`](RHAPI_TimeFrame.md#structFRHAPI__TimeFrame)` > * `[`GetTimeFramesOrNull`](#structFRHAPI__TimeFrames_1a1eb971c80b89995829a7e6e75fb6d6d4)`()` | Returns a pointer to TimeFrames_Optional, if it has been set, otherwise returns nullptr.
 `public inline const TMap< FString, `[`FRHAPI_TimeFrame`](RHAPI_TimeFrame.md#structFRHAPI__TimeFrame)` > * `[`GetTimeFramesOrNull`](#structFRHAPI__TimeFrames_1a8a84f1d040479d378e3f01590b5330a4)`() const` | Returns a pointer to TimeFrames_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetTimeFrames`](#structFRHAPI__TimeFrames_1a342bc17e411933efa817ffaef12b9ac9)`(TMap< FString, `[`FRHAPI_TimeFrame`](RHAPI_TimeFrame.md#structFRHAPI__TimeFrame)` > NewValue)` | Sets the value of TimeFrames_Optional and also sets TimeFrames_IsSet to true.
+`public inline void `[`SetTimeFrames`](#structFRHAPI__TimeFrames_1af43b446bb61e39c4dc7e66ce4b34e745)`(const TMap< FString, `[`FRHAPI_TimeFrame`](RHAPI_TimeFrame.md#structFRHAPI__TimeFrame)` > & NewValue)` | Sets the value of TimeFrames_Optional and also sets TimeFrames_IsSet to true.
+`public inline void `[`SetTimeFrames`](#structFRHAPI__TimeFrames_1a6faad45359bee55ffd502b81a679c137)`(TMap< FString, `[`FRHAPI_TimeFrame`](RHAPI_TimeFrame.md#structFRHAPI__TimeFrame)` > && NewValue)` | Sets the value of TimeFrames_Optional and also sets TimeFrames_IsSet to true using move semantics.
 `public inline void `[`ClearTimeFrames`](#structFRHAPI__TimeFrames_1a92daf6e6ae00995223c00ed1764513ac)`()` | Clears the value of TimeFrames_Optional and sets TimeFrames_IsSet to false.
 `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__TimeFrames_1afdce661d2525303ec4f6efd32d6267a6)`()` | Gets the value of CacheInfo_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__TimeFrames_1a244e574ac594017a49cedd06d9833c7e)`() const` | Gets the value of CacheInfo_Optional, regardless of it having been set.
@@ -39,7 +40,8 @@ A collection of Time Frames by Time Frame ID.
 `public inline bool `[`GetCacheInfo`](#structFRHAPI__TimeFrames_1abc908c43a015dc171892dcfd5935e2e4)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & OutValue) const` | Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false.
 `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__TimeFrames_1a579bb68ed372843a81b04429f24b624e)`()` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
 `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__TimeFrames_1a8a84c2ed7f86c298bea23afd5c543d3d)`() const` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCacheInfo`](#structFRHAPI__TimeFrames_1a1f1b825a37d54eb121adfbde6148df66)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
+`public inline void `[`SetCacheInfo`](#structFRHAPI__TimeFrames_1aa539b5ac4cdc2250c69942a21d49b931)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
+`public inline void `[`SetCacheInfo`](#structFRHAPI__TimeFrames_1a76eec18ec87788692a2fad05c3d21505)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__TimeFrames_1a44c43ad3220c43980b0743df8de23078)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 
 ### Members
@@ -101,9 +103,13 @@ Returns a pointer to TimeFrames_Optional, if it has been set, otherwise returns 
 
 Returns a pointer to TimeFrames_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetTimeFrames`](#structFRHAPI__TimeFrames_1a342bc17e411933efa817ffaef12b9ac9)`(TMap< FString, `[`FRHAPI_TimeFrame`](RHAPI_TimeFrame.md#structFRHAPI__TimeFrame)` > NewValue)` <a id="structFRHAPI__TimeFrames_1a342bc17e411933efa817ffaef12b9ac9"></a>
+#### `public inline void `[`SetTimeFrames`](#structFRHAPI__TimeFrames_1af43b446bb61e39c4dc7e66ce4b34e745)`(const TMap< FString, `[`FRHAPI_TimeFrame`](RHAPI_TimeFrame.md#structFRHAPI__TimeFrame)` > & NewValue)` <a id="structFRHAPI__TimeFrames_1af43b446bb61e39c4dc7e66ce4b34e745"></a>
 
 Sets the value of TimeFrames_Optional and also sets TimeFrames_IsSet to true.
+
+#### `public inline void `[`SetTimeFrames`](#structFRHAPI__TimeFrames_1a6faad45359bee55ffd502b81a679c137)`(TMap< FString, `[`FRHAPI_TimeFrame`](RHAPI_TimeFrame.md#structFRHAPI__TimeFrame)` > && NewValue)` <a id="structFRHAPI__TimeFrames_1a6faad45359bee55ffd502b81a679c137"></a>
+
+Sets the value of TimeFrames_Optional and also sets TimeFrames_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearTimeFrames`](#structFRHAPI__TimeFrames_1a92daf6e6ae00995223c00ed1764513ac)`()` <a id="structFRHAPI__TimeFrames_1a92daf6e6ae00995223c00ed1764513ac"></a>
 
@@ -133,9 +139,13 @@ Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns n
 
 Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCacheInfo`](#structFRHAPI__TimeFrames_1a1f1b825a37d54eb121adfbde6148df66)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` NewValue)` <a id="structFRHAPI__TimeFrames_1a1f1b825a37d54eb121adfbde6148df66"></a>
+#### `public inline void `[`SetCacheInfo`](#structFRHAPI__TimeFrames_1aa539b5ac4cdc2250c69942a21d49b931)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` <a id="structFRHAPI__TimeFrames_1aa539b5ac4cdc2250c69942a21d49b931"></a>
 
 Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
+
+#### `public inline void `[`SetCacheInfo`](#structFRHAPI__TimeFrames_1a76eec18ec87788692a2fad05c3d21505)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` <a id="structFRHAPI__TimeFrames_1a76eec18ec87788692a2fad05c3d21505"></a>
+
+Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearCacheInfo`](#structFRHAPI__TimeFrames_1a44c43ad3220c43980b0743df8de23078)`()` <a id="structFRHAPI__TimeFrames_1a44c43ad3220c43980b0743df8de23078"></a>
 
