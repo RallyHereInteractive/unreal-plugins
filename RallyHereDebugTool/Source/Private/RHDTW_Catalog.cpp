@@ -435,13 +435,14 @@ void FRHDTW_Catalog::DoShowVendors(URH_CatalogSubsystem* catalog)
 
 										FString PriceDisplay;
 										TArray<FRHAPI_PurchasePriceCurrency> DisplayPrices;
+										int32 SelectedCouponItemId = 0;
 
 										for (const auto& PriceCurrency : PriceCurrencies)
 										{
 											int32 DisplayPrice = PriceCurrency.GetPrice();
-											int32 SelectedCouponItemId = 0;
 
-											if (SelectedVendorCouponIndexs[VendorItemIndex] > 0)
+											// if monocurrency, check for coupons (coupons only support one currency purchases currently)
+											if (SelectedVendorCouponIndexs[VendorItemIndex] > 0 && PriceCurrencies.Num() == 1)
 											{
 												if (URH_CatalogItem* CouponItem = Coupons[SelectedVendorCouponIndexs[VendorItemIndex] - 1])
 												{
