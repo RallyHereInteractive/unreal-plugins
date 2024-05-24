@@ -328,6 +328,7 @@ Player Order Entry class defines the data of an Order used to submit one to the 
 `public FString `[`ExternalTransactionId`](#classURH__PlayerOrderEntry_1a415d4db9bef6f060e98217c8806d2a0d) | The id that the client can provide for the order for record keeping.
 `public int32 `[`PriceItemId`](#classURH__PlayerOrderEntry_1a5e0ac397f38aba73cb3429dcf68876e8) | The item id of the item being used to pay for the order.
 `public int32 `[`Price`](#classURH__PlayerOrderEntry_1a3e4b6531988df83d2d9087c863658af7) | The amount of the item being used for payment, this is verified to match the expected price.
+`public TArray< `[`FRHAPI_PurchasePriceCurrency`](models/RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > `[`Prices`](#classURH__PlayerOrderEntry_1a0dbea9af8bde1181c736798c763fd60d) | An array of items and their types being used for payment, this is verified to match the expected price.
 `public int32 `[`CouponItemId`](#classURH__PlayerOrderEntry_1a81d35b761d82023ac6b29c949d2f182f) | The item id of a coupon item being used if one is being applied for an item discount.
 `public TMap< FString, FString > `[`CustomData`](#classURH__PlayerOrderEntry_1a465d00f2f73358c3509caf95166df187) | Custom data for the given order to be placed on the item.
 `public inline ERHAPI_PlayerOrderEntryType `[`GetFillType`](#classURH__PlayerOrderEntry_1a14ca340eba40b938357e21e65c6fa439)`() const` | Gets the Fill Type of the order.
@@ -337,6 +338,7 @@ Player Order Entry class defines the data of an Order used to submit one to the 
 `public inline const FString & `[`GetExternalTransactionId`](#classURH__PlayerOrderEntry_1a044f824678cd2a32199c7dad1538cb19)`() const` | Gets the id that the client can provide for the order for record keeping.
 `public inline const int32 & `[`GetPriceItemId`](#classURH__PlayerOrderEntry_1a35d0954118cbfb8d9886c29fcfc59932)`() const` | Gets the item id of the item being used to pay for the order.
 `public inline int32 `[`GetPrice`](#classURH__PlayerOrderEntry_1aab86a728d3883a34a8e5e06de40d3057)`() const` | Gets the amount of the item being used for payment, this is verified to match the expected price.
+`public inline const TArray< `[`FRHAPI_PurchasePriceCurrency`](models/RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > & `[`GetPrices`](#classURH__PlayerOrderEntry_1a29cd81e70d0bb0c1bc51be8dd7ab003a)`() const` | Gets an array of items and their types being used for payment, this is verified to match the expected price.
 `public inline const int32 & `[`GetCouponItemId`](#classURH__PlayerOrderEntry_1a0db41c510ffc7be86684f03d6ff26367)`() const` | Gets the item id of a coupon item being used if one is being applied for an item discount.
 `public inline void `[`AddCustomData`](#classURH__PlayerOrderEntry_1a61764974114c2ae68fc78d64bd9e692b)`(const FString & Key,const FString & Value)` | Adds custom data to the order entry.
 
@@ -369,6 +371,10 @@ The item id of the item being used to pay for the order.
 #### `public int32 `[`Price`](#classURH__PlayerOrderEntry_1a3e4b6531988df83d2d9087c863658af7) <a id="classURH__PlayerOrderEntry_1a3e4b6531988df83d2d9087c863658af7"></a>
 
 The amount of the item being used for payment, this is verified to match the expected price.
+
+#### `public TArray< `[`FRHAPI_PurchasePriceCurrency`](models/RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > `[`Prices`](#classURH__PlayerOrderEntry_1a0dbea9af8bde1181c736798c763fd60d) <a id="classURH__PlayerOrderEntry_1a0dbea9af8bde1181c736798c763fd60d"></a>
+
+An array of items and their types being used for payment, this is verified to match the expected price.
 
 #### `public int32 `[`CouponItemId`](#classURH__PlayerOrderEntry_1a81d35b761d82023ac6b29c949d2f182f) <a id="classURH__PlayerOrderEntry_1a81d35b761d82023ac6b29c949d2f182f"></a>
 
@@ -405,6 +411,10 @@ Gets the item id of the item being used to pay for the order.
 #### `public inline int32 `[`GetPrice`](#classURH__PlayerOrderEntry_1aab86a728d3883a34a8e5e06de40d3057)`() const` <a id="classURH__PlayerOrderEntry_1aab86a728d3883a34a8e5e06de40d3057"></a>
 
 Gets the amount of the item being used for payment, this is verified to match the expected price.
+
+#### `public inline const TArray< `[`FRHAPI_PurchasePriceCurrency`](models/RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > & `[`GetPrices`](#classURH__PlayerOrderEntry_1a29cd81e70d0bb0c1bc51be8dd7ab003a)`() const` <a id="classURH__PlayerOrderEntry_1a29cd81e70d0bb0c1bc51be8dd7ab003a"></a>
+
+Gets an array of items and their types being used for payment, this is verified to match the expected price.
 
 #### `public inline const int32 & `[`GetCouponItemId`](#classURH__PlayerOrderEntry_1a0db41c510ffc7be86684f03d6ff26367)`() const` <a id="classURH__PlayerOrderEntry_1a0db41c510ffc7be86684f03d6ff26367"></a>
 
