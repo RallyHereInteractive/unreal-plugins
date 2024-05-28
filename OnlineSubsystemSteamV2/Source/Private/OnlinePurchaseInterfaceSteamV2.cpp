@@ -193,7 +193,7 @@ namespace
 		{
 			if (ErrorResponse.bSucceeded)
 			{
-				FOnlinePurchaseSteamPtr PurchaseInt = StaticCastSharedPtr<FOnlinePurchaseSteam>(Subsystem->GetPurchaseInterface());
+				FOnlinePurchaseSteamV2Ptr PurchaseInt = StaticCastSharedPtr<FOnlinePurchaseSteamV2>(Subsystem->GetPurchaseInterface());
 				if (PurchaseInt.IsValid())
 				{
 					PurchaseInt->UserCachedReceipts.Emplace(MoveTemp(UserId), ReceiptData);
@@ -242,11 +242,11 @@ namespace
 		bool bInit;
 		/** Returned results from Steam */
 		SteamInventoryStartPurchaseResult_t CallbackResults;
-		TUniquePtr<FOnlinePurchaseSteam::FPendingPurchase> PendingPurchase;
+		TUniquePtr<FOnlinePurchaseSteamV2::FPendingPurchase> PendingPurchase;
 
 	public:
 		FOnlineAsyncTaskSteamInventoryPurchase(FOnlineSubsystemSteamV2* InSteamSubsystem,
-			TUniquePtr<FOnlinePurchaseSteam::FPendingPurchase> InPendingPurchase) :
+			TUniquePtr<FOnlinePurchaseSteamV2::FPendingPurchase> InPendingPurchase) :
 			FOnlineAsyncTaskSteam(InSteamSubsystem, k_uAPICallInvalid),
 			bInit{},
 			CallbackResults{},
@@ -321,7 +321,7 @@ namespace
 			{
 				// Unfortunately, this event only tells us that the user OPENED the purchase UI, not when they close it.
 				// We're going to set this purchase aside, and handle it after we receive another event telling us more info about it.
-				if (auto Purchase = StaticCastSharedPtr<FOnlinePurchaseSteam>(Subsystem->GetPurchaseInterface()))
+				if (auto Purchase = StaticCastSharedPtr<FOnlinePurchaseSteamV2>(Subsystem->GetPurchaseInterface()))
 				{
 					Purchase->AddPendingPurchase(std::move(PendingPurchase));
 				}
@@ -346,7 +346,7 @@ namespace
 	};
 }
 
-FOnlinePurchaseSteam::FPendingPurchase::FPendingPurchase(TSharedRef<const FUniqueNetId> InUserId,
+FOnlinePurchaseSteamV2::FPendingPurchase::FPendingPurchase(TSharedRef<const FUniqueNetId> InUserId,
 	FPurchaseCheckoutRequest InCheckoutRequest,
 	FOnPurchaseCheckoutComplete InDelegate) :
 	UserId{ InUserId },
@@ -357,7 +357,7 @@ FOnlinePurchaseSteam::FPendingPurchase::FPendingPurchase(TSharedRef<const FUniqu
 {
 }
 
-EOnlineErrorResult FOnlinePurchaseSteam::FPendingPurchase::GetResult() const
+EOnlineErrorResult FOnlinePurchaseSteamV2::FPendingPurchase::GetResult() const
 {
 	switch (Receipt->TransactionState)
 	{
@@ -370,22 +370,22 @@ EOnlineErrorResult FOnlinePurchaseSteam::FPendingPurchase::GetResult() const
 	}
 }
 
-void FOnlinePurchaseSteam::FPendingPurchase::TriggerDelegate()
+void FOnlinePurchaseSteamV2::FPendingPurchase::TriggerDelegate()
 {
 	Delegate.ExecuteIfBound(FOnlineError(GetResult()), Receipt);
 }
 
-FOnlinePurchaseSteam::FOnlinePurchaseSteam(FOnlineSubsystemSteamV2* InSteamSubsystem)
+FOnlinePurchaseSteamV2::FOnlinePurchaseSteamV2(FOnlineSubsystemSteamV2* InSteamSubsystem)
 	: Subsystem(InSteamSubsystem)
 {
 	check(Subsystem);
 }
 
-FOnlinePurchaseSteam::~FOnlinePurchaseSteam()
+FOnlinePurchaseSteamV2::~FOnlinePurchaseSteamV2()
 {
 }
 
-bool FOnlinePurchaseSteam::IsAllowedToPurchase(const FUniqueNetId& UserId)
+bool FOnlinePurchaseSteamV2::IsAllowedToPurchase(const FUniqueNetId& UserId)
 {
 	auto identity = Subsystem->GetIdentityInterface();
 	if (!identity)
@@ -403,12 +403,12 @@ bool FOnlinePurchaseSteam::IsAllowedToPurchase(const FUniqueNetId& UserId)
 	return true;
 }
 
-void FOnlinePurchaseSteam::Checkout(const FUniqueNetId& UserId, const FPurchaseCheckoutRequest& CheckoutRequest, const FOnPurchaseReceiptlessCheckoutComplete& Delegate)
+void FOnlinePurchaseSteamV2::Checkout(const FUniqueNetId& UserId, const FPurchaseCheckoutRequest& CheckoutRequest, const FOnPurchaseReceiptlessCheckoutComplete& Delegate)
 {
 
 }
 
-void FOnlinePurchaseSteam::Checkout(const FUniqueNetId& UserId, const FPurchaseCheckoutRequest& CheckoutRequest, const FOnPurchaseCheckoutComplete& Delegate)
+void FOnlinePurchaseSteamV2::Checkout(const FUniqueNetId& UserId, const FPurchaseCheckoutRequest& CheckoutRequest, const FOnPurchaseCheckoutComplete& Delegate)
 {
 	if (!UserId.IsValid())
 	{
@@ -466,16 +466,16 @@ void FOnlinePurchaseSteam::Checkout(const FUniqueNetId& UserId, const FPurchaseC
 	Subsystem->QueueAsyncTask(
 		new FOnlineAsyncTaskSteamInventoryPurchase(
 			Subsystem,
-			MakeUnique<FOnlinePurchaseSteam::FPendingPurchase>(UserId.AsShared(), CheckoutRequest, Delegate)
+			MakeUnique<FOnlinePurchaseSteamV2::FPendingPurchase>(UserId.AsShared(), CheckoutRequest, Delegate)
 		)
 	);
 }
 
-void FOnlinePurchaseSteam::FinalizePurchase(const FUniqueNetId& UserId, const FString& ReceiptId)
+void FOnlinePurchaseSteamV2::FinalizePurchase(const FUniqueNetId& UserId, const FString& ReceiptId)
 {
 }
 
-void FOnlinePurchaseSteam::RedeemCode(const FUniqueNetId& UserId, const FRedeemCodeRequest& RedeemCodeRequest, const FOnPurchaseRedeemCodeComplete& Delegate)
+void FOnlinePurchaseSteamV2::RedeemCode(const FUniqueNetId& UserId, const FRedeemCodeRequest& RedeemCodeRequest, const FOnPurchaseRedeemCodeComplete& Delegate)
 {
 	Subsystem->ExecuteNextTick([Delegate]()
 		{
@@ -483,7 +483,7 @@ void FOnlinePurchaseSteam::RedeemCode(const FUniqueNetId& UserId, const FRedeemC
 		});
 }
 
-void FOnlinePurchaseSteam::QueryReceipts(const FUniqueNetId& UserId, bool bRestoreReceipts, const FOnQueryReceiptsComplete& Delegate)
+void FOnlinePurchaseSteamV2::QueryReceipts(const FUniqueNetId& UserId, bool bRestoreReceipts, const FOnQueryReceiptsComplete& Delegate)
 {
 	if (!UserId.IsValid())
 	{
@@ -495,7 +495,7 @@ void FOnlinePurchaseSteam::QueryReceipts(const FUniqueNetId& UserId, bool bResto
 	Subsystem->QueueAsyncTask(new FOnlinePurchaseAsyncTaskSteamGetAllUserInventory(Subsystem, sharedUserId, Delegate));
 }
 
-void FOnlinePurchaseSteam::GetReceipts(const FUniqueNetId& UserId, TArray<FPurchaseReceipt>& OutReceipts) const
+void FOnlinePurchaseSteamV2::GetReceipts(const FUniqueNetId& UserId, TArray<FPurchaseReceipt>& OutReceipts) const
 {
 	const auto SteamUserId = Subsystem->GetIdentityInterface()->CreateUniquePlayerId(UserId.ToString());
 	auto SteamUserIdRef = SteamUserId.ToSharedRef();
@@ -513,7 +513,7 @@ void FOnlinePurchaseSteam::GetReceipts(const FUniqueNetId& UserId, TArray<FPurch
 	}
 }
 
-void FOnlinePurchaseSteam::FinalizeReceiptValidationInfo(const FUniqueNetId& UserId, FString& InReceiptValidationInfo, const FOnFinalizeReceiptValidationInfoComplete& Delegate)
+void FOnlinePurchaseSteamV2::FinalizeReceiptValidationInfo(const FUniqueNetId& UserId, FString& InReceiptValidationInfo, const FOnFinalizeReceiptValidationInfoComplete& Delegate)
 {
 	Subsystem->ExecuteNextTick([InReceiptValidationInfo, Delegate]()
 		{
@@ -521,7 +521,7 @@ void FOnlinePurchaseSteam::FinalizeReceiptValidationInfo(const FUniqueNetId& Use
 		});
 }
 
-void FOnlinePurchaseSteam::AddPendingPurchase(TUniquePtr<FPendingPurchase> PendingPurchase)
+void FOnlinePurchaseSteamV2::AddPendingPurchase(TUniquePtr<FPendingPurchase> PendingPurchase)
 {
 	if (PendingPurchase)
 	{
@@ -529,7 +529,7 @@ void FOnlinePurchaseSteam::AddPendingPurchase(TUniquePtr<FPendingPurchase> Pendi
 	}
 }
 
-void FOnlinePurchaseSteam::MarkPurchasesAsSuccessful()
+void FOnlinePurchaseSteamV2::MarkPurchasesAsSuccessful()
 {
 	for (auto It = PendingPurchases.CreateIterator(); It; ++It)
 	{
@@ -541,7 +541,7 @@ void FOnlinePurchaseSteam::MarkPurchasesAsSuccessful()
 	}
 }
 
-void FOnlinePurchaseSteam::MarkPurchasesAsClosed()
+void FOnlinePurchaseSteamV2::MarkPurchasesAsClosed()
 {
 	for (auto& Purch : PendingPurchases)
 	{
@@ -556,7 +556,7 @@ void FOnlinePurchaseSteam::MarkPurchasesAsClosed()
 	}
 }
 
-void FOnlinePurchaseSteam::Tick(float DeltaTime)
+void FOnlinePurchaseSteamV2::Tick(float DeltaTime)
 {
 	for (auto It = PendingPurchases.CreateIterator(); It; ++It)
 	{
@@ -574,7 +574,7 @@ void FOnlinePurchaseSteam::Tick(float DeltaTime)
 	}
 }
 
-void FOnlinePurchaseSteam::ClearCachedReceipts(const TSharedRef<const FUniqueNetId>& UserId)
+void FOnlinePurchaseSteamV2::ClearCachedReceipts(const TSharedRef<const FUniqueNetId>& UserId)
 {
 	if (auto FoundUserReceipts = UserCachedReceipts.Find(UserId))
 	{

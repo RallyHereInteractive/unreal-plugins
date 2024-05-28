@@ -270,11 +270,11 @@ bool FOnlineSubsystemSteamV2::Init()
 
 	if (!bIsServer)
 	{
-		PurchaseInterface = MakeShareable(new FOnlinePurchaseSteam(this));
-		StoreInterface = MakeShareable(new FOnlineStoreSteam(this));
-		EntitlementsInterface = MakeShareable(new FOnlineEntitlementsSteam(this));
+		PurchaseInterface = MakeShareable(new FOnlinePurchaseSteamV2(this));
+		StoreInterface = MakeShareable(new FOnlineStoreSteamV2(this));
+		EntitlementsInterface = MakeShareable(new FOnlineEntitlementsSteamV2(this));
 
-		MessageSanitizerInterface = MakeShareable(new FMessageSanitizerSteam(this));
+		MessageSanitizerInterface = MakeShareable(new FMessageSanitizerSteamV2(this));
 		MessageSanitizerInterface->Initialize();
 	}
 
