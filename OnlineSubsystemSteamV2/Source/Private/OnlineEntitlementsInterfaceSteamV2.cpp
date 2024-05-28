@@ -177,7 +177,7 @@ namespace
 		{
 			FOnlineAsyncTaskSteam::Finalize();
 
-			auto Interface = StaticCastSharedPtr<FOnlineEntitlementsSteam>(Subsystem->GetEntitlementsInterface());
+			auto Interface = StaticCastSharedPtr<FOnlineEntitlementsSteamV2>(Subsystem->GetEntitlementsInterface());
 			Interface->OnUserEntitlementUpdate(bWasSuccessful, UserId, Namespace, std::move(UserEntitlements));
 		}
 
@@ -188,7 +188,7 @@ namespace
 		{
 			FOnlineAsyncTaskSteam::TriggerDelegates();
 
-			auto Interface = StaticCastSharedPtr<FOnlineEntitlementsSteam>(Subsystem->GetEntitlementsInterface());
+			auto Interface = StaticCastSharedPtr<FOnlineEntitlementsSteamV2>(Subsystem->GetEntitlementsInterface());
 			Interface->TriggerOnQueryEntitlementsCompleteDelegates(bWasSuccessful, *UserId, Namespace, TEXT(""));
 		}
 	};
@@ -219,17 +219,17 @@ bool FOnlineEntitlementSteam::IsConsumed() const
 	return (SteamItemFlags & ESteamItemFlags::k_ESteamItemConsumed) != 0;
 }
 
-FOnlineEntitlementsSteam::FOnlineEntitlementsSteam(FOnlineSubsystemSteamV2* InSubsystem)
+FOnlineEntitlementsSteamV2::FOnlineEntitlementsSteamV2(FOnlineSubsystemSteamV2* InSubsystem)
 	: Subsystem(InSubsystem)
 {
 	check(Subsystem);
 }
 
-FOnlineEntitlementsSteam::~FOnlineEntitlementsSteam()
+FOnlineEntitlementsSteamV2::~FOnlineEntitlementsSteamV2()
 {
 }
 
-TSharedPtr<FOnlineEntitlement> FOnlineEntitlementsSteam::GetEntitlement(const FUniqueNetId& UserId, const FUniqueEntitlementId& EntitlementId)
+TSharedPtr<FOnlineEntitlement> FOnlineEntitlementsSteamV2::GetEntitlement(const FUniqueNetId& UserId, const FUniqueEntitlementId& EntitlementId)
 {
 	auto EntList = CachedEntitlements.Find(UserId.AsShared());
 	if (!EntList)
@@ -252,7 +252,7 @@ TSharedPtr<FOnlineEntitlement> FOnlineEntitlementsSteam::GetEntitlement(const FU
 	return nullptr;
 }
 
-TSharedPtr<FOnlineEntitlement> FOnlineEntitlementsSteam::GetItemEntitlement(const FUniqueNetId& UserId, const FString& ItemId)
+TSharedPtr<FOnlineEntitlement> FOnlineEntitlementsSteamV2::GetItemEntitlement(const FUniqueNetId& UserId, const FString& ItemId)
 {
 	auto EntList = CachedEntitlements.Find(UserId.AsShared());
 	if (!EntList)
@@ -275,7 +275,7 @@ TSharedPtr<FOnlineEntitlement> FOnlineEntitlementsSteam::GetItemEntitlement(cons
 	return nullptr;
 }
 
-void FOnlineEntitlementsSteam::GetAllEntitlements(const FUniqueNetId& UserId, const FString& Namespace, TArray<TSharedRef<FOnlineEntitlement>>& OutUserEntitlements)
+void FOnlineEntitlementsSteamV2::GetAllEntitlements(const FUniqueNetId& UserId, const FString& Namespace, TArray<TSharedRef<FOnlineEntitlement>>& OutUserEntitlements)
 {
 	if (auto NSEntList = CachedEntitlements.Find(UserId.AsShared()))
 	{
@@ -286,7 +286,7 @@ void FOnlineEntitlementsSteam::GetAllEntitlements(const FUniqueNetId& UserId, co
 	}
 }
 
-bool FOnlineEntitlementsSteam::QueryEntitlements(const FUniqueNetId& UserId, const FString& Namespace, const FPagedQuery& Page)
+bool FOnlineEntitlementsSteamV2::QueryEntitlements(const FUniqueNetId& UserId, const FString& Namespace, const FPagedQuery& Page)
 {
 	if (!UserId.IsValid())
 	{
@@ -313,7 +313,7 @@ bool FOnlineEntitlementsSteam::QueryEntitlements(const FUniqueNetId& UserId, con
 	return true;
 }
 
-void FOnlineEntitlementsSteam::OnUserEntitlementUpdate(bool bSuccess, TSharedRef<const FUniqueNetId> UserId, const FString& Namespace, TArray<TSharedRef<FOnlineEntitlementSteam>> NewEnts)
+void FOnlineEntitlementsSteamV2::OnUserEntitlementUpdate(bool bSuccess, TSharedRef<const FUniqueNetId> UserId, const FString& Namespace, TArray<TSharedRef<FOnlineEntitlementSteam>> NewEnts)
 {
 	if (bSuccess)
 	{
@@ -321,7 +321,7 @@ void FOnlineEntitlementsSteam::OnUserEntitlementUpdate(bool bSuccess, TSharedRef
 	}
 }
 
-void FOnlineEntitlementsSteam::ClearCachedEntitlements(const TSharedRef<const FUniqueNetId>& UserId, const FString& Namespace)
+void FOnlineEntitlementsSteamV2::ClearCachedEntitlements(const TSharedRef<const FUniqueNetId>& UserId, const FString& Namespace)
 {
 	if (auto NSEnts = CachedEntitlements.Find(UserId))
 	{

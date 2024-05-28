@@ -18,19 +18,19 @@ struct FOnlineStoreOfferSteam : public FOnlineStoreOffer
 
 using FOnlineStoreOfferSteamRef = TSharedRef<FOnlineStoreOfferSteam>;
 
-class FOnlineStoreSteam
+class FOnlineStoreSteamV2
 	: public IOnlineStoreV2
-	, public TSharedFromThis<FOnlineStoreSteam, ESPMode::ThreadSafe>
+	, public TSharedFromThis<FOnlineStoreSteamV2, ESPMode::ThreadSafe>
 {
 PACKAGE_SCOPE:
-	FOnlineStoreSteam(FOnlineSubsystemSteamV2* InSubsystem);
+	FOnlineStoreSteamV2(FOnlineSubsystemSteamV2* InSubsystem);
 
 	void UpdateInventoryDefinitions();
 	void UpdateInventoryPrices();
 	void OnPriceUpdate(const FString& CurrencyCode, bool bSuccess);
 
 public:
-	virtual ~FOnlineStoreSteam();
+	virtual ~FOnlineStoreSteamV2();
 
 	//~ Begin IOnlineStoreV2 Interface
 	virtual void QueryCategories(const FUniqueNetId& UserId, const FOnQueryOnlineStoreCategoriesComplete& Delegate = FOnQueryOnlineStoreCategoriesComplete()) override;
@@ -52,4 +52,4 @@ private:
 	void GetOfferIds(TArray<FUniqueOfferId>& OutOfferIds) const;
 };
 
-typedef TSharedPtr<FOnlineStoreSteam, ESPMode::ThreadSafe> FOnlineStoreSteamPtr;
+typedef TSharedPtr<FOnlineStoreSteamV2, ESPMode::ThreadSafe> FOnlineStoreSteamV2Ptr;

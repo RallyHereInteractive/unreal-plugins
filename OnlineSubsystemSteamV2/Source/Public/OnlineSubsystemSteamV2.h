@@ -10,13 +10,13 @@
 #include "MessageSanitizerSteamV2.h"
 #include "OnlineSubsystemSteamV2Package.h"
 
-class FOnlinePurchaseSteam;
-class FOnlineStoreSteam;
-class FOnlineEntitlementsSteam;
+class FOnlinePurchaseSteamV2;
+class FOnlineStoreSteamV2;
+class FOnlineEntitlementsSteamV2;
 
-typedef TSharedPtr<class FOnlinePurchaseSteam, ESPMode::ThreadSafe> FOnlinePurchaseSteamPtr;
-typedef TSharedPtr<class FOnlineStoreSteam, ESPMode::ThreadSafe> FOnlineStoreSteamPtr;
-typedef TSharedPtr<class FOnlineEntitlementsSteam, ESPMode::ThreadSafe> FOnlineEntitlementsSteamPtr;
+typedef TSharedPtr<class FOnlinePurchaseSteamV2, ESPMode::ThreadSafe> FOnlinePurchaseSteamV2Ptr;
+typedef TSharedPtr<class FOnlineStoreSteamV2, ESPMode::ThreadSafe> FOnlineStoreSteamV2Ptr;
+typedef TSharedPtr<class FOnlineEntitlementsSteamV2, ESPMode::ThreadSafe> FOnlineEntitlementsSteamV2Ptr;
 
 /**
  *	OnlineSubsystemSteamV2 - Implementation of the online subsystem for extended Steam services
@@ -25,10 +25,10 @@ class ONLINESUBSYSTEMSTEAMV2_API FOnlineSubsystemSteamV2 : public FOnlineSubsyst
 {
 protected:
 
-	FOnlinePurchaseSteamPtr PurchaseInterface;
-	FOnlineStoreSteamPtr StoreInterface;
-	FOnlineEntitlementsSteamPtr EntitlementsInterface;
-	FMessageSanitizerSteamPtr MessageSanitizerInterface;
+	FOnlinePurchaseSteamV2Ptr PurchaseInterface;
+	FOnlineStoreSteamV2Ptr StoreInterface;
+	FOnlineEntitlementsSteamV2Ptr EntitlementsInterface;
+	FMessageSanitizerSteamV2Ptr MessageSanitizerInterface;
 
 	FOnlineSubsystemSteam* SteamSubsystem;
 

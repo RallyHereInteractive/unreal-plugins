@@ -51,7 +51,7 @@ public:
 	 */
 	virtual void Finalize() override
 	{
-		if (auto StoreInterface = StaticCastSharedPtr<FOnlineStoreSteam>(Subsystem->GetStoreV2Interface()))
+		if (auto StoreInterface = StaticCastSharedPtr<FOnlineStoreSteamV2>(Subsystem->GetStoreV2Interface()))
 		{
 			StoreInterface->UpdateInventoryDefinitions();
 		}
@@ -93,7 +93,7 @@ public:
 	 */
 	virtual void Finalize() override
 	{
-		if (auto Purchase = StaticCastSharedPtr<FOnlinePurchaseSteam>(Subsystem->GetPurchaseInterface()))
+		if (auto Purchase = StaticCastSharedPtr<FOnlinePurchaseSteamV2>(Subsystem->GetPurchaseInterface()))
 		{
 			// Unfortunately, steam does not provide any means of associating "you got stuff" back to the initial purchase directly.
 			// So we just assume if we got here and there are purchases, they have been successful.
