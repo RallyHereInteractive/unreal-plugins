@@ -162,13 +162,14 @@ void FRHDTW_Entitlements::DoEntitlementsTab()
 					FString authority = "server";
 					ImGui::Text("%s", TCHAR_TO_UTF8(*authority));
 					ImGui::TableNextColumn();
-					ImGui::Text("%s", TCHAR_TO_UTF8(*entitlement.PlatformSku));
+					ImGuiDisplayCopyableValue(TEXT("SKU"), entitlement.PlatformSku, ECopyMode::Value);
 					ImGui::TableNextColumn();
-					ImGui::Text("%s", TCHAR_TO_UTF8(*entitlement.PlatformEntitlementId));
+					ImGuiDisplayCopyableValue(TEXT("PlatformEntitlementId"), entitlement.PlatformEntitlementId, ECopyMode::Value);
 					ImGui::TableNextColumn();
-					ImGui::Text("%s", TCHAR_TO_UTF8(*EnumToString(entitlement.GetStatus())));
+					ImGuiDisplayCopyableEnumValue(TEXT("Status"), entitlement.GetStatus(), ECopyMode::Value);
 					ImGui::TableNextColumn();
-					ImGui::Text("%s", TCHAR_TO_UTF8(*EnumToString(entitlement.GetErrorCode())));
+					// use raw value for error code, so it is easier to look up
+					ImGuiDisplayCopyableEnumValue(TEXT("ErrorCode"), entitlement.GetErrorCode(), ECopyMode::Value, false, false, false);
 				}
 				for (FRHAPI_PlatformEntitlement entitlement : result.GetClientEntitlements())
 				{
@@ -177,13 +178,14 @@ void FRHDTW_Entitlements::DoEntitlementsTab()
 					FString authority = "client";
 					ImGui::Text("%s", TCHAR_TO_UTF8(*authority));
 					ImGui::TableNextColumn();
-					ImGui::Text("%s", TCHAR_TO_UTF8(*entitlement.PlatformSku));
+					ImGuiDisplayCopyableValue(TEXT("SKU"), entitlement.PlatformSku, ECopyMode::Value);
 					ImGui::TableNextColumn();
-					ImGui::Text("%s", TCHAR_TO_UTF8(*entitlement.PlatformEntitlementId));
+					ImGuiDisplayCopyableValue(TEXT("PlatformEntitlementId"), entitlement.PlatformEntitlementId, ECopyMode::Value);
 					ImGui::TableNextColumn();
-					ImGui::Text("%s", TCHAR_TO_UTF8(*EnumToString(entitlement.GetStatus())));
+					ImGuiDisplayCopyableEnumValue(TEXT("Status"), entitlement.GetStatus(), ECopyMode::Value);
 					ImGui::TableNextColumn();
-					ImGui::Text("%s", TCHAR_TO_UTF8(*EnumToString(entitlement.GetErrorCode())));
+					// use raw value for error code, so it is easier to look up
+					ImGuiDisplayCopyableEnumValue(TEXT("ErrorCode"), entitlement.GetErrorCode(), ECopyMode::Value, false, false, false);
 				}
 
 				ImGui::EndTable();
