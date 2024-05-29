@@ -112,7 +112,7 @@ namespace
 		{
 			FOnlineAsyncTaskSteam::Finalize();
 
-			auto Interface = StaticCastSharedPtr<FOnlineStoreSteam>(Subsystem->GetStoreV2Interface());
+			auto Interface = StaticCastSharedPtr<FOnlineStoreSteamV2>(Subsystem->GetStoreV2Interface());
 			Interface->OnPriceUpdate(bWasSuccessful ? FString{ UTF8_TO_TCHAR(CallbackResults.m_rgchCurrency) } : FString{}, bWasSuccessful);
 		}
 	};
@@ -128,31 +128,31 @@ SteamItemDef_t FOnlineStoreOfferSteam::GetItemDefinitionID() const
 	return ToSteamItemDefId(OfferId);
 }
 
-FOnlineStoreSteam::FOnlineStoreSteam(FOnlineSubsystemSteamV2* InSubsystem) :
+FOnlineStoreSteamV2::FOnlineStoreSteamV2(FOnlineSubsystemSteamV2* InSubsystem) :
 	Subsystem{ InSubsystem },
 	LastInventoryDefinitionUpdate{ 0 }
 {
 	check(Subsystem);
 }
 
-FOnlineStoreSteam::~FOnlineStoreSteam()
+FOnlineStoreSteamV2::~FOnlineStoreSteamV2()
 {
 }
 
-void FOnlineStoreSteam::QueryCategories(const FUniqueNetId& UserId, const FOnQueryOnlineStoreCategoriesComplete& Delegate /*= FOnQueryOnlineStoreCategoriesComplete()*/)
+void FOnlineStoreSteamV2::QueryCategories(const FUniqueNetId& UserId, const FOnQueryOnlineStoreCategoriesComplete& Delegate /*= FOnQueryOnlineStoreCategoriesComplete()*/)
 {
 	Subsystem->ExecuteNextTick([Delegate]()
 		{
-			Delegate.ExecuteIfBound(false, TEXT("FOnlineStoreSteam::QueryCategories Not Implemented"));
+			Delegate.ExecuteIfBound(false, TEXT("FOnlineStoreSteamV2::QueryCategories Not Implemented"));
 		});
 }
 
-void FOnlineStoreSteam::GetCategories(TArray<FOnlineStoreCategory>& OutCategories) const
+void FOnlineStoreSteamV2::GetCategories(TArray<FOnlineStoreCategory>& OutCategories) const
 {
 	OutCategories.Empty();
 }
 
-void FOnlineStoreSteam::QueryOffersByFilter(const FUniqueNetId& UserId, const FOnlineStoreFilter& Filter, const FOnQueryOnlineStoreOffersComplete& Delegate /*= FOnQueryOnlineStoreOffersComplete()*/)
+void FOnlineStoreSteamV2::QueryOffersByFilter(const FUniqueNetId& UserId, const FOnlineStoreFilter& Filter, const FOnQueryOnlineStoreOffersComplete& Delegate /*= FOnQueryOnlineStoreOffersComplete()*/)
 {
 	Subsystem->ExecuteNextTick([Delegate]()
 		{
@@ -160,7 +160,7 @@ void FOnlineStoreSteam::QueryOffersByFilter(const FUniqueNetId& UserId, const FO
 		});
 }
 
-void FOnlineStoreSteam::QueryOffersById(const FUniqueNetId& UserId, const TArray<FUniqueOfferId>& OfferIds, const FOnQueryOnlineStoreOffersComplete& Delegate /*= FOnQueryOnlineStoreOffersComplete()*/)
+void FOnlineStoreSteamV2::QueryOffersById(const FUniqueNetId& UserId, const TArray<FUniqueOfferId>& OfferIds, const FOnQueryOnlineStoreOffersComplete& Delegate /*= FOnQueryOnlineStoreOffersComplete()*/)
 {
 	// Steam doesn't have a per-id query, so this is where we do the "global" query of offers for a player
 	if (!SteamInventory())
@@ -201,7 +201,7 @@ void FOnlineStoreSteam::QueryOffersById(const FUniqueNetId& UserId, const TArray
 	}
 }
 
-void FOnlineStoreSteam::UpdateInventoryDefinitions()
+void FOnlineStoreSteamV2::UpdateInventoryDefinitions()
 {
 	if (!SteamInventory())
 	{
@@ -277,7 +277,7 @@ void FOnlineStoreSteam::UpdateInventoryDefinitions()
 	LastInventoryDefinitionUpdate = FDateTime::UtcNow();
 }
 
-void FOnlineStoreSteam::UpdateInventoryPrices()
+void FOnlineStoreSteamV2::UpdateInventoryPrices()
 {
 	if (LastKnownCurrencyCode.IsEmpty())
 	{
@@ -321,7 +321,7 @@ void FOnlineStoreSteam::UpdateInventoryPrices()
 	}
 }
 
-void FOnlineStoreSteam::OnPriceUpdate(const FString& CurrencyCode, bool bSuccess)
+void FOnlineStoreSteamV2::OnPriceUpdate(const FString& CurrencyCode, bool bSuccess)
 {
 	if (bSuccess)
 	{
@@ -337,7 +337,7 @@ void FOnlineStoreSteam::OnPriceUpdate(const FString& CurrencyCode, bool bSuccess
 	TriggerAllPendingQueryStoreOfferDelegates(true, FString());
 }
 
-void FOnlineStoreSteam::TriggerAllPendingQueryStoreOfferDelegates(bool success, FString error)
+void FOnlineStoreSteamV2::TriggerAllPendingQueryStoreOfferDelegates(bool success, FString error)
 {
 	TArray<FUniqueOfferId> OfferIds;
 	if (success)
@@ -352,7 +352,7 @@ void FOnlineStoreSteam::TriggerAllPendingQueryStoreOfferDelegates(bool success, 
 	PendingQueryStoreOfferDelegates.Empty();
 }
 
-void FOnlineStoreSteam::GetOfferIds(TArray<FUniqueOfferId>& OutOfferIds) const
+void FOnlineStoreSteamV2::GetOfferIds(TArray<FUniqueOfferId>& OutOfferIds) const
 {
 	for (const auto& offer : ItemDefinitions)
 	{
@@ -360,7 +360,7 @@ void FOnlineStoreSteam::GetOfferIds(TArray<FUniqueOfferId>& OutOfferIds) const
 	}
 }
 
-void FOnlineStoreSteam::GetOffers(TArray<FOnlineStoreOfferRef>& OutOffers) const
+void FOnlineStoreSteamV2::GetOffers(TArray<FOnlineStoreOfferRef>& OutOffers) const
 {
 	for (const auto& offer : ItemDefinitions)
 	{
@@ -368,7 +368,7 @@ void FOnlineStoreSteam::GetOffers(TArray<FOnlineStoreOfferRef>& OutOffers) const
 	}
 }
 
-TSharedPtr<FOnlineStoreOffer> FOnlineStoreSteam::GetOffer(const FUniqueOfferId& OfferId) const
+TSharedPtr<FOnlineStoreOffer> FOnlineStoreSteamV2::GetOffer(const FUniqueOfferId& OfferId) const
 {
 	for (const auto& offer : ItemDefinitions)
 	{

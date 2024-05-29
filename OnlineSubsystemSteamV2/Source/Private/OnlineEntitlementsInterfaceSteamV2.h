@@ -25,22 +25,22 @@ struct FOnlineEntitlementSteam : public FOnlineEntitlement
 	bool IsConsumed() const;
 };
 
-class FOnlineEntitlementsSteam
+class FOnlineEntitlementsSteamV2
 	: public IOnlineEntitlements
-	, public TSharedFromThis<FOnlineEntitlementsSteam, ESPMode::ThreadSafe>
+	, public TSharedFromThis<FOnlineEntitlementsSteamV2, ESPMode::ThreadSafe>
 {
 PACKAGE_SCOPE:
 	using EntitlementRefArray = TArray<TSharedRef<FOnlineEntitlementSteam>>;
 	using NamespacedEntitlementsMap = TMap<FString, EntitlementRefArray>;
 	using UserEntitlementsMap = TMap<TSharedRef<const FUniqueNetId>, NamespacedEntitlementsMap>;
 
-	FOnlineEntitlementsSteam(FOnlineSubsystemSteamV2* InSubsystem);
+	FOnlineEntitlementsSteamV2(FOnlineSubsystemSteamV2* InSubsystem);
 
 	void OnUserEntitlementUpdate(bool bSuccess, TSharedRef<const FUniqueNetId> UserId, const FString& Namespace, TArray<TSharedRef<FOnlineEntitlementSteam>> NewEnts);
 	void ClearCachedEntitlements(const TSharedRef<const FUniqueNetId>& UserId, const FString& Namespace);
 
 public:
-	virtual ~FOnlineEntitlementsSteam();
+	virtual ~FOnlineEntitlementsSteamV2();
 
 	//~ Begin IOnlineEntitlements Interface
 	virtual TSharedPtr<FOnlineEntitlement> GetEntitlement(const FUniqueNetId& UserId, const FUniqueEntitlementId& EntitlementId) override;
@@ -54,4 +54,4 @@ private:
 	UserEntitlementsMap CachedEntitlements;
 };
 
-typedef TSharedPtr<FOnlineEntitlementsSteam, ESPMode::ThreadSafe> FOnlineEntitlementsSteamPtr;
+typedef TSharedPtr<FOnlineEntitlementsSteamV2, ESPMode::ThreadSafe> FOnlineEntitlementsSteamV2Ptr;
