@@ -106,7 +106,7 @@ protected:
 		}
 		else
 		{
-			ProcessPlatformInventory();
+			RetrieveOSSAuthToken();
 		}
 	}
 	/**
@@ -167,7 +167,7 @@ protected:
 		}
 		else
 		{
-			ProcessPlatformInventory();
+			RetrieveOSSAuthToken();
 		}
 	}
 	/**
@@ -188,13 +188,68 @@ protected:
 
 		if(ReceiptsToValidateCount == 0)
 		{
-			ProcessPlatformInventory();
+			// PS4 and PS5 pass through auth token as the first token in a colon delimited string in the validation token.  Parse it out and use it as the auth token.
+			// this cannot be retrieved later, so we need to do it here
+			if (OSS != nullptr && (OSS->GetSubsystemName() == PS4_SUBSYSTEM || OSS->GetSubsystemName() == PS5_SUBSYSTEM))
+			{
+				TArray<FString> ValidationTokens;
+				ValidationInfo.ParseIntoArray(ValidationTokens, TEXT(":"), false);
+				check(ValidationTokens.Num() > 0);
+				FString AuthTokenString = ValidationTokens[0];
+				FExternalAuthToken AuthToken;
+				AuthToken.TokenString = AuthTokenString;
+				RetrieveOSSAuthTokenComplete(LocalUserNum, AuthToken.IsValid(), AuthToken);
+			}
+			else
+			{
+				RetrieveOSSAuthToken();
+			}
 		}
 	}
+
+	void RetrieveOSSAuthToken()
+	{
+		if (OSS != nullptr && OSS->GetIdentityInterface() != nullptr)
+		{
+			auto IdentityInterface = OSS->GetIdentityInterface();
+
+			if (RH_UseGetAuthTokenFallbackFromOSSName(OSS->GetSubsystemName()))
+			{
+				FExternalAuthToken AuthToken;
+				AuthToken.TokenString = IdentityInterface->GetAuthToken(LocalUserNum);
+				RetrieveOSSAuthTokenComplete(LocalUserNum, AuthToken.IsValid(), AuthToken);
+			}
+			else
+			{
+#if RH_FROM_ENGINE_VERSION(5,2)
+				IdentityInterface->GetLinkedAccountAuthToken(LocalUserNum, FString(), IOnlineIdentity::FOnGetLinkedAccountAuthTokenCompleteDelegate::CreateSP(this, &FRH_EntitlementProcessor::RetrieveOSSAuthTokenComplete));
+#else
+				IdentityInterface->GetLinkedAccountAuthToken(LocalUserNum, IOnlineIdentity::FOnGetLinkedAccountAuthTokenCompleteDelegate::CreateSP(this, &FRH_EntitlementProcessor::RetrieveOSSAuthTokenComplete));
+#endif
+			}
+		}
+		else
+		{
+			RetrieveOSSAuthTokenComplete(LocalUserNum, false, FExternalAuthToken());
+		}
+	}
+
+	void RetrieveOSSAuthTokenComplete(int32 InLocalUserNum, bool bWasSuccessful, const FExternalAuthToken& AuthToken)
+	{
+		if (bWasSuccessful)
+		{
+			ProcessPlatformInventory(AuthToken.TokenString);
+		}
+		else
+		{
+			ProcessPlatformInventory(TEXT(""));
+		}
+	}
+
 	/**
 	 * @brief Processes the platform inventory and stores as cached responses.
 	 */
-	void ProcessPlatformInventory()
+	void ProcessPlatformInventory(FString PlatformAuthToken)
 	{
 		UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] Submitting Process Platform Entitlements to RallyHere"), *GetName());
 
@@ -228,15 +283,14 @@ protected:
 		entitlementRequest.SetEntitlements(ProcessEntitlementResult.GetClientEntitlements());
 		entitlementRequest.SetPlatformId(EnumToString(Platform.GetValue()));
 
+		entitlementRequest.SetPlatformToken(PlatformAuthToken);
 		if (OSS != nullptr && !bIsOverride)
 		{
-			entitlementRequest.ClientType = RH_GetClientTypeFromOSSName(OSS->GetSubsystemName());
-			entitlementRequest.PlatformToken = OSS->GetIdentityInterface()->GetAuthToken(LocalUserNum);
-
+			entitlementRequest.SetClientType(RH_GetClientTypeFromOSSName(OSS->GetSubsystemName()));
 		}
 		else if (bIsOverride && Platform.IsSet())
 		{
-			entitlementRequest.ClientType = RH_GetClientTypeFromOSSName(EntitlementSubsystem->GetEntitlementOSSName()); // note - use entitlement OSS, as platform overrides are not OSS based
+			entitlementRequest.SetClientType(RH_GetClientTypeFromOSSName(EntitlementSubsystem->GetEntitlementOSSName())); // note - use entitlement OSS, as platform overrides are not OSS based
 		}
 		else
 		{

@@ -70,17 +70,19 @@ void RALLYHEREDEBUGTOOL_API ImGuiDisplayCopyableValue(const FString& Key, const 
 }
 
 template<typename T>
-void RALLYHEREDEBUGTOOL_API ImGuiDisplayCopyableEnumValue(const FString& Key, const T& Value, ECopyMode CopyMode = ECopyMode::KeyValue, bool bButtonOnLeftSide = false, bool bContentAsTooltip = false)
+void RALLYHEREDEBUGTOOL_API ImGuiDisplayCopyableEnumValue(const FString& Key, const T& Value, ECopyMode CopyMode = ECopyMode::KeyValue, bool bButtonOnLeftSide = false, bool bContentAsTooltip = false, bool bUseDisplayName = true)
 {
-	ImGuiDisplayCopyableValue(Key, UEnum::GetDisplayValueAsText(Value), CopyMode, bButtonOnLeftSide, bContentAsTooltip);
+	FString DisplayValue = bUseDisplayName ? UEnum::GetDisplayValueAsText(Value).ToString() : UEnum::GetValueAsString(Value);
+
+	ImGuiDisplayCopyableValue(Key, DisplayValue, CopyMode, bButtonOnLeftSide, bContentAsTooltip);
 }
 
 template<typename T>
-void RALLYHEREDEBUGTOOL_API ImGuiDisplayCopyableEnumValue(const FString& Key, const T* Value, ECopyMode CopyMode = ECopyMode::KeyValue, bool bButtonOnLeftSide = false, bool bContentAsTooltip = false)
+void RALLYHEREDEBUGTOOL_API ImGuiDisplayCopyableEnumValue(const FString& Key, const T* Value, ECopyMode CopyMode = ECopyMode::KeyValue, bool bButtonOnLeftSide = false, bool bContentAsTooltip = false, bool bUseDisplayName = true)
 {
 	if (Value != nullptr)
 	{
-		ImGuiDisplayCopyableEnumValue(Key, *Value, CopyMode, bButtonOnLeftSide, bContentAsTooltip);
+		ImGuiDisplayCopyableEnumValue(Key, *Value, CopyMode, bButtonOnLeftSide, bContentAsTooltip, bUseDisplayName);
 	}
 	else
 	{
