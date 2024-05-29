@@ -54,20 +54,55 @@ public:
 	*/
 	void HandleNotification(const FRHAPI_Notification& Notification, const FString& APIName, const TArray<FString>& APIParams);
 	/**
+	 * @private
 	 * @brief Start Async Task to Process Entitlements for the users connected OSS.
 	 * @param [in] EntitlementProcessorCompleteDelegate Delegate callback for when the entitlement process is complete.
 	 * @param [in] PlatformRegionDelegate Delegate callback for getting the platform region.
 	 */
-	void SubmitEntitlementsForLoggedInOSS(const FRH_ProcessEntitlementCompletedDelegate& EntitlementProcessorCompleteDelegate = FRH_ProcessEntitlementCompletedDelegate(),
-	                                      const FRH_GetPlatformRegionDelegate& PlatformRegionDelegate = FRH_GetPlatformRegionDelegate());
+	UE_DEPRECATED(5.0, "Use SubmitEntitlementsForLoggedInOSS with optional region parameter")
+	void SubmitEntitlementsForLoggedInOSS(const FRH_ProcessEntitlementCompletedDelegate& EntitlementProcessorCompleteDelegate,
+		const FRH_GetPlatformRegionDelegate& PlatformRegionDelegate)
+	{
+		TOptional<ERHAPI_PlatformRegion> Region;
+		if (PlatformRegionDelegate.IsBound())
+		{
+			Region = PlatformRegionDelegate.Execute();
+		}
+		SubmitEntitlementsForLoggedInOSS(EntitlementProcessorCompleteDelegate, Region);
+	}
 	/**
+	 * @brief Start Async Task to Process Entitlements for the users connected OSS.
+	 * @param [in] EntitlementProcessorCompleteDelegate Delegate callback for when the entitlement process is complete.
+	 * @param [in] Region The platform region to use for entitlements.
+	 */
+	virtual void SubmitEntitlementsForLoggedInOSS(const FRH_ProcessEntitlementCompletedDelegate& EntitlementProcessorCompleteDelegate = FRH_ProcessEntitlementCompletedDelegate(),
+		TOptional<ERHAPI_PlatformRegion> Region = TOptional<ERHAPI_PlatformRegion>());
+	/**
+	 * @private
 	 * @brief Start Async Task to Process Entitlements for a specific platform (non-OSS based)
 	 * @param [in] Platform The platform to process entitlements for.
 	 * @param [in] EntitlementProcessorCompleteDelegate Delegate callback for when the entitlement process is complete.
 	 * @param [in] PlatformRegionDelegate Delegate callback for getting the platform region.
 	 */
+	UE_DEPRECATED(5.0, "Use SubmitEntitlementsForPlatform with optional region parameter")
+	void SubmitEntitlementsForPlatform(ERHAPI_Platform Platform, const FRH_ProcessEntitlementCompletedDelegate& EntitlementProcessorCompleteDelegate,
+		const FRH_GetPlatformRegionDelegate& PlatformRegionDelegate)
+	{
+		TOptional<ERHAPI_PlatformRegion> Region;
+		if (PlatformRegionDelegate.IsBound())
+		{
+			Region = PlatformRegionDelegate.Execute();
+		}
+		SubmitEntitlementsForPlatform(Platform, EntitlementProcessorCompleteDelegate, Region);
+	}
+	/**
+	 * @brief Start Async Task to Process Entitlements for a specific platform (non-OSS based)
+	 * @param [in] Platform The platform to process entitlements for.
+	 * @param [in] EntitlementProcessorCompleteDelegate Delegate callback for when the entitlement process is complete.
+	 * @param [in] Region The platform region to use for entitlements.
+	 */
 	void SubmitEntitlementsForPlatform(ERHAPI_Platform Platform, const FRH_ProcessEntitlementCompletedDelegate& EntitlementProcessorCompleteDelegate = FRH_ProcessEntitlementCompletedDelegate(),
-	                              const FRH_GetPlatformRegionDelegate& PlatformRegionDelegate = FRH_GetPlatformRegionDelegate());
+		TOptional<ERHAPI_PlatformRegion> Region = TOptional<ERHAPI_PlatformRegion>());
 	/**
 	* @brief Queries the OSS to get the store offers for the given offer ids.
 	* @param [in] OfferIds List of SKUs to request offers for.
