@@ -188,7 +188,22 @@ protected:
 
 		if(ReceiptsToValidateCount == 0)
 		{
-			RetrieveOSSAuthToken();
+			// PS4 and PS5 pass through auth token as the first token in a colon delimited string in the validation token.  Parse it out and use it as the auth token.
+			// this cannot be retrieved later, so we need to do it here
+			if (OSS != nullptr && (OSS->GetSubsystemName() == PS4_SUBSYSTEM || OSS->GetSubsystemName() == PS5_SUBSYSTEM))
+			{
+				TArray<FString> ValidationTokens;
+				ValidationInfo.ParseIntoArray(ValidationTokens, TEXT(":"), false);
+				check(ValidationTokens.Num() > 0);
+				FString AuthTokenString = ValidationTokens[0];
+				FExternalAuthToken AuthToken;
+				AuthToken.TokenString = AuthTokenString;
+				RetrieveOSSAuthTokenComplete(LocalUserNum, AuthToken.IsValid(), AuthToken);
+			}
+			else
+			{
+				RetrieveOSSAuthToken();
+			}
 		}
 	}
 
