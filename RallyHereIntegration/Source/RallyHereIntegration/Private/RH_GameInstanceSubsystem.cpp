@@ -35,10 +35,13 @@ bool URH_GameInstanceSubsystem::ShouldCreateSubsystem(UObject* Outer) const
 	TArray<UClass*> ChildClasses;
 	GetDerivedClasses(GetClass(), ChildClasses, false);
 
-	UE_LOG(LogRallyHereIntegration, Display, TEXT("Found %i derived classes when attemping to create (%s), skipping creation"), ChildClasses.Num(), *GetClass()->GetName());
+	if (ChildClasses.Num() > 0)
+	{
+		UE_LOG(LogRallyHereIntegration, Display, TEXT("Found %i derived classes when attemping to create (%s), skipping creation"), ChildClasses.Num(), *GetClass()->GetName());
+		return false;
+	}
 
-	// Only create an instance if there is no override implementation defined elsewhere
-	return ChildClasses.Num() == 0;
+	return true;
 }
 
 void URH_GameInstanceSubsystem::Initialize(FSubsystemCollectionBase& Collection)
