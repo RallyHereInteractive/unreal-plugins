@@ -23,8 +23,8 @@ Subsystem for handling requesting and processing entitlements from the online su
 `public virtual void `[`Deinitialize`](#classURH__EntitlementSubsystem_1af3e449d4538d7e01532ab1b55e5d937c)`()` | Safely tears down the subsystem.
 `public virtual void `[`OnUserChanged`](#classURH__EntitlementSubsystem_1a5fd25cdb4e40bdf432b51bc96802b351)`(const FGuid & OldPlayerUuid,class `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * OldLocalPlayerInfo)` | Notification that the user changed for the owning local player subsystem.
 `public void `[`HandleNotification`](#classURH__EntitlementSubsystem_1a79e18971cbc52e3206cc1a3c6e56ab05)`(const `[`FRHAPI_Notification`](models/RHAPI_Notification.md#structFRHAPI__Notification)` & Notification,const FString & APIName,const TArray< FString > & APIParams)` | Handle a notification from the inventory API.
-`public void `[`SubmitEntitlementsForLoggedInOSS`](#classURH__EntitlementSubsystem_1a9dc31d9240e19268dbb67f71b3ef81ef)`(const FRH_ProcessEntitlementCompletedDelegate & EntitlementProcessorCompleteDelegate,const FRH_GetPlatformRegionDelegate & PlatformRegionDelegate)` | Start Async Task to Process Entitlements for the users connected OSS.
-`public void `[`SubmitEntitlementsForPlatform`](#classURH__EntitlementSubsystem_1a04aadee8f206b0ace23ddb55575d80bd)`(ERHAPI_Platform Platform,const FRH_ProcessEntitlementCompletedDelegate & EntitlementProcessorCompleteDelegate,const FRH_GetPlatformRegionDelegate & PlatformRegionDelegate)` | Start Async Task to Process Entitlements for a specific platform (non-OSS based)
+`public virtual void `[`SubmitEntitlementsForLoggedInOSS`](#classURH__EntitlementSubsystem_1acc6ed4a116445c4e3946872a7cb30335)`(const FRH_ProcessEntitlementCompletedDelegate & EntitlementProcessorCompleteDelegate,TOptional< ERHAPI_PlatformRegion > Region)` | Start Async Task to Process Entitlements for the users connected OSS.
+`public void `[`SubmitEntitlementsForPlatform`](#classURH__EntitlementSubsystem_1a20c06506e33aa850964b771dfcbae3a2)`(ERHAPI_Platform Platform,const FRH_ProcessEntitlementCompletedDelegate & EntitlementProcessorCompleteDelegate,TOptional< ERHAPI_PlatformRegion > Region)` | Start Async Task to Process Entitlements for a specific platform (non-OSS based)
 `public void `[`QueryStoreOffersById`](#classURH__EntitlementSubsystem_1a4a419cf977152a129ea1be9158ce07be)`(const TArray< FString > & OfferIds,const FRH_GenericSuccessBlock & Delegate)` | Queries the OSS to get the store offers for the given offer ids.
 `public void `[`OnQueryStoreOffersById`](#classURH__EntitlementSubsystem_1aba4dca826031b87f3f932436009622a6)`(bool bSuccess,const TArray< FUniqueOfferId > & Offers,const FString & Error,const FRH_GenericSuccessBlock Delegate)` | Response from OSS for Store Offer By Id Query.
 `public void `[`GetCachedStoreOffers`](#classURH__EntitlementSubsystem_1ac8d1546132a1bc76ef72d7b9f462a947)`(TArray< FOnlineStoreOfferRef > & OutOffers)` | Helper function to get the cached store offers from the OSS.
@@ -64,16 +64,16 @@ Handle a notification from the inventory API.
 
 * `APIParams` The parameters for the API that sent the notification
 
-#### `public void `[`SubmitEntitlementsForLoggedInOSS`](#classURH__EntitlementSubsystem_1a9dc31d9240e19268dbb67f71b3ef81ef)`(const FRH_ProcessEntitlementCompletedDelegate & EntitlementProcessorCompleteDelegate,const FRH_GetPlatformRegionDelegate & PlatformRegionDelegate)` <a id="classURH__EntitlementSubsystem_1a9dc31d9240e19268dbb67f71b3ef81ef"></a>
+#### `public virtual void `[`SubmitEntitlementsForLoggedInOSS`](#classURH__EntitlementSubsystem_1acc6ed4a116445c4e3946872a7cb30335)`(const FRH_ProcessEntitlementCompletedDelegate & EntitlementProcessorCompleteDelegate,TOptional< ERHAPI_PlatformRegion > Region)` <a id="classURH__EntitlementSubsystem_1acc6ed4a116445c4e3946872a7cb30335"></a>
 
 Start Async Task to Process Entitlements for the users connected OSS.
 
 #### Parameters
 * `EntitlementProcessorCompleteDelegate` Delegate callback for when the entitlement process is complete. 
 
-* `PlatformRegionDelegate` Delegate callback for getting the platform region.
+* `Region` The platform region to use for entitlements.
 
-#### `public void `[`SubmitEntitlementsForPlatform`](#classURH__EntitlementSubsystem_1a04aadee8f206b0ace23ddb55575d80bd)`(ERHAPI_Platform Platform,const FRH_ProcessEntitlementCompletedDelegate & EntitlementProcessorCompleteDelegate,const FRH_GetPlatformRegionDelegate & PlatformRegionDelegate)` <a id="classURH__EntitlementSubsystem_1a04aadee8f206b0ace23ddb55575d80bd"></a>
+#### `public void `[`SubmitEntitlementsForPlatform`](#classURH__EntitlementSubsystem_1a20c06506e33aa850964b771dfcbae3a2)`(ERHAPI_Platform Platform,const FRH_ProcessEntitlementCompletedDelegate & EntitlementProcessorCompleteDelegate,TOptional< ERHAPI_PlatformRegion > Region)` <a id="classURH__EntitlementSubsystem_1a20c06506e33aa850964b771dfcbae3a2"></a>
 
 Start Async Task to Process Entitlements for a specific platform (non-OSS based)
 
@@ -82,7 +82,7 @@ Start Async Task to Process Entitlements for a specific platform (non-OSS based)
 
 * `EntitlementProcessorCompleteDelegate` Delegate callback for when the entitlement process is complete. 
 
-* `PlatformRegionDelegate` Delegate callback for getting the platform region.
+* `Region` The platform region to use for entitlements.
 
 #### `public void `[`QueryStoreOffersById`](#classURH__EntitlementSubsystem_1a4a419cf977152a129ea1be9158ce07be)`(const TArray< FString > & OfferIds,const FRH_GenericSuccessBlock & Delegate)` <a id="classURH__EntitlementSubsystem_1a4a419cf977152a129ea1be9158ce07be"></a>
 
