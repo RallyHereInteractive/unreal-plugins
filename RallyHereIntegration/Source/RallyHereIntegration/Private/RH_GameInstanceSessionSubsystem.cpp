@@ -856,11 +856,12 @@ void URH_GameInstanceSessionSubsystem::CreateMatchForSession(const URH_JoinedSes
 		}
 
 		// set the session id
+		const FString SessionId = Session->GetSessionId();
 		{
 			TArray<FRHAPI_MatchSession> Sessions;
 			{
 				FRHAPI_MatchSession NewSession;
-				NewSession.SetSessionId(Session->GetSessionId());
+				NewSession.SetSessionId(SessionId);
 
 				if (InstanceData != nullptr)
 				{
@@ -876,13 +877,15 @@ void URH_GameInstanceSessionSubsystem::CreateMatchForSession(const URH_JoinedSes
 		}
 
 		// set the Instance id
+		FString InstanceId;
 		if (InstanceData != nullptr)
 		{
+			InstanceId = InstanceData->GetInstanceId();
 			TArray<FRHAPI_MatchInstance> Instances;
 			{
 				FRHAPI_MatchInstance NewInstance;
 				
-				NewInstance.SetInstanceId(InstanceData->GetInstanceId());
+				NewInstance.SetInstanceId(InstanceId);
 
 				auto* HostPlayerId = InstanceData->GetHostPlayerUuidOrNull();
 				if (HostPlayerId != nullptr)
@@ -953,7 +956,29 @@ void URH_GameInstanceSessionSubsystem::CreateMatchForSession(const URH_JoinedSes
 		}
 
 		// create the match and set as active
-		pMatchSubsystem->CreateMatch(UpdateRequest, true);
+		pMatchSubsystem->CreateMatch(UpdateRequest, true, FRH_OnMatchUpdateCompleteDelegate::CreateWeakLambda(Session, [Session, SessionId, InstanceId](bool bSuccess, const FRHAPI_MatchWithPlayers& Match, const FRH_ErrorInfo& ErrorInfo)
+			{
+				if (bSuccess)
+				{
+					// emit an audit event to session hinting at the match id
+					FRHAPI_CreateAuditRequest AuditRequest;
+					AuditRequest.SetSessionId(Session->GetSessionId());
+					if (!InstanceId.IsEmpty())
+					{
+						AuditRequest.SetInstanceId(InstanceId);
+					}
+
+					const auto MatchId = Match.GetMatchIdOrNull();
+					if (MatchId != nullptr)
+					{
+						AuditRequest.SetMatchId(*MatchId);
+					}
+
+					AuditRequest.SetEventName(TEXT("create_match"));
+
+					Session->EmitAuditEvent(AuditRequest);
+				}
+			}));
 	}
 }
 
