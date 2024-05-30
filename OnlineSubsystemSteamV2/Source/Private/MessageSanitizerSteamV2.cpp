@@ -4,7 +4,7 @@
 #include "MessageSanitizerSteamV2.h"
 #include "OnlineSubsystemSteamV2.h"
 
-void FMessageSanitizerSteam::Initialize()
+void FMessageSanitizerSteamV2::Initialize()
 {
 	ISteamUtils* SteamUtilsPtr = SteamUtils();
 	check(SteamUtilsPtr);
@@ -12,7 +12,7 @@ void FMessageSanitizerSteam::Initialize()
 	UE_LOG_ONLINE(Log, TEXT("[%s] successful? %i"), ANSI_TO_TCHAR(__FUNCTION__), bInitialized);
 }
 
-FString FMessageSanitizerSteam::GetSanitizedDisplayName(const FString& DisplayName)
+FString FMessageSanitizerSteamV2::GetSanitizedDisplayName(const FString& DisplayName)
 {
 	if (const FString* FoundString = WordMap.Find(DisplayName))
 	{
@@ -34,7 +34,7 @@ FString FMessageSanitizerSteam::GetSanitizedDisplayName(const FString& DisplayNa
 	return WordMap.Add(DisplayName, SanitizedString);
 }
 
-void FMessageSanitizerSteam::SanitizeDisplayName(const FString& DisplayName, const FOnMessageProcessed& CompletionDelegate)
+void FMessageSanitizerSteamV2::SanitizeDisplayName(const FString& DisplayName, const FOnMessageProcessed& CompletionDelegate)
 {
 	FString SanitizedString = GetSanitizedDisplayName(DisplayName);
 	SteamV2Subsystem->ExecuteNextTick([SanitizedString, CompletionDelegate]()
@@ -43,7 +43,7 @@ void FMessageSanitizerSteam::SanitizeDisplayName(const FString& DisplayName, con
 		});
 }
 
-void FMessageSanitizerSteam::SanitizeDisplayNames(const TArray<FString>& DisplayNames, const FOnMessageArrayProcessed& CompletionDelegate)
+void FMessageSanitizerSteamV2::SanitizeDisplayNames(const TArray<FString>& DisplayNames, const FOnMessageArrayProcessed& CompletionDelegate)
 {
 	TArray<FString> SanitizedStrings;
 
@@ -58,7 +58,7 @@ void FMessageSanitizerSteam::SanitizeDisplayNames(const TArray<FString>& Display
 		});
 }
 
-void FMessageSanitizerSteam::QueryBlockedUser(int32 LocalUserNum, const FString& FromUserIdStr, const FString& FromPlatform, const FOnQueryUserBlockedResponse& CompletionDelegate)
+void FMessageSanitizerSteamV2::QueryBlockedUser(int32 LocalUserNum, const FString& FromUserIdStr, const FString& FromPlatform, const FOnQueryUserBlockedResponse& CompletionDelegate)
 {
 	FBlockedQueryResult Result;
 	Result.UserId = FromUserIdStr;
@@ -66,8 +66,8 @@ void FMessageSanitizerSteam::QueryBlockedUser(int32 LocalUserNum, const FString&
 	CompletionDelegate.ExecuteIfBound(Result);
 }
 
-void FMessageSanitizerSteam::ResetBlockedUserCache()
+void FMessageSanitizerSteamV2::ResetBlockedUserCache()
 {
 	//Not implemented
-	UE_LOG_ONLINE(Log, TEXT("FMessageSanitizerSteam::ResetBlockedUserCache is not implemented"));
+	UE_LOG_ONLINE(Log, TEXT("FMessageSanitizerSteamV2::ResetBlockedUserCache is not implemented"));
 }

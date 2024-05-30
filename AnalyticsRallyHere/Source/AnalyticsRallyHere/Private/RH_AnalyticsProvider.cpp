@@ -62,11 +62,6 @@ void FRH_AnalyticsProvider::Init()
 {
 	UE_LOG(LogAnalyticsRallyHere, Verbose, TEXT("Initializing RallyHere Analytics provider"));
 
-	HttpRetryManager = MakeShared<FHttpRetrySystem::FManager>(
-		FHttpRetrySystem::FRetryLimitCountSetting(Config.RetryLimitCount),
-		FHttpRetrySystem::FRetryTimeoutRelativeSecondsSetting()
-	);
-
 	FCoreDelegates::OnEnginePreExit.AddSP(this, &FRH_AnalyticsProvider::OnEngineExit);
 }
 
@@ -88,8 +83,6 @@ FRH_AnalyticsProvider::~FRH_AnalyticsProvider()
 bool FRH_AnalyticsProvider::Tick(float DeltaSeconds)
 {
 	QUICK_SCOPE_CYCLE_COUNTER(STAT_FRH_AnalyticsProvider_Tick);
-
-	HttpRetryManager->Update();
 
 	// hold a lock the entire time here because we're making several calls to the event cache that we need to be consistent when we decide to flush.
 	// With more care, we can likely avoid holding this lock the entire time.
@@ -190,18 +183,6 @@ void FRH_AnalyticsProvider::OnEngineExit()
 	{
 		HttpRequester->FlushRequestQueue();
 	}
-}
-
-TSharedRef<IHttpRequest, ESPMode::ThreadSafe> FRH_AnalyticsProvider::CreateRequest()
-{
-	// TODO add config values for retries, for now, using default
-	TSharedRef<IHttpRequest, ESPMode::ThreadSafe> HttpRequest = HttpRetryManager->CreateRequest(FHttpRetrySystem::FRetryLimitCountSetting(),
-		FHttpRetrySystem::FRetryTimeoutRelativeSecondsSetting(),
-		FHttpRetrySystem::FRetryResponseCodes(),
-		FHttpRetrySystem::FRetryVerbs(),
-		FHttpRetrySystem::FRetryDomainsPtr());
-
-	return HttpRequest;
 }
 
 void FRH_AnalyticsProvider::FlushEvents()
@@ -407,6 +388,5 @@ void FRH_AnalyticsProvider::EventRequestComplete(const RallyHereAPI::FResponse_R
 void FRH_AnalyticsProvider::BlockUntilFlushed(float InTimeoutSec)
 {
 	FlushEvents();
-	HttpRetryManager->BlockUntilFlushed(InTimeoutSec);
 }
 

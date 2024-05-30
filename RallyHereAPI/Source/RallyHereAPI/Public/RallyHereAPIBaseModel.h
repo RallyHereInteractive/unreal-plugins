@@ -15,9 +15,13 @@
 #include "HttpRetrySystem.h"
 #include "Containers/Ticker.h"
 #include "Runtime/Launch/Resources/Version.h"
+#include "Misc/EngineVersionComparison.h"
 #include "Misc/Guid.h"
 #include "Misc/TVariant.h"
 #include "RallyHereAPIBaseModel.generated.h"
+
+#define RHAPI_BELOW_ENGINE_VERSION(Major, Minor)  (ENGINE_MAJOR_VERSION < (Major) || (ENGINE_MAJOR_VERSION == (Major) && ENGINE_MINOR_VERSION < (Minor)))
+#define RHAPI_FROM_ENGINE_VERSION(Major, Minor)   !RHAPI_BELOW_ENGINE_VERSION(Major, Minor)
 
 /** @defgroup RHAPI_BaseModel RallyHere API Base Model
  *  @{
@@ -56,17 +60,74 @@ namespace RallyHereAPI
 struct FAuthContext;
 using namespace FHttpRetrySystem;
 
-#if ENGINE_MAJOR_VERSION >= 5
 struct RALLYHEREAPI_API FHttpRetryManager : public FManager, public FTSTickerObjectBase
-#else
-struct RALLYHEREAPI_API FHttpRetryManager : public FManager, public FTickerObjectBase
-#endif
 {
 	using FManager::FManager;
 
 	bool Tick(float DeltaTime) final;
 };
 
+#if RHAPI_FROM_ENGINE_VERSION(5,4)
+struct RALLYHEREAPI_API FHttpRetryParams
+{
+	FHttpRetryParams(
+		const FRetryLimitCountSetting& InRetryLimitCountOverride = FRetryLimitCountSetting(),
+		const FRetryTimeoutRelativeSecondsSetting& InRetryTimeoutRelativeSecondsOverride = FRetryTimeoutRelativeSecondsSetting(),
+		const FRetryResponseCodes& InRetryResponseCodes = FRetryResponseCodes(),
+		const FRetryVerbs& InRetryVerbs = FRetryVerbs(),
+		const FRetryDomainsPtr& InRetryDomains = FRetryDomainsPtr(),
+		const FRetryLimitCountSetting& InRetryLimitCountForConnectionErrorOverride = FRetryLimitCountSetting(),
+		const FExponentialBackoffCurve& InExponentialBackoffCurve = FExponentialBackoffCurve()
+	)
+		: RetryLimitCountOverride(InRetryLimitCountOverride)
+		, RetryTimeoutRelativeSecondsOverride(InRetryTimeoutRelativeSecondsOverride)
+		, RetryResponseCodes(InRetryResponseCodes)
+		, RetryVerbs(InRetryVerbs)
+		, RetryDomains(InRetryDomains)
+		, RetryLimitCountForConnectionErrorOverride(InRetryLimitCountForConnectionErrorOverride)
+		, ExponentialBackoffCurve(InExponentialBackoffCurve)
+	{
+	}
+
+	FRetryLimitCountSetting RetryLimitCountOverride;
+	FRetryTimeoutRelativeSecondsSetting RetryTimeoutRelativeSecondsOverride;
+	FRetryResponseCodes RetryResponseCodes;
+	FRetryVerbs RetryVerbs;
+	FRetryDomainsPtr RetryDomains;
+	FRetryLimitCountSetting RetryLimitCountForConnectionErrorOverride;
+	FExponentialBackoffCurve ExponentialBackoffCurve;
+};
+
+class FHttpRetryRequest : public FHttpRetrySystem::FRequest
+{
+public:
+	FHttpRetryRequest(
+		class TSharedRef<FManager>& InManager,
+		const TSharedRef<IHttpRequest>& HttpRequest,
+		const FHttpRetryParams& InParams = FHttpRetryParams()
+	)
+		: FHttpRetrySystem::FRequest(
+			InManager,
+			HttpRequest,
+			InParams.RetryLimitCountOverride,
+			InParams.RetryTimeoutRelativeSecondsOverride,
+			InParams.RetryResponseCodes,
+			InParams.RetryVerbs,
+			InParams.RetryDomains,
+			InParams.RetryLimitCountForConnectionErrorOverride,
+			InParams.ExponentialBackoffCurve
+		)
+	{
+	}
+
+	// Reset state of the request to not started, in case we are retrying after an auth failure
+	virtual bool RALLYHEREAPI_API ProcessRequest() override
+	{
+		RetryStatus = EStatus::NotStarted;
+		return FHttpRetrySystem::FRequest::ProcessRequest();
+	}
+};
+#else
 struct RALLYHEREAPI_API FHttpRetryParams
 {
 	FHttpRetryParams(
@@ -75,7 +136,14 @@ struct RALLYHEREAPI_API FHttpRetryParams
 		const FRetryResponseCodes& InRetryResponseCodes = FRetryResponseCodes(),
 		const FRetryVerbs& InRetryVerbs = FRetryVerbs(),
 		const FRetryDomainsPtr& InRetryDomains = FRetryDomainsPtr()
-	);
+	)
+		: RetryLimitCountOverride(InRetryLimitCountOverride)
+		, RetryTimeoutRelativeSecondsOverride(InRetryTimeoutRelativeSecondsOverride)
+		, RetryResponseCodes(InRetryResponseCodes)
+		, RetryVerbs(InRetryVerbs)
+		, RetryDomains(InRetryDomains)
+	{
+	}
 
 	FRetryLimitCountSetting RetryLimitCountOverride;
 	FRetryTimeoutRelativeSecondsSetting RetryTimeoutRelativeSecondsOverride;
@@ -88,15 +156,21 @@ class FHttpRetryRequest : public FHttpRetrySystem::FRequest
 {
 public:
 	FHttpRetryRequest(
-		class FManager& InManager,
+		class TSharedRef<FManager>& InManager,
 		const TSharedRef<IHttpRequest, ESPMode::ThreadSafe>& HttpRequest,
-		const FRetryLimitCountSetting& InRetryLimitCountOverride = FRetryLimitCountSetting(),
-		const FRetryTimeoutRelativeSecondsSetting& InRetryTimeoutRelativeSecondsOverride = FRetryTimeoutRelativeSecondsSetting(),
-		const FRetryResponseCodes& InRetryResponseCodes = FRetryResponseCodes(),
-		const FRetryVerbs& InRetryVerbs = FRetryVerbs(),
-		const FRetryDomainsPtr& InRetryDomains = FRetryDomainsPtr()
-	) : FHttpRetrySystem::FRequest (InManager, HttpRequest, InRetryLimitCountOverride, InRetryTimeoutRelativeSecondsOverride, InRetryResponseCodes, InRetryVerbs, InRetryDomains)
-	{ }
+		const FHttpRetryParams& InParams = FHttpRetryParams()
+	)
+		: FHttpRetrySystem::FRequest(
+			*InManager,
+			HttpRequest,
+			InParams.RetryLimitCountOverride,
+			InParams.RetryTimeoutRelativeSecondsOverride,
+			InParams.RetryResponseCodes,
+			InParams.RetryVerbs,
+			InParams.RetryDomains
+		)
+	{
+	}
 
 	// Reset state of the request to not started, in case we are retrying after an auth failure
 	virtual bool RALLYHEREAPI_API ProcessRequest() override
@@ -105,6 +179,7 @@ public:
 		return FHttpRetrySystem::FRequest::ProcessRequest();
 	}
 };
+#endif
 
 /*
  * Metadata used to track a request through the Unreal systems
@@ -115,11 +190,11 @@ struct RALLYHEREAPI_API FRequestMetadata
 	FName SimplifiedPath, SimplifiedPathWithVerb;
 	int32 RetryCount;
 	FDateTime CreateTimestamp, QueuedTimestamp, HttpQueuedTimestamp;
-	
+
 	// custom handling override flags tracking
 	bool bDisableAuthRequirement;
 	bool bModifyRequestDelegateIsBound;
-	
+
 	FRequestMetadata()
 		: Identifier(FGuid::NewGuid())
 		, RetryCount(0)
@@ -150,13 +225,13 @@ public:
 	void SetShouldRetry(const FHttpRetryParams& Params = FHttpRetryParams()) { RetryParams = Params; }
 	void ClearShouldRetry() { RetryParams.Reset(); }
 	const TOptional<FHttpRetryParams>& GetRetryParams() const { return RetryParams; }
-	
+
 	void SetDisableAuthRequirement(bool bInDisable) { bDisableAuthRequirement = bInDisable; }
 
 	DECLARE_MULTICAST_DELEGATE_TwoParams(ModifyHttpRequestBeforeSubmit, const FRequest&, FHttpRequestRef);
 	ModifyHttpRequestBeforeSubmit& OnModifyRequest() { return OnModifyRequestDelegate; }
 	const ModifyHttpRequestBeforeSubmit& OnModifyRequest() const { return OnModifyRequestDelegate; }
-	
+
 	/* Sets flags on the metadata based on the request at time it is sent (in case something modifies the metadata outside of this class) */
 	virtual void SetMetadataFlags(FRequestMetadata& Metadata) const
 	{
@@ -167,7 +242,7 @@ public:
 protected:
 	FRequestMetadata RequestMetadata;
 	TOptional<FHttpRetryParams> RetryParams;
-	
+
 	bool bDisableAuthRequirement;
 	ModifyHttpRequestBeforeSubmit OnModifyRequestDelegate;
 };
@@ -194,7 +269,7 @@ public:
 		}
 		return bOutParsedHeaders && bOutParsedContent;
 	};
-	
+
 	virtual bool ParseHeaders() { return true; }
 	virtual bool ParseContent();
 
@@ -203,7 +278,7 @@ public:
 
 	virtual void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode);
 	EHttpResponseCodes::Type GetHttpResponseCode() const { return ResponseCode; }
-	
+
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const;
 
 	void SetHttpResponse(const FHttpResponsePtr& InHttpResponse) { HttpResponse = InHttpResponse; }
@@ -235,15 +310,15 @@ protected:
 	EHttpResponseCodes::Type ResponseCode;
 	FHttpResponsePtr HttpResponse;
 	FRequestMetadata RequestMetadata;
-	
+
 	PayloadVariantType Payload;
-	
+
 	virtual bool ParseTypelessContent();
 	virtual bool ParseStringTypeContent();
 	virtual bool ParseJsonTypeContent();
 	virtual bool ParseBinaryTypeContent();
 	virtual bool ParseUnknownTypeContent();
-	
+
 	// static payloads to allow deprecated functions to return references
 	static JsonPayloadType DefaultJsonPayload;
 	static StringPayloadType DefaultStringPayload;

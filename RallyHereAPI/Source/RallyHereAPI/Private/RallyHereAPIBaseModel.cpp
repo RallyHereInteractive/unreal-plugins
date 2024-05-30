@@ -19,21 +19,10 @@ namespace RallyHereAPI
 
 bool FHttpRetryManager::Tick(float DeltaTime)
 {
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	FManager::Update();
+	PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	return true;
-}
-
-FHttpRetryParams::FHttpRetryParams(const FRetryLimitCountSetting& InRetryLimitCountOverride /*= FRetryLimitCountSetting()*/,
-	const FRetryTimeoutRelativeSecondsSetting& InRetryTimeoutRelativeSecondsOverride /*= FRetryTimeoutRelativeSecondsSetting()*/,
-	const FRetryResponseCodes& InRetryResponseCodes /*= FRetryResponseCodes()*/,
-	const FRetryVerbs& InRetryVerbs /*= FRetryVerbs()*/,
-	const FRetryDomainsPtr& InRetryDomains /*= FRetryDomainsPtr() */)
-	: RetryLimitCountOverride(InRetryLimitCountOverride)
-	, RetryTimeoutRelativeSecondsOverride(InRetryTimeoutRelativeSecondsOverride)
-	, RetryResponseCodes(InRetryResponseCodes)
-	, RetryVerbs(InRetryVerbs)
-	, RetryDomains(InRetryDomains)
-{
 }
 
 FResponse::JsonPayloadType FResponse::DefaultJsonPayload = FResponse::JsonPayloadType();
@@ -99,36 +88,38 @@ bool FResponse::ParseStringTypeContent()
 {
 	check(HttpResponse != nullptr);
 
-	SetPayload<StringPayloadType>(HttpResponse->GetContentAsString());
+	SetPayload<StringPayloadType>
+	(HttpResponse->GetContentAsString());
 	return true; // Successfully parsed
-}
+	}
 
-bool FResponse::ParseJsonTypeContent()
-{
+	bool FResponse::ParseJsonTypeContent()
+	{
 	check(HttpResponse != nullptr);
 
 	ClearPayload();
 
-	TSharedPtr<FJsonValue> JsonValue;
-	const FString ContentAsString = HttpResponse->GetContentAsString();
+	TSharedPtr<FJsonValue>
+		JsonValue;
+		const FString ContentAsString = HttpResponse->GetContentAsString();
 
-	if (ContentAsString.Len() == 0 || ContentAsString.TrimStart().Len() == 0)
-	{
+		if (ContentAsString.Len() == 0 || ContentAsString.TrimStart().Len() == 0)
+		{
 		// if the response was empty or all whitespace, do not create a json object, but return as non-error
 		return true;
-	}
+		}
 
-	auto Reader = TJsonReaderFactory<>::Create(ContentAsString);
+		auto Reader = TJsonReaderFactory<>::Create(ContentAsString);
 
-	if (!FJsonSerializer::Deserialize(Reader, JsonValue))
-	{
+		if (!FJsonSerializer::Deserialize(Reader, JsonValue))
+		{
 		if (Reader->GetErrorMessage().StartsWith(TEXT("Open Curly or Square Brace token expected, but not found")))
 		{
-			FString ContentArrayWrapper = TEXT("[") + ContentAsString + TEXT("]");
-			Reader = TJsonReaderFactory<>::Create(ContentArrayWrapper);
-			if (FJsonSerializer::Deserialize(Reader, JsonValue) && JsonValue.IsValid())
-			{
-				TArray<TSharedPtr<FJsonValue>>* OutArray;
+		FString ContentArrayWrapper = TEXT("[") + ContentAsString + TEXT("]");
+		Reader = TJsonReaderFactory<>::Create(ContentArrayWrapper);
+		if (FJsonSerializer::Deserialize(Reader, JsonValue) && JsonValue.IsValid())
+		{
+		TArray<TSharedPtr<FJsonValue>>* OutArray;
 				if (JsonValue->TryGetArray(OutArray) && OutArray != nullptr && OutArray->Num() > 0)
 				{
 					JsonValue = (*OutArray).Last();
@@ -245,20 +236,17 @@ FHttpRequestRef FAPI::CreateHttpRequest(const FRequest& Request) const
 			DefaultRetryManager = MakeShared<FHttpRetryManager>(6, 60);
 			RetryManager = DefaultRetryManager.ToSharedRef();
 		}
-		
+
 		check(RetryManager.IsValid());
+		auto RetryManagerRef = RetryManager.ToSharedRef();
 
 		const FHttpRetryParams& Params = Request.GetRetryParams().GetValue();
 
 		// make a new request wrapper that will handle retries
 		HttpRequest = MakeShareable(new FHttpRetryRequest(
-			*RetryManager,
+			RetryManagerRef,
 			HttpRequest,
-			Params.RetryLimitCountOverride,
-			Params.RetryTimeoutRelativeSecondsOverride,
-			Params.RetryResponseCodes,
-			Params.RetryVerbs,
-			Params.RetryDomains
+			Params
 		));
 	}
 
@@ -277,7 +265,7 @@ bool FAPI::HandleResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResp
 		bool bParsedHeaders = false;
 		bool bParsedContent = false;
 		bool bNeedsReauth = false;
-		
+
 		InOutResponse.ParseResponse(bParsedHeaders, bParsedContent);
 
 		if (!bParsedHeaders)
@@ -293,17 +281,17 @@ bool FAPI::HandleResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResp
 			UE_LOG(LogRallyHereAPI, Warning, TEXT("Failed to parse Http response content"));
 			return false;
 		}
-		
+
 		// attempt reauth for certain error codes if an auth context was provided
 		if (AuthContext.IsValid())
 		{
-			if (InOutResponse.GetHttpResponseCode() == EHttpResponseCodes::Denied 
+			if (InOutResponse.GetHttpResponseCode() == EHttpResponseCodes::Denied
 				|| InOutResponse.GetHttpResponseCode() == EHttpResponseCodes::Forbidden) // some consoles forcibly retry 401 errors with a modified body, which can generate 403 errors, so check those for an auth success flag
 			{
 				auto Retry = MakeShared<FRequestPendingAuthRetry>();
 				Retry->HttpRequest = HttpRequest;
 				Retry->AuthContext = AuthContext;
-				
+
 				// set a callback handle
 				Retry->Handle = AuthContext->OnLoginComplete().AddSP(this, &FAPI::RetryRequestAfterAuth, Retry, ResponseDelegate, RequestMetadata, Priority);
 
@@ -311,7 +299,7 @@ bool FAPI::HandleResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResp
 				{
 					return true; // Don't submit the response for this request, we are going to retry it.
 				}
-				
+
 				// failed to conditionally refresh, so remove the handle, and return completion
 				AuthContext->OnLoginComplete().Remove(Retry->Handle);
 				return false;

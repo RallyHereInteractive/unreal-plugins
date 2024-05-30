@@ -14,12 +14,12 @@ SteamItemDef_t ToSteamItemDefId(const FString& offerId);
 FString FromSteamItemInstanceId(SteamItemInstanceID_t itemInstanceId);
 SteamItemInstanceID_t ToSteamItemInstanceId(const FString& entitlementId);
 
-class FOnlinePurchaseSteam
+class FOnlinePurchaseSteamV2
 	: public IOnlinePurchase
-	, public TSharedFromThis<FOnlinePurchaseSteam, ESPMode::ThreadSafe>
+	, public TSharedFromThis<FOnlinePurchaseSteamV2, ESPMode::ThreadSafe>
 {
 PACKAGE_SCOPE:
-	FOnlinePurchaseSteam(FOnlineSubsystemSteamV2* InSubsystem);
+	FOnlinePurchaseSteamV2(FOnlineSubsystemSteamV2* InSubsystem);
 
 	struct FPendingPurchase
 	{
@@ -41,7 +41,7 @@ PACKAGE_SCOPE:
 	void Tick(float DeltaTime);
 
 public:
-	virtual ~FOnlinePurchaseSteam();
+	virtual ~FOnlinePurchaseSteamV2();
 
 	//~ Begin IOnlinePurchase Interface
 	virtual bool IsAllowedToPurchase(const FUniqueNetId& UserId) override;
@@ -63,4 +63,4 @@ private:
 	void ClearCachedReceipts(const TSharedRef<const FUniqueNetId>& UserId);
 };
 
-typedef TSharedPtr<FOnlinePurchaseSteam, ESPMode::ThreadSafe> FOnlinePurchaseSteamPtr;
+typedef TSharedPtr<FOnlinePurchaseSteamV2, ESPMode::ThreadSafe> FOnlinePurchaseSteamV2Ptr;

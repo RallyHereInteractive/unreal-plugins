@@ -7,11 +7,11 @@
 
 class FOnlineSubsystemSteamV2;
 
-class FMessageSanitizerSteam
+class FMessageSanitizerSteamV2
 	: public IMessageSanitizer
 {
 public:
-	explicit FMessageSanitizerSteam(FOnlineSubsystemSteamV2* InSteamV2Subsystem)
+	explicit FMessageSanitizerSteamV2(FOnlineSubsystemSteamV2* InSteamV2Subsystem)
 		: SteamV2Subsystem(InSteamV2Subsystem)
 	{
 	}
@@ -33,4 +33,4 @@ protected:
 	TMap<FString, FString> WordMap;
 };
 
-typedef TSharedPtr<FMessageSanitizerSteam, ESPMode::ThreadSafe> FMessageSanitizerSteamPtr;
+typedef TSharedPtr<FMessageSanitizerSteamV2, ESPMode::ThreadSafe> FMessageSanitizerSteamV2Ptr;

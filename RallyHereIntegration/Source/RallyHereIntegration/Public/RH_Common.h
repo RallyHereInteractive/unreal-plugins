@@ -372,10 +372,10 @@ struct FRH_ErrorInfo
 			const auto JsonValuePtr = Response.TryGetPayload<RallyHereAPI::FResponse::JsonPayloadType>();
 			if (JsonValuePtr != nullptr)
 			{
-				bool bCommonError = RHCommonError.FromJson(*JsonValuePtr);
-				if (!bCommonError)
+				bIsRHCommonError = RHCommonError.FromJson(*JsonValuePtr);
+				if (!bIsRHCommonError)
 				{
-					RHValidationError.FromJson(*JsonValuePtr);
+					bIsRHValidationError = RHValidationError.FromJson(*JsonValuePtr);
 				}
 			}
 		}
