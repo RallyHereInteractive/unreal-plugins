@@ -1018,27 +1018,25 @@ void URH_PlayerInventory::UpdateInventoryFromOrderDetails(const TArray<FRHAPI_Pl
 			{
 				if (const FRHAPI_InventoryRecord* AfterRecordPtr = InventoryChange.GetAfterOrNull())
 				{
-					// only add the record to the cache if it has a non-zero count, to make it consistent with full-inventory updates
-					if (AfterRecordPtr->GetCount() != 0)
+					// Note that this can add records with a count of 0.  This is intentional, as by design an empty record is considered equivalent to a count of 0.
+					// In the future, it is possible that the after record will instead be null in the case of a count being reduced to zero.
+					// Therefore, we try to preserve the API view as much as possible, so we have the maximum amount of future compatibility.
+					FRH_ItemInventory NewInventoryItem;
+					NewInventoryItem.Init(*AfterItemIdPtr, *AfterRecordPtr);
+
+					TArray<FRH_ItemInventory>* InventoryForItem = InventoryCache.Find(*AfterItemIdPtr);
+
+					// if we already have a listing for this item id, add the new record, otherwise create a new listing
+					if (InventoryForItem != nullptr)
 					{
-						FRH_ItemInventory NewInventoryItem;
-
-						NewInventoryItem.Init(*AfterItemIdPtr, *AfterRecordPtr);
-
-						TArray<FRH_ItemInventory>* InventoryForItem = InventoryCache.Find(*AfterItemIdPtr);
-
-						// if we already have a listing for this item id, add the new record, otherwise create a new listing
-						if (InventoryForItem != nullptr)
-						{
-							InventoryForItem->Push(NewInventoryItem);
-						}
-						else
-						{
-							InventoryCache.Add(*AfterItemIdPtr, TArray<FRH_ItemInventory>({ NewInventoryItem }));
-						}
-
-						InventoryCacheUpdates.AddUnique(*AfterItemIdPtr);
+						InventoryForItem->Push(NewInventoryItem);
 					}
+					else
+					{
+						InventoryCache.Add(*AfterItemIdPtr, TArray<FRH_ItemInventory>({ NewInventoryItem }));
+					}
+
+					InventoryCacheUpdates.AddUnique(*AfterItemIdPtr);
 				}
 			}
 		}
