@@ -54,6 +54,11 @@ DECLARE_DELEGATE_TwoParams(FRH_PlayerInfoSetPlayerSettingsDelegate, bool, const 
 DECLARE_RH_DELEGATE_BLOCK(FRH_PlayerInfoSetPlayerSettingsBlock, FRH_PlayerInfoSetPlayerSettingsDelegate, FRH_PlayerInfoSetPlayerSettingsDynamicDelegate, bool, const FRH_PlayerSettingsDataWrapper&);
 
 UDELEGATE()
+DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_PlayerInfoSetPlayerSettingDynamicDelegate, bool, bSuccess, const FRH_PlayerSettingsDataWrapper&, UpdatedSettings, const FRH_ErrorInfo&, ErrorInfo);
+DECLARE_DELEGATE_ThreeParams(FRH_PlayerInfoSetPlayerSettingDelegate, bool, const FRH_PlayerSettingsDataWrapper&, const FRH_ErrorInfo& ErrorInfo);
+DECLARE_RH_DELEGATE_BLOCK(FRH_PlayerInfoSetPlayerSettingBlock, FRH_PlayerInfoSetPlayerSettingDelegate, FRH_PlayerInfoSetPlayerSettingDynamicDelegate, bool, const FRH_PlayerSettingsDataWrapper&, const FRH_ErrorInfo&);
+
+UDELEGATE()
 DECLARE_DYNAMIC_DELEGATE_TwoParams(FRH_PlayerInfoGetDisplayNameDynamicDelegate, bool, bSuccess, const FString&, DisplayName);
 DECLARE_DELEGATE_TwoParams(FRH_PlayerInfoGetDisplayNameDelegate, bool, const FString&);
 DECLARE_RH_DELEGATE_BLOCK(FRH_PlayerInfoGetDisplayNameBlock, FRH_PlayerInfoGetDisplayNameDelegate, FRH_PlayerInfoGetDisplayNameDynamicDelegate, bool, const FString&)
@@ -642,7 +647,10 @@ class RALLYHEREINTEGRATION_API URH_PlayerInfo : public UObject
 public:
 	typedef RallyHereAPI::Traits_GetPlayerLinks GetPlatforms;
 	typedef RallyHereAPI::Traits_GetAllPlayerUuidSettingsForSettingType GetSettings;
+	UE_DEPRECATED(5.0, "Use of the functions to set multiple settings at once has been deprecated, please use the single setting version instead.")
 	typedef RallyHereAPI::Traits_SetSinglePlayerUuidSetting SetSettings;
+	typedef RallyHereAPI::Traits_SetSinglePlayerUuidSetting SetSetting;
+	typedef RallyHereAPI::Traits_DeleteSinglePlayerUuidSetting DeleteSetting;
 	typedef RallyHereAPI::Traits_GetAllPlayerUuidRanksV2 GetRankings;
 	typedef RallyHereAPI::Traits_UpdatePlayerUuidRankV2 UpdateRanking;
 
@@ -813,10 +821,36 @@ public:
 	* @param [in] SettingsData Data to be stored into the players settings.
 	* @param [in] Delegate Callback when the operation is complete with success information.
 	*/
+	UE_DEPRECATED(5.0, "Setting multiple settings in one call is deprecated, use SetPlayerSetting instead.")
 	virtual void SetPlayerSettings(const FString& SettingTypeId, FRH_PlayerSettingsDataWrapper& SettingsData, const FRH_PlayerInfoSetPlayerSettingsBlock& Delegate = FRH_PlayerInfoSetPlayerSettingsBlock());
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	/** @private */
-	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Set Player Settings", AutoCreateRefTerm = "Delegate"))
+	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DeprecatedFunction, DeprecationMessage = "Setting multiple settings in one call is deprecated, use SetPlayerSetting instead.", DisplayName = "Set Player Settings", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_SetPlayerSettings(const FString& SettingTypeId, FRH_PlayerSettingsDataWrapper SettingsData, const FRH_PlayerInfoSetPlayerSettingsDynamicDelegate& Delegate) { SetPlayerSettings(SettingTypeId, SettingsData, Delegate); }
+	PRAGMA_ENABLE_DEPRECATION_WARNINGS
+
+	/**
+	* @brief Sets the players settings information for a given type.
+	* @param [in] SettingTypeId The setting type to update.
+	* @param [in] Key The setting key being updated within the type.
+	* @param [in] Document Json Document to be stored.
+	* @param [in] Delegate Callback when the operation is complete with success information.
+	*/
+	virtual void SetPlayerSetting(const FString& SettingTypeId, const FString& Key, const FRHAPI_SetSinglePlayerSettingRequest& Document, const FRH_PlayerInfoSetPlayerSettingBlock& Delegate = FRH_PlayerInfoSetPlayerSettingBlock());
+	/** @private */
+	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Set Player Setting", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_SetPlayerSetting(const FString& SettingTypeId, const FString& Key, const FRHAPI_SetSinglePlayerSettingRequest& Document, const FRH_PlayerInfoSetPlayerSettingDynamicDelegate& Delegate) { SetPlayerSetting(SettingTypeId, Key, Document, Delegate); }
+
+	/**
+	* @brief Deletes a players setting for a given type.
+	* @param [in] SettingTypeId The setting type to update.
+	* @param [in] Key The setting key being updated within the type.
+	* @param [in] Delegate Callback when the operation is complete with success information.
+	*/
+	virtual void DeletePlayerSetting(const FString& SettingTypeId, const FString& Key, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock());
+	/** @private */
+	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Set Player Setting", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_DeletePlayerSetting(const FString& SettingTypeId, const FString& Key, const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate) { DeletePlayerSetting(SettingTypeId, Key, Delegate); }
 
 	/**
 	* @brief Gets the players ranking information for a given type.

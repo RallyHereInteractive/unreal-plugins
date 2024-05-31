@@ -519,6 +519,7 @@ void URH_PlayerInfo::OnGetPlayerSettingsResponse(const GetSettings::Response& Re
 	Delegate.ExecuteIfBound(Response.IsSuccessful(), ResponseWrapper);
 }
 
+PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void URH_PlayerInfo::SetPlayerSettings(const FString& SettingTypeId, FRH_PlayerSettingsDataWrapper& SettingsData, const FRH_PlayerInfoSetPlayerSettingsBlock& Delegate /*= FRH_PlayerInfoSetPlayerSettingsBlock()*/)
 {
 	// Disallow duplicate active requested SettingTypeIds
@@ -569,6 +570,7 @@ void URH_PlayerInfo::SetPlayerSettings(const FString& SettingTypeId, FRH_PlayerS
 		}
 	}
 }
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 void URH_PlayerInfo::OnSetPlayerSettingsResponse(const SetSettings::Response& Response, const FRH_PlayerInfoSetPlayerSettingsBlock Delegate, const FString SettingTypeId, const FString SettingKey, FRH_PlayerSettingsDataWrapper SettingsData)
 {
@@ -610,6 +612,67 @@ void URH_PlayerInfo::OnSetPlayerSettingsResponse(const SetSettings::Response& Re
 		FRH_PlayerSettingsDataWrapper EmptyWrapper;
 		Delegate.ExecuteIfBound(false, EmptyWrapper);
 	}
+}
+
+
+void URH_PlayerInfo::SetPlayerSetting(const FString& SettingTypeId, const FString& Key, const FRHAPI_SetSinglePlayerSettingRequest& SettingDocument, const FRH_PlayerInfoSetPlayerSettingBlock& Delegate /*= FRH_PlayerInfoSetPlayerSettingsBlock()*/)
+{
+	auto Request = SetSetting::Request();
+	Request.PlayerUuid = RHPlayerUuid;
+	Request.SettingTypeId = SettingTypeId;
+	Request.AuthContext = GetAuthContext();
+	Request.Key = Key;
+	Request.SetSinglePlayerSettingRequest = SettingDocument;
+
+	auto UpdatedContent = MakeShared<FRH_PlayerSettingsDataWrapper>();
+
+	const auto Helper = MakeShared<FRH_SimpleQueryHelper<SetSetting>>(
+		SetSetting::Delegate::CreateWeakLambda(this, [this, UpdatedContent, SettingTypeId](const SetSetting::Response& Resp)
+			{
+				UpdatedContent->Content = Resp.Content;
+
+				// Update the local cache with the new settings (certain legacy setting types can affect multiple keys, so process all entries in the list)
+				auto SettingWrapper = PlayerSettingsByTypeId.FindOrAdd(SettingTypeId);
+
+				for (const auto& Pair : Resp.Content)
+				{
+					SettingWrapper.Content.Add(Pair);
+				}
+			}),
+		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, UpdatedContent, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+			{
+				Delegate.ExecuteIfBound(bSuccess, UpdatedContent.Get(), ErrorInfo);
+			}),
+		GetDefault<URH_IntegrationSettings>()->SettingsUpdatePriority
+	);
+
+	Helper->Start(RH_APIs::GetSettingsAPI(), Request);
+}
+
+
+void URH_PlayerInfo::DeletePlayerSetting(const FString& SettingTypeId, const FString& Key, const FRH_GenericSuccessWithErrorBlock& Delegate /*= FRH_GenericSuccessWithErrorBlock()*/)
+{
+	auto Request = DeleteSetting::Request();
+	Request.PlayerUuid = RHPlayerUuid;
+	Request.SettingTypeId = SettingTypeId;
+	Request.AuthContext = GetAuthContext();
+	Request.Key = Key;
+
+	const auto Helper = MakeShared<FRH_SimpleQueryHelper<DeleteSetting>>(
+		DeleteSetting::Delegate::CreateWeakLambda(this, [this, SettingTypeId, Key](const DeleteSetting::Response& Resp)
+			{
+				// Update the local cache with the deleted setting
+				auto SettingWrapper = PlayerSettingsByTypeId.Find(SettingTypeId);
+				if (ensure(SettingWrapper != nullptr))
+				{
+					SettingWrapper->Content.Remove(Key);
+				}
+			}),
+		Delegate,
+		GetDefault<URH_IntegrationSettings>()->SettingsUpdatePriority
+	);
+
+	Helper->Start(RH_APIs::GetSettingsAPI(), Request);
 }
 
 
