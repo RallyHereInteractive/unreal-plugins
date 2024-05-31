@@ -978,8 +978,8 @@ void URH_PlayerInventory::UpdateInventoryFromOrderDetails(const TArray<FRHAPI_Pl
 			int32* BeforeItemIdPtr = InventoryChange.GetBeforeItemIdOrNull();
 			int32* AfterItemIdPtr = InventoryChange.GetAfterItemIdOrNull();
 
-			// If we have a before Inventory Record we need to find that entry to modify
-			if (BeforeItemIdPtr)
+			// If we have a before Inventory Record, find it and remove it (we will create a new record with the updated data based on the after record)
+			if (BeforeItemIdPtr != nullptr)
 			{
 				if (const FRHAPI_InventoryRecord* BeforeRecordPtr = InventoryChange.GetBeforeOrNull())
 				{
@@ -988,99 +988,72 @@ void URH_PlayerInventory::UpdateInventoryFromOrderDetails(const TArray<FRHAPI_Pl
 
 					if (InventoryForItem != nullptr)
 					{
-						TArray<FRH_ItemInventory> RecordsToRemove;
-
-						for (auto& InventoryRecord : *InventoryForItem)
-						{
-							if (InventoryRecord.InventoryId == BeforeRecord.GetInventoryId())
+						auto ModifiedCount = InventoryForItem->RemoveAll([BeforeRecord](const FRH_ItemInventory& InventoryRecord)
 							{
-								if (AfterItemIdPtr != nullptr)
+								if (InventoryRecord.InventoryId == BeforeRecord.GetInventoryId())
 								{
-									if (const FRHAPI_InventoryRecord* AfterRecordPtr = InventoryChange.GetAfterOrNull())
-									{
-										InventoryRecord.Init(*AfterItemIdPtr, *AfterRecordPtr);
-										InventoryCacheUpdates.AddUnique(*AfterItemIdPtr);
-									}
-
-									// If the itemId has changed, move the record in the inventory cache
-									if (AfterItemIdPtr == nullptr || (*BeforeItemIdPtr != *AfterItemIdPtr))
-									{
-										if (AfterItemIdPtr != nullptr)
-										{
-											TArray<FRH_ItemInventory>* AfterInventoryForItem = InventoryCache.Find(*AfterItemIdPtr);
-
-											if (AfterInventoryForItem)
-											{
-												AfterInventoryForItem->Push(InventoryRecord);
-											}
-											else
-											{
-												InventoryCache.Add(*AfterItemIdPtr, TArray<FRH_ItemInventory>({ InventoryRecord }));
-											}
-										}
-
-										RecordsToRemove.Add(InventoryRecord);
-										InventoryCacheUpdates.AddUnique(*BeforeItemIdPtr);
-									}
+									return true;
 								}
-								break;
-							}
+								return false;
+							});
+
+						if (ModifiedCount == 0)
+						{
+							UE_LOG(LogRallyHereIntegration, Warning, TEXT("Failed to find an existing inventory record to update for item id %d with inventory id %s"), *BeforeItemIdPtr, *BeforeRecord.GetInventoryId().ToString(EGuidFormats::DigitsWithHyphens));
+						}
+						else if (ModifiedCount > 1)
+						{
+							UE_LOG(LogRallyHereIntegration, Warning, TEXT("Found multiple inventory records to update for item id %d with inventory id %s"), *BeforeItemIdPtr, *BeforeRecord.GetInventoryId().ToString(EGuidFormats::DigitsWithHyphens));
 						}
 
-						// If we have records to remove, remove them
-						if (RecordsToRemove.Num())
-						{
-							InventoryForItem = InventoryCache.Find(*BeforeItemIdPtr);
-							for (const auto& Record : RecordsToRemove)
-							{
-								InventoryForItem->Remove(Record);
-							}
-						}
+						// it is possible this removed the only entry on this item, we will clean up later if so, since after item update could just readd it
+
+						InventoryCacheUpdates.AddUnique(*BeforeItemIdPtr);
 					}
 				}
 			}
-			else if (AfterItemIdPtr != nullptr)
+
+			// update the inventory cache with the new record
+			if (AfterItemIdPtr != nullptr)
 			{
 				if (const FRHAPI_InventoryRecord* AfterRecordPtr = InventoryChange.GetAfterOrNull())
 				{
-					FRH_ItemInventory NewInventoryItem;
-
-					NewInventoryItem.Init(*AfterItemIdPtr, *AfterRecordPtr);
-
-					TArray<FRH_ItemInventory>* InventoryForItem = InventoryCache.Find(*AfterItemIdPtr);
-
-					if (InventoryForItem != nullptr)
+					// only add the record to the cache if it has a non-zero count, to make it consistent with full-inventory updates
+					if (AfterRecordPtr->GetCount() != 0)
 					{
-						const FRHAPI_InventoryRecord AfterRecord = *AfterRecordPtr;
-						bool bFound = false;
+						FRH_ItemInventory NewInventoryItem;
 
-						for (auto& InventoryRecord : *InventoryForItem)
-						{
-							// If the inventory record exists already for some reason just overwrite with the after
-							if (InventoryRecord.InventoryId == AfterRecord.GetInventoryId())
-							{
-								InventoryRecord.Init(*AfterItemIdPtr, *AfterRecordPtr);
-								bFound = true;
-								break;
-							}
-						}
+						NewInventoryItem.Init(*AfterItemIdPtr, *AfterRecordPtr);
 
-						if (!bFound)
+						TArray<FRH_ItemInventory>* InventoryForItem = InventoryCache.Find(*AfterItemIdPtr);
+
+						// if we already have a listing for this item id, add the new record, otherwise create a new listing
+						if (InventoryForItem != nullptr)
 						{
 							InventoryForItem->Push(NewInventoryItem);
 						}
-					}
-					else
-					{
-						InventoryCache.Add(*AfterItemIdPtr, TArray<FRH_ItemInventory>({ NewInventoryItem }));
-					}
+						else
+						{
+							InventoryCache.Add(*AfterItemIdPtr, TArray<FRH_ItemInventory>({ NewInventoryItem }));
+						}
 
-					InventoryCacheUpdates.AddUnique(*AfterItemIdPtr);
+						InventoryCacheUpdates.AddUnique(*AfterItemIdPtr);
+					}
 				}
 			}
 		}
 	}
 
+	// clean up any now-empty cache entries
+	for (auto UpdatedItemId : InventoryCacheUpdates)
+	{
+		if (InventoryCache.Contains(UpdatedItemId) && InventoryCache[UpdatedItemId].IsEmpty())
+		{
+			InventoryCache.Remove(UpdatedItemId);
+		}
+	}
+
+	// broadcast updates
 	if (InventoryCacheUpdates.Num())
 	{
 		BroadcastOnInventoryCacheUpdated(InventoryCacheUpdates);
