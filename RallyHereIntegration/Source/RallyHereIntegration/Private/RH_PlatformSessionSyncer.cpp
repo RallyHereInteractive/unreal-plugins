@@ -141,11 +141,17 @@ void URH_PlatformSessionSyncer::Cleanup(const FSimpleDelegate& CompletionDelegat
 	}
 	else if (!SetSyncActionState(ESyncActionState::Cleanup))
 	{
-		check(!bDeferCleanup);
-		bDeferCleanup = true;
+		if (!bDeferCleanup)
+		{
+			bDeferCleanup = true;
 
-		FString CurrentStateString = RH_GETENUMSTRING("/Script/RallyHereIntegration", "ESyncActionState", CurrentSyncActionState);
-		UE_LOG(LogRHSession, Verbose, TEXT("[%s] - Could not start cleanup, current state is %s, deferring"), ANSI_TO_TCHAR(__FUNCTION__), *CurrentStateString);
+			FString CurrentStateString = RH_GETENUMSTRING("/Script/RallyHereIntegration", "ESyncActionState", CurrentSyncActionState);
+			UE_LOG(LogRHSession, Verbose, TEXT("[%s] - Could not start cleanup, current state is %s, deferring"), ANSI_TO_TCHAR(__FUNCTION__), *CurrentStateString);
+		}
+		else
+		{
+			UE_LOG(LogRHSession, Verbose, TEXT("[%s] - Cleanup requested, but already in deferred cleanup"), ANSI_TO_TCHAR(__FUNCTION__));
+		}
 	}
 }
 
