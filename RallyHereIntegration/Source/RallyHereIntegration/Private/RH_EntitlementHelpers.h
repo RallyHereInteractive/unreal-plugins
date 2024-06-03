@@ -39,7 +39,7 @@ public:
 		FUniqueNetIdWrapper InPlatformUserId,
 		FTimerManager& InTimerManager,
 		const FRH_ProcessEntitlementCompletedDelegate& InProcessorCompleteDelegate,
-		const FRH_GetPlatformRegionDelegate& InGetPlatformRegionDelegate,
+		TOptional<ERHAPI_PlatformRegion> InRegion,
 		TOptional<ERHAPI_Platform> InOverridePlatform,
 		TSharedPtr<IAnalyticsProvider> InAnalyticsProvider)
 		: EntitlementSubsystem(InEntitlementSubsystem)
@@ -49,7 +49,7 @@ public:
 		, PlatformUserId(InPlatformUserId)
 		, TimerManager(InTimerManager)
 		, EntitlementProcessorCompleteDelegate(InProcessorCompleteDelegate)
-		, GetPlatformRegionDelegate(InGetPlatformRegionDelegate)
+		, Region(InRegion)
 		, AnalyticsProvider(InAnalyticsProvider)
 	{
 		if (InOverridePlatform.IsSet())
@@ -198,6 +198,21 @@ protected:
 				FString AuthTokenString = ValidationTokens[0];
 				FExternalAuthToken AuthToken;
 				AuthToken.TokenString = AuthTokenString;
+
+				// additionally, automatically determine region if not specified
+				if (!Region.IsSet())
+				{
+					auto SonyContentId = OSS->GetAppId();
+					if (SonyContentId.StartsWith(TEXT("EP")))
+					{
+						Region = ERHAPI_PlatformRegion::Eu;
+					}
+					else if (SonyContentId.StartsWith(TEXT("UP")))
+					{
+						Region = ERHAPI_PlatformRegion::Na;
+					}
+				}
+
 				RetrieveOSSAuthTokenComplete(LocalUserNum, AuthToken.IsValid(), AuthToken);
 			}
 			else
@@ -298,7 +313,7 @@ protected:
 			return;
 		}
 
-		entitlementRequest.PlatformRegion = GetRegionFromTitleSettings();
+		entitlementRequest.PlatformRegion = Region.Get(ERHAPI_PlatformRegion::Unknown);
 		entitlementRequest.TransactionId = ProcessEntitlementResult.TransactionId;
 
 		FGuid PlayerUuid;
@@ -499,19 +514,6 @@ protected:
 
 		EntitlementProcessorCompleteDelegate.ExecuteIfBound(bSuccess, ProcessEntitlementResult);
 	}
-	/**
-	 * @brief Gets the region for the platform.
-	*/
-	ERHAPI_PlatformRegion GetRegionFromTitleSettings()
-	{
-		auto PlatformRegion = ERHAPI_PlatformRegion::Unknown;
-		if(GetPlatformRegionDelegate.IsBound())
-		{
-			PlatformRegion = GetPlatformRegionDelegate.Execute();
-		}
-
-		return PlatformRegion;
-	}
 	/** @brief Auth Context used by the entitlement subsystem. */
 	FAuthContextPtr AuthContext;
 	/** @brief Pointer back to the entitlement subsystem that owns this processor. */
@@ -528,8 +530,8 @@ protected:
 	FTimerManager& TimerManager;
 	/** @brief Delegate to fire when completed. */
 	FRH_ProcessEntitlementCompletedDelegate EntitlementProcessorCompleteDelegate;
-	/** @brief Delegate that fires when getting the platforms region. */
-	FRH_GetPlatformRegionDelegate GetPlatformRegionDelegate;
+	/** @brief The platforms region to use */
+	TOptional<ERHAPI_PlatformRegion> Region;
 	/** @brief Platform the entitlements are for. */
 	TOptional<ERHAPI_Platform> Platform;
 	/** @brief If set, the platform is an override of the main connection platform. */
