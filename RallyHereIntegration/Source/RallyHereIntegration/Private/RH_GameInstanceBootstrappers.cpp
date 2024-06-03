@@ -448,6 +448,9 @@ void URH_GameInstanceServerBootstrapper::OnBootstrappingFailed(const FString& Er
 		BestEffortLeaveSession();
 	}
 
+	// abandon any existing game host providers, so we can clean up their state and prevent allocations
+	GameHostProvider.Reset();
+
 	if (!bMultiSessionServerMode)
 	{
 		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Server bootstrapping failed - bootstrap error is fatal"), ANSI_TO_TCHAR(__FUNCTION__));
