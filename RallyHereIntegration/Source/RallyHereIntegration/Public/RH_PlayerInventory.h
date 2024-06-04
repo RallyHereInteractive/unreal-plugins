@@ -283,9 +283,9 @@ protected:
 	* @param [in] Resp Response given for the call.
 	*/
 	virtual void RequestOrdersResponse(const TGetOrders::Response& Resp);
-	/** Cursor location of last player orders response. */
+	/** Information about the last successful request, to used for future requests (contains cursor, etc). */
 	UPROPERTY()
-	FString Cursor;
+	FRHAPI_InventoryPageMeta LastRequestMeta;
 	/**
 	 * @brief Gets the Player Inventory.
 	 */
@@ -1219,6 +1219,8 @@ protected:
 	 * @brief Helper function to get Catalog Subsystem.
 	 */
 	URH_CatalogSubsystem* GetCatalogSubsystem() const;
+
+	friend class URH_PlayerOrderWatch;
 };
 
 /**

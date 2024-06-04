@@ -6,6 +6,7 @@
 #include "RH_GameInstanceSubsystem.h"
 #include "RH_GameInstanceSessionSubsystem.h"
 #include "RH_MatchSubsystem.h"
+#include "RH_ConfigSubsystem.h"
 #include "RallyHereIntegrationModule.h"
 #include "RallyHereAPIAuthContext.h"
 #include "RH_CatalogSubsystem.h"
@@ -1316,9 +1317,40 @@ bool URH_PlayerOrderWatch::RequestOrders(const FRH_GenericSuccessWithErrorBlock&
 	}
 
 	Request.PlayerUuid = PlayerInventory->GetRHPlayerUuid();
-	// #RHTODO: Do we want to make the first request without a cursor timed to the players initial login?
-	Request.Cursor = Cursor;
-	Request.Limit = 10; // #RHTODO: Expose this as a parameter?
+
+	// if we have a cursor from a previous request, use it
+	if (const auto Cursor = LastRequestMeta.GetCursorOrNull())
+	{
+		Request.Cursor = *Cursor;
+	}
+	// else if we have made a previous request, and have a starting position, use it (this covers cases where no orders have arrived to create a cursor)
+	else if (const auto LastStartingPosition = LastRequestMeta.GetStartingPositionOrNull())
+	{
+		Request.StartingPosition = *LastStartingPosition;
+	}
+	// else we have not made a successful request yet, so start fresh with current time as starting position
+	else
+	{
+		// if we don't have a cursor or starting position, we are starting fresh
+
+		// we want to use the server adjusted time if we can, but if we can't, we will use the local time
+		Request.StartingPosition = FDateTime::UtcNow();
+
+		// try to use the current server time as a starting position
+		const auto Inventory = GetPlayerInventory();
+		if (Inventory != nullptr)
+		{
+			const auto GameInstanceSubsystem = Inventory->GetGameInstanceSubsystem();
+			if (GameInstanceSubsystem != nullptr && GameInstanceSubsystem->GetConfigSubsystem() != nullptr)
+			{
+				FDateTime ServerTime;
+				if (GameInstanceSubsystem->GetConfigSubsystem()->GetServerTime(ServerTime))
+				{
+					Request.StartingPosition = ServerTime;
+				}
+			}
+		}
+	}
 
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<TGetOrders>>(
 		TGetOrders::Delegate::CreateUObject(this, &URH_PlayerOrderWatch::RequestOrdersResponse),
@@ -1334,7 +1366,7 @@ void URH_PlayerOrderWatch::RequestOrdersResponse(const TGetOrders::Response& Res
 {
 	if (Resp.IsSuccessful())
 	{
-		Resp.Content.Page.GetCursor(Cursor);
+		LastRequestMeta = Resp.Content.Page;
 
 		if (const auto Data = Resp.Content.GetDataOrNull())
 		{
