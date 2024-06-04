@@ -55,11 +55,11 @@ void URH_GameInstanceSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 	{
 		SessionSubsystem = AddSubsystemPlugin<URH_GameInstanceSessionSubsystem>(Settings->GameInstanceSessionInfoSubsystemClass);
 
-		if (DEFAULT_IsServerBootstrappingEnabled())
+		if (IsServerBootstrappingEnabled())
 		{
 			ServerBootstrapper = AddSubsystemPlugin<URH_GameInstanceServerBootstrapper>(Settings->GameInstanceServerBootstrapperClass);
 		}
-		else if (DEFAULT_IsClientBootstrappingEnabled())
+		else if (IsClientBootstrappingEnabled())
 		{
 			ClientBootstrapper = AddSubsystemPlugin<URH_GameInstanceClientBootstrapper>(Settings->GameInstanceClientBootstrapperClass);
 		}

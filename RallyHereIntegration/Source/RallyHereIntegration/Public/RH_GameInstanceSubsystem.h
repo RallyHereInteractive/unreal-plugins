@@ -127,20 +127,18 @@ public:
 	FORCEINLINE URH_RemoteFileSubsystem* GetRemoteFileSubsystem() const { return RemoteFileSubsystem; };
 
 	/**
-	* @brief Gets if server boostrapping is enabled, by inspecting state of default object before game instance is initialized, once it is initialized use the above
+	* @brief Gets if server boostrapping is enabled
 	*/
-	FORCEINLINE static bool DEFAULT_IsServerBootstrappingEnabled()
+	virtual bool IsServerBootstrappingEnabled()
 	{
-		auto* Default = GetDefault<URH_GameInstanceSubsystem>();
-		return Default->ShouldCreateSubsystem(nullptr) && Default->bEnableGameSessions && Default->bEnableServerBootstrapper && IsRunningDedicatedServer();
+		return bEnableGameSessions && bEnableServerBootstrapper && IsRunningDedicatedServer();
 	}
 	/**
-	* @brief Gets if client boostrapping is enabled, by inspecting state of default object before game instance is initialized, once it is initialized use the above
+	* @brief Gets if client boostrapping is enabled
 	*/
-	FORCEINLINE static bool DEFAULT_IsClientBootstrappingEnabled()
+	virtual bool IsClientBootstrappingEnabled()
 	{
-		auto* Default = GetDefault<URH_GameInstanceSubsystem>();
-		return Default->ShouldCreateSubsystem(nullptr) && Default->bEnableGameSessions && Default->bEnableClientBootstrapper && !IsRunningDedicatedServer();
+		return bEnableGameSessions && bEnableClientBootstrapper && !IsRunningDedicatedServer();
 	}
 
 	/**
