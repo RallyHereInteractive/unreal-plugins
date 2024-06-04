@@ -709,6 +709,8 @@ Subsystem for the Game Instance.
 `public inline FORCEINLINE `[`URH_SettingsSubsystem`](Settings.md#classURH__SettingsSubsystem)` * `[`GetSettingsSubsystem`](#classURH__GameInstanceSubsystem_1aa38776b9a25d59f402ef9f7f7593ca88)`() const` | Gets the settings subsystem on the instance.
 `public inline FORCEINLINE `[`URH_MatchSubsystem`](Match.md#classURH__MatchSubsystem)` * `[`GetMatchSubsystem`](#classURH__GameInstanceSubsystem_1aacdc467e3f161d6fc30f6d44f38c05ff)`() const` | Gets the match subsystem on the instance.
 `public inline FORCEINLINE `[`URH_RemoteFileSubsystem`](File.md#classURH__RemoteFileSubsystem)` * `[`GetRemoteFileSubsystem`](#classURH__GameInstanceSubsystem_1aef4373b14ab4dbeddbd20ee256a4f775)`() const` | Gets the remote file subsystem on the instance.
+`public inline virtual bool `[`IsServerBootstrappingEnabled`](#classURH__GameInstanceSubsystem_1aeb44787c6b0cac3d121ae682ca77b191)`()` | Gets if server boostrapping is enabled.
+`public inline virtual bool `[`IsClientBootstrappingEnabled`](#classURH__GameInstanceSubsystem_1a2b838f400728010a6b525d6222cf3768)`()` | Gets if client boostrapping is enabled.
 `public virtual void `[`CustomEndpoint`](#classURH__GameInstanceSubsystem_1a0a69062a00fa3638f34752c643bd1a79)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const RallyHereAPI::FDelegate_CustomEndpointSend & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
 `public virtual void `[`CustomEndpoint`](#classURH__GameInstanceSubsystem_1a9f80933f5977a68e1d88ceef046b1c80)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const FRH_CustomEndpointDelegateBlock & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
 `protected FAuthContextPtr `[`AuthContext`](#classURH__GameInstanceSubsystem_1a8836a0620d1de84cc1383f20b38ab775) | Auth context used by the Game Instance Subsystem.
@@ -817,6 +819,14 @@ Gets the match subsystem on the instance.
 #### `public inline FORCEINLINE `[`URH_RemoteFileSubsystem`](File.md#classURH__RemoteFileSubsystem)` * `[`GetRemoteFileSubsystem`](#classURH__GameInstanceSubsystem_1aef4373b14ab4dbeddbd20ee256a4f775)`() const` <a id="classURH__GameInstanceSubsystem_1aef4373b14ab4dbeddbd20ee256a4f775"></a>
 
 Gets the remote file subsystem on the instance.
+
+#### `public inline virtual bool `[`IsServerBootstrappingEnabled`](#classURH__GameInstanceSubsystem_1aeb44787c6b0cac3d121ae682ca77b191)`()` <a id="classURH__GameInstanceSubsystem_1aeb44787c6b0cac3d121ae682ca77b191"></a>
+
+Gets if server boostrapping is enabled.
+
+#### `public inline virtual bool `[`IsClientBootstrappingEnabled`](#classURH__GameInstanceSubsystem_1a2b838f400728010a6b525d6222cf3768)`()` <a id="classURH__GameInstanceSubsystem_1a2b838f400728010a6b525d6222cf3768"></a>
+
+Gets if client boostrapping is enabled.
 
 #### `public virtual void `[`CustomEndpoint`](#classURH__GameInstanceSubsystem_1a0a69062a00fa3638f34752c643bd1a79)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const RallyHereAPI::FDelegate_CustomEndpointSend & Delegate)` <a id="classURH__GameInstanceSubsystem_1a0a69062a00fa3638f34752c643bd1a79"></a>
 
