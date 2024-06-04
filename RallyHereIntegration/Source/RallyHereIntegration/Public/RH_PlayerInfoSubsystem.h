@@ -813,7 +813,19 @@ public:
 	virtual void GetPlayerSettings(const FString& SettingTypeId, const FTimespan& StaleThreshold = FTimespan(), bool bForceRefresh = false, const FRH_PlayerInfoGetPlayerSettingsBlock& Delegate = FRH_PlayerInfoGetPlayerSettingsBlock());
 	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Get Player Settings", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_GetPlayerSettings(const FString& SettingTypeId, const FTimespan& StaleThreshold, bool bForceRefresh, const FRH_PlayerInfoGetPlayerSettingsDynamicDelegate& Delegate) { GetPlayerSettings(SettingTypeId, StaleThreshold, bForceRefresh, Delegate); }
+	void BLUEPRINT_GetPlayerSettings(const FString& SettingTypeId, const FTimespan& StaleThreshold, bool bForceRefresh, const FRH_PlayerInfoGetPlayerSettingsDynamicDelegate& Delegate) { GetPlayerSettingsForKeys(SettingTypeId, TArray<FString>(), StaleThreshold, bForceRefresh, Delegate); }
+
+	/**
+	* @brief Gets the players settings information for a given type, restricted to a list of keys.
+	* @param [in] SettingTypeId The setting type requested.
+	* @param [in] StaleThreshold If set, will force a re-request of the players information if the last updated time was more than the threshold.
+	* @param [in] bForceRefresh If true, will force a re-request of the players information.
+	* @param [in] Delegate Callback with the players settings for the given type.
+	*/
+	virtual void GetPlayerSettingsForKeys(const FString& SettingTypeId, const TArray<FString>& Keys, const FTimespan& StaleThreshold = FTimespan(), bool bForceRefresh = false, const FRH_PlayerInfoGetPlayerSettingsBlock& Delegate = FRH_PlayerInfoGetPlayerSettingsBlock());
+	/** @private */
+	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Get Player Settings", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_GetPlayerSettingsForKeys(const FString& SettingTypeId, const TArray<FString>& Keys, const FTimespan& StaleThreshold, bool bForceRefresh, const FRH_PlayerInfoGetPlayerSettingsDynamicDelegate& Delegate) { GetPlayerSettingsForKeys(SettingTypeId, Keys, StaleThreshold, bForceRefresh, Delegate); }
 
 	/**
 	* @brief Sets the players settings information for a given type.
@@ -984,9 +996,10 @@ protected:
 	 * @brief Handles the response to a Get Player Settings call.
 	 * @param [in] Resp Response given for the call
 	 * @param [in] Delegate Delegate passed in for original call to respond to when call completes.
-	 * @param [in] SettinyTypeId The type of settings that were requested.
+	 * @param [in] SettingTypeId The type of settings that were requested.
+	 * @param [in] PartialKeys If Specified, only the keys in this list were requested.
 	 */
-	virtual void OnGetPlayerSettingsResponse(const GetSettings::Response& Response, const FRH_PlayerInfoGetPlayerSettingsBlock Delegate, const FString SettingTypeId);
+	virtual void OnGetPlayerSettingsResponse(const GetSettings::Response& Response, const FRH_PlayerInfoGetPlayerSettingsBlock Delegate, const FString SettingTypeId, TOptional<TArray<FString>> PartialKeys);
 	/**
 	 * @brief Handles the response to a Set Player Settings call.
 	 * @param [in] Resp Response given for the call

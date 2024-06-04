@@ -468,6 +468,7 @@ void URH_PlayerInfo::OnGetPlayerLinkedPlatformsResponse(const GetPlatforms::Resp
 	Delegate.ExecuteIfBound(Response.IsSuccessful(), Infos);
 }
 
+
 void URH_PlayerInfo::GetPlayerSettings(const FString& SettingTypeId, const FTimespan& StaleThreshold /* = FTimespan()*/, bool bForceRefresh /*= false*/, const FRH_PlayerInfoGetPlayerSettingsBlock& Delegate /*= FRH_PlayerInfoGetPlayerSettingsBlock()*/)
 {
 	if (auto FoundLastRequested = LastRequestSettingsByTypeId.Find(SettingTypeId))
@@ -494,28 +495,113 @@ void URH_PlayerInfo::GetPlayerSettings(const FString& SettingTypeId, const FTime
 	Request.PlayerUuid = RHPlayerUuid;
 	Request.SettingTypeId = SettingTypeId;
 	Request.AuthContext = GetAuthContext();
-	if (!GetSettings::DoCall(RH_APIs::GetSettingsAPI(), Request, GetSettings::Delegate::CreateUObject(this, &URH_PlayerInfo::OnGetPlayerSettingsResponse, Delegate, SettingTypeId), GetDefault<URH_IntegrationSettings>()->SettingsGetPriority))
+	if (!GetSettings::DoCall(RH_APIs::GetSettingsAPI(), Request, GetSettings::Delegate::CreateUObject(this, &URH_PlayerInfo::OnGetPlayerSettingsResponse, Delegate, SettingTypeId, TOptional<TArray<FString>>()), GetDefault<URH_IntegrationSettings>()->SettingsGetPriority))
 	{
 		FRH_PlayerSettingsDataWrapper EmptyWrapper;
 		Delegate.ExecuteIfBound(false, EmptyWrapper);
 	}
 }
 
-void URH_PlayerInfo::OnGetPlayerSettingsResponse(const GetSettings::Response& Response, FRH_PlayerInfoGetPlayerSettingsBlock Delegate, const FString SettingTypeId)
+
+void URH_PlayerInfo::GetPlayerSettingsForKeys(const FString& SettingTypeId, const TArray<FString>& Keys, const FTimespan& StaleThreshold /* = FTimespan()*/, bool bForceRefresh /*= false*/, const FRH_PlayerInfoGetPlayerSettingsBlock& Delegate /*= FRH_PlayerInfoGetPlayerSettingsBlock()*/)
+{
+	if (auto FoundLastRequested = LastRequestSettingsByTypeId.Find(SettingTypeId))
+	{
+		FDateTime Now = FDateTime::UtcNow();
+		if (FoundLastRequested->GetTicks() != 0 && !bForceRefresh)
+		{
+			// check if we are in the stale threshold, or if it is not set (in which case, always prefer the cache)
+			if ((*FoundLastRequested) + StaleThreshold < Now || StaleThreshold.IsZero())
+			{
+				// for specific settings requests, we need to check if we have all the keys we need
+				if (auto FoundSettings = PlayerSettingsByTypeId.Find(SettingTypeId))
+				{
+					bool bHasAllKeys = true;
+					FRH_PlayerSettingsDataWrapper ReturnedSettings;
+					for (const auto& Key : Keys)
+					{
+						const auto FoundSetting = FoundSettings->Content.Find(Key);
+						if (FoundSetting)
+						{
+							ReturnedSettings.Content.Add(Key, *FoundSetting);
+						}
+						else
+						{
+							bHasAllKeys = false;
+							break;
+						}
+					}
+
+					if (FoundSettings->Content.Num() > 0)
+					{
+						Delegate.ExecuteIfBound(true, ReturnedSettings);
+						return;
+					}
+				}
+			}
+		}
+	}
+
+	auto Request = GetSettings::Request();
+	Request.PlayerUuid = RHPlayerUuid;
+	Request.SettingTypeId = SettingTypeId;
+	if (Keys.Num() > 0)
+	{
+		Request.Key = Keys;
+	}
+	Request.AuthContext = GetAuthContext();
+	if (!GetSettings::DoCall(RH_APIs::GetSettingsAPI(), Request, GetSettings::Delegate::CreateUObject(this, &URH_PlayerInfo::OnGetPlayerSettingsResponse, Delegate, SettingTypeId, Request.Key), GetDefault<URH_IntegrationSettings>()->SettingsGetPriority))
+	{
+		FRH_PlayerSettingsDataWrapper EmptyWrapper;
+		Delegate.ExecuteIfBound(false, EmptyWrapper);
+	}
+}
+
+void URH_PlayerInfo::OnGetPlayerSettingsResponse(const GetSettings::Response& Response, FRH_PlayerInfoGetPlayerSettingsBlock Delegate, const FString SettingTypeId, TOptional<TArray<FString>> OptionalKeys)
 {
 	FRH_PlayerSettingsDataWrapper ResponseWrapper;
-	ResponseWrapper.Content.Empty();
 
 	if (Response.IsSuccessful())
 	{
+		const bool bIsPartial = OptionalKeys.IsSet();
+
 		for (const auto& Pair : Response.Content)
 		{
 			ResponseWrapper.Content.Add(Pair);
 		}
+
+		if (bIsPartial)
+		{
+			// Update the local cache with the new settings (certain legacy setting types can affect multiple keys, so process all entries in the list)
+			auto SettingWrapper = PlayerSettingsByTypeId.FindOrAdd(SettingTypeId);
+
+			for (const auto& Key : OptionalKeys.GetValue())
+			{
+				const auto Value = ResponseWrapper.Content.Find(Key);
+				// if value exists, add it to the local cache, otherwise remove it
+				if (Value != nullptr)
+				{
+					SettingWrapper.Content.Add(Key, *Value);
+				}
+				else
+				{
+					SettingWrapper.Content.Remove(Key);
+				}
+			}
+		}
+		else
+		{
+			// Update the local cache with the new settings (can just use the response wrapper, as it contains a full and complete set)
+			PlayerSettingsByTypeId.Add(SettingTypeId, ResponseWrapper);
+
+			// Update the last request time only if not a partial request, since partial requests are not guaranteed to have all the keys
+			if (!bIsPartial)
+			{
+				LastRequestSettingsByTypeId.Add(SettingTypeId, FDateTime::UtcNow());
+			}
+		}
 	}
 
-	PlayerSettingsByTypeId.Add(SettingTypeId, ResponseWrapper);
-	LastRequestSettingsByTypeId.Add(SettingTypeId, FDateTime::UtcNow());
 	Delegate.ExecuteIfBound(Response.IsSuccessful(), ResponseWrapper);
 }
 
