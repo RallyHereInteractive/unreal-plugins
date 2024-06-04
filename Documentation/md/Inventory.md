@@ -271,7 +271,7 @@ Class to track watches on players orders.
 `public TArray< FRH_OrderDetailsBlock > `[`Delegates`](#classURH__PlayerOrderWatch_1a478e3d65d0b3ef1816a434fab2a2434e) | List of delegates listening for order.
 `public bool `[`RequestOrders`](#classURH__PlayerOrderWatch_1a8e3771a7606e875a82480d14c0eda10d)`(const FRH_GenericSuccessWithErrorBlock & Delegate)` | Gets the players orders.
 `public inline FORCEINLINE bool `[`RequestOrders`](#classURH__PlayerOrderWatch_1a0971ebca21c2bc89f3a6e26994912a3c)`(const FRH_GenericSuccessBlock & Delegate)` | 
-`protected FString `[`Cursor`](#classURH__PlayerOrderWatch_1ac296a67c627387c8eec532497fd458fc) | Cursor location of last player orders response.
+`protected `[`FRHAPI_InventoryPageMeta`](models/RHAPI_InventoryPageMeta.md#structFRHAPI__InventoryPageMeta)` `[`LastRequestMeta`](#classURH__PlayerOrderWatch_1a65f88e42d44280f328a4b994e67bdb7e) | Information about the last successful request, to used for future requests (contains cursor, etc).
 `protected virtual void `[`RequestOrdersResponse`](#classURH__PlayerOrderWatch_1a156cada0b20a90e20017c618b28b1723)`(const TGetOrders::Response & Resp)` | Handles the response to a Get Player Order call.
 `protected `[`URH_PlayerInventory`](Inventory.md#classURH__PlayerInventory)` * `[`GetPlayerInventory`](#classURH__PlayerOrderWatch_1a49c22be3b3f0b9e3ef8170766cb1b392)`() const` | Gets the Player Inventory.
 
@@ -293,9 +293,9 @@ True if the call was made.
 
 #### `public inline FORCEINLINE bool `[`RequestOrders`](#classURH__PlayerOrderWatch_1a0971ebca21c2bc89f3a6e26994912a3c)`(const FRH_GenericSuccessBlock & Delegate)` <a id="classURH__PlayerOrderWatch_1a0971ebca21c2bc89f3a6e26994912a3c"></a>
 
-#### `protected FString `[`Cursor`](#classURH__PlayerOrderWatch_1ac296a67c627387c8eec532497fd458fc) <a id="classURH__PlayerOrderWatch_1ac296a67c627387c8eec532497fd458fc"></a>
+#### `protected `[`FRHAPI_InventoryPageMeta`](models/RHAPI_InventoryPageMeta.md#structFRHAPI__InventoryPageMeta)` `[`LastRequestMeta`](#classURH__PlayerOrderWatch_1a65f88e42d44280f328a4b994e67bdb7e) <a id="classURH__PlayerOrderWatch_1a65f88e42d44280f328a4b994e67bdb7e"></a>
 
-Cursor location of last player orders response.
+Information about the last successful request, to used for future requests (contains cursor, etc).
 
 #### `protected virtual void `[`RequestOrdersResponse`](#classURH__PlayerOrderWatch_1a156cada0b20a90e20017c618b28b1723)`(const TGetOrders::Response & Resp)` <a id="classURH__PlayerOrderWatch_1a156cada0b20a90e20017c618b28b1723"></a>
 
