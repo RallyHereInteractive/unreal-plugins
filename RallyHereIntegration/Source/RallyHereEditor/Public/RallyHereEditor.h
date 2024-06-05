@@ -10,10 +10,6 @@
 
 DECLARE_LOG_CATEGORY_EXTERN(LogRallyHereEditor, All, All)
 
-static const FName devLoginTabName("Rally Here Dev Portal Login");
-static const FName devWebRequestTabName("Rally Here Web Requests");
-static const FName devLootTabName("Rally Here Loot");
-
 class FToolBarBuilder;
 class FMenuBuilder;
 
@@ -54,7 +50,7 @@ public:
 		return *Integration;
 	}
 
-	FDevAuthContextPtr GetAuthContext() { return AuthContext; }
+	FDevAuthContextPtr GetAuthContext() const { return AuthContext; }
 
 protected:
 	void RegisterMenus();

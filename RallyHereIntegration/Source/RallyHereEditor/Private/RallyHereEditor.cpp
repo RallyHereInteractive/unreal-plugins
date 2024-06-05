@@ -22,6 +22,10 @@ IMPLEMENT_MODULE(FRallyHereEditorModule, RallyHereEditor);
 
 #define LOCTEXT_NAMESPACE "RallyHereEditor"
 
+static const FName devLoginTabName("Rally Here Dev Portal Login");
+static const FName devWebRequestTabName("Rally Here Web Requests");
+static const FName devLootTabName("Rally Here Loot");
+
 void FRallyHereEditorModule::StartupModule()
 {
 	UE_LOG(LogRallyHereEditor, Log, TEXT("LogRallyHereEditor: Log Started"));
