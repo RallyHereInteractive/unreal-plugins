@@ -11,3 +11,6 @@ Documentation/xml/
 # Ignore Node artifacts
 node_modules/
 package-lock.json
+
+#ignore Rider files
+.idea/
