@@ -43,6 +43,35 @@ void FAuthContext::AuthFromWebURL(const FString& URL)
 	}
 }
 
+bool FAuthContext::AuthFromHttpResponse(const FHttpResponsePtr& HttpResponse)
+{
+    if(HttpResponse.IsValid())
+    {
+        const FString ContentStr = HttpResponse->GetContentAsString();
+        TSharedPtr<FJsonObject> ResponseJsonObj;
+        TSharedRef<TJsonReader<TCHAR>> JsonReader = TJsonReaderFactory<TCHAR>::Create(ContentStr);
+
+        if (FJsonSerializer::Deserialize(JsonReader, ResponseJsonObj) && ResponseJsonObj.IsValid())
+        {
+            if (ResponseJsonObj->HasField("access_token"))
+            {
+                const FString Token = ResponseJsonObj->GetStringField("access_token");
+                if (!Token.IsEmpty())
+                {
+                    AccessToken = Token;
+
+                    SCOPED_NAMED_EVENT(RallyHere_BroadcastLoginComplete, FColor::Purple);
+                    LoginComplete.Broadcast(true);
+
+                    return true;
+                }
+            }
+        }
+    }
+
+    return false;
+}
+
 	bool FAuthContext::Refresh()
 	{
 		LoginRequested.Broadcast();
@@ -74,6 +103,11 @@ void FAuthContext::SetClientSecret(const FString& InClientSecret)
 {
     ClientSecret = InClientSecret;
     UpdateBasicAuthValue();
+}
+
+FString FAuthContext::GetClientId() const
+{
+    return ClientId.IsSet() ? ClientId.GetValue() : "";
 }
 
 bool FAuthContext::AddClientCredentials(const FHttpRequestRef& HttpRequest) const

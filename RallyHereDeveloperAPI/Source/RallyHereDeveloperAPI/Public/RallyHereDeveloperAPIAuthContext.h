@@ -35,6 +35,7 @@ public:
     FString GetAccessToken() const;
 
     void AuthFromWebURL(const FString& URL);
+    bool AuthFromHttpResponse(const FHttpResponsePtr& HttpResponse);
     bool Refresh();
 
     void ClearAuthContext();
@@ -48,6 +49,7 @@ public:
     bool AddBearerToken(const FHttpRequestRef& HttpRequest) const;
     bool AddBearerToken(const FHttpRequestPtr& HttpRequest) const;
 
+    FString GetClientId() const;
 private:
     TOptional<FString> ClientId;
     TOptional<FString> ClientSecret;

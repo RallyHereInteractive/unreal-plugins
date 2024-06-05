@@ -2,10 +2,13 @@
 // SPDX-License-Identifier: Apache-2.0
 
 #include "RallyHereEditorLoginWidget.h"
+
+#include "HttpModule.h"
 #include "RallyHereDeveloperAPIAuthContext.h"
-#include "Engine/Engine.h"
 #include "RallyHereEditor.h"
 #include "SWebBrowser.h"
+
+#define LOCTEXT_NAMESPACE "RallyHereEditorLoginWidget"
 
 SRallyHereEditorLoginWidget::SRallyHereEditorLoginWidget()
 	: SCompoundWidget()
@@ -17,54 +20,93 @@ SRallyHereEditorLoginWidget::~SRallyHereEditorLoginWidget()
 }
 void SRallyHereEditorLoginWidget::Construct(const FArguments& InArgs, const TSharedRef<SDockTab>& ConstructUnderMajorTab, const TSharedPtr<SWindow>& ConstructUnderWindow)
 {
-	FDevAuthContextPtr AuthContext = FModuleManager::Get().LoadModuleChecked<FRallyHereEditorModule>(FRallyHereEditorModule::GetModuleName()).GetAuthContext();
+	const URH_DevIntegrationSettings* Settings = GetDefault<URH_DevIntegrationSettings>();
 
-	auto* Settings = GetDefault<URH_DevIntegrationSettings>();
-	const FRH_DevSandboxConfiguration* SandboxConfig = Settings->GetSandboxConfiguration(FRallyHereEditorModule::Get().GetSandboxId());
-
-	AuthContext->SetClientId(SandboxConfig->ClientId);
-	AuthContext->SetClientSecret(SandboxConfig->ClientSecret);
-
-	LoginStateGuid = FGuid::NewGuid();
-
-	FString InitialURL = SandboxConfig->AuthUrl + (SandboxConfig->AuthUrl.EndsWith(TEXT("/")) ? TEXT("") : TEXT("/")) + "authorize?response_type=token&client_id=" + SandboxConfig->ClientId + "&redirect_uri=" + Settings->LoginCallbackURL + "&state=" + LoginStateGuid.ToString() + "&scope=" + Settings->LoginScopeArg + "&audience=" + Settings->LoginAudienceArg;
-
-	UE_LOG(LogRallyHereEditor, Log, TEXT("LogRallyHereEditor: InitialURL: %s"), *InitialURL);
+	UE_LOG(LogRallyHereEditor, Log, TEXT("LogRallyHereEditor: InitialURL: %s"), *Settings->InitialLoginURL);
 
 	ChildSlot
 	[
 		SNew(SWebBrowser)
-		.InitialURL(InitialURL)
-		.OnBeforeNavigation(this, &SRallyHereEditorLoginWidget::HandleBrowserBeforeBrowse)
+		.InitialURL(Settings->InitialLoginURL)
 		.ShowControls(false)
+		.ShowAddressBar(false)
+		.OnLoadUrl(this, &SRallyHereEditorLoginWidget::HandleClientId)
+		.OnBeforeNavigation(this, &SRallyHereEditorLoginWidget::HandleToken)
 	];
 }
 
-bool SRallyHereEditorLoginWidget::HandleBrowserBeforeBrowse(const FString& URL, const FWebNavigationRequest& Request)
+bool SRallyHereEditorLoginWidget::HandleToken(const FString& Url, const FWebNavigationRequest& Request)
 {
-	auto* Settings = GetDefault<URH_DevIntegrationSettings>();
-	if (URL.Contains(Settings->LoginCallbackURL) && !URL.Contains("redirect_uri="))
+	// Grab access token
+	if (FString LoginCode = ParseValueFromUrl(Url, "code="); !LoginCode.IsEmpty())
 	{
-		UE_LOG(LogRallyHereEditor, Log, TEXT("LogRallyHereEditor: URL: %s"), *URL);
-
-		int32 LoginStateIndex = URL.Find("state=");
-
-		if (LoginStateIndex > 0)
-		{
-			FString LoginState = URL.RightChop(LoginStateIndex + 6);
-			int32 LoginStateEndIndex = LoginState.Find("&");
-			if (LoginStateEndIndex > 0)
-			{
-				LoginState = LoginState.Left(LoginStateEndIndex);
-			}
-
-			if (LoginState == LoginStateGuid.ToString())
-			{
-				FDevAuthContextPtr AuthContext = FModuleManager::Get().LoadModuleChecked<FRallyHereEditorModule>(FRallyHereEditorModule::GetModuleName()).GetAuthContext();
-				AuthContext->AuthFromWebURL(URL);
-			}
-		}
+		const URH_DevIntegrationSettings* Settings = GetDefault<URH_DevIntegrationSettings>();
+		const FRH_DevSandboxConfiguration* SandboxConfig = Settings->GetSandboxConfiguration(FRallyHereEditorModule::Get().GetSandboxId());
+		const FDevAuthContextPtr AuthContext = FModuleManager::Get().LoadModuleChecked<FRallyHereEditorModule>(FRallyHereEditorModule::GetModuleName()).GetAuthContext();
+		
+		const FString ClientId = AuthContext->GetClientId();
+		const FString InPayload = FString::Printf(TEXT("grant_type=authorization_code&client_id=%s&code=%s&redirect_uri=%s&audience=%s"), *ClientId, *LoginCode, *Settings->InitialLoginURL, *Settings->AuthTokenAudience);
+		
+		TSharedRef<IHttpRequest, ESPMode::ThreadSafe> HttpRequest = FHttpModule::Get().CreateRequest();
+		HttpRequest->SetVerb("POST");
+		HttpRequest->SetURL(SandboxConfig->AuthUrl);
+		HttpRequest->SetHeader(TEXT("content-type"), TEXT("application/x-www-form-urlencoded;charset=UTF-8"));
+		HttpRequest->SetContentAsString(InPayload);
+		HttpRequest->OnProcessRequestComplete().BindRaw(this, &SRallyHereEditorLoginWidget::GetAccessToken);
+		return HttpRequest->ProcessRequest();
 	}
-
 	return false;
 }
+
+bool SRallyHereEditorLoginWidget::HandleClientId(const FString& Method, const FString& Url, FString& Response)
+{
+	// Save client Id
+	if (Url.Contains("https://login.rallyhere.gg/authorize"))
+	{
+		if (FString ClientId = ParseValueFromUrl(Url, "client_id="); !ClientId.IsEmpty())
+		{
+			FDevAuthContextPtr AuthContext = FModuleManager::Get().LoadModuleChecked<FRallyHereEditorModule>(FRallyHereEditorModule::GetModuleName()).GetAuthContext();
+			AuthContext->SetClientId(ClientId);
+		}
+	}
+	return false;
+}
+
+void SRallyHereEditorLoginWidget::GetAccessToken(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded)
+{
+	if(bSucceeded && HttpResponse.IsValid())
+	{
+		FDevAuthContextPtr AuthContext = FModuleManager::Get().LoadModuleChecked<FRallyHereEditorModule>(FRallyHereEditorModule::GetModuleName()).GetAuthContext();
+		if(AuthContext->AuthFromHttpResponse(HttpResponse))
+		{
+			FMessageDialog::Open(EAppMsgType::Ok, LOCTEXT("Login Succeeded", "Login Succeeded."));
+		}
+		else
+		{
+			FMessageDialog::Open(EAppMsgType::Ok, LOCTEXT("Login Failed", "Authentification has succeeded but we were unable to grab the access token from it."));
+		}
+	}
+	else
+	{
+		FMessageDialog::Open(EAppMsgType::Ok, LOCTEXT("Login Failed", "The credntials were accepted but authentification has failed."));
+	}
+}
+
+FString SRallyHereEditorLoginWidget::ParseValueFromUrl(const FString& Url, const FString& ValueName)
+{
+	const int32 ValueStartIndex = Url.Find(ValueName);
+	if (ValueStartIndex > 0)
+	{
+		FString Value = Url.RightChop(ValueStartIndex + ValueName.Len());
+		const int32 ValueEndIndex = Value.Find("&");
+		if (ValueEndIndex > 0)
+		{
+			Value = Value.Left(ValueEndIndex);
+		}
+		return Value;
+	}
+
+	return "";
+}
+
+#undef LOCTEXT_NAMESPACE
