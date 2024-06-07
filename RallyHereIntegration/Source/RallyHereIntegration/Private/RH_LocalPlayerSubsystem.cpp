@@ -350,7 +350,11 @@ void URH_LocalPlayerSubsystem::OnUserChanged()
 					}
 				});
 
-			PlayerInfoCache->GetPlayerInventory()->CreateInventorySession({}, InventoryDelegate);
+			const auto PlatformId = GetPlayerPlatformId();
+			if (PlatformId.IsValid())
+			{
+				PlayerInfoCache->GetPlayerInventory()->CreateInventorySession(PlatformId.PlatformType, InventoryDelegate);
+			}
 		}
 		else
 		{
