@@ -441,9 +441,16 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 						}
 						else
 						{
-							ImGui::BeginDisabled(!pGISessionSubsystem->IsReadyToJoinInstance(RHJoinedSession, false));
+							FString ErrorLog;
+							bool bCanActivate = pGISessionSubsystem->IsReadyToJoinInstanceWithReason(RHJoinedSession, ErrorLog);
+							ImGui::BeginDisabled(!bCanActivate);
 							if (ImGui::Button("Activate"))
 							{
+								if (!bCanActivate && ErrorLog.Len() > 0)
+								{
+									ImGui::SameLine();
+									ImGui::Text("(%s)", TCHAR_TO_UTF8(*ErrorLog));
+								}
 								pGISessionSubsystem->SyncToSession(RHJoinedSession);
 							}
 							ImGui::EndDisabled();

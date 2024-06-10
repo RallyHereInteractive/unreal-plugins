@@ -192,12 +192,21 @@ public:
 	UFUNCTION(BlueprintGetter, Category = "Session|Instance")
 	FORCEINLINE bool IsBackfillTerminated() const { return ActiveSessionState.bIsBackfillTerminated; }
 	/**
-	* @brief Checks if the session has all the players and is good to change maps.
+	* @brief Checks if the session has all the players and is good to change maps, and conditionally logs errors
 	* @param [in] Session The session being checked.
+	* @param [in] bLog If true, log errors.
 	* @return If true, the session is ready for a map transition.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Session|Instance")
 	virtual bool IsReadyToJoinInstance(const URH_JoinedSession* Session, bool bLog = false) const;
+	/**
+	* @brief Checks if the session has all the players and is good to change maps, and passes back first error in a string
+	* @param [in] Session The session being checked.
+	* @param [out] Error The first error encountered.
+	* @return If true, the session is ready for a map transition.
+	*/
+	UFUNCTION(BlueprintCallable, Category = "Session|Instance")
+	virtual bool IsReadyToJoinInstanceWithReason(const URH_JoinedSession* Session, FString& Error) const;
 	/**
 	* @brief Starts the process of transitioning the instance to a new session.
 	* @param [in] Delegate Callback delegate for when the session is now active, or failed to transition.
