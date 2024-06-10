@@ -292,6 +292,13 @@ void FRH_WebRequests::OnWebRequestStarted(const RallyHereAPI::FRequestMetadata& 
 
 void FRH_WebRequests::OnWebRequestStarted_Track(const RallyHereAPI::FRequestMetadata& RequestMetadata, FHttpRequestRef HttpRequest, TSharedRef<RallyHereAPI::FAPI> API)
 {
+	const auto WebRequestTrackLimit = GetDefault<URH_IntegrationSettings>()->WebRequestsTrackedRequestsCountLimit
+	bool bShouldTrack = bRetainWebRequests || WebRequestTrackLimit > 0;
+	if (!bShouldTrack)
+	{
+		return;
+	}
+	
 	auto Request = MakeShared<FRH_WebRequest>();
 	Request->APIName = API->GetName();
 	Request->Timestamp = FDateTime::Now();
@@ -325,7 +332,7 @@ void FRH_WebRequests::OnWebRequestStarted_Track(const RallyHereAPI::FRequestMeta
 
 	if (!bRetainWebRequests)
 	{
-		int numElementsToBeRemoved = TrackedRequests.Num() - GetDefault<URH_IntegrationSettings>()->WebRequestsTrackedRequestsCountLimit;
+		int numElementsToBeRemoved = TrackedRequests.Num() - WebRequestTrackLimit;
 		if (numElementsToBeRemoved > 0)
 		{
 			// clean up the tracked request by id map
@@ -369,6 +376,13 @@ void FRH_WebRequests::OnWebRequestCompleted(const RallyHereAPI::FResponse& Respo
 
 void FRH_WebRequests::OnWebRequestCompleted_Track(const RallyHereAPI::FResponse& Response, FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSuccess, bool bWillRetryWithAuth, TSharedRef<RallyHereAPI::FAPI> API)
 {
+	const auto WebRequestTrackLimit = GetDefault<URH_IntegrationSettings>()->WebRequestsTrackedRequestsCountLimit
+	bool bShouldTrack = bRetainWebRequests || WebRequestTrackLimit > 0;
+	if (!bShouldTrack)
+	{
+		return;
+	}
+	
 	auto TrackedRequest = TrackedRequestsById.Find(Response.GetRequestMetadata().Identifier);
 	if (!TrackedRequest)
 	{
