@@ -92,6 +92,11 @@ namespace
 		return StandardFields;
 	}
 
+	int32 GetMaximumSanitizedContentLength()
+	{;
+		return GetDefault<URH_IntegrationSettings>()->WebRequestMaxSanitizedContentLength;
+	}
+
 	TArray<FString> SanitizeHeaders(const TArray<FString>& Headers, const TArray<FString>& SensitiveHeaders)
 	{
 		TArray<FString> OutHeaders;
@@ -164,6 +169,12 @@ namespace
 		if (SensitiveFields.Num() <= 0 || Content.Len() <= 0)
 		{
 			return Content;
+		}
+
+		if (Content.Len() > GetMaximumSanitizedContentLength())
+		{
+			static FString SensitiveFieldsBlanked(TEXT("****** Content too long to sanitize, hiding all content ******"));
+			return SensitiveFieldsBlanked;
 		}
 
 		auto Reader = TJsonReaderFactory<>::Create(Content);
