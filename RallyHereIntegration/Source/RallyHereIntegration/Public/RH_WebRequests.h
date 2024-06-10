@@ -191,8 +191,6 @@ private:
 	void OnWebRequestStarted_Log(const RallyHereAPI::FRequestMetadata& RequestMetadata, FHttpRequestRef HttpRequest, TSharedRef<RallyHereAPI::FAPI> API);
 	void OnWebRequestCompleted_Log(const RallyHereAPI::FResponse& Response, FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSuccess, bool bWillRetryWithAuth, TSharedRef<RallyHereAPI::FAPI> API);
 
-	void OnWebRequestStarted_RecordTimestamp(const RallyHereAPI::FRequestMetadata& RequestMetadata, FHttpRequestRef HttpRequest, TSharedRef<RallyHereAPI::FAPI> API);
-
 	TSharedPtr<FJsonObject> CreateJsonObjectFromWebRequest(const FRH_WebRequest& request) const;
 };
 

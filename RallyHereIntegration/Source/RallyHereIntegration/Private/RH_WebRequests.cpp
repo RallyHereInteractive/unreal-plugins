@@ -287,7 +287,6 @@ void FRH_WebRequests::OnWebRequestStarted(const RallyHereAPI::FRequestMetadata& 
 {
 	OnWebRequestStarted_Log(RequestMetadata, HttpRequest, API);
 	OnWebRequestStarted_Track(RequestMetadata, HttpRequest, API);
-	OnWebRequestStarted_RecordTimestamp(RequestMetadata, HttpRequest, API);
 }
 
 void FRH_WebRequests::OnWebRequestStarted_Track(const RallyHereAPI::FRequestMetadata& RequestMetadata, FHttpRequestRef HttpRequest, TSharedRef<RallyHereAPI::FAPI> API)
@@ -347,6 +346,10 @@ void FRH_WebRequests::OnWebRequestStarted_Track(const RallyHereAPI::FRequestMeta
 			--numElementsToBeRemoved;
 		}
 	}
+
+	// record call counts
+	APINameToCallCountMap.FindOrAdd(API->GetName())++;
+	SimplifiedPathToCallCountMap.FindOrAdd(RequestMetadata.SimplifiedPathWithVerb)++;
 }
 
 void FRH_WebRequests::OnWebRequestStarted_Log(const RallyHereAPI::FRequestMetadata& RequestMetadata, FHttpRequestRef HttpRequest, TSharedRef<RallyHereAPI::FAPI> API)
@@ -360,12 +363,6 @@ void FRH_WebRequests::OnWebRequestStarted_Log(const RallyHereAPI::FRequestMetada
 	const FString Prefix = FString::Printf(TEXT("Req [%s]:"), *RequestMetadata.Identifier.ToString().Left(6));
 	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("%s Verb=%s URL=%s"), *Prefix, *HttpRequest->GetVerb(), *HttpRequest->GetURL());
 	LogHttpBase(*HttpRequest, Prefix, GetSensitiveHeadersForRequest(RequestMetadata), GetSensitiveFieldsForRequest(RequestMetadata));
-}
-
-void FRH_WebRequests::OnWebRequestStarted_RecordTimestamp(const RallyHereAPI::FRequestMetadata& RequestMetadata, FHttpRequestRef HttpRequest, TSharedRef<RallyHereAPI::FAPI> API)
-{
-	APINameToCallCountMap.FindOrAdd(API->GetName())++;
-	SimplifiedPathToCallCountMap.FindOrAdd(RequestMetadata.SimplifiedPathWithVerb)++;
 }
 
 void FRH_WebRequests::OnWebRequestCompleted(const RallyHereAPI::FResponse& Response, FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSuccess, bool bWillRetryWithAuth, TSharedRef<RallyHereAPI::FAPI> API)
