@@ -495,7 +495,10 @@ Stores and fetchs all the information about a given player.
 `public virtual bool `[`GetLastKnownDisplayName`](#classURH__PlayerInfo_1ac983a0c5b8e6e3df2f216b94b7fd249c)`(FString & OutDisplayName,ERHAPI_Platform PreferredPlatformType) const` | Gets the last known display name for the player.
 `public virtual void `[`GetLinkedPlatformInfo`](#classURH__PlayerInfo_1a3cdeb290b652d16aa44e5c6e1e4ae44c)`(const FTimespan & StaleThreshold,bool bForceRefresh,const FRH_PlayerInfoGetPlatformsBlock & Delegate)` | Gets the players linked platforms via API call.
 `public virtual void `[`GetPlayerSettings`](#classURH__PlayerInfo_1a6f0c823fb1c55bcf4ab2482092cfad2a)`(const FString & SettingTypeId,const FTimespan & StaleThreshold,bool bForceRefresh,const FRH_PlayerInfoGetPlayerSettingsBlock & Delegate)` | Gets the players settings information for a given type.
+`public virtual void `[`GetPlayerSettingsForKeys`](#classURH__PlayerInfo_1ae6eeb698d34e599d1ec6f32b04c182eb)`(const FString & SettingTypeId,const TArray< FString > & Keys,const FTimespan & StaleThreshold,bool bForceRefresh,const FRH_PlayerInfoGetPlayerSettingsBlock & Delegate)` | Gets the players settings information for a given type, restricted to a list of keys.
 `public virtual void `[`SetPlayerSettings`](#classURH__PlayerInfo_1ab8f4ba97458cb8df50445db8547bbc4c)`(const FString & SettingTypeId,`[`FRH_PlayerSettingsDataWrapper`](undefined.md#structFRH__PlayerSettingsDataWrapper)` & SettingsData,const FRH_PlayerInfoSetPlayerSettingsBlock & Delegate)` | Sets the players settings information for a given type.
+`public virtual PRAGMA_ENABLE_DEPRECATION_WARNINGS void `[`SetPlayerSetting`](#classURH__PlayerInfo_1a8106539300d99b5056aacdd6474c4ef9)`(const FString & SettingTypeId,const FString & Key,const `[`FRHAPI_SetSinglePlayerSettingRequest`](models/RHAPI_SetSinglePlayerSettingRequest.md#structFRHAPI__SetSinglePlayerSettingRequest)` & Document,const FRH_PlayerInfoSetPlayerSettingBlock & Delegate)` | Sets the players settings information for a given type.
+`public virtual void `[`DeletePlayerSetting`](#classURH__PlayerInfo_1a75f8a74087a97a33e9bc3dc296abbf0c)`(const FString & SettingTypeId,const FString & Key,const FRH_GenericSuccessWithErrorBlock & Delegate)` | Deletes a players setting for a given type.
 `public virtual void `[`GetPlayerRankings`](#classURH__PlayerInfo_1a03b9bc9136601f64145bec69a5e9e9e8)`(const FTimespan & StaleThreshold,bool bForceRefresh,const FRH_PlayerInfoGetPlayerRankingsBlock & Delegate)` | Gets the players ranking information for a given type.
 `public virtual void `[`UpdatePlayerRanking`](#classURH__PlayerInfo_1afd6c1206e990ca64b9fa56a54e085094)`(const FString & RankId,const `[`FRHAPI_PlayerRankUpdateRequest`](models/RHAPI_PlayerRankUpdateRequest.md#structFRHAPI__PlayerRankUpdateRequest)` & RankData,const FRH_PlayerInfoGetPlayerRankingsBlock & Delegate)` | Sets the players settings information for a given type.
 `public FAuthContextPtr `[`GetAuthContext`](#classURH__PlayerInfo_1a38aa7a072a97be36bc623a9cda702cdf)`() const` | Gets the local Auth Context for making API calls.
@@ -518,13 +521,15 @@ Stores and fetchs all the information about a given player.
 `protected virtual void `[`OnGetPlayerLinkedPlatformsForLastKnownDisplayNameResponse`](#classURH__PlayerInfo_1a49e19ae4082f15e22b2062c1cb78deb0)`(bool bSuccess,const TArray< `[`URH_PlayerPlatformInfo`](PlayerInfo.md#classURH__PlayerPlatformInfo)` * > & Platforms,ERHAPI_Platform PreferredPlatformType,const FRH_PlayerInfoGetDisplayNameBlock Delegate,const class `[`URH_LocalPlayerSubsystem`](LocalPlayer.md#classURH__LocalPlayerSubsystem)` * LocalPlayerSubsystem)` | Handles the response to a Get Linked Platforms For Last Known Display Name call.
 `protected virtual void `[`OnDisplayNameSanitized`](#classURH__PlayerInfo_1afe5a34e86382c3f78767f2d72e3819fd)`(bool bSuccess,const FString & SanitizedMessage,ERHAPI_Platform PreferredPlatformType,const FRH_PlayerInfoGetDisplayNameBlock Delegate)` | Handles the response to sanitizing the players display name.
 `protected virtual void `[`OnGetPlayerLinkedPlatformsResponse`](#classURH__PlayerInfo_1ada74501b2e422f1fcf8f76825d74cc58)`(const GetPlatforms::Response & Response,const FRH_PlayerInfoGetPlatformsBlock Delegate)` | Handles the response to a Get Linked Platforms call.
-`protected virtual void `[`OnGetPlayerSettingsResponse`](#classURH__PlayerInfo_1a115f584e7b7b210193fd9e302abbd3ed)`(const GetSettings::Response & Response,const FRH_PlayerInfoGetPlayerSettingsBlock Delegate,const FString SettingTypeId)` | Handles the response to a Get Player Settings call.
+`protected virtual void `[`OnGetPlayerSettingsResponse`](#classURH__PlayerInfo_1aaa4c9a884f7291607e315db74776867a)`(const GetSettings::Response & Response,const FRH_PlayerInfoGetPlayerSettingsBlock Delegate,const FString SettingTypeId,TOptional< TArray< FString >> PartialKeys)` | Handles the response to a Get Player Settings call.
 `protected virtual void `[`OnSetPlayerSettingsResponse`](#classURH__PlayerInfo_1a6f59dae05d5371b867091b180280f091)`(const SetSettings::Response & Response,const FRH_PlayerInfoSetPlayerSettingsBlock Delegate,const FString SettingTypeId,const FString SettingKey,`[`FRH_PlayerSettingsDataWrapper`](undefined.md#structFRH__PlayerSettingsDataWrapper)` SettingsData)` | Handles the response to a Set Player Settings call.
 `protected virtual void `[`OnGetPlayerRankingsResponse`](#classURH__PlayerInfo_1a53c355b2f85273d37008d685c3cc113c)`(const GetRankings::Response & Response,const FRH_PlayerInfoGetPlayerRankingsBlock Delegate)` | Handles the response to a Get Player Rankings call.
 `protected virtual void `[`OnUpdatePlayerRankingResponse`](#classURH__PlayerInfo_1a214672d0d5001ec24098b5414b0fc35d)`(const UpdateRanking::Response & Response,const FRH_PlayerInfoGetPlayerRankingsBlock Delegate)` | Handles the response to a Update Player Ranking call.
 `typedef `[`GetPlatforms`](#classURH__PlayerInfo_1a88c3597ebf7f47399d936f5a96d344f6) | 
 `typedef `[`GetSettings`](#classURH__PlayerInfo_1ae425cac3ffa853a48c03df8caa2c8ca9) | 
 `typedef `[`SetSettings`](#classURH__PlayerInfo_1af84cca7ca91da85ceec6caf73af9db11) | 
+`typedef `[`SetSetting`](#classURH__PlayerInfo_1a0bef921ed67ed064ea96aebadcb7b412) | 
+`typedef `[`DeleteSetting`](#classURH__PlayerInfo_1af46fb4796e432727cf5a5041ec673a61) | 
 `typedef `[`GetRankings`](#classURH__PlayerInfo_1ae1180995c5f25cb946b6f47e44886c46) | 
 `typedef `[`UpdateRanking`](#classURH__PlayerInfo_1a0dde72a36a43d91264f8dc89aafcd5de) | 
 
@@ -700,6 +705,19 @@ Gets the players settings information for a given type.
 
 * `Delegate` Callback with the players settings for the given type.
 
+#### `public virtual void `[`GetPlayerSettingsForKeys`](#classURH__PlayerInfo_1ae6eeb698d34e599d1ec6f32b04c182eb)`(const FString & SettingTypeId,const TArray< FString > & Keys,const FTimespan & StaleThreshold,bool bForceRefresh,const FRH_PlayerInfoGetPlayerSettingsBlock & Delegate)` <a id="classURH__PlayerInfo_1ae6eeb698d34e599d1ec6f32b04c182eb"></a>
+
+Gets the players settings information for a given type, restricted to a list of keys.
+
+#### Parameters
+* `SettingTypeId` The setting type requested. 
+
+* `StaleThreshold` If set, will force a re-request of the players information if the last updated time was more than the threshold. 
+
+* `bForceRefresh` If true, will force a re-request of the players information. 
+
+* `Delegate` Callback with the players settings for the given type.
+
 #### `public virtual void `[`SetPlayerSettings`](#classURH__PlayerInfo_1ab8f4ba97458cb8df50445db8547bbc4c)`(const FString & SettingTypeId,`[`FRH_PlayerSettingsDataWrapper`](undefined.md#structFRH__PlayerSettingsDataWrapper)` & SettingsData,const FRH_PlayerInfoSetPlayerSettingsBlock & Delegate)` <a id="classURH__PlayerInfo_1ab8f4ba97458cb8df50445db8547bbc4c"></a>
 
 Sets the players settings information for a given type.
@@ -708,6 +726,30 @@ Sets the players settings information for a given type.
 * `SettingTypeId` The setting type to update. 
 
 * `SettingsData` Data to be stored into the players settings. 
+
+* `Delegate` Callback when the operation is complete with success information.
+
+#### `public virtual PRAGMA_ENABLE_DEPRECATION_WARNINGS void `[`SetPlayerSetting`](#classURH__PlayerInfo_1a8106539300d99b5056aacdd6474c4ef9)`(const FString & SettingTypeId,const FString & Key,const `[`FRHAPI_SetSinglePlayerSettingRequest`](models/RHAPI_SetSinglePlayerSettingRequest.md#structFRHAPI__SetSinglePlayerSettingRequest)` & Document,const FRH_PlayerInfoSetPlayerSettingBlock & Delegate)` <a id="classURH__PlayerInfo_1a8106539300d99b5056aacdd6474c4ef9"></a>
+
+Sets the players settings information for a given type.
+
+#### Parameters
+* `SettingTypeId` The setting type to update. 
+
+* `Key` The setting key being updated within the type. 
+
+* `Document` Json Document to be stored. 
+
+* `Delegate` Callback when the operation is complete with success information.
+
+#### `public virtual void `[`DeletePlayerSetting`](#classURH__PlayerInfo_1a75f8a74087a97a33e9bc3dc296abbf0c)`(const FString & SettingTypeId,const FString & Key,const FRH_GenericSuccessWithErrorBlock & Delegate)` <a id="classURH__PlayerInfo_1a75f8a74087a97a33e9bc3dc296abbf0c"></a>
+
+Deletes a players setting for a given type.
+
+#### Parameters
+* `SettingTypeId` The setting type to update. 
+
+* `Key` The setting key being updated within the type. 
 
 * `Delegate` Callback when the operation is complete with success information.
 
@@ -844,7 +886,7 @@ Handles the response to a Get Linked Platforms call.
 
 * `Delegate` Delegate passed in for original call to respond to when call completes.
 
-#### `protected virtual void `[`OnGetPlayerSettingsResponse`](#classURH__PlayerInfo_1a115f584e7b7b210193fd9e302abbd3ed)`(const GetSettings::Response & Response,const FRH_PlayerInfoGetPlayerSettingsBlock Delegate,const FString SettingTypeId)` <a id="classURH__PlayerInfo_1a115f584e7b7b210193fd9e302abbd3ed"></a>
+#### `protected virtual void `[`OnGetPlayerSettingsResponse`](#classURH__PlayerInfo_1aaa4c9a884f7291607e315db74776867a)`(const GetSettings::Response & Response,const FRH_PlayerInfoGetPlayerSettingsBlock Delegate,const FString SettingTypeId,TOptional< TArray< FString >> PartialKeys)` <a id="classURH__PlayerInfo_1aaa4c9a884f7291607e315db74776867a"></a>
 
 Handles the response to a Get Player Settings call.
 
@@ -853,7 +895,9 @@ Handles the response to a Get Player Settings call.
 
 * `Delegate` Delegate passed in for original call to respond to when call completes. 
 
-* `SettinyTypeId` The type of settings that were requested.
+* `SettingTypeId` The type of settings that were requested. 
+
+* `PartialKeys` If Specified, only the keys in this list were requested.
 
 #### `protected virtual void `[`OnSetPlayerSettingsResponse`](#classURH__PlayerInfo_1a6f59dae05d5371b867091b180280f091)`(const SetSettings::Response & Response,const FRH_PlayerInfoSetPlayerSettingsBlock Delegate,const FString SettingTypeId,const FString SettingKey,`[`FRH_PlayerSettingsDataWrapper`](undefined.md#structFRH__PlayerSettingsDataWrapper)` SettingsData)` <a id="classURH__PlayerInfo_1a6f59dae05d5371b867091b180280f091"></a>
 
@@ -893,6 +937,10 @@ Handles the response to a Update Player Ranking call.
 #### `typedef `[`GetSettings`](#classURH__PlayerInfo_1ae425cac3ffa853a48c03df8caa2c8ca9) <a id="classURH__PlayerInfo_1ae425cac3ffa853a48c03df8caa2c8ca9"></a>
 
 #### `typedef `[`SetSettings`](#classURH__PlayerInfo_1af84cca7ca91da85ceec6caf73af9db11) <a id="classURH__PlayerInfo_1af84cca7ca91da85ceec6caf73af9db11"></a>
+
+#### `typedef `[`SetSetting`](#classURH__PlayerInfo_1a0bef921ed67ed064ea96aebadcb7b412) <a id="classURH__PlayerInfo_1a0bef921ed67ed064ea96aebadcb7b412"></a>
+
+#### `typedef `[`DeleteSetting`](#classURH__PlayerInfo_1af46fb4796e432727cf5a5041ec673a61) <a id="classURH__PlayerInfo_1af46fb4796e432727cf5a5041ec673a61"></a>
 
 #### `typedef `[`GetRankings`](#classURH__PlayerInfo_1ae1180995c5f25cb946b6f47e44886c46) <a id="classURH__PlayerInfo_1ae1180995c5f25cb946b6f47e44886c46"></a>
 
