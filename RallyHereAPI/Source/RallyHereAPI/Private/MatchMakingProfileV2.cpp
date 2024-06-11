@@ -56,6 +56,11 @@ void FRHAPI_MatchMakingProfileV2::WriteJson(TSharedRef<TJsonWriter<>>& Writer) c
 		Writer->WriteIdentifierPrefix(TEXT("legacy_config"));
 		RallyHereAPI::WriteJsonValue(Writer, LegacyConfig_Optional);
 	}
+	if (DeserterId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("deserter_id"));
+		RallyHereAPI::WriteJsonValue(Writer, DeserterId_Optional);
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -106,6 +111,12 @@ bool FRHAPI_MatchMakingProfileV2::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 	{
 		LegacyConfig_IsSet = TryGetJsonValue(JsonLegacyConfigField, LegacyConfig_Optional);
 		ParseSuccess &= LegacyConfig_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonDeserterIdField = (*Object)->TryGetField(TEXT("deserter_id"));
+	if (JsonDeserterIdField.IsValid() && !JsonDeserterIdField->IsNull())
+	{
+		DeserterId_IsSet = TryGetJsonValue(JsonDeserterIdField, DeserterId_Optional);
+		ParseSuccess &= DeserterId_IsSet;
 	}
 
 	return ParseSuccess;

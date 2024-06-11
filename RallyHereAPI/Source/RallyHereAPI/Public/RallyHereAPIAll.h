@@ -17,6 +17,7 @@
 #include "ConfigAPI.h"
 #include "ConfigurationV1API.h"
 #include "CustomAPI.h"
+#include "DeserterAPI.h"
 #include "EntitlementsAPI.h"
 #include "EnvironmentAPI.h"
 #include "EventsAPI.h"
@@ -80,6 +81,9 @@ public:
 
 	TSharedRef<FCustomAPI> GetCustom();
 	const TSharedRef<FCustomAPI> GetCustom() const;
+
+	TSharedRef<FDeserterAPI> GetDeserter();
+	const TSharedRef<FDeserterAPI> GetDeserter() const;
 
 	TSharedRef<FEntitlementsAPI> GetEntitlements();
 	const TSharedRef<FEntitlementsAPI> GetEntitlements() const;
@@ -169,6 +173,7 @@ private:
 	TSharedRef<FConfigAPI> Config;
 	TSharedRef<FConfigurationV1API> ConfigurationV1;
 	TSharedRef<FCustomAPI> Custom;
+	TSharedRef<FDeserterAPI> Deserter;
 	TSharedRef<FEntitlementsAPI> Entitlements;
 	TSharedRef<FEnvironmentAPI> Environment;
 	TSharedRef<FEventsAPI> Events;

@@ -9,17 +9,17 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
-#include "RankConfigV3.generated.h"
+#include "CalculateRankConfig.generated.h"
 
-/** @defgroup RHAPI_RankConfigV3 RallyHere API Model RankConfigV3
+/** @defgroup RHAPI_CalculateRankConfig RallyHere API Model CalculateRankConfig
  *  @{
  */
 
 /**
- * @brief Configuration about a specific rank type
+ * @brief Config about how to recalculate ranks
  */
 USTRUCT(BlueprintType)
-struct RALLYHEREAPI_API FRHAPI_RankConfigV3 : public FRHAPI_Model
+struct RALLYHEREAPI_API FRHAPI_CalculateRankConfig : public FRHAPI_Model
 {
 	GENERATED_BODY()
 
@@ -38,81 +38,6 @@ struct RALLYHEREAPI_API FRHAPI_RankConfigV3 : public FRHAPI_Model
 	* @param [in] Writer JSON Writer stream to push .
 	*/
 	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
-
-	/** @brief Human readable name for this rank */
-	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FString Name_Optional{  };
-	/** @brief true if Name_Optional has been set to a value */
-	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool Name_IsSet{ false };
-	/** @brief Gets the value of Name_Optional, regardless of it having been set */
-	FString& GetName() { return Name_Optional; }
-	/** @brief Gets the value of Name_Optional, regardless of it having been set */
-	const FString& GetName() const { return Name_Optional; }
-	/** @brief Gets the value of Name_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetName(const FString& DefaultValue) const { if (Name_IsSet) return Name_Optional; return DefaultValue; }
-	/** @brief Fills OutValue with the value of Name_Optional and returns true if it has been set, otherwise returns false */
-	bool GetName(FString& OutValue) const { if (Name_IsSet) OutValue = Name_Optional; return Name_IsSet; }
-	/** @brief Returns a pointer to Name_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetNameOrNull() { if (Name_IsSet) return &Name_Optional; return nullptr; }
-	/** @brief Returns a pointer to Name_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetNameOrNull() const { if (Name_IsSet) return &Name_Optional; return nullptr; }
-	/** @brief Sets the value of Name_Optional and also sets Name_IsSet to true */
-	void SetName(const FString& NewValue) { Name_Optional = NewValue; Name_IsSet = true; }
-	/** @brief Sets the value of Name_Optional and also sets Name_IsSet to true using move semantics */
-	void SetName(FString&& NewValue) { Name_Optional = NewValue; Name_IsSet = true; }
-	 /** @brief Clears the value of Name_Optional and sets Name_IsSet to false */
-	void ClearName() { Name_IsSet = false; }
-
-	/** @brief Description of this rank */
-	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FString Description_Optional{  };
-	/** @brief true if Description_Optional has been set to a value */
-	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool Description_IsSet{ false };
-	/** @brief Gets the value of Description_Optional, regardless of it having been set */
-	FString& GetDescription() { return Description_Optional; }
-	/** @brief Gets the value of Description_Optional, regardless of it having been set */
-	const FString& GetDescription() const { return Description_Optional; }
-	/** @brief Gets the value of Description_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetDescription(const FString& DefaultValue) const { if (Description_IsSet) return Description_Optional; return DefaultValue; }
-	/** @brief Fills OutValue with the value of Description_Optional and returns true if it has been set, otherwise returns false */
-	bool GetDescription(FString& OutValue) const { if (Description_IsSet) OutValue = Description_Optional; return Description_IsSet; }
-	/** @brief Returns a pointer to Description_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetDescriptionOrNull() { if (Description_IsSet) return &Description_Optional; return nullptr; }
-	/** @brief Returns a pointer to Description_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetDescriptionOrNull() const { if (Description_IsSet) return &Description_Optional; return nullptr; }
-	/** @brief Sets the value of Description_Optional and also sets Description_IsSet to true */
-	void SetDescription(const FString& NewValue) { Description_Optional = NewValue; Description_IsSet = true; }
-	/** @brief Sets the value of Description_Optional and also sets Description_IsSet to true using move semantics */
-	void SetDescription(FString&& NewValue) { Description_Optional = NewValue; Description_IsSet = true; }
-	 /** @brief Clears the value of Description_Optional and sets Description_IsSet to false */
-	void ClearDescription() { Description_IsSet = false; }
-
-	/** @brief Custom data about this rank */
-	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	TMap<FString, FString> CustomData_Optional{  };
-	/** @brief true if CustomData_Optional has been set to a value */
-	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool CustomData_IsSet{ false };
-	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-	TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
-	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-	const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
-	/** @brief Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
-	/** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
-	bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
-	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
-	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
-	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
-	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
-	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
-	void ClearCustomData() { CustomData_IsSet = false; }
 
 	/** @brief The maximum mu value achievable. Any attempts to update a rank value to be higher than this get clamped to the maximum */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -248,18 +173,6 @@ struct RALLYHEREAPI_API FRHAPI_RankConfigV3 : public FRHAPI_Model
 	void SetTau(float&& NewValue) { Tau_Optional = NewValue; Tau_IsSet = true; }
 	 /** @brief Clears the value of Tau_Optional and sets Tau_IsSet to false */
 	void ClearTau() { Tau_IsSet = false; }
-
-	/** @brief ID for this rank type */
-	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FString RankId{  };
-	/** @brief Gets the value of RankId */
-	FString& GetRankId() { return RankId; }
-	/** @brief Gets the value of RankId */
-	const FString& GetRankId() const { return RankId; }
-	/** @brief Sets the value of RankId */
-	void SetRankId(const FString& NewValue) { RankId = NewValue;  }
-	/** @brief Sets the value of RankId using move semantics */
-	void SetRankId(FString&& NewValue) { RankId = NewValue;  }
 };
 
 /** @} */

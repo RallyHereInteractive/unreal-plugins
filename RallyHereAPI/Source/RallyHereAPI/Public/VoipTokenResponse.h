@@ -74,6 +74,31 @@ struct RALLYHEREAPI_API FRHAPI_VoipTokenResponse : public FRHAPI_Model
 	void SetServer(const FString& NewValue) { Server = NewValue;  }
 	/** @brief Sets the value of Server using move semantics */
 	void SetServer(FString&& NewValue) { Server = NewValue;  }
+
+	/** @brief Channel name for the generated token if relevant */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString ChannelName_Optional{  };
+	/** @brief true if ChannelName_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool ChannelName_IsSet{ false };
+	/** @brief Gets the value of ChannelName_Optional, regardless of it having been set */
+	FString& GetChannelName() { return ChannelName_Optional; }
+	/** @brief Gets the value of ChannelName_Optional, regardless of it having been set */
+	const FString& GetChannelName() const { return ChannelName_Optional; }
+	/** @brief Gets the value of ChannelName_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetChannelName(const FString& DefaultValue) const { if (ChannelName_IsSet) return ChannelName_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of ChannelName_Optional and returns true if it has been set, otherwise returns false */
+	bool GetChannelName(FString& OutValue) const { if (ChannelName_IsSet) OutValue = ChannelName_Optional; return ChannelName_IsSet; }
+	/** @brief Returns a pointer to ChannelName_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetChannelNameOrNull() { if (ChannelName_IsSet) return &ChannelName_Optional; return nullptr; }
+	/** @brief Returns a pointer to ChannelName_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetChannelNameOrNull() const { if (ChannelName_IsSet) return &ChannelName_Optional; return nullptr; }
+	/** @brief Sets the value of ChannelName_Optional and also sets ChannelName_IsSet to true */
+	void SetChannelName(const FString& NewValue) { ChannelName_Optional = NewValue; ChannelName_IsSet = true; }
+	/** @brief Sets the value of ChannelName_Optional and also sets ChannelName_IsSet to true using move semantics */
+	void SetChannelName(FString&& NewValue) { ChannelName_Optional = NewValue; ChannelName_IsSet = true; }
+	 /** @brief Clears the value of ChannelName_Optional and sets ChannelName_IsSet to false */
+	void ClearChannelName() { ChannelName_IsSet = false; }
 };
 
 /** @} */

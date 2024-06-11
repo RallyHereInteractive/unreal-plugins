@@ -14,6 +14,7 @@ FRallyHereAPIAll::FRallyHereAPIAll()
 	, Config(MakeShareable(new FConfigAPI()))
 	, ConfigurationV1(MakeShareable(new FConfigurationV1API()))
 	, Custom(MakeShareable(new FCustomAPI()))
+	, Deserter(MakeShareable(new FDeserterAPI()))
 	, Entitlements(MakeShareable(new FEntitlementsAPI()))
 	, Environment(MakeShareable(new FEnvironmentAPI()))
 	, Events(MakeShareable(new FEventsAPI()))
@@ -50,6 +51,7 @@ FRallyHereAPIAll::FRallyHereAPIAll()
 	AllAPIs.Add(Config);
 	AllAPIs.Add(ConfigurationV1);
 	AllAPIs.Add(Custom);
+	AllAPIs.Add(Deserter);
 	AllAPIs.Add(Entitlements);
 	AllAPIs.Add(Environment);
 	AllAPIs.Add(Events);
@@ -161,6 +163,16 @@ TSharedRef<FCustomAPI> FRallyHereAPIAll::GetCustom()
 const TSharedRef<FCustomAPI> FRallyHereAPIAll::GetCustom() const
 {
 	return Custom;
+}
+
+TSharedRef<FDeserterAPI> FRallyHereAPIAll::GetDeserter()
+{
+	return Deserter;
+}
+
+const TSharedRef<FDeserterAPI> FRallyHereAPIAll::GetDeserter() const
+{
+	return Deserter;
 }
 
 TSharedRef<FEntitlementsAPI> FRallyHereAPIAll::GetEntitlements()

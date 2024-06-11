@@ -13,14 +13,17 @@
 #include "FastapicommonPlatformsPortal.h"
 #include "Platform.h"
 #include "CreatePlatformUserRequest.h"
-#include "HTTPAuthorizationCredentials.h"
 #include "HTTPValidationError.h"
 #include "HzApiErrorModel.h"
+#include "LoginHistoryPage.h"
 #include "LookupResults.h"
 #include "MessageOnly.h"
 #include "PersonEmailListRequest.h"
 #include "PersonEmailListResponse.h"
 #include "PersonInfoResponse.h"
+#include "PersonOperationRequest.h"
+#include "PlatformUserLinkRequest.h"
+#include "PlatformUserOperationRequest.h"
 #include "PlatformUserResponse.h"
 #include "PlayerIdWrapper.h"
 #include "PlayerIterateResponse.h"
@@ -31,6 +34,7 @@
 #include "Role.h"
 #include "SendInBlueContact.h"
 #include "UpdatePersonInfoRequest.h"
+#include "UserLinkHistory.h"
 
 namespace RallyHereAPI
 {
@@ -52,6 +56,10 @@ struct FRequest_FindPlatformUserById;
 struct FResponse_FindPlatformUserById;
 struct FRequest_GetAllRoles;
 struct FResponse_GetAllRoles;
+struct FRequest_GetLinkHistory;
+struct FResponse_GetLinkHistory;
+struct FRequest_GetLoginHistory;
+struct FResponse_GetLoginHistory;
 struct FRequest_GetPerson;
 struct FResponse_GetPerson;
 struct FRequest_GetPersonEmailList;
@@ -112,6 +120,8 @@ DECLARE_DELEGATE_OneParam(FDelegate_DisableCrossProgression, const FResponse_Dis
 DECLARE_DELEGATE_OneParam(FDelegate_EnableCrossProgression, const FResponse_EnableCrossProgression&);
 DECLARE_DELEGATE_OneParam(FDelegate_FindPlatformUserById, const FResponse_FindPlatformUserById&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetAllRoles, const FResponse_GetAllRoles&);
+DECLARE_DELEGATE_OneParam(FDelegate_GetLinkHistory, const FResponse_GetLinkHistory&);
+DECLARE_DELEGATE_OneParam(FDelegate_GetLoginHistory, const FResponse_GetLoginHistory&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetPerson, const FResponse_GetPerson&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetPersonEmailList, const FResponse_GetPersonEmailList&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetPersonEmailListForSelf, const FResponse_GetPersonEmailListForSelf&);
@@ -152,6 +162,8 @@ public:
 	FHttpRequestPtr EnableCrossProgression(const FRequest_EnableCrossProgression& Request, const FDelegate_EnableCrossProgression& Delegate = FDelegate_EnableCrossProgression(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr FindPlatformUserById(const FRequest_FindPlatformUserById& Request, const FDelegate_FindPlatformUserById& Delegate = FDelegate_FindPlatformUserById(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr GetAllRoles(const FRequest_GetAllRoles& Request, const FDelegate_GetAllRoles& Delegate = FDelegate_GetAllRoles(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetLinkHistory(const FRequest_GetLinkHistory& Request, const FDelegate_GetLinkHistory& Delegate = FDelegate_GetLinkHistory(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetLoginHistory(const FRequest_GetLoginHistory& Request, const FDelegate_GetLoginHistory& Delegate = FDelegate_GetLoginHistory(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr GetPerson(const FRequest_GetPerson& Request, const FDelegate_GetPerson& Delegate = FDelegate_GetPerson(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr GetPersonEmailList(const FRequest_GetPersonEmailList& Request, const FDelegate_GetPersonEmailList& Delegate = FDelegate_GetPersonEmailList(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr GetPersonEmailListForSelf(const FRequest_GetPersonEmailListForSelf& Request, const FDelegate_GetPersonEmailListForSelf& Delegate = FDelegate_GetPersonEmailListForSelf(), int32 Priority = DefaultRallyHereAPIPriority);
@@ -187,6 +199,8 @@ private:
 	void OnEnableCrossProgressionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_EnableCrossProgression Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnFindPlatformUserByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_FindPlatformUserById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnGetAllRolesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllRoles Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetLinkHistoryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetLinkHistory Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetLoginHistoryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetLoginHistory Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnGetPersonResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPerson Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnGetPersonEmailListResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPersonEmailList Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnGetPersonEmailListForSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPersonEmailListForSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
@@ -401,6 +415,26 @@ struct RALLYHEREAPI_API Traits_DequeuePersonForPurge
 };
 
 /* Disable Cross Progression
+ *
+ * Disable Cross Progression for a person.  While cross progression is disabled, 
+ * all linked users who login will receive a token for the player associated with their platform user.
+ *     
+ * The person is found using the following priority:
+ * 
+ * 1. If the `person_id` is provided directly
+ * 2. If the `platform` and `platform_user_id` are provided, the `person_id` of that platform user is used.
+ * 3. If the Authorization header contains a user token, the platform and platform user id from the token are used and the person associated with that user is used.
+ * 
+ * If you are modifying a user outside of your person, Required Permissions:
+ * 
+ * - For any user (including themselves) any of: `user:*`, `user:modify:any`
+ * 
+ * 
+ * 
+ * NOTE: Whenever you change the link or cross progression status of a user, it is recommended to 
+ * refresh their access token.  Each token does container user information, which may be incorrect after a link or 
+ * cross progression change.  There is no guarantee that calling other endpoints will operate on the correct user
+ * until the token has been refreshed.
 */
 struct RALLYHEREAPI_API FRequest_DisableCrossProgression : public FRequest
 {
@@ -413,6 +447,7 @@ struct RALLYHEREAPI_API FRequest_DisableCrossProgression : public FRequest
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
 	TSharedPtr<FAuthContext> AuthContext;
+	TOptional<FRHAPI_PersonOperationRequest> PersonOperationRequest;
 };
 
 struct RALLYHEREAPI_API FResponse_DisableCrossProgression : public FResponse
@@ -422,18 +457,28 @@ struct RALLYHEREAPI_API FResponse_DisableCrossProgression : public FResponse
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-	FRHAPI_JsonValue Content;
+	
 
 
 	// Manual Response Helpers
 	/* Response 200
 	Successful Response
 	*/
-	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+	/* Response 400
+	Request inputs are not valid   Error Codes: - `account_not_found` - User Account not found - `cannot_modify_person` - You have insufficient permissions to modify this person - `invalid_token_claims` - Token has missing/invalid claims.  Are you using a non-user token on a user endpoint? - `not_cross_progression_player` - Player is not the cross progression player 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
@@ -449,6 +494,23 @@ struct RALLYHEREAPI_API Traits_DisableCrossProgression
 };
 
 /* Enable Cross Progression
+ *
+ * Enable Cross Progression for the player associated with the platform identity.  
+ * While cross progression is enabled, all linked users who login will receive a token for the player with cross 
+ * progression enabled (instead of a token for their platform user's player).
+ * 
+ * If an identity is not provided, the identity in the token will be used.
+ * 
+ * If you are modifying a user outside of your person, Required Permissions:
+ * 
+ * - For any user (including themselves) any of: `user:*`, `user:modify:any`
+ * 
+ * 
+ * 
+ * NOTE: Whenever you change the link or cross progression status of a user, it is recommended to 
+ * refresh their access token.  Each token does container user information, which may be incorrect after a link or 
+ * cross progression change.  There is no guarantee that calling other endpoints will operate on the correct user
+ * until the token has been refreshed.
 */
 struct RALLYHEREAPI_API FRequest_EnableCrossProgression : public FRequest
 {
@@ -461,6 +523,7 @@ struct RALLYHEREAPI_API FRequest_EnableCrossProgression : public FRequest
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
 	TSharedPtr<FAuthContext> AuthContext;
+	TOptional<FRHAPI_PlatformUserOperationRequest> PlatformUserOperationRequest;
 };
 
 struct RALLYHEREAPI_API FResponse_EnableCrossProgression : public FResponse
@@ -470,18 +533,28 @@ struct RALLYHEREAPI_API FResponse_EnableCrossProgression : public FResponse
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-	FRHAPI_JsonValue Content;
+	
 
 
 	// Manual Response Helpers
 	/* Response 200
 	Successful Response
 	*/
-	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+	/* Response 400
+	Request inputs are not valid   Error Codes: - `account_not_found` - User Account not found - `already_cross_progression_player` - Player is already the cross progression player - `cannot_modify_person` - You have insufficient permissions to modify this person - `invalid_token_claims` - Token has missing/invalid claims.  Are you using a non-user token on a user endpoint? 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
@@ -619,6 +692,153 @@ struct RALLYHEREAPI_API Traits_GetAllRoles
 	static FString Name;
 
 	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetAllRoles(InRequest, InDelegate, Priority); }
+};
+
+/* Get Link History
+ *
+ * Get the Link history for a given user
+*/
+struct RALLYHEREAPI_API FRequest_GetLinkHistory : public FRequest
+{
+	FRequest_GetLinkHistory();
+	virtual ~FRequest_GetLinkHistory() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	FName GetSimplifiedPathWithVerb() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	TSharedPtr<FAuthContext> AuthContext;
+	/* The player UUID to audit */
+	TOptional<FGuid> PlayerUuid;
+	/* The person ID to audit */
+	TOptional<FGuid> PersonId;
+	/* The platform to audit */
+	TOptional<ERHAPI_Platform> Platform;
+	/* The platform user ID to audit */
+	TOptional<FString> PlatformUserId;
+	/* Token to retrieve the next page of results */
+	TOptional<FString> ContinuationToken;
+};
+
+struct RALLYHEREAPI_API FResponse_GetLinkHistory : public FResponse
+{
+	FResponse_GetLinkHistory(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetLinkHistory() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+	FRHAPI_UserLinkHistory Content;
+
+
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_UserLinkHistory& OutContent) const;
+
+	/* Response 400
+	Bad Request
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 403
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+struct RALLYHEREAPI_API Traits_GetLinkHistory
+{
+	typedef FRequest_GetLinkHistory Request;
+	typedef FResponse_GetLinkHistory Response;
+	typedef FDelegate_GetLinkHistory Delegate;
+	typedef FUsersAPI API;
+	static FString Name;
+
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetLinkHistory(InRequest, InDelegate, Priority); }
+};
+
+/* Get Login History
+ *
+ * Get the Login history for a given user
+*/
+struct RALLYHEREAPI_API FRequest_GetLoginHistory : public FRequest
+{
+	FRequest_GetLoginHistory();
+	virtual ~FRequest_GetLoginHistory() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	FName GetSimplifiedPathWithVerb() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	TSharedPtr<FAuthContext> AuthContext;
+	/* The player UUID to audit */
+	TOptional<FGuid> PlayerUuid;
+	/* The person ID to audit */
+	TOptional<FGuid> PersonId;
+	/* The platform to audit */
+	TOptional<ERHAPI_Platform> Platform;
+	/* The platform user ID to audit */
+	TOptional<FString> PlatformUserId;
+	/* Token to retrieve the next page of results */
+	TOptional<FString> ContinuationToken;
+};
+
+struct RALLYHEREAPI_API FResponse_GetLoginHistory : public FResponse
+{
+	FResponse_GetLoginHistory(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_GetLoginHistory() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+	FRHAPI_LoginHistoryPage Content;
+
+
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_LoginHistoryPage& OutContent) const;
+
+	/* Response 403
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+struct RALLYHEREAPI_API Traits_GetLoginHistory
+{
+	typedef FRequest_GetLoginHistory Request;
+	typedef FResponse_GetLoginHistory Response;
+	typedef FDelegate_GetLoginHistory Delegate;
+	typedef FUsersAPI API;
+	static FString Name;
+
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetLoginHistory(InRequest, InDelegate, Priority); }
 };
 
 /* Get Person
@@ -952,6 +1172,11 @@ struct RALLYHEREAPI_API FResponse_GetPlayerIdFromPlayerUuidForSelf : public FRes
 	*/
 	bool TryGetContentFor200(FRHAPI_PlayerIdWrapper& OutContent) const;
 
+	/* Response 400
+	Bad Request
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
 	/* Response 403
 	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
@@ -1131,6 +1356,11 @@ struct RALLYHEREAPI_API FResponse_GetPlayerLinksForSelf : public FResponse
 	Successful Response
 	*/
 	bool TryGetContentFor200(FRHAPI_PlayerLinkedPortalsResponse& OutContent) const;
+
+	/* Response 400
+	Bad Request
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
 	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
@@ -1591,6 +1821,30 @@ struct RALLYHEREAPI_API Traits_GetQueuePurgeStatusForPerson
 };
 
 /* Link
+ *
+ * Link a follower platform user to a leader person.
+ *     
+ * The Leader person is found using the following priority:
+ * 
+ * 1. If the `leader_person_id` is provided directly
+ * 2. If the `leader_platform` and `leader_platform_user_id` are provided, the `person_id` of that platform user is used.
+ * 3. If the `scheme` and `credentials` are provided, the person_id of the platform user of credentials is used.
+ * 
+ * The Follower platform user is found using the following priority:
+ * 
+ * 1. If the `follower_platform` and `follower_platform_user_id` are provided directly.
+ * 2. If the Authorization header contains a user token, the platform and platform user id from the token are used.
+ * 
+ * For leader selection 1,2 or follower selection 1, Required Permissions:
+ * 
+ * - For any user (including themselves) any of: `user:*`, `user:modify:any`
+ * 
+ * 
+ * 
+ * NOTE: Whenever you change the link or cross progression status of a user, it is recommended to 
+ * refresh their access token.  Each token does container user information, which may be incorrect after a link or 
+ * cross progression change.  There is no guarantee that calling other endpoints will operate on the correct user
+ * until the token has been refreshed.
 */
 struct RALLYHEREAPI_API FRequest_Link : public FRequest
 {
@@ -1603,7 +1857,7 @@ struct RALLYHEREAPI_API FRequest_Link : public FRequest
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
 	TSharedPtr<FAuthContext> AuthContext;
-	FRHAPI_HTTPAuthorizationCredentials HTTPAuthorizationCredentials;
+	TOptional<FRHAPI_PlatformUserLinkRequest> PlatformUserLinkRequest;
 };
 
 struct RALLYHEREAPI_API FResponse_Link : public FResponse
@@ -1613,18 +1867,18 @@ struct RALLYHEREAPI_API FResponse_Link : public FResponse
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-	FRHAPI_JsonValue Content;
+	
 
 
 	// Manual Response Helpers
 	/* Response 200
 	Successful Response
 	*/
-	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 
 	/* Response 400
-	Users cannot be linked due to user state.  See response for further details
+	Request inputs are not valid   Error Codes: - `account_not_found` - User Account not found - `cannot_link_same_player` - Cannot link a player to themselves - `follower_already_linked` - Follower is already linked to another person.  They must be unlinked before they can be linked again. - `follower_has_cross_progression_enabled` - follower must disable cross progression before this operation - `follower_has_restrictions` - follower has restrictions that prevent this operation - `invalid_token_claims` - Token has missing/invalid claims.  Are you using a non-user token on a user endpoint? - `leader_has_restrictions` - leader has restrictions that prevent this operation - `leader_not_found` - Desired user for the leader of the link was not found - `platform_already_linked` - Person is already linked to another user on this platform 
 	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
 	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
@@ -1844,6 +2098,22 @@ struct RALLYHEREAPI_API Traits_QueuePersonForPurge
 };
 
 /* Unlink
+ *
+ * Unlink a platform user from their current person.  This will create a new person for the 
+ * platform user to be associated with.
+ * 
+ * If an identity is not provided, the identity in the token will be used.
+ * 
+ * If you are modifying a user outside of your person, Required Permissions:
+ * 
+ * - For any user (including themselves) any of: `user:*`, `user:modify:any`
+ * 
+ * 
+ * 
+ * NOTE: Whenever you change the link or cross progression status of a user, it is recommended to 
+ * refresh their access token.  Each token does container user information, which may be incorrect after a link or 
+ * cross progression change.  There is no guarantee that calling other endpoints will operate on the correct user
+ * until the token has been refreshed.
 */
 struct RALLYHEREAPI_API FRequest_Unlink : public FRequest
 {
@@ -1856,6 +2126,7 @@ struct RALLYHEREAPI_API FRequest_Unlink : public FRequest
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
 	TSharedPtr<FAuthContext> AuthContext;
+	TOptional<FRHAPI_PlatformUserOperationRequest> PlatformUserOperationRequest;
 };
 
 struct RALLYHEREAPI_API FResponse_Unlink : public FResponse
@@ -1865,23 +2136,28 @@ struct RALLYHEREAPI_API FResponse_Unlink : public FResponse
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-	FRHAPI_JsonValue Content;
+	
 
 
 	// Manual Response Helpers
 	/* Response 200
 	Successful Response
 	*/
-	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 
 	/* Response 400
-	Users cannot be unlinked due to user state.  See response for further details
+	Request inputs are not valid   Error Codes: - `account_not_found` - User Account not found - `cannot_modify_person` - You have insufficient permissions to modify this person - `cannot_unlink_cross_progression_player` - Cannot unlink the cross progression player - `invalid_token_claims` - Token has missing/invalid claims.  Are you using a non-user token on a user endpoint? - `player_not_linked` - Player is not linked - `user_has_restrictions` - user has restrictions that prevent this operation 
 	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
 	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 

@@ -58,7 +58,26 @@ private:
  * 
  * 
  * 
- * Required Session Permissions: None
+ * 
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `session-audit:update:self`, `session:*`
+ * 
+ *  for sessions you are a member of
+ * 
+ * 
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `session-player-audit:update:all`, `session:*`
+ * 
+ *  to read audit information about any player
+ * 
+ * 
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `session-player-audit:update:self`, `session:*`
+ * 
+ *  to read audit information about yourself
 */
 struct RALLYHEREAPI_API FRequest_CreateSessionAudit : public FRequest
 {
@@ -126,9 +145,28 @@ struct RALLYHEREAPI_API Traits_CreateSessionAudit
  * 
  * - For any player (including themselves) any of: `session-audit:read:all`, `session:*`
  * 
+ *  for all sessions
  * 
  * 
- * Required Session Permissions: None
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `session-audit:read:self`, `session:*`
+ * 
+ *  for sessions you are a member of
+ * 
+ * 
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `session-player-audit:read:all`, `session:*`
+ * 
+ *  to read audit information about any player
+ * 
+ * 
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `session-player-audit:read:self`, `session:*`
+ * 
+ *  to read audit information about yourself
 */
 struct RALLYHEREAPI_API FRequest_GetSessionAudit : public FRequest
 {
