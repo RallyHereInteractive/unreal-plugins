@@ -8,9 +8,13 @@ changelog:
     - title: Breaking Changes
       labels:
         - breaking-change
-    - title: High Level Changes
+    - title: Enhancements and Features
       labels:
         - enhancement
-    - title: Notable Changes
+        - feature
+    - title: Fixes
+      labels:
+        - bugs
+    - title: Other Changes
       labels:
         - "*"
