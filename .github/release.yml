@@ -14,7 +14,7 @@ changelog:
         - feature
     - title: Fixes
       labels:
-        - bugs
+        - bug
     - title: Other Changes
       labels:
         - "*"
