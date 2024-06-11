@@ -92,6 +92,11 @@ namespace
 		return StandardFields;
 	}
 
+	int32 GetMaximumSanitizedContentLength()
+	{
+		return GetDefault<URH_IntegrationSettings>()->WebRequestMaxSanitizedContentLength;
+	}
+
 	TArray<FString> SanitizeHeaders(const TArray<FString>& Headers, const TArray<FString>& SensitiveHeaders)
 	{
 		TArray<FString> OutHeaders;
@@ -164,6 +169,12 @@ namespace
 		if (SensitiveFields.Num() <= 0 || Content.Len() <= 0)
 		{
 			return Content;
+		}
+
+		if (Content.Len() > GetMaximumSanitizedContentLength())
+		{
+			static FString SensitiveFieldsBlanked(TEXT("****** Content too long to sanitize, hiding all content ******"));
+			return SensitiveFieldsBlanked;
 		}
 
 		auto Reader = TJsonReaderFactory<>::Create(Content);
@@ -287,11 +298,17 @@ void FRH_WebRequests::OnWebRequestStarted(const RallyHereAPI::FRequestMetadata& 
 {
 	OnWebRequestStarted_Log(RequestMetadata, HttpRequest, API);
 	OnWebRequestStarted_Track(RequestMetadata, HttpRequest, API);
-	OnWebRequestStarted_RecordTimestamp(RequestMetadata, HttpRequest, API);
 }
 
 void FRH_WebRequests::OnWebRequestStarted_Track(const RallyHereAPI::FRequestMetadata& RequestMetadata, FHttpRequestRef HttpRequest, TSharedRef<RallyHereAPI::FAPI> API)
 {
+	const auto WebRequestTrackLimit = GetDefault<URH_IntegrationSettings>()->WebRequestsTrackedRequestsCountLimit;
+	bool bShouldTrack = bRetainWebRequests || WebRequestTrackLimit > 0;
+	if (!bShouldTrack)
+	{
+		return;
+	}
+	
 	auto Request = MakeShared<FRH_WebRequest>();
 	Request->APIName = API->GetName();
 	Request->Timestamp = FDateTime::Now();
@@ -325,7 +342,7 @@ void FRH_WebRequests::OnWebRequestStarted_Track(const RallyHereAPI::FRequestMeta
 
 	if (!bRetainWebRequests)
 	{
-		int numElementsToBeRemoved = TrackedRequests.Num() - GetDefault<URH_IntegrationSettings>()->WebRequestsTrackedRequestsCountLimit;
+		int numElementsToBeRemoved = TrackedRequests.Num() - WebRequestTrackLimit;
 		if (numElementsToBeRemoved > 0)
 		{
 			// clean up the tracked request by id map
@@ -340,6 +357,10 @@ void FRH_WebRequests::OnWebRequestStarted_Track(const RallyHereAPI::FRequestMeta
 			--numElementsToBeRemoved;
 		}
 	}
+
+	// record call counts
+	APINameToCallCountMap.FindOrAdd(API->GetName())++;
+	SimplifiedPathToCallCountMap.FindOrAdd(RequestMetadata.SimplifiedPathWithVerb)++;
 }
 
 void FRH_WebRequests::OnWebRequestStarted_Log(const RallyHereAPI::FRequestMetadata& RequestMetadata, FHttpRequestRef HttpRequest, TSharedRef<RallyHereAPI::FAPI> API)
@@ -355,12 +376,6 @@ void FRH_WebRequests::OnWebRequestStarted_Log(const RallyHereAPI::FRequestMetada
 	LogHttpBase(*HttpRequest, Prefix, GetSensitiveHeadersForRequest(RequestMetadata), GetSensitiveFieldsForRequest(RequestMetadata));
 }
 
-void FRH_WebRequests::OnWebRequestStarted_RecordTimestamp(const RallyHereAPI::FRequestMetadata& RequestMetadata, FHttpRequestRef HttpRequest, TSharedRef<RallyHereAPI::FAPI> API)
-{
-	APINameToCallCountMap.FindOrAdd(API->GetName())++;
-	SimplifiedPathToCallCountMap.FindOrAdd(RequestMetadata.SimplifiedPathWithVerb)++;
-}
-
 void FRH_WebRequests::OnWebRequestCompleted(const RallyHereAPI::FResponse& Response, FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSuccess, bool bWillRetryWithAuth, TSharedRef<RallyHereAPI::FAPI> API)
 {
 	OnWebRequestCompleted_Log(Response, HttpRequest, HttpResponse, bSuccess, bWillRetryWithAuth, API);
@@ -369,6 +384,13 @@ void FRH_WebRequests::OnWebRequestCompleted(const RallyHereAPI::FResponse& Respo
 
 void FRH_WebRequests::OnWebRequestCompleted_Track(const RallyHereAPI::FResponse& Response, FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSuccess, bool bWillRetryWithAuth, TSharedRef<RallyHereAPI::FAPI> API)
 {
+	const auto WebRequestTrackLimit = GetDefault<URH_IntegrationSettings>()->WebRequestsTrackedRequestsCountLimit;
+	bool bShouldTrack = bRetainWebRequests || WebRequestTrackLimit > 0;
+	if (!bShouldTrack)
+	{
+		return;
+	}
+	
 	auto TrackedRequest = TrackedRequestsById.Find(Response.GetRequestMetadata().Identifier);
 	if (!TrackedRequest)
 	{

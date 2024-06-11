@@ -19,12 +19,13 @@ struct FRHDTW_PlayerSettings : public FRH_DebugToolWindow
 	void DoSettingsTypes();
 
 	int32 SettingVersionNum;
-	TArray<ANSICHAR> SettingsIdInput;
-	TArray<ANSICHAR> ModifySettingsIdInput;
-	TArray<ANSICHAR> ModifySettingsKeyInput;
-	TArray<ANSICHAR> ModifySettingsJsonInput;
+	FString SettingsIdInput;
+	FString ModifySettingsIdInput;
+	FString ModifySettingsKeyInput;
+	FString ModifySettingsJsonInput;
 
 private:
-	FString SetPlayerSettingsActionResult;
-	void HandleSetPlayerSettingsResponse(bool bSuccess, const FRH_PlayerSettingsDataWrapper& Response, FGuid PlayerUuid);
+	FString SetPlayerSettingActionResult;
+	void HandleSetPlayerSettingResponse(bool bSuccess, const FRH_PlayerSettingsDataWrapper& Response, const FRH_ErrorInfo& ErrorInfo, FGuid PlayerUuid);
+	void HandleDeletePlayerSettingResponse(bool bSuccess, const FRH_ErrorInfo& ErrorInfo, FGuid PlayerUuid);
 };

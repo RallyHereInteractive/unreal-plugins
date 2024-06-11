@@ -15,12 +15,6 @@ FRHDTW_PlayerSettings::FRHDTW_PlayerSettings()
 	DefaultPos = FVector2D(610, 20);
 
 	SettingVersionNum = 0;
-	SettingsIdInput.SetNumZeroed(64);
-	ModifySettingsIdInput.SetNumZeroed(64);
-	ModifySettingsKeyInput.SetNumZeroed(64);
-	ModifySettingsJsonInput.SetNumZeroed(4096);
-
-	SetPlayerSettingsActionResult.Empty();
 }
 
 FRHDTW_PlayerSettings::~FRHDTW_PlayerSettings()
@@ -67,11 +61,11 @@ void FRHDTW_PlayerSettings::DoViewSettings()
 	}
 	ImGui::Text("For first selected player with UUID %s", TCHAR_TO_UTF8(*ActivePlayerInfo->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphens)));
 
-	ImGui::InputText("Settings Id", SettingsIdInput.GetData(), SettingsIdInput.Num());
+	ImGui::InputText("Settings Id", &SettingsIdInput);
 
 	if (ImGui::Button("Get Settings Data"))
 	{
-		ActivePlayerInfo->GetPlayerSettings(UTF8_TO_TCHAR(SettingsIdInput.GetData()), FTimespan(), true, FRH_PlayerInfoGetPlayerSettingsBlock());
+		ActivePlayerInfo->GetPlayerSettings(SettingsIdInput, FTimespan(), true, FRH_PlayerInfoGetPlayerSettingsBlock());
 	}
 	ImGui::Separator();
 
@@ -115,41 +109,50 @@ void FRHDTW_PlayerSettings::DoModifySettings()
 	}
 	ImGui::Text("For [%d] selected players with UUIDs.", NumSelectedPlayers);
 
-	ImGui::InputText("Settings Id", ModifySettingsIdInput.GetData(), ModifySettingsIdInput.Num());
-	ImGui::InputText("Key", ModifySettingsKeyInput.GetData(), ModifySettingsKeyInput.Num());
-	ImGui::InputInt("Version", &SettingVersionNum);
-	ImGui::InputTextMultiline("Json Blob", ModifySettingsJsonInput.GetData(), ModifySettingsJsonInput.Num());
+	ImGui::InputText("Settings Id", &ModifySettingsIdInput);
+	ImGui::InputText("Key", &ModifySettingsKeyInput);
+	ImGui::InputInt("Schema Version", &SettingVersionNum);
+	ImGui::InputTextMultiline("Json Document", &ModifySettingsJsonInput);
 
-	if (!SetPlayerSettingsActionResult.IsEmpty())
+	if (!SetPlayerSettingActionResult.IsEmpty())
 	{
 		if (ImGui::CollapsingHeader("Modify Settings Action Result", RH_DefaultTreeFlagsDefaultOpen))
 		{
-			ImGui::Text("%s", TCHAR_TO_UTF8(*SetPlayerSettingsActionResult));
+			ImGui::Text("%s", TCHAR_TO_UTF8(*SetPlayerSettingActionResult));
 		}
 	}
 
-	if (ImGui::Button("Modify Settings Data"))
+	if (ImGui::Button("Modify Setting"))
 	{
-		FString JsonString = UTF8_TO_TCHAR(ModifySettingsJsonInput.GetData());
+		FString JsonString = ModifySettingsJsonInput;
 		TSharedPtr<FJsonObject> JsonObject = MakeShareable(new FJsonObject());
 		TSharedRef<TJsonReader<>> JsonReader = TJsonReaderFactory<>::Create(JsonString);
 		FJsonSerializer::Deserialize(JsonReader, JsonObject);
-		FRH_PlayerSettingsDataWrapper DataWrapper;
 		TSharedPtr<FJsonValueObject> JsonValueObject = MakeShared<FJsonValueObject>(JsonObject);
-		FRHAPI_SettingData SettingData;
-
+		
+		FRHAPI_SetSinglePlayerSettingRequest SettingData;
 		SettingData.SetValue(FRHAPI_JsonValue(JsonValueObject));
 		SettingData.SetV(SettingVersionNum);
 
-		DataWrapper.Content.Add(UTF8_TO_TCHAR(ModifySettingsKeyInput.GetData()), SettingData);
-
-		ForEachSelectedRHPlayer(FRHDT_RHPAction::CreateLambda([this, &DataWrapper](URH_PlayerInfo* PlayerInfo)
+		ForEachSelectedRHPlayer(FRHDT_RHPAction::CreateLambda([this, SettingData](URH_PlayerInfo* PlayerInfo)
 			{
-				SetPlayerSettingsActionResult.Empty();
+				SetPlayerSettingActionResult.Empty();
 				if (PlayerInfo)
 				{
-					auto Delegate = FRH_PlayerInfoSetPlayerSettingsDelegate::CreateSP(SharedThis(this), &FRHDTW_PlayerSettings::HandleSetPlayerSettingsResponse, PlayerInfo->GetRHPlayerUuid());
-					PlayerInfo->SetPlayerSettings(UTF8_TO_TCHAR(ModifySettingsIdInput.GetData()), DataWrapper, MoveTemp(Delegate));
+					auto Delegate = FRH_PlayerInfoSetPlayerSettingDelegate::CreateSP(SharedThis(this), &FRHDTW_PlayerSettings::HandleSetPlayerSettingResponse, PlayerInfo->GetRHPlayerUuid());
+					PlayerInfo->SetPlayerSetting(ModifySettingsIdInput, ModifySettingsKeyInput, SettingData, MoveTemp(Delegate));
+				}
+			}));
+	}
+	else if (ImGui::Button("Delete Setting"))
+	{
+		ForEachSelectedRHPlayer(FRHDT_RHPAction::CreateLambda([this](URH_PlayerInfo* PlayerInfo)
+			{
+				SetPlayerSettingActionResult.Empty();
+				if (PlayerInfo)
+				{
+					auto Delegate = FRH_GenericSuccessWithErrorDelegate::CreateSP(SharedThis(this), &FRHDTW_PlayerSettings::HandleDeletePlayerSettingResponse, PlayerInfo->GetRHPlayerUuid());
+					PlayerInfo->DeletePlayerSetting(ModifySettingsIdInput, ModifySettingsKeyInput, MoveTemp(Delegate));
 				}
 			}));
 	}
@@ -204,14 +207,27 @@ void FRHDTW_PlayerSettings::DoSettingsTypes()
 	}
 }
 
-void FRHDTW_PlayerSettings::HandleSetPlayerSettingsResponse(bool bSuccess, const FRH_PlayerSettingsDataWrapper& Response, FGuid PlayerUuid)
+void FRHDTW_PlayerSettings::HandleSetPlayerSettingResponse(bool bSuccess, const FRH_PlayerSettingsDataWrapper& Response, const FRH_ErrorInfo& ErrorInfo, FGuid PlayerUuid)
 {
 	if (bSuccess)
 	{
-		SetPlayerSettingsActionResult += TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Modifying settings succeeded.") LINE_TERMINATOR;
+		SetPlayerSettingActionResult += TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Modifying setting succeeded.") LINE_TERMINATOR;
 	}
 	else
 	{
-		SetPlayerSettingsActionResult += TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Modifying settings failed.") LINE_TERMINATOR;
+		SetPlayerSettingActionResult += TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Modifying setting failed.") LINE_TERMINATOR;
 	}
 }
+
+void FRHDTW_PlayerSettings::HandleDeletePlayerSettingResponse(bool bSuccess, const FRH_ErrorInfo& ErrorInfo, FGuid PlayerUuid)
+{
+	if (bSuccess)
+	{
+		SetPlayerSettingActionResult += TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Delete setting succeeded.") LINE_TERMINATOR;
+	}
+	else
+	{
+		SetPlayerSettingActionResult += TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Delete setting failed.") LINE_TERMINATOR;
+	}
+}
+

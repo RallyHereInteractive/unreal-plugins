@@ -96,25 +96,17 @@ void FRHDTW_Session::ImGuiDisplayInstance(const FRHAPI_InstanceInfo& Info, URH_S
 	if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*HeaderString), RH_DefaultTreeFlags))
 	{
 		ImGuiDisplayCopyableValue(TEXT("InstanceId"), Info.GetInstanceId());
-		if (Info.HostType == ERHAPI_HostType::Dedicated)
+		ImGuiDisplayCopyableEnumValue(TEXT("HostType"), Info.GetHostType());
+		if (pGISessionSubsystem && pGISessionSubsystem->IsLocallyHostedInstance(Info))
 		{
-			ImGui::Text("Type: Dedicated");
-			ImGuiDisplayCopyableValue(TEXT("AllocationId"), Info.GetAllocationIdOrNull());
+			ImGui::SameLine();
+			ImGui::Text(" <LOCALHOST>");
 		}
-		else
-		{
-			ImGui::Text("Type: Player Hosted");
-			if (pGISessionSubsystem && pGISessionSubsystem->IsLocallyHostedInstance(Info))
-			{
-				ImGui::SameLine();
-				ImGui::Text("<LOCALHOST>");
-			}
+		ImGuiDisplayCopyableValue(TEXT("AllocationId"), Info.GetAllocationIdOrNull());
+		ImGuiDisplayCopyableValue(TEXT("HostPlayerUuid"), Info.GetHostPlayerUuidOrNull());
 
-			ImGuiDisplayCopyableValue(TEXT("HostPlayerUuid"), Info.GetHostPlayerUuidOrNull());
-		}
-
-		ImGui::Text("Joinability: %s", TCHAR_TO_UTF8(*EnumToString(Info.GetJoinStatus())));
-		ImGui::Text("Health: %s", TCHAR_TO_UTF8(*EnumToString(Info.GetInstanceHealth())));
+		ImGuiDisplayCopyableEnumValue(TEXT("Joinability"),Info.GetJoinStatus());
+		ImGuiDisplayCopyableEnumValue(TEXT("Health"), Info.GetInstanceHealthOrNull());
 
 		if (const auto InstanceStartupParams = Info.GetInstanceStartupParamsOrNull())
 		{
