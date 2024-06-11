@@ -211,6 +211,10 @@ public:
 	UPROPERTY(EditAnywhere, Config, Category = "Web Requests")
 	int32 WebRequestsBurstTimeThresholdInSeconds;
 
+	/** @brief Sets the maximum length in characters of content before sanitization is skipped. */
+	UPROPERTY(EditAnywhere, Config, Category = "Web Requests")
+	int32 WebRequestMaxSanitizedContentLength;
+
 	/** @brief Sets an endpoint to use to determine public IP of a client for analytics. */
 	UPROPERTY(EditAnywhere, Config, Category = "Web Requests")
 	FString ClientDeviceIpEndpoint;
