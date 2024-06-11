@@ -93,7 +93,7 @@ namespace
 	}
 
 	int32 GetMaximumSanitizedContentLength()
-	{;
+	{
 		return GetDefault<URH_IntegrationSettings>()->WebRequestMaxSanitizedContentLength;
 	}
 
