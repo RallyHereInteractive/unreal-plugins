@@ -1112,6 +1112,29 @@ void URH_PlayerDeserter::ClearDeserterStatus(const FString& DeserterId, const FR
 	Helper->Start(RH_APIs::GetDeserterAPI(), Request);
 }
 
+void URH_PlayerDeserter::ClearAllDeserterStatus(const FRH_GenericSuccessWithErrorBlock& Delegate)
+{
+	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	ClearAllDeserterType::Request Request;
+
+	Request.PlayerUuid = GetPlayerInfo()->GetRHPlayerUuid();
+	Request.AuthContext = GetPlayerInfo()->GetAuthContext();
+	
+	//Request.IfNoneMatch = ETag;
+
+	const auto Helper = MakeShared<FRH_SimpleQueryHelper<ClearAllDeserterType>>(
+		ClearAllDeserterType::Delegate::CreateWeakLambda(this, [this, Delegate](const ClearAllDeserterType::Response& Response)
+			{
+				DeserterStatus.Empty();
+			}),
+		Delegate,
+		GetDefault<URH_IntegrationSettings>()->DeserterSetPriority
+	);
+
+	Helper->Start(RH_APIs::GetDeserterAPI(), Request);
+}
+
 ///
 
 

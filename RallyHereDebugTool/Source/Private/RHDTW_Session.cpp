@@ -1341,6 +1341,36 @@ void FRHDTW_Session::ImGuiDisplayPlayerDeserter(URH_GameInstanceSubsystem* pGISu
 			}
 			else
 			{
+				if (ImGui::Button("Clear All"))
+				{
+					GetPlayerDeserterResult.Empty();
+					ForEachSelectedRHPlayer(FRHDT_RHPAction::CreateLambda([this](URH_PlayerInfo* PlayerInfo)
+						{
+							if (PlayerInfo)
+							{
+								const auto PlayerUuid = PlayerInfo->GetRHPlayerUuid();
+								if (auto pp = PlayerInfo->GetDeserter())
+								{
+									pp->ClearAllDeserterStatus(FRH_GenericSuccessWithErrorDelegate::CreateSPLambda(this, [this, PlayerUuid](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+									{
+										if (bSuccess)
+										{
+											GetPlayerDeserterResult += TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Clear All Player Deserter succeeded.") LINE_TERMINATOR;
+										}
+										else
+										{
+											GetPlayerDeserterResult += TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Clear All Player Deserter failed.") LINE_TERMINATOR;
+										}
+									}));
+								}
+								else
+								{
+									GetPlayerDeserterResult += TEXT("[") + GetShortUuid(PlayerInfo->GetRHPlayerUuid()) + TEXT("] No deserter found on player info.") LINE_TERMINATOR;
+								}
+							}
+						}));
+				}
+				
 				for (const auto& DeserterPair : pDeserter->DeserterStatus)
 				{
 					ImGui::Separator();

@@ -365,6 +365,7 @@ public:
 	typedef RallyHereAPI::Traits_GetAllPlayerDeserters GetDeserterAllType;
 	typedef RallyHereAPI::Traits_PutPlayerDeserter SetDeserterType;
 	typedef RallyHereAPI::Traits_DeletePlayerDeserter ClearDeserterType;
+	typedef RallyHereAPI::Traits_DeleteAllPlayerDeserter ClearAllDeserterType;
 
 	/** 
 	* @brief The deserter status for the player by DeserterId
@@ -404,6 +405,19 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Deserter", meta = (DisplayName = "Clear Deserter Status", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_ClearDeserterStatus(const FString& DeserterId, const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate) { ClearDeserterStatus(DeserterId, Delegate); }
 
+	/**
+	 * @brief Clears all deserter states for the player
+	 * @param [in] Delegate The callback delegate for the request.
+	 */
+	virtual void ClearAllDeserterStatus(const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock());
+	/**
+	 * @private
+	 * @brief Clears all deserter states for the player
+	 * @param [in] DeserterId The deserter id to update for the player.
+	 * @param [in] Delegate The callback delegate for the request.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Deserter", meta = (DisplayName = "Clear All Deserter Status", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_ClearAllDeserterStatus(const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate) { ClearAllDeserterStatus(Delegate); }
 	
 protected:
 	/**
