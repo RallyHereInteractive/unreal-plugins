@@ -402,13 +402,13 @@ ERHAPI_PlatformTypes_DEPRECATED URH_LocalPlayerSubsystem::GetLoggedInPlatformTyp
 	return ERHAPI_PlatformTypes_DEPRECATED::PT_UNKNOWN;
 }
 
-ERHAPI_Platform URH_LocalPlayerSubsystem::GetLoggedInPlatform() const
+TOptional<ERHAPI_Platform> URH_LocalPlayerSubsystem::GetLoggedInPlatform() const
 {
 	if (IsLoggedIn() && AuthContext->GetLoginResult().IsSet())
 	{
 		return AuthContext->GetLoginResult()->GetPlatform();
 	}
-	return ERHAPI_Platform::Anon;
+	return TOptional<ERHAPI_Platform>();
 }
 
 
