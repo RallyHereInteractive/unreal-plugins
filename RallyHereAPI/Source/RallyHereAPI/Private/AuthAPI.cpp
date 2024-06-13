@@ -17,7 +17,7 @@ namespace RallyHereAPI
 
 FAuthAPI::FAuthAPI() : FAPI()
 {
-	Url = TEXT("http://localhost");
+	Url = TEXT("https://demo.rally-here.io");
 	Name = FName(TEXT("Auth"));
 }
 

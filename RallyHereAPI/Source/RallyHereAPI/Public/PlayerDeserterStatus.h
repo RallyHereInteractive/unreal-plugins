@@ -39,6 +39,18 @@ struct RALLYHEREAPI_API FRHAPI_PlayerDeserterStatus : public FRHAPI_Model
 	*/
 	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+	/** @brief ID for which type of deserter this is */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString DeserterId{  };
+	/** @brief Gets the value of DeserterId */
+	FString& GetDeserterId() { return DeserterId; }
+	/** @brief Gets the value of DeserterId */
+	const FString& GetDeserterId() const { return DeserterId; }
+	/** @brief Sets the value of DeserterId */
+	void SetDeserterId(const FString& NewValue) { DeserterId = NewValue;  }
+	/** @brief Sets the value of DeserterId using move semantics */
+	void SetDeserterId(FString&& NewValue) { DeserterId = NewValue;  }
+
 	/** @brief Flag of whether or not the player is a deserter */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool DeserterStatus{ false };

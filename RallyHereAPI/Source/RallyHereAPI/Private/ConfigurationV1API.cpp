@@ -17,7 +17,7 @@ namespace RallyHereAPI
 
 FConfigurationV1API::FConfigurationV1API() : FAPI()
 {
-	Url = TEXT("http://localhost");
+	Url = TEXT("https://demo.rally-here.io");
 	Name = FName(TEXT("ConfigurationV1"));
 }
 

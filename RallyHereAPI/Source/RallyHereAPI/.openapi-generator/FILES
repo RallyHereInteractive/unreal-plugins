@@ -6,6 +6,7 @@ Private/AdOpportunities.cpp
 Private/AdOpportunity.cpp
 Private/AdditionalJoinParams.cpp
 Private/AgreementMessage.cpp
+Private/AllPlayerDeserterStatuses.cpp
 Private/AuditEvent.cpp
 Private/AuditResponse.cpp
 Private/AuthAPI.cpp
@@ -367,6 +368,7 @@ Public/AdOpportunities.h
 Public/AdOpportunity.h
 Public/AdditionalJoinParams.h
 Public/AgreementMessage.h
+Public/AllPlayerDeserterStatuses.h
 Public/AuditEvent.h
 Public/AuditResponse.h
 Public/AuthAPI.h

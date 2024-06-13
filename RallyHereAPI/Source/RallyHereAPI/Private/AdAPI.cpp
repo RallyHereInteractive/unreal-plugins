@@ -17,7 +17,7 @@ namespace RallyHereAPI
 
 FAdAPI::FAdAPI() : FAPI()
 {
-	Url = TEXT("http://localhost");
+	Url = TEXT("https://demo.rally-here.io");
 	Name = FName(TEXT("Ad"));
 }
 

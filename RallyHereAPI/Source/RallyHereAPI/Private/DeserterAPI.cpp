@@ -17,7 +17,7 @@ namespace RallyHereAPI
 
 FDeserterAPI::FDeserterAPI() : FAPI()
 {
-	Url = TEXT("http://localhost");
+	Url = TEXT("https://demo.rally-here.io");
 	Name = FName(TEXT("Deserter"));
 }
 
@@ -374,6 +374,375 @@ FResponse_ClearSpecificDeserter::FResponse_ClearSpecificDeserter(FRequestMetadat
 
 FString Traits_ClearSpecificDeserter::Name = TEXT("ClearSpecificDeserter");
 
+FHttpRequestPtr FDeserterAPI::DeleteAllPlayerDeserter(const FRequest_DeleteAllPlayerDeserter& Request, const FDelegate_DeleteAllPlayerDeserter& Delegate /*= FDelegate_DeleteAllPlayerDeserter()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+{
+	if (!IsValid())
+		return nullptr;
+
+	// create the http request and tracking structure
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+	// add headers to tracker
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
+
+	// setup http request from custom request object
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
+	
+	// allow a delegate to modify the http request (such as binding custom handling delegates)
+	Request.OnModifyRequest().Broadcast(Request, RequestData->HttpRequest);
+	
+	// update request metadata flags just before we store it in the tracking object
+	FRequestMetadata Metadata = Request.GetRequestMetadata();
+	Request.SetMetadataFlags(Metadata);
+
+	// store metadata in tracking object (last place used by request)
+	RequestData->SetMetadata(Metadata);
+
+	// bind response handler
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindSP(this, &FDeserterAPI::OnDeleteAllPlayerDeserterResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
+
+	// submit request to http system
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
+}
+
+void FDeserterAPI::OnDeleteAllPlayerDeserterResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteAllPlayerDeserter Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+	FHttpRequestCompleteDelegate ResponseDelegate;
+
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindSP(this, &FDeserterAPI::OnDeleteAllPlayerDeserterResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
+
+	FResponse_DeleteAllPlayerDeserter Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
+
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
+}
+
+FRequest_DeleteAllPlayerDeserter::FRequest_DeleteAllPlayerDeserter()
+	: FRequest()
+{
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
+}
+
+FName FRequest_DeleteAllPlayerDeserter::GetSimplifiedPath() const
+{
+	static FName Path = FName(TEXT("/session/v1/player/{player_uuid}/deserter"));
+	return Path;
+}
+
+FName FRequest_DeleteAllPlayerDeserter::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("DELETE %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
+}
+
+FString FRequest_DeleteAllPlayerDeserter::ComputePath() const
+{
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
+	};
+
+	FString Path = FString::Format(TEXT("/session/v1/player/{player_uuid}/deserter"), PathParams);
+
+	return Path;
+}
+
+bool FRequest_DeleteAllPlayerDeserter::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+	static const TArray<FString> Consumes = {  };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
+
+	HttpRequest->SetVerb(TEXT("DELETE"));
+
+	if (!AuthContext && !bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteAllPlayerDeserter - missing auth context"));
+		return false;
+	}
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteAllPlayerDeserter - failed to add bearer token"));
+		return false;
+	}
+
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteAllPlayerDeserter - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
+
+	return true;
+}
+
+FString FResponse_DeleteAllPlayerDeserter::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
+{
+	switch ((int)InHttpResponseCode)
+	{
+	case 204:
+		return TEXT("Successful Response");
+	case 403:
+		return TEXT("Forbidden");
+	case 422:
+		return TEXT("Validation Error");
+	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
+}
+
+bool FResponse_DeleteAllPlayerDeserter::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
+}
+
+bool FResponse_DeleteAllPlayerDeserter::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
+}
+
+bool FResponse_DeleteAllPlayerDeserter::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+	return true;
+}
+
+FResponse_DeleteAllPlayerDeserter::FResponse_DeleteAllPlayerDeserter(FRequestMetadata InRequestMetadata) :
+	FResponse(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_DeleteAllPlayerDeserter::Name = TEXT("DeleteAllPlayerDeserter");
+
+FHttpRequestPtr FDeserterAPI::DeletePlayerDeserter(const FRequest_DeletePlayerDeserter& Request, const FDelegate_DeletePlayerDeserter& Delegate /*= FDelegate_DeletePlayerDeserter()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+{
+	if (!IsValid())
+		return nullptr;
+
+	// create the http request and tracking structure
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+	// add headers to tracker
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
+
+	// setup http request from custom request object
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
+	
+	// allow a delegate to modify the http request (such as binding custom handling delegates)
+	Request.OnModifyRequest().Broadcast(Request, RequestData->HttpRequest);
+	
+	// update request metadata flags just before we store it in the tracking object
+	FRequestMetadata Metadata = Request.GetRequestMetadata();
+	Request.SetMetadataFlags(Metadata);
+
+	// store metadata in tracking object (last place used by request)
+	RequestData->SetMetadata(Metadata);
+
+	// bind response handler
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindSP(this, &FDeserterAPI::OnDeletePlayerDeserterResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
+
+	// submit request to http system
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
+}
+
+void FDeserterAPI::OnDeletePlayerDeserterResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeletePlayerDeserter Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+	FHttpRequestCompleteDelegate ResponseDelegate;
+
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindSP(this, &FDeserterAPI::OnDeletePlayerDeserterResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
+
+	FResponse_DeletePlayerDeserter Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
+
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
+}
+
+FRequest_DeletePlayerDeserter::FRequest_DeletePlayerDeserter()
+	: FRequest()
+{
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
+}
+
+FName FRequest_DeletePlayerDeserter::GetSimplifiedPath() const
+{
+	static FName Path = FName(TEXT("/session/v1/player/{player_uuid}/deserter/{deserter_id}"));
+	return Path;
+}
+
+FName FRequest_DeletePlayerDeserter::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("DELETE %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
+}
+
+FString FRequest_DeletePlayerDeserter::ComputePath() const
+{
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("deserter_id"), ToStringFormatArg(DeserterId) },
+		{ TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
+	};
+
+	FString Path = FString::Format(TEXT("/session/v1/player/{player_uuid}/deserter/{deserter_id}"), PathParams);
+
+	return Path;
+}
+
+bool FRequest_DeletePlayerDeserter::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+	static const TArray<FString> Consumes = {  };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
+
+	HttpRequest->SetVerb(TEXT("DELETE"));
+
+	if (!AuthContext && !bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeletePlayerDeserter - missing auth context"));
+		return false;
+	}
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeletePlayerDeserter - failed to add bearer token"));
+		return false;
+	}
+
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeletePlayerDeserter - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
+
+	return true;
+}
+
+FString FResponse_DeletePlayerDeserter::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
+{
+	switch ((int)InHttpResponseCode)
+	{
+	case 204:
+		return TEXT("Successful Response");
+	case 403:
+		return TEXT("Forbidden");
+	case 422:
+		return TEXT("Validation Error");
+	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
+}
+
+bool FResponse_DeletePlayerDeserter::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
+}
+
+bool FResponse_DeletePlayerDeserter::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
+}
+
+bool FResponse_DeletePlayerDeserter::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+	return true;
+}
+
+FResponse_DeletePlayerDeserter::FResponse_DeletePlayerDeserter(FRequestMetadata InRequestMetadata) :
+	FResponse(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_DeletePlayerDeserter::Name = TEXT("DeletePlayerDeserter");
+
 FHttpRequestPtr FDeserterAPI::GetAllDeserterConfigs(const FRequest_GetAllDeserterConfigs& Request, const FDelegate_GetAllDeserterConfigs& Delegate /*= FDelegate_GetAllDeserterConfigs()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -550,6 +919,200 @@ FResponse_GetAllDeserterConfigs::FResponse_GetAllDeserterConfigs(FRequestMetadat
 }
 
 FString Traits_GetAllDeserterConfigs::Name = TEXT("GetAllDeserterConfigs");
+
+FHttpRequestPtr FDeserterAPI::GetAllPlayerDeserters(const FRequest_GetAllPlayerDeserters& Request, const FDelegate_GetAllPlayerDeserters& Delegate /*= FDelegate_GetAllPlayerDeserters()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+{
+	if (!IsValid())
+		return nullptr;
+
+	// create the http request and tracking structure
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+	// add headers to tracker
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
+
+	// setup http request from custom request object
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
+	
+	// allow a delegate to modify the http request (such as binding custom handling delegates)
+	Request.OnModifyRequest().Broadcast(Request, RequestData->HttpRequest);
+	
+	// update request metadata flags just before we store it in the tracking object
+	FRequestMetadata Metadata = Request.GetRequestMetadata();
+	Request.SetMetadataFlags(Metadata);
+
+	// store metadata in tracking object (last place used by request)
+	RequestData->SetMetadata(Metadata);
+
+	// bind response handler
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindSP(this, &FDeserterAPI::OnGetAllPlayerDesertersResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
+
+	// submit request to http system
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
+}
+
+void FDeserterAPI::OnGetAllPlayerDesertersResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPlayerDeserters Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+	FHttpRequestCompleteDelegate ResponseDelegate;
+
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindSP(this, &FDeserterAPI::OnGetAllPlayerDesertersResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
+
+	FResponse_GetAllPlayerDeserters Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
+
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
+}
+
+FRequest_GetAllPlayerDeserters::FRequest_GetAllPlayerDeserters()
+	: FRequest()
+{
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
+}
+
+FName FRequest_GetAllPlayerDeserters::GetSimplifiedPath() const
+{
+	static FName Path = FName(TEXT("/session/v1/player/{player_uuid}/deserter"));
+	return Path;
+}
+
+FName FRequest_GetAllPlayerDeserters::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
+}
+
+FString FRequest_GetAllPlayerDeserters::ComputePath() const
+{
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
+	};
+
+	FString Path = FString::Format(TEXT("/session/v1/player/{player_uuid}/deserter"), PathParams);
+
+	return Path;
+}
+
+bool FRequest_GetAllPlayerDeserters::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+	static const TArray<FString> Consumes = {  };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
+
+	HttpRequest->SetVerb(TEXT("GET"));
+
+	if (!AuthContext && !bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetAllPlayerDeserters - missing auth context"));
+		return false;
+	}
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetAllPlayerDeserters - failed to add bearer token"));
+		return false;
+	}
+
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetAllPlayerDeserters - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
+
+	return true;
+}
+
+FString FResponse_GetAllPlayerDeserters::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
+{
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		return TEXT("Successful Response");
+	case 403:
+		return TEXT("Forbidden");
+	case 422:
+		return TEXT("Validation Error");
+	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
+}
+
+bool FResponse_GetAllPlayerDeserters::TryGetContentFor200(FRHAPI_AllPlayerDeserterStatuses& OutContent) const
+{
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
+}
+
+bool FResponse_GetAllPlayerDeserters::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
+}
+
+bool FResponse_GetAllPlayerDeserters::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
+}
+
+bool FResponse_GetAllPlayerDeserters::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+	return TryGetJsonValue(JsonValue, Content);
+}
+
+FResponse_GetAllPlayerDeserters::FResponse_GetAllPlayerDeserters(FRequestMetadata InRequestMetadata) :
+	FResponse(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_GetAllPlayerDeserters::Name = TEXT("GetAllPlayerDeserters");
 
 FHttpRequestPtr FDeserterAPI::GetPlayerDeserter(const FRequest_GetPlayerDeserter& Request, const FDelegate_GetPlayerDeserter& Delegate /*= FDelegate_GetPlayerDeserter()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -1093,7 +1656,7 @@ FString FResponse_PutPlayerDeserter::GetHttpResponseCodeDescription(EHttpRespons
 {
 	switch ((int)InHttpResponseCode)
 	{
-	case 204:
+	case 200:
 		return TEXT("Successful Response");
 	case 403:
 		return TEXT("Forbidden");
@@ -1102,6 +1665,16 @@ FString FResponse_PutPlayerDeserter::GetHttpResponseCodeDescription(EHttpRespons
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
+}
+
+bool FResponse_PutPlayerDeserter::TryGetContentFor200(FRHAPI_PlayerDeserterStatus& OutContent) const
+{
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
 }
 
 bool FResponse_PutPlayerDeserter::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
@@ -1126,7 +1699,7 @@ bool FResponse_PutPlayerDeserter::TryGetContentFor422(FRHAPI_HTTPValidationError
 
 bool FResponse_PutPlayerDeserter::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-	return true;
+	return TryGetJsonValue(JsonValue, Content);
 }
 
 FResponse_PutPlayerDeserter::FResponse_PutPlayerDeserter(FRequestMetadata InRequestMetadata) :

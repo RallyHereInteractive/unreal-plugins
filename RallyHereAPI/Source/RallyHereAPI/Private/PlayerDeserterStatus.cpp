@@ -22,6 +22,8 @@ using RallyHereAPI::TryGetJsonValue;
 void FRHAPI_PlayerDeserterStatus::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
 	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("deserter_id"));
+	RallyHereAPI::WriteJsonValue(Writer, DeserterId);
 	Writer->WriteIdentifierPrefix(TEXT("deserter_status"));
 	RallyHereAPI::WriteJsonValue(Writer, DeserterStatus);
 	if (DeserterExpiration_IsSet)
@@ -55,6 +57,8 @@ bool FRHAPI_PlayerDeserterStatus::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 
 	bool ParseSuccess = true;
 
+	const TSharedPtr<FJsonValue> JsonDeserterIdField = (*Object)->TryGetField(TEXT("deserter_id"));
+	ParseSuccess &= JsonDeserterIdField.IsValid() && !JsonDeserterIdField->IsNull() && TryGetJsonValue(JsonDeserterIdField, DeserterId);
 	const TSharedPtr<FJsonValue> JsonDeserterStatusField = (*Object)->TryGetField(TEXT("deserter_status"));
 	ParseSuccess &= JsonDeserterStatusField.IsValid() && !JsonDeserterStatusField->IsNull() && TryGetJsonValue(JsonDeserterStatusField, DeserterStatus);
 	const TSharedPtr<FJsonValue> JsonDeserterExpirationField = (*Object)->TryGetField(TEXT("deserter_expiration"));
