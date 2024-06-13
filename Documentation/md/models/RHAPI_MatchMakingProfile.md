@@ -31,6 +31,8 @@ DEPRECATED A profile that describes what pools of players a session will be a pa
 `public bool `[`MaxPlayersPerSide_IsSet`](#structFRHAPI__MatchMakingProfile_1ad9511e9b83286bb09049fc0f2587fe0a) | true if MaxPlayersPerSide_Optional has been set to a value
 `public int32 `[`MinPlayersPerSide_Optional`](#structFRHAPI__MatchMakingProfile_1a5032bbef5186c72c2bf53d3c26693663) | The minimum number of players that can be on each team.
 `public bool `[`MinPlayersPerSide_IsSet`](#structFRHAPI__MatchMakingProfile_1a1d23e5a2ed43e8601e063d469bdf6665) | true if MinPlayersPerSide_Optional has been set to a value
+`public FString `[`DeserterId_Optional`](#structFRHAPI__MatchMakingProfile_1aecba27efe2c0feb18a258b67083060b1) | Unused in the legacy profile. Must use V2 for deserter functionality. Which deserter this profile should check before allowing players to join matchmaking.
+`public bool `[`DeserterId_IsSet`](#structFRHAPI__MatchMakingProfile_1ab52fb23e2cfa194e5a39e1dadf71a4fc) | true if DeserterId_Optional has been set to a value
 `public TMap< FString, FString > `[`LegacyConfig_Optional`](#structFRHAPI__MatchMakingProfile_1a82f7edc14d19bacfa218226e96c57f29) | Legacy config to help migrate clients.
 `public bool `[`LegacyConfig_IsSet`](#structFRHAPI__MatchMakingProfile_1a932134d92b44ad0db39f10a8a48b7d87) | true if LegacyConfig_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__MatchMakingProfile_1a926c25fdf3917f9ec57e8965ba90b371)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
@@ -94,6 +96,15 @@ DEPRECATED A profile that describes what pools of players a session will be a pa
 `public inline void `[`ClearMinPlayersPerSide`](#structFRHAPI__MatchMakingProfile_1af64883df4ee7bc9e41717b3771f1e4aa)`()` | Clears the value of MinPlayersPerSide_Optional and sets MinPlayersPerSide_IsSet to false.
 `public inline bool `[`IsMinPlayersPerSideDefaultValue`](#structFRHAPI__MatchMakingProfile_1a1b8b05015fb5b760433bc1c3b892bb91)`() const` | Returns true if MinPlayersPerSide_Optional is set and matches the default value.
 `public inline void `[`SetMinPlayersPerSideToDefault`](#structFRHAPI__MatchMakingProfile_1a139922c7aab9fa67996bc30d4c44955d)`()` | Sets the value of MinPlayersPerSide_Optional to its default and also sets MinPlayersPerSide_IsSet to true.
+`public inline FString & `[`GetDeserterId`](#structFRHAPI__MatchMakingProfile_1ad280363f9e4790ab7264b3900cfba55e)`()` | Gets the value of DeserterId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetDeserterId`](#structFRHAPI__MatchMakingProfile_1aa3406e6a2f96fb3db8dd69be7443ebc4)`() const` | Gets the value of DeserterId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetDeserterId`](#structFRHAPI__MatchMakingProfile_1abf7f0f420bc2cbc9f345e8bf5f1022e0)`(const FString & DefaultValue) const` | Gets the value of DeserterId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetDeserterId`](#structFRHAPI__MatchMakingProfile_1ae1a6c0b922014b309fc56a417c49fe84)`(FString & OutValue) const` | Fills OutValue with the value of DeserterId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FString * `[`GetDeserterIdOrNull`](#structFRHAPI__MatchMakingProfile_1aaee20117761f6ed53d61680e84a93c23)`()` | Returns a pointer to DeserterId_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetDeserterIdOrNull`](#structFRHAPI__MatchMakingProfile_1a09245899339c68d275e13c4c7dedea3e)`() const` | Returns a pointer to DeserterId_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetDeserterId`](#structFRHAPI__MatchMakingProfile_1abbc1d7137d7d2dc53a6b0e76c56bdefc)`(const FString & NewValue)` | Sets the value of DeserterId_Optional and also sets DeserterId_IsSet to true.
+`public inline void `[`SetDeserterId`](#structFRHAPI__MatchMakingProfile_1a9b3a836f9821f4b884ffab172c5e769a)`(FString && NewValue)` | Sets the value of DeserterId_Optional and also sets DeserterId_IsSet to true using move semantics.
+`public inline void `[`ClearDeserterId`](#structFRHAPI__MatchMakingProfile_1a7aeaae90106e6c977fb15571ddc71aac)`()` | Clears the value of DeserterId_Optional and sets DeserterId_IsSet to false.
 `public inline TMap< FString, FString > & `[`GetLegacyConfig`](#structFRHAPI__MatchMakingProfile_1a17276781f19ea4550740fbe935f8581a)`()` | Gets the value of LegacyConfig_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetLegacyConfig`](#structFRHAPI__MatchMakingProfile_1a87a0dee1bb92f04b8f214d3064cbe450)`() const` | Gets the value of LegacyConfig_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetLegacyConfig`](#structFRHAPI__MatchMakingProfile_1a71a5fbf0a4cd5e53c0a192c07e18f67b)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of LegacyConfig_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -153,6 +164,14 @@ The minimum number of players that can be on each team.
 #### `public bool `[`MinPlayersPerSide_IsSet`](#structFRHAPI__MatchMakingProfile_1a1d23e5a2ed43e8601e063d469bdf6665) <a id="structFRHAPI__MatchMakingProfile_1a1d23e5a2ed43e8601e063d469bdf6665"></a>
 
 true if MinPlayersPerSide_Optional has been set to a value
+
+#### `public FString `[`DeserterId_Optional`](#structFRHAPI__MatchMakingProfile_1aecba27efe2c0feb18a258b67083060b1) <a id="structFRHAPI__MatchMakingProfile_1aecba27efe2c0feb18a258b67083060b1"></a>
+
+Unused in the legacy profile. Must use V2 for deserter functionality. Which deserter this profile should check before allowing players to join matchmaking.
+
+#### `public bool `[`DeserterId_IsSet`](#structFRHAPI__MatchMakingProfile_1ab52fb23e2cfa194e5a39e1dadf71a4fc) <a id="structFRHAPI__MatchMakingProfile_1ab52fb23e2cfa194e5a39e1dadf71a4fc"></a>
+
+true if DeserterId_Optional has been set to a value
 
 #### `public TMap< FString, FString > `[`LegacyConfig_Optional`](#structFRHAPI__MatchMakingProfile_1a82f7edc14d19bacfa218226e96c57f29) <a id="structFRHAPI__MatchMakingProfile_1a82f7edc14d19bacfa218226e96c57f29"></a>
 
@@ -414,6 +433,42 @@ Returns true if MinPlayersPerSide_Optional is set and matches the default value.
 #### `public inline void `[`SetMinPlayersPerSideToDefault`](#structFRHAPI__MatchMakingProfile_1a139922c7aab9fa67996bc30d4c44955d)`()` <a id="structFRHAPI__MatchMakingProfile_1a139922c7aab9fa67996bc30d4c44955d"></a>
 
 Sets the value of MinPlayersPerSide_Optional to its default and also sets MinPlayersPerSide_IsSet to true.
+
+#### `public inline FString & `[`GetDeserterId`](#structFRHAPI__MatchMakingProfile_1ad280363f9e4790ab7264b3900cfba55e)`()` <a id="structFRHAPI__MatchMakingProfile_1ad280363f9e4790ab7264b3900cfba55e"></a>
+
+Gets the value of DeserterId_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetDeserterId`](#structFRHAPI__MatchMakingProfile_1aa3406e6a2f96fb3db8dd69be7443ebc4)`() const` <a id="structFRHAPI__MatchMakingProfile_1aa3406e6a2f96fb3db8dd69be7443ebc4"></a>
+
+Gets the value of DeserterId_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetDeserterId`](#structFRHAPI__MatchMakingProfile_1abf7f0f420bc2cbc9f345e8bf5f1022e0)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchMakingProfile_1abf7f0f420bc2cbc9f345e8bf5f1022e0"></a>
+
+Gets the value of DeserterId_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetDeserterId`](#structFRHAPI__MatchMakingProfile_1ae1a6c0b922014b309fc56a417c49fe84)`(FString & OutValue) const` <a id="structFRHAPI__MatchMakingProfile_1ae1a6c0b922014b309fc56a417c49fe84"></a>
+
+Fills OutValue with the value of DeserterId_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline FString * `[`GetDeserterIdOrNull`](#structFRHAPI__MatchMakingProfile_1aaee20117761f6ed53d61680e84a93c23)`()` <a id="structFRHAPI__MatchMakingProfile_1aaee20117761f6ed53d61680e84a93c23"></a>
+
+Returns a pointer to DeserterId_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const FString * `[`GetDeserterIdOrNull`](#structFRHAPI__MatchMakingProfile_1a09245899339c68d275e13c4c7dedea3e)`() const` <a id="structFRHAPI__MatchMakingProfile_1a09245899339c68d275e13c4c7dedea3e"></a>
+
+Returns a pointer to DeserterId_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetDeserterId`](#structFRHAPI__MatchMakingProfile_1abbc1d7137d7d2dc53a6b0e76c56bdefc)`(const FString & NewValue)` <a id="structFRHAPI__MatchMakingProfile_1abbc1d7137d7d2dc53a6b0e76c56bdefc"></a>
+
+Sets the value of DeserterId_Optional and also sets DeserterId_IsSet to true.
+
+#### `public inline void `[`SetDeserterId`](#structFRHAPI__MatchMakingProfile_1a9b3a836f9821f4b884ffab172c5e769a)`(FString && NewValue)` <a id="structFRHAPI__MatchMakingProfile_1a9b3a836f9821f4b884ffab172c5e769a"></a>
+
+Sets the value of DeserterId_Optional and also sets DeserterId_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearDeserterId`](#structFRHAPI__MatchMakingProfile_1a7aeaae90106e6c977fb15571ddc71aac)`()` <a id="structFRHAPI__MatchMakingProfile_1a7aeaae90106e6c977fb15571ddc71aac"></a>
+
+Clears the value of DeserterId_Optional and sets DeserterId_IsSet to false.
 
 #### `public inline TMap< FString, FString > & `[`GetLegacyConfig`](#structFRHAPI__MatchMakingProfile_1a17276781f19ea4550740fbe935f8581a)`()` <a id="structFRHAPI__MatchMakingProfile_1a17276781f19ea4550740fbe935f8581a"></a>
 

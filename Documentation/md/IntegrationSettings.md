@@ -129,6 +129,8 @@ Main settings for the Integration.
 `public int32 `[`GetMapGameInfoPriority`](#classURH__IntegrationSettings_1a8ac2b60ca262eb1fbf75a5ffd309d39d) | Sets the request priority of Get Map Game Info calls, lower number is higher priority.
 `public int32 `[`RankingGetPriority`](#classURH__IntegrationSettings_1a9991ff7aba2e69e137d1665e40a45bd7) | Sets the request priority of Get Rank calls, lower number is higher priority.
 `public int32 `[`RankingUpdatePriority`](#classURH__IntegrationSettings_1ab2b4525c715fdce6b9ee3b8f5ab98439) | Sets the request priority of Update Rank calls, lower number is higher priority.
+`public int32 `[`DeserterGetPriority`](#classURH__IntegrationSettings_1a9a3b8ed4f9951ae31f02882132c101fa) | Sets the request priority of Get Deserter calls, lower number is higher priority.
+`public int32 `[`DeserterSetPriority`](#classURH__IntegrationSettings_1abd3a7c52e2cc34181cfac28c18affbe1) | Sets the request priority of Set Deserter calls, lower number is higher priority.
 `public int32 `[`SessionPollPriority`](#classURH__IntegrationSettings_1aa1c2aa3d6f602b685b21eaefc0ddc962) | Sets the request priority of Session Polling calls, lower number is higher priority.
 `public int32 `[`SessionJoinPriority`](#classURH__IntegrationSettings_1aa7578d63de36b65bf984e6811a05c856) | Sets the request priority of Session Joining calls, lower number is higher priority.
 `public int32 `[`SessionLeavePriority`](#classURH__IntegrationSettings_1a9defab236e36fba1c40113449827b6ae) | Sets the request priority of Session Leave calls, lower number is higher priority.
@@ -614,6 +616,14 @@ Sets the request priority of Get Rank calls, lower number is higher priority.
 #### `public int32 `[`RankingUpdatePriority`](#classURH__IntegrationSettings_1ab2b4525c715fdce6b9ee3b8f5ab98439) <a id="classURH__IntegrationSettings_1ab2b4525c715fdce6b9ee3b8f5ab98439"></a>
 
 Sets the request priority of Update Rank calls, lower number is higher priority.
+
+#### `public int32 `[`DeserterGetPriority`](#classURH__IntegrationSettings_1a9a3b8ed4f9951ae31f02882132c101fa) <a id="classURH__IntegrationSettings_1a9a3b8ed4f9951ae31f02882132c101fa"></a>
+
+Sets the request priority of Get Deserter calls, lower number is higher priority.
+
+#### `public int32 `[`DeserterSetPriority`](#classURH__IntegrationSettings_1abd3a7c52e2cc34181cfac28c18affbe1) <a id="classURH__IntegrationSettings_1abd3a7c52e2cc34181cfac28c18affbe1"></a>
+
+Sets the request priority of Set Deserter calls, lower number is higher priority.
 
 #### `public int32 `[`SessionPollPriority`](#classURH__IntegrationSettings_1aa1c2aa3d6f602b685b21eaefc0ddc962) <a id="classURH__IntegrationSettings_1aa1c2aa3d6f602b685b21eaefc0ddc962"></a>
 

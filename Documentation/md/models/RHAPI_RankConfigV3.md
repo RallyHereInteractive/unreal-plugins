@@ -27,14 +27,14 @@ Configuration about a specific rank type.
 `public bool `[`CustomData_IsSet`](#structFRHAPI__RankConfigV3_1ad1f1affa4a9c132c39471043e0edaee4) | true if CustomData_Optional has been set to a value
 `public float `[`MaxMu`](#structFRHAPI__RankConfigV3_1ab39a3b0636fb89e7dc904f08b40826bb) | The maximum mu value achievable. Any attempts to update a rank value to be higher than this get clamped to the maximum.
 `public float `[`MinMu`](#structFRHAPI__RankConfigV3_1a40fff11b7e169f4a8c290a99a7e852d7) | The minimum mu value achievable. Any attempts to update a rank value to be lower than this get clamped to the minimum.
-`public float `[`MinSigma`](#structFRHAPI__RankConfigV3_1ac24948615c0a7bc3205c7d81dfe45cf2) | The minimum sigma allowed. Any attempts to update variance to be lower than this get clamped to the minimum.
-`public float `[`Beta_Optional`](#structFRHAPI__RankConfigV3_1a93bcf1ff03c0eaac0a32ddb3e94326ae) | The distance between skill ranks that yields ~76% chance of winning. Recommended value is half the default variance.
+`public float `[`MinSigma`](#structFRHAPI__RankConfigV3_1ac24948615c0a7bc3205c7d81dfe45cf2) | The minimum sigma allowed. Any attempts to update sigma to be lower than this get clamped to the minimum.
+`public float `[`Beta_Optional`](#structFRHAPI__RankConfigV3_1a93bcf1ff03c0eaac0a32ddb3e94326ae) | The distance between skill ranks that yields ~76% chance of winning. Recommended value is half the default sigma.
 `public bool `[`Beta_IsSet`](#structFRHAPI__RankConfigV3_1af4bdc9f9516b7c8566b675c8d5653257) | true if Beta_Optional has been set to a value
 `public float `[`DefaultMu`](#structFRHAPI__RankConfigV3_1ab4a2273be95667842eea6608838866fc) | The default mu value for this rank id. Will be used when players do not have any rank history.
 `public float `[`DefaultSigma`](#structFRHAPI__RankConfigV3_1a03a5f96648f55217d425ba494bab2b6f) | The default sigma for this rank id. Will be used when players do not have any rank history.
 `public float `[`DrawProbability_Optional`](#structFRHAPI__RankConfigV3_1a24338a8f07d496213e35fb6e454f9004) | The percent probability of a draw occuring in the game. Must be in [0, 1)
 `public bool `[`DrawProbability_IsSet`](#structFRHAPI__RankConfigV3_1af9c5128079cb10e2661a4c68f86ea10c) | true if DrawProbability_Optional has been set to a value
-`public float `[`Tau_Optional`](#structFRHAPI__RankConfigV3_1aefd17a64ac7443e571088de4d3306378) | Factor that determines how quickly a player's variance is adjusted. A larger tau will result in more volatile in ranks. Recommended value is is (default_sigma * .01)
+`public float `[`Tau_Optional`](#structFRHAPI__RankConfigV3_1aefd17a64ac7443e571088de4d3306378) | Factor that determines how quickly a player's sigma is adjusted. A larger tau will result in more volatile in ranks. Recommended value is is (default_sigma * .01)
 `public bool `[`Tau_IsSet`](#structFRHAPI__RankConfigV3_1ac117cbd11c23707ec49ee99b7ef0808a) | true if Tau_Optional has been set to a value
 `public FString `[`RankId`](#structFRHAPI__RankConfigV3_1a88c7b8dd55eb3aee4ea7697c3e904345) | ID for this rank type.
 `public virtual bool `[`FromJson`](#structFRHAPI__RankConfigV3_1ae7f09019f2af28bb98d8c792d4283f19)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
@@ -154,11 +154,11 @@ The minimum mu value achievable. Any attempts to update a rank value to be lower
 
 #### `public float `[`MinSigma`](#structFRHAPI__RankConfigV3_1ac24948615c0a7bc3205c7d81dfe45cf2) <a id="structFRHAPI__RankConfigV3_1ac24948615c0a7bc3205c7d81dfe45cf2"></a>
 
-The minimum sigma allowed. Any attempts to update variance to be lower than this get clamped to the minimum.
+The minimum sigma allowed. Any attempts to update sigma to be lower than this get clamped to the minimum.
 
 #### `public float `[`Beta_Optional`](#structFRHAPI__RankConfigV3_1a93bcf1ff03c0eaac0a32ddb3e94326ae) <a id="structFRHAPI__RankConfigV3_1a93bcf1ff03c0eaac0a32ddb3e94326ae"></a>
 
-The distance between skill ranks that yields ~76% chance of winning. Recommended value is half the default variance.
+The distance between skill ranks that yields ~76% chance of winning. Recommended value is half the default sigma.
 
 #### `public bool `[`Beta_IsSet`](#structFRHAPI__RankConfigV3_1af4bdc9f9516b7c8566b675c8d5653257) <a id="structFRHAPI__RankConfigV3_1af4bdc9f9516b7c8566b675c8d5653257"></a>
 
@@ -182,7 +182,7 @@ true if DrawProbability_Optional has been set to a value
 
 #### `public float `[`Tau_Optional`](#structFRHAPI__RankConfigV3_1aefd17a64ac7443e571088de4d3306378) <a id="structFRHAPI__RankConfigV3_1aefd17a64ac7443e571088de4d3306378"></a>
 
-Factor that determines how quickly a player's variance is adjusted. A larger tau will result in more volatile in ranks. Recommended value is is (default_sigma * .01)
+Factor that determines how quickly a player's sigma is adjusted. A larger tau will result in more volatile in ranks. Recommended value is is (default_sigma * .01)
 
 #### `public bool `[`Tau_IsSet`](#structFRHAPI__RankConfigV3_1ac117cbd11c23707ec49ee99b7ef0808a) <a id="structFRHAPI__RankConfigV3_1ac117cbd11c23707ec49ee99b7ef0808a"></a>
 
