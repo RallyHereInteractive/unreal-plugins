@@ -118,6 +118,8 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 	GetMapGameInfoPriority = 1000000;
 	RankingGetPriority = 1000000;
 	RankingUpdatePriority = 1000000;
+	DeserterGetPriority = 1000000;
+	DeserterSetPriority = 1000000;
 	SessionPollPriority = 700000;
 	SessionJoinPriority = 700000;
 	SessionLeavePriority = 700000;

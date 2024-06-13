@@ -12,6 +12,7 @@
 #include "RH_Common.h"
 
 #define RH_STRINGENTRY_GUIDSIZE 64
+static int32 GuidFieldWidth = 300;
 
 #define RH_DefaultTreeFlags (ImGuiTreeNodeFlags_Framed)
 #define RH_DefaultTreeFlagsDefaultOpen (ImGuiTreeNodeFlags_Framed | ImGuiTreeNodeFlags_DefaultOpen)

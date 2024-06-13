@@ -72,10 +72,11 @@ protected:
 	void ImGuiDisplayLocalPlayerSessions(URH_GameInstanceSubsystem* pGISubsystem);
 	void ImGuiDisplayDedicatedServerSessions(URH_GameInstanceSubsystem* pGISubsystem);
 	void ImGuiDisplayPlayerSessions(URH_GameInstanceSubsystem* pGISubsystem);
+	void ImGuiDisplayPlayerDeserter(URH_GameInstanceSubsystem* pGISubsystem);
 	void ImGuiDisplaySessionBrowser(URH_GameInstanceSubsystem* pGISubsystem);
 	
 	// helpers used for multiple session config tabs
-	void ImGuiDisplayQueue(const FRHAPI_QueueConfigV2& Queue, URH_LocalPlayerSessionSubsystem* pLPSessionSubsystem, class URH_OnlineSession* pSelectedSession, class URH_MatchmakingBrowserCache* pBrowerCache);
+	void ImGuiDisplayQueue(const FRHAPI_QueueConfigV2& Queue, class URH_OnlineSession* pSelectedSession, class URH_MatchmakingBrowserCache* pBrowerCache);
 	void ImGuiDisplayMatchmakingTemplate(const FRHAPI_MatchMakingTemplateV2& Template, class URH_MatchmakingBrowserCache* pBrowerCache);
 	void ImGuiDisplayMatchmakingProfile(const FRHAPI_MatchMakingProfileV2& Profile, class URH_MatchmakingBrowserCache* pBrowerCache);
 	void ImGuiDisplayInstanceRequestTemplate(const FRHAPI_InstanceRequestTemplate& RequestTemplate, class URH_MatchmakingBrowserCache* pBrowerCache);
@@ -93,6 +94,13 @@ protected:
 	FString GetPlayerSessionsResult;
 	void HandleGetPlayerSessionsDetails(bool bSuccess, const FRH_SessionBrowserSearchResult& Result);
 	FString GetPlayerSessionsDetailsResult;
+
+	void HandleGetPlayerDeserter(bool bSuccess, class URH_PlayerInfoSubobject* SessionsData, FGuid PlayerUuid);
+	FString GetPlayerDeserterResult;
+	FString SetDeserterId;
+	int32 SetDeserterTime[3] = {0,0,0};
+	int32 SetDeserterCount = 0;
+	FImGuiCustomDataStager SetDeserterCustomDataStager;
 
 	FImGuiCustomDataStager InstanceStartupCustomDataStager;
 	FImGuiCustomDataStager InstanceCustomDataStager;

@@ -171,9 +171,8 @@ void FRHDTW_Match::DoViewMatch()
 		ImGui::Text("No Match Subsystem Found");
 		return;
 	}
-
-	static int32 GuidFieldLength = 300;
-	ImGui::SetNextItemWidth(GuidFieldLength);
+	
+	ImGui::SetNextItemWidth(GuidFieldWidth);
 	ImGui::InputText("Match Id", &SearchMatchId);
 
 	const auto MatchId = SearchMatchId;
@@ -243,25 +242,24 @@ void FRHDTW_Match::DoSearchMatches()
 	}
 
 	ImGui::Text("Search Matches (Blank/0 uses default behavior)");
-
-	static int32 GuidFieldLength = 300;
-	ImGui::SetNextItemWidth(GuidFieldLength);
+	
+	ImGui::SetNextItemWidth(GuidFieldWidth);
 	ImGui::InputText("SessionId", &SearchParams.SessionId);
-	ImGui::SetNextItemWidth(GuidFieldLength);
+	ImGui::SetNextItemWidth(GuidFieldWidth);
 	ImGui::InputText("InstanceId", &SearchParams.InstanceId);
-	ImGui::SetNextItemWidth(GuidFieldLength);
+	ImGui::SetNextItemWidth(GuidFieldWidth);
 	ImGui::InputText("AllocationId", &SearchParams.AllocationId);
 	
-	ImGui::SetNextItemWidth(GuidFieldLength);
+	ImGui::SetNextItemWidth(GuidFieldWidth);
 	ImGui::InputText("PlayerUuid", &SearchParams.PlayerUuid);
-	ImGui::SetNextItemWidth(GuidFieldLength);
+	ImGui::SetNextItemWidth(GuidFieldWidth);
 	ImGui::InputText("HostPlayerUuid", &SearchParams.HostPlayerUuid);
-	ImGui::SetNextItemWidth(GuidFieldLength);
+	ImGui::SetNextItemWidth(GuidFieldWidth);
 	ImGui::InputText("RegionId", &SearchParams.RegionId);
 
-	ImGui::SetNextItemWidth(GuidFieldLength);
+	ImGui::SetNextItemWidth(GuidFieldWidth);
 	ImGui::InputInt("Page Size", &SearchParams.PageSize, 5, 10);
-	ImGui::SetNextItemWidth(GuidFieldLength);
+	ImGui::SetNextItemWidth(GuidFieldWidth);
 	ImGui::InputText("Cursor", &SearchParams.Cursor);
 
 	ImGui::Checkbox("Include Segments", &SearchParams.bIncludeSegments);

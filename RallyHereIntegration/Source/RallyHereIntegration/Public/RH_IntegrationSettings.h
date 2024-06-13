@@ -444,6 +444,12 @@ public:
 	/** @brief Sets the request priority of Update Rank calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Rank API Priority", AdvancedDisplay)
 	int32 RankingUpdatePriority;
+	/** @brief Sets the request priority of Get Deserter calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Deserter API Priority", AdvancedDisplay)
+	int32 DeserterGetPriority;
+	/** @brief Sets the request priority of Set Deserter  calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Deserter API Priority", AdvancedDisplay)
+	int32 DeserterSetPriority;
 	/** @brief Sets the request priority of Session Polling calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Session API Priority", AdvancedDisplay)
 	int32 SessionPollPriority;

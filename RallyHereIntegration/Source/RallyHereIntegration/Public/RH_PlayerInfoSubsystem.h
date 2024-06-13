@@ -352,6 +352,89 @@ protected:
 	}
 };
 
+
+/**
+ * @brief Player Deserters class used to store player deserter information
+ */
+UCLASS(Config = RallyHereIntegration, DefaultConfig)
+class RALLYHEREINTEGRATION_API URH_PlayerDeserter : public URH_PlayerInfoSubobject
+{
+	GENERATED_UCLASS_BODY()
+
+public:
+	typedef RallyHereAPI::Traits_GetAllPlayerDeserters GetDeserterAllType;
+	typedef RallyHereAPI::Traits_PutPlayerDeserter SetDeserterType;
+	typedef RallyHereAPI::Traits_DeletePlayerDeserter ClearDeserterType;
+
+	/** 
+	* @brief The deserter status for the player by DeserterId
+	*/
+	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player  Deserter")
+	TMap<FString, FRHAPI_PlayerDeserterStatus> DeserterStatus;
+	
+	/**
+	 * @brief Updates the deserter status for the player.
+	 * @param [in] DeserterId The deserter id to update for the player.
+	 * @param [in] NewDeserterStatus The new deserter status for the player.
+	 * @param [in] Delegate The callback delegate for the request.
+	 */
+	virtual void SetDeserterStatus(const FString& DeserterId, const FRHAPI_DeserterUpdateRequest& NewDeserterStatus, const FRH_OnRequestPlayerInfoSubobjectDelegateBlock& Delegate = FRH_OnRequestPlayerInfoSubobjectDelegateBlock());
+	/**
+	 * @private
+	 * @brief Updates the deserter status for the player.
+	 * @param [in] DeserterId The deserter id to update for the player.
+	 * @param [in] NewDeserterStatus The new deserter status for the player.
+	 * @param [in] Delegate The callback delegate for the request.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Deserter", meta = (DisplayName = "Set Deserter Status", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_SetDeserterStatus(const FString& DeserterId, const FRHAPI_DeserterUpdateRequest& NewDeserterStatus, const FRH_OnRequestPlayerInfoSubobjectDynamicDelegate& Delegate) { SetDeserterStatus(DeserterId, NewDeserterStatus, Delegate); }
+
+	/**
+	 * @brief Clears the deserter state for the player for the given id
+	 * @param [in] DeserterId The deserter id to update for the player.
+	 * @param [in] Delegate The callback delegate for the request.
+	 */
+	virtual void ClearDeserterStatus(const FString& DeserterId, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock());
+	/**
+	 * @private
+	 * @brief Clears the deserter state for the player for the given id
+	 * @param [in] DeserterId The deserter id to update for the player.
+	 * @param [in] Delegate The callback delegate for the request.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Deserter", meta = (DisplayName = "Clear Deserter Status", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_ClearDeserterStatus(const FString& DeserterId, const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate) { ClearDeserterStatus(DeserterId, Delegate); }
+
+	
+protected:
+	/**
+	 * @brief Starts a poll of the players deserter status.
+	 * @param Delegate Callback delegate for the poll.
+	 */
+	virtual void Poll(const FRH_PollCompleteFunc& Delegate) override;
+	/**
+	 * @brief Stores the response data from an API request.
+	 * @param Other The response data to store.
+	 */
+	virtual void Update(const GetDeserterAllType::Response& Other)
+	{
+		UpdateBase(Other);
+
+		/*
+		if (Other.ETag.IsSet())
+		{
+			ETag = Other.ETag.GetValue();
+		}
+		*/
+		
+		DeserterStatus.Empty(Other.Content.DeserterStatuses.Num());
+		for (const auto& Deserter : Other.Content.DeserterStatuses)
+		{
+			DeserterStatus.Add(Deserter.GetDeserterId(), Deserter);
+		}
+	}
+};
+
+
 /**
  * @brief Player Matches class used to store player match history information
  */
@@ -676,6 +759,13 @@ public:
 	FORCEINLINE URH_PlayerSessions* GetSessions() const { return PlayerSessions;}
 
 	/**
+	* @brief Gets The players deserter class.
+	* @return The players deserter class.
+	*/
+	UFUNCTION(BlueprintPure, Category = "Player Info Subsystem | Player Info")
+	FORCEINLINE URH_PlayerDeserter* GetDeserter() const { return PlayerDeserter;}
+	
+	/**
 	* @brief Gets The players matches class.
 	* @return The players matches class.
 	*/
@@ -932,6 +1022,11 @@ protected:
 	 */
 	UPROPERTY(BlueprintGetter = GetSessions, Category = "Sessions")
 	URH_PlayerSessions* PlayerSessions;
+	/**
+	 * @brief The players Deserter Information.
+	 */
+	UPROPERTY(BlueprintGetter = GetDeserter, Category = "Sessions")
+	URH_PlayerDeserter* PlayerDeserter;
 	/**
 	 * @brief The players Matches Information.
 	 */

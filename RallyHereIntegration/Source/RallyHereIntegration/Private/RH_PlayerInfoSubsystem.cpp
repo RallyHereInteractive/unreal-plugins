@@ -226,6 +226,8 @@ URH_PlayerInfo::URH_PlayerInfo(const FObjectInitializer& ObjectInitializer) : Su
 
 	PlayerSessions = CreateDefaultSubobject<URH_PlayerSessions>(TEXT("PlayerSessions"));
 
+	PlayerDeserter = CreateDefaultSubobject<URH_PlayerDeserter>(TEXT("PlayerDeserter"));
+
 	PlayerMatches = CreateDefaultSubobject<URH_PlayerMatches>(TEXT("PlayerMatches"));
 
 	PlayerReports = CreateDefaultSubobject<URH_PlayerReports>(TEXT("PlayerReports"));
@@ -253,6 +255,10 @@ void URH_PlayerInfo::InitializeForPlayer(const FGuid& Value)
 	if (PlayerSessions != nullptr)
 	{
 		PlayerSessions->PlayerUuid = Value;
+	}
+	if (PlayerDeserter != nullptr)
+	{
+		PlayerDeserter->PlayerUuid = Value;
 	}
 	if (PlayerMatches != nullptr)
 	{
@@ -1021,6 +1027,89 @@ void URH_PlayerSessions::Poll(const FRH_PollCompleteFunc& Delegate)
 	);
 
 	Helper->Start(RH_APIs::GetSessionsAPI(), Request);
+}
+
+
+///
+
+URH_PlayerDeserter::URH_PlayerDeserter(const FObjectInitializer& ObjectInitializer)
+	: Super(ObjectInitializer)
+{
+	PollTimerName = FName(TEXT("PlayerDeserter"));
+	PollPriority = GetDefault<URH_IntegrationSettings>()->DeserterGetPriority;
+}
+
+void URH_PlayerDeserter::Poll(const FRH_PollCompleteFunc& Delegate)
+{
+	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	GetDeserterAllType::Request Request;
+
+	Request.PlayerUuid = GetPlayerInfo()->GetRHPlayerUuid();
+	Request.AuthContext = GetPlayerInfo()->GetAuthContext();
+	//Request.IfNoneMatch = ETag;
+
+	const auto Helper = MakeShared<FRH_SimpleQueryHelper<GetDeserterAllType>>(
+		GetDeserterAllType::Delegate::CreateUObject(this, &URH_PlayerDeserter::Update),
+		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+			{
+				PollComplete(bSuccess, Delegate);
+			}),
+		PollPriority
+	);
+
+	Helper->Start(RH_APIs::GetDeserterAPI(), Request);
+}
+
+void URH_PlayerDeserter::SetDeserterStatus(const FString& DeserterId, const FRHAPI_DeserterUpdateRequest& NewDeserterStatus, const FRH_OnRequestPlayerInfoSubobjectDelegateBlock& Delegate)
+{
+	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	SetDeserterType::Request Request;
+
+	Request.PlayerUuid = GetPlayerInfo()->GetRHPlayerUuid();
+	Request.AuthContext = GetPlayerInfo()->GetAuthContext();
+	Request.DeserterId = DeserterId;
+	Request.DeserterUpdateRequest = NewDeserterStatus;
+	//Request.IfNoneMatch = ETag;
+
+	const auto Helper = MakeShared<FRH_SimpleQueryHelper<SetDeserterType>>(
+		SetDeserterType::Delegate::CreateWeakLambda(this, [this, Delegate](const SetDeserterType::Response& Response)
+			{
+				DeserterStatus.Add(Response.Content.DeserterId, Response.Content);
+			}),
+		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+			{
+				Delegate.ExecuteIfBound(bSuccess, this);
+			}),
+		GetDefault<URH_IntegrationSettings>()->DeserterSetPriority
+	);
+
+	Helper->Start(RH_APIs::GetDeserterAPI(), Request);
+}
+
+void URH_PlayerDeserter::ClearDeserterStatus(const FString& DeserterId, const FRH_GenericSuccessWithErrorBlock& Delegate)
+{
+	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	ClearDeserterType::Request Request;
+
+	Request.PlayerUuid = GetPlayerInfo()->GetRHPlayerUuid();
+	Request.AuthContext = GetPlayerInfo()->GetAuthContext();
+	Request.DeserterId = DeserterId;
+	
+	//Request.IfNoneMatch = ETag;
+
+	const auto Helper = MakeShared<FRH_SimpleQueryHelper<ClearDeserterType>>(
+		ClearDeserterType::Delegate::CreateWeakLambda(this, [this, DeserterId, Delegate](const ClearDeserterType::Response& Response)
+			{
+				DeserterStatus.Remove(DeserterId);
+			}),
+		Delegate,
+		GetDefault<URH_IntegrationSettings>()->DeserterSetPriority
+	);
+
+	Helper->Start(RH_APIs::GetDeserterAPI(), Request);
 }
 
 ///
