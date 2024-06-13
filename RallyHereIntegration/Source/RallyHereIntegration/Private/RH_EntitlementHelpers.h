@@ -62,7 +62,10 @@ public:
 			bIsOverride = false;
 			Platform = RH_GetPlatformFromOSSName(OSS->GetSubsystemName());
 		}
-		AuthContext = EntitlementSubsystem->GetAuthContext();
+		if (EntitlementSubsystem.IsValid())
+		{
+			AuthContext = EntitlementSubsystem->GetAuthContext();
+		}
 	}
 	/**
 	 * @brief Start the Entitlement processing.
@@ -70,6 +73,11 @@ public:
 	virtual void Start()
 	{
 		Started();
+		if (!EntitlementSubsystem.IsValid())
+		{
+			Failed(TEXT("No Entitlement Subsystem"));
+			return;
+		}
 		if (!AuthContext.IsValid())
 		{
 			Failed(TEXT("No AuthContext provided"));
@@ -268,6 +276,12 @@ protected:
 	{
 		UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] Submitting Process Platform Entitlements to RallyHere"), *GetName());
 
+		if (!EntitlementSubsystem.IsValid())
+		{
+			Failed(TEXT("No Entitlement Subsystem"));
+			return;
+		}
+
 		for (FPurchaseReceipt receipt: Receipts)
 		{
 			ProcessEntitlementResult.TransactionId = receipt.TransactionId;
@@ -371,7 +385,7 @@ protected:
 	 */
 	void ProcessPlatformInventoryComplete(const RallyHereAPI::FResponse_ProcessPlatformEntitlementsByPlayerUuid& Resp)
 	{
-		if (Resp.IsSuccessful())
+		if (Resp.IsSuccessful() && EntitlementSubsystem.IsValid())
 		{
 			UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] Successfully Submitted Process Platform Entitlements to RallyHere with returned RequestId: %s"), *GetName(), *Resp.Content.GetRequestId());
 
@@ -390,7 +404,10 @@ protected:
 		else
 		{
 			ProcessEntitlementResult.SetStatus("FAILED");
-			EntitlementSubsystem->GetEntitlementResults()->Emplace(TaskId, ProcessEntitlementResult);
+			if (EntitlementSubsystem.IsValid())
+			{
+				EntitlementSubsystem->GetEntitlementResults()->Emplace(TaskId, ProcessEntitlementResult);
+			}
 			FRH_ErrorInfo ErrorInfo(Resp);
 			Failed(FString::Printf(TEXT("RallyHere Process Platform Entitlement Request failed with %s"), *ErrorInfo.ResponseContent));
 		}
@@ -443,7 +460,11 @@ protected:
 			ProcessEntitlementResult.SetStatus("POLLING");
 			Delegate.ExecuteIfBound(true, true);
 		}
-		EntitlementSubsystem->GetEntitlementResults()->Emplace(TaskId, ProcessEntitlementResult);
+
+		if (EntitlementSubsystem.IsValid())
+		{
+			EntitlementSubsystem->GetEntitlementResults()->Emplace(TaskId, ProcessEntitlementResult);
+		}
 	}
 
 	/**
