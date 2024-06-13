@@ -116,9 +116,9 @@ void FAuthContext::SetClientSecret(const FString& InClientSecret)
     UpdateBasicAuthValue();
 }
 
-FString FAuthContext::GetClientId() const
+TOptional<FString> FAuthContext::GetClientId() const
 {
-    return ClientId.IsSet() ? ClientId.GetValue() : "";
+    return ClientId;
 }
     
 bool FAuthContext::AddClientCredentials(const FHttpRequestRef& HttpRequest) const

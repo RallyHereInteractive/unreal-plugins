@@ -61,7 +61,7 @@ public:
     bool AddBearerToken(const FHttpRequestRef& HttpRequest) const;
     bool AddBearerToken(const FHttpRequestPtr& HttpRequest) const;
 
-    FString GetClientId() const;
+    TOptional<FString> GetClientId() const;
 private:
     TOptional<FString> ClientId;
     TOptional<FString> ClientSecret;

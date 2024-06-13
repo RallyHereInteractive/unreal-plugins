@@ -44,16 +44,19 @@ bool SRallyHereEditorLoginWidget::HandleToken(const FString& Url, const FWebNavi
 		const FRH_DevSandboxConfiguration* SandboxConfig = Settings->GetSandboxConfiguration(FRallyHereEditorModule::Get().GetSandboxId());
 		const FDevAuthContextPtr AuthContext = FModuleManager::Get().LoadModuleChecked<FRallyHereEditorModule>(FRallyHereEditorModule::GetModuleName()).GetAuthContext();
 		
-		const FString ClientId = AuthContext->GetClientId();
-		const FString InPayload = FString::Printf(TEXT("grant_type=authorization_code&client_id=%s&code=%s&redirect_uri=%s&audience=%s"), *ClientId, *LoginCode, *Settings->InitialLoginURL, *Settings->AuthTokenAudience);
-		
-		TSharedRef<IHttpRequest, ESPMode::ThreadSafe> HttpRequest = FHttpModule::Get().CreateRequest();
-		HttpRequest->SetVerb("POST");
-		HttpRequest->SetURL(SandboxConfig->AuthUrl);
-		HttpRequest->SetHeader(TEXT("content-type"), TEXT("application/x-www-form-urlencoded;charset=UTF-8"));
-		HttpRequest->SetContentAsString(InPayload);
-		HttpRequest->OnProcessRequestComplete().BindRaw(this, &SRallyHereEditorLoginWidget::GetAccessToken);
-		return HttpRequest->ProcessRequest();
+		if(AuthContext->GetClientId().IsSet())
+		{
+			const FString ClientId = AuthContext->GetClientId().GetValue();
+			const FString InPayload = FString::Printf(TEXT("grant_type=authorization_code&client_id=%s&code=%s&redirect_uri=%s&audience=%s"), *ClientId, *LoginCode, *Settings->InitialLoginURL, *Settings->AuthTokenAudience);
+			
+			TSharedRef<IHttpRequest, ESPMode::ThreadSafe> HttpRequest = FHttpModule::Get().CreateRequest();
+			HttpRequest->SetVerb("POST");
+			HttpRequest->SetURL(SandboxConfig->AuthUrl);
+			HttpRequest->SetHeader(TEXT("content-type"), TEXT("application/x-www-form-urlencoded;charset=UTF-8"));
+			HttpRequest->SetContentAsString(InPayload);
+			HttpRequest->OnProcessRequestComplete().BindRaw(this, &SRallyHereEditorLoginWidget::GetAccessToken);
+			return HttpRequest->ProcessRequest();
+		}
 	}
 	return false;
 }
