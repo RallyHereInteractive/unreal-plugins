@@ -12,6 +12,7 @@
 #include "RH_Common.h"
 #include "RH_Integration.h"
 #include "TimerManager.h"
+#include "Async/AsyncWork.h"
 
 #include "RH_AutomationTests.h"
 #include "RH_IntegrationSettings.h"
