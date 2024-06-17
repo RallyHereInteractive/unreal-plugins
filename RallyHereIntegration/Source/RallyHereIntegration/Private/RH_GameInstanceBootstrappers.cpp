@@ -1107,7 +1107,7 @@ void URH_GameInstanceServerBootstrapper::OnActiveSessionChanged(URH_JoinedSessio
 	}
 	else // RHSession != nullptr && RHSession->IsActive(), which means we just activated the locally hosted session
 	{
-		ensure(RHSession != nullptr)
+		ensure(RHSession != nullptr);
 		ensure(OldSession == nullptr);
 		ensure(RHSession == NewSession);
 	}
