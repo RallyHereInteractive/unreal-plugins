@@ -9660,5 +9660,254 @@ FResponse_UpdateSessionPlayerByUuidV2::FResponse_UpdateSessionPlayerByUuidV2(FRe
 
 FString Traits_UpdateSessionPlayerByUuidV2::Name = TEXT("UpdateSessionPlayerByUuidV2");
 
+FHttpRequestPtr FSessionsAPI::UpdateTeamById(const FRequest_UpdateTeamById& Request, const FDelegate_UpdateTeamById& Delegate /*= FDelegate_UpdateTeamById()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+{
+	if (!IsValid())
+		return nullptr;
+
+	// create the http request and tracking structure
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+	// add headers to tracker
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
+
+	// setup http request from custom request object
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
+	
+	// allow a delegate to modify the http request (such as binding custom handling delegates)
+	Request.OnModifyRequest().Broadcast(Request, RequestData->HttpRequest);
+	
+	// update request metadata flags just before we store it in the tracking object
+	FRequestMetadata Metadata = Request.GetRequestMetadata();
+	Request.SetMetadataFlags(Metadata);
+
+	// store metadata in tracking object (last place used by request)
+	RequestData->SetMetadata(Metadata);
+
+	// bind response handler
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnUpdateTeamByIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
+
+	// submit request to http system
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
+}
+
+void FSessionsAPI::OnUpdateTeamByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateTeamById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+	FHttpRequestCompleteDelegate ResponseDelegate;
+
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindSP(this, &FSessionsAPI::OnUpdateTeamByIdResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
+
+	FResponse_UpdateTeamById Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
+
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
+}
+
+FRequest_UpdateTeamById::FRequest_UpdateTeamById()
+	: FRequest()
+{
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
+}
+
+FName FRequest_UpdateTeamById::GetSimplifiedPath() const
+{
+	static FName Path = FName(TEXT("/session/v1/session/{session_id}/team/{team_id}"));
+	return Path;
+}
+
+FName FRequest_UpdateTeamById::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("PATCH %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
+}
+
+FString FRequest_UpdateTeamById::ComputePath() const
+{
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("team_id"), ToStringFormatArg(TeamId) },
+		{ TEXT("session_id"), ToStringFormatArg(SessionId) }
+	};
+
+	FString Path = FString::Format(TEXT("/session/v1/session/{session_id}/team/{team_id}"), PathParams);
+
+	TArray<FString> QueryParams;
+	if(RefreshTtl.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("refresh_ttl=")) + ToUrlString(RefreshTtl.GetValue()));
+	}
+	Path += TCHAR('?');
+	Path += FString::Join(QueryParams, TEXT("&"));
+
+	return Path;
+}
+
+bool FRequest_UpdateTeamById::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+	static const TArray<FString> Consumes = { TEXT("application/json") };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
+
+	HttpRequest->SetVerb(TEXT("PATCH"));
+
+	if (!AuthContext && !bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdateTeamById - missing auth context"));
+		return false;
+	}
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdateTeamById - failed to add bearer token"));
+		return false;
+	}
+
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+		// Body parameters
+		FString JsonBody;
+		TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
+
+		WriteJsonValue(Writer, TeamUpdate);
+		Writer->Close();
+
+		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
+		HttpRequest->SetContentAsString(JsonBody);
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdateTeamById - Body parameter (FRHAPI_TeamUpdate) was ignored, not supported in multipart form"));
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdateTeamById - Body parameter (FRHAPI_TeamUpdate) was ignored, not supported in urlencoded requests"));
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdateTeamById - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
+
+	return true;
+}
+
+FString FResponse_UpdateTeamById::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
+{
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		return TEXT("Successful Response");
+	case 403:
+		return TEXT("Forbidden");
+	case 422:
+		return TEXT("Validation Error");
+	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
+}
+
+bool FResponse_UpdateTeamById::ParseHeaders()
+{
+	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
+	TMap<FString, FString> HeadersMap;
+	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	{
+		int32 index;
+		if (HeaderStr.FindChar(TEXT(':'), index))
+		{
+			// if there is a space after the colon, skip it
+			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
+		}
+	}
+	bool bParsedAllRequiredHeaders = true;
+	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+	{
+		ETag = *Val;
+	}
+	return bParsedAllRequiredHeaders;
+}
+
+bool FResponse_UpdateTeamById::TryGetContentFor200(FRHAPI_SessionTeam& OutContent) const
+{
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_UpdateTeamById::GetHeader200_ETag() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FString>(HeaderVal);
+		}
+	}
+	return TOptional<FString>{};
+}
+
+bool FResponse_UpdateTeamById::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
+}
+
+bool FResponse_UpdateTeamById::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
+}
+
+bool FResponse_UpdateTeamById::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+	return TryGetJsonValue(JsonValue, Content);
+}
+
+FResponse_UpdateTeamById::FResponse_UpdateTeamById(FRequestMetadata InRequestMetadata) :
+	FResponse(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_UpdateTeamById::Name = TEXT("UpdateTeamById");
+
 
 }

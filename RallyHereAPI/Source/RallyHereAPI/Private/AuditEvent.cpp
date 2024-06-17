@@ -181,6 +181,11 @@ void FRHAPI_AuditEvent::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 		Writer->WriteIdentifierPrefix(TEXT("queued_session_id"));
 		RallyHereAPI::WriteJsonValue(Writer, QueuedSessionId_Optional);
 	}
+	if (MatchId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("match_id"));
+		RallyHereAPI::WriteJsonValue(Writer, MatchId_Optional);
+	}
 	if (RequestingUserUuid_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("requesting_user_uuid"));
@@ -388,6 +393,12 @@ bool FRHAPI_AuditEvent::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	{
 		QueuedSessionId_IsSet = TryGetJsonValue(JsonQueuedSessionIdField, QueuedSessionId_Optional);
 		ParseSuccess &= QueuedSessionId_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonMatchIdField = (*Object)->TryGetField(TEXT("match_id"));
+	if (JsonMatchIdField.IsValid() && !JsonMatchIdField->IsNull())
+	{
+		MatchId_IsSet = TryGetJsonValue(JsonMatchIdField, MatchId_Optional);
+		ParseSuccess &= MatchId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonRequestingUserUuidField = (*Object)->TryGetField(TEXT("requesting_user_uuid"));
 	if (JsonRequestingUserUuidField.IsValid() && !JsonRequestingUserUuidField->IsNull())

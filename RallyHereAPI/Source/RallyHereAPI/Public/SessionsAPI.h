@@ -39,9 +39,11 @@
 #include "SessionJoinResponse.h"
 #include "SessionPlayerUpdateRequest.h"
 #include "SessionPlayerUpdateResponse.h"
+#include "SessionTeam.h"
 #include "SessionTemplate.h"
 #include "SessionTemplates.h"
 #include "SessionUpdate.h"
+#include "TeamUpdate.h"
 #include "UpdateBackfillRequest.h"
 
 namespace RallyHereAPI
@@ -136,6 +138,8 @@ struct FRequest_UpdateSessionPlayerByUuid;
 struct FResponse_UpdateSessionPlayerByUuid;
 struct FRequest_UpdateSessionPlayerByUuidV2;
 struct FResponse_UpdateSessionPlayerByUuidV2;
+struct FRequest_UpdateTeamById;
+struct FResponse_UpdateTeamById;
 
 DECLARE_DELEGATE_OneParam(FDelegate_AcknowledgeBackfillRequest, const FResponse_AcknowledgeBackfillRequest&);
 DECLARE_DELEGATE_OneParam(FDelegate_AddPlatformSessionToRallyHereSession, const FResponse_AddPlatformSessionToRallyHereSession&);
@@ -180,6 +184,7 @@ DECLARE_DELEGATE_OneParam(FDelegate_UpdateSessionById, const FResponse_UpdateSes
 DECLARE_DELEGATE_OneParam(FDelegate_UpdateSessionPlayerById, const FResponse_UpdateSessionPlayerById&);
 DECLARE_DELEGATE_OneParam(FDelegate_UpdateSessionPlayerByUuid, const FResponse_UpdateSessionPlayerByUuid&);
 DECLARE_DELEGATE_OneParam(FDelegate_UpdateSessionPlayerByUuidV2, const FResponse_UpdateSessionPlayerByUuidV2&);
+DECLARE_DELEGATE_OneParam(FDelegate_UpdateTeamById, const FResponse_UpdateTeamById&);
 
 class RALLYHEREAPI_API FSessionsAPI : public FAPI
 {
@@ -230,6 +235,7 @@ public:
 	FHttpRequestPtr UpdateSessionPlayerById(const FRequest_UpdateSessionPlayerById& Request, const FDelegate_UpdateSessionPlayerById& Delegate = FDelegate_UpdateSessionPlayerById(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr UpdateSessionPlayerByUuid(const FRequest_UpdateSessionPlayerByUuid& Request, const FDelegate_UpdateSessionPlayerByUuid& Delegate = FDelegate_UpdateSessionPlayerByUuid(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr UpdateSessionPlayerByUuidV2(const FRequest_UpdateSessionPlayerByUuidV2& Request, const FDelegate_UpdateSessionPlayerByUuidV2& Delegate = FDelegate_UpdateSessionPlayerByUuidV2(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr UpdateTeamById(const FRequest_UpdateTeamById& Request, const FDelegate_UpdateTeamById& Delegate = FDelegate_UpdateTeamById(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
 	void OnAcknowledgeBackfillRequestResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AcknowledgeBackfillRequest Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
@@ -275,6 +281,7 @@ private:
 	void OnUpdateSessionPlayerByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateSessionPlayerById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnUpdateSessionPlayerByUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateSessionPlayerByUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnUpdateSessionPlayerByUuidV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateSessionPlayerByUuidV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnUpdateTeamByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateTeamById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
@@ -3058,13 +3065,17 @@ struct RALLYHEREAPI_API Traits_UpdateInstanceInfo
  *
  * Update session info by session id
  * 
- * Required Permissions:
+ * For all sessions:
  * 
- * - For any player (including themselves) any of: `session:*`, `session:update:any`, `session:update:self`
+ * * Required auth permissions are any of: `session:*`, `session:update:any`
  * 
+ * * Required session permissions are None
  * 
+ * For sessions you are actively in:
  * 
- * Required Session Permissions: `SessionPermissions.session_admin` for users who do not have the `session:update:any` auth permission
+ * * Required auth permissions are any of: `session:*`, `session:update:any`, `session:update:self`
+ * 
+ * * Required session permissions are `SessionPermissions.session_admin`
 */
 struct RALLYHEREAPI_API FRequest_UpdateSessionById : public FRequest
 {
@@ -3355,6 +3366,83 @@ struct RALLYHEREAPI_API Traits_UpdateSessionPlayerByUuidV2
 	static FString Name;
 
 	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->UpdateSessionPlayerByUuidV2(InRequest, InDelegate, Priority); }
+};
+
+/* Update Team By Id
+ *
+ * Update specific team info by session and team id
+ * 
+ * For all sessions:
+ * 
+ * * Required auth permissions are any of: `session:*`, `session:update:any`
+ * 
+ * * Required session permissions are None
+ * 
+ * For sessions you are actively in:
+ * 
+ * * Required auth permissions are any of: `session:*`, `session:update:any`, `session:update:self`
+ * 
+ * * Required session permissions are `SessionPermissions.session_admin`
+*/
+struct RALLYHEREAPI_API FRequest_UpdateTeamById : public FRequest
+{
+	FRequest_UpdateTeamById();
+	virtual ~FRequest_UpdateTeamById() = default;
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	FString ComputePath() const override;
+	FName GetSimplifiedPath() const override;
+	FName GetSimplifiedPathWithVerb() const override;
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	TSharedPtr<FAuthContext> AuthContext;
+	int32 TeamId = 0;
+	FString SessionId;
+	FRHAPI_TeamUpdate TeamUpdate;
+	TOptional<bool> RefreshTtl;
+};
+
+struct RALLYHEREAPI_API FResponse_UpdateTeamById : public FResponse
+{
+	FResponse_UpdateTeamById(FRequestMetadata InRequestMetadata);
+	virtual ~FResponse_UpdateTeamById() = default;
+	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	bool ParseHeaders() override;
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+	FRHAPI_SessionTeam Content;
+	// Headers
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> ETag;
+
+	// Manual Response Helpers
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_SessionTeam& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+struct RALLYHEREAPI_API Traits_UpdateTeamById
+{
+	typedef FRequest_UpdateTeamById Request;
+	typedef FResponse_UpdateTeamById Response;
+	typedef FDelegate_UpdateTeamById Delegate;
+	typedef FSessionsAPI API;
+	static FString Name;
+
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->UpdateTeamById(InRequest, InDelegate, Priority); }
 };
 
 
