@@ -17,7 +17,7 @@ namespace RallyHereAPI
 
 FUsersAPI::FUsersAPI() : FAPI()
 {
-	Url = TEXT("http://localhost");
+	Url = TEXT("https://demo.rally-here.io");
 	Name = FName(TEXT("Users"));
 }
 
@@ -708,7 +708,7 @@ FString FRequest_DisableCrossProgression::ComputePath() const
 
 bool FRequest_DisableCrossProgression::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-	static const TArray<FString> Consumes = {  };
+	static const TArray<FString> Consumes = { TEXT("application/json") };
 	//static const TArray<FString> Produces = { TEXT("application/json") };
 
 	HttpRequest->SetVerb(TEXT("POST"));
@@ -726,12 +726,26 @@ bool FRequest_DisableCrossProgression::SetupHttpRequest(const FHttpRequestRef& H
 
 	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
 	{
+		// Body parameters
+		FString JsonBody;
+		TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
+
+		if (PersonOperationRequest.IsSet())
+		{
+			WriteJsonValue(Writer, PersonOperationRequest.GetValue());
+		}
+		Writer->Close();
+
+		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
+		HttpRequest->SetContentAsString(JsonBody);
 	}
 	else if (Consumes.Contains(TEXT("multipart/form-data")))
 	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DisableCrossProgression - Body parameter (FRHAPI_PersonOperationRequest) was ignored, not supported in multipart form"));
 	}
 	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
 	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DisableCrossProgression - Body parameter (FRHAPI_PersonOperationRequest) was ignored, not supported in urlencoded requests"));
 	}
 	else
 	{
@@ -748,14 +762,38 @@ FString FResponse_DisableCrossProgression::GetHttpResponseCodeDescription(EHttpR
 	{
 	case 200:
 		return TEXT("Successful Response");
+	case 400:
+		return TEXT("Request inputs are not valid   Error Codes: - &#x60;account_not_found&#x60; - User Account not found - &#x60;cannot_modify_person&#x60; - You have insufficient permissions to modify this person - &#x60;invalid_token_claims&#x60; - Token has missing/invalid claims.  Are you using a non-user token on a user endpoint? - &#x60;not_cross_progression_player&#x60; - Player is not the cross progression player ");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 422:
+		return TEXT("Validation Error");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
-bool FResponse_DisableCrossProgression::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+bool FResponse_DisableCrossProgression::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
+}
+
+bool FResponse_DisableCrossProgression::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
+}
+
+bool FResponse_DisableCrossProgression::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -767,7 +805,7 @@ bool FResponse_DisableCrossProgression::TryGetContentFor200(FRHAPI_JsonValue& Ou
 
 bool FResponse_DisableCrossProgression::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-	return TryGetJsonValue(JsonValue, Content);
+	return true;
 }
 
 FResponse_DisableCrossProgression::FResponse_DisableCrossProgression(FRequestMetadata InRequestMetadata) :
@@ -875,7 +913,7 @@ FString FRequest_EnableCrossProgression::ComputePath() const
 
 bool FRequest_EnableCrossProgression::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-	static const TArray<FString> Consumes = {  };
+	static const TArray<FString> Consumes = { TEXT("application/json") };
 	//static const TArray<FString> Produces = { TEXT("application/json") };
 
 	HttpRequest->SetVerb(TEXT("POST"));
@@ -893,12 +931,26 @@ bool FRequest_EnableCrossProgression::SetupHttpRequest(const FHttpRequestRef& Ht
 
 	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
 	{
+		// Body parameters
+		FString JsonBody;
+		TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
+
+		if (PlatformUserOperationRequest.IsSet())
+		{
+			WriteJsonValue(Writer, PlatformUserOperationRequest.GetValue());
+		}
+		Writer->Close();
+
+		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
+		HttpRequest->SetContentAsString(JsonBody);
 	}
 	else if (Consumes.Contains(TEXT("multipart/form-data")))
 	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_EnableCrossProgression - Body parameter (FRHAPI_PlatformUserOperationRequest) was ignored, not supported in multipart form"));
 	}
 	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
 	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_EnableCrossProgression - Body parameter (FRHAPI_PlatformUserOperationRequest) was ignored, not supported in urlencoded requests"));
 	}
 	else
 	{
@@ -915,14 +967,38 @@ FString FResponse_EnableCrossProgression::GetHttpResponseCodeDescription(EHttpRe
 	{
 	case 200:
 		return TEXT("Successful Response");
+	case 400:
+		return TEXT("Request inputs are not valid   Error Codes: - &#x60;account_not_found&#x60; - User Account not found - &#x60;already_cross_progression_player&#x60; - Player is already the cross progression player - &#x60;cannot_modify_person&#x60; - You have insufficient permissions to modify this person - &#x60;invalid_token_claims&#x60; - Token has missing/invalid claims.  Are you using a non-user token on a user endpoint? ");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 422:
+		return TEXT("Validation Error");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
-bool FResponse_EnableCrossProgression::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+bool FResponse_EnableCrossProgression::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
+}
+
+bool FResponse_EnableCrossProgression::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
+}
+
+bool FResponse_EnableCrossProgression::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -934,7 +1010,7 @@ bool FResponse_EnableCrossProgression::TryGetContentFor200(FRHAPI_JsonValue& Out
 
 bool FResponse_EnableCrossProgression::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-	return TryGetJsonValue(JsonValue, Content);
+	return true;
 }
 
 FResponse_EnableCrossProgression::FResponse_EnableCrossProgression(FRequestMetadata InRequestMetadata) :
@@ -1339,6 +1415,468 @@ FResponse_GetAllRoles::FResponse_GetAllRoles(FRequestMetadata InRequestMetadata)
 }
 
 FString Traits_GetAllRoles::Name = TEXT("GetAllRoles");
+
+FHttpRequestPtr FUsersAPI::GetLinkHistory(const FRequest_GetLinkHistory& Request, const FDelegate_GetLinkHistory& Delegate /*= FDelegate_GetLinkHistory()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+{
+	if (!IsValid())
+		return nullptr;
+
+	// create the http request and tracking structure
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+	// add headers to tracker
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
+
+	// setup http request from custom request object
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
+	
+	// allow a delegate to modify the http request (such as binding custom handling delegates)
+	Request.OnModifyRequest().Broadcast(Request, RequestData->HttpRequest);
+	
+	// update request metadata flags just before we store it in the tracking object
+	FRequestMetadata Metadata = Request.GetRequestMetadata();
+	Request.SetMetadataFlags(Metadata);
+
+	// store metadata in tracking object (last place used by request)
+	RequestData->SetMetadata(Metadata);
+
+	// bind response handler
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindSP(this, &FUsersAPI::OnGetLinkHistoryResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
+
+	// submit request to http system
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
+}
+
+void FUsersAPI::OnGetLinkHistoryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetLinkHistory Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+	FHttpRequestCompleteDelegate ResponseDelegate;
+
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindSP(this, &FUsersAPI::OnGetLinkHistoryResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
+
+	FResponse_GetLinkHistory Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
+
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
+}
+
+FRequest_GetLinkHistory::FRequest_GetLinkHistory()
+	: FRequest()
+{
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
+}
+
+FName FRequest_GetLinkHistory::GetSimplifiedPath() const
+{
+	static FName Path = FName(TEXT("/users/v1/history/link"));
+	return Path;
+}
+
+FName FRequest_GetLinkHistory::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
+}
+
+FString FRequest_GetLinkHistory::ComputePath() const
+{
+	FString Path = GetSimplifiedPath().ToString();
+	TArray<FString> QueryParams;
+	if(PlayerUuid.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("player_uuid=")) + ToUrlString(PlayerUuid.GetValue()));
+	}
+	if(PersonId.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("person_id=")) + ToUrlString(PersonId.GetValue()));
+	}
+	if(Platform.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("platform=")) + ToUrlString(Platform.GetValue()));
+	}
+	if(PlatformUserId.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("platform_user_id=")) + ToUrlString(PlatformUserId.GetValue()));
+	}
+	if(ContinuationToken.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("continuation_token=")) + ToUrlString(ContinuationToken.GetValue()));
+	}
+	Path += TCHAR('?');
+	Path += FString::Join(QueryParams, TEXT("&"));
+
+	return Path;
+}
+
+bool FRequest_GetLinkHistory::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+	static const TArray<FString> Consumes = {  };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
+
+	HttpRequest->SetVerb(TEXT("GET"));
+
+	if (!AuthContext && !bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetLinkHistory - missing auth context"));
+		return false;
+	}
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetLinkHistory - failed to add bearer token"));
+		return false;
+	}
+
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetLinkHistory - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
+
+	return true;
+}
+
+FString FResponse_GetLinkHistory::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
+{
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		return TEXT("Successful Response");
+	case 400:
+		return TEXT("Bad Request");
+	case 403:
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 404:
+		return TEXT("Not Found");
+	case 422:
+		return TEXT("Validation Error");
+	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
+}
+
+bool FResponse_GetLinkHistory::TryGetContentFor200(FRHAPI_UserLinkHistory& OutContent) const
+{
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
+}
+
+bool FResponse_GetLinkHistory::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
+}
+
+bool FResponse_GetLinkHistory::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
+}
+
+bool FResponse_GetLinkHistory::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
+}
+
+bool FResponse_GetLinkHistory::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
+}
+
+bool FResponse_GetLinkHistory::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+	return TryGetJsonValue(JsonValue, Content);
+}
+
+FResponse_GetLinkHistory::FResponse_GetLinkHistory(FRequestMetadata InRequestMetadata) :
+	FResponse(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_GetLinkHistory::Name = TEXT("GetLinkHistory");
+
+FHttpRequestPtr FUsersAPI::GetLoginHistory(const FRequest_GetLoginHistory& Request, const FDelegate_GetLoginHistory& Delegate /*= FDelegate_GetLoginHistory()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+{
+	if (!IsValid())
+		return nullptr;
+
+	// create the http request and tracking structure
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+	// add headers to tracker
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
+
+	// setup http request from custom request object
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
+	
+	// allow a delegate to modify the http request (such as binding custom handling delegates)
+	Request.OnModifyRequest().Broadcast(Request, RequestData->HttpRequest);
+	
+	// update request metadata flags just before we store it in the tracking object
+	FRequestMetadata Metadata = Request.GetRequestMetadata();
+	Request.SetMetadataFlags(Metadata);
+
+	// store metadata in tracking object (last place used by request)
+	RequestData->SetMetadata(Metadata);
+
+	// bind response handler
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindSP(this, &FUsersAPI::OnGetLoginHistoryResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
+
+	// submit request to http system
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
+}
+
+void FUsersAPI::OnGetLoginHistoryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetLoginHistory Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+	FHttpRequestCompleteDelegate ResponseDelegate;
+
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindSP(this, &FUsersAPI::OnGetLoginHistoryResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
+
+	FResponse_GetLoginHistory Response{ RequestMetadata };
+	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+	}
+
+	if (!bWillRetryWithRefreshedAuth)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response);
+	}
+}
+
+FRequest_GetLoginHistory::FRequest_GetLoginHistory()
+	: FRequest()
+{
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
+}
+
+FName FRequest_GetLoginHistory::GetSimplifiedPath() const
+{
+	static FName Path = FName(TEXT("/users/v1/history/login"));
+	return Path;
+}
+
+FName FRequest_GetLoginHistory::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
+}
+
+FString FRequest_GetLoginHistory::ComputePath() const
+{
+	FString Path = GetSimplifiedPath().ToString();
+	TArray<FString> QueryParams;
+	if(PlayerUuid.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("player_uuid=")) + ToUrlString(PlayerUuid.GetValue()));
+	}
+	if(PersonId.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("person_id=")) + ToUrlString(PersonId.GetValue()));
+	}
+	if(Platform.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("platform=")) + ToUrlString(Platform.GetValue()));
+	}
+	if(PlatformUserId.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("platform_user_id=")) + ToUrlString(PlatformUserId.GetValue()));
+	}
+	if(ContinuationToken.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("continuation_token=")) + ToUrlString(ContinuationToken.GetValue()));
+	}
+	Path += TCHAR('?');
+	Path += FString::Join(QueryParams, TEXT("&"));
+
+	return Path;
+}
+
+bool FRequest_GetLoginHistory::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+	static const TArray<FString> Consumes = {  };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
+
+	HttpRequest->SetVerb(TEXT("GET"));
+
+	if (!AuthContext && !bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetLoginHistory - missing auth context"));
+		return false;
+	}
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetLoginHistory - failed to add bearer token"));
+		return false;
+	}
+
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetLoginHistory - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
+
+	return true;
+}
+
+FString FResponse_GetLoginHistory::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
+{
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		return TEXT("Successful Response");
+	case 403:
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 404:
+		return TEXT("Not Found");
+	case 422:
+		return TEXT("Validation Error");
+	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
+}
+
+bool FResponse_GetLoginHistory::TryGetContentFor200(FRHAPI_LoginHistoryPage& OutContent) const
+{
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
+}
+
+bool FResponse_GetLoginHistory::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
+}
+
+bool FResponse_GetLoginHistory::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
+}
+
+bool FResponse_GetLoginHistory::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
+}
+
+bool FResponse_GetLoginHistory::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+	return TryGetJsonValue(JsonValue, Content);
+}
+
+FResponse_GetLoginHistory::FResponse_GetLoginHistory(FRequestMetadata InRequestMetadata) :
+	FResponse(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_GetLoginHistory::Name = TEXT("GetLoginHistory");
 
 FHttpRequestPtr FUsersAPI::GetPerson(const FRequest_GetPerson& Request, const FDelegate_GetPerson& Delegate /*= FDelegate_GetPerson()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -2474,6 +3012,8 @@ FString FResponse_GetPlayerIdFromPlayerUuidForSelf::GetHttpResponseCodeDescripti
 	{
 	case 200:
 		return TEXT("Successful Response");
+	case 400:
+		return TEXT("Bad Request");
 	case 403:
 		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
@@ -2484,6 +3024,16 @@ FString FResponse_GetPlayerIdFromPlayerUuidForSelf::GetHttpResponseCodeDescripti
 }
 
 bool FResponse_GetPlayerIdFromPlayerUuidForSelf::TryGetContentFor200(FRHAPI_PlayerIdWrapper& OutContent) const
+{
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
+}
+
+bool FResponse_GetPlayerIdFromPlayerUuidForSelf::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -3075,6 +3625,8 @@ FString FResponse_GetPlayerLinksForSelf::GetHttpResponseCodeDescription(EHttpRes
 	{
 	case 200:
 		return TEXT("Successful Response");
+	case 400:
+		return TEXT("Bad Request");
 	case 403:
 		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
@@ -3085,6 +3637,16 @@ FString FResponse_GetPlayerLinksForSelf::GetHttpResponseCodeDescription(EHttpRes
 }
 
 bool FResponse_GetPlayerLinksForSelf::TryGetContentFor200(FRHAPI_PlayerLinkedPortalsResponse& OutContent) const
+{
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
+}
+
+bool FResponse_GetPlayerLinksForSelf::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -4680,7 +5242,10 @@ bool FRequest_Link::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 		FString JsonBody;
 		TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
 
-		WriteJsonValue(Writer, HTTPAuthorizationCredentials);
+		if (PlatformUserLinkRequest.IsSet())
+		{
+			WriteJsonValue(Writer, PlatformUserLinkRequest.GetValue());
+		}
 		Writer->Close();
 
 		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
@@ -4688,11 +5253,11 @@ bool FRequest_Link::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 	}
 	else if (Consumes.Contains(TEXT("multipart/form-data")))
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_Link - Body parameter (FRHAPI_HTTPAuthorizationCredentials) was ignored, not supported in multipart form"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_Link - Body parameter (FRHAPI_PlatformUserLinkRequest) was ignored, not supported in multipart form"));
 	}
 	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_Link - Body parameter (FRHAPI_HTTPAuthorizationCredentials) was ignored, not supported in urlencoded requests"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_Link - Body parameter (FRHAPI_PlatformUserLinkRequest) was ignored, not supported in urlencoded requests"));
 	}
 	else
 	{
@@ -4710,7 +5275,7 @@ FString FResponse_Link::GetHttpResponseCodeDescription(EHttpResponseCodes::Type 
 	case 200:
 		return TEXT("Successful Response");
 	case 400:
-		return TEXT("Users cannot be linked due to user state.  See response for further details");
+		return TEXT("Request inputs are not valid   Error Codes: - &#x60;account_not_found&#x60; - User Account not found - &#x60;cannot_link_same_player&#x60; - Cannot link a player to themselves - &#x60;follower_already_linked&#x60; - Follower is already linked to another person.  They must be unlinked before they can be linked again. - &#x60;follower_has_cross_progression_enabled&#x60; - follower must disable cross progression before this operation - &#x60;follower_has_restrictions&#x60; - follower has restrictions that prevent this operation - &#x60;invalid_token_claims&#x60; - Token has missing/invalid claims.  Are you using a non-user token on a user endpoint? - &#x60;leader_has_restrictions&#x60; - leader has restrictions that prevent this operation - &#x60;leader_not_found&#x60; - Desired user for the leader of the link was not found - &#x60;platform_already_linked&#x60; - Person is already linked to another user on this platform ");
 	case 403:
 		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 422:
@@ -4720,7 +5285,7 @@ FString FResponse_Link::GetHttpResponseCodeDescription(EHttpResponseCodes::Type 
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
-bool FResponse_Link::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+bool FResponse_Link::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -4752,7 +5317,7 @@ bool FResponse_Link::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent)
 
 bool FResponse_Link::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-	return TryGetJsonValue(JsonValue, Content);
+	return true;
 }
 
 FResponse_Link::FResponse_Link(FRequestMetadata InRequestMetadata) :
@@ -5510,7 +6075,7 @@ FString FRequest_Unlink::ComputePath() const
 
 bool FRequest_Unlink::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-	static const TArray<FString> Consumes = {  };
+	static const TArray<FString> Consumes = { TEXT("application/json") };
 	//static const TArray<FString> Produces = { TEXT("application/json") };
 
 	HttpRequest->SetVerb(TEXT("POST"));
@@ -5528,12 +6093,26 @@ bool FRequest_Unlink::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 
 	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
 	{
+		// Body parameters
+		FString JsonBody;
+		TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
+
+		if (PlatformUserOperationRequest.IsSet())
+		{
+			WriteJsonValue(Writer, PlatformUserOperationRequest.GetValue());
+		}
+		Writer->Close();
+
+		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
+		HttpRequest->SetContentAsString(JsonBody);
 	}
 	else if (Consumes.Contains(TEXT("multipart/form-data")))
 	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_Unlink - Body parameter (FRHAPI_PlatformUserOperationRequest) was ignored, not supported in multipart form"));
 	}
 	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
 	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_Unlink - Body parameter (FRHAPI_PlatformUserOperationRequest) was ignored, not supported in urlencoded requests"));
 	}
 	else
 	{
@@ -5551,15 +6130,17 @@ FString FResponse_Unlink::GetHttpResponseCodeDescription(EHttpResponseCodes::Typ
 	case 200:
 		return TEXT("Successful Response");
 	case 400:
-		return TEXT("Users cannot be unlinked due to user state.  See response for further details");
+		return TEXT("Request inputs are not valid   Error Codes: - &#x60;account_not_found&#x60; - User Account not found - &#x60;cannot_modify_person&#x60; - You have insufficient permissions to modify this person - &#x60;cannot_unlink_cross_progression_player&#x60; - Cannot unlink the cross progression player - &#x60;invalid_token_claims&#x60; - Token has missing/invalid claims.  Are you using a non-user token on a user endpoint? - &#x60;player_not_linked&#x60; - Player is not linked - &#x60;user_has_restrictions&#x60; - user has restrictions that prevent this operation ");
 	case 403:
 		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 422:
+		return TEXT("Validation Error");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
-bool FResponse_Unlink::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+bool FResponse_Unlink::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
@@ -5579,9 +6160,19 @@ bool FResponse_Unlink::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) c
 	return false;
 }
 
+bool FResponse_Unlink::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
+}
+
 bool FResponse_Unlink::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-	return TryGetJsonValue(JsonValue, Content);
+	return true;
 }
 
 FResponse_Unlink::FResponse_Unlink(FRequestMetadata InRequestMetadata) :

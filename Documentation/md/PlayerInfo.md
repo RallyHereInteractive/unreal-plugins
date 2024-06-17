@@ -7,6 +7,7 @@
 `class `[`URH_PlayerInfoSubobject`](#classURH__PlayerInfoSubobject) | Player Info Subobject base class used to store player data.
 `class `[`URH_PlayerPresence`](#classURH__PlayerPresence) | Player Presence class used to store player presence data.
 `class `[`URH_PlayerSessions`](#classURH__PlayerSessions) | Player Sessions class used to store player session membership information.
+`class `[`URH_PlayerDeserter`](#classURH__PlayerDeserter) | Player Deserters class used to store player deserter information.
 `class `[`URH_PlayerMatches`](#classURH__PlayerMatches) | Player Matches class used to store player match history information.
 `class `[`URH_PlayerReports`](#classURH__PlayerReports) | Player Reports class used to store and send player report information.
 `class `[`URH_PlayerPlatformInfo`](#classURH__PlayerPlatformInfo) | Stores information a specific platform the player has linked to their account.
@@ -249,6 +250,85 @@ Stores the response data from an API request.
 
 #### `typedef `[`GetSessionsType`](#classURH__PlayerSessions_1afa8a5657954ca5d686f07cea03b23b92) <a id="classURH__PlayerSessions_1afa8a5657954ca5d686f07cea03b23b92"></a>
 
+## class `URH_PlayerDeserter` <a id="classURH__PlayerDeserter"></a>
+
+```
+class URH_PlayerDeserter
+  : public URH_PlayerInfoSubobject
+```
+
+Player Deserters class used to store player deserter information.
+
+### Summary
+
+ Members                        | Descriptions                                
+--------------------------------|---------------------------------------------
+`public TMap< FString, `[`FRHAPI_PlayerDeserterStatus`](models/RHAPI_PlayerDeserterStatus.md#structFRHAPI__PlayerDeserterStatus)` > `[`DeserterStatus`](#classURH__PlayerDeserter_1a05ffb9ed63dc9857664c8f6c11a2b5e7) | The deserter status for the player by DeserterId.
+`public virtual void `[`SetDeserterStatus`](#classURH__PlayerDeserter_1a69f7bd8f4cdeceae377fe8b733b9fb29)`(const FString & DeserterId,const `[`FRHAPI_DeserterUpdateRequest`](models/RHAPI_DeserterUpdateRequest.md#structFRHAPI__DeserterUpdateRequest)` & NewDeserterStatus,const FRH_OnRequestPlayerInfoSubobjectDelegateBlock & Delegate)` | Updates the deserter status for the player.
+`public virtual void `[`ClearDeserterStatus`](#classURH__PlayerDeserter_1a0a7433a6727348f723c0e202e0d65934)`(const FString & DeserterId,const FRH_GenericSuccessWithErrorBlock & Delegate)` | Clears the deserter state for the player for the given id.
+`public virtual void `[`ClearAllDeserterStatus`](#classURH__PlayerDeserter_1a994048ec55a1137c5dacd24b93358e1d)`(const FRH_GenericSuccessWithErrorBlock & Delegate)` | Clears all deserter states for the player.
+`protected virtual void `[`Poll`](#classURH__PlayerDeserter_1a544d4de164032b9966a4f42a609f4c09)`(const FRH_PollCompleteFunc & Delegate)` | Starts a poll of the players deserter status.
+`protected inline virtual void `[`Update`](#classURH__PlayerDeserter_1a3beaca0b403e6a3acfcdaa32f5c7f07a)`(const GetDeserterAllType::Response & Other)` | Stores the response data from an API request.
+`typedef `[`GetDeserterAllType`](#classURH__PlayerDeserter_1a3b48a9187fb15ba053246a946f9ae856) | 
+`typedef `[`SetDeserterType`](#classURH__PlayerDeserter_1a9f0433dab4eef56a33abc0a08de818f9) | 
+`typedef `[`ClearDeserterType`](#classURH__PlayerDeserter_1af0fc2c37f987361930f2fc5867a62935) | 
+`typedef `[`ClearAllDeserterType`](#classURH__PlayerDeserter_1a381d7584a5c025924cfecf661c5b4a37) | 
+
+### Members
+
+#### `public TMap< FString, `[`FRHAPI_PlayerDeserterStatus`](models/RHAPI_PlayerDeserterStatus.md#structFRHAPI__PlayerDeserterStatus)` > `[`DeserterStatus`](#classURH__PlayerDeserter_1a05ffb9ed63dc9857664c8f6c11a2b5e7) <a id="classURH__PlayerDeserter_1a05ffb9ed63dc9857664c8f6c11a2b5e7"></a>
+
+The deserter status for the player by DeserterId.
+
+#### `public virtual void `[`SetDeserterStatus`](#classURH__PlayerDeserter_1a69f7bd8f4cdeceae377fe8b733b9fb29)`(const FString & DeserterId,const `[`FRHAPI_DeserterUpdateRequest`](models/RHAPI_DeserterUpdateRequest.md#structFRHAPI__DeserterUpdateRequest)` & NewDeserterStatus,const FRH_OnRequestPlayerInfoSubobjectDelegateBlock & Delegate)` <a id="classURH__PlayerDeserter_1a69f7bd8f4cdeceae377fe8b733b9fb29"></a>
+
+Updates the deserter status for the player.
+
+#### Parameters
+* `DeserterId` The deserter id to update for the player. 
+
+* `NewDeserterStatus` The new deserter status for the player. 
+
+* `Delegate` The callback delegate for the request.
+
+#### `public virtual void `[`ClearDeserterStatus`](#classURH__PlayerDeserter_1a0a7433a6727348f723c0e202e0d65934)`(const FString & DeserterId,const FRH_GenericSuccessWithErrorBlock & Delegate)` <a id="classURH__PlayerDeserter_1a0a7433a6727348f723c0e202e0d65934"></a>
+
+Clears the deserter state for the player for the given id.
+
+#### Parameters
+* `DeserterId` The deserter id to update for the player. 
+
+* `Delegate` The callback delegate for the request.
+
+#### `public virtual void `[`ClearAllDeserterStatus`](#classURH__PlayerDeserter_1a994048ec55a1137c5dacd24b93358e1d)`(const FRH_GenericSuccessWithErrorBlock & Delegate)` <a id="classURH__PlayerDeserter_1a994048ec55a1137c5dacd24b93358e1d"></a>
+
+Clears all deserter states for the player.
+
+#### Parameters
+* `Delegate` The callback delegate for the request.
+
+#### `protected virtual void `[`Poll`](#classURH__PlayerDeserter_1a544d4de164032b9966a4f42a609f4c09)`(const FRH_PollCompleteFunc & Delegate)` <a id="classURH__PlayerDeserter_1a544d4de164032b9966a4f42a609f4c09"></a>
+
+Starts a poll of the players deserter status.
+
+#### Parameters
+* `Delegate` Callback delegate for the poll.
+
+#### `protected inline virtual void `[`Update`](#classURH__PlayerDeserter_1a3beaca0b403e6a3acfcdaa32f5c7f07a)`(const GetDeserterAllType::Response & Other)` <a id="classURH__PlayerDeserter_1a3beaca0b403e6a3acfcdaa32f5c7f07a"></a>
+
+Stores the response data from an API request.
+
+#### Parameters
+* `Other` The response data to store.
+
+#### `typedef `[`GetDeserterAllType`](#classURH__PlayerDeserter_1a3b48a9187fb15ba053246a946f9ae856) <a id="classURH__PlayerDeserter_1a3b48a9187fb15ba053246a946f9ae856"></a>
+
+#### `typedef `[`SetDeserterType`](#classURH__PlayerDeserter_1a9f0433dab4eef56a33abc0a08de818f9) <a id="classURH__PlayerDeserter_1a9f0433dab4eef56a33abc0a08de818f9"></a>
+
+#### `typedef `[`ClearDeserterType`](#classURH__PlayerDeserter_1af0fc2c37f987361930f2fc5867a62935) <a id="classURH__PlayerDeserter_1af0fc2c37f987361930f2fc5867a62935"></a>
+
+#### `typedef `[`ClearAllDeserterType`](#classURH__PlayerDeserter_1a381d7584a5c025924cfecf661c5b4a37) <a id="classURH__PlayerDeserter_1a381d7584a5c025924cfecf661c5b4a37"></a>
+
 ## class `URH_PlayerMatches` <a id="classURH__PlayerMatches"></a>
 
 ```
@@ -477,6 +557,7 @@ Stores and fetchs all the information about a given player.
 `public inline FORCEINLINE FGuid & `[`GetRHPlayerUuid`](#classURH__PlayerInfo_1ab4bac7a190b2e5fec6d242c25f7672f4)`()` | Gets the players Unique player Id.
 `public inline FORCEINLINE `[`URH_PlayerPresence`](PlayerInfo.md#classURH__PlayerPresence)` * `[`GetPresence`](#classURH__PlayerInfo_1a30440b0a7ab410262e696bc6ac976568)`() const` | Gets The players presence class.
 `public inline FORCEINLINE `[`URH_PlayerSessions`](PlayerInfo.md#classURH__PlayerSessions)` * `[`GetSessions`](#classURH__PlayerInfo_1a3a012da0a55d1edb09a80dcf658ae7f4)`() const` | Gets The players sessions class.
+`public inline FORCEINLINE `[`URH_PlayerDeserter`](PlayerInfo.md#classURH__PlayerDeserter)` * `[`GetDeserter`](#classURH__PlayerInfo_1a88c9082ca13985dbe17af33bd1888a0f)`() const` | Gets The players deserter class.
 `public inline FORCEINLINE `[`URH_PlayerMatches`](PlayerInfo.md#classURH__PlayerMatches)` * `[`GetMatches`](#classURH__PlayerInfo_1a18162aabb6b78affb52f918ae8517f84)`() const` | Gets The players matches class.
 `public inline FORCEINLINE `[`URH_PlayerReports`](PlayerInfo.md#classURH__PlayerReports)` * `[`GetReports`](#classURH__PlayerInfo_1a384f5b99113927ed0f47cf1278e45018)`() const` | Gets The players reports class.
 `public inline virtual TArray< `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` > & `[`GetPlayerPlatformIds`](#classURH__PlayerInfo_1a07f7aedb216f1536718b152d384d7ba9)`()` | Gets the associated platform ids of the player.
@@ -510,6 +591,7 @@ Stores and fetchs all the information about a given player.
 `protected TArray< `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` > `[`LinkedPlayerPlatforms`](#classURH__PlayerInfo_1a9f74bbf7a958d7a5a00d7daa8c159c2f) | Cache of all platforms the player is linked to.
 `protected `[`URH_PlayerPresence`](PlayerInfo.md#classURH__PlayerPresence)` * `[`PlayerPresence`](#classURH__PlayerInfo_1ae3c851503d0b5b8c024dc55252acb688) | The players Presence Information.
 `protected `[`URH_PlayerSessions`](PlayerInfo.md#classURH__PlayerSessions)` * `[`PlayerSessions`](#classURH__PlayerInfo_1a7af4d09bb83333d3028bc9a94cf067fd) | The players Sessions Information.
+`protected `[`URH_PlayerDeserter`](PlayerInfo.md#classURH__PlayerDeserter)` * `[`PlayerDeserter`](#classURH__PlayerInfo_1ae80f624b84391b5e096fcca335c8e8e4) | The players Deserter Information.
 `protected `[`URH_PlayerMatches`](PlayerInfo.md#classURH__PlayerMatches)` * `[`PlayerMatches`](#classURH__PlayerInfo_1a1f355fbb71f17bc3bb40283c931138aa) | The players Matches Information.
 `protected `[`URH_PlayerReports`](PlayerInfo.md#classURH__PlayerReports)` * `[`PlayerReports`](#classURH__PlayerInfo_1a99a08ebcbd1c9c030f1d4ca7f9fcb572) | The players Reports Information.
 `protected `[`URH_PlayerInventory`](Inventory.md#classURH__PlayerInventory)` * `[`PlayerInventory`](#classURH__PlayerInfo_1ab06228dae3921d141dbbf2bf895c55da) | The Players Inventory Subsystem.
@@ -555,6 +637,13 @@ Gets The players sessions class.
 
 #### Returns
 The players sessions class.
+
+#### `public inline FORCEINLINE `[`URH_PlayerDeserter`](PlayerInfo.md#classURH__PlayerDeserter)` * `[`GetDeserter`](#classURH__PlayerInfo_1a88c9082ca13985dbe17af33bd1888a0f)`() const` <a id="classURH__PlayerInfo_1a88c9082ca13985dbe17af33bd1888a0f"></a>
+
+Gets The players deserter class.
+
+#### Returns
+The players deserter class.
 
 #### `public inline FORCEINLINE `[`URH_PlayerMatches`](PlayerInfo.md#classURH__PlayerMatches)` * `[`GetMatches`](#classURH__PlayerInfo_1a18162aabb6b78affb52f918ae8517f84)`() const` <a id="classURH__PlayerInfo_1a18162aabb6b78affb52f918ae8517f84"></a>
 
@@ -816,6 +905,10 @@ The players Presence Information.
 #### `protected `[`URH_PlayerSessions`](PlayerInfo.md#classURH__PlayerSessions)` * `[`PlayerSessions`](#classURH__PlayerInfo_1a7af4d09bb83333d3028bc9a94cf067fd) <a id="classURH__PlayerInfo_1a7af4d09bb83333d3028bc9a94cf067fd"></a>
 
 The players Sessions Information.
+
+#### `protected `[`URH_PlayerDeserter`](PlayerInfo.md#classURH__PlayerDeserter)` * `[`PlayerDeserter`](#classURH__PlayerInfo_1ae80f624b84391b5e096fcca335c8e8e4) <a id="classURH__PlayerInfo_1ae80f624b84391b5e096fcca335c8e8e4"></a>
+
+The players Deserter Information.
 
 #### `protected `[`URH_PlayerMatches`](PlayerInfo.md#classURH__PlayerMatches)` * `[`PlayerMatches`](#classURH__PlayerInfo_1a1f355fbb71f17bc3bb40283c931138aa) <a id="classURH__PlayerInfo_1a1f355fbb71f17bc3bb40283c931138aa"></a>
 

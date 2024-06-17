@@ -138,7 +138,7 @@ struct RALLYHEREAPI_API FRHAPI_RankConfigV3 : public FRHAPI_Model
 	/** @brief Sets the value of MinMu using move semantics */
 	void SetMinMu(float&& NewValue) { MinMu = NewValue;  }
 
-	/** @brief The minimum sigma allowed. Any attempts to update variance to be lower than this get clamped to the minimum */
+	/** @brief The minimum sigma allowed. Any attempts to update sigma to be lower than this get clamped to the minimum */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float MinSigma{  };
 	/** @brief Gets the value of MinSigma */
@@ -150,7 +150,7 @@ struct RALLYHEREAPI_API FRHAPI_RankConfigV3 : public FRHAPI_Model
 	/** @brief Sets the value of MinSigma using move semantics */
 	void SetMinSigma(float&& NewValue) { MinSigma = NewValue;  }
 
-	/** @brief The distance between skill ranks that yields ~76% chance of winning. Recommended value is half the default variance */
+	/** @brief The distance between skill ranks that yields ~76% chance of winning. Recommended value is half the default sigma */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float Beta_Optional{  };
 	/** @brief true if Beta_Optional has been set to a value */
@@ -224,7 +224,7 @@ struct RALLYHEREAPI_API FRHAPI_RankConfigV3 : public FRHAPI_Model
 	 /** @brief Clears the value of DrawProbability_Optional and sets DrawProbability_IsSet to false */
 	void ClearDrawProbability() { DrawProbability_IsSet = false; }
 
-	/** @brief Factor that determines how quickly a player's variance is adjusted. A larger tau will result in more volatile in ranks. Recommended value is is (default_sigma * .01) */
+	/** @brief Factor that determines how quickly a player's sigma is adjusted. A larger tau will result in more volatile in ranks. Recommended value is is (default_sigma * .01) */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float Tau_Optional{  };
 	/** @brief true if Tau_Optional has been set to a value */

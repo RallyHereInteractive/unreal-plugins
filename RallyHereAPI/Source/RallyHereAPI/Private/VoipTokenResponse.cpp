@@ -28,6 +28,11 @@ void FRHAPI_VoipTokenResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) cons
 	RallyHereAPI::WriteJsonValue(Writer, Issuer);
 	Writer->WriteIdentifierPrefix(TEXT("server"));
 	RallyHereAPI::WriteJsonValue(Writer, Server);
+	if (ChannelName_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("channel_name"));
+		RallyHereAPI::WriteJsonValue(Writer, ChannelName_Optional);
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -45,6 +50,12 @@ bool FRHAPI_VoipTokenResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	ParseSuccess &= JsonIssuerField.IsValid() && !JsonIssuerField->IsNull() && TryGetJsonValue(JsonIssuerField, Issuer);
 	const TSharedPtr<FJsonValue> JsonServerField = (*Object)->TryGetField(TEXT("server"));
 	ParseSuccess &= JsonServerField.IsValid() && !JsonServerField->IsNull() && TryGetJsonValue(JsonServerField, Server);
+	const TSharedPtr<FJsonValue> JsonChannelNameField = (*Object)->TryGetField(TEXT("channel_name"));
+	if (JsonChannelNameField.IsValid() && !JsonChannelNameField->IsNull())
+	{
+		ChannelName_IsSet = TryGetJsonValue(JsonChannelNameField, ChannelName_Optional);
+		ParseSuccess &= ChannelName_IsSet;
+	}
 
 	return ParseSuccess;
 }

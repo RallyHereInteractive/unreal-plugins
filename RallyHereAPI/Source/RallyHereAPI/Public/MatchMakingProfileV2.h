@@ -225,6 +225,31 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingProfileV2 : public FRHAPI_Model
 	void SetLegacyConfig(FRHAPI_JsonObject&& NewValue) { LegacyConfig_Optional = NewValue; LegacyConfig_IsSet = true; }
 	 /** @brief Clears the value of LegacyConfig_Optional and sets LegacyConfig_IsSet to false */
 	void ClearLegacyConfig() { LegacyConfig_IsSet = false; }
+
+	/** @brief Which deserter this profile should check before allowing players to join matchmaking */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString DeserterId_Optional{  };
+	/** @brief true if DeserterId_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool DeserterId_IsSet{ false };
+	/** @brief Gets the value of DeserterId_Optional, regardless of it having been set */
+	FString& GetDeserterId() { return DeserterId_Optional; }
+	/** @brief Gets the value of DeserterId_Optional, regardless of it having been set */
+	const FString& GetDeserterId() const { return DeserterId_Optional; }
+	/** @brief Gets the value of DeserterId_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetDeserterId(const FString& DefaultValue) const { if (DeserterId_IsSet) return DeserterId_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of DeserterId_Optional and returns true if it has been set, otherwise returns false */
+	bool GetDeserterId(FString& OutValue) const { if (DeserterId_IsSet) OutValue = DeserterId_Optional; return DeserterId_IsSet; }
+	/** @brief Returns a pointer to DeserterId_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetDeserterIdOrNull() { if (DeserterId_IsSet) return &DeserterId_Optional; return nullptr; }
+	/** @brief Returns a pointer to DeserterId_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetDeserterIdOrNull() const { if (DeserterId_IsSet) return &DeserterId_Optional; return nullptr; }
+	/** @brief Sets the value of DeserterId_Optional and also sets DeserterId_IsSet to true */
+	void SetDeserterId(const FString& NewValue) { DeserterId_Optional = NewValue; DeserterId_IsSet = true; }
+	/** @brief Sets the value of DeserterId_Optional and also sets DeserterId_IsSet to true using move semantics */
+	void SetDeserterId(FString&& NewValue) { DeserterId_Optional = NewValue; DeserterId_IsSet = true; }
+	 /** @brief Clears the value of DeserterId_Optional and sets DeserterId_IsSet to false */
+	void ClearDeserterId() { DeserterId_IsSet = false; }
 };
 
 /** @} */

@@ -591,6 +591,11 @@ struct RALLYHEREAPI_API FResponse_CreateOrJoinSession : public FResponse
 	*/
 	bool TryGetContentFor200(FRHAPI_SessionJoinResponse& OutContent) const;
 
+	/* Response 400
+	Bad Request
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
 	/* Response 403
 	Forbidden
 	*/
@@ -1679,7 +1684,7 @@ struct RALLYHEREAPI_API Traits_GetSessionTemplateByType
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) : `session:instance:health`
+ * - For any player (including themselves) any of: `session:*`, `session:instance:health`
  * 
  * 
  * 

@@ -25,6 +25,8 @@ Result of processing a platform entitlement.
 `public ERHAPI_PlatformRegion `[`PlatformRegion`](#structFRHAPI__PlatformEntitlementProcessResult_1adb311eefbbc7b0e7e34a2189e7c2edaf) | region this purchase was made in
 `public FString `[`Status_Optional`](#structFRHAPI__PlatformEntitlementProcessResult_1a8d74f677f67627a8b0a1367d99655fdf) | status of this result
 `public bool `[`Status_IsSet`](#structFRHAPI__PlatformEntitlementProcessResult_1abca3d4ab6149c9cb2998b0b41ed8ef7c) | true if Status_Optional has been set to a value
+`public FString `[`ErrorCode_Optional`](#structFRHAPI__PlatformEntitlementProcessResult_1aae6a30857286c415c7961ae56e4792e9) | Error code for failures not associated with a specific entitlement.
+`public bool `[`ErrorCode_IsSet`](#structFRHAPI__PlatformEntitlementProcessResult_1aee512a01a4abab2afb14b0b2ca678efe) | true if ErrorCode_Optional has been set to a value
 `public TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > `[`ClientEntitlements_Optional`](#structFRHAPI__PlatformEntitlementProcessResult_1ab364b54bdebc6777f9ffe6e046161b6c) | Client entitlements that have been processed.
 `public bool `[`ClientEntitlements_IsSet`](#structFRHAPI__PlatformEntitlementProcessResult_1a53fc5f42cd21746352e77d4e11ff1e35) | true if ClientEntitlements_Optional has been set to a value
 `public TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > `[`ServerEntitlements_Optional`](#structFRHAPI__PlatformEntitlementProcessResult_1aa5c0162acdebd1b679a3a532480f56f1) | Server entitlements that have been processed.
@@ -62,6 +64,15 @@ Result of processing a platform entitlement.
 `public inline void `[`ClearStatus`](#structFRHAPI__PlatformEntitlementProcessResult_1ad2735d15394bd2b76d3291a0790cec96)`()` | Clears the value of Status_Optional and sets Status_IsSet to false.
 `public inline bool `[`IsStatusDefaultValue`](#structFRHAPI__PlatformEntitlementProcessResult_1a87e997a54582d7f013b354e3489f60dc)`() const` | Returns true if Status_Optional is set and matches the default value.
 `public inline void `[`SetStatusToDefault`](#structFRHAPI__PlatformEntitlementProcessResult_1a15d890c6ce1c2c6f535b6868932b5664)`()` | Sets the value of Status_Optional to its default and also sets Status_IsSet to true.
+`public inline FString & `[`GetErrorCode`](#structFRHAPI__PlatformEntitlementProcessResult_1a1870188bc33fea7e643edeb737d6fc48)`()` | Gets the value of ErrorCode_Optional, regardless of it having been set.
+`public inline const FString & `[`GetErrorCode`](#structFRHAPI__PlatformEntitlementProcessResult_1a9d71b9d22179d01e2e3d4a90a54fb14f)`() const` | Gets the value of ErrorCode_Optional, regardless of it having been set.
+`public inline const FString & `[`GetErrorCode`](#structFRHAPI__PlatformEntitlementProcessResult_1a16d0d15a5d0ab057f295e87d7fbc7ee0)`(const FString & DefaultValue) const` | Gets the value of ErrorCode_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetErrorCode`](#structFRHAPI__PlatformEntitlementProcessResult_1a9d8aeb8cc843338c9a182221b75fd4ef)`(FString & OutValue) const` | Fills OutValue with the value of ErrorCode_Optional and returns true if it has been set, otherwise returns false.
+`public inline FString * `[`GetErrorCodeOrNull`](#structFRHAPI__PlatformEntitlementProcessResult_1a8457b11145df5eb9fdf19ea97035e395)`()` | Returns a pointer to ErrorCode_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetErrorCodeOrNull`](#structFRHAPI__PlatformEntitlementProcessResult_1a7bf49f1b35f9b7e446c50b7762a00174)`() const` | Returns a pointer to ErrorCode_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetErrorCode`](#structFRHAPI__PlatformEntitlementProcessResult_1a65841c2ac942ab03bc18ac8b674afd1f)`(const FString & NewValue)` | Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true.
+`public inline void `[`SetErrorCode`](#structFRHAPI__PlatformEntitlementProcessResult_1ad34ba6e275d1e94533c55a375b3c2107)`(FString && NewValue)` | Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true using move semantics.
+`public inline void `[`ClearErrorCode`](#structFRHAPI__PlatformEntitlementProcessResult_1a93ec866a89fb160d53864189c43c91ce)`()` | Clears the value of ErrorCode_Optional and sets ErrorCode_IsSet to false.
 `public inline TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & `[`GetClientEntitlements`](#structFRHAPI__PlatformEntitlementProcessResult_1ace2fa9dcbf9c9ced3c956a60efb6cb2b)`()` | Gets the value of ClientEntitlements_Optional, regardless of it having been set.
 `public inline const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & `[`GetClientEntitlements`](#structFRHAPI__PlatformEntitlementProcessResult_1ad7276a2b47f6e251330e25604416ad7f)`() const` | Gets the value of ClientEntitlements_Optional, regardless of it having been set.
 `public inline const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & `[`GetClientEntitlements`](#structFRHAPI__PlatformEntitlementProcessResult_1a4d311cc311e31b455690fcd8e54df93d)`(const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & DefaultValue) const` | Gets the value of ClientEntitlements_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -125,6 +136,14 @@ status of this result
 #### `public bool `[`Status_IsSet`](#structFRHAPI__PlatformEntitlementProcessResult_1abca3d4ab6149c9cb2998b0b41ed8ef7c) <a id="structFRHAPI__PlatformEntitlementProcessResult_1abca3d4ab6149c9cb2998b0b41ed8ef7c"></a>
 
 true if Status_Optional has been set to a value
+
+#### `public FString `[`ErrorCode_Optional`](#structFRHAPI__PlatformEntitlementProcessResult_1aae6a30857286c415c7961ae56e4792e9) <a id="structFRHAPI__PlatformEntitlementProcessResult_1aae6a30857286c415c7961ae56e4792e9"></a>
+
+Error code for failures not associated with a specific entitlement.
+
+#### `public bool `[`ErrorCode_IsSet`](#structFRHAPI__PlatformEntitlementProcessResult_1aee512a01a4abab2afb14b0b2ca678efe) <a id="structFRHAPI__PlatformEntitlementProcessResult_1aee512a01a4abab2afb14b0b2ca678efe"></a>
+
+true if ErrorCode_Optional has been set to a value
 
 #### `public TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > `[`ClientEntitlements_Optional`](#structFRHAPI__PlatformEntitlementProcessResult_1ab364b54bdebc6777f9ffe6e046161b6c) <a id="structFRHAPI__PlatformEntitlementProcessResult_1ab364b54bdebc6777f9ffe6e046161b6c"></a>
 
@@ -282,6 +301,42 @@ Returns true if Status_Optional is set and matches the default value.
 #### `public inline void `[`SetStatusToDefault`](#structFRHAPI__PlatformEntitlementProcessResult_1a15d890c6ce1c2c6f535b6868932b5664)`()` <a id="structFRHAPI__PlatformEntitlementProcessResult_1a15d890c6ce1c2c6f535b6868932b5664"></a>
 
 Sets the value of Status_Optional to its default and also sets Status_IsSet to true.
+
+#### `public inline FString & `[`GetErrorCode`](#structFRHAPI__PlatformEntitlementProcessResult_1a1870188bc33fea7e643edeb737d6fc48)`()` <a id="structFRHAPI__PlatformEntitlementProcessResult_1a1870188bc33fea7e643edeb737d6fc48"></a>
+
+Gets the value of ErrorCode_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetErrorCode`](#structFRHAPI__PlatformEntitlementProcessResult_1a9d71b9d22179d01e2e3d4a90a54fb14f)`() const` <a id="structFRHAPI__PlatformEntitlementProcessResult_1a9d71b9d22179d01e2e3d4a90a54fb14f"></a>
+
+Gets the value of ErrorCode_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetErrorCode`](#structFRHAPI__PlatformEntitlementProcessResult_1a16d0d15a5d0ab057f295e87d7fbc7ee0)`(const FString & DefaultValue) const` <a id="structFRHAPI__PlatformEntitlementProcessResult_1a16d0d15a5d0ab057f295e87d7fbc7ee0"></a>
+
+Gets the value of ErrorCode_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetErrorCode`](#structFRHAPI__PlatformEntitlementProcessResult_1a9d8aeb8cc843338c9a182221b75fd4ef)`(FString & OutValue) const` <a id="structFRHAPI__PlatformEntitlementProcessResult_1a9d8aeb8cc843338c9a182221b75fd4ef"></a>
+
+Fills OutValue with the value of ErrorCode_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline FString * `[`GetErrorCodeOrNull`](#structFRHAPI__PlatformEntitlementProcessResult_1a8457b11145df5eb9fdf19ea97035e395)`()` <a id="structFRHAPI__PlatformEntitlementProcessResult_1a8457b11145df5eb9fdf19ea97035e395"></a>
+
+Returns a pointer to ErrorCode_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const FString * `[`GetErrorCodeOrNull`](#structFRHAPI__PlatformEntitlementProcessResult_1a7bf49f1b35f9b7e446c50b7762a00174)`() const` <a id="structFRHAPI__PlatformEntitlementProcessResult_1a7bf49f1b35f9b7e446c50b7762a00174"></a>
+
+Returns a pointer to ErrorCode_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetErrorCode`](#structFRHAPI__PlatformEntitlementProcessResult_1a65841c2ac942ab03bc18ac8b674afd1f)`(const FString & NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessResult_1a65841c2ac942ab03bc18ac8b674afd1f"></a>
+
+Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true.
+
+#### `public inline void `[`SetErrorCode`](#structFRHAPI__PlatformEntitlementProcessResult_1ad34ba6e275d1e94533c55a375b3c2107)`(FString && NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessResult_1ad34ba6e275d1e94533c55a375b3c2107"></a>
+
+Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearErrorCode`](#structFRHAPI__PlatformEntitlementProcessResult_1a93ec866a89fb160d53864189c43c91ce)`()` <a id="structFRHAPI__PlatformEntitlementProcessResult_1a93ec866a89fb160d53864189c43c91ce"></a>
+
+Clears the value of ErrorCode_Optional and sets ErrorCode_IsSet to false.
 
 #### `public inline TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & `[`GetClientEntitlements`](#structFRHAPI__PlatformEntitlementProcessResult_1ace2fa9dcbf9c9ced3c956a60efb6cb2b)`()` <a id="structFRHAPI__PlatformEntitlementProcessResult_1ace2fa9dcbf9c9ced3c956a60efb6cb2b"></a>
 

@@ -150,6 +150,12 @@ private:
 /* Get Catalog All
  *
  * Get the entire catalog.
+ * 
+ * This endpoint endpoint is generally discouraged outside of prototyping and early development.  It's not that the endpoint won't function, but rather that it creates a pattern that may result in a poor end user experience.  It has etag/if-none-match handling, but it is for the entire catalog.  So if a single byte changes inside the catalog (e.g. turning on a loot record, adding a single new item, changing a price point, adjusting the threshold to hit level X in an XP Table), then the etag will change.  If clients are re-requesting data from this endpoint, then those changes will result in them re-downloading, and re-parsing the entire catalog for that tiny modification.
+ * 
+ * Early on in a game's lifecycle, this doesn't matter much - since catalog data is pretty small.  But as your game grows, and you create lots of things to receive/purchase/grant, the data will balloon in size.  Parsing the response does occur on unreal's main thread, and with a sufficiently large catalog, you may see hitches.  There will also be lots of data in there that may not even be necessary for your client to see at all (e.g. if you only grant the loot from the dedicated server or if an item is just a tracker, it doesn't necessarily need to be visible on the client).
+ * 
+ * We generally encourage having a well-known list of vendors to request from `/inventory/v1/catalog/vendor/{vendor_id}`, and then requesting the entire set of xp tables, price points, and bucket rulesets (as those are generally pretty small lists).  That list of vendors could come from anywhere, it could be hardcoded, be set from an ini (if your client is unlikely to need arbitrary vendor additions, but you want to retain the ability to patch it) or it could come down in a kv.
 */
 struct RALLYHEREAPI_API FRequest_GetCatalogAll : public FRequest
 {

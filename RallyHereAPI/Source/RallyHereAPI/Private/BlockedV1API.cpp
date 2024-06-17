@@ -17,7 +17,7 @@ namespace RallyHereAPI
 
 FBlockedV1API::FBlockedV1API() : FAPI()
 {
-	Url = TEXT("http://localhost");
+	Url = TEXT("https://demo.rally-here.io");
 	Name = FName(TEXT("BlockedV1"));
 }
 

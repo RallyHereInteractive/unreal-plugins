@@ -17,7 +17,7 @@ namespace RallyHereAPI
 
 FKeyClaimsAPI::FKeyClaimsAPI() : FAPI()
 {
-	Url = TEXT("http://localhost");
+	Url = TEXT("https://demo.rally-here.io");
 	Name = FName(TEXT("KeyClaims"));
 }
 

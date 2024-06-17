@@ -51,6 +51,11 @@ void FRHAPI_MatchMakingProfile::WriteJson(TSharedRef<TJsonWriter<>>& Writer) con
 		Writer->WriteIdentifierPrefix(TEXT("min_players_per_side"));
 		RallyHereAPI::WriteJsonValue(Writer, MinPlayersPerSide_Optional);
 	}
+	if (DeserterId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("deserter_id"));
+		RallyHereAPI::WriteJsonValue(Writer, DeserterId_Optional);
+	}
 	if (LegacyConfig_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("legacy_config"));
@@ -100,6 +105,12 @@ bool FRHAPI_MatchMakingProfile::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 	{
 		MinPlayersPerSide_IsSet = TryGetJsonValue(JsonMinPlayersPerSideField, MinPlayersPerSide_Optional);
 		ParseSuccess &= MinPlayersPerSide_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonDeserterIdField = (*Object)->TryGetField(TEXT("deserter_id"));
+	if (JsonDeserterIdField.IsValid() && !JsonDeserterIdField->IsNull())
+	{
+		DeserterId_IsSet = TryGetJsonValue(JsonDeserterIdField, DeserterId_Optional);
+		ParseSuccess &= DeserterId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonLegacyConfigField = (*Object)->TryGetField(TEXT("legacy_config"));
 	if (JsonLegacyConfigField.IsValid() && !JsonLegacyConfigField->IsNull())

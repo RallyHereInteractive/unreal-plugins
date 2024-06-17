@@ -17,7 +17,7 @@ namespace RallyHereAPI
 
 FRemoteFileAPI::FRemoteFileAPI() : FAPI()
 {
-	Url = TEXT("http://localhost");
+	Url = TEXT("https://demo.rally-here.io");
 	Name = FName(TEXT("File"));
 }
 

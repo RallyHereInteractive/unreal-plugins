@@ -120,6 +120,31 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessResult : public FRHAPI_
 	/** @brief Sets the value of Status_Optional to its default and also sets Status_IsSet to true */
 	void SetStatusToDefault() { Status_Optional = TEXT("SUBMITTED"); Status_IsSet = true; }
 
+	/** @brief Error code for failures not associated with a specific entitlement */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString ErrorCode_Optional{  };
+	/** @brief true if ErrorCode_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool ErrorCode_IsSet{ false };
+	/** @brief Gets the value of ErrorCode_Optional, regardless of it having been set */
+	FString& GetErrorCode() { return ErrorCode_Optional; }
+	/** @brief Gets the value of ErrorCode_Optional, regardless of it having been set */
+	const FString& GetErrorCode() const { return ErrorCode_Optional; }
+	/** @brief Gets the value of ErrorCode_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetErrorCode(const FString& DefaultValue) const { if (ErrorCode_IsSet) return ErrorCode_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of ErrorCode_Optional and returns true if it has been set, otherwise returns false */
+	bool GetErrorCode(FString& OutValue) const { if (ErrorCode_IsSet) OutValue = ErrorCode_Optional; return ErrorCode_IsSet; }
+	/** @brief Returns a pointer to ErrorCode_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetErrorCodeOrNull() { if (ErrorCode_IsSet) return &ErrorCode_Optional; return nullptr; }
+	/** @brief Returns a pointer to ErrorCode_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetErrorCodeOrNull() const { if (ErrorCode_IsSet) return &ErrorCode_Optional; return nullptr; }
+	/** @brief Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true */
+	void SetErrorCode(const FString& NewValue) { ErrorCode_Optional = NewValue; ErrorCode_IsSet = true; }
+	/** @brief Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true using move semantics */
+	void SetErrorCode(FString&& NewValue) { ErrorCode_Optional = NewValue; ErrorCode_IsSet = true; }
+	 /** @brief Clears the value of ErrorCode_Optional and sets ErrorCode_IsSet to false */
+	void ClearErrorCode() { ErrorCode_IsSet = false; }
+
 	/** @brief Client entitlements that have been processed */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<FRHAPI_PlatformEntitlement> ClientEntitlements_Optional{  };

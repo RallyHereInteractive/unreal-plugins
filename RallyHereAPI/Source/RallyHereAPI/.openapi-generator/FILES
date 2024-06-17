@@ -6,6 +6,7 @@ Private/AdOpportunities.cpp
 Private/AdOpportunity.cpp
 Private/AdditionalJoinParams.cpp
 Private/AgreementMessage.cpp
+Private/AllPlayerDeserterStatuses.cpp
 Private/AuditEvent.cpp
 Private/AuditResponse.cpp
 Private/AuthAPI.cpp
@@ -26,6 +27,9 @@ Private/BrowserInfo.cpp
 Private/BrowserResponse.cpp
 Private/BrowserSessionInfo.cpp
 Private/CacheInfo.cpp
+Private/CalculateRankConfig.cpp
+Private/CalculateRankRequest.cpp
+Private/CalculateRankResponse.cpp
 Private/CalculatedRank.cpp
 Private/Catalog.cpp
 Private/CatalogAPI.cpp
@@ -48,6 +52,10 @@ Private/CrossplayPreferences.cpp
 Private/CustomAPI.cpp
 Private/DeleteTicketReason.cpp
 Private/DependenciesSchemasPortal.cpp
+Private/DeserterAPI.cpp
+Private/DeserterConfig.cpp
+Private/DeserterConfigResponse.cpp
+Private/DeserterUpdateRequest.cpp
 Private/Determiner.cpp
 Private/EntitlementActionType.cpp
 Private/EntitlementErrorCode.cpp
@@ -80,7 +88,6 @@ Private/FriendsV1API.cpp
 Private/FriendsV2API.cpp
 Private/FriendshipStatus.cpp
 Private/GrantType.cpp
-Private/HTTPAuthorizationCredentials.cpp
 Private/HTTPValidationError.cpp
 Private/HostType.cpp
 Private/HzApiErrorModel.cpp
@@ -126,7 +133,10 @@ Private/KeyClaims.cpp
 Private/KeyClaimsAPI.cpp
 Private/KeyEntitlementsAPI.cpp
 Private/KeyType.cpp
+Private/LinkAction.cpp
 Private/LocationInner.cpp
+Private/LoginHistoryEntry.cpp
+Private/LoginHistoryPage.cpp
 Private/LoginLootReward.cpp
 Private/LoginRequestV1.cpp
 Private/LoginResult.cpp
@@ -190,6 +200,7 @@ Private/PagedPlayerMatchResponse.cpp
 Private/PersonEmailListRequest.cpp
 Private/PersonEmailListResponse.cpp
 Private/PersonInfoResponse.cpp
+Private/PersonOperationRequest.cpp
 Private/Platform.cpp
 Private/PlatformEntitlement.cpp
 Private/PlatformEntitlementProcessRequest.cpp
@@ -204,8 +215,11 @@ Private/PlatformSession.cpp
 Private/PlatformSessionPlayer.cpp
 Private/PlatformSessionTemplate.cpp
 Private/PlatformUnionCCUs.cpp
+Private/PlatformUserLinkRequest.cpp
+Private/PlatformUserOperationRequest.cpp
 Private/PlatformUserResponse.cpp
 Private/Platforms.cpp
+Private/PlayerDeserterStatus.cpp
 Private/PlayerIdNotificationAPI.cpp
 Private/PlayerIdWrapper.cpp
 Private/PlayerInventoryChange.cpp
@@ -225,6 +239,7 @@ Private/PlayerOrdersResponse.cpp
 Private/PlayerPersonResponse.cpp
 Private/PlayerPresence.cpp
 Private/PlayerPresenceUpdateSelf.cpp
+Private/PlayerRank.cpp
 Private/PlayerRankRequestResponse.cpp
 Private/PlayerRankRequestResponseV2.cpp
 Private/PlayerRankResponse.cpp
@@ -332,6 +347,8 @@ Private/UpdateInventoryRequest.cpp
 Private/UpdateInventoryRequestById.cpp
 Private/UpdateInventoryRequests.cpp
 Private/UpdatePersonInfoRequest.cpp
+Private/UserLinkHistory.cpp
+Private/UserLinkHistoryEntry.cpp
 Private/UsersAPI.cpp
 Private/VOIPAPI.cpp
 Private/ValidationError.cpp
@@ -351,6 +368,7 @@ Public/AdOpportunities.h
 Public/AdOpportunity.h
 Public/AdditionalJoinParams.h
 Public/AgreementMessage.h
+Public/AllPlayerDeserterStatuses.h
 Public/AuditEvent.h
 Public/AuditResponse.h
 Public/AuthAPI.h
@@ -371,6 +389,9 @@ Public/BrowserInfo.h
 Public/BrowserResponse.h
 Public/BrowserSessionInfo.h
 Public/CacheInfo.h
+Public/CalculateRankConfig.h
+Public/CalculateRankRequest.h
+Public/CalculateRankResponse.h
 Public/CalculatedRank.h
 Public/Catalog.h
 Public/CatalogAPI.h
@@ -393,6 +414,10 @@ Public/CrossplayPreferences.h
 Public/CustomAPI.h
 Public/DeleteTicketReason.h
 Public/DependenciesSchemasPortal.h
+Public/DeserterAPI.h
+Public/DeserterConfig.h
+Public/DeserterConfigResponse.h
+Public/DeserterUpdateRequest.h
 Public/Determiner.h
 Public/EntitlementActionType.h
 Public/EntitlementErrorCode.h
@@ -425,7 +450,6 @@ Public/FriendsV1API.h
 Public/FriendsV2API.h
 Public/FriendshipStatus.h
 Public/GrantType.h
-Public/HTTPAuthorizationCredentials.h
 Public/HTTPValidationError.h
 Public/HostType.h
 Public/HzApiErrorModel.h
@@ -471,7 +495,10 @@ Public/KeyClaims.h
 Public/KeyClaimsAPI.h
 Public/KeyEntitlementsAPI.h
 Public/KeyType.h
+Public/LinkAction.h
 Public/LocationInner.h
+Public/LoginHistoryEntry.h
+Public/LoginHistoryPage.h
 Public/LoginLootReward.h
 Public/LoginRequestV1.h
 Public/LoginResult.h
@@ -535,6 +562,7 @@ Public/PagedPlayerMatchResponse.h
 Public/PersonEmailListRequest.h
 Public/PersonEmailListResponse.h
 Public/PersonInfoResponse.h
+Public/PersonOperationRequest.h
 Public/Platform.h
 Public/PlatformEntitlement.h
 Public/PlatformEntitlementProcessRequest.h
@@ -549,8 +577,11 @@ Public/PlatformSession.h
 Public/PlatformSessionPlayer.h
 Public/PlatformSessionTemplate.h
 Public/PlatformUnionCCUs.h
+Public/PlatformUserLinkRequest.h
+Public/PlatformUserOperationRequest.h
 Public/PlatformUserResponse.h
 Public/Platforms.h
+Public/PlayerDeserterStatus.h
 Public/PlayerIdNotificationAPI.h
 Public/PlayerIdWrapper.h
 Public/PlayerInventoryChange.h
@@ -570,6 +601,7 @@ Public/PlayerOrdersResponse.h
 Public/PlayerPersonResponse.h
 Public/PlayerPresence.h
 Public/PlayerPresenceUpdateSelf.h
+Public/PlayerRank.h
 Public/PlayerRankRequestResponse.h
 Public/PlayerRankRequestResponseV2.h
 Public/PlayerRankResponse.h
@@ -677,6 +709,8 @@ Public/UpdateInventoryRequest.h
 Public/UpdateInventoryRequestById.h
 Public/UpdateInventoryRequests.h
 Public/UpdatePersonInfoRequest.h
+Public/UserLinkHistory.h
+Public/UserLinkHistoryEntry.h
 Public/UsersAPI.h
 Public/VOIPAPI.h
 Public/ValidationError.h

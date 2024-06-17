@@ -17,7 +17,7 @@ namespace RallyHereAPI
 
 FSessionsAPI::FSessionsAPI() : FAPI()
 {
-	Url = TEXT("http://localhost");
+	Url = TEXT("https://demo.rally-here.io");
 	Name = FName(TEXT("Sessions"));
 }
 
@@ -1056,6 +1056,8 @@ FString FResponse_CreateOrJoinSession::GetHttpResponseCodeDescription(EHttpRespo
 	{
 	case 200:
 		return TEXT("Successful Response");
+	case 400:
+		return TEXT("Bad Request");
 	case 403:
 		return TEXT("Forbidden");
 	case 422:
@@ -1066,6 +1068,16 @@ FString FResponse_CreateOrJoinSession::GetHttpResponseCodeDescription(EHttpRespo
 }
 
 bool FResponse_CreateOrJoinSession::TryGetContentFor200(FRHAPI_SessionJoinResponse& OutContent) const
+{
+	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
+	if (JsonResponse != nullptr)
+	{
+		return TryGetJsonValue(*JsonResponse, OutContent);
+	}
+	return false;
+}
+
+bool FResponse_CreateOrJoinSession::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
 	if (JsonResponse != nullptr)
