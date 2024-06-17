@@ -604,8 +604,8 @@ Stores and fetchs all the information about a given player.
 `protected virtual void `[`OnDisplayNameSanitized`](#classURH__PlayerInfo_1afe5a34e86382c3f78767f2d72e3819fd)`(bool bSuccess,const FString & SanitizedMessage,ERHAPI_Platform PreferredPlatformType,const FRH_PlayerInfoGetDisplayNameBlock Delegate)` | Handles the response to sanitizing the players display name.
 `protected virtual void `[`OnGetPlayerLinkedPlatformsResponse`](#classURH__PlayerInfo_1ada74501b2e422f1fcf8f76825d74cc58)`(const GetPlatforms::Response & Response,const FRH_PlayerInfoGetPlatformsBlock Delegate)` | Handles the response to a Get Linked Platforms call.
 `protected virtual void `[`OnGetPlayerSettingsResponse`](#classURH__PlayerInfo_1aaa4c9a884f7291607e315db74776867a)`(const GetSettings::Response & Response,const FRH_PlayerInfoGetPlayerSettingsBlock Delegate,const FString SettingTypeId,TOptional< TArray< FString >> PartialKeys)` | Handles the response to a Get Player Settings call.
-`protected virtual void `[`OnSetPlayerSettingsResponse`](#classURH__PlayerInfo_1a6f59dae05d5371b867091b180280f091)`(const SetSettings::Response & Response,const FRH_PlayerInfoSetPlayerSettingsBlock Delegate,const FString SettingTypeId,const FString SettingKey,`[`FRH_PlayerSettingsDataWrapper`](undefined.md#structFRH__PlayerSettingsDataWrapper)` SettingsData)` | Handles the response to a Set Player Settings call.
-`protected virtual void `[`OnGetPlayerRankingsResponse`](#classURH__PlayerInfo_1a53c355b2f85273d37008d685c3cc113c)`(const GetRankings::Response & Response,const FRH_PlayerInfoGetPlayerRankingsBlock Delegate)` | Handles the response to a Get Player Rankings call.
+`protected virtual PRAGMA_DISABLE_DEPRECATION_WARNINGS void `[`OnSetPlayerSettingsResponse`](#classURH__PlayerInfo_1a8d810fbd3edc8d35fa32d40f0817e59f)`(const SetSettings::Response & Response,const FRH_PlayerInfoSetPlayerSettingsBlock Delegate,const FString SettingTypeId,const FString SettingKey,`[`FRH_PlayerSettingsDataWrapper`](undefined.md#structFRH__PlayerSettingsDataWrapper)` SettingsData)` | Handles the response to a Set Player Settings call.
+`protected virtual PRAGMA_ENABLE_DEPRECATION_WARNINGS void `[`OnGetPlayerRankingsResponse`](#classURH__PlayerInfo_1a164a2aa01558d1bb17603d51c7ea0da6)`(const GetRankings::Response & Response,const FRH_PlayerInfoGetPlayerRankingsBlock Delegate)` | Handles the response to a Get Player Rankings call.
 `protected virtual void `[`OnUpdatePlayerRankingResponse`](#classURH__PlayerInfo_1a214672d0d5001ec24098b5414b0fc35d)`(const UpdateRanking::Response & Response,const FRH_PlayerInfoGetPlayerRankingsBlock Delegate)` | Handles the response to a Update Player Ranking call.
 `typedef `[`GetPlatforms`](#classURH__PlayerInfo_1a88c3597ebf7f47399d936f5a96d344f6) | 
 `typedef `[`GetSettings`](#classURH__PlayerInfo_1ae425cac3ffa853a48c03df8caa2c8ca9) | 
@@ -992,7 +992,7 @@ Handles the response to a Get Player Settings call.
 
 * `PartialKeys` If Specified, only the keys in this list were requested.
 
-#### `protected virtual void `[`OnSetPlayerSettingsResponse`](#classURH__PlayerInfo_1a6f59dae05d5371b867091b180280f091)`(const SetSettings::Response & Response,const FRH_PlayerInfoSetPlayerSettingsBlock Delegate,const FString SettingTypeId,const FString SettingKey,`[`FRH_PlayerSettingsDataWrapper`](undefined.md#structFRH__PlayerSettingsDataWrapper)` SettingsData)` <a id="classURH__PlayerInfo_1a6f59dae05d5371b867091b180280f091"></a>
+#### `protected virtual PRAGMA_DISABLE_DEPRECATION_WARNINGS void `[`OnSetPlayerSettingsResponse`](#classURH__PlayerInfo_1a8d810fbd3edc8d35fa32d40f0817e59f)`(const SetSettings::Response & Response,const FRH_PlayerInfoSetPlayerSettingsBlock Delegate,const FString SettingTypeId,const FString SettingKey,`[`FRH_PlayerSettingsDataWrapper`](undefined.md#structFRH__PlayerSettingsDataWrapper)` SettingsData)` <a id="classURH__PlayerInfo_1a8d810fbd3edc8d35fa32d40f0817e59f"></a>
 
 Handles the response to a Set Player Settings call.
 
@@ -1007,7 +1007,7 @@ Handles the response to a Set Player Settings call.
 
 * `SettingsData` The data of the setting that was updated.
 
-#### `protected virtual void `[`OnGetPlayerRankingsResponse`](#classURH__PlayerInfo_1a53c355b2f85273d37008d685c3cc113c)`(const GetRankings::Response & Response,const FRH_PlayerInfoGetPlayerRankingsBlock Delegate)` <a id="classURH__PlayerInfo_1a53c355b2f85273d37008d685c3cc113c"></a>
+#### `protected virtual PRAGMA_ENABLE_DEPRECATION_WARNINGS void `[`OnGetPlayerRankingsResponse`](#classURH__PlayerInfo_1a164a2aa01558d1bb17603d51c7ea0da6)`(const GetRankings::Response & Response,const FRH_PlayerInfoGetPlayerRankingsBlock Delegate)` <a id="classURH__PlayerInfo_1a164a2aa01558d1bb17603d51c7ea0da6"></a>
 
 Handles the response to a Get Player Rankings call.
 
