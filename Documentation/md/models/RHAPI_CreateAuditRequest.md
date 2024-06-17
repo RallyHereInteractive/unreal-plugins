@@ -81,6 +81,8 @@ struct FRHAPI_CreateAuditRequest
 `public bool `[`MapPreferences_IsSet`](#structFRHAPI__CreateAuditRequest_1a7b640c1e80ac7673d7d05386bdf321bd) | true if MapPreferences_Optional has been set to a value
 `public FString `[`QueuedSessionId_Optional`](#structFRHAPI__CreateAuditRequest_1a0026b3e3ab5c755d587dc41fb15be728) | ID of the session that was/is in a matchmaking queue for this event.
 `public bool `[`QueuedSessionId_IsSet`](#structFRHAPI__CreateAuditRequest_1a13ebd2ffdd7e54c09b028608574392af) | true if QueuedSessionId_Optional has been set to a value
+`public FString `[`MatchId_Optional`](#structFRHAPI__CreateAuditRequest_1ac30965983ef61dd41ef6db11040c2adb) | ID of a match that was associated with this session.
+`public bool `[`MatchId_IsSet`](#structFRHAPI__CreateAuditRequest_1a5f055c5ea69c2f8efc0ff7daf576dbb0) | true if MatchId_Optional has been set to a value
 `public TArray< FGuid > `[`Players_Optional`](#structFRHAPI__CreateAuditRequest_1abe826ab73a0dc0fe032c05e47d2ad99e) | List of players uuids that were effected in this event. Each player will get a unique event.
 `public bool `[`Players_IsSet`](#structFRHAPI__CreateAuditRequest_1a36dda49738de4ed403e47e362802bb90) | true if Players_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__CreateAuditRequest_1a9c51e7e0f9ac95e95d007a8fb833d102)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
@@ -376,6 +378,15 @@ struct FRHAPI_CreateAuditRequest
 `public inline void `[`SetQueuedSessionId`](#structFRHAPI__CreateAuditRequest_1ab60c381f7fe68e785b06bd1fcc3bfa3f)`(const FString & NewValue)` | Sets the value of QueuedSessionId_Optional and also sets QueuedSessionId_IsSet to true.
 `public inline void `[`SetQueuedSessionId`](#structFRHAPI__CreateAuditRequest_1afbc35250ab24fa16d94c61e629c12aff)`(FString && NewValue)` | Sets the value of QueuedSessionId_Optional and also sets QueuedSessionId_IsSet to true using move semantics.
 `public inline void `[`ClearQueuedSessionId`](#structFRHAPI__CreateAuditRequest_1af13bcc59cc707c792aa29f45d8f5c6a3)`()` | Clears the value of QueuedSessionId_Optional and sets QueuedSessionId_IsSet to false.
+`public inline FString & `[`GetMatchId`](#structFRHAPI__CreateAuditRequest_1a0ed29f5570150c83d51d3208cbad8036)`()` | Gets the value of MatchId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetMatchId`](#structFRHAPI__CreateAuditRequest_1ab2686c16fce2a2d1536d5daad255fa7d)`() const` | Gets the value of MatchId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetMatchId`](#structFRHAPI__CreateAuditRequest_1a589fabae5c7b9a25026ef03f75489a4f)`(const FString & DefaultValue) const` | Gets the value of MatchId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetMatchId`](#structFRHAPI__CreateAuditRequest_1a1b9b01289b2835e9a247ef300686af0a)`(FString & OutValue) const` | Fills OutValue with the value of MatchId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FString * `[`GetMatchIdOrNull`](#structFRHAPI__CreateAuditRequest_1a2247241210d38be511b587c87cc7a035)`()` | Returns a pointer to MatchId_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetMatchIdOrNull`](#structFRHAPI__CreateAuditRequest_1a7b491ae3289919fd232c5c91696516c2)`() const` | Returns a pointer to MatchId_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetMatchId`](#structFRHAPI__CreateAuditRequest_1ade4710fa3da7402ec8681d338d3d032a)`(const FString & NewValue)` | Sets the value of MatchId_Optional and also sets MatchId_IsSet to true.
+`public inline void `[`SetMatchId`](#structFRHAPI__CreateAuditRequest_1aee26be37ede3329fb17c66cfd8e56f24)`(FString && NewValue)` | Sets the value of MatchId_Optional and also sets MatchId_IsSet to true using move semantics.
+`public inline void `[`ClearMatchId`](#structFRHAPI__CreateAuditRequest_1ae26f168091000aa54c84e0a6a85733f7)`()` | Clears the value of MatchId_Optional and sets MatchId_IsSet to false.
 `public inline TArray< FGuid > & `[`GetPlayers`](#structFRHAPI__CreateAuditRequest_1a1061e0d89d34c2256654b9834656343e)`()` | Gets the value of Players_Optional, regardless of it having been set.
 `public inline const TArray< FGuid > & `[`GetPlayers`](#structFRHAPI__CreateAuditRequest_1a8d19748f7eb81fbcd2cae82970ba482c)`() const` | Gets the value of Players_Optional, regardless of it having been set.
 `public inline const TArray< FGuid > & `[`GetPlayers`](#structFRHAPI__CreateAuditRequest_1a4c599ad2b223e07aa49a1a600002a1c6)`(const TArray< FGuid > & DefaultValue) const` | Gets the value of Players_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -643,6 +654,14 @@ ID of the session that was/is in a matchmaking queue for this event.
 #### `public bool `[`QueuedSessionId_IsSet`](#structFRHAPI__CreateAuditRequest_1a13ebd2ffdd7e54c09b028608574392af) <a id="structFRHAPI__CreateAuditRequest_1a13ebd2ffdd7e54c09b028608574392af"></a>
 
 true if QueuedSessionId_Optional has been set to a value
+
+#### `public FString `[`MatchId_Optional`](#structFRHAPI__CreateAuditRequest_1ac30965983ef61dd41ef6db11040c2adb) <a id="structFRHAPI__CreateAuditRequest_1ac30965983ef61dd41ef6db11040c2adb"></a>
+
+ID of a match that was associated with this session.
+
+#### `public bool `[`MatchId_IsSet`](#structFRHAPI__CreateAuditRequest_1a5f055c5ea69c2f8efc0ff7daf576dbb0) <a id="structFRHAPI__CreateAuditRequest_1a5f055c5ea69c2f8efc0ff7daf576dbb0"></a>
+
+true if MatchId_Optional has been set to a value
 
 #### `public TArray< FGuid > `[`Players_Optional`](#structFRHAPI__CreateAuditRequest_1abe826ab73a0dc0fe032c05e47d2ad99e) <a id="structFRHAPI__CreateAuditRequest_1abe826ab73a0dc0fe032c05e47d2ad99e"></a>
 
@@ -1832,6 +1851,42 @@ Sets the value of QueuedSessionId_Optional and also sets QueuedSessionId_IsSet t
 #### `public inline void `[`ClearQueuedSessionId`](#structFRHAPI__CreateAuditRequest_1af13bcc59cc707c792aa29f45d8f5c6a3)`()` <a id="structFRHAPI__CreateAuditRequest_1af13bcc59cc707c792aa29f45d8f5c6a3"></a>
 
 Clears the value of QueuedSessionId_Optional and sets QueuedSessionId_IsSet to false.
+
+#### `public inline FString & `[`GetMatchId`](#structFRHAPI__CreateAuditRequest_1a0ed29f5570150c83d51d3208cbad8036)`()` <a id="structFRHAPI__CreateAuditRequest_1a0ed29f5570150c83d51d3208cbad8036"></a>
+
+Gets the value of MatchId_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetMatchId`](#structFRHAPI__CreateAuditRequest_1ab2686c16fce2a2d1536d5daad255fa7d)`() const` <a id="structFRHAPI__CreateAuditRequest_1ab2686c16fce2a2d1536d5daad255fa7d"></a>
+
+Gets the value of MatchId_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetMatchId`](#structFRHAPI__CreateAuditRequest_1a589fabae5c7b9a25026ef03f75489a4f)`(const FString & DefaultValue) const` <a id="structFRHAPI__CreateAuditRequest_1a589fabae5c7b9a25026ef03f75489a4f"></a>
+
+Gets the value of MatchId_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetMatchId`](#structFRHAPI__CreateAuditRequest_1a1b9b01289b2835e9a247ef300686af0a)`(FString & OutValue) const` <a id="structFRHAPI__CreateAuditRequest_1a1b9b01289b2835e9a247ef300686af0a"></a>
+
+Fills OutValue with the value of MatchId_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline FString * `[`GetMatchIdOrNull`](#structFRHAPI__CreateAuditRequest_1a2247241210d38be511b587c87cc7a035)`()` <a id="structFRHAPI__CreateAuditRequest_1a2247241210d38be511b587c87cc7a035"></a>
+
+Returns a pointer to MatchId_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const FString * `[`GetMatchIdOrNull`](#structFRHAPI__CreateAuditRequest_1a7b491ae3289919fd232c5c91696516c2)`() const` <a id="structFRHAPI__CreateAuditRequest_1a7b491ae3289919fd232c5c91696516c2"></a>
+
+Returns a pointer to MatchId_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetMatchId`](#structFRHAPI__CreateAuditRequest_1ade4710fa3da7402ec8681d338d3d032a)`(const FString & NewValue)` <a id="structFRHAPI__CreateAuditRequest_1ade4710fa3da7402ec8681d338d3d032a"></a>
+
+Sets the value of MatchId_Optional and also sets MatchId_IsSet to true.
+
+#### `public inline void `[`SetMatchId`](#structFRHAPI__CreateAuditRequest_1aee26be37ede3329fb17c66cfd8e56f24)`(FString && NewValue)` <a id="structFRHAPI__CreateAuditRequest_1aee26be37ede3329fb17c66cfd8e56f24"></a>
+
+Sets the value of MatchId_Optional and also sets MatchId_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearMatchId`](#structFRHAPI__CreateAuditRequest_1ae26f168091000aa54c84e0a6a85733f7)`()` <a id="structFRHAPI__CreateAuditRequest_1ae26f168091000aa54c84e0a6a85733f7"></a>
+
+Clears the value of MatchId_Optional and sets MatchId_IsSet to false.
 
 #### `public inline TArray< FGuid > & `[`GetPlayers`](#structFRHAPI__CreateAuditRequest_1a1061e0d89d34c2256654b9834656343e)`()` <a id="structFRHAPI__CreateAuditRequest_1a1061e0d89d34c2256654b9834656343e"></a>
 
