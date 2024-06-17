@@ -328,13 +328,30 @@ public:
 	/**
 	 * @brief Gets the item id of the item being used to pay for the order.
 	 */
-	UFUNCTION(BlueprintPure, Category = "Inventory Subsystem | Player Order Entry")
-	const int32& GetPriceItemId() const { return PriceItemId; }
+	UE_DEPRECATED(5.0, "Please use GetPrices() instead")
+	UFUNCTION(BlueprintPure, Category = "Inventory Subsystem | Player Order Entry", meta = (DeprecatedFunction, DeprecationMessage = "GetPriceItemid is deprecated, use GetPrices instead"))
+	const int32& GetPriceItemId() const
+	{
+		PRAGMA_DISABLE_DEPRECATION_WARNINGS
+		return PriceItemId;
+		PRAGMA_ENABLE_DEPRECATION_WARNINGS
+	}
 	/**
 	 * @brief Gets the amount of the item being used for payment, this is verified to match the expected price.
 	 */
+	UE_DEPRECATED(5.0, "Please use GetPrices() instead")
+	UFUNCTION(BlueprintPure, Category = "Inventory Subsystem | Player Order Entry", meta=(DeprecatedFunction, DeprecationMessage="GetPrice is deprecated, use GetPrices instead"))
+	int32 GetPrice() const
+	{
+		PRAGMA_DISABLE_DEPRECATION_WARNINGS
+		return Price;
+		PRAGMA_ENABLE_DEPRECATION_WARNINGS
+	}
+	/**
+	 * @brief Gets an array of items and their types being used for payment, this is verified to match the expected price.
+	 */
 	UFUNCTION(BlueprintPure, Category = "Inventory Subsystem | Player Order Entry")
-	int32 GetPrice() const { return Price; }
+	const TArray<FRHAPI_PurchasePriceCurrency>& GetPrices() const { return Prices; }
 	/**
 	 * @brief Gets the item id of a coupon item being used if one is being applied for an item discount.
 	 */
@@ -377,13 +394,20 @@ public:
 	/**
 	* @brief The item id of the item being used to pay for the order.
 	*/
-	UPROPERTY(Transient, EditDefaultsOnly, Category = "Inventory Subsystem | Player Order Entry")
+	UE_DEPRECATED(5.0, "Please use the Prices Array instead")
+	UPROPERTY(Transient, EditDefaultsOnly, Category = "Inventory Subsystem | Player Order Entry", meta = (DeprecatedProperty))
 	int32 PriceItemId;
 	/**
 	* @brief The amount of the item being used for payment, this is verified to match the expected price.
 	*/
-	UPROPERTY(Transient, EditDefaultsOnly, Category = "Inventory Subsystem | Player Order Entry")
+	UE_DEPRECATED(5.0, "Please use the Prices Array instead")
+	UPROPERTY(Transient, EditDefaultsOnly, Category = "Inventory Subsystem | Player Order Entry", meta = (DeprecatedProperty))
 	int32 Price;
+	/**
+	* @brief An array of items and their types being used for payment, this is verified to match the expected price.
+	*/
+	UPROPERTY(Transient, EditDefaultsOnly, Category = "Inventory Subsystem | Player Order Entry")
+	TArray<FRHAPI_PurchasePriceCurrency> Prices;
 	/**
 	* @brief The item id of a coupon item being used if one is being applied for an item discount.
 	*/

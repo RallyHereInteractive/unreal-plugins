@@ -608,13 +608,13 @@ void FRHDTW_PlayerInventory::DoOrderWatchTab()
 					// Content
 					ImGui::TableNextRow();
 					ImGui::TableNextColumn();
-					ImGui::Text("%s", TCHAR_TO_UTF8(*RH_GETENUMSTRING("/Script/RallyHereAPI", "ERHAPI_InventoryPortal", Order.GetPortalId())));
+					ImGuiDisplayCopyableEnumValue(TEXT("Inventory Portal"), Order.GetPortalIdOrNull(), ECopyMode::Value);
 					ImGui::TableNextColumn();
-					ImGui::Text("%s", TCHAR_TO_UTF8(*Order.GetPortalUserId()));
+					ImGuiDisplayCopyableValue(TEXT("Portal User Id"), Order.GetPortalUserIdOrNull(), ECopyMode::Value);
 					ImGui::TableNextColumn();
-					ImGui::Text("%s", TCHAR_TO_UTF8(*Order.GetInstanceId()));
+					ImGuiDisplayCopyableValue(TEXT("Instance Id"), Order.GetInstanceIdOrNull(), ECopyMode::Value);
 					ImGui::TableNextColumn();
-					ImGui::Text("%s", TCHAR_TO_UTF8(*Order.GetMatchId()));
+					ImGuiDisplayCopyableValue(TEXT("Match Id"), Order.GetMatchIdOrNull(), ECopyMode::Value);
 
 					ImGui::EndTable();
 				}
@@ -625,7 +625,7 @@ void FRHDTW_PlayerInventory::DoOrderWatchTab()
 
 					for (const auto& Entry : Order.GetEntries())
 					{
-						if (ImGui::BeginTable("OrderEntryTable", 10, RH_TableFlagsPropSizing))
+						if (ImGui::BeginTable("OrderEntryTable", 9, RH_TableFlagsPropSizing))
 						{
 							// Header
 							ImGui::TableSetupColumn("Result");
@@ -635,7 +635,6 @@ void FRHDTW_PlayerInventory::DoOrderWatchTab()
 							ImGui::TableSetupColumn("Inventory Id");
 							ImGui::TableSetupColumn("Item Id");
 							ImGui::TableSetupColumn("Quantity");
-							ImGui::TableSetupColumn("Price Item Id");
 							ImGui::TableSetupColumn("Price");
 							ImGui::TableSetupColumn("Coupon Item Id");
 							ImGui::TableHeadersRow();
@@ -643,56 +642,61 @@ void FRHDTW_PlayerInventory::DoOrderWatchTab()
 							// Content
 							ImGui::TableNextRow();
 							ImGui::TableNextColumn();
-							ImGui::Text("%s", TCHAR_TO_UTF8(*RH_GETENUMSTRING("/Script/RallyHereAPI", "ERHAPI_PlayerOrderEntryResult", Entry.GetResult())));
+							ImGui::Text("%s", TCHAR_TO_UTF8(*UEnum::GetDisplayValueAsText(Entry.GetResult()).ToString()));
 							ImGui::TableNextColumn();
-							ImGui::Text("%s", TCHAR_TO_UTF8(*RH_GETENUMSTRING("/Script/RallyHereAPI", "ERHAPI_PlayerOrderEntryType", Entry.GetType())));
+							ImGui::Text("%s", TCHAR_TO_UTF8(*UEnum::GetDisplayValueAsText(Entry.GetType()).ToString()));
 							ImGui::TableNextColumn();
-							if (const ERHAPI_InventoryBucket* InventoryBucket = Entry.GetUseInventoryBucketOrNull())
-							{
-								ImGui::Text("%s", TCHAR_TO_UTF8(*RH_GETENUMSTRING("/Script/RallyHereAPI", "ERHAPI_InventoryBucket", *InventoryBucket)));
-							}
-							else
-							{
-								ImGui::Text("");
-							}
+							ImGuiDisplayCopyableEnumValue(TEXT("Bucket"), Entry.GetUseInventoryBucketOrNull(), ECopyMode::Value);
 							ImGui::TableNextColumn();
-							ImGui::Text("%d", Entry.GetLootId());
+							ImGuiDisplayCopyableValue(TEXT("Loot Id"), Entry.GetLootIdOrNull(), ECopyMode::Value);
 							ImGui::TableNextColumn();
-							if (const FGuid* InventoryId = Entry.GetInventoryIdOrNull())
-							{
-								ImGui::Text("%s", TCHAR_TO_UTF8(*InventoryId->ToString(EGuidFormats::DigitsWithHyphens)));
-							}
-							else
-							{
-								ImGui::Text("");
-							}
+							ImGuiDisplayCopyableValue(TEXT("Inventory Id"), Entry.GetInventoryIdOrNull(), ECopyMode::Value);
 							ImGui::TableNextColumn();
-							if (const int32* ItemId = Entry.GetItemIdOrNull())
-							{
-								ImGui::Text("%d", *ItemId);
-							}
-							else
-							{
-								ImGui::Text("");
-							}
+							ImGuiDisplayCopyableValue(TEXT("Item Id"), Entry.GetItemIdOrNull(), ECopyMode::Value);
 							ImGui::TableNextColumn();
 							ImGui::Text("%d", Entry.GetQuantity());
 							ImGui::TableNextColumn();
 							if (const FRHAPI_PurchasePrice* PurchasePrice = Entry.GetPurchasePriceOrNull())
 							{
-								ImGui::Text("%d", (*PurchasePrice).GetPriceItemId());
+								TArray<FRHAPI_PurchasePriceCurrency> Currencies;
+
+								// if currencies array is not set, convert old data
+								if (!PurchasePrice->GetCurrencies(Currencies))
+								{
+									FRHAPI_PurchasePriceCurrency SinglePrice;
+									if (auto PriceItemId = PurchasePrice->GetPriceItemIdOrNull())
+									{
+										SinglePrice.SetPriceItemId(*PriceItemId);
+									}
+									if (auto Price = PurchasePrice->GetPriceOrNull())
+									{
+										SinglePrice.SetPrice(*Price);
+									}
+									Currencies.Add(SinglePrice);
+
+								}
+
+
+								if (Currencies.Num() > 0)
+								{
+									for (const auto& Currency : Currencies)
+									{
+										ImGui::Text("%d:%d", Currency.GetPriceItemId(), Currency.GetPrice());
+									}
+								}
+								else
+								{
+									ImGui::Text(""); // price
+								}
 								ImGui::TableNextColumn();
-								ImGui::Text("%d", (*PurchasePrice).GetPrice());
-								ImGui::TableNextColumn();
+
 								ImGui::Text("%d", (*PurchasePrice).GetPriceCouponItemId());
 							}
 							else
 							{
-								ImGui::Text("");
+								ImGui::Text(""); // price
 								ImGui::TableNextColumn();
-								ImGui::Text("");
-								ImGui::TableNextColumn();
-								ImGui::Text("");
+								ImGui::Text(""); // coupoon
 							}
 
 							ImGui::EndTable();
@@ -708,7 +712,7 @@ void FRHDTW_PlayerInventory::DoOrderWatchTab()
 								ImGui::Indent(10.0f);
 								for (const auto& Detail : *Details)
 								{
-									FString HeaderText = *RH_GETENUMSTRING("/Script/RallyHereAPI", "ERHAPI_PlayerOrderDetailType", Detail.GetType());
+									FString HeaderText = UEnum::GetDisplayValueAsText(Detail.GetType()).ToString();
 
 									if (const int32* LootId = Detail.GetLootIdOrNull())
 									{
@@ -730,59 +734,10 @@ void FRHDTW_PlayerInventory::DoOrderWatchTab()
 												if (ImGui::CollapsingHeader("Before"))
 												{
 													ImGui::Indent(10.0f);
-													if (ImGui::BeginTable("AfterItemTable", 2, RH_TableFlagsPropSizing))
-													{
-														// Header
-														ImGui::TableSetupColumn("Key");
-														ImGui::TableSetupColumn("Value");
-														ImGui::TableHeadersRow();
-
-														// Content
-														if (BeforeItemId != nullptr)
-														{
-															ImGui::TableNextRow();
-															ImGui::TableNextColumn();
-															ImGui::Text("ItemId");
-															ImGui::TableNextColumn();
-															ImGui::Text("%d", *BeforeItemId);
-														}
-
-														if (BeforeDetails != nullptr)
-														{
-															ImGui::TableNextRow();
-															ImGui::TableNextColumn();
-															ImGui::Text("InventoryId");
-															ImGui::TableNextColumn();
-															ImGuiDisplayCopyableValue("Inventory Id", (*BeforeDetails).GetInventoryId(), ECopyMode::Value);
-
-															ImGui::TableNextRow();
-															ImGui::TableNextColumn();
-															ImGui::Text("Type");
-															ImGui::TableNextColumn();
-															ImGui::Text("%s", TCHAR_TO_UTF8(*RH_GETENUMSTRING("/Script/RallyHereAPI", "ERHAPI_InventoryType", (*BeforeDetails).GetType())));
-
-															ImGui::TableNextRow();
-															ImGui::TableNextColumn();
-															ImGui::Text("Count");
-															ImGui::TableNextColumn();
-															ImGui::Text("%d", (*BeforeDetails).GetCount());
-
-															ImGui::TableNextRow();
-															ImGui::TableNextColumn();
-															ImGui::Text("Acquired");
-															ImGui::TableNextColumn();
-															ImGui::Text("%s", TCHAR_TO_UTF8(*(*BeforeDetails).GetAcquired().ToString()));
-														}
-
-														ImGui::EndTable();
-													}
-
+													ImGuiDisplayCopyableValue(TEXT("Item Id"), BeforeItemId);
 													if (BeforeDetails != nullptr)
 													{
-														if (const auto* CustomData = (*BeforeDetails).GetCustomDataOrNull())
-														{
-															ImGuiDisplayCustomData(*CustomData, "Before");
-														}
+														ImGuiDisplayModelData(*BeforeDetails);
 													}
 													ImGui::Unindent(10.0f);
 												}
@@ -793,59 +748,10 @@ void FRHDTW_PlayerInventory::DoOrderWatchTab()
 												if (ImGui::CollapsingHeader("After"))
 												{
 													ImGui::Indent(10.0f);
-													if (ImGui::BeginTable("AfterItemTable", 2, RH_TableFlagsPropSizing))
-													{
-														// Header
-														ImGui::TableSetupColumn("Key");
-														ImGui::TableSetupColumn("Value");
-														ImGui::TableHeadersRow();
-
-														// Content
-														if (AfterItemId != nullptr)
-														{
-															ImGui::TableNextRow();
-															ImGui::TableNextColumn();
-															ImGui::Text("ItemId");
-															ImGui::TableNextColumn();
-															ImGui::Text("%d", *AfterItemId);
-														}
-
-														if (AfterDetails != nullptr)
-														{
-															ImGui::TableNextRow();
-															ImGui::TableNextColumn();
-															ImGui::Text("InventoryId");
-															ImGui::TableNextColumn();
-															ImGuiDisplayCopyableValue("Inventory Id", (*AfterDetails).GetInventoryId(), ECopyMode::Value);
-
-															ImGui::TableNextRow();
-															ImGui::TableNextColumn();
-															ImGui::Text("Type");
-															ImGui::TableNextColumn();
-															ImGui::Text("%s", TCHAR_TO_UTF8(*RH_GETENUMSTRING("/Script/RallyHereAPI", "ERHAPI_InventoryType", (*AfterDetails).GetType())));
-
-															ImGui::TableNextRow();
-															ImGui::TableNextColumn();
-															ImGui::Text("Count");
-															ImGui::TableNextColumn();
-															ImGui::Text("%d", (*AfterDetails).GetCount());
-
-															ImGui::TableNextRow();
-															ImGui::TableNextColumn();
-															ImGui::Text("Acquired");
-															ImGui::TableNextColumn();
-															ImGui::Text("%s", TCHAR_TO_UTF8(*(*AfterDetails).GetAcquired().ToString()));
-														}
-
-														ImGui::EndTable();
-													}
-
+													ImGuiDisplayCopyableValue(TEXT("Item Id"), AfterItemId);
 													if (AfterDetails != nullptr)
 													{
-														if (const auto* CustomData = (*AfterDetails).GetCustomDataOrNull())
-														{
-															ImGuiDisplayCustomData(*CustomData, "After");
-														}
+														ImGuiDisplayModelData(*AfterDetails);
 													}
 													ImGui::Unindent(10.0f);
 												}
