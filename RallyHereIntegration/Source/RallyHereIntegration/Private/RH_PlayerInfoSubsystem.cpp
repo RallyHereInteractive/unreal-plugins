@@ -662,7 +662,6 @@ void URH_PlayerInfo::SetPlayerSettings(const FString& SettingTypeId, FRH_PlayerS
 		}
 	}
 }
-PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 void URH_PlayerInfo::OnSetPlayerSettingsResponse(const SetSettings::Response& Response, const FRH_PlayerInfoSetPlayerSettingsBlock Delegate, const FString SettingTypeId, const FString SettingKey, FRH_PlayerSettingsDataWrapper SettingsData)
 {
@@ -705,7 +704,7 @@ void URH_PlayerInfo::OnSetPlayerSettingsResponse(const SetSettings::Response& Re
 		Delegate.ExecuteIfBound(false, EmptyWrapper);
 	}
 }
-
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 void URH_PlayerInfo::SetPlayerSetting(const FString& SettingTypeId, const FString& Key, const FRHAPI_SetSinglePlayerSettingRequest& SettingDocument, const FRH_PlayerInfoSetPlayerSettingBlock& Delegate /*= FRH_PlayerInfoSetPlayerSettingsBlock()*/)
 {

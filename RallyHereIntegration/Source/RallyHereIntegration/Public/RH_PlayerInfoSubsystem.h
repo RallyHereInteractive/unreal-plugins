@@ -1109,6 +1109,7 @@ protected:
 	 * @param [in] PartialKeys If Specified, only the keys in this list were requested.
 	 */
 	virtual void OnGetPlayerSettingsResponse(const GetSettings::Response& Response, const FRH_PlayerInfoGetPlayerSettingsBlock Delegate, const FString SettingTypeId, TOptional<TArray<FString>> PartialKeys);
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	/**
 	 * @brief Handles the response to a Set Player Settings call.
 	 * @param [in] Resp Response given for the call
@@ -1118,6 +1119,7 @@ protected:
 	 * @param [in] SettingsData The data of the setting that was updated.
 	 */
 	virtual void OnSetPlayerSettingsResponse(const SetSettings::Response& Response, const FRH_PlayerInfoSetPlayerSettingsBlock Delegate, const FString SettingTypeId, const FString SettingKey, FRH_PlayerSettingsDataWrapper SettingsData);
+	PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	/**
 	 * @brief Handles the response to a Get Player Rankings call.
 	 * @param [in] Resp Response given for the call
