@@ -1088,14 +1088,28 @@ void URH_GameInstanceServerBootstrapper::OnSyncToSessionComplete(URH_JoinedSessi
 void URH_GameInstanceServerBootstrapper::OnActiveSessionChanged(URH_JoinedSession* OldSession, URH_JoinedSession* NewSession)
 {
 	UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
-
-	// if the session we are managing is no longer the active session, we should cleanup
+	
 	if (RHSession != nullptr && !RHSession->IsActive())
 	{
+		// if the session we are managing is no longer the active session, we should cleanup
 		ensure(RHSession == OldSession);
 		ensure(NewSession == nullptr);
 
 		CleanupAfterSessionUnsynced();
+	}
+	else if (RHSession == nullptr)
+	{
+		// if locally hosted session has become nullptr somehow, we should cleanup (and we better not have a valid old or new session)
+		ensure(OldSession == nullptr);
+		ensure(NewSession == nullptr);
+		
+		CleanupAfterSessionUnsynced();
+	}
+	else // RHSession != nullptr && RHSession->IsActive(), which means we just activated the locally hosted session
+	{
+		ensure(RHSession != nullptr)
+		ensure(OldSession == nullptr);
+		ensure(RHSession == NewSession);
 	}
 }
 
