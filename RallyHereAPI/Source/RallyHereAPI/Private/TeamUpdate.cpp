@@ -22,8 +22,16 @@ using RallyHereAPI::TryGetJsonValue;
 void FRHAPI_TeamUpdate::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
 	Writer->WriteObjectStart();
-	Writer->WriteIdentifierPrefix(TEXT("max_size"));
-	RallyHereAPI::WriteJsonValue(Writer, MaxSize);
+	if (MaxSize_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("max_size"));
+		RallyHereAPI::WriteJsonValue(Writer, MaxSize_Optional);
+	}
+	if (CustomData_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("custom_data"));
+		RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -36,7 +44,17 @@ bool FRHAPI_TeamUpdate::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonMaxSizeField = (*Object)->TryGetField(TEXT("max_size"));
-	ParseSuccess &= JsonMaxSizeField.IsValid() && !JsonMaxSizeField->IsNull() && TryGetJsonValue(JsonMaxSizeField, MaxSize);
+	if (JsonMaxSizeField.IsValid() && !JsonMaxSizeField->IsNull())
+	{
+		MaxSize_IsSet = TryGetJsonValue(JsonMaxSizeField, MaxSize_Optional);
+		ParseSuccess &= MaxSize_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
+	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	{
+		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
+		ParseSuccess &= CustomData_IsSet;
+	}
 
 	return ParseSuccess;
 }

@@ -25,6 +25,8 @@ A team of SessionPlayers in a session.
 `public bool `[`TeamId_IsSet`](#structFRHAPI__SessionTeam_1ae4c4a101fbe2d983f2bf0f949c0ce907) | true if TeamId_Optional has been set to a value
 `public TArray< FString > `[`TicketIds_Optional`](#structFRHAPI__SessionTeam_1af28f1dccc642bb42d4216d0521a8fe8b) | Matchmaking tickets that were assigned to this team.
 `public bool `[`TicketIds_IsSet`](#structFRHAPI__SessionTeam_1ab7e2a7febb7b3a6252cfb2569448497a) | true if TicketIds_Optional has been set to a value
+`public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__SessionTeam_1ab19beed3e9a527b86c042706abd4e078) | Custom data about this team.
+`public bool `[`CustomData_IsSet`](#structFRHAPI__SessionTeam_1a4090a0cef93f77f1fe669dd03eefcf6c) | true if CustomData_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__SessionTeam_1aabef716c3bdd58b733abaa4c5d57f078)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__SessionTeam_1a3df39da3770789446f398baa65d8e27c)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TArray< `[`FRHAPI_SessionPlayer`](RHAPI_SessionPlayer.md#structFRHAPI__SessionPlayer)` > & `[`GetPlayers`](#structFRHAPI__SessionTeam_1acdfcc94db5681eaf5fa045432c588573)`()` | Gets the value of Players.
@@ -57,6 +59,15 @@ A team of SessionPlayers in a session.
 `public inline void `[`SetTicketIds`](#structFRHAPI__SessionTeam_1a63c427ef92e15db544ca7abb26d7b711)`(const TArray< FString > & NewValue)` | Sets the value of TicketIds_Optional and also sets TicketIds_IsSet to true.
 `public inline void `[`SetTicketIds`](#structFRHAPI__SessionTeam_1a833d996b772586bfddd38d44fcbb30bd)`(TArray< FString > && NewValue)` | Sets the value of TicketIds_Optional and also sets TicketIds_IsSet to true using move semantics.
 `public inline void `[`ClearTicketIds`](#structFRHAPI__SessionTeam_1a9cf26123ef9afeb98d1b6a7f326f01d5)`()` | Clears the value of TicketIds_Optional and sets TicketIds_IsSet to false.
+`public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__SessionTeam_1ac64022271b2695624c6c7f085078ff4a)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__SessionTeam_1a7af0cf1bbe364e616f13b9cb1c18213e)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__SessionTeam_1a185fa20622601050d402661305ee29a9)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetCustomData`](#structFRHAPI__SessionTeam_1aa01bbe405c02811ed587f7b305fde3ec)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
+`public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__SessionTeam_1a8c4d06e8074bfc8127823f518a9c1882)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__SessionTeam_1aab019ec9d9c99c1ed156f3a7944773df)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetCustomData`](#structFRHAPI__SessionTeam_1a1bb7a76c8fc67ffecc307683014784f3)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`SetCustomData`](#structFRHAPI__SessionTeam_1a8051a1733d1567784c9b2bd4e31181dc)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
+`public inline void `[`ClearCustomData`](#structFRHAPI__SessionTeam_1ad4c82562cd5a395efe7b2e54d8f97f6d)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
 ### Members
 
@@ -83,6 +94,14 @@ Matchmaking tickets that were assigned to this team.
 #### `public bool `[`TicketIds_IsSet`](#structFRHAPI__SessionTeam_1ab7e2a7febb7b3a6252cfb2569448497a) <a id="structFRHAPI__SessionTeam_1ab7e2a7febb7b3a6252cfb2569448497a"></a>
 
 true if TicketIds_Optional has been set to a value
+
+#### `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__SessionTeam_1ab19beed3e9a527b86c042706abd4e078) <a id="structFRHAPI__SessionTeam_1ab19beed3e9a527b86c042706abd4e078"></a>
+
+Custom data about this team.
+
+#### `public bool `[`CustomData_IsSet`](#structFRHAPI__SessionTeam_1a4090a0cef93f77f1fe669dd03eefcf6c) <a id="structFRHAPI__SessionTeam_1a4090a0cef93f77f1fe669dd03eefcf6c"></a>
+
+true if CustomData_Optional has been set to a value
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__SessionTeam_1aabef716c3bdd58b733abaa4c5d57f078)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__SessionTeam_1aabef716c3bdd58b733abaa4c5d57f078"></a>
 
@@ -220,4 +239,40 @@ Sets the value of TicketIds_Optional and also sets TicketIds_IsSet to true using
 #### `public inline void `[`ClearTicketIds`](#structFRHAPI__SessionTeam_1a9cf26123ef9afeb98d1b6a7f326f01d5)`()` <a id="structFRHAPI__SessionTeam_1a9cf26123ef9afeb98d1b6a7f326f01d5"></a>
 
 Clears the value of TicketIds_Optional and sets TicketIds_IsSet to false.
+
+#### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__SessionTeam_1ac64022271b2695624c6c7f085078ff4a)`()` <a id="structFRHAPI__SessionTeam_1ac64022271b2695624c6c7f085078ff4a"></a>
+
+Gets the value of CustomData_Optional, regardless of it having been set.
+
+#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__SessionTeam_1a7af0cf1bbe364e616f13b9cb1c18213e)`() const` <a id="structFRHAPI__SessionTeam_1a7af0cf1bbe364e616f13b9cb1c18213e"></a>
+
+Gets the value of CustomData_Optional, regardless of it having been set.
+
+#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__SessionTeam_1a185fa20622601050d402661305ee29a9)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__SessionTeam_1a185fa20622601050d402661305ee29a9"></a>
+
+Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetCustomData`](#structFRHAPI__SessionTeam_1aa01bbe405c02811ed587f7b305fde3ec)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__SessionTeam_1aa01bbe405c02811ed587f7b305fde3ec"></a>
+
+Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__SessionTeam_1a8c4d06e8074bfc8127823f518a9c1882)`()` <a id="structFRHAPI__SessionTeam_1a8c4d06e8074bfc8127823f518a9c1882"></a>
+
+Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__SessionTeam_1aab019ec9d9c99c1ed156f3a7944773df)`() const` <a id="structFRHAPI__SessionTeam_1aab019ec9d9c99c1ed156f3a7944773df"></a>
+
+Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetCustomData`](#structFRHAPI__SessionTeam_1a1bb7a76c8fc67ffecc307683014784f3)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__SessionTeam_1a1bb7a76c8fc67ffecc307683014784f3"></a>
+
+Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+
+#### `public inline void `[`SetCustomData`](#structFRHAPI__SessionTeam_1a8051a1733d1567784c9b2bd4e31181dc)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__SessionTeam_1a8051a1733d1567784c9b2bd4e31181dc"></a>
+
+Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearCustomData`](#structFRHAPI__SessionTeam_1ad4c82562cd5a395efe7b2e54d8f97f6d)`()` <a id="structFRHAPI__SessionTeam_1ad4c82562cd5a395efe7b2e54d8f97f6d"></a>
+
+Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
