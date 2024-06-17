@@ -1483,18 +1483,27 @@ void EmitEventToAllProvidersOnce(UGameInstance* pGameInstance, const EventType& 
 
 void URH_GameInstanceSessionSubsystem::EmitJoinInstanceStartedEvent(const URH_JoinedSession* Session) const
 {
-	RHStandardEvents::FInstanceJoinStartEvent Event;
-
 	UGameInstance* pGameInstance = GetGameInstanceSubsystem()->GetGameInstance();
+	const auto* Instance = Session != nullptr ? Session->GetInstanceData() : nullptr;
 
-	if (Session != nullptr)
+	TOptional<FString> SessionId = Session != nullptr ? Session->GetSessionId() : TOptional<FString>();
+	TOptional<FString> InstanceId = Session != nullptr && Session->GetInstanceData() != nullptr ? Session->GetInstanceData()->GetInstanceId() : TOptional<FString>();
+
+	// if we have a session owner, use their bound instance id if it is set, as it is more accurate in case instance is swapped out
+    auto SessionOwner = Session != nullptr ? Session->GetSessionOwner() : nullptr;
+    InstanceId = SessionOwner != nullptr && SessionOwner->GetBoundInstanceId().IsSet() ? SessionOwner->GetBoundInstanceId() : InstanceId;
+	
 	{
-		Event.SessionId = Session->GetSessionId();
-		const auto* Instance = Session->GetInstanceData();
+		RHStandardEvents::FInstanceJoinStartEvent Event;
+		
+		Event.SessionId = SessionId;
+		if (InstanceId.IsSet())
+		{
+			Event.InstanceId = InstanceId.GetValue();
+		}
+
 		if (Instance != nullptr)
 		{
-			Event.InstanceId = Instance->GetInstanceId();
-
 			// borrowed from IsReadyToJoinInstance() to minimally generate URLs
 			auto pWorldContext = pGameInstance->GetWorldContext();
 
@@ -1516,45 +1525,47 @@ void URH_GameInstanceSessionSubsystem::EmitJoinInstanceStartedEvent(const URH_Jo
 			}
 
 		}
+
+		EmitEventToAllProvidersOnce(pGameInstance, Event);
 	}
 
-	EmitEventToAllProvidersOnce(pGameInstance, Event);
+	
 }
 
 void URH_GameInstanceSessionSubsystem::EmitJoinInstanceCompletedEvent(const URH_JoinedSession* Session, bool bSuccess, const FString& Error) const
 {
-	RHStandardEvents::FInstanceJoinCompleteEvent Event;
-
 	UGameInstance* pGameInstance = GetGameInstanceSubsystem()->GetGameInstance();
+	
+	TOptional<FString> SessionId = Session != nullptr ? Session->GetSessionId() : TOptional<FString>();
+	TOptional<FString> InstanceId = Session != nullptr && Session->GetInstanceData() != nullptr ? Session->GetInstanceData()->GetInstanceId() : TOptional<FString>();
 
-	if (Session != nullptr)
+	// if we have a session owner, use their bound instance id if it is set, as it is more accurate in case instance is swapped out
+	auto SessionOwner = Session != nullptr ? Session->GetSessionOwner() : nullptr;
+	InstanceId = SessionOwner != nullptr && SessionOwner->GetBoundInstanceId().IsSet() ? SessionOwner->GetBoundInstanceId() : InstanceId;
+	TOptional<FGuid> PlayerUuid = SessionOwner != nullptr ? SessionOwner->GetPlayerUuid() : TOptional<FGuid>();
+	
 	{
-		Event.SessionId = Session->GetSessionId();
-		const auto* Instance = Session->GetInstanceData();
-		if (Instance != nullptr)
-		{
-			Event.InstanceId = Instance->GetInstanceId();
-		}
+		RHStandardEvents::FInstanceJoinCompleteEvent Event;
+		Event.SessionId = SessionId;
+		Event.InstanceId = InstanceId;
+		Event.IsSuccess = bSuccess;
+		Event.Reason = Error;
+
+		EmitEventToAllProvidersOnce(pGameInstance, Event);
 	}
 
-	Event.IsSuccess = bSuccess;
-	Event.Reason = Error;
-
-	EmitEventToAllProvidersOnce(pGameInstance, Event);
-
-	if (Session != nullptr)
+	if (SessionId.IsSet())
 	{
 		FRHAPI_CreateAuditRequest Request;
-		if (Session->GetSessionOwner() != nullptr)
+		Request.SetSessionId(SessionId.GetValue());
+		if (InstanceId.IsSet())
 		{
-			auto PlayerUuid = Session->GetSessionOwner()->GetPlayerUuid();
-			if (PlayerUuid.IsValid())
-			{
-				Request.SetPlayerUuid(PlayerUuid);
-			}
+			Request.SetInstanceId(InstanceId.GetValue());
 		}
-		Request.SetSessionId(Session->GetSessionId());
-		Request.SetInstanceId(Session->GetInstanceData()->GetInstanceId());
+		if (PlayerUuid.IsSet() && PlayerUuid->IsValid())
+		{
+			Request.SetPlayerUuid(PlayerUuid.GetValue());
+		}
 
 		// make an event name that is recognizable and informative
 		FString EventName = FString::Printf(TEXT("instance_join_%s"), bSuccess ? TEXT("success") : TEXT("failed"));
@@ -1571,37 +1582,37 @@ void URH_GameInstanceSessionSubsystem::EmitJoinInstanceCompletedEvent(const URH_
 
 void URH_GameInstanceSessionSubsystem::EmitLeaveInstanceEvent(const URH_JoinedSession* Session, const FString& Reason) const
 {
-	RHStandardEvents::FInstanceLeftEvent Event;
-
 	UGameInstance* pGameInstance = GetGameInstanceSubsystem()->GetGameInstance();
+	
+	TOptional<FString> SessionId = Session != nullptr ? Session->GetSessionId() : TOptional<FString>();
+	TOptional<FString> InstanceId = Session != nullptr && Session->GetInstanceData() != nullptr ? Session->GetInstanceData()->GetInstanceId() : TOptional<FString>();
 
-	if (Session != nullptr)
+	// if we have a session owner, use their bound instance id if it is set, as it is more accurate in case instance is swapped out
+	auto SessionOwner = Session != nullptr ? Session->GetSessionOwner() : nullptr;
+	InstanceId = SessionOwner != nullptr && SessionOwner->GetBoundInstanceId().IsSet() ? SessionOwner->GetBoundInstanceId() : InstanceId;
+	TOptional<FGuid> PlayerUuid = SessionOwner != nullptr ? SessionOwner->GetPlayerUuid() : TOptional<FGuid>();
+	
 	{
-		Event.SessionId = Session->GetSessionId();
-		const auto* Instance = Session->GetInstanceData();
-		if (Instance != nullptr)
-		{
-			Event.InstanceId = Instance->GetInstanceId();
-		}
+		RHStandardEvents::FInstanceLeftEvent Event;
+		Event.SessionId = SessionId;
+		Event.InstanceId = InstanceId;
+		Event.Reason = Reason;
+
+		EmitEventToAllProvidersOnce(pGameInstance, Event);
 	}
 
-	Event.Reason = Reason;
-
-	EmitEventToAllProvidersOnce(pGameInstance, Event);
-
-	if (Session != nullptr)
+	if (SessionId.IsSet())
 	{
 		FRHAPI_CreateAuditRequest Request;
-		if (Session->GetSessionOwner() != nullptr)
+		Request.SetSessionId(SessionId.GetValue());
+		if (InstanceId.IsSet())
 		{
-			auto PlayerUuid = Session->GetSessionOwner()->GetPlayerUuid();
-			if (PlayerUuid.IsValid())
-			{
-				Request.SetPlayerUuid(PlayerUuid);
-			}
+			Request.SetInstanceId(InstanceId.GetValue());
 		}
-		Request.SetSessionId(Session->GetSessionId());
-		Request.SetInstanceId(Session->GetInstanceData()->GetInstanceId());
+		if (PlayerUuid.IsSet() && PlayerUuid->IsValid())
+		{
+			Request.SetPlayerUuid(PlayerUuid.GetValue());
+		}
 
 		// make an event name that is recognizable and informative
 		FString EventName = FString::Printf(TEXT("instance_leave"));
