@@ -1846,6 +1846,10 @@ void URH_FriendSubsystem::UpdateRecentPlayerForOSS(const URH_LocalPlayerSubsyste
 	{
 		if (URH_PlayerInfo* PlayerInfo = PlayerInfoSubsystem->GetOrCreatePlayerInfo(PlayerUuid))
 		{
+			// weak versions for async operations
+			TWeakObjectPtr<const URH_LocalPlayerSubsystem> LocalPlayerSubsystemWeak = LocalPlayerSubsystem;
+			TWeakObjectPtr<URH_PlayerInfo> PlayerInfoWeak = PlayerInfo;
+			
 			IOnlineSubsystem* OSS = IOnlineSubsystem::Get();
 
 			auto IdentityInterface = OSS->GetIdentityInterface();
@@ -1864,23 +1868,37 @@ void URH_FriendSubsystem::UpdateRecentPlayerForOSS(const URH_LocalPlayerSubsyste
 				}
 				else
 				{
-					PlayerPresence->RequestUpdate(false, FRH_OnRequestPlayerInfoSubobjectDelegate::CreateWeakLambda(this, [this, LocalPlayerSubsystem, OSS, IdentityInterface, PlayerInfo](bool bSuccess, URH_PlayerInfoSubobject* Subobj)
+					PlayerPresence->RequestUpdate(false, FRH_OnRequestPlayerInfoSubobjectDelegate::CreateWeakLambda(this, [this, LocalPlayerSubsystemWeak, PlayerInfoWeak](bool bSuccess, URH_PlayerInfoSubobject* Subobj)
 						{
+							auto OSS = IOnlineSubsystem::Get();
+						
 							auto Presence = Cast<URH_PlayerPresence>(Subobj);
 							if (bSuccess && Presence != nullptr)
 							{
-								if (FName(Presence->Platform) == OSS->GetSubsystemName())
+								if (OSS != nullptr && PlayerInfoWeak.IsValid() && FName(Presence->Platform) == OSS->GetSubsystemName())
 								{
-									PlayerInfo->GetLinkedPlatformInfo(FTimespan(), false, FRH_PlayerInfoGetPlatformsDelegate::CreateWeakLambda(this, [this, LocalPlayerSubsystem, IdentityInterface](bool bSuccess, const TArray<URH_PlayerPlatformInfo*>& Platforms)
+									PlayerInfoWeak->GetLinkedPlatformInfo(FTimespan(), false, FRH_PlayerInfoGetPlatformsDelegate::CreateWeakLambda(this, [this, LocalPlayerSubsystemWeak](bool bSuccess, const TArray<URH_PlayerPlatformInfo*>& Platforms)
 										{
-											for (const auto& Platform : Platforms)
+											if (LocalPlayerSubsystemWeak.IsValid())
 											{
-												if (Platform != nullptr && Platform->GetPlatform() == LocalPlayerSubsystem->GetLoggedInPlatform())
-												{
-													TSharedPtr<const FUniqueNetId> PlayerUniqueNetId = IdentityInterface->CreateUniquePlayerId(Platform->GetPlatformUserId());
+												auto LocalPlayerSubsystem = LocalPlayerSubsystemWeak.Get();
+												const auto LoggedInPlatform = LocalPlayerSubsystem->GetLoggedInPlatform();
 
-													URH_FriendSubsystem::UpdateRecentPlayerForOSS(LocalPlayerSubsystem, PlayerUniqueNetId);
-													return;
+												auto OSS = IOnlineSubsystem::Get();
+												auto IdentityInterface = OSS != nullptr ? OSS->GetIdentityInterface() : nullptr;
+												
+												if (LoggedInPlatform.IsSet() && IdentityInterface.IsValid())
+												{
+													for (const auto& Platform : Platforms)
+													{
+														if (Platform != nullptr && Platform->GetPlatform() == LoggedInPlatform.GetValue())
+														{
+															TSharedPtr<const FUniqueNetId> PlayerUniqueNetId = IdentityInterface->CreateUniquePlayerId(Platform->GetPlatformUserId());
+
+															URH_FriendSubsystem::UpdateRecentPlayerForOSS(LocalPlayerSubsystem, PlayerUniqueNetId);
+															return;
+														}
+													}
 												}
 											}
 										}));
@@ -1893,16 +1911,28 @@ void URH_FriendSubsystem::UpdateRecentPlayerForOSS(const URH_LocalPlayerSubsyste
 
 			if (TargetPlatfromName == OSS->GetSubsystemName())
 			{
-				PlayerInfo->GetLinkedPlatformInfo(FTimespan(), false, FRH_PlayerInfoGetPlatformsDelegate::CreateWeakLambda(this, [this, LocalPlayerSubsystem, IdentityInterface](bool bSuccess, const TArray<URH_PlayerPlatformInfo*>& Platforms)
+				PlayerInfo->GetLinkedPlatformInfo(FTimespan(), false, FRH_PlayerInfoGetPlatformsDelegate::CreateWeakLambda(this, [this, LocalPlayerSubsystemWeak](bool bSuccess, const TArray<URH_PlayerPlatformInfo*>& Platforms)
 					{
-						for (const auto& Platform : Platforms)
+						if (LocalPlayerSubsystemWeak.IsValid())
 						{
-							if (Platform != nullptr && Platform->GetPlatform() == LocalPlayerSubsystem->GetLoggedInPlatform())
-							{
-								TSharedPtr<const FUniqueNetId> PlayerUniqueNetId = IdentityInterface->CreateUniquePlayerId(Platform->GetPlatformUserId());
+							auto LocalPlayerSubsystem = LocalPlayerSubsystemWeak.Get();
+							const auto LoggedInPlatform = LocalPlayerSubsystem->GetLoggedInPlatform();
 
-								URH_FriendSubsystem::UpdateRecentPlayerForOSS(LocalPlayerSubsystem, PlayerUniqueNetId);
-								return;
+							auto OSS = IOnlineSubsystem::Get();
+							auto IdentityInterface = OSS != nullptr ? OSS->GetIdentityInterface() : nullptr;
+					
+							if (LoggedInPlatform.IsSet() && IdentityInterface != nullptr)
+							{
+								for (const auto& Platform : Platforms)
+								{
+									if (Platform != nullptr && Platform->GetPlatform() == LoggedInPlatform.GetValue())
+									{
+										TSharedPtr<const FUniqueNetId> PlayerUniqueNetId = IdentityInterface->CreateUniquePlayerId(Platform->GetPlatformUserId());
+
+										URH_FriendSubsystem::UpdateRecentPlayerForOSS(LocalPlayerSubsystem, PlayerUniqueNetId);
+										return;
+									}
+								}
 							}
 						}
 					}));

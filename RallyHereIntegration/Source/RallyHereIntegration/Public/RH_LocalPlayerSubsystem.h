@@ -66,7 +66,7 @@ public:
 	/**
 	* @brief Gets the platform type for the player if logged in.
 	*/
-	virtual ERHAPI_Platform GetLoggedInPlatform() const;
+	virtual TOptional<ERHAPI_Platform> GetLoggedInPlatform() const;
 	/**
 	* @brief Gets the player's OSS unique id.
 	*/
