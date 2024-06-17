@@ -1169,10 +1169,21 @@ void URH_GameInstanceSessionSubsystem::SyncToSession(URH_JoinedSession* SessionI
 
 bool URH_GameInstanceSessionSubsystem::IsReadyToJoinInstance(const URH_JoinedSession* Session, bool bLog) const
 {
+	FString LogLine;
+	bool bIsReady = IsReadyToJoinInstanceWithReason(Session, LogLine);
+	if (bLog && LogLine.Len() > 0)
+	{
+		UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *LogLine);
+	}
+	return bIsReady;
+}
+
+bool URH_GameInstanceSessionSubsystem::IsReadyToJoinInstanceWithReason(const URH_JoinedSession* Session, FString& Error) const
+{
 	if (Session->IsActive())
 	{
 		// session is already active, cannot join it
-		UE_CLOG(bLog, LogRallyHereIntegration, Verbose, TEXT("[%s] - Session already active"), ANSI_TO_TCHAR(__FUNCTION__));
+		Error = FString::Printf(TEXT("[%s] - Session already active"), ANSI_TO_TCHAR(__FUNCTION__));
 		return false;
 	}
 
@@ -1180,7 +1191,7 @@ bool URH_GameInstanceSessionSubsystem::IsReadyToJoinInstance(const URH_JoinedSes
 	if (Instance == nullptr)
 	{
 		// session has no instance to join
-		UE_CLOG(bLog, LogRallyHereIntegration, Verbose, TEXT("[%s] - Session has no instance"), ANSI_TO_TCHAR(__FUNCTION__));
+		Error = FString::Printf(TEXT("[%s] - Session has no instance"), ANSI_TO_TCHAR(__FUNCTION__));
 		return false;
 	}
 
@@ -1197,7 +1208,7 @@ bool URH_GameInstanceSessionSubsystem::IsReadyToJoinInstance(const URH_JoinedSes
 			// someone is not in the session
 			FGuid playerId = FGuid();
 			RH_GetPlayerIdFromLocalPlayer(LP, &playerId);
-			UE_CLOG(bLog, LogRallyHereIntegration, Verbose, TEXT("[%s] - player %s not in session"), ANSI_TO_TCHAR(__FUNCTION__), *playerId.ToString());
+			Error = FString::Printf(TEXT("[%s] - player %s not in session"), ANSI_TO_TCHAR(__FUNCTION__), *playerId.ToString());
 			return false;
 		}
 	}
@@ -1212,7 +1223,7 @@ bool URH_GameInstanceSessionSubsystem::IsReadyToJoinInstance(const URH_JoinedSes
 		}
 		else
 		{
-			UE_CLOG(bLog, LogRallyHereIntegration, Verbose, TEXT("[%s] - Locally hosted session cannot generated host URL"), ANSI_TO_TCHAR(__FUNCTION__));
+			Error = FString::Printf(TEXT("[%s] - Locally hosted session cannot generated host URL"), ANSI_TO_TCHAR(__FUNCTION__));
 			return false;
 		}
 	}
@@ -1221,14 +1232,14 @@ bool URH_GameInstanceSessionSubsystem::IsReadyToJoinInstance(const URH_JoinedSes
 		// specifically call out joinable state errors
 		if (Instance->GetJoinStatus() != ERHAPI_InstanceJoinableStatus::Joinable)
 		{
-			UE_CLOG(bLog, LogRallyHereIntegration, Verbose, TEXT("[%s] - Instance is not in joinable state"), ANSI_TO_TCHAR(__FUNCTION__));
+			Error = FString::Printf(TEXT("[%s] - Instance is not in joinable state"), ANSI_TO_TCHAR(__FUNCTION__));
 			return false;
 		}
 
 		FURL JoinURL;
 		if (!GenerateJoinURL(Session, pWorldContext->LastURL, JoinURL))
 		{
-			UE_CLOG(bLog, LogRallyHereIntegration, Verbose, TEXT("[%s] - Could not generate join URL"), ANSI_TO_TCHAR(__FUNCTION__));
+			Error = FString::Printf(TEXT("[%s] - Could not generate join URL"), ANSI_TO_TCHAR(__FUNCTION__));
 			return false;
 		}
 	}
