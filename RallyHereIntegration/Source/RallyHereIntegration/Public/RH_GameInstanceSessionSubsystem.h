@@ -198,7 +198,7 @@ public:
 	* @return If true, the session is ready for a map transition.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Session|Instance")
-	virtual bool IsReadyToJoinInstance(const URH_JoinedSession* Session, bool bLog = false) const;
+	virtual bool IsReadyToJoinInstance(const URH_JoinedSession* Session, bool bLog = false) const final;
 	/**
 	* @brief Checks if the session has all the players and is good to change maps, and passes back first error in a string
 	* @param [in] Session The session being checked.
