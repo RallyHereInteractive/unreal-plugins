@@ -102,6 +102,14 @@ public:
 	UPROPERTY(EditAnywhere, Config, Category = "Connectivity")
 	FString LoginCallbackURL;
 
+	/** @brief Defines initial login URL */
+	UPROPERTY(EditAnywhere, Config, Category = "Connectivity")
+	FString InitialLoginURL;
+
+	/** @brief Defines the consumer of the token */
+	UPROPERTY(EditAnywhere, Config, Category = "Connectivity")
+	FString AuthTokenAudience;
+
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Web Requests
 	////////////////////////////////////////////////////////////////////////////////////////////////////////

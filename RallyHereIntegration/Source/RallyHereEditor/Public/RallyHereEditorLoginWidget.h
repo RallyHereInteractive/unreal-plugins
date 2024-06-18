@@ -5,6 +5,7 @@
 #include "Widgets/Docking/SDockTab.h"
 #include "Widgets/SCompoundWidget.h"
 #include "IWebBrowserWindow.h"
+#include "Interfaces/IHttpRequest.h"
 
 class SRallyHereEditorLoginWidget : public SCompoundWidget
 {
@@ -22,8 +23,13 @@ public:
 	void Construct(const FArguments& InArgs, const TSharedRef<SDockTab>& ConstructUnderMajorTab, const TSharedPtr<SWindow>& ConstructUnderWindow);
 
 	virtual bool SupportsKeyboardFocus() const override { return true; }
-	bool HandleBrowserBeforeBrowse(const FString& Url, const FWebNavigationRequest& Request);
-
+	
+	bool HandleClientId(const FString& Method, const FString& Url, FString& Response);
+	
+	bool HandleToken(const FString& Url, const FWebNavigationRequest& Request);
+	
+	void GetAccessToken(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded);
+	
 private:
-	FGuid LoginStateGuid;
+	FString ParseValueFromUrl(const FString& Url, const FString& ValueName);
 };
