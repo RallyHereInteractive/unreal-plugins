@@ -321,14 +321,21 @@ URH_SessionView* URH_LocalPlayerSessionSubsystem::CreateOrUpdateRHSession(const 
 		return nullptr;
 	}
 
-	if (LocalPlayerStatus == ERHAPI_SessionPlayerStatus::Invited)
+	if (LocalPlayerStatus == ERHAPI_SessionPlayerStatus::Reserved)
 	{
 		// existing session, if it exists, SHOULD NOT be a fully hydrated session.  This should be handled by the preprocessing layer
-		ensure(!ExistingRHSession || !ExistingRHSession->IsA(URH_JoinedSession::StaticClass()));
+		ensure(!ExistingRHSession || ExistingRHSession->IsA(URH_SessionView::StaticClass()));
+
+		RHSession = ExistingRHSession != nullptr ? ExistingRHSession : NewObject<URH_SessionView>(this);
+	}
+	else if (LocalPlayerStatus == ERHAPI_SessionPlayerStatus::Invited)
+	{
+		// existing session, if it exists, SHOULD NOT be a fully hydrated session.  This should be handled by the preprocessing layer
+		ensure(!ExistingRHSession || ExistingRHSession->IsA(URH_InvitedSession::StaticClass()));
 
 		RHSession = ExistingRHSession != nullptr ? ExistingRHSession : NewObject<URH_InvitedSession>(this);
 	}
-	else
+	else // if (LocalPlayerStatus == ERHAPI_SessionPlayerStatus::Leader || LocalPlayerStatus == ERHAPI_SessionPlayerStatus::Member)
 	{
 		// existing session, if it exists, SHOULD be a fully hydrated session.  This should be handled by the preprocessing layer
 		ensure(!ExistingRHSession || ExistingRHSession->IsA(URH_JoinedSession::StaticClass()));
@@ -451,8 +458,17 @@ bool URH_LocalPlayerSessionSubsystem::PreprocessAPISessionImport(const FRHAPI_Se
 		ERHAPI_SessionPlayerStatus ExistingStatus;
 		if (LocalPlayerStatusFromSession(ExistingSession->GetSessionData(), ExistingStatus) && ExistingStatus != Status)
 		{
-			// if we transitioned from invited to a member or vice versa, expire the old session and potentially defer the update until expiration finishes
-			if (Status == ERHAPI_SessionPlayerStatus::Invited || ExistingStatus == ERHAPI_SessionPlayerStatus::Invited)
+			// by default, recreate the local session object if we change status
+			bool bNeedsToRecreateSession = true;
+
+			// if we transitioned from leader to member, or vice versa, we can skip the recreation
+			if ((ExistingStatus == ERHAPI_SessionPlayerStatus::Leader && Status == ERHAPI_SessionPlayerStatus::Member) ||
+				(ExistingStatus == ERHAPI_SessionPlayerStatus::Member && Status == ERHAPI_SessionPlayerStatus::Leader))
+			{
+				bNeedsToRecreateSession = false;
+			}
+			
+			if (bNeedsToRecreateSession)
 			{
 				RemoveSession(ExistingSession);
 			}
@@ -475,7 +491,7 @@ void URH_LocalPlayerSessionSubsystem::ImportAPISession(const FRH_APISessionWithE
 	UE_LOG(LogRHSession, Verbose, TEXT("[%s] : %s"), ANSI_TO_TCHAR(__FUNCTION__), *Session.SessionId);
 
 	// if this session is currently expiring, let it expire before we process it again.  Add to deferred list
-	ERHAPI_SessionPlayerStatus Status = ERHAPI_SessionPlayerStatus::Invited;
+	ERHAPI_SessionPlayerStatus Status;
 	if (!PreprocessAPISessionImport(Session, Status))
 	{
 		return;
