@@ -1299,7 +1299,7 @@ void URH_GameInstanceServerBootstrapper::Cleanup()
 		{
 			RHStandardEvents::FCorrelationEndEvent CorrelationEndEvent;
 
-			CorrelationEndEvent.Reason = TEXT("Recycle");
+			CorrelationEndEvent.Reason = TEXT("Cleanup");
 
 			if (AnalyticsStartTime.IsSet())
 			{
