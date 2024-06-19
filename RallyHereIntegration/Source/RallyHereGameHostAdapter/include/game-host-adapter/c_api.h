@@ -263,7 +263,10 @@ extern "C"
     /// currently running games and then stop gracefully. Currently only used by SIC and i3D.
     ///@{
 
-    /// @brief The callback to trigger when the game host wants to stop the game instance.
+    /// @brief The callback to trigger when the game host wants to stop the game instance. This callback should be
+    /// implmeneted as if it were being called from a signal handler. It should do only the minimum amount of work
+    /// necessary to inform the rest of the system that a soft stop has been requested. In many cases this should
+    /// simply be atomically setting a boolean to true and little more.
     ///
     /// In SIC this is expected to come from the SIGTERM handler.
     /// In i3D this is expected to come from the Arcus commands
@@ -395,9 +398,9 @@ extern "C"
         uint8_t server_type;
         /// Environment the server is running in. Currently 'w' for Windows, 'l' for Linux, 'm' for Mac
         uint8_t environment;
-        /// Visibility of the server. Currently '0' for public and '1' for private
+        /// Visibility of the server. Currently 0 for public and 1 for private
         uint8_t visibility;
-        /// Anti-cheat running on the server. Currently '0' for unsecured, '1' for secured
+        /// Anti-cheat running on the server. Currently 0 for unsecured, 1 for secured
         uint8_t anticheat;
         /// Version of the game installed on the server
         const char* version;
