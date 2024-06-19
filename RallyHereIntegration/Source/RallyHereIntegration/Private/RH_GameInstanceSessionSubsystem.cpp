@@ -211,7 +211,17 @@ bool URH_GameInstanceSessionSubsystem::MakeActiveSessionJoinable(UWorld* pWorld)
 			InstanceInfo.JoinParams_IsSet = true;
 		}
 
-		ActiveSession->UpdateInstanceInfo(InstanceInfo);
+		// bind a delegate to leave the instance if we fail to make it joinable
+		auto Delegate = FRH_OnSessionUpdatedDelegate::CreateWeakLambda(this, [this](bool bSuccess, URH_SessionView* Session, const FRH_ErrorInfo& ErrorInfo)
+			{
+				// if the update failed, leave the instance, since it is not in a valid playable state
+				if (!bSuccess && Session != nullptr && Session == GetActiveSession())
+				{
+					StartLeaveInstanceFlow();
+				}
+			});
+		
+		ActiveSession->UpdateInstanceInfo(InstanceInfo, Delegate);
 
 		return true;
 	}
