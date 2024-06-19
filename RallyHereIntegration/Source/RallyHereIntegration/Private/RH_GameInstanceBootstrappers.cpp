@@ -1255,7 +1255,7 @@ void URH_GameInstanceServerBootstrapper::CleanupAfterInstanceRemoval()
 	else
 	{
 		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Session subsystem invalid or did not have session, moving to cleanup directly"), ANSI_TO_TCHAR(__FUNCTION__));
-		Cleanup();
+		OnCleanupSessionSyncComplete(nullptr, true, TEXT("Instance removal with no active session"));
 	}
 }
 
