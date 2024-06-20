@@ -2,8 +2,25 @@
 #include "imgui.h"
 #include "imgui_unrealstring.h"
 #include "Containers/StringConv.h"
+#include "Containers/StringView.h"
 #include <memory>
 #include <string>
+
+void  ImGui::Text(FStringView label)
+{
+	FTCHARToUTF8 Converter(label.GetData(), label.Len());
+	return Text(Converter.Get());
+}
+bool  ImGui::Button(FStringView label, const ImVec2& size)
+{
+	FTCHARToUTF8 Converter(label.GetData(), label.Len());
+	return Button(Converter.Get());
+}
+bool  ImGui::SmallButton(FStringView label)
+{
+	FTCHARToUTF8 Converter(label.GetData(), label.Len());
+	return SmallButton(Converter.Get());
+}
 
 struct InputTextCallback_UserData_UnrealString
 {
