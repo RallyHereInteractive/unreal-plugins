@@ -207,31 +207,7 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Session|Instance")
 	virtual bool IsReadyToJoinInstanceWithReason(const URH_JoinedSession* Session, FString& Error) const;
-	/**
-	* @brief Starts the process of transitioning the instance to a new session.
-	* @param [in] Delegate Callback delegate for when the session is now active, or failed to transition.
-	*/
-	virtual bool StartJoinInstanceFlow(const FRH_GameInstanceSessionSyncBlock& Delegate = FRH_GameInstanceSessionSyncBlock());
-	/**
-	* @private
-	* @brief Blueprint compatible wrapper for StartJoinInstanceFlow
-	*/
-	UFUNCTION(BlueprintCallable, Category = "Session|Instance", meta = (DisplayName = "Start Join Instance Flow", AutoCreateRefTerm = "Delegate"))
-	bool BLUEPRINT_StartJoinInstanceFlow(const FRH_GameInstanceSessionSyncDynamicDelegate& Delegate) { return StartJoinInstanceFlow(Delegate); }
-	/**
-	* @brief Starts the process of leaving a previous the instance session.
-	* @param [in] bAlreadyDisconnected If true, the instance is already disconnected from the previous session.
-	* @param [in] bCheckDesired If true, and the instance has a desired session, start joining that session.
-	* @param [in] Delegate Callback delegate for when the instance is left.
-	*/
-	virtual void StartLeaveInstanceFlow(bool bAlreadyDisconnected = false, bool bCheckDesired = false, const FRH_GameInstanceSessionSyncBlock& Delegate = FRH_GameInstanceSessionSyncBlock());
-	/**
-	* @private
-	* @brief Blueprint compatible wrapper for StartLeaveInstanceFlow
-	*/
-	UFUNCTION(BlueprintCallable, Category = "Session|Instance", meta = (DisplayName = "Start Leave Instance Flow", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_StartLeaveInstanceFlow(bool bAlreadyDisconnected, bool bCheckDesired, const FRH_GameInstanceSessionSyncDynamicDelegate& Delegate) { StartLeaveInstanceFlow(bAlreadyDisconnected, bCheckDesired, Delegate); }
-
+	
 	/**
 	 * @brief @brief Attempt to generate a join URL from a session.
 	 * @param [in] Session The session to be joined.
@@ -328,6 +304,31 @@ protected:
 	 * @param [in] Session to set as active session
 	 */
 	virtual void SetActiveSession(URH_JoinedSession* Session);
+
+	/**
+	* @brief Starts the process of transitioning the instance to the desired session.
+	* @param [in] Delegate Callback delegate for when the session is now active, or failed to transition.
+	*/
+	virtual bool StartJoinInstanceFlow(const FRH_GameInstanceSessionSyncBlock& Delegate = FRH_GameInstanceSessionSyncBlock());
+	/**
+	* @private
+	* @brief Blueprint compatible wrapper for StartJoinInstanceFlow
+	*/
+	UFUNCTION(BlueprintCallable, Category = "Session|Instance", meta = (DisplayName = "Start Join Instance Flow", AutoCreateRefTerm = "Delegate", DeprecatedFunction, DeprecationMessage = "Direct calls to StartJoinInstanceFlow are deprecated, please route calls through SyncToSession for consistency"))
+	bool BLUEPRINT_StartJoinInstanceFlow(const FRH_GameInstanceSessionSyncDynamicDelegate& Delegate) { return StartJoinInstanceFlow(Delegate); }
+	/**
+	* @brief Starts the process of leaving a previous the instance session.
+	* @param [in] bAlreadyDisconnected If true, the instance is already disconnected from the previous session.
+	* @param [in] bCheckDesired If true, and the instance has a desired session, start joining that session.
+	* @param [in] Delegate Callback delegate for when the instance is left.
+	*/
+	virtual void StartLeaveInstanceFlow(bool bAlreadyDisconnected = false, bool bCheckDesired = false, const FRH_GameInstanceSessionSyncBlock& Delegate = FRH_GameInstanceSessionSyncBlock());
+	/**
+	* @private
+	* @brief Blueprint compatible wrapper for StartLeaveInstanceFlow
+	*/
+	UFUNCTION(BlueprintCallable, Category = "Session|Instance", meta = (DisplayName = "Start Leave Instance Flow", AutoCreateRefTerm = "Delegate", DeprecatedFunction, DeprecationMessage = "Direct calls to StartLeaveInstanceFlow are deprecated, please route calls through SyncToSession for consistency"))
+	void BLUEPRINT_StartLeaveInstanceFlow(bool bAlreadyDisconnected, bool bCheckDesired, const FRH_GameInstanceSessionSyncDynamicDelegate& Delegate) { StartLeaveInstanceFlow(bAlreadyDisconnected, bCheckDesired, Delegate); }
 
 	/**
 	 * @brief Handles verification and validation of a player attempting to connect to the instance.

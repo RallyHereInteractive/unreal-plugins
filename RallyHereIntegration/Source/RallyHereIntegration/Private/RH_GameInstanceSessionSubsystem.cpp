@@ -211,7 +211,17 @@ bool URH_GameInstanceSessionSubsystem::MakeActiveSessionJoinable(UWorld* pWorld)
 			InstanceInfo.JoinParams_IsSet = true;
 		}
 
-		ActiveSession->UpdateInstanceInfo(InstanceInfo);
+		// bind a delegate to leave the instance if we fail to make it joinable
+		auto Delegate = FRH_OnSessionUpdatedDelegate::CreateWeakLambda(this, [this](bool bSuccess, URH_SessionView* Session, const FRH_ErrorInfo& ErrorInfo)
+			{
+				// if the update failed, leave the instance, since it is not in a valid playable state
+				if (!bSuccess && Session != nullptr && Session == GetActiveSession())
+				{
+					StartLeaveInstanceFlow();
+				}
+			});
+		
+		ActiveSession->UpdateInstanceInfo(InstanceInfo, Delegate);
 
 		return true;
 	}
@@ -1157,18 +1167,24 @@ void URH_GameInstanceSessionSubsystem::SyncToSession(URH_JoinedSession* SessionI
 	// swap our session data for the update
 	DesiredSession = SessionInfo;
 
-	// notify analytics that we are starting to join a session
-	EmitJoinInstanceStartedEvent(DesiredSession);
+	FRH_GameInstanceSessionSyncBlock Delegate = InDelegate;
 
-	// wrapper the delegate to fire the completed analytics event to match the started event
-	FRH_GameInstanceSessionSyncDelegate Delegate = FRH_GameInstanceSessionSyncDelegate::CreateWeakLambda(this, [this, InDelegate](URH_JoinedSession* Session, bool bSuccess, const FString& Error)
-		{
-			// notify analytics that we are done joining a session
-			EmitJoinInstanceCompletedEvent(DesiredSession, bSuccess, Error);
+	// if we are transitioning to a session, emit analytics events
+	if (SessionInfo != nullptr)
+	{
+		// notify analytics that we are starting to join a session
+		EmitJoinInstanceStartedEvent(DesiredSession);
 
-			// fire delegate
-			InDelegate.ExecuteIfBound(Session, bSuccess, Error);
-		});
+		// wrapper the delegate to fire the completed analytics event to match the started event
+		Delegate = FRH_GameInstanceSessionSyncDelegate::CreateWeakLambda(this, [this, InDelegate](URH_JoinedSession* Session, bool bSuccess, const FString& Error)
+			{
+				// notify analytics that we are done joining a session
+				EmitJoinInstanceCompletedEvent(DesiredSession, bSuccess, Error);
+
+				// fire delegate
+				InDelegate.ExecuteIfBound(Session, bSuccess, Error);
+			});
+	}
 
 	const FRHAPI_InstanceInfo* newInstanceData = DesiredSession != nullptr ? DesiredSession->GetInstanceData() : nullptr;
 

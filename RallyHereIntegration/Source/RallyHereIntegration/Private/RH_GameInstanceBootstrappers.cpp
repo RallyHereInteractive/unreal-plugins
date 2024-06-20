@@ -377,13 +377,15 @@ void URH_GameInstanceServerBootstrapper::SetTerminationSignalHandler()
 
 // SIGKILL / CTRL-C (Windows) handlers - these are indicating an IMMEDIATE shutdown
 void URH_GameInstanceServerBootstrapper::ApplicationTerminationNotify()
-{
+{	
 	if (IsInGameThread())
 	{
+		UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] - Application Termination Notified, running immediate termination handler"), ANSI_TO_TCHAR(__FUNCTION__));
 		HandleAppTerminatedGameThread();
 	}
 	else
 	{
+		UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] - Application Termination Notified from secondary thread, running immediate termination handler in game thread"), ANSI_TO_TCHAR(__FUNCTION__));
 		const FGraphEventRef Task = FSimpleDelegateGraphTask::CreateAndDispatchWhenReady(
 			FSimpleDelegateGraphTask::FDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::HandleAppTerminatedGameThread),
 			QUICK_USE_CYCLE_STAT(FRH_TerminationNotify, STATGROUP_TaskGraphTasks),
@@ -400,8 +402,36 @@ void URH_GameInstanceServerBootstrapper::HandleAppTerminatedGameThread()
 	// make sure this was invoked if it was not previously
 	RallyHere::TermSignalHandler::TerminationSignalHandler();
 
-	// attempt to leave current session if still in one
-	BestEffortLeaveSession();
+	// if we still have an active session, try to leave it
+	if (RHSession != nullptr && RHSession->IsActive())
+	{
+		auto* SessionSubsystem = GetGameInstanceSubsystem()->GetSessionSubsystem();
+		if (SessionSubsystem)
+		{
+			UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] - Application Termination, attempting to leave active session to properly clean it up"), ANSI_TO_TCHAR(__FUNCTION__));
+			
+			// attempt to sync to null to clear out any session state
+			SessionSubsystem->SyncToSession(nullptr);
+
+			// above call should have handled leaving the session in line, and invoked the session change handler to run cleanup.  This is a backup in case something went wrong
+			if (!ensure(RHSession == nullptr))
+			{
+				BestEffortLeaveSession();
+			}
+		}
+		else
+		{
+			UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] - Application Termination, could not find session subsystem"), ANSI_TO_TCHAR(__FUNCTION__));
+			
+			BestEffortLeaveSession();
+		}
+	}
+	else
+	{
+		UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] - Application Termination, no active session"), ANSI_TO_TCHAR(__FUNCTION__));
+		
+		BestEffortLeaveSession();
+	}
 }
 
 void URH_GameInstanceServerBootstrapper::UpdateBootstrapStep(ERH_ServerBootstrapFlowStep NewStep)
@@ -1225,7 +1255,7 @@ void URH_GameInstanceServerBootstrapper::CleanupAfterInstanceRemoval()
 	else
 	{
 		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Session subsystem invalid or did not have session, moving to cleanup directly"), ANSI_TO_TCHAR(__FUNCTION__));
-		Cleanup();
+		OnCleanupSessionSyncComplete(nullptr, true, TEXT("Instance removal with no active session"));
 	}
 }
 
@@ -1269,7 +1299,7 @@ void URH_GameInstanceServerBootstrapper::Cleanup()
 		{
 			RHStandardEvents::FCorrelationEndEvent CorrelationEndEvent;
 
-			CorrelationEndEvent.Reason = TEXT("Recycle");
+			CorrelationEndEvent.Reason = TEXT("Cleanup");
 
 			if (AnalyticsStartTime.IsSet())
 			{
