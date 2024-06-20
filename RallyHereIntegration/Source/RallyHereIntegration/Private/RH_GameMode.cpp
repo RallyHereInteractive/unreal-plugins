@@ -2,8 +2,11 @@
 
 #include "RH_GameMode.h"
 #include "RH_Common.h"
+#include "Engine/Engine.h"
+#include "Engine/GameInstance.h"
 #include "RH_GameInstanceSubsystem.h"
 #include "RH_GameInstanceSessionSubsystem.h"
+#include "TimerManager.h"
 #include "GameFramework/PlayerController.h"
 
 ARH_GameMode::ARH_GameMode(const FObjectInitializer& ObjectInitializer /*= FObjectInitializer::Get()*/)
