@@ -68,6 +68,8 @@ URallyHereDebugTool::URallyHereDebugTool()
 
 	bActive = false;
 	bWasUIActive = false;
+	
+	bHasInitialized = false;
 
 	ToggleUIKeyBindAsImGuiKey = ImGuiKey_None;
 }
@@ -526,6 +528,9 @@ void URallyHereDebugTool::ToggleUI()
 #ifdef WITH_IMGUI_NETIMGUI
 void URallyHereDebugTool::ConnectNetImGui(bool bStartup)
 {
+	// make sure we are initialized
+    ImGuiPostInit();
+	
 	const auto NetImguiAppName = IsRunningDedicatedServer() ? "rhdebugtool-server" : "rhdebugtool";
 
 	// connect to the specified ip and port
@@ -541,6 +546,9 @@ void URallyHereDebugTool::ConnectNetImGui(bool bStartup)
 
 void URallyHereDebugTool::ListenNetImGui(bool bStartup)
 {
+	// make sure we are initialized
+	ImGuiPostInit();
+	
 	const auto NetImguiAppName = IsRunningDedicatedServer() ? "rhdebugtool-server" : "rhdebugtool";
 	
 	// listen on the specified port
@@ -560,15 +568,18 @@ void URallyHereDebugTool::DisconnectNetImGui()
 
 void URallyHereDebugTool::ImGuiPostInit()
 {
-	static bool bDoOnce = true;
+	static bool bHasGloballyInitialized = false;
 
-	if (bDoOnce)
+	if (!bHasGloballyInitialized)
 	{
-#ifdef WITH_IMGUI_DOCK_SUPPORT
-		ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_DockingEnable;
-#endif
+		bHasGloballyInitialized = true;
+
 		FImGuiModule::Get().GetProperties().SetLayoutToLoad(URallyHereDebugToolSettings::Get()->DefaultWindowPositions, true);
-		bDoOnce = false;
+	}
+	
+	if (!bHasInitialized)
+	{
+		bHasInitialized = true;
 
 		FImGuiDelegates::OnWorldDebug(GetWorld()).Add(FSimpleDelegate::CreateUObject(this, &URallyHereDebugTool::DoImGui));
 
@@ -611,10 +622,12 @@ void URallyHereDebugTool::DoImGui()
 		return;
 	}
 
-#ifndef WITH_IMGUI_DOCK_SUPPORT
-	bool bAllowWindowViewSelection = true;
-#else
+#ifdef WITH_IMGUI_DOCK_SUPPORT
 	bool bAllowWindowViewSelection = false;
+	
+	ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+#else
+	bool bAllowWindowViewSelection = true;
 #endif
 
 	if (ImGui::BeginMainMenuBar())

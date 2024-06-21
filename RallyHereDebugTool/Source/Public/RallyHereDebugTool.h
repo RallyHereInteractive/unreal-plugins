@@ -100,6 +100,9 @@ public:
 	FSimpleMulticastDelegate OnActiveStateChanged;
 	ImGuiKey ToggleUIKeyBindAsImGuiKey;
 
+	UPROPERTY(Transient)
+	bool bHasInitialized;
+
 	TArray<TWeakPtr<FRH_DebugToolWindow>> AppWindows;
 
 	TSharedPtr<struct FRHDTW_Players> PlayersWindow;
