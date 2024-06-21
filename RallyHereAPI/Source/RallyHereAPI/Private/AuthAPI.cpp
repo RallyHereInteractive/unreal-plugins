@@ -736,7 +736,7 @@ FHttpRequestPtr FAuthAPI::Login(const FRequest_Login& Request, const FDelegate_L
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FAuthAPI::OnLoginResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FAuthAPI::OnLoginResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system

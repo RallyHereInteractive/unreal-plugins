@@ -892,6 +892,7 @@ void URH_LocalPlayerLoginSubsystem::DoRallyHereLogin(FRH_PendingLoginRequest& Re
 
     RallyHereAPI::FRequest_Login Request;
     Request.SetShouldRetry();
+	Request.SetDisableLoginRetryOnAuthorizationFailure(true);
     Request.AuthContext = AuthContext;
     Request.LoginRequestV1.SetIncludeRefresh(true);
     Request.LoginRequestV1.SetAcceptEula(Req.bAcceptEULA);

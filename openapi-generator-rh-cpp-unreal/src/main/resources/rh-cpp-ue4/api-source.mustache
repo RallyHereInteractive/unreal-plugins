@@ -70,7 +70,7 @@ FHttpRequestPtr {{classname}}::{{operationIdCamelCase}}(const FRequest_{{operati
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &{{classname}}::On{{operationIdCamelCase}}Response, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &{{classname}}::On{{operationIdCamelCase}}Response, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system

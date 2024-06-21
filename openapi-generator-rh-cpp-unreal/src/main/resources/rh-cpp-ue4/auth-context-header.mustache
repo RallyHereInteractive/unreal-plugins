@@ -55,7 +55,7 @@ public:
 	void ProcessLoginToken(const FResponse_Token &LoginResponse_);
 	void ProcessLoginRefresh(const FResponse_Login &LoginResponse_);
 	bool Refresh();
-	bool ConditionalRefreshOnFailedResponse(const FResponse& TriggeringResponse);
+	bool ConditionalRefreshOnFailedResponse(const FResponse& TriggeringResponse, const FRequestMetadata& RequestMetadata);
 	FAuthContextLoginComplete& OnLoginComplete() { return LoginComplete; }
 	FAuthContextLoginUserChanged& OnLoginUserChanged() { return LoginUserChanged; }
 	FAuthContextLogout& OnLogout() { return Logout; }

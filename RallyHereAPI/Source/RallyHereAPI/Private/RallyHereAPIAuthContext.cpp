@@ -242,6 +242,7 @@ bool FAuthContext::Refresh()
 	FDelegate_Login Delegate;
 	Delegate.BindSP(AsShared(), &FAuthContext::ProcessLoginRefresh);
 	FRequest_Login Request;
+	Request.SetDisableLoginRetryOnAuthorizationFailure(true);
 	Request.AuthContext = SharedThis(this);
 	Request.LoginRequestV1.SetIncludeRefresh(true);
 	Request.LoginRequestV1.SetGrantType(ERHAPI_GrantType::Refresh);
@@ -254,8 +255,14 @@ bool FAuthContext::Refresh()
 	return bIsRefreshing;
 }
 
-bool FAuthContext::ConditionalRefreshOnFailedResponse(const FResponse& TriggeringResponse)
+bool FAuthContext::ConditionalRefreshOnFailedResponse(const FResponse& TriggeringResponse, const FRequestMetadata& RequestMetadata)
 {
+	if (RequestMetadata.bDisableLoginRetryOnAuthorizationFailure)
+	{
+		// do not attempt a refresh
+		return false;
+	}
+
 	const auto ResponseCode = TriggeringResponse.GetHttpResponseCode();
 
 	bool bNeedsRefresh = ResponseCode == EHttpResponseCodes::Denied; // need to reauth if we received a denied response.
