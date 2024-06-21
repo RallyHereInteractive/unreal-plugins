@@ -6,7 +6,7 @@
     "CreatedBy": "Rally Here Interactive, Inc.",
     "CreatedByURL": "rallyhere.gg",
     "Description": "RallyHere Integration of the API with recommended usage",
-    "Category": "Rally Here",
+    "Category": "RallyHere",
 	"EnabledByDefault" : true,
 
 	"Modules": [
