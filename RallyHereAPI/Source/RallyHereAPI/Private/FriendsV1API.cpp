@@ -56,7 +56,7 @@ FHttpRequestPtr FFriendsV1API::AddFriend(const FRequest_AddFriend& Request, cons
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FFriendsV1API::OnAddFriendResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FFriendsV1API::OnAddFriendResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -332,7 +332,7 @@ FHttpRequestPtr FFriendsV1API::AddNotes(const FRequest_AddNotes& Request, const 
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FFriendsV1API::OnAddNotesResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FFriendsV1API::OnAddNotesResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -603,7 +603,7 @@ FHttpRequestPtr FFriendsV1API::DeleteFriend(const FRequest_DeleteFriend& Request
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FFriendsV1API::OnDeleteFriendResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FFriendsV1API::OnDeleteFriendResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -855,7 +855,7 @@ FHttpRequestPtr FFriendsV1API::DeleteFriends(const FRequest_DeleteFriends& Reque
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FFriendsV1API::OnDeleteFriendsResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FFriendsV1API::OnDeleteFriendsResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -1074,7 +1074,7 @@ FHttpRequestPtr FFriendsV1API::DeleteNotes(const FRequest_DeleteNotes& Request, 
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FFriendsV1API::OnDeleteNotesResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FFriendsV1API::OnDeleteNotesResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -1289,7 +1289,7 @@ FHttpRequestPtr FFriendsV1API::GetFriendRelationship(const FRequest_GetFriendRel
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FFriendsV1API::OnGetFriendRelationshipResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FFriendsV1API::OnGetFriendRelationshipResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -1551,7 +1551,7 @@ FHttpRequestPtr FFriendsV1API::GetFriendsListForPlayer(const FRequest_GetFriends
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FFriendsV1API::OnGetFriendsListForPlayerResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FFriendsV1API::OnGetFriendsListForPlayerResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system

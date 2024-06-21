@@ -56,7 +56,7 @@ FHttpRequestPtr FInstanceNotificationAPI::InstanceCreateNotification(const FRequ
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInstanceNotificationAPI::OnInstanceCreateNotificationResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInstanceNotificationAPI::OnInstanceCreateNotificationResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -297,7 +297,7 @@ FHttpRequestPtr FInstanceNotificationAPI::InstanceGetNotificationById(const FReq
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInstanceNotificationAPI::OnInstanceGetNotificationByIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInstanceNotificationAPI::OnInstanceGetNotificationByIdResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -540,7 +540,7 @@ FHttpRequestPtr FInstanceNotificationAPI::InstanceGetNotificationsPage(const FRe
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInstanceNotificationAPI::OnInstanceGetNotificationsPageResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInstanceNotificationAPI::OnInstanceGetNotificationsPageResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -794,7 +794,7 @@ FHttpRequestPtr FInstanceNotificationAPI::InstanceLongPollForNotifications(const
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInstanceNotificationAPI::OnInstanceLongPollForNotificationsResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInstanceNotificationAPI::OnInstanceLongPollForNotificationsResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system

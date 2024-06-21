@@ -56,7 +56,7 @@ FHttpRequestPtr FSessionsAPI::AcknowledgeBackfillRequest(const FRequest_Acknowle
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnAcknowledgeBackfillRequestResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnAcknowledgeBackfillRequestResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -281,7 +281,7 @@ FHttpRequestPtr FSessionsAPI::AddPlatformSessionToRallyHereSession(const FReques
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnAddPlatformSessionToRallyHereSessionResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnAddPlatformSessionToRallyHereSessionResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -558,7 +558,7 @@ FHttpRequestPtr FSessionsAPI::BackfillConfig(const FRequest_BackfillConfig& Requ
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnBackfillConfigResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnBackfillConfigResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -735,7 +735,7 @@ FHttpRequestPtr FSessionsAPI::CreateInstanceRequest(const FRequest_CreateInstanc
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnCreateInstanceRequestResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnCreateInstanceRequestResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -940,7 +940,7 @@ FHttpRequestPtr FSessionsAPI::CreateOrJoinSession(const FRequest_CreateOrJoinSes
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnCreateOrJoinSessionResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnCreateOrJoinSessionResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -1152,7 +1152,7 @@ FHttpRequestPtr FSessionsAPI::DeleteBackfillRequest(const FRequest_DeleteBackfil
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnDeleteBackfillRequestResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnDeleteBackfillRequestResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -1367,7 +1367,7 @@ FHttpRequestPtr FSessionsAPI::DeleteBrowserInfo(const FRequest_DeleteBrowserInfo
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnDeleteBrowserInfoResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnDeleteBrowserInfoResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -1551,7 +1551,7 @@ FHttpRequestPtr FSessionsAPI::DeletePlatformSessionFromRallyHereSession(const FR
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnDeletePlatformSessionFromRallyHereSessionResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnDeletePlatformSessionFromRallyHereSessionResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -1783,7 +1783,7 @@ FHttpRequestPtr FSessionsAPI::EndInstance(const FRequest_EndInstance& Request, c
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnEndInstanceResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnEndInstanceResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -2002,7 +2002,7 @@ FHttpRequestPtr FSessionsAPI::GetAllSessionTemplates(const FRequest_GetAllSessio
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnGetAllSessionTemplatesResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnGetAllSessionTemplatesResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -2232,7 +2232,7 @@ FHttpRequestPtr FSessionsAPI::GetBrowserSessionsByType(const FRequest_GetBrowser
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnGetBrowserSessionsByTypeResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnGetBrowserSessionsByTypeResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -2473,7 +2473,7 @@ FHttpRequestPtr FSessionsAPI::GetConnectionInfoSelf(const FRequest_GetConnection
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnGetConnectionInfoSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnGetConnectionInfoSelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -2668,7 +2668,7 @@ FHttpRequestPtr FSessionsAPI::GetPlatformSessionInfo(const FRequest_GetPlatformS
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnGetPlatformSessionInfoResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnGetPlatformSessionInfoResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -2916,7 +2916,7 @@ FHttpRequestPtr FSessionsAPI::GetPlayerSessions(const FRequest_GetPlayerSessions
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnGetPlayerSessionsResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnGetPlayerSessionsResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -3110,7 +3110,7 @@ FHttpRequestPtr FSessionsAPI::GetPlayerSessionsByUuid(const FRequest_GetPlayerSe
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnGetPlayerSessionsByUuidResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnGetPlayerSessionsByUuidResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -3345,7 +3345,7 @@ FHttpRequestPtr FSessionsAPI::GetPlayerSessionsByUuidV2(const FRequest_GetPlayer
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnGetPlayerSessionsByUuidV2Response, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnGetPlayerSessionsByUuidV2Response, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -3580,7 +3580,7 @@ FHttpRequestPtr FSessionsAPI::GetPlayerSessionsSelf(const FRequest_GetPlayerSess
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnGetPlayerSessionsSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnGetPlayerSessionsSelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -3810,7 +3810,7 @@ FHttpRequestPtr FSessionsAPI::GetSessionByAllocationId(const FRequest_GetSession
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnGetSessionByAllocationIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnGetSessionByAllocationIdResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -4045,7 +4045,7 @@ FHttpRequestPtr FSessionsAPI::GetSessionById(const FRequest_GetSessionById& Requ
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnGetSessionByIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnGetSessionByIdResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -4288,7 +4288,7 @@ FHttpRequestPtr FSessionsAPI::GetSessionTemplateByType(const FRequest_GetSession
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnGetSessionTemplateByTypeResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnGetSessionTemplateByTypeResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -4523,7 +4523,7 @@ FHttpRequestPtr FSessionsAPI::InstanceHealthCheck(const FRequest_InstanceHealthC
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnInstanceHealthCheckResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnInstanceHealthCheckResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -4728,7 +4728,7 @@ FHttpRequestPtr FSessionsAPI::InstanceHealthConfig(const FRequest_InstanceHealth
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnInstanceHealthConfigResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnInstanceHealthConfigResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -4905,7 +4905,7 @@ FHttpRequestPtr FSessionsAPI::InviteSessionToSession(const FRequest_InviteSessio
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnInviteSessionToSessionResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnInviteSessionToSessionResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -5158,7 +5158,7 @@ FHttpRequestPtr FSessionsAPI::JoinQueue(const FRequest_JoinQueue& Request, const
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnJoinQueueResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnJoinQueueResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -5363,7 +5363,7 @@ FHttpRequestPtr FSessionsAPI::JoinSessionByIdSelf(const FRequest_JoinSessionById
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnJoinSessionByIdSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnJoinSessionByIdSelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -5615,7 +5615,7 @@ FHttpRequestPtr FSessionsAPI::JoinSessionByPlatformSessionByUuid(const FRequest_
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnJoinSessionByPlatformSessionByUuidResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnJoinSessionByPlatformSessionByUuidResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -5903,7 +5903,7 @@ FHttpRequestPtr FSessionsAPI::JoinSessionByPlatformSessionIdSelf(const FRequest_
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnJoinSessionByPlatformSessionIdSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnJoinSessionByPlatformSessionIdSelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -6182,7 +6182,7 @@ FHttpRequestPtr FSessionsAPI::KickPlayerFromSessionById(const FRequest_KickPlaye
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnKickPlayerFromSessionByIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnKickPlayerFromSessionByIdResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -6379,7 +6379,7 @@ FHttpRequestPtr FSessionsAPI::KickPlayerFromSessionByUuid(const FRequest_KickPla
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnKickPlayerFromSessionByUuidResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnKickPlayerFromSessionByUuidResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -6611,7 +6611,7 @@ FHttpRequestPtr FSessionsAPI::KickPlayerFromSessionByUuidV2(const FRequest_KickP
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnKickPlayerFromSessionByUuidV2Response, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnKickPlayerFromSessionByUuidV2Response, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -6843,7 +6843,7 @@ FHttpRequestPtr FSessionsAPI::KickSessionFromSession(const FRequest_KickSessionF
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnKickSessionFromSessionResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnKickSessionFromSessionResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -7040,7 +7040,7 @@ FHttpRequestPtr FSessionsAPI::LeaveQueue(const FRequest_LeaveQueue& Request, con
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnLeaveQueueResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnLeaveQueueResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -7248,7 +7248,7 @@ FHttpRequestPtr FSessionsAPI::LeaveSessionByIdSelf(const FRequest_LeaveSessionBy
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnLeaveSessionByIdSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnLeaveSessionByIdSelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -7444,7 +7444,7 @@ FHttpRequestPtr FSessionsAPI::LeaveSessionByPlatformSessionByUuid(const FRequest
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnLeaveSessionByPlatformSessionByUuidResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnLeaveSessionByPlatformSessionByUuidResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -7668,7 +7668,7 @@ FHttpRequestPtr FSessionsAPI::LeaveSessionByPlatformSessionSelf(const FRequest_L
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnLeaveSessionByPlatformSessionSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnLeaveSessionByPlatformSessionSelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -7891,7 +7891,7 @@ FHttpRequestPtr FSessionsAPI::PostBrowserInfo(const FRequest_PostBrowserInfo& Re
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnPostBrowserInfoResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnPostBrowserInfoResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -8104,7 +8104,7 @@ FHttpRequestPtr FSessionsAPI::UpdateBackfillRequest(const FRequest_UpdateBackfil
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnUpdateBackfillRequestResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnUpdateBackfillRequestResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -8319,7 +8319,7 @@ FHttpRequestPtr FSessionsAPI::UpdateBrowserInfo(const FRequest_UpdateBrowserInfo
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnUpdateBrowserInfoResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnUpdateBrowserInfoResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -8524,7 +8524,7 @@ FHttpRequestPtr FSessionsAPI::UpdateInstanceInfo(const FRequest_UpdateInstanceIn
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnUpdateInstanceInfoResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnUpdateInstanceInfoResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -8729,7 +8729,7 @@ FHttpRequestPtr FSessionsAPI::UpdateSessionById(const FRequest_UpdateSessionById
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnUpdateSessionByIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnUpdateSessionByIdResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -8969,7 +8969,7 @@ FHttpRequestPtr FSessionsAPI::UpdateSessionPlayerById(const FRequest_UpdateSessi
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnUpdateSessionPlayerByIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnUpdateSessionPlayerByIdResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -9187,7 +9187,7 @@ FHttpRequestPtr FSessionsAPI::UpdateSessionPlayerByUuid(const FRequest_UpdateSes
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnUpdateSessionPlayerByUuidResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnUpdateSessionPlayerByUuidResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -9440,7 +9440,7 @@ FHttpRequestPtr FSessionsAPI::UpdateSessionPlayerByUuidV2(const FRequest_UpdateS
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnUpdateSessionPlayerByUuidV2Response, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnUpdateSessionPlayerByUuidV2Response, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -9693,7 +9693,7 @@ FHttpRequestPtr FSessionsAPI::UpdateTeamById(const FRequest_UpdateTeamById& Requ
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnUpdateTeamByIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnUpdateTeamByIdResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system

@@ -56,7 +56,7 @@ FHttpRequestPtr FRemoteFileAPI::CreateEntityDirectoryFile(const FRequest_CreateE
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FRemoteFileAPI::OnCreateEntityDirectoryFileResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FRemoteFileAPI::OnCreateEntityDirectoryFileResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -253,7 +253,7 @@ FHttpRequestPtr FRemoteFileAPI::DeleteEntityDirectory(const FRequest_DeleteEntit
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FRemoteFileAPI::OnDeleteEntityDirectoryResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FRemoteFileAPI::OnDeleteEntityDirectoryResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -448,7 +448,7 @@ FHttpRequestPtr FRemoteFileAPI::DeleteEntityDirectoryFile(const FRequest_DeleteE
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FRemoteFileAPI::OnDeleteEntityDirectoryFileResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FRemoteFileAPI::OnDeleteEntityDirectoryFileResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -635,7 +635,7 @@ FHttpRequestPtr FRemoteFileAPI::DownloadEntityDirectoryFile(const FRequest_Downl
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FRemoteFileAPI::OnDownloadEntityDirectoryFileResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FRemoteFileAPI::OnDownloadEntityDirectoryFileResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -844,7 +844,7 @@ FHttpRequestPtr FRemoteFileAPI::GetEntityDirectoryInformation(const FRequest_Get
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FRemoteFileAPI::OnGetEntityDirectoryInformationResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FRemoteFileAPI::OnGetEntityDirectoryInformationResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -1039,7 +1039,7 @@ FHttpRequestPtr FRemoteFileAPI::ListEntityDirectoryFiles(const FRequest_ListEnti
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FRemoteFileAPI::OnListEntityDirectoryFilesResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FRemoteFileAPI::OnListEntityDirectoryFilesResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system

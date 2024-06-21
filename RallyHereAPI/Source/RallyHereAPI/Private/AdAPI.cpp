@@ -56,7 +56,7 @@ FHttpRequestPtr FAdAPI::BeginNewSession(const FRequest_BeginNewSession& Request,
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FAdAPI::OnBeginNewSessionResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FAdAPI::OnBeginNewSessionResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -313,7 +313,7 @@ FHttpRequestPtr FAdAPI::FindOpportunities(const FRequest_FindOpportunities& Requ
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FAdAPI::OnFindOpportunitiesResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FAdAPI::OnFindOpportunitiesResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -570,7 +570,7 @@ FHttpRequestPtr FAdAPI::UnityAdWatched(const FRequest_UnityAdWatched& Request, c
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FAdAPI::OnUnityAdWatchedResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FAdAPI::OnUnityAdWatchedResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -744,7 +744,7 @@ FHttpRequestPtr FAdAPI::UnityMediationAdWatched(const FRequest_UnityMediationAdW
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FAdAPI::OnUnityMediationAdWatchedResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FAdAPI::OnUnityMediationAdWatchedResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -919,7 +919,7 @@ FHttpRequestPtr FAdAPI::UpdateOpportunityById(const FRequest_UpdateOpportunityBy
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FAdAPI::OnUpdateOpportunityByIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FAdAPI::OnUpdateOpportunityByIdResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system

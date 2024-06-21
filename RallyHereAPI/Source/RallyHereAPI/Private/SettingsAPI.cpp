@@ -56,7 +56,7 @@ FHttpRequestPtr FSettingsAPI::DeleteAllPlayerIdSettingsForSettingType(const FReq
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSettingsAPI::OnDeleteAllPlayerIdSettingsForSettingTypeResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSettingsAPI::OnDeleteAllPlayerIdSettingsForSettingTypeResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -275,7 +275,7 @@ FHttpRequestPtr FSettingsAPI::DeleteAllPlayerUuidSettingsForSettingType(const FR
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSettingsAPI::OnDeleteAllPlayerUuidSettingsForSettingTypeResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSettingsAPI::OnDeleteAllPlayerUuidSettingsForSettingTypeResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -494,7 +494,7 @@ FHttpRequestPtr FSettingsAPI::DeleteAllPlayerUuidSettingsForSettingTypeSelf(cons
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSettingsAPI::OnDeleteAllPlayerUuidSettingsForSettingTypeSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSettingsAPI::OnDeleteAllPlayerUuidSettingsForSettingTypeSelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -712,7 +712,7 @@ FHttpRequestPtr FSettingsAPI::DeleteSinglePlayerIdSetting(const FRequest_DeleteS
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSettingsAPI::OnDeleteSinglePlayerIdSettingResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSettingsAPI::OnDeleteSinglePlayerIdSettingResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -932,7 +932,7 @@ FHttpRequestPtr FSettingsAPI::DeleteSinglePlayerUuidSetting(const FRequest_Delet
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSettingsAPI::OnDeleteSinglePlayerUuidSettingResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSettingsAPI::OnDeleteSinglePlayerUuidSettingResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -1152,7 +1152,7 @@ FHttpRequestPtr FSettingsAPI::DeleteSinglePlayerUuidSettingSelf(const FRequest_D
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSettingsAPI::OnDeleteSinglePlayerUuidSettingSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSettingsAPI::OnDeleteSinglePlayerUuidSettingSelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -1371,7 +1371,7 @@ FHttpRequestPtr FSettingsAPI::GetAllPlayerIdSettingsForSettingType(const FReques
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSettingsAPI::OnGetAllPlayerIdSettingsForSettingTypeResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSettingsAPI::OnGetAllPlayerIdSettingsForSettingTypeResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -1598,7 +1598,7 @@ FHttpRequestPtr FSettingsAPI::GetAllPlayerUuidSettingsForSettingType(const FRequ
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSettingsAPI::OnGetAllPlayerUuidSettingsForSettingTypeResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSettingsAPI::OnGetAllPlayerUuidSettingsForSettingTypeResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -1825,7 +1825,7 @@ FHttpRequestPtr FSettingsAPI::GetAllPlayerUuidSettingsForSettingTypeSelf(const F
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSettingsAPI::OnGetAllPlayerUuidSettingsForSettingTypeSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSettingsAPI::OnGetAllPlayerUuidSettingsForSettingTypeSelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -2051,7 +2051,7 @@ FHttpRequestPtr FSettingsAPI::GetConfigForAllSettingTypes(const FRequest_GetConf
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSettingsAPI::OnGetConfigForAllSettingTypesResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSettingsAPI::OnGetConfigForAllSettingTypesResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -2216,7 +2216,7 @@ FHttpRequestPtr FSettingsAPI::GetConfigForSingleSettingTypeAllVersions(const FRe
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSettingsAPI::OnGetConfigForSingleSettingTypeAllVersionsResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSettingsAPI::OnGetConfigForSingleSettingTypeAllVersionsResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -2422,7 +2422,7 @@ FHttpRequestPtr FSettingsAPI::GetConfigForSingleSettingTypeAndVersion(const FReq
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSettingsAPI::OnGetConfigForSingleSettingTypeAndVersionResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSettingsAPI::OnGetConfigForSingleSettingTypeAndVersionResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -2629,7 +2629,7 @@ FHttpRequestPtr FSettingsAPI::GetSinglePlayerIdSetting(const FRequest_GetSingleP
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSettingsAPI::OnGetSinglePlayerIdSettingResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSettingsAPI::OnGetSinglePlayerIdSettingResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -2849,7 +2849,7 @@ FHttpRequestPtr FSettingsAPI::GetSinglePlayerUuidSetting(const FRequest_GetSingl
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSettingsAPI::OnGetSinglePlayerUuidSettingResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSettingsAPI::OnGetSinglePlayerUuidSettingResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -3069,7 +3069,7 @@ FHttpRequestPtr FSettingsAPI::GetSinglePlayerUuidSettingSelf(const FRequest_GetS
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSettingsAPI::OnGetSinglePlayerUuidSettingSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSettingsAPI::OnGetSinglePlayerUuidSettingSelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -3288,7 +3288,7 @@ FHttpRequestPtr FSettingsAPI::SetSinglePlayerIdSetting(const FRequest_SetSingleP
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSettingsAPI::OnSetSinglePlayerIdSettingResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSettingsAPI::OnSetSinglePlayerIdSettingResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -3531,7 +3531,7 @@ FHttpRequestPtr FSettingsAPI::SetSinglePlayerUuidSetting(const FRequest_SetSingl
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSettingsAPI::OnSetSinglePlayerUuidSettingResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSettingsAPI::OnSetSinglePlayerUuidSettingResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -3774,7 +3774,7 @@ FHttpRequestPtr FSettingsAPI::SetSinglePlayerUuidSettingSelf(const FRequest_SetS
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSettingsAPI::OnSetSinglePlayerUuidSettingSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSettingsAPI::OnSetSinglePlayerUuidSettingSelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system

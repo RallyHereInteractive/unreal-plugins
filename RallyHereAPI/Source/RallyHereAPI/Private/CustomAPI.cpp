@@ -56,7 +56,7 @@ FHttpRequestPtr FCustomAPI::CustomEndpointSend(const FRequest_CustomEndpointSend
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FCustomAPI::OnCustomEndpointSendResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FCustomAPI::OnCustomEndpointSendResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system

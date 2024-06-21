@@ -56,7 +56,7 @@ FHttpRequestPtr FBlockedV1API::Block(const FRequest_Block& Request, const FDeleg
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FBlockedV1API::OnBlockResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FBlockedV1API::OnBlockResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -275,7 +275,7 @@ FHttpRequestPtr FBlockedV1API::GetBlocked(const FRequest_GetBlocked& Request, co
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FBlockedV1API::OnGetBlockedResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FBlockedV1API::OnGetBlockedResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -494,7 +494,7 @@ FHttpRequestPtr FBlockedV1API::GetBlockedListForPlayer(const FRequest_GetBlocked
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FBlockedV1API::OnGetBlockedListForPlayerResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FBlockedV1API::OnGetBlockedListForPlayerResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -767,7 +767,7 @@ FHttpRequestPtr FBlockedV1API::Unblock(const FRequest_Unblock& Request, const FD
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FBlockedV1API::OnUnblockResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FBlockedV1API::OnUnblockResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system

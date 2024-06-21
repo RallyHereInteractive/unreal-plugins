@@ -56,7 +56,7 @@ FHttpRequestPtr FSessionAuditAPI::CreateSessionAudit(const FRequest_CreateSessio
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionAuditAPI::OnCreateSessionAuditResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionAuditAPI::OnCreateSessionAuditResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -268,7 +268,7 @@ FHttpRequestPtr FSessionAuditAPI::GetSessionAudit(const FRequest_GetSessionAudit
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionAuditAPI::OnGetSessionAuditResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionAuditAPI::OnGetSessionAuditResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system

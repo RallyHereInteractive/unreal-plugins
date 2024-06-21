@@ -56,7 +56,7 @@ FHttpRequestPtr FInventoryAPI::CreateNewInventorySession(const FRequest_CreateNe
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreateNewInventorySessionResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreateNewInventorySessionResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -261,7 +261,7 @@ FHttpRequestPtr FInventoryAPI::CreateNewInventorySessionByPlayerUuid(const FRequ
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreateNewInventorySessionByPlayerUuidResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreateNewInventorySessionByPlayerUuidResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -466,7 +466,7 @@ FHttpRequestPtr FInventoryAPI::CreateNewInventorySessionByPlayerUuidSelf(const F
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreateNewInventorySessionByPlayerUuidSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreateNewInventorySessionByPlayerUuidSelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -666,7 +666,7 @@ FHttpRequestPtr FInventoryAPI::CreateNewInventorySessionSelf(const FRequest_Crea
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreateNewInventorySessionSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreateNewInventorySessionSelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -866,7 +866,7 @@ FHttpRequestPtr FInventoryAPI::CreateNewPlayerOrder(const FRequest_CreateNewPlay
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreateNewPlayerOrderResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreateNewPlayerOrderResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -1083,7 +1083,7 @@ FHttpRequestPtr FInventoryAPI::CreateNewPlayerOrderSelf(const FRequest_CreateNew
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreateNewPlayerOrderSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreateNewPlayerOrderSelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -1295,7 +1295,7 @@ FHttpRequestPtr FInventoryAPI::CreateNewPlayerUuidOrder(const FRequest_CreateNew
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreateNewPlayerUuidOrderResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreateNewPlayerUuidOrderResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -1512,7 +1512,7 @@ FHttpRequestPtr FInventoryAPI::CreateNewPlayerUuidOrderSelf(const FRequest_Creat
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreateNewPlayerUuidOrderSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreateNewPlayerUuidOrderSelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -1724,7 +1724,7 @@ FHttpRequestPtr FInventoryAPI::CreatePlayerInventory(const FRequest_CreatePlayer
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreatePlayerInventoryResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreatePlayerInventoryResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -1941,7 +1941,7 @@ FHttpRequestPtr FInventoryAPI::CreatePlayerInventorySelf(const FRequest_CreatePl
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreatePlayerInventorySelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreatePlayerInventorySelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -2153,7 +2153,7 @@ FHttpRequestPtr FInventoryAPI::CreatePlayerInventoryUuid(const FRequest_CreatePl
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreatePlayerInventoryUuidResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreatePlayerInventoryUuidResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -2370,7 +2370,7 @@ FHttpRequestPtr FInventoryAPI::CreatePlayerInventoryUuidSelf(const FRequest_Crea
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreatePlayerInventoryUuidSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnCreatePlayerInventoryUuidSelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -2582,7 +2582,7 @@ FHttpRequestPtr FInventoryAPI::GetInventorySessionInfo(const FRequest_GetInvento
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetInventorySessionInfoResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetInventorySessionInfoResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -2776,7 +2776,7 @@ FHttpRequestPtr FInventoryAPI::GetInventorySessionInfoByPlayerUuid(const FReques
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetInventorySessionInfoByPlayerUuidResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetInventorySessionInfoByPlayerUuidResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -2970,7 +2970,7 @@ FHttpRequestPtr FInventoryAPI::GetInventorySessionInfoByPlayerUuidSelf(const FRe
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetInventorySessionInfoByPlayerUuidSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetInventorySessionInfoByPlayerUuidSelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -3147,7 +3147,7 @@ FHttpRequestPtr FInventoryAPI::GetInventorySessionInfoSelf(const FRequest_GetInv
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetInventorySessionInfoSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetInventorySessionInfoSelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -3324,7 +3324,7 @@ FHttpRequestPtr FInventoryAPI::GetPlayerInventory(const FRequest_GetPlayerInvent
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerInventoryResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerInventoryResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -3552,7 +3552,7 @@ FHttpRequestPtr FInventoryAPI::GetPlayerInventorySelf(const FRequest_GetPlayerIn
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerInventorySelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerInventorySelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -3775,7 +3775,7 @@ FHttpRequestPtr FInventoryAPI::GetPlayerInventoryUuid(const FRequest_GetPlayerIn
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerInventoryUuidResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerInventoryUuidResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -4003,7 +4003,7 @@ FHttpRequestPtr FInventoryAPI::GetPlayerInventoryUuidSelf(const FRequest_GetPlay
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerInventoryUuidSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerInventoryUuidSelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -4226,7 +4226,7 @@ FHttpRequestPtr FInventoryAPI::GetPlayerOrderById(const FRequest_GetPlayerOrderB
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerOrderByIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerOrderByIdResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -4433,7 +4433,7 @@ FHttpRequestPtr FInventoryAPI::GetPlayerOrderByIdSelf(const FRequest_GetPlayerOr
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerOrderByIdSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerOrderByIdSelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -4639,7 +4639,7 @@ FHttpRequestPtr FInventoryAPI::GetPlayerOrders(const FRequest_GetPlayerOrders& R
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerOrdersResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerOrdersResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -4853,7 +4853,7 @@ FHttpRequestPtr FInventoryAPI::GetPlayerOrdersSelf(const FRequest_GetPlayerOrder
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerOrdersSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerOrdersSelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -5062,7 +5062,7 @@ FHttpRequestPtr FInventoryAPI::GetPlayerUuidOrderById(const FRequest_GetPlayerUu
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerUuidOrderByIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerUuidOrderByIdResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -5269,7 +5269,7 @@ FHttpRequestPtr FInventoryAPI::GetPlayerUuidOrderByIdSelf(const FRequest_GetPlay
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerUuidOrderByIdSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerUuidOrderByIdSelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -5475,7 +5475,7 @@ FHttpRequestPtr FInventoryAPI::GetPlayerUuidOrders(const FRequest_GetPlayerUuidO
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerUuidOrdersResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerUuidOrdersResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -5689,7 +5689,7 @@ FHttpRequestPtr FInventoryAPI::GetPlayerUuidOrdersSelf(const FRequest_GetPlayerU
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerUuidOrdersSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnGetPlayerUuidOrdersSelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -5898,7 +5898,7 @@ FHttpRequestPtr FInventoryAPI::ModifyManyPlayerInventory(const FRequest_ModifyMa
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInventoryAPI::OnModifyManyPlayerInventoryResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnModifyManyPlayerInventoryResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -6115,7 +6115,7 @@ FHttpRequestPtr FInventoryAPI::ModifyManyPlayerInventorySelf(const FRequest_Modi
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInventoryAPI::OnModifyManyPlayerInventorySelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnModifyManyPlayerInventorySelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -6327,7 +6327,7 @@ FHttpRequestPtr FInventoryAPI::ModifyManyPlayerInventoryUuid(const FRequest_Modi
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInventoryAPI::OnModifyManyPlayerInventoryUuidResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnModifyManyPlayerInventoryUuidResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -6544,7 +6544,7 @@ FHttpRequestPtr FInventoryAPI::ModifyManyPlayerInventoryUuidSelf(const FRequest_
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInventoryAPI::OnModifyManyPlayerInventoryUuidSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnModifyManyPlayerInventoryUuidSelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -6756,7 +6756,7 @@ FHttpRequestPtr FInventoryAPI::ModifyPlayerInventory(const FRequest_ModifyPlayer
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInventoryAPI::OnModifyPlayerInventoryResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnModifyPlayerInventoryResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -6974,7 +6974,7 @@ FHttpRequestPtr FInventoryAPI::ModifyPlayerInventorySelf(const FRequest_ModifyPl
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInventoryAPI::OnModifyPlayerInventorySelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnModifyPlayerInventorySelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -7191,7 +7191,7 @@ FHttpRequestPtr FInventoryAPI::ModifyPlayerInventoryUuid(const FRequest_ModifyPl
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInventoryAPI::OnModifyPlayerInventoryUuidResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnModifyPlayerInventoryUuidResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -7409,7 +7409,7 @@ FHttpRequestPtr FInventoryAPI::ModifyPlayerInventoryUuidSelf(const FRequest_Modi
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FInventoryAPI::OnModifyPlayerInventoryUuidSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FInventoryAPI::OnModifyPlayerInventoryUuidSelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system

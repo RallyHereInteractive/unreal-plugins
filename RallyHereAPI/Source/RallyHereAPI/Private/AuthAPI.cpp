@@ -56,7 +56,7 @@ FHttpRequestPtr FAuthAPI::GenerateKey(const FRequest_GenerateKey& Request, const
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FAuthAPI::OnGenerateKeyResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FAuthAPI::OnGenerateKeyResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -210,7 +210,7 @@ FHttpRequestPtr FAuthAPI::GetAllPublicKeys(const FRequest_GetAllPublicKeys& Requ
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FAuthAPI::OnGetAllPublicKeysResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FAuthAPI::OnGetAllPublicKeysResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -364,7 +364,7 @@ FHttpRequestPtr FAuthAPI::GetPortalTokenDetails(const FRequest_GetPortalTokenDet
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FAuthAPI::OnGetPortalTokenDetailsResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FAuthAPI::OnGetPortalTokenDetailsResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -563,7 +563,7 @@ FHttpRequestPtr FAuthAPI::GetPublicKeyById(const FRequest_GetPublicKeyById& Requ
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FAuthAPI::OnGetPublicKeyByIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FAuthAPI::OnGetPublicKeyByIdResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -982,7 +982,7 @@ FHttpRequestPtr FAuthAPI::Logout(const FRequest_Logout& Request, const FDelegate
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FAuthAPI::OnLogoutResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FAuthAPI::OnLogoutResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -1159,7 +1159,7 @@ FHttpRequestPtr FAuthAPI::OauthLogin(const FRequest_OauthLogin& Request, const F
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FAuthAPI::OnOauthLoginResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FAuthAPI::OnOauthLoginResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -1377,7 +1377,7 @@ FHttpRequestPtr FAuthAPI::OauthResponse(const FRequest_OauthResponse& Request, c
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FAuthAPI::OnOauthResponseResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FAuthAPI::OnOauthResponseResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -1595,7 +1595,7 @@ FHttpRequestPtr FAuthAPI::OauthTokenExchange(const FRequest_OauthTokenExchange& 
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FAuthAPI::OnOauthTokenExchangeResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FAuthAPI::OnOauthTokenExchangeResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -1805,7 +1805,7 @@ FHttpRequestPtr FAuthAPI::Token(const FRequest_Token& Request, const FDelegate_T
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FAuthAPI::OnTokenResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FAuthAPI::OnTokenResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -2003,7 +2003,7 @@ FHttpRequestPtr FAuthAPI::Verify(const FRequest_Verify& Request, const FDelegate
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FAuthAPI::OnVerifyResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FAuthAPI::OnVerifyResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system

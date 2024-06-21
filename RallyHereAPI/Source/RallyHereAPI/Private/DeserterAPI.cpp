@@ -56,7 +56,7 @@ FHttpRequestPtr FDeserterAPI::ClearAllDeserter(const FRequest_ClearAllDeserter& 
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FDeserterAPI::OnClearAllDeserterResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FDeserterAPI::OnClearAllDeserterResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -223,7 +223,7 @@ FHttpRequestPtr FDeserterAPI::ClearSpecificDeserter(const FRequest_ClearSpecific
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FDeserterAPI::OnClearSpecificDeserterResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FDeserterAPI::OnClearSpecificDeserterResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -407,7 +407,7 @@ FHttpRequestPtr FDeserterAPI::DeleteAllPlayerDeserter(const FRequest_DeleteAllPl
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FDeserterAPI::OnDeleteAllPlayerDeserterResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FDeserterAPI::OnDeleteAllPlayerDeserterResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -591,7 +591,7 @@ FHttpRequestPtr FDeserterAPI::DeletePlayerDeserter(const FRequest_DeletePlayerDe
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FDeserterAPI::OnDeletePlayerDeserterResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FDeserterAPI::OnDeletePlayerDeserterResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -776,7 +776,7 @@ FHttpRequestPtr FDeserterAPI::GetAllDeserterConfigs(const FRequest_GetAllDeserte
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FDeserterAPI::OnGetAllDeserterConfigsResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FDeserterAPI::OnGetAllDeserterConfigsResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -953,7 +953,7 @@ FHttpRequestPtr FDeserterAPI::GetAllPlayerDeserters(const FRequest_GetAllPlayerD
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FDeserterAPI::OnGetAllPlayerDesertersResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FDeserterAPI::OnGetAllPlayerDesertersResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -1147,7 +1147,7 @@ FHttpRequestPtr FDeserterAPI::GetPlayerDeserter(const FRequest_GetPlayerDeserter
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FDeserterAPI::OnGetPlayerDeserterResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FDeserterAPI::OnGetPlayerDeserterResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -1342,7 +1342,7 @@ FHttpRequestPtr FDeserterAPI::GetSpecificDeserterConfig(const FRequest_GetSpecif
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FDeserterAPI::OnGetSpecificDeserterConfigResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FDeserterAPI::OnGetSpecificDeserterConfigResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -1536,7 +1536,7 @@ FHttpRequestPtr FDeserterAPI::PutPlayerDeserter(const FRequest_PutPlayerDeserter
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FDeserterAPI::OnPutPlayerDeserterResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FDeserterAPI::OnPutPlayerDeserterResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system

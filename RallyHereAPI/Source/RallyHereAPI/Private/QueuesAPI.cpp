@@ -56,7 +56,7 @@ FHttpRequestPtr FQueuesAPI::GetAllMapGameInfo(const FRequest_GetAllMapGameInfo& 
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FQueuesAPI::OnGetAllMapGameInfoResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FQueuesAPI::OnGetAllMapGameInfoResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -291,7 +291,7 @@ FHttpRequestPtr FQueuesAPI::GetAllQueueInfo(const FRequest_GetAllQueueInfo& Requ
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FQueuesAPI::OnGetAllQueueInfoResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FQueuesAPI::OnGetAllQueueInfoResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -533,7 +533,7 @@ FHttpRequestPtr FQueuesAPI::GetAllQueueInfoV2(const FRequest_GetAllQueueInfoV2& 
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FQueuesAPI::OnGetAllQueueInfoV2Response, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FQueuesAPI::OnGetAllQueueInfoV2Response, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -775,7 +775,7 @@ FHttpRequestPtr FQueuesAPI::GetInstanceRequestTemplate(const FRequest_GetInstanc
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FQueuesAPI::OnGetInstanceRequestTemplateResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FQueuesAPI::OnGetInstanceRequestTemplateResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -1010,7 +1010,7 @@ FHttpRequestPtr FQueuesAPI::GetMatchMakingProfile(const FRequest_GetMatchMakingP
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FQueuesAPI::OnGetMatchMakingProfileResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FQueuesAPI::OnGetMatchMakingProfileResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -1245,7 +1245,7 @@ FHttpRequestPtr FQueuesAPI::GetMatchMakingProfileV2(const FRequest_GetMatchMakin
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FQueuesAPI::OnGetMatchMakingProfileV2Response, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FQueuesAPI::OnGetMatchMakingProfileV2Response, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -1480,7 +1480,7 @@ FHttpRequestPtr FQueuesAPI::GetMatchMakingTemplates(const FRequest_GetMatchMakin
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FQueuesAPI::OnGetMatchMakingTemplatesResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FQueuesAPI::OnGetMatchMakingTemplatesResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -1715,7 +1715,7 @@ FHttpRequestPtr FQueuesAPI::GetMatchMakingTemplatesV2(const FRequest_GetMatchMak
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FQueuesAPI::OnGetMatchMakingTemplatesV2Response, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FQueuesAPI::OnGetMatchMakingTemplatesV2Response, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system

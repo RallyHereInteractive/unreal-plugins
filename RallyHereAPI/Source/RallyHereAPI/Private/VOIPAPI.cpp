@@ -56,7 +56,7 @@ FHttpRequestPtr FVOIPAPI::GetVoipActionToken(const FRequest_GetVoipActionToken& 
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FVOIPAPI::OnGetVoipActionTokenResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FVOIPAPI::OnGetVoipActionTokenResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -261,7 +261,7 @@ FHttpRequestPtr FVOIPAPI::GetVoipActionTokenMe(const FRequest_GetVoipActionToken
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FVOIPAPI::OnGetVoipActionTokenMeResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FVOIPAPI::OnGetVoipActionTokenMeResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -465,7 +465,7 @@ FHttpRequestPtr FVOIPAPI::GetVoipLoginToken(const FRequest_GetVoipLoginToken& Re
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FVOIPAPI::OnGetVoipLoginTokenResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FVOIPAPI::OnGetVoipLoginTokenResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system

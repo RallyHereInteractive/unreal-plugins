@@ -56,7 +56,7 @@ FHttpRequestPtr FBlockedV2API::BlockV2(const FRequest_BlockV2& Request, const FD
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FBlockedV2API::OnBlockV2Response, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FBlockedV2API::OnBlockV2Response, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -275,7 +275,7 @@ FHttpRequestPtr FBlockedV2API::GetBlockedListForPlayerV2(const FRequest_GetBlock
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FBlockedV2API::OnGetBlockedListForPlayerV2Response, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FBlockedV2API::OnGetBlockedListForPlayerV2Response, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -548,7 +548,7 @@ FHttpRequestPtr FBlockedV2API::GetBlockedV2(const FRequest_GetBlockedV2& Request
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FBlockedV2API::OnGetBlockedV2Response, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FBlockedV2API::OnGetBlockedV2Response, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -767,7 +767,7 @@ FHttpRequestPtr FBlockedV2API::UnblockV2(const FRequest_UnblockV2& Request, cons
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FBlockedV2API::OnUnblockV2Response, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FBlockedV2API::OnUnblockV2Response, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system

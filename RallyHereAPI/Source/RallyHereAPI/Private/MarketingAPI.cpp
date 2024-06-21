@@ -56,7 +56,7 @@ FHttpRequestPtr FMarketingAPI::GetMarketingCampaigns(const FRequest_GetMarketing
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FMarketingAPI::OnGetMarketingCampaignsResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FMarketingAPI::OnGetMarketingCampaignsResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system

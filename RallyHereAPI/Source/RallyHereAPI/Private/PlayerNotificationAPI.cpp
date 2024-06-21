@@ -56,7 +56,7 @@ FHttpRequestPtr FPlayerNotificationAPI::PlayerCreateNotification(const FRequest_
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FPlayerNotificationAPI::OnPlayerCreateNotificationResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FPlayerNotificationAPI::OnPlayerCreateNotificationResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -297,7 +297,7 @@ FHttpRequestPtr FPlayerNotificationAPI::PlayerCreateNotificationSelf(const FRequ
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FPlayerNotificationAPI::OnPlayerCreateNotificationSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FPlayerNotificationAPI::OnPlayerCreateNotificationSelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -533,7 +533,7 @@ FHttpRequestPtr FPlayerNotificationAPI::PlayerGetNotificationById(const FRequest
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FPlayerNotificationAPI::OnPlayerGetNotificationByIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FPlayerNotificationAPI::OnPlayerGetNotificationByIdResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -776,7 +776,7 @@ FHttpRequestPtr FPlayerNotificationAPI::PlayerGetNotificationByIdSelf(const FReq
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FPlayerNotificationAPI::OnPlayerGetNotificationByIdSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FPlayerNotificationAPI::OnPlayerGetNotificationByIdSelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -1018,7 +1018,7 @@ FHttpRequestPtr FPlayerNotificationAPI::PlayerGetNotificationsPage(const FReques
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FPlayerNotificationAPI::OnPlayerGetNotificationsPageResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FPlayerNotificationAPI::OnPlayerGetNotificationsPageResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -1272,7 +1272,7 @@ FHttpRequestPtr FPlayerNotificationAPI::PlayerGetNotificationsPageSelf(const FRe
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FPlayerNotificationAPI::OnPlayerGetNotificationsPageSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FPlayerNotificationAPI::OnPlayerGetNotificationsPageSelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -1521,7 +1521,7 @@ FHttpRequestPtr FPlayerNotificationAPI::PlayerLongPollForNotifications(const FRe
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FPlayerNotificationAPI::OnPlayerLongPollForNotificationsResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FPlayerNotificationAPI::OnPlayerLongPollForNotificationsResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -1771,7 +1771,7 @@ FHttpRequestPtr FPlayerNotificationAPI::PlayerLongPollForNotificationsSelf(const
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FPlayerNotificationAPI::OnPlayerLongPollForNotificationsSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FPlayerNotificationAPI::OnPlayerLongPollForNotificationsSelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
