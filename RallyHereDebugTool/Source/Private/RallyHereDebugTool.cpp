@@ -653,7 +653,9 @@ void URallyHereDebugTool::DoImGui()
 			ToggleUIKeyBindAsImGuiKey = UImGuiInputHandler::GetImGuiKeyFromFKey(URallyHereDebugToolSettings::Get()->ToggleUIKeyBind.Key, io);
 		}
 
-		bool bIsToggleKeybindActive = ImGui::IsKeyPressed(ToggleUIKeyBindAsImGuiKey);
+		bool bIsToggleKeybindActive = ImGui::IsKeyReleased(ToggleUIKeyBindAsImGuiKey);
+
+		UE_CLOG(bIsToggleKeybindActive, LogRallyHereDebugTool, Log, TEXT("Closing UI via keybind"));
 
 		FString ButtonLabel = TEXT("Close (");
 		const FRallyHereDebugToolKeyInfo& ToggleKeybind = URallyHereDebugToolSettings::Get()->ToggleUIKeyBind;
