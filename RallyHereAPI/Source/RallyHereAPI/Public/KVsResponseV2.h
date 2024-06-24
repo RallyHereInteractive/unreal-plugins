@@ -64,7 +64,7 @@ struct RALLYHEREAPI_API FRHAPI_KVsResponseV2 : public FRHAPI_Model
 	 /** @brief Clears the value of Kvs_Optional and sets Kvs_IsSet to false */
 	void ClearKvs() { Kvs_IsSet = false; }
 
-	/** @brief The list of secret key/value pairs */
+	/** @brief *DEPRECATED* The list of permissioned key/value pairs */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TMap<FString, FString> SecretKvs_Optional{  };
 	/** @brief true if SecretKvs_Optional has been set to a value */
@@ -88,6 +88,31 @@ struct RALLYHEREAPI_API FRHAPI_KVsResponseV2 : public FRHAPI_Model
 	void SetSecretKvs(TMap<FString, FString>&& NewValue) { SecretKvs_Optional = NewValue; SecretKvs_IsSet = true; }
 	 /** @brief Clears the value of SecretKvs_Optional and sets SecretKvs_IsSet to false */
 	void ClearSecretKvs() { SecretKvs_IsSet = false; }
+
+	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FDateTime KickBeforeHint_Optional{  };
+	/** @brief true if KickBeforeHint_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool KickBeforeHint_IsSet{ false };
+	/** @brief Gets the value of KickBeforeHint_Optional, regardless of it having been set */
+	FDateTime& GetKickBeforeHint() { return KickBeforeHint_Optional; }
+	/** @brief Gets the value of KickBeforeHint_Optional, regardless of it having been set */
+	const FDateTime& GetKickBeforeHint() const { return KickBeforeHint_Optional; }
+	/** @brief Gets the value of KickBeforeHint_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FDateTime& GetKickBeforeHint(const FDateTime& DefaultValue) const { if (KickBeforeHint_IsSet) return KickBeforeHint_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of KickBeforeHint_Optional and returns true if it has been set, otherwise returns false */
+	bool GetKickBeforeHint(FDateTime& OutValue) const { if (KickBeforeHint_IsSet) OutValue = KickBeforeHint_Optional; return KickBeforeHint_IsSet; }
+	/** @brief Returns a pointer to KickBeforeHint_Optional, if it has been set, otherwise returns nullptr */
+	FDateTime* GetKickBeforeHintOrNull() { if (KickBeforeHint_IsSet) return &KickBeforeHint_Optional; return nullptr; }
+	/** @brief Returns a pointer to KickBeforeHint_Optional, if it has been set, otherwise returns nullptr */
+	const FDateTime* GetKickBeforeHintOrNull() const { if (KickBeforeHint_IsSet) return &KickBeforeHint_Optional; return nullptr; }
+	/** @brief Sets the value of KickBeforeHint_Optional and also sets KickBeforeHint_IsSet to true */
+	void SetKickBeforeHint(const FDateTime& NewValue) { KickBeforeHint_Optional = NewValue; KickBeforeHint_IsSet = true; }
+	/** @brief Sets the value of KickBeforeHint_Optional and also sets KickBeforeHint_IsSet to true using move semantics */
+	void SetKickBeforeHint(FDateTime&& NewValue) { KickBeforeHint_Optional = NewValue; KickBeforeHint_IsSet = true; }
+	 /** @brief Clears the value of KickBeforeHint_Optional and sets KickBeforeHint_IsSet to false */
+	void ClearKickBeforeHint() { KickBeforeHint_IsSet = false; }
 };
 
 /** @} */

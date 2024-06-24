@@ -34,6 +34,11 @@ void FRHAPI_QueueJoinRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 		Writer->WriteIdentifierPrefix(TEXT("map_preferences"));
 		RallyHereAPI::WriteJsonValue(Writer, MapPreferences_Optional);
 	}
+	if (PassedQueueTimeSeconds_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("passed_queue_time_seconds"));
+		RallyHereAPI::WriteJsonValue(Writer, PassedQueueTimeSeconds_Optional);
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -58,6 +63,12 @@ bool FRHAPI_QueueJoinRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	{
 		MapPreferences_IsSet = TryGetJsonValue(JsonMapPreferencesField, MapPreferences_Optional);
 		ParseSuccess &= MapPreferences_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonPassedQueueTimeSecondsField = (*Object)->TryGetField(TEXT("passed_queue_time_seconds"));
+	if (JsonPassedQueueTimeSecondsField.IsValid() && !JsonPassedQueueTimeSecondsField->IsNull())
+	{
+		PassedQueueTimeSeconds_IsSet = TryGetJsonValue(JsonPassedQueueTimeSecondsField, PassedQueueTimeSeconds_Optional);
+		ParseSuccess &= PassedQueueTimeSeconds_IsSet;
 	}
 
 	return ParseSuccess;

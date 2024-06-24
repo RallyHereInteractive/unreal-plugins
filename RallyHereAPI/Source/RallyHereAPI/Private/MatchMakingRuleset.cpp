@@ -22,8 +22,11 @@ using RallyHereAPI::TryGetJsonValue;
 void FRHAPI_MatchMakingRuleset::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
 	Writer->WriteObjectStart();
-	Writer->WriteIdentifierPrefix(TEXT("rules"));
-	RallyHereAPI::WriteJsonValue(Writer, Rules);
+	if (Rules_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("rules"));
+		RallyHereAPI::WriteJsonValue(Writer, Rules_Optional);
+	}
 	if (Determiner_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("determiner"));
@@ -41,7 +44,11 @@ bool FRHAPI_MatchMakingRuleset::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonRulesField = (*Object)->TryGetField(TEXT("rules"));
-	ParseSuccess &= JsonRulesField.IsValid() && !JsonRulesField->IsNull() && TryGetJsonValue(JsonRulesField, Rules);
+	if (JsonRulesField.IsValid() && !JsonRulesField->IsNull())
+	{
+		Rules_IsSet = TryGetJsonValue(JsonRulesField, Rules_Optional);
+		ParseSuccess &= Rules_IsSet;
+	}
 	const TSharedPtr<FJsonValue> JsonDeterminerField = (*Object)->TryGetField(TEXT("determiner"));
 	if (JsonDeterminerField.IsValid() && !JsonDeterminerField->IsNull())
 	{

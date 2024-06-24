@@ -43,15 +43,28 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingRuleset : public FRHAPI_Model
 
 	/** @brief A list of the rules to be checked for this ruleset */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	TArray<FRHAPI_Rule> Rules{  };
-	/** @brief Gets the value of Rules */
-	TArray<FRHAPI_Rule>& GetRules() { return Rules; }
-	/** @brief Gets the value of Rules */
-	const TArray<FRHAPI_Rule>& GetRules() const { return Rules; }
-	/** @brief Sets the value of Rules */
-	void SetRules(const TArray<FRHAPI_Rule>& NewValue) { Rules = NewValue;  }
-	/** @brief Sets the value of Rules using move semantics */
-	void SetRules(TArray<FRHAPI_Rule>&& NewValue) { Rules = NewValue;  }
+	TArray<FRHAPI_Rule> Rules_Optional{  };
+	/** @brief true if Rules_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Rules_IsSet{ false };
+	/** @brief Gets the value of Rules_Optional, regardless of it having been set */
+	TArray<FRHAPI_Rule>& GetRules() { return Rules_Optional; }
+	/** @brief Gets the value of Rules_Optional, regardless of it having been set */
+	const TArray<FRHAPI_Rule>& GetRules() const { return Rules_Optional; }
+	/** @brief Gets the value of Rules_Optional, if it has been set, otherwise it returns DefaultValue */
+	const TArray<FRHAPI_Rule>& GetRules(const TArray<FRHAPI_Rule>& DefaultValue) const { if (Rules_IsSet) return Rules_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Rules_Optional and returns true if it has been set, otherwise returns false */
+	bool GetRules(TArray<FRHAPI_Rule>& OutValue) const { if (Rules_IsSet) OutValue = Rules_Optional; return Rules_IsSet; }
+	/** @brief Returns a pointer to Rules_Optional, if it has been set, otherwise returns nullptr */
+	TArray<FRHAPI_Rule>* GetRulesOrNull() { if (Rules_IsSet) return &Rules_Optional; return nullptr; }
+	/** @brief Returns a pointer to Rules_Optional, if it has been set, otherwise returns nullptr */
+	const TArray<FRHAPI_Rule>* GetRulesOrNull() const { if (Rules_IsSet) return &Rules_Optional; return nullptr; }
+	/** @brief Sets the value of Rules_Optional and also sets Rules_IsSet to true */
+	void SetRules(const TArray<FRHAPI_Rule>& NewValue) { Rules_Optional = NewValue; Rules_IsSet = true; }
+	/** @brief Sets the value of Rules_Optional and also sets Rules_IsSet to true using move semantics */
+	void SetRules(TArray<FRHAPI_Rule>&& NewValue) { Rules_Optional = NewValue; Rules_IsSet = true; }
+	 /** @brief Clears the value of Rules_Optional and sets Rules_IsSet to false */
+	void ClearRules() { Rules_IsSet = false; }
 
 	/** @brief Determiner of how many rules must be satisfied in this rulest (all, any, one, none) */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")

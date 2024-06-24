@@ -61,6 +61,11 @@ void FRHAPI_MatchMakingProfileV2::WriteJson(TSharedRef<TJsonWriter<>>& Writer) c
 		Writer->WriteIdentifierPrefix(TEXT("deserter_id"));
 		RallyHereAPI::WriteJsonValue(Writer, DeserterId_Optional);
 	}
+	if (SessionTemplateId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("session_template_id"));
+		RallyHereAPI::WriteJsonValue(Writer, SessionTemplateId_Optional);
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -117,6 +122,12 @@ bool FRHAPI_MatchMakingProfileV2::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 	{
 		DeserterId_IsSet = TryGetJsonValue(JsonDeserterIdField, DeserterId_Optional);
 		ParseSuccess &= DeserterId_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonSessionTemplateIdField = (*Object)->TryGetField(TEXT("session_template_id"));
+	if (JsonSessionTemplateIdField.IsValid() && !JsonSessionTemplateIdField->IsNull())
+	{
+		SessionTemplateId_IsSet = TryGetJsonValue(JsonSessionTemplateIdField, SessionTemplateId_Optional);
+		ParseSuccess &= SessionTemplateId_IsSet;
 	}
 
 	return ParseSuccess;

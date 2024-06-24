@@ -34,6 +34,11 @@ void FRHAPI_PlayerSession::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 		Writer->WriteIdentifierPrefix(TEXT("pending_invites"));
 		RallyHereAPI::WriteJsonValue(Writer, PendingInvites_Optional);
 	}
+	if (ReservedSessions_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("reserved_sessions"));
+		RallyHereAPI::WriteJsonValue(Writer, ReservedSessions_Optional);
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -58,6 +63,12 @@ bool FRHAPI_PlayerSession::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	{
 		PendingInvites_IsSet = TryGetJsonValue(JsonPendingInvitesField, PendingInvites_Optional);
 		ParseSuccess &= PendingInvites_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonReservedSessionsField = (*Object)->TryGetField(TEXT("reserved_sessions"));
+	if (JsonReservedSessionsField.IsValid() && !JsonReservedSessionsField->IsNull())
+	{
+		ReservedSessions_IsSet = TryGetJsonValue(JsonReservedSessionsField, ReservedSessions_Optional);
+		ParseSuccess &= ReservedSessions_IsSet;
 	}
 
 	return ParseSuccess;
