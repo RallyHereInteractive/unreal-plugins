@@ -3,6 +3,7 @@
 #pragma once
 
 #include "RH_DebugToolWindow.h"
+#include "RH_GameInstanceSubsystem.h"
 #include "SessionsAPI.h"
 
 #include "RH_SessionData.h"
@@ -36,11 +37,31 @@ public:
 	int32 InvitePlayerTeam;
 	TArray<ANSICHAR> InviteSessionString;
 	TArray<ANSICHAR> JoinQueueByIdString;
+	
+	struct FInstanceLaunchParamsDisplay
+	{
+		FString TemplateIdString;
+		FRHAPI_InstanceRequest Request;
+		FImGuiCustomDataStager InstanceCustomDataStager, InstanceStartupCustomDataStager;
+		bool bMakeBeaconInstance;
 
-	TArray<ANSICHAR> MapName;
-	TArray<ANSICHAR> GameModeName;
-	TArray<ANSICHAR> GameMiscParams;
-	bool bMakeBeaconInstance;
+		FString RequestError;
+
+		FInstanceLaunchParamsDisplay()
+		{
+			ResetToDefaults();
+		}
+		void ResetToDefaults();
+		void Clear()
+		{
+			TemplateIdString.Empty();
+			Request = FRHAPI_InstanceRequest();
+			InstanceCustomDataStager.Clear();
+			InstanceStartupCustomDataStager.Clear();
+			bMakeBeaconInstance = false;
+		}
+	};
+	TSharedRef<FInstanceLaunchParamsDisplay> InstanceLaunchParamsDisplay;
 
 	TArray<ANSICHAR> UpdateSessionRegionIdString;
 
@@ -63,6 +84,7 @@ public:
 protected:
 	// helpers used for multiple tabs
 	void ImGuiDisplayInstance(const FRHAPI_InstanceInfo& Info, URH_SessionView* RHSession, URH_GameInstanceSessionSubsystem* pGISessionSubsystem);
+	void ImGuiDisplayInstanceRequest(TSharedRef<FInstanceLaunchParamsDisplay>& InstanceLaunchParams, URH_GameInstanceSubsystem* pGISubsystem, URH_JoinedSession* Session);
 	void ImGuiDisplayMatch(const FRHAPI_MatchInfo& Info);
 	void ImGuiDisplaySessionPlayer(URH_SessionView* RHSession, const FRHAPI_SessionPlayer& Player, int32 TeamId, URH_GameInstanceSessionSubsystem* pGISessionSubsystem);
 	void ImGuiDisplayPlatformSession(const FRHAPI_PlatformSession& Info);
@@ -101,8 +123,7 @@ protected:
 	int32 SetDeserterTime[3] = {0,0,0};
 	int32 SetDeserterCount = 0;
 	FImGuiCustomDataStager SetDeserterCustomDataStager;
-
-	FImGuiCustomDataStager InstanceStartupCustomDataStager;
+	
 	FImGuiCustomDataStager InstanceCustomDataStager;
 	FImGuiCustomDataStager InvitePlayerCustomDataStager;
 	FImGuiCustomDataStager BrowserCustomDataStager;
