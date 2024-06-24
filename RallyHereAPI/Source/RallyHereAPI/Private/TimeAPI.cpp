@@ -56,7 +56,7 @@ FHttpRequestPtr FTimeAPI::GetUtcTime(const FRequest_GetUtcTime& Request, const F
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FTimeAPI::OnGetUtcTimeResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FTimeAPI::OnGetUtcTimeResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system

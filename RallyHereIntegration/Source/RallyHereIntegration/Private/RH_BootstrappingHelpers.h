@@ -450,6 +450,7 @@ protected:
 
 		LoginType::Request Request;
 		Request.SetShouldRetry();
+		Request.SetDisableLoginRetryOnAuthorizationFailure(true);
 		Request.AuthContext = AuthContext;
 		Request.LoginRequestV1.SetIncludeRefresh(false);
 		Request.LoginRequestV1.SetAcceptEula(true);
@@ -472,6 +473,7 @@ protected:
 
 		LoginType::Request Request;
 		Request.SetShouldRetry();
+		Request.SetDisableLoginRetryOnAuthorizationFailure(true);
 		Request.AuthContext = AuthContext;
 		Request.LoginRequestV1.SetIncludeRefresh(false);
 		Request.LoginRequestV1.SetAcceptEula(true);

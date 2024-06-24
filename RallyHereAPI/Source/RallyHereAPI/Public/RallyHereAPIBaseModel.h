@@ -194,6 +194,7 @@ struct RALLYHEREAPI_API FRequestMetadata
 	// custom handling override flags tracking
 	bool bDisableAuthRequirement;
 	bool bModifyRequestDelegateIsBound;
+	bool bDisableLoginRetryOnAuthorizationFailure;
 
 	FRequestMetadata()
 		: Identifier(FGuid::NewGuid())
@@ -201,6 +202,7 @@ struct RALLYHEREAPI_API FRequestMetadata
 		, CreateTimestamp(FDateTime::Now())
 		, bDisableAuthRequirement(false)
 		, bModifyRequestDelegateIsBound(false)
+		, bDisableLoginRetryOnAuthorizationFailure(false)
 	{}
 };
 
@@ -227,6 +229,7 @@ public:
 	const TOptional<FHttpRetryParams>& GetRetryParams() const { return RetryParams; }
 
 	void SetDisableAuthRequirement(bool bInDisable) { bDisableAuthRequirement = bInDisable; }
+	void SetDisableLoginRetryOnAuthorizationFailure(bool bInDisable) { bDisableLoginRetryOnAuthorizationFailure = bInDisable; }
 
 	DECLARE_MULTICAST_DELEGATE_TwoParams(ModifyHttpRequestBeforeSubmit, const FRequest&, FHttpRequestRef);
 	ModifyHttpRequestBeforeSubmit& OnModifyRequest() { return OnModifyRequestDelegate; }
@@ -237,6 +240,7 @@ public:
 	{
 		Metadata.bDisableAuthRequirement = bDisableAuthRequirement;
 		Metadata.bModifyRequestDelegateIsBound = OnModifyRequestDelegate.IsBound();
+		Metadata.bDisableLoginRetryOnAuthorizationFailure = bDisableLoginRetryOnAuthorizationFailure;
 	}
 
 protected:
@@ -244,6 +248,7 @@ protected:
 	TOptional<FHttpRetryParams> RetryParams;
 
 	bool bDisableAuthRequirement;
+	bool bDisableLoginRetryOnAuthorizationFailure;
 	ModifyHttpRequestBeforeSubmit OnModifyRequestDelegate;
 };
 

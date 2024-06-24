@@ -56,7 +56,7 @@ FHttpRequestPtr FConfigurationV1API::GetFriendsAndBlockLimits(const FRequest_Get
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FConfigurationV1API::OnGetFriendsAndBlockLimitsResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FConfigurationV1API::OnGetFriendsAndBlockLimitsResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
