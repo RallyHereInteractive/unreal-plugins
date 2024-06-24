@@ -102,27 +102,6 @@ void FRHDTW_Config::DoKVsTab(URH_ConfigSubsystem* pRH_ConfigSubsystem)
 
 		ImGui::EndTable();
 	}
-
-	ImGui::Separator();
-
-	if (ImGui::BeginTable("SecetKVssMapTable", 2, RH_TableFlagsPropSizing))
-	{
-		// Header
-		ImGui::TableSetupColumn("Key");
-		ImGui::TableSetupColumn("Value");
-		ImGui::TableHeadersRow();
-
-		for (const auto& KV : pRH_ConfigSubsystem->GetSecretKVs())
-		{
-			ImGui::TableNextRow();
-			ImGui::TableNextColumn();
-			ImGuiDisplayCopyableValue(KV.Key, TEXT(""), ECopyMode::Key);
-			ImGui::TableNextColumn();
-			ImGuiDisplayCopyableValue(TEXT(""), KV.Value, ECopyMode::Value);
-		}
-
-		ImGui::EndTable();
-	}
 }
 
 void FRHDTW_Config::HandleFetchKVs(bool bSuccess, const FRH_ErrorInfo& ErrorInfo)

@@ -60,8 +60,7 @@ void URH_ConfigSubsystem::Deinitialize()
 void URH_ConfigSubsystem::InitPropertiesWithDefaultValues()
 {
 	KVs.Empty();
-	SecretKVs.Empty();
-
+	
 	// Load Default Feature Flags
 	FKeyValueSink Visitor;
 	Visitor.BindLambda([&](const FString& Key, const FString& Value) { KVs.Add(Key, Value); });
@@ -101,7 +100,6 @@ void URH_ConfigSubsystem::OnFetchKVs(const GetKVsAPIType::Response& Resp)
 	{
 		// clear out old KVs
 		KVs.Reset();
-		SecretKVs.Reset();
 
 		// Load Default Feature Flags
 		FKeyValueSink Visitor;
@@ -117,16 +115,7 @@ void URH_ConfigSubsystem::OnFetchKVs(const GetKVsAPIType::Response& Resp)
 				KVs.Add(KV.Key, KV.Value);
 			}
 		}
-		// process Secret KVs
-		const auto ResponseSecretKVs = Resp.Content.GetSecretKvsOrNull();
-		if (ResponseSecretKVs != nullptr)
-		{
-			for (const auto& KV : *ResponseSecretKVs)
-			{
-				SecretKVs.Add(KV.Key, KV.Value);
-			}
-		}
-
+		
 		KVsETag = Resp.ETag.Get(TEXT(""));
 
 		{
