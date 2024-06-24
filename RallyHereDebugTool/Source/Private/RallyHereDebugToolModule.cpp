@@ -92,9 +92,9 @@ void FRallyHereDebugToolModule::ToggleDebugTool(UWorld* InWorld)
 #ifdef WITH_IMGUI_NETIMGUI
 void FRallyHereDebugToolModule::ConnectDebugTool(UWorld* InWorld)
 {
-	if (URallyHereDebugTool* pDebugToll = GetDebugTool(InWorld))
+	if (URallyHereDebugTool* pDebugTool = GetDebugTool(InWorld))
 	{
-		pDebugToll->ConnectNetImGui();
+		pDebugTool->ConnectNetImGui();
 	}
 }
 #endif
