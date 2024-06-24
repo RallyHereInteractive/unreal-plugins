@@ -15,7 +15,7 @@
 URH_ConfigSubsystem::URH_ConfigSubsystem(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
-
+	KickBeforeHint = FDateTime::MinValue();
 }
 
 void URH_ConfigSubsystem::Initialize()
@@ -114,6 +114,15 @@ void URH_ConfigSubsystem::OnFetchKVs(const GetKVsAPIType::Response& Resp)
 			{
 				KVs.Add(KV.Key, KV.Value);
 			}
+		}
+
+		if (auto RespKickBeforeHint = Resp.Content.GetKickBeforeHintOrNull())
+		{
+			KickBeforeHint = Resp.Content.GetKickBeforeHint();	
+		}
+		else
+		{
+			KickBeforeHint = FDateTime::MinValue();
 		}
 		
 		KVsETag = Resp.ETag.Get(TEXT(""));

@@ -183,6 +183,11 @@ public:
 		return GetKV(Key, Value);
 	}
 	/**
+	 * @brief Time for which any player logins older than should log out (staggered kick all players support).
+	 */
+	UFUNCTION(BlueprintPure, Category = "Config")
+	FDateTime GetKickBeforeHint() const { return KickBeforeHint; }	
+	/**
 	* @brief Requests the server for the latest App Settings.
 	* @param [in] Delegate Delegate to call when the request is complete.
 	*/
@@ -283,6 +288,9 @@ protected:
 	/** @brief Map of KVs by Key. */
 	UPROPERTY(VisibleInstanceOnly, BlueprintGetter=GetKVs, Category = "Config")
 	TMap<FString, FString> KVs;
+	/** @brief Time for which any player logins older than should log out (staggered kick all players support). */
+	UPROPERTY(VisibleInstanceOnly, BlueprintGetter=GetKickBeforeHint, Category = "Config")
+	FDateTime KickBeforeHint;
 	/** @brief ETag of last GetKVs call response. */
 	UPROPERTY(VisibleInstanceOnly, Category = "Config")
 	FString KVsETag;

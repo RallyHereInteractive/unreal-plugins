@@ -259,6 +259,12 @@ protected:
 	}
 
 	/**
+	 * @brief Called whenever the config subsystem KV list is updated.
+	 * @param ConfigSubsystem The config subsystem that was updated.
+	 */
+	virtual void OnConfigKVsUpdated(class URH_ConfigSubsystem* ConfigSubsystem); 
+	
+	/**
 	 * @brief Called whenever the user logs in.
 	 * @param [in] bSuccess True if the login was successful, false otherwise.
 	 */
@@ -303,6 +309,8 @@ protected:
 	TWeakObjectPtr<URH_PlayerInfo> PlayerInfoCache;
 	/** The Local Players auth context. */
 	FAuthContextPtr AuthContext;
+	/** The timestamp of the last successful login. */
+	TOptional<FDateTime> LastLoginTime;
 
 	/** The Analytics Provider for the player. */
 	TSharedPtr<class IAnalyticsProvider> AnalyticsProvider;

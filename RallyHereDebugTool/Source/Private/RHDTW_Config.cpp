@@ -84,6 +84,9 @@ void FRHDTW_Config::DoKVsTab(URH_ConfigSubsystem* pRH_ConfigSubsystem)
 
 	ImGui::Separator();
 
+	auto KickBeforeHint = pRH_ConfigSubsystem->GetKickBeforeHint() == FDateTime::MinValue() ? TOptional<FDateTime>() : TOptional<FDateTime>(pRH_ConfigSubsystem->GetKickBeforeHint());
+	ImGuiDisplayCopyableValue(TEXT("KickBeforeHint"), KickBeforeHint, ECopyMode::KeyValue);
+	
 	if (ImGui::BeginTable("KVssMapTable", 2, RH_TableFlagsPropSizing))
 	{
 		// Header
