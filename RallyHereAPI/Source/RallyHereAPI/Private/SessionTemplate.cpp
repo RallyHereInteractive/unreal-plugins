@@ -84,6 +84,11 @@ void FRHAPI_SessionTemplate::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 		Writer->WriteIdentifierPrefix(TEXT("auto_startup_params"));
 		RallyHereAPI::WriteJsonValue(Writer, AutoStartupParams_Optional);
 	}
+	if (AutoStartupInstanceTemplateId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("auto_startup_instance_template_id"));
+		RallyHereAPI::WriteJsonValue(Writer, AutoStartupInstanceTemplateId_Optional);
+	}
 	if (MinSessionCount_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("min_session_count"));
@@ -108,6 +113,11 @@ void FRHAPI_SessionTemplate::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	{
 		Writer->WriteIdentifierPrefix(TEXT("can_change_own_team"));
 		RallyHereAPI::WriteJsonValue(Writer, CanChangeOwnTeam_Optional);
+	}
+	if (NotifyOnReservation_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("notify_on_reservation"));
+		RallyHereAPI::WriteJsonValue(Writer, NotifyOnReservation_Optional);
 	}
 	Writer->WriteObjectEnd();
 }
@@ -194,6 +204,12 @@ bool FRHAPI_SessionTemplate::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		AutoStartupParams_IsSet = TryGetJsonValue(JsonAutoStartupParamsField, AutoStartupParams_Optional);
 		ParseSuccess &= AutoStartupParams_IsSet;
 	}
+	const TSharedPtr<FJsonValue> JsonAutoStartupInstanceTemplateIdField = (*Object)->TryGetField(TEXT("auto_startup_instance_template_id"));
+	if (JsonAutoStartupInstanceTemplateIdField.IsValid() && !JsonAutoStartupInstanceTemplateIdField->IsNull())
+	{
+		AutoStartupInstanceTemplateId_IsSet = TryGetJsonValue(JsonAutoStartupInstanceTemplateIdField, AutoStartupInstanceTemplateId_Optional);
+		ParseSuccess &= AutoStartupInstanceTemplateId_IsSet;
+	}
 	const TSharedPtr<FJsonValue> JsonMinSessionCountField = (*Object)->TryGetField(TEXT("min_session_count"));
 	if (JsonMinSessionCountField.IsValid() && !JsonMinSessionCountField->IsNull())
 	{
@@ -223,6 +239,12 @@ bool FRHAPI_SessionTemplate::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	{
 		CanChangeOwnTeam_IsSet = TryGetJsonValue(JsonCanChangeOwnTeamField, CanChangeOwnTeam_Optional);
 		ParseSuccess &= CanChangeOwnTeam_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonNotifyOnReservationField = (*Object)->TryGetField(TEXT("notify_on_reservation"));
+	if (JsonNotifyOnReservationField.IsValid() && !JsonNotifyOnReservationField->IsNull())
+	{
+		NotifyOnReservation_IsSet = TryGetJsonValue(JsonNotifyOnReservationField, NotifyOnReservation_Optional);
+		ParseSuccess &= NotifyOnReservation_IsSet;
 	}
 
 	return ParseSuccess;

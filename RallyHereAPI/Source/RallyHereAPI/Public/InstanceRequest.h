@@ -93,15 +93,53 @@ struct RALLYHEREAPI_API FRHAPI_InstanceRequest : public FRHAPI_Model
 
 	/** @brief Type of the host */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	ERHAPI_HostType HostType{  };
-	/** @brief Gets the value of HostType */
-	ERHAPI_HostType& GetHostType() { return HostType; }
-	/** @brief Gets the value of HostType */
-	const ERHAPI_HostType& GetHostType() const { return HostType; }
-	/** @brief Sets the value of HostType */
-	void SetHostType(const ERHAPI_HostType& NewValue) { HostType = NewValue;  }
-	/** @brief Sets the value of HostType using move semantics */
-	void SetHostType(ERHAPI_HostType&& NewValue) { HostType = NewValue;  }
+	ERHAPI_HostType HostType_Optional{  };
+	/** @brief true if HostType_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool HostType_IsSet{ false };
+	/** @brief Gets the value of HostType_Optional, regardless of it having been set */
+	ERHAPI_HostType& GetHostType() { return HostType_Optional; }
+	/** @brief Gets the value of HostType_Optional, regardless of it having been set */
+	const ERHAPI_HostType& GetHostType() const { return HostType_Optional; }
+	/** @brief Gets the value of HostType_Optional, if it has been set, otherwise it returns DefaultValue */
+	const ERHAPI_HostType& GetHostType(const ERHAPI_HostType& DefaultValue) const { if (HostType_IsSet) return HostType_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of HostType_Optional and returns true if it has been set, otherwise returns false */
+	bool GetHostType(ERHAPI_HostType& OutValue) const { if (HostType_IsSet) OutValue = HostType_Optional; return HostType_IsSet; }
+	/** @brief Returns a pointer to HostType_Optional, if it has been set, otherwise returns nullptr */
+	ERHAPI_HostType* GetHostTypeOrNull() { if (HostType_IsSet) return &HostType_Optional; return nullptr; }
+	/** @brief Returns a pointer to HostType_Optional, if it has been set, otherwise returns nullptr */
+	const ERHAPI_HostType* GetHostTypeOrNull() const { if (HostType_IsSet) return &HostType_Optional; return nullptr; }
+	/** @brief Sets the value of HostType_Optional and also sets HostType_IsSet to true */
+	void SetHostType(const ERHAPI_HostType& NewValue) { HostType_Optional = NewValue; HostType_IsSet = true; }
+	/** @brief Sets the value of HostType_Optional and also sets HostType_IsSet to true using move semantics */
+	void SetHostType(ERHAPI_HostType&& NewValue) { HostType_Optional = NewValue; HostType_IsSet = true; }
+	 /** @brief Clears the value of HostType_Optional and sets HostType_IsSet to false */
+	void ClearHostType() { HostType_IsSet = false; }
+
+	/** @brief Which instance request template should be used to request this instance. Takes priority over instance_startup_params and host_type */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FGuid InstanceRequestTemplateId_Optional{  };
+	/** @brief true if InstanceRequestTemplateId_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool InstanceRequestTemplateId_IsSet{ false };
+	/** @brief Gets the value of InstanceRequestTemplateId_Optional, regardless of it having been set */
+	FGuid& GetInstanceRequestTemplateId() { return InstanceRequestTemplateId_Optional; }
+	/** @brief Gets the value of InstanceRequestTemplateId_Optional, regardless of it having been set */
+	const FGuid& GetInstanceRequestTemplateId() const { return InstanceRequestTemplateId_Optional; }
+	/** @brief Gets the value of InstanceRequestTemplateId_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FGuid& GetInstanceRequestTemplateId(const FGuid& DefaultValue) const { if (InstanceRequestTemplateId_IsSet) return InstanceRequestTemplateId_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of InstanceRequestTemplateId_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInstanceRequestTemplateId(FGuid& OutValue) const { if (InstanceRequestTemplateId_IsSet) OutValue = InstanceRequestTemplateId_Optional; return InstanceRequestTemplateId_IsSet; }
+	/** @brief Returns a pointer to InstanceRequestTemplateId_Optional, if it has been set, otherwise returns nullptr */
+	FGuid* GetInstanceRequestTemplateIdOrNull() { if (InstanceRequestTemplateId_IsSet) return &InstanceRequestTemplateId_Optional; return nullptr; }
+	/** @brief Returns a pointer to InstanceRequestTemplateId_Optional, if it has been set, otherwise returns nullptr */
+	const FGuid* GetInstanceRequestTemplateIdOrNull() const { if (InstanceRequestTemplateId_IsSet) return &InstanceRequestTemplateId_Optional; return nullptr; }
+	/** @brief Sets the value of InstanceRequestTemplateId_Optional and also sets InstanceRequestTemplateId_IsSet to true */
+	void SetInstanceRequestTemplateId(const FGuid& NewValue) { InstanceRequestTemplateId_Optional = NewValue; InstanceRequestTemplateId_IsSet = true; }
+	/** @brief Sets the value of InstanceRequestTemplateId_Optional and also sets InstanceRequestTemplateId_IsSet to true using move semantics */
+	void SetInstanceRequestTemplateId(FGuid&& NewValue) { InstanceRequestTemplateId_Optional = NewValue; InstanceRequestTemplateId_IsSet = true; }
+	 /** @brief Clears the value of InstanceRequestTemplateId_Optional and sets InstanceRequestTemplateId_IsSet to false */
+	void ClearInstanceRequestTemplateId() { InstanceRequestTemplateId_IsSet = false; }
 
 	/** @brief Player UUID of the host, if the host type is player */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")

@@ -127,12 +127,33 @@ void URH_LocalPlayerSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 			}));
 		}
 	}
+
+	// bind to config subsystem on game instance to listen for config updates
+	auto pGameInstance = GetLocalPlayer()->GetGameInstance();
+	if (pGameInstance != nullptr)
+	{
+		auto pGISubsystem = pGameInstance->GetSubsystem<URH_GameInstanceSubsystem>();
+		if (pGISubsystem != nullptr && pGISubsystem->GetConfigSubsystem() != nullptr)
+		{
+			pGISubsystem->GetConfigSubsystem()->OnKVsUpdated.AddUObject(this, &URH_LocalPlayerSubsystem::OnConfigKVsUpdated);
+		}
+	}
 }
 
 void URH_LocalPlayerSubsystem::Deinitialize()
 {
     UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
+	auto pGameInstance = GetLocalPlayer()->GetGameInstance();
+	if (pGameInstance != nullptr)
+	{
+		auto pGISubsystem = pGameInstance->GetSubsystem<URH_GameInstanceSubsystem>();
+		if (pGISubsystem != nullptr && pGISubsystem->GetConfigSubsystem() != nullptr)
+		{
+			pGISubsystem->GetConfigSubsystem()->OnKVsUpdated.RemoveAll(this);
+		}
+	}
+	
 	if (AnalyticsProvider.IsValid())
 	{
 		// emit a correlation end event
@@ -187,6 +208,17 @@ void URH_LocalPlayerSubsystem::Deinitialize()
     AuthContext.Reset();
 }
 
+void URH_LocalPlayerSubsystem::OnConfigKVsUpdated(URH_ConfigSubsystem* pConfig)
+{
+	if (IsLoggedIn() && LastLoginTime.IsSet() && LastLoginTime.GetValue() < pConfig->GetKickBeforeHint())
+	{
+		if (GetLoginSubsystem() != nullptr)
+		{
+			UE_LOG(LogRallyHereIntegration, Warning, TEXT("Kicked due to KickBeforeHint from config (%s < %s)"), *LastLoginTime.GetValue().ToIso8601(), *pConfig->GetKickBeforeHint().ToIso8601());
+			GetLoginSubsystem()->Logout();
+		}
+	}
+}
 
 bool URH_LocalPlayerSubsystem::IsLoggedIn() const
 {
@@ -195,6 +227,8 @@ bool URH_LocalPlayerSubsystem::IsLoggedIn() const
 
 void URH_LocalPlayerSubsystem::OnUserLoggedIn(bool bSuccess)
 {
+	LastLoginTime = FDateTime::UtcNow();
+	
 	// handle initial push of successful login to game instance here, as many things bind to OnUserChanged and we are not assured to be first in the order
 	auto pGameInstance = GetLocalPlayer()->GetGameInstance();
 	if (pGameInstance != nullptr)
@@ -211,6 +245,16 @@ void URH_LocalPlayerSubsystem::OnUserLoggedIn(bool bSuccess)
 				if (GetAnalyticsProvider().IsValid() && !pGISubsystem->GetAnalyticsProvider().IsValid())
 				{
 					pGISubsystem->SetAnalyticsProvider(GetAnalyticsProvider());
+				}
+
+				// update the last login time to the server time, if we have it
+				if (pGISubsystem->GetConfigSubsystem() != nullptr)
+				{
+					FDateTime ServerTimeNow;
+					if (pGISubsystem->GetConfigSubsystem()->GetServerTime(ServerTimeNow))
+					{
+						LastLoginTime = ServerTimeNow;
+					}
 				}
 			}
 			else
@@ -252,6 +296,8 @@ void URH_LocalPlayerSubsystem::OnUserLoggedIn(bool bSuccess)
 
 void URH_LocalPlayerSubsystem::OnUserLoggedOut(bool bRefreshTokenExpired)
 {
+	LastLoginTime.Reset();
+	
 	// trigger login as failure, to push logout to game instance
 	OnUserLoggedIn(false);
 

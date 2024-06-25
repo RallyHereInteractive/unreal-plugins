@@ -515,18 +515,27 @@ protected:
 			{
 				for (auto pair : *SessionsMap)
 				{
+					// extract any sessions the owner is a member of
 					const auto SessionIdSet = pair.Value.GetSessionIdsOrNull();
 					if (SessionIdSet && SessionIdSet->Num() > 0)
 					{
 						SessionIds.Append(SessionIdSet->Array());
 					}
 
+					// extract any sessions the owner is invited to
 					const auto PendingInvites = pair.Value.GetPendingInvitesOrNull();
 					if (PendingInvites && PendingInvites->Num() > 0)
 					{
 						TArray<FString> InviteSessionIds;
 						PendingInvites->GenerateKeyArray(InviteSessionIds);
 						SessionIds.Append(InviteSessionIds);
+					}
+
+					// extract any sessions the owner is reserved in
+					const auto ReservedSessions = pair.Value.GetReservedSessionsOrNull();
+					if (ReservedSessions && ReservedSessions->Num() > 0)
+					{
+						SessionIds.Append(ReservedSessions->Array());
 					}
 				}
 			}

@@ -24,6 +24,11 @@ void FRHAPI_DeserterConfig::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	Writer->WriteObjectStart();
 	Writer->WriteIdentifierPrefix(TEXT("deserter_id"));
 	RallyHereAPI::WriteJsonValue(Writer, DeserterId);
+	if (LastClearedTimestamp_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("last_cleared_timestamp"));
+		RallyHereAPI::WriteJsonValue(Writer, LastClearedTimestamp_Optional);
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -37,6 +42,12 @@ bool FRHAPI_DeserterConfig::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
 	const TSharedPtr<FJsonValue> JsonDeserterIdField = (*Object)->TryGetField(TEXT("deserter_id"));
 	ParseSuccess &= JsonDeserterIdField.IsValid() && !JsonDeserterIdField->IsNull() && TryGetJsonValue(JsonDeserterIdField, DeserterId);
+	const TSharedPtr<FJsonValue> JsonLastClearedTimestampField = (*Object)->TryGetField(TEXT("last_cleared_timestamp"));
+	if (JsonLastClearedTimestampField.IsValid() && !JsonLastClearedTimestampField->IsNull())
+	{
+		LastClearedTimestamp_IsSet = TryGetJsonValue(JsonLastClearedTimestampField, LastClearedTimestamp_Optional);
+		ParseSuccess &= LastClearedTimestamp_IsSet;
+	}
 
 	return ParseSuccess;
 }

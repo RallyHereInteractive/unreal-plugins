@@ -250,6 +250,31 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingProfileV2 : public FRHAPI_Model
 	void SetDeserterId(FString&& NewValue) { DeserterId_Optional = NewValue; DeserterId_IsSet = true; }
 	 /** @brief Clears the value of DeserterId_Optional and sets DeserterId_IsSet to false */
 	void ClearDeserterId() { DeserterId_IsSet = false; }
+
+	/** @brief What type of session should result from matchmaking on this profile */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FGuid SessionTemplateId_Optional{  };
+	/** @brief true if SessionTemplateId_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool SessionTemplateId_IsSet{ false };
+	/** @brief Gets the value of SessionTemplateId_Optional, regardless of it having been set */
+	FGuid& GetSessionTemplateId() { return SessionTemplateId_Optional; }
+	/** @brief Gets the value of SessionTemplateId_Optional, regardless of it having been set */
+	const FGuid& GetSessionTemplateId() const { return SessionTemplateId_Optional; }
+	/** @brief Gets the value of SessionTemplateId_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FGuid& GetSessionTemplateId(const FGuid& DefaultValue) const { if (SessionTemplateId_IsSet) return SessionTemplateId_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of SessionTemplateId_Optional and returns true if it has been set, otherwise returns false */
+	bool GetSessionTemplateId(FGuid& OutValue) const { if (SessionTemplateId_IsSet) OutValue = SessionTemplateId_Optional; return SessionTemplateId_IsSet; }
+	/** @brief Returns a pointer to SessionTemplateId_Optional, if it has been set, otherwise returns nullptr */
+	FGuid* GetSessionTemplateIdOrNull() { if (SessionTemplateId_IsSet) return &SessionTemplateId_Optional; return nullptr; }
+	/** @brief Returns a pointer to SessionTemplateId_Optional, if it has been set, otherwise returns nullptr */
+	const FGuid* GetSessionTemplateIdOrNull() const { if (SessionTemplateId_IsSet) return &SessionTemplateId_Optional; return nullptr; }
+	/** @brief Sets the value of SessionTemplateId_Optional and also sets SessionTemplateId_IsSet to true */
+	void SetSessionTemplateId(const FGuid& NewValue) { SessionTemplateId_Optional = NewValue; SessionTemplateId_IsSet = true; }
+	/** @brief Sets the value of SessionTemplateId_Optional and also sets SessionTemplateId_IsSet to true using move semantics */
+	void SetSessionTemplateId(FGuid&& NewValue) { SessionTemplateId_Optional = NewValue; SessionTemplateId_IsSet = true; }
+	 /** @brief Clears the value of SessionTemplateId_Optional and sets SessionTemplateId_IsSet to false */
+	void ClearSessionTemplateId() { SessionTemplateId_IsSet = false; }
 };
 
 /** @} */

@@ -364,7 +364,7 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
 	 /** @brief Clears the value of PlatformTemplates_Optional and sets PlatformTemplates_IsSet to false */
 	void ClearPlatformTemplates() { PlatformTemplates_IsSet = false; }
 
-	/** @brief Parameters used to start an instance for this session when it is created */
+	/** @brief Parameters used to start an instance for this session when it is created. Has lower priority than auto_startup_instance_template_id */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_InstanceStartupParams AutoStartupParams_Optional{  };
 	/** @brief true if AutoStartupParams_Optional has been set to a value */
@@ -388,6 +388,31 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
 	void SetAutoStartupParams(FRHAPI_InstanceStartupParams&& NewValue) { AutoStartupParams_Optional = NewValue; AutoStartupParams_IsSet = true; }
 	 /** @brief Clears the value of AutoStartupParams_Optional and sets AutoStartupParams_IsSet to false */
 	void ClearAutoStartupParams() { AutoStartupParams_IsSet = false; }
+
+	/** @brief ID of instance request template to be used to automatically request an instance on creation of a session of this type. Takes priority over auto_startup_params */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FGuid AutoStartupInstanceTemplateId_Optional{  };
+	/** @brief true if AutoStartupInstanceTemplateId_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool AutoStartupInstanceTemplateId_IsSet{ false };
+	/** @brief Gets the value of AutoStartupInstanceTemplateId_Optional, regardless of it having been set */
+	FGuid& GetAutoStartupInstanceTemplateId() { return AutoStartupInstanceTemplateId_Optional; }
+	/** @brief Gets the value of AutoStartupInstanceTemplateId_Optional, regardless of it having been set */
+	const FGuid& GetAutoStartupInstanceTemplateId() const { return AutoStartupInstanceTemplateId_Optional; }
+	/** @brief Gets the value of AutoStartupInstanceTemplateId_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FGuid& GetAutoStartupInstanceTemplateId(const FGuid& DefaultValue) const { if (AutoStartupInstanceTemplateId_IsSet) return AutoStartupInstanceTemplateId_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of AutoStartupInstanceTemplateId_Optional and returns true if it has been set, otherwise returns false */
+	bool GetAutoStartupInstanceTemplateId(FGuid& OutValue) const { if (AutoStartupInstanceTemplateId_IsSet) OutValue = AutoStartupInstanceTemplateId_Optional; return AutoStartupInstanceTemplateId_IsSet; }
+	/** @brief Returns a pointer to AutoStartupInstanceTemplateId_Optional, if it has been set, otherwise returns nullptr */
+	FGuid* GetAutoStartupInstanceTemplateIdOrNull() { if (AutoStartupInstanceTemplateId_IsSet) return &AutoStartupInstanceTemplateId_Optional; return nullptr; }
+	/** @brief Returns a pointer to AutoStartupInstanceTemplateId_Optional, if it has been set, otherwise returns nullptr */
+	const FGuid* GetAutoStartupInstanceTemplateIdOrNull() const { if (AutoStartupInstanceTemplateId_IsSet) return &AutoStartupInstanceTemplateId_Optional; return nullptr; }
+	/** @brief Sets the value of AutoStartupInstanceTemplateId_Optional and also sets AutoStartupInstanceTemplateId_IsSet to true */
+	void SetAutoStartupInstanceTemplateId(const FGuid& NewValue) { AutoStartupInstanceTemplateId_Optional = NewValue; AutoStartupInstanceTemplateId_IsSet = true; }
+	/** @brief Sets the value of AutoStartupInstanceTemplateId_Optional and also sets AutoStartupInstanceTemplateId_IsSet to true using move semantics */
+	void SetAutoStartupInstanceTemplateId(FGuid&& NewValue) { AutoStartupInstanceTemplateId_Optional = NewValue; AutoStartupInstanceTemplateId_IsSet = true; }
+	 /** @brief Clears the value of AutoStartupInstanceTemplateId_Optional and sets AutoStartupInstanceTemplateId_IsSet to false */
+	void ClearAutoStartupInstanceTemplateId() { AutoStartupInstanceTemplateId_IsSet = false; }
 
 	/** @brief Minimum number of this type of session to be running at any given time per region. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -529,6 +554,35 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
 	bool IsCanChangeOwnTeamDefaultValue() const { return CanChangeOwnTeam_IsSet && CanChangeOwnTeam_Optional == true; }
 	/** @brief Sets the value of CanChangeOwnTeam_Optional to its default and also sets CanChangeOwnTeam_IsSet to true */
 	void SetCanChangeOwnTeamToDefault() { CanChangeOwnTeam_Optional = true; CanChangeOwnTeam_IsSet = true; }
+
+	/** @brief If players should be notified when they are reserved in this type of session instead of waiting until they're invited */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool NotifyOnReservation_Optional{  };
+	/** @brief true if NotifyOnReservation_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool NotifyOnReservation_IsSet{ false };
+	/** @brief Gets the value of NotifyOnReservation_Optional, regardless of it having been set */
+	bool& GetNotifyOnReservation() { return NotifyOnReservation_Optional; }
+	/** @brief Gets the value of NotifyOnReservation_Optional, regardless of it having been set */
+	const bool& GetNotifyOnReservation() const { return NotifyOnReservation_Optional; }
+	/** @brief Gets the value of NotifyOnReservation_Optional, if it has been set, otherwise it returns DefaultValue */
+	const bool& GetNotifyOnReservation(const bool& DefaultValue) const { if (NotifyOnReservation_IsSet) return NotifyOnReservation_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of NotifyOnReservation_Optional and returns true if it has been set, otherwise returns false */
+	bool GetNotifyOnReservation(bool& OutValue) const { if (NotifyOnReservation_IsSet) OutValue = NotifyOnReservation_Optional; return NotifyOnReservation_IsSet; }
+	/** @brief Returns a pointer to NotifyOnReservation_Optional, if it has been set, otherwise returns nullptr */
+	bool* GetNotifyOnReservationOrNull() { if (NotifyOnReservation_IsSet) return &NotifyOnReservation_Optional; return nullptr; }
+	/** @brief Returns a pointer to NotifyOnReservation_Optional, if it has been set, otherwise returns nullptr */
+	const bool* GetNotifyOnReservationOrNull() const { if (NotifyOnReservation_IsSet) return &NotifyOnReservation_Optional; return nullptr; }
+	/** @brief Sets the value of NotifyOnReservation_Optional and also sets NotifyOnReservation_IsSet to true */
+	void SetNotifyOnReservation(const bool& NewValue) { NotifyOnReservation_Optional = NewValue; NotifyOnReservation_IsSet = true; }
+	/** @brief Sets the value of NotifyOnReservation_Optional and also sets NotifyOnReservation_IsSet to true using move semantics */
+	void SetNotifyOnReservation(bool&& NewValue) { NotifyOnReservation_Optional = NewValue; NotifyOnReservation_IsSet = true; }
+	 /** @brief Clears the value of NotifyOnReservation_Optional and sets NotifyOnReservation_IsSet to false */
+	void ClearNotifyOnReservation() { NotifyOnReservation_Optional = true; NotifyOnReservation_IsSet = false; }
+	/** @brief Returns true if NotifyOnReservation_Optional is set and matches the default value */
+	bool IsNotifyOnReservationDefaultValue() const { return NotifyOnReservation_IsSet && NotifyOnReservation_Optional == true; }
+	/** @brief Sets the value of NotifyOnReservation_Optional to its default and also sets NotifyOnReservation_IsSet to true */
+	void SetNotifyOnReservationToDefault() { NotifyOnReservation_Optional = true; NotifyOnReservation_IsSet = true; }
 };
 
 /** @} */

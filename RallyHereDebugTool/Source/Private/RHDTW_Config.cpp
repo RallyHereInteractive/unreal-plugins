@@ -84,6 +84,9 @@ void FRHDTW_Config::DoKVsTab(URH_ConfigSubsystem* pRH_ConfigSubsystem)
 
 	ImGui::Separator();
 
+	auto KickBeforeHint = pRH_ConfigSubsystem->GetKickBeforeHint() == FDateTime::MinValue() ? TOptional<FDateTime>() : TOptional<FDateTime>(pRH_ConfigSubsystem->GetKickBeforeHint());
+	ImGuiDisplayCopyableValue(TEXT("KickBeforeHint"), KickBeforeHint, ECopyMode::KeyValue);
+	
 	if (ImGui::BeginTable("KVssMapTable", 2, RH_TableFlagsPropSizing))
 	{
 		// Header
@@ -92,27 +95,6 @@ void FRHDTW_Config::DoKVsTab(URH_ConfigSubsystem* pRH_ConfigSubsystem)
 		ImGui::TableHeadersRow();
 
 		for (const auto& KV : pRH_ConfigSubsystem->GetKVs())
-		{
-			ImGui::TableNextRow();
-			ImGui::TableNextColumn();
-			ImGuiDisplayCopyableValue(KV.Key, TEXT(""), ECopyMode::Key);
-			ImGui::TableNextColumn();
-			ImGuiDisplayCopyableValue(TEXT(""), KV.Value, ECopyMode::Value);
-		}
-
-		ImGui::EndTable();
-	}
-
-	ImGui::Separator();
-
-	if (ImGui::BeginTable("SecetKVssMapTable", 2, RH_TableFlagsPropSizing))
-	{
-		// Header
-		ImGui::TableSetupColumn("Key");
-		ImGui::TableSetupColumn("Value");
-		ImGui::TableHeadersRow();
-
-		for (const auto& KV : pRH_ConfigSubsystem->GetSecretKVs())
 		{
 			ImGui::TableNextRow();
 			ImGui::TableNextColumn();

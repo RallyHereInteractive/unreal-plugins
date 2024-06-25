@@ -1460,12 +1460,14 @@ Subsystem to manage the local player.
 `protected `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`SandboxedPlayerInfoSubsystem`](#classURH__LocalPlayerSubsystem_1a2f8620e8c3c50fdfea4ec0c39678b476) | The Sandboxed PlayerInfo Subsystem for the player.
 `protected TWeakObjectPtr< `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` > `[`PlayerInfoCache`](#classURH__LocalPlayerSubsystem_1a48fa6f3ba219852b90b6eaa9bf0ec5e4) | The Player Info associated with the local player.
 `protected FAuthContextPtr `[`AuthContext`](#classURH__LocalPlayerSubsystem_1a7db0fee21f61da0729bba78d7a892430) | The Local Players auth context.
+`protected TOptional< FDateTime > `[`LastLoginTime`](#classURH__LocalPlayerSubsystem_1ae888b4ea2ddbba822b8182789f401ebe) | The timestamp of the last successful login.
 `protected TSharedPtr< class IAnalyticsProvider > `[`AnalyticsProvider`](#classURH__LocalPlayerSubsystem_1a9ece424deff5492e8d400a01c3295514) | The Analytics Provider for the player.
 `protected TOptional< FDateTime > `[`AnalyticsStartTime`](#classURH__LocalPlayerSubsystem_1a4035dec7f2a4568acd091f0058fbf0b3) | The start time of the AnalyticsProvider
 `protected template<>`  <br/>`inline UClassToUse * `[`AddSubsystemPlugin`](#classURH__LocalPlayerSubsystem_1ab757058d891a562b63869377edf607bf)`(const FSoftClassPath & SubsystemClassPath)` | Adds a plugin to the Local Player Subsystem.
 `protected inline virtual void `[`AddSubsystemPlugin`](#classURH__LocalPlayerSubsystem_1aae3af807f829d7481c4622a022753287)`(`[`URH_LocalPlayerSubsystemPlugin`](SubsystemBase.md#classURH__LocalPlayerSubsystemPlugin)` * InPlugin)` | Adds a plugin to the Local Player Subsystem.
 `protected template<>`  <br/>`inline UClassToUse * `[`AddSandboxedSubsystemPlugin`](#classURH__LocalPlayerSubsystem_1a2de7a5eafd696d509f653192edd9a09f)`(const FSoftClassPath & SubsystemClassPath)` | Adds a sandboxed plugin to the Local Player Subsystem.
 `protected inline virtual void `[`AddSandboxedSubsystemPlugin`](#classURH__LocalPlayerSubsystem_1a92a9fa258ca81bc42ceb380a9703f747)`(`[`URH_SandboxedSubsystemPlugin`](SubsystemBase.md#classURH__SandboxedSubsystemPlugin)` * InPlugin)` | Adds a plugin to the Local Player Subsystem.
+`protected virtual void `[`OnConfigKVsUpdated`](#classURH__LocalPlayerSubsystem_1ad7883d278b8e1b20b214396eca363f74)`(class `[`URH_ConfigSubsystem`](Config.md#classURH__ConfigSubsystem)` * ConfigSubsystem)` | Called whenever the config subsystem KV list is updated.
 `protected virtual void `[`OnUserLoggedIn`](#classURH__LocalPlayerSubsystem_1a9ef1338417d75dfc9f463538e2515d72)`(bool bSuccess)` | Called whenever the user logs in.
 `protected virtual void `[`OnUserLoggedOut`](#classURH__LocalPlayerSubsystem_1a8486ce5ac38cd0baa2d1a3d8ed319fd5)`(bool bRefreshTokenExpired)` | Called whenever the user logs out explicitly.
 `protected virtual void `[`OnUserChanged`](#classURH__LocalPlayerSubsystem_1a8a159f043f9aaed47f06d7c6706cb6b7)`()` | Callback that occurs whenever the local player this subsystem is associated with changes.
@@ -1643,6 +1645,10 @@ The Player Info associated with the local player.
 
 The Local Players auth context.
 
+#### `protected TOptional< FDateTime > `[`LastLoginTime`](#classURH__LocalPlayerSubsystem_1ae888b4ea2ddbba822b8182789f401ebe) <a id="classURH__LocalPlayerSubsystem_1ae888b4ea2ddbba822b8182789f401ebe"></a>
+
+The timestamp of the last successful login.
+
 #### `protected TSharedPtr< class IAnalyticsProvider > `[`AnalyticsProvider`](#classURH__LocalPlayerSubsystem_1a9ece424deff5492e8d400a01c3295514) <a id="classURH__LocalPlayerSubsystem_1a9ece424deff5492e8d400a01c3295514"></a>
 
 The Analytics Provider for the player.
@@ -1690,6 +1696,13 @@ Adds a plugin to the Local Player Subsystem.
 
 #### Returns
 The plugin that was added.
+
+#### `protected virtual void `[`OnConfigKVsUpdated`](#classURH__LocalPlayerSubsystem_1ad7883d278b8e1b20b214396eca363f74)`(class `[`URH_ConfigSubsystem`](Config.md#classURH__ConfigSubsystem)` * ConfigSubsystem)` <a id="classURH__LocalPlayerSubsystem_1ad7883d278b8e1b20b214396eca363f74"></a>
+
+Called whenever the config subsystem KV list is updated.
+
+#### Parameters
+* `ConfigSubsystem` The config subsystem that was updated.
 
 #### `protected virtual void `[`OnUserLoggedIn`](#classURH__LocalPlayerSubsystem_1a9ef1338417d75dfc9f463538e2515d72)`(bool bSuccess)` <a id="classURH__LocalPlayerSubsystem_1a9ef1338417d75dfc9f463538e2515d72"></a>
 

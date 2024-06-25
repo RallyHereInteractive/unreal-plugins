@@ -187,17 +187,6 @@ bool FOnlineTitleFileHotfix::EnumerateFiles(const FPagedQuery& Page /*= FPagedQu
 			}
 		}
 	}
-	for (const auto& SettingPair : pConfig->GetSecretKVs())
-	{
-		if (SettingPair.Key.StartsWith(HotfixPrefix) && SettingPair.Key != strHotfixEnable && SettingPair.Value.Len() > 0)
-		{
-			FText OutErrorReason;
-			if (!ProcessHotfixSetting(SettingPair.Value, OutErrorReason))
-			{
-				UE_LOG(LogOnlineHotfix, Warning, TEXT("%s error: %s"), *SettingPair.Key, *OutErrorReason.ToString());
-			}
-		}
-	}
 
 	TriggerOnEnumerateFilesCompleteDelegates(true, TEXT(""));
 	return true;

@@ -155,15 +155,6 @@ public:
 		return KVs;
 	}
 	/**
-	* @brief Gets the map of all the Secret KVs and their values.
-	* @return Map of all the Secret KVs and their values
-	*/
-	UFUNCTION(BlueprintGetter, Category = "Config")
-	const TMap<FString, FString>& GetSecretKVs() const
-	{
-		return SecretKVs;
-	}
-	/**
 	* @brief Gets the value of a specific Publc KV.
 	* @param [in] Key Key of the KV to get the value of.
 	* @param [out] Value Value of the KV.
@@ -181,24 +172,7 @@ public:
 		return false;
 	}
 	/**
-	* @brief Gets the value of a specific Secret KV.
-	* @param [in] Key Key of the KV to get the value of.
-	* @param [out] Value Value of the KV.
-	* @return if true, a Value was found for the Key.
-	*/
-	UFUNCTION(BlueprintPure, Category = "Config")
-	bool GetSecretKV(const FString& Key, FString& Value) const
-	{
-		const auto KVValue = SecretKVs.Find(Key);
-		if (KVValue != nullptr)
-		{
-			Value = *KVValue;
-			return true;
-		}
-		return false;
-	}
-	/**
-	* @brief Gets the value of a specific Publc or Secret KV (secret takes precidence.
+	* @brief Gets the value of a specific KV (wrapper for if multiple KV sources are present).
 	* @param [in] Key Key of the KV to get the value of.
 	* @param [out] Value Value of the KV.
 	* @return if true, a Value was found for the Key.
@@ -206,12 +180,13 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Config")
 	bool GetAnyKV(const FString& Key, FString& Value) const
 	{
-		if (GetSecretKV(Key, Value))
-		{
-			return true;
-		}
 		return GetKV(Key, Value);
 	}
+	/**
+	 * @brief Time for which any player logins older than should log out (staggered kick all players support).
+	 */
+	UFUNCTION(BlueprintPure, Category = "Config")
+	FDateTime GetKickBeforeHint() const { return KickBeforeHint; }	
 	/**
 	* @brief Requests the server for the latest App Settings.
 	* @param [in] Delegate Delegate to call when the request is complete.
@@ -313,9 +288,9 @@ protected:
 	/** @brief Map of KVs by Key. */
 	UPROPERTY(VisibleInstanceOnly, BlueprintGetter=GetKVs, Category = "Config")
 	TMap<FString, FString> KVs;
-	/** @brief Map of secret (permissioned) KVs by Key. */
-	UPROPERTY(VisibleInstanceOnly, BlueprintGetter = GetSecretKVs, Category = "Config")
-	TMap<FString, FString> SecretKVs;
+	/** @brief Time for which any player logins older than should log out (staggered kick all players support). */
+	UPROPERTY(VisibleInstanceOnly, BlueprintGetter=GetKickBeforeHint, Category = "Config")
+	FDateTime KickBeforeHint;
 	/** @brief ETag of last GetKVs call response. */
 	UPROPERTY(VisibleInstanceOnly, Category = "Config")
 	FString KVsETag;

@@ -24,6 +24,8 @@ A request body to enter into a matchmaking queue.
 `public bool `[`AdditionalJoinParams_IsSet`](#structFRHAPI__QueueJoinRequest_1a3f5faa941b1293875299ecebbd90b2fd) | true if AdditionalJoinParams_Optional has been set to a value
 `public TArray< FString > `[`MapPreferences_Optional`](#structFRHAPI__QueueJoinRequest_1a588de1beb24df35a7a1a7ac8f27e18c9) | List of map preferences in order from most desired, to least desired.
 `public bool `[`MapPreferences_IsSet`](#structFRHAPI__QueueJoinRequest_1a1a60372efe9faff49d483ff34112a6fd) | true if MapPreferences_Optional has been set to a value
+`public int32 `[`PassedQueueTimeSeconds_Optional`](#structFRHAPI__QueueJoinRequest_1a2128baa54a7392d0a26a7e1eca1ec2a3) | Argument to artifcially add queue time to a ticket. Older tickets are considered for lower quaulity matches. This can be used to get faster matches at the expense of quality, or to restore a session's place in queue after a failure.
+`public bool `[`PassedQueueTimeSeconds_IsSet`](#structFRHAPI__QueueJoinRequest_1abbc0d6a7b4bca49f2044e60fe98f60fa) | true if PassedQueueTimeSeconds_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__QueueJoinRequest_1aca836ceeca7c09ce5239c1e3769baee6)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__QueueJoinRequest_1a97acb248466e63b7798eafa5ce7ebcc8)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetQueueId`](#structFRHAPI__QueueJoinRequest_1a04947239245adaac9f29e11bcbeda080)`()` | Gets the value of QueueId.
@@ -48,6 +50,17 @@ A request body to enter into a matchmaking queue.
 `public inline void `[`SetMapPreferences`](#structFRHAPI__QueueJoinRequest_1a462ab879ddfec3e9f608e48b215d9b69)`(const TArray< FString > & NewValue)` | Sets the value of MapPreferences_Optional and also sets MapPreferences_IsSet to true.
 `public inline void `[`SetMapPreferences`](#structFRHAPI__QueueJoinRequest_1ae8267806a4f94fd0ca521c3b45ce4a53)`(TArray< FString > && NewValue)` | Sets the value of MapPreferences_Optional and also sets MapPreferences_IsSet to true using move semantics.
 `public inline void `[`ClearMapPreferences`](#structFRHAPI__QueueJoinRequest_1a60ee35ca85529854b6ecc140d872194a)`()` | Clears the value of MapPreferences_Optional and sets MapPreferences_IsSet to false.
+`public inline int32 & `[`GetPassedQueueTimeSeconds`](#structFRHAPI__QueueJoinRequest_1a9cb4fc3f6f53e900955772d16d6b1d5c)`()` | Gets the value of PassedQueueTimeSeconds_Optional, regardless of it having been set.
+`public inline const int32 & `[`GetPassedQueueTimeSeconds`](#structFRHAPI__QueueJoinRequest_1aff8288f5356471ba5476cbd2439cc7bf)`() const` | Gets the value of PassedQueueTimeSeconds_Optional, regardless of it having been set.
+`public inline const int32 & `[`GetPassedQueueTimeSeconds`](#structFRHAPI__QueueJoinRequest_1aafab1ea2cc8e94d03415d6db93433e9d)`(const int32 & DefaultValue) const` | Gets the value of PassedQueueTimeSeconds_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetPassedQueueTimeSeconds`](#structFRHAPI__QueueJoinRequest_1a39d515d67df16a74fa1d400a7df9d446)`(int32 & OutValue) const` | Fills OutValue with the value of PassedQueueTimeSeconds_Optional and returns true if it has been set, otherwise returns false.
+`public inline int32 * `[`GetPassedQueueTimeSecondsOrNull`](#structFRHAPI__QueueJoinRequest_1aa228bfe285e79f0efb5a9afa35437c81)`()` | Returns a pointer to PassedQueueTimeSeconds_Optional, if it has been set, otherwise returns nullptr.
+`public inline const int32 * `[`GetPassedQueueTimeSecondsOrNull`](#structFRHAPI__QueueJoinRequest_1a05b99929ded7a9d31ba41dfcccbe5405)`() const` | Returns a pointer to PassedQueueTimeSeconds_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetPassedQueueTimeSeconds`](#structFRHAPI__QueueJoinRequest_1afc2f57f3ee152b919ed518b7a9bc674e)`(const int32 & NewValue)` | Sets the value of PassedQueueTimeSeconds_Optional and also sets PassedQueueTimeSeconds_IsSet to true.
+`public inline void `[`SetPassedQueueTimeSeconds`](#structFRHAPI__QueueJoinRequest_1a23802eb5d9047b2e32a3daded2ab0007)`(int32 && NewValue)` | Sets the value of PassedQueueTimeSeconds_Optional and also sets PassedQueueTimeSeconds_IsSet to true using move semantics.
+`public inline void `[`ClearPassedQueueTimeSeconds`](#structFRHAPI__QueueJoinRequest_1a13a9875da64c2dfa43dd1eb2b1630a7b)`()` | Clears the value of PassedQueueTimeSeconds_Optional and sets PassedQueueTimeSeconds_IsSet to false.
+`public inline bool `[`IsPassedQueueTimeSecondsDefaultValue`](#structFRHAPI__QueueJoinRequest_1a8951906c63014e2baee29653f59d962d)`() const` | Returns true if PassedQueueTimeSeconds_Optional is set and matches the default value.
+`public inline void `[`SetPassedQueueTimeSecondsToDefault`](#structFRHAPI__QueueJoinRequest_1a834dc11fc4fff692404341aa96c0f613)`()` | Sets the value of PassedQueueTimeSeconds_Optional to its default and also sets PassedQueueTimeSeconds_IsSet to true.
 
 ### Members
 
@@ -70,6 +83,14 @@ List of map preferences in order from most desired, to least desired.
 #### `public bool `[`MapPreferences_IsSet`](#structFRHAPI__QueueJoinRequest_1a1a60372efe9faff49d483ff34112a6fd) <a id="structFRHAPI__QueueJoinRequest_1a1a60372efe9faff49d483ff34112a6fd"></a>
 
 true if MapPreferences_Optional has been set to a value
+
+#### `public int32 `[`PassedQueueTimeSeconds_Optional`](#structFRHAPI__QueueJoinRequest_1a2128baa54a7392d0a26a7e1eca1ec2a3) <a id="structFRHAPI__QueueJoinRequest_1a2128baa54a7392d0a26a7e1eca1ec2a3"></a>
+
+Argument to artifcially add queue time to a ticket. Older tickets are considered for lower quaulity matches. This can be used to get faster matches at the expense of quality, or to restore a session's place in queue after a failure.
+
+#### `public bool `[`PassedQueueTimeSeconds_IsSet`](#structFRHAPI__QueueJoinRequest_1abbc0d6a7b4bca49f2044e60fe98f60fa) <a id="structFRHAPI__QueueJoinRequest_1abbc0d6a7b4bca49f2044e60fe98f60fa"></a>
+
+true if PassedQueueTimeSeconds_Optional has been set to a value
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__QueueJoinRequest_1aca836ceeca7c09ce5239c1e3769baee6)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__QueueJoinRequest_1aca836ceeca7c09ce5239c1e3769baee6"></a>
 
@@ -175,4 +196,48 @@ Sets the value of MapPreferences_Optional and also sets MapPreferences_IsSet to 
 #### `public inline void `[`ClearMapPreferences`](#structFRHAPI__QueueJoinRequest_1a60ee35ca85529854b6ecc140d872194a)`()` <a id="structFRHAPI__QueueJoinRequest_1a60ee35ca85529854b6ecc140d872194a"></a>
 
 Clears the value of MapPreferences_Optional and sets MapPreferences_IsSet to false.
+
+#### `public inline int32 & `[`GetPassedQueueTimeSeconds`](#structFRHAPI__QueueJoinRequest_1a9cb4fc3f6f53e900955772d16d6b1d5c)`()` <a id="structFRHAPI__QueueJoinRequest_1a9cb4fc3f6f53e900955772d16d6b1d5c"></a>
+
+Gets the value of PassedQueueTimeSeconds_Optional, regardless of it having been set.
+
+#### `public inline const int32 & `[`GetPassedQueueTimeSeconds`](#structFRHAPI__QueueJoinRequest_1aff8288f5356471ba5476cbd2439cc7bf)`() const` <a id="structFRHAPI__QueueJoinRequest_1aff8288f5356471ba5476cbd2439cc7bf"></a>
+
+Gets the value of PassedQueueTimeSeconds_Optional, regardless of it having been set.
+
+#### `public inline const int32 & `[`GetPassedQueueTimeSeconds`](#structFRHAPI__QueueJoinRequest_1aafab1ea2cc8e94d03415d6db93433e9d)`(const int32 & DefaultValue) const` <a id="structFRHAPI__QueueJoinRequest_1aafab1ea2cc8e94d03415d6db93433e9d"></a>
+
+Gets the value of PassedQueueTimeSeconds_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetPassedQueueTimeSeconds`](#structFRHAPI__QueueJoinRequest_1a39d515d67df16a74fa1d400a7df9d446)`(int32 & OutValue) const` <a id="structFRHAPI__QueueJoinRequest_1a39d515d67df16a74fa1d400a7df9d446"></a>
+
+Fills OutValue with the value of PassedQueueTimeSeconds_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline int32 * `[`GetPassedQueueTimeSecondsOrNull`](#structFRHAPI__QueueJoinRequest_1aa228bfe285e79f0efb5a9afa35437c81)`()` <a id="structFRHAPI__QueueJoinRequest_1aa228bfe285e79f0efb5a9afa35437c81"></a>
+
+Returns a pointer to PassedQueueTimeSeconds_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const int32 * `[`GetPassedQueueTimeSecondsOrNull`](#structFRHAPI__QueueJoinRequest_1a05b99929ded7a9d31ba41dfcccbe5405)`() const` <a id="structFRHAPI__QueueJoinRequest_1a05b99929ded7a9d31ba41dfcccbe5405"></a>
+
+Returns a pointer to PassedQueueTimeSeconds_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetPassedQueueTimeSeconds`](#structFRHAPI__QueueJoinRequest_1afc2f57f3ee152b919ed518b7a9bc674e)`(const int32 & NewValue)` <a id="structFRHAPI__QueueJoinRequest_1afc2f57f3ee152b919ed518b7a9bc674e"></a>
+
+Sets the value of PassedQueueTimeSeconds_Optional and also sets PassedQueueTimeSeconds_IsSet to true.
+
+#### `public inline void `[`SetPassedQueueTimeSeconds`](#structFRHAPI__QueueJoinRequest_1a23802eb5d9047b2e32a3daded2ab0007)`(int32 && NewValue)` <a id="structFRHAPI__QueueJoinRequest_1a23802eb5d9047b2e32a3daded2ab0007"></a>
+
+Sets the value of PassedQueueTimeSeconds_Optional and also sets PassedQueueTimeSeconds_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearPassedQueueTimeSeconds`](#structFRHAPI__QueueJoinRequest_1a13a9875da64c2dfa43dd1eb2b1630a7b)`()` <a id="structFRHAPI__QueueJoinRequest_1a13a9875da64c2dfa43dd1eb2b1630a7b"></a>
+
+Clears the value of PassedQueueTimeSeconds_Optional and sets PassedQueueTimeSeconds_IsSet to false.
+
+#### `public inline bool `[`IsPassedQueueTimeSecondsDefaultValue`](#structFRHAPI__QueueJoinRequest_1a8951906c63014e2baee29653f59d962d)`() const` <a id="structFRHAPI__QueueJoinRequest_1a8951906c63014e2baee29653f59d962d"></a>
+
+Returns true if PassedQueueTimeSeconds_Optional is set and matches the default value.
+
+#### `public inline void `[`SetPassedQueueTimeSecondsToDefault`](#structFRHAPI__QueueJoinRequest_1a834dc11fc4fff692404341aa96c0f613)`()` <a id="structFRHAPI__QueueJoinRequest_1a834dc11fc4fff692404341aa96c0f613"></a>
+
+Sets the value of PassedQueueTimeSeconds_Optional to its default and also sets PassedQueueTimeSeconds_IsSet to true.
 

@@ -32,8 +32,16 @@ void FRHAPI_InstanceRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 		Writer->WriteIdentifierPrefix(TEXT("instance_startup_params"));
 		RallyHereAPI::WriteJsonValue(Writer, InstanceStartupParams_Optional);
 	}
-	Writer->WriteIdentifierPrefix(TEXT("host_type"));
-	RallyHereAPI::WriteJsonValue(Writer, EnumToString(HostType));
+	if (HostType_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("host_type"));
+		RallyHereAPI::WriteJsonValue(Writer, EnumToString(HostType_Optional));
+	}
+	if (InstanceRequestTemplateId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("instance_request_template_id"));
+		RallyHereAPI::WriteJsonValue(Writer, InstanceRequestTemplateId_Optional);
+	}
 	if (HostPlayerUuid_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("host_player_uuid"));
@@ -68,7 +76,17 @@ bool FRHAPI_InstanceRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		ParseSuccess &= InstanceStartupParams_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonHostTypeField = (*Object)->TryGetField(TEXT("host_type"));
-	ParseSuccess &= JsonHostTypeField.IsValid() && !JsonHostTypeField->IsNull() && TryGetJsonValue(JsonHostTypeField, HostType);
+	if (JsonHostTypeField.IsValid() && !JsonHostTypeField->IsNull())
+	{
+		HostType_IsSet = TryGetJsonValue(JsonHostTypeField, HostType_Optional);
+		ParseSuccess &= HostType_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInstanceRequestTemplateIdField = (*Object)->TryGetField(TEXT("instance_request_template_id"));
+	if (JsonInstanceRequestTemplateIdField.IsValid() && !JsonInstanceRequestTemplateIdField->IsNull())
+	{
+		InstanceRequestTemplateId_IsSet = TryGetJsonValue(JsonInstanceRequestTemplateIdField, InstanceRequestTemplateId_Optional);
+		ParseSuccess &= InstanceRequestTemplateId_IsSet;
+	}
 	const TSharedPtr<FJsonValue> JsonHostPlayerUuidField = (*Object)->TryGetField(TEXT("host_player_uuid"));
 	if (JsonHostPlayerUuidField.IsValid() && !JsonHostPlayerUuidField->IsNull())
 	{

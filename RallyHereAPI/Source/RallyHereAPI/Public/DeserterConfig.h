@@ -50,6 +50,31 @@ struct RALLYHEREAPI_API FRHAPI_DeserterConfig : public FRHAPI_Model
 	void SetDeserterId(const FGuid& NewValue) { DeserterId = NewValue;  }
 	/** @brief Sets the value of DeserterId using move semantics */
 	void SetDeserterId(FGuid&& NewValue) { DeserterId = NewValue;  }
+
+	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FDateTime LastClearedTimestamp_Optional{  };
+	/** @brief true if LastClearedTimestamp_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool LastClearedTimestamp_IsSet{ false };
+	/** @brief Gets the value of LastClearedTimestamp_Optional, regardless of it having been set */
+	FDateTime& GetLastClearedTimestamp() { return LastClearedTimestamp_Optional; }
+	/** @brief Gets the value of LastClearedTimestamp_Optional, regardless of it having been set */
+	const FDateTime& GetLastClearedTimestamp() const { return LastClearedTimestamp_Optional; }
+	/** @brief Gets the value of LastClearedTimestamp_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FDateTime& GetLastClearedTimestamp(const FDateTime& DefaultValue) const { if (LastClearedTimestamp_IsSet) return LastClearedTimestamp_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of LastClearedTimestamp_Optional and returns true if it has been set, otherwise returns false */
+	bool GetLastClearedTimestamp(FDateTime& OutValue) const { if (LastClearedTimestamp_IsSet) OutValue = LastClearedTimestamp_Optional; return LastClearedTimestamp_IsSet; }
+	/** @brief Returns a pointer to LastClearedTimestamp_Optional, if it has been set, otherwise returns nullptr */
+	FDateTime* GetLastClearedTimestampOrNull() { if (LastClearedTimestamp_IsSet) return &LastClearedTimestamp_Optional; return nullptr; }
+	/** @brief Returns a pointer to LastClearedTimestamp_Optional, if it has been set, otherwise returns nullptr */
+	const FDateTime* GetLastClearedTimestampOrNull() const { if (LastClearedTimestamp_IsSet) return &LastClearedTimestamp_Optional; return nullptr; }
+	/** @brief Sets the value of LastClearedTimestamp_Optional and also sets LastClearedTimestamp_IsSet to true */
+	void SetLastClearedTimestamp(const FDateTime& NewValue) { LastClearedTimestamp_Optional = NewValue; LastClearedTimestamp_IsSet = true; }
+	/** @brief Sets the value of LastClearedTimestamp_Optional and also sets LastClearedTimestamp_IsSet to true using move semantics */
+	void SetLastClearedTimestamp(FDateTime&& NewValue) { LastClearedTimestamp_Optional = NewValue; LastClearedTimestamp_IsSet = true; }
+	 /** @brief Clears the value of LastClearedTimestamp_Optional and sets LastClearedTimestamp_IsSet to false */
+	void ClearLastClearedTimestamp() { LastClearedTimestamp_IsSet = false; }
 };
 
 /** @} */

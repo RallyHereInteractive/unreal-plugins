@@ -121,6 +121,9 @@ public:
 
 	UPROPERTY(Config, EditAnywhere, Category = "Rally Here Debug Tool")
 	FString DefaultSessionGameMiscParams;
+	
+	UPROPERTY(Config, EditAnywhere, Category = "Rally Here Debug Tool")
+	FString DefaultSessionLaunchTemplateId;
 
 	UPROPERTY(Config, EditAnywhere, Category = "Rally Here Debug Tool")
 	FString DefaultWindowPositions;

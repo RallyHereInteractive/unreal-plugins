@@ -28,10 +28,9 @@ Config Subsystem used for interfacing with configuration coming from the core se
 `public virtual void `[`FetchKVs`](#classURH__ConfigSubsystem_1a79d77433c4d5f4c671fc1ecadf1645bd)`(const FRH_GenericSuccessWithErrorBlock & Delegate)` | Requests the server for the latest KVs.
 `public void `[`PollKVs`](#classURH__ConfigSubsystem_1aac6461308740848ec368388c5793f5c8)`(const FRH_PollCompleteFunc & Delegate)` | Pulses a FetchKVs call for the polling of KVs.
 `public inline const TMap< FString, FString > & `[`GetKVs`](#classURH__ConfigSubsystem_1a757de9fcdf1e5cb32f566f9415f79921)`() const` | Gets the map of all the Public KVs and their values.
-`public inline const TMap< FString, FString > & `[`GetSecretKVs`](#classURH__ConfigSubsystem_1a497dcf0e98da8e43f59e11a577d81da1)`() const` | Gets the map of all the Secret KVs and their values.
 `public inline bool `[`GetKV`](#classURH__ConfigSubsystem_1aa1248874924178b0be7b383b09fb095b)`(const FString & Key,FString & Value) const` | Gets the value of a specific Publc KV.
-`public inline bool `[`GetSecretKV`](#classURH__ConfigSubsystem_1abe02b79f2b4fc1c152b75a7d9892c9d4)`(const FString & Key,FString & Value) const` | Gets the value of a specific Secret KV.
-`public inline bool `[`GetAnyKV`](#classURH__ConfigSubsystem_1ac5caaee0e2aa29122861d5b45ee3d41c)`(const FString & Key,FString & Value) const` | Gets the value of a specific Publc or Secret KV (secret takes precidence.
+`public inline bool `[`GetAnyKV`](#classURH__ConfigSubsystem_1ac5caaee0e2aa29122861d5b45ee3d41c)`(const FString & Key,FString & Value) const` | Gets the value of a specific KV (wrapper for if multiple KV sources are present).
+`public inline FDateTime `[`GetKickBeforeHint`](#classURH__ConfigSubsystem_1a5051253a4523c1d2b76c0a3fe53d5e3a)`() const` | Time for which any player logins older than should log out (staggered kick all players support).
 `public inline void `[`FetchAppSettings`](#classURH__ConfigSubsystem_1ad403c4ca8a27ea7c655e90a284dc78d5)`(const FRH_GenericSuccessWithErrorBlock & Delegate)` | Requests the server for the latest App Settings.
 `public inline FORCEINLINE void `[`FetchAppSettings`](#classURH__ConfigSubsystem_1a50fe9c7e6cff1c087b90a9a260589d42)`(const FRH_GenericSuccessDelegate & Delegate)` | 
 `public inline void `[`PollAppSettings`](#classURH__ConfigSubsystem_1af54aaef08b3ea1cde7002a1d9c799f5e)`(const FRH_PollCompleteFunc & Delegate)` | Pulses a FetchAppSettings call for the polling of App Settings.
@@ -46,7 +45,7 @@ Config Subsystem used for interfacing with configuration coming from the core se
 `public inline bool `[`GetServerTimeDrift`](#classURH__ConfigSubsystem_1a8c858f002ca9de0d0c656e2dad1d08a8)`(FTimespan & Timespan) const` | Gets the approximate server time, if we have received one.
 `public bool `[`GetHotfixTestValue`](#classURH__ConfigSubsystem_1a36219ba1c46c10df675d0fe546fc31b4)`() const` | Gets if the hotfix system is enabled.
 `protected TMap< FString, FString > `[`KVs`](#classURH__ConfigSubsystem_1a1e87c42ea752046a6f1451ef8b0af7fb) | Map of KVs by Key.
-`protected TMap< FString, FString > `[`SecretKVs`](#classURH__ConfigSubsystem_1a85df31c77b24ace44b6db77db74bb051) | Map of secret (permissioned) KVs by Key.
+`protected FDateTime `[`KickBeforeHint`](#classURH__ConfigSubsystem_1a50515929646fb35feaf02832a3dc9b9e) | Time for which any player logins older than should log out (staggered kick all players support).
 `protected FString `[`KVsETag`](#classURH__ConfigSubsystem_1ad27491fc5b8ddc1e7479a642579d721f) | ETag of last GetKVs call response.
 `protected FRH_AutoPollerPtr `[`KVsPoller`](#classURH__ConfigSubsystem_1aa886fb633317ba0538aec00464604ba6) | Poller responsible for KVs.
 `protected `[`FRH_ServerTimeCache`](Config.md#structFRH__ServerTimeCache)` `[`ServerTimeCache`](#classURH__ConfigSubsystem_1a89412dc101f8e23d7715719f46ac079a) | Cache data for storing time information from the API.
@@ -97,13 +96,6 @@ Gets the map of all the Public KVs and their values.
 #### Returns
 Map of all the Public KVs and their values
 
-#### `public inline const TMap< FString, FString > & `[`GetSecretKVs`](#classURH__ConfigSubsystem_1a497dcf0e98da8e43f59e11a577d81da1)`() const` <a id="classURH__ConfigSubsystem_1a497dcf0e98da8e43f59e11a577d81da1"></a>
-
-Gets the map of all the Secret KVs and their values.
-
-#### Returns
-Map of all the Secret KVs and their values
-
 #### `public inline bool `[`GetKV`](#classURH__ConfigSubsystem_1aa1248874924178b0be7b383b09fb095b)`(const FString & Key,FString & Value) const` <a id="classURH__ConfigSubsystem_1aa1248874924178b0be7b383b09fb095b"></a>
 
 Gets the value of a specific Publc KV.
@@ -116,21 +108,9 @@ Gets the value of a specific Publc KV.
 #### Returns
 if true, a Value was found for the Key.
 
-#### `public inline bool `[`GetSecretKV`](#classURH__ConfigSubsystem_1abe02b79f2b4fc1c152b75a7d9892c9d4)`(const FString & Key,FString & Value) const` <a id="classURH__ConfigSubsystem_1abe02b79f2b4fc1c152b75a7d9892c9d4"></a>
-
-Gets the value of a specific Secret KV.
-
-#### Parameters
-* `Key` Key of the KV to get the value of. 
-
-* `Value` Value of the KV. 
-
-#### Returns
-if true, a Value was found for the Key.
-
 #### `public inline bool `[`GetAnyKV`](#classURH__ConfigSubsystem_1ac5caaee0e2aa29122861d5b45ee3d41c)`(const FString & Key,FString & Value) const` <a id="classURH__ConfigSubsystem_1ac5caaee0e2aa29122861d5b45ee3d41c"></a>
 
-Gets the value of a specific Publc or Secret KV (secret takes precidence.
+Gets the value of a specific KV (wrapper for if multiple KV sources are present).
 
 #### Parameters
 * `Key` Key of the KV to get the value of. 
@@ -139,6 +119,10 @@ Gets the value of a specific Publc or Secret KV (secret takes precidence.
 
 #### Returns
 if true, a Value was found for the Key.
+
+#### `public inline FDateTime `[`GetKickBeforeHint`](#classURH__ConfigSubsystem_1a5051253a4523c1d2b76c0a3fe53d5e3a)`() const` <a id="classURH__ConfigSubsystem_1a5051253a4523c1d2b76c0a3fe53d5e3a"></a>
+
+Time for which any player logins older than should log out (staggered kick all players support).
 
 #### `public inline void `[`FetchAppSettings`](#classURH__ConfigSubsystem_1ad403c4ca8a27ea7c655e90a284dc78d5)`(const FRH_GenericSuccessWithErrorBlock & Delegate)` <a id="classURH__ConfigSubsystem_1ad403c4ca8a27ea7c655e90a284dc78d5"></a>
 
@@ -226,9 +210,9 @@ Gets if enabled.
 
 Map of KVs by Key.
 
-#### `protected TMap< FString, FString > `[`SecretKVs`](#classURH__ConfigSubsystem_1a85df31c77b24ace44b6db77db74bb051) <a id="classURH__ConfigSubsystem_1a85df31c77b24ace44b6db77db74bb051"></a>
+#### `protected FDateTime `[`KickBeforeHint`](#classURH__ConfigSubsystem_1a50515929646fb35feaf02832a3dc9b9e) <a id="classURH__ConfigSubsystem_1a50515929646fb35feaf02832a3dc9b9e"></a>
 
-Map of secret (permissioned) KVs by Key.
+Time for which any player logins older than should log out (staggered kick all players support).
 
 #### `protected FString `[`KVsETag`](#classURH__ConfigSubsystem_1ad27491fc5b8ddc1e7479a642579d721f) <a id="classURH__ConfigSubsystem_1ad27491fc5b8ddc1e7479a642579d721f"></a>
 
