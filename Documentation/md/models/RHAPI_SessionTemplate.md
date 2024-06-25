@@ -42,8 +42,10 @@ Template used to create new RallyHere sessions of a specific type. Configurable 
 `public bool `[`KeepAliveOnEmpty_IsSet`](#structFRHAPI__SessionTemplate_1a7a021f27573b66f03bddb164ba2baea4) | true if KeepAliveOnEmpty_Optional has been set to a value
 `public TMap< FString, `[`FRHAPI_PlatformSessionTemplate`](RHAPI_PlatformSessionTemplate.md#structFRHAPI__PlatformSessionTemplate)` > `[`PlatformTemplates_Optional`](#structFRHAPI__SessionTemplate_1a4a953d98de7701f09938b03e88dc447d) | Platform-Specific session mappings that are used to coordinate Rally Here sessions with OnlineSubsystem sessions.
 `public bool `[`PlatformTemplates_IsSet`](#structFRHAPI__SessionTemplate_1a98480d277fd8e297e5b90560f3c10f1a) | true if PlatformTemplates_Optional has been set to a value
-`public `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` `[`AutoStartupParams_Optional`](#structFRHAPI__SessionTemplate_1a32d9a060ff0208b639415cee5d9f7287) | Parameters used to start an instance for this session when it is created.
+`public `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` `[`AutoStartupParams_Optional`](#structFRHAPI__SessionTemplate_1a32d9a060ff0208b639415cee5d9f7287) | Parameters used to start an instance for this session when it is created. Has lower priority than auto_startup_instance_template_id.
 `public bool `[`AutoStartupParams_IsSet`](#structFRHAPI__SessionTemplate_1a1ae179a6de476981a9a38197758b7e14) | true if AutoStartupParams_Optional has been set to a value
+`public FGuid `[`AutoStartupInstanceTemplateId_Optional`](#structFRHAPI__SessionTemplate_1a2a49d5a8a5818e817ca11e6d123d9ba1) | ID of instance request template to be used to automatically request an instance on creation of a session of this type. Takes priority over auto_startup_params.
+`public bool `[`AutoStartupInstanceTemplateId_IsSet`](#structFRHAPI__SessionTemplate_1acf91e44fde96ae8bf3bbdfca666cc444) | true if AutoStartupInstanceTemplateId_Optional has been set to a value
 `public int32 `[`MinSessionCount_Optional`](#structFRHAPI__SessionTemplate_1aecf6bdd55d8dc8e92bf1d6e2dc032fc6) | Minimum number of this type of session to be running at any given time per region.
 `public bool `[`MinSessionCount_IsSet`](#structFRHAPI__SessionTemplate_1a067eb5ca1f241b90407f3a373cb0bd79) | true if MinSessionCount_Optional has been set to a value
 `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__SessionTemplate_1a8dc395b5c32a277ba6a8098613b19c90) | Product-defined custom data about this session type.
@@ -54,6 +56,8 @@ Template used to create new RallyHere sessions of a specific type. Configurable 
 `public bool `[`PlayersPerTeam_IsSet`](#structFRHAPI__SessionTemplate_1a4351b4b52f5240e0bff65fb92b36b3a2) | true if PlayersPerTeam_Optional has been set to a value
 `public bool `[`CanChangeOwnTeam_Optional`](#structFRHAPI__SessionTemplate_1aa2d67a98c7bcf96cc848ae81ca3387e3) | Whether or not a player can change which team they are on. If true, they are able to. If False, they player's team can only be changed by an admin.
 `public bool `[`CanChangeOwnTeam_IsSet`](#structFRHAPI__SessionTemplate_1ad6b80d668b66266c71f70affb0cae587) | true if CanChangeOwnTeam_Optional has been set to a value
+`public bool `[`NotifyOnReservation_Optional`](#structFRHAPI__SessionTemplate_1a5c0c06cf8165a39442dfc4ab5e830343) | If players should be notified when they are reserved in this type of session instead of waiting until they're invited.
+`public bool `[`NotifyOnReservation_IsSet`](#structFRHAPI__SessionTemplate_1a9fc86e1548fa8e1e0ea7c861f984f15b) | true if NotifyOnReservation_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__SessionTemplate_1a4a45fc40eed406ae864f33e45c0eadf2)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__SessionTemplate_1a8ddb8c09f6817591c4927b4a5c49df76)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetSessionType`](#structFRHAPI__SessionTemplate_1a7772fb5d40d6b5c69dc188065146a39c)`()` | Gets the value of SessionType.
@@ -186,6 +190,15 @@ Template used to create new RallyHere sessions of a specific type. Configurable 
 `public inline void `[`SetAutoStartupParams`](#structFRHAPI__SessionTemplate_1aa59440ea3fe08b7645432484d67097d2)`(const `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` & NewValue)` | Sets the value of AutoStartupParams_Optional and also sets AutoStartupParams_IsSet to true.
 `public inline void `[`SetAutoStartupParams`](#structFRHAPI__SessionTemplate_1a8a5bc47e88fe94a0ac5cc851f66b9b6b)`(`[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` && NewValue)` | Sets the value of AutoStartupParams_Optional and also sets AutoStartupParams_IsSet to true using move semantics.
 `public inline void `[`ClearAutoStartupParams`](#structFRHAPI__SessionTemplate_1a41041ffbd8775231d249554a072116d7)`()` | Clears the value of AutoStartupParams_Optional and sets AutoStartupParams_IsSet to false.
+`public inline FGuid & `[`GetAutoStartupInstanceTemplateId`](#structFRHAPI__SessionTemplate_1a613437211fadf3e44d3a28240bcb0185)`()` | Gets the value of AutoStartupInstanceTemplateId_Optional, regardless of it having been set.
+`public inline const FGuid & `[`GetAutoStartupInstanceTemplateId`](#structFRHAPI__SessionTemplate_1a3e6d3d4b473ce367d6add241b647ccaf)`() const` | Gets the value of AutoStartupInstanceTemplateId_Optional, regardless of it having been set.
+`public inline const FGuid & `[`GetAutoStartupInstanceTemplateId`](#structFRHAPI__SessionTemplate_1a5430fde6d440e7b612f56b65e33d1e6f)`(const FGuid & DefaultValue) const` | Gets the value of AutoStartupInstanceTemplateId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetAutoStartupInstanceTemplateId`](#structFRHAPI__SessionTemplate_1ae35f80049d7dc1521c2ddccd8addc87e)`(FGuid & OutValue) const` | Fills OutValue with the value of AutoStartupInstanceTemplateId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FGuid * `[`GetAutoStartupInstanceTemplateIdOrNull`](#structFRHAPI__SessionTemplate_1a8992bc3eaaf0a09efdbda4d5a2f9858a)`()` | Returns a pointer to AutoStartupInstanceTemplateId_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FGuid * `[`GetAutoStartupInstanceTemplateIdOrNull`](#structFRHAPI__SessionTemplate_1a351067b1dbcf1fc106d4a222606a68d9)`() const` | Returns a pointer to AutoStartupInstanceTemplateId_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetAutoStartupInstanceTemplateId`](#structFRHAPI__SessionTemplate_1a5309a18ed5a3de1bafcb9cbfabedfc46)`(const FGuid & NewValue)` | Sets the value of AutoStartupInstanceTemplateId_Optional and also sets AutoStartupInstanceTemplateId_IsSet to true.
+`public inline void `[`SetAutoStartupInstanceTemplateId`](#structFRHAPI__SessionTemplate_1a0335c7e457802515a793b2597691dc9f)`(FGuid && NewValue)` | Sets the value of AutoStartupInstanceTemplateId_Optional and also sets AutoStartupInstanceTemplateId_IsSet to true using move semantics.
+`public inline void `[`ClearAutoStartupInstanceTemplateId`](#structFRHAPI__SessionTemplate_1a34645ae41e39de740fe31869d3e1a64f)`()` | Clears the value of AutoStartupInstanceTemplateId_Optional and sets AutoStartupInstanceTemplateId_IsSet to false.
 `public inline int32 & `[`GetMinSessionCount`](#structFRHAPI__SessionTemplate_1aab1a67e445ca5338fbb66baa3d3bcb9f)`()` | Gets the value of MinSessionCount_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetMinSessionCount`](#structFRHAPI__SessionTemplate_1ab7376fd46c054e32668b755907ac0d90)`() const` | Gets the value of MinSessionCount_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetMinSessionCount`](#structFRHAPI__SessionTemplate_1a1e5c95d760b8e9f40c01e6fb729c5398)`(const int32 & DefaultValue) const` | Gets the value of MinSessionCount_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -239,6 +252,17 @@ Template used to create new RallyHere sessions of a specific type. Configurable 
 `public inline void `[`ClearCanChangeOwnTeam`](#structFRHAPI__SessionTemplate_1a9aa2afa1842ee1cab22a7b1a9a772c08)`()` | Clears the value of CanChangeOwnTeam_Optional and sets CanChangeOwnTeam_IsSet to false.
 `public inline bool `[`IsCanChangeOwnTeamDefaultValue`](#structFRHAPI__SessionTemplate_1a26a5ebe40250064f888d423e23531bfa)`() const` | Returns true if CanChangeOwnTeam_Optional is set and matches the default value.
 `public inline void `[`SetCanChangeOwnTeamToDefault`](#structFRHAPI__SessionTemplate_1ac1a42404ac65f492acfd7e7fe75e4afb)`()` | Sets the value of CanChangeOwnTeam_Optional to its default and also sets CanChangeOwnTeam_IsSet to true.
+`public inline bool & `[`GetNotifyOnReservation`](#structFRHAPI__SessionTemplate_1afbde769cfdc7a6da59fb3ef7ffe29dcf)`()` | Gets the value of NotifyOnReservation_Optional, regardless of it having been set.
+`public inline const bool & `[`GetNotifyOnReservation`](#structFRHAPI__SessionTemplate_1adec73b54a082a1e7beefd51ac8cd7f1f)`() const` | Gets the value of NotifyOnReservation_Optional, regardless of it having been set.
+`public inline const bool & `[`GetNotifyOnReservation`](#structFRHAPI__SessionTemplate_1a2f0f47192526678f96dc58de8e8c5f09)`(const bool & DefaultValue) const` | Gets the value of NotifyOnReservation_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetNotifyOnReservation`](#structFRHAPI__SessionTemplate_1ad328d77d407db71c5bc4f162280751f7)`(bool & OutValue) const` | Fills OutValue with the value of NotifyOnReservation_Optional and returns true if it has been set, otherwise returns false.
+`public inline bool * `[`GetNotifyOnReservationOrNull`](#structFRHAPI__SessionTemplate_1a96c19d6229435cf27a687b65cce3ec47)`()` | Returns a pointer to NotifyOnReservation_Optional, if it has been set, otherwise returns nullptr.
+`public inline const bool * `[`GetNotifyOnReservationOrNull`](#structFRHAPI__SessionTemplate_1a1097a8f6fafac101f69a803102e869d5)`() const` | Returns a pointer to NotifyOnReservation_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetNotifyOnReservation`](#structFRHAPI__SessionTemplate_1a987bbef32e73963afa90d7e617393876)`(const bool & NewValue)` | Sets the value of NotifyOnReservation_Optional and also sets NotifyOnReservation_IsSet to true.
+`public inline void `[`SetNotifyOnReservation`](#structFRHAPI__SessionTemplate_1a9fb66e4cd55fe694e458248c10d17927)`(bool && NewValue)` | Sets the value of NotifyOnReservation_Optional and also sets NotifyOnReservation_IsSet to true using move semantics.
+`public inline void `[`ClearNotifyOnReservation`](#structFRHAPI__SessionTemplate_1a09e9ca121b22271ccc7debde5c98afd1)`()` | Clears the value of NotifyOnReservation_Optional and sets NotifyOnReservation_IsSet to false.
+`public inline bool `[`IsNotifyOnReservationDefaultValue`](#structFRHAPI__SessionTemplate_1a5178c473b0e58f10f8cecfa32f155623)`() const` | Returns true if NotifyOnReservation_Optional is set and matches the default value.
+`public inline void `[`SetNotifyOnReservationToDefault`](#structFRHAPI__SessionTemplate_1afbd6260244e4d1471d0049560f3c4ba8)`()` | Sets the value of NotifyOnReservation_Optional to its default and also sets NotifyOnReservation_IsSet to true.
 
 ### Members
 
@@ -336,11 +360,19 @@ true if PlatformTemplates_Optional has been set to a value
 
 #### `public `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` `[`AutoStartupParams_Optional`](#structFRHAPI__SessionTemplate_1a32d9a060ff0208b639415cee5d9f7287) <a id="structFRHAPI__SessionTemplate_1a32d9a060ff0208b639415cee5d9f7287"></a>
 
-Parameters used to start an instance for this session when it is created.
+Parameters used to start an instance for this session when it is created. Has lower priority than auto_startup_instance_template_id.
 
 #### `public bool `[`AutoStartupParams_IsSet`](#structFRHAPI__SessionTemplate_1a1ae179a6de476981a9a38197758b7e14) <a id="structFRHAPI__SessionTemplate_1a1ae179a6de476981a9a38197758b7e14"></a>
 
 true if AutoStartupParams_Optional has been set to a value
+
+#### `public FGuid `[`AutoStartupInstanceTemplateId_Optional`](#structFRHAPI__SessionTemplate_1a2a49d5a8a5818e817ca11e6d123d9ba1) <a id="structFRHAPI__SessionTemplate_1a2a49d5a8a5818e817ca11e6d123d9ba1"></a>
+
+ID of instance request template to be used to automatically request an instance on creation of a session of this type. Takes priority over auto_startup_params.
+
+#### `public bool `[`AutoStartupInstanceTemplateId_IsSet`](#structFRHAPI__SessionTemplate_1acf91e44fde96ae8bf3bbdfca666cc444) <a id="structFRHAPI__SessionTemplate_1acf91e44fde96ae8bf3bbdfca666cc444"></a>
+
+true if AutoStartupInstanceTemplateId_Optional has been set to a value
 
 #### `public int32 `[`MinSessionCount_Optional`](#structFRHAPI__SessionTemplate_1aecf6bdd55d8dc8e92bf1d6e2dc032fc6) <a id="structFRHAPI__SessionTemplate_1aecf6bdd55d8dc8e92bf1d6e2dc032fc6"></a>
 
@@ -381,6 +413,14 @@ Whether or not a player can change which team they are on. If true, they are abl
 #### `public bool `[`CanChangeOwnTeam_IsSet`](#structFRHAPI__SessionTemplate_1ad6b80d668b66266c71f70affb0cae587) <a id="structFRHAPI__SessionTemplate_1ad6b80d668b66266c71f70affb0cae587"></a>
 
 true if CanChangeOwnTeam_Optional has been set to a value
+
+#### `public bool `[`NotifyOnReservation_Optional`](#structFRHAPI__SessionTemplate_1a5c0c06cf8165a39442dfc4ab5e830343) <a id="structFRHAPI__SessionTemplate_1a5c0c06cf8165a39442dfc4ab5e830343"></a>
+
+If players should be notified when they are reserved in this type of session instead of waiting until they're invited.
+
+#### `public bool `[`NotifyOnReservation_IsSet`](#structFRHAPI__SessionTemplate_1a9fc86e1548fa8e1e0ea7c861f984f15b) <a id="structFRHAPI__SessionTemplate_1a9fc86e1548fa8e1e0ea7c861f984f15b"></a>
+
+true if NotifyOnReservation_Optional has been set to a value
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__SessionTemplate_1a4a45fc40eed406ae864f33e45c0eadf2)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__SessionTemplate_1a4a45fc40eed406ae864f33e45c0eadf2"></a>
 
@@ -919,6 +959,42 @@ Sets the value of AutoStartupParams_Optional and also sets AutoStartupParams_IsS
 
 Clears the value of AutoStartupParams_Optional and sets AutoStartupParams_IsSet to false.
 
+#### `public inline FGuid & `[`GetAutoStartupInstanceTemplateId`](#structFRHAPI__SessionTemplate_1a613437211fadf3e44d3a28240bcb0185)`()` <a id="structFRHAPI__SessionTemplate_1a613437211fadf3e44d3a28240bcb0185"></a>
+
+Gets the value of AutoStartupInstanceTemplateId_Optional, regardless of it having been set.
+
+#### `public inline const FGuid & `[`GetAutoStartupInstanceTemplateId`](#structFRHAPI__SessionTemplate_1a3e6d3d4b473ce367d6add241b647ccaf)`() const` <a id="structFRHAPI__SessionTemplate_1a3e6d3d4b473ce367d6add241b647ccaf"></a>
+
+Gets the value of AutoStartupInstanceTemplateId_Optional, regardless of it having been set.
+
+#### `public inline const FGuid & `[`GetAutoStartupInstanceTemplateId`](#structFRHAPI__SessionTemplate_1a5430fde6d440e7b612f56b65e33d1e6f)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__SessionTemplate_1a5430fde6d440e7b612f56b65e33d1e6f"></a>
+
+Gets the value of AutoStartupInstanceTemplateId_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetAutoStartupInstanceTemplateId`](#structFRHAPI__SessionTemplate_1ae35f80049d7dc1521c2ddccd8addc87e)`(FGuid & OutValue) const` <a id="structFRHAPI__SessionTemplate_1ae35f80049d7dc1521c2ddccd8addc87e"></a>
+
+Fills OutValue with the value of AutoStartupInstanceTemplateId_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline FGuid * `[`GetAutoStartupInstanceTemplateIdOrNull`](#structFRHAPI__SessionTemplate_1a8992bc3eaaf0a09efdbda4d5a2f9858a)`()` <a id="structFRHAPI__SessionTemplate_1a8992bc3eaaf0a09efdbda4d5a2f9858a"></a>
+
+Returns a pointer to AutoStartupInstanceTemplateId_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const FGuid * `[`GetAutoStartupInstanceTemplateIdOrNull`](#structFRHAPI__SessionTemplate_1a351067b1dbcf1fc106d4a222606a68d9)`() const` <a id="structFRHAPI__SessionTemplate_1a351067b1dbcf1fc106d4a222606a68d9"></a>
+
+Returns a pointer to AutoStartupInstanceTemplateId_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetAutoStartupInstanceTemplateId`](#structFRHAPI__SessionTemplate_1a5309a18ed5a3de1bafcb9cbfabedfc46)`(const FGuid & NewValue)` <a id="structFRHAPI__SessionTemplate_1a5309a18ed5a3de1bafcb9cbfabedfc46"></a>
+
+Sets the value of AutoStartupInstanceTemplateId_Optional and also sets AutoStartupInstanceTemplateId_IsSet to true.
+
+#### `public inline void `[`SetAutoStartupInstanceTemplateId`](#structFRHAPI__SessionTemplate_1a0335c7e457802515a793b2597691dc9f)`(FGuid && NewValue)` <a id="structFRHAPI__SessionTemplate_1a0335c7e457802515a793b2597691dc9f"></a>
+
+Sets the value of AutoStartupInstanceTemplateId_Optional and also sets AutoStartupInstanceTemplateId_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearAutoStartupInstanceTemplateId`](#structFRHAPI__SessionTemplate_1a34645ae41e39de740fe31869d3e1a64f)`()` <a id="structFRHAPI__SessionTemplate_1a34645ae41e39de740fe31869d3e1a64f"></a>
+
+Clears the value of AutoStartupInstanceTemplateId_Optional and sets AutoStartupInstanceTemplateId_IsSet to false.
+
 #### `public inline int32 & `[`GetMinSessionCount`](#structFRHAPI__SessionTemplate_1aab1a67e445ca5338fbb66baa3d3bcb9f)`()` <a id="structFRHAPI__SessionTemplate_1aab1a67e445ca5338fbb66baa3d3bcb9f"></a>
 
 Gets the value of MinSessionCount_Optional, regardless of it having been set.
@@ -1130,4 +1206,48 @@ Returns true if CanChangeOwnTeam_Optional is set and matches the default value.
 #### `public inline void `[`SetCanChangeOwnTeamToDefault`](#structFRHAPI__SessionTemplate_1ac1a42404ac65f492acfd7e7fe75e4afb)`()` <a id="structFRHAPI__SessionTemplate_1ac1a42404ac65f492acfd7e7fe75e4afb"></a>
 
 Sets the value of CanChangeOwnTeam_Optional to its default and also sets CanChangeOwnTeam_IsSet to true.
+
+#### `public inline bool & `[`GetNotifyOnReservation`](#structFRHAPI__SessionTemplate_1afbde769cfdc7a6da59fb3ef7ffe29dcf)`()` <a id="structFRHAPI__SessionTemplate_1afbde769cfdc7a6da59fb3ef7ffe29dcf"></a>
+
+Gets the value of NotifyOnReservation_Optional, regardless of it having been set.
+
+#### `public inline const bool & `[`GetNotifyOnReservation`](#structFRHAPI__SessionTemplate_1adec73b54a082a1e7beefd51ac8cd7f1f)`() const` <a id="structFRHAPI__SessionTemplate_1adec73b54a082a1e7beefd51ac8cd7f1f"></a>
+
+Gets the value of NotifyOnReservation_Optional, regardless of it having been set.
+
+#### `public inline const bool & `[`GetNotifyOnReservation`](#structFRHAPI__SessionTemplate_1a2f0f47192526678f96dc58de8e8c5f09)`(const bool & DefaultValue) const` <a id="structFRHAPI__SessionTemplate_1a2f0f47192526678f96dc58de8e8c5f09"></a>
+
+Gets the value of NotifyOnReservation_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetNotifyOnReservation`](#structFRHAPI__SessionTemplate_1ad328d77d407db71c5bc4f162280751f7)`(bool & OutValue) const` <a id="structFRHAPI__SessionTemplate_1ad328d77d407db71c5bc4f162280751f7"></a>
+
+Fills OutValue with the value of NotifyOnReservation_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline bool * `[`GetNotifyOnReservationOrNull`](#structFRHAPI__SessionTemplate_1a96c19d6229435cf27a687b65cce3ec47)`()` <a id="structFRHAPI__SessionTemplate_1a96c19d6229435cf27a687b65cce3ec47"></a>
+
+Returns a pointer to NotifyOnReservation_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const bool * `[`GetNotifyOnReservationOrNull`](#structFRHAPI__SessionTemplate_1a1097a8f6fafac101f69a803102e869d5)`() const` <a id="structFRHAPI__SessionTemplate_1a1097a8f6fafac101f69a803102e869d5"></a>
+
+Returns a pointer to NotifyOnReservation_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetNotifyOnReservation`](#structFRHAPI__SessionTemplate_1a987bbef32e73963afa90d7e617393876)`(const bool & NewValue)` <a id="structFRHAPI__SessionTemplate_1a987bbef32e73963afa90d7e617393876"></a>
+
+Sets the value of NotifyOnReservation_Optional and also sets NotifyOnReservation_IsSet to true.
+
+#### `public inline void `[`SetNotifyOnReservation`](#structFRHAPI__SessionTemplate_1a9fb66e4cd55fe694e458248c10d17927)`(bool && NewValue)` <a id="structFRHAPI__SessionTemplate_1a9fb66e4cd55fe694e458248c10d17927"></a>
+
+Sets the value of NotifyOnReservation_Optional and also sets NotifyOnReservation_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearNotifyOnReservation`](#structFRHAPI__SessionTemplate_1a09e9ca121b22271ccc7debde5c98afd1)`()` <a id="structFRHAPI__SessionTemplate_1a09e9ca121b22271ccc7debde5c98afd1"></a>
+
+Clears the value of NotifyOnReservation_Optional and sets NotifyOnReservation_IsSet to false.
+
+#### `public inline bool `[`IsNotifyOnReservationDefaultValue`](#structFRHAPI__SessionTemplate_1a5178c473b0e58f10f8cecfa32f155623)`() const` <a id="structFRHAPI__SessionTemplate_1a5178c473b0e58f10f8cecfa32f155623"></a>
+
+Returns true if NotifyOnReservation_Optional is set and matches the default value.
+
+#### `public inline void `[`SetNotifyOnReservationToDefault`](#structFRHAPI__SessionTemplate_1afbd6260244e4d1471d0049560f3c4ba8)`()` <a id="structFRHAPI__SessionTemplate_1afbd6260244e4d1471d0049560f3c4ba8"></a>
+
+Sets the value of NotifyOnReservation_Optional to its default and also sets NotifyOnReservation_IsSet to true.
 

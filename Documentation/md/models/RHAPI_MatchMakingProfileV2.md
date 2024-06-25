@@ -35,6 +35,8 @@ A profile that describes what pools of players a session will be a part of when 
 `public bool `[`LegacyConfig_IsSet`](#structFRHAPI__MatchMakingProfileV2_1af417de3e8a601609b54e0310551c9caa) | true if LegacyConfig_Optional has been set to a value
 `public FString `[`DeserterId_Optional`](#structFRHAPI__MatchMakingProfileV2_1aae0011ecf8b0087fc25843b2c81c9d15) | Which deserter this profile should check before allowing players to join matchmaking.
 `public bool `[`DeserterId_IsSet`](#structFRHAPI__MatchMakingProfileV2_1a549f6b87b796d3920408a3e5b103d440) | true if DeserterId_Optional has been set to a value
+`public FGuid `[`SessionTemplateId_Optional`](#structFRHAPI__MatchMakingProfileV2_1a5357bb9dad6eedd14a04648d518bbcbe) | What type of session should result from matchmaking on this profile.
+`public bool `[`SessionTemplateId_IsSet`](#structFRHAPI__MatchMakingProfileV2_1a671a2d069be65d525493b353b34c3b4c) | true if SessionTemplateId_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__MatchMakingProfileV2_1a27b71626be2a2edef0ed660aa42fcaa6)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__MatchMakingProfileV2_1aa6ebcdc58854a72f9cb8c75b9f86834c)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetMatchMakingProfileId`](#structFRHAPI__MatchMakingProfileV2_1a4ae3b82d9d3c2bb53a131330dfe71e59)`()` | Gets the value of MatchMakingProfileId.
@@ -114,6 +116,15 @@ A profile that describes what pools of players a session will be a part of when 
 `public inline void `[`SetDeserterId`](#structFRHAPI__MatchMakingProfileV2_1a87b490afc4f498967cf5cd4e408102ab)`(const FString & NewValue)` | Sets the value of DeserterId_Optional and also sets DeserterId_IsSet to true.
 `public inline void `[`SetDeserterId`](#structFRHAPI__MatchMakingProfileV2_1ada7889860e0a249e13c7c3b3ecbb651a)`(FString && NewValue)` | Sets the value of DeserterId_Optional and also sets DeserterId_IsSet to true using move semantics.
 `public inline void `[`ClearDeserterId`](#structFRHAPI__MatchMakingProfileV2_1a8f6b926107cd9f277a465b93b2c47d19)`()` | Clears the value of DeserterId_Optional and sets DeserterId_IsSet to false.
+`public inline FGuid & `[`GetSessionTemplateId`](#structFRHAPI__MatchMakingProfileV2_1acf11e8feb64e573568edfc304d71d970)`()` | Gets the value of SessionTemplateId_Optional, regardless of it having been set.
+`public inline const FGuid & `[`GetSessionTemplateId`](#structFRHAPI__MatchMakingProfileV2_1ae0f95322ce912f321247f0862f4407e5)`() const` | Gets the value of SessionTemplateId_Optional, regardless of it having been set.
+`public inline const FGuid & `[`GetSessionTemplateId`](#structFRHAPI__MatchMakingProfileV2_1ad9e457ba0fdbdde859fc926a5726f50e)`(const FGuid & DefaultValue) const` | Gets the value of SessionTemplateId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetSessionTemplateId`](#structFRHAPI__MatchMakingProfileV2_1af79ce39b605eae9c4cf488e8d6e34bcb)`(FGuid & OutValue) const` | Fills OutValue with the value of SessionTemplateId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FGuid * `[`GetSessionTemplateIdOrNull`](#structFRHAPI__MatchMakingProfileV2_1ab0293f281e1e5c4e245480522693c03f)`()` | Returns a pointer to SessionTemplateId_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FGuid * `[`GetSessionTemplateIdOrNull`](#structFRHAPI__MatchMakingProfileV2_1a1afc3b38c4a366a5a6f8315648f2c1ed)`() const` | Returns a pointer to SessionTemplateId_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetSessionTemplateId`](#structFRHAPI__MatchMakingProfileV2_1a4f88ff43e5836edfd1422393318c7597)`(const FGuid & NewValue)` | Sets the value of SessionTemplateId_Optional and also sets SessionTemplateId_IsSet to true.
+`public inline void `[`SetSessionTemplateId`](#structFRHAPI__MatchMakingProfileV2_1ac3441ac2b72a3045333f8226bc4a81e8)`(FGuid && NewValue)` | Sets the value of SessionTemplateId_Optional and also sets SessionTemplateId_IsSet to true using move semantics.
+`public inline void `[`ClearSessionTemplateId`](#structFRHAPI__MatchMakingProfileV2_1aa0a57023b70ac8d739eace48091a70ef)`()` | Clears the value of SessionTemplateId_Optional and sets SessionTemplateId_IsSet to false.
 
 ### Members
 
@@ -180,6 +191,14 @@ Which deserter this profile should check before allowing players to join matchma
 #### `public bool `[`DeserterId_IsSet`](#structFRHAPI__MatchMakingProfileV2_1a549f6b87b796d3920408a3e5b103d440) <a id="structFRHAPI__MatchMakingProfileV2_1a549f6b87b796d3920408a3e5b103d440"></a>
 
 true if DeserterId_Optional has been set to a value
+
+#### `public FGuid `[`SessionTemplateId_Optional`](#structFRHAPI__MatchMakingProfileV2_1a5357bb9dad6eedd14a04648d518bbcbe) <a id="structFRHAPI__MatchMakingProfileV2_1a5357bb9dad6eedd14a04648d518bbcbe"></a>
+
+What type of session should result from matchmaking on this profile.
+
+#### `public bool `[`SessionTemplateId_IsSet`](#structFRHAPI__MatchMakingProfileV2_1a671a2d069be65d525493b353b34c3b4c) <a id="structFRHAPI__MatchMakingProfileV2_1a671a2d069be65d525493b353b34c3b4c"></a>
+
+true if SessionTemplateId_Optional has been set to a value
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__MatchMakingProfileV2_1a27b71626be2a2edef0ed660aa42fcaa6)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__MatchMakingProfileV2_1a27b71626be2a2edef0ed660aa42fcaa6"></a>
 
@@ -505,4 +524,40 @@ Sets the value of DeserterId_Optional and also sets DeserterId_IsSet to true usi
 #### `public inline void `[`ClearDeserterId`](#structFRHAPI__MatchMakingProfileV2_1a8f6b926107cd9f277a465b93b2c47d19)`()` <a id="structFRHAPI__MatchMakingProfileV2_1a8f6b926107cd9f277a465b93b2c47d19"></a>
 
 Clears the value of DeserterId_Optional and sets DeserterId_IsSet to false.
+
+#### `public inline FGuid & `[`GetSessionTemplateId`](#structFRHAPI__MatchMakingProfileV2_1acf11e8feb64e573568edfc304d71d970)`()` <a id="structFRHAPI__MatchMakingProfileV2_1acf11e8feb64e573568edfc304d71d970"></a>
+
+Gets the value of SessionTemplateId_Optional, regardless of it having been set.
+
+#### `public inline const FGuid & `[`GetSessionTemplateId`](#structFRHAPI__MatchMakingProfileV2_1ae0f95322ce912f321247f0862f4407e5)`() const` <a id="structFRHAPI__MatchMakingProfileV2_1ae0f95322ce912f321247f0862f4407e5"></a>
+
+Gets the value of SessionTemplateId_Optional, regardless of it having been set.
+
+#### `public inline const FGuid & `[`GetSessionTemplateId`](#structFRHAPI__MatchMakingProfileV2_1ad9e457ba0fdbdde859fc926a5726f50e)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__MatchMakingProfileV2_1ad9e457ba0fdbdde859fc926a5726f50e"></a>
+
+Gets the value of SessionTemplateId_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetSessionTemplateId`](#structFRHAPI__MatchMakingProfileV2_1af79ce39b605eae9c4cf488e8d6e34bcb)`(FGuid & OutValue) const` <a id="structFRHAPI__MatchMakingProfileV2_1af79ce39b605eae9c4cf488e8d6e34bcb"></a>
+
+Fills OutValue with the value of SessionTemplateId_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline FGuid * `[`GetSessionTemplateIdOrNull`](#structFRHAPI__MatchMakingProfileV2_1ab0293f281e1e5c4e245480522693c03f)`()` <a id="structFRHAPI__MatchMakingProfileV2_1ab0293f281e1e5c4e245480522693c03f"></a>
+
+Returns a pointer to SessionTemplateId_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const FGuid * `[`GetSessionTemplateIdOrNull`](#structFRHAPI__MatchMakingProfileV2_1a1afc3b38c4a366a5a6f8315648f2c1ed)`() const` <a id="structFRHAPI__MatchMakingProfileV2_1a1afc3b38c4a366a5a6f8315648f2c1ed"></a>
+
+Returns a pointer to SessionTemplateId_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetSessionTemplateId`](#structFRHAPI__MatchMakingProfileV2_1a4f88ff43e5836edfd1422393318c7597)`(const FGuid & NewValue)` <a id="structFRHAPI__MatchMakingProfileV2_1a4f88ff43e5836edfd1422393318c7597"></a>
+
+Sets the value of SessionTemplateId_Optional and also sets SessionTemplateId_IsSet to true.
+
+#### `public inline void `[`SetSessionTemplateId`](#structFRHAPI__MatchMakingProfileV2_1ac3441ac2b72a3045333f8226bc4a81e8)`(FGuid && NewValue)` <a id="structFRHAPI__MatchMakingProfileV2_1ac3441ac2b72a3045333f8226bc4a81e8"></a>
+
+Sets the value of SessionTemplateId_Optional and also sets SessionTemplateId_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearSessionTemplateId`](#structFRHAPI__MatchMakingProfileV2_1aa0a57023b70ac8d739eace48091a70ef)`()` <a id="structFRHAPI__MatchMakingProfileV2_1aa0a57023b70ac8d739eace48091a70ef"></a>
+
+Clears the value of SessionTemplateId_Optional and sets SessionTemplateId_IsSet to false.
 
