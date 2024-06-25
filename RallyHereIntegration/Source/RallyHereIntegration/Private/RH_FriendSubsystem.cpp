@@ -218,11 +218,11 @@ void URH_FriendSubsystem::OnFetchFriendsListResponse(const GetFriendsListType::R
 				if (URH_PlayerInfo* PlayerInfo = PSS->GetOrCreatePlayerInfo(NewFriend.FriendsPlayerUuid))
 				{
 					PlayerInfo->GetPresence()->OnUpdatedDelegate.AddUObject((*ExistingFriend), &URH_RHFriendAndPlatformFriend::OnPresenceUpdated);
-					PlayerInfo->GetLinkedPlatformInfo(FTimespan(), false, FRH_PlayerInfoGetPlatformsDelegate::CreateLambda([GetLinkedPlatformInfoHandler, ExistingFriend](bool bSuccess, const TArray<URH_PlayerPlatformInfo*>& Platforms)
+					PlayerInfo->GetLinkedPlatformInfo(FTimespan(), false, FRH_PlayerInfoGetPlatformsDelegate::CreateLambda([GetLinkedPlatformInfoHandler, WeakFriend = MakeWeakObjectPtr(*ExistingFriend)](bool bSuccess, const TArray<URH_PlayerPlatformInfo*>& Platforms)
 						{
-							if (bSuccess)
+							if (bSuccess && WeakFriend.IsValid())
 							{
-								GetLinkedPlatformInfoHandler(Platforms, *ExistingFriend);
+								GetLinkedPlatformInfoHandler(Platforms, WeakFriend.Get());
 							}
 						}));
 				}
@@ -244,11 +244,11 @@ void URH_FriendSubsystem::OnFetchFriendsListResponse(const GetFriendsListType::R
 				if (URH_PlayerInfo* PlayerInfo = PSS->GetOrCreatePlayerInfo(NewFriend.FriendsPlayerUuid))
 				{
 					PlayerInfo->GetPresence()->OnUpdatedDelegate.AddUObject(NewEntry, &URH_RHFriendAndPlatformFriend::OnPresenceUpdated);
-					PlayerInfo->GetLinkedPlatformInfo(FTimespan(), false, FRH_PlayerInfoGetPlatformsDelegate::CreateLambda([GetLinkedPlatformInfoHandler, NewEntry](bool bSuccess, const TArray<URH_PlayerPlatformInfo*>& Platforms)
+					PlayerInfo->GetLinkedPlatformInfo(FTimespan(), false, FRH_PlayerInfoGetPlatformsDelegate::CreateLambda([GetLinkedPlatformInfoHandler, WeakEntry = MakeWeakObjectPtr(NewEntry)](bool bSuccess, const TArray<URH_PlayerPlatformInfo*>& Platforms)
 						{
-							if (bSuccess)
+							if (bSuccess && WeakEntry.IsValid())
 							{
-								GetLinkedPlatformInfoHandler(Platforms, NewEntry);
+								GetLinkedPlatformInfoHandler(Platforms, WeakEntry.Get());
 							}
 						}));
 				}
