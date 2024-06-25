@@ -211,6 +211,7 @@ class RALLYHEREAPI_API FRequest
 public:
 	FRequest()
 		: bDisableAuthRequirement(false)
+		, bDisableLoginRetryOnAuthorizationFailure(false)
 	{
 		// default to enabling retry
 		SetShouldRetry();

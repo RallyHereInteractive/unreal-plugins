@@ -223,6 +223,7 @@ class {{dllapi}} FRequest
 public:
 	FRequest()
 		: bDisableAuthRequirement(false)
+		, bDisableLoginRetryOnAuthorizationFailure(false)
 	{
 		// default to enabling retry
 		SetShouldRetry();
