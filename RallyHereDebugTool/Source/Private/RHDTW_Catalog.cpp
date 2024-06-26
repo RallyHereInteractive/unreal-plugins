@@ -458,7 +458,7 @@ void FRHDTW_Catalog::DoShowVendors(URH_CatalogSubsystem* catalog)
 											{
 												PriceDisplay += TEXT("\n");
 											}
-											PriceDisplay += FString::Printf(TEXT("%d:%d"), PriceBreakpoint.GetPriceItemId(), DisplayPrice);
+											PriceDisplay += FString::Printf(TEXT("%d:%d"), PriceCurrency.GetPriceItemId(), DisplayPrice);
 
 											FRHAPI_PurchasePriceCurrency DisplayPriceCurrency;
 											DisplayPriceCurrency.SetPrice(DisplayPrice);
