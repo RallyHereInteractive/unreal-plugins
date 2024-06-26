@@ -520,7 +520,20 @@ inline void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const TSharedPtr<F
 {
 	if (Value.IsValid())
 	{
-		FJsonSerializer::Serialize(Value.ToSharedRef(), "", Writer, false);
+		// prefer to use the serialize function that does not take an idenitfier, as we are trying to just write a value
+		if (Value->Type == EJson::Object)
+		{
+			FJsonSerializer::Serialize(Value->AsObject().ToSharedRef(), Writer, false);
+		}
+		else if (Value->Type == EJson::Array)
+		{
+			FJsonSerializer::Serialize(Value->AsArray(), Writer, false);
+		}
+		else
+		{
+			// there is not a serialize function that does not take identifiers for other types, so pass in an empty identifier which should get ignored
+			FJsonSerializer::Serialize(Value.ToSharedRef(), "", Writer, false);
+		}
 	}
 	else
 	{
