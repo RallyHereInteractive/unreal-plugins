@@ -46,6 +46,8 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 
 	bAutoCreateInventorySessionOnLogin = true;
 	bAutoProcessPlatformEntitlementsOnLogin = true;
+	bAutoProcessPlatformEntitlementsOnReactivate = true;
+	bAutoProcessPlatformEntitlementsOnResume = true;
 
 	WebRequestsMaxSimultaneousRequests = 15;
 	WebRequestsTrackedRequestsCountLimit = 200;

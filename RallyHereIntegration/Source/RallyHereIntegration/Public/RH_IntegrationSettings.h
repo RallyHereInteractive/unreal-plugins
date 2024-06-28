@@ -183,6 +183,14 @@ public:
 	UPROPERTY(EditAnywhere, Config, Category = "Inventory")
 	bool bAutoProcessPlatformEntitlementsOnLogin;
 
+	/** @brief Whether to automatically process platform entitlements on engine Reactivate callback */
+	UPROPERTY(EditAnywhere, Config, Category = "Inventory")
+	bool bAutoProcessPlatformEntitlementsOnReactivate;
+
+	/** @brief Whether to automatically process platform entitlements on engine Resume callback */
+	UPROPERTY(EditAnywhere, Config, Category = "Inventory")
+	bool bAutoProcessPlatformEntitlementsOnResume;
+
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Web Requests
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
