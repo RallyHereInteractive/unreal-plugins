@@ -51,6 +51,8 @@ Main settings for the Integration.
 `public bool `[`bAutoCloseMatchOnSessionInactive`](#classURH__IntegrationSettings_1a089e31e1c743c7933b237fb62b4a5d8c) | Whether to automatically close a match when a session becomes inactive if the host.
 `public bool `[`bAutoCreateInventorySessionOnLogin`](#classURH__IntegrationSettings_1a140069cc5be0f8410447d4d2caf68c1e) | Whether to automatically create an inventory session when a player logs in.
 `public bool `[`bAutoProcessPlatformEntitlementsOnLogin`](#classURH__IntegrationSettings_1a5f78f6a76f285af5862bcc93d612da3e) | Whether to automatically process platform entitlements on login (will wait for inventory session creation if using bAutoCreateInventorySessionOnLogin)
+`public bool `[`bAutoProcessPlatformEntitlementsOnReactivate`](#classURH__IntegrationSettings_1a1207706bba48d33a504cd072b0608b59) | Whether to automatically process platform entitlements on engine Reactivate callback.
+`public bool `[`bAutoProcessPlatformEntitlementsOnResume`](#classURH__IntegrationSettings_1adfb23e8bdc32de0f5d2118236fd80538) | Whether to automatically process platform entitlements on engine Resume callback.
 `public int32 `[`WebRequestsMaxSimultaneousRequests`](#classURH__IntegrationSettings_1a86e14803734cde1b954191b437ceaafe) | Sets the maximum number of Http Requests that can be made simultaneously. 0 = No Limit.
 `public int32 `[`WebRequestsDefaultRetryCount`](#classURH__IntegrationSettings_1a0e7e2f5a2a2cb2981aafe6dee03c7ac4) | Sets the number of retries that the retry manager uses. 0 = Do not set a limit.
 `public int32 `[`WebRequestsDefaultRetryTimeout`](#classURH__IntegrationSettings_1a15ad237756a0d356ec11f82be51f6190) | Sets the maximum number of Http Requests that can be made simultaneously. 0 = Do not set a limit.
@@ -304,6 +306,14 @@ Whether to automatically create an inventory session when a player logs in.
 #### `public bool `[`bAutoProcessPlatformEntitlementsOnLogin`](#classURH__IntegrationSettings_1a5f78f6a76f285af5862bcc93d612da3e) <a id="classURH__IntegrationSettings_1a5f78f6a76f285af5862bcc93d612da3e"></a>
 
 Whether to automatically process platform entitlements on login (will wait for inventory session creation if using bAutoCreateInventorySessionOnLogin)
+
+#### `public bool `[`bAutoProcessPlatformEntitlementsOnReactivate`](#classURH__IntegrationSettings_1a1207706bba48d33a504cd072b0608b59) <a id="classURH__IntegrationSettings_1a1207706bba48d33a504cd072b0608b59"></a>
+
+Whether to automatically process platform entitlements on engine Reactivate callback.
+
+#### `public bool `[`bAutoProcessPlatformEntitlementsOnResume`](#classURH__IntegrationSettings_1adfb23e8bdc32de0f5d2118236fd80538) <a id="classURH__IntegrationSettings_1adfb23e8bdc32de0f5d2118236fd80538"></a>
+
+Whether to automatically process platform entitlements on engine Resume callback.
 
 #### `public int32 `[`WebRequestsMaxSimultaneousRequests`](#classURH__IntegrationSettings_1a86e14803734cde1b954191b437ceaafe) <a id="classURH__IntegrationSettings_1a86e14803734cde1b954191b437ceaafe"></a>
 

@@ -17,6 +17,7 @@
 #include "RH_PlayerInfoSubsystem.h"
 #include "RH_CatalogSubsystem.h"
 #include "RH_ConfigSubsystem.h"
+#include "RH_EntitlementSubsystem.h"
 #include "RH_SettingsSubsystem.h"
 #include "RH_MatchSubsystem.h"
 #include "RH_RemoteFileSubsystem.h"
@@ -235,14 +236,24 @@ void URH_GameInstanceSubsystem::AppReactivatedCallback()
 			GET_STATID(STAT_FPComClient_AppReactivatedCallback),
 			nullptr,
 			ENamedThreads::GameThread);
-
-		FTaskGraphInterface::Get().WaitUntilTaskCompletes(Task);
 	}
 }
 
 void URH_GameInstanceSubsystem::AppReactivatedCallbackInGameThread()
 {
 	UE_LOG(LogRallyHereIntegration, Log, TEXT("URH_GameInstanceSubsystem::AppReactivatedCallbackInGameThread()"));
+
+	if (GetDefault<URH_IntegrationSettings>()->bAutoProcessPlatformEntitlementsOnReactivate)
+	{
+		for (auto LP : GetGameInstance()->GetLocalPlayers())
+		{
+			auto RHLP = LP->GetSubsystem<URH_LocalPlayerSubsystem>();
+			if (RHLP != nullptr && RHLP->GetEntitlementSubsystem() != nullptr)
+			{
+				RHLP->GetEntitlementSubsystem()->SubmitEntitlementsForLoggedInOSS();
+			}
+		}
+	}
 }
 
 void URH_GameInstanceSubsystem::AppResumeCallback()
@@ -256,11 +267,21 @@ void URH_GameInstanceSubsystem::AppResumeCallback()
 		GET_STATID(STAT_RHClient_AppResumeCallback),
 		nullptr,
 		ENamedThreads::GameThread);
-
-	FTaskGraphInterface::Get().WaitUntilTaskCompletes(Task);
 }
 
 void URH_GameInstanceSubsystem::AppResumeCallbackInGameThread()
 {
 	UE_LOG(LogRallyHereIntegration, Log, TEXT("URH_GameInstanceSubsystem::AppResumeCallbackInGameThread()"));
+
+	if (GetDefault<URH_IntegrationSettings>()->bAutoProcessPlatformEntitlementsOnResume)
+	{
+		for (auto LP : GetGameInstance()->GetLocalPlayers())
+		{
+			auto RHLP = LP->GetSubsystem<URH_LocalPlayerSubsystem>();
+			if (RHLP != nullptr && RHLP->GetEntitlementSubsystem() != nullptr)
+			{
+				RHLP->GetEntitlementSubsystem()->SubmitEntitlementsForLoggedInOSS();
+			}
+		}
+	}
 }
