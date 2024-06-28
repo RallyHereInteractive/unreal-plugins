@@ -81,6 +81,7 @@ Main settings for the Integration.
 `public FSoftClassPath `[`RemoteFileSubsystemClass`](#classURH__IntegrationSettings_1a0388ca75a831a5c4873fe07dd8b638dc) | Extensible RemoteFileSubsystem class path.
 `public bool `[`bLocalPlayerSubsystemSandboxing`](#classURH__IntegrationSettings_1a5826903f6e88cefabe7d9c2ede15e9af) | Flag to determine if the local player subsystem should use its own subsystems instead of relying on GameInstanceSubsystem shared caches.
 `public bool `[`bAutoUploadServerFiles`](#classURH__IntegrationSettings_1aad9767260d4d60a8f378c4543c03f92a) | Whether to automatically upload files to the RallyHere API from Dedicated Servers.
+`public float `[`AutoUploadServerFilesChance`](#classURH__IntegrationSettings_1adb4cd4438cff4d9754ae7cb6285eaf25) | Percentage value for whether to automatically upload files to the RallyHere API from Dedicated Servers.
 `public bool `[`bAutoUploadLogFiles`](#classURH__IntegrationSettings_1a8adfac6c3249bca907a1fa051db8d0b5) | Whether to automatically upload files to the RallyHere API. Requires bAutoUploadServerFiles to have an effect.
 `public bool `[`bAutoUploadTraceFiles`](#classURH__IntegrationSettings_1ad678c18fb9996d66111ff4003326a656) | Whether to automatically upload files to the RallyHere API. Requires bAutoUploadServerFiles to have an effect.
 `public int32 `[`BeginNewAdSessionPriority`](#classURH__IntegrationSettings_1afc878742df435a86affa3c28c65da19a) | Sets the request priority of Begin New Session calls, lower number is higher priority.
@@ -424,6 +425,10 @@ Flag to determine if the local player subsystem should use its own subsystems in
 #### `public bool `[`bAutoUploadServerFiles`](#classURH__IntegrationSettings_1aad9767260d4d60a8f378c4543c03f92a) <a id="classURH__IntegrationSettings_1aad9767260d4d60a8f378c4543c03f92a"></a>
 
 Whether to automatically upload files to the RallyHere API from Dedicated Servers.
+
+#### `public float `[`AutoUploadServerFilesChance`](#classURH__IntegrationSettings_1adb4cd4438cff4d9754ae7cb6285eaf25) <a id="classURH__IntegrationSettings_1adb4cd4438cff4d9754ae7cb6285eaf25"></a>
+
+Percentage value for whether to automatically upload files to the RallyHere API from Dedicated Servers.
 
 #### `public bool `[`bAutoUploadLogFiles`](#classURH__IntegrationSettings_1a8adfac6c3249bca907a1fa051db8d0b5) <a id="classURH__IntegrationSettings_1a8adfac6c3249bca907a1fa051db8d0b5"></a>
 
