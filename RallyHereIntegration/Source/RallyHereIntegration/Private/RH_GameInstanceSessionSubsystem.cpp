@@ -233,6 +233,15 @@ bool URH_GameInstanceSessionSubsystem::MakeActiveSessionJoinable(UWorld* pWorld)
 	}
 }
 
+UEngine* URH_GameInstanceSessionSubsystem::GetPEXEngine() const
+{
+	return GetGameInstanceSubsystem()->GetGameInstance()->GetEngine();
+}
+UWorld* URH_GameInstanceSessionSubsystem::GetPEXWorld() const
+{
+	return GetGameInstanceSubsystem()->GetWorld();	
+}
+
 void URH_GameInstanceSessionSubsystem::OnNetworkFailure(UWorld* World, UNetDriver* NetDriver, ENetworkFailure::Type FailureType, const FString& ErrorString)
 {
 	// Stub in case it is needed, the default engine handler should close the map which we detect above
@@ -836,7 +845,7 @@ void URH_GameInstanceSessionSubsystem::GameModeLogoutEvent(class AGameModeBase* 
 	}
 }
 
-void URH_GameInstanceSessionSubsystem::CreateMatchForSession(const URH_JoinedSession* Session) const
+void URH_GameInstanceSessionSubsystem::CreateMatchForSession(const URH_JoinedSession* Session)
 {
 	const auto* Settings = GetDefault<URH_IntegrationSettings>();
 	auto* pMatchSubsystem = GetGameInstanceSubsystem()->GetMatchSubsystem();
@@ -966,31 +975,59 @@ void URH_GameInstanceSessionSubsystem::CreateMatchForSession(const URH_JoinedSes
 		}
 
 		// create the match and set as active
-		pMatchSubsystem->CreateMatch(UpdateRequest, true, FRH_OnMatchUpdateCompleteDelegate::CreateWeakLambda(Session, [Session, SessionId, InstanceId](bool bSuccess, const FRHAPI_MatchWithPlayers& Match, const FRH_ErrorInfo& ErrorInfo)
+		pMatchSubsystem->CreateMatch(UpdateRequest, true, FRH_OnMatchUpdateCompleteDelegate::CreateWeakLambda(this, [this, WeakSession = MakeWeakObjectPtr(Session), SessionId, InstanceId](bool bSuccess, const FRHAPI_MatchWithPlayers& Match, const FRH_ErrorInfo& ErrorInfo)
 			{
 				if (bSuccess)
 				{
+					// update the state object with the active match id if it still matches
+					auto& State = ActiveSessionState;
+					if (State.Session != nullptr && State.Session->GetSessionId() == SessionId)
+					{
+						State.MatchId = Match.GetMatchId();
+
+						// initialize a PEX collector for the match
+						State.PlayerExperienceCollector = CreatePEXCollector();
+					}
+					
 					// emit an audit event to session hinting at the match id
-					FRHAPI_CreateAuditRequest AuditRequest;
-					AuditRequest.SetSessionId(Session->GetSessionId());
-					if (!InstanceId.IsEmpty())
+					if (WeakSession.IsValid())
 					{
-						AuditRequest.SetInstanceId(InstanceId);
+						auto Session = WeakSession.Get();
+						
+						FRHAPI_CreateAuditRequest AuditRequest;
+						AuditRequest.SetSessionId(Session->GetSessionId());
+						if (!InstanceId.IsEmpty())
+						{
+							AuditRequest.SetInstanceId(InstanceId);
+						}
+
+						const auto MatchId = Match.GetMatchIdOrNull();
+						if (MatchId != nullptr)
+						{
+							AuditRequest.SetMatchId(*MatchId);
+						}
+
+						AuditRequest.SetEventName(TEXT("create_match"));
+
+						Session->EmitAuditEvent(AuditRequest);
 					}
-
-					const auto MatchId = Match.GetMatchIdOrNull();
-					if (MatchId != nullptr)
-					{
-						AuditRequest.SetMatchId(*MatchId);
-					}
-
-					AuditRequest.SetEventName(TEXT("create_match"));
-
-					Session->EmitAuditEvent(AuditRequest);
 				}
 			}));
 	}
 }
+
+URH_PEXCollector* URH_GameInstanceSessionSubsystem::CreatePEXCollector()
+{
+	auto PEXCollector = NewObject<URH_PEXCollector>(this);
+
+	if (PEXCollector->Init())
+	{
+		return PEXCollector;
+	}
+
+	return nullptr;
+}
+
 
 bool URH_GameInstanceSessionSubsystem::GetShouldKeepInstanceHealthAlive_Implementation() const
 {

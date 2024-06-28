@@ -9,6 +9,7 @@
 #include "SessionsAPI.h"
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "RH_SubsystemPluginBase.h"
+#include "RH_PlayerExperienceCollector.h"
 
 #include "RH_SessionData.h"
 #include "RH_Polling.h"
@@ -103,9 +104,18 @@ public:
 	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
 	TArray<FRH_ActiveSessionStatePlayerContext> PlayerContexts;
 
+	/** @brief MatchId for the active session */
+	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
+	FString MatchId;
+	
+	/** @brief Player Experience Collector for the active session */
+	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
+	URH_PEXCollector* PlayerExperienceCollector;
+
 	FRH_ActiveSessionState()
 		: Session(nullptr)
 		, bIsBackfillTerminated(false)
+		, PlayerExperienceCollector(nullptr)
 	{
 	}
 
@@ -116,6 +126,13 @@ public:
 		FallbackSecurityToken.Reset();
 		bIsBackfillTerminated = false;
 		PlayerContexts.Reset();
+		MatchId.Empty();
+		if (PlayerExperienceCollector != nullptr)
+		{
+			PlayerExperienceCollector->Close();
+			PlayerExperienceCollector = nullptr;
+		}
+		
 	}
 };
 
@@ -123,7 +140,7 @@ public:
   * @brief Subsystem for handling sessions within a game instance.
   */
 UCLASS(Config=RallyHereIntegration, DefaultConfig, Within = RH_GameInstanceSubsystem)
-class RALLYHEREINTEGRATION_API URH_GameInstanceSessionSubsystem : public URH_GameInstanceSubsystemPlugin
+class RALLYHEREINTEGRATION_API URH_GameInstanceSessionSubsystem : public URH_GameInstanceSubsystemPlugin, public IRH_PEXOwnerInterface
 {
 	GENERATED_BODY()
 public:
@@ -284,6 +301,16 @@ public:
 	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Session|Instance", meta = (DisplayName = "On Active Session Changed"))
 	FRH_OnActiveSessionChangedDynamicDelegate BLUEPRINT_OnActiveSessionChanged;
 
+	// IRH_PEXOwnerInterface
+	/** @brief Get the engine to use for PEX calls */
+	virtual UEngine* GetPEXEngine() const override;
+	/** @brief Get the world to use for PEX calls */
+	virtual UWorld* GetPEXWorld() const override;
+	/** @brief Get the remote file directory to use for PEX calls */
+	virtual FRH_RemoteFileApiDirectory GetPEXRemoteFileDirectory() const override { return FRH_RemoteFileApiDirectory(ERHAPI_FileType::DeveloperFile, ERHAPI_EntityType::Match, GetPEXMatchId()); }
+	/** @brief Get the match ID to use for PEX calls */
+	virtual FString GetPEXMatchId() const override { return ActiveSessionState.MatchId; }
+	
 protected:
 	/** @brief Session we want to sync to. */
 	UPROPERTY(BlueprintGetter = GetDesiredSession, Transient, Category = "Session|Instance")
@@ -353,7 +380,11 @@ protected:
 	/**
 	 * @brief Creates a match for a given session using the match subsystem
 	 */
-	virtual void CreateMatchForSession(const URH_JoinedSession* Session) const;
+	virtual void CreateMatchForSession(const URH_JoinedSession* Session);
+	/**
+	 * @brief Creates a PlayerExperience (PEX) collector for the active session and match
+	 */
+	virtual class URH_PEXCollector* CreatePEXCollector();
 	/**
 	 * @brief Called when the map completes loading.
 	 * @param [in] pWorld The world that was being traveled to.

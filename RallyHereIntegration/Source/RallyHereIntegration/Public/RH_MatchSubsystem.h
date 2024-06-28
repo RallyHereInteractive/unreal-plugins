@@ -182,6 +182,10 @@ DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_OnMatchPlayerUpdatedCompleteDynamicDele
 DECLARE_DELEGATE_ThreeParams(FRH_OnMatchPlayerUpdateCompleteDelegate, bool, const FRHAPI_MatchPlayerWithMatch&, const FRH_ErrorInfo&);
 DECLARE_RH_DELEGATE_BLOCK(FRH_OnMatchPlayerUpdateCompleteDelegateBlock, FRH_OnMatchPlayerUpdateCompleteDelegate, FRH_OnMatchPlayerUpdatedCompleteDynamicDelegate, bool, const FRHAPI_MatchPlayerWithMatch&, const FRH_ErrorInfo&);
 
+// Broadcast delegates for active match changes
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FRH_OnActiveMatchChangedDynamicDelegate, const FString&, ActiveMatchId);
+DECLARE_MULTICAST_DELEGATE_OneParam(FRH_OnActiveMatchChangedDelegate, const FString&);
+
 /**
  * @brief Match Subsystem used for match API calls.
  */
@@ -272,13 +276,19 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Matches")
 	virtual void SetActiveMatchId(const FString& MatchId)
 	{
-		if (MatchId.IsEmpty())
+		if (MatchId != ActiveMatchId.Get(FString()))
 		{
-			ActiveMatchId.Reset();
-		}
-		else
-		{
-			ActiveMatchId = MatchId;
+			if (MatchId.IsEmpty())
+			{
+				ActiveMatchId.Reset();
+			}
+			else
+			{
+				ActiveMatchId = MatchId;
+			}
+
+			OnActiveMatchChanged.Broadcast(MatchId);
+			BLUEPRINT_OnActiveMatchChanged.Broadcast(MatchId);
 		}
 	}
 	/**
@@ -291,7 +301,17 @@ public:
 	 * @brief Clears the active match
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Matches")
-	virtual void ClearActiveMatchId() { ActiveMatchId.Reset(); }
+	virtual void ClearActiveMatchId() { SetActiveMatchId(FString()); }
+
+	/**
+	 * @brief Event for when the active match changes
+	 */
+	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Matches", meta = (DisplayName = "On Active Match Changed"))
+	FRH_OnActiveMatchChangedDynamicDelegate BLUEPRINT_OnActiveMatchChanged;
+	/**
+	 * @brief Event for when the active match changes
+	 */
+	FRH_OnActiveMatchChangedDelegate OnActiveMatchChanged;
 	
 	/**
 	 * @brief Create a match (POST)

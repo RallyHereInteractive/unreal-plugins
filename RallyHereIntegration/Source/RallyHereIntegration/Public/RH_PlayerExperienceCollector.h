@@ -1,0 +1,703 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "Engine/Engine.h"
+#include "Engine/GameEngine.h"
+#include "UObject/WeakInterfacePtr.h"
+#include "RH_Common.h"
+
+#include "RH_PlayerExperienceCollector.generated.h"
+
+/** @defgroup PlayerExperience RallyHere PlayerExperience
+ *  @{
+ */
+
+UCLASS(Config=RallyHereIntegration)
+class RALLYHEREINTEGRATION_API URH_PEXCollectorConfig : public UObject
+{
+	GENERATED_BODY()
+public:
+	URH_PEXCollectorConfig()
+	{
+		bEnabled = true;
+		
+		bWriteSummaryFile = false;
+		bUploadSummaryToPEXAPI = true;
+		bUploadSummaryToFileAPI = false;
+
+		bWriteTimelineFile = false;
+		bUploadTimelineToFileAPI = false;
+		
+		
+		TimelineWriteInterval = 1;
+		TimelineFilePrefix = TEXT("PEX_Timeline");
+		SummaryFilePrefix = TEXT("PEX_Summary");
+	}
+
+	/** Enable tracking of PEX data */
+	UPROPERTY(Config)
+	bool bEnabled;
+
+	/** Whether to write summary data to file */
+	UPROPERTY(Config)
+	bool bWriteSummaryFile;
+
+	/** Whether to send summary data to the PEX API */
+	UPROPERTY(Config)
+	bool bUploadSummaryToPEXAPI;
+
+	/** Whether to send summary data to the File API (Requires bWriteSummaryFile) */
+	UPROPERTY(Config, meta=(EditCondition=bWriteSummaryFile))
+	bool bUploadSummaryToFileAPI;
+
+	/** Whether to write timeline data to file */
+	UPROPERTY(Config)
+	bool bWriteTimelineFile;
+
+	/** Whether to send timeline data to the File API (Requires bWriteTimelineFile) */
+	UPROPERTY(Config, meta=(EditCondition=bWriteTimelineFile))
+	bool bUploadTimelineToFileAPI;
+
+	/** Interval of writing timeline data to file in seconds (effectively, write every X captures) */
+	UPROPERTY(Config)
+	int32 TimelineWriteInterval;
+
+	/** Prefix for timeline file name */
+	UPROPERTY(Config)
+	FString TimelineFilePrefix;
+
+	/** Prefix for summary file name */
+	UPROPERTY(Config)
+	FString SummaryFilePrefix;
+
+	/** Helper function for whether tracking should be enabled */
+	bool WantsEnabled() const
+	{
+		return bEnabled && (WantsSummary() || WantsTimeline());
+	}
+	
+	/** Helper function for whether summary data should be tracked */
+	bool WantsSummary() const
+	{
+		return bUploadSummaryToPEXAPI || bUploadSummaryToFileAPI || bWriteSummaryFile;
+	}
+
+	/** Helper function for whether timeline data should be tracked */
+	bool WantsTimeline() const
+	{
+		return bUploadTimelineToFileAPI || bWriteTimelineFile;
+	}
+	
+};
+
+UCLASS(Config=RallyHereIntegration)
+class RALLYHEREINTEGRATION_API URH_PEXCollectorConfig_Client : public URH_PEXCollectorConfig
+{
+	GENERATED_BODY()
+public:
+	URH_PEXCollectorConfig_Client()
+	{
+		bEnabled = true;
+		bUploadSummaryToPEXAPI = true;
+		bUploadSummaryToFileAPI = false;
+		bWriteSummaryFile = false;
+		bUploadTimelineToFileAPI = false;
+		bWriteTimelineFile = false;
+	}
+};
+
+UCLASS(Config=RallyHereIntegration)
+class RALLYHEREINTEGRATION_API URH_PEXCollectorConfig_Server : public URH_PEXCollectorConfig
+{
+	GENERATED_BODY()
+public:
+	URH_PEXCollectorConfig_Server()
+	{
+		bEnabled = true;
+		bUploadSummaryToPEXAPI = true;
+		bUploadSummaryToFileAPI = true;
+		bWriteSummaryFile = true;
+		bUploadTimelineToFileAPI = false;
+		bWriteTimelineFile = true;
+	}
+};
+
+/**
+ * @brief PlayerExperience Owner Interface class.
+ */
+UINTERFACE(MinimalAPI, meta = (CannotImplementInterfaceInBlueprint))
+class URH_PEXOwnerInterface : public UInterface
+{
+	GENERATED_BODY()
+};
+
+/**
+ * @brief PlayerExperience Owner Interface.
+ */
+class RALLYHEREINTEGRATION_API IRH_PEXOwnerInterface
+{
+	GENERATED_BODY()
+
+public:
+	/** @brief Get the engine to use for PEX calls */
+	virtual UEngine* GetPEXEngine() const PURE_VIRTUAL(IRH_PEXOwnerInterface::GetPEXEngine, return nullptr;)
+	/** @brief Get the world to use for PEX calls */
+	virtual UWorld* GetPEXWorld() const PURE_VIRTUAL(IRH_PEXOwnerInterface::GetPEXWorld, return nullptr;)
+	/** @brief Get the remote file directory to use for PEX calls */
+	virtual FRH_RemoteFileApiDirectory GetPEXRemoteFileDirectory() const PURE_VIRTUAL(IRH_PEXOwnerInterface::GetPEXRemoteFileDirectory, return FRH_RemoteFileApiDirectory();)
+	/** @brief Get the match ID to use for PEX calls */
+	virtual FString GetPEXMatchId() const PURE_VIRTUAL(IRH_PEXOwnerInterface::GetPEXMatchId, return FString();)
+};
+
+
+/** @brief State of the accumulated stat */
+USTRUCT(BlueprintType)
+struct FRH_PEXStatState
+{
+	GENERATED_BODY()
+	
+	/** @brief Current value */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="PlayerExperience")
+	float Current;
+	/** @brief Minimum value */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="PlayerExperience")
+	float Min;
+	/** @brief Maximum value */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="PlayerExperience")
+	float Max;
+	/** @brief Average value */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="PlayerExperience")
+	float Avg;
+	/** @brief Total value */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="PlayerExperience")
+	float Total;
+	/** @brief Count of values */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="PlayerExperience")
+	int32 Count;
+
+	FRH_PEXStatState()
+		: Current(0.0f)
+		, Min(TNumericLimits<float>::Max())
+		, Max(TNumericLimits<float>::Lowest())
+		, Avg(0.0f)
+		, Total(0.0f)
+		, Count(0)
+	{}
+
+	/** @brief Reset the state to defaults */
+	void Reset()
+	{
+		Current = 0.0f;
+		Min = TNumericLimits<float>::Max();
+		Max = TNumericLimits<float>::Lowest();
+		Avg = 0.0f;
+		Total = 0.0f;
+		Count = 0;
+	}
+
+	/** @brief Add a value to the accumulator */
+	void AddValue(float Value)
+	{
+		Current = Value;
+		Min = FMath::Min(Min, Value);
+		Max = FMath::Max(Max, Value);
+		Total += Value;
+		Count++;
+		
+		Avg = Total / Count;
+	}
+};
+
+/** @brief Enum representing what value should be recorded when only a single value is requested for display or logging */
+UENUM(BlueprintType)
+enum class ERH_PEXValueType : uint8
+{
+	Current,
+	Min,
+	Max,
+	Avg,
+	Total,
+	Count
+};
+
+
+/** @brief Simple accumulator that represents a captured statistic. Tracks min, max, average, and other values internally without having to store all values. */
+USTRUCT(BlueprintType)
+struct FRH_StatAccumulator
+{
+	GENERATED_BODY()
+	
+public:
+	/** @brief Name of the stat */
+	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, Category="PlayerExperience")
+	FName Name;
+	/** @brief Type of value to record for timeline file (which value from the capture state is used to build the timeline data) */
+	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, Category="PlayerExperience")
+	ERH_PEXValueType TimelineValueType;
+	/** @brief Type of value to record for summary (which value from the capture state is used to build the summary data) */
+	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, Category="PlayerExperience")
+	ERH_PEXValueType SummaryValueType;
+
+	/** @brief State of the stat for the current capture */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="PlayerExperience")
+	FRH_PEXStatState CaptureState;
+	/** @brief State of the stat for the summary */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="PlayerExperience")
+	FRH_PEXStatState SummaryState;
+
+	/** @brief Constructor */
+	FRH_StatAccumulator()
+		: Name(NAME_None)
+		, TimelineValueType(ERH_PEXValueType::Max)
+		, SummaryValueType(ERH_PEXValueType::Max)
+	{}
+	
+	/** @brief Constructor */
+	FRH_StatAccumulator(FName InName, ERH_PEXValueType InTimelineValueType=ERH_PEXValueType::Current, ERH_PEXValueType InSummaryValueType=ERH_PEXValueType::Current)
+		: Name(InName)
+		, TimelineValueType(InTimelineValueType)
+		, SummaryValueType(InSummaryValueType)
+	{}
+
+	/** @brief Reset the capture state */
+	void ResetCapture()
+	{
+		CaptureState.Reset();
+	}
+	/** @brief Reset the summary state */
+	void ResetSummary()
+	{
+		SummaryState.Reset();
+	}
+
+	/** @brief Add a value to the accumulator */
+	void CaptureValue(float Value)
+	{
+		CaptureState.AddValue(Value);
+	}
+	/**
+	 * @brief Increment the capture state's current value by 1 and recapture
+	 * @param [in] IncrementBy The amount to increment the current value by (default is 1.0)
+	 */
+	void IncrementCaptureValue(float IncrementBy = 1.0f)
+	{
+		CaptureState.AddValue(CaptureState.Current + IncrementBy);
+	}
+	/** @brief Capture the current value into the summary state */
+	void CaptureSummaryValue()
+	{
+		// if we failed to capture any values, don't add anything to the summary as we could potentially add default values (like TNumericLimits<float>::Max())
+		if (CaptureState.Count == 0)
+		{
+			return;
+		}
+
+		// capture the specified capture value type into the summary state
+		switch (SummaryValueType)
+		{
+		case ERH_PEXValueType::Min:
+			SummaryState.AddValue(CaptureState.Min);
+			break;
+		case ERH_PEXValueType::Max:
+			SummaryState.AddValue(CaptureState.Max);
+			break;
+		case ERH_PEXValueType::Avg:
+			SummaryState.AddValue(CaptureState.Avg);
+			break;
+		case ERH_PEXValueType::Total:
+			SummaryState.AddValue(CaptureState.Total);
+			break;
+		case ERH_PEXValueType::Count:
+			SummaryState.AddValue(CaptureState.Count);
+			break;
+		case ERH_PEXValueType::Current:
+		default:        
+            SummaryState.AddValue(CaptureState.Current);
+            break;
+		}
+	}
+
+	/** @brief Get the name of the stat */
+	FName GetName() const
+	{
+		return Name;
+	}
+	/** @brief Get the value of the stat to be recorded in the timeline */
+	float GetTimelineValue() const
+	{
+		// if we failed to capture any values, rather than writing default values (like TNumericLimits<float>::Max()), just return 0.0f
+		if (CaptureState.Count == 0)
+		{
+			return 0.0f;
+		}
+		
+		switch (TimelineValueType)
+		{
+		case ERH_PEXValueType::Min:
+			return CaptureState.Min;
+		case ERH_PEXValueType::Max:
+			return CaptureState.Max;
+		case ERH_PEXValueType::Avg:
+			return CaptureState.Avg;
+		case ERH_PEXValueType::Total:
+			return CaptureState.Total;
+		case ERH_PEXValueType::Count:
+			return CaptureState.Count;
+		case ERH_PEXValueType::Current:
+		default:
+			return CaptureState.Current;
+		}
+	}
+
+	/** @brief Get a JSON object representing the summary data */
+	TSharedPtr<FJsonObject> GetSummaryJson(bool bIncludeName) const
+	{
+		if (SummaryState.Count == 0)
+		{
+			return nullptr;
+		};
+		
+		TSharedPtr<FJsonObject> SummaryJson = MakeShared<FJsonObject>();
+		if (bIncludeName)
+		{
+			SummaryJson->SetStringField(TEXT("Name"), Name.ToString());
+		}
+		SummaryJson->SetNumberField(TEXT("Min"), SummaryState.Min);
+		SummaryJson->SetNumberField(TEXT("Max"), SummaryState.Max);
+		SummaryJson->SetNumberField(TEXT("Avg"), SummaryState.Avg);
+		SummaryJson->SetNumberField(TEXT("Total"), SummaryState.Total);
+		SummaryJson->SetNumberField(TEXT("Count"), SummaryState.Count);
+		return SummaryJson;
+	}
+};
+
+/** @brief Base class for a group of stats */
+UCLASS(BlueprintType)
+class URH_PEXStatGroup : public UObject
+{
+	GENERATED_BODY()
+public:
+
+	/** @brief Name of the stat group */
+	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, Category="PlayerExperience")
+	FName Name;
+	/** @brief Array of stats to track */
+	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, Category="PlayerExperience")
+	TArray<FRH_StatAccumulator> Stats;
+
+	/** @brief Capture once-per-frame stats */
+	virtual void CapturePerFrameStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) {}
+	/** @brief Capture once-per-second stats */
+	virtual void CapturePerSecondStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) {}
+	
+	/** @brief Reset the capture state of all stats */
+	virtual void ResetCapture()
+	{
+		for (int i = 0; i < Stats.Num(); ++i)
+		{
+			Stats[i].ResetCapture();
+		}
+	}
+	/** @brief Reset the summary state of all stats */
+	virtual void ResetSummary()
+	{
+		for (int i = 0; i < Stats.Num(); ++i)
+		{
+			Stats[i].ResetSummary();
+		}
+	}
+	/** @brief Reset both the capture and summary states of all stats */
+	virtual void ResetStats()
+	{
+		ResetCapture();
+		ResetSummary();
+	}
+
+	/** @brief Update the summary state of all stats */
+	virtual void UpdateSummary()
+	{
+		for (int i = 0; i < Stats.Num(); ++i)
+		{
+			Stats[i].CaptureSummaryValue();
+		}
+	}
+
+	/** @brief Write the summary data to a JSON object */
+	virtual void WriteSummary(TSharedRef<FJsonObject>& Document)
+	{
+		auto StatGroupJsonData = MakeShared<FJsonObject>();
+		for (int i = 0; i < Stats.Num(); ++i)
+		{
+			const auto& Stat = Stats[i];
+			const auto& StatName = Stat.GetName();
+			
+			// if we have any summary data, add it to the stat group
+			auto SummaryData = Stat.GetSummaryJson(true);
+			if (SummaryData.IsValid() && SummaryData->Values.Num() > 0)
+			{
+				StatGroupJsonData->SetObjectField(StatName.ToString(), SummaryData);
+			}
+		}
+
+		// if we have any stats, add the stat group to the document
+		if (StatGroupJsonData->Values.Num() > 0)
+		{
+			Document->SetObjectField(Name.ToString(), StatGroupJsonData);
+		}
+	}
+
+	/** @brief Write the timeline data header to a CSV file for all stats */
+	virtual FString GetTimelineCSVHeader()
+	{
+		FString HeaderString;
+		for (int i = 0; i < Stats.Num(); ++i)
+		{
+			if (!HeaderString.IsEmpty())
+			{
+				HeaderString += TEXT(",");
+			}
+			HeaderString += Stats[i].GetName().ToString();
+		}
+
+		return HeaderString;
+	}
+	/** @brief Write the timeline data values to a CSV file for all stats */
+	virtual FString GetTimelineCSVValues()
+	{
+		FString ValueString;
+		for (int i = 0; i < Stats.Num(); ++i)
+		{
+			if (!ValueString.IsEmpty())
+			{
+				ValueString += TEXT(",");
+			}
+
+			// if the value is close to an integer, round it
+			float Value = Stats[i].GetTimelineValue();
+			int Rounded = FMath::RoundToInt(Value);
+			if (FMath::IsNearlyZero(Value - Rounded))
+			{
+				ValueString += FString::Printf(TEXT("%d"), Rounded);
+			}
+			else
+			{
+				ValueString += FString::Printf(TEXT("%f"), Value);
+			}
+		}
+		
+		return ValueString;
+	}
+};
+
+/**
+ * @brief PlayerExperience Collector class, responsible for collecting and tracking PEX data via PEX Stat Groups.
+ */
+UCLASS(Config=RallyHereIntegration)
+class URH_PEXCollector : public UObject
+{
+	GENERATED_BODY()
+public:
+    URH_PEXCollector();
+    virtual ~URH_PEXCollector() override;
+
+	/** @brief Initialize the collector.  Can only be done once */
+    virtual bool Init();
+	/** @brief Tick the collector, updating per frame stats and potentially per second stats. */
+    virtual void OnEndFrame();
+
+	/** @brief Retrieve the config to use for this collector instance */
+	static const URH_PEXCollectorConfig* GetConfig()
+    {
+    	if (IsRunningDedicatedServer())
+    	{
+    		return GetDefault<URH_PEXCollectorConfig_Server>();
+    	}
+	    
+    	return GetDefault<URH_PEXCollectorConfig_Client>();
+    }
+
+	/** Closes state, writes summary if needed, and uploads data if needed.  Can only be done once. */
+	void Close();
+	
+	/** Writes summary data to file and/or API, and uploads any data requested, can only be called once */
+	void WriteSummary();
+	
+protected:
+	/** Cached owner of the collector */
+    TWeakInterfacePtr<IRH_PEXOwnerInterface> Owner;
+
+	/** Cached match id to use for routing the captured data to storage.  Cached so it does not change mid-capture */
+	UPROPERTY(BlueprintReadOnly, Category="PlayerExperience")
+	FString CachedMatchId;
+	/** Cached remote file directory to use for routing the captured data to storage.  Cached so it does not change mid-capture */
+	UPROPERTY(BlueprintReadOnly, Category="PlayerExperience")
+	FRH_RemoteFileApiDirectory CachedRemoteFileDirectory;
+
+	/** Whether the collector has been initialized, to guard against it being initialized multiple times. */
+	UPROPERTY(BlueprintReadOnly, Category="PlayerExperience")
+	bool bHasBeenInitialized;
+
+	/** Whether the collector has been closed, to guard against it being closed multiple times. */
+	UPROPERTY(BlueprintReadOnly, Category="PlayerExperience")
+	bool bHasBeenClosed;
+	
+	/** Whether the summary data has been written, to guard against it being written multiple times. */
+	UPROPERTY(BlueprintReadOnly, Category="PlayerExperience")
+	bool bHasWrittenSummary;
+
+	/** Time accumulator so that time is always monotonic */
+	UPROPERTY(BlueprintReadOnly, Category="PlayerExperience")
+	double TimeTracker;
+
+	/** Array of StatGroups to capture */
+	UPROPERTY(BlueprintReadWrite, Config, EditDefaultsOnly, Category="PlayerExperience")
+	TSet<TSubclassOf<URH_PEXStatGroup>> StatGroupsToCapture;
+	
+	UPROPERTY(BlueprintReadOnly, Transient, Category="PlayerExperience")
+	TArray<URH_PEXStatGroup*> StatGroups;
+
+	/** Internal helper to upload a file to remote file storage */
+	void UploadFile(const FString& FilePath, const FString& RemoteFileName) const;
+
+	/** Local file archive to write timeline data to */
+	class FArchive* TimelineFileCSV;
+
+	/** Cached file path for timeline file */
+	FString TimelineFilePath;
+};
+
+//////////////////////////////////////////////////////////////////////////////////////
+
+/** @brief Stat group for capturing primary stats */
+UCLASS()
+class URH_PEXPrimaryStats : public URH_PEXStatGroup
+{
+	GENERATED_BODY()
+
+public:
+	enum ECaptureStat
+	{
+		FrameTime,
+		GameThreadTime,
+		RenderThreadTime,
+		RHIThreadTime,
+		GPUTime,
+		DeltaTime,
+
+		TickCount,
+		DelayedTickCount,
+	
+		MemoryWS,
+		MemoryVB,
+		CPUProcess,
+		CPUMachine,
+
+		Max
+	};
+
+	URH_PEXPrimaryStats();
+	
+	virtual void CapturePerFrameStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;
+	virtual void CapturePerSecondStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;
+};
+
+/** @brief Stat group for capturing network stats */
+UCLASS()
+class URH_PEXNetworkStats : public URH_PEXStatGroup
+{
+	GENERATED_BODY()
+
+public:
+	enum ECaptureStat
+	{
+		ConnectionCount,
+		AvgPing,
+		InPackets,
+		OutPackets,
+		TotalPackets,
+		InPacketsLost,
+		OutPacketsLost,
+		TotalPacketsLost,
+		PacketLoss,
+
+		Max
+	};
+
+	URH_PEXNetworkStats();
+	
+	virtual void CapturePerFrameStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;
+	virtual void CapturePerSecondStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;
+};
+
+/** @brief Stat group for capturing game stats */
+UCLASS()
+class URH_PEXGameStats : public URH_PEXStatGroup
+{
+	GENERATED_BODY()
+
+public:
+	enum ECaptureStat
+	{
+		PlayerControllerCount,
+		AIControllerCount,
+		PawnCount,
+
+		Max
+	};
+
+	URH_PEXGameStats();
+	
+	virtual void CapturePerFrameStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;
+	virtual void CapturePerSecondStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;
+};
+
+
+/** @brief Blueprintable stat group for capturing stats */
+UCLASS(BlueprintType, Blueprintable)
+class URH_PEXBlueprintableStats : public URH_PEXStatGroup
+{
+	GENERATED_BODY()
+
+public:
+	URH_PEXBlueprintableStats() {}
+	
+	virtual void CapturePerFrameStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override
+	{
+		BLUEPRINT_CapturePerFrameStats(Owner);
+	}
+	virtual void CapturePerSecondStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override
+	{
+		BLUEPRINT_CapturePerSecondStats(Owner);
+	}
+
+	UFUNCTION(BlueprintImplementableEvent, Category="PlayerExperience")
+	void BLUEPRINT_CapturePerFrameStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner);
+	UFUNCTION(BlueprintImplementableEvent, Category="PlayerExperience")
+	void BLUEPRINT_CapturePerSecondStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner);
+
+	UFUNCTION(BlueprintCallable, Category="PlayerExperience")
+	void CaptureValue(FName StatName, float Value)
+	{
+		for (int i = 0; i < Stats.Num(); ++i)
+		{
+			if (Stats[i].GetName() == StatName)
+			{
+				Stats[i].CaptureValue(Value);
+				return;
+			}
+		}
+	}
+
+	UFUNCTION(BlueprintCallable, Category="PlayerExperience")
+	static void CaptureStatValue(FRH_StatAccumulator& InStat, float Value)
+	{
+		InStat.CaptureValue(Value);
+	}
+};
+
+//////////////////////////////////////////////////////////////////////////////////////
+
+/** @} */
