@@ -69,6 +69,7 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 	PlayerMatchesMaxAge = FTimespan(30, 0, 0, 0);
 
 	bAutoUploadServerFiles = false;
+	AutoUploadServerFilesChance = 1;
 	bAutoUploadLogFiles = true;
 	bAutoUploadTraceFiles = true;
 
