@@ -1689,7 +1689,7 @@ bool URH_GameInstanceServerBootstrapper::CanAutoUploadServerFiles() const
 			auto fChance = FMath::Clamp(Settings->AutoUploadServerFilesChance, 0.0f, 1.0f);
 			bUploadChance = FMath::FRand() < fChance;
 		}
-		return bUploadChance.GetValue();		
+		return bUploadChance.GetValue();
 	}
 	
 	return false;
