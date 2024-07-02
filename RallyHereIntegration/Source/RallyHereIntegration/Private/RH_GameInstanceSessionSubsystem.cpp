@@ -242,6 +242,11 @@ UWorld* URH_GameInstanceSessionSubsystem::GetPEXWorld() const
 	return GetGameInstanceSubsystem()->GetWorld();	
 }
 
+FRH_RemoteFileApiDirectory URH_GameInstanceSessionSubsystem::GetPEXRemoteFileDirectory() const
+{
+	return URH_MatchSubsystem::GetMatchDeveloperFileDirectory(GetActiveMatchId());
+}
+
 void URH_GameInstanceSessionSubsystem::OnNetworkFailure(UWorld* World, UNetDriver* NetDriver, ENetworkFailure::Type FailureType, const FString& ErrorString)
 {
 	// Stub in case it is needed, the default engine handler should close the map which we detect above
@@ -304,8 +309,9 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 		if (Settings->bAutoCloseMatchOnSessionInactive)
 		{
 			// Send a match update that the match is now in the closed state
-			if (MatchSubsystem != nullptr && MatchSubsystem->HasActiveMatchId())
+			if (MatchSubsystem != nullptr && !ActiveSessionState.MatchId.IsEmpty())
 			{
+				const auto& MatchId = ActiveSessionState.MatchId;
 				// send an update with the close state and end time
 				FRHAPI_MatchRequest UpdateRequest;
 				UpdateRequest.SetEndTimestamp(FDateTime::UtcNow());
@@ -313,7 +319,7 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 
 				// if we can calculate a duration, do so.  Grab the cached match data since it should have been cached at least once on creation
 				FRHAPI_MatchWithPlayers OldMatch;
-				if (MatchSubsystem->GetMatch(MatchSubsystem->GetActiveMatchId(), OldMatch))
+				if (MatchSubsystem->GetMatch(MatchId, OldMatch))
 				{
 					const auto StartTime = OldMatch.GetStartTimestampOrNull();
 					if (StartTime != nullptr)
@@ -323,7 +329,7 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 					}
 				}
 
-				MatchSubsystem->UpdateMatch(MatchSubsystem->GetActiveMatchId(), UpdateRequest);
+				MatchSubsystem->UpdateMatch(MatchId, UpdateRequest);
 
 				// Trigger the bootstrapper log file upload if configured
 				if (GetGameInstanceSubsystem()->GetServerBootstrapper() != nullptr)
@@ -332,7 +338,7 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 				}
 
 				// clear out the active match id
-				MatchSubsystem->SetActiveMatchId(FString());
+				ActiveSessionState.MatchId.Empty();
 			}
 		}
 	}
@@ -776,14 +782,15 @@ void URH_GameInstanceSessionSubsystem::GameModePostLoginEvent(class AGameModeBas
 		// update the match player
 		auto Settings = GetDefault<URH_IntegrationSettings>();
 		auto pMatchSubsystem = GetGameInstanceSubsystem()->GetMatchSubsystem();
-		if (pMatchSubsystem != nullptr && pMatchSubsystem->HasActiveMatchId() && Settings->bAutoAddConnectedPlayersToMatches)
+		auto MatchId = GetActiveMatchId();
+		if (pMatchSubsystem != nullptr && !MatchId.IsEmpty() && Settings->bAutoAddConnectedPlayersToMatches)
 		{
 			FRHAPI_MatchPlayerRequest MatchPlayer;
 
 			MatchPlayer.SetPlayerUuid(PlayerContext->RHPlayerId);
 			MatchPlayer.SetJoinedMatchTimestamp(PlayerContext->JoinedTime);
 
-			pMatchSubsystem->UpdateMatchPlayer(pMatchSubsystem->GetActiveMatchId(), PlayerContext->RHPlayerId, MatchPlayer);
+			pMatchSubsystem->UpdateMatchPlayer(MatchId, PlayerContext->RHPlayerId, MatchPlayer);
 		}
 	}
 }
@@ -833,14 +840,15 @@ void URH_GameInstanceSessionSubsystem::GameModeLogoutEvent(class AGameModeBase* 
 	{
 		auto Settings = GetDefault<URH_IntegrationSettings>();
 		auto pMatchSubsystem = GetGameInstanceSubsystem()->GetMatchSubsystem();
-		if (pMatchSubsystem != nullptr && pMatchSubsystem->HasActiveMatchId() && Settings->bAutoAddConnectedPlayersToMatches)
+		auto MatchId = GetActiveMatchId();
+		if (pMatchSubsystem != nullptr && !MatchId.IsEmpty() && Settings->bAutoAddConnectedPlayersToMatches)
 		{
 			FRHAPI_MatchPlayerRequest MatchPlayer;
 			MatchPlayer.SetPlayerUuid(PlayerContext->RHPlayerId);
 			MatchPlayer.SetLeftMatchTimestamp(PlayerContext->LeaveTime);
 			MatchPlayer.SetDurationSeconds(PlayerContext->DurationSeconds);
 
-			pMatchSubsystem->UpdateMatchPlayer(pMatchSubsystem->GetActiveMatchId(), PlayerContext->RHPlayerId, MatchPlayer);
+			pMatchSubsystem->UpdateMatchPlayer(MatchId, PlayerContext->RHPlayerId, MatchPlayer);
 		}
 	}
 }
@@ -975,7 +983,7 @@ void URH_GameInstanceSessionSubsystem::CreateMatchForSession(const URH_JoinedSes
 		}
 
 		// create the match and set as active
-		pMatchSubsystem->CreateMatch(UpdateRequest, true, FRH_OnMatchUpdateCompleteDelegate::CreateWeakLambda(this, [this, WeakSession = MakeWeakObjectPtr(Session), SessionId, InstanceId](bool bSuccess, const FRHAPI_MatchWithPlayers& Match, const FRH_ErrorInfo& ErrorInfo)
+		pMatchSubsystem->CreateMatch(UpdateRequest, FRH_OnMatchUpdateCompleteDelegate::CreateWeakLambda(this, [this, WeakSession = MakeWeakObjectPtr(Session), SessionId, InstanceId](bool bSuccess, const FRHAPI_MatchWithPlayers& Match, const FRH_ErrorInfo& ErrorInfo)
 			{
 				if (bSuccess)
 				{

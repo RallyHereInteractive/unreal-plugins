@@ -301,15 +301,26 @@ public:
 	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Session|Instance", meta = (DisplayName = "On Active Session Changed"))
 	FRH_OnActiveSessionChangedDynamicDelegate BLUEPRINT_OnActiveSessionChanged;
 
+	/**
+	 * @brief Get the active session state object
+	 */
+	UFUNCTION(BlueprintPure, Category = "Session|Instance")
+	const FRH_ActiveSessionState& GetActiveSessionState() const { return ActiveSessionState; }
+	/**
+	 * @brief Get the active session state object
+	 */
+	UFUNCTION(BlueprintPure, Category = "Session|Instance")
+	const FString& GetActiveMatchId() const { return ActiveSessionState.MatchId; }
+	
 	// IRH_PEXOwnerInterface
 	/** @brief Get the engine to use for PEX calls */
 	virtual UEngine* GetPEXEngine() const override;
 	/** @brief Get the world to use for PEX calls */
 	virtual UWorld* GetPEXWorld() const override;
 	/** @brief Get the remote file directory to use for PEX calls */
-	virtual FRH_RemoteFileApiDirectory GetPEXRemoteFileDirectory() const override { return FRH_RemoteFileApiDirectory(ERHAPI_FileType::DeveloperFile, ERHAPI_EntityType::Match, GetPEXMatchId()); }
+	virtual FRH_RemoteFileApiDirectory GetPEXRemoteFileDirectory() const override;
 	/** @brief Get the match ID to use for PEX calls */
-	virtual FString GetPEXMatchId() const override { return ActiveSessionState.MatchId; }
+	virtual FString GetPEXMatchId() const override { return GetActiveMatchId(); }
 	
 protected:
 	/** @brief Session we want to sync to. */

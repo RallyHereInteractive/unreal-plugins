@@ -651,14 +651,7 @@ void URH_GameInstanceServerBootstrapper::Recycle()
 
 	// dispose of the previous game host adapter
 	GameHostProvider.Reset();
-
-	// if a match is marked as active in the match subsystem, clear it out so that we do not write any data to it on initialization
-	auto MatchSubsystem = GetGameInstanceSubsystem()->GetMatchSubsystem();
-	if (MatchSubsystem != nullptr && MatchSubsystem->HasActiveMatchId())
-	{
-		MatchSubsystem->SetActiveMatchId(TEXT(""));
-	}
-
+	
 	// we have already logged in, restart registration
 	BeginRegistration();
 }
@@ -1686,13 +1679,17 @@ bool URH_GameInstanceServerBootstrapper::CanAutoUploadServerFiles() const
 FRH_RemoteFileApiDirectory URH_GameInstanceServerBootstrapper::GetAutoUploadDirectory(bool bDeveloperFile) const
 {
 	auto GISS = GetGameInstanceSubsystem();
-	if (GISS != nullptr && GISS->GetMatchSubsystem() != nullptr)
+	if (GISS != nullptr && GISS->GetSessionSubsystem() != nullptr)
 	{
-		if (bDeveloperFile)
+		const auto MatchId = GISS->GetSessionSubsystem()->GetActiveMatchId();
+		if (!MatchId.IsEmpty())
 		{
-			return GISS->GetMatchSubsystem()->GetMatchDeveloperFileDirectory(GISS->GetMatchSubsystem()->GetActiveMatchId());
+			if (bDeveloperFile)
+			{
+				return URH_MatchSubsystem::GetMatchDeveloperFileDirectory(MatchId);
+			}
+			return URH_MatchSubsystem::GetMatchFileDirectory(MatchId);
 		}
-		return GISS->GetMatchSubsystem()->GetMatchFileDirectory(GISS->GetMatchSubsystem()->GetActiveMatchId());
 	}
 	return FRH_RemoteFileApiDirectory();
 }
