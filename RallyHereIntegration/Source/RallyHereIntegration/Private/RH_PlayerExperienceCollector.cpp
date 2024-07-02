@@ -5,7 +5,9 @@
 #include "PerfCountersModule.h"
 #include "RH_Common.h"
 #include "RH_GameInstanceSubsystem.h"
+#include "RH_LocalPlayer.h"
 #include "RH_RemoteFileSubsystem.h"
+#include "Net/NetPing.h"
 #include "Net/PerfCountersHelpers.h"
 
 URH_PEXCollector::URH_PEXCollector()
@@ -243,7 +245,12 @@ void URH_PEXCollector::WriteSummary()
 		
 		for (const auto StatGroup : StatGroups)
 		{
-			StatGroup->WriteSummary(Document);
+			auto SummaryData = StatGroup->GetSummary();
+
+			if (SummaryData.IsValid())
+			{
+				Document->SetObjectField(StatGroup->GroupName.ToString(), SummaryData);
+			}
 		}
 
 		// serialize to string
@@ -292,7 +299,7 @@ void URH_PEXCollector::UploadFile(const FString& FilePath, const FString& Remote
 
 URH_PEXPrimaryStats::URH_PEXPrimaryStats()
 {
-	Name = TEXT("Primary");
+	GroupName = TEXT("Primary");
 	
 	Stats.Reserve(Max);
 	
@@ -375,9 +382,9 @@ void URH_PEXPrimaryStats::CapturePerSecondStats(const TScriptInterface<IRH_PEXOw
 	Stats[CPUProcess].CaptureValue(FPlatformTime::GetCPUTime().CPUTimePctRelative);
 }
 
-URH_PEXNetworkStats::URH_PEXNetworkStats()
+URH_PEXNetworkStats_Base::URH_PEXNetworkStats_Base()
 {
-	Name = TEXT("Network");
+	GroupName = TEXT("BaseNetwork");
 	
 	Stats.Reserve(Max);
 	
@@ -403,11 +410,11 @@ URH_PEXNetworkStats::URH_PEXNetworkStats()
 }
 
 
-void URH_PEXNetworkStats::CapturePerFrameStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner)
+void URH_PEXNetworkStats_Global::CapturePerFrameStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner)
 {
 }
 
-void URH_PEXNetworkStats::CapturePerSecondStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner)
+void URH_PEXNetworkStats_Global::CapturePerSecondStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner)
 {
 	// network
 	const auto ValueNumConnections  = PerfCountersGet(TEXT("NumConnections"), 0);
@@ -428,9 +435,146 @@ void URH_PEXNetworkStats::CapturePerSecondStats(const TScriptInterface<IRH_PEXOw
 	Stats[PacketLoss].CaptureValue(((float)(ValueInPacketsLost + ValueOutPacketsLost)) / FMath::Max<float>(1.0f, (float)(ValueInPackets + ValueOutPackets)));
 }
 
+void URH_PEXNetworkStats_Connection::InitForConnection(const class UNetConnection* InConnection)
+{
+	Connection = InConnection;
+}
+
+
+void URH_PEXNetworkStats_Connection::CapturePerFrameStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner)
+{
+
+}
+void URH_PEXNetworkStats_Connection::CapturePerSecondStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner)
+{
+	if (ensure(Connection.IsValid()))
+	{
+		Stats[ConnectionCount].CaptureValue(1.0 + Connection->Children.Num());
+
+		// use the ping value displayed and sent via the playerstate
+		if (Connection->PlayerController != nullptr && Connection->PlayerController->PlayerState != nullptr)
+		{
+			float ConnPing = Connection->PlayerController->PlayerState->ExactPing;
+			Stats[AvgPing].CaptureValue(ConnPing);
+		}
+		
+		Stats[InPackets].CaptureValue(Connection->InPackets);
+		Stats[OutPackets].CaptureValue(Connection->OutPackets);
+		Stats[TotalPackets].CaptureValue(Connection->InPackets + Connection->OutPackets);
+		Stats[InPacketsLost].CaptureValue(Connection->InPacketsLost);
+		Stats[OutPacketsLost].CaptureValue(Connection->OutPacketsLost);
+		Stats[TotalPacketsLost].CaptureValue(Connection->InPacketsLost + Connection->OutPacketsLost);
+		Stats[PacketLoss].CaptureValue(((float)(Connection->InPacketsLost + Connection->OutPacketsLost)) / FMath::Max<float>(1.0f, (float)(Connection->InPackets + Connection->OutPackets)));
+	}
+}
+
+URH_PEXNetworkStats::URH_PEXNetworkStats()
+{
+	GroupName = TEXT("NetworkStats");
+	GlobalNetworkStats = CreateDefaultSubobject<URH_PEXNetworkStats_Global>(TEXT("GlobalNetworkStats"));
+	ServerNetworkStats = CreateDefaultSubobject<URH_PEXNetworkStats_Connection>(TEXT("ServerNetworkStats"));
+}
+
+void URH_PEXNetworkStats::GetOrCreatePlayerNetworkStats(const UNetConnection* Connection, URH_PEXNetworkStats_Connection*& OutPlayerNetworkStats)
+{
+	OutPlayerNetworkStats = nullptr;
+	
+	const IRH_IpConnectionInterface* RHIpConnection = Cast<const IRH_IpConnectionInterface>(Connection);
+	if (RHIpConnection != nullptr && RHIpConnection->GetRHPlayerUuid().IsValid())
+	{
+		auto Existing = PlayerNetworkStats.Find(RHIpConnection->GetRHPlayerUuid());
+		if (Existing != nullptr)
+		{
+			OutPlayerNetworkStats = *Existing;
+		}
+		else
+		{
+			OutPlayerNetworkStats = NewObject<URH_PEXNetworkStats_Connection>(this);
+			PlayerNetworkStats.Add(RHIpConnection->GetRHPlayerUuid(), OutPlayerNetworkStats);
+		}
+	}
+}
+	
+void URH_PEXNetworkStats::CapturePerFrameStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner)
+{
+	Super::CapturePerFrameStats(Owner);
+
+	if (GlobalNetworkStats)
+	{
+		GlobalNetworkStats->CapturePerFrameStats(Owner);
+	}
+	
+	const auto World = Owner->GetPEXWorld();
+	if (World != nullptr && World->GetNetDriver() != nullptr)
+	{
+		const auto NetDriver = World->GetNetDriver();
+		
+		// trace server connection to all clients
+		for (auto Connection : NetDriver->ClientConnections)
+		{
+			URH_PEXNetworkStats_Connection* PlayerTracker = nullptr;
+			GetOrCreatePlayerNetworkStats(Connection, PlayerTracker);
+			if (PlayerTracker != nullptr)
+			{
+				// make sure the tracker is initialized for this connection
+				PlayerTracker->InitForConnection(Connection);
+				
+				PlayerTracker->CapturePerFrameStats(Owner);
+			}
+		}
+
+		// trace client connection to server
+		if (NetDriver->ServerConnection != nullptr)
+		{
+			// make sure the tracker is initialized for this connection
+			ServerNetworkStats->InitForConnection(NetDriver->ServerConnection);
+			
+			ServerNetworkStats->CapturePerFrameStats(Owner);
+		}
+	}
+}
+void URH_PEXNetworkStats::CapturePerSecondStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner)
+{
+	Super::CapturePerSecondStats(Owner);
+
+	if (GlobalNetworkStats)
+	{
+		GlobalNetworkStats->CapturePerFrameStats(Owner);
+	}
+	
+	const auto World = Owner->GetPEXWorld();
+	if (World != nullptr && World->GetNetDriver() != nullptr)
+	{
+		const auto NetDriver = World->GetNetDriver();
+
+		// trace server connection to all clients
+		for (auto Connection : NetDriver->ClientConnections)
+		{
+			URH_PEXNetworkStats_Connection* PlayerTracker = nullptr;
+			GetOrCreatePlayerNetworkStats(Connection, PlayerTracker);
+			if (PlayerTracker != nullptr)
+			{
+				// make sure the tracker is initialized for this connection
+				PlayerTracker->InitForConnection(Connection);
+				
+				PlayerTracker->CapturePerSecondStats(Owner);
+			}
+		}
+
+		// trace client connection to server
+		if (NetDriver->ServerConnection != nullptr)
+		{
+			// make sure the tracker is initialized for this connection
+			ServerNetworkStats->InitForConnection(NetDriver->ServerConnection);
+			
+			ServerNetworkStats->CapturePerSecondStats(Owner);
+		}
+	}
+}
+
 URH_PEXGameStats::URH_PEXGameStats()
 {
-	Name = TEXT("Game");
+	GroupName = TEXT("Game");
 	
 	Stats.Reserve(Max);
 	

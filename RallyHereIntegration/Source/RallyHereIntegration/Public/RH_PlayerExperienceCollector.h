@@ -383,7 +383,7 @@ public:
 
 	/** @brief Name of the stat group */
 	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, Category="PlayerExperience")
-	FName Name;
+	FName GroupName;
 	/** @brief Array of stats to track */
 	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, Category="PlayerExperience")
 	TArray<FRH_StatAccumulator> Stats;
@@ -425,8 +425,11 @@ public:
 		}
 	}
 
-	/** @brief Write the summary data to a JSON object */
-	virtual void WriteSummary(TSharedRef<FJsonObject>& Document)
+	/**
+	 * @brief Write the summary data to a JSON object
+	 * @return The JSON object containing the summary data
+	 */
+	virtual TSharedPtr<FJsonObject> GetSummary() const
 	{
 		auto StatGroupJsonData = MakeShared<FJsonObject>();
 		for (int i = 0; i < Stats.Num(); ++i)
@@ -445,12 +448,13 @@ public:
 		// if we have any stats, add the stat group to the document
 		if (StatGroupJsonData->Values.Num() > 0)
 		{
-			Document->SetObjectField(Name.ToString(), StatGroupJsonData);
+			return StatGroupJsonData.ToSharedPtr();
 		}
+		return nullptr;
 	}
 
 	/** @brief Write the timeline data header to a CSV file for all stats */
-	virtual FString GetTimelineCSVHeader()
+	virtual FString GetTimelineCSVHeader() const
 	{
 		FString HeaderString;
 		for (int i = 0; i < Stats.Num(); ++i)
@@ -465,7 +469,7 @@ public:
 		return HeaderString;
 	}
 	/** @brief Write the timeline data values to a CSV file for all stats */
-	virtual FString GetTimelineCSVValues()
+	virtual FString GetTimelineCSVValues() const
 	{
 		FString ValueString;
 		for (int i = 0; i < Stats.Num(); ++i)
@@ -604,9 +608,9 @@ public:
 	virtual void CapturePerSecondStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;
 };
 
-/** @brief Stat group for capturing network stats */
+/** @brief Stat group for capturing whole-state network stats */
 UCLASS()
-class URH_PEXNetworkStats : public URH_PEXStatGroup
+class URH_PEXNetworkStats_Base : public URH_PEXStatGroup
 {
 	GENERATED_BODY()
 
@@ -626,7 +630,222 @@ public:
 		Max
 	};
 
+	URH_PEXNetworkStats_Base();
+};
+
+
+/** @brief Stat group for capturing global network stats */
+UCLASS()
+class URH_PEXNetworkStats_Global : public URH_PEXNetworkStats_Base
+{
+	GENERATED_BODY()
+public:
+
+	URH_PEXNetworkStats_Global()
+	{
+		GroupName = TEXT("GlobalNetworkStats");
+	}
+	
+	virtual void CapturePerFrameStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;
+	virtual void CapturePerSecondStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;	
+};
+
+class UNetConnection;
+
+
+/** @brief Stat group for capturing per-player network stats */
+UCLASS()
+class URH_PEXNetworkStats_Connection : public URH_PEXNetworkStats_Base
+{
+	GENERATED_BODY()
+public:
+
+	URH_PEXNetworkStats_Connection()
+	{
+		GroupName = TEXT("ConnetionNetworkStats");
+	}
+
+	void InitForConnection(const UNetConnection* InConnection);
+
+	TWeakObjectPtr<const UNetConnection> Connection;
+	
+	virtual void CapturePerFrameStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;
+	virtual void CapturePerSecondStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;	
+};
+
+/** @brief Stat group for capturing local whole-state network stats, plus per-player stats */
+UCLASS()
+class URH_PEXNetworkStats : public URH_PEXStatGroup
+{
+	GENERATED_BODY()
+public:
+
 	URH_PEXNetworkStats();
+	
+	/** Global network stats, used by summary and timeline */
+	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, Category="PlayerExperience")
+	URH_PEXNetworkStats_Global* GlobalNetworkStats;
+	
+	/** Per-player network stats, only used by summary */
+	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, Category="PlayerExperience")
+	TMap<FGuid, URH_PEXNetworkStats_Connection*> PlayerNetworkStats;
+
+	/** Client's server connection, only used by summary */
+	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, Category="PlayerExperience")
+	URH_PEXNetworkStats_Connection* ServerNetworkStats;
+	
+	/** @brief Reset the capture state of all stats */
+	virtual void ResetCapture() override
+	{
+		Super::ResetCapture();
+
+		if (GlobalNetworkStats != nullptr)
+		{
+			GlobalNetworkStats->ResetCapture();
+		}
+		for (auto PlayerNetworkStatsPair : PlayerNetworkStats)
+		{
+			PlayerNetworkStatsPair.Value->ResetCapture();
+		}
+	}
+	/** @brief Reset the summary state of all stats */
+	virtual void ResetSummary() override
+	{
+		Super::ResetSummary();
+
+		if (GlobalNetworkStats != nullptr)
+		{
+			GlobalNetworkStats->ResetSummary();
+		}
+
+		// network stats are only used by the summary and are dynamic, so just clear the entire map
+		PlayerNetworkStats.Reset();
+	}
+	
+	/** @brief Write the timeline data header to a CSV file for all stats */
+	virtual FString GetTimelineCSVHeader() const override
+	{
+		FString HeaderString = Super::GetTimelineCSVHeader();
+
+		if (GlobalNetworkStats != nullptr)
+		{
+			FString GlobalHeader = GlobalNetworkStats->GetTimelineCSVHeader();
+			if (!GlobalHeader.IsEmpty())
+			{
+				if (!HeaderString.IsEmpty())
+				{
+					HeaderString += TEXT(",");
+				}
+				HeaderString += GlobalHeader;
+			}
+		}
+
+		return HeaderString;
+	}
+	/** @brief Write the timeline data values to a CSV file for all stats */
+	virtual FString GetTimelineCSVValues() const override
+	{
+		FString ValueString = Super::GetTimelineCSVValues();
+
+		if (GlobalNetworkStats != nullptr)
+		{
+			FString GlobalValues = GlobalNetworkStats->GetTimelineCSVValues();
+			if (!GlobalValues.IsEmpty())
+			{
+				if (!ValueString.IsEmpty())
+				{
+					ValueString += TEXT(",");
+				}
+				ValueString += GlobalValues;
+			}
+		}
+
+		return ValueString;
+	}
+
+	/** @brief Update the summary state of all stats */
+	virtual void UpdateSummary() override
+	{
+		Super::UpdateSummary();
+
+		if (GlobalNetworkStats != nullptr)
+		{
+			GlobalNetworkStats->UpdateSummary();
+		}
+		if (ServerNetworkStats != nullptr)
+		{
+			ServerNetworkStats->UpdateSummary();
+		}
+		for (auto PlayerNetworkStatsPair : PlayerNetworkStats)
+		{
+			PlayerNetworkStatsPair.Value->UpdateSummary();
+		}
+	}
+	
+	/** @brief Write the summary data to a JSON object */
+	virtual TSharedPtr<FJsonObject> GetSummary() const override
+	{
+		auto SummaryData = Super::GetSummary();
+
+		if (!SummaryData.IsValid())
+		{
+			SummaryData = MakeShared<FJsonObject>();
+		}
+
+		// write global network stats to the summary data
+		if (GlobalNetworkStats != nullptr)
+		{
+			auto GlobalSummary = GlobalNetworkStats->GetSummary();
+			if (GlobalSummary.IsValid() && GlobalSummary->Values.Num() > 0)
+			{
+				SummaryData->SetObjectField(TEXT("Global"), GlobalSummary);
+			}
+		}
+		
+		// write server network stats to the summary data
+		if (ServerNetworkStats != nullptr)
+		{
+			auto ServerSummary = ServerNetworkStats->GetSummary();
+			if (ServerSummary.IsValid() && ServerSummary->Values.Num() > 0)
+			{
+				SummaryData->SetObjectField(TEXT("Server"), ServerSummary);
+			}
+		}
+
+		// write per-player network stats to the summary data
+		if (!PlayerNetworkStats.IsEmpty())
+		{
+			// create a container for all the per player data
+			auto PlayerNetworkStatsJsonData = MakeShared<FJsonObject>();
+
+			// loop over all player network stats and add them to the summary data
+			for (auto PlayerNetworkStatsPair : PlayerNetworkStats)
+			{
+				auto PlayerNetworkStatsJson = PlayerNetworkStatsPair.Value->GetSummary();
+				if (PlayerNetworkStatsJson.IsValid() && PlayerNetworkStatsJson->Values.Num() > 0)
+				{
+					// inject player id into the player network stats
+					const auto PlayerId = PlayerNetworkStatsPair.Key.ToString(EGuidFormats::DigitsWithHyphens);
+					PlayerNetworkStatsJson->SetStringField(TEXT("PlayerId"), PlayerId);
+					PlayerNetworkStatsJsonData->SetObjectField(PlayerId, PlayerNetworkStatsJson);
+				}
+			}
+
+			// if we have any stats, add them to the summary data
+			if (PlayerNetworkStatsJsonData->Values.Num() > 0)
+			{
+				SummaryData->SetObjectField(TEXT("Players"), PlayerNetworkStatsJsonData);
+			}
+		}
+
+		if (SummaryData->Values.Num() > 0)
+		{
+			return SummaryData;
+		}
+		return nullptr;
+	}
+
+	virtual void GetOrCreatePlayerNetworkStats(const class UNetConnection* Connection, URH_PEXNetworkStats_Connection*& OutPlayerNetworkStats);
 	
 	virtual void CapturePerFrameStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;
 	virtual void CapturePerSecondStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;
