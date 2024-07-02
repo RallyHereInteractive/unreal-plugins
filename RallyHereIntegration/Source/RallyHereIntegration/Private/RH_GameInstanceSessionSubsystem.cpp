@@ -244,6 +244,11 @@ UWorld* URH_GameInstanceSessionSubsystem::GetPEXWorld() const
 
 FRH_RemoteFileApiDirectory URH_GameInstanceSessionSubsystem::GetPEXRemoteFileDirectory() const
 {
+	// if we have a server bootstrapper, use its directory, as it will check if uploading is enabled or disabled
+	if (GetGameInstanceSubsystem()->GetServerBootstrapper() != nullptr)
+	{
+		return GetGameInstanceSubsystem()->GetServerBootstrapper()->GetAutoUploadDirectory(true);
+	}
 	return URH_MatchSubsystem::GetMatchDeveloperFileDirectory(GetActiveMatchId());
 }
 
