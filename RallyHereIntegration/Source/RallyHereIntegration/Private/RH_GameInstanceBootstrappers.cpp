@@ -1680,7 +1680,19 @@ bool URH_GameInstanceServerBootstrapper::CanAutoUploadServerFiles() const
 	}
 
 	const auto Settings = GetDefault<URH_IntegrationSettings>();
-	return Settings->bAutoUploadServerFiles;
+	if (Settings->bAutoUploadServerFiles)
+	{
+		// only evaluate chance once, to allow consistency across multiple calls
+		static TOptional<bool> bUploadChance;
+		if (!bUploadChance.IsSet())
+		{
+			auto fChance = FMath::Clamp(Settings->AutoUploadServerFilesChance, 0.0f, 1.0f);
+			bUploadChance = FMath::FRand() < fChance;
+		}
+		return bUploadChance.GetValue();
+	}
+	
+	return false;
 }
 
 FRH_RemoteFileApiDirectory URH_GameInstanceServerBootstrapper::GetAutoUploadDirectory(bool bDeveloperFile) const
