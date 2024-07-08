@@ -171,9 +171,15 @@ struct FRH_PEXStatState
 	/** @brief Average value */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="PlayerExperience")
 	float Avg;
-	/** @brief Total value */
+	/** @brief Sum of values */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="PlayerExperience")
-	float Total;
+	float Sum;
+	/** @brief Sum of squared values */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="PlayerExperience")
+	float SumOfSquares;
+	/** @brief Variance of values */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="PlayerExperience")
+	float Variance;
 	/** @brief Count of values */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="PlayerExperience")
 	int32 Count;
@@ -183,7 +189,9 @@ struct FRH_PEXStatState
 		, Min(TNumericLimits<float>::Max())
 		, Max(TNumericLimits<float>::Lowest())
 		, Avg(0.0f)
-		, Total(0.0f)
+		, Sum(0.0f)
+		, SumOfSquares(0.0f)
+		, Variance(0.0f)
 		, Count(0)
 	{}
 
@@ -194,7 +202,9 @@ struct FRH_PEXStatState
 		Min = TNumericLimits<float>::Max();
 		Max = TNumericLimits<float>::Lowest();
 		Avg = 0.0f;
-		Total = 0.0f;
+		Sum = 0.0f;
+		SumOfSquares = 0.0f;
+		Variance = 0.0f;
 		Count = 0;
 	}
 
@@ -204,10 +214,12 @@ struct FRH_PEXStatState
 		Current = Value;
 		Min = FMath::Min(Min, Value);
 		Max = FMath::Max(Max, Value);
-		Total += Value;
+		Sum += Value;
+		SumOfSquares += Value * Value;
 		Count++;
 		
-		Avg = Total / Count;
+		Avg = Sum / Count;
+		Variance = (SumOfSquares / Count) - (Avg * Avg);
 	}
 };
 
@@ -219,7 +231,7 @@ enum class ERH_PEXValueType : uint8
 	Min,
 	Max,
 	Avg,
-	Total,
+	Sum,
 	Count
 };
 
@@ -307,8 +319,8 @@ public:
 		case ERH_PEXValueType::Avg:
 			SummaryState.AddValue(CaptureState.Avg);
 			break;
-		case ERH_PEXValueType::Total:
-			SummaryState.AddValue(CaptureState.Total);
+		case ERH_PEXValueType::Sum:
+			SummaryState.AddValue(CaptureState.Sum);
 			break;
 		case ERH_PEXValueType::Count:
 			SummaryState.AddValue(CaptureState.Count);
@@ -342,8 +354,8 @@ public:
 			return CaptureState.Max;
 		case ERH_PEXValueType::Avg:
 			return CaptureState.Avg;
-		case ERH_PEXValueType::Total:
-			return CaptureState.Total;
+		case ERH_PEXValueType::Sum:
+			return CaptureState.Sum;
 		case ERH_PEXValueType::Count:
 			return CaptureState.Count;
 		case ERH_PEXValueType::Current:
@@ -368,7 +380,8 @@ public:
 		SummaryJson->SetNumberField(TEXT("Min"), SummaryState.Min);
 		SummaryJson->SetNumberField(TEXT("Max"), SummaryState.Max);
 		SummaryJson->SetNumberField(TEXT("Avg"), SummaryState.Avg);
-		SummaryJson->SetNumberField(TEXT("Total"), SummaryState.Total);
+		SummaryJson->SetNumberField(TEXT("Sum"), SummaryState.Sum);
+		SummaryJson->SetNumberField(TEXT("Standard Deviation"), FMath::Sqrt(SummaryState.Variance));
 		SummaryJson->SetNumberField(TEXT("Count"), SummaryState.Count);
 		return SummaryJson;
 	}
