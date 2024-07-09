@@ -146,10 +146,6 @@ public:
 	virtual UEngine* GetPEXEngine() const PURE_VIRTUAL(IRH_PEXOwnerInterface::GetPEXEngine, return nullptr;)
 	/** @brief Get the world to use for PEX calls */
 	virtual UWorld* GetPEXWorld() const PURE_VIRTUAL(IRH_PEXOwnerInterface::GetPEXWorld, return nullptr;)
-	/** @brief Get the remote file directory to use for PEX calls */
-	virtual FRH_RemoteFileApiDirectory GetPEXRemoteFileDirectory() const PURE_VIRTUAL(IRH_PEXOwnerInterface::GetPEXRemoteFileDirectory, return FRH_RemoteFileApiDirectory();)
-	/** @brief Get the match ID to use for PEX calls */
-	virtual FString GetPEXMatchId() const PURE_VIRTUAL(IRH_PEXOwnerInterface::GetPEXMatchId, return FString();)
 };
 
 
@@ -521,7 +517,7 @@ public:
     virtual ~URH_PEXCollector() override;
 
 	/** @brief Initialize the collector.  Can only be done once */
-    virtual bool Init();
+    virtual bool Init(IRH_PEXOwnerInterface* InOwner, const FString& InMatchId, const FRH_RemoteFileApiDirectory& InRemoteFileDirectory);
 	/** @brief Tick the collector, updating per frame stats and potentially per second stats. */
     virtual void OnEndFrame();
 

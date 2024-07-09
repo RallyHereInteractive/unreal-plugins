@@ -865,6 +865,19 @@ void URH_GameInstanceSessionSubsystem::CreateMatchForSession(const URH_JoinedSes
 
 	const auto* InstanceData = Session->GetInstanceData();
 
+	// create the match id we will use to track the match
+	const auto MatchId = FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphens);
+
+	// update the state object with the active match id, to lock it in (all future calls will use this value)
+	auto& State = ActiveSessionState;
+	if (State.Session != nullptr)
+	{
+		State.MatchId = MatchId;
+
+		// initialize a PEX collector for the match
+		State.PlayerExperienceCollector = CreatePEXCollector();
+	}
+	
 	// Send a match create request to the match subsystem
 	if (pMatchSubsystem != nullptr)
 	{
@@ -988,20 +1001,10 @@ void URH_GameInstanceSessionSubsystem::CreateMatchForSession(const URH_JoinedSes
 		}
 
 		// create the match and set as active
-		pMatchSubsystem->CreateMatch(UpdateRequest, FRH_OnMatchUpdateCompleteDelegate::CreateWeakLambda(this, [this, WeakSession = MakeWeakObjectPtr(Session), SessionId, InstanceId](bool bSuccess, const FRHAPI_MatchWithPlayers& Match, const FRH_ErrorInfo& ErrorInfo)
+		pMatchSubsystem->UpdateMatch(GetActiveMatchId(), UpdateRequest, FRH_OnMatchUpdateCompleteDelegate::CreateWeakLambda(this, [this, WeakSession = MakeWeakObjectPtr(Session), SessionId, InstanceId](bool bSuccess, const FRHAPI_MatchWithPlayers& Match, const FRH_ErrorInfo& ErrorInfo)
 			{
 				if (bSuccess)
 				{
-					// update the state object with the active match id if it still matches
-					auto& State = ActiveSessionState;
-					if (State.Session != nullptr && State.Session->GetSessionId() == SessionId)
-					{
-						State.MatchId = Match.GetMatchId();
-
-						// initialize a PEX collector for the match
-						State.PlayerExperienceCollector = CreatePEXCollector();
-					}
-					
 					// emit an audit event to session hinting at the match id
 					if (WeakSession.IsValid())
 					{
@@ -1033,7 +1036,7 @@ URH_PEXCollector* URH_GameInstanceSessionSubsystem::CreatePEXCollector()
 {
 	auto PEXCollector = NewObject<URH_PEXCollector>(this);
 
-	if (PEXCollector->Init())
+	if (PEXCollector->Init(this, GetActiveMatchId(), GetPEXRemoteFileDirectory()))
 	{
 		return PEXCollector;
 	}

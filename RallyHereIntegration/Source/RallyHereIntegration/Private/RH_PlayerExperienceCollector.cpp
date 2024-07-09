@@ -59,9 +59,9 @@ void URH_PEXCollector::Close()
 	FCoreDelegates::OnEndFrame.RemoveAll(this);
 }
 
-bool URH_PEXCollector::Init()
+bool URH_PEXCollector::Init(IRH_PEXOwnerInterface* InOwner, const FString& InMatchId, const FRH_RemoteFileApiDirectory& InPEXDirectory)
 {
-	Owner = TWeakInterfacePtr<IRH_PEXOwnerInterface>(GetOuter());
+	Owner = InOwner;
 
 	if (!GetConfig()->WantsEnabled())
 	{
@@ -96,8 +96,8 @@ bool URH_PEXCollector::Init()
 	FCoreDelegates::OnEndFrame.AddUObject(this, &URH_PEXCollector::OnEndFrame);
 
 	// cache off the match id and upload directories
-	CachedMatchId = Owner->GetPEXMatchId();
-	CachedRemoteFileDirectory = Owner->GetPEXRemoteFileDirectory();
+	CachedMatchId = InMatchId;
+	CachedRemoteFileDirectory = InPEXDirectory;
 	
     // create log file
     if (GetConfig()->bWriteTimelineFile)
