@@ -380,6 +380,8 @@ void URH_PEXPrimaryStats::CapturePerSecondStats(const TScriptInterface<IRH_PEXOw
 	Stats[MemoryWS].CaptureValue(MemoryStats.UsedPhysical >> 20);
 	Stats[MemoryVB].CaptureValue(MemoryStats.UsedVirtual >> 20);
 	Stats[CPUProcess].CaptureValue(FPlatformTime::GetCPUTime().CPUTimePctRelative);
+
+	LastCaptureTime = FDateTime::UtcNow();
 }
 
 URH_PEXNetworkStats_Base::URH_PEXNetworkStats_Base()

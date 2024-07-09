@@ -612,9 +612,38 @@ public:
 	};
 
 	URH_PEXPrimaryStats();
+
+	/** @brief The timetamp for the last capture */
+	FDateTime LastCaptureTime;
 	
 	virtual void CapturePerFrameStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;
 	virtual void CapturePerSecondStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;
+	
+	/** @brief Reset the capture state of all stats */
+	virtual void ResetCapture() override
+	{
+		Super::ResetCapture();
+
+		LastCaptureTime = FDateTime();
+	}
+	/** @brief Write the timeline data header to a CSV file for all stats */
+	virtual FString GetTimelineCSVHeader() const override
+	{
+		FString HeaderString = Super::GetTimelineCSVHeader();
+
+		HeaderString = TEXT("Timestamp,") + HeaderString;
+
+		return HeaderString;
+	}
+	/** @brief Write the timeline data values to a CSV file for all stats */
+	virtual FString GetTimelineCSVValues() const override
+	{
+		FString ValueString = Super::GetTimelineCSVValues();
+
+		ValueString = LastCaptureTime.ToIso8601() + TEXT(",") + ValueString;
+		
+		return ValueString;
+	}
 };
 
 /** @brief Stat group for capturing whole-state network stats */
