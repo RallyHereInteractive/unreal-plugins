@@ -31,8 +31,7 @@ public:
 		bWriteTimelineFile = false;
 		bUploadTimelineToFileAPI = false;
 		
-		
-		TimelineWriteInterval = 1;
+		StatInterval = 1;
 		TimelineFilePrefix = TEXT("PEX_Timeline");
 		SummaryFilePrefix = TEXT("PEX_Summary");
 	}
@@ -61,9 +60,9 @@ public:
 	UPROPERTY(Config, meta=(EditCondition=bWriteTimelineFile))
 	bool bUploadTimelineToFileAPI;
 
-	/** Interval of writing timeline data to file in seconds (effectively, write every X captures) */
+	/** Interval of updating summary and writing timeline, in seconds */
 	UPROPERTY(Config)
-	int32 TimelineWriteInterval;
+	int32 StatInterval;
 
 	/** Prefix for timeline file name */
 	UPROPERTY(Config)
@@ -149,6 +148,18 @@ public:
 };
 
 
+/** @brief Enum representing what value should be recorded when only a single value is requested for display or logging */
+UENUM(BlueprintType)
+enum class ERH_PEXValueType : uint8
+{
+	Current,
+	Min,
+	Max,
+	Avg,
+	Sum,
+	Count
+};
+
 /** @brief State of the accumulated stat */
 USTRUCT(BlueprintType)
 struct FRH_PEXStatState
@@ -217,20 +228,43 @@ struct FRH_PEXStatState
 		Avg = Sum / Count;
 		Variance = (SumOfSquares / Count) - (Avg * Avg);
 	}
-};
 
-/** @brief Enum representing what value should be recorded when only a single value is requested for display or logging */
-UENUM(BlueprintType)
-enum class ERH_PEXValueType : uint8
-{
-	Current,
-	Min,
-	Max,
-	Avg,
-	Sum,
-	Count
-};
+	/** @brief Update the summary state with the current state */
+	void UpdateSummary(const FRH_PEXStatState& CurrentState, ERH_PEXValueType CurrentValueType)
+	{
+		Min = FMath::Min(Min, CurrentState.Min);
+		Max = FMath::Max(Max, CurrentState.Max);
+		Sum += CurrentState.Sum;
+		SumOfSquares += CurrentState.SumOfSquares;
+		Count += CurrentState.Count;
 
+		Avg = Sum / Count;
+		Variance = (SumOfSquares / Count) - (Avg * Avg);
+		
+		switch (CurrentValueType)
+		{
+		case ERH_PEXValueType::Min:
+			Current = Min;
+			break;
+		case ERH_PEXValueType::Max:
+			Current = Max;
+			break;
+		case ERH_PEXValueType::Avg:
+			Current = Avg;
+			break;
+		case ERH_PEXValueType::Sum:
+			Current = Sum;
+			break;
+		case ERH_PEXValueType::Count:
+			Current = Count;
+			break;
+		case ERH_PEXValueType::Current:
+		default:
+			Current = CurrentState.Current;
+			break;
+		}
+	}
+};
 
 /** @brief Simple accumulator that represents a captured statistic. Tracks min, max, average, and other values internally without having to store all values. */
 USTRUCT(BlueprintType)
@@ -245,9 +279,9 @@ public:
 	/** @brief Type of value to record for timeline file (which value from the capture state is used to build the timeline data) */
 	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, Category="PlayerExperience")
 	ERH_PEXValueType TimelineValueType;
-	/** @brief Type of value to record for summary (which value from the capture state is used to build the summary data) */
+	/** @brief Type of value to record for summary current value (which value from the capture state is used to build the summary data) */
 	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, Category="PlayerExperience")
-	ERH_PEXValueType SummaryValueType;
+	ERH_PEXValueType SummaryCurrentValueType;
 
 	/** @brief State of the stat for the current capture */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="PlayerExperience")
@@ -260,14 +294,14 @@ public:
 	FRH_StatAccumulator()
 		: Name(NAME_None)
 		, TimelineValueType(ERH_PEXValueType::Max)
-		, SummaryValueType(ERH_PEXValueType::Max)
+		, SummaryCurrentValueType(ERH_PEXValueType::Max)
 	{}
 	
 	/** @brief Constructor */
 	FRH_StatAccumulator(FName InName, ERH_PEXValueType InTimelineValueType=ERH_PEXValueType::Current, ERH_PEXValueType InSummaryValueType=ERH_PEXValueType::Current)
 		: Name(InName)
 		, TimelineValueType(InTimelineValueType)
-		, SummaryValueType(InSummaryValueType)
+		, SummaryCurrentValueType(InSummaryValueType)
 	{}
 
 	/** @brief Reset the capture state */
@@ -303,29 +337,7 @@ public:
 			return;
 		}
 
-		// capture the specified capture value type into the summary state
-		switch (SummaryValueType)
-		{
-		case ERH_PEXValueType::Min:
-			SummaryState.AddValue(CaptureState.Min);
-			break;
-		case ERH_PEXValueType::Max:
-			SummaryState.AddValue(CaptureState.Max);
-			break;
-		case ERH_PEXValueType::Avg:
-			SummaryState.AddValue(CaptureState.Avg);
-			break;
-		case ERH_PEXValueType::Sum:
-			SummaryState.AddValue(CaptureState.Sum);
-			break;
-		case ERH_PEXValueType::Count:
-			SummaryState.AddValue(CaptureState.Count);
-			break;
-		case ERH_PEXValueType::Current:
-		default:        
-            SummaryState.AddValue(CaptureState.Current);
-            break;
-		}
+		SummaryState.UpdateSummary(CaptureState, SummaryCurrentValueType);
 	}
 
 	/** @brief Get the name of the stat */
@@ -401,6 +413,8 @@ public:
 	virtual void CapturePerFrameStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) {}
 	/** @brief Capture once-per-second stats */
 	virtual void CapturePerSecondStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) {}
+	/** @brief Capture once-per-interval stats */
+	virtual void CapturePerIntervalStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) {}
 	
 	/** @brief Reset the capture state of all stats */
 	virtual void ResetCapture()
@@ -617,7 +631,7 @@ public:
 	FDateTime LastCaptureTime;
 	
 	virtual void CapturePerFrameStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;
-	virtual void CapturePerSecondStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;
+	virtual void CapturePerIntervalStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;
 	
 	/** @brief Reset the capture state of all stats */
 	virtual void ResetCapture() override
@@ -887,6 +901,7 @@ public:
 	
 	virtual void CapturePerFrameStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;
 	virtual void CapturePerSecondStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;
+	virtual void CapturePerIntervalStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;
 };
 
 /** @brief Stat group for capturing game stats */
@@ -908,7 +923,7 @@ public:
 	URH_PEXGameStats();
 	
 	virtual void CapturePerFrameStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;
-	virtual void CapturePerSecondStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;
+	virtual void CapturePerIntervalStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;
 };
 
 
@@ -925,7 +940,7 @@ public:
 	{
 		BLUEPRINT_CapturePerFrameStats(Owner);
 	}
-	virtual void CapturePerSecondStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override
+	virtual void CapturePerIntervalStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override
 	{
 		BLUEPRINT_CapturePerSecondStats(Owner);
 	}

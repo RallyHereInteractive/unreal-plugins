@@ -170,7 +170,11 @@ void URH_PEXCollector::OnEndFrame()
 	const auto OldSeconds = FMath::FloorToInt(OldTimeTracker);
     TimeTracker = FApp::GetCurrentTime();
 	const auto NewSeconds = FMath::FloorToInt(TimeTracker);
-	const bool bIsNewSecond = NewSeconds != OldSeconds;
+	const bool bIsSecond = NewSeconds != OldSeconds;
+	const bool bIsInterval = bIsSecond && (NewSeconds % GetConfig()->StatInterval == 0);
+
+	// right now, intervals must be second aligned
+	check (!bIsInterval || (bIsInterval && bIsSecond));
 
     // collect any stats that need to be tracked per frame (ex: longest frametime)
 	for (const auto StatGroup : StatGroups)
@@ -178,21 +182,24 @@ void URH_PEXCollector::OnEndFrame()
 		StatGroup->CapturePerFrameStats(OwnerInterface);
 	}
 
-    if (bIsNewSecond)
+	if (bIsSecond)
+	{
+		// collect any stats that need to be tracked per second (ex: longest frametime)
+		for (const auto StatGroup : StatGroups)
+		{
+			StatGroup->CapturePerSecondStats(OwnerInterface);
+		}	
+	}
+	
+    if (bIsInterval)
     {
     	for (const auto StatGroup : StatGroups)
     	{
     		// collect any stats that need to be tracked once per second (ex: pawn count)
-    		StatGroup->CapturePerSecondStats(OwnerInterface);
-
-    		if (GetConfig()->WantsSummary())
-    		{
-    			// update the summary with the data from the last second (both per second capture and per frame capture)
-    			StatGroup->UpdateSummary();
-    		}
+    		StatGroup->CapturePerIntervalStats(OwnerInterface);
     	}
 
-		if (NewSeconds % GetConfig()->TimelineWriteInterval == 0)
+		if (NewSeconds % GetConfig()->StatInterval == 0)
 		{
 			if (GetConfig()->bWriteTimelineFile && TimelineFileCSV != nullptr)
 			{
@@ -219,9 +226,15 @@ void URH_PEXCollector::OnEndFrame()
 			}
 		}
 
-    	// reset the capture state so we can start accumulating a new second of data
+    	// update the summary and reset the capture state so we can start accumulating a new interval of data
     	for (const auto StatGroup : StatGroups)
     	{
+    		if (GetConfig()->WantsSummary())
+    		{
+    			// update the summary with the data from the last second (both per second capture and per frame capture)
+    			StatGroup->UpdateSummary();
+    		}
+    		
     		StatGroup->ResetCapture();
     	}
     }
@@ -374,7 +387,7 @@ void URH_PEXPrimaryStats::CapturePerFrameStats(const TScriptInterface<IRH_PEXOwn
     }
 }
 
-void URH_PEXPrimaryStats::CapturePerSecondStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner)
+void URH_PEXPrimaryStats::CapturePerIntervalStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner)
 {
 	const auto MemoryStats = FPlatformMemory::GetStats();
 	Stats[MemoryWS].CaptureValue(MemoryStats.UsedPhysical >> 20);
@@ -425,6 +438,8 @@ void URH_PEXNetworkStats_Global::CapturePerSecondStats(const TScriptInterface<IR
 	const auto ValueOutPackets = PerfCountersGet(TEXT("OutPackets"), 0);
 	const auto ValueInPacketsLost = PerfCountersGet(TEXT("InPacketsLost"), 0);
 	const auto ValueOutPacketsLost = PerfCountersGet(TEXT("OutPacketsLost"), 0);
+
+	// this assumes that the stat interval for the network system is 1.0 seconds, which is the default
 		
 	Stats[ConnectionCount].CaptureValue(ValueNumConnections);
 	Stats[AvgPing].CaptureValue(ValueAvgPing);
@@ -459,6 +474,10 @@ void URH_PEXNetworkStats_Connection::CapturePerSecondStats(const TScriptInterfac
 			float ConnPing = Connection->PlayerController->PlayerState->ExactPing;
 			Stats[AvgPing].CaptureValue(ConnPing);
 		}
+
+		// this assumes that the stat interval for the network system is 1.0 seconds, which is the default
+		// if this is not the case, then implementing the capture as a per-interval stat is required, with the capture interval matching the stat interval
+		check (Connection->StatPeriod == 1.0f);
 		
 		Stats[InPackets].CaptureValue(Connection->InPackets);
 		Stats[OutPackets].CaptureValue(Connection->OutPackets);
@@ -541,7 +560,7 @@ void URH_PEXNetworkStats::CapturePerSecondStats(const TScriptInterface<IRH_PEXOw
 
 	if (GlobalNetworkStats)
 	{
-		GlobalNetworkStats->CapturePerFrameStats(Owner);
+		GlobalNetworkStats->CapturePerSecondStats(Owner);
 	}
 	
 	const auto World = Owner->GetPEXWorld();
@@ -574,6 +593,45 @@ void URH_PEXNetworkStats::CapturePerSecondStats(const TScriptInterface<IRH_PEXOw
 	}
 }
 
+void URH_PEXNetworkStats::CapturePerIntervalStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner)
+{
+	Super::CapturePerIntervalStats(Owner);
+
+	if (GlobalNetworkStats)
+	{
+		GlobalNetworkStats->CapturePerIntervalStats(Owner);
+	}
+	
+	const auto World = Owner->GetPEXWorld();
+	if (World != nullptr && World->GetNetDriver() != nullptr)
+	{
+		const auto NetDriver = World->GetNetDriver();
+
+		// trace server connection to all clients
+		for (auto Connection : NetDriver->ClientConnections)
+		{
+			URH_PEXNetworkStats_Connection* PlayerTracker = nullptr;
+			GetOrCreatePlayerNetworkStats(Connection, PlayerTracker);
+			if (PlayerTracker != nullptr)
+			{
+				// make sure the tracker is initialized for this connection
+				PlayerTracker->InitForConnection(Connection);
+				
+				PlayerTracker->CapturePerIntervalStats(Owner);
+			}
+		}
+
+		// trace client connection to server
+		if (NetDriver->ServerConnection != nullptr)
+		{
+			// make sure the tracker is initialized for this connection
+			ServerNetworkStats->InitForConnection(NetDriver->ServerConnection);
+			
+			ServerNetworkStats->CapturePerIntervalStats(Owner);
+		}
+	}
+}
+
 URH_PEXGameStats::URH_PEXGameStats()
 {
 	GroupName = TEXT("Game");
@@ -593,7 +651,7 @@ void URH_PEXGameStats::CapturePerFrameStats(const TScriptInterface<IRH_PEXOwnerI
 {
 }
 
-void URH_PEXGameStats::CapturePerSecondStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner)
+void URH_PEXGameStats::CapturePerIntervalStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner)
 {
 	if (Owner == nullptr)
 	{
