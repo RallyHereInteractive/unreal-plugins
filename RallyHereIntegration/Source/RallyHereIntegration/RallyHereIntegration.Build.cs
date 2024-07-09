@@ -37,6 +37,7 @@ public class RallyHereIntegration : ModuleRules
 				"EngineSettings",
 				"CoreOnline",
 				"PerfCounters",
+				"RenderCore",
 			}
 		);
     }

@@ -311,17 +311,23 @@ public:
 	 */
 	UFUNCTION(BlueprintPure, Category = "Session|Instance")
 	const FString& GetActiveMatchId() const { return ActiveSessionState.MatchId; }
-	/**
-	 * @brief Get the remote file directory to use for PEX calls
-	 */
-	UFUNCTION(BlueprintPure, Category = "Session|Instance")
-	virtual FRH_RemoteFileApiDirectory GetPEXRemoteFileDirectory() const;
 	
 	// IRH_PEXOwnerInterface
+	// RUNTIME VALUES - called during collection
 	/** @brief Get the engine to use for PEX calls */
 	virtual UEngine* GetPEXEngine() const override;
 	/** @brief Get the world to use for PEX calls */
 	virtual UWorld* GetPEXWorld() const override;
+
+	// CACHED VALUES - called during init
+	/** @brief Get the match id to use for PEX calls */
+	virtual FString GetPEXMatchId() const override;
+	/** @brief Get the player id to use for PEX calls */
+	virtual FGuid GetPEXPlayerId() const override;
+	/** @brief Get the remote file directory to use for PEX calls */
+	virtual FRH_RemoteFileApiDirectory GetPEXRemoteFileDirectory() const override;
+	/** @brief Whether or not this owner represents the host of the match */
+	virtual bool GetPEXIsHost() const override;
 	
 protected:
 	/** @brief Session we want to sync to. */

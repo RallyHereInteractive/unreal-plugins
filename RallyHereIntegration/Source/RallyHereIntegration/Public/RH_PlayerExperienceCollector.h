@@ -105,15 +105,19 @@ public:
 		bWriteSummaryFile = false;
 		bUploadTimelineToFileAPI = false;
 		bWriteTimelineFile = false;
+
+		TimelineFilePrefix = TEXT("PEX_Timeline_Client");
+		SummaryFilePrefix = TEXT("PEX_Summary_Client");
 	}
 };
 
+
 UCLASS(Config=RallyHereIntegration)
-class RALLYHEREINTEGRATION_API URH_PEXCollectorConfig_Server : public URH_PEXCollectorConfig
+class RALLYHEREINTEGRATION_API URH_PEXCollectorConfig_Host : public URH_PEXCollectorConfig
 {
 	GENERATED_BODY()
 public:
-	URH_PEXCollectorConfig_Server()
+	URH_PEXCollectorConfig_Host()
 	{
 		bEnabled = true;
 		bUploadSummaryToPEXAPI = true;
@@ -121,6 +125,16 @@ public:
 		bWriteSummaryFile = true;
 		bUploadTimelineToFileAPI = false;
 		bWriteTimelineFile = true;
+	}
+};
+
+UCLASS(Config=RallyHereIntegration)
+class RALLYHEREINTEGRATION_API URH_PEXCollectorConfig_DedicatedServer : public URH_PEXCollectorConfig_Host
+{
+	GENERATED_BODY()
+public:
+	URH_PEXCollectorConfig_DedicatedServer()
+	{
 	}
 };
 
@@ -141,10 +155,21 @@ class RALLYHEREINTEGRATION_API IRH_PEXOwnerInterface
 	GENERATED_BODY()
 
 public:
+	// RUNTIME VALUES - called during collection
 	/** @brief Get the engine to use for PEX calls */
 	virtual UEngine* GetPEXEngine() const PURE_VIRTUAL(IRH_PEXOwnerInterface::GetPEXEngine, return nullptr;)
 	/** @brief Get the world to use for PEX calls */
 	virtual UWorld* GetPEXWorld() const PURE_VIRTUAL(IRH_PEXOwnerInterface::GetPEXWorld, return nullptr;)
+
+	// CACHED VALUES - called during init
+	/** @brief Get the match id to use for PEX calls */
+	virtual FString GetPEXMatchId() const PURE_VIRTUAL(IRH_PEXOwnerInterface::GetPEXMatchId, return FString();)
+	/** @brief Get the player id to use for PEX calls */
+	virtual FGuid GetPEXPlayerId() const PURE_VIRTUAL(IRH_PEXOwnerInterface::GetPEXPlayerId, return FGuid();)
+	/** @brief Get the remote file directory to use for PEX calls */
+	virtual FRH_RemoteFileApiDirectory GetPEXRemoteFileDirectory() const PURE_VIRTUAL(IRH_PEXOwnerInterface::GetPEXRemoteFileDirectory, return FRH_RemoteFileApiDirectory();)
+	/** @brief Whether or not this owner represents the host of the match */
+	virtual bool GetPEXIsHost() const PURE_VIRTUAL(IRH_PEXOwnerInterface::GetPEXIsHost, return false;)
 };
 
 
@@ -531,19 +556,14 @@ public:
     virtual ~URH_PEXCollector() override;
 
 	/** @brief Initialize the collector.  Can only be done once */
-    virtual bool Init(IRH_PEXOwnerInterface* InOwner, const FString& InMatchId, const FRH_RemoteFileApiDirectory& InRemoteFileDirectory);
+    virtual bool Init(IRH_PEXOwnerInterface* InOwner);
 	/** @brief Tick the collector, updating per frame stats and potentially per second stats. */
     virtual void OnEndFrame();
 
 	/** @brief Retrieve the config to use for this collector instance */
-	static const URH_PEXCollectorConfig* GetConfig()
+	const URH_PEXCollectorConfig* GetConfig() const
     {
-    	if (IsRunningDedicatedServer())
-    	{
-    		return GetDefault<URH_PEXCollectorConfig_Server>();
-    	}
-	    
-    	return GetDefault<URH_PEXCollectorConfig_Client>();
+		return CachedConfig;
     }
 
 	/** Closes state, writes summary if needed, and uploads data if needed.  Can only be done once. */
@@ -556,12 +576,22 @@ protected:
 	/** Cached owner of the collector */
     TWeakInterfacePtr<IRH_PEXOwnerInterface> Owner;
 
+	/** Cached file path for timeline file */
+	UPROPERTY(BlueprintReadOnly, Transient, Category="PlayerExperience")
+	const URH_PEXCollectorConfig* CachedConfig;
+
 	/** Cached match id to use for routing the captured data to storage.  Cached so it does not change mid-capture */
 	UPROPERTY(BlueprintReadOnly, Category="PlayerExperience")
 	FString CachedMatchId;
 	/** Cached remote file directory to use for routing the captured data to storage.  Cached so it does not change mid-capture */
 	UPROPERTY(BlueprintReadOnly, Category="PlayerExperience")
 	FRH_RemoteFileApiDirectory CachedRemoteFileDirectory;
+	/** Cached player id to use for routing the captured data to storage.  Cached so it does not change mid-capture */
+	UPROPERTY(BlueprintReadOnly, Category="PlayerExperience")
+	FGuid CachedPlayerId;
+	/** Cached whether this owner is the host of the match.  Cached so it does not change mid-capture */
+	UPROPERTY(BlueprintReadOnly, Category="PlayerExperience")
+	bool bCachedIsHost;
 
 	/** Whether the collector has been initialized, to guard against it being initialized multiple times. */
 	UPROPERTY(BlueprintReadOnly, Category="PlayerExperience")
@@ -593,6 +623,7 @@ protected:
 	class FArchive* TimelineFileCSV;
 
 	/** Cached file path for timeline file */
+	UPROPERTY(BlueprintReadOnly, Transient, Category="PlayerExperience")
 	FString TimelineFilePath;
 };
 
@@ -613,6 +644,8 @@ public:
 		RHIThreadTime,
 		GPUTime,
 		DeltaTime,
+		GameThreadWaitTime,
+		FlushLoadingTime,
 
 		TickCount,
 		DelayedTickCount,

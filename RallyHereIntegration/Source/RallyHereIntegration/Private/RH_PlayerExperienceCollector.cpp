@@ -9,6 +9,8 @@
 #include "RH_RemoteFileSubsystem.h"
 #include "Net/NetPing.h"
 #include "Net/PerfCountersHelpers.h"
+#include "RenderTimer.h"
+#include "Serialization/AsyncPackageLoader.h"
 
 URH_PEXCollector::URH_PEXCollector()
     : bHasBeenInitialized(false)
@@ -59,16 +61,11 @@ void URH_PEXCollector::Close()
 	FCoreDelegates::OnEndFrame.RemoveAll(this);
 }
 
-bool URH_PEXCollector::Init(IRH_PEXOwnerInterface* InOwner, const FString& InMatchId, const FRH_RemoteFileApiDirectory& InPEXDirectory)
+bool URH_PEXCollector::Init(IRH_PEXOwnerInterface* InOwner)
 {
 	Owner = InOwner;
 
-	if (!GetConfig()->WantsEnabled())
-	{
-		UE_LOG(LogRallyHereIntegration, Warning, TEXT("Player Experience Collector is disabled"));
-		return false;
-	}
-	else if (!Owner.IsValid())
+	if (!Owner.IsValid())
 	{
 		UE_LOG(LogRallyHereIntegration, Warning, TEXT("Player Experience Collector owner is invalid (may not implement IRH_PEXOwnerInterface)"));
 		return false;
@@ -78,7 +75,50 @@ bool URH_PEXCollector::Init(IRH_PEXOwnerInterface* InOwner, const FString& InMat
 		UE_LOG(LogRallyHereIntegration, Warning, TEXT("Player Experience Collector has already been initialized"));
 		return false;
 	}
+	else if (StatGroupsToCapture.IsEmpty())
+	{
+		UE_LOG(LogRallyHereIntegration, Warning, TEXT("Player Experience Collector has no stat groups to capture"));
+		return false;
+	}
+	
+	// cache off values from the owner
+	CachedMatchId = Owner->GetPEXMatchId();
+	CachedRemoteFileDirectory = Owner->GetPEXRemoteFileDirectory();
+	CachedPlayerId = Owner->GetPEXPlayerId();
+	bCachedIsHost = Owner->GetPEXIsHost();
+	
+	// cache which config class to use
+	if (IsRunningDedicatedServer())
+	{
+		CachedConfig = GetDefault<URH_PEXCollectorConfig_DedicatedServer>();
+	}
+	else if (bCachedIsHost)
+	{
+		CachedConfig = GetDefault<URH_PEXCollectorConfig_Host>();
+	}
+	else
+	{
+		CachedConfig = GetDefault<URH_PEXCollectorConfig_Client>();		
+	}
+	
+	// validate cached values
+	if (!GetConfig()->WantsEnabled())
+	{
+		UE_LOG(LogRallyHereIntegration, Warning, TEXT("Player Experience Collector is disabled"));
+		return false;
+	}
+	else if (CachedMatchId.IsEmpty())
+	{
+		UE_LOG(LogRallyHereIntegration, Warning, TEXT("Player Experience Collector cannot be initialized without a match id"));
+		return false;
+	}
+	else if (!bCachedIsHost && !CachedPlayerId.IsValid())
+	{
+		UE_LOG(LogRallyHereIntegration, Warning, TEXT("Player Experience Collector cannot be initialized without a player id for non-hosts"));
+		return false;
+	}
 
+	// flag as initialized, at this point we are committed to running
 	bHasBeenInitialized = true;
 	
 	// instantiate the list of stat groups to capture
@@ -94,16 +134,18 @@ bool URH_PEXCollector::Init(IRH_PEXOwnerInterface* InOwner, const FString& InMat
 
 	// register for end frame delegate so we can record per frame values
 	FCoreDelegates::OnEndFrame.AddUObject(this, &URH_PEXCollector::OnEndFrame);
-
-	// cache off the match id and upload directories
-	CachedMatchId = InMatchId;
-	CachedRemoteFileDirectory = InPEXDirectory;
 	
-    // create log file
+    // create timeline file if configured
     if (GetConfig()->bWriteTimelineFile)
     {
-		// Create the file name		
-		TimelineFilePath = FPaths::ProjectLogDir() / FString::Printf(TEXT("%s_%s.csv"), *GetConfig()->TimelineFilePrefix, *CachedMatchId);
+		// Create the file name
+    	FString TimelineFileName = FString::Printf(TEXT("%s_%s.csv"), *GetConfig()->TimelineFilePrefix, *CachedMatchId);
+    	if (CachedPlayerId.IsValid())
+    	{
+    		TimelineFileName = FString::Printf(TEXT("%s_%s_%s.csv"), *GetConfig()->TimelineFilePrefix, *CachedMatchId, *CachedPlayerId.ToString(EGuidFormats::DigitsWithHyphens));
+    	}
+    	
+		TimelineFilePath = FPaths::ProjectLogDir() / TimelineFileName;
 
 		// Create a file writer
 		TimelineFileCSV = IFileManager::Get().CreateFileWriter(*TimelineFilePath, FILEWRITE_AllowRead);
@@ -252,7 +294,12 @@ void URH_PEXCollector::WriteSummary()
 	
 	if (GetConfig()->bWriteSummaryFile)
 	{
-		FString FilePath = FPaths::ProjectLogDir() / FString::Printf(TEXT("%s_%s.json"), *GetConfig()->SummaryFilePrefix, *CachedMatchId);
+		FString FileName = FString::Printf(TEXT("%s_%s.json"), *GetConfig()->SummaryFilePrefix, *CachedMatchId);
+		if (CachedPlayerId.IsValid())
+		{
+			FileName = FString::Printf(TEXT("%s_%s_%s.json"), *GetConfig()->SummaryFilePrefix, *CachedMatchId, *CachedPlayerId.ToString(EGuidFormats::DigitsWithHyphens));
+		}
+		FString FilePath = FPaths::ProjectLogDir() / FileName;
 
 		auto Document = MakeShared<FJsonObject>();
 		
@@ -308,7 +355,8 @@ void URH_PEXCollector::UploadFile(const FString& FilePath, const FString& Remote
 	}
 }
 
-#define TO_MS(a) (1000*(a))
+#define SECONDS_TO_MILLISECONDS(a) (1000*(a))
+#define CYCLES_TO_MILLISECONDS(a) (FPlatformTime::ToMilliseconds(a))
 
 URH_PEXPrimaryStats::URH_PEXPrimaryStats()
 {
@@ -329,6 +377,10 @@ URH_PEXPrimaryStats::URH_PEXPrimaryStats()
 	check(Check == GPUTime);
 	Check = Stats.Emplace(TEXT("DeltaTime"), ERH_PEXValueType::Max, ERH_PEXValueType::Max);
 	check(Check == DeltaTime);
+	Check = Stats.Emplace(TEXT("GameThreadWaitTime"), ERH_PEXValueType::Max, ERH_PEXValueType::Max);
+	check(Check == GameThreadWaitTime);
+	Check = Stats.Emplace(TEXT("FlushLoadingTime"), ERH_PEXValueType::Max, ERH_PEXValueType::Max);
+	check(Check == FlushLoadingTime);
 
 	Check = Stats.Emplace(TEXT("TickCount"), ERH_PEXValueType::Current, ERH_PEXValueType::Current);
 	check(Check == TickCount);
@@ -353,25 +405,45 @@ void URH_PEXPrimaryStats::CapturePerFrameStats(const TScriptInterface<IRH_PEXOwn
 	}
 	auto ParentWorld = Owner->GetPEXWorld();
 	
-    // if we have access to stat unit data, prefer it
+	Stats[GameThreadTime].CaptureValue(CYCLES_TO_MILLISECONDS(GGameThreadTime));
+	Stats[GameThreadWaitTime].CaptureValue(CYCLES_TO_MILLISECONDS(GGameThreadWaitTime));
+
+	// note this is recorded in seconds, not cycles
+	Stats[FlushLoadingTime].CaptureValue(SECONDS_TO_MILLISECONDS(GFlushAsyncLoadingTime));
+	
+	if (!IsRunningDedicatedServer())
+	{
+		Stats[RenderThreadTime].CaptureValue(CYCLES_TO_MILLISECONDS(GRenderThreadTime));
+		Stats[RHIThreadTime].CaptureValue(CYCLES_TO_MILLISECONDS(GRHIThreadTime));
+		Stats[GPUTime].CaptureValue(CYCLES_TO_MILLISECONDS(GGPUFrameTime));
+
+		// calculate overall frametime
+		Stats[FrameTime].CaptureValue(FMath::Max3(
+			CYCLES_TO_MILLISECONDS(GameThreadTime),
+			CYCLES_TO_MILLISECONDS(GRenderThreadTime),
+			CYCLES_TO_MILLISECONDS(GRHIThreadTime)
+			));
+	}
+	else
+	{
+		// on servers, we only have game thread time
+		Stats[FrameTime].CaptureValue(CYCLES_TO_MILLISECONDS(GameThreadTime));
+	}
+	
     if (ParentWorld != nullptr && ParentWorld->GetGameViewport() != nullptr && ParentWorld->GetGameViewport()->GetStatUnitData())
     {
         FStatUnitData* pData = ParentWorld->GetGameViewport()->GetStatUnitData();
-    	Stats[FrameTime].CaptureValue(pData->FrameTime);
-    	Stats[GameThreadTime].CaptureValue(pData->GameThreadTime);
-    	Stats[RenderThreadTime].CaptureValue(pData->RenderThreadTime);
-    	Stats[RHIThreadTime].CaptureValue(pData->RHITTime);
-    	Stats[GPUTime].CaptureValue(pData->GPUFrameTime[0]);
+    	
     }
     else
     {
-    	auto MainThreadValue = TO_MS(FApp::GetDeltaTime() - FApp::GetIdleTime());
+    	auto MainThreadValue = SECONDS_TO_MILLISECONDS(FApp::GetDeltaTime() - FApp::GetIdleTime());
     	Stats[FrameTime].CaptureValue(MainThreadValue);
         Stats[GameThreadTime].CaptureValue(MainThreadValue);
     }
 
 	auto DeltaSeconds = FApp::GetDeltaTime();
-    Stats[DeltaTime].CaptureValue(TO_MS(DeltaSeconds));
+    Stats[DeltaTime].CaptureValue(SECONDS_TO_MILLISECONDS(DeltaSeconds));
 
     // accumulators
 	Stats[TickCount].IncrementCaptureValue();

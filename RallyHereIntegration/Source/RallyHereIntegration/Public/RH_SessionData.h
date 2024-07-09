@@ -192,9 +192,8 @@ namespace RH_SessionCustomDataKeys
 	static constexpr auto OfflineFlag = TEXT("rh.OfflineFlag");
 
 	// instance data keys
-	static constexpr auto MapName = TEXT("rh.MapName");
-	static constexpr auto GameModeName = TEXT("rh.GameModeName");
 	static constexpr auto SessionSecurityTokenName = TEXT("rh.SessionSecurityToken");
+	static constexpr auto MatchId = TEXT("rh.MatchId");
 	static constexpr auto BeaconFlag = TEXT("rh.IsBeacon");
 }
 

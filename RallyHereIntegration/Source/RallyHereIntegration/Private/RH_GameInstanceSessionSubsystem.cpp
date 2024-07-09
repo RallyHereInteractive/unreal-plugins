@@ -189,6 +189,13 @@ bool URH_GameInstanceSessionSubsystem::MakeActiveSessionJoinable(UWorld* pWorld)
 		}
 	}
 
+	// if match id is set, push it into the join params
+	if (GetActiveMatchId().Len())
+	{
+		InstanceInfo.GetJoinParams().GetCustomData().Add(RH_SessionCustomDataKeys::MatchId, GetActiveMatchId());
+		InstanceInfo.GetJoinParams().CustomData_IsSet = true;
+		InstanceInfo.JoinParams_IsSet = true;
+	}
 
 	// if it is a beacon, convert world to beacon mode
 	if (ActiveSession && ActiveSession->IsBeaconSession())
@@ -242,6 +249,37 @@ UWorld* URH_GameInstanceSessionSubsystem::GetPEXWorld() const
 	return GetGameInstanceSubsystem()->GetWorld();	
 }
 
+FString URH_GameInstanceSessionSubsystem::GetPEXMatchId() const
+{
+	return GetActiveMatchId();
+}
+
+FGuid URH_GameInstanceSessionSubsystem::GetPEXPlayerId() const
+{
+	auto ActiveSession = GetActiveSession();
+	
+	// if a local player is the host, use their ID for the PEX reporting (this assumes that the host player uuid is in fact a match for a local player)
+	if (IsLocallyHostedSession(ActiveSession))
+	{
+		auto Instance = ActiveSession->GetInstanceData();
+		if (Instance != nullptr)
+		{
+			return Instance->GetHostPlayerUuid();	
+		}
+	}
+	
+	// otherwise use the active session's owner for the PEX reporting
+	if (ActiveSession != nullptr)
+	{
+		auto Owner = ActiveSession->GetSessionOwner();
+		if (Owner != nullptr)
+		{
+			return Owner->GetPlayerUuid();
+		}
+	}
+
+	return FGuid();
+}
 FRH_RemoteFileApiDirectory URH_GameInstanceSessionSubsystem::GetPEXRemoteFileDirectory() const
 {
 	// if we have a server bootstrapper, use its directory, as it will check if uploading is enabled or disabled
@@ -250,6 +288,10 @@ FRH_RemoteFileApiDirectory URH_GameInstanceSessionSubsystem::GetPEXRemoteFileDir
 		return GetGameInstanceSubsystem()->GetServerBootstrapper()->GetAutoUploadDirectory(true);
 	}
 	return URH_MatchSubsystem::GetMatchDeveloperFileDirectory(GetActiveMatchId());
+}
+bool URH_GameInstanceSessionSubsystem::GetPEXIsHost() const
+{
+	return IsLocallyHostedSession(GetActiveSession());
 }
 
 void URH_GameInstanceSessionSubsystem::OnNetworkFailure(UWorld* World, UNetDriver* NetDriver, ENetworkFailure::Type FailureType, const FString& ErrorString)
@@ -368,7 +410,6 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 		// if this instance is locally hosted, set up host specific logic
 		if (ActiveSession->GetInstanceData() != nullptr && IsLocallyHostedInstance(*ActiveSession->GetInstanceData()))
 		{
-
 			// if automatic matches are enabled, create one now
 			if (Settings->bAutoCreateMatches)
 			{
@@ -459,6 +500,23 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 				}
 			}
 		}
+		else if (ActiveSession->GetInstanceData() != nullptr)
+		{
+			check (!IsLocallyHostedInstance(*ActiveSession->GetInstanceData()));
+
+			// if this is not a locally hosted match and a match id is present in the session at this time, cache it to mirror server caching time
+			const auto& JoinParams = ActiveSession->GetInstanceData()->GetJoinParams();
+			const auto CustomData = JoinParams.GetCustomDataOrNull();
+			const auto MatchIdPtr = CustomData ? CustomData->Find(RH_SessionCustomDataKeys::MatchId) : nullptr;
+			if (MatchIdPtr != nullptr)
+			{
+				ActiveSessionState.MatchId = *MatchIdPtr;
+			}
+		}
+
+		
+		// initialize a PEX collector if able
+		ActiveSessionState.PlayerExperienceCollector = CreatePEXCollector();
 	}
 
 	// fire delegates to allow registration of handler objects
@@ -873,9 +931,6 @@ void URH_GameInstanceSessionSubsystem::CreateMatchForSession(const URH_JoinedSes
 	if (State.Session != nullptr)
 	{
 		State.MatchId = MatchId;
-
-		// initialize a PEX collector for the match
-		State.PlayerExperienceCollector = CreatePEXCollector();
 	}
 	
 	// Send a match create request to the match subsystem
@@ -1036,7 +1091,7 @@ URH_PEXCollector* URH_GameInstanceSessionSubsystem::CreatePEXCollector()
 {
 	auto PEXCollector = NewObject<URH_PEXCollector>(this);
 
-	if (PEXCollector->Init(this, GetActiveMatchId(), GetPEXRemoteFileDirectory()))
+	if (PEXCollector->Init(this))
 	{
 		return PEXCollector;
 	}
@@ -1047,7 +1102,15 @@ URH_PEXCollector* URH_GameInstanceSessionSubsystem::CreatePEXCollector()
 
 bool URH_GameInstanceSessionSubsystem::GetShouldKeepInstanceHealthAlive_Implementation() const
 {
-	return true;
+	const auto ActiveSession = GetActiveSession();
+	if (ActiveSession != nullptr
+		&& GetActiveSession()->IsOnline()
+		&& IsLocallyHostedInstance(*ActiveSession->GetInstanceData()))
+	{
+		return true;
+	}
+
+	return false;
 }
 
 ERHAPI_InstanceHealthStatus URH_GameInstanceSessionSubsystem::GetInstanceHealthStatusToReport_Implementation() const
@@ -1060,8 +1123,7 @@ void URH_GameInstanceSessionSubsystem::PollInstanceHealth(const FRH_PollComplete
 	// make sure the active session is locally hosted
 	auto* ActiveSession = GetActiveSession();
 	if (	ActiveSession != nullptr
-		&&	ActiveSession->GetInstanceData() != nullptr 
-		&&	IsLocallyHostedInstance(*ActiveSession->GetInstanceData())
+		&&	ActiveSession->GetInstanceData() != nullptr
 		&&	GetShouldKeepInstanceHealthAlive()
 		)
 	{
@@ -1094,7 +1156,7 @@ void URH_GameInstanceSessionSubsystem::PollInstanceHealth(const FRH_PollComplete
 bool URH_GameInstanceSessionSubsystem::GetShouldKeepBackfillAlive_Implementation() const
 {
 	auto* ActiveSession = GetActiveSession();
-	if (ActiveSession == nullptr || ActiveSession->GetInstanceData() == nullptr)
+	if (ActiveSession == nullptr || ActiveSession->GetInstanceData() == nullptr || ActiveSession->IsOffline())
 	{
 		return false;
 	}
