@@ -255,7 +255,7 @@ struct FRH_PEXStatState
 	}
 
 	/** @brief Update the summary state with the current state */
-	void UpdateSummary(const FRH_PEXStatState& CurrentState, ERH_PEXValueType CurrentValueType)
+	void UpdateSummary(const FRH_PEXStatState& CurrentState)
 	{
 		Min = FMath::Min(Min, CurrentState.Min);
 		Max = FMath::Max(Max, CurrentState.Max);
@@ -265,29 +265,6 @@ struct FRH_PEXStatState
 
 		Avg = Sum / Count;
 		Variance = (SumOfSquares / Count) - (Avg * Avg);
-		
-		switch (CurrentValueType)
-		{
-		case ERH_PEXValueType::Min:
-			Current = Min;
-			break;
-		case ERH_PEXValueType::Max:
-			Current = Max;
-			break;
-		case ERH_PEXValueType::Avg:
-			Current = Avg;
-			break;
-		case ERH_PEXValueType::Sum:
-			Current = Sum;
-			break;
-		case ERH_PEXValueType::Count:
-			Current = Count;
-			break;
-		case ERH_PEXValueType::Current:
-		default:
-			Current = CurrentState.Current;
-			break;
-		}
 	}
 };
 
@@ -304,9 +281,6 @@ public:
 	/** @brief Type of value to record for timeline file (which value from the capture state is used to build the timeline data) */
 	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, Category="PlayerExperience")
 	ERH_PEXValueType TimelineValueType;
-	/** @brief Type of value to record for summary current value (which value from the capture state is used to build the summary data) */
-	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, Category="PlayerExperience")
-	ERH_PEXValueType SummaryCurrentValueType;
 
 	/** @brief State of the stat for the current capture */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="PlayerExperience")
@@ -319,14 +293,12 @@ public:
 	FRH_StatAccumulator()
 		: Name(NAME_None)
 		, TimelineValueType(ERH_PEXValueType::Max)
-		, SummaryCurrentValueType(ERH_PEXValueType::Max)
 	{}
 	
 	/** @brief Constructor */
-	FRH_StatAccumulator(FName InName, ERH_PEXValueType InTimelineValueType=ERH_PEXValueType::Current, ERH_PEXValueType InSummaryValueType=ERH_PEXValueType::Current)
+	FRH_StatAccumulator(FName InName, ERH_PEXValueType InTimelineValueType=ERH_PEXValueType::Current)
 		: Name(InName)
 		, TimelineValueType(InTimelineValueType)
-		, SummaryCurrentValueType(InSummaryValueType)
 	{}
 
 	/** @brief Reset the capture state */
@@ -362,7 +334,7 @@ public:
 			return;
 		}
 
-		SummaryState.UpdateSummary(CaptureState, SummaryCurrentValueType);
+		SummaryState.UpdateSummary(CaptureState);
 	}
 
 	/** @brief Get the name of the stat */

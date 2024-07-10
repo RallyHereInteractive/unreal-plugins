@@ -365,35 +365,35 @@ URH_PEXPrimaryStats::URH_PEXPrimaryStats()
 	Stats.Reserve(Max);
 	
 	int32 Check = 0;
-	Check = Stats.Emplace(TEXT("FrameTime"), ERH_PEXValueType::Max, ERH_PEXValueType::Max);
+	Check = Stats.Emplace(TEXT("FrameTime"), ERH_PEXValueType::Max);
 	check(Check == FrameTime);
-	Check = Stats.Emplace(TEXT("GameThreadTime"), ERH_PEXValueType::Max, ERH_PEXValueType::Max);
+	Check = Stats.Emplace(TEXT("GameThreadTime"), ERH_PEXValueType::Max);
 	check(Check == GameThreadTime);
-	Check = Stats.Emplace(TEXT("RenderThreadTime"), ERH_PEXValueType::Max, ERH_PEXValueType::Max);
+	Check = Stats.Emplace(TEXT("RenderThreadTime"), ERH_PEXValueType::Max);
 	check(Check == RenderThreadTime);
-	Check = Stats.Emplace(TEXT("RHIThreadTime"), ERH_PEXValueType::Max, ERH_PEXValueType::Max);
+	Check = Stats.Emplace(TEXT("RHIThreadTime"), ERH_PEXValueType::Max);
 	check(Check == RHIThreadTime);
-	Check = Stats.Emplace(TEXT("GPUTime"), ERH_PEXValueType::Max, ERH_PEXValueType::Max);
+	Check = Stats.Emplace(TEXT("GPUTime"), ERH_PEXValueType::Max);
 	check(Check == GPUTime);
-	Check = Stats.Emplace(TEXT("DeltaTime"), ERH_PEXValueType::Max, ERH_PEXValueType::Max);
+	Check = Stats.Emplace(TEXT("DeltaTime"), ERH_PEXValueType::Max);
 	check(Check == DeltaTime);
-	Check = Stats.Emplace(TEXT("GameThreadWaitTime"), ERH_PEXValueType::Max, ERH_PEXValueType::Max);
+	Check = Stats.Emplace(TEXT("GameThreadWaitTime"), ERH_PEXValueType::Max);
 	check(Check == GameThreadWaitTime);
-	Check = Stats.Emplace(TEXT("FlushLoadingTime"), ERH_PEXValueType::Max, ERH_PEXValueType::Max);
+	Check = Stats.Emplace(TEXT("FlushLoadingTime"), ERH_PEXValueType::Max);
 	check(Check == FlushLoadingTime);
 
-	Check = Stats.Emplace(TEXT("TickCount"), ERH_PEXValueType::Current, ERH_PEXValueType::Current);
+	Check = Stats.Emplace(TEXT("TickCount"), ERH_PEXValueType::Current);
 	check(Check == TickCount);
-	Check = Stats.Emplace(TEXT("DelayedTickCount"), ERH_PEXValueType::Current, ERH_PEXValueType::Current);
+	Check = Stats.Emplace(TEXT("DelayedTickCount"), ERH_PEXValueType::Current);
 	check(Check == DelayedTickCount);
 	
-	Check = Stats.Emplace(TEXT("MemoryWS"), ERH_PEXValueType::Max, ERH_PEXValueType::Max);
+	Check = Stats.Emplace(TEXT("MemoryWS"), ERH_PEXValueType::Max);
 	check(Check == MemoryWS);
-	Check = Stats.Emplace(TEXT("MemoryVB"), ERH_PEXValueType::Max, ERH_PEXValueType::Max);
+	Check = Stats.Emplace(TEXT("MemoryVB"), ERH_PEXValueType::Max);
 	check(Check == MemoryVB);
-	Check = Stats.Emplace(TEXT("CPUProcess"), ERH_PEXValueType::Max, ERH_PEXValueType::Max);
+	Check = Stats.Emplace(TEXT("CPUProcess"), ERH_PEXValueType::Max);
 	check(Check == CPUProcess);
-	Check = Stats.Emplace(TEXT("CPUMachine"), ERH_PEXValueType::Max, ERH_PEXValueType::Max);
+	Check = Stats.Emplace(TEXT("CPUMachine"), ERH_PEXValueType::Max);
 	check(Check == CPUMachine);
 }
 
@@ -476,23 +476,23 @@ URH_PEXNetworkStats_Base::URH_PEXNetworkStats_Base()
 	Stats.Reserve(Max);
 	
 	int32 Check = 0;
-	Check = Stats.Emplace(TEXT("ConnectionCount"), ERH_PEXValueType::Max, ERH_PEXValueType::Max);
+	Check = Stats.Emplace(TEXT("ConnectionCount"), ERH_PEXValueType::Max);
 	check(Check == ConnectionCount);
-	Check = Stats.Emplace(TEXT("AvgPing"), ERH_PEXValueType::Max, ERH_PEXValueType::Max);
+	Check = Stats.Emplace(TEXT("AvgPing"), ERH_PEXValueType::Max);
 	check(Check == AvgPing);
-	Check = Stats.Emplace(TEXT("InPackets"), ERH_PEXValueType::Max, ERH_PEXValueType::Max);
+	Check = Stats.Emplace(TEXT("InPackets"), ERH_PEXValueType::Max);
 	check(Check == InPackets);
-	Check = Stats.Emplace(TEXT("OutPackets"), ERH_PEXValueType::Max, ERH_PEXValueType::Max);
+	Check = Stats.Emplace(TEXT("OutPackets"), ERH_PEXValueType::Max);
 	check(Check == OutPackets);
-	Check = Stats.Emplace(TEXT("TotalPackets"), ERH_PEXValueType::Max, ERH_PEXValueType::Max);
+	Check = Stats.Emplace(TEXT("TotalPackets"), ERH_PEXValueType::Max);
 	check(Check == TotalPackets);
-	Check = Stats.Emplace(TEXT("InPacketsLost"), ERH_PEXValueType::Max, ERH_PEXValueType::Max);
+	Check = Stats.Emplace(TEXT("InPacketsLost"), ERH_PEXValueType::Max);
 	check(Check == InPacketsLost);
-	Check = Stats.Emplace(TEXT("OutPacketsLost"), ERH_PEXValueType::Max, ERH_PEXValueType::Max);
+	Check = Stats.Emplace(TEXT("OutPacketsLost"), ERH_PEXValueType::Max);
 	check(Check == OutPacketsLost);
-	Check = Stats.Emplace(TEXT("TotalPacketsLost"), ERH_PEXValueType::Max, ERH_PEXValueType::Max);
+	Check = Stats.Emplace(TEXT("TotalPacketsLost"), ERH_PEXValueType::Max);
 	check(Check == TotalPacketsLost);
-	Check = Stats.Emplace(TEXT("PacketLoss"), ERH_PEXValueType::Max, ERH_PEXValueType::Max);
+	Check = Stats.Emplace(TEXT("PacketLoss"), ERH_PEXValueType::Max);
 	check(Check == PacketLoss);
 }
 
@@ -711,11 +711,11 @@ URH_PEXGameStats::URH_PEXGameStats()
 	Stats.Reserve(Max);
 	
 	int32 Check = 0;
-	Check = Stats.Emplace(TEXT("PlayerControllerCount"), ERH_PEXValueType::Max, ERH_PEXValueType::Max);
+	Check = Stats.Emplace(TEXT("PlayerControllerCount"), ERH_PEXValueType::Max);
 	check(Check == PlayerControllerCount);
-	Check = Stats.Emplace(TEXT("AIControllerCount"), ERH_PEXValueType::Max, ERH_PEXValueType::Max);
+	Check = Stats.Emplace(TEXT("AIControllerCount"), ERH_PEXValueType::Max);
 	check(Check == AIControllerCount);
-	Check = Stats.Emplace(TEXT("PawnCount"), ERH_PEXValueType::Max, ERH_PEXValueType::Max);
+	Check = Stats.Emplace(TEXT("PawnCount"), ERH_PEXValueType::Max);
 	check(Check == PawnCount);
 }
 
