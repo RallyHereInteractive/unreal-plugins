@@ -739,7 +739,7 @@ State of the accumulated stat.
 `public inline  `[`FRH_PEXStatState`](#structFRH__PEXStatState_1afbf06852851c62d7e57acfe36a7f15d0)`()` | 
 `public inline void `[`Reset`](#structFRH__PEXStatState_1a640b7389adc87774e29b2d4a6971629c)`()` | Reset the state to defaults.
 `public inline void `[`AddValue`](#structFRH__PEXStatState_1a0c07fc5f97ff5396f0073d21ce756f5a)`(float Value)` | Add a value to the accumulator.
-`public inline void `[`UpdateSummary`](#structFRH__PEXStatState_1a27952f990faccb2b26874a545cbff4d8)`(const `[`FRH_PEXStatState`](#structFRH__PEXStatState)` & CurrentState,`[`ERH_PEXValueType`](undefined.md#group__PlayerExperience_1ga4aa4d68c147f6cf7a965526bf6942234)` CurrentValueType)` | Update the summary state with the current state.
+`public inline void `[`UpdateSummary`](#structFRH__PEXStatState_1a0a6f5e8339d76333b329d7a284de6a18)`(const `[`FRH_PEXStatState`](#structFRH__PEXStatState)` & CurrentState)` | Update the summary state with the current state.
 
 ### Members
 
@@ -785,7 +785,7 @@ Reset the state to defaults.
 
 Add a value to the accumulator.
 
-#### `public inline void `[`UpdateSummary`](#structFRH__PEXStatState_1a27952f990faccb2b26874a545cbff4d8)`(const `[`FRH_PEXStatState`](#structFRH__PEXStatState)` & CurrentState,`[`ERH_PEXValueType`](undefined.md#group__PlayerExperience_1ga4aa4d68c147f6cf7a965526bf6942234)` CurrentValueType)` <a id="structFRH__PEXStatState_1a27952f990faccb2b26874a545cbff4d8"></a>
+#### `public inline void `[`UpdateSummary`](#structFRH__PEXStatState_1a0a6f5e8339d76333b329d7a284de6a18)`(const `[`FRH_PEXStatState`](#structFRH__PEXStatState)` & CurrentState)` <a id="structFRH__PEXStatState_1a0a6f5e8339d76333b329d7a284de6a18"></a>
 
 Update the summary state with the current state.
 
@@ -799,11 +799,10 @@ Simple accumulator that represents a captured statistic. Tracks min, max, averag
 --------------------------------|---------------------------------------------
 `public FName `[`Name`](#structFRH__StatAccumulator_1a97fbef6ef5de0d5f11cd3f6e5a1e0af3) | Name of the stat.
 `public `[`ERH_PEXValueType`](undefined.md#group__PlayerExperience_1ga4aa4d68c147f6cf7a965526bf6942234)` `[`TimelineValueType`](#structFRH__StatAccumulator_1aa15408c5a2d42180a1833ccb39c706a5) | Type of value to record for timeline file (which value from the capture state is used to build the timeline data)
-`public `[`ERH_PEXValueType`](undefined.md#group__PlayerExperience_1ga4aa4d68c147f6cf7a965526bf6942234)` `[`SummaryCurrentValueType`](#structFRH__StatAccumulator_1ad9af8da74750fe2a7cd6511a50e769c8) | Type of value to record for summary current value (which value from the capture state is used to build the summary data)
 `public `[`FRH_PEXStatState`](PlayerExperience.md#structFRH__PEXStatState)` `[`CaptureState`](#structFRH__StatAccumulator_1a90f0c79668722ef177b8b0c377d5c88f) | State of the stat for the current capture.
 `public `[`FRH_PEXStatState`](PlayerExperience.md#structFRH__PEXStatState)` `[`SummaryState`](#structFRH__StatAccumulator_1a2637ca10fa3f6e094fb0ee04005d3e7e) | State of the stat for the summary.
 `public inline  `[`FRH_StatAccumulator`](#structFRH__StatAccumulator_1a6baf33f56a1d35593c8001f05eb28191)`()` | Constructor.
-`public inline  `[`FRH_StatAccumulator`](#structFRH__StatAccumulator_1ab66c87d0d7c717e8d9fcf69368008bc0)`(FName InName,`[`ERH_PEXValueType`](undefined.md#group__PlayerExperience_1ga4aa4d68c147f6cf7a965526bf6942234)` InTimelineValueType,`[`ERH_PEXValueType`](undefined.md#group__PlayerExperience_1ga4aa4d68c147f6cf7a965526bf6942234)` InSummaryValueType)` | Constructor.
+`public inline  `[`FRH_StatAccumulator`](#structFRH__StatAccumulator_1ae1cf216c62ec18f4e90eaa36351bb4d9)`(FName InName,`[`ERH_PEXValueType`](undefined.md#group__PlayerExperience_1ga4aa4d68c147f6cf7a965526bf6942234)` InTimelineValueType)` | Constructor.
 `public inline void `[`ResetCapture`](#structFRH__StatAccumulator_1a7ceaa1653fe1d68b74c53284a1d723a1)`()` | Reset the capture state.
 `public inline void `[`ResetSummary`](#structFRH__StatAccumulator_1ad0c5649e4ad402a6bcefe69dd916fd87)`()` | Reset the summary state.
 `public inline void `[`CaptureValue`](#structFRH__StatAccumulator_1a77f7598cd1b089afa7c4d8691f40273f)`(float Value)` | Add a value to the accumulator.
@@ -823,10 +822,6 @@ Name of the stat.
 
 Type of value to record for timeline file (which value from the capture state is used to build the timeline data)
 
-#### `public `[`ERH_PEXValueType`](undefined.md#group__PlayerExperience_1ga4aa4d68c147f6cf7a965526bf6942234)` `[`SummaryCurrentValueType`](#structFRH__StatAccumulator_1ad9af8da74750fe2a7cd6511a50e769c8) <a id="structFRH__StatAccumulator_1ad9af8da74750fe2a7cd6511a50e769c8"></a>
-
-Type of value to record for summary current value (which value from the capture state is used to build the summary data)
-
 #### `public `[`FRH_PEXStatState`](PlayerExperience.md#structFRH__PEXStatState)` `[`CaptureState`](#structFRH__StatAccumulator_1a90f0c79668722ef177b8b0c377d5c88f) <a id="structFRH__StatAccumulator_1a90f0c79668722ef177b8b0c377d5c88f"></a>
 
 State of the stat for the current capture.
@@ -839,7 +834,7 @@ State of the stat for the summary.
 
 Constructor.
 
-#### `public inline  `[`FRH_StatAccumulator`](#structFRH__StatAccumulator_1ab66c87d0d7c717e8d9fcf69368008bc0)`(FName InName,`[`ERH_PEXValueType`](undefined.md#group__PlayerExperience_1ga4aa4d68c147f6cf7a965526bf6942234)` InTimelineValueType,`[`ERH_PEXValueType`](undefined.md#group__PlayerExperience_1ga4aa4d68c147f6cf7a965526bf6942234)` InSummaryValueType)` <a id="structFRH__StatAccumulator_1ab66c87d0d7c717e8d9fcf69368008bc0"></a>
+#### `public inline  `[`FRH_StatAccumulator`](#structFRH__StatAccumulator_1ae1cf216c62ec18f4e90eaa36351bb4d9)`(FName InName,`[`ERH_PEXValueType`](undefined.md#group__PlayerExperience_1ga4aa4d68c147f6cf7a965526bf6942234)` InTimelineValueType)` <a id="structFRH__StatAccumulator_1ae1cf216c62ec18f4e90eaa36351bb4d9"></a>
 
 Constructor.
 
