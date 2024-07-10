@@ -68,11 +68,7 @@ Match Subsystem used for match API calls.
 `public inline bool `[`GetMatch`](#classURH__MatchSubsystem_1a893610997366c15dd53fa65e311ce1b8)`(const FString & MatchId,`[`FRHAPI_MatchWithPlayers`](models/RHAPI_MatchWithPlayers.md#structFRHAPI__MatchWithPlayers)` & OutMatch)` | Lookup a specific match from the cache.
 `public inline const TMap< FString, `[`FRHAPI_MatchWithPlayers`](models/RHAPI_MatchWithPlayers.md#structFRHAPI__MatchWithPlayers)` > & `[`GetAllMatches`](#classURH__MatchSubsystem_1a051681ea68418192d99aaffe1264b258)`() const` | Get all matches from the cache.
 `public inline void `[`ClearMatchesCache`](#classURH__MatchSubsystem_1abad303e288ec2208c57861a2c449b17b)`()` | Clear the match cache.
-`public inline virtual const FString `[`GetActiveMatchId`](#classURH__MatchSubsystem_1ae1c52d179cfaab95d435d7e4c05b756c)`() const` | Get the active match ID.
-`public inline virtual void `[`SetActiveMatchId`](#classURH__MatchSubsystem_1a763cfebaad6b8e6e884e8beda81b862e)`(const FString & MatchId)` | Set the active match.
-`public inline virtual bool `[`HasActiveMatchId`](#classURH__MatchSubsystem_1ae991c30b43b4dec38b4ed4fd5421928a)`() const` | Gets whether the active match exists.
-`public inline virtual void `[`ClearActiveMatchId`](#classURH__MatchSubsystem_1ae32c11a820e23c6048777b0c06435920)`()` | Clears the active match.
-`public virtual void `[`CreateMatch`](#classURH__MatchSubsystem_1a88ae0bc379ecc672dff718686ca8887b)`(const `[`FRHAPI_MatchRequest`](models/RHAPI_MatchRequest.md#structFRHAPI__MatchRequest)` & Match,bool bSetActive,const FRH_OnMatchUpdateCompleteDelegateBlock & Delegate)` | Create a match (POST)
+`public virtual void `[`CreateMatch`](#classURH__MatchSubsystem_1a1857cd27251cdd8d7dbb34056214d8be)`(const `[`FRHAPI_MatchRequest`](models/RHAPI_MatchRequest.md#structFRHAPI__MatchRequest)` & Match,const FRH_OnMatchUpdateCompleteDelegateBlock & Delegate)` | Create a match (POST)
 `public virtual void `[`UpdateMatch`](#classURH__MatchSubsystem_1a3300d745ccd6c04a28a76895dfd7a6fd)`(const FString & MatchId,const `[`FRHAPI_MatchRequest`](models/RHAPI_MatchRequest.md#structFRHAPI__MatchRequest)` & Match,const FRH_OnMatchUpdateCompleteDelegateBlock & Delegate)` | Update a match (PATCH)
 `public virtual void `[`UpdateMatchPlayer`](#classURH__MatchSubsystem_1a920e474a59dcdd94bc07bf58fc71f710)`(const FString & MatchId,const FGuid & PlayerId,const `[`FRHAPI_MatchPlayerRequest`](models/RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` & Player,const FRH_OnMatchPlayerUpdateCompleteDelegateBlock & Delegate)` | Update a player in a match (PATCH w/ UPSERT)
 `protected TMap< FString, `[`FRHAPI_MatchWithPlayers`](models/RHAPI_MatchWithPlayers.md#structFRHAPI__MatchWithPlayers)` > `[`MatchesCache`](#classURH__MatchSubsystem_1af6ae949b60bac5983489fe295a5b914a) | 
@@ -117,23 +113,7 @@ Get all matches from the cache.
 
 Clear the match cache.
 
-#### `public inline virtual const FString `[`GetActiveMatchId`](#classURH__MatchSubsystem_1ae1c52d179cfaab95d435d7e4c05b756c)`() const` <a id="classURH__MatchSubsystem_1ae1c52d179cfaab95d435d7e4c05b756c"></a>
-
-Get the active match ID.
-
-#### `public inline virtual void `[`SetActiveMatchId`](#classURH__MatchSubsystem_1a763cfebaad6b8e6e884e8beda81b862e)`(const FString & MatchId)` <a id="classURH__MatchSubsystem_1a763cfebaad6b8e6e884e8beda81b862e"></a>
-
-Set the active match.
-
-#### `public inline virtual bool `[`HasActiveMatchId`](#classURH__MatchSubsystem_1ae991c30b43b4dec38b4ed4fd5421928a)`() const` <a id="classURH__MatchSubsystem_1ae991c30b43b4dec38b4ed4fd5421928a"></a>
-
-Gets whether the active match exists.
-
-#### `public inline virtual void `[`ClearActiveMatchId`](#classURH__MatchSubsystem_1ae32c11a820e23c6048777b0c06435920)`()` <a id="classURH__MatchSubsystem_1ae32c11a820e23c6048777b0c06435920"></a>
-
-Clears the active match.
-
-#### `public virtual void `[`CreateMatch`](#classURH__MatchSubsystem_1a88ae0bc379ecc672dff718686ca8887b)`(const `[`FRHAPI_MatchRequest`](models/RHAPI_MatchRequest.md#structFRHAPI__MatchRequest)` & Match,bool bSetActive,const FRH_OnMatchUpdateCompleteDelegateBlock & Delegate)` <a id="classURH__MatchSubsystem_1a88ae0bc379ecc672dff718686ca8887b"></a>
+#### `public virtual void `[`CreateMatch`](#classURH__MatchSubsystem_1a1857cd27251cdd8d7dbb34056214d8be)`(const `[`FRHAPI_MatchRequest`](models/RHAPI_MatchRequest.md#structFRHAPI__MatchRequest)` & Match,const FRH_OnMatchUpdateCompleteDelegateBlock & Delegate)` <a id="classURH__MatchSubsystem_1a1857cd27251cdd8d7dbb34056214d8be"></a>
 
 Create a match (POST)
 
