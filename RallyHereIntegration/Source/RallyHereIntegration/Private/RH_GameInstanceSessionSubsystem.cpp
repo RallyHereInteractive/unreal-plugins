@@ -687,9 +687,11 @@ void URH_GameInstanceSessionSubsystem::GameModePreloginEvent(class AGameModeBase
 	FString RequestURL;
 	if (pWorld->NetDriver != nullptr && pWorld->NetDriver->ClientConnections.Num() > 0)
 	{
-		for (auto Client : pWorld->NetDriver->ClientConnections)
+		const auto NetDriver = pWorld->NetDriver;
+		for (int i = NetDriver->ClientConnections.Num() - 1; i >= 0; --i)
 		{
-			if (Client->PlayerId == NewPlayer)
+			auto Client = NetDriver->ClientConnections[i];
+			if (Client->PlayerId == NewPlayer && Client->ClientLoginState == EClientLoginState::LoggingIn)
 			{
 				ValidateIncomingConnection(Client, ErrorMessage);
 				break;

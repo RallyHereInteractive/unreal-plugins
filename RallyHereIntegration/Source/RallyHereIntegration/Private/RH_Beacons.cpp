@@ -75,9 +75,10 @@ bool ARH_OnlineBeaconHost::CommonVerifyAuthentication(const FUniqueNetId& Player
 		UNetConnection* pConnection = nullptr;
 		if (NetDriver != nullptr && NetDriver->ClientConnections.Num() > 0)
 		{
-			for (auto Client : NetDriver->ClientConnections)
+			for (int i = NetDriver->ClientConnections.Num() - 1; i >= 0; --i)
 			{
-				if (Client->PlayerId == PlayerId)
+				auto Client = NetDriver->ClientConnections[i];
+				if (Client->PlayerId == PlayerId && Client->ClientLoginState == EClientLoginState::LoggingIn)
 				{
 					pConnection = Client;
 					break;
