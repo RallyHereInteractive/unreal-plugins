@@ -155,6 +155,36 @@ FString FResponse_GenerateKey::GetHttpResponseCodeDescription(EHttpResponseCodes
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
+bool FResponse_GenerateKey::ParseHeaders()
+{
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
+	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
+	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	{
+		int32 index;
+		if (HeaderStr.FindChar(TEXT(':'), index))
+		{
+			// if there is a space after the colon, skip it
+			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
+		}
+	}
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 200:
+		break;
+	default:
+		break;
+	}
+	
+	
+	return bParsedAllRequiredHeaders;
+}
+
 bool FResponse_GenerateKey::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
@@ -340,6 +370,36 @@ FString FResponse_GetAllPublicKeys::GetHttpResponseCodeDescription(EHttpResponse
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
+}
+
+bool FResponse_GetAllPublicKeys::ParseHeaders()
+{
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
+	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
+	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	{
+		int32 index;
+		if (HeaderStr.FindChar(TEXT(':'), index))
+		{
+			// if there is a space after the colon, skip it
+			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
+		}
+	}
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 200:
+		break;
+	default:
+		break;
+	}
+	
+	
+	return bParsedAllRequiredHeaders;
 }
 
 bool FResponse_GetAllPublicKeys::TryGetContentFor200(FRHAPI_PublicKeyList& OutContent) const
@@ -552,6 +612,40 @@ TEXT("r - &#x60;twitch_token_exchange_failed&#x60; - Problem exchanging code for
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
+}
+
+bool FResponse_GetPortalTokenDetails::ParseHeaders()
+{
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
+	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
+	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	{
+		int32 index;
+		if (HeaderStr.FindChar(TEXT(':'), index))
+		{
+			// if there is a space after the colon, skip it
+			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
+		}
+	}
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 200:
+		break;
+	case 403:
+		break;
+	case 422:
+		break;
+	default:
+		break;
+	}
+	
+	
+	return bParsedAllRequiredHeaders;
 }
 
 bool FResponse_GetPortalTokenDetails::TryGetContentFor200(TMap<FString, FString>& OutContent) const
@@ -792,6 +886,40 @@ FString FResponse_GetPublicKeyById::GetHttpResponseCodeDescription(EHttpResponse
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
+}
+
+bool FResponse_GetPublicKeyById::ParseHeaders()
+{
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
+	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
+	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	{
+		int32 index;
+		if (HeaderStr.FindChar(TEXT(':'), index))
+		{
+			// if there is a space after the colon, skip it
+			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
+		}
+	}
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 200:
+		break;
+	case 404:
+		break;
+	case 422:
+		break;
+	default:
+		break;
+	}
+	
+	
+	return bParsedAllRequiredHeaders;
 }
 
 bool FResponse_GetPublicKeyById::TryGetContentFor200(FRHAPI_PublicKey& OutContent) const
@@ -1049,6 +1177,42 @@ TEXT("_available&#x60; - Twitch keys are not available.  Please contact an admin
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
+}
+
+bool FResponse_Login::ParseHeaders()
+{
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
+	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
+	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	{
+		int32 index;
+		if (HeaderStr.FindChar(TEXT(':'), index))
+		{
+			// if there is a space after the colon, skip it
+			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
+		}
+	}
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 200:
+		break;
+	case 403:
+		break;
+	case 422:
+		break;
+	case 503:
+		break;
+	default:
+		break;
+	}
+	
+	
+	return bParsedAllRequiredHeaders;
 }
 
 bool FResponse_Login::TryGetContentFor200(FRHAPI_LoginResult& OutContent) const
@@ -1331,6 +1495,38 @@ FString FResponse_Logout::GetHttpResponseCodeDescription(EHttpResponseCodes::Typ
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
+bool FResponse_Logout::ParseHeaders()
+{
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
+	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
+	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	{
+		int32 index;
+		if (HeaderStr.FindChar(TEXT(':'), index))
+		{
+			// if there is a space after the colon, skip it
+			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
+		}
+	}
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 200:
+		break;
+	case 422:
+		break;
+	default:
+		break;
+	}
+	
+	
+	return bParsedAllRequiredHeaders;
+}
+
 bool FResponse_Logout::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
@@ -1584,13 +1780,30 @@ bool FResponse_OauthLogin::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
-	
-	// determine if all required headers were parsed
-	bool bParsedAllRequiredHeaders = true;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+	// parse into default header storage
 	if (const FString* Val = HeadersMap.Find(TEXT("location")))
 	{
 		Location = *Val;
 	}
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+#endif
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 307:
+		break;
+	case 422:
+		break;
+	default:
+		break;
+	}
+	
+	
 	return bParsedAllRequiredHeaders;
 }
 
@@ -1815,13 +2028,30 @@ bool FResponse_OauthResponse::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
-	
-	// determine if all required headers were parsed
-	bool bParsedAllRequiredHeaders = true;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+	// parse into default header storage
 	if (const FString* Val = HeadersMap.Find(TEXT("location")))
 	{
 		Location = *Val;
 	}
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+#endif
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 307:
+		break;
+	case 422:
+		break;
+	default:
+		break;
+	}
+	
+	
 	return bParsedAllRequiredHeaders;
 }
 
@@ -2036,6 +2266,40 @@ FString FResponse_OauthTokenExchange::GetHttpResponseCodeDescription(EHttpRespon
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
+}
+
+bool FResponse_OauthTokenExchange::ParseHeaders()
+{
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
+	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
+	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	{
+		int32 index;
+		if (HeaderStr.FindChar(TEXT(':'), index))
+		{
+			// if there is a space after the colon, skip it
+			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
+		}
+	}
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 200:
+		break;
+	case 403:
+		break;
+	case 422:
+		break;
+	default:
+		break;
+	}
+	
+	
+	return bParsedAllRequiredHeaders;
 }
 
 bool FResponse_OauthTokenExchange::TryGetContentFor200(FRHAPI_OAuthTokenResponse& OutContent) const
@@ -2303,6 +2567,38 @@ FString FResponse_Token::GetHttpResponseCodeDescription(EHttpResponseCodes::Type
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
+bool FResponse_Token::ParseHeaders()
+{
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
+	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
+	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	{
+		int32 index;
+		if (HeaderStr.FindChar(TEXT(':'), index))
+		{
+			// if there is a space after the colon, skip it
+			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
+		}
+	}
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 200:
+		break;
+	case 422:
+		break;
+	default:
+		break;
+	}
+	
+	
+	return bParsedAllRequiredHeaders;
+}
+
 bool FResponse_Token::TryGetContentFor200(FRHAPI_TokenResponse& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
@@ -2523,6 +2819,38 @@ FString FResponse_Verify::GetHttpResponseCodeDescription(EHttpResponseCodes::Typ
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
+}
+
+bool FResponse_Verify::ParseHeaders()
+{
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
+	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
+	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	{
+		int32 index;
+		if (HeaderStr.FindChar(TEXT(':'), index))
+		{
+			// if there is a space after the colon, skip it
+			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
+		}
+	}
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 200:
+		break;
+	case 403:
+		break;
+	default:
+		break;
+	}
+	
+	
+	return bParsedAllRequiredHeaders;
 }
 
 bool FResponse_Verify::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const

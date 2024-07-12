@@ -67,6 +67,8 @@ struct RALLYHEREAPI_API FResponse_CreateNewInventorySession : public FResponse
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -201,6 +203,8 @@ struct RALLYHEREAPI_API FResponse_CreateNewInventorySessionByPlayerUuid : public
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -334,6 +338,8 @@ struct RALLYHEREAPI_API FResponse_CreateNewInventorySessionByPlayerUuidSelf : pu
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -467,6 +473,8 @@ struct RALLYHEREAPI_API FResponse_CreateNewInventorySessionSelf : public FRespon
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -603,6 +611,8 @@ struct RALLYHEREAPI_API FResponse_CreateNewPlayerOrder : public FResponse
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -743,6 +753,8 @@ struct RALLYHEREAPI_API FResponse_CreateNewPlayerOrderSelf : public FResponse
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -884,6 +896,8 @@ struct RALLYHEREAPI_API FResponse_CreateNewPlayerUuidOrder : public FResponse
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -1024,6 +1038,8 @@ struct RALLYHEREAPI_API FResponse_CreateNewPlayerUuidOrderSelf : public FRespons
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -1163,6 +1179,8 @@ struct RALLYHEREAPI_API FResponse_CreatePlayerInventory : public FResponse
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -1301,6 +1319,8 @@ struct RALLYHEREAPI_API FResponse_CreatePlayerInventorySelf : public FResponse
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -1440,6 +1460,8 @@ struct RALLYHEREAPI_API FResponse_CreatePlayerInventoryUuid : public FResponse
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -1578,6 +1600,8 @@ struct RALLYHEREAPI_API FResponse_CreatePlayerInventoryUuidSelf : public FRespon
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -1716,6 +1740,8 @@ struct RALLYHEREAPI_API FResponse_GetInventorySessionInfo : public FResponse
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -1849,6 +1875,8 @@ struct RALLYHEREAPI_API FResponse_GetInventorySessionInfoByPlayerUuid : public F
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -1981,6 +2009,8 @@ struct RALLYHEREAPI_API FResponse_GetInventorySessionInfoByPlayerUuidSelf : publ
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -2108,6 +2138,8 @@ struct RALLYHEREAPI_API FResponse_GetInventorySessionInfoSelf : public FResponse
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -2237,6 +2269,8 @@ struct RALLYHEREAPI_API FResponse_GetPlayerInventory : public FResponse
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -2377,6 +2411,8 @@ struct RALLYHEREAPI_API FResponse_GetPlayerInventorySelf : public FResponse
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -2518,6 +2554,8 @@ struct RALLYHEREAPI_API FResponse_GetPlayerInventoryUuid : public FResponse
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -2658,6 +2696,8 @@ struct RALLYHEREAPI_API FResponse_GetPlayerInventoryUuidSelf : public FResponse
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -2799,6 +2839,8 @@ struct RALLYHEREAPI_API FResponse_GetPlayerOrderById : public FResponse
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -2937,6 +2979,8 @@ struct RALLYHEREAPI_API FResponse_GetPlayerOrderByIdSelf : public FResponse
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -3083,6 +3127,8 @@ struct RALLYHEREAPI_API FResponse_GetPlayerOrders : public FResponse
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -3223,6 +3269,8 @@ struct RALLYHEREAPI_API FResponse_GetPlayerOrdersSelf : public FResponse
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -3357,6 +3405,8 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidOrderById : public FResponse
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -3495,6 +3545,8 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidOrderByIdSelf : public FResponse
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -3641,6 +3693,8 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidOrders : public FResponse
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -3781,6 +3835,8 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidOrdersSelf : public FResponse
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -3915,6 +3971,8 @@ struct RALLYHEREAPI_API FResponse_ModifyManyPlayerInventory : public FResponse
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -4053,6 +4111,8 @@ struct RALLYHEREAPI_API FResponse_ModifyManyPlayerInventorySelf : public FRespon
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -4192,6 +4252,8 @@ struct RALLYHEREAPI_API FResponse_ModifyManyPlayerInventoryUuid : public FRespon
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -4330,6 +4392,8 @@ struct RALLYHEREAPI_API FResponse_ModifyManyPlayerInventoryUuidSelf : public FRe
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -4470,6 +4534,8 @@ struct RALLYHEREAPI_API FResponse_ModifyPlayerInventory : public FResponse
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -4609,6 +4675,8 @@ struct RALLYHEREAPI_API FResponse_ModifyPlayerInventorySelf : public FResponse
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -4749,6 +4817,8 @@ struct RALLYHEREAPI_API FResponse_ModifyPlayerInventoryUuid : public FResponse
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
@@ -4888,6 +4958,8 @@ struct RALLYHEREAPI_API FResponse_ModifyPlayerInventoryUuidSelf : public FRespon
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 

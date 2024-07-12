@@ -205,13 +205,34 @@ bool FResponse_GetAppSettingsAll::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
-	
-	// determine if all required headers were parsed
-	bool bParsedAllRequiredHeaders = true;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+	// parse into default header storage
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
 		ETag = *Val;
 	}
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+#endif
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 200:
+		break;
+	case 304:
+		break;
+	case 412:
+		break;
+	case 422:
+		break;
+	default:
+		break;
+	}
+	
+	
 	return bParsedAllRequiredHeaders;
 }
 
@@ -469,13 +490,34 @@ bool FResponse_GetAppSettingsClient::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
-	
-	// determine if all required headers were parsed
-	bool bParsedAllRequiredHeaders = true;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+	// parse into default header storage
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
 		ETag = *Val;
 	}
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+#endif
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 200:
+		break;
+	case 304:
+		break;
+	case 412:
+		break;
+	case 422:
+		break;
+	default:
+		break;
+	}
+	
+	
 	return bParsedAllRequiredHeaders;
 }
 
@@ -746,13 +788,36 @@ bool FResponse_GetAppSettingsServer::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
-	
-	// determine if all required headers were parsed
-	bool bParsedAllRequiredHeaders = true;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+	// parse into default header storage
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
 		ETag = *Val;
 	}
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+#endif
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 200:
+		break;
+	case 304:
+		break;
+	case 403:
+		break;
+	case 412:
+		break;
+	case 422:
+		break;
+	default:
+		break;
+	}
+	
+	
 	return bParsedAllRequiredHeaders;
 }
 
@@ -1051,13 +1116,34 @@ bool FResponse_GetKvsV2::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
-	
-	// determine if all required headers were parsed
-	bool bParsedAllRequiredHeaders = true;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+	// parse into default header storage
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
 		ETag = *Val;
 	}
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+#endif
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 200:
+		break;
+	case 304:
+		break;
+	case 412:
+		break;
+	case 422:
+		break;
+	default:
+		break;
+	}
+	
+	
 	return bParsedAllRequiredHeaders;
 }
 
