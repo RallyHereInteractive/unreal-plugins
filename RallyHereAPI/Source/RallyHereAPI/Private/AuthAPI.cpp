@@ -1541,8 +1541,10 @@ FString FResponse_OauthLogin::GetHttpResponseCodeDescription(EHttpResponseCodes:
 
 bool FResponse_OauthLogin::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -1552,6 +1554,8 @@ bool FResponse_OauthLogin::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("location")))
 	{
@@ -1763,8 +1767,10 @@ FString FResponse_OauthResponse::GetHttpResponseCodeDescription(EHttpResponseCod
 
 bool FResponse_OauthResponse::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -1774,6 +1780,8 @@ bool FResponse_OauthResponse::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("location")))
 	{

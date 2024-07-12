@@ -118,26 +118,37 @@ struct RALLYHEREAPI_API FResponse_GetAllMapGameInfo : public FResponse
 	bool ParseHeaders() override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-	typedef TVariant<FRHAPI_InstanceLaunchTemplate, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 protected:
+	typedef TVariant<FRHAPI_InstanceLaunchTemplate, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 	ContentVariantType ParsedContent;
+
+	TMap<FString, FString> HeadersMap;
+
 public:
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
-	#if ALLOW_LEGACY_RESPONSE_CONTENT
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// Default Response Content
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_InstanceLaunchTemplate Content;
-	#endif
 	
-	
-	// Headers
+	// Default Response Headers
 	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetHeader() or GetHeader<>() instead.")
 	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
-	// Manual Response Helpers	
+	// Default Response Helpers
+	const FRHAPI_InstanceLaunchTemplate* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_InstanceLaunchTemplate>(); }
+	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
+
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -206,26 +217,37 @@ struct RALLYHEREAPI_API FResponse_GetAllQueueInfo : public FResponse
 	bool ParseHeaders() override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-	typedef TVariant<FRHAPI_QueuesResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 protected:
+	typedef TVariant<FRHAPI_QueuesResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 	ContentVariantType ParsedContent;
+
+	TMap<FString, FString> HeadersMap;
+
 public:
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
-	#if ALLOW_LEGACY_RESPONSE_CONTENT
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// Default Response Content
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_QueuesResponse Content;
-	#endif
 	
-	
-	// Headers
+	// Default Response Headers
 	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetHeader() or GetHeader<>() instead.")
 	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
-	// Manual Response Helpers	
+	// Default Response Helpers
+	const FRHAPI_QueuesResponse* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_QueuesResponse>(); }
+	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
+
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -293,26 +315,37 @@ struct RALLYHEREAPI_API FResponse_GetAllQueueInfoV2 : public FResponse
 	bool ParseHeaders() override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-	typedef TVariant<FRHAPI_QueuesResponseV2, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 protected:
+	typedef TVariant<FRHAPI_QueuesResponseV2, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 	ContentVariantType ParsedContent;
+
+	TMap<FString, FString> HeadersMap;
+
 public:
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
-	#if ALLOW_LEGACY_RESPONSE_CONTENT
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// Default Response Content
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_QueuesResponseV2 Content;
-	#endif
 	
-	
-	// Headers
+	// Default Response Headers
 	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetHeader() or GetHeader<>() instead.")
 	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
-	// Manual Response Helpers	
+	// Default Response Helpers
+	const FRHAPI_QueuesResponseV2* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_QueuesResponseV2>(); }
+	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
+
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -380,26 +413,37 @@ struct RALLYHEREAPI_API FResponse_GetInstanceRequestTemplate : public FResponse
 	bool ParseHeaders() override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-	typedef TVariant<FRHAPI_InstanceRequestTemplate, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 protected:
+	typedef TVariant<FRHAPI_InstanceRequestTemplate, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 	ContentVariantType ParsedContent;
+
+	TMap<FString, FString> HeadersMap;
+
 public:
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
-	#if ALLOW_LEGACY_RESPONSE_CONTENT
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// Default Response Content
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_InstanceRequestTemplate Content;
-	#endif
 	
-	
-	// Headers
+	// Default Response Headers
 	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetHeader() or GetHeader<>() instead.")
 	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
-	// Manual Response Helpers	
+	// Default Response Helpers
+	const FRHAPI_InstanceRequestTemplate* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_InstanceRequestTemplate>(); }
+	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
+
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -467,26 +511,37 @@ struct RALLYHEREAPI_API FResponse_GetMatchMakingProfile : public FResponse
 	bool ParseHeaders() override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-	typedef TVariant<FRHAPI_MatchMakingProfile, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 protected:
+	typedef TVariant<FRHAPI_MatchMakingProfile, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 	ContentVariantType ParsedContent;
+
+	TMap<FString, FString> HeadersMap;
+
 public:
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
-	#if ALLOW_LEGACY_RESPONSE_CONTENT
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// Default Response Content
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_MatchMakingProfile Content;
-	#endif
 	
-	
-	// Headers
+	// Default Response Headers
 	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetHeader() or GetHeader<>() instead.")
 	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
-	// Manual Response Helpers	
+	// Default Response Helpers
+	const FRHAPI_MatchMakingProfile* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_MatchMakingProfile>(); }
+	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
+
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -553,26 +608,37 @@ struct RALLYHEREAPI_API FResponse_GetMatchMakingProfileV2 : public FResponse
 	bool ParseHeaders() override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-	typedef TVariant<FRHAPI_MatchMakingProfileV2, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 protected:
+	typedef TVariant<FRHAPI_MatchMakingProfileV2, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 	ContentVariantType ParsedContent;
+
+	TMap<FString, FString> HeadersMap;
+
 public:
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
-	#if ALLOW_LEGACY_RESPONSE_CONTENT
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// Default Response Content
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_MatchMakingProfileV2 Content;
-	#endif
 	
-	
-	// Headers
+	// Default Response Headers
 	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetHeader() or GetHeader<>() instead.")
 	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
-	// Manual Response Helpers	
+	// Default Response Helpers
+	const FRHAPI_MatchMakingProfileV2* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_MatchMakingProfileV2>(); }
+	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
+
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -641,26 +707,37 @@ struct RALLYHEREAPI_API FResponse_GetMatchMakingTemplates : public FResponse
 	bool ParseHeaders() override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-	typedef TVariant<FRHAPI_MatchMakingTemplateGroup, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 protected:
+	typedef TVariant<FRHAPI_MatchMakingTemplateGroup, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 	ContentVariantType ParsedContent;
+
+	TMap<FString, FString> HeadersMap;
+
 public:
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
-	#if ALLOW_LEGACY_RESPONSE_CONTENT
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// Default Response Content
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_MatchMakingTemplateGroup Content;
-	#endif
 	
-	
-	// Headers
+	// Default Response Headers
 	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetHeader() or GetHeader<>() instead.")
 	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
-	// Manual Response Helpers	
+	// Default Response Helpers
+	const FRHAPI_MatchMakingTemplateGroup* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_MatchMakingTemplateGroup>(); }
+	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
+
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -729,26 +806,37 @@ struct RALLYHEREAPI_API FResponse_GetMatchMakingTemplatesV2 : public FResponse
 	bool ParseHeaders() override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-	typedef TVariant<FRHAPI_MatchMakingTemplateGroupV2, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 protected:
+	typedef TVariant<FRHAPI_MatchMakingTemplateGroupV2, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 	ContentVariantType ParsedContent;
+
+	TMap<FString, FString> HeadersMap;
+
 public:
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
-	#if ALLOW_LEGACY_RESPONSE_CONTENT
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// Default Response Content
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_MatchMakingTemplateGroupV2 Content;
-	#endif
 	
-	
-	// Headers
+	// Default Response Headers
 	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetHeader() or GetHeader<>() instead.")
 	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
-	// Manual Response Helpers	
+	// Default Response Helpers
+	const FRHAPI_MatchMakingTemplateGroupV2* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_MatchMakingTemplateGroupV2>(); }
+	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
+
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/

@@ -192,8 +192,10 @@ FString FResponse_GetAppSettingsAll::GetHttpResponseCodeDescription(EHttpRespons
 
 bool FResponse_GetAppSettingsAll::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -203,6 +205,8 @@ bool FResponse_GetAppSettingsAll::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -447,8 +451,10 @@ FString FResponse_GetAppSettingsClient::GetHttpResponseCodeDescription(EHttpResp
 
 bool FResponse_GetAppSettingsClient::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -458,6 +464,8 @@ bool FResponse_GetAppSettingsClient::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -715,8 +723,10 @@ FString FResponse_GetAppSettingsServer::GetHttpResponseCodeDescription(EHttpResp
 
 bool FResponse_GetAppSettingsServer::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -726,6 +736,8 @@ bool FResponse_GetAppSettingsServer::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -1011,8 +1023,10 @@ FString FResponse_GetKvsV2::GetHttpResponseCodeDescription(EHttpResponseCodes::T
 
 bool FResponse_GetKvsV2::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -1022,6 +1036,8 @@ bool FResponse_GetKvsV2::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{

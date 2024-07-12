@@ -480,8 +480,10 @@ FString FResponse_AddPlatformSessionToRallyHereSession::GetHttpResponseCodeDescr
 
 bool FResponse_AddPlatformSessionToRallyHereSession::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -491,6 +493,8 @@ bool FResponse_AddPlatformSessionToRallyHereSession::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -2224,8 +2228,10 @@ FString FResponse_EndInstance::GetHttpResponseCodeDescription(EHttpResponseCodes
 
 bool FResponse_EndInstance::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -2235,6 +2241,8 @@ bool FResponse_EndInstance::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -2450,8 +2458,10 @@ FString FResponse_GetAllSessionTemplates::GetHttpResponseCodeDescription(EHttpRe
 
 bool FResponse_GetAllSessionTemplates::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -2461,6 +2471,8 @@ bool FResponse_GetAllSessionTemplates::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -2743,8 +2755,10 @@ FString FResponse_GetBrowserSessionsByType::GetHttpResponseCodeDescription(EHttp
 
 bool FResponse_GetBrowserSessionsByType::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -2754,6 +2768,8 @@ bool FResponse_GetBrowserSessionsByType::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -3280,8 +3296,10 @@ FString FResponse_GetPlatformSessionInfo::GetHttpResponseCodeDescription(EHttpRe
 
 bool FResponse_GetPlatformSessionInfo::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -3291,6 +3309,8 @@ bool FResponse_GetPlatformSessionInfo::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -3835,8 +3855,10 @@ FString FResponse_GetPlayerSessionsByUuid::GetHttpResponseCodeDescription(EHttpR
 
 bool FResponse_GetPlayerSessionsByUuid::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -3846,6 +3868,8 @@ bool FResponse_GetPlayerSessionsByUuid::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -4122,8 +4146,10 @@ FString FResponse_GetPlayerSessionsByUuidV2::GetHttpResponseCodeDescription(EHtt
 
 bool FResponse_GetPlayerSessionsByUuidV2::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -4133,6 +4159,8 @@ bool FResponse_GetPlayerSessionsByUuidV2::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -4404,8 +4432,10 @@ FString FResponse_GetPlayerSessionsSelf::GetHttpResponseCodeDescription(EHttpRes
 
 bool FResponse_GetPlayerSessionsSelf::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -4415,6 +4445,8 @@ bool FResponse_GetPlayerSessionsSelf::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -4691,8 +4723,10 @@ FString FResponse_GetSessionByAllocationId::GetHttpResponseCodeDescription(EHttp
 
 bool FResponse_GetSessionByAllocationId::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -4702,6 +4736,8 @@ bool FResponse_GetSessionByAllocationId::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -4986,8 +5022,10 @@ FString FResponse_GetSessionById::GetHttpResponseCodeDescription(EHttpResponseCo
 
 bool FResponse_GetSessionById::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -4997,6 +5035,8 @@ bool FResponse_GetSessionById::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -5273,8 +5313,10 @@ FString FResponse_GetSessionTemplateByType::GetHttpResponseCodeDescription(EHttp
 
 bool FResponse_GetSessionTemplateByType::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -5284,6 +5326,8 @@ bool FResponse_GetSessionTemplateByType::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -6042,8 +6086,10 @@ FString FResponse_InviteSessionToSession::GetHttpResponseCodeDescription(EHttpRe
 
 bool FResponse_InviteSessionToSession::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -6053,6 +6099,8 @@ bool FResponse_InviteSessionToSession::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -6615,8 +6663,10 @@ FString FResponse_JoinSessionByIdSelf::GetHttpResponseCodeDescription(EHttpRespo
 
 bool FResponse_JoinSessionByIdSelf::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -6626,6 +6676,8 @@ bool FResponse_JoinSessionByIdSelf::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -6943,8 +6995,10 @@ FString FResponse_JoinSessionByPlatformSessionByUuid::GetHttpResponseCodeDescrip
 
 bool FResponse_JoinSessionByPlatformSessionByUuid::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -6954,6 +7008,8 @@ bool FResponse_JoinSessionByPlatformSessionByUuid::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -7298,8 +7354,10 @@ FString FResponse_JoinSessionByPlatformSessionIdSelf::GetHttpResponseCodeDescrip
 
 bool FResponse_JoinSessionByPlatformSessionIdSelf::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -7309,6 +7367,8 @@ bool FResponse_JoinSessionByPlatformSessionIdSelf::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -7845,8 +7905,10 @@ FString FResponse_KickPlayerFromSessionByUuid::GetHttpResponseCodeDescription(EH
 
 bool FResponse_KickPlayerFromSessionByUuid::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -7856,6 +7918,8 @@ bool FResponse_KickPlayerFromSessionByUuid::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -8085,8 +8149,10 @@ FString FResponse_KickPlayerFromSessionByUuidV2::GetHttpResponseCodeDescription(
 
 bool FResponse_KickPlayerFromSessionByUuidV2::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -8096,6 +8162,8 @@ bool FResponse_KickPlayerFromSessionByUuidV2::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -10427,8 +10495,10 @@ FString FResponse_UpdateSessionById::GetHttpResponseCodeDescription(EHttpRespons
 
 bool FResponse_UpdateSessionById::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -10438,6 +10508,8 @@ bool FResponse_UpdateSessionById::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -11004,8 +11076,10 @@ FString FResponse_UpdateSessionPlayerByUuid::GetHttpResponseCodeDescription(EHtt
 
 bool FResponse_UpdateSessionPlayerByUuid::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -11015,6 +11089,8 @@ bool FResponse_UpdateSessionPlayerByUuid::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -11321,8 +11397,10 @@ FString FResponse_UpdateSessionPlayerByUuidV2::GetHttpResponseCodeDescription(EH
 
 bool FResponse_UpdateSessionPlayerByUuidV2::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -11332,6 +11410,8 @@ bool FResponse_UpdateSessionPlayerByUuidV2::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -11644,8 +11724,10 @@ FString FResponse_UpdateTeamById::GetHttpResponseCodeDescription(EHttpResponseCo
 
 bool FResponse_UpdateTeamById::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -11655,6 +11737,8 @@ bool FResponse_UpdateTeamById::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{

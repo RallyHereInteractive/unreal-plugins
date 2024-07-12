@@ -155,24 +155,33 @@ struct RALLYHEREAPI_API FResponse_CalculateV2Ranks : public FResponse
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-	typedef TVariant<FRHAPI_PlayerRankUpdateResponseV2, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 protected:
+	typedef TVariant<FRHAPI_PlayerRankUpdateResponseV2, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 	ContentVariantType ParsedContent;
+
+	TMap<FString, FString> HeadersMap;
+
 public:
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
-	#if ALLOW_LEGACY_RESPONSE_CONTENT
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// Default Response Content
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlayerRankUpdateResponseV2 Content;
-	#endif
-	
 	
 
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
-	// Manual Response Helpers	
+	// Default Response Helpers
+	const FRHAPI_PlayerRankUpdateResponseV2* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_PlayerRankUpdateResponseV2>(); }
+
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -231,24 +240,33 @@ struct RALLYHEREAPI_API FResponse_CalculateV3Ranks : public FResponse
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-	typedef TVariant<FRHAPI_CalculateRankResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 protected:
+	typedef TVariant<FRHAPI_CalculateRankResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 	ContentVariantType ParsedContent;
+
+	TMap<FString, FString> HeadersMap;
+
 public:
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
-	#if ALLOW_LEGACY_RESPONSE_CONTENT
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// Default Response Content
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_CalculateRankResponse Content;
-	#endif
-	
 	
 
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
-	// Manual Response Helpers	
+	// Default Response Helpers
+	const FRHAPI_CalculateRankResponse* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_CalculateRankResponse>(); }
+
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -306,24 +324,33 @@ struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidRanks : public FResponse
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-	typedef TVariant<FRHAPI_PlayerRankRequestResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 protected:
+	typedef TVariant<FRHAPI_PlayerRankRequestResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 	ContentVariantType ParsedContent;
+
+	TMap<FString, FString> HeadersMap;
+
 public:
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
-	#if ALLOW_LEGACY_RESPONSE_CONTENT
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// Default Response Content
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlayerRankRequestResponse Content;
-	#endif
-	
 	
 
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
-	// Manual Response Helpers	
+	// Default Response Helpers
+	const FRHAPI_PlayerRankRequestResponse* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_PlayerRankRequestResponse>(); }
+
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -379,24 +406,33 @@ struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidRanksSelf : public FResponse
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-	typedef TVariant<FRHAPI_PlayerRankRequestResponse, FRHAPI_HzApiErrorModel> ContentVariantType;
 protected:
+	typedef TVariant<FRHAPI_PlayerRankRequestResponse, FRHAPI_HzApiErrorModel> ContentVariantType;
 	ContentVariantType ParsedContent;
+
+	TMap<FString, FString> HeadersMap;
+
 public:
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
-	#if ALLOW_LEGACY_RESPONSE_CONTENT
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// Default Response Content
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlayerRankRequestResponse Content;
-	#endif
-	
 	
 
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
-	// Manual Response Helpers	
+	// Default Response Helpers
+	const FRHAPI_PlayerRankRequestResponse* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_PlayerRankRequestResponse>(); }
+
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -446,24 +482,33 @@ struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidRanksSelfV2 : public FResponse
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-	typedef TVariant<FRHAPI_PlayerRankRequestResponseV2, FRHAPI_HzApiErrorModel> ContentVariantType;
 protected:
+	typedef TVariant<FRHAPI_PlayerRankRequestResponseV2, FRHAPI_HzApiErrorModel> ContentVariantType;
 	ContentVariantType ParsedContent;
+
+	TMap<FString, FString> HeadersMap;
+
 public:
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
-	#if ALLOW_LEGACY_RESPONSE_CONTENT
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// Default Response Content
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlayerRankRequestResponseV2 Content;
-	#endif
-	
 	
 
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
-	// Manual Response Helpers	
+	// Default Response Helpers
+	const FRHAPI_PlayerRankRequestResponseV2* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_PlayerRankRequestResponseV2>(); }
+
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -515,24 +560,33 @@ struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidRanksV2 : public FResponse
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-	typedef TVariant<FRHAPI_PlayerRankRequestResponseV2, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 protected:
+	typedef TVariant<FRHAPI_PlayerRankRequestResponseV2, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 	ContentVariantType ParsedContent;
+
+	TMap<FString, FString> HeadersMap;
+
 public:
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
-	#if ALLOW_LEGACY_RESPONSE_CONTENT
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// Default Response Content
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlayerRankRequestResponseV2 Content;
-	#endif
-	
 	
 
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
-	// Manual Response Helpers	
+	// Default Response Helpers
+	const FRHAPI_PlayerRankRequestResponseV2* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_PlayerRankRequestResponseV2>(); }
+
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -587,24 +641,33 @@ struct RALLYHEREAPI_API FResponse_GetAllRankConfigV3 : public FResponse
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-	typedef TVariant<FRHAPI_RankConfigRequestResponseV3, FRHAPI_HzApiErrorModel> ContentVariantType;
 protected:
+	typedef TVariant<FRHAPI_RankConfigRequestResponseV3, FRHAPI_HzApiErrorModel> ContentVariantType;
 	ContentVariantType ParsedContent;
+
+	TMap<FString, FString> HeadersMap;
+
 public:
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
-	#if ALLOW_LEGACY_RESPONSE_CONTENT
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// Default Response Content
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_RankConfigRequestResponseV3 Content;
-	#endif
-	
 	
 
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
-	// Manual Response Helpers	
+	// Default Response Helpers
+	const FRHAPI_RankConfigRequestResponseV3* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_RankConfigRequestResponseV3>(); }
+
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -658,24 +721,33 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidRank : public FResponse
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-	typedef TVariant<FRHAPI_PlayerRankRequestResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 protected:
+	typedef TVariant<FRHAPI_PlayerRankRequestResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 	ContentVariantType ParsedContent;
+
+	TMap<FString, FString> HeadersMap;
+
 public:
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
-	#if ALLOW_LEGACY_RESPONSE_CONTENT
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// Default Response Content
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlayerRankRequestResponse Content;
-	#endif
-	
 	
 
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
-	// Manual Response Helpers	
+	// Default Response Helpers
+	const FRHAPI_PlayerRankRequestResponse* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_PlayerRankRequestResponse>(); }
+
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -732,24 +804,33 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidRankSelf : public FResponse
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-	typedef TVariant<FRHAPI_PlayerRankRequestResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 protected:
+	typedef TVariant<FRHAPI_PlayerRankRequestResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 	ContentVariantType ParsedContent;
+
+	TMap<FString, FString> HeadersMap;
+
 public:
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
-	#if ALLOW_LEGACY_RESPONSE_CONTENT
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// Default Response Content
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlayerRankRequestResponse Content;
-	#endif
-	
 	
 
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
-	// Manual Response Helpers	
+	// Default Response Helpers
+	const FRHAPI_PlayerRankRequestResponse* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_PlayerRankRequestResponse>(); }
+
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -805,24 +886,33 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidRankSelfV2 : public FResponse
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-	typedef TVariant<FRHAPI_PlayerRankRequestResponseV2, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 protected:
+	typedef TVariant<FRHAPI_PlayerRankRequestResponseV2, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 	ContentVariantType ParsedContent;
+
+	TMap<FString, FString> HeadersMap;
+
 public:
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
-	#if ALLOW_LEGACY_RESPONSE_CONTENT
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// Default Response Content
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlayerRankRequestResponseV2 Content;
-	#endif
-	
 	
 
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
-	// Manual Response Helpers	
+	// Default Response Helpers
+	const FRHAPI_PlayerRankRequestResponseV2* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_PlayerRankRequestResponseV2>(); }
+
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -880,24 +970,33 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidRankV2 : public FResponse
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-	typedef TVariant<FRHAPI_PlayerRankRequestResponseV2, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 protected:
+	typedef TVariant<FRHAPI_PlayerRankRequestResponseV2, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 	ContentVariantType ParsedContent;
+
+	TMap<FString, FString> HeadersMap;
+
 public:
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
-	#if ALLOW_LEGACY_RESPONSE_CONTENT
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// Default Response Content
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlayerRankRequestResponseV2 Content;
-	#endif
-	
 	
 
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
-	// Manual Response Helpers	
+	// Default Response Helpers
+	const FRHAPI_PlayerRankRequestResponseV2* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_PlayerRankRequestResponseV2>(); }
+
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -953,24 +1052,33 @@ struct RALLYHEREAPI_API FResponse_GetRankConfigV3 : public FResponse
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-	typedef TVariant<FRHAPI_RankConfigRequestResponseV3, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 protected:
+	typedef TVariant<FRHAPI_RankConfigRequestResponseV3, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 	ContentVariantType ParsedContent;
+
+	TMap<FString, FString> HeadersMap;
+
 public:
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
-	#if ALLOW_LEGACY_RESPONSE_CONTENT
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// Default Response Content
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_RankConfigRequestResponseV3 Content;
-	#endif
-	
 	
 
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
-	// Manual Response Helpers	
+	// Default Response Helpers
+	const FRHAPI_RankConfigRequestResponseV3* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_RankConfigRequestResponseV3>(); }
+
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -1030,24 +1138,33 @@ struct RALLYHEREAPI_API FResponse_UpdatePlayerUuidRank : public FResponse
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-	typedef TVariant<FRHAPI_PlayerRankUpdateResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 protected:
+	typedef TVariant<FRHAPI_PlayerRankUpdateResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 	ContentVariantType ParsedContent;
+
+	TMap<FString, FString> HeadersMap;
+
 public:
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
-	#if ALLOW_LEGACY_RESPONSE_CONTENT
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// Default Response Content
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlayerRankUpdateResponse Content;
-	#endif
-	
 	
 
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
-	// Manual Response Helpers	
+	// Default Response Helpers
+	const FRHAPI_PlayerRankUpdateResponse* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_PlayerRankUpdateResponse>(); }
+
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -1105,24 +1222,33 @@ struct RALLYHEREAPI_API FResponse_UpdatePlayerUuidRankSelf : public FResponse
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-	typedef TVariant<FRHAPI_PlayerRankUpdateResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 protected:
+	typedef TVariant<FRHAPI_PlayerRankUpdateResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 	ContentVariantType ParsedContent;
+
+	TMap<FString, FString> HeadersMap;
+
 public:
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
-	#if ALLOW_LEGACY_RESPONSE_CONTENT
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// Default Response Content
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlayerRankUpdateResponse Content;
-	#endif
-	
 	
 
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
-	// Manual Response Helpers	
+	// Default Response Helpers
+	const FRHAPI_PlayerRankUpdateResponse* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_PlayerRankUpdateResponse>(); }
+
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -1179,24 +1305,33 @@ struct RALLYHEREAPI_API FResponse_UpdatePlayerUuidRankSelfV2 : public FResponse
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-	typedef TVariant<FRHAPI_PlayerRankUpdateResponseV2, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 protected:
+	typedef TVariant<FRHAPI_PlayerRankUpdateResponseV2, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 	ContentVariantType ParsedContent;
+
+	TMap<FString, FString> HeadersMap;
+
 public:
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
-	#if ALLOW_LEGACY_RESPONSE_CONTENT
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// Default Response Content
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlayerRankUpdateResponseV2 Content;
-	#endif
-	
 	
 
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
-	// Manual Response Helpers	
+	// Default Response Helpers
+	const FRHAPI_PlayerRankUpdateResponseV2* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_PlayerRankUpdateResponseV2>(); }
+
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -1255,24 +1390,33 @@ struct RALLYHEREAPI_API FResponse_UpdatePlayerUuidRankV2 : public FResponse
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-	typedef TVariant<FRHAPI_PlayerRankUpdateResponseV2, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 protected:
+	typedef TVariant<FRHAPI_PlayerRankUpdateResponseV2, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 	ContentVariantType ParsedContent;
+
+	TMap<FString, FString> HeadersMap;
+
 public:
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
-	#if ALLOW_LEGACY_RESPONSE_CONTENT
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// Default Response Content
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlayerRankUpdateResponseV2 Content;
-	#endif
-	
 	
 
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
-	// Manual Response Helpers	
+	// Default Response Helpers
+	const FRHAPI_PlayerRankUpdateResponseV2* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_PlayerRankUpdateResponseV2>(); }
+
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -1330,24 +1474,33 @@ struct RALLYHEREAPI_API FResponse_UpdateRankingsV1 : public FResponse
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-	typedef TVariant<FRHAPI_PlayerRankUpdateResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 protected:
+	typedef TVariant<FRHAPI_PlayerRankUpdateResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
 	ContentVariantType ParsedContent;
+
+	TMap<FString, FString> HeadersMap;
+
 public:
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
-	#if ALLOW_LEGACY_RESPONSE_CONTENT
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// Default Response Content
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlayerRankUpdateResponse Content;
-	#endif
-	
 	
 
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
-	// Manual Response Helpers	
+	// Default Response Helpers
+	const FRHAPI_PlayerRankUpdateResponse* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_PlayerRankUpdateResponse>(); }
+
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/

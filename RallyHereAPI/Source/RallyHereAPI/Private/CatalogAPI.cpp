@@ -182,8 +182,10 @@ FString FResponse_GetCatalogAll::GetHttpResponseCodeDescription(EHttpResponseCod
 
 bool FResponse_GetCatalogAll::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -193,6 +195,8 @@ bool FResponse_GetCatalogAll::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -496,8 +500,10 @@ FString FResponse_GetCatalogEntitlementSku::GetHttpResponseCodeDescription(EHttp
 
 bool FResponse_GetCatalogEntitlementSku::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -507,6 +513,8 @@ bool FResponse_GetCatalogEntitlementSku::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -804,8 +812,10 @@ FString FResponse_GetCatalogEntitlementSkuAll::GetHttpResponseCodeDescription(EH
 
 bool FResponse_GetCatalogEntitlementSkuAll::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -815,6 +825,8 @@ bool FResponse_GetCatalogEntitlementSkuAll::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -1117,8 +1129,10 @@ FString FResponse_GetCatalogInventoryBucketUseRuleSet::GetHttpResponseCodeDescri
 
 bool FResponse_GetCatalogInventoryBucketUseRuleSet::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -1128,6 +1142,8 @@ bool FResponse_GetCatalogInventoryBucketUseRuleSet::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -1425,8 +1441,10 @@ FString FResponse_GetCatalogInventoryBucketUseRuleSetsAll::GetHttpResponseCodeDe
 
 bool FResponse_GetCatalogInventoryBucketUseRuleSetsAll::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -1436,6 +1454,8 @@ bool FResponse_GetCatalogInventoryBucketUseRuleSetsAll::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -1738,8 +1758,10 @@ FString FResponse_GetCatalogItem::GetHttpResponseCodeDescription(EHttpResponseCo
 
 bool FResponse_GetCatalogItem::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -1749,6 +1771,8 @@ bool FResponse_GetCatalogItem::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -2046,8 +2070,10 @@ FString FResponse_GetCatalogItemsAll::GetHttpResponseCodeDescription(EHttpRespon
 
 bool FResponse_GetCatalogItemsAll::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -2057,6 +2083,8 @@ bool FResponse_GetCatalogItemsAll::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -2359,8 +2387,10 @@ FString FResponse_GetCatalogLoot::GetHttpResponseCodeDescription(EHttpResponseCo
 
 bool FResponse_GetCatalogLoot::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -2370,6 +2400,8 @@ bool FResponse_GetCatalogLoot::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -2667,8 +2699,10 @@ FString FResponse_GetCatalogLootsAll::GetHttpResponseCodeDescription(EHttpRespon
 
 bool FResponse_GetCatalogLootsAll::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -2678,6 +2712,8 @@ bool FResponse_GetCatalogLootsAll::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -2980,8 +3016,10 @@ FString FResponse_GetCatalogPortalUseRuleset::GetHttpResponseCodeDescription(EHt
 
 bool FResponse_GetCatalogPortalUseRuleset::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -2991,6 +3029,8 @@ bool FResponse_GetCatalogPortalUseRuleset::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -3288,8 +3328,10 @@ FString FResponse_GetCatalogPortalUseRulesetsAll::GetHttpResponseCodeDescription
 
 bool FResponse_GetCatalogPortalUseRulesetsAll::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -3299,6 +3341,8 @@ bool FResponse_GetCatalogPortalUseRulesetsAll::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -3601,8 +3645,10 @@ FString FResponse_GetCatalogPricePoint::GetHttpResponseCodeDescription(EHttpResp
 
 bool FResponse_GetCatalogPricePoint::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -3612,6 +3658,8 @@ bool FResponse_GetCatalogPricePoint::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -3909,8 +3957,10 @@ FString FResponse_GetCatalogPricePointsAll::GetHttpResponseCodeDescription(EHttp
 
 bool FResponse_GetCatalogPricePointsAll::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -3920,6 +3970,8 @@ bool FResponse_GetCatalogPricePointsAll::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -4222,8 +4274,10 @@ FString FResponse_GetCatalogTimeFrame::GetHttpResponseCodeDescription(EHttpRespo
 
 bool FResponse_GetCatalogTimeFrame::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -4233,6 +4287,8 @@ bool FResponse_GetCatalogTimeFrame::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -4530,8 +4586,10 @@ FString FResponse_GetCatalogTimeFramesAll::GetHttpResponseCodeDescription(EHttpR
 
 bool FResponse_GetCatalogTimeFramesAll::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -4541,6 +4599,8 @@ bool FResponse_GetCatalogTimeFramesAll::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -4843,8 +4903,10 @@ FString FResponse_GetCatalogVendor::GetHttpResponseCodeDescription(EHttpResponse
 
 bool FResponse_GetCatalogVendor::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -4854,6 +4916,8 @@ bool FResponse_GetCatalogVendor::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -5151,8 +5215,10 @@ FString FResponse_GetCatalogVendorsAll::GetHttpResponseCodeDescription(EHttpResp
 
 bool FResponse_GetCatalogVendorsAll::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -5162,6 +5228,8 @@ bool FResponse_GetCatalogVendorsAll::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -5459,8 +5527,10 @@ FString FResponse_GetCatalogXpAll::GetHttpResponseCodeDescription(EHttpResponseC
 
 bool FResponse_GetCatalogXpAll::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -5470,6 +5540,8 @@ bool FResponse_GetCatalogXpAll::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
@@ -5772,8 +5844,10 @@ FString FResponse_GetCatalogXpTable::GetHttpResponseCodeDescription(EHttpRespons
 
 bool FResponse_GetCatalogXpTable::ParseHeaders()
 {
+	// Reset and presize the header map we will parse into
+	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
+	
 	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
 	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
 	{
 		int32 index;
@@ -5783,6 +5857,8 @@ bool FResponse_GetCatalogXpTable::ParseHeaders()
 			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
 		}
 	}
+	
+	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
