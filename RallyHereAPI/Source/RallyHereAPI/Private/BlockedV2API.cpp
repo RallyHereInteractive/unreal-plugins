@@ -318,6 +318,11 @@ FResponse_BlockV2::FResponse_BlockV2(FRequestMetadata InRequestMetadata) :
 
 FString Traits_BlockV2::Name = TEXT("BlockV2");
 
+FHttpRequestPtr Traits_BlockV2::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->BlockV2(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FBlockedV2API::GetBlockedListForPlayerV2(const FRequest_GetBlockedListForPlayerV2& Request, const FDelegate_GetBlockedListForPlayerV2& Delegate /*= FDelegate_GetBlockedListForPlayerV2()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -671,6 +676,11 @@ FResponse_GetBlockedListForPlayerV2::FResponse_GetBlockedListForPlayerV2(FReques
 
 FString Traits_GetBlockedListForPlayerV2::Name = TEXT("GetBlockedListForPlayerV2");
 
+FHttpRequestPtr Traits_GetBlockedListForPlayerV2::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetBlockedListForPlayerV2(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FBlockedV2API::GetBlockedV2(const FRequest_GetBlockedV2& Request, const FDelegate_GetBlockedV2& Delegate /*= FDelegate_GetBlockedV2()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -966,6 +976,11 @@ FResponse_GetBlockedV2::FResponse_GetBlockedV2(FRequestMetadata InRequestMetadat
 
 FString Traits_GetBlockedV2::Name = TEXT("GetBlockedV2");
 
+FHttpRequestPtr Traits_GetBlockedV2::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetBlockedV2(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FBlockedV2API::UnblockV2(const FRequest_UnblockV2& Request, const FDelegate_UnblockV2& Delegate /*= FDelegate_UnblockV2()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -1184,6 +1199,11 @@ FResponse_UnblockV2::FResponse_UnblockV2(FRequestMetadata InRequestMetadata) :
 }
 
 FString Traits_UnblockV2::Name = TEXT("UnblockV2");
+
+FHttpRequestPtr Traits_UnblockV2::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->UnblockV2(InRequest, InDelegate, InPriority);
+}
 
 
 }

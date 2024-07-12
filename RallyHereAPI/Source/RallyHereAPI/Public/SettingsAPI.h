@@ -23,62 +23,2692 @@ using RallyHereAPI::ToStringFormatArg;
 using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
-struct FRequest_DeleteAllPlayerIdSettingsForSettingType;
-struct FResponse_DeleteAllPlayerIdSettingsForSettingType;
-struct FRequest_DeleteAllPlayerUuidSettingsForSettingType;
-struct FResponse_DeleteAllPlayerUuidSettingsForSettingType;
-struct FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf;
-struct FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf;
-struct FRequest_DeleteSinglePlayerIdSetting;
-struct FResponse_DeleteSinglePlayerIdSetting;
-struct FRequest_DeleteSinglePlayerUuidSetting;
-struct FResponse_DeleteSinglePlayerUuidSetting;
-struct FRequest_DeleteSinglePlayerUuidSettingSelf;
-struct FResponse_DeleteSinglePlayerUuidSettingSelf;
-struct FRequest_GetAllPlayerIdSettingsForSettingType;
-struct FResponse_GetAllPlayerIdSettingsForSettingType;
-struct FRequest_GetAllPlayerUuidSettingsForSettingType;
-struct FResponse_GetAllPlayerUuidSettingsForSettingType;
-struct FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf;
-struct FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf;
-struct FRequest_GetConfigForAllSettingTypes;
-struct FResponse_GetConfigForAllSettingTypes;
-struct FRequest_GetConfigForSingleSettingTypeAllVersions;
-struct FResponse_GetConfigForSingleSettingTypeAllVersions;
-struct FRequest_GetConfigForSingleSettingTypeAndVersion;
-struct FResponse_GetConfigForSingleSettingTypeAndVersion;
-struct FRequest_GetSinglePlayerIdSetting;
-struct FResponse_GetSinglePlayerIdSetting;
-struct FRequest_GetSinglePlayerUuidSetting;
-struct FResponse_GetSinglePlayerUuidSetting;
-struct FRequest_GetSinglePlayerUuidSettingSelf;
-struct FResponse_GetSinglePlayerUuidSettingSelf;
-struct FRequest_SetSinglePlayerIdSetting;
-struct FResponse_SetSinglePlayerIdSetting;
-struct FRequest_SetSinglePlayerUuidSetting;
-struct FResponse_SetSinglePlayerUuidSetting;
-struct FRequest_SetSinglePlayerUuidSettingSelf;
-struct FResponse_SetSinglePlayerUuidSettingSelf;
+// forward declaration
+class FSettingsAPI;
 
+/**
+ * @brief Delete All Player Id Settings For Setting Type
+ * Delete all player setting for a specific type
+ * 
+ * Required Permissions: `setting:write` for any player.  `setting:write:self` for the player of the access token.
+ * 
+ * **DEPRECATED** - Use v2 instead
+*/
+struct RALLYHEREAPI_API FRequest_DeleteAllPlayerIdSettingsForSettingType : public FRequest
+{
+	FRequest_DeleteAllPlayerIdSettingsForSettingType();
+	virtual ~FRequest_DeleteAllPlayerIdSettingsForSettingType() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	int32 PlayerId = 0;
+	FString SettingTypeId;
+};
+
+/** The response type for FRequest_DeleteAllPlayerIdSettingsForSettingType */
+struct RALLYHEREAPI_API FResponse_DeleteAllPlayerIdSettingsForSettingType : public FResponse
+{
+	FResponse_DeleteAllPlayerIdSettingsForSettingType(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_DeleteAllPlayerIdSettingsForSettingType() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_JsonValue Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_JsonValue* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_JsonValue>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+	/* Response 400
+	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist         
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_DeleteAllPlayerIdSettingsForSettingType */
 DECLARE_DELEGATE_OneParam(FDelegate_DeleteAllPlayerIdSettingsForSettingType, const FResponse_DeleteAllPlayerIdSettingsForSettingType&);
+
+/** @brief A helper metadata object for DeleteAllPlayerIdSettingsForSettingType that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_DeleteAllPlayerIdSettingsForSettingType
+{
+	/** The request type */
+	typedef FRequest_DeleteAllPlayerIdSettingsForSettingType Request;
+	/** The response type */
+	typedef FResponse_DeleteAllPlayerIdSettingsForSettingType Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_DeleteAllPlayerIdSettingsForSettingType Delegate;
+	/** The API object that supports this API call */
+	typedef FSettingsAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Delete All Player Uuid Settings For Setting Type
+ * Delete all player setting for a specific type
+ * 
+ * Required Permissions: `setting:write` for any player.  `setting:write:self` for the player of the access token.
+*/
+struct RALLYHEREAPI_API FRequest_DeleteAllPlayerUuidSettingsForSettingType : public FRequest
+{
+	FRequest_DeleteAllPlayerUuidSettingsForSettingType();
+	virtual ~FRequest_DeleteAllPlayerUuidSettingsForSettingType() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	/* Player to delete setting for */
+	FGuid PlayerUuid;
+	/* Setting Type to delete settings for.  Must be one of the known setting types */
+	FString SettingTypeId;
+};
+
+/** The response type for FRequest_DeleteAllPlayerUuidSettingsForSettingType */
+struct RALLYHEREAPI_API FResponse_DeleteAllPlayerUuidSettingsForSettingType : public FResponse
+{
+	FResponse_DeleteAllPlayerUuidSettingsForSettingType(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_DeleteAllPlayerUuidSettingsForSettingType() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_JsonValue Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_JsonValue* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_JsonValue>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+	/* Response 400
+	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist         
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_DeleteAllPlayerUuidSettingsForSettingType */
 DECLARE_DELEGATE_OneParam(FDelegate_DeleteAllPlayerUuidSettingsForSettingType, const FResponse_DeleteAllPlayerUuidSettingsForSettingType&);
+
+/** @brief A helper metadata object for DeleteAllPlayerUuidSettingsForSettingType that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_DeleteAllPlayerUuidSettingsForSettingType
+{
+	/** The request type */
+	typedef FRequest_DeleteAllPlayerUuidSettingsForSettingType Request;
+	/** The response type */
+	typedef FResponse_DeleteAllPlayerUuidSettingsForSettingType Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_DeleteAllPlayerUuidSettingsForSettingType Delegate;
+	/** The API object that supports this API call */
+	typedef FSettingsAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Delete All Player Uuid Settings For Setting Type Self
+ * Delete all player setting for a specific type
+ * 
+ * Required Permissions: `setting:write` or `setting:write:self`
+*/
+struct RALLYHEREAPI_API FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf : public FRequest
+{
+	FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf();
+	virtual ~FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	/* Setting Type to delete settings for.  Must be one of the known setting types */
+	FString SettingTypeId;
+};
+
+/** The response type for FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf */
+struct RALLYHEREAPI_API FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf : public FResponse
+{
+	FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_JsonValue Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_JsonValue* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_JsonValue>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+	/* Response 400
+	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist         
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf */
 DECLARE_DELEGATE_OneParam(FDelegate_DeleteAllPlayerUuidSettingsForSettingTypeSelf, const FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf&);
+
+/** @brief A helper metadata object for DeleteAllPlayerUuidSettingsForSettingTypeSelf that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_DeleteAllPlayerUuidSettingsForSettingTypeSelf
+{
+	/** The request type */
+	typedef FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf Request;
+	/** The response type */
+	typedef FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_DeleteAllPlayerUuidSettingsForSettingTypeSelf Delegate;
+	/** The API object that supports this API call */
+	typedef FSettingsAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Delete Single Player Id Setting
+ * Delete a single player setting
+ *     
+ * Required Permissions: `setting:write` for any player.  `setting:write:self` for the player of the access token.
+ *     
+ * **DEPRECATED** - Use v2 instead
+*/
+struct RALLYHEREAPI_API FRequest_DeleteSinglePlayerIdSetting : public FRequest
+{
+	FRequest_DeleteSinglePlayerIdSetting();
+	virtual ~FRequest_DeleteSinglePlayerIdSetting() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	/* Player to delete setting for */
+	int32 PlayerId = 0;
+	/* Setting Type to delete settings for.  Must be one of the known setting types */
+	FString SettingTypeId;
+	/* Setting Key to delete setting for */
+	FString Key;
+};
+
+/** The response type for FRequest_DeleteSinglePlayerIdSetting */
+struct RALLYHEREAPI_API FResponse_DeleteSinglePlayerIdSetting : public FResponse
+{
+	FResponse_DeleteSinglePlayerIdSetting(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_DeleteSinglePlayerIdSetting() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_JsonValue Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_JsonValue* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_JsonValue>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+	/* Response 400
+	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist         
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_DeleteSinglePlayerIdSetting */
 DECLARE_DELEGATE_OneParam(FDelegate_DeleteSinglePlayerIdSetting, const FResponse_DeleteSinglePlayerIdSetting&);
+
+/** @brief A helper metadata object for DeleteSinglePlayerIdSetting that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_DeleteSinglePlayerIdSetting
+{
+	/** The request type */
+	typedef FRequest_DeleteSinglePlayerIdSetting Request;
+	/** The response type */
+	typedef FResponse_DeleteSinglePlayerIdSetting Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_DeleteSinglePlayerIdSetting Delegate;
+	/** The API object that supports this API call */
+	typedef FSettingsAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Delete Single Player Uuid Setting
+ * Delete a single player setting
+ * 
+ * Required Permissions: `setting:write` for any player.  `setting:write:self` for the player of the access token.
+*/
+struct RALLYHEREAPI_API FRequest_DeleteSinglePlayerUuidSetting : public FRequest
+{
+	FRequest_DeleteSinglePlayerUuidSetting();
+	virtual ~FRequest_DeleteSinglePlayerUuidSetting() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	/* Player to delete setting for */
+	FGuid PlayerUuid;
+	/* Setting Type to delete settings for.  Must be one of the known setting types */
+	FString SettingTypeId;
+	/* Setting Key to delete setting for */
+	FString Key;
+};
+
+/** The response type for FRequest_DeleteSinglePlayerUuidSetting */
+struct RALLYHEREAPI_API FResponse_DeleteSinglePlayerUuidSetting : public FResponse
+{
+	FResponse_DeleteSinglePlayerUuidSetting(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_DeleteSinglePlayerUuidSetting() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_JsonValue Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_JsonValue* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_JsonValue>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+	/* Response 400
+	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist         
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_DeleteSinglePlayerUuidSetting */
 DECLARE_DELEGATE_OneParam(FDelegate_DeleteSinglePlayerUuidSetting, const FResponse_DeleteSinglePlayerUuidSetting&);
+
+/** @brief A helper metadata object for DeleteSinglePlayerUuidSetting that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_DeleteSinglePlayerUuidSetting
+{
+	/** The request type */
+	typedef FRequest_DeleteSinglePlayerUuidSetting Request;
+	/** The response type */
+	typedef FResponse_DeleteSinglePlayerUuidSetting Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_DeleteSinglePlayerUuidSetting Delegate;
+	/** The API object that supports this API call */
+	typedef FSettingsAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Delete Single Player Uuid Setting Self
+ * Delete a single player setting
+ * 
+ * Required Permissions: `setting:write` or `setting:write:self`
+*/
+struct RALLYHEREAPI_API FRequest_DeleteSinglePlayerUuidSettingSelf : public FRequest
+{
+	FRequest_DeleteSinglePlayerUuidSettingSelf();
+	virtual ~FRequest_DeleteSinglePlayerUuidSettingSelf() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	/* Setting Type to delete settings for.  Must be one of the known setting types */
+	FString SettingTypeId;
+	/* Setting Key to delete setting for */
+	FString Key;
+};
+
+/** The response type for FRequest_DeleteSinglePlayerUuidSettingSelf */
+struct RALLYHEREAPI_API FResponse_DeleteSinglePlayerUuidSettingSelf : public FResponse
+{
+	FResponse_DeleteSinglePlayerUuidSettingSelf(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_DeleteSinglePlayerUuidSettingSelf() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_JsonValue Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_JsonValue* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_JsonValue>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+	/* Response 400
+	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist         
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_DeleteSinglePlayerUuidSettingSelf */
 DECLARE_DELEGATE_OneParam(FDelegate_DeleteSinglePlayerUuidSettingSelf, const FResponse_DeleteSinglePlayerUuidSettingSelf&);
+
+/** @brief A helper metadata object for DeleteSinglePlayerUuidSettingSelf that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_DeleteSinglePlayerUuidSettingSelf
+{
+	/** The request type */
+	typedef FRequest_DeleteSinglePlayerUuidSettingSelf Request;
+	/** The response type */
+	typedef FResponse_DeleteSinglePlayerUuidSettingSelf Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_DeleteSinglePlayerUuidSettingSelf Delegate;
+	/** The API object that supports this API call */
+	typedef FSettingsAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get All Player Id Settings For Setting Type
+ * Get a list of all player settings for a specific Setting Type.
+ * 
+ * Required Permissions: `setting:read` for any player.  `setting:read:self` for the player of the access token.
+ * 
+ * **DEPRECATED** - Use v2 instead
+*/
+struct RALLYHEREAPI_API FRequest_GetAllPlayerIdSettingsForSettingType : public FRequest
+{
+	FRequest_GetAllPlayerIdSettingsForSettingType();
+	virtual ~FRequest_GetAllPlayerIdSettingsForSettingType() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	/* Player to get settings for */
+	int32 PlayerId = 0;
+	/* Setting Type to get settings for. Must be one of the known setting types */
+	FString SettingTypeId;
+	/* Setting Key to get settings for. If not specified, all settings for the setting type will be returned */
+	TOptional<TArray<FString>> Key;
+};
+
+/** The response type for FRequest_GetAllPlayerIdSettingsForSettingType */
+struct RALLYHEREAPI_API FResponse_GetAllPlayerIdSettingsForSettingType : public FResponse
+{
+	FResponse_GetAllPlayerIdSettingsForSettingType(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetAllPlayerIdSettingsForSettingType() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<TMap<FString, FRHAPI_SettingData>, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	TMap<FString, FRHAPI_SettingData> Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const TMap<FString, FRHAPI_SettingData>* TryGetDefaultContent() const { return ParsedContent.TryGet<TMap<FString, FRHAPI_SettingData>>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
+
+	/* Response 400
+	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found         
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetAllPlayerIdSettingsForSettingType */
 DECLARE_DELEGATE_OneParam(FDelegate_GetAllPlayerIdSettingsForSettingType, const FResponse_GetAllPlayerIdSettingsForSettingType&);
+
+/** @brief A helper metadata object for GetAllPlayerIdSettingsForSettingType that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetAllPlayerIdSettingsForSettingType
+{
+	/** The request type */
+	typedef FRequest_GetAllPlayerIdSettingsForSettingType Request;
+	/** The response type */
+	typedef FResponse_GetAllPlayerIdSettingsForSettingType Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetAllPlayerIdSettingsForSettingType Delegate;
+	/** The API object that supports this API call */
+	typedef FSettingsAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get All Player Uuid Settings For Setting Type
+ * Get a list of all player settings for a specific Setting Type
+ * 
+ * Required Permissions: `setting:read` for any player.  `setting:read:self` for the player of the access token.
+*/
+struct RALLYHEREAPI_API FRequest_GetAllPlayerUuidSettingsForSettingType : public FRequest
+{
+	FRequest_GetAllPlayerUuidSettingsForSettingType();
+	virtual ~FRequest_GetAllPlayerUuidSettingsForSettingType() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	/* Player to get settings for */
+	FGuid PlayerUuid;
+	/* Setting Type to get settings for. Must be one of the known setting types */
+	FString SettingTypeId;
+	/* Setting Key to get settings for. If not specified, all settings for the setting type will be returned */
+	TOptional<TArray<FString>> Key;
+};
+
+/** The response type for FRequest_GetAllPlayerUuidSettingsForSettingType */
+struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidSettingsForSettingType : public FResponse
+{
+	FResponse_GetAllPlayerUuidSettingsForSettingType(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetAllPlayerUuidSettingsForSettingType() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<TMap<FString, FRHAPI_SettingData>, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	TMap<FString, FRHAPI_SettingData> Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const TMap<FString, FRHAPI_SettingData>* TryGetDefaultContent() const { return ParsedContent.TryGet<TMap<FString, FRHAPI_SettingData>>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
+
+	/* Response 400
+	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found         
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetAllPlayerUuidSettingsForSettingType */
 DECLARE_DELEGATE_OneParam(FDelegate_GetAllPlayerUuidSettingsForSettingType, const FResponse_GetAllPlayerUuidSettingsForSettingType&);
+
+/** @brief A helper metadata object for GetAllPlayerUuidSettingsForSettingType that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetAllPlayerUuidSettingsForSettingType
+{
+	/** The request type */
+	typedef FRequest_GetAllPlayerUuidSettingsForSettingType Request;
+	/** The response type */
+	typedef FResponse_GetAllPlayerUuidSettingsForSettingType Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetAllPlayerUuidSettingsForSettingType Delegate;
+	/** The API object that supports this API call */
+	typedef FSettingsAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get All Player Uuid Settings For Setting Type Self
+ * Get a list of all player settings for a specific Setting Type
+ * 
+ * Required Permissions: `setting:read` or `setting:read:self`
+*/
+struct RALLYHEREAPI_API FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf : public FRequest
+{
+	FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf();
+	virtual ~FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	/* Setting Type to get settings for. Must be one of the known setting types */
+	FString SettingTypeId;
+	/* Setting Key to get settings for. If not specified, all settings for the setting type will be returned */
+	TOptional<TArray<FString>> Key;
+};
+
+/** The response type for FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf */
+struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf : public FResponse
+{
+	FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<TMap<FString, FRHAPI_SettingData>, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	TMap<FString, FRHAPI_SettingData> Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const TMap<FString, FRHAPI_SettingData>* TryGetDefaultContent() const { return ParsedContent.TryGet<TMap<FString, FRHAPI_SettingData>>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
+
+	/* Response 400
+	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found         
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf */
 DECLARE_DELEGATE_OneParam(FDelegate_GetAllPlayerUuidSettingsForSettingTypeSelf, const FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf&);
+
+/** @brief A helper metadata object for GetAllPlayerUuidSettingsForSettingTypeSelf that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetAllPlayerUuidSettingsForSettingTypeSelf
+{
+	/** The request type */
+	typedef FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf Request;
+	/** The response type */
+	typedef FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetAllPlayerUuidSettingsForSettingTypeSelf Delegate;
+	/** The API object that supports this API call */
+	typedef FSettingsAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Config For All Setting Types
+ * Get all setting types and their configuration.
+ *     
+ * Required Permissions: `setting-config:read`
+*/
+struct RALLYHEREAPI_API FRequest_GetConfigForAllSettingTypes : public FRequest
+{
+	FRequest_GetConfigForAllSettingTypes();
+	virtual ~FRequest_GetConfigForAllSettingTypes() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+};
+
+/** The response type for FRequest_GetConfigForAllSettingTypes */
+struct RALLYHEREAPI_API FResponse_GetConfigForAllSettingTypes : public FResponse
+{
+	FResponse_GetConfigForAllSettingTypes(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetConfigForAllSettingTypes() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<TMap<FString, FRHAPI_SettingType>> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	TMap<FString, FRHAPI_SettingType> Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const TMap<FString, FRHAPI_SettingType>* TryGetDefaultContent() const { return ParsedContent.TryGet<TMap<FString, FRHAPI_SettingType>>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(TMap<FString, FRHAPI_SettingType>& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetConfigForAllSettingTypes */
 DECLARE_DELEGATE_OneParam(FDelegate_GetConfigForAllSettingTypes, const FResponse_GetConfigForAllSettingTypes&);
+
+/** @brief A helper metadata object for GetConfigForAllSettingTypes that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetConfigForAllSettingTypes
+{
+	/** The request type */
+	typedef FRequest_GetConfigForAllSettingTypes Request;
+	/** The response type */
+	typedef FResponse_GetConfigForAllSettingTypes Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetConfigForAllSettingTypes Delegate;
+	/** The API object that supports this API call */
+	typedef FSettingsAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Config For Single Setting Type All Versions
+ * Get a configuration and all versions for a given setting type ID.
+ *     
+ * Required Permissions: `setting-config:read`
+*/
+struct RALLYHEREAPI_API FRequest_GetConfigForSingleSettingTypeAllVersions : public FRequest
+{
+	FRequest_GetConfigForSingleSettingTypeAllVersions();
+	virtual ~FRequest_GetConfigForSingleSettingTypeAllVersions() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FString SettingTypeId;
+};
+
+/** The response type for FRequest_GetConfigForSingleSettingTypeAllVersions */
+struct RALLYHEREAPI_API FResponse_GetConfigForSingleSettingTypeAllVersions : public FResponse
+{
+	FResponse_GetConfigForSingleSettingTypeAllVersions(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetConfigForSingleSettingTypeAllVersions() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<TMap<FString, FRHAPI_SettingTypeVersion>, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	TMap<FString, FRHAPI_SettingTypeVersion> Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const TMap<FString, FRHAPI_SettingTypeVersion>* TryGetDefaultContent() const { return ParsedContent.TryGet<TMap<FString, FRHAPI_SettingTypeVersion>>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(TMap<FString, FRHAPI_SettingTypeVersion>& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found         
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetConfigForSingleSettingTypeAllVersions */
 DECLARE_DELEGATE_OneParam(FDelegate_GetConfigForSingleSettingTypeAllVersions, const FResponse_GetConfigForSingleSettingTypeAllVersions&);
+
+/** @brief A helper metadata object for GetConfigForSingleSettingTypeAllVersions that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetConfigForSingleSettingTypeAllVersions
+{
+	/** The request type */
+	typedef FRequest_GetConfigForSingleSettingTypeAllVersions Request;
+	/** The response type */
+	typedef FResponse_GetConfigForSingleSettingTypeAllVersions Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetConfigForSingleSettingTypeAllVersions Delegate;
+	/** The API object that supports this API call */
+	typedef FSettingsAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Config For Single Setting Type And Version
+ * Get a specific version of a specific setting type.
+*/
+struct RALLYHEREAPI_API FRequest_GetConfigForSingleSettingTypeAndVersion : public FRequest
+{
+	FRequest_GetConfigForSingleSettingTypeAndVersion();
+	virtual ~FRequest_GetConfigForSingleSettingTypeAndVersion() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FString SettingTypeId;
+	int32 SettingVersionId = 0;
+};
+
+/** The response type for FRequest_GetConfigForSingleSettingTypeAndVersion */
+struct RALLYHEREAPI_API FResponse_GetConfigForSingleSettingTypeAndVersion : public FResponse
+{
+	FResponse_GetConfigForSingleSettingTypeAndVersion(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetConfigForSingleSettingTypeAndVersion() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_SettingTypeVersion, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_SettingTypeVersion Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_SettingTypeVersion* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_SettingTypeVersion>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_SettingTypeVersion& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `setting_version_id_not_found` - The setting Version was not found for that type         
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetConfigForSingleSettingTypeAndVersion */
 DECLARE_DELEGATE_OneParam(FDelegate_GetConfigForSingleSettingTypeAndVersion, const FResponse_GetConfigForSingleSettingTypeAndVersion&);
+
+/** @brief A helper metadata object for GetConfigForSingleSettingTypeAndVersion that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetConfigForSingleSettingTypeAndVersion
+{
+	/** The request type */
+	typedef FRequest_GetConfigForSingleSettingTypeAndVersion Request;
+	/** The response type */
+	typedef FResponse_GetConfigForSingleSettingTypeAndVersion Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetConfigForSingleSettingTypeAndVersion Delegate;
+	/** The API object that supports this API call */
+	typedef FSettingsAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Single Player Id Setting
+ * Get a single player setting
+ * 
+ * Required Permissions: `setting:read` for any player.  `setting:read:self` for the player of the access token.
+ * 
+ * **DEPRECATED** - Use v2 instead
+*/
+struct RALLYHEREAPI_API FRequest_GetSinglePlayerIdSetting : public FRequest
+{
+	FRequest_GetSinglePlayerIdSetting();
+	virtual ~FRequest_GetSinglePlayerIdSetting() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	/* Player to get settings for */
+	int32 PlayerId = 0;
+	/* Setting Type to get settings for. Must be one of the known setting types */
+	FString SettingTypeId;
+	/* Setting Key to get settings for */
+	FString Key;
+};
+
+/** The response type for FRequest_GetSinglePlayerIdSetting */
+struct RALLYHEREAPI_API FResponse_GetSinglePlayerIdSetting : public FResponse
+{
+	FResponse_GetSinglePlayerIdSetting(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetSinglePlayerIdSetting() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_SettingData, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_SettingData Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_SettingData* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_SettingData>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_SettingData& OutContent) const;
+
+	/* Response 400
+	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `not_found` - The setting key was not found         
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetSinglePlayerIdSetting */
 DECLARE_DELEGATE_OneParam(FDelegate_GetSinglePlayerIdSetting, const FResponse_GetSinglePlayerIdSetting&);
+
+/** @brief A helper metadata object for GetSinglePlayerIdSetting that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetSinglePlayerIdSetting
+{
+	/** The request type */
+	typedef FRequest_GetSinglePlayerIdSetting Request;
+	/** The response type */
+	typedef FResponse_GetSinglePlayerIdSetting Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetSinglePlayerIdSetting Delegate;
+	/** The API object that supports this API call */
+	typedef FSettingsAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Single Player Uuid Setting
+ * Get a single player setting
+ * 
+ * Required Permissions: `setting:read` for any player.  `setting:read:self` for the player of the access token.
+*/
+struct RALLYHEREAPI_API FRequest_GetSinglePlayerUuidSetting : public FRequest
+{
+	FRequest_GetSinglePlayerUuidSetting();
+	virtual ~FRequest_GetSinglePlayerUuidSetting() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	/* Player to get settings for */
+	FGuid PlayerUuid;
+	/* Setting Type to get settings for. Must be one of the known setting types */
+	FString SettingTypeId;
+	/* Setting Key to get settings for */
+	FString Key;
+};
+
+/** The response type for FRequest_GetSinglePlayerUuidSetting */
+struct RALLYHEREAPI_API FResponse_GetSinglePlayerUuidSetting : public FResponse
+{
+	FResponse_GetSinglePlayerUuidSetting(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetSinglePlayerUuidSetting() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_SettingData, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_SettingData Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_SettingData* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_SettingData>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_SettingData& OutContent) const;
+
+	/* Response 400
+	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `not_found` - The setting key was not found         
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetSinglePlayerUuidSetting */
 DECLARE_DELEGATE_OneParam(FDelegate_GetSinglePlayerUuidSetting, const FResponse_GetSinglePlayerUuidSetting&);
+
+/** @brief A helper metadata object for GetSinglePlayerUuidSetting that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetSinglePlayerUuidSetting
+{
+	/** The request type */
+	typedef FRequest_GetSinglePlayerUuidSetting Request;
+	/** The response type */
+	typedef FResponse_GetSinglePlayerUuidSetting Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetSinglePlayerUuidSetting Delegate;
+	/** The API object that supports this API call */
+	typedef FSettingsAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Single Player Uuid Setting Self
+ * Get a single player setting
+ * 
+ * Required Permissions: `setting:read` or `setting:read:self`
+*/
+struct RALLYHEREAPI_API FRequest_GetSinglePlayerUuidSettingSelf : public FRequest
+{
+	FRequest_GetSinglePlayerUuidSettingSelf();
+	virtual ~FRequest_GetSinglePlayerUuidSettingSelf() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	/* Setting Type to get settings for. Must be one of the known setting types */
+	FString SettingTypeId;
+	/* Setting Key to get settings for */
+	FString Key;
+};
+
+/** The response type for FRequest_GetSinglePlayerUuidSettingSelf */
+struct RALLYHEREAPI_API FResponse_GetSinglePlayerUuidSettingSelf : public FResponse
+{
+	FResponse_GetSinglePlayerUuidSettingSelf(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetSinglePlayerUuidSettingSelf() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_SettingData, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_SettingData Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_SettingData* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_SettingData>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_SettingData& OutContent) const;
+
+	/* Response 400
+	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `not_found` - The setting key was not found         
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetSinglePlayerUuidSettingSelf */
 DECLARE_DELEGATE_OneParam(FDelegate_GetSinglePlayerUuidSettingSelf, const FResponse_GetSinglePlayerUuidSettingSelf&);
+
+/** @brief A helper metadata object for GetSinglePlayerUuidSettingSelf that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetSinglePlayerUuidSettingSelf
+{
+	/** The request type */
+	typedef FRequest_GetSinglePlayerUuidSettingSelf Request;
+	/** The response type */
+	typedef FResponse_GetSinglePlayerUuidSettingSelf Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetSinglePlayerUuidSettingSelf Delegate;
+	/** The API object that supports this API call */
+	typedef FSettingsAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Set Single Player Id Setting
+ * Update the value of a single player setting.
+ * 
+ * Required Permissions: `setting:write` for any player.  `setting:write:self` for the player of the access token.
+ * 
+ * If Legacy types are enabled, to maintain compatibility with legacy applications, the following settings have special-case handling:
+ * * Setting Type `case` - Version `1` - key `create` - creates a new case set and returns the new key and data in the response. 
+ * * Setting Type `case` - Version `1` - key is integer - Modify an existing case set.  If it does not exist, a 404 response with the `does_not_exist` error code. 
+ * * Setting Type `loadout` - Version `1` - key `create` - creates a new loadout and returns the new key and data in the response.  All items keys will be given a new key 
+ * * Setting Type `loadout` - Version `1` - key is integer - Modify an existing loadout.  If it does not exist, a 404 response with the `does_not_exist` error code.  When modifying loadout items, item keys that convert into integers/longs are treated as updates (and will error the update if they are not valid), all others are treated as creates and will be given a new key. 
+ * 
+ * **DEPRECATED** - Use the v2 endpoint instead.  This endpoint will be removed in a future release.
+*/
+struct RALLYHEREAPI_API FRequest_SetSinglePlayerIdSetting : public FRequest
+{
+	FRequest_SetSinglePlayerIdSetting();
+	virtual ~FRequest_SetSinglePlayerIdSetting() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	/* Player to update setting for */
+	int32 PlayerId = 0;
+	/* Setting Type to update settings for. Must be one of the known setting types */
+	FString SettingTypeId;
+	/* Setting Key to update setting for.  Must conform to the setting type key format */
+	FString Key;
+	FRHAPI_SetSinglePlayerSettingRequest SetSinglePlayerSettingRequest;
+};
+
+/** The response type for FRequest_SetSinglePlayerIdSetting */
+struct RALLYHEREAPI_API FResponse_SetSinglePlayerIdSetting : public FResponse
+{
+	FResponse_SetSinglePlayerIdSetting(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_SetSinglePlayerIdSetting() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<TMap<FString, FRHAPI_SettingData>, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	TMap<FString, FRHAPI_SettingData> Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const TMap<FString, FRHAPI_SettingData>* TryGetDefaultContent() const { return ParsedContent.TryGet<TMap<FString, FRHAPI_SettingData>>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
+
+	/* Response 400
+	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator - `setting_version_invalid` - Setting Version is not valid for the provided type - `update_not_enabled` - Setting Type Version has updates disabled - `setting_key_invalid` - Setting Key does not meet requirements for that type/version - `setting_value_invalid` - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist - This will only occur for legacy setting types.         
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+	/* Response 500
+	 Error Codes: - `setting_type_version_schema_invalid` - Setting type/version jsonschema is invalid and could not be used to validate the setting value.  See response description for more details.         
+	*/
+	bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_SetSinglePlayerIdSetting */
 DECLARE_DELEGATE_OneParam(FDelegate_SetSinglePlayerIdSetting, const FResponse_SetSinglePlayerIdSetting&);
+
+/** @brief A helper metadata object for SetSinglePlayerIdSetting that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_SetSinglePlayerIdSetting
+{
+	/** The request type */
+	typedef FRequest_SetSinglePlayerIdSetting Request;
+	/** The response type */
+	typedef FResponse_SetSinglePlayerIdSetting Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_SetSinglePlayerIdSetting Delegate;
+	/** The API object that supports this API call */
+	typedef FSettingsAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Set Single Player Uuid Setting
+ * Update the value of a single player setting.
+ *     
+ * Required Permissions: `setting:write` for any player.  `setting:write:self` for the player of the access token.
+ * 
+ * If Legacy types are enabled, to maintain compatibility with legacy applications, the following settings have special-case handling:
+ * * Setting Type `case` - Version `1` - key `create` - creates a new case set and returns the new key and data in the response. 
+ * * Setting Type `case` - Version `1` - key is integer - Modify an existing case set.  If it does not exist, a 404 response with the `does_not_exist` error code. 
+ * * Setting Type `loadout` - Version `1` - key `create` - creates a new loadout and returns the new key and data in the response.  All items keys will be given a new key 
+ * * Setting Type `loadout` - Version `1` - key is integer - Modify an existing loadout.  If it does not exist, a 404 response with the `does_not_exist` error code.  When modifying loadout items, item keys that convert into integers/longs are treated as updates (and will error the update if they are not valid), all others are treated as creates and will be given a new key.
+*/
+struct RALLYHEREAPI_API FRequest_SetSinglePlayerUuidSetting : public FRequest
+{
+	FRequest_SetSinglePlayerUuidSetting();
+	virtual ~FRequest_SetSinglePlayerUuidSetting() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	/* Player to update setting for */
+	FGuid PlayerUuid;
+	/* Setting Type to update settings for. Must be one of the known setting types */
+	FString SettingTypeId;
+	/* Setting Key to update setting for.  Must conform to the setting type key format */
+	FString Key;
+	FRHAPI_SetSinglePlayerSettingRequest SetSinglePlayerSettingRequest;
+};
+
+/** The response type for FRequest_SetSinglePlayerUuidSetting */
+struct RALLYHEREAPI_API FResponse_SetSinglePlayerUuidSetting : public FResponse
+{
+	FResponse_SetSinglePlayerUuidSetting(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_SetSinglePlayerUuidSetting() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<TMap<FString, FRHAPI_SettingData>, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	TMap<FString, FRHAPI_SettingData> Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const TMap<FString, FRHAPI_SettingData>* TryGetDefaultContent() const { return ParsedContent.TryGet<TMap<FString, FRHAPI_SettingData>>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
+
+	/* Response 400
+	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator - `setting_version_invalid` - Setting Version is not valid for the provided type - `update_not_enabled` - Setting Type Version has updates disabled - `setting_key_invalid` - Setting Key does not meet requirements for that type/version - `setting_value_invalid` - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist - This will only occur for legacy setting types.         
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+	/* Response 500
+	 Error Codes: - `setting_type_version_schema_invalid` - Setting type/version jsonschema is invalid and could not be used to validate the setting value.  See response description for more details.         
+	*/
+	bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_SetSinglePlayerUuidSetting */
 DECLARE_DELEGATE_OneParam(FDelegate_SetSinglePlayerUuidSetting, const FResponse_SetSinglePlayerUuidSetting&);
+
+/** @brief A helper metadata object for SetSinglePlayerUuidSetting that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_SetSinglePlayerUuidSetting
+{
+	/** The request type */
+	typedef FRequest_SetSinglePlayerUuidSetting Request;
+	/** The response type */
+	typedef FResponse_SetSinglePlayerUuidSetting Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_SetSinglePlayerUuidSetting Delegate;
+	/** The API object that supports this API call */
+	typedef FSettingsAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Set Single Player Uuid Setting Self
+ * Update the value of a single player setting.
+ *     
+ * Required Permissions: `setting:write` or `setting:write:self`
+ * 
+ * If Legacy types are enabled, to maintain compatibility with legacy applications, the following settings have special-case handling:
+ * * Setting Type `case` - Version `1` - key `create` - creates a new case set and returns the new key and data in the response. 
+ * * Setting Type `case` - Version `1` - key is integer - Modify an existing case set.  If it does not exist, a 404 response with the `does_not_exist` error code. 
+ * * Setting Type `loadout` - Version `1` - key `create` - creates a new loadout and returns the new key and data in the response.  All items keys will be given a new key 
+ * * Setting Type `loadout` - Version `1` - key is integer - Modify an existing loadout.  If it does not exist, a 404 response with the `does_not_exist` error code.  When modifying loadout items, item keys that convert into integers/longs are treated as updates (and will error the update if they are not valid), all others are treated as creates and will be given a new key.
+*/
+struct RALLYHEREAPI_API FRequest_SetSinglePlayerUuidSettingSelf : public FRequest
+{
+	FRequest_SetSinglePlayerUuidSettingSelf();
+	virtual ~FRequest_SetSinglePlayerUuidSettingSelf() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	/* Setting Type to update settings for. Must be one of the known setting types */
+	FString SettingTypeId;
+	/* Setting Key to update setting for.  Must conform to the setting type key format */
+	FString Key;
+	FRHAPI_SetSinglePlayerSettingRequest SetSinglePlayerSettingRequest;
+};
+
+/** The response type for FRequest_SetSinglePlayerUuidSettingSelf */
+struct RALLYHEREAPI_API FResponse_SetSinglePlayerUuidSettingSelf : public FResponse
+{
+	FResponse_SetSinglePlayerUuidSettingSelf(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_SetSinglePlayerUuidSettingSelf() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<TMap<FString, FRHAPI_SettingData>, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	TMap<FString, FRHAPI_SettingData> Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const TMap<FString, FRHAPI_SettingData>* TryGetDefaultContent() const { return ParsedContent.TryGet<TMap<FString, FRHAPI_SettingData>>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
+
+	/* Response 400
+	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator - `setting_version_invalid` - Setting Version is not valid for the provided type - `update_not_enabled` - Setting Type Version has updates disabled - `setting_key_invalid` - Setting Key does not meet requirements for that type/version - `setting_value_invalid` - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist - This will only occur for legacy setting types.         
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+	/* Response 500
+	 Error Codes: - `setting_type_version_schema_invalid` - Setting type/version jsonschema is invalid and could not be used to validate the setting value.  See response description for more details.         
+	*/
+	bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_SetSinglePlayerUuidSettingSelf */
 DECLARE_DELEGATE_OneParam(FDelegate_SetSinglePlayerUuidSettingSelf, const FResponse_SetSinglePlayerUuidSettingSelf&);
 
+/** @brief A helper metadata object for SetSinglePlayerUuidSettingSelf that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_SetSinglePlayerUuidSettingSelf
+{
+	/** The request type */
+	typedef FRequest_SetSinglePlayerUuidSettingSelf Request;
+	/** The response type */
+	typedef FResponse_SetSinglePlayerUuidSettingSelf Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_SetSinglePlayerUuidSettingSelf Delegate;
+	/** The API object that supports this API call */
+	typedef FSettingsAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+
+/** The API class itself, which will handle calls to */
 class RALLYHEREAPI_API FSettingsAPI : public FAPI
 {
 public:
@@ -126,1732 +2756,6 @@ private:
 
 };
 
-/* Delete All Player Id Settings For Setting Type
- *
- * Delete all player setting for a specific type
- * 
- * Required Permissions: `setting:write` for any player.  `setting:write:self` for the player of the access token.
- * 
- * **DEPRECATED** - Use v2 instead
-*/
-struct RALLYHEREAPI_API FRequest_DeleteAllPlayerIdSettingsForSettingType : public FRequest
-{
-	FRequest_DeleteAllPlayerIdSettingsForSettingType();
-	virtual ~FRequest_DeleteAllPlayerIdSettingsForSettingType() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	int32 PlayerId = 0;
-	FString SettingTypeId;
-};
-
-struct RALLYHEREAPI_API FResponse_DeleteAllPlayerIdSettingsForSettingType : public FResponse
-{
-	FResponse_DeleteAllPlayerIdSettingsForSettingType(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_DeleteAllPlayerIdSettingsForSettingType() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_JsonValue Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_JsonValue* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_JsonValue>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
-
-	/* Response 400
-	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
-	*/
-	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist         
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_DeleteAllPlayerIdSettingsForSettingType
-{
-	typedef FRequest_DeleteAllPlayerIdSettingsForSettingType Request;
-	typedef FResponse_DeleteAllPlayerIdSettingsForSettingType Response;
-	typedef FDelegate_DeleteAllPlayerIdSettingsForSettingType Delegate;
-	typedef FSettingsAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DeleteAllPlayerIdSettingsForSettingType(InRequest, InDelegate, Priority); }
-};
-
-/* Delete All Player Uuid Settings For Setting Type
- *
- * Delete all player setting for a specific type
- * 
- * Required Permissions: `setting:write` for any player.  `setting:write:self` for the player of the access token.
-*/
-struct RALLYHEREAPI_API FRequest_DeleteAllPlayerUuidSettingsForSettingType : public FRequest
-{
-	FRequest_DeleteAllPlayerUuidSettingsForSettingType();
-	virtual ~FRequest_DeleteAllPlayerUuidSettingsForSettingType() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	/* Player to delete setting for */
-	FGuid PlayerUuid;
-	/* Setting Type to delete settings for.  Must be one of the known setting types */
-	FString SettingTypeId;
-};
-
-struct RALLYHEREAPI_API FResponse_DeleteAllPlayerUuidSettingsForSettingType : public FResponse
-{
-	FResponse_DeleteAllPlayerUuidSettingsForSettingType(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_DeleteAllPlayerUuidSettingsForSettingType() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_JsonValue Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_JsonValue* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_JsonValue>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
-
-	/* Response 400
-	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
-	*/
-	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist         
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_DeleteAllPlayerUuidSettingsForSettingType
-{
-	typedef FRequest_DeleteAllPlayerUuidSettingsForSettingType Request;
-	typedef FResponse_DeleteAllPlayerUuidSettingsForSettingType Response;
-	typedef FDelegate_DeleteAllPlayerUuidSettingsForSettingType Delegate;
-	typedef FSettingsAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DeleteAllPlayerUuidSettingsForSettingType(InRequest, InDelegate, Priority); }
-};
-
-/* Delete All Player Uuid Settings For Setting Type Self
- *
- * Delete all player setting for a specific type
- * 
- * Required Permissions: `setting:write` or `setting:write:self`
-*/
-struct RALLYHEREAPI_API FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf : public FRequest
-{
-	FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf();
-	virtual ~FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	/* Setting Type to delete settings for.  Must be one of the known setting types */
-	FString SettingTypeId;
-};
-
-struct RALLYHEREAPI_API FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf : public FResponse
-{
-	FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_JsonValue Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_JsonValue* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_JsonValue>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
-
-	/* Response 400
-	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
-	*/
-	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist         
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_DeleteAllPlayerUuidSettingsForSettingTypeSelf
-{
-	typedef FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf Request;
-	typedef FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf Response;
-	typedef FDelegate_DeleteAllPlayerUuidSettingsForSettingTypeSelf Delegate;
-	typedef FSettingsAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DeleteAllPlayerUuidSettingsForSettingTypeSelf(InRequest, InDelegate, Priority); }
-};
-
-/* Delete Single Player Id Setting
- *
- * Delete a single player setting
- *     
- * Required Permissions: `setting:write` for any player.  `setting:write:self` for the player of the access token.
- *     
- * **DEPRECATED** - Use v2 instead
-*/
-struct RALLYHEREAPI_API FRequest_DeleteSinglePlayerIdSetting : public FRequest
-{
-	FRequest_DeleteSinglePlayerIdSetting();
-	virtual ~FRequest_DeleteSinglePlayerIdSetting() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	/* Player to delete setting for */
-	int32 PlayerId = 0;
-	/* Setting Type to delete settings for.  Must be one of the known setting types */
-	FString SettingTypeId;
-	/* Setting Key to delete setting for */
-	FString Key;
-};
-
-struct RALLYHEREAPI_API FResponse_DeleteSinglePlayerIdSetting : public FResponse
-{
-	FResponse_DeleteSinglePlayerIdSetting(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_DeleteSinglePlayerIdSetting() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_JsonValue Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_JsonValue* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_JsonValue>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
-
-	/* Response 400
-	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
-	*/
-	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist         
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_DeleteSinglePlayerIdSetting
-{
-	typedef FRequest_DeleteSinglePlayerIdSetting Request;
-	typedef FResponse_DeleteSinglePlayerIdSetting Response;
-	typedef FDelegate_DeleteSinglePlayerIdSetting Delegate;
-	typedef FSettingsAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DeleteSinglePlayerIdSetting(InRequest, InDelegate, Priority); }
-};
-
-/* Delete Single Player Uuid Setting
- *
- * Delete a single player setting
- * 
- * Required Permissions: `setting:write` for any player.  `setting:write:self` for the player of the access token.
-*/
-struct RALLYHEREAPI_API FRequest_DeleteSinglePlayerUuidSetting : public FRequest
-{
-	FRequest_DeleteSinglePlayerUuidSetting();
-	virtual ~FRequest_DeleteSinglePlayerUuidSetting() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	/* Player to delete setting for */
-	FGuid PlayerUuid;
-	/* Setting Type to delete settings for.  Must be one of the known setting types */
-	FString SettingTypeId;
-	/* Setting Key to delete setting for */
-	FString Key;
-};
-
-struct RALLYHEREAPI_API FResponse_DeleteSinglePlayerUuidSetting : public FResponse
-{
-	FResponse_DeleteSinglePlayerUuidSetting(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_DeleteSinglePlayerUuidSetting() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_JsonValue Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_JsonValue* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_JsonValue>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
-
-	/* Response 400
-	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
-	*/
-	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist         
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_DeleteSinglePlayerUuidSetting
-{
-	typedef FRequest_DeleteSinglePlayerUuidSetting Request;
-	typedef FResponse_DeleteSinglePlayerUuidSetting Response;
-	typedef FDelegate_DeleteSinglePlayerUuidSetting Delegate;
-	typedef FSettingsAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DeleteSinglePlayerUuidSetting(InRequest, InDelegate, Priority); }
-};
-
-/* Delete Single Player Uuid Setting Self
- *
- * Delete a single player setting
- * 
- * Required Permissions: `setting:write` or `setting:write:self`
-*/
-struct RALLYHEREAPI_API FRequest_DeleteSinglePlayerUuidSettingSelf : public FRequest
-{
-	FRequest_DeleteSinglePlayerUuidSettingSelf();
-	virtual ~FRequest_DeleteSinglePlayerUuidSettingSelf() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	/* Setting Type to delete settings for.  Must be one of the known setting types */
-	FString SettingTypeId;
-	/* Setting Key to delete setting for */
-	FString Key;
-};
-
-struct RALLYHEREAPI_API FResponse_DeleteSinglePlayerUuidSettingSelf : public FResponse
-{
-	FResponse_DeleteSinglePlayerUuidSettingSelf(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_DeleteSinglePlayerUuidSettingSelf() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_JsonValue Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_JsonValue* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_JsonValue>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
-
-	/* Response 400
-	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
-	*/
-	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist         
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_DeleteSinglePlayerUuidSettingSelf
-{
-	typedef FRequest_DeleteSinglePlayerUuidSettingSelf Request;
-	typedef FResponse_DeleteSinglePlayerUuidSettingSelf Response;
-	typedef FDelegate_DeleteSinglePlayerUuidSettingSelf Delegate;
-	typedef FSettingsAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DeleteSinglePlayerUuidSettingSelf(InRequest, InDelegate, Priority); }
-};
-
-/* Get All Player Id Settings For Setting Type
- *
- * Get a list of all player settings for a specific Setting Type.
- * 
- * Required Permissions: `setting:read` for any player.  `setting:read:self` for the player of the access token.
- * 
- * **DEPRECATED** - Use v2 instead
-*/
-struct RALLYHEREAPI_API FRequest_GetAllPlayerIdSettingsForSettingType : public FRequest
-{
-	FRequest_GetAllPlayerIdSettingsForSettingType();
-	virtual ~FRequest_GetAllPlayerIdSettingsForSettingType() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	/* Player to get settings for */
-	int32 PlayerId = 0;
-	/* Setting Type to get settings for. Must be one of the known setting types */
-	FString SettingTypeId;
-	/* Setting Key to get settings for. If not specified, all settings for the setting type will be returned */
-	TOptional<TArray<FString>> Key;
-};
-
-struct RALLYHEREAPI_API FResponse_GetAllPlayerIdSettingsForSettingType : public FResponse
-{
-	FResponse_GetAllPlayerIdSettingsForSettingType(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetAllPlayerIdSettingsForSettingType() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<TMap<FString, FRHAPI_SettingData>, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	TMap<FString, FRHAPI_SettingData> Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const TMap<FString, FRHAPI_SettingData>* TryGetDefaultContent() const { return ParsedContent.TryGet<TMap<FString, FRHAPI_SettingData>>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
-
-	/* Response 400
-	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
-	*/
-	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found         
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetAllPlayerIdSettingsForSettingType
-{
-	typedef FRequest_GetAllPlayerIdSettingsForSettingType Request;
-	typedef FResponse_GetAllPlayerIdSettingsForSettingType Response;
-	typedef FDelegate_GetAllPlayerIdSettingsForSettingType Delegate;
-	typedef FSettingsAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetAllPlayerIdSettingsForSettingType(InRequest, InDelegate, Priority); }
-};
-
-/* Get All Player Uuid Settings For Setting Type
- *
- * Get a list of all player settings for a specific Setting Type
- * 
- * Required Permissions: `setting:read` for any player.  `setting:read:self` for the player of the access token.
-*/
-struct RALLYHEREAPI_API FRequest_GetAllPlayerUuidSettingsForSettingType : public FRequest
-{
-	FRequest_GetAllPlayerUuidSettingsForSettingType();
-	virtual ~FRequest_GetAllPlayerUuidSettingsForSettingType() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	/* Player to get settings for */
-	FGuid PlayerUuid;
-	/* Setting Type to get settings for. Must be one of the known setting types */
-	FString SettingTypeId;
-	/* Setting Key to get settings for. If not specified, all settings for the setting type will be returned */
-	TOptional<TArray<FString>> Key;
-};
-
-struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidSettingsForSettingType : public FResponse
-{
-	FResponse_GetAllPlayerUuidSettingsForSettingType(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetAllPlayerUuidSettingsForSettingType() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<TMap<FString, FRHAPI_SettingData>, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	TMap<FString, FRHAPI_SettingData> Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const TMap<FString, FRHAPI_SettingData>* TryGetDefaultContent() const { return ParsedContent.TryGet<TMap<FString, FRHAPI_SettingData>>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
-
-	/* Response 400
-	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
-	*/
-	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found         
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetAllPlayerUuidSettingsForSettingType
-{
-	typedef FRequest_GetAllPlayerUuidSettingsForSettingType Request;
-	typedef FResponse_GetAllPlayerUuidSettingsForSettingType Response;
-	typedef FDelegate_GetAllPlayerUuidSettingsForSettingType Delegate;
-	typedef FSettingsAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetAllPlayerUuidSettingsForSettingType(InRequest, InDelegate, Priority); }
-};
-
-/* Get All Player Uuid Settings For Setting Type Self
- *
- * Get a list of all player settings for a specific Setting Type
- * 
- * Required Permissions: `setting:read` or `setting:read:self`
-*/
-struct RALLYHEREAPI_API FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf : public FRequest
-{
-	FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf();
-	virtual ~FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	/* Setting Type to get settings for. Must be one of the known setting types */
-	FString SettingTypeId;
-	/* Setting Key to get settings for. If not specified, all settings for the setting type will be returned */
-	TOptional<TArray<FString>> Key;
-};
-
-struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf : public FResponse
-{
-	FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<TMap<FString, FRHAPI_SettingData>, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	TMap<FString, FRHAPI_SettingData> Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const TMap<FString, FRHAPI_SettingData>* TryGetDefaultContent() const { return ParsedContent.TryGet<TMap<FString, FRHAPI_SettingData>>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
-
-	/* Response 400
-	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
-	*/
-	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found         
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetAllPlayerUuidSettingsForSettingTypeSelf
-{
-	typedef FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf Request;
-	typedef FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf Response;
-	typedef FDelegate_GetAllPlayerUuidSettingsForSettingTypeSelf Delegate;
-	typedef FSettingsAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetAllPlayerUuidSettingsForSettingTypeSelf(InRequest, InDelegate, Priority); }
-};
-
-/* Get Config For All Setting Types
- *
- * Get all setting types and their configuration.
- *     
- * Required Permissions: `setting-config:read`
-*/
-struct RALLYHEREAPI_API FRequest_GetConfigForAllSettingTypes : public FRequest
-{
-	FRequest_GetConfigForAllSettingTypes();
-	virtual ~FRequest_GetConfigForAllSettingTypes() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-};
-
-struct RALLYHEREAPI_API FResponse_GetConfigForAllSettingTypes : public FResponse
-{
-	FResponse_GetConfigForAllSettingTypes(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetConfigForAllSettingTypes() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<TMap<FString, FRHAPI_SettingType>> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	TMap<FString, FRHAPI_SettingType> Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const TMap<FString, FRHAPI_SettingType>* TryGetDefaultContent() const { return ParsedContent.TryGet<TMap<FString, FRHAPI_SettingType>>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(TMap<FString, FRHAPI_SettingType>& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetConfigForAllSettingTypes
-{
-	typedef FRequest_GetConfigForAllSettingTypes Request;
-	typedef FResponse_GetConfigForAllSettingTypes Response;
-	typedef FDelegate_GetConfigForAllSettingTypes Delegate;
-	typedef FSettingsAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetConfigForAllSettingTypes(InRequest, InDelegate, Priority); }
-};
-
-/* Get Config For Single Setting Type All Versions
- *
- * Get a configuration and all versions for a given setting type ID.
- *     
- * Required Permissions: `setting-config:read`
-*/
-struct RALLYHEREAPI_API FRequest_GetConfigForSingleSettingTypeAllVersions : public FRequest
-{
-	FRequest_GetConfigForSingleSettingTypeAllVersions();
-	virtual ~FRequest_GetConfigForSingleSettingTypeAllVersions() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	FString SettingTypeId;
-};
-
-struct RALLYHEREAPI_API FResponse_GetConfigForSingleSettingTypeAllVersions : public FResponse
-{
-	FResponse_GetConfigForSingleSettingTypeAllVersions(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetConfigForSingleSettingTypeAllVersions() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<TMap<FString, FRHAPI_SettingTypeVersion>, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	TMap<FString, FRHAPI_SettingTypeVersion> Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const TMap<FString, FRHAPI_SettingTypeVersion>* TryGetDefaultContent() const { return ParsedContent.TryGet<TMap<FString, FRHAPI_SettingTypeVersion>>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(TMap<FString, FRHAPI_SettingTypeVersion>& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found         
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetConfigForSingleSettingTypeAllVersions
-{
-	typedef FRequest_GetConfigForSingleSettingTypeAllVersions Request;
-	typedef FResponse_GetConfigForSingleSettingTypeAllVersions Response;
-	typedef FDelegate_GetConfigForSingleSettingTypeAllVersions Delegate;
-	typedef FSettingsAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetConfigForSingleSettingTypeAllVersions(InRequest, InDelegate, Priority); }
-};
-
-/* Get Config For Single Setting Type And Version
- *
- * Get a specific version of a specific setting type.
-*/
-struct RALLYHEREAPI_API FRequest_GetConfigForSingleSettingTypeAndVersion : public FRequest
-{
-	FRequest_GetConfigForSingleSettingTypeAndVersion();
-	virtual ~FRequest_GetConfigForSingleSettingTypeAndVersion() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	FString SettingTypeId;
-	int32 SettingVersionId = 0;
-};
-
-struct RALLYHEREAPI_API FResponse_GetConfigForSingleSettingTypeAndVersion : public FResponse
-{
-	FResponse_GetConfigForSingleSettingTypeAndVersion(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetConfigForSingleSettingTypeAndVersion() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_SettingTypeVersion, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_SettingTypeVersion Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_SettingTypeVersion* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_SettingTypeVersion>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_SettingTypeVersion& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `setting_version_id_not_found` - The setting Version was not found for that type         
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetConfigForSingleSettingTypeAndVersion
-{
-	typedef FRequest_GetConfigForSingleSettingTypeAndVersion Request;
-	typedef FResponse_GetConfigForSingleSettingTypeAndVersion Response;
-	typedef FDelegate_GetConfigForSingleSettingTypeAndVersion Delegate;
-	typedef FSettingsAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetConfigForSingleSettingTypeAndVersion(InRequest, InDelegate, Priority); }
-};
-
-/* Get Single Player Id Setting
- *
- * Get a single player setting
- * 
- * Required Permissions: `setting:read` for any player.  `setting:read:self` for the player of the access token.
- * 
- * **DEPRECATED** - Use v2 instead
-*/
-struct RALLYHEREAPI_API FRequest_GetSinglePlayerIdSetting : public FRequest
-{
-	FRequest_GetSinglePlayerIdSetting();
-	virtual ~FRequest_GetSinglePlayerIdSetting() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	/* Player to get settings for */
-	int32 PlayerId = 0;
-	/* Setting Type to get settings for. Must be one of the known setting types */
-	FString SettingTypeId;
-	/* Setting Key to get settings for */
-	FString Key;
-};
-
-struct RALLYHEREAPI_API FResponse_GetSinglePlayerIdSetting : public FResponse
-{
-	FResponse_GetSinglePlayerIdSetting(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetSinglePlayerIdSetting() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_SettingData, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_SettingData Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_SettingData* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_SettingData>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_SettingData& OutContent) const;
-
-	/* Response 400
-	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
-	*/
-	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `not_found` - The setting key was not found         
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetSinglePlayerIdSetting
-{
-	typedef FRequest_GetSinglePlayerIdSetting Request;
-	typedef FResponse_GetSinglePlayerIdSetting Response;
-	typedef FDelegate_GetSinglePlayerIdSetting Delegate;
-	typedef FSettingsAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetSinglePlayerIdSetting(InRequest, InDelegate, Priority); }
-};
-
-/* Get Single Player Uuid Setting
- *
- * Get a single player setting
- * 
- * Required Permissions: `setting:read` for any player.  `setting:read:self` for the player of the access token.
-*/
-struct RALLYHEREAPI_API FRequest_GetSinglePlayerUuidSetting : public FRequest
-{
-	FRequest_GetSinglePlayerUuidSetting();
-	virtual ~FRequest_GetSinglePlayerUuidSetting() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	/* Player to get settings for */
-	FGuid PlayerUuid;
-	/* Setting Type to get settings for. Must be one of the known setting types */
-	FString SettingTypeId;
-	/* Setting Key to get settings for */
-	FString Key;
-};
-
-struct RALLYHEREAPI_API FResponse_GetSinglePlayerUuidSetting : public FResponse
-{
-	FResponse_GetSinglePlayerUuidSetting(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetSinglePlayerUuidSetting() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_SettingData, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_SettingData Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_SettingData* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_SettingData>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_SettingData& OutContent) const;
-
-	/* Response 400
-	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
-	*/
-	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `not_found` - The setting key was not found         
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetSinglePlayerUuidSetting
-{
-	typedef FRequest_GetSinglePlayerUuidSetting Request;
-	typedef FResponse_GetSinglePlayerUuidSetting Response;
-	typedef FDelegate_GetSinglePlayerUuidSetting Delegate;
-	typedef FSettingsAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetSinglePlayerUuidSetting(InRequest, InDelegate, Priority); }
-};
-
-/* Get Single Player Uuid Setting Self
- *
- * Get a single player setting
- * 
- * Required Permissions: `setting:read` or `setting:read:self`
-*/
-struct RALLYHEREAPI_API FRequest_GetSinglePlayerUuidSettingSelf : public FRequest
-{
-	FRequest_GetSinglePlayerUuidSettingSelf();
-	virtual ~FRequest_GetSinglePlayerUuidSettingSelf() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	/* Setting Type to get settings for. Must be one of the known setting types */
-	FString SettingTypeId;
-	/* Setting Key to get settings for */
-	FString Key;
-};
-
-struct RALLYHEREAPI_API FResponse_GetSinglePlayerUuidSettingSelf : public FResponse
-{
-	FResponse_GetSinglePlayerUuidSettingSelf(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetSinglePlayerUuidSettingSelf() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_SettingData, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_SettingData Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_SettingData* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_SettingData>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_SettingData& OutContent) const;
-
-	/* Response 400
-	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
-	*/
-	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `not_found` - The setting key was not found         
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetSinglePlayerUuidSettingSelf
-{
-	typedef FRequest_GetSinglePlayerUuidSettingSelf Request;
-	typedef FResponse_GetSinglePlayerUuidSettingSelf Response;
-	typedef FDelegate_GetSinglePlayerUuidSettingSelf Delegate;
-	typedef FSettingsAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetSinglePlayerUuidSettingSelf(InRequest, InDelegate, Priority); }
-};
-
-/* Set Single Player Id Setting
- *
- * Update the value of a single player setting.
- * 
- * Required Permissions: `setting:write` for any player.  `setting:write:self` for the player of the access token.
- * 
- * If Legacy types are enabled, to maintain compatibility with legacy applications, the following settings have special-case handling:
- * * Setting Type `case` - Version `1` - key `create` - creates a new case set and returns the new key and data in the response. 
- * * Setting Type `case` - Version `1` - key is integer - Modify an existing case set.  If it does not exist, a 404 response with the `does_not_exist` error code. 
- * * Setting Type `loadout` - Version `1` - key `create` - creates a new loadout and returns the new key and data in the response.  All items keys will be given a new key 
- * * Setting Type `loadout` - Version `1` - key is integer - Modify an existing loadout.  If it does not exist, a 404 response with the `does_not_exist` error code.  When modifying loadout items, item keys that convert into integers/longs are treated as updates (and will error the update if they are not valid), all others are treated as creates and will be given a new key. 
- * 
- * **DEPRECATED** - Use the v2 endpoint instead.  This endpoint will be removed in a future release.
-*/
-struct RALLYHEREAPI_API FRequest_SetSinglePlayerIdSetting : public FRequest
-{
-	FRequest_SetSinglePlayerIdSetting();
-	virtual ~FRequest_SetSinglePlayerIdSetting() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	/* Player to update setting for */
-	int32 PlayerId = 0;
-	/* Setting Type to update settings for. Must be one of the known setting types */
-	FString SettingTypeId;
-	/* Setting Key to update setting for.  Must conform to the setting type key format */
-	FString Key;
-	FRHAPI_SetSinglePlayerSettingRequest SetSinglePlayerSettingRequest;
-};
-
-struct RALLYHEREAPI_API FResponse_SetSinglePlayerIdSetting : public FResponse
-{
-	FResponse_SetSinglePlayerIdSetting(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_SetSinglePlayerIdSetting() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<TMap<FString, FRHAPI_SettingData>, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	TMap<FString, FRHAPI_SettingData> Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const TMap<FString, FRHAPI_SettingData>* TryGetDefaultContent() const { return ParsedContent.TryGet<TMap<FString, FRHAPI_SettingData>>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
-
-	/* Response 400
-	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator - `setting_version_invalid` - Setting Version is not valid for the provided type - `update_not_enabled` - Setting Type Version has updates disabled - `setting_key_invalid` - Setting Key does not meet requirements for that type/version - `setting_value_invalid` - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details 
-	*/
-	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist - This will only occur for legacy setting types.         
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-	/* Response 500
-	 Error Codes: - `setting_type_version_schema_invalid` - Setting type/version jsonschema is invalid and could not be used to validate the setting value.  See response description for more details.         
-	*/
-	bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_SetSinglePlayerIdSetting
-{
-	typedef FRequest_SetSinglePlayerIdSetting Request;
-	typedef FResponse_SetSinglePlayerIdSetting Response;
-	typedef FDelegate_SetSinglePlayerIdSetting Delegate;
-	typedef FSettingsAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->SetSinglePlayerIdSetting(InRequest, InDelegate, Priority); }
-};
-
-/* Set Single Player Uuid Setting
- *
- * Update the value of a single player setting.
- *     
- * Required Permissions: `setting:write` for any player.  `setting:write:self` for the player of the access token.
- * 
- * If Legacy types are enabled, to maintain compatibility with legacy applications, the following settings have special-case handling:
- * * Setting Type `case` - Version `1` - key `create` - creates a new case set and returns the new key and data in the response. 
- * * Setting Type `case` - Version `1` - key is integer - Modify an existing case set.  If it does not exist, a 404 response with the `does_not_exist` error code. 
- * * Setting Type `loadout` - Version `1` - key `create` - creates a new loadout and returns the new key and data in the response.  All items keys will be given a new key 
- * * Setting Type `loadout` - Version `1` - key is integer - Modify an existing loadout.  If it does not exist, a 404 response with the `does_not_exist` error code.  When modifying loadout items, item keys that convert into integers/longs are treated as updates (and will error the update if they are not valid), all others are treated as creates and will be given a new key.
-*/
-struct RALLYHEREAPI_API FRequest_SetSinglePlayerUuidSetting : public FRequest
-{
-	FRequest_SetSinglePlayerUuidSetting();
-	virtual ~FRequest_SetSinglePlayerUuidSetting() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	/* Player to update setting for */
-	FGuid PlayerUuid;
-	/* Setting Type to update settings for. Must be one of the known setting types */
-	FString SettingTypeId;
-	/* Setting Key to update setting for.  Must conform to the setting type key format */
-	FString Key;
-	FRHAPI_SetSinglePlayerSettingRequest SetSinglePlayerSettingRequest;
-};
-
-struct RALLYHEREAPI_API FResponse_SetSinglePlayerUuidSetting : public FResponse
-{
-	FResponse_SetSinglePlayerUuidSetting(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_SetSinglePlayerUuidSetting() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<TMap<FString, FRHAPI_SettingData>, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	TMap<FString, FRHAPI_SettingData> Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const TMap<FString, FRHAPI_SettingData>* TryGetDefaultContent() const { return ParsedContent.TryGet<TMap<FString, FRHAPI_SettingData>>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
-
-	/* Response 400
-	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator - `setting_version_invalid` - Setting Version is not valid for the provided type - `update_not_enabled` - Setting Type Version has updates disabled - `setting_key_invalid` - Setting Key does not meet requirements for that type/version - `setting_value_invalid` - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details 
-	*/
-	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist - This will only occur for legacy setting types.         
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-	/* Response 500
-	 Error Codes: - `setting_type_version_schema_invalid` - Setting type/version jsonschema is invalid and could not be used to validate the setting value.  See response description for more details.         
-	*/
-	bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_SetSinglePlayerUuidSetting
-{
-	typedef FRequest_SetSinglePlayerUuidSetting Request;
-	typedef FResponse_SetSinglePlayerUuidSetting Response;
-	typedef FDelegate_SetSinglePlayerUuidSetting Delegate;
-	typedef FSettingsAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->SetSinglePlayerUuidSetting(InRequest, InDelegate, Priority); }
-};
-
-/* Set Single Player Uuid Setting Self
- *
- * Update the value of a single player setting.
- *     
- * Required Permissions: `setting:write` or `setting:write:self`
- * 
- * If Legacy types are enabled, to maintain compatibility with legacy applications, the following settings have special-case handling:
- * * Setting Type `case` - Version `1` - key `create` - creates a new case set and returns the new key and data in the response. 
- * * Setting Type `case` - Version `1` - key is integer - Modify an existing case set.  If it does not exist, a 404 response with the `does_not_exist` error code. 
- * * Setting Type `loadout` - Version `1` - key `create` - creates a new loadout and returns the new key and data in the response.  All items keys will be given a new key 
- * * Setting Type `loadout` - Version `1` - key is integer - Modify an existing loadout.  If it does not exist, a 404 response with the `does_not_exist` error code.  When modifying loadout items, item keys that convert into integers/longs are treated as updates (and will error the update if they are not valid), all others are treated as creates and will be given a new key.
-*/
-struct RALLYHEREAPI_API FRequest_SetSinglePlayerUuidSettingSelf : public FRequest
-{
-	FRequest_SetSinglePlayerUuidSettingSelf();
-	virtual ~FRequest_SetSinglePlayerUuidSettingSelf() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	/* Setting Type to update settings for. Must be one of the known setting types */
-	FString SettingTypeId;
-	/* Setting Key to update setting for.  Must conform to the setting type key format */
-	FString Key;
-	FRHAPI_SetSinglePlayerSettingRequest SetSinglePlayerSettingRequest;
-};
-
-struct RALLYHEREAPI_API FResponse_SetSinglePlayerUuidSettingSelf : public FResponse
-{
-	FResponse_SetSinglePlayerUuidSettingSelf(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_SetSinglePlayerUuidSettingSelf() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<TMap<FString, FRHAPI_SettingData>, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	TMap<FString, FRHAPI_SettingData> Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const TMap<FString, FRHAPI_SettingData>* TryGetDefaultContent() const { return ParsedContent.TryGet<TMap<FString, FRHAPI_SettingData>>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
-
-	/* Response 400
-	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator - `setting_version_invalid` - Setting Version is not valid for the provided type - `update_not_enabled` - Setting Type Version has updates disabled - `setting_key_invalid` - Setting Key does not meet requirements for that type/version - `setting_value_invalid` - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details 
-	*/
-	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist - This will only occur for legacy setting types.         
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-	/* Response 500
-	 Error Codes: - `setting_type_version_schema_invalid` - Setting type/version jsonschema is invalid and could not be used to validate the setting value.  See response description for more details.         
-	*/
-	bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_SetSinglePlayerUuidSettingSelf
-{
-	typedef FRequest_SetSinglePlayerUuidSettingSelf Request;
-	typedef FResponse_SetSinglePlayerUuidSettingSelf Response;
-	typedef FDelegate_SetSinglePlayerUuidSettingSelf Delegate;
-	typedef FSettingsAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->SetSinglePlayerUuidSettingSelf(InRequest, InDelegate, Priority); }
-};
 
 
 }

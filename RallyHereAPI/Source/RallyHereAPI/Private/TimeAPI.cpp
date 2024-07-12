@@ -205,5 +205,10 @@ FResponse_GetUtcTime::FResponse_GetUtcTime(FRequestMetadata InRequestMetadata) :
 
 FString Traits_GetUtcTime::Name = TEXT("GetUtcTime");
 
+FHttpRequestPtr Traits_GetUtcTime::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetUtcTime(InRequest, InDelegate, InPriority);
+}
+
 
 }

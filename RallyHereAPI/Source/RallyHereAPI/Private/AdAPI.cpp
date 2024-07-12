@@ -336,6 +336,11 @@ FResponse_BeginNewSession::FResponse_BeginNewSession(FRequestMetadata InRequestM
 
 FString Traits_BeginNewSession::Name = TEXT("BeginNewSession");
 
+FHttpRequestPtr Traits_BeginNewSession::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->BeginNewSession(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FAdAPI::FindOpportunities(const FRequest_FindOpportunities& Request, const FDelegate_FindOpportunities& Delegate /*= FDelegate_FindOpportunities()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -649,6 +654,11 @@ FResponse_FindOpportunities::FResponse_FindOpportunities(FRequestMetadata InRequ
 
 FString Traits_FindOpportunities::Name = TEXT("FindOpportunities");
 
+FHttpRequestPtr Traits_FindOpportunities::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->FindOpportunities(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FAdAPI::UnityAdWatched(const FRequest_UnityAdWatched& Request, const FDelegate_UnityAdWatched& Delegate /*= FDelegate_UnityAdWatched()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -862,6 +872,11 @@ FResponse_UnityAdWatched::FResponse_UnityAdWatched(FRequestMetadata InRequestMet
 }
 
 FString Traits_UnityAdWatched::Name = TEXT("UnityAdWatched");
+
+FHttpRequestPtr Traits_UnityAdWatched::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->UnityAdWatched(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FAdAPI::UnityMediationAdWatched(const FRequest_UnityMediationAdWatched& Request, const FDelegate_UnityMediationAdWatched& Delegate /*= FDelegate_UnityMediationAdWatched()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -1077,6 +1092,11 @@ FResponse_UnityMediationAdWatched::FResponse_UnityMediationAdWatched(FRequestMet
 }
 
 FString Traits_UnityMediationAdWatched::Name = TEXT("UnityMediationAdWatched");
+
+FHttpRequestPtr Traits_UnityMediationAdWatched::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->UnityMediationAdWatched(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FAdAPI::UpdateOpportunityById(const FRequest_UpdateOpportunityById& Request, const FDelegate_UpdateOpportunityById& Delegate /*= FDelegate_UpdateOpportunityById()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -1395,6 +1415,11 @@ FResponse_UpdateOpportunityById::FResponse_UpdateOpportunityById(FRequestMetadat
 }
 
 FString Traits_UpdateOpportunityById::Name = TEXT("UpdateOpportunityById");
+
+FHttpRequestPtr Traits_UpdateOpportunityById::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->UpdateOpportunityById(InRequest, InDelegate, InPriority);
+}
 
 
 }

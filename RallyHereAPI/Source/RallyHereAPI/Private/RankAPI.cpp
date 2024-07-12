@@ -275,6 +275,11 @@ FResponse_CalculateV2Ranks::FResponse_CalculateV2Ranks(FRequestMetadata InReques
 
 FString Traits_CalculateV2Ranks::Name = TEXT("CalculateV2Ranks");
 
+FHttpRequestPtr Traits_CalculateV2Ranks::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->CalculateV2Ranks(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FRankAPI::CalculateV3Ranks(const FRequest_CalculateV3Ranks& Request, const FDelegate_CalculateV3Ranks& Delegate /*= FDelegate_CalculateV3Ranks()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -527,6 +532,11 @@ FResponse_CalculateV3Ranks::FResponse_CalculateV3Ranks(FRequestMetadata InReques
 
 FString Traits_CalculateV3Ranks::Name = TEXT("CalculateV3Ranks");
 
+FHttpRequestPtr Traits_CalculateV3Ranks::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->CalculateV3Ranks(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FRankAPI::GetAllPlayerUuidRanks(const FRequest_GetAllPlayerUuidRanks& Request, const FDelegate_GetAllPlayerUuidRanks& Delegate /*= FDelegate_GetAllPlayerUuidRanks()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -773,6 +783,11 @@ FResponse_GetAllPlayerUuidRanks::FResponse_GetAllPlayerUuidRanks(FRequestMetadat
 
 FString Traits_GetAllPlayerUuidRanks::Name = TEXT("GetAllPlayerUuidRanks");
 
+FHttpRequestPtr Traits_GetAllPlayerUuidRanks::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetAllPlayerUuidRanks(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FRankAPI::GetAllPlayerUuidRanksSelf(const FRequest_GetAllPlayerUuidRanksSelf& Request, const FDelegate_GetAllPlayerUuidRanksSelf& Delegate /*= FDelegate_GetAllPlayerUuidRanksSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -990,6 +1005,11 @@ FResponse_GetAllPlayerUuidRanksSelf::FResponse_GetAllPlayerUuidRanksSelf(FReques
 
 FString Traits_GetAllPlayerUuidRanksSelf::Name = TEXT("GetAllPlayerUuidRanksSelf");
 
+FHttpRequestPtr Traits_GetAllPlayerUuidRanksSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetAllPlayerUuidRanksSelf(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FRankAPI::GetAllPlayerUuidRanksSelfV2(const FRequest_GetAllPlayerUuidRanksSelfV2& Request, const FDelegate_GetAllPlayerUuidRanksSelfV2& Delegate /*= FDelegate_GetAllPlayerUuidRanksSelfV2()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -1206,6 +1226,11 @@ FResponse_GetAllPlayerUuidRanksSelfV2::FResponse_GetAllPlayerUuidRanksSelfV2(FRe
 }
 
 FString Traits_GetAllPlayerUuidRanksSelfV2::Name = TEXT("GetAllPlayerUuidRanksSelfV2");
+
+FHttpRequestPtr Traits_GetAllPlayerUuidRanksSelfV2::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetAllPlayerUuidRanksSelfV2(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FRankAPI::GetAllPlayerUuidRanksV2(const FRequest_GetAllPlayerUuidRanksV2& Request, const FDelegate_GetAllPlayerUuidRanksV2& Delegate /*= FDelegate_GetAllPlayerUuidRanksV2()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -1453,6 +1478,11 @@ FResponse_GetAllPlayerUuidRanksV2::FResponse_GetAllPlayerUuidRanksV2(FRequestMet
 
 FString Traits_GetAllPlayerUuidRanksV2::Name = TEXT("GetAllPlayerUuidRanksV2");
 
+FHttpRequestPtr Traits_GetAllPlayerUuidRanksV2::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetAllPlayerUuidRanksV2(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FRankAPI::GetAllRankConfigV3(const FRequest_GetAllRankConfigV3& Request, const FDelegate_GetAllRankConfigV3& Delegate /*= FDelegate_GetAllRankConfigV3()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -1669,6 +1699,11 @@ FResponse_GetAllRankConfigV3::FResponse_GetAllRankConfigV3(FRequestMetadata InRe
 }
 
 FString Traits_GetAllRankConfigV3::Name = TEXT("GetAllRankConfigV3");
+
+FHttpRequestPtr Traits_GetAllRankConfigV3::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetAllRankConfigV3(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FRankAPI::GetPlayerUuidRank(const FRequest_GetPlayerUuidRank& Request, const FDelegate_GetPlayerUuidRank& Delegate /*= FDelegate_GetPlayerUuidRank()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -1917,6 +1952,11 @@ FResponse_GetPlayerUuidRank::FResponse_GetPlayerUuidRank(FRequestMetadata InRequ
 
 FString Traits_GetPlayerUuidRank::Name = TEXT("GetPlayerUuidRank");
 
+FHttpRequestPtr Traits_GetPlayerUuidRank::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPlayerUuidRank(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FRankAPI::GetPlayerUuidRankSelf(const FRequest_GetPlayerUuidRankSelf& Request, const FDelegate_GetPlayerUuidRankSelf& Delegate /*= FDelegate_GetPlayerUuidRankSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -2163,6 +2203,11 @@ FResponse_GetPlayerUuidRankSelf::FResponse_GetPlayerUuidRankSelf(FRequestMetadat
 
 FString Traits_GetPlayerUuidRankSelf::Name = TEXT("GetPlayerUuidRankSelf");
 
+FHttpRequestPtr Traits_GetPlayerUuidRankSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPlayerUuidRankSelf(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FRankAPI::GetPlayerUuidRankSelfV2(const FRequest_GetPlayerUuidRankSelfV2& Request, const FDelegate_GetPlayerUuidRankSelfV2& Delegate /*= FDelegate_GetPlayerUuidRankSelfV2()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -2408,6 +2453,11 @@ FResponse_GetPlayerUuidRankSelfV2::FResponse_GetPlayerUuidRankSelfV2(FRequestMet
 }
 
 FString Traits_GetPlayerUuidRankSelfV2::Name = TEXT("GetPlayerUuidRankSelfV2");
+
+FHttpRequestPtr Traits_GetPlayerUuidRankSelfV2::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPlayerUuidRankSelfV2(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FRankAPI::GetPlayerUuidRankV2(const FRequest_GetPlayerUuidRankV2& Request, const FDelegate_GetPlayerUuidRankV2& Delegate /*= FDelegate_GetPlayerUuidRankV2()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -2656,6 +2706,11 @@ FResponse_GetPlayerUuidRankV2::FResponse_GetPlayerUuidRankV2(FRequestMetadata In
 
 FString Traits_GetPlayerUuidRankV2::Name = TEXT("GetPlayerUuidRankV2");
 
+FHttpRequestPtr Traits_GetPlayerUuidRankV2::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPlayerUuidRankV2(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FRankAPI::GetRankConfigV3(const FRequest_GetRankConfigV3& Request, const FDelegate_GetRankConfigV3& Delegate /*= FDelegate_GetRankConfigV3()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -2901,6 +2956,11 @@ FResponse_GetRankConfigV3::FResponse_GetRankConfigV3(FRequestMetadata InRequestM
 }
 
 FString Traits_GetRankConfigV3::Name = TEXT("GetRankConfigV3");
+
+FHttpRequestPtr Traits_GetRankConfigV3::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetRankConfigV3(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FRankAPI::UpdatePlayerUuidRank(const FRequest_UpdatePlayerUuidRank& Request, const FDelegate_UpdatePlayerUuidRank& Delegate /*= FDelegate_UpdatePlayerUuidRank()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -3160,6 +3220,11 @@ FResponse_UpdatePlayerUuidRank::FResponse_UpdatePlayerUuidRank(FRequestMetadata 
 
 FString Traits_UpdatePlayerUuidRank::Name = TEXT("UpdatePlayerUuidRank");
 
+FHttpRequestPtr Traits_UpdatePlayerUuidRank::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->UpdatePlayerUuidRank(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FRankAPI::UpdatePlayerUuidRankSelf(const FRequest_UpdatePlayerUuidRankSelf& Request, const FDelegate_UpdatePlayerUuidRankSelf& Delegate /*= FDelegate_UpdatePlayerUuidRankSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -3417,6 +3482,11 @@ FResponse_UpdatePlayerUuidRankSelf::FResponse_UpdatePlayerUuidRankSelf(FRequestM
 
 FString Traits_UpdatePlayerUuidRankSelf::Name = TEXT("UpdatePlayerUuidRankSelf");
 
+FHttpRequestPtr Traits_UpdatePlayerUuidRankSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->UpdatePlayerUuidRankSelf(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FRankAPI::UpdatePlayerUuidRankSelfV2(const FRequest_UpdatePlayerUuidRankSelfV2& Request, const FDelegate_UpdatePlayerUuidRankSelfV2& Delegate /*= FDelegate_UpdatePlayerUuidRankSelfV2()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -3673,6 +3743,11 @@ FResponse_UpdatePlayerUuidRankSelfV2::FResponse_UpdatePlayerUuidRankSelfV2(FRequ
 }
 
 FString Traits_UpdatePlayerUuidRankSelfV2::Name = TEXT("UpdatePlayerUuidRankSelfV2");
+
+FHttpRequestPtr Traits_UpdatePlayerUuidRankSelfV2::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->UpdatePlayerUuidRankSelfV2(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FRankAPI::UpdatePlayerUuidRankV2(const FRequest_UpdatePlayerUuidRankV2& Request, const FDelegate_UpdatePlayerUuidRankV2& Delegate /*= FDelegate_UpdatePlayerUuidRankV2()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -3932,6 +4007,11 @@ FResponse_UpdatePlayerUuidRankV2::FResponse_UpdatePlayerUuidRankV2(FRequestMetad
 
 FString Traits_UpdatePlayerUuidRankV2::Name = TEXT("UpdatePlayerUuidRankV2");
 
+FHttpRequestPtr Traits_UpdatePlayerUuidRankV2::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->UpdatePlayerUuidRankV2(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FRankAPI::UpdateRankingsV1(const FRequest_UpdateRankingsV1& Request, const FDelegate_UpdateRankingsV1& Delegate /*= FDelegate_UpdateRankingsV1()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -4183,6 +4263,11 @@ FResponse_UpdateRankingsV1::FResponse_UpdateRankingsV1(FRequestMetadata InReques
 }
 
 FString Traits_UpdateRankingsV1::Name = TEXT("UpdateRankingsV1");
+
+FHttpRequestPtr Traits_UpdateRankingsV1::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->UpdateRankingsV1(InRequest, InDelegate, InPriority);
+}
 
 
 }

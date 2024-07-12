@@ -276,5 +276,10 @@ FResponse_GetAllRegions::FResponse_GetAllRegions(FRequestMetadata InRequestMetad
 
 FString Traits_GetAllRegions::Name = TEXT("GetAllRegions");
 
+FHttpRequestPtr Traits_GetAllRegions::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetAllRegions(InRequest, InDelegate, InPriority);
+}
+
 
 }

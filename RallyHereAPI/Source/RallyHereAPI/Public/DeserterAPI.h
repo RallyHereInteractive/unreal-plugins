@@ -24,35 +24,1172 @@ using RallyHereAPI::ToStringFormatArg;
 using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
-struct FRequest_ClearAllDeserter;
-struct FResponse_ClearAllDeserter;
-struct FRequest_ClearSpecificDeserter;
-struct FResponse_ClearSpecificDeserter;
-struct FRequest_DeleteAllPlayerDeserter;
-struct FResponse_DeleteAllPlayerDeserter;
-struct FRequest_DeletePlayerDeserter;
-struct FResponse_DeletePlayerDeserter;
-struct FRequest_GetAllDeserterConfigs;
-struct FResponse_GetAllDeserterConfigs;
-struct FRequest_GetAllPlayerDeserters;
-struct FResponse_GetAllPlayerDeserters;
-struct FRequest_GetPlayerDeserter;
-struct FResponse_GetPlayerDeserter;
-struct FRequest_GetSpecificDeserterConfig;
-struct FResponse_GetSpecificDeserterConfig;
-struct FRequest_PutPlayerDeserter;
-struct FResponse_PutPlayerDeserter;
+// forward declaration
+class FDeserterAPI;
 
+/**
+ * @brief Clear All Deserter
+ * Clear deserter status for all deserter ids
+*/
+struct RALLYHEREAPI_API FRequest_ClearAllDeserter : public FRequest
+{
+	FRequest_ClearAllDeserter();
+	virtual ~FRequest_ClearAllDeserter() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+};
+
+/** The response type for FRequest_ClearAllDeserter */
+struct RALLYHEREAPI_API FResponse_ClearAllDeserter : public FResponse
+{
+	FResponse_ClearAllDeserter(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_ClearAllDeserter() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant< FRHAPI_HzApiErrorModel> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+
+	// Individual Response Helpers	
+	/* Response 204
+	Successful Response
+	*/
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_ClearAllDeserter */
 DECLARE_DELEGATE_OneParam(FDelegate_ClearAllDeserter, const FResponse_ClearAllDeserter&);
+
+/** @brief A helper metadata object for ClearAllDeserter that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_ClearAllDeserter
+{
+	/** The request type */
+	typedef FRequest_ClearAllDeserter Request;
+	/** The response type */
+	typedef FResponse_ClearAllDeserter Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_ClearAllDeserter Delegate;
+	/** The API object that supports this API call */
+	typedef FDeserterAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Clear Specific Deserter
+ * Clear deserter status for a specific deserter id
+*/
+struct RALLYHEREAPI_API FRequest_ClearSpecificDeserter : public FRequest
+{
+	FRequest_ClearSpecificDeserter();
+	virtual ~FRequest_ClearSpecificDeserter() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FString DeserterId;
+};
+
+/** The response type for FRequest_ClearSpecificDeserter */
+struct RALLYHEREAPI_API FResponse_ClearSpecificDeserter : public FResponse
+{
+	FResponse_ClearSpecificDeserter(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_ClearSpecificDeserter() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+
+	// Individual Response Helpers	
+	/* Response 204
+	Successful Response
+	*/
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_ClearSpecificDeserter */
 DECLARE_DELEGATE_OneParam(FDelegate_ClearSpecificDeserter, const FResponse_ClearSpecificDeserter&);
+
+/** @brief A helper metadata object for ClearSpecificDeserter that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_ClearSpecificDeserter
+{
+	/** The request type */
+	typedef FRequest_ClearSpecificDeserter Request;
+	/** The response type */
+	typedef FResponse_ClearSpecificDeserter Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_ClearSpecificDeserter Delegate;
+	/** The API object that supports this API call */
+	typedef FDeserterAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Delete All Player Deserter
+ * Delete all of a player's deserter statuses
+*/
+struct RALLYHEREAPI_API FRequest_DeleteAllPlayerDeserter : public FRequest
+{
+	FRequest_DeleteAllPlayerDeserter();
+	virtual ~FRequest_DeleteAllPlayerDeserter() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FGuid PlayerUuid;
+};
+
+/** The response type for FRequest_DeleteAllPlayerDeserter */
+struct RALLYHEREAPI_API FResponse_DeleteAllPlayerDeserter : public FResponse
+{
+	FResponse_DeleteAllPlayerDeserter(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_DeleteAllPlayerDeserter() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+
+	// Individual Response Helpers	
+	/* Response 204
+	Successful Response
+	*/
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_DeleteAllPlayerDeserter */
 DECLARE_DELEGATE_OneParam(FDelegate_DeleteAllPlayerDeserter, const FResponse_DeleteAllPlayerDeserter&);
+
+/** @brief A helper metadata object for DeleteAllPlayerDeserter that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_DeleteAllPlayerDeserter
+{
+	/** The request type */
+	typedef FRequest_DeleteAllPlayerDeserter Request;
+	/** The response type */
+	typedef FResponse_DeleteAllPlayerDeserter Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_DeleteAllPlayerDeserter Delegate;
+	/** The API object that supports this API call */
+	typedef FDeserterAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Delete Player Deserter
+ * Delete a single deserter status for a specific player
+*/
+struct RALLYHEREAPI_API FRequest_DeletePlayerDeserter : public FRequest
+{
+	FRequest_DeletePlayerDeserter();
+	virtual ~FRequest_DeletePlayerDeserter() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FString DeserterId;
+	FGuid PlayerUuid;
+};
+
+/** The response type for FRequest_DeletePlayerDeserter */
+struct RALLYHEREAPI_API FResponse_DeletePlayerDeserter : public FResponse
+{
+	FResponse_DeletePlayerDeserter(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_DeletePlayerDeserter() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+
+	// Individual Response Helpers	
+	/* Response 204
+	Successful Response
+	*/
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_DeletePlayerDeserter */
 DECLARE_DELEGATE_OneParam(FDelegate_DeletePlayerDeserter, const FResponse_DeletePlayerDeserter&);
+
+/** @brief A helper metadata object for DeletePlayerDeserter that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_DeletePlayerDeserter
+{
+	/** The request type */
+	typedef FRequest_DeletePlayerDeserter Request;
+	/** The response type */
+	typedef FResponse_DeletePlayerDeserter Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_DeletePlayerDeserter Delegate;
+	/** The API object that supports this API call */
+	typedef FDeserterAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get All Deserter Configs
+ * Get all deserter configs
+*/
+struct RALLYHEREAPI_API FRequest_GetAllDeserterConfigs : public FRequest
+{
+	FRequest_GetAllDeserterConfigs();
+	virtual ~FRequest_GetAllDeserterConfigs() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+};
+
+/** The response type for FRequest_GetAllDeserterConfigs */
+struct RALLYHEREAPI_API FResponse_GetAllDeserterConfigs : public FResponse
+{
+	FResponse_GetAllDeserterConfigs(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetAllDeserterConfigs() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_DeserterConfigResponse, FRHAPI_HzApiErrorModel> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_DeserterConfigResponse Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_DeserterConfigResponse* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_DeserterConfigResponse>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_DeserterConfigResponse& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetAllDeserterConfigs */
 DECLARE_DELEGATE_OneParam(FDelegate_GetAllDeserterConfigs, const FResponse_GetAllDeserterConfigs&);
+
+/** @brief A helper metadata object for GetAllDeserterConfigs that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetAllDeserterConfigs
+{
+	/** The request type */
+	typedef FRequest_GetAllDeserterConfigs Request;
+	/** The response type */
+	typedef FResponse_GetAllDeserterConfigs Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetAllDeserterConfigs Delegate;
+	/** The API object that supports this API call */
+	typedef FDeserterAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get All Player Deserters
+ * Get a specific player's deserter status
+*/
+struct RALLYHEREAPI_API FRequest_GetAllPlayerDeserters : public FRequest
+{
+	FRequest_GetAllPlayerDeserters();
+	virtual ~FRequest_GetAllPlayerDeserters() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FGuid PlayerUuid;
+};
+
+/** The response type for FRequest_GetAllPlayerDeserters */
+struct RALLYHEREAPI_API FResponse_GetAllPlayerDeserters : public FResponse
+{
+	FResponse_GetAllPlayerDeserters(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetAllPlayerDeserters() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_AllPlayerDeserterStatuses, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_AllPlayerDeserterStatuses Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_AllPlayerDeserterStatuses* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_AllPlayerDeserterStatuses>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_AllPlayerDeserterStatuses& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetAllPlayerDeserters */
 DECLARE_DELEGATE_OneParam(FDelegate_GetAllPlayerDeserters, const FResponse_GetAllPlayerDeserters&);
+
+/** @brief A helper metadata object for GetAllPlayerDeserters that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetAllPlayerDeserters
+{
+	/** The request type */
+	typedef FRequest_GetAllPlayerDeserters Request;
+	/** The response type */
+	typedef FResponse_GetAllPlayerDeserters Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetAllPlayerDeserters Delegate;
+	/** The API object that supports this API call */
+	typedef FDeserterAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Player Deserter
+ * Get a specific player's deserter status
+*/
+struct RALLYHEREAPI_API FRequest_GetPlayerDeserter : public FRequest
+{
+	FRequest_GetPlayerDeserter();
+	virtual ~FRequest_GetPlayerDeserter() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FString DeserterId;
+	FGuid PlayerUuid;
+};
+
+/** The response type for FRequest_GetPlayerDeserter */
+struct RALLYHEREAPI_API FResponse_GetPlayerDeserter : public FResponse
+{
+	FResponse_GetPlayerDeserter(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetPlayerDeserter() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_PlayerDeserterStatus, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_PlayerDeserterStatus Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_PlayerDeserterStatus* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_PlayerDeserterStatus>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlayerDeserterStatus& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetPlayerDeserter */
 DECLARE_DELEGATE_OneParam(FDelegate_GetPlayerDeserter, const FResponse_GetPlayerDeserter&);
+
+/** @brief A helper metadata object for GetPlayerDeserter that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetPlayerDeserter
+{
+	/** The request type */
+	typedef FRequest_GetPlayerDeserter Request;
+	/** The response type */
+	typedef FResponse_GetPlayerDeserter Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetPlayerDeserter Delegate;
+	/** The API object that supports this API call */
+	typedef FDeserterAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Specific Deserter Config
+ * Get specific deserter configs
+*/
+struct RALLYHEREAPI_API FRequest_GetSpecificDeserterConfig : public FRequest
+{
+	FRequest_GetSpecificDeserterConfig();
+	virtual ~FRequest_GetSpecificDeserterConfig() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FString DeserterId;
+};
+
+/** The response type for FRequest_GetSpecificDeserterConfig */
+struct RALLYHEREAPI_API FResponse_GetSpecificDeserterConfig : public FResponse
+{
+	FResponse_GetSpecificDeserterConfig(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetSpecificDeserterConfig() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_DeserterConfig, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_DeserterConfig Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_DeserterConfig* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_DeserterConfig>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_DeserterConfig& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetSpecificDeserterConfig */
 DECLARE_DELEGATE_OneParam(FDelegate_GetSpecificDeserterConfig, const FResponse_GetSpecificDeserterConfig&);
+
+/** @brief A helper metadata object for GetSpecificDeserterConfig that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetSpecificDeserterConfig
+{
+	/** The request type */
+	typedef FRequest_GetSpecificDeserterConfig Request;
+	/** The response type */
+	typedef FResponse_GetSpecificDeserterConfig Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetSpecificDeserterConfig Delegate;
+	/** The API object that supports this API call */
+	typedef FDeserterAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Put Player Deserter
+ * Update a specific player's deserter status
+*/
+struct RALLYHEREAPI_API FRequest_PutPlayerDeserter : public FRequest
+{
+	FRequest_PutPlayerDeserter();
+	virtual ~FRequest_PutPlayerDeserter() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FString DeserterId;
+	FGuid PlayerUuid;
+	FRHAPI_DeserterUpdateRequest DeserterUpdateRequest;
+};
+
+/** The response type for FRequest_PutPlayerDeserter */
+struct RALLYHEREAPI_API FResponse_PutPlayerDeserter : public FResponse
+{
+	FResponse_PutPlayerDeserter(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_PutPlayerDeserter() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_PlayerDeserterStatus, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_PlayerDeserterStatus Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_PlayerDeserterStatus* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_PlayerDeserterStatus>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlayerDeserterStatus& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_PutPlayerDeserter */
 DECLARE_DELEGATE_OneParam(FDelegate_PutPlayerDeserter, const FResponse_PutPlayerDeserter&);
 
+/** @brief A helper metadata object for PutPlayerDeserter that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_PutPlayerDeserter
+{
+	/** The request type */
+	typedef FRequest_PutPlayerDeserter Request;
+	/** The response type */
+	typedef FResponse_PutPlayerDeserter Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_PutPlayerDeserter Delegate;
+	/** The API object that supports this API call */
+	typedef FDeserterAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+
+/** The API class itself, which will handle calls to */
 class RALLYHEREAPI_API FDeserterAPI : public FAPI
 {
 public:
@@ -82,693 +1219,6 @@ private:
 
 };
 
-/* Clear All Deserter
- *
- * Clear deserter status for all deserter ids
-*/
-struct RALLYHEREAPI_API FRequest_ClearAllDeserter : public FRequest
-{
-	FRequest_ClearAllDeserter();
-	virtual ~FRequest_ClearAllDeserter() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-};
-
-struct RALLYHEREAPI_API FResponse_ClearAllDeserter : public FResponse
-{
-	FResponse_ClearAllDeserter(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_ClearAllDeserter() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant< FRHAPI_HzApiErrorModel> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-
-	// Individual Response Helpers	
-	/* Response 204
-	Successful Response
-	*/
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_ClearAllDeserter
-{
-	typedef FRequest_ClearAllDeserter Request;
-	typedef FResponse_ClearAllDeserter Response;
-	typedef FDelegate_ClearAllDeserter Delegate;
-	typedef FDeserterAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->ClearAllDeserter(InRequest, InDelegate, Priority); }
-};
-
-/* Clear Specific Deserter
- *
- * Clear deserter status for a specific deserter id
-*/
-struct RALLYHEREAPI_API FRequest_ClearSpecificDeserter : public FRequest
-{
-	FRequest_ClearSpecificDeserter();
-	virtual ~FRequest_ClearSpecificDeserter() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	FString DeserterId;
-};
-
-struct RALLYHEREAPI_API FResponse_ClearSpecificDeserter : public FResponse
-{
-	FResponse_ClearSpecificDeserter(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_ClearSpecificDeserter() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-
-	// Individual Response Helpers	
-	/* Response 204
-	Successful Response
-	*/
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_ClearSpecificDeserter
-{
-	typedef FRequest_ClearSpecificDeserter Request;
-	typedef FResponse_ClearSpecificDeserter Response;
-	typedef FDelegate_ClearSpecificDeserter Delegate;
-	typedef FDeserterAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->ClearSpecificDeserter(InRequest, InDelegate, Priority); }
-};
-
-/* Delete All Player Deserter
- *
- * Delete all of a player's deserter statuses
-*/
-struct RALLYHEREAPI_API FRequest_DeleteAllPlayerDeserter : public FRequest
-{
-	FRequest_DeleteAllPlayerDeserter();
-	virtual ~FRequest_DeleteAllPlayerDeserter() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	FGuid PlayerUuid;
-};
-
-struct RALLYHEREAPI_API FResponse_DeleteAllPlayerDeserter : public FResponse
-{
-	FResponse_DeleteAllPlayerDeserter(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_DeleteAllPlayerDeserter() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-
-	// Individual Response Helpers	
-	/* Response 204
-	Successful Response
-	*/
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_DeleteAllPlayerDeserter
-{
-	typedef FRequest_DeleteAllPlayerDeserter Request;
-	typedef FResponse_DeleteAllPlayerDeserter Response;
-	typedef FDelegate_DeleteAllPlayerDeserter Delegate;
-	typedef FDeserterAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DeleteAllPlayerDeserter(InRequest, InDelegate, Priority); }
-};
-
-/* Delete Player Deserter
- *
- * Delete a single deserter status for a specific player
-*/
-struct RALLYHEREAPI_API FRequest_DeletePlayerDeserter : public FRequest
-{
-	FRequest_DeletePlayerDeserter();
-	virtual ~FRequest_DeletePlayerDeserter() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	FString DeserterId;
-	FGuid PlayerUuid;
-};
-
-struct RALLYHEREAPI_API FResponse_DeletePlayerDeserter : public FResponse
-{
-	FResponse_DeletePlayerDeserter(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_DeletePlayerDeserter() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-
-	// Individual Response Helpers	
-	/* Response 204
-	Successful Response
-	*/
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_DeletePlayerDeserter
-{
-	typedef FRequest_DeletePlayerDeserter Request;
-	typedef FResponse_DeletePlayerDeserter Response;
-	typedef FDelegate_DeletePlayerDeserter Delegate;
-	typedef FDeserterAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DeletePlayerDeserter(InRequest, InDelegate, Priority); }
-};
-
-/* Get All Deserter Configs
- *
- * Get all deserter configs
-*/
-struct RALLYHEREAPI_API FRequest_GetAllDeserterConfigs : public FRequest
-{
-	FRequest_GetAllDeserterConfigs();
-	virtual ~FRequest_GetAllDeserterConfigs() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-};
-
-struct RALLYHEREAPI_API FResponse_GetAllDeserterConfigs : public FResponse
-{
-	FResponse_GetAllDeserterConfigs(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetAllDeserterConfigs() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_DeserterConfigResponse, FRHAPI_HzApiErrorModel> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_DeserterConfigResponse Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_DeserterConfigResponse* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_DeserterConfigResponse>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_DeserterConfigResponse& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetAllDeserterConfigs
-{
-	typedef FRequest_GetAllDeserterConfigs Request;
-	typedef FResponse_GetAllDeserterConfigs Response;
-	typedef FDelegate_GetAllDeserterConfigs Delegate;
-	typedef FDeserterAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetAllDeserterConfigs(InRequest, InDelegate, Priority); }
-};
-
-/* Get All Player Deserters
- *
- * Get a specific player's deserter status
-*/
-struct RALLYHEREAPI_API FRequest_GetAllPlayerDeserters : public FRequest
-{
-	FRequest_GetAllPlayerDeserters();
-	virtual ~FRequest_GetAllPlayerDeserters() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	FGuid PlayerUuid;
-};
-
-struct RALLYHEREAPI_API FResponse_GetAllPlayerDeserters : public FResponse
-{
-	FResponse_GetAllPlayerDeserters(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetAllPlayerDeserters() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_AllPlayerDeserterStatuses, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_AllPlayerDeserterStatuses Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_AllPlayerDeserterStatuses* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_AllPlayerDeserterStatuses>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_AllPlayerDeserterStatuses& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetAllPlayerDeserters
-{
-	typedef FRequest_GetAllPlayerDeserters Request;
-	typedef FResponse_GetAllPlayerDeserters Response;
-	typedef FDelegate_GetAllPlayerDeserters Delegate;
-	typedef FDeserterAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetAllPlayerDeserters(InRequest, InDelegate, Priority); }
-};
-
-/* Get Player Deserter
- *
- * Get a specific player's deserter status
-*/
-struct RALLYHEREAPI_API FRequest_GetPlayerDeserter : public FRequest
-{
-	FRequest_GetPlayerDeserter();
-	virtual ~FRequest_GetPlayerDeserter() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	FString DeserterId;
-	FGuid PlayerUuid;
-};
-
-struct RALLYHEREAPI_API FResponse_GetPlayerDeserter : public FResponse
-{
-	FResponse_GetPlayerDeserter(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetPlayerDeserter() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_PlayerDeserterStatus, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_PlayerDeserterStatus Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_PlayerDeserterStatus* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_PlayerDeserterStatus>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_PlayerDeserterStatus& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetPlayerDeserter
-{
-	typedef FRequest_GetPlayerDeserter Request;
-	typedef FResponse_GetPlayerDeserter Response;
-	typedef FDelegate_GetPlayerDeserter Delegate;
-	typedef FDeserterAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPlayerDeserter(InRequest, InDelegate, Priority); }
-};
-
-/* Get Specific Deserter Config
- *
- * Get specific deserter configs
-*/
-struct RALLYHEREAPI_API FRequest_GetSpecificDeserterConfig : public FRequest
-{
-	FRequest_GetSpecificDeserterConfig();
-	virtual ~FRequest_GetSpecificDeserterConfig() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	FString DeserterId;
-};
-
-struct RALLYHEREAPI_API FResponse_GetSpecificDeserterConfig : public FResponse
-{
-	FResponse_GetSpecificDeserterConfig(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetSpecificDeserterConfig() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_DeserterConfig, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_DeserterConfig Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_DeserterConfig* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_DeserterConfig>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_DeserterConfig& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetSpecificDeserterConfig
-{
-	typedef FRequest_GetSpecificDeserterConfig Request;
-	typedef FResponse_GetSpecificDeserterConfig Response;
-	typedef FDelegate_GetSpecificDeserterConfig Delegate;
-	typedef FDeserterAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetSpecificDeserterConfig(InRequest, InDelegate, Priority); }
-};
-
-/* Put Player Deserter
- *
- * Update a specific player's deserter status
-*/
-struct RALLYHEREAPI_API FRequest_PutPlayerDeserter : public FRequest
-{
-	FRequest_PutPlayerDeserter();
-	virtual ~FRequest_PutPlayerDeserter() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	FString DeserterId;
-	FGuid PlayerUuid;
-	FRHAPI_DeserterUpdateRequest DeserterUpdateRequest;
-};
-
-struct RALLYHEREAPI_API FResponse_PutPlayerDeserter : public FResponse
-{
-	FResponse_PutPlayerDeserter(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_PutPlayerDeserter() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_PlayerDeserterStatus, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_PlayerDeserterStatus Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_PlayerDeserterStatus* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_PlayerDeserterStatus>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_PlayerDeserterStatus& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_PutPlayerDeserter
-{
-	typedef FRequest_PutPlayerDeserter Request;
-	typedef FResponse_PutPlayerDeserter Response;
-	typedef FDelegate_PutPlayerDeserter Delegate;
-	typedef FDeserterAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->PutPlayerDeserter(InRequest, InDelegate, Priority); }
-};
 
 
 }

@@ -280,6 +280,11 @@ FResponse_GetVoipActionToken::FResponse_GetVoipActionToken(FRequestMetadata InRe
 
 FString Traits_GetVoipActionToken::Name = TEXT("GetVoipActionToken");
 
+FHttpRequestPtr Traits_GetVoipActionToken::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetVoipActionToken(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FVOIPAPI::GetVoipActionTokenMe(const FRequest_GetVoipActionTokenMe& Request, const FDelegate_GetVoipActionTokenMe& Delegate /*= FDelegate_GetVoipActionTokenMe()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -536,6 +541,11 @@ FResponse_GetVoipActionTokenMe::FResponse_GetVoipActionTokenMe(FRequestMetadata 
 
 FString Traits_GetVoipActionTokenMe::Name = TEXT("GetVoipActionTokenMe");
 
+FHttpRequestPtr Traits_GetVoipActionTokenMe::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetVoipActionTokenMe(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FVOIPAPI::GetVoipLoginToken(const FRequest_GetVoipLoginToken& Request, const FDelegate_GetVoipLoginToken& Delegate /*= FDelegate_GetVoipLoginToken()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -752,6 +762,11 @@ FResponse_GetVoipLoginToken::FResponse_GetVoipLoginToken(FRequestMetadata InRequ
 }
 
 FString Traits_GetVoipLoginToken::Name = TEXT("GetVoipLoginToken");
+
+FHttpRequestPtr Traits_GetVoipLoginToken::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetVoipLoginToken(InRequest, InDelegate, InPriority);
+}
 
 
 }

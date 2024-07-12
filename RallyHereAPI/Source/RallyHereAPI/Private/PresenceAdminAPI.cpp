@@ -272,6 +272,11 @@ FResponse_AdminGetKnownPlatforms::FResponse_AdminGetKnownPlatforms(FRequestMetad
 
 FString Traits_AdminGetKnownPlatforms::Name = TEXT("AdminGetKnownPlatforms");
 
+FHttpRequestPtr Traits_AdminGetKnownPlatforms::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->AdminGetKnownPlatforms(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FPresenceAdminAPI::AdminGetPlayerPresence(const FRequest_AdminGetPlayerPresence& Request, const FDelegate_AdminGetPlayerPresence& Delegate /*= FDelegate_AdminGetPlayerPresence()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -549,6 +554,11 @@ FResponse_AdminGetPlayerPresence::FResponse_AdminGetPlayerPresence(FRequestMetad
 }
 
 FString Traits_AdminGetPlayerPresence::Name = TEXT("AdminGetPlayerPresence");
+
+FHttpRequestPtr Traits_AdminGetPlayerPresence::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->AdminGetPlayerPresence(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FPresenceAdminAPI::AdminGetPlayerPresenceId(const FRequest_AdminGetPlayerPresenceId& Request, const FDelegate_AdminGetPlayerPresenceId& Delegate /*= FDelegate_AdminGetPlayerPresenceId()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -828,6 +838,11 @@ FResponse_AdminGetPlayerPresenceId::FResponse_AdminGetPlayerPresenceId(FRequestM
 
 FString Traits_AdminGetPlayerPresenceId::Name = TEXT("AdminGetPlayerPresenceId");
 
+FHttpRequestPtr Traits_AdminGetPlayerPresenceId::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->AdminGetPlayerPresenceId(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FPresenceAdminAPI::AdminGetRequestingCcu(const FRequest_AdminGetRequestingCcu& Request, const FDelegate_AdminGetRequestingCcu& Delegate /*= FDelegate_AdminGetRequestingCcu()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -1078,6 +1093,11 @@ FResponse_AdminGetRequestingCcu::FResponse_AdminGetRequestingCcu(FRequestMetadat
 }
 
 FString Traits_AdminGetRequestingCcu::Name = TEXT("AdminGetRequestingCcu");
+
+FHttpRequestPtr Traits_AdminGetRequestingCcu::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->AdminGetRequestingCcu(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FPresenceAdminAPI::AdminGetRequestingCcuAllPlatformCombined(const FRequest_AdminGetRequestingCcuAllPlatformCombined& Request, const FDelegate_AdminGetRequestingCcuAllPlatformCombined& Delegate /*= FDelegate_AdminGetRequestingCcuAllPlatformCombined()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -1330,6 +1350,11 @@ FResponse_AdminGetRequestingCcuAllPlatformCombined::FResponse_AdminGetRequesting
 
 FString Traits_AdminGetRequestingCcuAllPlatformCombined::Name = TEXT("AdminGetRequestingCcuAllPlatformCombined");
 
+FHttpRequestPtr Traits_AdminGetRequestingCcuAllPlatformCombined::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->AdminGetRequestingCcuAllPlatformCombined(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FPresenceAdminAPI::AdminGetRequestingCcuAllPlatformIndividual(const FRequest_AdminGetRequestingCcuAllPlatformIndividual& Request, const FDelegate_AdminGetRequestingCcuAllPlatformIndividual& Delegate /*= FDelegate_AdminGetRequestingCcuAllPlatformIndividual()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -1581,6 +1606,11 @@ FResponse_AdminGetRequestingCcuAllPlatformIndividual::FResponse_AdminGetRequesti
 
 FString Traits_AdminGetRequestingCcuAllPlatformIndividual::Name = TEXT("AdminGetRequestingCcuAllPlatformIndividual");
 
+FHttpRequestPtr Traits_AdminGetRequestingCcuAllPlatformIndividual::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->AdminGetRequestingCcuAllPlatformIndividual(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FPresenceAdminAPI::AdminGetRequestingCcuIndividual(const FRequest_AdminGetRequestingCcuIndividual& Request, const FDelegate_AdminGetRequestingCcuIndividual& Delegate /*= FDelegate_AdminGetRequestingCcuIndividual()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -1831,6 +1861,11 @@ FResponse_AdminGetRequestingCcuIndividual::FResponse_AdminGetRequestingCcuIndivi
 }
 
 FString Traits_AdminGetRequestingCcuIndividual::Name = TEXT("AdminGetRequestingCcuIndividual");
+
+FHttpRequestPtr Traits_AdminGetRequestingCcuIndividual::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->AdminGetRequestingCcuIndividual(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FPresenceAdminAPI::AdminGetRequestingCcuPlatformCombined(const FRequest_AdminGetRequestingCcuPlatformCombined& Request, const FDelegate_AdminGetRequestingCcuPlatformCombined& Delegate /*= FDelegate_AdminGetRequestingCcuPlatformCombined()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -2088,6 +2123,11 @@ FResponse_AdminGetRequestingCcuPlatformCombined::FResponse_AdminGetRequestingCcu
 
 FString Traits_AdminGetRequestingCcuPlatformCombined::Name = TEXT("AdminGetRequestingCcuPlatformCombined");
 
+FHttpRequestPtr Traits_AdminGetRequestingCcuPlatformCombined::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->AdminGetRequestingCcuPlatformCombined(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FPresenceAdminAPI::AdminGetRequestingCcuPlatformIndividual(const FRequest_AdminGetRequestingCcuPlatformIndividual& Request, const FDelegate_AdminGetRequestingCcuPlatformIndividual& Delegate /*= FDelegate_AdminGetRequestingCcuPlatformIndividual()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -2344,6 +2384,11 @@ FResponse_AdminGetRequestingCcuPlatformIndividual::FResponse_AdminGetRequestingC
 
 FString Traits_AdminGetRequestingCcuPlatformIndividual::Name = TEXT("AdminGetRequestingCcuPlatformIndividual");
 
+FHttpRequestPtr Traits_AdminGetRequestingCcuPlatformIndividual::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->AdminGetRequestingCcuPlatformIndividual(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FPresenceAdminAPI::AdminGetTotalCcu(const FRequest_AdminGetTotalCcu& Request, const FDelegate_AdminGetTotalCcu& Delegate /*= FDelegate_AdminGetTotalCcu()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -2594,6 +2639,11 @@ FResponse_AdminGetTotalCcu::FResponse_AdminGetTotalCcu(FRequestMetadata InReques
 }
 
 FString Traits_AdminGetTotalCcu::Name = TEXT("AdminGetTotalCcu");
+
+FHttpRequestPtr Traits_AdminGetTotalCcu::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->AdminGetTotalCcu(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FPresenceAdminAPI::AdminGetTotalCcuAllPlatformCombined(const FRequest_AdminGetTotalCcuAllPlatformCombined& Request, const FDelegate_AdminGetTotalCcuAllPlatformCombined& Delegate /*= FDelegate_AdminGetTotalCcuAllPlatformCombined()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -2846,6 +2896,11 @@ FResponse_AdminGetTotalCcuAllPlatformCombined::FResponse_AdminGetTotalCcuAllPlat
 
 FString Traits_AdminGetTotalCcuAllPlatformCombined::Name = TEXT("AdminGetTotalCcuAllPlatformCombined");
 
+FHttpRequestPtr Traits_AdminGetTotalCcuAllPlatformCombined::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->AdminGetTotalCcuAllPlatformCombined(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FPresenceAdminAPI::AdminGetTotalCcuAllPlatformIndividual(const FRequest_AdminGetTotalCcuAllPlatformIndividual& Request, const FDelegate_AdminGetTotalCcuAllPlatformIndividual& Delegate /*= FDelegate_AdminGetTotalCcuAllPlatformIndividual()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -3097,6 +3152,11 @@ FResponse_AdminGetTotalCcuAllPlatformIndividual::FResponse_AdminGetTotalCcuAllPl
 
 FString Traits_AdminGetTotalCcuAllPlatformIndividual::Name = TEXT("AdminGetTotalCcuAllPlatformIndividual");
 
+FHttpRequestPtr Traits_AdminGetTotalCcuAllPlatformIndividual::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->AdminGetTotalCcuAllPlatformIndividual(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FPresenceAdminAPI::AdminGetTotalCcuIndividual(const FRequest_AdminGetTotalCcuIndividual& Request, const FDelegate_AdminGetTotalCcuIndividual& Delegate /*= FDelegate_AdminGetTotalCcuIndividual()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -3347,6 +3407,11 @@ FResponse_AdminGetTotalCcuIndividual::FResponse_AdminGetTotalCcuIndividual(FRequ
 }
 
 FString Traits_AdminGetTotalCcuIndividual::Name = TEXT("AdminGetTotalCcuIndividual");
+
+FHttpRequestPtr Traits_AdminGetTotalCcuIndividual::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->AdminGetTotalCcuIndividual(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FPresenceAdminAPI::AdminGetTotalCcuPlatformCombined(const FRequest_AdminGetTotalCcuPlatformCombined& Request, const FDelegate_AdminGetTotalCcuPlatformCombined& Delegate /*= FDelegate_AdminGetTotalCcuPlatformCombined()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -3604,6 +3669,11 @@ FResponse_AdminGetTotalCcuPlatformCombined::FResponse_AdminGetTotalCcuPlatformCo
 
 FString Traits_AdminGetTotalCcuPlatformCombined::Name = TEXT("AdminGetTotalCcuPlatformCombined");
 
+FHttpRequestPtr Traits_AdminGetTotalCcuPlatformCombined::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->AdminGetTotalCcuPlatformCombined(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FPresenceAdminAPI::AdminGetTotalCcuPlatformIndividual(const FRequest_AdminGetTotalCcuPlatformIndividual& Request, const FDelegate_AdminGetTotalCcuPlatformIndividual& Delegate /*= FDelegate_AdminGetTotalCcuPlatformIndividual()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -3860,6 +3930,11 @@ FResponse_AdminGetTotalCcuPlatformIndividual::FResponse_AdminGetTotalCcuPlatform
 
 FString Traits_AdminGetTotalCcuPlatformIndividual::Name = TEXT("AdminGetTotalCcuPlatformIndividual");
 
+FHttpRequestPtr Traits_AdminGetTotalCcuPlatformIndividual::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->AdminGetTotalCcuPlatformIndividual(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FPresenceAdminAPI::AdminGetUpdatingCcu(const FRequest_AdminGetUpdatingCcu& Request, const FDelegate_AdminGetUpdatingCcu& Delegate /*= FDelegate_AdminGetUpdatingCcu()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -4110,6 +4185,11 @@ FResponse_AdminGetUpdatingCcu::FResponse_AdminGetUpdatingCcu(FRequestMetadata In
 }
 
 FString Traits_AdminGetUpdatingCcu::Name = TEXT("AdminGetUpdatingCcu");
+
+FHttpRequestPtr Traits_AdminGetUpdatingCcu::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->AdminGetUpdatingCcu(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FPresenceAdminAPI::AdminGetUpdatingCcuAllPlatformCombined(const FRequest_AdminGetUpdatingCcuAllPlatformCombined& Request, const FDelegate_AdminGetUpdatingCcuAllPlatformCombined& Delegate /*= FDelegate_AdminGetUpdatingCcuAllPlatformCombined()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -4362,6 +4442,11 @@ FResponse_AdminGetUpdatingCcuAllPlatformCombined::FResponse_AdminGetUpdatingCcuA
 
 FString Traits_AdminGetUpdatingCcuAllPlatformCombined::Name = TEXT("AdminGetUpdatingCcuAllPlatformCombined");
 
+FHttpRequestPtr Traits_AdminGetUpdatingCcuAllPlatformCombined::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->AdminGetUpdatingCcuAllPlatformCombined(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FPresenceAdminAPI::AdminGetUpdatingCcuAllPlatformIndividual(const FRequest_AdminGetUpdatingCcuAllPlatformIndividual& Request, const FDelegate_AdminGetUpdatingCcuAllPlatformIndividual& Delegate /*= FDelegate_AdminGetUpdatingCcuAllPlatformIndividual()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -4613,6 +4698,11 @@ FResponse_AdminGetUpdatingCcuAllPlatformIndividual::FResponse_AdminGetUpdatingCc
 
 FString Traits_AdminGetUpdatingCcuAllPlatformIndividual::Name = TEXT("AdminGetUpdatingCcuAllPlatformIndividual");
 
+FHttpRequestPtr Traits_AdminGetUpdatingCcuAllPlatformIndividual::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->AdminGetUpdatingCcuAllPlatformIndividual(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FPresenceAdminAPI::AdminGetUpdatingCcuIndividual(const FRequest_AdminGetUpdatingCcuIndividual& Request, const FDelegate_AdminGetUpdatingCcuIndividual& Delegate /*= FDelegate_AdminGetUpdatingCcuIndividual()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -4863,6 +4953,11 @@ FResponse_AdminGetUpdatingCcuIndividual::FResponse_AdminGetUpdatingCcuIndividual
 }
 
 FString Traits_AdminGetUpdatingCcuIndividual::Name = TEXT("AdminGetUpdatingCcuIndividual");
+
+FHttpRequestPtr Traits_AdminGetUpdatingCcuIndividual::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->AdminGetUpdatingCcuIndividual(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FPresenceAdminAPI::AdminGetUpdatingCcuPlatformCombined(const FRequest_AdminGetUpdatingCcuPlatformCombined& Request, const FDelegate_AdminGetUpdatingCcuPlatformCombined& Delegate /*= FDelegate_AdminGetUpdatingCcuPlatformCombined()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -5120,6 +5215,11 @@ FResponse_AdminGetUpdatingCcuPlatformCombined::FResponse_AdminGetUpdatingCcuPlat
 
 FString Traits_AdminGetUpdatingCcuPlatformCombined::Name = TEXT("AdminGetUpdatingCcuPlatformCombined");
 
+FHttpRequestPtr Traits_AdminGetUpdatingCcuPlatformCombined::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->AdminGetUpdatingCcuPlatformCombined(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FPresenceAdminAPI::AdminGetUpdatingCcuPlatformIndividual(const FRequest_AdminGetUpdatingCcuPlatformIndividual& Request, const FDelegate_AdminGetUpdatingCcuPlatformIndividual& Delegate /*= FDelegate_AdminGetUpdatingCcuPlatformIndividual()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -5375,6 +5475,11 @@ FResponse_AdminGetUpdatingCcuPlatformIndividual::FResponse_AdminGetUpdatingCcuPl
 }
 
 FString Traits_AdminGetUpdatingCcuPlatformIndividual::Name = TEXT("AdminGetUpdatingCcuPlatformIndividual");
+
+FHttpRequestPtr Traits_AdminGetUpdatingCcuPlatformIndividual::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->AdminGetUpdatingCcuPlatformIndividual(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FPresenceAdminAPI::AdminUpdatePlayerLastSeen(const FRequest_AdminUpdatePlayerLastSeen& Request, const FDelegate_AdminUpdatePlayerLastSeen& Delegate /*= FDelegate_AdminUpdatePlayerLastSeen()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -5638,6 +5743,11 @@ FResponse_AdminUpdatePlayerLastSeen::FResponse_AdminUpdatePlayerLastSeen(FReques
 
 FString Traits_AdminUpdatePlayerLastSeen::Name = TEXT("AdminUpdatePlayerLastSeen");
 
+FHttpRequestPtr Traits_AdminUpdatePlayerLastSeen::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->AdminUpdatePlayerLastSeen(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FPresenceAdminAPI::AdminUpdatePlayerLastSeenId(const FRequest_AdminUpdatePlayerLastSeenId& Request, const FDelegate_AdminUpdatePlayerLastSeenId& Delegate /*= FDelegate_AdminUpdatePlayerLastSeenId()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -5899,6 +6009,11 @@ FResponse_AdminUpdatePlayerLastSeenId::FResponse_AdminUpdatePlayerLastSeenId(FRe
 }
 
 FString Traits_AdminUpdatePlayerLastSeenId::Name = TEXT("AdminUpdatePlayerLastSeenId");
+
+FHttpRequestPtr Traits_AdminUpdatePlayerLastSeenId::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->AdminUpdatePlayerLastSeenId(InRequest, InDelegate, InPriority);
+}
 
 
 }

@@ -318,6 +318,11 @@ FResponse_Block::FResponse_Block(FRequestMetadata InRequestMetadata) :
 
 FString Traits_Block::Name = TEXT("Block");
 
+FHttpRequestPtr Traits_Block::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->Block(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FBlockedV1API::GetBlocked(const FRequest_GetBlocked& Request, const FDelegate_GetBlocked& Delegate /*= FDelegate_GetBlocked()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -612,6 +617,11 @@ FResponse_GetBlocked::FResponse_GetBlocked(FRequestMetadata InRequestMetadata) :
 }
 
 FString Traits_GetBlocked::Name = TEXT("GetBlocked");
+
+FHttpRequestPtr Traits_GetBlocked::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetBlocked(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FBlockedV1API::GetBlockedListForPlayer(const FRequest_GetBlockedListForPlayer& Request, const FDelegate_GetBlockedListForPlayer& Delegate /*= FDelegate_GetBlockedListForPlayer()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -966,6 +976,11 @@ FResponse_GetBlockedListForPlayer::FResponse_GetBlockedListForPlayer(FRequestMet
 
 FString Traits_GetBlockedListForPlayer::Name = TEXT("GetBlockedListForPlayer");
 
+FHttpRequestPtr Traits_GetBlockedListForPlayer::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetBlockedListForPlayer(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FBlockedV1API::Unblock(const FRequest_Unblock& Request, const FDelegate_Unblock& Delegate /*= FDelegate_Unblock()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -1184,6 +1199,11 @@ FResponse_Unblock::FResponse_Unblock(FRequestMetadata InRequestMetadata) :
 }
 
 FString Traits_Unblock::Name = TEXT("Unblock");
+
+FHttpRequestPtr Traits_Unblock::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->Unblock(InRequest, InDelegate, InPriority);
+}
 
 
 }

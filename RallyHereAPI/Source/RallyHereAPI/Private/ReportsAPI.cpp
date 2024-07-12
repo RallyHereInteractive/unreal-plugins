@@ -328,6 +328,11 @@ FResponse_CreateReportForTargetPlayerUuid::FResponse_CreateReportForTargetPlayer
 
 FString Traits_CreateReportForTargetPlayerUuid::Name = TEXT("CreateReportForTargetPlayerUuid");
 
+FHttpRequestPtr Traits_CreateReportForTargetPlayerUuid::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->CreateReportForTargetPlayerUuid(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FReportsAPI::GetReportsForTargetPlayerUuid(const FRequest_GetReportsForTargetPlayerUuid& Request, const FDelegate_GetReportsForTargetPlayerUuid& Delegate /*= FDelegate_GetReportsForTargetPlayerUuid()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -610,6 +615,11 @@ FResponse_GetReportsForTargetPlayerUuid::FResponse_GetReportsForTargetPlayerUuid
 
 FString Traits_GetReportsForTargetPlayerUuid::Name = TEXT("GetReportsForTargetPlayerUuid");
 
+FHttpRequestPtr Traits_GetReportsForTargetPlayerUuid::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetReportsForTargetPlayerUuid(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FReportsAPI::GetReportsForTargetPlayerUuidSelf(const FRequest_GetReportsForTargetPlayerUuidSelf& Request, const FDelegate_GetReportsForTargetPlayerUuidSelf& Delegate /*= FDelegate_GetReportsForTargetPlayerUuidSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -886,6 +896,11 @@ FResponse_GetReportsForTargetPlayerUuidSelf::FResponse_GetReportsForTargetPlayer
 }
 
 FString Traits_GetReportsForTargetPlayerUuidSelf::Name = TEXT("GetReportsForTargetPlayerUuidSelf");
+
+FHttpRequestPtr Traits_GetReportsForTargetPlayerUuidSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetReportsForTargetPlayerUuidSelf(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FReportsAPI::GetReportsFromSourcePlayerUuid(const FRequest_GetReportsFromSourcePlayerUuid& Request, const FDelegate_GetReportsFromSourcePlayerUuid& Delegate /*= FDelegate_GetReportsFromSourcePlayerUuid()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -1169,6 +1184,11 @@ FResponse_GetReportsFromSourcePlayerUuid::FResponse_GetReportsFromSourcePlayerUu
 
 FString Traits_GetReportsFromSourcePlayerUuid::Name = TEXT("GetReportsFromSourcePlayerUuid");
 
+FHttpRequestPtr Traits_GetReportsFromSourcePlayerUuid::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetReportsFromSourcePlayerUuid(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FReportsAPI::GetReportsFromSourcePlayerUuidSelf(const FRequest_GetReportsFromSourcePlayerUuidSelf& Request, const FDelegate_GetReportsFromSourcePlayerUuidSelf& Delegate /*= FDelegate_GetReportsFromSourcePlayerUuidSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -1445,6 +1465,11 @@ FResponse_GetReportsFromSourcePlayerUuidSelf::FResponse_GetReportsFromSourcePlay
 }
 
 FString Traits_GetReportsFromSourcePlayerUuidSelf::Name = TEXT("GetReportsFromSourcePlayerUuidSelf");
+
+FHttpRequestPtr Traits_GetReportsFromSourcePlayerUuidSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetReportsFromSourcePlayerUuidSelf(InRequest, InDelegate, InPriority);
+}
 
 
 }

@@ -39,65 +39,2915 @@ using RallyHereAPI::ToStringFormatArg;
 using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
-struct FRequest_GetCatalogAll;
-struct FResponse_GetCatalogAll;
-struct FRequest_GetCatalogEntitlementSku;
-struct FResponse_GetCatalogEntitlementSku;
-struct FRequest_GetCatalogEntitlementSkuAll;
-struct FResponse_GetCatalogEntitlementSkuAll;
-struct FRequest_GetCatalogInventoryBucketUseRuleSet;
-struct FResponse_GetCatalogInventoryBucketUseRuleSet;
-struct FRequest_GetCatalogInventoryBucketUseRuleSetsAll;
-struct FResponse_GetCatalogInventoryBucketUseRuleSetsAll;
-struct FRequest_GetCatalogItem;
-struct FResponse_GetCatalogItem;
-struct FRequest_GetCatalogItemsAll;
-struct FResponse_GetCatalogItemsAll;
-struct FRequest_GetCatalogLoot;
-struct FResponse_GetCatalogLoot;
-struct FRequest_GetCatalogLootsAll;
-struct FResponse_GetCatalogLootsAll;
-struct FRequest_GetCatalogPortalUseRuleset;
-struct FResponse_GetCatalogPortalUseRuleset;
-struct FRequest_GetCatalogPortalUseRulesetsAll;
-struct FResponse_GetCatalogPortalUseRulesetsAll;
-struct FRequest_GetCatalogPricePoint;
-struct FResponse_GetCatalogPricePoint;
-struct FRequest_GetCatalogPricePointsAll;
-struct FResponse_GetCatalogPricePointsAll;
-struct FRequest_GetCatalogTimeFrame;
-struct FResponse_GetCatalogTimeFrame;
-struct FRequest_GetCatalogTimeFramesAll;
-struct FResponse_GetCatalogTimeFramesAll;
-struct FRequest_GetCatalogVendor;
-struct FResponse_GetCatalogVendor;
-struct FRequest_GetCatalogVendorsAll;
-struct FResponse_GetCatalogVendorsAll;
-struct FRequest_GetCatalogXpAll;
-struct FResponse_GetCatalogXpAll;
-struct FRequest_GetCatalogXpTable;
-struct FResponse_GetCatalogXpTable;
+// forward declaration
+class FCatalogAPI;
 
+/**
+ * @brief Get Catalog All
+ * Get the entire catalog.
+ * 
+ * This endpoint endpoint is generally discouraged outside of prototyping and early development.  It's not that the endpoint won't function, but rather that it creates a pattern that may result in a poor end user experience.  It has etag/if-none-match handling, but it is for the entire catalog.  So if a single byte changes inside the catalog (e.g. turning on a loot record, adding a single new item, changing a price point, adjusting the threshold to hit level X in an XP Table), then the etag will change.  If clients are re-requesting data from this endpoint, then those changes will result in them re-downloading, and re-parsing the entire catalog for that tiny modification.
+ * 
+ * Early on in a game's lifecycle, this doesn't matter much - since catalog data is pretty small.  But as your game grows, and you create lots of things to receive/purchase/grant, the data will balloon in size.  Parsing the response does occur on unreal's main thread, and with a sufficiently large catalog, you may see hitches.  There will also be lots of data in there that may not even be necessary for your client to see at all (e.g. if you only grant the loot from the dedicated server or if an item is just a tracker, it doesn't necessarily need to be visible on the client).
+ * 
+ * We generally encourage having a well-known list of vendors to request from `/inventory/v1/catalog/vendor/{vendor_id}`, and then requesting the entire set of xp tables, price points, and bucket rulesets (as those are generally pretty small lists).  That list of vendors could come from anywhere, it could be hardcoded, be set from an ini (if your client is unlikely to need arbitrary vendor additions, but you want to retain the ability to patch it) or it could come down in a kv.
+*/
+struct RALLYHEREAPI_API FRequest_GetCatalogAll : public FRequest
+{
+	FRequest_GetCatalogAll();
+	virtual ~FRequest_GetCatalogAll() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
+};
+
+/** The response type for FRequest_GetCatalogAll */
+struct RALLYHEREAPI_API FResponse_GetCatalogAll : public FResponse
+{
+	FResponse_GetCatalogAll(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetCatalogAll() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_Catalog, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_Catalog Content;
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_Catalog* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_Catalog>(); }
+	/** @brief Attempt to retrieve a specific header of the default response
+	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_Catalog& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetCatalogAll */
 DECLARE_DELEGATE_OneParam(FDelegate_GetCatalogAll, const FResponse_GetCatalogAll&);
+
+/** @brief A helper metadata object for GetCatalogAll that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetCatalogAll
+{
+	/** The request type */
+	typedef FRequest_GetCatalogAll Request;
+	/** The response type */
+	typedef FResponse_GetCatalogAll Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetCatalogAll Delegate;
+	/** The API object that supports this API call */
+	typedef FCatalogAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Catalog Entitlement Sku
+ * Get a specific Entitlement SKU.
+*/
+struct RALLYHEREAPI_API FRequest_GetCatalogEntitlementSku : public FRequest
+{
+	FRequest_GetCatalogEntitlementSku();
+	virtual ~FRequest_GetCatalogEntitlementSku() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	ERHAPI_Platform Platform;
+	FString Sku;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
+};
+
+/** The response type for FRequest_GetCatalogEntitlementSku */
+struct RALLYHEREAPI_API FResponse_GetCatalogEntitlementSku : public FResponse
+{
+	FResponse_GetCatalogEntitlementSku(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetCatalogEntitlementSku() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_PlatformSKU, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_PlatformSKU Content;
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_PlatformSKU* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_PlatformSKU>(); }
+	/** @brief Attempt to retrieve a specific header of the default response
+	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlatformSKU& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetCatalogEntitlementSku */
 DECLARE_DELEGATE_OneParam(FDelegate_GetCatalogEntitlementSku, const FResponse_GetCatalogEntitlementSku&);
+
+/** @brief A helper metadata object for GetCatalogEntitlementSku that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetCatalogEntitlementSku
+{
+	/** The request type */
+	typedef FRequest_GetCatalogEntitlementSku Request;
+	/** The response type */
+	typedef FResponse_GetCatalogEntitlementSku Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetCatalogEntitlementSku Delegate;
+	/** The API object that supports this API call */
+	typedef FCatalogAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Catalog Entitlement Sku All
+ * Get all Entitlement SKUs.
+*/
+struct RALLYHEREAPI_API FRequest_GetCatalogEntitlementSkuAll : public FRequest
+{
+	FRequest_GetCatalogEntitlementSkuAll();
+	virtual ~FRequest_GetCatalogEntitlementSkuAll() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
+};
+
+/** The response type for FRequest_GetCatalogEntitlementSkuAll */
+struct RALLYHEREAPI_API FResponse_GetCatalogEntitlementSkuAll : public FResponse
+{
+	FResponse_GetCatalogEntitlementSkuAll(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetCatalogEntitlementSkuAll() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_PlatformSKUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_PlatformSKUs Content;
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_PlatformSKUs* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_PlatformSKUs>(); }
+	/** @brief Attempt to retrieve a specific header of the default response
+	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlatformSKUs& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetCatalogEntitlementSkuAll */
 DECLARE_DELEGATE_OneParam(FDelegate_GetCatalogEntitlementSkuAll, const FResponse_GetCatalogEntitlementSkuAll&);
+
+/** @brief A helper metadata object for GetCatalogEntitlementSkuAll that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetCatalogEntitlementSkuAll
+{
+	/** The request type */
+	typedef FRequest_GetCatalogEntitlementSkuAll Request;
+	/** The response type */
+	typedef FResponse_GetCatalogEntitlementSkuAll Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetCatalogEntitlementSkuAll Delegate;
+	/** The API object that supports this API call */
+	typedef FCatalogAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Catalog Inventory Bucket Use Rule Set
+ * Get a specific Inventory Bucket Use Rule Set.
+*/
+struct RALLYHEREAPI_API FRequest_GetCatalogInventoryBucketUseRuleSet : public FRequest
+{
+	FRequest_GetCatalogInventoryBucketUseRuleSet();
+	virtual ~FRequest_GetCatalogInventoryBucketUseRuleSet() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FString InventoryBucketUseRulesetId;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
+};
+
+/** The response type for FRequest_GetCatalogInventoryBucketUseRuleSet */
+struct RALLYHEREAPI_API FResponse_GetCatalogInventoryBucketUseRuleSet : public FResponse
+{
+	FResponse_GetCatalogInventoryBucketUseRuleSet(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetCatalogInventoryBucketUseRuleSet() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_InventoryBucketUseRuleSet, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_InventoryBucketUseRuleSet Content;
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_InventoryBucketUseRuleSet* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_InventoryBucketUseRuleSet>(); }
+	/** @brief Attempt to retrieve a specific header of the default response
+	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_InventoryBucketUseRuleSet& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetCatalogInventoryBucketUseRuleSet */
 DECLARE_DELEGATE_OneParam(FDelegate_GetCatalogInventoryBucketUseRuleSet, const FResponse_GetCatalogInventoryBucketUseRuleSet&);
+
+/** @brief A helper metadata object for GetCatalogInventoryBucketUseRuleSet that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetCatalogInventoryBucketUseRuleSet
+{
+	/** The request type */
+	typedef FRequest_GetCatalogInventoryBucketUseRuleSet Request;
+	/** The response type */
+	typedef FResponse_GetCatalogInventoryBucketUseRuleSet Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetCatalogInventoryBucketUseRuleSet Delegate;
+	/** The API object that supports this API call */
+	typedef FCatalogAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Catalog Inventory Bucket Use Rule Sets All
+ * Get all Inventory Bucket Use Rule Sets.
+*/
+struct RALLYHEREAPI_API FRequest_GetCatalogInventoryBucketUseRuleSetsAll : public FRequest
+{
+	FRequest_GetCatalogInventoryBucketUseRuleSetsAll();
+	virtual ~FRequest_GetCatalogInventoryBucketUseRuleSetsAll() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
+};
+
+/** The response type for FRequest_GetCatalogInventoryBucketUseRuleSetsAll */
+struct RALLYHEREAPI_API FResponse_GetCatalogInventoryBucketUseRuleSetsAll : public FResponse
+{
+	FResponse_GetCatalogInventoryBucketUseRuleSetsAll(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetCatalogInventoryBucketUseRuleSetsAll() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_InventoryBucketUseRuleSets, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_InventoryBucketUseRuleSets Content;
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_InventoryBucketUseRuleSets* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_InventoryBucketUseRuleSets>(); }
+	/** @brief Attempt to retrieve a specific header of the default response
+	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_InventoryBucketUseRuleSets& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetCatalogInventoryBucketUseRuleSetsAll */
 DECLARE_DELEGATE_OneParam(FDelegate_GetCatalogInventoryBucketUseRuleSetsAll, const FResponse_GetCatalogInventoryBucketUseRuleSetsAll&);
+
+/** @brief A helper metadata object for GetCatalogInventoryBucketUseRuleSetsAll that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetCatalogInventoryBucketUseRuleSetsAll
+{
+	/** The request type */
+	typedef FRequest_GetCatalogInventoryBucketUseRuleSetsAll Request;
+	/** The response type */
+	typedef FResponse_GetCatalogInventoryBucketUseRuleSetsAll Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetCatalogInventoryBucketUseRuleSetsAll Delegate;
+	/** The API object that supports this API call */
+	typedef FCatalogAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Catalog Item
+ * Get a specific Item.
+*/
+struct RALLYHEREAPI_API FRequest_GetCatalogItem : public FRequest
+{
+	FRequest_GetCatalogItem();
+	virtual ~FRequest_GetCatalogItem() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	int32 ItemId = 0;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
+};
+
+/** The response type for FRequest_GetCatalogItem */
+struct RALLYHEREAPI_API FResponse_GetCatalogItem : public FResponse
+{
+	FResponse_GetCatalogItem(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetCatalogItem() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_Item, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_Item Content;
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_Item* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_Item>(); }
+	/** @brief Attempt to retrieve a specific header of the default response
+	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_Item& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetCatalogItem */
 DECLARE_DELEGATE_OneParam(FDelegate_GetCatalogItem, const FResponse_GetCatalogItem&);
+
+/** @brief A helper metadata object for GetCatalogItem that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetCatalogItem
+{
+	/** The request type */
+	typedef FRequest_GetCatalogItem Request;
+	/** The response type */
+	typedef FResponse_GetCatalogItem Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetCatalogItem Delegate;
+	/** The API object that supports this API call */
+	typedef FCatalogAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Catalog Items All
+ * Get all Items.
+*/
+struct RALLYHEREAPI_API FRequest_GetCatalogItemsAll : public FRequest
+{
+	FRequest_GetCatalogItemsAll();
+	virtual ~FRequest_GetCatalogItemsAll() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
+};
+
+/** The response type for FRequest_GetCatalogItemsAll */
+struct RALLYHEREAPI_API FResponse_GetCatalogItemsAll : public FResponse
+{
+	FResponse_GetCatalogItemsAll(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetCatalogItemsAll() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_Items, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_Items Content;
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_Items* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_Items>(); }
+	/** @brief Attempt to retrieve a specific header of the default response
+	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_Items& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetCatalogItemsAll */
 DECLARE_DELEGATE_OneParam(FDelegate_GetCatalogItemsAll, const FResponse_GetCatalogItemsAll&);
+
+/** @brief A helper metadata object for GetCatalogItemsAll that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetCatalogItemsAll
+{
+	/** The request type */
+	typedef FRequest_GetCatalogItemsAll Request;
+	/** The response type */
+	typedef FResponse_GetCatalogItemsAll Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetCatalogItemsAll Delegate;
+	/** The API object that supports this API call */
+	typedef FCatalogAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Catalog Loot
+ * Get a specific Loot.
+*/
+struct RALLYHEREAPI_API FRequest_GetCatalogLoot : public FRequest
+{
+	FRequest_GetCatalogLoot();
+	virtual ~FRequest_GetCatalogLoot() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	int32 LootId = 0;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
+};
+
+/** The response type for FRequest_GetCatalogLoot */
+struct RALLYHEREAPI_API FResponse_GetCatalogLoot : public FResponse
+{
+	FResponse_GetCatalogLoot(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetCatalogLoot() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_Loot, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_Loot Content;
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_Loot* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_Loot>(); }
+	/** @brief Attempt to retrieve a specific header of the default response
+	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_Loot& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetCatalogLoot */
 DECLARE_DELEGATE_OneParam(FDelegate_GetCatalogLoot, const FResponse_GetCatalogLoot&);
+
+/** @brief A helper metadata object for GetCatalogLoot that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetCatalogLoot
+{
+	/** The request type */
+	typedef FRequest_GetCatalogLoot Request;
+	/** The response type */
+	typedef FResponse_GetCatalogLoot Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetCatalogLoot Delegate;
+	/** The API object that supports this API call */
+	typedef FCatalogAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Catalog Loots All
+ * Get all Loot.
+*/
+struct RALLYHEREAPI_API FRequest_GetCatalogLootsAll : public FRequest
+{
+	FRequest_GetCatalogLootsAll();
+	virtual ~FRequest_GetCatalogLootsAll() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
+};
+
+/** The response type for FRequest_GetCatalogLootsAll */
+struct RALLYHEREAPI_API FResponse_GetCatalogLootsAll : public FResponse
+{
+	FResponse_GetCatalogLootsAll(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetCatalogLootsAll() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_Loots, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_Loots Content;
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_Loots* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_Loots>(); }
+	/** @brief Attempt to retrieve a specific header of the default response
+	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_Loots& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetCatalogLootsAll */
 DECLARE_DELEGATE_OneParam(FDelegate_GetCatalogLootsAll, const FResponse_GetCatalogLootsAll&);
+
+/** @brief A helper metadata object for GetCatalogLootsAll that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetCatalogLootsAll
+{
+	/** The request type */
+	typedef FRequest_GetCatalogLootsAll Request;
+	/** The response type */
+	typedef FResponse_GetCatalogLootsAll Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetCatalogLootsAll Delegate;
+	/** The API object that supports this API call */
+	typedef FCatalogAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Catalog Portal Use Ruleset
+ * Get a specific Portal Use Ruleset.
+*/
+struct RALLYHEREAPI_API FRequest_GetCatalogPortalUseRuleset : public FRequest
+{
+	FRequest_GetCatalogPortalUseRuleset();
+	virtual ~FRequest_GetCatalogPortalUseRuleset() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	int32 PortalUseRulesetId = 0;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
+};
+
+/** The response type for FRequest_GetCatalogPortalUseRuleset */
+struct RALLYHEREAPI_API FResponse_GetCatalogPortalUseRuleset : public FResponse
+{
+	FResponse_GetCatalogPortalUseRuleset(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetCatalogPortalUseRuleset() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_PortalUseRuleset, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_PortalUseRuleset Content;
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_PortalUseRuleset* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_PortalUseRuleset>(); }
+	/** @brief Attempt to retrieve a specific header of the default response
+	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PortalUseRuleset& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetCatalogPortalUseRuleset */
 DECLARE_DELEGATE_OneParam(FDelegate_GetCatalogPortalUseRuleset, const FResponse_GetCatalogPortalUseRuleset&);
+
+/** @brief A helper metadata object for GetCatalogPortalUseRuleset that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetCatalogPortalUseRuleset
+{
+	/** The request type */
+	typedef FRequest_GetCatalogPortalUseRuleset Request;
+	/** The response type */
+	typedef FResponse_GetCatalogPortalUseRuleset Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetCatalogPortalUseRuleset Delegate;
+	/** The API object that supports this API call */
+	typedef FCatalogAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Catalog Portal Use Rulesets All
+ * Get all Portal Use Rulesets.
+*/
+struct RALLYHEREAPI_API FRequest_GetCatalogPortalUseRulesetsAll : public FRequest
+{
+	FRequest_GetCatalogPortalUseRulesetsAll();
+	virtual ~FRequest_GetCatalogPortalUseRulesetsAll() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
+};
+
+/** The response type for FRequest_GetCatalogPortalUseRulesetsAll */
+struct RALLYHEREAPI_API FResponse_GetCatalogPortalUseRulesetsAll : public FResponse
+{
+	FResponse_GetCatalogPortalUseRulesetsAll(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetCatalogPortalUseRulesetsAll() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_PortalUseRulesets, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_PortalUseRulesets Content;
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_PortalUseRulesets* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_PortalUseRulesets>(); }
+	/** @brief Attempt to retrieve a specific header of the default response
+	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PortalUseRulesets& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetCatalogPortalUseRulesetsAll */
 DECLARE_DELEGATE_OneParam(FDelegate_GetCatalogPortalUseRulesetsAll, const FResponse_GetCatalogPortalUseRulesetsAll&);
+
+/** @brief A helper metadata object for GetCatalogPortalUseRulesetsAll that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetCatalogPortalUseRulesetsAll
+{
+	/** The request type */
+	typedef FRequest_GetCatalogPortalUseRulesetsAll Request;
+	/** The response type */
+	typedef FResponse_GetCatalogPortalUseRulesetsAll Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetCatalogPortalUseRulesetsAll Delegate;
+	/** The API object that supports this API call */
+	typedef FCatalogAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Catalog Price Point
+ * Get a specific Price Point.
+*/
+struct RALLYHEREAPI_API FRequest_GetCatalogPricePoint : public FRequest
+{
+	FRequest_GetCatalogPricePoint();
+	virtual ~FRequest_GetCatalogPricePoint() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FString PricePointId;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
+};
+
+/** The response type for FRequest_GetCatalogPricePoint */
+struct RALLYHEREAPI_API FResponse_GetCatalogPricePoint : public FResponse
+{
+	FResponse_GetCatalogPricePoint(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetCatalogPricePoint() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_PricePoint, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_PricePoint Content;
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_PricePoint* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_PricePoint>(); }
+	/** @brief Attempt to retrieve a specific header of the default response
+	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PricePoint& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetCatalogPricePoint */
 DECLARE_DELEGATE_OneParam(FDelegate_GetCatalogPricePoint, const FResponse_GetCatalogPricePoint&);
+
+/** @brief A helper metadata object for GetCatalogPricePoint that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetCatalogPricePoint
+{
+	/** The request type */
+	typedef FRequest_GetCatalogPricePoint Request;
+	/** The response type */
+	typedef FResponse_GetCatalogPricePoint Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetCatalogPricePoint Delegate;
+	/** The API object that supports this API call */
+	typedef FCatalogAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Catalog Price Points All
+ * Get all Price Points.
+*/
+struct RALLYHEREAPI_API FRequest_GetCatalogPricePointsAll : public FRequest
+{
+	FRequest_GetCatalogPricePointsAll();
+	virtual ~FRequest_GetCatalogPricePointsAll() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
+};
+
+/** The response type for FRequest_GetCatalogPricePointsAll */
+struct RALLYHEREAPI_API FResponse_GetCatalogPricePointsAll : public FResponse
+{
+	FResponse_GetCatalogPricePointsAll(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetCatalogPricePointsAll() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_PricePoints, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_PricePoints Content;
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_PricePoints* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_PricePoints>(); }
+	/** @brief Attempt to retrieve a specific header of the default response
+	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PricePoints& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetCatalogPricePointsAll */
 DECLARE_DELEGATE_OneParam(FDelegate_GetCatalogPricePointsAll, const FResponse_GetCatalogPricePointsAll&);
+
+/** @brief A helper metadata object for GetCatalogPricePointsAll that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetCatalogPricePointsAll
+{
+	/** The request type */
+	typedef FRequest_GetCatalogPricePointsAll Request;
+	/** The response type */
+	typedef FResponse_GetCatalogPricePointsAll Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetCatalogPricePointsAll Delegate;
+	/** The API object that supports this API call */
+	typedef FCatalogAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Catalog Time Frame
+ * Get a specific Time Frame.
+*/
+struct RALLYHEREAPI_API FRequest_GetCatalogTimeFrame : public FRequest
+{
+	FRequest_GetCatalogTimeFrame();
+	virtual ~FRequest_GetCatalogTimeFrame() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	int32 TimeFrameId = 0;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
+};
+
+/** The response type for FRequest_GetCatalogTimeFrame */
+struct RALLYHEREAPI_API FResponse_GetCatalogTimeFrame : public FResponse
+{
+	FResponse_GetCatalogTimeFrame(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetCatalogTimeFrame() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_TimeFrame, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_TimeFrame Content;
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_TimeFrame* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_TimeFrame>(); }
+	/** @brief Attempt to retrieve a specific header of the default response
+	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_TimeFrame& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetCatalogTimeFrame */
 DECLARE_DELEGATE_OneParam(FDelegate_GetCatalogTimeFrame, const FResponse_GetCatalogTimeFrame&);
+
+/** @brief A helper metadata object for GetCatalogTimeFrame that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetCatalogTimeFrame
+{
+	/** The request type */
+	typedef FRequest_GetCatalogTimeFrame Request;
+	/** The response type */
+	typedef FResponse_GetCatalogTimeFrame Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetCatalogTimeFrame Delegate;
+	/** The API object that supports this API call */
+	typedef FCatalogAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Catalog Time Frames All
+ * Get all Time Frames.
+*/
+struct RALLYHEREAPI_API FRequest_GetCatalogTimeFramesAll : public FRequest
+{
+	FRequest_GetCatalogTimeFramesAll();
+	virtual ~FRequest_GetCatalogTimeFramesAll() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
+};
+
+/** The response type for FRequest_GetCatalogTimeFramesAll */
+struct RALLYHEREAPI_API FResponse_GetCatalogTimeFramesAll : public FResponse
+{
+	FResponse_GetCatalogTimeFramesAll(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetCatalogTimeFramesAll() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_TimeFrames, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_TimeFrames Content;
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_TimeFrames* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_TimeFrames>(); }
+	/** @brief Attempt to retrieve a specific header of the default response
+	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_TimeFrames& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetCatalogTimeFramesAll */
 DECLARE_DELEGATE_OneParam(FDelegate_GetCatalogTimeFramesAll, const FResponse_GetCatalogTimeFramesAll&);
+
+/** @brief A helper metadata object for GetCatalogTimeFramesAll that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetCatalogTimeFramesAll
+{
+	/** The request type */
+	typedef FRequest_GetCatalogTimeFramesAll Request;
+	/** The response type */
+	typedef FResponse_GetCatalogTimeFramesAll Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetCatalogTimeFramesAll Delegate;
+	/** The API object that supports this API call */
+	typedef FCatalogAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Catalog Vendor
+ * Get a specific Vendor.
+*/
+struct RALLYHEREAPI_API FRequest_GetCatalogVendor : public FRequest
+{
+	FRequest_GetCatalogVendor();
+	virtual ~FRequest_GetCatalogVendor() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	int32 VendorId = 0;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
+};
+
+/** The response type for FRequest_GetCatalogVendor */
+struct RALLYHEREAPI_API FResponse_GetCatalogVendor : public FResponse
+{
+	FResponse_GetCatalogVendor(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetCatalogVendor() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_Vendor, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_Vendor Content;
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_Vendor* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_Vendor>(); }
+	/** @brief Attempt to retrieve a specific header of the default response
+	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_Vendor& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetCatalogVendor */
 DECLARE_DELEGATE_OneParam(FDelegate_GetCatalogVendor, const FResponse_GetCatalogVendor&);
+
+/** @brief A helper metadata object for GetCatalogVendor that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetCatalogVendor
+{
+	/** The request type */
+	typedef FRequest_GetCatalogVendor Request;
+	/** The response type */
+	typedef FResponse_GetCatalogVendor Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetCatalogVendor Delegate;
+	/** The API object that supports this API call */
+	typedef FCatalogAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Catalog Vendors All
+ * Get all Vendors.
+*/
+struct RALLYHEREAPI_API FRequest_GetCatalogVendorsAll : public FRequest
+{
+	FRequest_GetCatalogVendorsAll();
+	virtual ~FRequest_GetCatalogVendorsAll() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
+};
+
+/** The response type for FRequest_GetCatalogVendorsAll */
+struct RALLYHEREAPI_API FResponse_GetCatalogVendorsAll : public FResponse
+{
+	FResponse_GetCatalogVendorsAll(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetCatalogVendorsAll() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_Vendors, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_Vendors Content;
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_Vendors* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_Vendors>(); }
+	/** @brief Attempt to retrieve a specific header of the default response
+	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_Vendors& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetCatalogVendorsAll */
 DECLARE_DELEGATE_OneParam(FDelegate_GetCatalogVendorsAll, const FResponse_GetCatalogVendorsAll&);
+
+/** @brief A helper metadata object for GetCatalogVendorsAll that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetCatalogVendorsAll
+{
+	/** The request type */
+	typedef FRequest_GetCatalogVendorsAll Request;
+	/** The response type */
+	typedef FResponse_GetCatalogVendorsAll Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetCatalogVendorsAll Delegate;
+	/** The API object that supports this API call */
+	typedef FCatalogAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Catalog Xp All
+ * Get all XP Tables.
+*/
+struct RALLYHEREAPI_API FRequest_GetCatalogXpAll : public FRequest
+{
+	FRequest_GetCatalogXpAll();
+	virtual ~FRequest_GetCatalogXpAll() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
+};
+
+/** The response type for FRequest_GetCatalogXpAll */
+struct RALLYHEREAPI_API FResponse_GetCatalogXpAll : public FResponse
+{
+	FResponse_GetCatalogXpAll(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetCatalogXpAll() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_XpTables, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_XpTables Content;
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_XpTables* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_XpTables>(); }
+	/** @brief Attempt to retrieve a specific header of the default response
+	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_XpTables& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetCatalogXpAll */
 DECLARE_DELEGATE_OneParam(FDelegate_GetCatalogXpAll, const FResponse_GetCatalogXpAll&);
+
+/** @brief A helper metadata object for GetCatalogXpAll that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetCatalogXpAll
+{
+	/** The request type */
+	typedef FRequest_GetCatalogXpAll Request;
+	/** The response type */
+	typedef FResponse_GetCatalogXpAll Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetCatalogXpAll Delegate;
+	/** The API object that supports this API call */
+	typedef FCatalogAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Catalog Xp Table
+ * Get a specific XP Table.
+*/
+struct RALLYHEREAPI_API FRequest_GetCatalogXpTable : public FRequest
+{
+	FRequest_GetCatalogXpTable();
+	virtual ~FRequest_GetCatalogXpTable() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	int32 XpTableId = 0;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
+};
+
+/** The response type for FRequest_GetCatalogXpTable */
+struct RALLYHEREAPI_API FResponse_GetCatalogXpTable : public FResponse
+{
+	FResponse_GetCatalogXpTable(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetCatalogXpTable() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_XpTable, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_XpTable Content;
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_XpTable* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_XpTable>(); }
+	/** @brief Attempt to retrieve a specific header of the default response
+	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_XpTable& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetCatalogXpTable */
 DECLARE_DELEGATE_OneParam(FDelegate_GetCatalogXpTable, const FResponse_GetCatalogXpTable&);
 
+/** @brief A helper metadata object for GetCatalogXpTable that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetCatalogXpTable
+{
+	/** The request type */
+	typedef FRequest_GetCatalogXpTable Request;
+	/** The response type */
+	typedef FResponse_GetCatalogXpTable Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetCatalogXpTable Delegate;
+	/** The API object that supports this API call */
+	typedef FCatalogAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+
+/** The API class itself, which will handle calls to */
 class RALLYHEREAPI_API FCatalogAPI : public FAPI
 {
 public:
@@ -147,1864 +2997,6 @@ private:
 
 };
 
-/* Get Catalog All
- *
- * Get the entire catalog.
- * 
- * This endpoint endpoint is generally discouraged outside of prototyping and early development.  It's not that the endpoint won't function, but rather that it creates a pattern that may result in a poor end user experience.  It has etag/if-none-match handling, but it is for the entire catalog.  So if a single byte changes inside the catalog (e.g. turning on a loot record, adding a single new item, changing a price point, adjusting the threshold to hit level X in an XP Table), then the etag will change.  If clients are re-requesting data from this endpoint, then those changes will result in them re-downloading, and re-parsing the entire catalog for that tiny modification.
- * 
- * Early on in a game's lifecycle, this doesn't matter much - since catalog data is pretty small.  But as your game grows, and you create lots of things to receive/purchase/grant, the data will balloon in size.  Parsing the response does occur on unreal's main thread, and with a sufficiently large catalog, you may see hitches.  There will also be lots of data in there that may not even be necessary for your client to see at all (e.g. if you only grant the loot from the dedicated server or if an item is just a tracker, it doesn't necessarily need to be visible on the client).
- * 
- * We generally encourage having a well-known list of vendors to request from `/inventory/v1/catalog/vendor/{vendor_id}`, and then requesting the entire set of xp tables, price points, and bucket rulesets (as those are generally pretty small lists).  That list of vendors could come from anywhere, it could be hardcoded, be set from an ini (if your client is unlikely to need arbitrary vendor additions, but you want to retain the ability to patch it) or it could come down in a kv.
-*/
-struct RALLYHEREAPI_API FRequest_GetCatalogAll : public FRequest
-{
-	FRequest_GetCatalogAll();
-	virtual ~FRequest_GetCatalogAll() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-	TOptional<FString> IfNoneMatch;
-};
-
-struct RALLYHEREAPI_API FResponse_GetCatalogAll : public FResponse
-{
-	FResponse_GetCatalogAll(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetCatalogAll() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	bool ParseHeaders() override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_Catalog, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_Catalog Content;
-	
-	// Default Response Headers
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetHeader() or GetHeader<>() instead.")
-	TOptional<FString> ETag;
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_Catalog* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_Catalog>(); }
-	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_Catalog& OutContent) const;
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	TOptional<FString> GetHeader200_ETag() const;
-
-	/* Response 304
-	Content still has the same etag and has not changed
-	*/
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	Not Found
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetCatalogAll
-{
-	typedef FRequest_GetCatalogAll Request;
-	typedef FResponse_GetCatalogAll Response;
-	typedef FDelegate_GetCatalogAll Delegate;
-	typedef FCatalogAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetCatalogAll(InRequest, InDelegate, Priority); }
-};
-
-/* Get Catalog Entitlement Sku
- *
- * Get a specific Entitlement SKU.
-*/
-struct RALLYHEREAPI_API FRequest_GetCatalogEntitlementSku : public FRequest
-{
-	FRequest_GetCatalogEntitlementSku();
-	virtual ~FRequest_GetCatalogEntitlementSku() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	ERHAPI_Platform Platform;
-	FString Sku;
-	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-	TOptional<FString> IfNoneMatch;
-};
-
-struct RALLYHEREAPI_API FResponse_GetCatalogEntitlementSku : public FResponse
-{
-	FResponse_GetCatalogEntitlementSku(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetCatalogEntitlementSku() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	bool ParseHeaders() override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_PlatformSKU, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_PlatformSKU Content;
-	
-	// Default Response Headers
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetHeader() or GetHeader<>() instead.")
-	TOptional<FString> ETag;
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_PlatformSKU* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_PlatformSKU>(); }
-	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_PlatformSKU& OutContent) const;
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	TOptional<FString> GetHeader200_ETag() const;
-
-	/* Response 304
-	Content still has the same etag and has not changed
-	*/
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	Not Found
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetCatalogEntitlementSku
-{
-	typedef FRequest_GetCatalogEntitlementSku Request;
-	typedef FResponse_GetCatalogEntitlementSku Response;
-	typedef FDelegate_GetCatalogEntitlementSku Delegate;
-	typedef FCatalogAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetCatalogEntitlementSku(InRequest, InDelegate, Priority); }
-};
-
-/* Get Catalog Entitlement Sku All
- *
- * Get all Entitlement SKUs.
-*/
-struct RALLYHEREAPI_API FRequest_GetCatalogEntitlementSkuAll : public FRequest
-{
-	FRequest_GetCatalogEntitlementSkuAll();
-	virtual ~FRequest_GetCatalogEntitlementSkuAll() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-	TOptional<FString> IfNoneMatch;
-};
-
-struct RALLYHEREAPI_API FResponse_GetCatalogEntitlementSkuAll : public FResponse
-{
-	FResponse_GetCatalogEntitlementSkuAll(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetCatalogEntitlementSkuAll() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	bool ParseHeaders() override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_PlatformSKUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_PlatformSKUs Content;
-	
-	// Default Response Headers
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetHeader() or GetHeader<>() instead.")
-	TOptional<FString> ETag;
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_PlatformSKUs* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_PlatformSKUs>(); }
-	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_PlatformSKUs& OutContent) const;
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	TOptional<FString> GetHeader200_ETag() const;
-
-	/* Response 304
-	Content still has the same etag and has not changed
-	*/
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	Not Found
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetCatalogEntitlementSkuAll
-{
-	typedef FRequest_GetCatalogEntitlementSkuAll Request;
-	typedef FResponse_GetCatalogEntitlementSkuAll Response;
-	typedef FDelegate_GetCatalogEntitlementSkuAll Delegate;
-	typedef FCatalogAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetCatalogEntitlementSkuAll(InRequest, InDelegate, Priority); }
-};
-
-/* Get Catalog Inventory Bucket Use Rule Set
- *
- * Get a specific Inventory Bucket Use Rule Set.
-*/
-struct RALLYHEREAPI_API FRequest_GetCatalogInventoryBucketUseRuleSet : public FRequest
-{
-	FRequest_GetCatalogInventoryBucketUseRuleSet();
-	virtual ~FRequest_GetCatalogInventoryBucketUseRuleSet() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	FString InventoryBucketUseRulesetId;
-	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-	TOptional<FString> IfNoneMatch;
-};
-
-struct RALLYHEREAPI_API FResponse_GetCatalogInventoryBucketUseRuleSet : public FResponse
-{
-	FResponse_GetCatalogInventoryBucketUseRuleSet(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetCatalogInventoryBucketUseRuleSet() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	bool ParseHeaders() override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_InventoryBucketUseRuleSet, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_InventoryBucketUseRuleSet Content;
-	
-	// Default Response Headers
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetHeader() or GetHeader<>() instead.")
-	TOptional<FString> ETag;
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_InventoryBucketUseRuleSet* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_InventoryBucketUseRuleSet>(); }
-	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_InventoryBucketUseRuleSet& OutContent) const;
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	TOptional<FString> GetHeader200_ETag() const;
-
-	/* Response 304
-	Content still has the same etag and has not changed
-	*/
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	Not Found
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetCatalogInventoryBucketUseRuleSet
-{
-	typedef FRequest_GetCatalogInventoryBucketUseRuleSet Request;
-	typedef FResponse_GetCatalogInventoryBucketUseRuleSet Response;
-	typedef FDelegate_GetCatalogInventoryBucketUseRuleSet Delegate;
-	typedef FCatalogAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetCatalogInventoryBucketUseRuleSet(InRequest, InDelegate, Priority); }
-};
-
-/* Get Catalog Inventory Bucket Use Rule Sets All
- *
- * Get all Inventory Bucket Use Rule Sets.
-*/
-struct RALLYHEREAPI_API FRequest_GetCatalogInventoryBucketUseRuleSetsAll : public FRequest
-{
-	FRequest_GetCatalogInventoryBucketUseRuleSetsAll();
-	virtual ~FRequest_GetCatalogInventoryBucketUseRuleSetsAll() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-	TOptional<FString> IfNoneMatch;
-};
-
-struct RALLYHEREAPI_API FResponse_GetCatalogInventoryBucketUseRuleSetsAll : public FResponse
-{
-	FResponse_GetCatalogInventoryBucketUseRuleSetsAll(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetCatalogInventoryBucketUseRuleSetsAll() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	bool ParseHeaders() override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_InventoryBucketUseRuleSets, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_InventoryBucketUseRuleSets Content;
-	
-	// Default Response Headers
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetHeader() or GetHeader<>() instead.")
-	TOptional<FString> ETag;
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_InventoryBucketUseRuleSets* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_InventoryBucketUseRuleSets>(); }
-	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_InventoryBucketUseRuleSets& OutContent) const;
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	TOptional<FString> GetHeader200_ETag() const;
-
-	/* Response 304
-	Content still has the same etag and has not changed
-	*/
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	Not Found
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetCatalogInventoryBucketUseRuleSetsAll
-{
-	typedef FRequest_GetCatalogInventoryBucketUseRuleSetsAll Request;
-	typedef FResponse_GetCatalogInventoryBucketUseRuleSetsAll Response;
-	typedef FDelegate_GetCatalogInventoryBucketUseRuleSetsAll Delegate;
-	typedef FCatalogAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetCatalogInventoryBucketUseRuleSetsAll(InRequest, InDelegate, Priority); }
-};
-
-/* Get Catalog Item
- *
- * Get a specific Item.
-*/
-struct RALLYHEREAPI_API FRequest_GetCatalogItem : public FRequest
-{
-	FRequest_GetCatalogItem();
-	virtual ~FRequest_GetCatalogItem() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	int32 ItemId = 0;
-	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-	TOptional<FString> IfNoneMatch;
-};
-
-struct RALLYHEREAPI_API FResponse_GetCatalogItem : public FResponse
-{
-	FResponse_GetCatalogItem(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetCatalogItem() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	bool ParseHeaders() override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_Item, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_Item Content;
-	
-	// Default Response Headers
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetHeader() or GetHeader<>() instead.")
-	TOptional<FString> ETag;
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_Item* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_Item>(); }
-	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_Item& OutContent) const;
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	TOptional<FString> GetHeader200_ETag() const;
-
-	/* Response 304
-	Content still has the same etag and has not changed
-	*/
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	Not Found
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetCatalogItem
-{
-	typedef FRequest_GetCatalogItem Request;
-	typedef FResponse_GetCatalogItem Response;
-	typedef FDelegate_GetCatalogItem Delegate;
-	typedef FCatalogAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetCatalogItem(InRequest, InDelegate, Priority); }
-};
-
-/* Get Catalog Items All
- *
- * Get all Items.
-*/
-struct RALLYHEREAPI_API FRequest_GetCatalogItemsAll : public FRequest
-{
-	FRequest_GetCatalogItemsAll();
-	virtual ~FRequest_GetCatalogItemsAll() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-	TOptional<FString> IfNoneMatch;
-};
-
-struct RALLYHEREAPI_API FResponse_GetCatalogItemsAll : public FResponse
-{
-	FResponse_GetCatalogItemsAll(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetCatalogItemsAll() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	bool ParseHeaders() override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_Items, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_Items Content;
-	
-	// Default Response Headers
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetHeader() or GetHeader<>() instead.")
-	TOptional<FString> ETag;
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_Items* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_Items>(); }
-	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_Items& OutContent) const;
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	TOptional<FString> GetHeader200_ETag() const;
-
-	/* Response 304
-	Content still has the same etag and has not changed
-	*/
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	Not Found
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetCatalogItemsAll
-{
-	typedef FRequest_GetCatalogItemsAll Request;
-	typedef FResponse_GetCatalogItemsAll Response;
-	typedef FDelegate_GetCatalogItemsAll Delegate;
-	typedef FCatalogAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetCatalogItemsAll(InRequest, InDelegate, Priority); }
-};
-
-/* Get Catalog Loot
- *
- * Get a specific Loot.
-*/
-struct RALLYHEREAPI_API FRequest_GetCatalogLoot : public FRequest
-{
-	FRequest_GetCatalogLoot();
-	virtual ~FRequest_GetCatalogLoot() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	int32 LootId = 0;
-	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-	TOptional<FString> IfNoneMatch;
-};
-
-struct RALLYHEREAPI_API FResponse_GetCatalogLoot : public FResponse
-{
-	FResponse_GetCatalogLoot(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetCatalogLoot() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	bool ParseHeaders() override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_Loot, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_Loot Content;
-	
-	// Default Response Headers
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetHeader() or GetHeader<>() instead.")
-	TOptional<FString> ETag;
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_Loot* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_Loot>(); }
-	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_Loot& OutContent) const;
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	TOptional<FString> GetHeader200_ETag() const;
-
-	/* Response 304
-	Content still has the same etag and has not changed
-	*/
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	Not Found
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetCatalogLoot
-{
-	typedef FRequest_GetCatalogLoot Request;
-	typedef FResponse_GetCatalogLoot Response;
-	typedef FDelegate_GetCatalogLoot Delegate;
-	typedef FCatalogAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetCatalogLoot(InRequest, InDelegate, Priority); }
-};
-
-/* Get Catalog Loots All
- *
- * Get all Loot.
-*/
-struct RALLYHEREAPI_API FRequest_GetCatalogLootsAll : public FRequest
-{
-	FRequest_GetCatalogLootsAll();
-	virtual ~FRequest_GetCatalogLootsAll() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-	TOptional<FString> IfNoneMatch;
-};
-
-struct RALLYHEREAPI_API FResponse_GetCatalogLootsAll : public FResponse
-{
-	FResponse_GetCatalogLootsAll(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetCatalogLootsAll() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	bool ParseHeaders() override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_Loots, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_Loots Content;
-	
-	// Default Response Headers
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetHeader() or GetHeader<>() instead.")
-	TOptional<FString> ETag;
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_Loots* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_Loots>(); }
-	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_Loots& OutContent) const;
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	TOptional<FString> GetHeader200_ETag() const;
-
-	/* Response 304
-	Content still has the same etag and has not changed
-	*/
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	Not Found
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetCatalogLootsAll
-{
-	typedef FRequest_GetCatalogLootsAll Request;
-	typedef FResponse_GetCatalogLootsAll Response;
-	typedef FDelegate_GetCatalogLootsAll Delegate;
-	typedef FCatalogAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetCatalogLootsAll(InRequest, InDelegate, Priority); }
-};
-
-/* Get Catalog Portal Use Ruleset
- *
- * Get a specific Portal Use Ruleset.
-*/
-struct RALLYHEREAPI_API FRequest_GetCatalogPortalUseRuleset : public FRequest
-{
-	FRequest_GetCatalogPortalUseRuleset();
-	virtual ~FRequest_GetCatalogPortalUseRuleset() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	int32 PortalUseRulesetId = 0;
-	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-	TOptional<FString> IfNoneMatch;
-};
-
-struct RALLYHEREAPI_API FResponse_GetCatalogPortalUseRuleset : public FResponse
-{
-	FResponse_GetCatalogPortalUseRuleset(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetCatalogPortalUseRuleset() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	bool ParseHeaders() override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_PortalUseRuleset, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_PortalUseRuleset Content;
-	
-	// Default Response Headers
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetHeader() or GetHeader<>() instead.")
-	TOptional<FString> ETag;
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_PortalUseRuleset* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_PortalUseRuleset>(); }
-	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_PortalUseRuleset& OutContent) const;
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	TOptional<FString> GetHeader200_ETag() const;
-
-	/* Response 304
-	Content still has the same etag and has not changed
-	*/
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	Not Found
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetCatalogPortalUseRuleset
-{
-	typedef FRequest_GetCatalogPortalUseRuleset Request;
-	typedef FResponse_GetCatalogPortalUseRuleset Response;
-	typedef FDelegate_GetCatalogPortalUseRuleset Delegate;
-	typedef FCatalogAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetCatalogPortalUseRuleset(InRequest, InDelegate, Priority); }
-};
-
-/* Get Catalog Portal Use Rulesets All
- *
- * Get all Portal Use Rulesets.
-*/
-struct RALLYHEREAPI_API FRequest_GetCatalogPortalUseRulesetsAll : public FRequest
-{
-	FRequest_GetCatalogPortalUseRulesetsAll();
-	virtual ~FRequest_GetCatalogPortalUseRulesetsAll() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-	TOptional<FString> IfNoneMatch;
-};
-
-struct RALLYHEREAPI_API FResponse_GetCatalogPortalUseRulesetsAll : public FResponse
-{
-	FResponse_GetCatalogPortalUseRulesetsAll(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetCatalogPortalUseRulesetsAll() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	bool ParseHeaders() override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_PortalUseRulesets, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_PortalUseRulesets Content;
-	
-	// Default Response Headers
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetHeader() or GetHeader<>() instead.")
-	TOptional<FString> ETag;
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_PortalUseRulesets* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_PortalUseRulesets>(); }
-	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_PortalUseRulesets& OutContent) const;
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	TOptional<FString> GetHeader200_ETag() const;
-
-	/* Response 304
-	Content still has the same etag and has not changed
-	*/
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	Not Found
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetCatalogPortalUseRulesetsAll
-{
-	typedef FRequest_GetCatalogPortalUseRulesetsAll Request;
-	typedef FResponse_GetCatalogPortalUseRulesetsAll Response;
-	typedef FDelegate_GetCatalogPortalUseRulesetsAll Delegate;
-	typedef FCatalogAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetCatalogPortalUseRulesetsAll(InRequest, InDelegate, Priority); }
-};
-
-/* Get Catalog Price Point
- *
- * Get a specific Price Point.
-*/
-struct RALLYHEREAPI_API FRequest_GetCatalogPricePoint : public FRequest
-{
-	FRequest_GetCatalogPricePoint();
-	virtual ~FRequest_GetCatalogPricePoint() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	FString PricePointId;
-	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-	TOptional<FString> IfNoneMatch;
-};
-
-struct RALLYHEREAPI_API FResponse_GetCatalogPricePoint : public FResponse
-{
-	FResponse_GetCatalogPricePoint(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetCatalogPricePoint() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	bool ParseHeaders() override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_PricePoint, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_PricePoint Content;
-	
-	// Default Response Headers
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetHeader() or GetHeader<>() instead.")
-	TOptional<FString> ETag;
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_PricePoint* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_PricePoint>(); }
-	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_PricePoint& OutContent) const;
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	TOptional<FString> GetHeader200_ETag() const;
-
-	/* Response 304
-	Content still has the same etag and has not changed
-	*/
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	Not Found
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetCatalogPricePoint
-{
-	typedef FRequest_GetCatalogPricePoint Request;
-	typedef FResponse_GetCatalogPricePoint Response;
-	typedef FDelegate_GetCatalogPricePoint Delegate;
-	typedef FCatalogAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetCatalogPricePoint(InRequest, InDelegate, Priority); }
-};
-
-/* Get Catalog Price Points All
- *
- * Get all Price Points.
-*/
-struct RALLYHEREAPI_API FRequest_GetCatalogPricePointsAll : public FRequest
-{
-	FRequest_GetCatalogPricePointsAll();
-	virtual ~FRequest_GetCatalogPricePointsAll() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-	TOptional<FString> IfNoneMatch;
-};
-
-struct RALLYHEREAPI_API FResponse_GetCatalogPricePointsAll : public FResponse
-{
-	FResponse_GetCatalogPricePointsAll(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetCatalogPricePointsAll() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	bool ParseHeaders() override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_PricePoints, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_PricePoints Content;
-	
-	// Default Response Headers
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetHeader() or GetHeader<>() instead.")
-	TOptional<FString> ETag;
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_PricePoints* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_PricePoints>(); }
-	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_PricePoints& OutContent) const;
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	TOptional<FString> GetHeader200_ETag() const;
-
-	/* Response 304
-	Content still has the same etag and has not changed
-	*/
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	Not Found
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetCatalogPricePointsAll
-{
-	typedef FRequest_GetCatalogPricePointsAll Request;
-	typedef FResponse_GetCatalogPricePointsAll Response;
-	typedef FDelegate_GetCatalogPricePointsAll Delegate;
-	typedef FCatalogAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetCatalogPricePointsAll(InRequest, InDelegate, Priority); }
-};
-
-/* Get Catalog Time Frame
- *
- * Get a specific Time Frame.
-*/
-struct RALLYHEREAPI_API FRequest_GetCatalogTimeFrame : public FRequest
-{
-	FRequest_GetCatalogTimeFrame();
-	virtual ~FRequest_GetCatalogTimeFrame() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	int32 TimeFrameId = 0;
-	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-	TOptional<FString> IfNoneMatch;
-};
-
-struct RALLYHEREAPI_API FResponse_GetCatalogTimeFrame : public FResponse
-{
-	FResponse_GetCatalogTimeFrame(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetCatalogTimeFrame() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	bool ParseHeaders() override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_TimeFrame, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_TimeFrame Content;
-	
-	// Default Response Headers
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetHeader() or GetHeader<>() instead.")
-	TOptional<FString> ETag;
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_TimeFrame* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_TimeFrame>(); }
-	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_TimeFrame& OutContent) const;
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	TOptional<FString> GetHeader200_ETag() const;
-
-	/* Response 304
-	Content still has the same etag and has not changed
-	*/
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	Not Found
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetCatalogTimeFrame
-{
-	typedef FRequest_GetCatalogTimeFrame Request;
-	typedef FResponse_GetCatalogTimeFrame Response;
-	typedef FDelegate_GetCatalogTimeFrame Delegate;
-	typedef FCatalogAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetCatalogTimeFrame(InRequest, InDelegate, Priority); }
-};
-
-/* Get Catalog Time Frames All
- *
- * Get all Time Frames.
-*/
-struct RALLYHEREAPI_API FRequest_GetCatalogTimeFramesAll : public FRequest
-{
-	FRequest_GetCatalogTimeFramesAll();
-	virtual ~FRequest_GetCatalogTimeFramesAll() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-	TOptional<FString> IfNoneMatch;
-};
-
-struct RALLYHEREAPI_API FResponse_GetCatalogTimeFramesAll : public FResponse
-{
-	FResponse_GetCatalogTimeFramesAll(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetCatalogTimeFramesAll() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	bool ParseHeaders() override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_TimeFrames, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_TimeFrames Content;
-	
-	// Default Response Headers
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetHeader() or GetHeader<>() instead.")
-	TOptional<FString> ETag;
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_TimeFrames* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_TimeFrames>(); }
-	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_TimeFrames& OutContent) const;
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	TOptional<FString> GetHeader200_ETag() const;
-
-	/* Response 304
-	Content still has the same etag and has not changed
-	*/
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	Not Found
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetCatalogTimeFramesAll
-{
-	typedef FRequest_GetCatalogTimeFramesAll Request;
-	typedef FResponse_GetCatalogTimeFramesAll Response;
-	typedef FDelegate_GetCatalogTimeFramesAll Delegate;
-	typedef FCatalogAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetCatalogTimeFramesAll(InRequest, InDelegate, Priority); }
-};
-
-/* Get Catalog Vendor
- *
- * Get a specific Vendor.
-*/
-struct RALLYHEREAPI_API FRequest_GetCatalogVendor : public FRequest
-{
-	FRequest_GetCatalogVendor();
-	virtual ~FRequest_GetCatalogVendor() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	int32 VendorId = 0;
-	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-	TOptional<FString> IfNoneMatch;
-};
-
-struct RALLYHEREAPI_API FResponse_GetCatalogVendor : public FResponse
-{
-	FResponse_GetCatalogVendor(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetCatalogVendor() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	bool ParseHeaders() override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_Vendor, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_Vendor Content;
-	
-	// Default Response Headers
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetHeader() or GetHeader<>() instead.")
-	TOptional<FString> ETag;
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_Vendor* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_Vendor>(); }
-	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_Vendor& OutContent) const;
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	TOptional<FString> GetHeader200_ETag() const;
-
-	/* Response 304
-	Content still has the same etag and has not changed
-	*/
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	Not Found
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetCatalogVendor
-{
-	typedef FRequest_GetCatalogVendor Request;
-	typedef FResponse_GetCatalogVendor Response;
-	typedef FDelegate_GetCatalogVendor Delegate;
-	typedef FCatalogAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetCatalogVendor(InRequest, InDelegate, Priority); }
-};
-
-/* Get Catalog Vendors All
- *
- * Get all Vendors.
-*/
-struct RALLYHEREAPI_API FRequest_GetCatalogVendorsAll : public FRequest
-{
-	FRequest_GetCatalogVendorsAll();
-	virtual ~FRequest_GetCatalogVendorsAll() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-	TOptional<FString> IfNoneMatch;
-};
-
-struct RALLYHEREAPI_API FResponse_GetCatalogVendorsAll : public FResponse
-{
-	FResponse_GetCatalogVendorsAll(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetCatalogVendorsAll() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	bool ParseHeaders() override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_Vendors, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_Vendors Content;
-	
-	// Default Response Headers
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetHeader() or GetHeader<>() instead.")
-	TOptional<FString> ETag;
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_Vendors* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_Vendors>(); }
-	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_Vendors& OutContent) const;
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	TOptional<FString> GetHeader200_ETag() const;
-
-	/* Response 304
-	Content still has the same etag and has not changed
-	*/
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	Not Found
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetCatalogVendorsAll
-{
-	typedef FRequest_GetCatalogVendorsAll Request;
-	typedef FResponse_GetCatalogVendorsAll Response;
-	typedef FDelegate_GetCatalogVendorsAll Delegate;
-	typedef FCatalogAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetCatalogVendorsAll(InRequest, InDelegate, Priority); }
-};
-
-/* Get Catalog Xp All
- *
- * Get all XP Tables.
-*/
-struct RALLYHEREAPI_API FRequest_GetCatalogXpAll : public FRequest
-{
-	FRequest_GetCatalogXpAll();
-	virtual ~FRequest_GetCatalogXpAll() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-	TOptional<FString> IfNoneMatch;
-};
-
-struct RALLYHEREAPI_API FResponse_GetCatalogXpAll : public FResponse
-{
-	FResponse_GetCatalogXpAll(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetCatalogXpAll() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	bool ParseHeaders() override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_XpTables, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_XpTables Content;
-	
-	// Default Response Headers
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetHeader() or GetHeader<>() instead.")
-	TOptional<FString> ETag;
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_XpTables* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_XpTables>(); }
-	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_XpTables& OutContent) const;
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	TOptional<FString> GetHeader200_ETag() const;
-
-	/* Response 304
-	Content still has the same etag and has not changed
-	*/
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	Not Found
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetCatalogXpAll
-{
-	typedef FRequest_GetCatalogXpAll Request;
-	typedef FResponse_GetCatalogXpAll Response;
-	typedef FDelegate_GetCatalogXpAll Delegate;
-	typedef FCatalogAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetCatalogXpAll(InRequest, InDelegate, Priority); }
-};
-
-/* Get Catalog Xp Table
- *
- * Get a specific XP Table.
-*/
-struct RALLYHEREAPI_API FRequest_GetCatalogXpTable : public FRequest
-{
-	FRequest_GetCatalogXpTable();
-	virtual ~FRequest_GetCatalogXpTable() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	int32 XpTableId = 0;
-	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
-	TOptional<FString> IfNoneMatch;
-};
-
-struct RALLYHEREAPI_API FResponse_GetCatalogXpTable : public FResponse
-{
-	FResponse_GetCatalogXpTable(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetCatalogXpTable() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	bool ParseHeaders() override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_XpTable, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_XpTable Content;
-	
-	// Default Response Headers
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetHeader() or GetHeader<>() instead.")
-	TOptional<FString> ETag;
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_XpTable* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_XpTable>(); }
-	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_XpTable& OutContent) const;
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	TOptional<FString> GetHeader200_ETag() const;
-
-	/* Response 304
-	Content still has the same etag and has not changed
-	*/
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	Not Found
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetCatalogXpTable
-{
-	typedef FRequest_GetCatalogXpTable Request;
-	typedef FResponse_GetCatalogXpTable Response;
-	typedef FDelegate_GetCatalogXpTable Delegate;
-	typedef FCatalogAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetCatalogXpTable(InRequest, InDelegate, Priority); }
-};
 
 
 }

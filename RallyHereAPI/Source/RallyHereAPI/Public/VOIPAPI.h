@@ -22,36 +22,11 @@ using RallyHereAPI::ToStringFormatArg;
 using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
-struct FRequest_GetVoipActionToken;
-struct FResponse_GetVoipActionToken;
-struct FRequest_GetVoipActionTokenMe;
-struct FResponse_GetVoipActionTokenMe;
-struct FRequest_GetVoipLoginToken;
-struct FResponse_GetVoipLoginToken;
+// forward declaration
+class FVOIPAPI;
 
-DECLARE_DELEGATE_OneParam(FDelegate_GetVoipActionToken, const FResponse_GetVoipActionToken&);
-DECLARE_DELEGATE_OneParam(FDelegate_GetVoipActionTokenMe, const FResponse_GetVoipActionTokenMe&);
-DECLARE_DELEGATE_OneParam(FDelegate_GetVoipLoginToken, const FResponse_GetVoipLoginToken&);
-
-class RALLYHEREAPI_API FVOIPAPI : public FAPI
-{
-public:
-	FVOIPAPI();
-	virtual ~FVOIPAPI();
-
-	FHttpRequestPtr GetVoipActionToken(const FRequest_GetVoipActionToken& Request, const FDelegate_GetVoipActionToken& Delegate = FDelegate_GetVoipActionToken(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr GetVoipActionTokenMe(const FRequest_GetVoipActionTokenMe& Request, const FDelegate_GetVoipActionTokenMe& Delegate = FDelegate_GetVoipActionTokenMe(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr GetVoipLoginToken(const FRequest_GetVoipLoginToken& Request, const FDelegate_GetVoipLoginToken& Delegate = FDelegate_GetVoipLoginToken(), int32 Priority = DefaultRallyHereAPIPriority);
-
-private:
-	void OnGetVoipActionTokenResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetVoipActionToken Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnGetVoipActionTokenMeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetVoipActionTokenMe Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnGetVoipLoginTokenResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetVoipLoginToken Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-
-};
-
-/* Get Voip Action Token
- *
+/**
+ * @brief Get Voip Action Token
  * Generate a token for one of the specific vivox actions except logging in
  * 
  * `JOIN` Required Permissions:
@@ -96,12 +71,19 @@ struct RALLYHEREAPI_API FRequest_GetVoipActionToken : public FRequest
 {
 	FRequest_GetVoipActionToken();
 	virtual ~FRequest_GetVoipActionToken() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	FGuid PlayerUuid;
 	ERHAPI_VivoxSessionActionSingle VivoxAction;
@@ -110,37 +92,66 @@ struct RALLYHEREAPI_API FRequest_GetVoipActionToken : public FRequest
 	TOptional<bool> RefreshTtl;
 };
 
+/** The response type for FRequest_GetVoipActionToken */
 struct RALLYHEREAPI_API FResponse_GetVoipActionToken : public FResponse
 {
 	FResponse_GetVoipActionToken(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GetVoipActionToken() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 protected:
+	/** Variant type representing the potential content responses for this call */
 	typedef TVariant<FRHAPI_VoipTokenResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
 	ContentVariantType ParsedContent;
 
+	/** A parsed map of the headers from the request */
 	TMap<FString, FString> HeadersMap;
 
 public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
 	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
 	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
 	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_VoipTokenResponse Content;
 	
 
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
 	const FRHAPI_VoipTokenResponse* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_VoipTokenResponse>(); }
 
 	// Individual Response Helpers	
@@ -161,19 +172,36 @@ public:
 
 };
 
+/** The delegate class for FRequest_GetVoipActionToken */
+DECLARE_DELEGATE_OneParam(FDelegate_GetVoipActionToken, const FResponse_GetVoipActionToken&);
+
+/** @brief A helper metadata object for GetVoipActionToken that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_GetVoipActionToken
 {
+	/** The request type */
 	typedef FRequest_GetVoipActionToken Request;
+	/** The response type */
 	typedef FResponse_GetVoipActionToken Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_GetVoipActionToken Delegate;
+	/** The API object that supports this API call */
 	typedef FVOIPAPI API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetVoipActionToken(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
 
-/* Get Voip Action Token Me
- *
+/**
+ * @brief Get Voip Action Token Me
  * Generate a token for one of the specific vivox actions except logging in
  * 
  * `JOIN` Required Permissions:
@@ -218,12 +246,19 @@ struct RALLYHEREAPI_API FRequest_GetVoipActionTokenMe : public FRequest
 {
 	FRequest_GetVoipActionTokenMe();
 	virtual ~FRequest_GetVoipActionTokenMe() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	ERHAPI_VivoxSessionActionSingle VivoxAction;
 	FString SessionId;
@@ -231,37 +266,66 @@ struct RALLYHEREAPI_API FRequest_GetVoipActionTokenMe : public FRequest
 	TOptional<bool> RefreshTtl;
 };
 
+/** The response type for FRequest_GetVoipActionTokenMe */
 struct RALLYHEREAPI_API FResponse_GetVoipActionTokenMe : public FResponse
 {
 	FResponse_GetVoipActionTokenMe(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GetVoipActionTokenMe() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 protected:
+	/** Variant type representing the potential content responses for this call */
 	typedef TVariant<FRHAPI_VoipTokenResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
 	ContentVariantType ParsedContent;
 
+	/** A parsed map of the headers from the request */
 	TMap<FString, FString> HeadersMap;
 
 public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
 	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
 	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
 	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_VoipTokenResponse Content;
 	
 
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
 	const FRHAPI_VoipTokenResponse* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_VoipTokenResponse>(); }
 
 	// Individual Response Helpers	
@@ -282,19 +346,36 @@ public:
 
 };
 
+/** The delegate class for FRequest_GetVoipActionTokenMe */
+DECLARE_DELEGATE_OneParam(FDelegate_GetVoipActionTokenMe, const FResponse_GetVoipActionTokenMe&);
+
+/** @brief A helper metadata object for GetVoipActionTokenMe that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_GetVoipActionTokenMe
 {
+	/** The request type */
 	typedef FRequest_GetVoipActionTokenMe Request;
+	/** The response type */
 	typedef FResponse_GetVoipActionTokenMe Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_GetVoipActionTokenMe Delegate;
+	/** The API object that supports this API call */
 	typedef FVOIPAPI API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetVoipActionTokenMe(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
 
-/* Get Voip Login Token
- *
+/**
+ * @brief Get Voip Login Token
  * Generate a token to login with vivox
  * 
  * Required Permissions:
@@ -305,46 +386,82 @@ struct RALLYHEREAPI_API FRequest_GetVoipLoginToken : public FRequest
 {
 	FRequest_GetVoipLoginToken();
 	virtual ~FRequest_GetVoipLoginToken() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 };
 
+/** The response type for FRequest_GetVoipLoginToken */
 struct RALLYHEREAPI_API FResponse_GetVoipLoginToken : public FResponse
 {
 	FResponse_GetVoipLoginToken(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GetVoipLoginToken() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 protected:
+	/** Variant type representing the potential content responses for this call */
 	typedef TVariant<FRHAPI_VoipTokenResponse, FRHAPI_HzApiErrorModel> ContentVariantType;
+	
+	/** A variant containing the parsed content */
 	ContentVariantType ParsedContent;
 
+	/** A parsed map of the headers from the request */
 	TMap<FString, FString> HeadersMap;
 
 public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
 	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
 	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
 	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_VoipTokenResponse Content;
 	
 
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
 	const FRHAPI_VoipTokenResponse* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_VoipTokenResponse>(); }
 
 	// Individual Response Helpers	
@@ -360,16 +477,53 @@ public:
 
 };
 
+/** The delegate class for FRequest_GetVoipLoginToken */
+DECLARE_DELEGATE_OneParam(FDelegate_GetVoipLoginToken, const FResponse_GetVoipLoginToken&);
+
+/** @brief A helper metadata object for GetVoipLoginToken that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_GetVoipLoginToken
 {
+	/** The request type */
 	typedef FRequest_GetVoipLoginToken Request;
+	/** The response type */
 	typedef FResponse_GetVoipLoginToken Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_GetVoipLoginToken Delegate;
+	/** The API object that supports this API call */
 	typedef FVOIPAPI API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetVoipLoginToken(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
+
+
+/** The API class itself, which will handle calls to */
+class RALLYHEREAPI_API FVOIPAPI : public FAPI
+{
+public:
+	FVOIPAPI();
+	virtual ~FVOIPAPI();
+
+	FHttpRequestPtr GetVoipActionToken(const FRequest_GetVoipActionToken& Request, const FDelegate_GetVoipActionToken& Delegate = FDelegate_GetVoipActionToken(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetVoipActionTokenMe(const FRequest_GetVoipActionTokenMe& Request, const FDelegate_GetVoipActionTokenMe& Delegate = FDelegate_GetVoipActionTokenMe(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetVoipLoginToken(const FRequest_GetVoipLoginToken& Request, const FDelegate_GetVoipLoginToken& Delegate = FDelegate_GetVoipLoginToken(), int32 Priority = DefaultRallyHereAPIPriority);
+
+private:
+	void OnGetVoipActionTokenResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetVoipActionToken Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetVoipActionTokenMeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetVoipActionTokenMe Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetVoipLoginTokenResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetVoipLoginToken Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+
+};
+
 
 
 }

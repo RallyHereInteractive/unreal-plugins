@@ -313,5 +313,10 @@ FResponse_CustomEndpointSend::FResponse_CustomEndpointSend(FRequestMetadata InRe
 
 FString Traits_CustomEndpointSend::Name = TEXT("CustomEndpointSend");
 
+FHttpRequestPtr Traits_CustomEndpointSend::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->CustomEndpointSend(InRequest, InDelegate, InPriority);
+}
+
 
 }

@@ -294,6 +294,11 @@ FResponse_ProcessKeyEntitlements::FResponse_ProcessKeyEntitlements(FRequestMetad
 
 FString Traits_ProcessKeyEntitlements::Name = TEXT("ProcessKeyEntitlements");
 
+FHttpRequestPtr Traits_ProcessKeyEntitlements::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->ProcessKeyEntitlements(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FKeyEntitlementsAPI::ProcessKeyEntitlementsPlayerUuid(const FRequest_ProcessKeyEntitlementsPlayerUuid& Request, const FDelegate_ProcessKeyEntitlementsPlayerUuid& Delegate /*= FDelegate_ProcessKeyEntitlementsPlayerUuid()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -565,6 +570,11 @@ FResponse_ProcessKeyEntitlementsPlayerUuid::FResponse_ProcessKeyEntitlementsPlay
 
 FString Traits_ProcessKeyEntitlementsPlayerUuid::Name = TEXT("ProcessKeyEntitlementsPlayerUuid");
 
+FHttpRequestPtr Traits_ProcessKeyEntitlementsPlayerUuid::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->ProcessKeyEntitlementsPlayerUuid(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FKeyEntitlementsAPI::ProcessKeyEntitlementsSelf(const FRequest_ProcessKeyEntitlementsSelf& Request, const FDelegate_ProcessKeyEntitlementsSelf& Delegate /*= FDelegate_ProcessKeyEntitlementsSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -835,6 +845,11 @@ FResponse_ProcessKeyEntitlementsSelf::FResponse_ProcessKeyEntitlementsSelf(FRequ
 
 FString Traits_ProcessKeyEntitlementsSelf::Name = TEXT("ProcessKeyEntitlementsSelf");
 
+FHttpRequestPtr Traits_ProcessKeyEntitlementsSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->ProcessKeyEntitlementsSelf(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FKeyEntitlementsAPI::ProcessPlayerUuidEntitlementsSelf(const FRequest_ProcessPlayerUuidEntitlementsSelf& Request, const FDelegate_ProcessPlayerUuidEntitlementsSelf& Delegate /*= FDelegate_ProcessPlayerUuidEntitlementsSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -1104,6 +1119,11 @@ FResponse_ProcessPlayerUuidEntitlementsSelf::FResponse_ProcessPlayerUuidEntitlem
 }
 
 FString Traits_ProcessPlayerUuidEntitlementsSelf::Name = TEXT("ProcessPlayerUuidEntitlementsSelf");
+
+FHttpRequestPtr Traits_ProcessPlayerUuidEntitlementsSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->ProcessPlayerUuidEntitlementsSelf(InRequest, InDelegate, InPriority);
+}
 
 
 }

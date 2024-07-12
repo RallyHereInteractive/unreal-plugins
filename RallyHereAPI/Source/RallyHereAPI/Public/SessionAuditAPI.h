@@ -21,31 +21,11 @@ using RallyHereAPI::ToStringFormatArg;
 using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
-struct FRequest_CreateSessionAudit;
-struct FResponse_CreateSessionAudit;
-struct FRequest_GetSessionAudit;
-struct FResponse_GetSessionAudit;
+// forward declaration
+class FSessionAuditAPI;
 
-DECLARE_DELEGATE_OneParam(FDelegate_CreateSessionAudit, const FResponse_CreateSessionAudit&);
-DECLARE_DELEGATE_OneParam(FDelegate_GetSessionAudit, const FResponse_GetSessionAudit&);
-
-class RALLYHEREAPI_API FSessionAuditAPI : public FAPI
-{
-public:
-	FSessionAuditAPI();
-	virtual ~FSessionAuditAPI();
-
-	FHttpRequestPtr CreateSessionAudit(const FRequest_CreateSessionAudit& Request, const FDelegate_CreateSessionAudit& Delegate = FDelegate_CreateSessionAudit(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr GetSessionAudit(const FRequest_GetSessionAudit& Request, const FDelegate_GetSessionAudit& Delegate = FDelegate_GetSessionAudit(), int32 Priority = DefaultRallyHereAPIPriority);
-
-private:
-	void OnCreateSessionAuditResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateSessionAudit Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnGetSessionAuditResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetSessionAudit Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-
-};
-
-/* Create Session Audit
- *
+/**
+ * @brief Create Session Audit
  * Create an audit event in the log for this session.
  * Internal session operations will create new events that are accessible from the get request.
  * 
@@ -83,47 +63,83 @@ struct RALLYHEREAPI_API FRequest_CreateSessionAudit : public FRequest
 {
 	FRequest_CreateSessionAudit();
 	virtual ~FRequest_CreateSessionAudit() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	FRHAPI_CreateAuditRequest CreateAuditRequest;
 };
 
+/** The response type for FRequest_CreateSessionAudit */
 struct RALLYHEREAPI_API FResponse_CreateSessionAudit : public FResponse
 {
 	FResponse_CreateSessionAudit(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_CreateSessionAudit() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 protected:
+	/** Variant type representing the potential content responses for this call */
 	typedef TVariant<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
 	ContentVariantType ParsedContent;
 
+	/** A parsed map of the headers from the request */
 	TMap<FString, FString> HeadersMap;
 
 public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
 	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
 	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
 	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_JsonValue Content;
 	
 
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
 	const FRHAPI_JsonValue* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_JsonValue>(); }
 
 	// Individual Response Helpers	
@@ -149,19 +165,36 @@ public:
 
 };
 
+/** The delegate class for FRequest_CreateSessionAudit */
+DECLARE_DELEGATE_OneParam(FDelegate_CreateSessionAudit, const FResponse_CreateSessionAudit&);
+
+/** @brief A helper metadata object for CreateSessionAudit that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_CreateSessionAudit
 {
+	/** The request type */
 	typedef FRequest_CreateSessionAudit Request;
+	/** The response type */
 	typedef FResponse_CreateSessionAudit Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_CreateSessionAudit Delegate;
+	/** The API object that supports this API call */
 	typedef FSessionAuditAPI API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->CreateSessionAudit(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
 
-/* Get Session Audit
- *
+/**
+ * @brief Get Session Audit
  * Get all audit events for a specific session or player. Empty list means there is no audit history.
  * 
  * Required Permissions:
@@ -195,12 +228,19 @@ struct RALLYHEREAPI_API FRequest_GetSessionAudit : public FRequest
 {
 	FRequest_GetSessionAudit();
 	virtual ~FRequest_GetSessionAudit() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	TOptional<FString> SessionId;
 	TOptional<FGuid> PlayerUuid;
@@ -210,37 +250,66 @@ struct RALLYHEREAPI_API FRequest_GetSessionAudit : public FRequest
 	TOptional<FDateTime> EndDate;
 };
 
+/** The response type for FRequest_GetSessionAudit */
 struct RALLYHEREAPI_API FResponse_GetSessionAudit : public FResponse
 {
 	FResponse_GetSessionAudit(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GetSessionAudit() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 protected:
+	/** Variant type representing the potential content responses for this call */
 	typedef TVariant<FRHAPI_AuditResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
 	ContentVariantType ParsedContent;
 
+	/** A parsed map of the headers from the request */
 	TMap<FString, FString> HeadersMap;
 
 public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
 	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
 	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
 	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_AuditResponse Content;
 	
 
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
 	const FRHAPI_AuditResponse* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_AuditResponse>(); }
 
 	// Individual Response Helpers	
@@ -261,16 +330,51 @@ public:
 
 };
 
+/** The delegate class for FRequest_GetSessionAudit */
+DECLARE_DELEGATE_OneParam(FDelegate_GetSessionAudit, const FResponse_GetSessionAudit&);
+
+/** @brief A helper metadata object for GetSessionAudit that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_GetSessionAudit
 {
+	/** The request type */
 	typedef FRequest_GetSessionAudit Request;
+	/** The response type */
 	typedef FResponse_GetSessionAudit Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_GetSessionAudit Delegate;
+	/** The API object that supports this API call */
 	typedef FSessionAuditAPI API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetSessionAudit(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
+
+
+/** The API class itself, which will handle calls to */
+class RALLYHEREAPI_API FSessionAuditAPI : public FAPI
+{
+public:
+	FSessionAuditAPI();
+	virtual ~FSessionAuditAPI();
+
+	FHttpRequestPtr CreateSessionAudit(const FRequest_CreateSessionAudit& Request, const FDelegate_CreateSessionAudit& Delegate = FDelegate_CreateSessionAudit(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetSessionAudit(const FRequest_GetSessionAudit& Request, const FDelegate_GetSessionAudit& Delegate = FDelegate_GetSessionAudit(), int32 Priority = DefaultRallyHereAPIPriority);
+
+private:
+	void OnCreateSessionAuditResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateSessionAudit Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetSessionAuditResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetSessionAudit Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+
+};
+
 
 
 }

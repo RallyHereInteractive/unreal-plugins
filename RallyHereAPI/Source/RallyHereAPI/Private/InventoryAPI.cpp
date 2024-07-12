@@ -280,6 +280,11 @@ FResponse_CreateNewInventorySession::FResponse_CreateNewInventorySession(FReques
 
 FString Traits_CreateNewInventorySession::Name = TEXT("CreateNewInventorySession");
 
+FHttpRequestPtr Traits_CreateNewInventorySession::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->CreateNewInventorySession(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FInventoryAPI::CreateNewInventorySessionByPlayerUuid(const FRequest_CreateNewInventorySessionByPlayerUuid& Request, const FDelegate_CreateNewInventorySessionByPlayerUuid& Delegate /*= FDelegate_CreateNewInventorySessionByPlayerUuid()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -537,6 +542,11 @@ FResponse_CreateNewInventorySessionByPlayerUuid::FResponse_CreateNewInventorySes
 
 FString Traits_CreateNewInventorySessionByPlayerUuid::Name = TEXT("CreateNewInventorySessionByPlayerUuid");
 
+FHttpRequestPtr Traits_CreateNewInventorySessionByPlayerUuid::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->CreateNewInventorySessionByPlayerUuid(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FInventoryAPI::CreateNewInventorySessionByPlayerUuidSelf(const FRequest_CreateNewInventorySessionByPlayerUuidSelf& Request, const FDelegate_CreateNewInventorySessionByPlayerUuidSelf& Delegate /*= FDelegate_CreateNewInventorySessionByPlayerUuidSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -789,6 +799,11 @@ FResponse_CreateNewInventorySessionByPlayerUuidSelf::FResponse_CreateNewInventor
 
 FString Traits_CreateNewInventorySessionByPlayerUuidSelf::Name = TEXT("CreateNewInventorySessionByPlayerUuidSelf");
 
+FHttpRequestPtr Traits_CreateNewInventorySessionByPlayerUuidSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->CreateNewInventorySessionByPlayerUuidSelf(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FInventoryAPI::CreateNewInventorySessionSelf(const FRequest_CreateNewInventorySessionSelf& Request, const FDelegate_CreateNewInventorySessionSelf& Delegate /*= FDelegate_CreateNewInventorySessionSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -1040,6 +1055,11 @@ FResponse_CreateNewInventorySessionSelf::FResponse_CreateNewInventorySessionSelf
 }
 
 FString Traits_CreateNewInventorySessionSelf::Name = TEXT("CreateNewInventorySessionSelf");
+
+FHttpRequestPtr Traits_CreateNewInventorySessionSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->CreateNewInventorySessionSelf(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FInventoryAPI::CreateNewPlayerOrder(const FRequest_CreateNewPlayerOrder& Request, const FDelegate_CreateNewPlayerOrder& Delegate /*= FDelegate_CreateNewPlayerOrder()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -1322,6 +1342,11 @@ FResponse_CreateNewPlayerOrder::FResponse_CreateNewPlayerOrder(FRequestMetadata 
 
 FString Traits_CreateNewPlayerOrder::Name = TEXT("CreateNewPlayerOrder");
 
+FHttpRequestPtr Traits_CreateNewPlayerOrder::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->CreateNewPlayerOrder(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FInventoryAPI::CreateNewPlayerOrderSelf(const FRequest_CreateNewPlayerOrderSelf& Request, const FDelegate_CreateNewPlayerOrderSelf& Delegate /*= FDelegate_CreateNewPlayerOrderSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -1597,6 +1622,11 @@ FResponse_CreateNewPlayerOrderSelf::FResponse_CreateNewPlayerOrderSelf(FRequestM
 }
 
 FString Traits_CreateNewPlayerOrderSelf::Name = TEXT("CreateNewPlayerOrderSelf");
+
+FHttpRequestPtr Traits_CreateNewPlayerOrderSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->CreateNewPlayerOrderSelf(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FInventoryAPI::CreateNewPlayerUuidOrder(const FRequest_CreateNewPlayerUuidOrder& Request, const FDelegate_CreateNewPlayerUuidOrder& Delegate /*= FDelegate_CreateNewPlayerUuidOrder()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -1879,6 +1909,11 @@ FResponse_CreateNewPlayerUuidOrder::FResponse_CreateNewPlayerUuidOrder(FRequestM
 
 FString Traits_CreateNewPlayerUuidOrder::Name = TEXT("CreateNewPlayerUuidOrder");
 
+FHttpRequestPtr Traits_CreateNewPlayerUuidOrder::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->CreateNewPlayerUuidOrder(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FInventoryAPI::CreateNewPlayerUuidOrderSelf(const FRequest_CreateNewPlayerUuidOrderSelf& Request, const FDelegate_CreateNewPlayerUuidOrderSelf& Delegate /*= FDelegate_CreateNewPlayerUuidOrderSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -2154,6 +2189,11 @@ FResponse_CreateNewPlayerUuidOrderSelf::FResponse_CreateNewPlayerUuidOrderSelf(F
 }
 
 FString Traits_CreateNewPlayerUuidOrderSelf::Name = TEXT("CreateNewPlayerUuidOrderSelf");
+
+FHttpRequestPtr Traits_CreateNewPlayerUuidOrderSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->CreateNewPlayerUuidOrderSelf(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FInventoryAPI::CreatePlayerInventory(const FRequest_CreatePlayerInventory& Request, const FDelegate_CreatePlayerInventory& Delegate /*= FDelegate_CreatePlayerInventory()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -2436,6 +2476,11 @@ FResponse_CreatePlayerInventory::FResponse_CreatePlayerInventory(FRequestMetadat
 
 FString Traits_CreatePlayerInventory::Name = TEXT("CreatePlayerInventory");
 
+FHttpRequestPtr Traits_CreatePlayerInventory::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->CreatePlayerInventory(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FInventoryAPI::CreatePlayerInventorySelf(const FRequest_CreatePlayerInventorySelf& Request, const FDelegate_CreatePlayerInventorySelf& Delegate /*= FDelegate_CreatePlayerInventorySelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -2711,6 +2756,11 @@ FResponse_CreatePlayerInventorySelf::FResponse_CreatePlayerInventorySelf(FReques
 }
 
 FString Traits_CreatePlayerInventorySelf::Name = TEXT("CreatePlayerInventorySelf");
+
+FHttpRequestPtr Traits_CreatePlayerInventorySelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->CreatePlayerInventorySelf(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FInventoryAPI::CreatePlayerInventoryUuid(const FRequest_CreatePlayerInventoryUuid& Request, const FDelegate_CreatePlayerInventoryUuid& Delegate /*= FDelegate_CreatePlayerInventoryUuid()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -2993,6 +3043,11 @@ FResponse_CreatePlayerInventoryUuid::FResponse_CreatePlayerInventoryUuid(FReques
 
 FString Traits_CreatePlayerInventoryUuid::Name = TEXT("CreatePlayerInventoryUuid");
 
+FHttpRequestPtr Traits_CreatePlayerInventoryUuid::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->CreatePlayerInventoryUuid(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FInventoryAPI::CreatePlayerInventoryUuidSelf(const FRequest_CreatePlayerInventoryUuidSelf& Request, const FDelegate_CreatePlayerInventoryUuidSelf& Delegate /*= FDelegate_CreatePlayerInventoryUuidSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -3269,6 +3324,11 @@ FResponse_CreatePlayerInventoryUuidSelf::FResponse_CreatePlayerInventoryUuidSelf
 
 FString Traits_CreatePlayerInventoryUuidSelf::Name = TEXT("CreatePlayerInventoryUuidSelf");
 
+FHttpRequestPtr Traits_CreatePlayerInventoryUuidSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->CreatePlayerInventoryUuidSelf(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FInventoryAPI::GetInventorySessionInfo(const FRequest_GetInventorySessionInfo& Request, const FDelegate_GetInventorySessionInfo& Delegate /*= FDelegate_GetInventorySessionInfo()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -3514,6 +3574,11 @@ FResponse_GetInventorySessionInfo::FResponse_GetInventorySessionInfo(FRequestMet
 }
 
 FString Traits_GetInventorySessionInfo::Name = TEXT("GetInventorySessionInfo");
+
+FHttpRequestPtr Traits_GetInventorySessionInfo::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetInventorySessionInfo(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FInventoryAPI::GetInventorySessionInfoByPlayerUuid(const FRequest_GetInventorySessionInfoByPlayerUuid& Request, const FDelegate_GetInventorySessionInfoByPlayerUuid& Delegate /*= FDelegate_GetInventorySessionInfoByPlayerUuid()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -3761,6 +3826,11 @@ FResponse_GetInventorySessionInfoByPlayerUuid::FResponse_GetInventorySessionInfo
 
 FString Traits_GetInventorySessionInfoByPlayerUuid::Name = TEXT("GetInventorySessionInfoByPlayerUuid");
 
+FHttpRequestPtr Traits_GetInventorySessionInfoByPlayerUuid::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetInventorySessionInfoByPlayerUuid(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FInventoryAPI::GetInventorySessionInfoByPlayerUuidSelf(const FRequest_GetInventorySessionInfoByPlayerUuidSelf& Request, const FDelegate_GetInventorySessionInfoByPlayerUuidSelf& Delegate /*= FDelegate_GetInventorySessionInfoByPlayerUuidSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -3978,6 +4048,11 @@ FResponse_GetInventorySessionInfoByPlayerUuidSelf::FResponse_GetInventorySession
 
 FString Traits_GetInventorySessionInfoByPlayerUuidSelf::Name = TEXT("GetInventorySessionInfoByPlayerUuidSelf");
 
+FHttpRequestPtr Traits_GetInventorySessionInfoByPlayerUuidSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetInventorySessionInfoByPlayerUuidSelf(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FInventoryAPI::GetInventorySessionInfoSelf(const FRequest_GetInventorySessionInfoSelf& Request, const FDelegate_GetInventorySessionInfoSelf& Delegate /*= FDelegate_GetInventorySessionInfoSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -4194,6 +4269,11 @@ FResponse_GetInventorySessionInfoSelf::FResponse_GetInventorySessionInfoSelf(FRe
 }
 
 FString Traits_GetInventorySessionInfoSelf::Name = TEXT("GetInventorySessionInfoSelf");
+
+FHttpRequestPtr Traits_GetInventorySessionInfoSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetInventorySessionInfoSelf(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FInventoryAPI::GetPlayerInventory(const FRequest_GetPlayerInventory& Request, const FDelegate_GetPlayerInventory& Delegate /*= FDelegate_GetPlayerInventory()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -4487,6 +4567,11 @@ FResponse_GetPlayerInventory::FResponse_GetPlayerInventory(FRequestMetadata InRe
 
 FString Traits_GetPlayerInventory::Name = TEXT("GetPlayerInventory");
 
+FHttpRequestPtr Traits_GetPlayerInventory::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPlayerInventory(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FInventoryAPI::GetPlayerInventorySelf(const FRequest_GetPlayerInventorySelf& Request, const FDelegate_GetPlayerInventorySelf& Delegate /*= FDelegate_GetPlayerInventorySelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -4773,6 +4858,11 @@ FResponse_GetPlayerInventorySelf::FResponse_GetPlayerInventorySelf(FRequestMetad
 }
 
 FString Traits_GetPlayerInventorySelf::Name = TEXT("GetPlayerInventorySelf");
+
+FHttpRequestPtr Traits_GetPlayerInventorySelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPlayerInventorySelf(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FInventoryAPI::GetPlayerInventoryUuid(const FRequest_GetPlayerInventoryUuid& Request, const FDelegate_GetPlayerInventoryUuid& Delegate /*= FDelegate_GetPlayerInventoryUuid()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -5066,6 +5156,11 @@ FResponse_GetPlayerInventoryUuid::FResponse_GetPlayerInventoryUuid(FRequestMetad
 
 FString Traits_GetPlayerInventoryUuid::Name = TEXT("GetPlayerInventoryUuid");
 
+FHttpRequestPtr Traits_GetPlayerInventoryUuid::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPlayerInventoryUuid(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FInventoryAPI::GetPlayerInventoryUuidSelf(const FRequest_GetPlayerInventoryUuidSelf& Request, const FDelegate_GetPlayerInventoryUuidSelf& Delegate /*= FDelegate_GetPlayerInventoryUuidSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -5353,6 +5448,11 @@ FResponse_GetPlayerInventoryUuidSelf::FResponse_GetPlayerInventoryUuidSelf(FRequ
 
 FString Traits_GetPlayerInventoryUuidSelf::Name = TEXT("GetPlayerInventoryUuidSelf");
 
+FHttpRequestPtr Traits_GetPlayerInventoryUuidSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPlayerInventoryUuidSelf(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FInventoryAPI::GetPlayerOrderById(const FRequest_GetPlayerOrderById& Request, const FDelegate_GetPlayerOrderById& Delegate /*= FDelegate_GetPlayerOrderById()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -5624,6 +5724,11 @@ FResponse_GetPlayerOrderById::FResponse_GetPlayerOrderById(FRequestMetadata InRe
 
 FString Traits_GetPlayerOrderById::Name = TEXT("GetPlayerOrderById");
 
+FHttpRequestPtr Traits_GetPlayerOrderById::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPlayerOrderById(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FInventoryAPI::GetPlayerOrderByIdSelf(const FRequest_GetPlayerOrderByIdSelf& Request, const FDelegate_GetPlayerOrderByIdSelf& Delegate /*= FDelegate_GetPlayerOrderByIdSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -5894,6 +5999,11 @@ FResponse_GetPlayerOrderByIdSelf::FResponse_GetPlayerOrderByIdSelf(FRequestMetad
 
 FString Traits_GetPlayerOrderByIdSelf::Name = TEXT("GetPlayerOrderByIdSelf");
 
+FHttpRequestPtr Traits_GetPlayerOrderByIdSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPlayerOrderByIdSelf(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FInventoryAPI::GetPlayerOrders(const FRequest_GetPlayerOrders& Request, const FDelegate_GetPlayerOrders& Delegate /*= FDelegate_GetPlayerOrders()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -6160,6 +6270,11 @@ FResponse_GetPlayerOrders::FResponse_GetPlayerOrders(FRequestMetadata InRequestM
 
 FString Traits_GetPlayerOrders::Name = TEXT("GetPlayerOrders");
 
+FHttpRequestPtr Traits_GetPlayerOrders::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPlayerOrders(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FInventoryAPI::GetPlayerOrdersSelf(const FRequest_GetPlayerOrdersSelf& Request, const FDelegate_GetPlayerOrdersSelf& Delegate /*= FDelegate_GetPlayerOrdersSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -6420,6 +6535,11 @@ FResponse_GetPlayerOrdersSelf::FResponse_GetPlayerOrdersSelf(FRequestMetadata In
 }
 
 FString Traits_GetPlayerOrdersSelf::Name = TEXT("GetPlayerOrdersSelf");
+
+FHttpRequestPtr Traits_GetPlayerOrdersSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPlayerOrdersSelf(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FInventoryAPI::GetPlayerUuidOrderById(const FRequest_GetPlayerUuidOrderById& Request, const FDelegate_GetPlayerUuidOrderById& Delegate /*= FDelegate_GetPlayerUuidOrderById()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -6692,6 +6812,11 @@ FResponse_GetPlayerUuidOrderById::FResponse_GetPlayerUuidOrderById(FRequestMetad
 
 FString Traits_GetPlayerUuidOrderById::Name = TEXT("GetPlayerUuidOrderById");
 
+FHttpRequestPtr Traits_GetPlayerUuidOrderById::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPlayerUuidOrderById(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FInventoryAPI::GetPlayerUuidOrderByIdSelf(const FRequest_GetPlayerUuidOrderByIdSelf& Request, const FDelegate_GetPlayerUuidOrderByIdSelf& Delegate /*= FDelegate_GetPlayerUuidOrderByIdSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -6962,6 +7087,11 @@ FResponse_GetPlayerUuidOrderByIdSelf::FResponse_GetPlayerUuidOrderByIdSelf(FRequ
 
 FString Traits_GetPlayerUuidOrderByIdSelf::Name = TEXT("GetPlayerUuidOrderByIdSelf");
 
+FHttpRequestPtr Traits_GetPlayerUuidOrderByIdSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPlayerUuidOrderByIdSelf(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FInventoryAPI::GetPlayerUuidOrders(const FRequest_GetPlayerUuidOrders& Request, const FDelegate_GetPlayerUuidOrders& Delegate /*= FDelegate_GetPlayerUuidOrders()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -7228,6 +7358,11 @@ FResponse_GetPlayerUuidOrders::FResponse_GetPlayerUuidOrders(FRequestMetadata In
 
 FString Traits_GetPlayerUuidOrders::Name = TEXT("GetPlayerUuidOrders");
 
+FHttpRequestPtr Traits_GetPlayerUuidOrders::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPlayerUuidOrders(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FInventoryAPI::GetPlayerUuidOrdersSelf(const FRequest_GetPlayerUuidOrdersSelf& Request, const FDelegate_GetPlayerUuidOrdersSelf& Delegate /*= FDelegate_GetPlayerUuidOrdersSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -7488,6 +7623,11 @@ FResponse_GetPlayerUuidOrdersSelf::FResponse_GetPlayerUuidOrdersSelf(FRequestMet
 }
 
 FString Traits_GetPlayerUuidOrdersSelf::Name = TEXT("GetPlayerUuidOrdersSelf");
+
+FHttpRequestPtr Traits_GetPlayerUuidOrdersSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPlayerUuidOrdersSelf(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FInventoryAPI::ModifyManyPlayerInventory(const FRequest_ModifyManyPlayerInventory& Request, const FDelegate_ModifyManyPlayerInventory& Delegate /*= FDelegate_ModifyManyPlayerInventory()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -7770,6 +7910,11 @@ FResponse_ModifyManyPlayerInventory::FResponse_ModifyManyPlayerInventory(FReques
 
 FString Traits_ModifyManyPlayerInventory::Name = TEXT("ModifyManyPlayerInventory");
 
+FHttpRequestPtr Traits_ModifyManyPlayerInventory::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->ModifyManyPlayerInventory(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FInventoryAPI::ModifyManyPlayerInventorySelf(const FRequest_ModifyManyPlayerInventorySelf& Request, const FDelegate_ModifyManyPlayerInventorySelf& Delegate /*= FDelegate_ModifyManyPlayerInventorySelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -8045,6 +8190,11 @@ FResponse_ModifyManyPlayerInventorySelf::FResponse_ModifyManyPlayerInventorySelf
 }
 
 FString Traits_ModifyManyPlayerInventorySelf::Name = TEXT("ModifyManyPlayerInventorySelf");
+
+FHttpRequestPtr Traits_ModifyManyPlayerInventorySelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->ModifyManyPlayerInventorySelf(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FInventoryAPI::ModifyManyPlayerInventoryUuid(const FRequest_ModifyManyPlayerInventoryUuid& Request, const FDelegate_ModifyManyPlayerInventoryUuid& Delegate /*= FDelegate_ModifyManyPlayerInventoryUuid()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -8327,6 +8477,11 @@ FResponse_ModifyManyPlayerInventoryUuid::FResponse_ModifyManyPlayerInventoryUuid
 
 FString Traits_ModifyManyPlayerInventoryUuid::Name = TEXT("ModifyManyPlayerInventoryUuid");
 
+FHttpRequestPtr Traits_ModifyManyPlayerInventoryUuid::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->ModifyManyPlayerInventoryUuid(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FInventoryAPI::ModifyManyPlayerInventoryUuidSelf(const FRequest_ModifyManyPlayerInventoryUuidSelf& Request, const FDelegate_ModifyManyPlayerInventoryUuidSelf& Delegate /*= FDelegate_ModifyManyPlayerInventoryUuidSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -8602,6 +8757,11 @@ FResponse_ModifyManyPlayerInventoryUuidSelf::FResponse_ModifyManyPlayerInventory
 }
 
 FString Traits_ModifyManyPlayerInventoryUuidSelf::Name = TEXT("ModifyManyPlayerInventoryUuidSelf");
+
+FHttpRequestPtr Traits_ModifyManyPlayerInventoryUuidSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->ModifyManyPlayerInventoryUuidSelf(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FInventoryAPI::ModifyPlayerInventory(const FRequest_ModifyPlayerInventory& Request, const FDelegate_ModifyPlayerInventory& Delegate /*= FDelegate_ModifyPlayerInventory()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -8885,6 +9045,11 @@ FResponse_ModifyPlayerInventory::FResponse_ModifyPlayerInventory(FRequestMetadat
 
 FString Traits_ModifyPlayerInventory::Name = TEXT("ModifyPlayerInventory");
 
+FHttpRequestPtr Traits_ModifyPlayerInventory::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->ModifyPlayerInventory(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FInventoryAPI::ModifyPlayerInventorySelf(const FRequest_ModifyPlayerInventorySelf& Request, const FDelegate_ModifyPlayerInventorySelf& Delegate /*= FDelegate_ModifyPlayerInventorySelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -9165,6 +9330,11 @@ FResponse_ModifyPlayerInventorySelf::FResponse_ModifyPlayerInventorySelf(FReques
 }
 
 FString Traits_ModifyPlayerInventorySelf::Name = TEXT("ModifyPlayerInventorySelf");
+
+FHttpRequestPtr Traits_ModifyPlayerInventorySelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->ModifyPlayerInventorySelf(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FInventoryAPI::ModifyPlayerInventoryUuid(const FRequest_ModifyPlayerInventoryUuid& Request, const FDelegate_ModifyPlayerInventoryUuid& Delegate /*= FDelegate_ModifyPlayerInventoryUuid()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -9448,6 +9618,11 @@ FResponse_ModifyPlayerInventoryUuid::FResponse_ModifyPlayerInventoryUuid(FReques
 
 FString Traits_ModifyPlayerInventoryUuid::Name = TEXT("ModifyPlayerInventoryUuid");
 
+FHttpRequestPtr Traits_ModifyPlayerInventoryUuid::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->ModifyPlayerInventoryUuid(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FInventoryAPI::ModifyPlayerInventoryUuidSelf(const FRequest_ModifyPlayerInventoryUuidSelf& Request, const FDelegate_ModifyPlayerInventoryUuidSelf& Delegate /*= FDelegate_ModifyPlayerInventoryUuidSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -9728,6 +9903,11 @@ FResponse_ModifyPlayerInventoryUuidSelf::FResponse_ModifyPlayerInventoryUuidSelf
 }
 
 FString Traits_ModifyPlayerInventoryUuidSelf::Name = TEXT("ModifyPlayerInventoryUuidSelf");
+
+FHttpRequestPtr Traits_ModifyPlayerInventoryUuidSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->ModifyPlayerInventoryUuidSelf(InRequest, InDelegate, InPriority);
+}
 
 
 }

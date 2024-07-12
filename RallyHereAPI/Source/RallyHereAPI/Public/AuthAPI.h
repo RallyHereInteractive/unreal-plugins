@@ -31,41 +31,1439 @@ using RallyHereAPI::ToStringFormatArg;
 using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
-struct FRequest_GenerateKey;
-struct FResponse_GenerateKey;
-struct FRequest_GetAllPublicKeys;
-struct FResponse_GetAllPublicKeys;
-struct FRequest_GetPortalTokenDetails;
-struct FResponse_GetPortalTokenDetails;
-struct FRequest_GetPublicKeyById;
-struct FResponse_GetPublicKeyById;
-struct FRequest_Login;
-struct FResponse_Login;
-struct FRequest_Logout;
-struct FResponse_Logout;
-struct FRequest_OauthLogin;
-struct FResponse_OauthLogin;
-struct FRequest_OauthResponse;
-struct FResponse_OauthResponse;
-struct FRequest_OauthTokenExchange;
-struct FResponse_OauthTokenExchange;
-struct FRequest_Token;
-struct FResponse_Token;
-struct FRequest_Verify;
-struct FResponse_Verify;
+// forward declaration
+class FAuthAPI;
 
+/**
+ * @brief Generate Key
+ * Generate and return a new key that matches the configuration required for private keys.
+ * 
+ * This does NOT add the key to any internal list, and is purely for convenience for maintainers
+*/
+struct RALLYHEREAPI_API FRequest_GenerateKey : public FRequest
+{
+	FRequest_GenerateKey();
+	virtual ~FRequest_GenerateKey() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+
+};
+
+/** The response type for FRequest_GenerateKey */
+struct RALLYHEREAPI_API FResponse_GenerateKey : public FResponse
+{
+	FResponse_GenerateKey(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GenerateKey() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_JsonValue> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_JsonValue Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_JsonValue* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_JsonValue>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GenerateKey */
 DECLARE_DELEGATE_OneParam(FDelegate_GenerateKey, const FResponse_GenerateKey&);
+
+/** @brief A helper metadata object for GenerateKey that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GenerateKey
+{
+	/** The request type */
+	typedef FRequest_GenerateKey Request;
+	/** The response type */
+	typedef FResponse_GenerateKey Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GenerateKey Delegate;
+	/** The API object that supports this API call */
+	typedef FAuthAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get All Public Keys
+ * Get all the current public keys.
+ * 
+ * It is encouraged to get keys by id, rather than all at once (to more easily allow new keys to cycle though)
+*/
+struct RALLYHEREAPI_API FRequest_GetAllPublicKeys : public FRequest
+{
+	FRequest_GetAllPublicKeys();
+	virtual ~FRequest_GetAllPublicKeys() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+
+};
+
+/** The response type for FRequest_GetAllPublicKeys */
+struct RALLYHEREAPI_API FResponse_GetAllPublicKeys : public FResponse
+{
+	FResponse_GetAllPublicKeys(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetAllPublicKeys() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_PublicKeyList> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_PublicKeyList Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_PublicKeyList* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_PublicKeyList>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PublicKeyList& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetAllPublicKeys */
 DECLARE_DELEGATE_OneParam(FDelegate_GetAllPublicKeys, const FResponse_GetAllPublicKeys&);
+
+/** @brief A helper metadata object for GetAllPublicKeys that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetAllPublicKeys
+{
+	/** The request type */
+	typedef FRequest_GetAllPublicKeys Request;
+	/** The response type */
+	typedef FResponse_GetAllPublicKeys Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetAllPublicKeys Delegate;
+	/** The API object that supports this API call */
+	typedef FAuthAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Portal Token Details
+
+*/
+struct RALLYHEREAPI_API FRequest_GetPortalTokenDetails : public FRequest
+{
+	FRequest_GetPortalTokenDetails();
+	virtual ~FRequest_GetPortalTokenDetails() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+
+	FRHAPI_PortalTokenDetailsRequest PortalTokenDetailsRequest;
+};
+
+/** The response type for FRequest_GetPortalTokenDetails */
+struct RALLYHEREAPI_API FResponse_GetPortalTokenDetails : public FResponse
+{
+	FResponse_GetPortalTokenDetails(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetPortalTokenDetails() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<TMap<FString, FString>, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	TMap<FString, FString> Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const TMap<FString, FString>* TryGetDefaultContent() const { return ParsedContent.TryGet<TMap<FString, FString>>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(TMap<FString, FString>& OutContent) const;
+
+	/* Response 403
+	 Error Codes: - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator. - `no_redirects_configured` - No redirect urls setup for oauth. - `redirect_uri_does_not_match` - Redirect URI does not match a configured value. - `error_occurred_during_exchange` - An error occurred while exchanging a code for token. - `failed_to_verify_state` - Failed to verify the state associated with the request. - `failed_to_save_state` - Error occurred saving the state. - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator - `too_many_users` - Account has too many users associated with it.  Contact an administrator - `user_auth_restricted` - Authentication for this user has been restricted - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required - `error_retrieving_player_results` - Error retrieving player results - `failed_to_retrieve_roles` - Failed to retrieve roles - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later - `authentication_locked` - Authentication is currently locked.  Please try again later - `invalid_grant_type` - Grant Type {grant_type} is not supported - `user_auth_disabled` - User authentication is not permitted for this policy - `client_auth_disabled` - Client authentication is not permitted for this policy - `amazon_disabled` - Amazon authentication is currently disabled - `amazon_token_empty` - Amazon access token is empty - `amazon_invalid_access_token` - Amazon access token is invalid - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon - `anon_disabled` - Anon authentication is currently disabled - `anon_token_empty` - Anon access token is empty - `apple_disabled` - Apple authentication is currently disabled - `apple_token_empty` - Apple access token is empty - `apple_failed_key_lookup` - Failed to retrieve keys from Apple - `apple_token_exchange_failed` - Problem exchanging code for token with Apple - `apple_token_key_not_valid` - public key not found - `apple_token_not_valid` - Apple access token is not valid - `authorization_code_not_found` - Authorization code not found or expired - `basic_disabled` - Basic authentication is currently disabled - `basic_token_empty` - Basic access token is empty - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD` - `basic_auth_credentials_not_found` - Basic auth credentials not found - `developer_api_disabled` - Developer API authentication is currently disabled - `developer_api_token_empty` - Developer API access token is empty - `developer_api_token_invalid` - Developer API access token is invalid or expired - `epic_disabled` - Epic authentication is currently disabled - `epic_token_empty` - Epic access token is empty - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id - `epic_v1_token_invalid` - Epic v1 token is invalid - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator - `epic_v2_token_invalid` - Epic v2 token is invalid - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic - `google_disabled` - Google authentication is currently disabled - `google_token_empty` - Google access token is empty - `google_keys_not_available` - Google keys are not available.  Please contact an administrator - `google_token_not_valid` - Google access token is not valid - `google_token_exchange_failed` - Problem exchanging code for token with Google - `nintendo_disabled` - Nintendo authentication is currently disabled - `nintendo_token_empty` - Nintendo access token is empty - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found - `nintendo_access_token_not_valid` - Nintendo access token is not valid - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID. - `nintendo_ppid_conversion_failed` - error during PPID conversion - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion - `nintendo_ppid_missing` - PPID is missing for user - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL. - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly. - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled - `ps4_v1_token_empty` - PS4 v1 access token is empty - `ps4_v1_token_expired` - PS4 v1 access token is expired - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4 - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4 - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4 - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled - `ps4_v3_token_empty` - PS4 v3 access token is empty - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4 - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled - `ps5_v3_token_empty` - PS5 v3 access token is empty - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5 - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment. - `refresh_disabled` - Refresh authentication is currently disabled - `refresh_token_empty` - Refresh token is empty - `refresh_token_not_found` - Refresh token was not found or has expired - `refresh_token_invalid_user` - Refresh token refrences invalid user - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token - `steam_disabled` - Steam authentication is currently disabled - `steam_token_empty` - Steam code (Ticket) is empty - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam - `steam_user_vacbanned` - User is VAC banned - `steam_user_publisherbanned` - User is publisher banned - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application - `twitch_disabled` - Twitch authentication is currently disabled - `twitch_token_empty` - Twitch access token is empty - `twitch_token_invalid` - Twitch access token is not valid - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch - `xbox_disabled` - Xbox authentication is currently disabled - `xbox_xsts_token_empty` - Xbox XSTS token is empty - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid - `xbox_xtoken_invalid` - Xbox XToken is not valid - `xbox_access_token_request_failed` - Problem requesting access token from Xbox - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox  
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetPortalTokenDetails */
 DECLARE_DELEGATE_OneParam(FDelegate_GetPortalTokenDetails, const FResponse_GetPortalTokenDetails&);
+
+/** @brief A helper metadata object for GetPortalTokenDetails that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetPortalTokenDetails
+{
+	/** The request type */
+	typedef FRequest_GetPortalTokenDetails Request;
+	/** The response type */
+	typedef FResponse_GetPortalTokenDetails Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetPortalTokenDetails Delegate;
+	/** The API object that supports this API call */
+	typedef FAuthAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Public Key By Id
+
+*/
+struct RALLYHEREAPI_API FRequest_GetPublicKeyById : public FRequest
+{
+	FRequest_GetPublicKeyById();
+	virtual ~FRequest_GetPublicKeyById() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+
+	FString KeyId;
+};
+
+/** The response type for FRequest_GetPublicKeyById */
+struct RALLYHEREAPI_API FResponse_GetPublicKeyById : public FResponse
+{
+	FResponse_GetPublicKeyById(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetPublicKeyById() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_PublicKey, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_PublicKey Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_PublicKey* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_PublicKey>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PublicKey& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetPublicKeyById */
 DECLARE_DELEGATE_OneParam(FDelegate_GetPublicKeyById, const FResponse_GetPublicKeyById&);
+
+/** @brief A helper metadata object for GetPublicKeyById that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetPublicKeyById
+{
+	/** The request type */
+	typedef FRequest_GetPublicKeyById Request;
+	/** The response type */
+	typedef FResponse_GetPublicKeyById Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetPublicKeyById Delegate;
+	/** The API object that supports this API call */
+	typedef FAuthAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Login
+ * This endpoint is used to authenticate a user and retrieve an access token for use with other RallyHere APIs.
+ *     
+ * This endpoint supports user-based authentication for a variety of platforms.
+*/
+struct RALLYHEREAPI_API FRequest_Login : public FRequest
+{
+	FRequest_Login();
+	virtual ~FRequest_Login() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FRHAPI_LoginRequestV1 LoginRequestV1;
+	TOptional<FString> UserAgent;
+	TOptional<FString> XForwardedFor;
+};
+
+/** The response type for FRequest_Login */
+struct RALLYHEREAPI_API FResponse_Login : public FResponse
+{
+	FResponse_Login(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_Login() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_LoginResult, FRHAPI_AgreementMessage, FRHAPI_HTTPValidationError, FRHAPI_HzApiErrorModel> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_LoginResult Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_LoginResult* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_LoginResult>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_LoginResult& OutContent) const;
+
+	/* Response 403
+	User authentication failed.  See error code and description for further details.  Error Codes: - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator. - `no_redirects_configured` - No redirect urls setup for oauth. - `redirect_uri_does_not_match` - Redirect URI does not match a configured value. - `error_occurred_during_exchange` - An error occurred while exchanging a code for token. - `failed_to_verify_state` - Failed to verify the state associated with the request. - `failed_to_save_state` - Error occurred saving the state. - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator - `too_many_users` - Account has too many users associated with it.  Contact an administrator - `user_auth_restricted` - Authentication for this user has been restricted - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required - `error_retrieving_player_results` - Error retrieving player results - `failed_to_retrieve_roles` - Failed to retrieve roles - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later - `authentication_locked` - Authentication is currently locked.  Please try again later - `invalid_grant_type` - Grant Type {grant_type} is not supported - `user_auth_disabled` - User authentication is not permitted for this policy - `client_auth_disabled` - Client authentication is not permitted for this policy - `amazon_disabled` - Amazon authentication is currently disabled - `amazon_token_empty` - Amazon access token is empty - `amazon_invalid_access_token` - Amazon access token is invalid - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon - `anon_disabled` - Anon authentication is currently disabled - `anon_token_empty` - Anon access token is empty - `apple_disabled` - Apple authentication is currently disabled - `apple_token_empty` - Apple access token is empty - `apple_failed_key_lookup` - Failed to retrieve keys from Apple - `apple_token_exchange_failed` - Problem exchanging code for token with Apple - `apple_token_key_not_valid` - public key not found - `apple_token_not_valid` - Apple access token is not valid - `authorization_code_not_found` - Authorization code not found or expired - `basic_disabled` - Basic authentication is currently disabled - `basic_token_empty` - Basic access token is empty - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD` - `basic_auth_credentials_not_found` - Basic auth credentials not found - `developer_api_disabled` - Developer API authentication is currently disabled - `developer_api_token_empty` - Developer API access token is empty - `developer_api_token_invalid` - Developer API access token is invalid or expired - `epic_disabled` - Epic authentication is currently disabled - `epic_token_empty` - Epic access token is empty - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id - `epic_v1_token_invalid` - Epic v1 token is invalid - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator - `epic_v2_token_invalid` - Epic v2 token is invalid - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic - `google_disabled` - Google authentication is currently disabled - `google_token_empty` - Google access token is empty - `google_keys_not_available` - Google keys are not available.  Please contact an administrator - `google_token_not_valid` - Google access token is not valid - `google_token_exchange_failed` - Problem exchanging code for token with Google - `nintendo_disabled` - Nintendo authentication is currently disabled - `nintendo_token_empty` - Nintendo access token is empty - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found - `nintendo_access_token_not_valid` - Nintendo access token is not valid - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID. - `nintendo_ppid_conversion_failed` - error during PPID conversion - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion - `nintendo_ppid_missing` - PPID is missing for user - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL. - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly. - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled - `ps4_v1_token_empty` - PS4 v1 access token is empty - `ps4_v1_token_expired` - PS4 v1 access token is expired - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4 - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4 - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4 - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled - `ps4_v3_token_empty` - PS4 v3 access token is empty - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4 - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled - `ps5_v3_token_empty` - PS5 v3 access token is empty - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5 - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment. - `refresh_disabled` - Refresh authentication is currently disabled - `refresh_token_empty` - Refresh token is empty - `refresh_token_not_found` - Refresh token was not found or has expired - `refresh_token_invalid_user` - Refresh token refrences invalid user - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token - `steam_disabled` - Steam authentication is currently disabled - `steam_token_empty` - Steam code (Ticket) is empty - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam - `steam_user_vacbanned` - User is VAC banned - `steam_user_publisherbanned` - User is publisher banned - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application - `twitch_disabled` - Twitch authentication is currently disabled - `twitch_token_empty` - Twitch access token is empty - `twitch_token_invalid` - Twitch access token is not valid - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch - `xbox_disabled` - Xbox authentication is currently disabled - `xbox_xsts_token_empty` - Xbox XSTS token is empty - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid - `xbox_xtoken_invalid` - Xbox XToken is not valid - `xbox_access_token_request_failed` - Problem requesting access token from Xbox - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox  
+	*/
+	bool TryGetContentFor403(FRHAPI_AgreementMessage& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+	/* Response 503
+	The service is currently unavailable.  Please try again later.
+	*/
+	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* indicates how long the user agent should wait before making a follow-up request */
+	TOptional<int> GetHeader503_RetryAfter() const;
+
+};
+
+/** The delegate class for FRequest_Login */
 DECLARE_DELEGATE_OneParam(FDelegate_Login, const FResponse_Login&);
+
+/** @brief A helper metadata object for Login that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_Login
+{
+	/** The request type */
+	typedef FRequest_Login Request;
+	/** The response type */
+	typedef FResponse_Login Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_Login Delegate;
+	/** The API object that supports this API call */
+	typedef FAuthAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Logout
+
+*/
+struct RALLYHEREAPI_API FRequest_Logout : public FRequest
+{
+	FRequest_Logout();
+	virtual ~FRequest_Logout() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+
+	FRHAPI_LogoutRequest LogoutRequest;
+};
+
+/** The response type for FRequest_Logout */
+struct RALLYHEREAPI_API FResponse_Logout : public FResponse
+{
+	FResponse_Logout(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_Logout() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_JsonValue, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_JsonValue Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_JsonValue* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_JsonValue>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_Logout */
 DECLARE_DELEGATE_OneParam(FDelegate_Logout, const FResponse_Logout&);
+
+/** @brief A helper metadata object for Logout that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_Logout
+{
+	/** The request type */
+	typedef FRequest_Logout Request;
+	/** The response type */
+	typedef FResponse_Logout Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_Logout Delegate;
+	/** The API object that supports this API call */
+	typedef FAuthAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Oauth Login
+ * This endpoint is used to initiate the OAuth authentication flow for a user.
+ * 
+ * If the platform has been configured correctly, this endpoint will redirect to the platform's login page.  
+ * Once the user has logged in, the platform should redirect them to the `/users/v1/oauth/response/{platform}` endpoint for the associated platform.  
+ * 
+ * Errors will be immediately redirected to the requested `redirect_uri` (or the first configured redirect URI, if the requested URI is not configured).
+*/
+struct RALLYHEREAPI_API FRequest_OauthLogin : public FRequest
+{
+	FRequest_OauthLogin();
+	virtual ~FRequest_OauthLogin() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+
+	/* The platform to use for authentication */
+	ERHAPI_OAuthPortal Platform;
+	/* A client state value to be forwarded with this request to the redirect URI. */
+	TOptional<FString> State;
+	/* The URI to redirect to after the OAuth flow is complete. If not provided, or does not match one of the preconfigured redirect URIs, the first configured redirect URI will be used. */
+	TOptional<FString> RedirectUri;
+	TOptional<FString> UserAgent;
+	TOptional<FString> XForwardedFor;
+};
+
+/** The response type for FRequest_OauthLogin */
+struct RALLYHEREAPI_API FResponse_OauthLogin : public FResponse
+{
+	FResponse_OauthLogin(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_OauthLogin() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant< FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	
+	/** Default Response Headers */
+	/*  URL that the user should be redirected to complete the next step of the OAuth flow.  Redirects to the `redirect_uri` and may include the following query parameters: - `code`: The authorization_code that can be exchanged for an access token for the user. - `state`: The state value that was provided in the original request. - `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:     - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.     - `no_redirects_configured` - No redirect urls setup for oauth.     - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.     - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.     - `failed_to_verify_state` - Failed to verify the state associated with the request.     - `failed_to_save_state` - Error occurred saving the state.     - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator     - `too_many_users` - Account has too many users associated with it.  Contact an administrator     - `user_auth_restricted` - Authentication for this user has been restricted     - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required     - `error_retrieving_player_results` - Error retrieving player results     - `failed_to_retrieve_roles` - Failed to retrieve roles     - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid     - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later     - `authentication_locked` - Authentication is currently locked.  Please try again later     - `invalid_grant_type` - Grant Type {grant_type} is not supported     - `user_auth_disabled` - User authentication is not permitted for this policy     - `client_auth_disabled` - Client authentication is not permitted for this policy     - `amazon_disabled` - Amazon authentication is currently disabled     - `amazon_token_empty` - Amazon access token is empty     - `amazon_invalid_access_token` - Amazon access token is invalid     - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon     - `anon_disabled` - Anon authentication is currently disabled     - `anon_token_empty` - Anon access token is empty     - `apple_disabled` - Apple authentication is currently disabled     - `apple_token_empty` - Apple access token is empty     - `apple_failed_key_lookup` - Failed to retrieve keys from Apple     - `apple_token_exchange_failed` - Problem exchanging code for token with Apple     - `apple_token_key_not_valid` - public key not found     - `apple_token_not_valid` - Apple access token is not valid     - `authorization_code_not_found` - Authorization code not found or expired     - `basic_disabled` - Basic authentication is currently disabled     - `basic_token_empty` - Basic access token is empty     - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`     - `basic_auth_credentials_not_found` - Basic auth credentials not found     - `developer_api_disabled` - Developer API authentication is currently disabled     - `developer_api_token_empty` - Developer API access token is empty     - `developer_api_token_invalid` - Developer API access token is invalid or expired     - `epic_disabled` - Epic authentication is currently disabled     - `epic_token_empty` - Epic access token is empty     - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id     - `epic_v1_token_invalid` - Epic v1 token is invalid     - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator     - `epic_v2_token_invalid` - Epic v2 token is invalid     - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic     - `google_disabled` - Google authentication is currently disabled     - `google_token_empty` - Google access token is empty     - `google_keys_not_available` - Google keys are not available.  Please contact an administrator     - `google_token_not_valid` - Google access token is not valid     - `google_token_exchange_failed` - Problem exchanging code for token with Google     - `nintendo_disabled` - Nintendo authentication is currently disabled     - `nintendo_token_empty` - Nintendo access token is empty     - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found     - `nintendo_access_token_not_valid` - Nintendo access token is not valid     - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID     - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.     - `nintendo_ppid_conversion_failed` - error during PPID conversion     - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion     - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion     - `nintendo_ppid_missing` - PPID is missing for user     - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid     - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.     - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid     - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app     - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.     - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo     - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled     - `ps4_v1_token_empty` - PS4 v1 access token is empty     - `ps4_v1_token_expired` - PS4 v1 access token is expired     - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4     - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid     - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled     - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4     - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled     - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled     - `ps4_v3_token_empty` - PS4 v3 access token is empty     - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid     - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled     - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled     - `ps5_v3_token_empty` - PS5 v3 access token is empty     - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5     - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid     - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.     - `refresh_disabled` - Refresh authentication is currently disabled     - `refresh_token_empty` - Refresh token is empty     - `refresh_token_not_found` - Refresh token was not found or has expired     - `refresh_token_invalid_user` - Refresh token refrences invalid user     - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token     - `steam_disabled` - Steam authentication is currently disabled     - `steam_token_empty` - Steam code (Ticket) is empty     - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam     - `steam_user_vacbanned` - User is VAC banned     - `steam_user_publisherbanned` - User is publisher banned     - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate     - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam     - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application     - `twitch_disabled` - Twitch authentication is currently disabled     - `twitch_token_empty` - Twitch access token is empty     - `twitch_token_invalid` - Twitch access token is not valid     - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator     - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch     - `xbox_disabled` - Xbox authentication is currently disabled     - `xbox_xsts_token_empty` - Xbox XSTS token is empty     - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid     - `xbox_xtoken_invalid` - Xbox XToken is not valid     - `xbox_access_token_request_failed` - Problem requesting access token from Xbox     - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox     - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox  - `error_description`: The description for the error that occurred during the OAuth flow. - `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:     - `NO_CODE_IN_REQUEST` - No code in request.     - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.     - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.     - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.     - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.     - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.     - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.     - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.   */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> Location;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	/** @brief Attempt to retrieve a specific header of the default response
+	const FString* TryGetDefaultHeader_Location() const { return TryGetHeader(TEXT("location")); }
+
+	// Individual Response Helpers	
+	/* Response 307
+	Redirect to next step in OAuth flow
+	*/
+	/*  URL that the user should be redirected to complete the next step of the OAuth flow.  Redirects to the `redirect_uri` and may include the following query parameters: - `code`: The authorization_code that can be exchanged for an access token for the user. - `state`: The state value that was provided in the original request. - `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:     - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.     - `no_redirects_configured` - No redirect urls setup for oauth.     - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.     - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.     - `failed_to_verify_state` - Failed to verify the state associated with the request.     - `failed_to_save_state` - Error occurred saving the state.     - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator     - `too_many_users` - Account has too many users associated with it.  Contact an administrator     - `user_auth_restricted` - Authentication for this user has been restricted     - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required     - `error_retrieving_player_results` - Error retrieving player results     - `failed_to_retrieve_roles` - Failed to retrieve roles     - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid     - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later     - `authentication_locked` - Authentication is currently locked.  Please try again later     - `invalid_grant_type` - Grant Type {grant_type} is not supported     - `user_auth_disabled` - User authentication is not permitted for this policy     - `client_auth_disabled` - Client authentication is not permitted for this policy     - `amazon_disabled` - Amazon authentication is currently disabled     - `amazon_token_empty` - Amazon access token is empty     - `amazon_invalid_access_token` - Amazon access token is invalid     - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon     - `anon_disabled` - Anon authentication is currently disabled     - `anon_token_empty` - Anon access token is empty     - `apple_disabled` - Apple authentication is currently disabled     - `apple_token_empty` - Apple access token is empty     - `apple_failed_key_lookup` - Failed to retrieve keys from Apple     - `apple_token_exchange_failed` - Problem exchanging code for token with Apple     - `apple_token_key_not_valid` - public key not found     - `apple_token_not_valid` - Apple access token is not valid     - `authorization_code_not_found` - Authorization code not found or expired     - `basic_disabled` - Basic authentication is currently disabled     - `basic_token_empty` - Basic access token is empty     - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`     - `basic_auth_credentials_not_found` - Basic auth credentials not found     - `developer_api_disabled` - Developer API authentication is currently disabled     - `developer_api_token_empty` - Developer API access token is empty     - `developer_api_token_invalid` - Developer API access token is invalid or expired     - `epic_disabled` - Epic authentication is currently disabled     - `epic_token_empty` - Epic access token is empty     - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id     - `epic_v1_token_invalid` - Epic v1 token is invalid     - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator     - `epic_v2_token_invalid` - Epic v2 token is invalid     - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic     - `google_disabled` - Google authentication is currently disabled     - `google_token_empty` - Google access token is empty     - `google_keys_not_available` - Google keys are not available.  Please contact an administrator     - `google_token_not_valid` - Google access token is not valid     - `google_token_exchange_failed` - Problem exchanging code for token with Google     - `nintendo_disabled` - Nintendo authentication is currently disabled     - `nintendo_token_empty` - Nintendo access token is empty     - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found     - `nintendo_access_token_not_valid` - Nintendo access token is not valid     - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID     - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.     - `nintendo_ppid_conversion_failed` - error during PPID conversion     - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion     - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion     - `nintendo_ppid_missing` - PPID is missing for user     - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid     - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.     - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid     - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app     - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.     - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo     - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled     - `ps4_v1_token_empty` - PS4 v1 access token is empty     - `ps4_v1_token_expired` - PS4 v1 access token is expired     - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4     - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid     - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled     - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4     - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled     - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled     - `ps4_v3_token_empty` - PS4 v3 access token is empty     - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid     - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled     - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled     - `ps5_v3_token_empty` - PS5 v3 access token is empty     - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5     - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid     - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.     - `refresh_disabled` - Refresh authentication is currently disabled     - `refresh_token_empty` - Refresh token is empty     - `refresh_token_not_found` - Refresh token was not found or has expired     - `refresh_token_invalid_user` - Refresh token refrences invalid user     - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token     - `steam_disabled` - Steam authentication is currently disabled     - `steam_token_empty` - Steam code (Ticket) is empty     - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam     - `steam_user_vacbanned` - User is VAC banned     - `steam_user_publisherbanned` - User is publisher banned     - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate     - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam     - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application     - `twitch_disabled` - Twitch authentication is currently disabled     - `twitch_token_empty` - Twitch access token is empty     - `twitch_token_invalid` - Twitch access token is not valid     - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator     - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch     - `xbox_disabled` - Xbox authentication is currently disabled     - `xbox_xsts_token_empty` - Xbox XSTS token is empty     - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid     - `xbox_xtoken_invalid` - Xbox XToken is not valid     - `xbox_access_token_request_failed` - Problem requesting access token from Xbox     - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox     - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox  - `error_description`: The description for the error that occurred during the OAuth flow. - `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:     - `NO_CODE_IN_REQUEST` - No code in request.     - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.     - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.     - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.     - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.     - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.     - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.     - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.   */
+	TOptional<FString> GetHeader307_Location() const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_OauthLogin */
 DECLARE_DELEGATE_OneParam(FDelegate_OauthLogin, const FResponse_OauthLogin&);
+
+/** @brief A helper metadata object for OauthLogin that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_OauthLogin
+{
+	/** The request type */
+	typedef FRequest_OauthLogin Request;
+	/** The response type */
+	typedef FResponse_OauthLogin Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_OauthLogin Delegate;
+	/** The API object that supports this API call */
+	typedef FAuthAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Oauth Response
+ * Handle OAuth response from the platform.  Validates the response, and generates an authorization_code for the user.  The authorization_code can be used with the `/users/v1/oauth/token` endpoint to get an access token for the user.
+*/
+struct RALLYHEREAPI_API FRequest_OauthResponse : public FRequest
+{
+	FRequest_OauthResponse();
+	virtual ~FRequest_OauthResponse() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+
+	/* The platform to use for authentication */
+	ERHAPI_OAuthPortal Platform;
+	/* The code or token from the platform that can be used to validate the user's identity */
+	TOptional<FString> Code;
+	/* The state value sent to the platform provider that is used to continue with the oauth request. */
+	TOptional<FString> State;
+	TOptional<FString> UserAgent;
+	TOptional<FString> XForwardedFor;
+};
+
+/** The response type for FRequest_OauthResponse */
+struct RALLYHEREAPI_API FResponse_OauthResponse : public FResponse
+{
+	FResponse_OauthResponse(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_OauthResponse() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant< FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	
+	/** Default Response Headers */
+	/*  URL that the user should be redirected to complete the next step of the OAuth flow.  Redirects to the `redirect_uri` and may include the following query parameters: - `code`: The authorization_code that can be exchanged for an access token for the user. - `state`: The state value that was provided in the original request. - `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:     - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.     - `no_redirects_configured` - No redirect urls setup for oauth.     - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.     - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.     - `failed_to_verify_state` - Failed to verify the state associated with the request.     - `failed_to_save_state` - Error occurred saving the state.     - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator     - `too_many_users` - Account has too many users associated with it.  Contact an administrator     - `user_auth_restricted` - Authentication for this user has been restricted     - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required     - `error_retrieving_player_results` - Error retrieving player results     - `failed_to_retrieve_roles` - Failed to retrieve roles     - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid     - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later     - `authentication_locked` - Authentication is currently locked.  Please try again later     - `invalid_grant_type` - Grant Type {grant_type} is not supported     - `user_auth_disabled` - User authentication is not permitted for this policy     - `client_auth_disabled` - Client authentication is not permitted for this policy     - `amazon_disabled` - Amazon authentication is currently disabled     - `amazon_token_empty` - Amazon access token is empty     - `amazon_invalid_access_token` - Amazon access token is invalid     - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon     - `anon_disabled` - Anon authentication is currently disabled     - `anon_token_empty` - Anon access token is empty     - `apple_disabled` - Apple authentication is currently disabled     - `apple_token_empty` - Apple access token is empty     - `apple_failed_key_lookup` - Failed to retrieve keys from Apple     - `apple_token_exchange_failed` - Problem exchanging code for token with Apple     - `apple_token_key_not_valid` - public key not found     - `apple_token_not_valid` - Apple access token is not valid     - `authorization_code_not_found` - Authorization code not found or expired     - `basic_disabled` - Basic authentication is currently disabled     - `basic_token_empty` - Basic access token is empty     - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`     - `basic_auth_credentials_not_found` - Basic auth credentials not found     - `developer_api_disabled` - Developer API authentication is currently disabled     - `developer_api_token_empty` - Developer API access token is empty     - `developer_api_token_invalid` - Developer API access token is invalid or expired     - `epic_disabled` - Epic authentication is currently disabled     - `epic_token_empty` - Epic access token is empty     - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id     - `epic_v1_token_invalid` - Epic v1 token is invalid     - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator     - `epic_v2_token_invalid` - Epic v2 token is invalid     - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic     - `google_disabled` - Google authentication is currently disabled     - `google_token_empty` - Google access token is empty     - `google_keys_not_available` - Google keys are not available.  Please contact an administrator     - `google_token_not_valid` - Google access token is not valid     - `google_token_exchange_failed` - Problem exchanging code for token with Google     - `nintendo_disabled` - Nintendo authentication is currently disabled     - `nintendo_token_empty` - Nintendo access token is empty     - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found     - `nintendo_access_token_not_valid` - Nintendo access token is not valid     - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID     - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.     - `nintendo_ppid_conversion_failed` - error during PPID conversion     - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion     - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion     - `nintendo_ppid_missing` - PPID is missing for user     - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid     - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.     - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid     - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app     - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.     - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo     - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled     - `ps4_v1_token_empty` - PS4 v1 access token is empty     - `ps4_v1_token_expired` - PS4 v1 access token is expired     - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4     - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid     - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled     - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4     - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled     - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled     - `ps4_v3_token_empty` - PS4 v3 access token is empty     - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid     - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled     - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled     - `ps5_v3_token_empty` - PS5 v3 access token is empty     - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5     - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid     - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.     - `refresh_disabled` - Refresh authentication is currently disabled     - `refresh_token_empty` - Refresh token is empty     - `refresh_token_not_found` - Refresh token was not found or has expired     - `refresh_token_invalid_user` - Refresh token refrences invalid user     - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token     - `steam_disabled` - Steam authentication is currently disabled     - `steam_token_empty` - Steam code (Ticket) is empty     - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam     - `steam_user_vacbanned` - User is VAC banned     - `steam_user_publisherbanned` - User is publisher banned     - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate     - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam     - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application     - `twitch_disabled` - Twitch authentication is currently disabled     - `twitch_token_empty` - Twitch access token is empty     - `twitch_token_invalid` - Twitch access token is not valid     - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator     - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch     - `xbox_disabled` - Xbox authentication is currently disabled     - `xbox_xsts_token_empty` - Xbox XSTS token is empty     - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid     - `xbox_xtoken_invalid` - Xbox XToken is not valid     - `xbox_access_token_request_failed` - Problem requesting access token from Xbox     - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox     - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox  - `error_description`: The description for the error that occurred during the OAuth flow. - `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:     - `NO_CODE_IN_REQUEST` - No code in request.     - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.     - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.     - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.     - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.     - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.     - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.     - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.   */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> Location;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	/** @brief Attempt to retrieve a specific header of the default response
+	const FString* TryGetDefaultHeader_Location() const { return TryGetHeader(TEXT("location")); }
+
+	// Individual Response Helpers	
+	/* Response 307
+	Redirect to next step in OAuth flow
+	*/
+	/*  URL that the user should be redirected to complete the next step of the OAuth flow.  Redirects to the `redirect_uri` and may include the following query parameters: - `code`: The authorization_code that can be exchanged for an access token for the user. - `state`: The state value that was provided in the original request. - `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:     - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.     - `no_redirects_configured` - No redirect urls setup for oauth.     - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.     - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.     - `failed_to_verify_state` - Failed to verify the state associated with the request.     - `failed_to_save_state` - Error occurred saving the state.     - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator     - `too_many_users` - Account has too many users associated with it.  Contact an administrator     - `user_auth_restricted` - Authentication for this user has been restricted     - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required     - `error_retrieving_player_results` - Error retrieving player results     - `failed_to_retrieve_roles` - Failed to retrieve roles     - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid     - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later     - `authentication_locked` - Authentication is currently locked.  Please try again later     - `invalid_grant_type` - Grant Type {grant_type} is not supported     - `user_auth_disabled` - User authentication is not permitted for this policy     - `client_auth_disabled` - Client authentication is not permitted for this policy     - `amazon_disabled` - Amazon authentication is currently disabled     - `amazon_token_empty` - Amazon access token is empty     - `amazon_invalid_access_token` - Amazon access token is invalid     - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon     - `anon_disabled` - Anon authentication is currently disabled     - `anon_token_empty` - Anon access token is empty     - `apple_disabled` - Apple authentication is currently disabled     - `apple_token_empty` - Apple access token is empty     - `apple_failed_key_lookup` - Failed to retrieve keys from Apple     - `apple_token_exchange_failed` - Problem exchanging code for token with Apple     - `apple_token_key_not_valid` - public key not found     - `apple_token_not_valid` - Apple access token is not valid     - `authorization_code_not_found` - Authorization code not found or expired     - `basic_disabled` - Basic authentication is currently disabled     - `basic_token_empty` - Basic access token is empty     - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`     - `basic_auth_credentials_not_found` - Basic auth credentials not found     - `developer_api_disabled` - Developer API authentication is currently disabled     - `developer_api_token_empty` - Developer API access token is empty     - `developer_api_token_invalid` - Developer API access token is invalid or expired     - `epic_disabled` - Epic authentication is currently disabled     - `epic_token_empty` - Epic access token is empty     - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id     - `epic_v1_token_invalid` - Epic v1 token is invalid     - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator     - `epic_v2_token_invalid` - Epic v2 token is invalid     - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic     - `google_disabled` - Google authentication is currently disabled     - `google_token_empty` - Google access token is empty     - `google_keys_not_available` - Google keys are not available.  Please contact an administrator     - `google_token_not_valid` - Google access token is not valid     - `google_token_exchange_failed` - Problem exchanging code for token with Google     - `nintendo_disabled` - Nintendo authentication is currently disabled     - `nintendo_token_empty` - Nintendo access token is empty     - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found     - `nintendo_access_token_not_valid` - Nintendo access token is not valid     - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID     - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.     - `nintendo_ppid_conversion_failed` - error during PPID conversion     - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion     - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion     - `nintendo_ppid_missing` - PPID is missing for user     - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid     - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.     - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid     - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app     - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.     - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo     - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled     - `ps4_v1_token_empty` - PS4 v1 access token is empty     - `ps4_v1_token_expired` - PS4 v1 access token is expired     - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4     - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid     - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled     - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4     - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled     - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled     - `ps4_v3_token_empty` - PS4 v3 access token is empty     - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid     - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled     - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled     - `ps5_v3_token_empty` - PS5 v3 access token is empty     - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5     - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid     - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.     - `refresh_disabled` - Refresh authentication is currently disabled     - `refresh_token_empty` - Refresh token is empty     - `refresh_token_not_found` - Refresh token was not found or has expired     - `refresh_token_invalid_user` - Refresh token refrences invalid user     - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token     - `steam_disabled` - Steam authentication is currently disabled     - `steam_token_empty` - Steam code (Ticket) is empty     - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam     - `steam_user_vacbanned` - User is VAC banned     - `steam_user_publisherbanned` - User is publisher banned     - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate     - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam     - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application     - `twitch_disabled` - Twitch authentication is currently disabled     - `twitch_token_empty` - Twitch access token is empty     - `twitch_token_invalid` - Twitch access token is not valid     - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator     - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch     - `xbox_disabled` - Xbox authentication is currently disabled     - `xbox_xsts_token_empty` - Xbox XSTS token is empty     - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid     - `xbox_xtoken_invalid` - Xbox XToken is not valid     - `xbox_access_token_request_failed` - Problem requesting access token from Xbox     - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox     - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox  - `error_description`: The description for the error that occurred during the OAuth flow. - `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:     - `NO_CODE_IN_REQUEST` - No code in request.     - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.     - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.     - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.     - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.     - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.     - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.     - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.   */
+	TOptional<FString> GetHeader307_Location() const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_OauthResponse */
 DECLARE_DELEGATE_OneParam(FDelegate_OauthResponse, const FResponse_OauthResponse&);
+
+/** @brief A helper metadata object for OauthResponse that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_OauthResponse
+{
+	/** The request type */
+	typedef FRequest_OauthResponse Request;
+	/** The response type */
+	typedef FResponse_OauthResponse Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_OauthResponse Delegate;
+	/** The API object that supports this API call */
+	typedef FAuthAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Oauth Token Exchange
+ * Exchange an authorization_code from the `/users/v1/oauth/response/{platform}` endpoint for an access token and refresh token.
+*/
+struct RALLYHEREAPI_API FRequest_OauthTokenExchange : public FRequest
+{
+	FRequest_OauthTokenExchange();
+	virtual ~FRequest_OauthTokenExchange() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FRHAPI_OAuthTokenExchange OAuthTokenExchange;
+	TOptional<FString> UserAgent;
+	TOptional<FString> XForwardedFor;
+};
+
+/** The response type for FRequest_OauthTokenExchange */
+struct RALLYHEREAPI_API FResponse_OauthTokenExchange : public FResponse
+{
+	FResponse_OauthTokenExchange(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_OauthTokenExchange() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_OAuthTokenResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_OAuthTokenResponse Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_OAuthTokenResponse* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_OAuthTokenResponse>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_OAuthTokenResponse& OutContent) const;
+
+	/* Response 403
+	 Error Codes: - `authorization_code_not_found`: Authorization code not found or expired 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_OauthTokenExchange */
 DECLARE_DELEGATE_OneParam(FDelegate_OauthTokenExchange, const FResponse_OauthTokenExchange&);
+
+/** @brief A helper metadata object for OauthTokenExchange that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_OauthTokenExchange
+{
+	/** The request type */
+	typedef FRequest_OauthTokenExchange Request;
+	/** The response type */
+	typedef FResponse_OauthTokenExchange Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_OauthTokenExchange Delegate;
+	/** The API object that supports this API call */
+	typedef FAuthAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Token
+ * OAuth2 Token Endpoint. For more information see: <a href="https://datatracker.ietf.org/doc/html/rfc6749#section-3.2" target="_blank">Token Endpoint Spec</a>.
+*/
+struct RALLYHEREAPI_API FRequest_Token : public FRequest
+{
+	FRequest_Token();
+	virtual ~FRequest_Token() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FRHAPI_TokenRequest TokenRequest;
+	TOptional<FString> UserAgent;
+	TOptional<FString> XForwardedFor;
+};
+
+/** The response type for FRequest_Token */
+struct RALLYHEREAPI_API FResponse_Token : public FResponse
+{
+	FResponse_Token(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_Token() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_TokenResponse, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_TokenResponse Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_TokenResponse* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_TokenResponse>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_TokenResponse& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_Token */
 DECLARE_DELEGATE_OneParam(FDelegate_Token, const FResponse_Token&);
+
+/** @brief A helper metadata object for Token that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_Token
+{
+	/** The request type */
+	typedef FRequest_Token Request;
+	/** The response type */
+	typedef FResponse_Token Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_Token Delegate;
+	/** The API object that supports this API call */
+	typedef FAuthAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Verify
+
+*/
+struct RALLYHEREAPI_API FRequest_Verify : public FRequest
+{
+	FRequest_Verify();
+	virtual ~FRequest_Verify() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+};
+
+/** The response type for FRequest_Verify */
+struct RALLYHEREAPI_API FResponse_Verify : public FResponse
+{
+	FResponse_Verify(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_Verify() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_JsonValue Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_JsonValue* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_JsonValue>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_Verify */
 DECLARE_DELEGATE_OneParam(FDelegate_Verify, const FResponse_Verify&);
 
+/** @brief A helper metadata object for Verify that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_Verify
+{
+	/** The request type */
+	typedef FRequest_Verify Request;
+	/** The response type */
+	typedef FResponse_Verify Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_Verify Delegate;
+	/** The API object that supports this API call */
+	typedef FAuthAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+
+/** The API class itself, which will handle calls to */
 class RALLYHEREAPI_API FAuthAPI : public FAPI
 {
 public:
@@ -99,854 +1497,6 @@ private:
 
 };
 
-/* Generate Key
- *
- * Generate and return a new key that matches the configuration required for private keys.
- * 
- * This does NOT add the key to any internal list, and is purely for convenience for maintainers
-*/
-struct RALLYHEREAPI_API FRequest_GenerateKey : public FRequest
-{
-	FRequest_GenerateKey();
-	virtual ~FRequest_GenerateKey() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-
-};
-
-struct RALLYHEREAPI_API FResponse_GenerateKey : public FResponse
-{
-	FResponse_GenerateKey(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GenerateKey() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_JsonValue> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_JsonValue Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_JsonValue* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_JsonValue>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GenerateKey
-{
-	typedef FRequest_GenerateKey Request;
-	typedef FResponse_GenerateKey Response;
-	typedef FDelegate_GenerateKey Delegate;
-	typedef FAuthAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GenerateKey(InRequest, InDelegate, Priority); }
-};
-
-/* Get All Public Keys
- *
- * Get all the current public keys.
- * 
- * It is encouraged to get keys by id, rather than all at once (to more easily allow new keys to cycle though)
-*/
-struct RALLYHEREAPI_API FRequest_GetAllPublicKeys : public FRequest
-{
-	FRequest_GetAllPublicKeys();
-	virtual ~FRequest_GetAllPublicKeys() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-
-};
-
-struct RALLYHEREAPI_API FResponse_GetAllPublicKeys : public FResponse
-{
-	FResponse_GetAllPublicKeys(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetAllPublicKeys() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_PublicKeyList> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_PublicKeyList Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_PublicKeyList* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_PublicKeyList>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_PublicKeyList& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetAllPublicKeys
-{
-	typedef FRequest_GetAllPublicKeys Request;
-	typedef FResponse_GetAllPublicKeys Response;
-	typedef FDelegate_GetAllPublicKeys Delegate;
-	typedef FAuthAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetAllPublicKeys(InRequest, InDelegate, Priority); }
-};
-
-/* Get Portal Token Details
-*/
-struct RALLYHEREAPI_API FRequest_GetPortalTokenDetails : public FRequest
-{
-	FRequest_GetPortalTokenDetails();
-	virtual ~FRequest_GetPortalTokenDetails() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-
-	FRHAPI_PortalTokenDetailsRequest PortalTokenDetailsRequest;
-};
-
-struct RALLYHEREAPI_API FResponse_GetPortalTokenDetails : public FResponse
-{
-	FResponse_GetPortalTokenDetails(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetPortalTokenDetails() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<TMap<FString, FString>, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	TMap<FString, FString> Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const TMap<FString, FString>* TryGetDefaultContent() const { return ParsedContent.TryGet<TMap<FString, FString>>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(TMap<FString, FString>& OutContent) const;
-
-	/* Response 403
-	 Error Codes: - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator. - `no_redirects_configured` - No redirect urls setup for oauth. - `redirect_uri_does_not_match` - Redirect URI does not match a configured value. - `error_occurred_during_exchange` - An error occurred while exchanging a code for token. - `failed_to_verify_state` - Failed to verify the state associated with the request. - `failed_to_save_state` - Error occurred saving the state. - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator - `too_many_users` - Account has too many users associated with it.  Contact an administrator - `user_auth_restricted` - Authentication for this user has been restricted - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required - `error_retrieving_player_results` - Error retrieving player results - `failed_to_retrieve_roles` - Failed to retrieve roles - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later - `authentication_locked` - Authentication is currently locked.  Please try again later - `invalid_grant_type` - Grant Type {grant_type} is not supported - `user_auth_disabled` - User authentication is not permitted for this policy - `client_auth_disabled` - Client authentication is not permitted for this policy - `amazon_disabled` - Amazon authentication is currently disabled - `amazon_token_empty` - Amazon access token is empty - `amazon_invalid_access_token` - Amazon access token is invalid - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon - `anon_disabled` - Anon authentication is currently disabled - `anon_token_empty` - Anon access token is empty - `apple_disabled` - Apple authentication is currently disabled - `apple_token_empty` - Apple access token is empty - `apple_failed_key_lookup` - Failed to retrieve keys from Apple - `apple_token_exchange_failed` - Problem exchanging code for token with Apple - `apple_token_key_not_valid` - public key not found - `apple_token_not_valid` - Apple access token is not valid - `authorization_code_not_found` - Authorization code not found or expired - `basic_disabled` - Basic authentication is currently disabled - `basic_token_empty` - Basic access token is empty - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD` - `basic_auth_credentials_not_found` - Basic auth credentials not found - `developer_api_disabled` - Developer API authentication is currently disabled - `developer_api_token_empty` - Developer API access token is empty - `developer_api_token_invalid` - Developer API access token is invalid or expired - `epic_disabled` - Epic authentication is currently disabled - `epic_token_empty` - Epic access token is empty - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id - `epic_v1_token_invalid` - Epic v1 token is invalid - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator - `epic_v2_token_invalid` - Epic v2 token is invalid - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic - `google_disabled` - Google authentication is currently disabled - `google_token_empty` - Google access token is empty - `google_keys_not_available` - Google keys are not available.  Please contact an administrator - `google_token_not_valid` - Google access token is not valid - `google_token_exchange_failed` - Problem exchanging code for token with Google - `nintendo_disabled` - Nintendo authentication is currently disabled - `nintendo_token_empty` - Nintendo access token is empty - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found - `nintendo_access_token_not_valid` - Nintendo access token is not valid - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID. - `nintendo_ppid_conversion_failed` - error during PPID conversion - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion - `nintendo_ppid_missing` - PPID is missing for user - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL. - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly. - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled - `ps4_v1_token_empty` - PS4 v1 access token is empty - `ps4_v1_token_expired` - PS4 v1 access token is expired - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4 - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4 - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4 - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled - `ps4_v3_token_empty` - PS4 v3 access token is empty - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4 - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled - `ps5_v3_token_empty` - PS5 v3 access token is empty - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5 - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment. - `refresh_disabled` - Refresh authentication is currently disabled - `refresh_token_empty` - Refresh token is empty - `refresh_token_not_found` - Refresh token was not found or has expired - `refresh_token_invalid_user` - Refresh token refrences invalid user - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token - `steam_disabled` - Steam authentication is currently disabled - `steam_token_empty` - Steam code (Ticket) is empty - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam - `steam_user_vacbanned` - User is VAC banned - `steam_user_publisherbanned` - User is publisher banned - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application - `twitch_disabled` - Twitch authentication is currently disabled - `twitch_token_empty` - Twitch access token is empty - `twitch_token_invalid` - Twitch access token is not valid - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch - `xbox_disabled` - Xbox authentication is currently disabled - `xbox_xsts_token_empty` - Xbox XSTS token is empty - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid - `xbox_xtoken_invalid` - Xbox XToken is not valid - `xbox_access_token_request_failed` - Problem requesting access token from Xbox - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox  
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetPortalTokenDetails
-{
-	typedef FRequest_GetPortalTokenDetails Request;
-	typedef FResponse_GetPortalTokenDetails Response;
-	typedef FDelegate_GetPortalTokenDetails Delegate;
-	typedef FAuthAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPortalTokenDetails(InRequest, InDelegate, Priority); }
-};
-
-/* Get Public Key By Id
-*/
-struct RALLYHEREAPI_API FRequest_GetPublicKeyById : public FRequest
-{
-	FRequest_GetPublicKeyById();
-	virtual ~FRequest_GetPublicKeyById() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-
-	FString KeyId;
-};
-
-struct RALLYHEREAPI_API FResponse_GetPublicKeyById : public FResponse
-{
-	FResponse_GetPublicKeyById(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetPublicKeyById() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_PublicKey, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_PublicKey Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_PublicKey* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_PublicKey>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_PublicKey& OutContent) const;
-
-	/* Response 404
-	Not Found
-	*/
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetPublicKeyById
-{
-	typedef FRequest_GetPublicKeyById Request;
-	typedef FResponse_GetPublicKeyById Response;
-	typedef FDelegate_GetPublicKeyById Delegate;
-	typedef FAuthAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPublicKeyById(InRequest, InDelegate, Priority); }
-};
-
-/* Login
- *
- * This endpoint is used to authenticate a user and retrieve an access token for use with other RallyHere APIs.
- *     
- * This endpoint supports user-based authentication for a variety of platforms.
-*/
-struct RALLYHEREAPI_API FRequest_Login : public FRequest
-{
-	FRequest_Login();
-	virtual ~FRequest_Login() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	FRHAPI_LoginRequestV1 LoginRequestV1;
-	TOptional<FString> UserAgent;
-	TOptional<FString> XForwardedFor;
-};
-
-struct RALLYHEREAPI_API FResponse_Login : public FResponse
-{
-	FResponse_Login(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_Login() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_LoginResult, FRHAPI_AgreementMessage, FRHAPI_HTTPValidationError, FRHAPI_HzApiErrorModel> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_LoginResult Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_LoginResult* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_LoginResult>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_LoginResult& OutContent) const;
-
-	/* Response 403
-	User authentication failed.  See error code and description for further details.  Error Codes: - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator. - `no_redirects_configured` - No redirect urls setup for oauth. - `redirect_uri_does_not_match` - Redirect URI does not match a configured value. - `error_occurred_during_exchange` - An error occurred while exchanging a code for token. - `failed_to_verify_state` - Failed to verify the state associated with the request. - `failed_to_save_state` - Error occurred saving the state. - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator - `too_many_users` - Account has too many users associated with it.  Contact an administrator - `user_auth_restricted` - Authentication for this user has been restricted - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required - `error_retrieving_player_results` - Error retrieving player results - `failed_to_retrieve_roles` - Failed to retrieve roles - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later - `authentication_locked` - Authentication is currently locked.  Please try again later - `invalid_grant_type` - Grant Type {grant_type} is not supported - `user_auth_disabled` - User authentication is not permitted for this policy - `client_auth_disabled` - Client authentication is not permitted for this policy - `amazon_disabled` - Amazon authentication is currently disabled - `amazon_token_empty` - Amazon access token is empty - `amazon_invalid_access_token` - Amazon access token is invalid - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon - `anon_disabled` - Anon authentication is currently disabled - `anon_token_empty` - Anon access token is empty - `apple_disabled` - Apple authentication is currently disabled - `apple_token_empty` - Apple access token is empty - `apple_failed_key_lookup` - Failed to retrieve keys from Apple - `apple_token_exchange_failed` - Problem exchanging code for token with Apple - `apple_token_key_not_valid` - public key not found - `apple_token_not_valid` - Apple access token is not valid - `authorization_code_not_found` - Authorization code not found or expired - `basic_disabled` - Basic authentication is currently disabled - `basic_token_empty` - Basic access token is empty - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD` - `basic_auth_credentials_not_found` - Basic auth credentials not found - `developer_api_disabled` - Developer API authentication is currently disabled - `developer_api_token_empty` - Developer API access token is empty - `developer_api_token_invalid` - Developer API access token is invalid or expired - `epic_disabled` - Epic authentication is currently disabled - `epic_token_empty` - Epic access token is empty - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id - `epic_v1_token_invalid` - Epic v1 token is invalid - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator - `epic_v2_token_invalid` - Epic v2 token is invalid - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic - `google_disabled` - Google authentication is currently disabled - `google_token_empty` - Google access token is empty - `google_keys_not_available` - Google keys are not available.  Please contact an administrator - `google_token_not_valid` - Google access token is not valid - `google_token_exchange_failed` - Problem exchanging code for token with Google - `nintendo_disabled` - Nintendo authentication is currently disabled - `nintendo_token_empty` - Nintendo access token is empty - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found - `nintendo_access_token_not_valid` - Nintendo access token is not valid - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID. - `nintendo_ppid_conversion_failed` - error during PPID conversion - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion - `nintendo_ppid_missing` - PPID is missing for user - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL. - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly. - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled - `ps4_v1_token_empty` - PS4 v1 access token is empty - `ps4_v1_token_expired` - PS4 v1 access token is expired - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4 - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4 - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4 - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled - `ps4_v3_token_empty` - PS4 v3 access token is empty - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4 - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled - `ps5_v3_token_empty` - PS5 v3 access token is empty - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5 - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment. - `refresh_disabled` - Refresh authentication is currently disabled - `refresh_token_empty` - Refresh token is empty - `refresh_token_not_found` - Refresh token was not found or has expired - `refresh_token_invalid_user` - Refresh token refrences invalid user - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token - `steam_disabled` - Steam authentication is currently disabled - `steam_token_empty` - Steam code (Ticket) is empty - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam - `steam_user_vacbanned` - User is VAC banned - `steam_user_publisherbanned` - User is publisher banned - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application - `twitch_disabled` - Twitch authentication is currently disabled - `twitch_token_empty` - Twitch access token is empty - `twitch_token_invalid` - Twitch access token is not valid - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch - `xbox_disabled` - Xbox authentication is currently disabled - `xbox_xsts_token_empty` - Xbox XSTS token is empty - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid - `xbox_xtoken_invalid` - Xbox XToken is not valid - `xbox_access_token_request_failed` - Problem requesting access token from Xbox - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox  
-	*/
-	bool TryGetContentFor403(FRHAPI_AgreementMessage& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-	/* Response 503
-	The service is currently unavailable.  Please try again later.
-	*/
-	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
-	/* indicates how long the user agent should wait before making a follow-up request */
-	TOptional<int> GetHeader503_RetryAfter() const;
-
-};
-
-struct RALLYHEREAPI_API Traits_Login
-{
-	typedef FRequest_Login Request;
-	typedef FResponse_Login Response;
-	typedef FDelegate_Login Delegate;
-	typedef FAuthAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->Login(InRequest, InDelegate, Priority); }
-};
-
-/* Logout
-*/
-struct RALLYHEREAPI_API FRequest_Logout : public FRequest
-{
-	FRequest_Logout();
-	virtual ~FRequest_Logout() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-
-	FRHAPI_LogoutRequest LogoutRequest;
-};
-
-struct RALLYHEREAPI_API FResponse_Logout : public FResponse
-{
-	FResponse_Logout(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_Logout() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_JsonValue, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_JsonValue Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_JsonValue* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_JsonValue>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_Logout
-{
-	typedef FRequest_Logout Request;
-	typedef FResponse_Logout Response;
-	typedef FDelegate_Logout Delegate;
-	typedef FAuthAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->Logout(InRequest, InDelegate, Priority); }
-};
-
-/* Oauth Login
- *
- * This endpoint is used to initiate the OAuth authentication flow for a user.
- * 
- * If the platform has been configured correctly, this endpoint will redirect to the platform's login page.  
- * Once the user has logged in, the platform should redirect them to the `/users/v1/oauth/response/{platform}` endpoint for the associated platform.  
- * 
- * Errors will be immediately redirected to the requested `redirect_uri` (or the first configured redirect URI, if the requested URI is not configured).
-*/
-struct RALLYHEREAPI_API FRequest_OauthLogin : public FRequest
-{
-	FRequest_OauthLogin();
-	virtual ~FRequest_OauthLogin() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-
-	/* The platform to use for authentication */
-	ERHAPI_OAuthPortal Platform;
-	/* A client state value to be forwarded with this request to the redirect URI. */
-	TOptional<FString> State;
-	/* The URI to redirect to after the OAuth flow is complete. If not provided, or does not match one of the preconfigured redirect URIs, the first configured redirect URI will be used. */
-	TOptional<FString> RedirectUri;
-	TOptional<FString> UserAgent;
-	TOptional<FString> XForwardedFor;
-};
-
-struct RALLYHEREAPI_API FResponse_OauthLogin : public FResponse
-{
-	FResponse_OauthLogin(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_OauthLogin() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	bool ParseHeaders() override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant< FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	
-	// Default Response Headers
-	/*  URL that the user should be redirected to complete the next step of the OAuth flow.  Redirects to the `redirect_uri` and may include the following query parameters: - `code`: The authorization_code that can be exchanged for an access token for the user. - `state`: The state value that was provided in the original request. - `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:     - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.     - `no_redirects_configured` - No redirect urls setup for oauth.     - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.     - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.     - `failed_to_verify_state` - Failed to verify the state associated with the request.     - `failed_to_save_state` - Error occurred saving the state.     - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator     - `too_many_users` - Account has too many users associated with it.  Contact an administrator     - `user_auth_restricted` - Authentication for this user has been restricted     - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required     - `error_retrieving_player_results` - Error retrieving player results     - `failed_to_retrieve_roles` - Failed to retrieve roles     - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid     - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later     - `authentication_locked` - Authentication is currently locked.  Please try again later     - `invalid_grant_type` - Grant Type {grant_type} is not supported     - `user_auth_disabled` - User authentication is not permitted for this policy     - `client_auth_disabled` - Client authentication is not permitted for this policy     - `amazon_disabled` - Amazon authentication is currently disabled     - `amazon_token_empty` - Amazon access token is empty     - `amazon_invalid_access_token` - Amazon access token is invalid     - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon     - `anon_disabled` - Anon authentication is currently disabled     - `anon_token_empty` - Anon access token is empty     - `apple_disabled` - Apple authentication is currently disabled     - `apple_token_empty` - Apple access token is empty     - `apple_failed_key_lookup` - Failed to retrieve keys from Apple     - `apple_token_exchange_failed` - Problem exchanging code for token with Apple     - `apple_token_key_not_valid` - public key not found     - `apple_token_not_valid` - Apple access token is not valid     - `authorization_code_not_found` - Authorization code not found or expired     - `basic_disabled` - Basic authentication is currently disabled     - `basic_token_empty` - Basic access token is empty     - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`     - `basic_auth_credentials_not_found` - Basic auth credentials not found     - `developer_api_disabled` - Developer API authentication is currently disabled     - `developer_api_token_empty` - Developer API access token is empty     - `developer_api_token_invalid` - Developer API access token is invalid or expired     - `epic_disabled` - Epic authentication is currently disabled     - `epic_token_empty` - Epic access token is empty     - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id     - `epic_v1_token_invalid` - Epic v1 token is invalid     - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator     - `epic_v2_token_invalid` - Epic v2 token is invalid     - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic     - `google_disabled` - Google authentication is currently disabled     - `google_token_empty` - Google access token is empty     - `google_keys_not_available` - Google keys are not available.  Please contact an administrator     - `google_token_not_valid` - Google access token is not valid     - `google_token_exchange_failed` - Problem exchanging code for token with Google     - `nintendo_disabled` - Nintendo authentication is currently disabled     - `nintendo_token_empty` - Nintendo access token is empty     - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found     - `nintendo_access_token_not_valid` - Nintendo access token is not valid     - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID     - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.     - `nintendo_ppid_conversion_failed` - error during PPID conversion     - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion     - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion     - `nintendo_ppid_missing` - PPID is missing for user     - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid     - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.     - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid     - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app     - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.     - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo     - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled     - `ps4_v1_token_empty` - PS4 v1 access token is empty     - `ps4_v1_token_expired` - PS4 v1 access token is expired     - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4     - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid     - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled     - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4     - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled     - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled     - `ps4_v3_token_empty` - PS4 v3 access token is empty     - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid     - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled     - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled     - `ps5_v3_token_empty` - PS5 v3 access token is empty     - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5     - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid     - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.     - `refresh_disabled` - Refresh authentication is currently disabled     - `refresh_token_empty` - Refresh token is empty     - `refresh_token_not_found` - Refresh token was not found or has expired     - `refresh_token_invalid_user` - Refresh token refrences invalid user     - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token     - `steam_disabled` - Steam authentication is currently disabled     - `steam_token_empty` - Steam code (Ticket) is empty     - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam     - `steam_user_vacbanned` - User is VAC banned     - `steam_user_publisherbanned` - User is publisher banned     - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate     - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam     - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application     - `twitch_disabled` - Twitch authentication is currently disabled     - `twitch_token_empty` - Twitch access token is empty     - `twitch_token_invalid` - Twitch access token is not valid     - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator     - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch     - `xbox_disabled` - Xbox authentication is currently disabled     - `xbox_xsts_token_empty` - Xbox XSTS token is empty     - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid     - `xbox_xtoken_invalid` - Xbox XToken is not valid     - `xbox_access_token_request_failed` - Problem requesting access token from Xbox     - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox     - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox  - `error_description`: The description for the error that occurred during the OAuth flow. - `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:     - `NO_CODE_IN_REQUEST` - No code in request.     - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.     - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.     - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.     - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.     - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.     - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.     - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.   */
-	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetHeader() or GetHeader<>() instead.")
-	TOptional<FString> Location;
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	const FString* TryGetDefaultHeader_Location() const { return TryGetHeader(TEXT("location")); }
-
-	// Individual Response Helpers	
-	/* Response 307
-	Redirect to next step in OAuth flow
-	*/
-	/*  URL that the user should be redirected to complete the next step of the OAuth flow.  Redirects to the `redirect_uri` and may include the following query parameters: - `code`: The authorization_code that can be exchanged for an access token for the user. - `state`: The state value that was provided in the original request. - `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:     - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.     - `no_redirects_configured` - No redirect urls setup for oauth.     - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.     - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.     - `failed_to_verify_state` - Failed to verify the state associated with the request.     - `failed_to_save_state` - Error occurred saving the state.     - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator     - `too_many_users` - Account has too many users associated with it.  Contact an administrator     - `user_auth_restricted` - Authentication for this user has been restricted     - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required     - `error_retrieving_player_results` - Error retrieving player results     - `failed_to_retrieve_roles` - Failed to retrieve roles     - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid     - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later     - `authentication_locked` - Authentication is currently locked.  Please try again later     - `invalid_grant_type` - Grant Type {grant_type} is not supported     - `user_auth_disabled` - User authentication is not permitted for this policy     - `client_auth_disabled` - Client authentication is not permitted for this policy     - `amazon_disabled` - Amazon authentication is currently disabled     - `amazon_token_empty` - Amazon access token is empty     - `amazon_invalid_access_token` - Amazon access token is invalid     - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon     - `anon_disabled` - Anon authentication is currently disabled     - `anon_token_empty` - Anon access token is empty     - `apple_disabled` - Apple authentication is currently disabled     - `apple_token_empty` - Apple access token is empty     - `apple_failed_key_lookup` - Failed to retrieve keys from Apple     - `apple_token_exchange_failed` - Problem exchanging code for token with Apple     - `apple_token_key_not_valid` - public key not found     - `apple_token_not_valid` - Apple access token is not valid     - `authorization_code_not_found` - Authorization code not found or expired     - `basic_disabled` - Basic authentication is currently disabled     - `basic_token_empty` - Basic access token is empty     - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`     - `basic_auth_credentials_not_found` - Basic auth credentials not found     - `developer_api_disabled` - Developer API authentication is currently disabled     - `developer_api_token_empty` - Developer API access token is empty     - `developer_api_token_invalid` - Developer API access token is invalid or expired     - `epic_disabled` - Epic authentication is currently disabled     - `epic_token_empty` - Epic access token is empty     - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id     - `epic_v1_token_invalid` - Epic v1 token is invalid     - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator     - `epic_v2_token_invalid` - Epic v2 token is invalid     - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic     - `google_disabled` - Google authentication is currently disabled     - `google_token_empty` - Google access token is empty     - `google_keys_not_available` - Google keys are not available.  Please contact an administrator     - `google_token_not_valid` - Google access token is not valid     - `google_token_exchange_failed` - Problem exchanging code for token with Google     - `nintendo_disabled` - Nintendo authentication is currently disabled     - `nintendo_token_empty` - Nintendo access token is empty     - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found     - `nintendo_access_token_not_valid` - Nintendo access token is not valid     - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID     - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.     - `nintendo_ppid_conversion_failed` - error during PPID conversion     - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion     - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion     - `nintendo_ppid_missing` - PPID is missing for user     - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid     - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.     - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid     - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app     - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.     - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo     - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled     - `ps4_v1_token_empty` - PS4 v1 access token is empty     - `ps4_v1_token_expired` - PS4 v1 access token is expired     - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4     - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid     - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled     - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4     - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled     - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled     - `ps4_v3_token_empty` - PS4 v3 access token is empty     - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid     - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled     - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled     - `ps5_v3_token_empty` - PS5 v3 access token is empty     - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5     - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid     - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.     - `refresh_disabled` - Refresh authentication is currently disabled     - `refresh_token_empty` - Refresh token is empty     - `refresh_token_not_found` - Refresh token was not found or has expired     - `refresh_token_invalid_user` - Refresh token refrences invalid user     - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token     - `steam_disabled` - Steam authentication is currently disabled     - `steam_token_empty` - Steam code (Ticket) is empty     - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam     - `steam_user_vacbanned` - User is VAC banned     - `steam_user_publisherbanned` - User is publisher banned     - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate     - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam     - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application     - `twitch_disabled` - Twitch authentication is currently disabled     - `twitch_token_empty` - Twitch access token is empty     - `twitch_token_invalid` - Twitch access token is not valid     - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator     - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch     - `xbox_disabled` - Xbox authentication is currently disabled     - `xbox_xsts_token_empty` - Xbox XSTS token is empty     - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid     - `xbox_xtoken_invalid` - Xbox XToken is not valid     - `xbox_access_token_request_failed` - Problem requesting access token from Xbox     - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox     - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox  - `error_description`: The description for the error that occurred during the OAuth flow. - `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:     - `NO_CODE_IN_REQUEST` - No code in request.     - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.     - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.     - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.     - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.     - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.     - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.     - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.   */
-	TOptional<FString> GetHeader307_Location() const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_OauthLogin
-{
-	typedef FRequest_OauthLogin Request;
-	typedef FResponse_OauthLogin Response;
-	typedef FDelegate_OauthLogin Delegate;
-	typedef FAuthAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->OauthLogin(InRequest, InDelegate, Priority); }
-};
-
-/* Oauth Response
- *
- * Handle OAuth response from the platform.  Validates the response, and generates an authorization_code for the user.  The authorization_code can be used with the `/users/v1/oauth/token` endpoint to get an access token for the user.
-*/
-struct RALLYHEREAPI_API FRequest_OauthResponse : public FRequest
-{
-	FRequest_OauthResponse();
-	virtual ~FRequest_OauthResponse() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-
-	/* The platform to use for authentication */
-	ERHAPI_OAuthPortal Platform;
-	/* The code or token from the platform that can be used to validate the user's identity */
-	TOptional<FString> Code;
-	/* The state value sent to the platform provider that is used to continue with the oauth request. */
-	TOptional<FString> State;
-	TOptional<FString> UserAgent;
-	TOptional<FString> XForwardedFor;
-};
-
-struct RALLYHEREAPI_API FResponse_OauthResponse : public FResponse
-{
-	FResponse_OauthResponse(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_OauthResponse() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	bool ParseHeaders() override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant< FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	
-	// Default Response Headers
-	/*  URL that the user should be redirected to complete the next step of the OAuth flow.  Redirects to the `redirect_uri` and may include the following query parameters: - `code`: The authorization_code that can be exchanged for an access token for the user. - `state`: The state value that was provided in the original request. - `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:     - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.     - `no_redirects_configured` - No redirect urls setup for oauth.     - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.     - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.     - `failed_to_verify_state` - Failed to verify the state associated with the request.     - `failed_to_save_state` - Error occurred saving the state.     - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator     - `too_many_users` - Account has too many users associated with it.  Contact an administrator     - `user_auth_restricted` - Authentication for this user has been restricted     - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required     - `error_retrieving_player_results` - Error retrieving player results     - `failed_to_retrieve_roles` - Failed to retrieve roles     - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid     - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later     - `authentication_locked` - Authentication is currently locked.  Please try again later     - `invalid_grant_type` - Grant Type {grant_type} is not supported     - `user_auth_disabled` - User authentication is not permitted for this policy     - `client_auth_disabled` - Client authentication is not permitted for this policy     - `amazon_disabled` - Amazon authentication is currently disabled     - `amazon_token_empty` - Amazon access token is empty     - `amazon_invalid_access_token` - Amazon access token is invalid     - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon     - `anon_disabled` - Anon authentication is currently disabled     - `anon_token_empty` - Anon access token is empty     - `apple_disabled` - Apple authentication is currently disabled     - `apple_token_empty` - Apple access token is empty     - `apple_failed_key_lookup` - Failed to retrieve keys from Apple     - `apple_token_exchange_failed` - Problem exchanging code for token with Apple     - `apple_token_key_not_valid` - public key not found     - `apple_token_not_valid` - Apple access token is not valid     - `authorization_code_not_found` - Authorization code not found or expired     - `basic_disabled` - Basic authentication is currently disabled     - `basic_token_empty` - Basic access token is empty     - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`     - `basic_auth_credentials_not_found` - Basic auth credentials not found     - `developer_api_disabled` - Developer API authentication is currently disabled     - `developer_api_token_empty` - Developer API access token is empty     - `developer_api_token_invalid` - Developer API access token is invalid or expired     - `epic_disabled` - Epic authentication is currently disabled     - `epic_token_empty` - Epic access token is empty     - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id     - `epic_v1_token_invalid` - Epic v1 token is invalid     - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator     - `epic_v2_token_invalid` - Epic v2 token is invalid     - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic     - `google_disabled` - Google authentication is currently disabled     - `google_token_empty` - Google access token is empty     - `google_keys_not_available` - Google keys are not available.  Please contact an administrator     - `google_token_not_valid` - Google access token is not valid     - `google_token_exchange_failed` - Problem exchanging code for token with Google     - `nintendo_disabled` - Nintendo authentication is currently disabled     - `nintendo_token_empty` - Nintendo access token is empty     - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found     - `nintendo_access_token_not_valid` - Nintendo access token is not valid     - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID     - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.     - `nintendo_ppid_conversion_failed` - error during PPID conversion     - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion     - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion     - `nintendo_ppid_missing` - PPID is missing for user     - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid     - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.     - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid     - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app     - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.     - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo     - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled     - `ps4_v1_token_empty` - PS4 v1 access token is empty     - `ps4_v1_token_expired` - PS4 v1 access token is expired     - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4     - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid     - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled     - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4     - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled     - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled     - `ps4_v3_token_empty` - PS4 v3 access token is empty     - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid     - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled     - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled     - `ps5_v3_token_empty` - PS5 v3 access token is empty     - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5     - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid     - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.     - `refresh_disabled` - Refresh authentication is currently disabled     - `refresh_token_empty` - Refresh token is empty     - `refresh_token_not_found` - Refresh token was not found or has expired     - `refresh_token_invalid_user` - Refresh token refrences invalid user     - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token     - `steam_disabled` - Steam authentication is currently disabled     - `steam_token_empty` - Steam code (Ticket) is empty     - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam     - `steam_user_vacbanned` - User is VAC banned     - `steam_user_publisherbanned` - User is publisher banned     - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate     - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam     - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application     - `twitch_disabled` - Twitch authentication is currently disabled     - `twitch_token_empty` - Twitch access token is empty     - `twitch_token_invalid` - Twitch access token is not valid     - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator     - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch     - `xbox_disabled` - Xbox authentication is currently disabled     - `xbox_xsts_token_empty` - Xbox XSTS token is empty     - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid     - `xbox_xtoken_invalid` - Xbox XToken is not valid     - `xbox_access_token_request_failed` - Problem requesting access token from Xbox     - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox     - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox  - `error_description`: The description for the error that occurred during the OAuth flow. - `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:     - `NO_CODE_IN_REQUEST` - No code in request.     - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.     - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.     - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.     - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.     - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.     - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.     - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.   */
-	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetHeader() or GetHeader<>() instead.")
-	TOptional<FString> Location;
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	const FString* TryGetDefaultHeader_Location() const { return TryGetHeader(TEXT("location")); }
-
-	// Individual Response Helpers	
-	/* Response 307
-	Redirect to next step in OAuth flow
-	*/
-	/*  URL that the user should be redirected to complete the next step of the OAuth flow.  Redirects to the `redirect_uri` and may include the following query parameters: - `code`: The authorization_code that can be exchanged for an access token for the user. - `state`: The state value that was provided in the original request. - `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:     - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.     - `no_redirects_configured` - No redirect urls setup for oauth.     - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.     - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.     - `failed_to_verify_state` - Failed to verify the state associated with the request.     - `failed_to_save_state` - Error occurred saving the state.     - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator     - `too_many_users` - Account has too many users associated with it.  Contact an administrator     - `user_auth_restricted` - Authentication for this user has been restricted     - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required     - `error_retrieving_player_results` - Error retrieving player results     - `failed_to_retrieve_roles` - Failed to retrieve roles     - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid     - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later     - `authentication_locked` - Authentication is currently locked.  Please try again later     - `invalid_grant_type` - Grant Type {grant_type} is not supported     - `user_auth_disabled` - User authentication is not permitted for this policy     - `client_auth_disabled` - Client authentication is not permitted for this policy     - `amazon_disabled` - Amazon authentication is currently disabled     - `amazon_token_empty` - Amazon access token is empty     - `amazon_invalid_access_token` - Amazon access token is invalid     - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon     - `anon_disabled` - Anon authentication is currently disabled     - `anon_token_empty` - Anon access token is empty     - `apple_disabled` - Apple authentication is currently disabled     - `apple_token_empty` - Apple access token is empty     - `apple_failed_key_lookup` - Failed to retrieve keys from Apple     - `apple_token_exchange_failed` - Problem exchanging code for token with Apple     - `apple_token_key_not_valid` - public key not found     - `apple_token_not_valid` - Apple access token is not valid     - `authorization_code_not_found` - Authorization code not found or expired     - `basic_disabled` - Basic authentication is currently disabled     - `basic_token_empty` - Basic access token is empty     - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`     - `basic_auth_credentials_not_found` - Basic auth credentials not found     - `developer_api_disabled` - Developer API authentication is currently disabled     - `developer_api_token_empty` - Developer API access token is empty     - `developer_api_token_invalid` - Developer API access token is invalid or expired     - `epic_disabled` - Epic authentication is currently disabled     - `epic_token_empty` - Epic access token is empty     - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id     - `epic_v1_token_invalid` - Epic v1 token is invalid     - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator     - `epic_v2_token_invalid` - Epic v2 token is invalid     - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic     - `google_disabled` - Google authentication is currently disabled     - `google_token_empty` - Google access token is empty     - `google_keys_not_available` - Google keys are not available.  Please contact an administrator     - `google_token_not_valid` - Google access token is not valid     - `google_token_exchange_failed` - Problem exchanging code for token with Google     - `nintendo_disabled` - Nintendo authentication is currently disabled     - `nintendo_token_empty` - Nintendo access token is empty     - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found     - `nintendo_access_token_not_valid` - Nintendo access token is not valid     - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID     - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.     - `nintendo_ppid_conversion_failed` - error during PPID conversion     - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion     - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion     - `nintendo_ppid_missing` - PPID is missing for user     - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid     - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.     - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid     - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app     - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.     - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo     - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled     - `ps4_v1_token_empty` - PS4 v1 access token is empty     - `ps4_v1_token_expired` - PS4 v1 access token is expired     - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4     - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid     - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled     - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4     - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled     - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled     - `ps4_v3_token_empty` - PS4 v3 access token is empty     - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid     - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled     - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled     - `ps5_v3_token_empty` - PS5 v3 access token is empty     - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5     - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid     - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.     - `refresh_disabled` - Refresh authentication is currently disabled     - `refresh_token_empty` - Refresh token is empty     - `refresh_token_not_found` - Refresh token was not found or has expired     - `refresh_token_invalid_user` - Refresh token refrences invalid user     - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token     - `steam_disabled` - Steam authentication is currently disabled     - `steam_token_empty` - Steam code (Ticket) is empty     - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam     - `steam_user_vacbanned` - User is VAC banned     - `steam_user_publisherbanned` - User is publisher banned     - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate     - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam     - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application     - `twitch_disabled` - Twitch authentication is currently disabled     - `twitch_token_empty` - Twitch access token is empty     - `twitch_token_invalid` - Twitch access token is not valid     - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator     - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch     - `xbox_disabled` - Xbox authentication is currently disabled     - `xbox_xsts_token_empty` - Xbox XSTS token is empty     - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid     - `xbox_xtoken_invalid` - Xbox XToken is not valid     - `xbox_access_token_request_failed` - Problem requesting access token from Xbox     - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox     - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox  - `error_description`: The description for the error that occurred during the OAuth flow. - `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:     - `NO_CODE_IN_REQUEST` - No code in request.     - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.     - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.     - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.     - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.     - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.     - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.     - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.   */
-	TOptional<FString> GetHeader307_Location() const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_OauthResponse
-{
-	typedef FRequest_OauthResponse Request;
-	typedef FResponse_OauthResponse Response;
-	typedef FDelegate_OauthResponse Delegate;
-	typedef FAuthAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->OauthResponse(InRequest, InDelegate, Priority); }
-};
-
-/* Oauth Token Exchange
- *
- * Exchange an authorization_code from the `/users/v1/oauth/response/{platform}` endpoint for an access token and refresh token.
-*/
-struct RALLYHEREAPI_API FRequest_OauthTokenExchange : public FRequest
-{
-	FRequest_OauthTokenExchange();
-	virtual ~FRequest_OauthTokenExchange() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	FRHAPI_OAuthTokenExchange OAuthTokenExchange;
-	TOptional<FString> UserAgent;
-	TOptional<FString> XForwardedFor;
-};
-
-struct RALLYHEREAPI_API FResponse_OauthTokenExchange : public FResponse
-{
-	FResponse_OauthTokenExchange(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_OauthTokenExchange() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_OAuthTokenResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_OAuthTokenResponse Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_OAuthTokenResponse* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_OAuthTokenResponse>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_OAuthTokenResponse& OutContent) const;
-
-	/* Response 403
-	 Error Codes: - `authorization_code_not_found`: Authorization code not found or expired 
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_OauthTokenExchange
-{
-	typedef FRequest_OauthTokenExchange Request;
-	typedef FResponse_OauthTokenExchange Response;
-	typedef FDelegate_OauthTokenExchange Delegate;
-	typedef FAuthAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->OauthTokenExchange(InRequest, InDelegate, Priority); }
-};
-
-/* Token
- *
- * OAuth2 Token Endpoint. For more information see: <a href="https://datatracker.ietf.org/doc/html/rfc6749#section-3.2" target="_blank">Token Endpoint Spec</a>.
-*/
-struct RALLYHEREAPI_API FRequest_Token : public FRequest
-{
-	FRequest_Token();
-	virtual ~FRequest_Token() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	FRHAPI_TokenRequest TokenRequest;
-	TOptional<FString> UserAgent;
-	TOptional<FString> XForwardedFor;
-};
-
-struct RALLYHEREAPI_API FResponse_Token : public FResponse
-{
-	FResponse_Token(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_Token() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_TokenResponse, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_TokenResponse Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_TokenResponse* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_TokenResponse>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_TokenResponse& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_Token
-{
-	typedef FRequest_Token Request;
-	typedef FResponse_Token Response;
-	typedef FDelegate_Token Delegate;
-	typedef FAuthAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->Token(InRequest, InDelegate, Priority); }
-};
-
-/* Verify
-*/
-struct RALLYHEREAPI_API FRequest_Verify : public FRequest
-{
-	FRequest_Verify();
-	virtual ~FRequest_Verify() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-};
-
-struct RALLYHEREAPI_API FResponse_Verify : public FResponse
-{
-	FResponse_Verify(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_Verify() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_JsonValue Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_JsonValue* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_JsonValue>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_Verify
-{
-	typedef FRequest_Verify Request;
-	typedef FResponse_Verify Response;
-	typedef FDelegate_Verify Delegate;
-	typedef FAuthAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->Verify(InRequest, InDelegate, Priority); }
-};
 
 
 }

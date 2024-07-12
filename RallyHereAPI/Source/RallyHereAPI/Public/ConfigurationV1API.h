@@ -19,72 +19,93 @@ using RallyHereAPI::ToStringFormatArg;
 using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
-struct FRequest_GetFriendsAndBlockLimits;
-struct FResponse_GetFriendsAndBlockLimits;
+// forward declaration
+class FConfigurationV1API;
 
-DECLARE_DELEGATE_OneParam(FDelegate_GetFriendsAndBlockLimits, const FResponse_GetFriendsAndBlockLimits&);
-
-class RALLYHEREAPI_API FConfigurationV1API : public FAPI
-{
-public:
-	FConfigurationV1API();
-	virtual ~FConfigurationV1API();
-
-	FHttpRequestPtr GetFriendsAndBlockLimits(const FRequest_GetFriendsAndBlockLimits& Request, const FDelegate_GetFriendsAndBlockLimits& Delegate = FDelegate_GetFriendsAndBlockLimits(), int32 Priority = DefaultRallyHereAPIPriority);
-
-private:
-	void OnGetFriendsAndBlockLimitsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetFriendsAndBlockLimits Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-
-};
-
-/* Get Friends And Block Limits
- *
+/**
+ * @brief Get Friends And Block Limits
  * Fetch the configuration used by Friends API, e.g. friend_limit, block_limit, etc.
 */
 struct RALLYHEREAPI_API FRequest_GetFriendsAndBlockLimits : public FRequest
 {
 	FRequest_GetFriendsAndBlockLimits();
 	virtual ~FRequest_GetFriendsAndBlockLimits() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 };
 
+/** The response type for FRequest_GetFriendsAndBlockLimits */
 struct RALLYHEREAPI_API FResponse_GetFriendsAndBlockLimits : public FResponse
 {
 	FResponse_GetFriendsAndBlockLimits(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GetFriendsAndBlockLimits() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 protected:
+	/** Variant type representing the potential content responses for this call */
 	typedef TVariant<FRHAPI_FriendsApiConfig, FRHAPI_HzApiErrorModel> ContentVariantType;
+	
+	/** A variant containing the parsed content */
 	ContentVariantType ParsedContent;
 
+	/** A parsed map of the headers from the request */
 	TMap<FString, FString> HeadersMap;
 
 public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
 	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
 	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
 	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_FriendsApiConfig Content;
 	
 
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
 	const FRHAPI_FriendsApiConfig* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_FriendsApiConfig>(); }
 
 	// Individual Response Helpers	
@@ -100,16 +121,49 @@ public:
 
 };
 
+/** The delegate class for FRequest_GetFriendsAndBlockLimits */
+DECLARE_DELEGATE_OneParam(FDelegate_GetFriendsAndBlockLimits, const FResponse_GetFriendsAndBlockLimits&);
+
+/** @brief A helper metadata object for GetFriendsAndBlockLimits that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_GetFriendsAndBlockLimits
 {
+	/** The request type */
 	typedef FRequest_GetFriendsAndBlockLimits Request;
+	/** The response type */
 	typedef FResponse_GetFriendsAndBlockLimits Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_GetFriendsAndBlockLimits Delegate;
+	/** The API object that supports this API call */
 	typedef FConfigurationV1API API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetFriendsAndBlockLimits(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
+
+
+/** The API class itself, which will handle calls to */
+class RALLYHEREAPI_API FConfigurationV1API : public FAPI
+{
+public:
+	FConfigurationV1API();
+	virtual ~FConfigurationV1API();
+
+	FHttpRequestPtr GetFriendsAndBlockLimits(const FRequest_GetFriendsAndBlockLimits& Request, const FDelegate_GetFriendsAndBlockLimits& Delegate = FDelegate_GetFriendsAndBlockLimits(), int32 Priority = DefaultRallyHereAPIPriority);
+
+private:
+	void OnGetFriendsAndBlockLimitsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetFriendsAndBlockLimits Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+
+};
+
 
 
 }

@@ -299,6 +299,11 @@ FResponse_CreateSessionAudit::FResponse_CreateSessionAudit(FRequestMetadata InRe
 
 FString Traits_CreateSessionAudit::Name = TEXT("CreateSessionAudit");
 
+FHttpRequestPtr Traits_CreateSessionAudit::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->CreateSessionAudit(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FSessionAuditAPI::GetSessionAudit(const FRequest_GetSessionAudit& Request, const FDelegate_GetSessionAudit& Delegate /*= FDelegate_GetSessionAudit()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -567,6 +572,11 @@ FResponse_GetSessionAudit::FResponse_GetSessionAudit(FRequestMetadata InRequestM
 }
 
 FString Traits_GetSessionAudit::Name = TEXT("GetSessionAudit");
+
+FHttpRequestPtr Traits_GetSessionAudit::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetSessionAudit(InRequest, InDelegate, InPriority);
+}
 
 
 }

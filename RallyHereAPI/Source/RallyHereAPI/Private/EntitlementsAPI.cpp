@@ -323,6 +323,11 @@ FResponse_GenerateEntitlementEvent::FResponse_GenerateEntitlementEvent(FRequestM
 
 FString Traits_GenerateEntitlementEvent::Name = TEXT("GenerateEntitlementEvent");
 
+FHttpRequestPtr Traits_GenerateEntitlementEvent::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GenerateEntitlementEvent(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FEntitlementsAPI::GetEntitlementEvents(const FRequest_GetEntitlementEvents& Request, const FDelegate_GetEntitlementEvents& Delegate /*= FDelegate_GetEntitlementEvents()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -580,6 +585,11 @@ FResponse_GetEntitlementEvents::FResponse_GetEntitlementEvents(FRequestMetadata 
 
 FString Traits_GetEntitlementEvents::Name = TEXT("GetEntitlementEvents");
 
+FHttpRequestPtr Traits_GetEntitlementEvents::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetEntitlementEvents(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FEntitlementsAPI::ProcessPlatformEntitlementForMe(const FRequest_ProcessPlatformEntitlementForMe& Request, const FDelegate_ProcessPlatformEntitlementForMe& Delegate /*= FDelegate_ProcessPlatformEntitlementForMe()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -831,6 +841,11 @@ FResponse_ProcessPlatformEntitlementForMe::FResponse_ProcessPlatformEntitlementF
 }
 
 FString Traits_ProcessPlatformEntitlementForMe::Name = TEXT("ProcessPlatformEntitlementForMe");
+
+FHttpRequestPtr Traits_ProcessPlatformEntitlementForMe::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->ProcessPlatformEntitlementForMe(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FEntitlementsAPI::ProcessPlatformEntitlementsByPlayerUuid(const FRequest_ProcessPlatformEntitlementsByPlayerUuid& Request, const FDelegate_ProcessPlatformEntitlementsByPlayerUuid& Delegate /*= FDelegate_ProcessPlatformEntitlementsByPlayerUuid()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -1089,6 +1104,11 @@ FResponse_ProcessPlatformEntitlementsByPlayerUuid::FResponse_ProcessPlatformEnti
 
 FString Traits_ProcessPlatformEntitlementsByPlayerUuid::Name = TEXT("ProcessPlatformEntitlementsByPlayerUuid");
 
+FHttpRequestPtr Traits_ProcessPlatformEntitlementsByPlayerUuid::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->ProcessPlatformEntitlementsByPlayerUuid(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FEntitlementsAPI::RetrieveEntitlementRequestByPlayerUuid(const FRequest_RetrieveEntitlementRequestByPlayerUuid& Request, const FDelegate_RetrieveEntitlementRequestByPlayerUuid& Delegate /*= FDelegate_RetrieveEntitlementRequestByPlayerUuid()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -1336,6 +1356,11 @@ FResponse_RetrieveEntitlementRequestByPlayerUuid::FResponse_RetrieveEntitlementR
 
 FString Traits_RetrieveEntitlementRequestByPlayerUuid::Name = TEXT("RetrieveEntitlementRequestByPlayerUuid");
 
+FHttpRequestPtr Traits_RetrieveEntitlementRequestByPlayerUuid::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->RetrieveEntitlementRequestByPlayerUuid(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FEntitlementsAPI::RetrieveEntitlementRequestForMe(const FRequest_RetrieveEntitlementRequestForMe& Request, const FDelegate_RetrieveEntitlementRequestForMe& Delegate /*= FDelegate_RetrieveEntitlementRequestForMe()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -1581,6 +1606,11 @@ FResponse_RetrieveEntitlementRequestForMe::FResponse_RetrieveEntitlementRequestF
 }
 
 FString Traits_RetrieveEntitlementRequestForMe::Name = TEXT("RetrieveEntitlementRequestForMe");
+
+FHttpRequestPtr Traits_RetrieveEntitlementRequestForMe::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->RetrieveEntitlementRequestForMe(InRequest, InDelegate, InPriority);
+}
 
 
 }

@@ -240,5 +240,10 @@ FResponse_GetFriendsAndBlockLimits::FResponse_GetFriendsAndBlockLimits(FRequestM
 
 FString Traits_GetFriendsAndBlockLimits::Name = TEXT("GetFriendsAndBlockLimits");
 
+FHttpRequestPtr Traits_GetFriendsAndBlockLimits::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetFriendsAndBlockLimits(InRequest, InDelegate, InPriority);
+}
+
 
 }

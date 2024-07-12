@@ -22,75 +22,89 @@ using RallyHereAPI::ToStringFormatArg;
 using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
-struct FRequest_GetAllEventSchema;
-struct FResponse_GetAllEventSchema;
-struct FRequest_ReceiveEventsV1;
-struct FResponse_ReceiveEventsV1;
+// forward declaration
+class FEventsAPI;
 
-DECLARE_DELEGATE_OneParam(FDelegate_GetAllEventSchema, const FResponse_GetAllEventSchema&);
-DECLARE_DELEGATE_OneParam(FDelegate_ReceiveEventsV1, const FResponse_ReceiveEventsV1&);
-
-class RALLYHEREAPI_API FEventsAPI : public FAPI
-{
-public:
-	FEventsAPI();
-	virtual ~FEventsAPI();
-
-	FHttpRequestPtr GetAllEventSchema(const FRequest_GetAllEventSchema& Request, const FDelegate_GetAllEventSchema& Delegate = FDelegate_GetAllEventSchema(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr ReceiveEventsV1(const FRequest_ReceiveEventsV1& Request, const FDelegate_ReceiveEventsV1& Delegate = FDelegate_ReceiveEventsV1(), int32 Priority = DefaultRallyHereAPIPriority);
-
-private:
-	void OnGetAllEventSchemaResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllEventSchema Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnReceiveEventsV1Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ReceiveEventsV1 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-
-};
-
-/* Get All Event Schema
- *
+/**
+ * @brief Get All Event Schema
  * get all rh standard event and custom event params schema
 */
 struct RALLYHEREAPI_API FRequest_GetAllEventSchema : public FRequest
 {
 	FRequest_GetAllEventSchema();
 	virtual ~FRequest_GetAllEventSchema() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
 
 };
 
+/** The response type for FRequest_GetAllEventSchema */
 struct RALLYHEREAPI_API FResponse_GetAllEventSchema : public FResponse
 {
 	FResponse_GetAllEventSchema(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GetAllEventSchema() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 protected:
+	/** Variant type representing the potential content responses for this call */
 	typedef TVariant<FRHAPI_EventParamsSchemaResponse> ContentVariantType;
+	
+	/** A variant containing the parsed content */
 	ContentVariantType ParsedContent;
 
+	/** A parsed map of the headers from the request */
 	TMap<FString, FString> HeadersMap;
 
 public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
 	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
 	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
 	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_EventParamsSchemaResponse Content;
 	
 
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
 	const FRHAPI_EventParamsSchemaResponse* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_EventParamsSchemaResponse>(); }
 
 	// Individual Response Helpers	
@@ -101,64 +115,115 @@ public:
 
 };
 
+/** The delegate class for FRequest_GetAllEventSchema */
+DECLARE_DELEGATE_OneParam(FDelegate_GetAllEventSchema, const FResponse_GetAllEventSchema&);
+
+/** @brief A helper metadata object for GetAllEventSchema that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_GetAllEventSchema
 {
+	/** The request type */
 	typedef FRequest_GetAllEventSchema Request;
+	/** The response type */
 	typedef FResponse_GetAllEventSchema Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_GetAllEventSchema Delegate;
+	/** The API object that supports this API call */
 	typedef FEventsAPI API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetAllEventSchema(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
 
-/* Receive Events V1
- *
+/**
+ * @brief Receive Events V1
  * Post game events, return number of events being posted to Event Hub
 */
 struct RALLYHEREAPI_API FRequest_ReceiveEventsV1 : public FRequest
 {
 	FRequest_ReceiveEventsV1();
 	virtual ~FRequest_ReceiveEventsV1() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
 
 	FRHAPI_EventList EventList;
 };
 
+/** The response type for FRequest_ReceiveEventsV1 */
 struct RALLYHEREAPI_API FResponse_ReceiveEventsV1 : public FResponse
 {
 	FResponse_ReceiveEventsV1(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_ReceiveEventsV1() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 protected:
+	/** Variant type representing the potential content responses for this call */
 	typedef TVariant<FRHAPI_PostGameEventsResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
 	ContentVariantType ParsedContent;
 
+	/** A parsed map of the headers from the request */
 	TMap<FString, FString> HeadersMap;
 
 public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
 	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
 	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
 	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PostGameEventsResponse Content;
 	
 
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
 	const FRHAPI_PostGameEventsResponse* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_PostGameEventsResponse>(); }
 
 	// Individual Response Helpers	
@@ -189,16 +254,51 @@ public:
 
 };
 
+/** The delegate class for FRequest_ReceiveEventsV1 */
+DECLARE_DELEGATE_OneParam(FDelegate_ReceiveEventsV1, const FResponse_ReceiveEventsV1&);
+
+/** @brief A helper metadata object for ReceiveEventsV1 that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_ReceiveEventsV1
 {
+	/** The request type */
 	typedef FRequest_ReceiveEventsV1 Request;
+	/** The response type */
 	typedef FResponse_ReceiveEventsV1 Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_ReceiveEventsV1 Delegate;
+	/** The API object that supports this API call */
 	typedef FEventsAPI API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->ReceiveEventsV1(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
+
+
+/** The API class itself, which will handle calls to */
+class RALLYHEREAPI_API FEventsAPI : public FAPI
+{
+public:
+	FEventsAPI();
+	virtual ~FEventsAPI();
+
+	FHttpRequestPtr GetAllEventSchema(const FRequest_GetAllEventSchema& Request, const FDelegate_GetAllEventSchema& Delegate = FDelegate_GetAllEventSchema(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr ReceiveEventsV1(const FRequest_ReceiveEventsV1& Request, const FDelegate_ReceiveEventsV1& Delegate = FDelegate_ReceiveEventsV1(), int32 Priority = DefaultRallyHereAPIPriority);
+
+private:
+	void OnGetAllEventSchemaResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllEventSchema Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnReceiveEventsV1Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ReceiveEventsV1 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+
+};
+
 
 
 }

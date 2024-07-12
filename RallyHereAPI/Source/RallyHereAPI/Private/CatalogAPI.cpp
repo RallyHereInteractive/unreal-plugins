@@ -335,6 +335,11 @@ FResponse_GetCatalogAll::FResponse_GetCatalogAll(FRequestMetadata InRequestMetad
 
 FString Traits_GetCatalogAll::Name = TEXT("GetCatalogAll");
 
+FHttpRequestPtr Traits_GetCatalogAll::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetCatalogAll(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FCatalogAPI::GetCatalogEntitlementSku(const FRequest_GetCatalogEntitlementSku& Request, const FDelegate_GetCatalogEntitlementSku& Delegate /*= FDelegate_GetCatalogEntitlementSku()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -653,6 +658,11 @@ FResponse_GetCatalogEntitlementSku::FResponse_GetCatalogEntitlementSku(FRequestM
 
 FString Traits_GetCatalogEntitlementSku::Name = TEXT("GetCatalogEntitlementSku");
 
+FHttpRequestPtr Traits_GetCatalogEntitlementSku::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetCatalogEntitlementSku(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FCatalogAPI::GetCatalogEntitlementSkuAll(const FRequest_GetCatalogEntitlementSkuAll& Request, const FDelegate_GetCatalogEntitlementSkuAll& Delegate /*= FDelegate_GetCatalogEntitlementSkuAll()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -964,6 +974,11 @@ FResponse_GetCatalogEntitlementSkuAll::FResponse_GetCatalogEntitlementSkuAll(FRe
 }
 
 FString Traits_GetCatalogEntitlementSkuAll::Name = TEXT("GetCatalogEntitlementSkuAll");
+
+FHttpRequestPtr Traits_GetCatalogEntitlementSkuAll::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetCatalogEntitlementSkuAll(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FCatalogAPI::GetCatalogInventoryBucketUseRuleSet(const FRequest_GetCatalogInventoryBucketUseRuleSet& Request, const FDelegate_GetCatalogInventoryBucketUseRuleSet& Delegate /*= FDelegate_GetCatalogInventoryBucketUseRuleSet()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -1282,6 +1297,11 @@ FResponse_GetCatalogInventoryBucketUseRuleSet::FResponse_GetCatalogInventoryBuck
 
 FString Traits_GetCatalogInventoryBucketUseRuleSet::Name = TEXT("GetCatalogInventoryBucketUseRuleSet");
 
+FHttpRequestPtr Traits_GetCatalogInventoryBucketUseRuleSet::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetCatalogInventoryBucketUseRuleSet(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FCatalogAPI::GetCatalogInventoryBucketUseRuleSetsAll(const FRequest_GetCatalogInventoryBucketUseRuleSetsAll& Request, const FDelegate_GetCatalogInventoryBucketUseRuleSetsAll& Delegate /*= FDelegate_GetCatalogInventoryBucketUseRuleSetsAll()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -1593,6 +1613,11 @@ FResponse_GetCatalogInventoryBucketUseRuleSetsAll::FResponse_GetCatalogInventory
 }
 
 FString Traits_GetCatalogInventoryBucketUseRuleSetsAll::Name = TEXT("GetCatalogInventoryBucketUseRuleSetsAll");
+
+FHttpRequestPtr Traits_GetCatalogInventoryBucketUseRuleSetsAll::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetCatalogInventoryBucketUseRuleSetsAll(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FCatalogAPI::GetCatalogItem(const FRequest_GetCatalogItem& Request, const FDelegate_GetCatalogItem& Delegate /*= FDelegate_GetCatalogItem()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -1911,6 +1936,11 @@ FResponse_GetCatalogItem::FResponse_GetCatalogItem(FRequestMetadata InRequestMet
 
 FString Traits_GetCatalogItem::Name = TEXT("GetCatalogItem");
 
+FHttpRequestPtr Traits_GetCatalogItem::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetCatalogItem(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FCatalogAPI::GetCatalogItemsAll(const FRequest_GetCatalogItemsAll& Request, const FDelegate_GetCatalogItemsAll& Delegate /*= FDelegate_GetCatalogItemsAll()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -2222,6 +2252,11 @@ FResponse_GetCatalogItemsAll::FResponse_GetCatalogItemsAll(FRequestMetadata InRe
 }
 
 FString Traits_GetCatalogItemsAll::Name = TEXT("GetCatalogItemsAll");
+
+FHttpRequestPtr Traits_GetCatalogItemsAll::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetCatalogItemsAll(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FCatalogAPI::GetCatalogLoot(const FRequest_GetCatalogLoot& Request, const FDelegate_GetCatalogLoot& Delegate /*= FDelegate_GetCatalogLoot()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -2540,6 +2575,11 @@ FResponse_GetCatalogLoot::FResponse_GetCatalogLoot(FRequestMetadata InRequestMet
 
 FString Traits_GetCatalogLoot::Name = TEXT("GetCatalogLoot");
 
+FHttpRequestPtr Traits_GetCatalogLoot::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetCatalogLoot(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FCatalogAPI::GetCatalogLootsAll(const FRequest_GetCatalogLootsAll& Request, const FDelegate_GetCatalogLootsAll& Delegate /*= FDelegate_GetCatalogLootsAll()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -2851,6 +2891,11 @@ FResponse_GetCatalogLootsAll::FResponse_GetCatalogLootsAll(FRequestMetadata InRe
 }
 
 FString Traits_GetCatalogLootsAll::Name = TEXT("GetCatalogLootsAll");
+
+FHttpRequestPtr Traits_GetCatalogLootsAll::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetCatalogLootsAll(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FCatalogAPI::GetCatalogPortalUseRuleset(const FRequest_GetCatalogPortalUseRuleset& Request, const FDelegate_GetCatalogPortalUseRuleset& Delegate /*= FDelegate_GetCatalogPortalUseRuleset()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -3169,6 +3214,11 @@ FResponse_GetCatalogPortalUseRuleset::FResponse_GetCatalogPortalUseRuleset(FRequ
 
 FString Traits_GetCatalogPortalUseRuleset::Name = TEXT("GetCatalogPortalUseRuleset");
 
+FHttpRequestPtr Traits_GetCatalogPortalUseRuleset::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetCatalogPortalUseRuleset(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FCatalogAPI::GetCatalogPortalUseRulesetsAll(const FRequest_GetCatalogPortalUseRulesetsAll& Request, const FDelegate_GetCatalogPortalUseRulesetsAll& Delegate /*= FDelegate_GetCatalogPortalUseRulesetsAll()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -3480,6 +3530,11 @@ FResponse_GetCatalogPortalUseRulesetsAll::FResponse_GetCatalogPortalUseRulesetsA
 }
 
 FString Traits_GetCatalogPortalUseRulesetsAll::Name = TEXT("GetCatalogPortalUseRulesetsAll");
+
+FHttpRequestPtr Traits_GetCatalogPortalUseRulesetsAll::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetCatalogPortalUseRulesetsAll(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FCatalogAPI::GetCatalogPricePoint(const FRequest_GetCatalogPricePoint& Request, const FDelegate_GetCatalogPricePoint& Delegate /*= FDelegate_GetCatalogPricePoint()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -3798,6 +3853,11 @@ FResponse_GetCatalogPricePoint::FResponse_GetCatalogPricePoint(FRequestMetadata 
 
 FString Traits_GetCatalogPricePoint::Name = TEXT("GetCatalogPricePoint");
 
+FHttpRequestPtr Traits_GetCatalogPricePoint::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetCatalogPricePoint(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FCatalogAPI::GetCatalogPricePointsAll(const FRequest_GetCatalogPricePointsAll& Request, const FDelegate_GetCatalogPricePointsAll& Delegate /*= FDelegate_GetCatalogPricePointsAll()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -4109,6 +4169,11 @@ FResponse_GetCatalogPricePointsAll::FResponse_GetCatalogPricePointsAll(FRequestM
 }
 
 FString Traits_GetCatalogPricePointsAll::Name = TEXT("GetCatalogPricePointsAll");
+
+FHttpRequestPtr Traits_GetCatalogPricePointsAll::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetCatalogPricePointsAll(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FCatalogAPI::GetCatalogTimeFrame(const FRequest_GetCatalogTimeFrame& Request, const FDelegate_GetCatalogTimeFrame& Delegate /*= FDelegate_GetCatalogTimeFrame()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -4427,6 +4492,11 @@ FResponse_GetCatalogTimeFrame::FResponse_GetCatalogTimeFrame(FRequestMetadata In
 
 FString Traits_GetCatalogTimeFrame::Name = TEXT("GetCatalogTimeFrame");
 
+FHttpRequestPtr Traits_GetCatalogTimeFrame::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetCatalogTimeFrame(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FCatalogAPI::GetCatalogTimeFramesAll(const FRequest_GetCatalogTimeFramesAll& Request, const FDelegate_GetCatalogTimeFramesAll& Delegate /*= FDelegate_GetCatalogTimeFramesAll()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -4738,6 +4808,11 @@ FResponse_GetCatalogTimeFramesAll::FResponse_GetCatalogTimeFramesAll(FRequestMet
 }
 
 FString Traits_GetCatalogTimeFramesAll::Name = TEXT("GetCatalogTimeFramesAll");
+
+FHttpRequestPtr Traits_GetCatalogTimeFramesAll::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetCatalogTimeFramesAll(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FCatalogAPI::GetCatalogVendor(const FRequest_GetCatalogVendor& Request, const FDelegate_GetCatalogVendor& Delegate /*= FDelegate_GetCatalogVendor()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -5056,6 +5131,11 @@ FResponse_GetCatalogVendor::FResponse_GetCatalogVendor(FRequestMetadata InReques
 
 FString Traits_GetCatalogVendor::Name = TEXT("GetCatalogVendor");
 
+FHttpRequestPtr Traits_GetCatalogVendor::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetCatalogVendor(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FCatalogAPI::GetCatalogVendorsAll(const FRequest_GetCatalogVendorsAll& Request, const FDelegate_GetCatalogVendorsAll& Delegate /*= FDelegate_GetCatalogVendorsAll()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -5368,6 +5448,11 @@ FResponse_GetCatalogVendorsAll::FResponse_GetCatalogVendorsAll(FRequestMetadata 
 
 FString Traits_GetCatalogVendorsAll::Name = TEXT("GetCatalogVendorsAll");
 
+FHttpRequestPtr Traits_GetCatalogVendorsAll::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetCatalogVendorsAll(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FCatalogAPI::GetCatalogXpAll(const FRequest_GetCatalogXpAll& Request, const FDelegate_GetCatalogXpAll& Delegate /*= FDelegate_GetCatalogXpAll()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -5679,6 +5764,11 @@ FResponse_GetCatalogXpAll::FResponse_GetCatalogXpAll(FRequestMetadata InRequestM
 }
 
 FString Traits_GetCatalogXpAll::Name = TEXT("GetCatalogXpAll");
+
+FHttpRequestPtr Traits_GetCatalogXpAll::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetCatalogXpAll(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FCatalogAPI::GetCatalogXpTable(const FRequest_GetCatalogXpTable& Request, const FDelegate_GetCatalogXpTable& Delegate /*= FDelegate_GetCatalogXpTable()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -5996,6 +6086,11 @@ FResponse_GetCatalogXpTable::FResponse_GetCatalogXpTable(FRequestMetadata InRequ
 }
 
 FString Traits_GetCatalogXpTable::Name = TEXT("GetCatalogXpTable");
+
+FHttpRequestPtr Traits_GetCatalogXpTable::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetCatalogXpTable(InRequest, InDelegate, InPriority);
+}
 
 
 }

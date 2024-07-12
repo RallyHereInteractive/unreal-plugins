@@ -299,6 +299,11 @@ FResponse_CreatePlatformUserById::FResponse_CreatePlatformUserById(FRequestMetad
 
 FString Traits_CreatePlatformUserById::Name = TEXT("CreatePlatformUserById");
 
+FHttpRequestPtr Traits_CreatePlatformUserById::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->CreatePlatformUserById(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FUsersAPI::DequeueMeForPurge(const FRequest_DequeueMeForPurge& Request, const FDelegate_DequeueMeForPurge& Delegate /*= FDelegate_DequeueMeForPurge()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -483,6 +488,11 @@ FResponse_DequeueMeForPurge::FResponse_DequeueMeForPurge(FRequestMetadata InRequ
 }
 
 FString Traits_DequeueMeForPurge::Name = TEXT("DequeueMeForPurge");
+
+FHttpRequestPtr Traits_DequeueMeForPurge::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->DequeueMeForPurge(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FUsersAPI::DequeuePersonForPurge(const FRequest_DequeuePersonForPurge& Request, const FDelegate_DequeuePersonForPurge& Delegate /*= FDelegate_DequeuePersonForPurge()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -687,6 +697,11 @@ FResponse_DequeuePersonForPurge::FResponse_DequeuePersonForPurge(FRequestMetadat
 }
 
 FString Traits_DequeuePersonForPurge::Name = TEXT("DequeuePersonForPurge");
+
+FHttpRequestPtr Traits_DequeuePersonForPurge::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->DequeuePersonForPurge(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FUsersAPI::DisableCrossProgression(const FRequest_DisableCrossProgression& Request, const FDelegate_DisableCrossProgression& Delegate /*= FDelegate_DisableCrossProgression()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -901,6 +916,11 @@ FResponse_DisableCrossProgression::FResponse_DisableCrossProgression(FRequestMet
 
 FString Traits_DisableCrossProgression::Name = TEXT("DisableCrossProgression");
 
+FHttpRequestPtr Traits_DisableCrossProgression::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->DisableCrossProgression(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FUsersAPI::EnableCrossProgression(const FRequest_EnableCrossProgression& Request, const FDelegate_EnableCrossProgression& Delegate /*= FDelegate_EnableCrossProgression()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -1113,6 +1133,11 @@ FResponse_EnableCrossProgression::FResponse_EnableCrossProgression(FRequestMetad
 }
 
 FString Traits_EnableCrossProgression::Name = TEXT("EnableCrossProgression");
+
+FHttpRequestPtr Traits_EnableCrossProgression::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->EnableCrossProgression(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FUsersAPI::FindPlatformUserById(const FRequest_FindPlatformUserById& Request, const FDelegate_FindPlatformUserById& Delegate /*= FDelegate_FindPlatformUserById()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -1385,6 +1410,11 @@ FResponse_FindPlatformUserById::FResponse_FindPlatformUserById(FRequestMetadata 
 
 FString Traits_FindPlatformUserById::Name = TEXT("FindPlatformUserById");
 
+FHttpRequestPtr Traits_FindPlatformUserById::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->FindPlatformUserById(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FUsersAPI::GetAllRoles(const FRequest_GetAllRoles& Request, const FDelegate_GetAllRoles& Delegate /*= FDelegate_GetAllRoles()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -1625,6 +1655,11 @@ FResponse_GetAllRoles::FResponse_GetAllRoles(FRequestMetadata InRequestMetadata)
 }
 
 FString Traits_GetAllRoles::Name = TEXT("GetAllRoles");
+
+FHttpRequestPtr Traits_GetAllRoles::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetAllRoles(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FUsersAPI::GetLinkHistory(const FRequest_GetLinkHistory& Request, const FDelegate_GetLinkHistory& Delegate /*= FDelegate_GetLinkHistory()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -1939,6 +1974,11 @@ FResponse_GetLinkHistory::FResponse_GetLinkHistory(FRequestMetadata InRequestMet
 
 FString Traits_GetLinkHistory::Name = TEXT("GetLinkHistory");
 
+FHttpRequestPtr Traits_GetLinkHistory::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetLinkHistory(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FUsersAPI::GetLoginHistory(const FRequest_GetLoginHistory& Request, const FDelegate_GetLoginHistory& Delegate /*= FDelegate_GetLoginHistory()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -2228,6 +2268,11 @@ FResponse_GetLoginHistory::FResponse_GetLoginHistory(FRequestMetadata InRequestM
 
 FString Traits_GetLoginHistory::Name = TEXT("GetLoginHistory");
 
+FHttpRequestPtr Traits_GetLoginHistory::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetLoginHistory(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FUsersAPI::GetPerson(const FRequest_GetPerson& Request, const FDelegate_GetPerson& Delegate /*= FDelegate_GetPerson()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -2497,6 +2542,11 @@ FResponse_GetPerson::FResponse_GetPerson(FRequestMetadata InRequestMetadata) :
 }
 
 FString Traits_GetPerson::Name = TEXT("GetPerson");
+
+FHttpRequestPtr Traits_GetPerson::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPerson(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FUsersAPI::GetPersonEmailList(const FRequest_GetPersonEmailList& Request, const FDelegate_GetPersonEmailList& Delegate /*= FDelegate_GetPersonEmailList()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -2768,6 +2818,11 @@ FResponse_GetPersonEmailList::FResponse_GetPersonEmailList(FRequestMetadata InRe
 
 FString Traits_GetPersonEmailList::Name = TEXT("GetPersonEmailList");
 
+FHttpRequestPtr Traits_GetPersonEmailList::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPersonEmailList(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FUsersAPI::GetPersonEmailListForSelf(const FRequest_GetPersonEmailListForSelf& Request, const FDelegate_GetPersonEmailListForSelf& Delegate /*= FDelegate_GetPersonEmailListForSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -3009,6 +3064,11 @@ FResponse_GetPersonEmailListForSelf::FResponse_GetPersonEmailListForSelf(FReques
 
 FString Traits_GetPersonEmailListForSelf::Name = TEXT("GetPersonEmailListForSelf");
 
+FHttpRequestPtr Traits_GetPersonEmailListForSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPersonEmailListForSelf(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FUsersAPI::GetPersonForSelf(const FRequest_GetPersonForSelf& Request, const FDelegate_GetPersonForSelf& Delegate /*= FDelegate_GetPersonForSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -3249,6 +3309,11 @@ FResponse_GetPersonForSelf::FResponse_GetPersonForSelf(FRequestMetadata InReques
 }
 
 FString Traits_GetPersonForSelf::Name = TEXT("GetPersonForSelf");
+
+FHttpRequestPtr Traits_GetPersonForSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPersonForSelf(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FUsersAPI::GetPlayerIdFromPlayerUuid(const FRequest_GetPlayerIdFromPlayerUuid& Request, const FDelegate_GetPlayerIdFromPlayerUuid& Delegate /*= FDelegate_GetPlayerIdFromPlayerUuid()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -3520,6 +3585,11 @@ FResponse_GetPlayerIdFromPlayerUuid::FResponse_GetPlayerIdFromPlayerUuid(FReques
 
 FString Traits_GetPlayerIdFromPlayerUuid::Name = TEXT("GetPlayerIdFromPlayerUuid");
 
+FHttpRequestPtr Traits_GetPlayerIdFromPlayerUuid::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPlayerIdFromPlayerUuid(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FUsersAPI::GetPlayerIdFromPlayerUuidForSelf(const FRequest_GetPlayerIdFromPlayerUuidForSelf& Request, const FDelegate_GetPlayerIdFromPlayerUuidForSelf& Delegate /*= FDelegate_GetPlayerIdFromPlayerUuidForSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -3784,6 +3854,11 @@ FResponse_GetPlayerIdFromPlayerUuidForSelf::FResponse_GetPlayerIdFromPlayerUuidF
 }
 
 FString Traits_GetPlayerIdFromPlayerUuidForSelf::Name = TEXT("GetPlayerIdFromPlayerUuidForSelf");
+
+FHttpRequestPtr Traits_GetPlayerIdFromPlayerUuidForSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPlayerIdFromPlayerUuidForSelf(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FUsersAPI::GetPlayerLinkedPortals(const FRequest_GetPlayerLinkedPortals& Request, const FDelegate_GetPlayerLinkedPortals& Delegate /*= FDelegate_GetPlayerLinkedPortals()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -4055,6 +4130,11 @@ FResponse_GetPlayerLinkedPortals::FResponse_GetPlayerLinkedPortals(FRequestMetad
 
 FString Traits_GetPlayerLinkedPortals::Name = TEXT("GetPlayerLinkedPortals");
 
+FHttpRequestPtr Traits_GetPlayerLinkedPortals::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPlayerLinkedPortals(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FUsersAPI::GetPlayerLinks(const FRequest_GetPlayerLinks& Request, const FDelegate_GetPlayerLinks& Delegate /*= FDelegate_GetPlayerLinks()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -4325,6 +4405,11 @@ FResponse_GetPlayerLinks::FResponse_GetPlayerLinks(FRequestMetadata InRequestMet
 
 FString Traits_GetPlayerLinks::Name = TEXT("GetPlayerLinks");
 
+FHttpRequestPtr Traits_GetPlayerLinks::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPlayerLinks(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FUsersAPI::GetPlayerLinksForSelf(const FRequest_GetPlayerLinksForSelf& Request, const FDelegate_GetPlayerLinksForSelf& Delegate /*= FDelegate_GetPlayerLinksForSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -4589,6 +4674,11 @@ FResponse_GetPlayerLinksForSelf::FResponse_GetPlayerLinksForSelf(FRequestMetadat
 }
 
 FString Traits_GetPlayerLinksForSelf::Name = TEXT("GetPlayerLinksForSelf");
+
+FHttpRequestPtr Traits_GetPlayerLinksForSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPlayerLinksForSelf(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FUsersAPI::GetPlayerUuidFromPlayerId(const FRequest_GetPlayerUuidFromPlayerId& Request, const FDelegate_GetPlayerUuidFromPlayerId& Delegate /*= FDelegate_GetPlayerUuidFromPlayerId()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -4860,6 +4950,11 @@ FResponse_GetPlayerUuidFromPlayerId::FResponse_GetPlayerUuidFromPlayerId(FReques
 
 FString Traits_GetPlayerUuidFromPlayerId::Name = TEXT("GetPlayerUuidFromPlayerId");
 
+FHttpRequestPtr Traits_GetPlayerUuidFromPlayerId::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPlayerUuidFromPlayerId(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FUsersAPI::GetPlayerUuidFromPlayerIdForSelf(const FRequest_GetPlayerUuidFromPlayerIdForSelf& Request, const FDelegate_GetPlayerUuidFromPlayerIdForSelf& Delegate /*= FDelegate_GetPlayerUuidFromPlayerIdForSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -5101,6 +5196,11 @@ FResponse_GetPlayerUuidFromPlayerIdForSelf::FResponse_GetPlayerUuidFromPlayerIdF
 
 FString Traits_GetPlayerUuidFromPlayerIdForSelf::Name = TEXT("GetPlayerUuidFromPlayerIdForSelf");
 
+FHttpRequestPtr Traits_GetPlayerUuidFromPlayerIdForSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPlayerUuidFromPlayerIdForSelf(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FUsersAPI::GetPlayerUuidFromPlayerIdForSelfV2(const FRequest_GetPlayerUuidFromPlayerIdForSelfV2& Request, const FDelegate_GetPlayerUuidFromPlayerIdForSelfV2& Delegate /*= FDelegate_GetPlayerUuidFromPlayerIdForSelfV2()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -5341,6 +5441,11 @@ FResponse_GetPlayerUuidFromPlayerIdForSelfV2::FResponse_GetPlayerUuidFromPlayerI
 }
 
 FString Traits_GetPlayerUuidFromPlayerIdForSelfV2::Name = TEXT("GetPlayerUuidFromPlayerIdForSelfV2");
+
+FHttpRequestPtr Traits_GetPlayerUuidFromPlayerIdForSelfV2::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPlayerUuidFromPlayerIdForSelfV2(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FUsersAPI::GetPlayerUuidFromPlayerIdV2(const FRequest_GetPlayerUuidFromPlayerIdV2& Request, const FDelegate_GetPlayerUuidFromPlayerIdV2& Delegate /*= FDelegate_GetPlayerUuidFromPlayerIdV2()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -5611,6 +5716,11 @@ FResponse_GetPlayerUuidFromPlayerIdV2::FResponse_GetPlayerUuidFromPlayerIdV2(FRe
 }
 
 FString Traits_GetPlayerUuidFromPlayerIdV2::Name = TEXT("GetPlayerUuidFromPlayerIdV2");
+
+FHttpRequestPtr Traits_GetPlayerUuidFromPlayerIdV2::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPlayerUuidFromPlayerIdV2(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FUsersAPI::GetPlayersPaged(const FRequest_GetPlayersPaged& Request, const FDelegate_GetPlayersPaged& Delegate /*= FDelegate_GetPlayersPaged()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -5913,6 +6023,11 @@ FResponse_GetPlayersPaged::FResponse_GetPlayersPaged(FRequestMetadata InRequestM
 
 FString Traits_GetPlayersPaged::Name = TEXT("GetPlayersPaged");
 
+FHttpRequestPtr Traits_GetPlayersPaged::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPlayersPaged(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FUsersAPI::GetQueuePurgeStatusForMe(const FRequest_GetQueuePurgeStatusForMe& Request, const FDelegate_GetQueuePurgeStatusForMe& Delegate /*= FDelegate_GetQueuePurgeStatusForMe()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -6177,6 +6292,11 @@ FResponse_GetQueuePurgeStatusForMe::FResponse_GetQueuePurgeStatusForMe(FRequestM
 }
 
 FString Traits_GetQueuePurgeStatusForMe::Name = TEXT("GetQueuePurgeStatusForMe");
+
+FHttpRequestPtr Traits_GetQueuePurgeStatusForMe::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetQueuePurgeStatusForMe(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FUsersAPI::GetQueuePurgeStatusForPerson(const FRequest_GetQueuePurgeStatusForPerson& Request, const FDelegate_GetQueuePurgeStatusForPerson& Delegate /*= FDelegate_GetQueuePurgeStatusForPerson()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -6472,6 +6592,11 @@ FResponse_GetQueuePurgeStatusForPerson::FResponse_GetQueuePurgeStatusForPerson(F
 
 FString Traits_GetQueuePurgeStatusForPerson::Name = TEXT("GetQueuePurgeStatusForPerson");
 
+FHttpRequestPtr Traits_GetQueuePurgeStatusForPerson::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetQueuePurgeStatusForPerson(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FUsersAPI::Link(const FRequest_Link& Request, const FDelegate_Link& Delegate /*= FDelegate_Link()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -6684,6 +6809,11 @@ FResponse_Link::FResponse_Link(FRequestMetadata InRequestMetadata) :
 }
 
 FString Traits_Link::Name = TEXT("Link");
+
+FHttpRequestPtr Traits_Link::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->Link(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FUsersAPI::LookupPlayerByPortal(const FRequest_LookupPlayerByPortal& Request, const FDelegate_LookupPlayerByPortal& Delegate /*= FDelegate_LookupPlayerByPortal()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -6945,6 +7075,11 @@ FResponse_LookupPlayerByPortal::FResponse_LookupPlayerByPortal(FRequestMetadata 
 }
 
 FString Traits_LookupPlayerByPortal::Name = TEXT("LookupPlayerByPortal");
+
+FHttpRequestPtr Traits_LookupPlayerByPortal::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->LookupPlayerByPortal(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FUsersAPI::QueueMeForPurge(const FRequest_QueueMeForPurge& Request, const FDelegate_QueueMeForPurge& Delegate /*= FDelegate_QueueMeForPurge()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -7246,6 +7381,11 @@ FResponse_QueueMeForPurge::FResponse_QueueMeForPurge(FRequestMetadata InRequestM
 
 FString Traits_QueueMeForPurge::Name = TEXT("QueueMeForPurge");
 
+FHttpRequestPtr Traits_QueueMeForPurge::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->QueueMeForPurge(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FUsersAPI::QueuePersonForPurge(const FRequest_QueuePersonForPurge& Request, const FDelegate_QueuePersonForPurge& Delegate /*= FDelegate_QueuePersonForPurge()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -7527,6 +7667,11 @@ FResponse_QueuePersonForPurge::FResponse_QueuePersonForPurge(FRequestMetadata In
 
 FString Traits_QueuePersonForPurge::Name = TEXT("QueuePersonForPurge");
 
+FHttpRequestPtr Traits_QueuePersonForPurge::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->QueuePersonForPurge(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FUsersAPI::Unlink(const FRequest_Unlink& Request, const FDelegate_Unlink& Delegate /*= FDelegate_Unlink()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -7739,6 +7884,11 @@ FResponse_Unlink::FResponse_Unlink(FRequestMetadata InRequestMetadata) :
 }
 
 FString Traits_Unlink::Name = TEXT("Unlink");
+
+FHttpRequestPtr Traits_Unlink::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->Unlink(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FUsersAPI::UpdatePerson(const FRequest_UpdatePerson& Request, const FDelegate_UpdatePerson& Delegate /*= FDelegate_UpdatePerson()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -8021,6 +8171,11 @@ FResponse_UpdatePerson::FResponse_UpdatePerson(FRequestMetadata InRequestMetadat
 
 FString Traits_UpdatePerson::Name = TEXT("UpdatePerson");
 
+FHttpRequestPtr Traits_UpdatePerson::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->UpdatePerson(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FUsersAPI::UpdatePersonEmailList(const FRequest_UpdatePersonEmailList& Request, const FDelegate_UpdatePersonEmailList& Delegate /*= FDelegate_UpdatePersonEmailList()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -8302,6 +8457,11 @@ FResponse_UpdatePersonEmailList::FResponse_UpdatePersonEmailList(FRequestMetadat
 
 FString Traits_UpdatePersonEmailList::Name = TEXT("UpdatePersonEmailList");
 
+FHttpRequestPtr Traits_UpdatePersonEmailList::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->UpdatePersonEmailList(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FUsersAPI::UpdatePersonEmailListForSelf(const FRequest_UpdatePersonEmailListForSelf& Request, const FDelegate_UpdatePersonEmailListForSelf& Delegate /*= FDelegate_UpdatePersonEmailListForSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -8577,6 +8737,11 @@ FResponse_UpdatePersonEmailListForSelf::FResponse_UpdatePersonEmailListForSelf(F
 }
 
 FString Traits_UpdatePersonEmailListForSelf::Name = TEXT("UpdatePersonEmailListForSelf");
+
+FHttpRequestPtr Traits_UpdatePersonEmailListForSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->UpdatePersonEmailListForSelf(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FUsersAPI::UpdatePersonForSelf(const FRequest_UpdatePersonForSelf& Request, const FDelegate_UpdatePersonForSelf& Delegate /*= FDelegate_UpdatePersonForSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -8854,6 +9019,11 @@ FResponse_UpdatePersonForSelf::FResponse_UpdatePersonForSelf(FRequestMetadata In
 
 FString Traits_UpdatePersonForSelf::Name = TEXT("UpdatePersonForSelf");
 
+FHttpRequestPtr Traits_UpdatePersonForSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->UpdatePersonForSelf(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FUsersAPI::UpsertContact(const FRequest_UpsertContact& Request, const FDelegate_UpsertContact& Delegate /*= FDelegate_UpsertContact()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -9129,6 +9299,11 @@ FResponse_UpsertContact::FResponse_UpsertContact(FRequestMetadata InRequestMetad
 }
 
 FString Traits_UpsertContact::Name = TEXT("UpsertContact");
+
+FHttpRequestPtr Traits_UpsertContact::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->UpsertContact(InRequest, InDelegate, InPriority);
+}
 
 
 }

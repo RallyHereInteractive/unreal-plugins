@@ -22,41 +22,11 @@ using RallyHereAPI::ToStringFormatArg;
 using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
-struct FRequest_GetAppSettingsAll;
-struct FResponse_GetAppSettingsAll;
-struct FRequest_GetAppSettingsClient;
-struct FResponse_GetAppSettingsClient;
-struct FRequest_GetAppSettingsServer;
-struct FResponse_GetAppSettingsServer;
-struct FRequest_GetKvsV2;
-struct FResponse_GetKvsV2;
+// forward declaration
+class FConfigAPI;
 
-DECLARE_DELEGATE_OneParam(FDelegate_GetAppSettingsAll, const FResponse_GetAppSettingsAll&);
-DECLARE_DELEGATE_OneParam(FDelegate_GetAppSettingsClient, const FResponse_GetAppSettingsClient&);
-DECLARE_DELEGATE_OneParam(FDelegate_GetAppSettingsServer, const FResponse_GetAppSettingsServer&);
-DECLARE_DELEGATE_OneParam(FDelegate_GetKvsV2, const FResponse_GetKvsV2&);
-
-class RALLYHEREAPI_API FConfigAPI : public FAPI
-{
-public:
-	FConfigAPI();
-	virtual ~FConfigAPI();
-
-	FHttpRequestPtr GetAppSettingsAll(const FRequest_GetAppSettingsAll& Request, const FDelegate_GetAppSettingsAll& Delegate = FDelegate_GetAppSettingsAll(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr GetAppSettingsClient(const FRequest_GetAppSettingsClient& Request, const FDelegate_GetAppSettingsClient& Delegate = FDelegate_GetAppSettingsClient(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr GetAppSettingsServer(const FRequest_GetAppSettingsServer& Request, const FDelegate_GetAppSettingsServer& Delegate = FDelegate_GetAppSettingsServer(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr GetKvsV2(const FRequest_GetKvsV2& Request, const FDelegate_GetKvsV2& Delegate = FDelegate_GetKvsV2(), int32 Priority = DefaultRallyHereAPIPriority);
-
-private:
-	void OnGetAppSettingsAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAppSettingsAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnGetAppSettingsClientResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAppSettingsClient Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnGetAppSettingsServerResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAppSettingsServer Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnGetKvsV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetKvsV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-
-};
-
-/* Get App Settings All
- *
+/**
+ * @brief Get App Settings All
  * ***DEPRECATED*** Please use /v2/kv instead.  
  * 
  * If authenticated and with correct permissions, will return all KVs. Otherwise it will only return non secret KVs.
@@ -65,12 +35,19 @@ struct RALLYHEREAPI_API FRequest_GetAppSettingsAll : public FRequest
 {
 	FRequest_GetAppSettingsAll();
 	virtual ~FRequest_GetAppSettingsAll() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	/* If specified, will only return the KVs with the specified keys */
 	TOptional<TArray<FString>> KeysToInclude;
@@ -80,42 +57,73 @@ struct RALLYHEREAPI_API FRequest_GetAppSettingsAll : public FRequest
 	TOptional<FString> IfMatch;
 };
 
+/** The response type for FRequest_GetAppSettingsAll */
 struct RALLYHEREAPI_API FResponse_GetAppSettingsAll : public FResponse
 {
 	FResponse_GetAppSettingsAll(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GetAppSettingsAll() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	bool ParseHeaders() override;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 protected:
+	/** Variant type representing the potential content responses for this call */
 	typedef TVariant<FRHAPI_KVsResponseV1, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
 	ContentVariantType ParsedContent;
 
+	/** A parsed map of the headers from the request */
 	TMap<FString, FString> HeadersMap;
 
 public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
 	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
 	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
 	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_KVsResponseV1 Content;
 	
-	// Default Response Headers
+	/** Default Response Headers */
 	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetHeader() or GetHeader<>() instead.")
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
 	TOptional<FString> ETag;
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
 	const FRHAPI_KVsResponseV1* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_KVsResponseV1>(); }
+	/** @brief Attempt to retrieve a specific header of the default response
 	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
 
 	// Individual Response Helpers	
@@ -141,19 +149,36 @@ public:
 
 };
 
+/** The delegate class for FRequest_GetAppSettingsAll */
+DECLARE_DELEGATE_OneParam(FDelegate_GetAppSettingsAll, const FResponse_GetAppSettingsAll&);
+
+/** @brief A helper metadata object for GetAppSettingsAll that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_GetAppSettingsAll
 {
+	/** The request type */
 	typedef FRequest_GetAppSettingsAll Request;
+	/** The response type */
 	typedef FResponse_GetAppSettingsAll Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_GetAppSettingsAll Delegate;
+	/** The API object that supports this API call */
 	typedef FConfigAPI API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetAppSettingsAll(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
 
-/* Get App Settings Client
- *
+/**
+ * @brief Get App Settings Client
  * ***DEPRECATED*** Please use /v2/kv instead.  
  * 
  * Returns app settings that are configured to be available to the client.
@@ -162,9 +187,14 @@ struct RALLYHEREAPI_API FRequest_GetAppSettingsClient : public FRequest
 {
 	FRequest_GetAppSettingsClient();
 	virtual ~FRequest_GetAppSettingsClient() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
 
 	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
@@ -173,42 +203,73 @@ struct RALLYHEREAPI_API FRequest_GetAppSettingsClient : public FRequest
 	TOptional<FString> IfMatch;
 };
 
+/** The response type for FRequest_GetAppSettingsClient */
 struct RALLYHEREAPI_API FResponse_GetAppSettingsClient : public FResponse
 {
 	FResponse_GetAppSettingsClient(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GetAppSettingsClient() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	bool ParseHeaders() override;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 protected:
+	/** Variant type representing the potential content responses for this call */
 	typedef TVariant<TArray<FRHAPI_KVV1>, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
 	ContentVariantType ParsedContent;
 
+	/** A parsed map of the headers from the request */
 	TMap<FString, FString> HeadersMap;
 
 public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
 	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
 	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
 	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	TArray<FRHAPI_KVV1> Content;
 	
-	// Default Response Headers
+	/** Default Response Headers */
 	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetHeader() or GetHeader<>() instead.")
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
 	TOptional<FString> ETag;
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
 	const TArray<FRHAPI_KVV1>* TryGetDefaultContent() const { return ParsedContent.TryGet<TArray<FRHAPI_KVV1>>(); }
+	/** @brief Attempt to retrieve a specific header of the default response
 	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
 
 	// Individual Response Helpers	
@@ -234,19 +295,36 @@ public:
 
 };
 
+/** The delegate class for FRequest_GetAppSettingsClient */
+DECLARE_DELEGATE_OneParam(FDelegate_GetAppSettingsClient, const FResponse_GetAppSettingsClient&);
+
+/** @brief A helper metadata object for GetAppSettingsClient that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_GetAppSettingsClient
 {
+	/** The request type */
 	typedef FRequest_GetAppSettingsClient Request;
+	/** The response type */
 	typedef FResponse_GetAppSettingsClient Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_GetAppSettingsClient Delegate;
+	/** The API object that supports this API call */
 	typedef FConfigAPI API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetAppSettingsClient(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
 
-/* Get App Settings Server
- *
+/**
+ * @brief Get App Settings Server
  * ***DEPRECATED*** Please use /v2/kv instead.  
  * 
  * Returns app settings that are configured to be available to the server. 
@@ -257,12 +335,19 @@ struct RALLYHEREAPI_API FRequest_GetAppSettingsServer : public FRequest
 {
 	FRequest_GetAppSettingsServer();
 	virtual ~FRequest_GetAppSettingsServer() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
 	TOptional<FString> IfNoneMatch;
@@ -270,42 +355,73 @@ struct RALLYHEREAPI_API FRequest_GetAppSettingsServer : public FRequest
 	TOptional<FString> IfMatch;
 };
 
+/** The response type for FRequest_GetAppSettingsServer */
 struct RALLYHEREAPI_API FResponse_GetAppSettingsServer : public FResponse
 {
 	FResponse_GetAppSettingsServer(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GetAppSettingsServer() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	bool ParseHeaders() override;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 protected:
+	/** Variant type representing the potential content responses for this call */
 	typedef TVariant<TArray<FRHAPI_KVV1>, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
 	ContentVariantType ParsedContent;
 
+	/** A parsed map of the headers from the request */
 	TMap<FString, FString> HeadersMap;
 
 public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
 	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
 	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
 	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	TArray<FRHAPI_KVV1> Content;
 	
-	// Default Response Headers
+	/** Default Response Headers */
 	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetHeader() or GetHeader<>() instead.")
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
 	TOptional<FString> ETag;
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
 	const TArray<FRHAPI_KVV1>* TryGetDefaultContent() const { return ParsedContent.TryGet<TArray<FRHAPI_KVV1>>(); }
+	/** @brief Attempt to retrieve a specific header of the default response
 	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
 
 	// Individual Response Helpers	
@@ -336,19 +452,36 @@ public:
 
 };
 
+/** The delegate class for FRequest_GetAppSettingsServer */
+DECLARE_DELEGATE_OneParam(FDelegate_GetAppSettingsServer, const FResponse_GetAppSettingsServer&);
+
+/** @brief A helper metadata object for GetAppSettingsServer that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_GetAppSettingsServer
 {
+	/** The request type */
 	typedef FRequest_GetAppSettingsServer Request;
+	/** The response type */
 	typedef FResponse_GetAppSettingsServer Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_GetAppSettingsServer Delegate;
+	/** The API object that supports this API call */
 	typedef FConfigAPI API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetAppSettingsServer(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
 
-/* Get Kvs V2
- *
+/**
+ * @brief Get Kvs V2
  * Get All KVs and Secret KVs.  Regular KVs are always returned.
  * 
  * Required permissions for secret KVs: : `config:secret_kvs:read`
@@ -357,12 +490,19 @@ struct RALLYHEREAPI_API FRequest_GetKvsV2 : public FRequest
 {
 	FRequest_GetKvsV2();
 	virtual ~FRequest_GetKvsV2() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	/* If specified, will only return the KVs with the specified keys */
 	TOptional<TArray<FString>> KeysToInclude;
@@ -372,42 +512,73 @@ struct RALLYHEREAPI_API FRequest_GetKvsV2 : public FRequest
 	TOptional<FString> IfMatch;
 };
 
+/** The response type for FRequest_GetKvsV2 */
 struct RALLYHEREAPI_API FResponse_GetKvsV2 : public FResponse
 {
 	FResponse_GetKvsV2(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GetKvsV2() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	bool ParseHeaders() override;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 protected:
+	/** Variant type representing the potential content responses for this call */
 	typedef TVariant<FRHAPI_KVsResponseV2, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
 	ContentVariantType ParsedContent;
 
+	/** A parsed map of the headers from the request */
 	TMap<FString, FString> HeadersMap;
 
 public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
 	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
 	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
 	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_KVsResponseV2 Content;
 	
-	// Default Response Headers
+	/** Default Response Headers */
 	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetHeader() or GetHeader<>() instead.")
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
 	TOptional<FString> ETag;
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
 	const FRHAPI_KVsResponseV2* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_KVsResponseV2>(); }
+	/** @brief Attempt to retrieve a specific header of the default response
 	const FString* TryGetDefaultHeader_ETag() const { return TryGetHeader(TEXT("ETag")); }
 
 	// Individual Response Helpers	
@@ -433,16 +604,55 @@ public:
 
 };
 
+/** The delegate class for FRequest_GetKvsV2 */
+DECLARE_DELEGATE_OneParam(FDelegate_GetKvsV2, const FResponse_GetKvsV2&);
+
+/** @brief A helper metadata object for GetKvsV2 that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_GetKvsV2
 {
+	/** The request type */
 	typedef FRequest_GetKvsV2 Request;
+	/** The response type */
 	typedef FResponse_GetKvsV2 Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_GetKvsV2 Delegate;
+	/** The API object that supports this API call */
 	typedef FConfigAPI API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetKvsV2(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
+
+
+/** The API class itself, which will handle calls to */
+class RALLYHEREAPI_API FConfigAPI : public FAPI
+{
+public:
+	FConfigAPI();
+	virtual ~FConfigAPI();
+
+	FHttpRequestPtr GetAppSettingsAll(const FRequest_GetAppSettingsAll& Request, const FDelegate_GetAppSettingsAll& Delegate = FDelegate_GetAppSettingsAll(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetAppSettingsClient(const FRequest_GetAppSettingsClient& Request, const FDelegate_GetAppSettingsClient& Delegate = FDelegate_GetAppSettingsClient(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetAppSettingsServer(const FRequest_GetAppSettingsServer& Request, const FDelegate_GetAppSettingsServer& Delegate = FDelegate_GetAppSettingsServer(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetKvsV2(const FRequest_GetKvsV2& Request, const FDelegate_GetKvsV2& Delegate = FDelegate_GetKvsV2(), int32 Priority = DefaultRallyHereAPIPriority);
+
+private:
+	void OnGetAppSettingsAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAppSettingsAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetAppSettingsClientResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAppSettingsClient Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetAppSettingsServerResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAppSettingsServer Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetKvsV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetKvsV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+
+};
+
 
 
 }

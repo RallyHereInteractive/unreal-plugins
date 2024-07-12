@@ -24,32 +24,1318 @@ using RallyHereAPI::ToStringFormatArg;
 using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
-struct FRequest_PlayeridCreateNotification;
-struct FResponse_PlayeridCreateNotification;
-struct FRequest_PlayeridCreateNotificationSelf;
-struct FResponse_PlayeridCreateNotificationSelf;
-struct FRequest_PlayeridGetNotificationById;
-struct FResponse_PlayeridGetNotificationById;
-struct FRequest_PlayeridGetNotificationByIdSelf;
-struct FResponse_PlayeridGetNotificationByIdSelf;
-struct FRequest_PlayeridGetNotificationsPage;
-struct FResponse_PlayeridGetNotificationsPage;
-struct FRequest_PlayeridGetNotificationsPageSelf;
-struct FResponse_PlayeridGetNotificationsPageSelf;
-struct FRequest_PlayeridLongPollForNotifications;
-struct FResponse_PlayeridLongPollForNotifications;
-struct FRequest_PlayeridLongPollForNotificationsSelf;
-struct FResponse_PlayeridLongPollForNotificationsSelf;
+// forward declaration
+class FPlayerIdNotificationAPI;
 
+/**
+ * @brief Create Notification
+ * Create new notification for client.  Requires permission to create for a different client
+ * 
+ * Required Permissions:
+ * 
+ * - For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:write`
+ * 
+ * - For the playerid themselves any of: `notification:playerid:self:*`, `notification:playerid:self:write`
+*/
+struct RALLYHEREAPI_API FRequest_PlayeridCreateNotification : public FRequest
+{
+	FRequest_PlayeridCreateNotification();
+	virtual ~FRequest_PlayeridCreateNotification() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	int32 PlayerId = 0;
+	FRHAPI_NotificationCreates NotificationCreates;
+};
+
+/** The response type for FRequest_PlayeridCreateNotification */
+struct RALLYHEREAPI_API FResponse_PlayeridCreateNotification : public FResponse
+{
+	FResponse_PlayeridCreateNotification(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_PlayeridCreateNotification() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_NotificationCreateResult, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_NotificationCreateResult Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_NotificationCreateResult* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_NotificationCreateResult>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_NotificationCreateResult& OutContent) const;
+
+	/* Response 400
+	 Error Codes: - bad_id - Passed client id is not a valid id 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 403
+	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 409
+	 Error Codes: - too_many_listening_to_single_client - An enumeration. 
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+	/* Response 503
+	 Error Codes: - connection_limit_reached - An enumeration. 
+	*/
+	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_PlayeridCreateNotification */
 DECLARE_DELEGATE_OneParam(FDelegate_PlayeridCreateNotification, const FResponse_PlayeridCreateNotification&);
+
+/** @brief A helper metadata object for PlayeridCreateNotification that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_PlayeridCreateNotification
+{
+	/** The request type */
+	typedef FRequest_PlayeridCreateNotification Request;
+	/** The response type */
+	typedef FResponse_PlayeridCreateNotification Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_PlayeridCreateNotification Delegate;
+	/** The API object that supports this API call */
+	typedef FPlayerIdNotificationAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Create Notification Self
+ * Create new notification for client.
+ * Required Permissions:
+ * 
+ * - For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:self:*`, `notification:playerid:self:write`, `notification:playerid:write`
+*/
+struct RALLYHEREAPI_API FRequest_PlayeridCreateNotificationSelf : public FRequest
+{
+	FRequest_PlayeridCreateNotificationSelf();
+	virtual ~FRequest_PlayeridCreateNotificationSelf() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FRHAPI_NotificationCreates NotificationCreates;
+};
+
+/** The response type for FRequest_PlayeridCreateNotificationSelf */
+struct RALLYHEREAPI_API FResponse_PlayeridCreateNotificationSelf : public FResponse
+{
+	FResponse_PlayeridCreateNotificationSelf(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_PlayeridCreateNotificationSelf() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_NotificationCreateResult, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_NotificationCreateResult Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_NotificationCreateResult* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_NotificationCreateResult>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_NotificationCreateResult& OutContent) const;
+
+	/* Response 400
+	 Error Codes: - bad_id - Passed client id is not a valid id 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 403
+	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 409
+	 Error Codes: - too_many_listening_to_single_client - An enumeration. 
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+	/* Response 503
+	 Error Codes: - connection_limit_reached - An enumeration. 
+	*/
+	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_PlayeridCreateNotificationSelf */
 DECLARE_DELEGATE_OneParam(FDelegate_PlayeridCreateNotificationSelf, const FResponse_PlayeridCreateNotificationSelf&);
+
+/** @brief A helper metadata object for PlayeridCreateNotificationSelf that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_PlayeridCreateNotificationSelf
+{
+	/** The request type */
+	typedef FRequest_PlayeridCreateNotificationSelf Request;
+	/** The response type */
+	typedef FResponse_PlayeridCreateNotificationSelf Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_PlayeridCreateNotificationSelf Delegate;
+	/** The API object that supports this API call */
+	typedef FPlayerIdNotificationAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Notification By Id
+ * Retrieve a single notification by id
+ * 
+ * This version can be used for any client provided its id (with proper permissions)
+ * 
+ * Required Permissions:
+ * 
+ * - For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:read`
+ * 
+ * - For the playerid themselves any of: `notification:playerid:self:*`, `notification:playerid:self:read`
+*/
+struct RALLYHEREAPI_API FRequest_PlayeridGetNotificationById : public FRequest
+{
+	FRequest_PlayeridGetNotificationById();
+	virtual ~FRequest_PlayeridGetNotificationById() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FString NotificationId;
+	int32 PlayerId = 0;
+};
+
+/** The response type for FRequest_PlayeridGetNotificationById */
+struct RALLYHEREAPI_API FResponse_PlayeridGetNotificationById : public FResponse
+{
+	FResponse_PlayeridGetNotificationById(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_PlayeridGetNotificationById() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_Notification, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_Notification Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_Notification* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_Notification>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_Notification& OutContent) const;
+
+	/* Response 400
+	 Error Codes: - bad_id - Passed client id is not a valid id 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 403
+	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	 Error Codes: - resource_not_found - Notification could not be found 
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 409
+	 Error Codes: - too_many_listening_to_single_client - An enumeration. 
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+	/* Response 503
+	 Error Codes: - connection_limit_reached - An enumeration. 
+	*/
+	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_PlayeridGetNotificationById */
 DECLARE_DELEGATE_OneParam(FDelegate_PlayeridGetNotificationById, const FResponse_PlayeridGetNotificationById&);
+
+/** @brief A helper metadata object for PlayeridGetNotificationById that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_PlayeridGetNotificationById
+{
+	/** The request type */
+	typedef FRequest_PlayeridGetNotificationById Request;
+	/** The response type */
+	typedef FResponse_PlayeridGetNotificationById Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_PlayeridGetNotificationById Delegate;
+	/** The API object that supports this API call */
+	typedef FPlayerIdNotificationAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Notification By Id Self
+ * Retrieve a single notification by id
+ * 
+ * Required Permissions:
+ * 
+ * - For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:read`, `notification:playerid:self:*`, `notification:playerid:self:read`
+*/
+struct RALLYHEREAPI_API FRequest_PlayeridGetNotificationByIdSelf : public FRequest
+{
+	FRequest_PlayeridGetNotificationByIdSelf();
+	virtual ~FRequest_PlayeridGetNotificationByIdSelf() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FString NotificationId;
+};
+
+/** The response type for FRequest_PlayeridGetNotificationByIdSelf */
+struct RALLYHEREAPI_API FResponse_PlayeridGetNotificationByIdSelf : public FResponse
+{
+	FResponse_PlayeridGetNotificationByIdSelf(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_PlayeridGetNotificationByIdSelf() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_Notification, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_Notification Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_Notification* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_Notification>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_Notification& OutContent) const;
+
+	/* Response 400
+	 Error Codes: - bad_id - Passed client id is not a valid id 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 403
+	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	 Error Codes: - resource_not_found - Notification could not be found 
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 409
+	 Error Codes: - too_many_listening_to_single_client - An enumeration. 
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+	/* Response 503
+	 Error Codes: - connection_limit_reached - An enumeration. 
+	*/
+	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_PlayeridGetNotificationByIdSelf */
 DECLARE_DELEGATE_OneParam(FDelegate_PlayeridGetNotificationByIdSelf, const FResponse_PlayeridGetNotificationByIdSelf&);
+
+/** @brief A helper metadata object for PlayeridGetNotificationByIdSelf that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_PlayeridGetNotificationByIdSelf
+{
+	/** The request type */
+	typedef FRequest_PlayeridGetNotificationByIdSelf Request;
+	/** The response type */
+	typedef FResponse_PlayeridGetNotificationByIdSelf Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_PlayeridGetNotificationByIdSelf Delegate;
+	/** The API object that supports this API call */
+	typedef FPlayerIdNotificationAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Notifications Page
+ * Get recent notifications ordered from the newest to the oldest.
+ * 
+ * It is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.
+ * The first notification returned from this will be the newest one we can find, and older ones will be further down
+ * the page (or on later pages).
+ * 
+ * This API is useful for displaying a list of the most recent notifications to the user, only requesting further
+ * pages when the user requests a bigger list.
+ * 
+ * Client are expected to poll this endpoint regularly.
+ * 
+ * This version can be used for any client provided its id (with proper permissions)
+ * 
+ * Required Permissions:
+ * 
+ * - For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:read`
+ * 
+ * - For the playerid themselves any of: `notification:playerid:self:*`, `notification:playerid:self:read`
+*/
+struct RALLYHEREAPI_API FRequest_PlayeridGetNotificationsPage : public FRequest
+{
+	FRequest_PlayeridGetNotificationsPage();
+	virtual ~FRequest_PlayeridGetNotificationsPage() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	int32 PlayerId = 0;
+	TOptional<int32> PageSize;
+	/* Return results starting at this index (inclusive).  If none provided then will start at the latest notification.  You cannot depend on the format of this string, and it must be considered opaque */
+	TOptional<FString> StartAt;
+	/* All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque */
+	TOptional<FString> ExcludeBefore;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed */
+	TOptional<FString> IfNoneMatch;
+};
+
+/** The response type for FRequest_PlayeridGetNotificationsPage */
+struct RALLYHEREAPI_API FResponse_PlayeridGetNotificationsPage : public FResponse
+{
+	FResponse_PlayeridGetNotificationsPage(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_PlayeridGetNotificationsPage() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_Notifications, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_Notifications Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_Notifications* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_Notifications>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_Notifications& OutContent) const;
+
+	/* Response 304
+	Not Modified
+	*/
+
+	/* Response 400
+	 Error Codes: - bad_id - Passed client id is not a valid id 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 403
+	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 409
+	 Error Codes: - too_many_listening_to_single_client - An enumeration. 
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+	/* Response 503
+	 Error Codes: - connection_limit_reached - An enumeration. 
+	*/
+	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_PlayeridGetNotificationsPage */
 DECLARE_DELEGATE_OneParam(FDelegate_PlayeridGetNotificationsPage, const FResponse_PlayeridGetNotificationsPage&);
+
+/** @brief A helper metadata object for PlayeridGetNotificationsPage that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_PlayeridGetNotificationsPage
+{
+	/** The request type */
+	typedef FRequest_PlayeridGetNotificationsPage Request;
+	/** The response type */
+	typedef FResponse_PlayeridGetNotificationsPage Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_PlayeridGetNotificationsPage Delegate;
+	/** The API object that supports this API call */
+	typedef FPlayerIdNotificationAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Notifications Page Self
+ * Get recent notifications ordered from the newest to the oldest.
+ * 
+ * It is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.
+ * The first notification returned from this will be the newest one we can find, and older ones will be further down
+ * the page (or on later pages).
+ * 
+ * This API is useful for displaying a list of the most recent notifications to the user, only requesting further
+ * pages when the user requests a bigger list.
+ * 
+ * Client are expected to poll this endpoint regularly.
+ * 
+ * Required Permissions:
+ * 
+ * - For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:read`, `notification:playerid:self:*`, `notification:playerid:self:read`
+*/
+struct RALLYHEREAPI_API FRequest_PlayeridGetNotificationsPageSelf : public FRequest
+{
+	FRequest_PlayeridGetNotificationsPageSelf();
+	virtual ~FRequest_PlayeridGetNotificationsPageSelf() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	TOptional<int32> PageSize;
+	/* Return results starting at this index (inclusive).  If none provided then will start at the latest notification.  You cannot depend on the format of this string, and it must be considered opaque */
+	TOptional<FString> StartAt;
+	/* All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque */
+	TOptional<FString> ExcludeBefore;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed */
+	TOptional<FString> IfNoneMatch;
+};
+
+/** The response type for FRequest_PlayeridGetNotificationsPageSelf */
+struct RALLYHEREAPI_API FResponse_PlayeridGetNotificationsPageSelf : public FResponse
+{
+	FResponse_PlayeridGetNotificationsPageSelf(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_PlayeridGetNotificationsPageSelf() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_Notifications, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_Notifications Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_Notifications* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_Notifications>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_Notifications& OutContent) const;
+
+	/* Response 304
+	Not Modified
+	*/
+
+	/* Response 400
+	 Error Codes: - bad_id - Passed client id is not a valid id 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 403
+	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 409
+	 Error Codes: - too_many_listening_to_single_client - An enumeration. 
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+	/* Response 503
+	 Error Codes: - connection_limit_reached - An enumeration. 
+	*/
+	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_PlayeridGetNotificationsPageSelf */
 DECLARE_DELEGATE_OneParam(FDelegate_PlayeridGetNotificationsPageSelf, const FResponse_PlayeridGetNotificationsPageSelf&);
+
+/** @brief A helper metadata object for PlayeridGetNotificationsPageSelf that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_PlayeridGetNotificationsPageSelf
+{
+	/** The request type */
+	typedef FRequest_PlayeridGetNotificationsPageSelf Request;
+	/** The response type */
+	typedef FResponse_PlayeridGetNotificationsPageSelf Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_PlayeridGetNotificationsPageSelf Delegate;
+	/** The API object that supports this API call */
+	typedef FPlayerIdNotificationAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Long Poll For Notifications
+ * This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications
+ * from older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as
+ * `exclude_before` in subsequent polls to ensure you only receive new notifications.
+ * 
+ * This operation is a long-poll.  That means we will keep the connection open until we get any notification
+ * or until the passed in deadline (to the best of our ability).  Once one of these happens, we will return
+ * the notifications found.
+ * 
+ * This version can be used for any client provided its id (with proper permissions)
+ * 
+ * Required Permissions:
+ * 
+ * - For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:read`
+ * 
+ * - For the playerid themselves any of: `notification:playerid:self:*`, `notification:playerid:self:read`
+*/
+struct RALLYHEREAPI_API FRequest_PlayeridLongPollForNotifications : public FRequest
+{
+	FRequest_PlayeridLongPollForNotifications();
+	virtual ~FRequest_PlayeridLongPollForNotifications() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	int32 PlayerId = 0;
+	/* Max number of entries to return at one time */
+	TOptional<int32> MaxPageSize;
+	/* All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque */
+	TOptional<FString> ExcludeBefore;
+	/* When `exclude_before` is not found in the stream or not given, begin streaming messages from the earliest/latest message */
+	TOptional<ERHAPI_OffsetReset> OffsetResetStrategy;
+	/* We will try to the best of our ability to return by this deadline, even when we have no notifications.  Value should be in seconds */
+	TOptional<int32> Deadline;
+};
+
+/** The response type for FRequest_PlayeridLongPollForNotifications */
+struct RALLYHEREAPI_API FResponse_PlayeridLongPollForNotifications : public FResponse
+{
+	FResponse_PlayeridLongPollForNotifications(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_PlayeridLongPollForNotifications() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_Notifications, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_Notifications Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_Notifications* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_Notifications>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_Notifications& OutContent) const;
+
+	/* Response 400
+	 Error Codes: - bad_id - Passed client id is not a valid id 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 403
+	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 409
+	 Error Codes: - too_many_listening_to_single_client - An enumeration. 
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+	/* Response 503
+	 Error Codes: - connection_limit_reached - An enumeration. 
+	*/
+	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_PlayeridLongPollForNotifications */
 DECLARE_DELEGATE_OneParam(FDelegate_PlayeridLongPollForNotifications, const FResponse_PlayeridLongPollForNotifications&);
+
+/** @brief A helper metadata object for PlayeridLongPollForNotifications that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_PlayeridLongPollForNotifications
+{
+	/** The request type */
+	typedef FRequest_PlayeridLongPollForNotifications Request;
+	/** The response type */
+	typedef FResponse_PlayeridLongPollForNotifications Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_PlayeridLongPollForNotifications Delegate;
+	/** The API object that supports this API call */
+	typedef FPlayerIdNotificationAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Long Poll For Notifications Self
+ * This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications
+ * from older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as
+ * `exclude_before` in subsequent polls to ensure you only receive new notifications.
+ * 
+ * This operation is a long-poll.  That means we will keep the connection open until we get any notification
+ * or until the passed in deadline (to the best of our ability).  Once one of these happens, we will return
+ * the notifications found.
+ * 
+ * Required Permissions:
+ * 
+ * - For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:read`, `notification:playerid:self:*`, `notification:playerid:self:read`
+*/
+struct RALLYHEREAPI_API FRequest_PlayeridLongPollForNotificationsSelf : public FRequest
+{
+	FRequest_PlayeridLongPollForNotificationsSelf();
+	virtual ~FRequest_PlayeridLongPollForNotificationsSelf() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	/* Max number of entries to return at one time */
+	TOptional<int32> MaxPageSize;
+	/* All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque */
+	TOptional<FString> ExcludeBefore;
+	/* When `exclude_before` is not found in the stream or not given, begin streaming messages from the earliest/latest message */
+	TOptional<ERHAPI_OffsetReset> OffsetResetStrategy;
+	/* We will try to the best of our ability to return by this deadline, even when we have no notifications.  Value should be in seconds */
+	TOptional<int32> Deadline;
+};
+
+/** The response type for FRequest_PlayeridLongPollForNotificationsSelf */
+struct RALLYHEREAPI_API FResponse_PlayeridLongPollForNotificationsSelf : public FResponse
+{
+	FResponse_PlayeridLongPollForNotificationsSelf(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_PlayeridLongPollForNotificationsSelf() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+protected:
+	/** Variant type representing the potential content responses for this call */
+	typedef TVariant<FRHAPI_Notifications, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
+	ContentVariantType ParsedContent;
+
+	/** A parsed map of the headers from the request */
+	TMap<FString, FString> HeadersMap;
+
+public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_Notifications Content;
+	
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
+	const FRHAPI_Notifications* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_Notifications>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_Notifications& OutContent) const;
+
+	/* Response 400
+	 Error Codes: - bad_id - Passed client id is not a valid id 
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 403
+	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 409
+	 Error Codes: - too_many_listening_to_single_client - An enumeration. 
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+	/* Response 503
+	 Error Codes: - connection_limit_reached - An enumeration. 
+	*/
+	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_PlayeridLongPollForNotificationsSelf */
 DECLARE_DELEGATE_OneParam(FDelegate_PlayeridLongPollForNotificationsSelf, const FResponse_PlayeridLongPollForNotificationsSelf&);
 
+/** @brief A helper metadata object for PlayeridLongPollForNotificationsSelf that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_PlayeridLongPollForNotificationsSelf
+{
+	/** The request type */
+	typedef FRequest_PlayeridLongPollForNotificationsSelf Request;
+	/** The response type */
+	typedef FResponse_PlayeridLongPollForNotificationsSelf Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_PlayeridLongPollForNotificationsSelf Delegate;
+	/** The API object that supports this API call */
+	typedef FPlayerIdNotificationAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+
+/** The API class itself, which will handle calls to */
 class RALLYHEREAPI_API FPlayerIdNotificationAPI : public FAPI
 {
 public:
@@ -77,888 +1363,6 @@ private:
 
 };
 
-/* Create Notification
- *
- * Create new notification for client.  Requires permission to create for a different client
- * 
- * Required Permissions:
- * 
- * - For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:write`
- * 
- * - For the playerid themselves any of: `notification:playerid:self:*`, `notification:playerid:self:write`
-*/
-struct RALLYHEREAPI_API FRequest_PlayeridCreateNotification : public FRequest
-{
-	FRequest_PlayeridCreateNotification();
-	virtual ~FRequest_PlayeridCreateNotification() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	int32 PlayerId = 0;
-	FRHAPI_NotificationCreates NotificationCreates;
-};
-
-struct RALLYHEREAPI_API FResponse_PlayeridCreateNotification : public FResponse
-{
-	FResponse_PlayeridCreateNotification(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_PlayeridCreateNotification() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_NotificationCreateResult, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_NotificationCreateResult Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_NotificationCreateResult* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_NotificationCreateResult>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_NotificationCreateResult& OutContent) const;
-
-	/* Response 400
-	 Error Codes: - bad_id - Passed client id is not a valid id 
-	*/
-	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 403
-	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization 
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 409
-	 Error Codes: - too_many_listening_to_single_client - An enumeration. 
-	*/
-	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-	/* Response 503
-	 Error Codes: - connection_limit_reached - An enumeration. 
-	*/
-	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_PlayeridCreateNotification
-{
-	typedef FRequest_PlayeridCreateNotification Request;
-	typedef FResponse_PlayeridCreateNotification Response;
-	typedef FDelegate_PlayeridCreateNotification Delegate;
-	typedef FPlayerIdNotificationAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->PlayeridCreateNotification(InRequest, InDelegate, Priority); }
-};
-
-/* Create Notification Self
- *
- * Create new notification for client.
- * Required Permissions:
- * 
- * - For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:self:*`, `notification:playerid:self:write`, `notification:playerid:write`
-*/
-struct RALLYHEREAPI_API FRequest_PlayeridCreateNotificationSelf : public FRequest
-{
-	FRequest_PlayeridCreateNotificationSelf();
-	virtual ~FRequest_PlayeridCreateNotificationSelf() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	FRHAPI_NotificationCreates NotificationCreates;
-};
-
-struct RALLYHEREAPI_API FResponse_PlayeridCreateNotificationSelf : public FResponse
-{
-	FResponse_PlayeridCreateNotificationSelf(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_PlayeridCreateNotificationSelf() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_NotificationCreateResult, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_NotificationCreateResult Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_NotificationCreateResult* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_NotificationCreateResult>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_NotificationCreateResult& OutContent) const;
-
-	/* Response 400
-	 Error Codes: - bad_id - Passed client id is not a valid id 
-	*/
-	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 403
-	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization 
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 409
-	 Error Codes: - too_many_listening_to_single_client - An enumeration. 
-	*/
-	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-	/* Response 503
-	 Error Codes: - connection_limit_reached - An enumeration. 
-	*/
-	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_PlayeridCreateNotificationSelf
-{
-	typedef FRequest_PlayeridCreateNotificationSelf Request;
-	typedef FResponse_PlayeridCreateNotificationSelf Response;
-	typedef FDelegate_PlayeridCreateNotificationSelf Delegate;
-	typedef FPlayerIdNotificationAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->PlayeridCreateNotificationSelf(InRequest, InDelegate, Priority); }
-};
-
-/* Get Notification By Id
- *
- * Retrieve a single notification by id
- * 
- * This version can be used for any client provided its id (with proper permissions)
- * 
- * Required Permissions:
- * 
- * - For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:read`
- * 
- * - For the playerid themselves any of: `notification:playerid:self:*`, `notification:playerid:self:read`
-*/
-struct RALLYHEREAPI_API FRequest_PlayeridGetNotificationById : public FRequest
-{
-	FRequest_PlayeridGetNotificationById();
-	virtual ~FRequest_PlayeridGetNotificationById() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	FString NotificationId;
-	int32 PlayerId = 0;
-};
-
-struct RALLYHEREAPI_API FResponse_PlayeridGetNotificationById : public FResponse
-{
-	FResponse_PlayeridGetNotificationById(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_PlayeridGetNotificationById() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_Notification, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_Notification Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_Notification* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_Notification>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_Notification& OutContent) const;
-
-	/* Response 400
-	 Error Codes: - bad_id - Passed client id is not a valid id 
-	*/
-	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 403
-	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization 
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	 Error Codes: - resource_not_found - Notification could not be found 
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 409
-	 Error Codes: - too_many_listening_to_single_client - An enumeration. 
-	*/
-	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-	/* Response 503
-	 Error Codes: - connection_limit_reached - An enumeration. 
-	*/
-	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_PlayeridGetNotificationById
-{
-	typedef FRequest_PlayeridGetNotificationById Request;
-	typedef FResponse_PlayeridGetNotificationById Response;
-	typedef FDelegate_PlayeridGetNotificationById Delegate;
-	typedef FPlayerIdNotificationAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->PlayeridGetNotificationById(InRequest, InDelegate, Priority); }
-};
-
-/* Get Notification By Id Self
- *
- * Retrieve a single notification by id
- * 
- * Required Permissions:
- * 
- * - For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:read`, `notification:playerid:self:*`, `notification:playerid:self:read`
-*/
-struct RALLYHEREAPI_API FRequest_PlayeridGetNotificationByIdSelf : public FRequest
-{
-	FRequest_PlayeridGetNotificationByIdSelf();
-	virtual ~FRequest_PlayeridGetNotificationByIdSelf() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	FString NotificationId;
-};
-
-struct RALLYHEREAPI_API FResponse_PlayeridGetNotificationByIdSelf : public FResponse
-{
-	FResponse_PlayeridGetNotificationByIdSelf(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_PlayeridGetNotificationByIdSelf() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_Notification, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_Notification Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_Notification* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_Notification>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_Notification& OutContent) const;
-
-	/* Response 400
-	 Error Codes: - bad_id - Passed client id is not a valid id 
-	*/
-	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 403
-	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization 
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	 Error Codes: - resource_not_found - Notification could not be found 
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 409
-	 Error Codes: - too_many_listening_to_single_client - An enumeration. 
-	*/
-	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-	/* Response 503
-	 Error Codes: - connection_limit_reached - An enumeration. 
-	*/
-	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_PlayeridGetNotificationByIdSelf
-{
-	typedef FRequest_PlayeridGetNotificationByIdSelf Request;
-	typedef FResponse_PlayeridGetNotificationByIdSelf Response;
-	typedef FDelegate_PlayeridGetNotificationByIdSelf Delegate;
-	typedef FPlayerIdNotificationAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->PlayeridGetNotificationByIdSelf(InRequest, InDelegate, Priority); }
-};
-
-/* Get Notifications Page
- *
- * Get recent notifications ordered from the newest to the oldest.
- * 
- * It is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.
- * The first notification returned from this will be the newest one we can find, and older ones will be further down
- * the page (or on later pages).
- * 
- * This API is useful for displaying a list of the most recent notifications to the user, only requesting further
- * pages when the user requests a bigger list.
- * 
- * Client are expected to poll this endpoint regularly.
- * 
- * This version can be used for any client provided its id (with proper permissions)
- * 
- * Required Permissions:
- * 
- * - For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:read`
- * 
- * - For the playerid themselves any of: `notification:playerid:self:*`, `notification:playerid:self:read`
-*/
-struct RALLYHEREAPI_API FRequest_PlayeridGetNotificationsPage : public FRequest
-{
-	FRequest_PlayeridGetNotificationsPage();
-	virtual ~FRequest_PlayeridGetNotificationsPage() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	int32 PlayerId = 0;
-	TOptional<int32> PageSize;
-	/* Return results starting at this index (inclusive).  If none provided then will start at the latest notification.  You cannot depend on the format of this string, and it must be considered opaque */
-	TOptional<FString> StartAt;
-	/* All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque */
-	TOptional<FString> ExcludeBefore;
-	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed */
-	TOptional<FString> IfNoneMatch;
-};
-
-struct RALLYHEREAPI_API FResponse_PlayeridGetNotificationsPage : public FResponse
-{
-	FResponse_PlayeridGetNotificationsPage(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_PlayeridGetNotificationsPage() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_Notifications, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_Notifications Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_Notifications* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_Notifications>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_Notifications& OutContent) const;
-
-	/* Response 304
-	Not Modified
-	*/
-
-	/* Response 400
-	 Error Codes: - bad_id - Passed client id is not a valid id 
-	*/
-	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 403
-	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization 
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 409
-	 Error Codes: - too_many_listening_to_single_client - An enumeration. 
-	*/
-	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-	/* Response 503
-	 Error Codes: - connection_limit_reached - An enumeration. 
-	*/
-	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_PlayeridGetNotificationsPage
-{
-	typedef FRequest_PlayeridGetNotificationsPage Request;
-	typedef FResponse_PlayeridGetNotificationsPage Response;
-	typedef FDelegate_PlayeridGetNotificationsPage Delegate;
-	typedef FPlayerIdNotificationAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->PlayeridGetNotificationsPage(InRequest, InDelegate, Priority); }
-};
-
-/* Get Notifications Page Self
- *
- * Get recent notifications ordered from the newest to the oldest.
- * 
- * It is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.
- * The first notification returned from this will be the newest one we can find, and older ones will be further down
- * the page (or on later pages).
- * 
- * This API is useful for displaying a list of the most recent notifications to the user, only requesting further
- * pages when the user requests a bigger list.
- * 
- * Client are expected to poll this endpoint regularly.
- * 
- * Required Permissions:
- * 
- * - For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:read`, `notification:playerid:self:*`, `notification:playerid:self:read`
-*/
-struct RALLYHEREAPI_API FRequest_PlayeridGetNotificationsPageSelf : public FRequest
-{
-	FRequest_PlayeridGetNotificationsPageSelf();
-	virtual ~FRequest_PlayeridGetNotificationsPageSelf() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	TOptional<int32> PageSize;
-	/* Return results starting at this index (inclusive).  If none provided then will start at the latest notification.  You cannot depend on the format of this string, and it must be considered opaque */
-	TOptional<FString> StartAt;
-	/* All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque */
-	TOptional<FString> ExcludeBefore;
-	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed */
-	TOptional<FString> IfNoneMatch;
-};
-
-struct RALLYHEREAPI_API FResponse_PlayeridGetNotificationsPageSelf : public FResponse
-{
-	FResponse_PlayeridGetNotificationsPageSelf(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_PlayeridGetNotificationsPageSelf() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_Notifications, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_Notifications Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_Notifications* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_Notifications>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_Notifications& OutContent) const;
-
-	/* Response 304
-	Not Modified
-	*/
-
-	/* Response 400
-	 Error Codes: - bad_id - Passed client id is not a valid id 
-	*/
-	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 403
-	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization 
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 409
-	 Error Codes: - too_many_listening_to_single_client - An enumeration. 
-	*/
-	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-	/* Response 503
-	 Error Codes: - connection_limit_reached - An enumeration. 
-	*/
-	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_PlayeridGetNotificationsPageSelf
-{
-	typedef FRequest_PlayeridGetNotificationsPageSelf Request;
-	typedef FResponse_PlayeridGetNotificationsPageSelf Response;
-	typedef FDelegate_PlayeridGetNotificationsPageSelf Delegate;
-	typedef FPlayerIdNotificationAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->PlayeridGetNotificationsPageSelf(InRequest, InDelegate, Priority); }
-};
-
-/* Long Poll For Notifications
- *
- * This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications
- * from older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as
- * `exclude_before` in subsequent polls to ensure you only receive new notifications.
- * 
- * This operation is a long-poll.  That means we will keep the connection open until we get any notification
- * or until the passed in deadline (to the best of our ability).  Once one of these happens, we will return
- * the notifications found.
- * 
- * This version can be used for any client provided its id (with proper permissions)
- * 
- * Required Permissions:
- * 
- * - For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:read`
- * 
- * - For the playerid themselves any of: `notification:playerid:self:*`, `notification:playerid:self:read`
-*/
-struct RALLYHEREAPI_API FRequest_PlayeridLongPollForNotifications : public FRequest
-{
-	FRequest_PlayeridLongPollForNotifications();
-	virtual ~FRequest_PlayeridLongPollForNotifications() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	int32 PlayerId = 0;
-	/* Max number of entries to return at one time */
-	TOptional<int32> MaxPageSize;
-	/* All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque */
-	TOptional<FString> ExcludeBefore;
-	/* When `exclude_before` is not found in the stream or not given, begin streaming messages from the earliest/latest message */
-	TOptional<ERHAPI_OffsetReset> OffsetResetStrategy;
-	/* We will try to the best of our ability to return by this deadline, even when we have no notifications.  Value should be in seconds */
-	TOptional<int32> Deadline;
-};
-
-struct RALLYHEREAPI_API FResponse_PlayeridLongPollForNotifications : public FResponse
-{
-	FResponse_PlayeridLongPollForNotifications(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_PlayeridLongPollForNotifications() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_Notifications, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_Notifications Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_Notifications* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_Notifications>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_Notifications& OutContent) const;
-
-	/* Response 400
-	 Error Codes: - bad_id - Passed client id is not a valid id 
-	*/
-	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 403
-	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization 
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 409
-	 Error Codes: - too_many_listening_to_single_client - An enumeration. 
-	*/
-	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-	/* Response 503
-	 Error Codes: - connection_limit_reached - An enumeration. 
-	*/
-	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_PlayeridLongPollForNotifications
-{
-	typedef FRequest_PlayeridLongPollForNotifications Request;
-	typedef FResponse_PlayeridLongPollForNotifications Response;
-	typedef FDelegate_PlayeridLongPollForNotifications Delegate;
-	typedef FPlayerIdNotificationAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->PlayeridLongPollForNotifications(InRequest, InDelegate, Priority); }
-};
-
-/* Long Poll For Notifications Self
- *
- * This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications
- * from older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as
- * `exclude_before` in subsequent polls to ensure you only receive new notifications.
- * 
- * This operation is a long-poll.  That means we will keep the connection open until we get any notification
- * or until the passed in deadline (to the best of our ability).  Once one of these happens, we will return
- * the notifications found.
- * 
- * Required Permissions:
- * 
- * - For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:read`, `notification:playerid:self:*`, `notification:playerid:self:read`
-*/
-struct RALLYHEREAPI_API FRequest_PlayeridLongPollForNotificationsSelf : public FRequest
-{
-	FRequest_PlayeridLongPollForNotificationsSelf();
-	virtual ~FRequest_PlayeridLongPollForNotificationsSelf() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	/* Max number of entries to return at one time */
-	TOptional<int32> MaxPageSize;
-	/* All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque */
-	TOptional<FString> ExcludeBefore;
-	/* When `exclude_before` is not found in the stream or not given, begin streaming messages from the earliest/latest message */
-	TOptional<ERHAPI_OffsetReset> OffsetResetStrategy;
-	/* We will try to the best of our ability to return by this deadline, even when we have no notifications.  Value should be in seconds */
-	TOptional<int32> Deadline;
-};
-
-struct RALLYHEREAPI_API FResponse_PlayeridLongPollForNotificationsSelf : public FResponse
-{
-	FResponse_PlayeridLongPollForNotificationsSelf(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_PlayeridLongPollForNotificationsSelf() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-protected:
-	typedef TVariant<FRHAPI_Notifications, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	ContentVariantType ParsedContent;
-
-	TMap<FString, FString> HeadersMap;
-
-public:
-	template<typename T>
-	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
-	template<typename T>
-	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
-	
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_Notifications Content;
-	
-
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	const FRHAPI_Notifications* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_Notifications>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_Notifications& OutContent) const;
-
-	/* Response 400
-	 Error Codes: - bad_id - Passed client id is not a valid id 
-	*/
-	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 403
-	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization 
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 409
-	 Error Codes: - too_many_listening_to_single_client - An enumeration. 
-	*/
-	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-	/* Response 503
-	 Error Codes: - connection_limit_reached - An enumeration. 
-	*/
-	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_PlayeridLongPollForNotificationsSelf
-{
-	typedef FRequest_PlayeridLongPollForNotificationsSelf Request;
-	typedef FResponse_PlayeridLongPollForNotificationsSelf Response;
-	typedef FDelegate_PlayeridLongPollForNotificationsSelf Delegate;
-	typedef FPlayerIdNotificationAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->PlayeridLongPollForNotificationsSelf(InRequest, InDelegate, Priority); }
-};
 
 
 }

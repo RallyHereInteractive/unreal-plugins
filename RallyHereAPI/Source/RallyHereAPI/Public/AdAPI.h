@@ -23,100 +23,103 @@ using RallyHereAPI::ToStringFormatArg;
 using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
-struct FRequest_BeginNewSession;
-struct FResponse_BeginNewSession;
-struct FRequest_FindOpportunities;
-struct FResponse_FindOpportunities;
-struct FRequest_UnityAdWatched;
-struct FResponse_UnityAdWatched;
-struct FRequest_UnityMediationAdWatched;
-struct FResponse_UnityMediationAdWatched;
-struct FRequest_UpdateOpportunityById;
-struct FResponse_UpdateOpportunityById;
+// forward declaration
+class FAdAPI;
 
-DECLARE_DELEGATE_OneParam(FDelegate_BeginNewSession, const FResponse_BeginNewSession&);
-DECLARE_DELEGATE_OneParam(FDelegate_FindOpportunities, const FResponse_FindOpportunities&);
-DECLARE_DELEGATE_OneParam(FDelegate_UnityAdWatched, const FResponse_UnityAdWatched&);
-DECLARE_DELEGATE_OneParam(FDelegate_UnityMediationAdWatched, const FResponse_UnityMediationAdWatched&);
-DECLARE_DELEGATE_OneParam(FDelegate_UpdateOpportunityById, const FResponse_UpdateOpportunityById&);
-
-class RALLYHEREAPI_API FAdAPI : public FAPI
-{
-public:
-	FAdAPI();
-	virtual ~FAdAPI();
-
-	FHttpRequestPtr BeginNewSession(const FRequest_BeginNewSession& Request, const FDelegate_BeginNewSession& Delegate = FDelegate_BeginNewSession(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr FindOpportunities(const FRequest_FindOpportunities& Request, const FDelegate_FindOpportunities& Delegate = FDelegate_FindOpportunities(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr UnityAdWatched(const FRequest_UnityAdWatched& Request, const FDelegate_UnityAdWatched& Delegate = FDelegate_UnityAdWatched(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr UnityMediationAdWatched(const FRequest_UnityMediationAdWatched& Request, const FDelegate_UnityMediationAdWatched& Delegate = FDelegate_UnityMediationAdWatched(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr UpdateOpportunityById(const FRequest_UpdateOpportunityById& Request, const FDelegate_UpdateOpportunityById& Delegate = FDelegate_UpdateOpportunityById(), int32 Priority = DefaultRallyHereAPIPriority);
-
-private:
-	void OnBeginNewSessionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_BeginNewSession Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnFindOpportunitiesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_FindOpportunities Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnUnityAdWatchedResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UnityAdWatched Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnUnityMediationAdWatchedResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UnityMediationAdWatched Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnUpdateOpportunityByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateOpportunityById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-
-};
-
-/* Begin New Session
- *
+/**
+ * @brief Begin New Session
  * Start a new session for the user. This will generate a new ad api token that is returned in the response header.
 */
 struct RALLYHEREAPI_API FRequest_BeginNewSession : public FRequest
 {
 	FRequest_BeginNewSession();
 	virtual ~FRequest_BeginNewSession() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	FRHAPI_BodyBeginNewSession BodyBeginNewSession;
 	/* Optional header to make calling the endpoint faster by not requiring a new token to be generated. */
 	TOptional<FString> XHzAdApiToken;
 };
 
+/** The response type for FRequest_BeginNewSession */
 struct RALLYHEREAPI_API FResponse_BeginNewSession : public FResponse
 {
 	FResponse_BeginNewSession(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_BeginNewSession() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	bool ParseHeaders() override;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 protected:
+	/** Variant type representing the potential content responses for this call */
 	typedef TVariant<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
 	ContentVariantType ParsedContent;
 
+	/** A parsed map of the headers from the request */
 	TMap<FString, FString> HeadersMap;
 
 public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
 	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
 	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
 	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_JsonValue Content;
 	
-	// Default Response Headers
+	/** Default Response Headers */
 	/* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
-	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetHeader() or GetHeader<>() instead.")
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
 	TOptional<FString> XHzAdApiToken;
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
 	const FRHAPI_JsonValue* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_JsonValue>(); }
+	/** @brief Attempt to retrieve a specific header of the default response
 	const FString* TryGetDefaultHeader_XHzAdApiToken() const { return TryGetHeader(TEXT("x-hz-ad-api-token")); }
 
 	// Individual Response Helpers	
@@ -145,73 +148,128 @@ public:
 
 };
 
+/** The delegate class for FRequest_BeginNewSession */
+DECLARE_DELEGATE_OneParam(FDelegate_BeginNewSession, const FResponse_BeginNewSession&);
+
+/** @brief A helper metadata object for BeginNewSession that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_BeginNewSession
 {
+	/** The request type */
 	typedef FRequest_BeginNewSession Request;
+	/** The response type */
 	typedef FResponse_BeginNewSession Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_BeginNewSession Delegate;
+	/** The API object that supports this API call */
 	typedef FAdAPI API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->BeginNewSession(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
 
-/* Find Opportunities
- *
+/**
+ * @brief Find Opportunities
  * Find ad opportunities for the user given optional screen sizes. This will generate a new ad api token that is returned in the response header.
 */
 struct RALLYHEREAPI_API FRequest_FindOpportunities : public FRequest
 {
 	FRequest_FindOpportunities();
 	virtual ~FRequest_FindOpportunities() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	FRHAPI_BodyFindOpportunities BodyFindOpportunities;
 	/* Optional header to make calling the endpoint faster by not requiring a new token to be generated. */
 	TOptional<FString> XHzAdApiToken;
 };
 
+/** The response type for FRequest_FindOpportunities */
 struct RALLYHEREAPI_API FResponse_FindOpportunities : public FResponse
 {
 	FResponse_FindOpportunities(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_FindOpportunities() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	bool ParseHeaders() override;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 protected:
+	/** Variant type representing the potential content responses for this call */
 	typedef TVariant<FRHAPI_AdOpportunities, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
 	ContentVariantType ParsedContent;
 
+	/** A parsed map of the headers from the request */
 	TMap<FString, FString> HeadersMap;
 
 public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
 	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
 	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
 	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_AdOpportunities Content;
 	
-	// Default Response Headers
+	/** Default Response Headers */
 	/* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
-	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetHeader() or GetHeader<>() instead.")
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
 	TOptional<FString> XHzAdApiToken;
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
 	const FRHAPI_AdOpportunities* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_AdOpportunities>(); }
+	/** @brief Attempt to retrieve a specific header of the default response
 	const FString* TryGetDefaultHeader_XHzAdApiToken() const { return TryGetHeader(TEXT("x-hz-ad-api-token")); }
 
 	// Individual Response Helpers	
@@ -240,28 +298,50 @@ public:
 
 };
 
+/** The delegate class for FRequest_FindOpportunities */
+DECLARE_DELEGATE_OneParam(FDelegate_FindOpportunities, const FResponse_FindOpportunities&);
+
+/** @brief A helper metadata object for FindOpportunities that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_FindOpportunities
 {
+	/** The request type */
 	typedef FRequest_FindOpportunities Request;
+	/** The response type */
 	typedef FResponse_FindOpportunities Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_FindOpportunities Delegate;
+	/** The API object that supports this API call */
 	typedef FAdAPI API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->FindOpportunities(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
 
-/* Unity Ad Watched
- *
+/**
+ * @brief Unity Ad Watched
  * Callback URL for the Unity Ad API. Docs here https://docs.unity.com/ads/ImplementingS2SRedeemCallbacks.html
 */
 struct RALLYHEREAPI_API FRequest_UnityAdWatched : public FRequest
 {
 	FRequest_UnityAdWatched();
 	virtual ~FRequest_UnityAdWatched() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
 
 	/* Product ID in the Unity console */
@@ -274,37 +354,66 @@ struct RALLYHEREAPI_API FRequest_UnityAdWatched : public FRequest
 	FString Hmac;
 };
 
+/** The response type for FRequest_UnityAdWatched */
 struct RALLYHEREAPI_API FResponse_UnityAdWatched : public FResponse
 {
 	FResponse_UnityAdWatched(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_UnityAdWatched() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 protected:
+	/** Variant type representing the potential content responses for this call */
 	typedef TVariant<FString, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
 	ContentVariantType ParsedContent;
 
+	/** A parsed map of the headers from the request */
 	TMap<FString, FString> HeadersMap;
 
 public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
 	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
 	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
 	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FString Content;
 	
 
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
 	const FString* TryGetDefaultContent() const { return ParsedContent.TryGet<FString>(); }
 
 	// Individual Response Helpers	
@@ -320,28 +429,50 @@ public:
 
 };
 
+/** The delegate class for FRequest_UnityAdWatched */
+DECLARE_DELEGATE_OneParam(FDelegate_UnityAdWatched, const FResponse_UnityAdWatched&);
+
+/** @brief A helper metadata object for UnityAdWatched that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_UnityAdWatched
 {
+	/** The request type */
 	typedef FRequest_UnityAdWatched Request;
+	/** The response type */
 	typedef FResponse_UnityAdWatched Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_UnityAdWatched Delegate;
+	/** The API object that supports this API call */
 	typedef FAdAPI API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->UnityAdWatched(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
 
-/* Unity Mediation Ad Watched
- *
+/**
+ * @brief Unity Mediation Ad Watched
  * Callback URL for the Unity Ad API. Docs here https://docs.unity.com/mediation/S2SRedeemCallbacks.html
 */
 struct RALLYHEREAPI_API FRequest_UnityMediationAdWatched : public FRequest
 {
 	FRequest_UnityMediationAdWatched();
 	virtual ~FRequest_UnityMediationAdWatched() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
 
 	/* Custom data provide by client. Expected to be client type */
@@ -356,37 +487,66 @@ struct RALLYHEREAPI_API FRequest_UnityMediationAdWatched : public FRequest
 	FString Signature;
 };
 
+/** The response type for FRequest_UnityMediationAdWatched */
 struct RALLYHEREAPI_API FResponse_UnityMediationAdWatched : public FResponse
 {
 	FResponse_UnityMediationAdWatched(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_UnityMediationAdWatched() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 protected:
+	/** Variant type representing the potential content responses for this call */
 	typedef TVariant<FString, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
 	ContentVariantType ParsedContent;
 
+	/** A parsed map of the headers from the request */
 	TMap<FString, FString> HeadersMap;
 
 public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
 	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
 	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
 	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FString Content;
 	
 
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
 	const FString* TryGetDefaultContent() const { return ParsedContent.TryGet<FString>(); }
 
 	// Individual Response Helpers	
@@ -402,31 +562,55 @@ public:
 
 };
 
+/** The delegate class for FRequest_UnityMediationAdWatched */
+DECLARE_DELEGATE_OneParam(FDelegate_UnityMediationAdWatched, const FResponse_UnityMediationAdWatched&);
+
+/** @brief A helper metadata object for UnityMediationAdWatched that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_UnityMediationAdWatched
 {
+	/** The request type */
 	typedef FRequest_UnityMediationAdWatched Request;
+	/** The response type */
 	typedef FResponse_UnityMediationAdWatched Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_UnityMediationAdWatched Delegate;
+	/** The API object that supports this API call */
 	typedef FAdAPI API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->UnityMediationAdWatched(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
 
-/* Update Opportunity By Id
- *
+/**
+ * @brief Update Opportunity By Id
  * Update the opportunity with the given id. This will generate a new ad api token that is returned in the response header.
 */
 struct RALLYHEREAPI_API FRequest_UpdateOpportunityById : public FRequest
 {
 	FRequest_UpdateOpportunityById();
 	virtual ~FRequest_UpdateOpportunityById() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	FString OpportunityId;
 	FRHAPI_BodyUpdateOpportunityById BodyUpdateOpportunityById;
@@ -434,42 +618,73 @@ struct RALLYHEREAPI_API FRequest_UpdateOpportunityById : public FRequest
 	TOptional<FString> XHzAdApiToken;
 };
 
+/** The response type for FRequest_UpdateOpportunityById */
 struct RALLYHEREAPI_API FResponse_UpdateOpportunityById : public FResponse
 {
 	FResponse_UpdateOpportunityById(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_UpdateOpportunityById() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	bool ParseHeaders() override;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 protected:
+	/** Variant type representing the potential content responses for this call */
 	typedef TVariant<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
 	ContentVariantType ParsedContent;
 
+	/** A parsed map of the headers from the request */
 	TMap<FString, FString> HeadersMap;
 
 public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
 	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
 	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
 	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_JsonValue Content;
 	
-	// Default Response Headers
+	/** Default Response Headers */
 	/* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
-	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetHeader() or GetHeader<>() instead.")
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
 	TOptional<FString> XHzAdApiToken;
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
 	const FRHAPI_JsonValue* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_JsonValue>(); }
+	/** @brief Attempt to retrieve a specific header of the default response
 	const FString* TryGetDefaultHeader_XHzAdApiToken() const { return TryGetHeader(TEXT("x-hz-ad-api-token")); }
 
 	// Individual Response Helpers	
@@ -498,16 +713,57 @@ public:
 
 };
 
+/** The delegate class for FRequest_UpdateOpportunityById */
+DECLARE_DELEGATE_OneParam(FDelegate_UpdateOpportunityById, const FResponse_UpdateOpportunityById&);
+
+/** @brief A helper metadata object for UpdateOpportunityById that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_UpdateOpportunityById
 {
+	/** The request type */
 	typedef FRequest_UpdateOpportunityById Request;
+	/** The response type */
 	typedef FResponse_UpdateOpportunityById Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_UpdateOpportunityById Delegate;
+	/** The API object that supports this API call */
 	typedef FAdAPI API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->UpdateOpportunityById(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
+
+
+/** The API class itself, which will handle calls to */
+class RALLYHEREAPI_API FAdAPI : public FAPI
+{
+public:
+	FAdAPI();
+	virtual ~FAdAPI();
+
+	FHttpRequestPtr BeginNewSession(const FRequest_BeginNewSession& Request, const FDelegate_BeginNewSession& Delegate = FDelegate_BeginNewSession(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr FindOpportunities(const FRequest_FindOpportunities& Request, const FDelegate_FindOpportunities& Delegate = FDelegate_FindOpportunities(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr UnityAdWatched(const FRequest_UnityAdWatched& Request, const FDelegate_UnityAdWatched& Delegate = FDelegate_UnityAdWatched(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr UnityMediationAdWatched(const FRequest_UnityMediationAdWatched& Request, const FDelegate_UnityMediationAdWatched& Delegate = FDelegate_UnityMediationAdWatched(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr UpdateOpportunityById(const FRequest_UpdateOpportunityById& Request, const FDelegate_UpdateOpportunityById& Delegate = FDelegate_UpdateOpportunityById(), int32 Priority = DefaultRallyHereAPIPriority);
+
+private:
+	void OnBeginNewSessionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_BeginNewSession Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnFindOpportunitiesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_FindOpportunities Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnUnityAdWatchedResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UnityAdWatched Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnUnityMediationAdWatchedResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UnityMediationAdWatched Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnUpdateOpportunityByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateOpportunityById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+
+};
+
 
 
 }

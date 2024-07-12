@@ -314,6 +314,11 @@ FResponse_GetAllMapGameInfo::FResponse_GetAllMapGameInfo(FRequestMetadata InRequ
 
 FString Traits_GetAllMapGameInfo::Name = TEXT("GetAllMapGameInfo");
 
+FHttpRequestPtr Traits_GetAllMapGameInfo::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetAllMapGameInfo(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FQueuesAPI::GetAllQueueInfo(const FRequest_GetAllQueueInfo& Request, const FDelegate_GetAllQueueInfo& Delegate /*= FDelegate_GetAllQueueInfo()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -611,6 +616,11 @@ FResponse_GetAllQueueInfo::FResponse_GetAllQueueInfo(FRequestMetadata InRequestM
 }
 
 FString Traits_GetAllQueueInfo::Name = TEXT("GetAllQueueInfo");
+
+FHttpRequestPtr Traits_GetAllQueueInfo::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetAllQueueInfo(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FQueuesAPI::GetAllQueueInfoV2(const FRequest_GetAllQueueInfoV2& Request, const FDelegate_GetAllQueueInfoV2& Delegate /*= FDelegate_GetAllQueueInfoV2()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -910,6 +920,11 @@ FResponse_GetAllQueueInfoV2::FResponse_GetAllQueueInfoV2(FRequestMetadata InRequ
 
 FString Traits_GetAllQueueInfoV2::Name = TEXT("GetAllQueueInfoV2");
 
+FHttpRequestPtr Traits_GetAllQueueInfoV2::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetAllQueueInfoV2(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FQueuesAPI::GetInstanceRequestTemplate(const FRequest_GetInstanceRequestTemplate& Request, const FDelegate_GetInstanceRequestTemplate& Delegate /*= FDelegate_GetInstanceRequestTemplate()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -1200,6 +1215,11 @@ FResponse_GetInstanceRequestTemplate::FResponse_GetInstanceRequestTemplate(FRequ
 }
 
 FString Traits_GetInstanceRequestTemplate::Name = TEXT("GetInstanceRequestTemplate");
+
+FHttpRequestPtr Traits_GetInstanceRequestTemplate::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetInstanceRequestTemplate(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FQueuesAPI::GetMatchMakingProfile(const FRequest_GetMatchMakingProfile& Request, const FDelegate_GetMatchMakingProfile& Delegate /*= FDelegate_GetMatchMakingProfile()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -1492,6 +1512,11 @@ FResponse_GetMatchMakingProfile::FResponse_GetMatchMakingProfile(FRequestMetadat
 
 FString Traits_GetMatchMakingProfile::Name = TEXT("GetMatchMakingProfile");
 
+FHttpRequestPtr Traits_GetMatchMakingProfile::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetMatchMakingProfile(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FQueuesAPI::GetMatchMakingProfileV2(const FRequest_GetMatchMakingProfileV2& Request, const FDelegate_GetMatchMakingProfileV2& Delegate /*= FDelegate_GetMatchMakingProfileV2()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -1782,6 +1807,11 @@ FResponse_GetMatchMakingProfileV2::FResponse_GetMatchMakingProfileV2(FRequestMet
 }
 
 FString Traits_GetMatchMakingProfileV2::Name = TEXT("GetMatchMakingProfileV2");
+
+FHttpRequestPtr Traits_GetMatchMakingProfileV2::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetMatchMakingProfileV2(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FQueuesAPI::GetMatchMakingTemplates(const FRequest_GetMatchMakingTemplates& Request, const FDelegate_GetMatchMakingTemplates& Delegate /*= FDelegate_GetMatchMakingTemplates()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -2074,6 +2104,11 @@ FResponse_GetMatchMakingTemplates::FResponse_GetMatchMakingTemplates(FRequestMet
 
 FString Traits_GetMatchMakingTemplates::Name = TEXT("GetMatchMakingTemplates");
 
+FHttpRequestPtr Traits_GetMatchMakingTemplates::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetMatchMakingTemplates(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FQueuesAPI::GetMatchMakingTemplatesV2(const FRequest_GetMatchMakingTemplatesV2& Request, const FDelegate_GetMatchMakingTemplatesV2& Delegate /*= FDelegate_GetMatchMakingTemplatesV2()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -2364,6 +2399,11 @@ FResponse_GetMatchMakingTemplatesV2::FResponse_GetMatchMakingTemplatesV2(FReques
 }
 
 FString Traits_GetMatchMakingTemplatesV2::Name = TEXT("GetMatchMakingTemplatesV2");
+
+FHttpRequestPtr Traits_GetMatchMakingTemplatesV2::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetMatchMakingTemplatesV2(InRequest, InDelegate, InPriority);
+}
 
 
 }

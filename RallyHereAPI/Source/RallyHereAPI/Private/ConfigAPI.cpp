@@ -301,6 +301,11 @@ FResponse_GetAppSettingsAll::FResponse_GetAppSettingsAll(FRequestMetadata InRequ
 
 FString Traits_GetAppSettingsAll::Name = TEXT("GetAppSettingsAll");
 
+FHttpRequestPtr Traits_GetAppSettingsAll::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetAppSettingsAll(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FConfigAPI::GetAppSettingsClient(const FRequest_GetAppSettingsClient& Request, const FDelegate_GetAppSettingsClient& Delegate /*= FDelegate_GetAppSettingsClient()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -559,6 +564,11 @@ FResponse_GetAppSettingsClient::FResponse_GetAppSettingsClient(FRequestMetadata 
 }
 
 FString Traits_GetAppSettingsClient::Name = TEXT("GetAppSettingsClient");
+
+FHttpRequestPtr Traits_GetAppSettingsClient::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetAppSettingsClient(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FConfigAPI::GetAppSettingsServer(const FRequest_GetAppSettingsServer& Request, const FDelegate_GetAppSettingsServer& Delegate /*= FDelegate_GetAppSettingsServer()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -854,6 +864,11 @@ FResponse_GetAppSettingsServer::FResponse_GetAppSettingsServer(FRequestMetadata 
 
 FString Traits_GetAppSettingsServer::Name = TEXT("GetAppSettingsServer");
 
+FHttpRequestPtr Traits_GetAppSettingsServer::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetAppSettingsServer(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FConfigAPI::GetKvsV2(const FRequest_GetKvsV2& Request, const FDelegate_GetKvsV2& Delegate /*= FDelegate_GetKvsV2()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -1131,6 +1146,11 @@ FResponse_GetKvsV2::FResponse_GetKvsV2(FRequestMetadata InRequestMetadata) :
 }
 
 FString Traits_GetKvsV2::Name = TEXT("GetKvsV2");
+
+FHttpRequestPtr Traits_GetKvsV2::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetKvsV2(InRequest, InDelegate, InPriority);
+}
 
 
 }

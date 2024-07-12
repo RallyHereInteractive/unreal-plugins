@@ -24,41 +24,11 @@ using RallyHereAPI::ToStringFormatArg;
 using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
-struct FRequest_InstanceCreateNotification;
-struct FResponse_InstanceCreateNotification;
-struct FRequest_InstanceGetNotificationById;
-struct FResponse_InstanceGetNotificationById;
-struct FRequest_InstanceGetNotificationsPage;
-struct FResponse_InstanceGetNotificationsPage;
-struct FRequest_InstanceLongPollForNotifications;
-struct FResponse_InstanceLongPollForNotifications;
+// forward declaration
+class FInstanceNotificationAPI;
 
-DECLARE_DELEGATE_OneParam(FDelegate_InstanceCreateNotification, const FResponse_InstanceCreateNotification&);
-DECLARE_DELEGATE_OneParam(FDelegate_InstanceGetNotificationById, const FResponse_InstanceGetNotificationById&);
-DECLARE_DELEGATE_OneParam(FDelegate_InstanceGetNotificationsPage, const FResponse_InstanceGetNotificationsPage&);
-DECLARE_DELEGATE_OneParam(FDelegate_InstanceLongPollForNotifications, const FResponse_InstanceLongPollForNotifications&);
-
-class RALLYHEREAPI_API FInstanceNotificationAPI : public FAPI
-{
-public:
-	FInstanceNotificationAPI();
-	virtual ~FInstanceNotificationAPI();
-
-	FHttpRequestPtr InstanceCreateNotification(const FRequest_InstanceCreateNotification& Request, const FDelegate_InstanceCreateNotification& Delegate = FDelegate_InstanceCreateNotification(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr InstanceGetNotificationById(const FRequest_InstanceGetNotificationById& Request, const FDelegate_InstanceGetNotificationById& Delegate = FDelegate_InstanceGetNotificationById(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr InstanceGetNotificationsPage(const FRequest_InstanceGetNotificationsPage& Request, const FDelegate_InstanceGetNotificationsPage& Delegate = FDelegate_InstanceGetNotificationsPage(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr InstanceLongPollForNotifications(const FRequest_InstanceLongPollForNotifications& Request, const FDelegate_InstanceLongPollForNotifications& Delegate = FDelegate_InstanceLongPollForNotifications(), int32 Priority = DefaultRallyHereAPIPriority);
-
-private:
-	void OnInstanceCreateNotificationResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_InstanceCreateNotification Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnInstanceGetNotificationByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_InstanceGetNotificationById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnInstanceGetNotificationsPageResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_InstanceGetNotificationsPage Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnInstanceLongPollForNotificationsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_InstanceLongPollForNotifications Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-
-};
-
-/* Create Notification
- *
+/**
+ * @brief Create Notification
  * Create new notification for client.  Requires permission to create for a different client
  * 
  * Required Permissions:
@@ -71,48 +41,84 @@ struct RALLYHEREAPI_API FRequest_InstanceCreateNotification : public FRequest
 {
 	FRequest_InstanceCreateNotification();
 	virtual ~FRequest_InstanceCreateNotification() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	FString InstanceId;
 	FRHAPI_NotificationCreates NotificationCreates;
 };
 
+/** The response type for FRequest_InstanceCreateNotification */
 struct RALLYHEREAPI_API FResponse_InstanceCreateNotification : public FResponse
 {
 	FResponse_InstanceCreateNotification(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_InstanceCreateNotification() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 protected:
+	/** Variant type representing the potential content responses for this call */
 	typedef TVariant<FRHAPI_NotificationCreateResult, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
 	ContentVariantType ParsedContent;
 
+	/** A parsed map of the headers from the request */
 	TMap<FString, FString> HeadersMap;
 
 public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
 	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
 	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
 	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_NotificationCreateResult Content;
 	
 
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
 	const FRHAPI_NotificationCreateResult* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_NotificationCreateResult>(); }
 
 	// Individual Response Helpers	
@@ -148,19 +154,36 @@ public:
 
 };
 
+/** The delegate class for FRequest_InstanceCreateNotification */
+DECLARE_DELEGATE_OneParam(FDelegate_InstanceCreateNotification, const FResponse_InstanceCreateNotification&);
+
+/** @brief A helper metadata object for InstanceCreateNotification that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_InstanceCreateNotification
 {
+	/** The request type */
 	typedef FRequest_InstanceCreateNotification Request;
+	/** The response type */
 	typedef FResponse_InstanceCreateNotification Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_InstanceCreateNotification Delegate;
+	/** The API object that supports this API call */
 	typedef FInstanceNotificationAPI API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->InstanceCreateNotification(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
 
-/* Get Notification By Id
- *
+/**
+ * @brief Get Notification By Id
  * Retrieve a single notification by id
  * 
  * This version can be used for any client provided its id (with proper permissions)
@@ -175,48 +198,84 @@ struct RALLYHEREAPI_API FRequest_InstanceGetNotificationById : public FRequest
 {
 	FRequest_InstanceGetNotificationById();
 	virtual ~FRequest_InstanceGetNotificationById() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	FString NotificationId;
 	FString InstanceId;
 };
 
+/** The response type for FRequest_InstanceGetNotificationById */
 struct RALLYHEREAPI_API FResponse_InstanceGetNotificationById : public FResponse
 {
 	FResponse_InstanceGetNotificationById(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_InstanceGetNotificationById() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 protected:
+	/** Variant type representing the potential content responses for this call */
 	typedef TVariant<FRHAPI_Notification, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
 	ContentVariantType ParsedContent;
 
+	/** A parsed map of the headers from the request */
 	TMap<FString, FString> HeadersMap;
 
 public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
 	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
 	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
 	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_Notification Content;
 	
 
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
 	const FRHAPI_Notification* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_Notification>(); }
 
 	// Individual Response Helpers	
@@ -257,19 +316,36 @@ public:
 
 };
 
+/** The delegate class for FRequest_InstanceGetNotificationById */
+DECLARE_DELEGATE_OneParam(FDelegate_InstanceGetNotificationById, const FResponse_InstanceGetNotificationById&);
+
+/** @brief A helper metadata object for InstanceGetNotificationById that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_InstanceGetNotificationById
 {
+	/** The request type */
 	typedef FRequest_InstanceGetNotificationById Request;
+	/** The response type */
 	typedef FResponse_InstanceGetNotificationById Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_InstanceGetNotificationById Delegate;
+	/** The API object that supports this API call */
 	typedef FInstanceNotificationAPI API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->InstanceGetNotificationById(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
 
-/* Get Notifications Page
- *
+/**
+ * @brief Get Notifications Page
  * Get recent notifications ordered from the newest to the oldest.
  * 
  * It is important to stress that this endpoint returns notifications in reverse order compared to the streaming API.
@@ -293,12 +369,19 @@ struct RALLYHEREAPI_API FRequest_InstanceGetNotificationsPage : public FRequest
 {
 	FRequest_InstanceGetNotificationsPage();
 	virtual ~FRequest_InstanceGetNotificationsPage() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	FString InstanceId;
 	TOptional<int32> PageSize;
@@ -310,37 +393,66 @@ struct RALLYHEREAPI_API FRequest_InstanceGetNotificationsPage : public FRequest
 	TOptional<FString> IfNoneMatch;
 };
 
+/** The response type for FRequest_InstanceGetNotificationsPage */
 struct RALLYHEREAPI_API FResponse_InstanceGetNotificationsPage : public FResponse
 {
 	FResponse_InstanceGetNotificationsPage(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_InstanceGetNotificationsPage() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 protected:
+	/** Variant type representing the potential content responses for this call */
 	typedef TVariant<FRHAPI_Notifications, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
 	ContentVariantType ParsedContent;
 
+	/** A parsed map of the headers from the request */
 	TMap<FString, FString> HeadersMap;
 
 public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
 	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
 	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
 	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_Notifications Content;
 	
 
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
 	const FRHAPI_Notifications* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_Notifications>(); }
 
 	// Individual Response Helpers	
@@ -380,19 +492,36 @@ public:
 
 };
 
+/** The delegate class for FRequest_InstanceGetNotificationsPage */
+DECLARE_DELEGATE_OneParam(FDelegate_InstanceGetNotificationsPage, const FResponse_InstanceGetNotificationsPage&);
+
+/** @brief A helper metadata object for InstanceGetNotificationsPage that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_InstanceGetNotificationsPage
 {
+	/** The request type */
 	typedef FRequest_InstanceGetNotificationsPage Request;
+	/** The response type */
 	typedef FResponse_InstanceGetNotificationsPage Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_InstanceGetNotificationsPage Delegate;
+	/** The API object that supports this API call */
 	typedef FInstanceNotificationAPI API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->InstanceGetNotificationsPage(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
 
-/* Long Poll For Notifications
- *
+/**
+ * @brief Long Poll For Notifications
  * This endpoint will return notifications newer than `exclude_before`.  This endpoint returns notifications
  * from older to newer, which is the opposite of the paging API.  The returned `cursor` value can be used as
  * `exclude_before` in subsequent polls to ensure you only receive new notifications.
@@ -413,12 +542,19 @@ struct RALLYHEREAPI_API FRequest_InstanceLongPollForNotifications : public FRequ
 {
 	FRequest_InstanceLongPollForNotifications();
 	virtual ~FRequest_InstanceLongPollForNotifications() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	FString InstanceId;
 	/* Max number of entries to return at one time */
@@ -431,37 +567,66 @@ struct RALLYHEREAPI_API FRequest_InstanceLongPollForNotifications : public FRequ
 	TOptional<int32> Deadline;
 };
 
+/** The response type for FRequest_InstanceLongPollForNotifications */
 struct RALLYHEREAPI_API FResponse_InstanceLongPollForNotifications : public FResponse
 {
 	FResponse_InstanceLongPollForNotifications(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_InstanceLongPollForNotifications() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 protected:
+	/** Variant type representing the potential content responses for this call */
 	typedef TVariant<FRHAPI_Notifications, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
 	ContentVariantType ParsedContent;
 
+	/** A parsed map of the headers from the request */
 	TMap<FString, FString> HeadersMap;
 
 public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
 	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
 	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
 	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_Notifications Content;
 	
 
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
 	const FRHAPI_Notifications* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_Notifications>(); }
 
 	// Individual Response Helpers	
@@ -497,16 +662,55 @@ public:
 
 };
 
+/** The delegate class for FRequest_InstanceLongPollForNotifications */
+DECLARE_DELEGATE_OneParam(FDelegate_InstanceLongPollForNotifications, const FResponse_InstanceLongPollForNotifications&);
+
+/** @brief A helper metadata object for InstanceLongPollForNotifications that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_InstanceLongPollForNotifications
 {
+	/** The request type */
 	typedef FRequest_InstanceLongPollForNotifications Request;
+	/** The response type */
 	typedef FResponse_InstanceLongPollForNotifications Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_InstanceLongPollForNotifications Delegate;
+	/** The API object that supports this API call */
 	typedef FInstanceNotificationAPI API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->InstanceLongPollForNotifications(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
+
+
+/** The API class itself, which will handle calls to */
+class RALLYHEREAPI_API FInstanceNotificationAPI : public FAPI
+{
+public:
+	FInstanceNotificationAPI();
+	virtual ~FInstanceNotificationAPI();
+
+	FHttpRequestPtr InstanceCreateNotification(const FRequest_InstanceCreateNotification& Request, const FDelegate_InstanceCreateNotification& Delegate = FDelegate_InstanceCreateNotification(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr InstanceGetNotificationById(const FRequest_InstanceGetNotificationById& Request, const FDelegate_InstanceGetNotificationById& Delegate = FDelegate_InstanceGetNotificationById(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr InstanceGetNotificationsPage(const FRequest_InstanceGetNotificationsPage& Request, const FDelegate_InstanceGetNotificationsPage& Delegate = FDelegate_InstanceGetNotificationsPage(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr InstanceLongPollForNotifications(const FRequest_InstanceLongPollForNotifications& Request, const FDelegate_InstanceLongPollForNotifications& Delegate = FDelegate_InstanceLongPollForNotifications(), int32 Priority = DefaultRallyHereAPIPriority);
+
+private:
+	void OnInstanceCreateNotificationResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_InstanceCreateNotification Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnInstanceGetNotificationByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_InstanceGetNotificationById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnInstanceGetNotificationsPageResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_InstanceGetNotificationsPage Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnInstanceLongPollForNotificationsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_InstanceLongPollForNotifications Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+
+};
+
 
 
 }

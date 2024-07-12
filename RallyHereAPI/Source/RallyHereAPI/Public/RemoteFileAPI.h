@@ -23,63 +23,30 @@ using RallyHereAPI::ToStringFormatArg;
 using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
-struct FRequest_CreateEntityDirectoryFile;
-struct FResponse_CreateEntityDirectoryFile;
-struct FRequest_DeleteEntityDirectory;
-struct FResponse_DeleteEntityDirectory;
-struct FRequest_DeleteEntityDirectoryFile;
-struct FResponse_DeleteEntityDirectoryFile;
-struct FRequest_DownloadEntityDirectoryFile;
-struct FResponse_DownloadEntityDirectoryFile;
-struct FRequest_GetEntityDirectoryInformation;
-struct FResponse_GetEntityDirectoryInformation;
-struct FRequest_ListEntityDirectoryFiles;
-struct FResponse_ListEntityDirectoryFiles;
+// forward declaration
+class FRemoteFileAPI;
 
-DECLARE_DELEGATE_OneParam(FDelegate_CreateEntityDirectoryFile, const FResponse_CreateEntityDirectoryFile&);
-DECLARE_DELEGATE_OneParam(FDelegate_DeleteEntityDirectory, const FResponse_DeleteEntityDirectory&);
-DECLARE_DELEGATE_OneParam(FDelegate_DeleteEntityDirectoryFile, const FResponse_DeleteEntityDirectoryFile&);
-DECLARE_DELEGATE_OneParam(FDelegate_DownloadEntityDirectoryFile, const FResponse_DownloadEntityDirectoryFile&);
-DECLARE_DELEGATE_OneParam(FDelegate_GetEntityDirectoryInformation, const FResponse_GetEntityDirectoryInformation&);
-DECLARE_DELEGATE_OneParam(FDelegate_ListEntityDirectoryFiles, const FResponse_ListEntityDirectoryFiles&);
-
-class RALLYHEREAPI_API FRemoteFileAPI : public FAPI
-{
-public:
-	FRemoteFileAPI();
-	virtual ~FRemoteFileAPI();
-
-	FHttpRequestPtr CreateEntityDirectoryFile(const FRequest_CreateEntityDirectoryFile& Request, const FDelegate_CreateEntityDirectoryFile& Delegate = FDelegate_CreateEntityDirectoryFile(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr DeleteEntityDirectory(const FRequest_DeleteEntityDirectory& Request, const FDelegate_DeleteEntityDirectory& Delegate = FDelegate_DeleteEntityDirectory(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr DeleteEntityDirectoryFile(const FRequest_DeleteEntityDirectoryFile& Request, const FDelegate_DeleteEntityDirectoryFile& Delegate = FDelegate_DeleteEntityDirectoryFile(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr DownloadEntityDirectoryFile(const FRequest_DownloadEntityDirectoryFile& Request, const FDelegate_DownloadEntityDirectoryFile& Delegate = FDelegate_DownloadEntityDirectoryFile(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr GetEntityDirectoryInformation(const FRequest_GetEntityDirectoryInformation& Request, const FDelegate_GetEntityDirectoryInformation& Delegate = FDelegate_GetEntityDirectoryInformation(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr ListEntityDirectoryFiles(const FRequest_ListEntityDirectoryFiles& Request, const FDelegate_ListEntityDirectoryFiles& Delegate = FDelegate_ListEntityDirectoryFiles(), int32 Priority = DefaultRallyHereAPIPriority);
-
-private:
-	void OnCreateEntityDirectoryFileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateEntityDirectoryFile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnDeleteEntityDirectoryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteEntityDirectory Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnDeleteEntityDirectoryFileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteEntityDirectoryFile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnDownloadEntityDirectoryFileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DownloadEntityDirectoryFile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnGetEntityDirectoryInformationResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetEntityDirectoryInformation Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnListEntityDirectoryFilesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ListEntityDirectoryFiles Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-
-};
-
-/* Create Entity Directory File
- *
+/**
+ * @brief Create Entity Directory File
  * Upload a file to entity storage for provided entity_id
 */
 struct RALLYHEREAPI_API FRequest_CreateEntityDirectoryFile : public FRequest
 {
 	FRequest_CreateEntityDirectoryFile();
 	virtual ~FRequest_CreateEntityDirectoryFile() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	ERHAPI_FileType FileType;
 	FString FileName;
@@ -88,26 +55,54 @@ struct RALLYHEREAPI_API FRequest_CreateEntityDirectoryFile : public FRequest
 	FHttpFileInput File;
 };
 
+/** The response type for FRequest_CreateEntityDirectoryFile */
 struct RALLYHEREAPI_API FResponse_CreateEntityDirectoryFile : public FResponse
 {
 	FResponse_CreateEntityDirectoryFile(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_CreateEntityDirectoryFile() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 protected:
+	/** Variant type representing the potential content responses for this call */
 	typedef TVariant< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
 	ContentVariantType ParsedContent;
 
+	/** A parsed map of the headers from the request */
 	TMap<FString, FString> HeadersMap;
 
 public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
 	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
 	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
 	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
@@ -133,65 +128,120 @@ public:
 
 };
 
+/** The delegate class for FRequest_CreateEntityDirectoryFile */
+DECLARE_DELEGATE_OneParam(FDelegate_CreateEntityDirectoryFile, const FResponse_CreateEntityDirectoryFile&);
+
+/** @brief A helper metadata object for CreateEntityDirectoryFile that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_CreateEntityDirectoryFile
 {
+	/** The request type */
 	typedef FRequest_CreateEntityDirectoryFile Request;
+	/** The response type */
 	typedef FResponse_CreateEntityDirectoryFile Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_CreateEntityDirectoryFile Delegate;
+	/** The API object that supports this API call */
 	typedef FRemoteFileAPI API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->CreateEntityDirectoryFile(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
 
-/* Delete Entity Directory
+/**
+ * @brief Delete Entity Directory
+
 */
 struct RALLYHEREAPI_API FRequest_DeleteEntityDirectory : public FRequest
 {
 	FRequest_DeleteEntityDirectory();
 	virtual ~FRequest_DeleteEntityDirectory() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	ERHAPI_FileType FileType;
 	ERHAPI_EntityType EntityType;
 };
 
+/** The response type for FRequest_DeleteEntityDirectory */
 struct RALLYHEREAPI_API FResponse_DeleteEntityDirectory : public FResponse
 {
 	FResponse_DeleteEntityDirectory(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_DeleteEntityDirectory() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 protected:
+	/** Variant type representing the potential content responses for this call */
 	typedef TVariant<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
 	ContentVariantType ParsedContent;
 
+	/** A parsed map of the headers from the request */
 	TMap<FString, FString> HeadersMap;
 
 public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
 	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
 	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
 	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_JsonValue Content;
 	
 
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
 	const FRHAPI_JsonValue* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_JsonValue>(); }
 
 	// Individual Response Helpers	
@@ -212,29 +262,55 @@ public:
 
 };
 
+/** The delegate class for FRequest_DeleteEntityDirectory */
+DECLARE_DELEGATE_OneParam(FDelegate_DeleteEntityDirectory, const FResponse_DeleteEntityDirectory&);
+
+/** @brief A helper metadata object for DeleteEntityDirectory that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_DeleteEntityDirectory
 {
+	/** The request type */
 	typedef FRequest_DeleteEntityDirectory Request;
+	/** The response type */
 	typedef FResponse_DeleteEntityDirectory Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_DeleteEntityDirectory Delegate;
+	/** The API object that supports this API call */
 	typedef FRemoteFileAPI API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DeleteEntityDirectory(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
 
-/* Delete Entity Directory File
+/**
+ * @brief Delete Entity Directory File
+
 */
 struct RALLYHEREAPI_API FRequest_DeleteEntityDirectoryFile : public FRequest
 {
 	FRequest_DeleteEntityDirectoryFile();
 	virtual ~FRequest_DeleteEntityDirectoryFile() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	ERHAPI_EntityType EntityType;
 	FString EntityId;
@@ -242,26 +318,54 @@ struct RALLYHEREAPI_API FRequest_DeleteEntityDirectoryFile : public FRequest
 	ERHAPI_FileType FileType;
 };
 
+/** The response type for FRequest_DeleteEntityDirectoryFile */
 struct RALLYHEREAPI_API FResponse_DeleteEntityDirectoryFile : public FResponse
 {
 	FResponse_DeleteEntityDirectoryFile(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_DeleteEntityDirectoryFile() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 protected:
+	/** Variant type representing the potential content responses for this call */
 	typedef TVariant< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
 	ContentVariantType ParsedContent;
 
+	/** A parsed map of the headers from the request */
 	TMap<FString, FString> HeadersMap;
 
 public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
 	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
 	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
 	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
@@ -287,29 +391,55 @@ public:
 
 };
 
+/** The delegate class for FRequest_DeleteEntityDirectoryFile */
+DECLARE_DELEGATE_OneParam(FDelegate_DeleteEntityDirectoryFile, const FResponse_DeleteEntityDirectoryFile&);
+
+/** @brief A helper metadata object for DeleteEntityDirectoryFile that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_DeleteEntityDirectoryFile
 {
+	/** The request type */
 	typedef FRequest_DeleteEntityDirectoryFile Request;
+	/** The response type */
 	typedef FResponse_DeleteEntityDirectoryFile Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_DeleteEntityDirectoryFile Delegate;
+	/** The API object that supports this API call */
 	typedef FRemoteFileAPI API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DeleteEntityDirectoryFile(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
 
-/* Download Entity Directory File
+/**
+ * @brief Download Entity Directory File
+
 */
 struct RALLYHEREAPI_API FRequest_DownloadEntityDirectoryFile : public FRequest
 {
 	FRequest_DownloadEntityDirectoryFile();
 	virtual ~FRequest_DownloadEntityDirectoryFile() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	ERHAPI_EntityType EntityType;
 	FString EntityId;
@@ -317,37 +447,66 @@ struct RALLYHEREAPI_API FRequest_DownloadEntityDirectoryFile : public FRequest
 	ERHAPI_FileType FileType;
 };
 
+/** The response type for FRequest_DownloadEntityDirectoryFile */
 struct RALLYHEREAPI_API FResponse_DownloadEntityDirectoryFile : public FResponse
 {
 	FResponse_DownloadEntityDirectoryFile(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_DownloadEntityDirectoryFile() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 protected:
+	/** Variant type representing the potential content responses for this call */
 	typedef TVariant<FString, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
 	ContentVariantType ParsedContent;
 
+	/** A parsed map of the headers from the request */
 	TMap<FString, FString> HeadersMap;
 
 public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
 	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
 	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
 	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FString Content;
 	
 
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
 	const FString* TryGetDefaultContent() const { return ParsedContent.TryGet<FString>(); }
 
 	// Individual Response Helpers	
@@ -373,67 +532,120 @@ public:
 
 };
 
+/** The delegate class for FRequest_DownloadEntityDirectoryFile */
+DECLARE_DELEGATE_OneParam(FDelegate_DownloadEntityDirectoryFile, const FResponse_DownloadEntityDirectoryFile&);
+
+/** @brief A helper metadata object for DownloadEntityDirectoryFile that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_DownloadEntityDirectoryFile
 {
+	/** The request type */
 	typedef FRequest_DownloadEntityDirectoryFile Request;
+	/** The response type */
 	typedef FResponse_DownloadEntityDirectoryFile Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_DownloadEntityDirectoryFile Delegate;
+	/** The API object that supports this API call */
 	typedef FRemoteFileAPI API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DownloadEntityDirectoryFile(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
 
-/* Get Entity Directory Information
- *
+/**
+ * @brief Get Entity Directory Information
  * Get information about a entity types storage container. Very resource intensive, use sparingly.
 */
 struct RALLYHEREAPI_API FRequest_GetEntityDirectoryInformation : public FRequest
 {
 	FRequest_GetEntityDirectoryInformation();
 	virtual ~FRequest_GetEntityDirectoryInformation() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	ERHAPI_FileType FileType;
 	ERHAPI_EntityType EntityType;
 };
 
+/** The response type for FRequest_GetEntityDirectoryInformation */
 struct RALLYHEREAPI_API FResponse_GetEntityDirectoryInformation : public FResponse
 {
 	FResponse_GetEntityDirectoryInformation(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GetEntityDirectoryInformation() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 protected:
+	/** Variant type representing the potential content responses for this call */
 	typedef TVariant<FRHAPI_StorageInformation, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
 	ContentVariantType ParsedContent;
 
+	/** A parsed map of the headers from the request */
 	TMap<FString, FString> HeadersMap;
 
 public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
 	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
 	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
 	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_StorageInformation Content;
 	
 
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
 	const FRHAPI_StorageInformation* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_StorageInformation>(); }
 
 	// Individual Response Helpers	
@@ -454,66 +666,121 @@ public:
 
 };
 
+/** The delegate class for FRequest_GetEntityDirectoryInformation */
+DECLARE_DELEGATE_OneParam(FDelegate_GetEntityDirectoryInformation, const FResponse_GetEntityDirectoryInformation&);
+
+/** @brief A helper metadata object for GetEntityDirectoryInformation that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_GetEntityDirectoryInformation
 {
+	/** The request type */
 	typedef FRequest_GetEntityDirectoryInformation Request;
+	/** The response type */
 	typedef FResponse_GetEntityDirectoryInformation Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_GetEntityDirectoryInformation Delegate;
+	/** The API object that supports this API call */
 	typedef FRemoteFileAPI API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetEntityDirectoryInformation(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
 
-/* List Entity Directory Files
+/**
+ * @brief List Entity Directory Files
+
 */
 struct RALLYHEREAPI_API FRequest_ListEntityDirectoryFiles : public FRequest
 {
 	FRequest_ListEntityDirectoryFiles();
 	virtual ~FRequest_ListEntityDirectoryFiles() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	ERHAPI_EntityType EntityType;
 	FString EntityId;
 	ERHAPI_FileType FileType;
 };
 
+/** The response type for FRequest_ListEntityDirectoryFiles */
 struct RALLYHEREAPI_API FResponse_ListEntityDirectoryFiles : public FResponse
 {
 	FResponse_ListEntityDirectoryFiles(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_ListEntityDirectoryFiles() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 protected:
+	/** Variant type representing the potential content responses for this call */
 	typedef TVariant<FRHAPI_FileListResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
 	ContentVariantType ParsedContent;
 
+	/** A parsed map of the headers from the request */
 	TMap<FString, FString> HeadersMap;
 
 public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
 	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
 	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
 	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_FileListResponse Content;
 	
 
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
 	const FRHAPI_FileListResponse* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_FileListResponse>(); }
 
 	// Individual Response Helpers	
@@ -534,16 +801,59 @@ public:
 
 };
 
+/** The delegate class for FRequest_ListEntityDirectoryFiles */
+DECLARE_DELEGATE_OneParam(FDelegate_ListEntityDirectoryFiles, const FResponse_ListEntityDirectoryFiles&);
+
+/** @brief A helper metadata object for ListEntityDirectoryFiles that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_ListEntityDirectoryFiles
 {
+	/** The request type */
 	typedef FRequest_ListEntityDirectoryFiles Request;
+	/** The response type */
 	typedef FResponse_ListEntityDirectoryFiles Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_ListEntityDirectoryFiles Delegate;
+	/** The API object that supports this API call */
 	typedef FRemoteFileAPI API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->ListEntityDirectoryFiles(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
+
+
+/** The API class itself, which will handle calls to */
+class RALLYHEREAPI_API FRemoteFileAPI : public FAPI
+{
+public:
+	FRemoteFileAPI();
+	virtual ~FRemoteFileAPI();
+
+	FHttpRequestPtr CreateEntityDirectoryFile(const FRequest_CreateEntityDirectoryFile& Request, const FDelegate_CreateEntityDirectoryFile& Delegate = FDelegate_CreateEntityDirectoryFile(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr DeleteEntityDirectory(const FRequest_DeleteEntityDirectory& Request, const FDelegate_DeleteEntityDirectory& Delegate = FDelegate_DeleteEntityDirectory(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr DeleteEntityDirectoryFile(const FRequest_DeleteEntityDirectoryFile& Request, const FDelegate_DeleteEntityDirectoryFile& Delegate = FDelegate_DeleteEntityDirectoryFile(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr DownloadEntityDirectoryFile(const FRequest_DownloadEntityDirectoryFile& Request, const FDelegate_DownloadEntityDirectoryFile& Delegate = FDelegate_DownloadEntityDirectoryFile(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetEntityDirectoryInformation(const FRequest_GetEntityDirectoryInformation& Request, const FDelegate_GetEntityDirectoryInformation& Delegate = FDelegate_GetEntityDirectoryInformation(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr ListEntityDirectoryFiles(const FRequest_ListEntityDirectoryFiles& Request, const FDelegate_ListEntityDirectoryFiles& Delegate = FDelegate_ListEntityDirectoryFiles(), int32 Priority = DefaultRallyHereAPIPriority);
+
+private:
+	void OnCreateEntityDirectoryFileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateEntityDirectoryFile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnDeleteEntityDirectoryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteEntityDirectory Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnDeleteEntityDirectoryFileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteEntityDirectoryFile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnDownloadEntityDirectoryFileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DownloadEntityDirectoryFile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetEntityDirectoryInformationResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetEntityDirectoryInformation Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnListEntityDirectoryFilesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ListEntityDirectoryFiles Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+
+};
+
 
 
 }

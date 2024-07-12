@@ -275,6 +275,11 @@ FResponse_CreateMatch::FResponse_CreateMatch(FRequestMetadata InRequestMetadata)
 
 FString Traits_CreateMatch::Name = TEXT("CreateMatch");
 
+FHttpRequestPtr Traits_CreateMatch::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->CreateMatch(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FMatchAPI::CreateMatchPlayer(const FRequest_CreateMatchPlayer& Request, const FDelegate_CreateMatchPlayer& Delegate /*= FDelegate_CreateMatchPlayer()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -533,6 +538,11 @@ FResponse_CreateMatchPlayer::FResponse_CreateMatchPlayer(FRequestMetadata InRequ
 
 FString Traits_CreateMatchPlayer::Name = TEXT("CreateMatchPlayer");
 
+FHttpRequestPtr Traits_CreateMatchPlayer::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->CreateMatchPlayer(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FMatchAPI::DeleteMatch(const FRequest_DeleteMatch& Request, const FDelegate_DeleteMatch& Delegate /*= FDelegate_DeleteMatch()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -722,6 +732,11 @@ FResponse_DeleteMatch::FResponse_DeleteMatch(FRequestMetadata InRequestMetadata)
 }
 
 FString Traits_DeleteMatch::Name = TEXT("DeleteMatch");
+
+FHttpRequestPtr Traits_DeleteMatch::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->DeleteMatch(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FMatchAPI::DeleteMatchPlayer(const FRequest_DeleteMatchPlayer& Request, const FDelegate_DeleteMatchPlayer& Delegate /*= FDelegate_DeleteMatchPlayer()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -913,6 +928,11 @@ FResponse_DeleteMatchPlayer::FResponse_DeleteMatchPlayer(FRequestMetadata InRequ
 }
 
 FString Traits_DeleteMatchPlayer::Name = TEXT("DeleteMatchPlayer");
+
+FHttpRequestPtr Traits_DeleteMatchPlayer::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->DeleteMatchPlayer(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FMatchAPI::GetMatch(const FRequest_GetMatch& Request, const FDelegate_GetMatch& Delegate /*= FDelegate_GetMatch()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -1184,6 +1204,11 @@ FResponse_GetMatch::FResponse_GetMatch(FRequestMetadata InRequestMetadata) :
 
 FString Traits_GetMatch::Name = TEXT("GetMatch");
 
+FHttpRequestPtr Traits_GetMatch::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetMatch(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FMatchAPI::GetMatchPlayer(const FRequest_GetMatchPlayer& Request, const FDelegate_GetMatchPlayer& Delegate /*= FDelegate_GetMatchPlayer()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -1430,6 +1455,11 @@ FResponse_GetMatchPlayer::FResponse_GetMatchPlayer(FRequestMetadata InRequestMet
 }
 
 FString Traits_GetMatchPlayer::Name = TEXT("GetMatchPlayer");
+
+FHttpRequestPtr Traits_GetMatchPlayer::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetMatchPlayer(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FMatchAPI::GetMatches(const FRequest_GetMatches& Request, const FDelegate_GetMatches& Delegate /*= FDelegate_GetMatches()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -1716,6 +1746,11 @@ FResponse_GetMatches::FResponse_GetMatches(FRequestMetadata InRequestMetadata) :
 
 FString Traits_GetMatches::Name = TEXT("GetMatches");
 
+FHttpRequestPtr Traits_GetMatches::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetMatches(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FMatchAPI::GetPlayerMatchesSelf(const FRequest_GetPlayerMatchesSelf& Request, const FDelegate_GetPlayerMatchesSelf& Delegate /*= FDelegate_GetPlayerMatchesSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -1968,6 +2003,11 @@ FResponse_GetPlayerMatchesSelf::FResponse_GetPlayerMatchesSelf(FRequestMetadata 
 }
 
 FString Traits_GetPlayerMatchesSelf::Name = TEXT("GetPlayerMatchesSelf");
+
+FHttpRequestPtr Traits_GetPlayerMatchesSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPlayerMatchesSelf(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FMatchAPI::GetPlayersMatches(const FRequest_GetPlayersMatches& Request, const FDelegate_GetPlayersMatches& Delegate /*= FDelegate_GetPlayersMatches()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -2227,6 +2267,11 @@ FResponse_GetPlayersMatches::FResponse_GetPlayersMatches(FRequestMetadata InRequ
 
 FString Traits_GetPlayersMatches::Name = TEXT("GetPlayersMatches");
 
+FHttpRequestPtr Traits_GetPlayersMatches::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPlayersMatches(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FMatchAPI::PatchMatch(const FRequest_PatchMatch& Request, const FDelegate_PatchMatch& Delegate /*= FDelegate_PatchMatch()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -2483,6 +2528,11 @@ FResponse_PatchMatch::FResponse_PatchMatch(FRequestMetadata InRequestMetadata) :
 }
 
 FString Traits_PatchMatch::Name = TEXT("PatchMatch");
+
+FHttpRequestPtr Traits_PatchMatch::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->PatchMatch(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FMatchAPI::PatchMatchPlayer(const FRequest_PatchMatchPlayer& Request, const FDelegate_PatchMatchPlayer& Delegate /*= FDelegate_PatchMatchPlayer()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -2742,6 +2792,11 @@ FResponse_PatchMatchPlayer::FResponse_PatchMatchPlayer(FRequestMetadata InReques
 
 FString Traits_PatchMatchPlayer::Name = TEXT("PatchMatchPlayer");
 
+FHttpRequestPtr Traits_PatchMatchPlayer::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->PatchMatchPlayer(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FMatchAPI::UpdateMatch(const FRequest_UpdateMatch& Request, const FDelegate_UpdateMatch& Delegate /*= FDelegate_UpdateMatch()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -2998,6 +3053,11 @@ FResponse_UpdateMatch::FResponse_UpdateMatch(FRequestMetadata InRequestMetadata)
 }
 
 FString Traits_UpdateMatch::Name = TEXT("UpdateMatch");
+
+FHttpRequestPtr Traits_UpdateMatch::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->UpdateMatch(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FMatchAPI::UpdateMatchPlayer(const FRequest_UpdateMatchPlayer& Request, const FDelegate_UpdateMatchPlayer& Delegate /*= FDelegate_UpdateMatchPlayer()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -3256,6 +3316,11 @@ FResponse_UpdateMatchPlayer::FResponse_UpdateMatchPlayer(FRequestMetadata InRequ
 }
 
 FString Traits_UpdateMatchPlayer::Name = TEXT("UpdateMatchPlayer");
+
+FHttpRequestPtr Traits_UpdateMatchPlayer::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->UpdateMatchPlayer(InRequest, InDelegate, InPriority);
+}
 
 
 }

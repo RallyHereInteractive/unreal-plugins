@@ -205,6 +205,11 @@ FResponse_GenerateKey::FResponse_GenerateKey(FRequestMetadata InRequestMetadata)
 
 FString Traits_GenerateKey::Name = TEXT("GenerateKey");
 
+FHttpRequestPtr Traits_GenerateKey::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GenerateKey(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FAuthAPI::GetAllPublicKeys(const FRequest_GetAllPublicKeys& Request, const FDelegate_GetAllPublicKeys& Delegate /*= FDelegate_GetAllPublicKeys()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -386,6 +391,11 @@ FResponse_GetAllPublicKeys::FResponse_GetAllPublicKeys(FRequestMetadata InReques
 }
 
 FString Traits_GetAllPublicKeys::Name = TEXT("GetAllPublicKeys");
+
+FHttpRequestPtr Traits_GetAllPublicKeys::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetAllPublicKeys(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FAuthAPI::GetPortalTokenDetails(const FRequest_GetPortalTokenDetails& Request, const FDelegate_GetPortalTokenDetails& Delegate /*= FDelegate_GetPortalTokenDetails()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -638,6 +648,11 @@ FResponse_GetPortalTokenDetails::FResponse_GetPortalTokenDetails(FRequestMetadat
 
 FString Traits_GetPortalTokenDetails::Name = TEXT("GetPortalTokenDetails");
 
+FHttpRequestPtr Traits_GetPortalTokenDetails::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPortalTokenDetails(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FAuthAPI::GetPublicKeyById(const FRequest_GetPublicKeyById& Request, const FDelegate_GetPublicKeyById& Delegate /*= FDelegate_GetPublicKeyById()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -850,6 +865,11 @@ FResponse_GetPublicKeyById::FResponse_GetPublicKeyById(FRequestMetadata InReques
 }
 
 FString Traits_GetPublicKeyById::Name = TEXT("GetPublicKeyById");
+
+FHttpRequestPtr Traits_GetPublicKeyById::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPublicKeyById(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FAuthAPI::Login(const FRequest_Login& Request, const FDelegate_Login& Delegate /*= FDelegate_Login()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -1161,6 +1181,11 @@ FResponse_Login::FResponse_Login(FRequestMetadata InRequestMetadata) :
 
 FString Traits_Login::Name = TEXT("Login");
 
+FHttpRequestPtr Traits_Login::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->Login(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FAuthAPI::Logout(const FRequest_Logout& Request, const FDelegate_Logout& Delegate /*= FDelegate_Logout()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -1377,6 +1402,11 @@ FResponse_Logout::FResponse_Logout(FRequestMetadata InRequestMetadata) :
 }
 
 FString Traits_Logout::Name = TEXT("Logout");
+
+FHttpRequestPtr Traits_Logout::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->Logout(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FAuthAPI::OauthLogin(const FRequest_OauthLogin& Request, const FDelegate_OauthLogin& Delegate /*= FDelegate_OauthLogin()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -1604,6 +1634,11 @@ FResponse_OauthLogin::FResponse_OauthLogin(FRequestMetadata InRequestMetadata) :
 
 FString Traits_OauthLogin::Name = TEXT("OauthLogin");
 
+FHttpRequestPtr Traits_OauthLogin::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->OauthLogin(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FAuthAPI::OauthResponse(const FRequest_OauthResponse& Request, const FDelegate_OauthResponse& Delegate /*= FDelegate_OauthResponse()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -1829,6 +1864,11 @@ FResponse_OauthResponse::FResponse_OauthResponse(FRequestMetadata InRequestMetad
 }
 
 FString Traits_OauthResponse::Name = TEXT("OauthResponse");
+
+FHttpRequestPtr Traits_OauthResponse::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->OauthResponse(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FAuthAPI::OauthTokenExchange(const FRequest_OauthTokenExchange& Request, const FDelegate_OauthTokenExchange& Delegate /*= FDelegate_OauthTokenExchange()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -2092,6 +2132,11 @@ FResponse_OauthTokenExchange::FResponse_OauthTokenExchange(FRequestMetadata InRe
 
 FString Traits_OauthTokenExchange::Name = TEXT("OauthTokenExchange");
 
+FHttpRequestPtr Traits_OauthTokenExchange::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->OauthTokenExchange(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FAuthAPI::Token(const FRequest_Token& Request, const FDelegate_Token& Delegate /*= FDelegate_Token()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -2330,6 +2375,11 @@ FResponse_Token::FResponse_Token(FRequestMetadata InRequestMetadata) :
 
 FString Traits_Token::Name = TEXT("Token");
 
+FHttpRequestPtr Traits_Token::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->Token(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FAuthAPI::Verify(const FRequest_Verify& Request, const FDelegate_Verify& Delegate /*= FDelegate_Verify()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -2546,6 +2596,11 @@ FResponse_Verify::FResponse_Verify(FRequestMetadata InRequestMetadata) :
 }
 
 FString Traits_Verify::Name = TEXT("Verify");
+
+FHttpRequestPtr Traits_Verify::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->Verify(InRequest, InDelegate, InPriority);
+}
 
 
 }

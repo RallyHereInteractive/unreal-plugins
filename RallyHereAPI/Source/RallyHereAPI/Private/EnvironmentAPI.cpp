@@ -205,5 +205,10 @@ FResponse_GetEnvironmentId::FResponse_GetEnvironmentId(FRequestMetadata InReques
 
 FString Traits_GetEnvironmentId::Name = TEXT("GetEnvironmentId");
 
+FHttpRequestPtr Traits_GetEnvironmentId::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetEnvironmentId(InRequest, InDelegate, InPriority);
+}
+
 
 }

@@ -288,5 +288,10 @@ FResponse_GetMarketingCampaigns::FResponse_GetMarketingCampaigns(FRequestMetadat
 
 FString Traits_GetMarketingCampaigns::Name = TEXT("GetMarketingCampaigns");
 
+FHttpRequestPtr Traits_GetMarketingCampaigns::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetMarketingCampaigns(InRequest, InDelegate, InPriority);
+}
+
 
 }

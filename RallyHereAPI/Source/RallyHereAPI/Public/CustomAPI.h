@@ -19,38 +19,30 @@ using RallyHereAPI::ToStringFormatArg;
 using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
-struct FRequest_CustomEndpointSend;
-struct FResponse_CustomEndpointSend;
+// forward declaration
+class FCustomAPI;
 
-DECLARE_DELEGATE_OneParam(FDelegate_CustomEndpointSend, const FResponse_CustomEndpointSend&);
-
-class RALLYHEREAPI_API FCustomAPI : public FAPI
-{
-public:
-	FCustomAPI();
-	virtual ~FCustomAPI();
-
-	FHttpRequestPtr CustomEndpointSend(const FRequest_CustomEndpointSend& Request, const FDelegate_CustomEndpointSend& Delegate = FDelegate_CustomEndpointSend(), int32 Priority = DefaultRallyHereAPIPriority);
-
-private:
-	void OnCustomEndpointSendResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CustomEndpointSend Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-
-};
-
-/* Custom Endpoint Send
- *
+/**
+ * @brief Custom Endpoint Send
  * Hit a predetermined URL specified by the passed in endpoint_id, the response from that URL is returned here.
 */
 struct RALLYHEREAPI_API FRequest_CustomEndpointSend : public FRequest
 {
 	FRequest_CustomEndpointSend();
 	virtual ~FRequest_CustomEndpointSend() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	/* The endpoint id */
 	FString EndpointId;
@@ -58,37 +50,66 @@ struct RALLYHEREAPI_API FRequest_CustomEndpointSend : public FRequest
 	TOptional<FRHAPI_JsonValue> Body;
 };
 
+/** The response type for FRequest_CustomEndpointSend */
 struct RALLYHEREAPI_API FResponse_CustomEndpointSend : public FResponse
 {
 	FResponse_CustomEndpointSend(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_CustomEndpointSend() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 protected:
+	/** Variant type representing the potential content responses for this call */
 	typedef TVariant<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+	
+	/** A variant containing the parsed content */
 	ContentVariantType ParsedContent;
 
+	/** A parsed map of the headers from the request */
 	TMap<FString, FString> HeadersMap;
 
 public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
 	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
 	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
 	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_JsonValue Content;
 	
 
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
 	const FRHAPI_JsonValue* TryGetDefaultContent() const { return ParsedContent.TryGet<FRHAPI_JsonValue>(); }
 
 	// Individual Response Helpers	
@@ -114,16 +135,49 @@ public:
 
 };
 
+/** The delegate class for FRequest_CustomEndpointSend */
+DECLARE_DELEGATE_OneParam(FDelegate_CustomEndpointSend, const FResponse_CustomEndpointSend&);
+
+/** @brief A helper metadata object for CustomEndpointSend that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_CustomEndpointSend
 {
+	/** The request type */
 	typedef FRequest_CustomEndpointSend Request;
+	/** The response type */
 	typedef FResponse_CustomEndpointSend Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_CustomEndpointSend Delegate;
+	/** The API object that supports this API call */
 	typedef FCustomAPI API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->CustomEndpointSend(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
+
+
+/** The API class itself, which will handle calls to */
+class RALLYHEREAPI_API FCustomAPI : public FAPI
+{
+public:
+	FCustomAPI();
+	virtual ~FCustomAPI();
+
+	FHttpRequestPtr CustomEndpointSend(const FRequest_CustomEndpointSend& Request, const FDelegate_CustomEndpointSend& Delegate = FDelegate_CustomEndpointSend(), int32 Priority = DefaultRallyHereAPIPriority);
+
+private:
+	void OnCustomEndpointSendResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CustomEndpointSend Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+
+};
+
 
 
 }

@@ -205,6 +205,11 @@ FResponse_GetAllEventSchema::FResponse_GetAllEventSchema(FRequestMetadata InRequ
 
 FString Traits_GetAllEventSchema::Name = TEXT("GetAllEventSchema");
 
+FHttpRequestPtr Traits_GetAllEventSchema::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetAllEventSchema(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FEventsAPI::ReceiveEventsV1(const FRequest_ReceiveEventsV1& Request, const FDelegate_ReceiveEventsV1& Delegate /*= FDelegate_ReceiveEventsV1()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -493,6 +498,11 @@ FResponse_ReceiveEventsV1::FResponse_ReceiveEventsV1(FRequestMetadata InRequestM
 }
 
 FString Traits_ReceiveEventsV1::Name = TEXT("ReceiveEventsV1");
+
+FHttpRequestPtr Traits_ReceiveEventsV1::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->ReceiveEventsV1(InRequest, InDelegate, InPriority);
+}
 
 
 }

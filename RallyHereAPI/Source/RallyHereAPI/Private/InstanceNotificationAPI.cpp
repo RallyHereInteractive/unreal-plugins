@@ -352,6 +352,11 @@ FResponse_InstanceCreateNotification::FResponse_InstanceCreateNotification(FRequ
 
 FString Traits_InstanceCreateNotification::Name = TEXT("InstanceCreateNotification");
 
+FHttpRequestPtr Traits_InstanceCreateNotification::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->InstanceCreateNotification(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FInstanceNotificationAPI::InstanceGetNotificationById(const FRequest_InstanceGetNotificationById& Request, const FDelegate_InstanceGetNotificationById& Delegate /*= FDelegate_InstanceGetNotificationById()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -695,6 +700,11 @@ FResponse_InstanceGetNotificationById::FResponse_InstanceGetNotificationById(FRe
 
 FString Traits_InstanceGetNotificationById::Name = TEXT("InstanceGetNotificationById");
 
+FHttpRequestPtr Traits_InstanceGetNotificationById::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->InstanceGetNotificationById(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FInstanceNotificationAPI::InstanceGetNotificationsPage(const FRequest_InstanceGetNotificationsPage& Request, const FDelegate_InstanceGetNotificationsPage& Delegate /*= FDelegate_InstanceGetNotificationsPage()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -1037,6 +1047,11 @@ FResponse_InstanceGetNotificationsPage::FResponse_InstanceGetNotificationsPage(F
 
 FString Traits_InstanceGetNotificationsPage::Name = TEXT("InstanceGetNotificationsPage");
 
+FHttpRequestPtr Traits_InstanceGetNotificationsPage::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->InstanceGetNotificationsPage(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FInstanceNotificationAPI::InstanceLongPollForNotifications(const FRequest_InstanceLongPollForNotifications& Request, const FDelegate_InstanceLongPollForNotifications& Delegate /*= FDelegate_InstanceLongPollForNotifications()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -1374,6 +1389,11 @@ FResponse_InstanceLongPollForNotifications::FResponse_InstanceLongPollForNotific
 }
 
 FString Traits_InstanceLongPollForNotifications::Name = TEXT("InstanceLongPollForNotifications");
+
+FHttpRequestPtr Traits_InstanceLongPollForNotifications::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->InstanceLongPollForNotifications(InRequest, InDelegate, InPriority);
+}
 
 
 }

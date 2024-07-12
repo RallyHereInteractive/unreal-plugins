@@ -379,6 +379,11 @@ FResponse_AddFriendV2::FResponse_AddFriendV2(FRequestMetadata InRequestMetadata)
 
 FString Traits_AddFriendV2::Name = TEXT("AddFriendV2");
 
+FHttpRequestPtr Traits_AddFriendV2::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->AddFriendV2(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FFriendsV2API::AddNotesV2(const FRequest_AddNotesV2& Request, const FDelegate_AddNotesV2& Delegate /*= FDelegate_AddNotesV2()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -730,6 +735,11 @@ FResponse_AddNotesV2::FResponse_AddNotesV2(FRequestMetadata InRequestMetadata) :
 
 FString Traits_AddNotesV2::Name = TEXT("AddNotesV2");
 
+FHttpRequestPtr Traits_AddNotesV2::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->AddNotesV2(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FFriendsV2API::DeleteFriendV2(const FRequest_DeleteFriendV2& Request, const FDelegate_DeleteFriendV2& Delegate /*= FDelegate_DeleteFriendV2()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -996,6 +1006,11 @@ FResponse_DeleteFriendV2::FResponse_DeleteFriendV2(FRequestMetadata InRequestMet
 
 FString Traits_DeleteFriendV2::Name = TEXT("DeleteFriendV2");
 
+FHttpRequestPtr Traits_DeleteFriendV2::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->DeleteFriendV2(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FFriendsV2API::DeleteFriendsV2(const FRequest_DeleteFriendsV2& Request, const FDelegate_DeleteFriendsV2& Delegate /*= FDelegate_DeleteFriendsV2()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -1225,6 +1240,11 @@ FResponse_DeleteFriendsV2::FResponse_DeleteFriendsV2(FRequestMetadata InRequestM
 
 FString Traits_DeleteFriendsV2::Name = TEXT("DeleteFriendsV2");
 
+FHttpRequestPtr Traits_DeleteFriendsV2::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->DeleteFriendsV2(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FFriendsV2API::DeleteNotesV2(const FRequest_DeleteNotesV2& Request, const FDelegate_DeleteNotesV2& Delegate /*= FDelegate_DeleteNotesV2()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -1449,6 +1469,11 @@ FResponse_DeleteNotesV2::FResponse_DeleteNotesV2(FRequestMetadata InRequestMetad
 }
 
 FString Traits_DeleteNotesV2::Name = TEXT("DeleteNotesV2");
+
+FHttpRequestPtr Traits_DeleteNotesV2::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->DeleteNotesV2(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FFriendsV2API::GetFriendRelationshipV2(const FRequest_GetFriendRelationshipV2& Request, const FDelegate_GetFriendRelationshipV2& Delegate /*= FDelegate_GetFriendRelationshipV2()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -1791,6 +1816,11 @@ FResponse_GetFriendRelationshipV2::FResponse_GetFriendRelationshipV2(FRequestMet
 }
 
 FString Traits_GetFriendRelationshipV2::Name = TEXT("GetFriendRelationshipV2");
+
+FHttpRequestPtr Traits_GetFriendRelationshipV2::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetFriendRelationshipV2(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FFriendsV2API::GetFriendsListForPlayerV2(const FRequest_GetFriendsListForPlayerV2& Request, const FDelegate_GetFriendsListForPlayerV2& Delegate /*= FDelegate_GetFriendsListForPlayerV2()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -2144,6 +2174,11 @@ FResponse_GetFriendsListForPlayerV2::FResponse_GetFriendsListForPlayerV2(FReques
 }
 
 FString Traits_GetFriendsListForPlayerV2::Name = TEXT("GetFriendsListForPlayerV2");
+
+FHttpRequestPtr Traits_GetFriendsListForPlayerV2::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetFriendsListForPlayerV2(InRequest, InDelegate, InPriority);
+}
 
 
 }

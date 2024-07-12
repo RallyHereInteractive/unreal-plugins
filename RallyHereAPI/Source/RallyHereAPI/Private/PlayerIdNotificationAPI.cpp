@@ -352,6 +352,11 @@ FResponse_PlayeridCreateNotification::FResponse_PlayeridCreateNotification(FRequ
 
 FString Traits_PlayeridCreateNotification::Name = TEXT("PlayeridCreateNotification");
 
+FHttpRequestPtr Traits_PlayeridCreateNotification::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->PlayeridCreateNotification(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridCreateNotificationSelf(const FRequest_PlayeridCreateNotificationSelf& Request, const FDelegate_PlayeridCreateNotificationSelf& Delegate /*= FDelegate_PlayeridCreateNotificationSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -675,6 +680,11 @@ FResponse_PlayeridCreateNotificationSelf::FResponse_PlayeridCreateNotificationSe
 }
 
 FString Traits_PlayeridCreateNotificationSelf::Name = TEXT("PlayeridCreateNotificationSelf");
+
+FHttpRequestPtr Traits_PlayeridCreateNotificationSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->PlayeridCreateNotificationSelf(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridGetNotificationById(const FRequest_PlayeridGetNotificationById& Request, const FDelegate_PlayeridGetNotificationById& Delegate /*= FDelegate_PlayeridGetNotificationById()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -1019,6 +1029,11 @@ FResponse_PlayeridGetNotificationById::FResponse_PlayeridGetNotificationById(FRe
 
 FString Traits_PlayeridGetNotificationById::Name = TEXT("PlayeridGetNotificationById");
 
+FHttpRequestPtr Traits_PlayeridGetNotificationById::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->PlayeridGetNotificationById(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridGetNotificationByIdSelf(const FRequest_PlayeridGetNotificationByIdSelf& Request, const FDelegate_PlayeridGetNotificationByIdSelf& Delegate /*= FDelegate_PlayeridGetNotificationByIdSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -1360,6 +1375,11 @@ FResponse_PlayeridGetNotificationByIdSelf::FResponse_PlayeridGetNotificationById
 }
 
 FString Traits_PlayeridGetNotificationByIdSelf::Name = TEXT("PlayeridGetNotificationByIdSelf");
+
+FHttpRequestPtr Traits_PlayeridGetNotificationByIdSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->PlayeridGetNotificationByIdSelf(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridGetNotificationsPage(const FRequest_PlayeridGetNotificationsPage& Request, const FDelegate_PlayeridGetNotificationsPage& Delegate /*= FDelegate_PlayeridGetNotificationsPage()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -1703,6 +1723,11 @@ FResponse_PlayeridGetNotificationsPage::FResponse_PlayeridGetNotificationsPage(F
 
 FString Traits_PlayeridGetNotificationsPage::Name = TEXT("PlayeridGetNotificationsPage");
 
+FHttpRequestPtr Traits_PlayeridGetNotificationsPage::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->PlayeridGetNotificationsPage(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridGetNotificationsPageSelf(const FRequest_PlayeridGetNotificationsPageSelf& Request, const FDelegate_PlayeridGetNotificationsPageSelf& Delegate /*= FDelegate_PlayeridGetNotificationsPageSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -2039,6 +2064,11 @@ FResponse_PlayeridGetNotificationsPageSelf::FResponse_PlayeridGetNotificationsPa
 }
 
 FString Traits_PlayeridGetNotificationsPageSelf::Name = TEXT("PlayeridGetNotificationsPageSelf");
+
+FHttpRequestPtr Traits_PlayeridGetNotificationsPageSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->PlayeridGetNotificationsPageSelf(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridLongPollForNotifications(const FRequest_PlayeridLongPollForNotifications& Request, const FDelegate_PlayeridLongPollForNotifications& Delegate /*= FDelegate_PlayeridLongPollForNotifications()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -2378,6 +2408,11 @@ FResponse_PlayeridLongPollForNotifications::FResponse_PlayeridLongPollForNotific
 
 FString Traits_PlayeridLongPollForNotifications::Name = TEXT("PlayeridLongPollForNotifications");
 
+FHttpRequestPtr Traits_PlayeridLongPollForNotifications::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->PlayeridLongPollForNotifications(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridLongPollForNotificationsSelf(const FRequest_PlayeridLongPollForNotificationsSelf& Request, const FDelegate_PlayeridLongPollForNotificationsSelf& Delegate /*= FDelegate_PlayeridLongPollForNotificationsSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -2710,6 +2745,11 @@ FResponse_PlayeridLongPollForNotificationsSelf::FResponse_PlayeridLongPollForNot
 }
 
 FString Traits_PlayeridLongPollForNotificationsSelf::Name = TEXT("PlayeridLongPollForNotificationsSelf");
+
+FHttpRequestPtr Traits_PlayeridLongPollForNotificationsSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->PlayeridLongPollForNotificationsSelf(InRequest, InDelegate, InPriority);
+}
 
 
 }

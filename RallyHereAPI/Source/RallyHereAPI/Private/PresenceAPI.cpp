@@ -346,6 +346,11 @@ FResponse_GetPlayerPresencePublicById::FResponse_GetPlayerPresencePublicById(FRe
 
 FString Traits_GetPlayerPresencePublicById::Name = TEXT("GetPlayerPresencePublicById");
 
+FHttpRequestPtr Traits_GetPlayerPresencePublicById::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPlayerPresencePublicById(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FPresenceAPI::GetPlayerPresencePublicByUuid(const FRequest_GetPlayerPresencePublicByUuid& Request, const FDelegate_GetPlayerPresencePublicByUuid& Delegate /*= FDelegate_GetPlayerPresencePublicByUuid()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -669,6 +674,11 @@ FResponse_GetPlayerPresencePublicByUuid::FResponse_GetPlayerPresencePublicByUuid
 
 FString Traits_GetPlayerPresencePublicByUuid::Name = TEXT("GetPlayerPresencePublicByUuid");
 
+FHttpRequestPtr Traits_GetPlayerPresencePublicByUuid::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPlayerPresencePublicByUuid(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FPresenceAPI::GetPlayerPresenceSelf(const FRequest_GetPlayerPresenceSelf& Request, const FDelegate_GetPlayerPresenceSelf& Delegate /*= FDelegate_GetPlayerPresenceSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -957,6 +967,11 @@ FResponse_GetPlayerPresenceSelf::FResponse_GetPlayerPresenceSelf(FRequestMetadat
 
 FString Traits_GetPlayerPresenceSelf::Name = TEXT("GetPlayerPresenceSelf");
 
+FHttpRequestPtr Traits_GetPlayerPresenceSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPlayerPresenceSelf(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FPresenceAPI::GetPresenceSettings(const FRequest_GetPresenceSettings& Request, const FDelegate_GetPresenceSettings& Delegate /*= FDelegate_GetPresenceSettings()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -1138,6 +1153,11 @@ FResponse_GetPresenceSettings::FResponse_GetPresenceSettings(FRequestMetadata In
 }
 
 FString Traits_GetPresenceSettings::Name = TEXT("GetPresenceSettings");
+
+FHttpRequestPtr Traits_GetPresenceSettings::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPresenceSettings(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FPresenceAPI::UpdatePlayerPresenceSelf(const FRequest_UpdatePlayerPresenceSelf& Request, const FDelegate_UpdatePlayerPresenceSelf& Delegate /*= FDelegate_UpdatePlayerPresenceSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -1395,6 +1415,11 @@ FResponse_UpdatePlayerPresenceSelf::FResponse_UpdatePlayerPresenceSelf(FRequestM
 }
 
 FString Traits_UpdatePlayerPresenceSelf::Name = TEXT("UpdatePlayerPresenceSelf");
+
+FHttpRequestPtr Traits_UpdatePlayerPresenceSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->UpdatePlayerPresenceSelf(InRequest, InDelegate, InPriority);
+}
 
 
 }

@@ -318,6 +318,11 @@ FResponse_DeleteAllPlayerIdSettingsForSettingType::FResponse_DeleteAllPlayerIdSe
 
 FString Traits_DeleteAllPlayerIdSettingsForSettingType::Name = TEXT("DeleteAllPlayerIdSettingsForSettingType");
 
+FHttpRequestPtr Traits_DeleteAllPlayerIdSettingsForSettingType::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->DeleteAllPlayerIdSettingsForSettingType(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FSettingsAPI::DeleteAllPlayerUuidSettingsForSettingType(const FRequest_DeleteAllPlayerUuidSettingsForSettingType& Request, const FDelegate_DeleteAllPlayerUuidSettingsForSettingType& Delegate /*= FDelegate_DeleteAllPlayerUuidSettingsForSettingType()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -613,6 +618,11 @@ FResponse_DeleteAllPlayerUuidSettingsForSettingType::FResponse_DeleteAllPlayerUu
 
 FString Traits_DeleteAllPlayerUuidSettingsForSettingType::Name = TEXT("DeleteAllPlayerUuidSettingsForSettingType");
 
+FHttpRequestPtr Traits_DeleteAllPlayerUuidSettingsForSettingType::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->DeleteAllPlayerUuidSettingsForSettingType(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FSettingsAPI::DeleteAllPlayerUuidSettingsForSettingTypeSelf(const FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf& Request, const FDelegate_DeleteAllPlayerUuidSettingsForSettingTypeSelf& Delegate /*= FDelegate_DeleteAllPlayerUuidSettingsForSettingTypeSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -906,6 +916,11 @@ FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf::FResponse_DeleteAllPlay
 }
 
 FString Traits_DeleteAllPlayerUuidSettingsForSettingTypeSelf::Name = TEXT("DeleteAllPlayerUuidSettingsForSettingTypeSelf");
+
+FHttpRequestPtr Traits_DeleteAllPlayerUuidSettingsForSettingTypeSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->DeleteAllPlayerUuidSettingsForSettingTypeSelf(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FSettingsAPI::DeleteSinglePlayerIdSetting(const FRequest_DeleteSinglePlayerIdSetting& Request, const FDelegate_DeleteSinglePlayerIdSetting& Delegate /*= FDelegate_DeleteSinglePlayerIdSetting()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -1203,6 +1218,11 @@ FResponse_DeleteSinglePlayerIdSetting::FResponse_DeleteSinglePlayerIdSetting(FRe
 
 FString Traits_DeleteSinglePlayerIdSetting::Name = TEXT("DeleteSinglePlayerIdSetting");
 
+FHttpRequestPtr Traits_DeleteSinglePlayerIdSetting::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->DeleteSinglePlayerIdSetting(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FSettingsAPI::DeleteSinglePlayerUuidSetting(const FRequest_DeleteSinglePlayerUuidSetting& Request, const FDelegate_DeleteSinglePlayerUuidSetting& Delegate /*= FDelegate_DeleteSinglePlayerUuidSetting()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -1499,6 +1519,11 @@ FResponse_DeleteSinglePlayerUuidSetting::FResponse_DeleteSinglePlayerUuidSetting
 
 FString Traits_DeleteSinglePlayerUuidSetting::Name = TEXT("DeleteSinglePlayerUuidSetting");
 
+FHttpRequestPtr Traits_DeleteSinglePlayerUuidSetting::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->DeleteSinglePlayerUuidSetting(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FSettingsAPI::DeleteSinglePlayerUuidSettingSelf(const FRequest_DeleteSinglePlayerUuidSettingSelf& Request, const FDelegate_DeleteSinglePlayerUuidSettingSelf& Delegate /*= FDelegate_DeleteSinglePlayerUuidSettingSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -1793,6 +1818,11 @@ FResponse_DeleteSinglePlayerUuidSettingSelf::FResponse_DeleteSinglePlayerUuidSet
 }
 
 FString Traits_DeleteSinglePlayerUuidSettingSelf::Name = TEXT("DeleteSinglePlayerUuidSettingSelf");
+
+FHttpRequestPtr Traits_DeleteSinglePlayerUuidSettingSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->DeleteSinglePlayerUuidSettingSelf(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FSettingsAPI::GetAllPlayerIdSettingsForSettingType(const FRequest_GetAllPlayerIdSettingsForSettingType& Request, const FDelegate_GetAllPlayerIdSettingsForSettingType& Delegate /*= FDelegate_GetAllPlayerIdSettingsForSettingType()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -2097,6 +2127,11 @@ FResponse_GetAllPlayerIdSettingsForSettingType::FResponse_GetAllPlayerIdSettings
 
 FString Traits_GetAllPlayerIdSettingsForSettingType::Name = TEXT("GetAllPlayerIdSettingsForSettingType");
 
+FHttpRequestPtr Traits_GetAllPlayerIdSettingsForSettingType::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetAllPlayerIdSettingsForSettingType(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FSettingsAPI::GetAllPlayerUuidSettingsForSettingType(const FRequest_GetAllPlayerUuidSettingsForSettingType& Request, const FDelegate_GetAllPlayerUuidSettingsForSettingType& Delegate /*= FDelegate_GetAllPlayerUuidSettingsForSettingType()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -2400,6 +2435,11 @@ FResponse_GetAllPlayerUuidSettingsForSettingType::FResponse_GetAllPlayerUuidSett
 
 FString Traits_GetAllPlayerUuidSettingsForSettingType::Name = TEXT("GetAllPlayerUuidSettingsForSettingType");
 
+FHttpRequestPtr Traits_GetAllPlayerUuidSettingsForSettingType::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetAllPlayerUuidSettingsForSettingType(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FSettingsAPI::GetAllPlayerUuidSettingsForSettingTypeSelf(const FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf& Request, const FDelegate_GetAllPlayerUuidSettingsForSettingTypeSelf& Delegate /*= FDelegate_GetAllPlayerUuidSettingsForSettingTypeSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -2702,6 +2742,11 @@ FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf::FResponse_GetAllPlayerUuid
 
 FString Traits_GetAllPlayerUuidSettingsForSettingTypeSelf::Name = TEXT("GetAllPlayerUuidSettingsForSettingTypeSelf");
 
+FHttpRequestPtr Traits_GetAllPlayerUuidSettingsForSettingTypeSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetAllPlayerUuidSettingsForSettingTypeSelf(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FSettingsAPI::GetConfigForAllSettingTypes(const FRequest_GetConfigForAllSettingTypes& Request, const FDelegate_GetConfigForAllSettingTypes& Delegate /*= FDelegate_GetConfigForAllSettingTypes()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -2894,6 +2939,11 @@ FResponse_GetConfigForAllSettingTypes::FResponse_GetConfigForAllSettingTypes(FRe
 }
 
 FString Traits_GetConfigForAllSettingTypes::Name = TEXT("GetConfigForAllSettingTypes");
+
+FHttpRequestPtr Traits_GetConfigForAllSettingTypes::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetConfigForAllSettingTypes(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FSettingsAPI::GetConfigForSingleSettingTypeAllVersions(const FRequest_GetConfigForSingleSettingTypeAllVersions& Request, const FDelegate_GetConfigForSingleSettingTypeAllVersions& Delegate /*= FDelegate_GetConfigForSingleSettingTypeAllVersions()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -3165,6 +3215,11 @@ FResponse_GetConfigForSingleSettingTypeAllVersions::FResponse_GetConfigForSingle
 
 FString Traits_GetConfigForSingleSettingTypeAllVersions::Name = TEXT("GetConfigForSingleSettingTypeAllVersions");
 
+FHttpRequestPtr Traits_GetConfigForSingleSettingTypeAllVersions::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetConfigForSingleSettingTypeAllVersions(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FSettingsAPI::GetConfigForSingleSettingTypeAndVersion(const FRequest_GetConfigForSingleSettingTypeAndVersion& Request, const FDelegate_GetConfigForSingleSettingTypeAndVersion& Delegate /*= FDelegate_GetConfigForSingleSettingTypeAndVersion()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -3435,6 +3490,11 @@ FResponse_GetConfigForSingleSettingTypeAndVersion::FResponse_GetConfigForSingleS
 }
 
 FString Traits_GetConfigForSingleSettingTypeAndVersion::Name = TEXT("GetConfigForSingleSettingTypeAndVersion");
+
+FHttpRequestPtr Traits_GetConfigForSingleSettingTypeAndVersion::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetConfigForSingleSettingTypeAndVersion(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FSettingsAPI::GetSinglePlayerIdSetting(const FRequest_GetSinglePlayerIdSetting& Request, const FDelegate_GetSinglePlayerIdSetting& Delegate /*= FDelegate_GetSinglePlayerIdSetting()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -3732,6 +3792,11 @@ FResponse_GetSinglePlayerIdSetting::FResponse_GetSinglePlayerIdSetting(FRequestM
 
 FString Traits_GetSinglePlayerIdSetting::Name = TEXT("GetSinglePlayerIdSetting");
 
+FHttpRequestPtr Traits_GetSinglePlayerIdSetting::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetSinglePlayerIdSetting(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FSettingsAPI::GetSinglePlayerUuidSetting(const FRequest_GetSinglePlayerUuidSetting& Request, const FDelegate_GetSinglePlayerUuidSetting& Delegate /*= FDelegate_GetSinglePlayerUuidSetting()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -4028,6 +4093,11 @@ FResponse_GetSinglePlayerUuidSetting::FResponse_GetSinglePlayerUuidSetting(FRequ
 
 FString Traits_GetSinglePlayerUuidSetting::Name = TEXT("GetSinglePlayerUuidSetting");
 
+FHttpRequestPtr Traits_GetSinglePlayerUuidSetting::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetSinglePlayerUuidSetting(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FSettingsAPI::GetSinglePlayerUuidSettingSelf(const FRequest_GetSinglePlayerUuidSettingSelf& Request, const FDelegate_GetSinglePlayerUuidSettingSelf& Delegate /*= FDelegate_GetSinglePlayerUuidSettingSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -4322,6 +4392,11 @@ FResponse_GetSinglePlayerUuidSettingSelf::FResponse_GetSinglePlayerUuidSettingSe
 }
 
 FString Traits_GetSinglePlayerUuidSettingSelf::Name = TEXT("GetSinglePlayerUuidSettingSelf");
+
+FHttpRequestPtr Traits_GetSinglePlayerUuidSettingSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetSinglePlayerUuidSettingSelf(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FSettingsAPI::SetSinglePlayerIdSetting(const FRequest_SetSinglePlayerIdSetting& Request, const FDelegate_SetSinglePlayerIdSetting& Delegate /*= FDelegate_SetSinglePlayerIdSetting()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -4654,6 +4729,11 @@ FResponse_SetSinglePlayerIdSetting::FResponse_SetSinglePlayerIdSetting(FRequestM
 
 FString Traits_SetSinglePlayerIdSetting::Name = TEXT("SetSinglePlayerIdSetting");
 
+FHttpRequestPtr Traits_SetSinglePlayerIdSetting::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->SetSinglePlayerIdSetting(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FSettingsAPI::SetSinglePlayerUuidSetting(const FRequest_SetSinglePlayerUuidSetting& Request, const FDelegate_SetSinglePlayerUuidSetting& Delegate /*= FDelegate_SetSinglePlayerUuidSetting()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -4985,6 +5065,11 @@ FResponse_SetSinglePlayerUuidSetting::FResponse_SetSinglePlayerUuidSetting(FRequ
 
 FString Traits_SetSinglePlayerUuidSetting::Name = TEXT("SetSinglePlayerUuidSetting");
 
+FHttpRequestPtr Traits_SetSinglePlayerUuidSetting::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->SetSinglePlayerUuidSetting(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FSettingsAPI::SetSinglePlayerUuidSettingSelf(const FRequest_SetSinglePlayerUuidSettingSelf& Request, const FDelegate_SetSinglePlayerUuidSettingSelf& Delegate /*= FDelegate_SetSinglePlayerUuidSettingSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -5314,6 +5399,11 @@ FResponse_SetSinglePlayerUuidSettingSelf::FResponse_SetSinglePlayerUuidSettingSe
 }
 
 FString Traits_SetSinglePlayerUuidSettingSelf::Name = TEXT("SetSinglePlayerUuidSettingSelf");
+
+FHttpRequestPtr Traits_SetSinglePlayerUuidSettingSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->SetSinglePlayerUuidSettingSelf(InRequest, InDelegate, InPriority);
+}
 
 
 }

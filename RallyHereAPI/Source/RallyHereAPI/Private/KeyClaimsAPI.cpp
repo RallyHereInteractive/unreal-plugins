@@ -329,6 +329,11 @@ FResponse_ClaimPlayerUuidUnclaimedKeyClaim::FResponse_ClaimPlayerUuidUnclaimedKe
 
 FString Traits_ClaimPlayerUuidUnclaimedKeyClaim::Name = TEXT("ClaimPlayerUuidUnclaimedKeyClaim");
 
+FHttpRequestPtr Traits_ClaimPlayerUuidUnclaimedKeyClaim::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->ClaimPlayerUuidUnclaimedKeyClaim(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FKeyClaimsAPI::ClaimPlayerUuidUnclaimedKeyClaimForMe(const FRequest_ClaimPlayerUuidUnclaimedKeyClaimForMe& Request, const FDelegate_ClaimPlayerUuidUnclaimedKeyClaimForMe& Delegate /*= FDelegate_ClaimPlayerUuidUnclaimedKeyClaimForMe()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -633,6 +638,11 @@ FResponse_ClaimPlayerUuidUnclaimedKeyClaimForMe::FResponse_ClaimPlayerUuidUnclai
 }
 
 FString Traits_ClaimPlayerUuidUnclaimedKeyClaimForMe::Name = TEXT("ClaimPlayerUuidUnclaimedKeyClaimForMe");
+
+FHttpRequestPtr Traits_ClaimPlayerUuidUnclaimedKeyClaimForMe::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->ClaimPlayerUuidUnclaimedKeyClaimForMe(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FKeyClaimsAPI::ClaimUnclaimedKeyClaim(const FRequest_ClaimUnclaimedKeyClaim& Request, const FDelegate_ClaimUnclaimedKeyClaim& Delegate /*= FDelegate_ClaimUnclaimedKeyClaim()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -940,6 +950,11 @@ FResponse_ClaimUnclaimedKeyClaim::FResponse_ClaimUnclaimedKeyClaim(FRequestMetad
 
 FString Traits_ClaimUnclaimedKeyClaim::Name = TEXT("ClaimUnclaimedKeyClaim");
 
+FHttpRequestPtr Traits_ClaimUnclaimedKeyClaim::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->ClaimUnclaimedKeyClaim(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FKeyClaimsAPI::ClaimUnclaimedKeyClaimForMe(const FRequest_ClaimUnclaimedKeyClaimForMe& Request, const FDelegate_ClaimUnclaimedKeyClaimForMe& Delegate /*= FDelegate_ClaimUnclaimedKeyClaimForMe()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -1245,6 +1260,11 @@ FResponse_ClaimUnclaimedKeyClaimForMe::FResponse_ClaimUnclaimedKeyClaimForMe(FRe
 
 FString Traits_ClaimUnclaimedKeyClaimForMe::Name = TEXT("ClaimUnclaimedKeyClaimForMe");
 
+FHttpRequestPtr Traits_ClaimUnclaimedKeyClaimForMe::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->ClaimUnclaimedKeyClaimForMe(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FKeyClaimsAPI::GetKeyClaim(const FRequest_GetKeyClaim& Request, const FDelegate_GetKeyClaim& Delegate /*= FDelegate_GetKeyClaim()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -1540,6 +1560,11 @@ FResponse_GetKeyClaim::FResponse_GetKeyClaim(FRequestMetadata InRequestMetadata)
 
 FString Traits_GetKeyClaim::Name = TEXT("GetKeyClaim");
 
+FHttpRequestPtr Traits_GetKeyClaim::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetKeyClaim(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FKeyClaimsAPI::GetKeyClaimForMe(const FRequest_GetKeyClaimForMe& Request, const FDelegate_GetKeyClaimForMe& Delegate /*= FDelegate_GetKeyClaimForMe()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -1833,6 +1858,11 @@ FResponse_GetKeyClaimForMe::FResponse_GetKeyClaimForMe(FRequestMetadata InReques
 }
 
 FString Traits_GetKeyClaimForMe::Name = TEXT("GetKeyClaimForMe");
+
+FHttpRequestPtr Traits_GetKeyClaimForMe::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetKeyClaimForMe(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FKeyClaimsAPI::GetKeyClaims(const FRequest_GetKeyClaims& Request, const FDelegate_GetKeyClaims& Delegate /*= FDelegate_GetKeyClaims()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -2128,6 +2158,11 @@ FResponse_GetKeyClaims::FResponse_GetKeyClaims(FRequestMetadata InRequestMetadat
 
 FString Traits_GetKeyClaims::Name = TEXT("GetKeyClaims");
 
+FHttpRequestPtr Traits_GetKeyClaims::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetKeyClaims(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FKeyClaimsAPI::GetKeyClaimsForMe(const FRequest_GetKeyClaimsForMe& Request, const FDelegate_GetKeyClaimsForMe& Delegate /*= FDelegate_GetKeyClaimsForMe()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -2393,6 +2428,11 @@ FResponse_GetKeyClaimsForMe::FResponse_GetKeyClaimsForMe(FRequestMetadata InRequ
 
 FString Traits_GetKeyClaimsForMe::Name = TEXT("GetKeyClaimsForMe");
 
+FHttpRequestPtr Traits_GetKeyClaimsForMe::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetKeyClaimsForMe(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FKeyClaimsAPI::GetKeyClaimsForMyUuid(const FRequest_GetKeyClaimsForMyUuid& Request, const FDelegate_GetKeyClaimsForMyUuid& Delegate /*= FDelegate_GetKeyClaimsForMyUuid()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -2657,6 +2697,11 @@ FResponse_GetKeyClaimsForMyUuid::FResponse_GetKeyClaimsForMyUuid(FRequestMetadat
 }
 
 FString Traits_GetKeyClaimsForMyUuid::Name = TEXT("GetKeyClaimsForMyUuid");
+
+FHttpRequestPtr Traits_GetKeyClaimsForMyUuid::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetKeyClaimsForMyUuid(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FKeyClaimsAPI::GetPlayerUuidKeyClaim(const FRequest_GetPlayerUuidKeyClaim& Request, const FDelegate_GetPlayerUuidKeyClaim& Delegate /*= FDelegate_GetPlayerUuidKeyClaim()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -2953,6 +2998,11 @@ FResponse_GetPlayerUuidKeyClaim::FResponse_GetPlayerUuidKeyClaim(FRequestMetadat
 
 FString Traits_GetPlayerUuidKeyClaim::Name = TEXT("GetPlayerUuidKeyClaim");
 
+FHttpRequestPtr Traits_GetPlayerUuidKeyClaim::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPlayerUuidKeyClaim(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FKeyClaimsAPI::GetPlayerUuidKeyClaimSelf(const FRequest_GetPlayerUuidKeyClaimSelf& Request, const FDelegate_GetPlayerUuidKeyClaimSelf& Delegate /*= FDelegate_GetPlayerUuidKeyClaimSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -3247,6 +3297,11 @@ FResponse_GetPlayerUuidKeyClaimSelf::FResponse_GetPlayerUuidKeyClaimSelf(FReques
 
 FString Traits_GetPlayerUuidKeyClaimSelf::Name = TEXT("GetPlayerUuidKeyClaimSelf");
 
+FHttpRequestPtr Traits_GetPlayerUuidKeyClaimSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPlayerUuidKeyClaimSelf(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FKeyClaimsAPI::GetPlayerUuidKeyClaims(const FRequest_GetPlayerUuidKeyClaims& Request, const FDelegate_GetPlayerUuidKeyClaims& Delegate /*= FDelegate_GetPlayerUuidKeyClaims()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -3540,6 +3595,11 @@ FResponse_GetPlayerUuidKeyClaims::FResponse_GetPlayerUuidKeyClaims(FRequestMetad
 }
 
 FString Traits_GetPlayerUuidKeyClaims::Name = TEXT("GetPlayerUuidKeyClaims");
+
+FHttpRequestPtr Traits_GetPlayerUuidKeyClaims::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPlayerUuidKeyClaims(InRequest, InDelegate, InPriority);
+}
 
 
 }

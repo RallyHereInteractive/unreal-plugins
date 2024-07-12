@@ -226,6 +226,11 @@ FResponse_CreateEntityDirectoryFile::FResponse_CreateEntityDirectoryFile(FReques
 
 FString Traits_CreateEntityDirectoryFile::Name = TEXT("CreateEntityDirectoryFile");
 
+FHttpRequestPtr Traits_CreateEntityDirectoryFile::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->CreateEntityDirectoryFile(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FRemoteFileAPI::DeleteEntityDirectory(const FRequest_DeleteEntityDirectory& Request, const FDelegate_DeleteEntityDirectory& Delegate /*= FDelegate_DeleteEntityDirectory()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -473,6 +478,11 @@ FResponse_DeleteEntityDirectory::FResponse_DeleteEntityDirectory(FRequestMetadat
 
 FString Traits_DeleteEntityDirectory::Name = TEXT("DeleteEntityDirectory");
 
+FHttpRequestPtr Traits_DeleteEntityDirectory::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->DeleteEntityDirectory(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FRemoteFileAPI::DeleteEntityDirectoryFile(const FRequest_DeleteEntityDirectoryFile& Request, const FDelegate_DeleteEntityDirectoryFile& Delegate /*= FDelegate_DeleteEntityDirectoryFile()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -665,6 +675,11 @@ FResponse_DeleteEntityDirectoryFile::FResponse_DeleteEntityDirectoryFile(FReques
 }
 
 FString Traits_DeleteEntityDirectoryFile::Name = TEXT("DeleteEntityDirectoryFile");
+
+FHttpRequestPtr Traits_DeleteEntityDirectoryFile::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->DeleteEntityDirectoryFile(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FRemoteFileAPI::DownloadEntityDirectoryFile(const FRequest_DownloadEntityDirectoryFile& Request, const FDelegate_DownloadEntityDirectoryFile& Delegate /*= FDelegate_DownloadEntityDirectoryFile()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -939,6 +954,11 @@ FResponse_DownloadEntityDirectoryFile::FResponse_DownloadEntityDirectoryFile(FRe
 
 FString Traits_DownloadEntityDirectoryFile::Name = TEXT("DownloadEntityDirectoryFile");
 
+FHttpRequestPtr Traits_DownloadEntityDirectoryFile::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->DownloadEntityDirectoryFile(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FRemoteFileAPI::GetEntityDirectoryInformation(const FRequest_GetEntityDirectoryInformation& Request, const FDelegate_GetEntityDirectoryInformation& Delegate /*= FDelegate_GetEntityDirectoryInformation()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -1185,6 +1205,11 @@ FResponse_GetEntityDirectoryInformation::FResponse_GetEntityDirectoryInformation
 }
 
 FString Traits_GetEntityDirectoryInformation::Name = TEXT("GetEntityDirectoryInformation");
+
+FHttpRequestPtr Traits_GetEntityDirectoryInformation::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetEntityDirectoryInformation(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FRemoteFileAPI::ListEntityDirectoryFiles(const FRequest_ListEntityDirectoryFiles& Request, const FDelegate_ListEntityDirectoryFiles& Delegate /*= FDelegate_ListEntityDirectoryFiles()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -1433,6 +1458,11 @@ FResponse_ListEntityDirectoryFiles::FResponse_ListEntityDirectoryFiles(FRequestM
 }
 
 FString Traits_ListEntityDirectoryFiles::Name = TEXT("ListEntityDirectoryFiles");
+
+FHttpRequestPtr Traits_ListEntityDirectoryFiles::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->ListEntityDirectoryFiles(InRequest, InDelegate, InPriority);
+}
 
 
 }

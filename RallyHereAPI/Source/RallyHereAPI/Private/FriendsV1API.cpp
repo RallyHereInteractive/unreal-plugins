@@ -379,6 +379,11 @@ FResponse_AddFriend::FResponse_AddFriend(FRequestMetadata InRequestMetadata) :
 
 FString Traits_AddFriend::Name = TEXT("AddFriend");
 
+FHttpRequestPtr Traits_AddFriend::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->AddFriend(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FFriendsV1API::AddNotes(const FRequest_AddNotes& Request, const FDelegate_AddNotes& Delegate /*= FDelegate_AddNotes()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -730,6 +735,11 @@ FResponse_AddNotes::FResponse_AddNotes(FRequestMetadata InRequestMetadata) :
 
 FString Traits_AddNotes::Name = TEXT("AddNotes");
 
+FHttpRequestPtr Traits_AddNotes::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->AddNotes(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FFriendsV1API::DeleteFriend(const FRequest_DeleteFriend& Request, const FDelegate_DeleteFriend& Delegate /*= FDelegate_DeleteFriend()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -996,6 +1006,11 @@ FResponse_DeleteFriend::FResponse_DeleteFriend(FRequestMetadata InRequestMetadat
 
 FString Traits_DeleteFriend::Name = TEXT("DeleteFriend");
 
+FHttpRequestPtr Traits_DeleteFriend::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->DeleteFriend(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FFriendsV1API::DeleteFriends(const FRequest_DeleteFriends& Request, const FDelegate_DeleteFriends& Delegate /*= FDelegate_DeleteFriends()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -1225,6 +1240,11 @@ FResponse_DeleteFriends::FResponse_DeleteFriends(FRequestMetadata InRequestMetad
 
 FString Traits_DeleteFriends::Name = TEXT("DeleteFriends");
 
+FHttpRequestPtr Traits_DeleteFriends::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->DeleteFriends(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FFriendsV1API::DeleteNotes(const FRequest_DeleteNotes& Request, const FDelegate_DeleteNotes& Delegate /*= FDelegate_DeleteNotes()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -1449,6 +1469,11 @@ FResponse_DeleteNotes::FResponse_DeleteNotes(FRequestMetadata InRequestMetadata)
 }
 
 FString Traits_DeleteNotes::Name = TEXT("DeleteNotes");
+
+FHttpRequestPtr Traits_DeleteNotes::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->DeleteNotes(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FFriendsV1API::GetFriendRelationship(const FRequest_GetFriendRelationship& Request, const FDelegate_GetFriendRelationship& Delegate /*= FDelegate_GetFriendRelationship()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -1791,6 +1816,11 @@ FResponse_GetFriendRelationship::FResponse_GetFriendRelationship(FRequestMetadat
 }
 
 FString Traits_GetFriendRelationship::Name = TEXT("GetFriendRelationship");
+
+FHttpRequestPtr Traits_GetFriendRelationship::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetFriendRelationship(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FFriendsV1API::GetFriendsListForPlayer(const FRequest_GetFriendsListForPlayer& Request, const FDelegate_GetFriendsListForPlayer& Delegate /*= FDelegate_GetFriendsListForPlayer()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -2144,6 +2174,11 @@ FResponse_GetFriendsListForPlayer::FResponse_GetFriendsListForPlayer(FRequestMet
 }
 
 FString Traits_GetFriendsListForPlayer::Name = TEXT("GetFriendsListForPlayer");
+
+FHttpRequestPtr Traits_GetFriendsListForPlayer::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetFriendsListForPlayer(InRequest, InDelegate, InPriority);
+}
 
 
 }
