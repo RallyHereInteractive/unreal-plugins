@@ -457,12 +457,14 @@ bool FResponse_{{operationIdCamelCase}}::ParseHeaders()
 {{#dataType}}
 bool FResponse_{{operationIdCamelCase}}::TryGetContentFor{{{code}}}({{{.}}}& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != {{{code}}})
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 {{/dataType}}
@@ -495,8 +497,35 @@ bool FResponse_{{operationIdCamelCase}}::TryGetContentFor{{{code}}}({{{.}}}& Out
 {{/responses}}
 bool FResponse_{{operationIdCamelCase}}::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
+	bool bParsed = false;
 	{{#returnType}}
-	return TryGetJsonValue(JsonValue, Content);
+	{{#responses.0}}
+	// for non default responses, parse into a temporary object to validate the response can be parsed properly
+	switch ((int)GetHttpResponseCode())
+	{ {{#responses}} {{#dataType}}
+		case {{code}}:
+			{
+				{{{.}}} Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<{{{.}}}>(Object);
+					bParsed = true;
+				}
+				break;
+			}{{/dataType}}{{/responses}}
+		default:
+			break;
+	}
+
+	{{/responses.0}}
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// if using legacy content object, attempt to parse any response into the main content object.  For some legacy reasons around multiple success variants, this needs to ignore the intended type and always parse into the default type
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS;
+	TryGetJsonValue(JsonValue, Content);
+	PRAGMA_ENABLE_DEPRECATION_WARNINGS;
+#endif
+
+	return bParsed;
 	{{/returnType}}
 	{{^returnType}}
 	return true;
@@ -505,6 +534,7 @@ bool FResponse_{{operationIdCamelCase}}::FromJson(const TSharedPtr<FJsonValue>& 
 
 FResponse_{{operationIdCamelCase}}::FResponse_{{operationIdCamelCase}}(FRequestMetadata InRequestMetadata) :
 	FResponse(MoveTemp(InRequestMetadata))
+	, ParsedContent()
 {
 }
 

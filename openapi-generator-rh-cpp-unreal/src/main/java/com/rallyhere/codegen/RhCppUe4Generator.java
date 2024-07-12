@@ -130,6 +130,7 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
         additionalProperties.put("stripBlueprintCompatibility", stripBlueprintCompatibility);
         additionalProperties.put("lambdaCommentDescription", new RhDescriptionCommentLambda());
         additionalProperties.put("lambdaSplitString", new RhUnrealCppSplitStringLambda());
+        additionalProperties.put("lambdaDedupTrimString", new RhDeduplicateTrimCommaListLambda());
 
         /**
          * Language Specific Primitives.  These types will not trigger imports by

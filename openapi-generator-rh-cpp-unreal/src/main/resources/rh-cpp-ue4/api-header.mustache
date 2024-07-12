@@ -100,22 +100,38 @@ struct {{dllapi}} FRequest_{{operationIdCamelCase}} : public FRequest
 struct {{dllapi}} FResponse_{{operationIdCamelCase}} : public FResponse
 {
 	FResponse_{{operationIdCamelCase}}(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_{{operationIdCamelCase}}() = default;
+	//virtual ~FResponse_{{operationIdCamelCase}}() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;{{#responses.0.headers.0}}
 	bool ParseHeaders() override;{{/responses.0.headers.0}}
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<{{#lambdaDedupTrimString}}{{#responses}}{{#dataType}}{{{.}}}{{/dataType}}, {{/responses}}{{/lambdaDedupTrimString}}> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
 	{{#responses.0}}
-	{{#dataType}}{{{.}}} Content;{{/dataType}}
+	{{#dataType}}
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	{{{.}}} Content;
+	#endif
+	
+	{{/dataType}}
+	
 	{{#headers.0}}
 	// Headers
 	{{/headers.0}}
 	{{#headers}}
 	{{#description}}/* {{{.}}} */
 	{{/description}}{{^required}}TOptional<{{/required}}{{{dataType}}}{{^required}}>{{/required}} {{name}}{{#defaultValue}} = {{{.}}}{{/defaultValue}};{{/headers}}
-
-	// Manual Response Helpers
 	{{/responses.0}}
+
+	// Manual Response Helpers	
 	{{#responses}}
 	/* Response {{code}}
 	{{{message}}}
