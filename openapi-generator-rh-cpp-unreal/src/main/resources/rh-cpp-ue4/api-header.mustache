@@ -31,44 +31,33 @@ using {{cppNamespaceDeclarations.0}}::ToStringFormatArg;
 using {{cppNamespaceDeclarations.0}}::WriteJsonValue;
 using {{cppNamespaceDeclarations.0}}::TryGetJsonValue;
 
-{{#operations}}{{#operation}}struct FRequest_{{operationIdCamelCase}};
-struct FResponse_{{operationIdCamelCase}};
-{{/operation}}{{/operations}}
-{{#operations}}{{#operation}}DECLARE_DELEGATE_OneParam(FDelegate_{{operationIdCamelCase}}, const FResponse_{{operationIdCamelCase}}&);
-{{/operation}}{{/operations}}
-class {{dllapi}} {{classname}} : public FAPI
-{
-public:
-	{{classname}}();
-	virtual ~{{classname}}();
-
-{{#operations}}{{#operation}}{{#description}}	/* {{{.}}} */
-{{/description}}	FHttpRequestPtr {{operationIdCamelCase}}(const FRequest_{{operationIdCamelCase}}& Request, const FDelegate_{{operationIdCamelCase}}& Delegate = FDelegate_{{operationIdCamelCase}}(), int32 Priority = Default{{unrealModuleName}}Priority);
-{{/operation}}{{/operations}}
-private:
-{{#operations}}{{#operation}}	void On{{operationIdCamelCase}}Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_{{operationIdCamelCase}} Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-{{/operation}}{{/operations}}
-};
+// forward declaration
+class {{classname}};
 
 {{#operations}}
 {{#operation}}
-/* {{summary}}
-{{#unescapedNotes}}
- *
-{{#lambdaCommentDescription}}{{{.}}}{{/lambdaCommentDescription}}
-{{/unescapedNotes}}
+/**
+ * @brief {{summary}}
+{{#unescapedNotes}}{{#lambdaCommentDescription}}{{{.}}}{{/lambdaCommentDescription}}{{/unescapedNotes}}
 */
 struct {{dllapi}} FRequest_{{operationIdCamelCase}} : public FRequest
 {
 	FRequest_{{operationIdCamelCase}}();
 	virtual ~FRequest_{{operationIdCamelCase}}() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
 	{{#authMethods.0}}
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	{{/authMethods.0}}
 	{{^authMethods.0}}
@@ -77,6 +66,7 @@ struct {{dllapi}} FRequest_{{operationIdCamelCase}} : public FRequest
 	{{#allParams}}
 	{{#isEnum}}
 	{{#allowableValues}}
+	/** List of allowable values for {{paramName}} */
 	enum class {{{enumName}}}
 	{
 		{{#values}}
@@ -85,7 +75,9 @@ struct {{dllapi}} FRequest_{{operationIdCamelCase}} : public FRequest
 	};
 	{{/allowableValues}}
 
+	/** @brief Helper function to convert a {{{enumName}}} value to a string */
 	static FString EnumToString(const {{{enumName}}}& EnumValue);
+	/** @brief Helper function to convert a string to a {{{enumName}}} value */
 	static bool EnumFromString(const FString& EnumAsString, {{{enumName}}}& EnumValue);
 	{{#description}}/* {{{.}}} */
 	{{/description}}{{^required}}TOptional<{{/required}}{{{datatypeWithEnum}}}{{^required}}>{{/required}} {{paramName}}{{#required}}{{#defaultValue}} = {{{.}}}{{/defaultValue}}{{/required}};
@@ -97,51 +89,82 @@ struct {{dllapi}} FRequest_{{operationIdCamelCase}} : public FRequest
 	{{/allParams}}
 };
 
+/** The response type for FRequest_{{operationIdCamelCase}} */
 struct {{dllapi}} FResponse_{{operationIdCamelCase}} : public FResponse
 {
 	FResponse_{{operationIdCamelCase}}(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_{{operationIdCamelCase}}() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;{{#responses.0.headers.0}}
-	bool ParseHeaders() override;{{/responses.0.headers.0}}
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;{{#responses.0.headers.0}}
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;{{/responses.0.headers.0}}
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
 protected:
+	/** Variant type representing the potential content responses for this call */
 	typedef TVariant<{{#lambdaDedupTrimString}}{{#responses}}{{#dataType}}{{{.}}}{{/dataType}}, {{/responses}}{{/lambdaDedupTrimString}}> ContentVariantType;
+	
+	/** A variant containing the parsed content */
 	ContentVariantType ParsedContent;
 
+	/** A parsed map of the headers from the request */
 	TMap<FString, FString> HeadersMap;
 
 public:
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @param [out] OutResponse A copy of the response data, if the type matched
+	 * @return Whether or not the response was of the given type
+	 */
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	/**
+	 * @brief Attempt to get the response content in a specific type
+	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
+	 */
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
 	
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @param [out] OutValue A string to store the header value to, if found
+	 * @return Whether or not the header was found
+	 */
 	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	/**
+	 * @brief Attempt to fetch a header by name
+	 * @param [in] Header The name of the header to fetch
+	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
+	 */
 	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
 	{{#responses.0}}
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	{{#dataType}}
-	// Default Response Content
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	{{{.}}} Content;
 	{{/dataType}}
 	
 	{{#headers.0}}
-	// Default Response Headers
+	/** Default Response Headers */
 	{{/headers.0}}
 	{{#headers}}
 	{{#description}}/* {{{.}}} */
-	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetHeader() or GetHeader<>() instead.")
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
 	{{/description}}{{^required}}TOptional<{{/required}}{{{dataType}}}{{^required}}>{{/required}} {{name}}{{#defaultValue}} = {{{.}}}{{/defaultValue}};{{/headers}}
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	{{#dataType}}
 	// Default Response Helpers
+	/** @brief Attempt to retrieve the response content in the default response */
 	const {{{.}}}* TryGetDefaultContent() const { return ParsedContent.TryGet<{{{.}}}>(); }
 	{{/dataType}}
 	{{#headers}}
+	/** @brief Attempt to retrieve a specific header of the default response
 	const FString* TryGetDefaultHeader_{{name}}() const { return TryGetHeader(TEXT("{{baseName}}")); }
 	{{/headers}}
 	{{/responses.0}}
@@ -162,19 +185,53 @@ public:
 	{{/responses}}
 };
 
+/** The delegate class for FRequest_{{operationIdCamelCase}} */
+DECLARE_DELEGATE_OneParam(FDelegate_{{operationIdCamelCase}}, const FResponse_{{operationIdCamelCase}}&);
+
+/** @brief A helper metadata object for {{operationIdCamelCase}} that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct {{dllapi}} Traits_{{operationIdCamelCase}}
 {
+	/** The request type */
 	typedef FRequest_{{operationIdCamelCase}} Request;
+	/** The response type */
 	typedef FResponse_{{operationIdCamelCase}} Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_{{operationIdCamelCase}} Delegate;
+	/** The API object that supports this API call */
 	typedef {{classname}} API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = Default{{unrealModuleName}}Priority) { return InAPI->{{operationIdCamelCase}}(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = Default{{unrealModuleName}}Priority);
 };
 
 {{/operation}}
 {{/operations}}
+
+/** The API class itself, which will handle calls to */
+class {{dllapi}} {{classname}} : public FAPI
+{
+public:
+	{{classname}}();
+	virtual ~{{classname}}();
+
+{{#operations}}{{#operation}}{{#description}}	/* {{{.}}} */
+{{/description}}	FHttpRequestPtr {{operationIdCamelCase}}(const FRequest_{{operationIdCamelCase}}& Request, const FDelegate_{{operationIdCamelCase}}& Delegate = FDelegate_{{operationIdCamelCase}}(), int32 Priority = Default{{unrealModuleName}}Priority);
+{{/operation}}{{/operations}}
+private:
+{{#operations}}{{#operation}}	void On{{operationIdCamelCase}}Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_{{operationIdCamelCase}} Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+{{/operation}}{{/operations}}
+};
+
+
 
 {{#cppNamespaceDeclarations}}
 }

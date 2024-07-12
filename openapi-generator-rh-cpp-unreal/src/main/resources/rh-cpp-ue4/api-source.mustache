@@ -544,6 +544,11 @@ FResponse_{{operationIdCamelCase}}::FResponse_{{operationIdCamelCase}}(FRequestM
 
 FString Traits_{{operationIdCamelCase}}::Name = TEXT("{{operationIdCamelCase}}");
 
+FHttpRequestPtr Traits_{{operationIdCamelCase}}::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->{{operationIdCamelCase}}(InRequest, InDelegate, InPriority);
+}
+
 {{/operation}}{{/operations}}
 {{#cppNamespaceDeclarations}}
 }
