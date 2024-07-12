@@ -563,9 +563,9 @@ struct FRH_CustomEndpointResponseWrapper
 
 	FRH_CustomEndpointResponseWrapper(const RallyHereAPI::FResponse_CustomEndpointSend& Resp)
 		: HttpResponseCode(Resp.GetHttpResponseCode())
-		, HttpBody(Resp.Content)
 		, RHErrorInfo(Resp)
 	{
+		Resp.TryGetContent(HttpBody);
 		if (Resp.GetHttpResponse().IsValid())
 		{
 			HttpHeaders = Resp.GetHttpResponse()->GetAllHeaders();
