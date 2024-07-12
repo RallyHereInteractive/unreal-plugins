@@ -105,33 +105,48 @@ struct {{dllapi}} FResponse_{{operationIdCamelCase}} : public FResponse
 	bool ParseHeaders() override;{{/responses.0.headers.0}}
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-	typedef TVariant<{{#lambdaDedupTrimString}}{{#responses}}{{#dataType}}{{{.}}}{{/dataType}}, {{/responses}}{{/lambdaDedupTrimString}}> ContentVariantType;
 protected:
+	typedef TVariant<{{#lambdaDedupTrimString}}{{#responses}}{{#dataType}}{{{.}}}{{/dataType}}, {{/responses}}{{/lambdaDedupTrimString}}> ContentVariantType;
 	ContentVariantType ParsedContent;
+
+	TMap<FString, FString> HeadersMap;
+
 public:
 	template<typename T>
 	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
 	template<typename T>
 	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+	
+	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
+	const FString* TryGetHeader(const FString& Header) const { return HeadersMap.Find(Header); }
 
 	{{#responses.0}}
+#if ALLOW_LEGACY_RESPONSE_CONTENT
 	{{#dataType}}
-	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// Default Response Content
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	{{{.}}} Content;
-	#endif
-	
 	{{/dataType}}
 	
 	{{#headers.0}}
-	// Headers
+	// Default Response Headers
 	{{/headers.0}}
 	{{#headers}}
 	{{#description}}/* {{{.}}} */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetHeader() or GetHeader<>() instead.")
 	{{/description}}{{^required}}TOptional<{{/required}}{{{dataType}}}{{^required}}>{{/required}} {{name}}{{#defaultValue}} = {{{.}}}{{/defaultValue}};{{/headers}}
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	{{#dataType}}
+	// Default Response Helpers
+	const {{{.}}}* TryGetDefaultContent() const { return ParsedContent.TryGet<{{{.}}}>(); }
+	{{/dataType}}
+	{{#headers}}
+	const FString* TryGetDefaultHeader_{{name}}() const { return TryGetHeader(TEXT("{{baseName}}")); }
+	{{/headers}}
 	{{/responses.0}}
 
-	// Manual Response Helpers	
+	// Individual Response Helpers	
 	{{#responses}}
 	/* Response {{code}}
 	{{{message}}}
