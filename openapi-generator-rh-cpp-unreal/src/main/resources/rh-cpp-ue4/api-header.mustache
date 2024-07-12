@@ -96,9 +96,9 @@ struct {{dllapi}} FResponse_{{operationIdCamelCase}} : public FResponse
 	//virtual ~FResponse_{{operationIdCamelCase}}() = default;
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
-	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;{{#responses.0.headers.0}}
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	/** @brief Parse out header information for later usage */
-	virtual bool ParseHeaders() override;{{/responses.0.headers.0}}
+	virtual bool ParseHeaders() override;
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
