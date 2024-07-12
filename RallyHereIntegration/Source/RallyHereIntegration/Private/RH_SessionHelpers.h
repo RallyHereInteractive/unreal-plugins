@@ -283,25 +283,31 @@ public:
 protected:
 
 	// boilerplate to determine if the etag field exists in the response class
-	template <typename, typename = void>
-	struct has_etag : std::false_type {};
-
-
 	template <typename T>
-	struct has_etag<T, std::void_t<decltype(&T::ETag)>> : std::is_same<TOptional<FString>, decltype(std::declval<T>().ETag)>
-	{};
-
-	template <typename T,
-		typename std::enable_if<has_etag<T>::value, T>::type* = nullptr>
-	void SetSessionLookupETag(const T& Resp)
+	class FOptionalGetETag
 	{
-		SessionLookupETag = Resp.ETag;
-	};
+	public:
+		const T* t;
+		FOptionalGetETag(const T& ta) : t{&ta} {};
 
-	template <typename T,
-		typename std::enable_if<!has_etag<T>::value, T>::type* = nullptr>
-	void SetSessionLookupETag(const T& Resp)
-	{
+		TOptional<FString> GetETag() {
+			return GetETag(get_etag_available{});
+		}
+
+	private:
+
+		struct get_etag_unavailable {};
+		struct get_etag_available : get_etag_unavailable {};
+ 
+		template <class U=T, decltype(U{}.TryGetDefaultHeaderAsOptional_ETag()) = true>
+		TOptional<FString> GetETag(get_etag_available) {
+			return t->TryGetDefaultHeaderAsOptional_ETag();
+		};
+
+    
+		TOptional<FString> GetETag(get_etag_unavailable) {
+			return TOptional<FString>();
+		};
 	};
 
 	virtual void OnRequestById(const typename BaseType::Response& Resp)
@@ -311,7 +317,8 @@ protected:
 		if (Resp.IsSuccessful())
 		{
 			bRequestWasSuccessful = true;
-			SetSessionLookupETag(Resp);
+			FOptionalGetETag<typename BaseType::Response> OptionalETag{Resp};
+			SessionLookupETag = OptionalETag.GetETag();
 			DoSessionLookup();	// this will re-read the session, and attempt to import it.  The import will detect that we left the session and adjust accordingly
 		}
 		else
