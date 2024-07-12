@@ -53,14 +53,28 @@ struct RALLYHEREAPI_API FRequest_GetUtcTime : public FRequest
 struct RALLYHEREAPI_API FResponse_GetUtcTime : public FResponse
 {
 	FResponse_GetUtcTime(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_GetUtcTime() = default;
+	//virtual ~FResponse_GetUtcTime() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<FDateTime> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FDateTime Content;
+	#endif
+	
+	
 
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/

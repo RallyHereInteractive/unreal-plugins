@@ -84,17 +84,31 @@ struct RALLYHEREAPI_API FRequest_BeginNewSession : public FRequest
 struct RALLYHEREAPI_API FResponse_BeginNewSession : public FResponse
 {
 	FResponse_BeginNewSession(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_BeginNewSession() = default;
+	//virtual ~FResponse_BeginNewSession() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_JsonValue Content;
+	#endif
+	
+	
 	// Headers
 	/* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
 	TOptional<FString> XHzAdApiToken;
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -154,17 +168,31 @@ struct RALLYHEREAPI_API FRequest_FindOpportunities : public FRequest
 struct RALLYHEREAPI_API FResponse_FindOpportunities : public FResponse
 {
 	FResponse_FindOpportunities(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_FindOpportunities() = default;
+	//virtual ~FResponse_FindOpportunities() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<FRHAPI_AdOpportunities, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_AdOpportunities Content;
+	#endif
+	
+	
 	// Headers
 	/* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
 	TOptional<FString> XHzAdApiToken;
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -227,14 +255,28 @@ struct RALLYHEREAPI_API FRequest_UnityAdWatched : public FRequest
 struct RALLYHEREAPI_API FResponse_UnityAdWatched : public FResponse
 {
 	FResponse_UnityAdWatched(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_UnityAdWatched() = default;
+	//virtual ~FResponse_UnityAdWatched() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<FString, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FString Content;
+	#endif
+	
+	
 
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -286,14 +328,28 @@ struct RALLYHEREAPI_API FRequest_UnityMediationAdWatched : public FRequest
 struct RALLYHEREAPI_API FResponse_UnityMediationAdWatched : public FResponse
 {
 	FResponse_UnityMediationAdWatched(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_UnityMediationAdWatched() = default;
+	//virtual ~FResponse_UnityMediationAdWatched() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<FString, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FString Content;
+	#endif
+	
+	
 
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -341,17 +397,31 @@ struct RALLYHEREAPI_API FRequest_UpdateOpportunityById : public FRequest
 struct RALLYHEREAPI_API FResponse_UpdateOpportunityById : public FResponse
 {
 	FResponse_UpdateOpportunityById(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_UpdateOpportunityById() = default;
+	//virtual ~FResponse_UpdateOpportunityById() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_JsonValue Content;
+	#endif
+	
+	
 	// Headers
 	/* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
 	TOptional<FString> XHzAdApiToken;
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/

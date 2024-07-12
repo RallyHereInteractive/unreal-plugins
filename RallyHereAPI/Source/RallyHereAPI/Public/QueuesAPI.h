@@ -113,17 +113,31 @@ struct RALLYHEREAPI_API FRequest_GetAllMapGameInfo : public FRequest
 struct RALLYHEREAPI_API FResponse_GetAllMapGameInfo : public FResponse
 {
 	FResponse_GetAllMapGameInfo(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_GetAllMapGameInfo() = default;
+	//virtual ~FResponse_GetAllMapGameInfo() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<FRHAPI_InstanceLaunchTemplate, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_InstanceLaunchTemplate Content;
+	#endif
+	
+	
 	// Headers
 	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
 	TOptional<FString> ETag;
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -187,17 +201,31 @@ struct RALLYHEREAPI_API FRequest_GetAllQueueInfo : public FRequest
 struct RALLYHEREAPI_API FResponse_GetAllQueueInfo : public FResponse
 {
 	FResponse_GetAllQueueInfo(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_GetAllQueueInfo() = default;
+	//virtual ~FResponse_GetAllQueueInfo() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<FRHAPI_QueuesResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_QueuesResponse Content;
+	#endif
+	
+	
 	// Headers
 	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
 	TOptional<FString> ETag;
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -260,17 +288,31 @@ struct RALLYHEREAPI_API FRequest_GetAllQueueInfoV2 : public FRequest
 struct RALLYHEREAPI_API FResponse_GetAllQueueInfoV2 : public FResponse
 {
 	FResponse_GetAllQueueInfoV2(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_GetAllQueueInfoV2() = default;
+	//virtual ~FResponse_GetAllQueueInfoV2() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<FRHAPI_QueuesResponseV2, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_QueuesResponseV2 Content;
+	#endif
+	
+	
 	// Headers
 	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
 	TOptional<FString> ETag;
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -333,17 +375,31 @@ struct RALLYHEREAPI_API FRequest_GetInstanceRequestTemplate : public FRequest
 struct RALLYHEREAPI_API FResponse_GetInstanceRequestTemplate : public FResponse
 {
 	FResponse_GetInstanceRequestTemplate(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_GetInstanceRequestTemplate() = default;
+	//virtual ~FResponse_GetInstanceRequestTemplate() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<FRHAPI_InstanceRequestTemplate, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_InstanceRequestTemplate Content;
+	#endif
+	
+	
 	// Headers
 	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
 	TOptional<FString> ETag;
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -406,17 +462,31 @@ struct RALLYHEREAPI_API FRequest_GetMatchMakingProfile : public FRequest
 struct RALLYHEREAPI_API FResponse_GetMatchMakingProfile : public FResponse
 {
 	FResponse_GetMatchMakingProfile(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_GetMatchMakingProfile() = default;
+	//virtual ~FResponse_GetMatchMakingProfile() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<FRHAPI_MatchMakingProfile, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_MatchMakingProfile Content;
+	#endif
+	
+	
 	// Headers
 	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
 	TOptional<FString> ETag;
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -478,17 +548,31 @@ struct RALLYHEREAPI_API FRequest_GetMatchMakingProfileV2 : public FRequest
 struct RALLYHEREAPI_API FResponse_GetMatchMakingProfileV2 : public FResponse
 {
 	FResponse_GetMatchMakingProfileV2(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_GetMatchMakingProfileV2() = default;
+	//virtual ~FResponse_GetMatchMakingProfileV2() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<FRHAPI_MatchMakingProfileV2, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_MatchMakingProfileV2 Content;
+	#endif
+	
+	
 	// Headers
 	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
 	TOptional<FString> ETag;
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -552,17 +636,31 @@ struct RALLYHEREAPI_API FRequest_GetMatchMakingTemplates : public FRequest
 struct RALLYHEREAPI_API FResponse_GetMatchMakingTemplates : public FResponse
 {
 	FResponse_GetMatchMakingTemplates(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_GetMatchMakingTemplates() = default;
+	//virtual ~FResponse_GetMatchMakingTemplates() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<FRHAPI_MatchMakingTemplateGroup, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_MatchMakingTemplateGroup Content;
+	#endif
+	
+	
 	// Headers
 	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
 	TOptional<FString> ETag;
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -626,17 +724,31 @@ struct RALLYHEREAPI_API FRequest_GetMatchMakingTemplatesV2 : public FRequest
 struct RALLYHEREAPI_API FResponse_GetMatchMakingTemplatesV2 : public FResponse
 {
 	FResponse_GetMatchMakingTemplatesV2(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_GetMatchMakingTemplatesV2() = default;
+	//virtual ~FResponse_GetMatchMakingTemplatesV2() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<FRHAPI_MatchMakingTemplateGroupV2, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_MatchMakingTemplateGroupV2 Content;
+	#endif
+	
+	
 	// Headers
 	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
 	TOptional<FString> ETag;
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/

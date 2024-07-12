@@ -175,14 +175,28 @@ struct RALLYHEREAPI_API FRequest_AdminGetKnownPlatforms : public FRequest
 struct RALLYHEREAPI_API FResponse_AdminGetKnownPlatforms : public FResponse
 {
 	FResponse_AdminGetKnownPlatforms(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_AdminGetKnownPlatforms() = default;
+	//virtual ~FResponse_AdminGetKnownPlatforms() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<FRHAPI_Platforms, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_Platforms Content;
+	#endif
+	
+	
 
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -235,14 +249,28 @@ struct RALLYHEREAPI_API FRequest_AdminGetPlayerPresence : public FRequest
 struct RALLYHEREAPI_API FResponse_AdminGetPlayerPresence : public FResponse
 {
 	FResponse_AdminGetPlayerPresence(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_AdminGetPlayerPresence() = default;
+	//virtual ~FResponse_AdminGetPlayerPresence() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<FRHAPI_PlayerPresence, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlayerPresence Content;
+	#endif
+	
+	
 
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -300,14 +328,28 @@ struct RALLYHEREAPI_API FRequest_AdminGetPlayerPresenceId : public FRequest
 struct RALLYHEREAPI_API FResponse_AdminGetPlayerPresenceId : public FResponse
 {
 	FResponse_AdminGetPlayerPresenceId(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_AdminGetPlayerPresenceId() = default;
+	//virtual ~FResponse_AdminGetPlayerPresenceId() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<FRHAPI_PlayerPresence, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlayerPresence Content;
+	#endif
+	
+	
 
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -368,14 +410,28 @@ struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcu : public FRequest
 struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcu : public FResponse
 {
 	FResponse_AdminGetRequestingCcu(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_AdminGetRequestingCcu() = default;
+	//virtual ~FResponse_AdminGetRequestingCcu() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<FRHAPI_UnionCCU, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_UnionCCU Content;
+	#endif
+	
+	
 
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -425,14 +481,28 @@ struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcuAllPlatformCombined : publ
 struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuAllPlatformCombined : public FResponse
 {
 	FResponse_AdminGetRequestingCcuAllPlatformCombined(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_AdminGetRequestingCcuAllPlatformCombined() = default;
+	//virtual ~FResponse_AdminGetRequestingCcuAllPlatformCombined() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<FRHAPI_PlatformUnionCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlatformUnionCCUs Content;
+	#endif
+	
+	
 
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -482,14 +552,28 @@ struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcuAllPlatformIndividual : pu
 struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuAllPlatformIndividual : public FResponse
 {
 	FResponse_AdminGetRequestingCcuAllPlatformIndividual(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_AdminGetRequestingCcuAllPlatformIndividual() = default;
+	//virtual ~FResponse_AdminGetRequestingCcuAllPlatformIndividual() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<FRHAPI_PlatformIndividualCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlatformIndividualCCUs Content;
+	#endif
+	
+	
 
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -543,14 +627,28 @@ struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcuIndividual : public FReque
 struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuIndividual : public FResponse
 {
 	FResponse_AdminGetRequestingCcuIndividual(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_AdminGetRequestingCcuIndividual() = default;
+	//virtual ~FResponse_AdminGetRequestingCcuIndividual() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<FRHAPI_IndividualCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_IndividualCCUs Content;
+	#endif
+	
+	
 
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -601,14 +699,28 @@ struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcuPlatformCombined : public 
 struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuPlatformCombined : public FResponse
 {
 	FResponse_AdminGetRequestingCcuPlatformCombined(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_AdminGetRequestingCcuPlatformCombined() = default;
+	//virtual ~FResponse_AdminGetRequestingCcuPlatformCombined() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<FRHAPI_PlatformUnionCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlatformUnionCCUs Content;
+	#endif
+	
+	
 
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -659,14 +771,28 @@ struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcuPlatformIndividual : publi
 struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuPlatformIndividual : public FResponse
 {
 	FResponse_AdminGetRequestingCcuPlatformIndividual(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_AdminGetRequestingCcuPlatformIndividual() = default;
+	//virtual ~FResponse_AdminGetRequestingCcuPlatformIndividual() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<FRHAPI_PlatformIndividualCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlatformIndividualCCUs Content;
+	#endif
+	
+	
 
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -722,14 +848,28 @@ struct RALLYHEREAPI_API FRequest_AdminGetTotalCcu : public FRequest
 struct RALLYHEREAPI_API FResponse_AdminGetTotalCcu : public FResponse
 {
 	FResponse_AdminGetTotalCcu(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_AdminGetTotalCcu() = default;
+	//virtual ~FResponse_AdminGetTotalCcu() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<FRHAPI_UnionCCU, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_UnionCCU Content;
+	#endif
+	
+	
 
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -779,14 +919,28 @@ struct RALLYHEREAPI_API FRequest_AdminGetTotalCcuAllPlatformCombined : public FR
 struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuAllPlatformCombined : public FResponse
 {
 	FResponse_AdminGetTotalCcuAllPlatformCombined(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_AdminGetTotalCcuAllPlatformCombined() = default;
+	//virtual ~FResponse_AdminGetTotalCcuAllPlatformCombined() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<FRHAPI_PlatformUnionCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlatformUnionCCUs Content;
+	#endif
+	
+	
 
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -836,14 +990,28 @@ struct RALLYHEREAPI_API FRequest_AdminGetTotalCcuAllPlatformIndividual : public 
 struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuAllPlatformIndividual : public FResponse
 {
 	FResponse_AdminGetTotalCcuAllPlatformIndividual(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_AdminGetTotalCcuAllPlatformIndividual() = default;
+	//virtual ~FResponse_AdminGetTotalCcuAllPlatformIndividual() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<FRHAPI_PlatformIndividualCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlatformIndividualCCUs Content;
+	#endif
+	
+	
 
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -897,14 +1065,28 @@ struct RALLYHEREAPI_API FRequest_AdminGetTotalCcuIndividual : public FRequest
 struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuIndividual : public FResponse
 {
 	FResponse_AdminGetTotalCcuIndividual(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_AdminGetTotalCcuIndividual() = default;
+	//virtual ~FResponse_AdminGetTotalCcuIndividual() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<FRHAPI_IndividualCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_IndividualCCUs Content;
+	#endif
+	
+	
 
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -955,14 +1137,28 @@ struct RALLYHEREAPI_API FRequest_AdminGetTotalCcuPlatformCombined : public FRequ
 struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuPlatformCombined : public FResponse
 {
 	FResponse_AdminGetTotalCcuPlatformCombined(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_AdminGetTotalCcuPlatformCombined() = default;
+	//virtual ~FResponse_AdminGetTotalCcuPlatformCombined() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<FRHAPI_PlatformUnionCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlatformUnionCCUs Content;
+	#endif
+	
+	
 
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -1013,14 +1209,28 @@ struct RALLYHEREAPI_API FRequest_AdminGetTotalCcuPlatformIndividual : public FRe
 struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuPlatformIndividual : public FResponse
 {
 	FResponse_AdminGetTotalCcuPlatformIndividual(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_AdminGetTotalCcuPlatformIndividual() = default;
+	//virtual ~FResponse_AdminGetTotalCcuPlatformIndividual() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<FRHAPI_PlatformIndividualCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlatformIndividualCCUs Content;
+	#endif
+	
+	
 
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -1076,14 +1286,28 @@ struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcu : public FRequest
 struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcu : public FResponse
 {
 	FResponse_AdminGetUpdatingCcu(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_AdminGetUpdatingCcu() = default;
+	//virtual ~FResponse_AdminGetUpdatingCcu() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<FRHAPI_UnionCCU, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_UnionCCU Content;
+	#endif
+	
+	
 
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -1133,14 +1357,28 @@ struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcuAllPlatformCombined : public
 struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuAllPlatformCombined : public FResponse
 {
 	FResponse_AdminGetUpdatingCcuAllPlatformCombined(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_AdminGetUpdatingCcuAllPlatformCombined() = default;
+	//virtual ~FResponse_AdminGetUpdatingCcuAllPlatformCombined() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<FRHAPI_PlatformUnionCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlatformUnionCCUs Content;
+	#endif
+	
+	
 
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -1190,14 +1428,28 @@ struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcuAllPlatformIndividual : publ
 struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuAllPlatformIndividual : public FResponse
 {
 	FResponse_AdminGetUpdatingCcuAllPlatformIndividual(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_AdminGetUpdatingCcuAllPlatformIndividual() = default;
+	//virtual ~FResponse_AdminGetUpdatingCcuAllPlatformIndividual() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<FRHAPI_PlatformIndividualCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlatformIndividualCCUs Content;
+	#endif
+	
+	
 
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -1251,14 +1503,28 @@ struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcuIndividual : public FRequest
 struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuIndividual : public FResponse
 {
 	FResponse_AdminGetUpdatingCcuIndividual(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_AdminGetUpdatingCcuIndividual() = default;
+	//virtual ~FResponse_AdminGetUpdatingCcuIndividual() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<FRHAPI_IndividualCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_IndividualCCUs Content;
+	#endif
+	
+	
 
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -1309,14 +1575,28 @@ struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcuPlatformCombined : public FR
 struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuPlatformCombined : public FResponse
 {
 	FResponse_AdminGetUpdatingCcuPlatformCombined(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_AdminGetUpdatingCcuPlatformCombined() = default;
+	//virtual ~FResponse_AdminGetUpdatingCcuPlatformCombined() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<FRHAPI_PlatformUnionCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlatformUnionCCUs Content;
+	#endif
+	
+	
 
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -1367,14 +1647,28 @@ struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcuPlatformIndividual : public 
 struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuPlatformIndividual : public FResponse
 {
 	FResponse_AdminGetUpdatingCcuPlatformIndividual(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_AdminGetUpdatingCcuPlatformIndividual() = default;
+	//virtual ~FResponse_AdminGetUpdatingCcuPlatformIndividual() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<FRHAPI_PlatformIndividualCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlatformIndividualCCUs Content;
+	#endif
+	
+	
 
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -1428,17 +1722,26 @@ struct RALLYHEREAPI_API FRequest_AdminUpdatePlayerLastSeen : public FRequest
 struct RALLYHEREAPI_API FResponse_AdminUpdatePlayerLastSeen : public FResponse
 {
 	FResponse_AdminUpdatePlayerLastSeen(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_AdminUpdatePlayerLastSeen() = default;
+	//virtual ~FResponse_AdminUpdatePlayerLastSeen() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+	typedef TVariant< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
 
 	
 	// Headers
 	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
 	TOptional<FString> ETag;
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -1498,17 +1801,26 @@ struct RALLYHEREAPI_API FRequest_AdminUpdatePlayerLastSeenId : public FRequest
 struct RALLYHEREAPI_API FResponse_AdminUpdatePlayerLastSeenId : public FResponse
 {
 	FResponse_AdminUpdatePlayerLastSeenId(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_AdminUpdatePlayerLastSeenId() = default;
+	//virtual ~FResponse_AdminUpdatePlayerLastSeenId() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	bool ParseHeaders() override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+	typedef TVariant< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
 
 	
 	// Headers
 	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
 	TOptional<FString> ETag;
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/

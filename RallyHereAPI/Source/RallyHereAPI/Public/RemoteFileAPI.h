@@ -91,14 +91,23 @@ struct RALLYHEREAPI_API FRequest_CreateEntityDirectoryFile : public FRequest
 struct RALLYHEREAPI_API FResponse_CreateEntityDirectoryFile : public FResponse
 {
 	FResponse_CreateEntityDirectoryFile(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_CreateEntityDirectoryFile() = default;
+	//virtual ~FResponse_CreateEntityDirectoryFile() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+	typedef TVariant< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
 
 	
 
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 204
 	Successful Response
 	*/
@@ -146,14 +155,28 @@ struct RALLYHEREAPI_API FRequest_DeleteEntityDirectory : public FRequest
 struct RALLYHEREAPI_API FResponse_DeleteEntityDirectory : public FResponse
 {
 	FResponse_DeleteEntityDirectory(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_DeleteEntityDirectory() = default;
+	//virtual ~FResponse_DeleteEntityDirectory() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_JsonValue Content;
+	#endif
+	
+	
 
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -204,14 +227,23 @@ struct RALLYHEREAPI_API FRequest_DeleteEntityDirectoryFile : public FRequest
 struct RALLYHEREAPI_API FResponse_DeleteEntityDirectoryFile : public FResponse
 {
 	FResponse_DeleteEntityDirectoryFile(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_DeleteEntityDirectoryFile() = default;
+	//virtual ~FResponse_DeleteEntityDirectoryFile() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+	typedef TVariant< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
 
 	
 
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 204
 	Successful Response
 	*/
@@ -261,14 +293,28 @@ struct RALLYHEREAPI_API FRequest_DownloadEntityDirectoryFile : public FRequest
 struct RALLYHEREAPI_API FResponse_DownloadEntityDirectoryFile : public FResponse
 {
 	FResponse_DownloadEntityDirectoryFile(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_DownloadEntityDirectoryFile() = default;
+	//virtual ~FResponse_DownloadEntityDirectoryFile() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<FString, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FString Content;
+	#endif
+	
+	
 
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -324,14 +370,28 @@ struct RALLYHEREAPI_API FRequest_GetEntityDirectoryInformation : public FRequest
 struct RALLYHEREAPI_API FResponse_GetEntityDirectoryInformation : public FResponse
 {
 	FResponse_GetEntityDirectoryInformation(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_GetEntityDirectoryInformation() = default;
+	//virtual ~FResponse_GetEntityDirectoryInformation() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<FRHAPI_StorageInformation, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_StorageInformation Content;
+	#endif
+	
+	
 
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -381,14 +441,28 @@ struct RALLYHEREAPI_API FRequest_ListEntityDirectoryFiles : public FRequest
 struct RALLYHEREAPI_API FResponse_ListEntityDirectoryFiles : public FResponse
 {
 	FResponse_ListEntityDirectoryFiles(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_ListEntityDirectoryFiles() = default;
+	//virtual ~FResponse_ListEntityDirectoryFiles() = default;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+	typedef TVariant<FRHAPI_FileListResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
+protected:
+	ContentVariantType ParsedContent;
+public:
+	template<typename T>
+	bool TryGetContent(T& OutResponse)const { const T* OutResponsePtr = ParsedContent.TryGet<T>(); if (OutResponsePtr != nullptr) OutResponse = *OutResponsePtr; return OutResponsePtr != nullptr; }
+	template<typename T>
+	const T* TryGetContent() const { return ParsedContent.TryGet<T>(); }
+
+	#if ALLOW_LEGACY_RESPONSE_CONTENT
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_FileListResponse Content;
+	#endif
+	
+	
 
 
-	// Manual Response Helpers
+	// Manual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
