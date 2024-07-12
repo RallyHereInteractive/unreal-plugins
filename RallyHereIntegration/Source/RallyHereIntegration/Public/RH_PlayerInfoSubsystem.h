@@ -295,18 +295,18 @@ protected:
 	virtual void Update(const GetPresenceType::Response& Other)
 	{
 		UpdateBase(Other);
-		if (Other.ETag.IsSet())
-		{
-			ETag = Other.ETag.GetValue();
-		}
+		Other.TryGetDefaultHeader_ETag(ETag);
 
-		const auto& Presence = Other.Content;
-		Status = Presence.GetStatus(ERHAPI_OnlineStatus::Offline);
-		Message = Presence.GetMessage(TEXT(""));
-		Platform = Presence.Platform;
-		DisplayName = Presence.DisplayName;
-		CustomData = Presence.GetCustomData(TMap<FString, FString>());
-		PlayerUuid = Presence.PlayerUuid;
+		FRHAPI_PlayerPresence Presence;
+		if (Other.TryGetDefaultContent(Presence))
+		{
+			Status = Presence.GetStatus(ERHAPI_OnlineStatus::Offline);
+			Message = Presence.GetMessage(TEXT(""));
+			Platform = Presence.Platform;
+			DisplayName = Presence.DisplayName;
+			CustomData = Presence.GetCustomData(TMap<FString, FString>());
+			PlayerUuid = Presence.PlayerUuid;
+		}
 	}
 };
 
@@ -343,12 +343,9 @@ protected:
 	{
 		UpdateBase(Other);
 
-		if (Other.ETag.IsSet())
-		{
-			ETag = Other.ETag.GetValue();
-		}
+		Other.TryGetDefaultHeader_ETag(ETag);
 
-		Sessions = Other.Content;
+		Other.TryGetDefaultContent(Sessions);
 	}
 };
 
@@ -439,11 +436,15 @@ protected:
 			ETag = Other.ETag.GetValue();
 		}
 		*/
-		
-		DeserterStatus.Empty(Other.Content.DeserterStatuses.Num());
-		for (const auto& Deserter : Other.Content.DeserterStatuses)
+
+		const auto Content = Other.TryGetDefaultContentAsPointer();
+		if (Content != nullptr)
 		{
-			DeserterStatus.Add(Deserter.GetDeserterId(), Deserter);
+			DeserterStatus.Empty(Content->DeserterStatuses.Num());
+			for (const auto& Deserter : Content->DeserterStatuses)
+			{
+				DeserterStatus.Add(Deserter.GetDeserterId(), Deserter);
+			}
 		}
 	}
 };
@@ -539,7 +540,8 @@ protected:
 		// sort and merge the matches in the response into our cache
 		FTimespan MaxAge;
 		auto TimeNow = FDateTime::UtcNow();
-		const auto MatchesResult = Other.Content.GetPlayerMatchesOrNull();
+		const auto Content = Other.TryGetDefaultContentAsPointer();
+		const auto MatchesResult = Content != nullptr ? Content->GetPlayerMatchesOrNull() : nullptr;
 		if (MatchesResult != nullptr)
 		{
 			for (const auto& PlayerMatch : *MatchesResult)

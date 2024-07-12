@@ -139,7 +139,9 @@ protected:
 
 		if (Resp.IsSuccessful())
 		{
-			SessionCache = FRH_APISessionWithETag(Resp.Content, Resp.ETag);
+			SessionCache = FRH_APISessionWithETag();
+			Resp.TryGetDefaultContent(SessionCache.Data);
+			Resp.TryGetDefaultHeader_ETag(SessionCache.ETag);
 
 			CheckTemplateForSessionCache();
 		}
@@ -212,9 +214,10 @@ protected:
 			return;
 		}
 
-		if (Resp.IsSuccessful())
+		auto Content = Resp.TryGetDefaultContentAsPointer();
+		if (Resp.IsSuccessful() && Content != nullptr)
 		{
-			SessionOwner->ImportAPITemplate(Resp.Content);
+			SessionOwner->ImportAPITemplate(*Content);
 			OnReadyForSessionImport();
 		}
 		else
@@ -430,10 +433,11 @@ protected:
 	void OnQueryAllTemplates(const RallyHereAPI::Traits_GetAllSessionTemplates::Response& Resp)
 	{
 		HttpRequest = nullptr;
-		if (Resp.IsSuccessful() && SessionOwner.IsValid())
+		auto Content = Resp.TryGetDefaultContentAsPointer();
+		if (Resp.IsSuccessful() && SessionOwner.IsValid() && Content != nullptr)
 		{
 			TArray<FRHAPI_SessionTemplate> TemplatesArray;
-			if (const auto Templates = Resp.Content.GetTemplatesOrNull())
+			if (const auto Templates = Content->GetTemplatesOrNull())
 			{
 				Templates->GenerateValueArray(TemplatesArray);
 			}
@@ -447,7 +451,7 @@ protected:
 			}
 
 			// reconcile the templates into the owner before querying sessions
-			SessionOwner->ReconcileAPITemplates(TemplateNames, Resp.ETag);
+			SessionOwner->ReconcileAPITemplates(TemplateNames, Resp.TryGetDefaultHeaderAsOptional_ETag());
 
 			if (!bPollMembership)
 			{
@@ -508,11 +512,12 @@ protected:
 			return;
 		}
 
-		if (Resp.IsSuccessful())
+		const auto Content = Resp.TryGetDefaultContentAsPointer();
+		if (Resp.IsSuccessful() && Content != nullptr)
 		{
 			SessionIds.Empty();
 
-			auto* SessionsMap = Resp.Content.GetSessionsOrNull();
+			auto* SessionsMap = Content->GetSessionsOrNull();
 
 			if (SessionsMap == nullptr || SessionsMap->Num() <= 0)
 			{
@@ -547,7 +552,7 @@ protected:
 				}
 			}
 
-			NewAllSessionsETag = Resp.ETag;
+			NewAllSessionsETag = Resp.TryGetDefaultHeaderAsOptional_ETag();
 
 			RemainingSessionIds = SessionIds;
 			QueryNextSession();
@@ -636,7 +641,10 @@ protected:
 		if (Resp.IsSuccessful())
 		{
 			// import the new session
-			SessionOwner->ImportAPISession(FRH_APISessionWithETag(Resp.Content, Resp.ETag));
+			auto Session = FRH_APISessionWithETag();
+			Resp.TryGetDefaultContent(Session.Data);
+			Resp.TryGetDefaultHeader_ETag(Session.ETag);
+			SessionOwner->ImportAPISession(Session);
 		}
 		else if (Resp.GetHttpResponseCode() == EHttpResponseCodes::NotModified)
 		{
@@ -736,10 +744,11 @@ protected:
 	{
 		ErrorInfo = FRH_ErrorInfo(Resp);
 
-		if (Resp.IsSuccessful())
+		auto Content = Resp.TryGetDefaultContentAsPointer();
+		if (Resp.IsSuccessful() && Content != nullptr)
 		{
 			// set our new session id
-			SessionId = Resp.Content.SessionId;
+			SessionId = Content->GetSessionId();
 			DoSessionLookup();	// this will re-read the session, and attempt to import it.  The import will detect that we left the session and adjust accordingly
 		}
 		else
@@ -883,13 +892,14 @@ protected:
 	{
 		ErrorInfo = FRH_ErrorInfo(Resp);
 
-		if (Resp.IsSuccessful())
+		const auto Content = Resp.TryGetDefaultContentAsPointer();
+		if (Resp.IsSuccessful() && Content != nullptr)
 		{
 			// set our new session id
-			SessionId = Resp.Content.SessionId;
+			SessionId = Content->GetSessionId();
 
 			// the response has the full session info, so set the cache and continue on to the template check
-			SessionCache = FRH_APISessionWithETag(Resp.Content, Resp.ETag);
+			SessionCache = FRH_APISessionWithETag(*Content, Resp.TryGetDefaultHeaderAsOptional_ETag());
 
 			CheckTemplateForSessionCache();
 		}
