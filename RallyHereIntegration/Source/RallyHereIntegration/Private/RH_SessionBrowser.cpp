@@ -66,12 +66,13 @@ protected:
 	void OnQueryAllSessions(const QuerySessionByType::Response& Resp)
 	{
 		HttpRequest = nullptr;
-		if (Resp.IsSuccessful() && SessionOwner.IsValid())
+		const auto Content = Resp.TryGetDefaultContentAsPointer();
+		if (Resp.IsSuccessful() && SessionOwner.IsValid() && Content != nullptr)
 		{
 			RemainingSessionIds.Empty();
 
-			SessionInfos = Resp.Content.BrowserSessions;
-			NextPageCursor = Resp.Content.Cursor;
+			SessionInfos = Content->GetBrowserSessions();
+			NextPageCursor = Content->GetCursor();
 
 			if (SessionInfos.Num() <= 0)
 			{
@@ -148,13 +149,14 @@ protected:
 			return;
 		}
 
-		if (Resp.IsSuccessful())
+		const auto Content = Resp.TryGetDefaultContentAsPointer();
+		if (Resp.IsSuccessful() && Content != nullptr)
 		{
-			Sessions.Add(FRH_APISessionWithETag(Resp.Content, Resp.ETag));
+			Sessions.Add(FRH_APISessionWithETag(*Content, Resp.TryGetDefaultHeaderAsOptional_ETag()));
 
 			// make sure we have the template
 			FRHAPI_SessionTemplate temp;
-			if (!SessionOwner->GetTemplate(Resp.Content.Type, temp))
+			if (!SessionOwner->GetTemplate(Content->GetType(), temp))
 			{
 				bMissingTemplates = true;
 			}
@@ -196,10 +198,11 @@ protected:
 			return;
 		}
 
-		if (Resp.IsSuccessful())
+		const auto Content = Resp.TryGetDefaultContentAsPointer();
+		if (Resp.IsSuccessful() && Content != nullptr)
 		{
 			TArray<FRHAPI_SessionTemplate> TemplatesArray;
-			if (const auto TemplatesMap = Resp.Content.GetTemplatesOrNull())
+			if (const auto TemplatesMap = Content->GetTemplatesOrNull())
 			{
 				TemplatesMap->GenerateValueArray(TemplatesArray);
 			}

@@ -287,7 +287,7 @@ void URH_FriendSubsystem::OnFetchFriendsListResponse(const GetFriendsListType::R
 		}
 	}
 
-	Delegate.ExecuteIfBound(Resp.IsSuccessful() || Resp.GetHttpResponseCode() == 304);
+	Delegate.ExecuteIfBound(Resp.IsSuccessful() || Resp.GetHttpResponseCode() == EHttpResponseCodes::NotModified);
 }
 
 bool URH_FriendSubsystem::FetchFriend(const FGuid& PlayerUuid, const FRH_GenericFriendWithUuidBlock& Delegate /* = FRH_GenericFriendWithUuidBlock() */)
@@ -365,7 +365,7 @@ void URH_FriendSubsystem::OnFetchFriendResponse(const GetFriendRelationshipType:
 		}
 	}
 
-	Delegate.ExecuteIfBound(Resp.IsSuccessful() || Resp.GetHttpResponseCode() == 304, NewFriend ? NewFriend->GetFriendsPlayerUuid() : FGuid());
+	Delegate.ExecuteIfBound(Resp.IsSuccessful() || Resp.GetHttpResponseCode() == EHttpResponseCodes::NotModified, NewFriend ? NewFriend->GetFriendsPlayerUuid() : FGuid());
 }
 
 bool URH_FriendSubsystem::SetDefaultParamsForGetFriendRequest(GetFriendRelationshipType::Request& Request) const
@@ -457,17 +457,17 @@ bool URH_FriendSubsystem::AddFriend(const FGuid& PlayerUuid, const FRH_AddFriend
 
 void URH_FriendSubsystem::OnAddFriendResponse(const AddFriendType::Response& Resp, const FRH_AddFriendBlock Delegate, const AddFriendType::Request Request, int32 RetryEtagFailureCount)
 {
-	if (Resp.IsSuccessful())
+	const auto NewFriend = Resp.TryGetDefaultContentAsPointer();
+	if (Resp.IsSuccessful() && NewFriend != nullptr)
 	{
-		auto NewFriend = Resp.Content;
 		URH_RHFriendAndPlatformFriend* UpdatedFriend;
-		if (const auto ExistingFriend = GetFriendByUuid(Resp.Content.FriendsPlayerUuid))
+		if (const auto ExistingFriend = GetFriendByUuid(NewFriend->GetFriendsPlayerUuid()))
 		{
 			UpdatedFriend = ExistingFriend;
 			if (URH_PlayerInfoSubsystem* PSS = GetRH_PlayerInfoSubsystem())
 			{
-				ExistingFriend->PlayerAndPlatformInfo.PlayerUuid = NewFriend.FriendsPlayerUuid;
-				if (URH_PlayerInfo* PlayerInfo = PSS->GetOrCreatePlayerInfo(NewFriend.FriendsPlayerUuid))
+				ExistingFriend->PlayerAndPlatformInfo.PlayerUuid = NewFriend->GetFriendsPlayerUuid();
+				if (URH_PlayerInfo* PlayerInfo = PSS->GetOrCreatePlayerInfo(NewFriend->GetFriendsPlayerUuid()))
 				{
 					PlayerInfo->GetPresence()->OnUpdatedDelegate.AddUObject(ExistingFriend, &URH_RHFriendAndPlatformFriend::OnPresenceUpdated);
 				}
@@ -475,10 +475,10 @@ void URH_FriendSubsystem::OnAddFriendResponse(const AddFriendType::Response& Res
 				ExistingFriend->OnPresenceUpdatedDelegate.AddUObject(this, &URH_FriendSubsystem::OnPresenceUpdated);
 			}
 			ExistingFriend->PreviousRHFriendshipStatus = ExistingFriend->RHFriendshipStatus;
-			ExistingFriend->RHFriendshipStatus = static_cast<FriendshipStatus>(NewFriend.Status);
-			ExistingFriend->LastModifiedOn = NewFriend.LastModifiedOn;
-			ExistingFriend->Etag = Resp.ETag.Get(TEXT(""));
-			NewFriend.GetNotes(ExistingFriend->Notes);
+			ExistingFriend->RHFriendshipStatus = static_cast<FriendshipStatus>(NewFriend->GetStatus());
+			ExistingFriend->LastModifiedOn = NewFriend->GetLastModifiedOn();
+			Resp.TryGetDefaultHeader_ETag(ExistingFriend->Etag);
+			NewFriend->GetNotes(ExistingFriend->Notes);
 		}
 		else
 		{
@@ -486,18 +486,18 @@ void URH_FriendSubsystem::OnAddFriendResponse(const AddFriendType::Response& Res
 			UpdatedFriend = newEntry;
 			if (URH_PlayerInfoSubsystem* PSS = GetRH_PlayerInfoSubsystem())
 			{
-				newEntry->PlayerAndPlatformInfo.PlayerUuid = NewFriend.FriendsPlayerUuid;
-				if (URH_PlayerInfo* PlayerInfo = PSS->GetOrCreatePlayerInfo(NewFriend.FriendsPlayerUuid))
+				newEntry->PlayerAndPlatformInfo.PlayerUuid = NewFriend->GetFriendsPlayerUuid();
+				if (URH_PlayerInfo* PlayerInfo = PSS->GetOrCreatePlayerInfo(NewFriend->GetFriendsPlayerUuid()))
 				{
 					PlayerInfo->GetPresence()->OnUpdatedDelegate.AddUObject(newEntry, &URH_RHFriendAndPlatformFriend::OnPresenceUpdated);
 				}
 
 				newEntry->OnPresenceUpdatedDelegate.AddUObject(this, &URH_FriendSubsystem::OnPresenceUpdated);
 			}
-			newEntry->RHFriendshipStatus = static_cast<FriendshipStatus>(NewFriend.Status);
-			newEntry->LastModifiedOn = NewFriend.LastModifiedOn;
-			newEntry->Etag = Resp.ETag.Get(TEXT(""));
-			NewFriend.GetNotes(newEntry->Notes);
+			ExistingFriend->RHFriendshipStatus = static_cast<FriendshipStatus>(NewFriend->GetStatus());
+			ExistingFriend->LastModifiedOn = NewFriend->GetLastModifiedOn();
+			Resp.TryGetDefaultHeader_ETag(ExistingFriend->Etag);
+			NewFriend->GetNotes(ExistingFriend->Notes);
 			Friends.Emplace(newEntry);
 		}
 
@@ -527,7 +527,10 @@ void URH_FriendSubsystem::OnAddFriendResponse(const AddFriendType::Response& Res
 		BLUEPRINT_FriendUpdateErrorDelegate.Broadcast(Request.OtherPlayerUuid, ErrorCode);
 	}
 
-	Delegate.ExecuteIfBound(Resp.IsSuccessful(), Resp.Content.FriendsPlayerUuid, static_cast<FriendshipStatus>(Resp.Content.Status));
+	auto FriendsPlayerUuid = NewFriend ? NewFriend->GetFriendsPlayerUuid() : FGuid();
+	auto Status = NewFriend ? NewFriend->GetStatus() : ERHAPI_FriendshipStatus::None;
+	
+	Delegate.ExecuteIfBound(Resp.IsSuccessful(), FriendsPlayerUuid, static_cast<FriendshipStatus>(Status));
 }
 
 bool URH_FriendSubsystem::RemoveFriend(const FGuid& PlayerUuid, const FRH_GenericFriendWithUuidBlock& Delegate /*= FRH_GenericFriendWithUuidBlock()*/)
@@ -694,12 +697,12 @@ bool URH_FriendSubsystem::AddNotes(const FGuid& PlayerUuid, const FString& Notes
 
 void URH_FriendSubsystem::OnAddNotesResponse(const AddNotesType::Response& Resp, const FRH_AddNotesBlock Delegate, const AddNotesType::Request Request, int32 RetryEtagFailureCount)
 {
-	if (Resp.IsSuccessful())
+	const auto UpdatedFriend = Resp.TryGetDefaultContentAsPointer();
+	if (Resp.IsSuccessful() && UpdatedFriend != nullptr)
 	{
-		if (const auto Friend = GetFriendByUuid(Resp.Content.FriendsPlayerUuid))
+		if (const auto Friend = GetFriendByUuid(UpdatedFriend->GetFriendsPlayerUuid()))
 		{
-			auto UpdatedFriend = Resp.Content;
-			if (const auto Notes = UpdatedFriend.GetNotesOrNull())
+			if (const auto Notes = UpdatedFriend->GetNotesOrNull())
 			{
 				Friend->Notes = *Notes;
 			}
@@ -708,9 +711,9 @@ void URH_FriendSubsystem::OnAddNotesResponse(const AddNotesType::Response& Resp,
 				Friend->Notes.Empty();
 			}
 			Friend->PreviousRHFriendshipStatus = Friend->RHFriendshipStatus;
-			Friend->RHFriendshipStatus = static_cast<FriendshipStatus>(UpdatedFriend.Status);
-			Friend->LastModifiedOn = UpdatedFriend.LastModifiedOn;
-			Friend->Etag = Resp.ETag.Get(TEXT(""));
+			Friend->RHFriendshipStatus = static_cast<FriendshipStatus>(UpdatedFriend->GetStatus());
+			Friend->LastModifiedOn = UpdatedFriend->GetLastModifiedOn();
+			Resp.TryGetDefaultHeader_ETag(Friend->Etag);
 
 			{
 				SCOPED_NAMED_EVENT(RallyHere_BroadcastFriendUpdated, FColor::Purple);
@@ -739,7 +742,10 @@ void URH_FriendSubsystem::OnAddNotesResponse(const AddNotesType::Response& Resp,
 		BLUEPRINT_FriendUpdateErrorDelegate.Broadcast(Request.OtherPlayerUuid, ErrorCode);
 	}
 
-	Delegate.ExecuteIfBound(Resp.IsSuccessful(), Resp.Content.FriendsPlayerUuid, Resp.Content.GetNotes(TEXT("")));
+	FGuid FriendsPlayerUuid = UpdatedFriend ? UpdatedFriend->GetFriendsPlayerUuid() : FGuid();
+	FString NotesStr = UpdatedFriend ? UpdatedFriend->GetNotes(TEXT("")) : FString();
+	
+	Delegate.ExecuteIfBound(Resp.IsSuccessful(), FriendsPlayerUuid, NotesStr);
 }
 
 bool URH_FriendSubsystem::DeleteNotes(const FGuid& PlayerUuid, const FRH_GenericFriendWithUuidBlock& Delegate)
@@ -1349,7 +1355,7 @@ void URH_FriendSubsystem::OnFetchFriendForAdd(const GetFriendRelationshipType::R
 {
 	if (Resp.IsSuccessful())
 	{
-		Request.IfMatch.Emplace(Resp.ETag.Get(TEXT("")));
+		Request.IfMatch = Resp.TryGetDefaultHeaderAsOptional_ETag();
 	}
 	else if (Resp.GetHttpResponseCode() == EHttpResponseCodes::NotFound)
 	{
@@ -1368,7 +1374,7 @@ void URH_FriendSubsystem::OnFetchFriendForRemove(const GetFriendRelationshipType
 {
 	if (Resp.IsSuccessful())
 	{
-		Request.IfMatch.Emplace(Resp.ETag.Get(TEXT("")));
+		Request.IfMatch = Resp.TryGetDefaultHeaderAsOptional_ETag();
 	}
 	else if (Resp.GetHttpResponseCode() == EHttpResponseCodes::NotFound)
 	{
@@ -1387,7 +1393,7 @@ void URH_FriendSubsystem::OnFetchFriendForAddNote(const GetFriendRelationshipTyp
 {
 	if (Resp.IsSuccessful())
 	{
-		Request.IfMatch.Emplace(Resp.ETag.Get(TEXT("")));
+		Request.IfMatch = Resp.TryGetDefaultHeaderAsOptional_ETag();
 	}
 	else if (Resp.GetHttpResponseCode() == EHttpResponseCodes::NotFound)
 	{
@@ -1406,7 +1412,7 @@ void URH_FriendSubsystem::OnFetchFriendForDeleteNote(const GetFriendRelationship
 {
 	if (Resp.IsSuccessful())
 	{
-		Request.IfMatch.Emplace(Resp.ETag.Get(TEXT("")));
+		Request.IfMatch = Resp.TryGetDefaultHeaderAsOptional_ETag();
 	}
 	else if (Resp.GetHttpResponseCode() == EHttpResponseCodes::NotFound)
 	{
@@ -1498,15 +1504,16 @@ bool URH_FriendSubsystem::FetchBlockedList(const FRH_GenericFriendBlock& Delegat
 
 void URH_FriendSubsystem::OnFetchBlockedListResponse(const GetBlockedListType::Response& Resp, const FRH_GenericFriendBlock Delegate)
 {
-	if (Resp.IsSuccessful())
+	const auto Content = Resp.TryGetDefaultContentAsPointer();
+	if (Resp.IsSuccessful() && Content != nullptr)
 	{
-		BlockedPlayersETag = Resp.ETag.Get(TEXT(""));
+		Resp.TryGetDefaultHeader_ETag(BlockedPlayersETag);
 
 		TArray<FGuid> OldEntries = BlockedPlayersUUIDs;
 		TArray<FRHAPI_BlockedPlayer> BroadcastingArray;
 		BlockedPlayersUUIDs.Empty();
 
-		for (auto Blocked : Resp.Content.Blocked)
+		for (auto Blocked : Content->Blocked)
 		{
 			BlockedPlayersUUIDs.Emplace(Blocked.BlockedPlayerUuid);
 			BroadcastingArray.Emplace(Blocked);
@@ -1551,7 +1558,7 @@ void URH_FriendSubsystem::OnFetchBlockedListResponse(const GetBlockedListType::R
 		}
 	}
 
-	Delegate.ExecuteIfBound(Resp.IsSuccessful() || Resp.GetHttpResponseCode() == 304);
+	Delegate.ExecuteIfBound(Resp.IsSuccessful() || Resp.GetHttpResponseCode() == EHttpResponseCodes::NotModified);
 }
 
 bool URH_FriendSubsystem::FetchBlockedPlayer(const FGuid& PlayerUUID, const FRH_GenericFriendWithUuidBlock& Delegate /* = FRH_GenericFriendWithUuidBlock() */)
@@ -1587,16 +1594,17 @@ bool URH_FriendSubsystem::FetchBlockedPlayer(const FGuid& PlayerUUID, const FRH_
 
 void URH_FriendSubsystem::OnFetchBlockedPlayerResponse(const GetBlockedType::Response& Resp, const FRH_GenericFriendWithUuidBlock Delegate, const FGuid PlayerUuid)
 {
-	if (Resp.IsSuccessful())
+	const auto Content = Resp.TryGetDefaultContentAsPointer();
+	if (Resp.IsSuccessful() && Content != nullptr)
 	{
 		SCOPED_NAMED_EVENT(RallyHere_BroadcastBlockedPlayerUpdated, FColor::Purple);
-		auto blocked = Resp.Content;
+		auto blocked = *Content;
 		BlockedPlayersUUIDs.Emplace(PlayerUuid);
 		BlockedPlayerUpdatedDelegate.Broadcast(PlayerUuid, true);
 		BLUEPRINT_BlockedPlayerUpdatedDelegate.Broadcast(PlayerUuid, true);
 	}
 
-	Delegate.ExecuteIfBound(Resp.IsSuccessful() || Resp.GetHttpResponseCode() == 304, PlayerUuid);
+	Delegate.ExecuteIfBound(Resp.IsSuccessful() || Resp.GetHttpResponseCode() == EHttpResponseCodes::NotModified, PlayerUuid);
 }
 
 bool URH_FriendSubsystem::BlockPlayer(const FGuid& PlayerUuid, const FRH_GenericFriendWithUuidBlock& Delegate /* = FRH_GenericFriendWithUuidBlock() */)
@@ -1634,10 +1642,11 @@ bool URH_FriendSubsystem::BlockPlayer(const FGuid& PlayerUuid, const FRH_Generic
 
 void URH_FriendSubsystem::OnBlockPlayerResponse(const BlockType::Response& Resp, const FRH_GenericFriendWithUuidBlock Delegate, const FGuid PlayerUuid)
 {
-	if (Resp.IsSuccessful())
+	const auto Content = Resp.TryGetDefaultContentAsPointer();
+	if (Resp.IsSuccessful() && Content != nullptr)
 	{
 		SCOPED_NAMED_EVENT(RallyHere_BroadcastBlockedPlayerUpdated, FColor::Purple);
-		auto blocked = Resp.Content;
+		auto blocked = *Content;
 		BlockedPlayersUUIDs.Emplace(PlayerUuid);
 		BlockedPlayerUpdatedDelegate.Broadcast(PlayerUuid, true);
 		BLUEPRINT_BlockedPlayerUpdatedDelegate.Broadcast(PlayerUuid, true);

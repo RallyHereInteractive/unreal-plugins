@@ -287,18 +287,19 @@ void URH_PlayerInventory::CreateInventorySession(const TOptional<ERHAPI_Platform
 
 void URH_PlayerInventory::HandleCreateInventorySession(const RallyHereAPI::FResponse_CreateNewInventorySessionByPlayerUuid& Response, const FRH_OnInventorySessionUpdateDelegateBlock Delegate)
 {
-	if (Response.IsSuccessful())
+	const auto Content = Response.TryGetDefaultContentAsPointer();
+	if (Response.IsSuccessful() && Content != nullptr)
 	{
 		// reset inventory session storage, since a new one was created
 		InventorySession = FRH_InventorySession();
 
-		InventorySession.SessionId = Response.Content.SessionId;
-		if (const auto OrderId = Response.Content.GetOrderIdOrNull())
+		InventorySession.SessionId = Content->SessionId;
+		if (const auto OrderId = Content->GetOrderIdOrNull())
 		{
 			InventorySession.OrderId =  *OrderId;
 		}
 
-		if (const auto SessionPlatform = Response.Content.GetSessionPlatformOrNull())
+		if (const auto SessionPlatform = Content->GetSessionPlatformOrNull())
 		{
 			InventorySession.SessionPlatform = *SessionPlatform;
 		}
@@ -335,15 +336,16 @@ void URH_PlayerInventory::GetInventorySession(const FRH_OnInventorySessionUpdate
 
 void URH_PlayerInventory::HandleGetInventorySession(const RallyHereAPI::FResponse_GetInventorySessionInfoByPlayerUuid& Response, const FRH_OnInventorySessionUpdateDelegateBlock Delegate)
 {
-	if (Response.IsSuccessful())
+	const auto Content = Response.TryGetDefaultContentAsPointer();
+	if (Response.IsSuccessful() && Content != nullptr)
 	{
-		InventorySession.SessionId = Response.Content.SessionId;
-		if (const auto SessionPlatform = Response.Content.GetSessionPlatformOrNull())
+		InventorySession.SessionId = Content->SessionId;
+		if (const auto SessionPlatform = Content->GetSessionPlatformOrNull())
 		{
 			InventorySession.SessionPlatform = *SessionPlatform;
 		}
 
-		InventorySession.AppliedDurableLoot = Response.Content.GetAppliedDurableLoot(TArray<int32>());
+		InventorySession.AppliedDurableLoot = Content->GetAppliedDurableLoot(TArray<int32>());
 
 		Delegate.ExecuteIfBound(true);
 		return;
@@ -472,13 +474,14 @@ void URH_PlayerInventory::GetInventory(TArray<int32> ItemIds, const FRH_OnInvent
 void URH_PlayerInventory::HandleGetInventory(const RallyHereAPI::FResponse_GetPlayerInventoryUuid& Response,
 	const TArray<int32> ItemIds, const FRH_OnInventoryUpdateDelegateBlock Delegate)
 {
-	if (!Response.IsSuccessful())
+	const auto Content = Response.TryGetDefaultContentAsPointer();
+	if (!Response.IsSuccessful() || Content == nullptr)
 	{
 		Delegate.ExecuteIfBound(false);
 		return;
 	}
 
-	const auto Inventory = Response.Content.GetInventoryOrNull();
+	const auto Inventory = Content->GetInventoryOrNull();
 	const auto Items = Inventory ? Inventory->GetItemsOrNull() : nullptr;
 
 	// partial item updates
@@ -627,21 +630,19 @@ void URH_PlayerInventory::HandleCreateInventory(const RallyHereAPI::FResponse_Cr
 		}
 		return;
 	}
-
-	if (Response.Content.OrderId.IsEmpty())
+	else if (Response.GetHttpResponseCode() == EHttpResponseCodes::Ok)
 	{
-		Delegate.ExecuteIfBound(false);
-		return;
+		FRHAPI_PlayerOrder Response200;
+		if (Response.TryGetContentFor200(Response200))
+		{
+			check(!Response200.OrderId.IsEmpty());
+			ParseOrderResult(Response200);
+			Delegate.ExecuteIfBound(true);
+			return;
+		}
 	}
-
-	if (!Response.IsSuccessful())
-	{
-		Delegate.ExecuteIfBound(false);
-		return;
-	}
-
-	ParseOrderResult(Response.Content);
-	Delegate.ExecuteIfBound(true);
+	
+	Delegate.ExecuteIfBound(false);
 }
 
 void URH_PlayerInventory::UpdateInventory(const TOptional<FGuid>& ClientOrderReferenceId, const TArray<FRH_UpdateInventory>& UpdateInventories, const ERHAPI_Source Source,
@@ -708,21 +709,19 @@ void URH_PlayerInventory::HandleUpdateInventory(const RallyHereAPI::FResponse_Mo
 		}
 		return;
 	}
+	else if (Response.GetHttpResponseCode() == EHttpResponseCodes::Ok)
+	{
+		FRHAPI_PlayerOrder Response200;
+		if (Response.TryGetContentFor200(Response200))
+		{
+			check(!Response200.OrderId.IsEmpty());
+			ParseOrderResult(Response200);
+			Delegate.ExecuteIfBound(true);
+			return;
+		}
+	}
 	
-	if (Response.Content.OrderId.IsEmpty())
-	{
-		Delegate.ExecuteIfBound(false);
-		return;
-	}
-
-	if (!Response.IsSuccessful())
-	{
-		Delegate.ExecuteIfBound(false);
-		return;
-	}
-
-	ParseOrderResult(Response.Content);
-	Delegate.ExecuteIfBound(true);
+	Delegate.ExecuteIfBound(false);
 }
 
 void URH_PlayerInventory::CheckPollStatus()
@@ -927,21 +926,19 @@ void URH_PlayerInventory::RedeemPromoCodeResponse(const TCreateOrder::Response& 
 		}
 		return;
 	}
-
-	if (Response.Content.OrderId.IsEmpty())
+	else if (Response.GetHttpResponseCode() == EHttpResponseCodes::Ok)
 	{
-		Delegate.ExecuteIfBound(GetPlayerInfo(), PromoCode, FRHAPI_PlayerOrder());
-		return;
+		FRHAPI_PlayerOrder Response200;
+		if (Response.TryGetContentFor200(Response200))
+		{
+			check(!Response200.OrderId.IsEmpty());
+			ParseOrderResult(Response200);
+			Delegate.ExecuteIfBound(GetPlayerInfo(), PromoCode, Response200);
+			return;
+		}
 	}
 
-	if (!Response.IsSuccessful())
-	{
-		Delegate.ExecuteIfBound(GetPlayerInfo(), PromoCode, FRHAPI_PlayerOrder());
-		return;
-	}
-
-	ParseOrderResult(Response.Content);
-	Delegate.ExecuteIfBound(GetPlayerInfo(), PromoCode, Response.Content);
+	Delegate.ExecuteIfBound(GetPlayerInfo(), PromoCode, FRHAPI_PlayerOrder());
 }
 
 void URH_PlayerInventory::ParseOrderResult(const FRHAPI_PlayerOrder& Content)
@@ -1190,21 +1187,19 @@ void URH_PlayerInventory::CreatePlayerOrderResponse(const TCreateOrder::Response
 		}
 		return;
 	}
-
-	if (Response.Content.OrderId.IsEmpty())
+	else if (Response.GetHttpResponseCode() == EHttpResponseCodes::Ok)
 	{
-		Delegate.ExecuteIfBound(GetPlayerInfo(), OrderEntries, FRHAPI_PlayerOrder());
-		return;
+		FRHAPI_PlayerOrder Response200;
+		if (Response.TryGetContentFor200(Response200))
+		{
+			check(!Response200.OrderId.IsEmpty());
+			ParseOrderResult(Response200);
+			Delegate.ExecuteIfBound(GetPlayerInfo(), OrderEntries, Response200);
+			return;
+		}
 	}
 
-	if (!Response.IsSuccessful())
-	{
-		Delegate.ExecuteIfBound(GetPlayerInfo(), OrderEntries, FRHAPI_PlayerOrder());
-		return;
-	}
-
-	ParseOrderResult(Response.Content);
-	Delegate.ExecuteIfBound(GetPlayerInfo(), OrderEntries, Response.Content);
+	Delegate.ExecuteIfBound(GetPlayerInfo(), OrderEntries, FRHAPI_PlayerOrder());
 }
 
 void URH_PlayerInventory::ClearPendingOrder(const FRHAPI_PlayerOrder& OrderResult)
@@ -1375,11 +1370,12 @@ bool URH_PlayerOrderWatch::RequestOrders(const FRH_GenericSuccessWithErrorBlock&
 
 void URH_PlayerOrderWatch::RequestOrdersResponse(const TGetOrders::Response& Resp)
 {
-	if (Resp.IsSuccessful())
+	const auto Content = Resp.TryGetDefaultContentAsPointer();
+	if (Resp.IsSuccessful() && Content != nullptr)
 	{
-		LastRequestMeta = Resp.Content.Page;
+		LastRequestMeta = Content->Page;
 
-		if (const auto Data = Resp.Content.GetDataOrNull())
+		if (const auto Data = Content->GetDataOrNull())
 		{
 			auto* PlayerInventory = GetPlayerInventory();
 			if (PlayerInventory != nullptr)
@@ -1448,11 +1444,12 @@ void URH_PendingOrder::RequestOrdersResponse(const TGetOrderById::Response& Resp
 {
 	auto* PlayerInventory = GetPlayerInventory();
 
-	if (Resp.IsSuccessful() && PlayerInventory != nullptr)
+	const auto Content = Resp.TryGetDefaultContentAsPointer();
+	if (Resp.IsSuccessful() && PlayerInventory != nullptr && Content != nullptr)
 	{
 		bool bAllEntriesHaveResults = true;
 
-		for (const auto& Entry : Resp.Content.GetEntries())
+		for (const auto& Entry : Content->GetEntries())
 		{
 			auto Result = Entry.GetResultOrNull();
 			if (!Result)
@@ -1465,9 +1462,9 @@ void URH_PendingOrder::RequestOrdersResponse(const TGetOrderById::Response& Resp
 		// if all entries have results, consider the order complete and remove from pending list
 		if (bAllEntriesHaveResults)
 		{
-			PlayerInventory->ParseOrderResult(Resp.Content);
-			BroadcastComplete(PlayerInventory, Resp.Content);
-			PlayerInventory->ClearPendingOrder(Resp.Content);
+			PlayerInventory->ParseOrderResult(*Content);
+			BroadcastComplete(PlayerInventory, *Content);
+			PlayerInventory->ClearPendingOrder(*Content);
 		}
 	}
 }
